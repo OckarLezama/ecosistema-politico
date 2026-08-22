@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecosistema de Inteligencia Política · México</title>
+<meta name="description" content="Ecosistema de inteligencia política, social, económica y de seguridad para México — sexenio Sheinbaum.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ============== HEADER ============== -->
+  <header class="app-header">
+    <div id="data-error-banner" style="display:none;background:#fdecea;color:#a5342a;border-bottom:1px solid #f3c8c3;padding:8px 20px;font-size:12.5px;"></div>
+    <div class="header-top">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#232323" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M9.5 10.5 L6.3 7.3 M14.5 10.5 L17.7 7.3 M9.5 13.5 L6.3 16.7 M14.5 13.5 L17.7 16.7"/></svg>
+        </div>
+        <div class="brand-text">
+          <h1>Ecosistema de Inteligencia Política</h1>
+          <div class="eyebrow">México · Sexenio Sheinbaum · Actualizable</div>
+        </div>
+      </div>
+
+      <div class="header-meta">
+        <div class="palette-picker" id="palette-picker" title="Cambiar paleta de acentos">
+          <button class="palette-swatch active" data-palette="base" style="background:linear-gradient(135deg,#4cc1ba,#f46883)" aria-label="Paleta base"></button>
+          <button class="palette-swatch" data-palette="cliente" style="background:linear-gradient(135deg,#B66666,#778E88)" aria-label="Paleta institucional del cliente"></button>
+          <button class="palette-swatch" data-palette="neutra" style="background:linear-gradient(135deg,#808080,#BDB58D)" aria-label="Paleta neutra"></button>
+        </div>
+        <div class="corte-dato"><span class="dot"></span> Corte de datos: <span id="fecha-corte-txt" class="mono">—</span></div>
+      </div>
+    </div>
+
+    <nav class="module-nav" id="module-nav">
+      <button class="active" data-module="actores">Red de Actores</button>
+      <button data-module="agenda">Agenda &amp; Coyuntura</button>
+      <button data-module="heatmap">Mapa de Calor / Timeline</button>
+      <button data-module="probabilistico">Valoración Probabilística</button>
+      <button data-module="escenarios">Escenarios</button>
+    </nav>
+
+    <div class="ticker-wrap">
+      <div class="ticker-label"><span class="pulse"></span> Pulso semanal</div>
+      <div class="ticker-track" id="ticker-track"></div>
+    </div>
+  </header>
+
+  <!-- ============== MAIN ============== -->
+  <main class="app-main">
+
+    <!-- MÓDULO 1: RED DE ACTORES -->
+    <section class="module-panel active" id="panel-actores">
+      <div class="module-head">
+        <div>
+          <h2>Red de Actores</h2>
+          <p>Núcleos, satélites y vínculos del ecosistema político. Selecciona un núcleo para aislar su red, o dos para el cruce dialéctico.</p>
+        </div>
+      </div>
+
+      <div class="actores-layout">
+        <div class="graph-card">
+          <div class="graph-toolbar">
+            <div class="core-select">
+              <label for="core-a">Núcleo A</label>
+              <select id="core-a"><option value="">— sin selección —</option></select>
+            </div>
+            <div class="core-select">
+              <label for="core-b">Núcleo B</label>
+              <select id="core-b"><option value="">— sin selección —</option></select>
+            </div>
+            <button class="chip-btn" id="btn-reset-grafo">Restablecer</button>
+            <div class="modo-vinculo">
+              <button class="modo-vinculo-btn active" data-modo="grupo">Por grupo</button>
+              <button class="modo-vinculo-btn" data-modo="agenda">Por agenda</button>
+            </div>
+            <div class="legend-inline">
+              <span><span class="legend-dot" style="background:var(--riesgo-alto)"></span>Riesgo alto</span>
+              <span><span class="legend-dot" style="background:var(--riesgo-medio)"></span>Medio</span>
+              <span><span class="legend-dot" style="background:var(--riesgo-bajo)"></span>Bajo</span>
+            </div>
+          </div>
+          <svg id="graph-svg"></svg>
+          <div class="mobile-fallback">Arrastra los nodos o usa dos dedos para hacer zoom. En pantallas pequeñas, gira tu dispositivo para una vista más amplia del grafo.</div>
+        </div>
+
+        <aside class="detail-card" id="detail-panel">
+          <div class="detail-empty">Selecciona un actor en el grafo para ver su ficha completa.</div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MÓDULO 2: AGENDA / COYUNTURA -->
+    <section class="module-panel" id="panel-agenda">
+      <div class="module-head">
+        <div>
+          <h2>Agenda &amp; Coyuntura</h2>
+          <p>Temas que marcan la conversación pública, con peso político, trazabilidad temporal y actores involucrados.</p>
+        </div>
+      </div>
+      <div class="agenda-grid" id="agenda-grid"></div>
+    </section>
+
+    <!-- MÓDULO 3: HEATMAP / TIMELINE -->
+    <section class="module-panel" id="panel-heatmap">
+      <div class="module-head">
+        <div>
+          <h2>Mapa de Calor / Timeline</h2>
+          <p>Tensión política por periodo y categoría.</p>
+        </div>
+      </div>
+      <div class="placeholder-card">
+        <div class="eyebrow">Fase 3 — próximamente</div>
+        <h3>En construcción</h3>
+        <p>Este módulo se activará una vez validada la Red de Actores y la Agenda de Coyuntura.</p>
+      </div>
+    </section>
+
+    <!-- MÓDULO 4: PROBABILÍSTICO -->
+    <section class="module-panel" id="panel-probabilistico">
+      <div class="module-head">
+        <div>
+          <h2>Valoración Probabilística</h2>
+          <p>Motor heurístico de riesgo de escalación y estabilidad estructural — transparente, con pesos ajustables.</p>
+        </div>
+      </div>
+      <div class="placeholder-card">
+        <div class="eyebrow">Fase 4 — próximamente</div>
+        <h3>En construcción</h3>
+        <p>Se integrará sobre la misma base de eventos y temas ya cargada.</p>
+      </div>
+    </section>
+
+    <!-- MÓDULO 5: ESCENARIOS -->
+    <section class="module-panel" id="panel-escenarios">
+      <div class="module-head">
+        <div>
+          <h2>Escenarios</h2>
+          <p>Tres proyecciones por tema — continuista, escalación y distensión — a partir del histórico verificado.</p>
+        </div>
+      </div>
+      <div class="placeholder-card">
+        <div class="eyebrow">Fase 4 — próximamente</div>
+        <h3>En construcción</h3>
+        <p>Depende del motor probabilístico para calcular las tres trayectorias por tema.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    Ecosistema de Inteligencia Política · Datos sustentados con fuente y URL verificable · Uso institucional
+    <br><span style="opacity:.6">build 2026-08-22-03 — si no ves este número, tu navegador está sirviendo una copia vieja de estos archivos</span>
+  </footer>
+</div>
+
+<!-- ============== MODAL DE TEMA ============== -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close" aria-label="Cerrar">✕</button>
+    <div class="cat" id="modal-cat"></div>
+    <h3 id="modal-title"></h3>
+
+    <div class="modal-section">
+      <div class="eyebrow">Frecuencia de menciones</div>
+      <div class="sparkline-wrap"><canvas id="sparkline-canvas" style="width:100%;height:90px;"></canvas></div>
+    </div>
+
+    <div class="modal-section">
+      <div class="eyebrow">Resumen ejecutivo</div>
+      <p id="modal-resumen"></p>
+    </div>
+
+    <div class="modal-section">
+      <div class="eyebrow">Actores involucrados</div>
+      <div id="modal-actores"></div>
+    </div>
+
+    <div class="modal-source" id="modal-source"></div>
+  </div>
+</div>
+
+<!-- ============== MODAL DE ACTOR (notas + fuente) ============== -->
+<div class="modal-backdrop" id="actor-modal-backdrop">
+  <div class="modal-card">
+    <button class="modal-close" id="actor-modal-close" aria-label="Cerrar">✕</button>
+    <div class="cat" id="actor-modal-cargo"></div>
+    <h3 id="actor-modal-title"></h3>
+
+    <div class="modal-section">
+      <div class="eyebrow">Vinculado / mencionado en estos temas</div>
+      <div id="actor-modal-temas"></div>
+    </div>
+
+    <div class="modal-section">
+      <div class="eyebrow">Notas y menciones relevantes</div>
+      <div id="actor-modal-notas"></div>
+    </div>
+
+    <div class="modal-source" id="actor-modal-source"></div>
+  </div>
+</div>
+
+<!-- ============== LIBRERÍAS ============== -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+<!-- ============== APP ============== -->
+<script src="js/data-loader.js"></script>
+<script src="js/actores.js"></script>
+<script src="js/agenda.js"></script>
+<script>
+  // navegación entre módulos
+  document.getElementById('module-nav').addEventListener('click', (e)=>{
+    const btn = e.target.closest('button[data-module]');
+    if(!btn) return;
+    document.querySelectorAll('#module-nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.module-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-' + btn.dataset.module).classList.add('active');
+  });
+
+  // selector de paleta (estructura lista para Fase posterior; institucional activa por defecto)
+  // "base": paleta original (teal/coral/peach). "cliente": los 5 colores institucionales dados
+  // (Rojo #B66666, Arena #BDB58D, Verde #778E88, Crema #E5E2D3, Gris #808080). "neutra": variante
+  // con más gris, de menor saturación, para reportes más sobrios.
+  const PALETAS = {
+    base:     {teal:'#4cc1ba', coral:'#f46883', peach:'#f5a47c', gray:'#595959', line:'#e2e2df'},
+    cliente:  {teal:'#778E88', coral:'#B66666', peach:'#BDB58D', gray:'#808080', line:'#E5E2D3'},
+    neutra:   {teal:'#8a9a97', coral:'#a97e7e', peach:'#b0ab95', gray:'#808080', line:'#dedcd6'}
+  };
+  document.getElementById('palette-picker').addEventListener('click', (e)=>{
+    const btn = e.target.closest('.palette-swatch');
+    if(!btn) return;
+    document.querySelectorAll('.palette-swatch').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    const p = PALETAS[btn.dataset.palette];
+    const root = document.documentElement.style;
+    root.setProperty('--teal', p.teal);
+    root.setProperty('--coral', p.coral);
+    root.setProperty('--peach', p.peach);
+    root.setProperty('--gray', p.gray);
+    root.setProperty('--line', p.line);
+    root.setProperty('--riesgo-alto', p.coral);
+    root.setProperty('--riesgo-medio', p.peach);
+    root.setProperty('--riesgo-bajo', p.teal);
+    if(typeof renderGrafo === 'function' && ECOSISTEMA.ready) renderGrafo();
+    if(typeof renderCintillo === 'function' && ECOSISTEMA.ready){ renderCintillo(); renderAgendaGrid(); }
+  });
+
+  inicializarDatos();
+</script>
+</body>
+</html>
