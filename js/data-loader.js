@@ -169,14 +169,15 @@ function notasParaActor(actorId, limite=5){
   return notas;
 }
 
-// conteo de alianzas (fuertes/débiles, sin confrontación) para un actor
+// conteo de alianzas (fuertes/medias/débiles, sin confrontación) para un actor
 function conteoAlianzas(actorId){
   const rel = ECOSISTEMA.conexiones.filter(c =>
     (c.origen===actorId || c.destino===actorId) && c.tipo_vinculo !== 'confrontacion'
   );
   const fuertes = rel.filter(c=>c.fuerza==='fuerte').length;
-  const debiles = rel.length - fuertes;
-  return {fuertes, debiles, total: rel.length};
+  const medias = rel.filter(c=>c.fuerza==='medio' || c.fuerza==='media').length;
+  const debiles = rel.length - fuertes - medias;
+  return {fuertes, medias, debiles, total: rel.length};
 }
 
 // vínculos "por agenda": pares de actores que comparten al menos un tema

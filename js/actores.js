@@ -13,10 +13,9 @@
 
 let simulacion = null;
 let seleccion = { nucleo: null, cruce1: null, cruce2: null };
-let modoVinculo = 'grupo'; // 'grupo' (redes_personales / conexiones) | 'agenda' (temas compartidos)
-let vinculosAgendaCache = null;
+let modoVinculo = 'grupo'; // 'grupo' (redes_personales / conexiones, núcleo = actor) | 'agenda' (núcleo = tema de coyuntura)
 
-const RADIOS_ANILLO = {1:60, 2:105, 3:150};
+const RADIOS_ANILLO = {1:70, 2:120, 3:170};
 
 function initModuloActores(){
   poblarSelectores();
@@ -42,6 +41,9 @@ function initModuloActores(){
       modoVinculo = btn.dataset.modo;
       document.querySelectorAll('.modo-vinculo-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
+      seleccion = { nucleo:null, cruce1:null, cruce2:null }; // los ids de actor y de tema no son compatibles entre sí
+      poblarSelectores();
+      document.getElementById('detail-panel').innerHTML = detailEmptyHTML();
       renderGrafo();
     });
   });
@@ -54,11 +56,55 @@ function initModuloActores(){
   });
 }
 
-// candidatos: universo A/B/C (los niveles de poder), excluyendo lo ya elegido en los OTROS selectores
+function esModoTemas(){ return modoVinculo === 'agenda'; }
+
+function pesoARiesgo(peso){
+  if(peso >= 8) return 'alto';
+  if(peso >= 6) return 'medio';
+  return 'bajo';
+}
+
+function rolANivel(rol){
+  if(rol === 'Investigado' || rol === 'Responsable institucional') return 1;
+  if(rol === 'Mencionado') return 2;
+  return 3; // Operador, Red empresarial, o sin rol registrado
+}
+
+// convierte un tema en un "actor" sintético para reutilizar toda la maquinaria visual (radio, color, ficha)
+function temaComoNodo(tema){
+  return {
+    id: tema.id, nombre: tema.nombre, cargo: tema.categoria + ' · Horizonte ' + tema.horizonte,
+    nivel_riesgo: pesoARiesgo(tema.peso_politico), nivel_influencia: tema.peso_politico,
+    grupo: tema.categoria, avatar_local:'', iniciales: tema.nombre.slice(0,2).toUpperCase(),
+    descripcion: tema.resumen, fuente_nombre: tema.fuente_nombre, fuente_url: tema.fuente_url,
+    fecha_corte: tema.fecha, esTema: true
+  };
+}
+
+// red de un núcleo: red personal documentada (modo actores) o actores mencionados en el tema (modo agenda)
+function redDeCore(coreId){
+  if(esModoTemas()){
+    const tema = ECOSISTEMA.temas.find(t=>t.id===coreId);
+    if(!tema) return [];
+    return tema.actores_involucrados.map(aid=>{
+      const contexto = (ECOSISTEMA.temaActores||[]).find(ta=>ta.tema_id===coreId && ta.actor_id===aid);
+      const rol = contexto ? contexto.rol : 'Mencionado';
+      return {satelite_id:aid, nivel: rolANivel(rol), etiqueta_nivel: rol};
+    });
+  }
+  return redPersonalDe(coreId);
+}
+
+// candidatos: universo A/B/C (los niveles de poder) o el listado de temas, excluyendo lo ya elegido en los OTROS selectores
 function candidatosPara(slot){
   const yaElegidos = Object.entries(seleccion)
     .filter(([k,v]) => k!==slot && v)
     .map(([,v])=>v);
+  if(esModoTemas()){
+    return ECOSISTEMA.temas
+      .filter(t => !yaElegidos.includes(t.id))
+      .sort((a,b)=> b.peso_politico - a.peso_politico);
+  }
   return ECOSISTEMA.actores
     .filter(a => ['A','B','C'].includes(a.nucleo))
     .filter(a => !yaElegidos.includes(a.id))
@@ -70,8 +116,18 @@ function poblarSelectores(){
     const sel = document.getElementById(slot+'-select');
     const valorActual = seleccion[slot] || '';
     sel.innerHTML = '<option value="">— sin selección —</option>';
-
     const candidatos = candidatosPara(slot);
+
+    if(esModoTemas()){
+      candidatos.forEach(t=>{
+        const opt = document.createElement('option');
+        opt.value = t.id; opt.textContent = t.nombre;
+        sel.appendChild(opt);
+      });
+      sel.value = valorActual;
+      return;
+    }
+
     const conRed = candidatos.filter(a => redPersonalDe(a.id).length > 0);
     const sinRed = candidatos.filter(a => redPersonalDe(a.id).length === 0);
 
@@ -97,11 +153,6 @@ function poblarSelectores(){
     }
     sel.value = valorActual;
   });
-}
-
-function edgesAgenda(){
-  if(!vinculosAgendaCache) vinculosAgendaCache = vinculosPorAgenda();
-  return vinculosAgendaCache.map(v=>({origen:v.origen, destino:v.destino}));
 }
 
 function vecinosDe(actorId, edges){
@@ -131,11 +182,19 @@ function renderGrafo(){
       svgEl.parentNode.insertBefore(empty, svgEl);
     }
     empty.style.display = 'flex';
-    empty.innerHTML = `
-      <div class="eyebrow">Sin selección</div>
-      <h3>Elige un actor en Núcleo, Cruce 1 o Cruce 2</h3>
-      <p style="font-size:12.5px;max-width:360px;">Los actores en <strong>negritas</strong> ya tienen red documentada. Combina varios para ver dónde se cruzan.</p>
-    `;
+    if(esModoTemas()){
+      empty.innerHTML = `
+        <div class="eyebrow">Sin selección</div>
+        <h3>Elige un tema en Núcleo, Cruce 1 o Cruce 2</h3>
+        <p style="font-size:12.5px;max-width:360px;">Verás a todos los actores mencionados en ese tema. Combina varios temas para ver qué actores se repiten entre ellos.</p>
+      `;
+    } else {
+      empty.innerHTML = `
+        <div class="eyebrow">Sin selección</div>
+        <h3>Elige un actor en Núcleo, Cruce 1 o Cruce 2</h3>
+        <p style="font-size:12.5px;max-width:360px;">Los actores en <strong>negritas</strong> ya tienen red documentada. Combina varios para ver dónde se cruzan.</p>
+      `;
+    }
     return;
   }
   svgEl.style.display = 'block';
@@ -151,33 +210,34 @@ function renderGrafo(){
   const linksBase = [];
 
   coresElegidos.forEach(coreId=>{
-    const actorCore = getActor(coreId);
+    const actorCore = esModoTemas() ? temaComoNodo(ECOSISTEMA.temas.find(t=>t.id===coreId)) : getActor(coreId);
     if(!actorCore) return;
     if(!nodesMap.has(coreId)) nodesMap.set(coreId, {...actorCore, nivelAnillo:0, coreId:coreId, esCentro:true});
-    redPersonalDe(coreId).forEach(r=>{
-      const sat = getActor(r.satelite_id);
+    redDeCore(coreId).forEach(r=>{
+      const sat = getActor(r.satelite_id); // los satélites SIEMPRE son actores reales, incluso en modo temas
       if(!sat) return;
       if(!nodesMap.has(r.satelite_id)){
         nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:coreId, etiquetaNivel:r.etiqueta_nivel});
       }
-      linksBase.push({origen:coreId, destino:r.satelite_id, cruceNucleo:false, etiqueta:null});
+      linksBase.push({origen:coreId, destino:r.satelite_id, cruceNucleo:false, etiqueta:null, nivelDestino:r.nivel, esCruce:false});
     });
   });
 
   // ---- cruces entre los núcleos elegidos ----
   if(coresElegidos.length > 1){
-    const edgesCruce = modoVinculo === 'agenda' ? edgesAgenda() : ECOSISTEMA.conexiones;
+    const edgesCruce = ECOSISTEMA.conexiones;
     for(let i=0;i<coresElegidos.length;i++){
       for(let j=i+1;j<coresElegidos.length;j++){
         const idA = coresElegidos[i], idB = coresElegidos[j];
-        if(vecinosDe(idA, edgesCruce).has(idB)){
-          linksBase.push({origen:idA, destino:idB, cruceNucleo:true, etiqueta:'vínculo directo'});
+        // vínculo directo núcleo-núcleo solo aplica entre actores (los temas no se vinculan directo entre sí)
+        if(!esModoTemas() && vecinosDe(idA, edgesCruce).has(idB)){
+          linksBase.push({origen:idA, destino:idB, cruceNucleo:true, etiqueta:'vínculo directo', tipoDirecto:true, esCruce:true});
         }
-        const redA = new Set(redPersonalDe(idA).map(r=>r.satelite_id));
-        const redB = new Set(redPersonalDe(idB).map(r=>r.satelite_id));
-        [...redA].filter(x=>redB.has(x)).forEach(compartidoId=>{
-          linksBase.push({origen:idA, destino:compartidoId, cruceNucleo:true, etiqueta:null});
-          linksBase.push({origen:idB, destino:compartidoId, cruceNucleo:true, etiqueta:null});
+        const redAMap = new Map(redDeCore(idA).map(r=>[r.satelite_id, r.nivel]));
+        const redBMap = new Map(redDeCore(idB).map(r=>[r.satelite_id, r.nivel]));
+        [...redAMap.keys()].filter(x=>redBMap.has(x)).forEach(compartidoId=>{
+          linksBase.push({origen:idA, destino:compartidoId, cruceNucleo:true, etiqueta:null, nivelDestino:redAMap.get(compartidoId), esCruce:true});
+          linksBase.push({origen:idB, destino:compartidoId, cruceNucleo:true, etiqueta:null, nivelDestino:redBMap.get(compartidoId), esCruce:true});
         });
       }
     }
@@ -210,7 +270,13 @@ function renderGrafo(){
   const link = container.selectAll('line.link-line')
     .data(links)
     .join('line')
-    .attr('class', d=> 'link-line' + (d.cruceNucleo ? ' cruce-nucleo' : ''));
+    .attr('class', d=>{
+      let cls = 'link-line';
+      if(d.tipoDirecto) cls += ' cruce-directo';
+      else if(d.nivelDestino) cls += ' nivel-'+d.nivelDestino;
+      if(d.esCruce) cls += ' cruce';
+      return cls;
+    });
 
   const linkLabel = container.selectAll('text.link-label')
     .data(links.filter(d=>d.etiqueta))
@@ -226,12 +292,30 @@ function renderGrafo(){
     return {1:15,2:12,3:9}[d.nivelAnillo] || 8;
   }
 
+  function colorBordeNivel(d){
+    if(d.esCentro) return 'var(--ink-1)';
+    return {1:'var(--teal)', 2:'var(--peach)', 3:'var(--gray)'}[d.nivelAnillo] || 'var(--line-strong)';
+  }
+
+  function anchoBordeNivel(d){
+    return d.esCentro ? 3 : 2;
+  }
+
+  function nombreCorto(nombre){
+    const m = nombre.match(/\(([^)]+)\)/);
+    if(m) return nombre.split(' ')[0] + ' (' + m[1].replace(/'/g,'') + ')';
+    return nombre.split(' ').slice(0,2).join(' ');
+  }
+
   const node = container.selectAll('g.node')
     .data(nodes)
     .join('g')
     .attr('class','node')
     .style('cursor','pointer')
-    .on('click', (ev,d)=> mostrarFichaActor(d.id)) // SOLO ficha, ya no expande la red
+    .on('click', (ev,d)=>{
+      if(d.esTema) mostrarFichaTema(d.id);
+      else mostrarFichaActor(d.id);
+    })
     .call(d3.drag()
       .on('start', dragstarted)
       .on('drag', dragged)
@@ -240,7 +324,9 @@ function renderGrafo(){
   node.append('circle')
     .attr('class','node-circle')
     .attr('r', radioNodo)
-    .attr('fill', d => colorRiesgo(d.nivel_riesgo));
+    .attr('fill', d => colorRiesgo(d.nivel_riesgo))
+    .attr('stroke', colorBordeNivel)
+    .attr('stroke-width', anchoBordeNivel);
 
   node.filter(d => (temasPorActorSet[d.id]||[]).length > 0)
     .append('circle')
@@ -255,7 +341,7 @@ function renderGrafo(){
     .attr('class','node-label')
     .attr('dy', d => radioNodo(d) + 12)
     .attr('text-anchor','middle')
-    .text(d => d.nombre.split(' ').slice(0,2).join(' '));
+    .text(d => nombreCorto(d.nombre));
 
   // ---- física de "constelación": cada satélite orbita a SU PROPIO núcleo, no a un centro global ----
   const nodesById = {}; nodes.forEach(n=> nodesById[n.id]=n);
@@ -280,10 +366,10 @@ function renderGrafo(){
   simulacion = d3.forceSimulation(nodes)
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d => radioNodo(d) + 14).strength(0.95))
-    .force('link', d3.forceLink(links).id(d=>d.id).distance(200).strength(0.05))
-    .force('x', d3.forceX(width/2).strength(0.07))
-    .force('y', d3.forceY(height/2).strength(0.07))
+    .force('collide', d3.forceCollide().radius(d => radioNodo(d) + 18).strength(0.95))
+    .force('link', d3.forceLink(links).id(d=>d.id).distance(220).strength(0.05))
+    .force('x', d3.forceX(width/2).strength(0.06))
+    .force('y', d3.forceY(height/2).strength(0.06))
     .on('tick', ()=>{
       link
         .attr('x1', d=>d.source.x).attr('y1', d=>d.source.y)
@@ -304,6 +390,41 @@ function renderGrafo(){
     if(!event.active) simulacion.alphaTarget(0);
     d.fx = null; d.fy = null;
   }
+}
+
+function mostrarFichaTema(id){
+  const tema = ECOSISTEMA.temas.find(t=>t.id===id);
+  if(!tema) return;
+  const panel = document.getElementById('detail-panel');
+  const color = colorCategoria(tema.categoria);
+  const responsable = getActor(tema.responsable);
+
+  panel.innerHTML = `
+    <div class="detail-avatar" style="background:${color}">${tema.nombre.slice(0,2).toUpperCase()}</div>
+    <div class="detail-name">${tema.nombre}</div>
+    <div class="detail-cargo">${tema.categoria} · Horizonte ${tema.horizonte}</div>
+
+    <div class="detail-row">
+      <span class="k">Peso político</span>
+      <span class="v">${tema.peso_politico}/10</span>
+    </div>
+    <div class="detail-row">
+      <span class="k">Responsable</span>
+      <span class="v">${responsable ? responsable.nombre : '—'}</span>
+    </div>
+    <div class="detail-row">
+      <span class="k">Actores vinculados</span>
+      <span class="v">${tema.actores_involucrados.length}</span>
+    </div>
+
+    <div class="detail-desc">${tema.resumen}</div>
+
+    <button class="chip-btn" id="btn-ver-tema-completo" style="width:100%;margin-top:4px;">Ver ficha completa del tema</button>
+  `;
+
+  document.getElementById('btn-ver-tema-completo').addEventListener('click', ()=>{
+    if(typeof abrirModalTema === 'function') abrirModalTema(id);
+  });
 }
 
 function mostrarFichaActor(id){
@@ -335,7 +456,7 @@ function mostrarFichaActor(id){
     </div>
     <div class="detail-row">
       <span class="k">Alianzas registradas</span>
-      <span class="v">${alianzas.fuertes} fuertes · ${alianzas.debiles} débiles</span>
+      <span class="v">${alianzas.fuertes} fuertes · ${alianzas.medias} medias · ${alianzas.debiles} débiles</span>
     </div>
 
     <div class="detail-desc">${actor.descripcion}</div>

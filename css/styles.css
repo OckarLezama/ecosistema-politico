@@ -355,7 +355,11 @@ a{color:inherit;}
 .node-circle.dimmed{opacity:.18;}
 .link-line{stroke:var(--gray);stroke-opacity:.45;stroke-width:1.2px;}
 .link-line.friccion{stroke:var(--coral);stroke-width:2.4px;stroke-dasharray:3 3;}
-.link-line.cruce-nucleo{stroke:var(--peach);stroke-width:3px;stroke-dasharray:none;stroke-opacity:.85;}
+.link-line.nivel-1{stroke:var(--teal);stroke-width:1.7px;stroke-opacity:.6;}
+.link-line.nivel-2{stroke:var(--peach);stroke-width:1.4px;stroke-opacity:.55;}
+.link-line.nivel-3{stroke:var(--gray);stroke-width:1.1px;stroke-opacity:.45;}
+.link-line.cruce{stroke-dasharray:5 3;}
+.link-line.cruce-directo{stroke:var(--coral);stroke-width:3.5px;stroke-dasharray:none;stroke-opacity:.9;}
 .link-line.dimmed{opacity:.08;}
 .anillo-guia{pointer-events:none;opacity:.5;}
 
