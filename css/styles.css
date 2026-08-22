@@ -357,6 +357,7 @@ a{color:inherit;}
 .link-line.friccion{stroke:var(--coral);stroke-width:2.4px;stroke-dasharray:3 3;}
 .link-line.cruce-nucleo{stroke:var(--peach);stroke-width:3px;stroke-dasharray:none;stroke-opacity:.85;}
 .link-line.dimmed{opacity:.08;}
+.anillo-guia{pointer-events:none;opacity:.5;}
 
 .graph-empty-state{
   height:560px;
