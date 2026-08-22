@@ -32,18 +32,18 @@ function cargarCSV(nombreArchivo){
 }
 
 async function inicializarDatos(){
-  const archivos = ['actores.csv','conexiones.csv','temas.csv','eventos.csv','tema_actores.csv'];
-  const [actores, conexiones, temas, eventos, temaActores] = await Promise.all(
+  const archivos = ['actores.csv','conexiones.csv','temas.csv','eventos.csv','tema_actores.csv','redes_personales.csv'];
+  const [actores, conexiones, temas, eventos, temaActores, redesPersonales] = await Promise.all(
     archivos.map(cargarCSV)
   );
 
-  const faltantes = archivos.filter((nombre, i) => [actores,conexiones,temas,eventos,temaActores][i] === null);
+  const valores = [actores,conexiones,temas,eventos,temaActores,redesPersonales];
+  const faltantes = archivos.filter((nombre, i) => valores[i] === null);
   if(faltantes.length){
     mostrarErrorCarga(faltantes);
   }
   if(actores === null || conexiones === null || temas === null || eventos === null){
-    // sin lo esencial no hay nada que dibujar
-    return;
+    return; // sin lo esencial no hay nada que dibujar
   }
 
   try{
@@ -71,6 +71,14 @@ async function inicializarDatos(){
       fecha: e.fecha
     }));
     ECOSISTEMA.temaActores = temaActores || []; // opcional: si falta, "por qué aparece" queda vacío pero el resto funciona
+    ECOSISTEMA.redesPersonales = redesPersonales || []; // opcional: si falta, ningún núcleo despliega anillos
+
+    // redes personales agrupadas por núcleo, para dibujar anillos al seleccionar un actor
+    ECOSISTEMA.redPorNucleo = {};
+    ECOSISTEMA.redesPersonales.forEach(r=>{
+      if(!ECOSISTEMA.redPorNucleo[r.nucleo_id]) ECOSISTEMA.redPorNucleo[r.nucleo_id] = [];
+      ECOSISTEMA.redPorNucleo[r.nucleo_id].push({satelite_id: r.satelite_id, nivel: Number(r.nivel), etiqueta_nivel: r.etiqueta_nivel});
+    });
 
     // "por qué aparece": temas en que participa un actor, con rol/detalle si existe en tema_actores
     ECOSISTEMA.temasPorActorDetalle = {};
@@ -186,6 +194,11 @@ function vinculosPorAgenda(){
     }
   });
   return Object.values(pares);
+}
+
+// red personal de un núcleo (array de {satelite_id, nivel, etiqueta_nivel}), vacío si no hay documentada
+function redPersonalDe(actorId){
+  return ECOSISTEMA.redPorNucleo[actorId] || [];
 }
 
 function fechaCorteMasReciente(){
