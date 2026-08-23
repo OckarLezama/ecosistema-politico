@@ -45,15 +45,19 @@ function renderAgendaGrid(){
   const EXCLUIDOS_DE_GRID = ['reconfiguracion-gabinete-2026']; // dato estructural, no coyuntura
   const temasOrdenados = ECOSISTEMA.temas
     .filter(t => !EXCLUIDOS_DE_GRID.includes(t.id))
-    .sort((a,b)=> b.peso_politico - a.peso_politico);
+    .sort((a,b)=> Number(a.nivel_relevancia||3) - Number(b.nivel_relevancia||3) || b.peso_politico - a.peso_politico);
+
+  const ETIQUETA_NIVEL = {1:'Máxima relevancia', 2:'Alta relevancia', 3:'Relevancia media'};
 
   grid.innerHTML = temasOrdenados.map(t=>{
     const color = colorCategoria(t.categoria);
     const pesoPct = (t.peso_politico/10*100).toFixed(0);
     const responsable = getActor(t.responsable);
+    const nivelRel = Number(t.nivel_relevancia||3);
     return `
       <div class="tema-card" data-tema="${t.id}">
         <div class="aura" style="background:${color}"></div>
+        <div class="nivel-rel-badge nivel-rel-${nivelRel}">${ETIQUETA_NIVEL[nivelRel]}</div>
         <div class="cat">${t.categoria}</div>
         <h4>${t.nombre}</h4>
         ${responsable ? `<div class="responsable-tag"><span class="dot" style="background:${colorRiesgo(responsable.nivel_riesgo)}"></span>${responsable.nombre}</div>` : ''}

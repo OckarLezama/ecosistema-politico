@@ -506,6 +506,20 @@ a{color:inherit;}
   margin-bottom:8px;position:relative;
 }
 .responsable-tag .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.nivel-rel-badge{
+  position:relative;z-index:1;
+  display:inline-block;
+  font-family:var(--f-mono);
+  font-size:9px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  padding:2px 8px;
+  border-radius:99px;
+  margin-bottom:6px;
+}
+.nivel-rel-1{background:var(--coral-10);color:#c9435c;}
+.nivel-rel-2{background:var(--peach-10);color:#a56a3a;}
+.nivel-rel-3{background:var(--teal-10);color:#2c8b85;}
 
 /* modal */
 .modal-backdrop{

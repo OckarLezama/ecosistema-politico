@@ -89,7 +89,7 @@ function redDeCore(coreId){
     return tema.actores_involucrados.map(aid=>{
       const contexto = (ECOSISTEMA.temaActores||[]).find(ta=>ta.tema_id===coreId && ta.actor_id===aid);
       const rol = contexto ? contexto.rol : 'Mencionado';
-      return {satelite_id:aid, nivel: rolANivel(rol), etiqueta_nivel: rol};
+      return {satelite_id:aid, nivel: rolANivel(rol), etiqueta_nivel: rol, detalle: contexto ? contexto.detalle : null};
     });
   }
   return redPersonalDe(coreId);
@@ -223,26 +223,32 @@ function sintesisDeCombinacion(coresElegidos, nodes, links, contextosPorSatelite
       frases.push(`Vínculo directo confirmado entre ${directos.map(l=>`<strong>${nombreDeCore(l.origen)}</strong> y <strong>${nombreDeCore(l.destino)}</strong>`).join(', ')}.`);
     }
 
-    // interseccion de nivel1 entre todos los pares
-    const compartidosNivel1 = new Set();
+    // intersección de nivel1 POR PAREJA — necesario para decir con claridad "entre quiénes"
+    const paresConCompartidos = [];
     for(let i=0;i<coresElegidos.length;i++){
       for(let j=i+1;j<coresElegidos.length;j++){
         const a = nivel1PorCore[coresElegidos[i]], b = nivel1PorCore[coresElegidos[j]];
-        [...a].filter(x=>b.has(x)).forEach(x=>compartidosNivel1.add(x));
+        const compartidosPar = [...a].filter(x=>b.has(x));
+        if(compartidosPar.length){
+          paresConCompartidos.push({origenA:coresElegidos[i], origenB:coresElegidos[j], ids:compartidosPar});
+        }
       }
     }
     const totalNivel1 = new Set(coresElegidos.flatMap(cid=>[...nivel1PorCore[cid]]));
-    const ratio = totalNivel1.size ? compartidosNivel1.size / totalNivel1.size : 0;
+    const totalCompartidos = new Set(paresConCompartidos.flatMap(p=>p.ids));
+    const ratio = totalNivel1.size ? totalCompartidos.size / totalNivel1.size : 0;
 
-    if(compartidosNivel1.size > 0){
-      const nombres = [...compartidosNivel1].slice(0,3).map(id=>{
-        const a = getActor(id);
-        return a ? a.nombre.split(' ').slice(0,2).join(' ') : id;
+    if(paresConCompartidos.length > 0){
+      paresConCompartidos.forEach(par=>{
+        const nombres = par.ids.slice(0,3).map(id=>{
+          const a = getActor(id);
+          return a ? a.nombre.split(' ').slice(0,2).join(' ') : id;
+        });
+        const lectura = (par.ids.length / Math.min(nivel1PorCore[par.origenA].size, nivel1PorCore[par.origenB].size)) >= 0.3
+          ? 'sugiere continuidad estructural real entre ambas redes, no solo un vínculo protocolario.'
+          : 'es un cruce puntual dentro de redes por lo demás independientes.';
+        frases.push(`<strong>${nombreDeCore(par.origenA)}</strong> y <strong>${nombreDeCore(par.origenB)}</strong> comparten ${par.ids.length} persona${par.ids.length>1?'s':''} en su círculo de mayor cercanía (${nombres.join(', ')}${par.ids.length>3?' y otros':''}) — ${lectura}`);
       });
-      const lectura = ratio >= 0.3
-        ? 'sugiere continuidad estructural real entre estas redes, no solo un vínculo protocolario.'
-        : 'es un cruce puntual — el resto de sus círculos de mayor cercanía son independientes entre sí.';
-      frases.push(`Comparten ${compartidosNivel1.size} persona${compartidosNivel1.size>1?'s':''} en su círculo de mayor cercanía (${nombres.join(', ')}${compartidosNivel1.size>3?' y otros':''}) — ${lectura}`);
     } else if(directos.length){
       frases.push(`Pese al vínculo directo, no comparten a nadie en su círculo de mayor cercanía — son redes prácticamente independientes.`);
     } else {
@@ -316,7 +322,7 @@ function renderGrafo(){
       const sat = getActor(r.satelite_id); // los satélites SIEMPRE son actores reales, incluso en modo temas
       if(!sat) return;
       if(!contextosPorSatelite[r.satelite_id]) contextosPorSatelite[r.satelite_id] = [];
-      contextosPorSatelite[r.satelite_id].push({coreId, etiquetaNivel:r.etiqueta_nivel, nivel:r.nivel});
+      contextosPorSatelite[r.satelite_id].push({coreId, etiquetaNivel:r.etiqueta_nivel, nivel:r.nivel, detalle:r.detalle});
 
       const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
       if(yaEsNucleo){
@@ -660,9 +666,11 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
       const etiqueta = esModoTemas()
         ? ctx.etiquetaNivel
         : `Nivel ${ctx.nivel || ''} · ${ctx.etiquetaNivel || 'sin rol detallado'}`;
+      const detalleHTML = (esModoTemas() && ctx.detalle) ? `<p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${ctx.detalle}</p>` : '';
       return `<div style="margin-top:6px;">
         <div class="eyebrow" style="color:var(--familia-nucleo)">${esModoTemas() ? 'En' : 'En la red de'} "${nombreOrigen}"</div>
         <div style="font-weight:700;font-size:13px;">${etiqueta}</div>
+        ${detalleHTML}
       </div>`;
     }).join('');
     contextoTemaHTML = `<div class="contexto-tema-box">
@@ -754,12 +762,16 @@ function abrirModalActor(id){
   document.getElementById('actor-modal-cargo').textContent = actor.cargo;
 
   document.getElementById('actor-modal-temas').innerHTML = temas.length
-    ? temas.map(t=>`
+    ? temas.map(t=>{
+        const temaObj = ECOSISTEMA.temas.find(x=>x.id===t.temaId);
+        const nivelRel = temaObj ? Number(temaObj.nivel_relevancia||3) : 3;
+        const colorNivel = {1:'var(--riesgo-alto)', 2:'var(--riesgo-medio)', 3:'var(--riesgo-bajo)'}[nivelRel];
+        return `
         <div class="nota-item">
-          <div class="nota-fecha mono">${t.temaNombre}${t.rol ? ' · ' + t.rol : ''}</div>
+          <div class="nota-fecha mono"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${colorNivel};margin-right:5px;"></span>${t.temaNombre}${t.rol ? ' · ' + t.rol : ''}</div>
           ${t.detalle ? `<div class="nota-desc">${t.detalle}</div>` : ''}
         </div>
-      `).join('')
+      `;}).join('')
     : '<p style="font-size:12.5px;color:var(--ink-3)">No aparece vinculado a ningún tema de agenda todavía.</p>';
 
   document.getElementById('actor-modal-notas').innerHTML = notas.length
