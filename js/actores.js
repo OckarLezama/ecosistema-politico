@@ -286,19 +286,6 @@ function renderGrafo(){
   const container = svg.append('g');
   svg.call(d3.zoom().scaleExtent([0.5,2.5]).on('zoom', (ev)=>{ container.attr('transform', ev.transform); }));
 
-  // guías de anillo (círculos punteados) alrededor de cada núcleo
-  const guiaCentros = nodes.filter(n=>n.esCentro);
-  const guias = container.selectAll('circle.anillo-guia')
-    .data(guiaCentros.flatMap(c => [1,2,3].map(nivel=>({core:c, nivel}))))
-    .join('circle')
-    .attr('class','anillo-guia')
-    .attr('r', d=>RADIOS_ANILLO[d.nivel])
-    .attr('fill','none')
-    .attr('stroke', d=>colorDeCore(d.core.coreId))
-    .attr('stroke-dasharray','2 4')
-    .attr('stroke-opacity', 0.35)
-    .attr('stroke-width',1);
-
   // colores fijos por slot (núcleo/cruce1/cruce2) — identifican de qué "familia" es cada nodo,
   // independientes de la paleta y del semáforo de riesgo (que ahora vive solo en la bandera de riesgo)
   const COLOR_POR_SLOT = { nucleo:'var(--familia-nucleo)', cruce1:'var(--familia-cruce1)', cruce2:'var(--familia-cruce2)' };
@@ -312,6 +299,19 @@ function renderGrafo(){
   function opacidadPorNivel(nivel){
     return {0:1, 1:0.85, 2:0.55, 3:0.35}[nivel] ?? 0.5;
   }
+
+  // guías de anillo (círculos punteados) alrededor de cada núcleo
+  const guiaCentros = nodes.filter(n=>n.esCentro);
+  const guias = container.selectAll('circle.anillo-guia')
+    .data(guiaCentros.flatMap(c => [1,2,3].map(nivel=>({core:c, nivel}))))
+    .join('circle')
+    .attr('class','anillo-guia')
+    .attr('r', d=>RADIOS_ANILLO[d.nivel])
+    .attr('fill','none')
+    .attr('stroke', d=>colorDeCore(d.core.coreId))
+    .attr('stroke-dasharray','2 4')
+    .attr('stroke-opacity', 0.35)
+    .attr('stroke-width',1);
 
   // halo de contraste detrás de los vínculos directos núcleo-núcleo, para que resalten
   // incluso sobre un fondo de líneas de anillo muy poblado
