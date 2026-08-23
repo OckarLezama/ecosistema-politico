@@ -168,6 +168,76 @@ function detailEmptyHTML(){
   return `<div class="detail-empty">Selecciona un actor en el grafo para ver su ficha completa.</div>`;
 }
 
+function nombreDeCore(coreId){
+  if(esModoTemas()){
+    const t = ECOSISTEMA.temas.find(x=>x.id===coreId);
+    return t ? t.nombre : coreId;
+  }
+  const a = getActor(coreId);
+  return a ? a.nombre : coreId;
+}
+
+// Analiza la combinación EXACTA de núcleos elegidos ahora mismo y arma una lectura específica
+// (nombres, conteos y niveles reales) — no una plantilla genérica.
+function generarAnalisisRed(coresElegidos, nodes, links, contextosPorSatelite){
+  const cont = document.getElementById('analisis-red');
+  if(coresElegidos.length === 0){ cont.classList.remove('visible'); cont.innerHTML=''; return; }
+
+  const partes = [];
+
+  // resumen individual de cada núcleo
+  coresElegidos.forEach(coreId=>{
+    const red = redDeCore(coreId);
+    const nombre = nombreDeCore(coreId);
+    if(red.length === 0){
+      partes.push(`<strong>${nombre}</strong>: sin red documentada todavía — se muestra solo, sin anillos.`);
+      return;
+    }
+    const n1 = red.filter(r=>r.nivel===1).length;
+    const n2 = red.filter(r=>r.nivel===2).length;
+    const n3 = red.filter(r=>r.nivel===3).length;
+    const satNodos = nodes.filter(n=> n.coreId===coreId && !n.esCentro);
+    const altoRiesgo = satNodos.filter(n=>n.nivel_riesgo==='alto').map(n=>n.nombre.split(' ').slice(0,2).join(' '));
+    let fraseRiesgo = '';
+    if(altoRiesgo.length){
+      fraseRiesgo = ` Riesgo alto en: ${altoRiesgo.slice(0,3).join(', ')}${altoRiesgo.length>3 ? ' y '+(altoRiesgo.length-3)+' más' : ''}.`;
+    }
+    partes.push(`<strong>${nombre}</strong>: ${red.length} vínculos (${n1} nivel 1, ${n2} nivel 2, ${n3} nivel 3).${fraseRiesgo}`);
+  });
+
+  // cruces entre los núcleos elegidos, con nombres y niveles reales
+  if(coresElegidos.length > 1){
+    const directos = links.filter(l=>l.tipoDirecto);
+    directos.forEach(l=>{
+      partes.push(`Vínculo directo entre <strong>${nombreDeCore(l.origen)}</strong> y <strong>${nombreDeCore(l.destino)}</strong>.`);
+    });
+
+    // satélites compartidos: agrupar por persona compartida
+    const compartidosVistos = new Set();
+    Object.keys(contextosPorSatelite).forEach(satId=>{
+      const ctxs = contextosPorSatelite[satId].filter(c=> coresElegidos.includes(c.coreId));
+      const coresUnicos = [...new Set(ctxs.map(c=>c.coreId))];
+      if(coresUnicos.length > 1 && !compartidosVistos.has(satId)){
+        compartidosVistos.add(satId);
+        const actor = getActor(satId);
+        if(!actor) return;
+        const detalle = coresUnicos.map(cid=>{
+          const ctx = ctxs.find(c=>c.coreId===cid);
+          return `${nombreDeCore(cid)} (${ctx.etiquetaNivel || 'nivel '+ctx.nivel})`;
+        }).join(' · ');
+        partes.push(`<strong>${actor.nombre}</strong> se repite en: ${detalle}.`);
+      }
+    });
+
+    if(directos.length===0 && compartidosVistos.size===0){
+      partes.push(`No se detectó ningún vínculo directo ni satélite compartido entre ${coresElegidos.map(nombreDeCore).join(', ')} con los datos actuales — son redes independientes entre sí.`);
+    }
+  }
+
+  cont.innerHTML = `<div class="eyebrow">Lectura de esta combinación</div>${partes.map(p=>`<div style="margin-top:4px;">${p}</div>`).join('')}`;
+  cont.classList.add('visible');
+}
+
 function renderGrafo(){
   if(simulacion) simulacion.stop(); // clave: nunca dejar la simulación anterior corriendo en segundo plano
 
@@ -176,6 +246,8 @@ function renderGrafo(){
 
   if(coresElegidos.length === 0){
     svgEl.style.display = 'none';
+    const analisisVacio = document.getElementById('analisis-red');
+    if(analisisVacio){ analisisVacio.classList.remove('visible'); analisisVacio.innerHTML=''; }
     let empty = document.getElementById('graph-empty-state');
     if(!empty){
       empty = document.createElement('div');
@@ -230,7 +302,7 @@ function renderGrafo(){
       const sat = getActor(r.satelite_id); // los satélites SIEMPRE son actores reales, incluso en modo temas
       if(!sat) return;
       if(!contextosPorSatelite[r.satelite_id]) contextosPorSatelite[r.satelite_id] = [];
-      contextosPorSatelite[r.satelite_id].push({coreId, etiquetaNivel:r.etiqueta_nivel});
+      contextosPorSatelite[r.satelite_id].push({coreId, etiquetaNivel:r.etiqueta_nivel, nivel:r.nivel});
 
       const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
       if(yaEsNucleo){
@@ -274,6 +346,8 @@ function renderGrafo(){
     .filter(e => nodeIds.has(e.origen) && nodeIds.has(e.destino))
     .map(e => ({...e, source:e.origen, target:e.destino}));
 
+  generarAnalisisRed(coresElegidos, nodes, links, contextosPorSatelite);
+
   const temasPorActorSet = ECOSISTEMA.temasPorActor || {};
 
   const svg = d3.select(svgEl).attr('viewBox', [0,0,width,height]);
@@ -301,7 +375,7 @@ function renderGrafo(){
   }
 
   // guías de anillo (círculos punteados) alrededor de cada núcleo
-  const guiaCentros = nodes.filter(n=>n.esCentro);
+  const guiaCentros = nodes.filter(n=>n.esCentro && redDeCore(n.coreId).length > 0);
   const guias = container.selectAll('circle.anillo-guia')
     .data(guiaCentros.flatMap(c => [1,2,3].map(nivel=>({core:c, nivel}))))
     .join('circle')
@@ -370,8 +444,12 @@ function renderGrafo(){
       .on('drag', dragged)
       .on('end', dragended));
 
-  // halo de resplandor detrás del núcleo (se dibuja primero = queda atrás)
-  node.filter(d=>d.esCentro)
+  // halo de resplandor detrás del núcleo (se dibuja primero = queda atrás) — se omite si no tiene red
+  function sinRedDocumentada(d){
+    return d.esCentro && redDeCore(d.coreId).length === 0;
+  }
+
+  node.filter(d=>d.esCentro && !sinRedDocumentada(d))
     .append('circle')
     .attr('class','nucleo-halo')
     .attr('r', d=>radioNodo(d)+16)
@@ -382,18 +460,23 @@ function renderGrafo(){
   node.append('circle')
     .attr('class','node-circle')
     .attr('r', radioNodo)
-    .attr('fill', d => colorDeCore(d.coreId))
+    .attr('fill', d => sinRedDocumentada(d) ? 'var(--bg-2)' : colorDeCore(d.coreId))
     .attr('fill-opacity', d => opacidadPorNivel(d.nivelAnillo))
-    .attr('stroke', d => d.esCentro ? '#fff' : 'var(--bg-0)')
-    .attr('stroke-width', d => d.esCentro ? 3.5 : 1.5);
+    .attr('stroke', d => sinRedDocumentada(d) ? 'var(--ink-3)' : (d.esCentro ? '#fff' : 'var(--bg-0)'))
+    .attr('stroke-width', d => d.esCentro ? 3.5 : 1.5)
+    .attr('stroke-dasharray', d => sinRedDocumentada(d) ? '4 3' : null);
 
+  // anillo exterior del núcleo, para que se lea como "el centro", no solo un círculo más grande
+  node.filter(d=>d.esCentro)
+    .append('circle')
   // anillo exterior del núcleo, para que se lea como "el centro", no solo un círculo más grande
   node.filter(d=>d.esCentro)
     .append('circle')
     .attr('class','nucleo-anillo-exterior')
     .attr('r', d=>radioNodo(d)+6)
     .attr('fill','none')
-    .attr('stroke', d=>colorDeCore(d.coreId))
+    .attr('stroke', d=> sinRedDocumentada(d) ? 'var(--ink-3)' : colorDeCore(d.coreId))
+    .attr('stroke-dasharray', d=> sinRedDocumentada(d) ? '3 3' : null)
     .attr('stroke-width', 2)
     .attr('stroke-opacity', 0.55);
 
@@ -550,18 +633,24 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
   const riesgoColor = colorRiesgo(actor.nivel_riesgo);
   const alianzas = conteoAlianzas(id);
 
-  // contexto "por qué aparece" en modo temas — TODOS los temas cruzados en que aparece, no solo el primero
+  // contexto "por qué aparece" — funciona en AMBOS modos, con redacción distinta según cuál sea
   let contextoTemaHTML = '';
-  if(esModoTemas() && nodoClicado && !nodoClicado.esCentro && todosLosContextos && todosLosContextos.length){
+  if(nodoClicado && !nodoClicado.esCentro && todosLosContextos && todosLosContextos.length){
+    const tituloBox = esModoTemas()
+      ? `Vinculado en ${todosLosContextos.length} de los temas consultados`
+      : `Vínculo documentado en ${todosLosContextos.length} de las redes consultadas`;
     const filas = todosLosContextos.map(ctx=>{
-      const temaCore = ECOSISTEMA.temas.find(t=>t.id===ctx.coreId);
+      const nombreOrigen = nombreDeCore(ctx.coreId);
+      const etiqueta = esModoTemas()
+        ? ctx.etiquetaNivel
+        : `Nivel ${ctx.nivel || ''} · ${ctx.etiquetaNivel || 'sin rol detallado'}`;
       return `<div style="margin-top:6px;">
-        <div class="eyebrow" style="color:var(--familia-nucleo)">${temaCore ? temaCore.nombre : ctx.coreId}</div>
-        <div style="font-weight:700;font-size:13px;">${ctx.etiquetaNivel}</div>
+        <div class="eyebrow" style="color:var(--familia-nucleo)">${esModoTemas() ? 'En' : 'En la red de'} "${nombreOrigen}"</div>
+        <div style="font-weight:700;font-size:13px;">${etiqueta}</div>
       </div>`;
     }).join('');
     contextoTemaHTML = `<div class="contexto-tema-box">
-      <div class="eyebrow">Vinculado en ${todosLosContextos.length} de los temas consultados</div>
+      <div class="eyebrow">${tituloBox}</div>
       ${filas}
     </div>`;
   }
@@ -592,6 +681,7 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
       <div class="eyebrow">Impacto por temas de coyuntura (${impacto.n})</div>
       <div style="font-size:12.5px;margin-top:2px;">Peso político promedio: <strong>${impacto.promedio}/10</strong> · Máximo: <strong>${impacto.maxPeso}/10</strong></div>
       <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${impacto.texto}</p>
+      <p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;border-top:1px solid var(--line);padding-top:5px;">Cálculo: promedio y máximo del "peso político" (1–10) de los ${impacto.n} temas donde este actor aparece en <code>temas.csv</code>.</p>
     </div>` : '';
 
   panel.innerHTML = `
