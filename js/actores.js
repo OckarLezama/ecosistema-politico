@@ -168,6 +168,12 @@ function detailEmptyHTML(){
   return `<div class="detail-empty">Selecciona un actor en el grafo para ver su ficha completa.</div>`;
 }
 
+const DEFINICION_HORIZONTE = {
+  corto: 'Hecho puntual, sin proceso institucional abierto — su ciclo mediático se agota en semanas.',
+  mediano: 'Hay un proceso institucional en curso (negociación, legislación, transición) con hito o fecha de cierre esperable en meses.',
+  largo: 'Patrón estructural o dinámica sin fecha de cierre previsible — sigue generando eventos mientras no se resuelva su causa raíz.'
+};
+
 function nombreDeCore(coreId){
   if(esModoTemas()){
     const t = ECOSISTEMA.temas.find(x=>x.id===coreId);
@@ -510,6 +516,17 @@ function renderGrafo(){
     .attr('stroke', '#fff')
     .attr('stroke-width', 1.3);
 
+  // insignia especial: este satélite es en realidad una figura de Nivel A (Sheinbaum/AMLO/Trump/etc.)
+  // apareciendo dentro de la red de otro núcleo — sin esto, se vería como un puntito más
+  node.filter(d => !d.esCentro && !d.esTema && d.nucleo === 'A')
+    .append('text')
+    .attr('class', 'a-tier-badge')
+    .attr('x', 0)
+    .attr('y', d=> -radioNodo(d) - 6)
+    .attr('text-anchor', 'middle')
+    .attr('font-size', '11px')
+    .text('★');
+
   node.filter(d => !d.esTema && (temasPorActorSet[d.id]||[]).length > 0)
     .append('circle')
     .attr('r', 3.5)
@@ -595,7 +612,7 @@ function mostrarFichaTema(id){
   panel.innerHTML = `
     <div class="detail-avatar" style="background:${color}">${tema.nombre.slice(0,2).toUpperCase()}</div>
     <div class="detail-name">${tema.nombre}</div>
-    <div class="detail-cargo">${tema.categoria} · Horizonte ${tema.horizonte}</div>
+    <div class="detail-cargo" title="${DEFINICION_HORIZONTE[tema.horizonte]||''}">${tema.categoria} · Horizonte ${tema.horizonte} ⓘ</div>
 
     <div class="detail-row">
       <span class="k">Peso político</span>
@@ -704,19 +721,11 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
 
   // impacto agregado por temas de coyuntura — SOLO en modo "por agenda" (en "por grupo" ya está
   // la valoración de la red de arriba; repetir la misma lectura en ambos modos no aporta nada)
-  let impactoHTML = '';
-  if(esModoTemas()){
-    const temasDelActor = temasParaActor(id);
-    const impacto = valoracionImpactoTemas(temasDelActor);
-    const numNotas = notasParaActor(id).length;
-    impactoHTML = impacto ? `
-      <div class="valoracion-riesgo-box">
-        <div class="eyebrow">Impacto por temas de coyuntura (${impacto.n})</div>
-        <div style="font-size:12.5px;margin-top:2px;">Peso político promedio: <strong>${impacto.promedio}/10</strong> · Máximo: <strong>${impacto.maxPeso}/10</strong> · Notas registradas: <strong>${numNotas}</strong></div>
-        <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${impacto.texto}</p>
-        <p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;border-top:1px solid var(--line);padding-top:5px;">Cálculo: promedio y máximo del "peso político" (1–10) de los ${impacto.n} temas donde este actor aparece en la agenda nacional.</p>
-      </div>` : '';
-  }
+  // en modo agenda la ficha debe hablar SOLO del tema que se está consultando (contextoTemaHTML
+  // ya lo hace) — un agregado de "impacto en todos los temas" aquí rompía ese alcance y hacía ver
+  // a actores secundarios (ej. alguien mencionado una vez en un tema de peso alto) como más
+  // relevantes de lo que son. Ese agregado global de temas vive solo en el modal completo, y solo
+  // en modo grupo (ahí sí tiene sentido ver el panorama completo del actor).
 
   panel.innerHTML = `
     <div class="detail-avatar" style="background:${riesgoColor}">
@@ -724,11 +733,10 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
     </div>
     <div class="detail-name">${actor.nombre}</div>
     <div class="detail-cargo">${actor.cargo}</div>
-    ${actor.fuente_nombre === 'Análisis interno' ? '<span class="badge-interno">ANÁLISIS INTERNO</span>' : ''}
+    ${actor.fuente_nombre === 'Análisis interno' ? '<span class="badge-interno">ANÁLISIS</span>' : ''}
 
     ${contextoTemaHTML}
     ${valoracionHTML}
-    ${impactoHTML}
 
     <div class="detail-row">
       <span class="k">Nivel de riesgo</span>
@@ -742,6 +750,11 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
       <span class="k">Grupo</span>
       <span class="v">${actor.grupo}</span>
     </div>
+    ${actor.potencial_fractura ? `
+    <div class="detail-row" title="Capacidad de generar una ruptura visible en el gobierno/partido — distinto del riesgo reputacional.">
+      <span class="k">Potencial de fractura ⓘ</span>
+      <span class="v"><span class="riesgo-badge" style="background:${colorRiesgo(actor.potencial_fractura)}22;color:${colorRiesgo(actor.potencial_fractura)}">${actor.potencial_fractura.toUpperCase()}</span></span>
+    </div>` : ''}
 
     <div class="detail-desc">${actor.descripcion}</div>
 
@@ -754,9 +767,17 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
 function abrirModalActor(id){
   const actor = getActor(id);
   if(!actor) return;
-  const notas = notasParaActor(id);
-  const temas = temasParaActor(id);
+  let notas = notasParaActor(id);
+  let temas = temasParaActor(id);
   const esAnalisisInterno = actor.fuente_nombre === 'Análisis interno';
+
+  // en modo agenda, la ficha completa habla SOLO de los temas que se están consultando ahora
+  // mismo (no de todo el historial del actor) — el panorama completo solo aplica en modo grupo.
+  if(esModoTemas()){
+    const temasSeleccionados = ['nucleo','cruce1','cruce2'].map(s=>seleccion[s]).filter(Boolean);
+    temas = temas.filter(t => temasSeleccionados.includes(t.temaId));
+    notas = notas.filter(n => temasSeleccionados.includes(n.tema_id));
+  }
 
   document.getElementById('actor-modal-title').textContent = actor.nombre;
   document.getElementById('actor-modal-cargo').textContent = actor.cargo;
@@ -785,7 +806,7 @@ function abrirModalActor(id){
     : '<p style="font-size:12.5px;color:var(--ink-3)">Sin menciones registradas en temas de agenda todavía.</p>';
 
   document.getElementById('actor-modal-source').innerHTML = esAnalisisInterno
-    ? `<span class="badge-interno">ANÁLISIS INTERNO</span> · sin fuente pública — valoración propia del equipo`
+    ? `<span class="badge-interno">ANÁLISIS</span> · sin fuente pública — valoración propia del equipo`
     : `FUENTE PRINCIPAL · ${actor.fuente_nombre} · ${actor.fecha_corte}<br><a href="${actor.fuente_url}" target="_blank" rel="noopener">Ver artículo completo ↗</a>`;
 
   document.getElementById('actor-modal-backdrop').classList.add('open');

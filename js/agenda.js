@@ -81,7 +81,13 @@ function abrirModalTema(temaId){
   const color = colorCategoria(tema.categoria);
 
   const responsable = getActor(tema.responsable);
-  document.getElementById('modal-cat').textContent = tema.categoria + ' · Horizonte ' + tema.horizonte + (responsable ? ' · Actor principal: ' + responsable.nombre : '');
+  const horizonteTooltip = {
+    corto: 'Hecho puntual, sin proceso institucional abierto — su ciclo mediático se agota en semanas.',
+    mediano: 'Hay un proceso institucional en curso con hito o fecha de cierre esperable en meses.',
+    largo: 'Patrón estructural o dinámica sin fecha de cierre previsible.'
+  }[tema.horizonte] || '';
+  document.getElementById('modal-cat').title = horizonteTooltip;
+  document.getElementById('modal-cat').textContent = tema.categoria + ' · Horizonte ' + tema.horizonte + ' ⓘ' + (responsable ? ' · Actor principal: ' + responsable.nombre : '');
   document.getElementById('modal-title').textContent = tema.nombre;
 
   const actoresHTML = tema.actores_involucrados.map(id=>{
@@ -132,7 +138,7 @@ function dibujarSparkline(temaId, color){
   const canvas = document.getElementById('sparkline-canvas');
   const ctx = canvas.getContext('2d');
   const w = canvas.width = canvas.clientWidth * 2;
-  const h = canvas.height = 90 * 2;
+  const h = canvas.height = 130 * 2; // más alto para dar espacio a fechas y valores
   ctx.clearRect(0,0,w,h);
 
   const evs = ECOSISTEMA.eventos
@@ -147,13 +153,21 @@ function dibujarSparkline(temaId, color){
   }
 
   const maxI = Math.max(...evs.map(e=>e.intensidad), 1);
-  const padding = 16;
-  const stepX = (w - padding*2) / Math.max(evs.length-1, 1);
+  const padLeft = 16, padRight = 16, padTop = 34, padBottom = 34; // top: valores, bottom: fechas
+  const plotH = h - padTop - padBottom;
+  const stepX = (w - padLeft - padRight) / Math.max(evs.length-1, 1);
 
+  function coords(i, e){
+    return {
+      x: padLeft + i*stepX,
+      y: padTop + plotH - (e.intensidad/maxI)*plotH
+    };
+  }
+
+  // línea
   ctx.beginPath();
   evs.forEach((e,i)=>{
-    const x = padding + i*stepX;
-    const y = h - padding - (e.intensidad/maxI)*(h-padding*2);
+    const {x,y} = coords(i,e);
     if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
   });
   ctx.strokeStyle = color;
@@ -161,14 +175,32 @@ function dibujarSparkline(temaId, color){
   ctx.lineJoin = 'round';
   ctx.stroke();
 
+  // puntos + valor arriba + fecha abajo (fecha solo en el primero, último y cada 2-3 para no amontonar)
+  const mostrarFechaCada = evs.length > 8 ? 3 : (evs.length > 4 ? 2 : 1);
   evs.forEach((e,i)=>{
-    const x = padding + i*stepX;
-    const y = h - padding - (e.intensidad/maxI)*(h-padding*2);
+    const {x,y} = coords(i,e);
     ctx.beginPath();
     ctx.arc(x,y,4,0,Math.PI*2);
     ctx.fillStyle = color;
     ctx.fill();
+
+    // valor de intensidad arriba del punto
+    ctx.font = '18px monospace';
+    ctx.fillStyle = '#595959';
+    ctx.textAlign = 'center';
+    ctx.fillText(String(e.intensidad), x, y-12);
+
+    // fecha abajo (primero, último, y cada N intermedio)
+    const mostrarEsta = i===0 || i===evs.length-1 || i % mostrarFechaCada === 0;
+    if(mostrarEsta){
+      ctx.font = '14px monospace';
+      ctx.fillStyle = '#8a8a86';
+      const fechaCorta = e.fecha.slice(5); // MM-DD
+      ctx.fillText(fechaCorta, x, h-8);
+    }
   });
+
+  ctx.textAlign = 'left';
 }
 
 document.addEventListener('ecosistema:datos-listos', initAgendaYCintillo);
