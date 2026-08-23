@@ -210,15 +210,33 @@ function renderGrafo(){
   // ---- nodos: cada núcleo elegido + su red personal en anillos propios ----
   const nodesMap = new Map();
   const linksBase = [];
+  const contextosPorSatelite = {}; // satId -> [{coreId, etiquetaNivel}] — TODOS los cruces en que aparece, no solo el primero
 
+  // paso 1: registrar todos los núcleos elegidos PRIMERO, siempre como centro — esto tiene prioridad
+  // absoluta sobre cualquier aparición como satélite de otro núcleo (evita que un núcleo "se encoja"
+  // si ya había sido descubierto como satélite de otro núcleo elegido).
   coresElegidos.forEach((coreId, idx)=>{
     const slot = ['nucleo','cruce1','cruce2'][idx];
     const actorCore = esModoTemas() ? temaComoNodo(ECOSISTEMA.temas.find(t=>t.id===coreId)) : getActor(coreId);
     if(!actorCore) return;
-    if(!nodesMap.has(coreId)) nodesMap.set(coreId, {...actorCore, nivelAnillo:0, coreId:coreId, slot:slot, esCentro:true});
+    nodesMap.set(coreId, {...actorCore, nivelAnillo:0, coreId:coreId, slot:slot, esCentro:true});
+  });
+
+  // paso 2: agregar satélites de cada núcleo, sin degradar a quien ya es núcleo, y registrando
+  // TODOS los contextos (temas/núcleos) en los que aparece cada satélite compartido.
+  coresElegidos.forEach((coreId, idx)=>{
+    const slot = ['nucleo','cruce1','cruce2'][idx];
     redDeCore(coreId).forEach(r=>{
       const sat = getActor(r.satelite_id); // los satélites SIEMPRE son actores reales, incluso en modo temas
       if(!sat) return;
+      if(!contextosPorSatelite[r.satelite_id]) contextosPorSatelite[r.satelite_id] = [];
+      contextosPorSatelite[r.satelite_id].push({coreId, etiquetaNivel:r.etiqueta_nivel});
+
+      const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
+      if(yaEsNucleo){
+        linksBase.push({origen:coreId, destino:r.satelite_id, etiqueta:null, nivelDestino:r.nivel, esCruce:false, slot:slot});
+        return; // no lo re-registres como satélite, ya es un núcleo con su propio tamaño/anillos
+      }
       if(!nodesMap.has(r.satelite_id)){
         nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:coreId, slot:slot, etiquetaNivel:r.etiqueta_nivel});
       }
@@ -276,8 +294,9 @@ function renderGrafo(){
     .attr('class','anillo-guia')
     .attr('r', d=>RADIOS_ANILLO[d.nivel])
     .attr('fill','none')
-    .attr('stroke','var(--line)')
+    .attr('stroke', d=>colorDeCore(d.core.coreId))
     .attr('stroke-dasharray','2 4')
+    .attr('stroke-opacity', 0.35)
     .attr('stroke-width',1);
 
   // colores fijos por slot (núcleo/cruce1/cruce2) — identifican de qué "familia" es cada nodo,
@@ -334,7 +353,7 @@ function renderGrafo(){
     .style('cursor','pointer')
     .on('click', (ev,d)=>{
       if(d.esTema) mostrarFichaTema(d.id);
-      else mostrarFichaActor(d.id, d, nodes);
+      else mostrarFichaActor(d.id, d, nodes, contextosPorSatelite[d.id]);
     })
     .call(d3.drag()
       .on('start', dragstarted)
@@ -495,22 +514,43 @@ function valoracionRiesgoRed(conteo){
   return 'Red de baja exposición: predominan los vínculos de bajo riesgo.';
 }
 
-function mostrarFichaActor(id, nodoClicado, nodesEnGrafo){
+function valoracionImpactoTemas(temasList){
+  if(!temasList || temasList.length===0) return null;
+  const pesos = temasList.map(t=>{
+    const tema = ECOSISTEMA.temas.find(x=>x.id===t.temaId);
+    return tema ? tema.peso_politico : 5;
+  });
+  const promedio = pesos.reduce((a,b)=>a+b,0)/pesos.length;
+  const maxPeso = Math.max(...pesos);
+  let texto;
+  if(maxPeso >= 9) texto = 'Vinculado a al menos un tema de máxima prioridad en la agenda nacional.';
+  else if(promedio >= 7) texto = 'Presencia constante en temas de alto peso político.';
+  else if(promedio >= 5) texto = 'Presencia moderada en la agenda de coyuntura.';
+  else texto = 'Presencia baja o marginal en temas de coyuntura.';
+  return { promedio: promedio.toFixed(1), maxPeso, texto, n: temasList.length };
+}
+
+function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
   const actor = getActor(id);
   if(!actor) return;
   const panel = document.getElementById('detail-panel');
   const riesgoColor = colorRiesgo(actor.nivel_riesgo);
   const alianzas = conteoAlianzas(id);
 
-  // contexto "por qué aparece" cuando el clic ocurre en modo temas sobre un satélite (no el núcleo mismo)
+  // contexto "por qué aparece" en modo temas — TODOS los temas cruzados en que aparece, no solo el primero
   let contextoTemaHTML = '';
-  if(esModoTemas() && nodoClicado && !nodoClicado.esCentro && nodoClicado.etiquetaNivel){
-    const temaCore = ECOSISTEMA.temas.find(t=>t.id===nodoClicado.coreId);
-    contextoTemaHTML = `
-      <div class="contexto-tema-box">
-        <div class="eyebrow" style="color:var(--familia-nucleo)">En "${temaCore ? temaCore.nombre : nodoClicado.coreId}"</div>
-        <div style="font-weight:700;font-size:13px;">${nodoClicado.etiquetaNivel}</div>
+  if(esModoTemas() && nodoClicado && !nodoClicado.esCentro && todosLosContextos && todosLosContextos.length){
+    const filas = todosLosContextos.map(ctx=>{
+      const temaCore = ECOSISTEMA.temas.find(t=>t.id===ctx.coreId);
+      return `<div style="margin-top:6px;">
+        <div class="eyebrow" style="color:var(--familia-nucleo)">${temaCore ? temaCore.nombre : ctx.coreId}</div>
+        <div style="font-weight:700;font-size:13px;">${ctx.etiquetaNivel}</div>
       </div>`;
+    }).join('');
+    contextoTemaHTML = `<div class="contexto-tema-box">
+      <div class="eyebrow">Vinculado en ${todosLosContextos.length} de los temas consultados</div>
+      ${filas}
+    </div>`;
   }
 
   // valoración de riesgo de la red, solo si se clickeó el núcleo (centro) mismo
@@ -531,6 +571,16 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo){
       </div>`;
   }
 
+  // impacto agregado por temas de coyuntura (todo el sistema, no solo lo que está seleccionado ahora)
+  const temasDelActor = temasParaActor(id);
+  const impacto = valoracionImpactoTemas(temasDelActor);
+  const impactoHTML = impacto ? `
+    <div class="valoracion-riesgo-box">
+      <div class="eyebrow">Impacto por temas de coyuntura (${impacto.n})</div>
+      <div style="font-size:12.5px;margin-top:2px;">Peso político promedio: <strong>${impacto.promedio}/10</strong> · Máximo: <strong>${impacto.maxPeso}/10</strong></div>
+      <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${impacto.texto}</p>
+    </div>` : '';
+
   panel.innerHTML = `
     <div class="detail-avatar" style="background:${riesgoColor}">
       ${actor.avatar_local ? `<img src="${actor.avatar_local}" alt="${actor.nombre}">` : actor.iniciales}
@@ -541,6 +591,7 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo){
 
     ${contextoTemaHTML}
     ${valoracionHTML}
+    ${impactoHTML}
 
     <div class="detail-row">
       <span class="k">Nivel de riesgo</span>
