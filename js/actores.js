@@ -209,17 +209,18 @@ function renderGrafo(){
   const nodesMap = new Map();
   const linksBase = [];
 
-  coresElegidos.forEach(coreId=>{
+  coresElegidos.forEach((coreId, idx)=>{
+    const slot = ['nucleo','cruce1','cruce2'][idx];
     const actorCore = esModoTemas() ? temaComoNodo(ECOSISTEMA.temas.find(t=>t.id===coreId)) : getActor(coreId);
     if(!actorCore) return;
-    if(!nodesMap.has(coreId)) nodesMap.set(coreId, {...actorCore, nivelAnillo:0, coreId:coreId, esCentro:true});
+    if(!nodesMap.has(coreId)) nodesMap.set(coreId, {...actorCore, nivelAnillo:0, coreId:coreId, slot:slot, esCentro:true});
     redDeCore(coreId).forEach(r=>{
       const sat = getActor(r.satelite_id); // los satélites SIEMPRE son actores reales, incluso en modo temas
       if(!sat) return;
       if(!nodesMap.has(r.satelite_id)){
-        nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:coreId, etiquetaNivel:r.etiqueta_nivel});
+        nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:coreId, slot:slot, etiquetaNivel:r.etiqueta_nivel});
       }
-      linksBase.push({origen:coreId, destino:r.satelite_id, cruceNucleo:false, etiqueta:null, nivelDestino:r.nivel, esCruce:false});
+      linksBase.push({origen:coreId, destino:r.satelite_id, etiqueta:null, nivelDestino:r.nivel, esCruce:false, slot:slot});
     });
   });
 
@@ -231,13 +232,13 @@ function renderGrafo(){
         const idA = coresElegidos[i], idB = coresElegidos[j];
         // vínculo directo núcleo-núcleo solo aplica entre actores (los temas no se vinculan directo entre sí)
         if(!esModoTemas() && vecinosDe(idA, edgesCruce).has(idB)){
-          linksBase.push({origen:idA, destino:idB, cruceNucleo:true, etiqueta:'vínculo directo', tipoDirecto:true, esCruce:true});
+          linksBase.push({origen:idA, destino:idB, etiqueta:'vínculo directo', tipoDirecto:true, esCruce:true});
         }
         const redAMap = new Map(redDeCore(idA).map(r=>[r.satelite_id, r.nivel]));
         const redBMap = new Map(redDeCore(idB).map(r=>[r.satelite_id, r.nivel]));
         [...redAMap.keys()].filter(x=>redBMap.has(x)).forEach(compartidoId=>{
-          linksBase.push({origen:idA, destino:compartidoId, cruceNucleo:true, etiqueta:null, nivelDestino:redAMap.get(compartidoId), esCruce:true});
-          linksBase.push({origen:idB, destino:compartidoId, cruceNucleo:true, etiqueta:null, nivelDestino:redBMap.get(compartidoId), esCruce:true});
+          linksBase.push({origen:idA, destino:compartidoId, etiqueta:null, nivelDestino:redAMap.get(compartidoId), esCruce:true, slot:['nucleo','cruce1','cruce2'][i]});
+          linksBase.push({origen:idB, destino:compartidoId, etiqueta:null, nivelDestino:redBMap.get(compartidoId), esCruce:true, slot:['nucleo','cruce1','cruce2'][j]});
         });
       }
     }
@@ -267,16 +268,32 @@ function renderGrafo(){
     .attr('stroke-dasharray','2 4')
     .attr('stroke-width',1);
 
+  // colores fijos por slot (núcleo/cruce1/cruce2) — identifican de qué "familia" es cada nodo,
+  // independientes de la paleta y del semáforo de riesgo (que ahora vive solo en la bandera de riesgo)
+  const COLOR_POR_SLOT = { nucleo:'var(--familia-nucleo)', cruce1:'var(--familia-cruce1)', cruce2:'var(--familia-cruce2)' };
+  const slotDeCore = {};
+  ['nucleo','cruce1','cruce2'].forEach(slot=>{ if(seleccion[slot]) slotDeCore[seleccion[slot]] = slot; });
+
+  function colorDeCore(coreId){
+    return COLOR_POR_SLOT[slotDeCore[coreId]] || 'var(--gray)';
+  }
+
+  function opacidadPorNivel(nivel){
+    return {0:1, 1:0.85, 2:0.55, 3:0.35}[nivel] ?? 0.5;
+  }
+
   const link = container.selectAll('line.link-line')
     .data(links)
     .join('line')
     .attr('class', d=>{
       let cls = 'link-line';
       if(d.tipoDirecto) cls += ' cruce-directo';
-      else if(d.nivelDestino) cls += ' nivel-'+d.nivelDestino;
       if(d.esCruce) cls += ' cruce';
       return cls;
-    });
+    })
+    .attr('stroke', d=> d.tipoDirecto ? 'var(--familia-puente)' : colorDeCore(d.origen))
+    .attr('stroke-width', d=> d.tipoDirecto ? 4 : (d.esCruce ? 2.2 : {1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
+    .attr('stroke-opacity', d=> d.tipoDirecto ? 0.9 : (d.esCruce ? 0.75 : opacidadPorNivel(d.nivelDestino)*0.8));
 
   const linkLabel = container.selectAll('text.link-label')
     .data(links.filter(d=>d.etiqueta))
@@ -288,17 +305,8 @@ function renderGrafo(){
     .text(d=>d.etiqueta);
 
   function radioNodo(d){
-    if(d.esCentro) return 22;
+    if(d.esCentro) return 26;
     return {1:15,2:12,3:9}[d.nivelAnillo] || 8;
-  }
-
-  function colorBordeNivel(d){
-    if(d.esCentro) return 'var(--ink-1)';
-    return {1:'var(--teal)', 2:'var(--peach)', 3:'var(--gray)'}[d.nivelAnillo] || 'var(--line-strong)';
-  }
-
-  function anchoBordeNivel(d){
-    return d.esCentro ? 3 : 2;
   }
 
   function nombreCorto(nombre){
@@ -324,16 +332,27 @@ function renderGrafo(){
   node.append('circle')
     .attr('class','node-circle')
     .attr('r', radioNodo)
-    .attr('fill', d => colorRiesgo(d.nivel_riesgo))
-    .attr('stroke', colorBordeNivel)
-    .attr('stroke-width', anchoBordeNivel);
+    .attr('fill', d => colorDeCore(d.coreId))
+    .attr('fill-opacity', d => opacidadPorNivel(d.nivelAnillo))
+    .attr('stroke', d => d.esCentro ? '#fff' : 'var(--bg-0)')
+    .attr('stroke-width', d => d.esCentro ? 3.5 : 1.5);
 
-  node.filter(d => (temasPorActorSet[d.id]||[]).length > 0)
+  // bandera de riesgo (rojo/naranja/verde) — separada del color de familia
+  node.append('circle')
+    .attr('class','riesgo-flag')
+    .attr('r', d=> d.esCentro ? 6 : 4.5)
+    .attr('cx', d=> -radioNodo(d)*0.7)
+    .attr('cy', d=> -radioNodo(d)*0.7)
+    .attr('fill', d => colorRiesgo(d.nivel_riesgo))
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 1.3);
+
+  node.filter(d => !d.esTema && (temasPorActorSet[d.id]||[]).length > 0)
     .append('circle')
     .attr('r', 3.5)
     .attr('cx', d=> radioNodo(d)*0.7)
     .attr('cy', d=> -radioNodo(d)*0.7)
-    .attr('fill', 'var(--coral)')
+    .attr('fill', 'var(--ink-1)')
     .attr('stroke', '#fff')
     .attr('stroke-width', 1);
 
@@ -366,10 +385,10 @@ function renderGrafo(){
   simulacion = d3.forceSimulation(nodes)
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d => radioNodo(d) + 18).strength(0.95))
+    .force('collide', d3.forceCollide().radius(d => radioNodo(d) + 20).strength(0.95))
     .force('link', d3.forceLink(links).id(d=>d.id).distance(220).strength(0.05))
-    .force('x', d3.forceX(width/2).strength(0.06))
-    .force('y', d3.forceY(height/2).strength(0.06))
+    .force('x', d3.forceX(width/2).strength(0.09))
+    .force('y', d3.forceY(height/2).strength(0.09))
     .on('tick', ()=>{
       link
         .attr('x1', d=>d.source.x).attr('y1', d=>d.source.y)
