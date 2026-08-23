@@ -83,7 +83,12 @@ function abrirModalTema(temaId){
   const actoresHTML = tema.actores_involucrados.map(id=>{
     const a = getActor(id);
     if(!a) return '';
-    return `<button class="actor-pill" data-actor="${id}" style="cursor:pointer;border:none"><span style="width:6px;height:6px;border-radius:50%;background:${colorRiesgo(a.nivel_riesgo)}"></span>${a.nombre}</button>`;
+    const contexto = (ECOSISTEMA.temaActores||[]).find(ta=>ta.tema_id===temaId && ta.actor_id===id);
+    const rol = contexto ? contexto.rol : 'Mencionado';
+    return `<button class="actor-pill" data-actor="${id}" style="cursor:pointer;border:none;flex-direction:column;align-items:flex-start;gap:2px;border-radius:var(--radius-s);padding:6px 10px;">
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:6px;height:6px;border-radius:50%;background:${colorRiesgo(a.nivel_riesgo)}"></span>${a.nombre}</span>
+      <span style="font-size:9.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.03em;">${rol}</span>
+    </button>`;
   }).join('');
 
   document.getElementById('modal-resumen').textContent = tema.resumen;

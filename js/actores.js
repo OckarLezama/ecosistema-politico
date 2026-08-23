@@ -15,7 +15,7 @@ let simulacion = null;
 let seleccion = { nucleo: null, cruce1: null, cruce2: null };
 let modoVinculo = 'grupo'; // 'grupo' (redes_personales / conexiones, núcleo = actor) | 'agenda' (núcleo = tema de coyuntura)
 
-const RADIOS_ANILLO = {1:70, 2:120, 3:170};
+const RADIOS_ANILLO = {1:80, 2:135, 3:190};
 
 function initModuloActores(){
   poblarSelectores();
@@ -313,6 +313,16 @@ function renderGrafo(){
     return {0:1, 1:0.85, 2:0.55, 3:0.35}[nivel] ?? 0.5;
   }
 
+  // halo de contraste detrás de los vínculos directos núcleo-núcleo, para que resalten
+  // incluso sobre un fondo de líneas de anillo muy poblado
+  const linkHalo = container.selectAll('line.link-halo')
+    .data(links.filter(d=>d.tipoDirecto))
+    .join('line')
+    .attr('class','link-halo')
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 7.5)
+    .attr('stroke-opacity', 0.9);
+
   const link = container.selectAll('line.link-line')
     .data(links)
     .join('line')
@@ -437,10 +447,10 @@ function renderGrafo(){
   simulacion = d3.forceSimulation(nodes)
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d => radioNodo(d) + 20).strength(0.95))
+    .force('collide', d3.forceCollide().radius(d => radioNodo(d) + 22).strength(0.95))
     .force('link', d3.forceLink(links).id(d=>d.id).distance(220).strength(0.05))
-    .force('x', d3.forceX(width/2).strength(0.09))
-    .force('y', d3.forceY(height/2).strength(0.09))
+    .force('x', d3.forceX(width/2).strength(0.11))
+    .force('y', d3.forceY(height/2).strength(0.11))
     .on('tick', ()=>{
       // tope duro: ningún nodo puede terminar fuera del lienzo, pase lo que pase con la física
       const margen = 30;
@@ -449,6 +459,9 @@ function renderGrafo(){
         n.y = Math.max(margen, Math.min(height-margen, n.y));
       });
       link
+        .attr('x1', d=>d.source.x).attr('y1', d=>d.source.y)
+        .attr('x2', d=>d.target.x).attr('y2', d=>d.target.y);
+      linkHalo
         .attr('x1', d=>d.source.x).attr('y1', d=>d.source.y)
         .attr('x2', d=>d.target.x).attr('y2', d=>d.target.y);
       linkLabel
