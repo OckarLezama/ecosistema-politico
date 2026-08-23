@@ -580,20 +580,12 @@ a{color:inherit;}
   padding:10px 12px;
   margin:10px 0;
 }
+.sintesis-box{padding:4px 0 0;}
+.sintesis-box .eyebrow{margin-bottom:8px;}
+.sintesis-box p{font-size:12.5px;line-height:1.6;color:var(--ink-1);margin:0 0 10px;}
+.sintesis-box p:last-child{margin-bottom:0;}
 .riesgo-conteo-row{display:flex;gap:12px;font-size:12.5px;font-weight:600;margin-top:2px;}
 
-#analisis-red{
-  padding:12px 14px;
-  border-bottom:1px solid var(--line);
-  background:var(--bg-1);
-  font-size:12.5px;
-  line-height:1.55;
-  color:var(--ink-1);
-  display:none;
-}
-#analisis-red.visible{display:block;}
-#analisis-red .eyebrow{margin-bottom:4px;}
-#analisis-red strong{color:var(--ink-1);}
 
 /* footer */
 .app-footer{

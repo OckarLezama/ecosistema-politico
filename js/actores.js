@@ -179,63 +179,74 @@ function nombreDeCore(coreId){
 
 // Analiza la combinación EXACTA de núcleos elegidos ahora mismo y arma una lectura específica
 // (nombres, conteos y niveles reales) — no una plantilla genérica.
-function generarAnalisisRed(coresElegidos, nodes, links, contextosPorSatelite){
-  const cont = document.getElementById('analisis-red');
-  if(coresElegidos.length === 0){ cont.classList.remove('visible'); cont.innerHTML=''; return; }
+// Sintetiza la combinación de núcleos elegida — no enumera, interpreta: qué tan real es el cruce,
+// quién concentra el riesgo, y qué patrón revela. Se muestra en el panel izquierdo por defecto,
+// hasta que el usuario haga clic en un nodo específico.
+function sintesisDeCombinacion(coresElegidos, nodes, links, contextosPorSatelite){
+  if(coresElegidos.length === 0) return detailEmptyHTML();
 
-  const partes = [];
+  const esTemas = esModoTemas();
+  const frases = [];
 
-  // resumen individual de cada núcleo
-  coresElegidos.forEach(coreId=>{
-    const red = redDeCore(coreId);
+  if(coresElegidos.length === 1){
+    const coreId = coresElegidos[0];
     const nombre = nombreDeCore(coreId);
+    const red = redDeCore(coreId);
     if(red.length === 0){
-      partes.push(`<strong>${nombre}</strong>: sin red documentada todavía — se muestra solo, sin anillos.`);
-      return;
+      return `<div class="sintesis-box"><div class="eyebrow">Sin datos</div><p>${nombre} no tiene ${esTemas?'actores registrados':'red personal documentada'} todavía.</p></div>`;
     }
-    const n1 = red.filter(r=>r.nivel===1).length;
-    const n2 = red.filter(r=>r.nivel===2).length;
-    const n3 = red.filter(r=>r.nivel===3).length;
-    const satNodos = nodes.filter(n=> n.coreId===coreId && !n.esCentro);
-    const altoRiesgo = satNodos.filter(n=>n.nivel_riesgo==='alto').map(n=>n.nombre.split(' ').slice(0,2).join(' '));
-    let fraseRiesgo = '';
-    if(altoRiesgo.length){
-      fraseRiesgo = ` Riesgo alto en: ${altoRiesgo.slice(0,3).join(', ')}${altoRiesgo.length>3 ? ' y '+(altoRiesgo.length-3)+' más' : ''}.`;
-    }
-    partes.push(`<strong>${nombre}</strong>: ${red.length} vínculos (${n1} nivel 1, ${n2} nivel 2, ${n3} nivel 3).${fraseRiesgo}`);
-  });
-
-  // cruces entre los núcleos elegidos, con nombres y niveles reales
-  if(coresElegidos.length > 1){
-    const directos = links.filter(l=>l.tipoDirecto);
-    directos.forEach(l=>{
-      partes.push(`Vínculo directo entre <strong>${nombreDeCore(l.origen)}</strong> y <strong>${nombreDeCore(l.destino)}</strong>.`);
-    });
-
-    // satélites compartidos: agrupar por persona compartida
-    const compartidosVistos = new Set();
-    Object.keys(contextosPorSatelite).forEach(satId=>{
-      const ctxs = contextosPorSatelite[satId].filter(c=> coresElegidos.includes(c.coreId));
-      const coresUnicos = [...new Set(ctxs.map(c=>c.coreId))];
-      if(coresUnicos.length > 1 && !compartidosVistos.has(satId)){
-        compartidosVistos.add(satId);
-        const actor = getActor(satId);
-        if(!actor) return;
-        const detalle = coresUnicos.map(cid=>{
-          const ctx = ctxs.find(c=>c.coreId===cid);
-          return `${nombreDeCore(cid)} (${ctx.etiquetaNivel || 'nivel '+ctx.nivel})`;
-        }).join(' · ');
-        partes.push(`<strong>${actor.nombre}</strong> se repite en: ${detalle}.`);
+    const n1 = red.filter(r=>r.nivel===1);
+    const satN1 = nodes.filter(n=> n.coreId===coreId && n.nivelAnillo===1);
+    const altoN1 = satN1.filter(n=>n.nivel_riesgo==='alto').map(n=>n.nombre.split(' ').slice(0,2).join(' '));
+    if(esTemas){
+      const investigados = red.filter(r=>r.etiqueta_nivel==='Investigado').length;
+      frases.push(`<strong>${nombre}</strong> vincula a ${red.length} actores. ${investigados>0 ? `${investigados} de ellos están formalmente investigados, no solo mencionados — es un caso con exposición legal real, no solo mediática.` : 'Ninguno tiene el rol de "investigado" — es, hasta ahora, un caso de exposición pública/política más que penal.'}`);
+    } else {
+      if(altoN1.length === 0){
+        frases.push(`El círculo de mayor cercanía de <strong>${nombre}</strong> (${n1.length} personas) no registra riesgo alto — red de confianza sin señales de exposición.`);
+      } else {
+        const pct = Math.round(altoN1.length/n1.length*100);
+        frases.push(`${altoN1.length} de las ${n1.length} personas del círculo de mayor cercanía de <strong>${nombre}</strong> (${pct}%) son de riesgo alto: ${altoN1.slice(0,3).join(', ')}${altoN1.length>3?' y otros':''}. ${pct>=40?'Es una proporción alta — vale la pena mirar esa red con cuidado.':'Aun así, es una minoría dentro de su círculo más cercano.'}`);
       }
-    });
+    }
+  } else {
+    // 2 o 3 núcleos: lo interesante es cuánto se superponen sus círculos DE MAYOR CERCANÍA (nivel 1)
+    const nivel1PorCore = {};
+    coresElegidos.forEach(cid=>{ nivel1PorCore[cid] = new Set(redDeCore(cid).filter(r=>r.nivel===1).map(r=>r.satelite_id)); });
 
-    if(directos.length===0 && compartidosVistos.size===0){
-      partes.push(`No se detectó ningún vínculo directo ni satélite compartido entre ${coresElegidos.map(nombreDeCore).join(', ')} con los datos actuales — son redes independientes entre sí.`);
+    const directos = links.filter(l=>l.tipoDirecto);
+    if(directos.length){
+      frases.push(`Vínculo directo confirmado entre ${directos.map(l=>`<strong>${nombreDeCore(l.origen)}</strong> y <strong>${nombreDeCore(l.destino)}</strong>`).join(', ')}.`);
+    }
+
+    // interseccion de nivel1 entre todos los pares
+    const compartidosNivel1 = new Set();
+    for(let i=0;i<coresElegidos.length;i++){
+      for(let j=i+1;j<coresElegidos.length;j++){
+        const a = nivel1PorCore[coresElegidos[i]], b = nivel1PorCore[coresElegidos[j]];
+        [...a].filter(x=>b.has(x)).forEach(x=>compartidosNivel1.add(x));
+      }
+    }
+    const totalNivel1 = new Set(coresElegidos.flatMap(cid=>[...nivel1PorCore[cid]]));
+    const ratio = totalNivel1.size ? compartidosNivel1.size / totalNivel1.size : 0;
+
+    if(compartidosNivel1.size > 0){
+      const nombres = [...compartidosNivel1].slice(0,3).map(id=>{
+        const a = getActor(id);
+        return a ? a.nombre.split(' ').slice(0,2).join(' ') : id;
+      });
+      const lectura = ratio >= 0.3
+        ? 'sugiere continuidad estructural real entre estas redes, no solo un vínculo protocolario.'
+        : 'es un cruce puntual — el resto de sus círculos de mayor cercanía son independientes entre sí.';
+      frases.push(`Comparten ${compartidosNivel1.size} persona${compartidosNivel1.size>1?'s':''} en su círculo de mayor cercanía (${nombres.join(', ')}${compartidosNivel1.size>3?' y otros':''}) — ${lectura}`);
+    } else if(directos.length){
+      frases.push(`Pese al vínculo directo, no comparten a nadie en su círculo de mayor cercanía — son redes prácticamente independientes.`);
+    } else {
+      frases.push(`No se detectó vínculo directo ni superposición en el círculo de mayor cercanía entre ${coresElegidos.map(nombreDeCore).join(', ')} — con los datos actuales, son redes independientes.`);
     }
   }
 
-  cont.innerHTML = `<div class="eyebrow">Lectura de esta combinación</div>${partes.map(p=>`<div style="margin-top:4px;">${p}</div>`).join('')}`;
-  cont.classList.add('visible');
+  return `<div class="sintesis-box"><div class="eyebrow">Lectura de esta combinación</div>${frases.map(f=>`<p>${f}</p>`).join('')}</div>`;
 }
 
 function renderGrafo(){
@@ -246,8 +257,7 @@ function renderGrafo(){
 
   if(coresElegidos.length === 0){
     svgEl.style.display = 'none';
-    const analisisVacio = document.getElementById('analisis-red');
-    if(analisisVacio){ analisisVacio.classList.remove('visible'); analisisVacio.innerHTML=''; }
+    document.getElementById('detail-panel').innerHTML = detailEmptyHTML();
     let empty = document.getElementById('graph-empty-state');
     if(!empty){
       empty = document.createElement('div');
@@ -346,7 +356,7 @@ function renderGrafo(){
     .filter(e => nodeIds.has(e.origen) && nodeIds.has(e.destino))
     .map(e => ({...e, source:e.origen, target:e.destino}));
 
-  generarAnalisisRed(coresElegidos, nodes, links, contextosPorSatelite);
+  document.getElementById('detail-panel').innerHTML = sintesisDeCombinacion(coresElegidos, nodes, links, contextosPorSatelite);
 
   const temasPorActorSet = ECOSISTEMA.temasPorActor || {};
 
@@ -600,14 +610,17 @@ function mostrarFichaTema(id){
   });
 }
 
-function valoracionRiesgoRed(conteo){
+function valoracionRiesgoRed(conteo, nombresAlto){
   const total = conteo.alto + conteo.medio + conteo.bajo;
   if(total === 0) return 'Sin satélites en esta red todavía.';
-  const pctAlto = conteo.alto / total;
-  if(pctAlto >= 0.5) return 'Red de alta exposición: más de la mitad de sus vínculos son de riesgo alto.';
-  if(pctAlto >= 0.25) return 'Red de exposición mixta: una porción significativa de sus vínculos es de riesgo alto.';
-  if(conteo.medio / total >= 0.5) return 'Red de exposición moderada, dominada por vínculos de riesgo medio.';
-  return 'Red de baja exposición: predominan los vínculos de bajo riesgo.';
+  const pctAlto = Math.round(conteo.alto / total * 100);
+  const pctMedio = Math.round(conteo.medio / total * 100);
+  if(conteo.alto > 0){
+    const listado = (nombresAlto||[]).slice(0,3).join(', ') + ((nombresAlto||[]).length>3 ? ' y otros' : '');
+    return `${pctAlto}% de riesgo alto (${listado})${pctAlto>=40 ? ' — proporción alta, red con exposición real.' : ' — el resto de la red diluye ese riesgo.'}`;
+  }
+  if(pctMedio >= 60) return `Sin riesgo alto, pero ${pctMedio}% de los vínculos son de riesgo medio — red de exposición sostenida, no crítica.`;
+  return `Predominan los vínculos de bajo riesgo (${100-pctAlto-pctMedio}% del total) — red de perfil bajo.`;
 }
 
 function valoracionImpactoTemas(temasList){
@@ -631,7 +644,6 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
   if(!actor) return;
   const panel = document.getElementById('detail-panel');
   const riesgoColor = colorRiesgo(actor.nivel_riesgo);
-  const alianzas = conteoAlianzas(id);
 
   // contexto "por qué aparece" — funciona en AMBOS modos, con redacción distinta según cuál sea
   let contextoTemaHTML = '';
@@ -655,12 +667,17 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
     </div>`;
   }
 
-  // valoración de riesgo de la red, solo si se clickeó el núcleo (centro) mismo
+  // valoración de riesgo de la red, solo si se clickeó el núcleo (centro) mismo — SOLO en modo "por grupo"
+  // (en modo agenda el equivalente es "Impacto por temas", más abajo, para no repetir la misma idea dos veces)
   let valoracionHTML = '';
-  if(nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
+  if(!esModoTemas() && nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
     const satelites = nodesEnGrafo.filter(n=> n.coreId===nodoClicado.coreId && n.id!==nodoClicado.id);
     const conteo = {alto:0, medio:0, bajo:0};
-    satelites.forEach(s=>{ if(conteo[s.nivel_riesgo]!==undefined) conteo[s.nivel_riesgo]++; });
+    const nombresAlto = [];
+    satelites.forEach(s=>{
+      if(conteo[s.nivel_riesgo]!==undefined) conteo[s.nivel_riesgo]++;
+      if(s.nivel_riesgo==='alto') nombresAlto.push(s.nombre.split(' ').slice(0,2).join(' '));
+    });
     valoracionHTML = `
       <div class="valoracion-riesgo-box">
         <div class="eyebrow">Riesgo de esta red (${satelites.length} vínculos)</div>
@@ -669,20 +686,24 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
           <span style="color:var(--riesgo-medio)">● ${conteo.medio} medio</span>
           <span style="color:var(--riesgo-bajo)">● ${conteo.bajo} bajo</span>
         </div>
-        <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${valoracionRiesgoRed(conteo)}</p>
+        <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${valoracionRiesgoRed(conteo, nombresAlto)}</p>
       </div>`;
   }
 
-  // impacto agregado por temas de coyuntura (todo el sistema, no solo lo que está seleccionado ahora)
-  const temasDelActor = temasParaActor(id);
-  const impacto = valoracionImpactoTemas(temasDelActor);
-  const impactoHTML = impacto ? `
-    <div class="valoracion-riesgo-box">
-      <div class="eyebrow">Impacto por temas de coyuntura (${impacto.n})</div>
-      <div style="font-size:12.5px;margin-top:2px;">Peso político promedio: <strong>${impacto.promedio}/10</strong> · Máximo: <strong>${impacto.maxPeso}/10</strong></div>
-      <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${impacto.texto}</p>
-      <p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;border-top:1px solid var(--line);padding-top:5px;">Cálculo: promedio y máximo del "peso político" (1–10) de los ${impacto.n} temas donde este actor aparece en <code>temas.csv</code>.</p>
-    </div>` : '';
+  // impacto agregado por temas de coyuntura — SOLO en modo "por agenda" (en "por grupo" ya está
+  // la valoración de la red de arriba; repetir la misma lectura en ambos modos no aporta nada)
+  let impactoHTML = '';
+  if(esModoTemas()){
+    const temasDelActor = temasParaActor(id);
+    const impacto = valoracionImpactoTemas(temasDelActor);
+    impactoHTML = impacto ? `
+      <div class="valoracion-riesgo-box">
+        <div class="eyebrow">Impacto por temas de coyuntura (${impacto.n})</div>
+        <div style="font-size:12.5px;margin-top:2px;">Peso político promedio: <strong>${impacto.promedio}/10</strong> · Máximo: <strong>${impacto.maxPeso}/10</strong></div>
+        <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${impacto.texto}</p>
+        <p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;border-top:1px solid var(--line);padding-top:5px;">Cálculo: promedio y máximo del "peso político" (1–10) de los ${impacto.n} temas donde este actor aparece en la agenda nacional.</p>
+      </div>` : '';
+  }
 
   panel.innerHTML = `
     <div class="detail-avatar" style="background:${riesgoColor}">
@@ -707,10 +728,6 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
     <div class="detail-row">
       <span class="k">Grupo</span>
       <span class="v">${actor.grupo}</span>
-    </div>
-    <div class="detail-row">
-      <span class="k">Alianzas registradas</span>
-      <span class="v">${alianzas.fuertes} fuertes · ${alianzas.medias} medias · ${alianzas.debiles} débiles</span>
     </div>
 
     <div class="detail-desc">${actor.descripcion}</div>
