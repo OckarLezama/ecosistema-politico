@@ -164,6 +164,31 @@ function vecinosDe(actorId, edges){
   return set;
 }
 
+// combina riesgo + influencia + fractura de los satélites de una red en un solo indicador —
+// responde "qué tan fuerte/expuesto es este grupo en conjunto", no solo su riesgo aislado
+function calcularFortalezaGrupo(satelites){
+  if(!satelites.length) return null;
+  const pesoRiesgo = {alto:10, medio:5, bajo:1};
+  const riesgoProm = satelites.reduce((s,n)=> s + (pesoRiesgo[n.nivel_riesgo]||1), 0) / satelites.length;
+  const influenciaProm = satelites.reduce((s,n)=> s + (Number(n.nivel_influencia)||5), 0) / satelites.length;
+  const conFracturaAlta = satelites.filter(n=>{
+    const a = getActor(n.id); return a && a.fractura_nivel === 'alto';
+  });
+  const pctFractura = Math.round(conFracturaAlta.length/satelites.length*100);
+
+  const score = (riesgoProm/10*0.4) + (influenciaProm/10*0.35) + (pctFractura/100*0.25);
+  let nivel, texto;
+  if(score >= 0.6){ nivel='alta'; texto='grupo con peso propio real — combina riesgo, influencia y capacidad de fractura por encima del promedio.'; }
+  else if(score >= 0.35){ nivel='media'; texto='grupo con peso moderado — ni especialmente vulnerable ni especialmente influyente en conjunto.'; }
+  else { nivel='baja'; texto='grupo de perfil bajo en conjunto — poca influencia agregada y poca capacidad de generar una ruptura.'; }
+
+  return {
+    nivel, texto,
+    riesgoProm: riesgoProm.toFixed(1), influenciaProm: influenciaProm.toFixed(1),
+    pctFractura, nombresFractura: conFracturaAlta.slice(0,2).map(n=>n.nombre.split(' ').slice(0,2).join(' '))
+  };
+}
+
 function detailEmptyHTML(){
   return `<div class="detail-empty">Selecciona un actor en el grafo para ver su ficha completa.</div>`;
 }
@@ -250,15 +275,21 @@ function sintesisDeCombinacion(coresElegidos, nodes, links, contextosPorSatelite
           const a = getActor(id);
           return a ? a.nombre.split(' ').slice(0,2).join(' ') : id;
         });
-        const lectura = (par.ids.length / Math.min(nivel1PorCore[par.origenA].size, nivel1PorCore[par.origenB].size)) >= 0.3
+        const tamanoMenor = Math.min(nivel1PorCore[par.origenA].size, nivel1PorCore[par.origenB].size) || 1;
+        const ratioParcial = par.ids.length / tamanoMenor;
+        const tieneDirecto = directos.some(d => (d.origen===par.origenA && d.destino===par.origenB) || (d.origen===par.origenB && d.destino===par.origenA));
+        const indice = (tieneDirecto?0.5:0) + Math.min(ratioParcial,1)*0.5;
+        const nivelIndice = indice>=0.6 ? 'alto' : (indice>=0.3 ? 'medio' : 'bajo');
+        const colorIndice = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[nivelIndice];
+        const lectura = ratioParcial >= 0.3
           ? 'sugiere continuidad estructural real entre ambas redes, no solo un vínculo protocolario.'
           : 'es un cruce puntual dentro de redes por lo demás independientes.';
-        frases.push(`<strong>${nombreDeCore(par.origenA)}</strong> y <strong>${nombreDeCore(par.origenB)}</strong> comparten ${par.ids.length} persona${par.ids.length>1?'s':''} en su círculo de mayor cercanía (${nombres.join(', ')}${par.ids.length>3?' y otros':''}) — ${lectura}`);
+        frases.push(`<strong>${nombreDeCore(par.origenA)}</strong> y <strong>${nombreDeCore(par.origenB)}</strong> comparten ${par.ids.length} persona${par.ids.length>1?'s':''} en su círculo de mayor cercanía (${nombres.join(', ')}${par.ids.length>3?' y otros':''}) — ${lectura} <span style="color:${colorIndice};font-weight:700;">Índice de proximidad: ${nivelIndice.toUpperCase()}</span>.`);
       });
     } else if(directos.length){
-      frases.push(`Pese al vínculo directo, no comparten a nadie en su círculo de mayor cercanía — son redes prácticamente independientes.`);
+      frases.push(`Pese al vínculo directo, no comparten a nadie en su círculo de mayor cercanía — <span style="color:var(--riesgo-medio);font-weight:700;">Índice de proximidad: MEDIO</span> (solo vínculo institucional, sin continuidad de personal).`);
     } else {
-      frases.push(`No se detectó vínculo directo ni superposición en el círculo de mayor cercanía entre ${coresElegidos.map(nombreDeCore).join(', ')} — con los datos actuales, son redes independientes.`);
+      frases.push(`No se detectó vínculo directo ni superposición en el círculo de mayor cercanía entre ${coresElegidos.map(nombreDeCore).join(', ')} — <span style="color:var(--riesgo-bajo);font-weight:700;">Índice de proximidad: BAJO</span>.`);
     }
   }
 
@@ -716,6 +747,15 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
           <span style="color:var(--riesgo-bajo)">● ${conteo.bajo} bajo</span>
         </div>
         <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${valoracionRiesgoRed(conteo, nombresAlto)}</p>
+        ${(()=>{
+          const fortaleza = calcularFortalezaGrupo(satelites);
+          if(!fortaleza) return '';
+          const colorNivel = {alta:'var(--riesgo-alto)', media:'var(--riesgo-medio)', baja:'var(--riesgo-bajo)'}[fortaleza.nivel];
+          return `<div style="border-top:1px solid var(--line);margin-top:8px;padding-top:8px;">
+            <div class="eyebrow">Fortaleza del grupo: <span style="color:${colorNivel};font-weight:700;">${fortaleza.nivel.toUpperCase()}</span></div>
+            <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">Riesgo promedio ${fortaleza.riesgoProm}/10 · Influencia promedio ${fortaleza.influenciaProm}/10 · ${fortaleza.pctFractura}% con riesgo de fractura alto${fortaleza.nombresFractura.length?' ('+fortaleza.nombresFractura.join(', ')+')':''}. ${fortaleza.texto}</p>
+          </div>`;
+        })()}
       </div>`;
   }
 
@@ -750,11 +790,12 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
       <span class="k">Grupo</span>
       <span class="v">${actor.grupo}</span>
     </div>
-    ${actor.potencial_fractura ? `
+    ${actor.fractura_nivel ? `
     <div class="detail-row" title="Capacidad de generar una ruptura visible en el gobierno/partido — distinto del riesgo reputacional.">
-      <span class="k">Potencial de fractura ⓘ</span>
-      <span class="v"><span class="riesgo-badge" style="background:${colorRiesgo(actor.potencial_fractura)}22;color:${colorRiesgo(actor.potencial_fractura)}">${actor.potencial_fractura.toUpperCase()}</span></span>
-    </div>` : ''}
+      <span class="k">Riesgo de fractura política ⓘ</span>
+      <span class="v"><span class="riesgo-badge" style="background:${colorRiesgo(actor.fractura_nivel)}22;color:${colorRiesgo(actor.fractura_nivel)}">${actor.fractura_nivel.toUpperCase()}</span></span>
+    </div>
+    ${actor.fractura_motivo ? `<p style="font-size:11.5px;color:var(--ink-2);margin:-4px 0 8px;">${actor.fractura_motivo}</p>` : ''}` : ''}
 
     <div class="detail-desc">${actor.descripcion}</div>
 
