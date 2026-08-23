@@ -169,6 +169,8 @@ function detailEmptyHTML(){
 }
 
 function renderGrafo(){
+  if(simulacion) simulacion.stop(); // clave: nunca dejar la simulación anterior corriendo en segundo plano
+
   const svgEl = document.getElementById('graph-svg');
   const coresElegidos = ['nucleo','cruce1','cruce2'].map(s=>seleccion[s]).filter(Boolean);
 
@@ -234,8 +236,12 @@ function renderGrafo(){
         if(!esModoTemas() && vecinosDe(idA, edgesCruce).has(idB)){
           linksBase.push({origen:idA, destino:idB, etiqueta:'vínculo directo', tipoDirecto:true, esCruce:true});
         }
-        const redAMap = new Map(redDeCore(idA).map(r=>[r.satelite_id, r.nivel]));
-        const redBMap = new Map(redDeCore(idB).map(r=>[r.satelite_id, r.nivel]));
+        const redAMap = new Map(redDeCore(idA)
+          .filter(r=> !(esModoTemas() && r.etiqueta_nivel==='Responsable institucional'))
+          .map(r=>[r.satelite_id, r.nivel]));
+        const redBMap = new Map(redDeCore(idB)
+          .filter(r=> !(esModoTemas() && r.etiqueta_nivel==='Responsable institucional'))
+          .map(r=>[r.satelite_id, r.nivel]));
         [...redAMap.keys()].filter(x=>redBMap.has(x)).forEach(compartidoId=>{
           linksBase.push({origen:idA, destino:compartidoId, etiqueta:null, nivelDestino:redAMap.get(compartidoId), esCruce:true, slot:['nucleo','cruce1','cruce2'][i]});
           linksBase.push({origen:idB, destino:compartidoId, etiqueta:null, nivelDestino:redBMap.get(compartidoId), esCruce:true, slot:['nucleo','cruce1','cruce2'][j]});
@@ -253,6 +259,12 @@ function renderGrafo(){
   const temasPorActorSet = ECOSISTEMA.temasPorActor || {};
 
   const svg = d3.select(svgEl).attr('viewBox', [0,0,width,height]);
+
+  // filtro de resplandor para el halo del núcleo
+  const defs = svg.append('defs');
+  const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
+  blur.append('feGaussianBlur').attr('stdDeviation', 6);
+
   const container = svg.append('g');
   svg.call(d3.zoom().scaleExtent([0.5,2.5]).on('zoom', (ev)=>{ container.attr('transform', ev.transform); }));
 
@@ -292,8 +304,8 @@ function renderGrafo(){
       return cls;
     })
     .attr('stroke', d=> d.tipoDirecto ? 'var(--familia-puente)' : colorDeCore(d.origen))
-    .attr('stroke-width', d=> d.tipoDirecto ? 4 : (d.esCruce ? 2.2 : {1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
-    .attr('stroke-opacity', d=> d.tipoDirecto ? 0.9 : (d.esCruce ? 0.75 : opacidadPorNivel(d.nivelDestino)*0.8));
+    .attr('stroke-width', d=> d.tipoDirecto ? 4.5 : (d.esCruce ? 3 : {1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
+    .attr('stroke-opacity', d=> d.tipoDirecto ? 0.95 : (d.esCruce ? 0.9 : opacidadPorNivel(d.nivelDestino)*0.8));
 
   const linkLabel = container.selectAll('text.link-label')
     .data(links.filter(d=>d.etiqueta))
@@ -322,12 +334,21 @@ function renderGrafo(){
     .style('cursor','pointer')
     .on('click', (ev,d)=>{
       if(d.esTema) mostrarFichaTema(d.id);
-      else mostrarFichaActor(d.id);
+      else mostrarFichaActor(d.id, d, nodes);
     })
     .call(d3.drag()
       .on('start', dragstarted)
       .on('drag', dragged)
       .on('end', dragended));
+
+  // halo de resplandor detrás del núcleo (se dibuja primero = queda atrás)
+  node.filter(d=>d.esCentro)
+    .append('circle')
+    .attr('class','nucleo-halo')
+    .attr('r', d=>radioNodo(d)+16)
+    .attr('fill', d=>colorDeCore(d.coreId))
+    .attr('fill-opacity', 0.28)
+    .attr('filter','url(#glow-blur)');
 
   node.append('circle')
     .attr('class','node-circle')
@@ -336,6 +357,16 @@ function renderGrafo(){
     .attr('fill-opacity', d => opacidadPorNivel(d.nivelAnillo))
     .attr('stroke', d => d.esCentro ? '#fff' : 'var(--bg-0)')
     .attr('stroke-width', d => d.esCentro ? 3.5 : 1.5);
+
+  // anillo exterior del núcleo, para que se lea como "el centro", no solo un círculo más grande
+  node.filter(d=>d.esCentro)
+    .append('circle')
+    .attr('class','nucleo-anillo-exterior')
+    .attr('r', d=>radioNodo(d)+6)
+    .attr('fill','none')
+    .attr('stroke', d=>colorDeCore(d.coreId))
+    .attr('stroke-width', 2)
+    .attr('stroke-opacity', 0.55);
 
   // bandera de riesgo (rojo/naranja/verde) — separada del color de familia
   node.append('circle')
@@ -360,6 +391,8 @@ function renderGrafo(){
     .attr('class','node-label')
     .attr('dy', d => radioNodo(d) + 12)
     .attr('text-anchor','middle')
+    .attr('font-weight', d=> d.esCentro ? '700' : '400')
+    .attr('font-size', d=> d.esCentro ? '12px' : '10.5px')
     .text(d => nombreCorto(d.nombre));
 
   // ---- física de "constelación": cada satélite orbita a SU PROPIO núcleo, no a un centro global ----
@@ -390,6 +423,12 @@ function renderGrafo(){
     .force('x', d3.forceX(width/2).strength(0.09))
     .force('y', d3.forceY(height/2).strength(0.09))
     .on('tick', ()=>{
+      // tope duro: ningún nodo puede terminar fuera del lienzo, pase lo que pase con la física
+      const margen = 30;
+      nodes.forEach(n=>{
+        n.x = Math.max(margen, Math.min(width-margen, n.x));
+        n.y = Math.max(margen, Math.min(height-margen, n.y));
+      });
       link
         .attr('x1', d=>d.source.x).attr('y1', d=>d.source.y)
         .attr('x2', d=>d.target.x).attr('y2', d=>d.target.y);
@@ -446,12 +485,51 @@ function mostrarFichaTema(id){
   });
 }
 
-function mostrarFichaActor(id){
+function valoracionRiesgoRed(conteo){
+  const total = conteo.alto + conteo.medio + conteo.bajo;
+  if(total === 0) return 'Sin satélites en esta red todavía.';
+  const pctAlto = conteo.alto / total;
+  if(pctAlto >= 0.5) return 'Red de alta exposición: más de la mitad de sus vínculos son de riesgo alto.';
+  if(pctAlto >= 0.25) return 'Red de exposición mixta: una porción significativa de sus vínculos es de riesgo alto.';
+  if(conteo.medio / total >= 0.5) return 'Red de exposición moderada, dominada por vínculos de riesgo medio.';
+  return 'Red de baja exposición: predominan los vínculos de bajo riesgo.';
+}
+
+function mostrarFichaActor(id, nodoClicado, nodesEnGrafo){
   const actor = getActor(id);
   if(!actor) return;
   const panel = document.getElementById('detail-panel');
   const riesgoColor = colorRiesgo(actor.nivel_riesgo);
   const alianzas = conteoAlianzas(id);
+
+  // contexto "por qué aparece" cuando el clic ocurre en modo temas sobre un satélite (no el núcleo mismo)
+  let contextoTemaHTML = '';
+  if(esModoTemas() && nodoClicado && !nodoClicado.esCentro && nodoClicado.etiquetaNivel){
+    const temaCore = ECOSISTEMA.temas.find(t=>t.id===nodoClicado.coreId);
+    contextoTemaHTML = `
+      <div class="contexto-tema-box">
+        <div class="eyebrow" style="color:var(--familia-nucleo)">En "${temaCore ? temaCore.nombre : nodoClicado.coreId}"</div>
+        <div style="font-weight:700;font-size:13px;">${nodoClicado.etiquetaNivel}</div>
+      </div>`;
+  }
+
+  // valoración de riesgo de la red, solo si se clickeó el núcleo (centro) mismo
+  let valoracionHTML = '';
+  if(nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
+    const satelites = nodesEnGrafo.filter(n=> n.coreId===nodoClicado.coreId && n.id!==nodoClicado.id);
+    const conteo = {alto:0, medio:0, bajo:0};
+    satelites.forEach(s=>{ if(conteo[s.nivel_riesgo]!==undefined) conteo[s.nivel_riesgo]++; });
+    valoracionHTML = `
+      <div class="valoracion-riesgo-box">
+        <div class="eyebrow">Riesgo de esta red (${satelites.length} vínculos)</div>
+        <div class="riesgo-conteo-row">
+          <span style="color:var(--riesgo-alto)">● ${conteo.alto} alto</span>
+          <span style="color:var(--riesgo-medio)">● ${conteo.medio} medio</span>
+          <span style="color:var(--riesgo-bajo)">● ${conteo.bajo} bajo</span>
+        </div>
+        <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${valoracionRiesgoRed(conteo)}</p>
+      </div>`;
+  }
 
   panel.innerHTML = `
     <div class="detail-avatar" style="background:${riesgoColor}">
@@ -460,6 +538,9 @@ function mostrarFichaActor(id){
     <div class="detail-name">${actor.nombre}</div>
     <div class="detail-cargo">${actor.cargo}</div>
     ${actor.fuente_nombre === 'Análisis interno' ? '<span class="badge-interno">ANÁLISIS INTERNO</span>' : ''}
+
+    ${contextoTemaHTML}
+    ${valoracionHTML}
 
     <div class="detail-row">
       <span class="k">Nivel de riesgo</span>

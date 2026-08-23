@@ -346,7 +346,7 @@ a{color:inherit;}
 .legend-inline span{display:flex;align-items:center;gap:5px;}
 .legend-dot{width:8px;height:8px;border-radius:50%;}
 
-#graph-svg{width:100%;height:560px;display:block;background:
+#graph-svg{width:100%;height:560px;display:block;overflow:hidden;background:
   radial-gradient(circle at 15% 10%, var(--teal-10), transparent 45%),
   radial-gradient(circle at 85% 85%, var(--coral-10), transparent 45%),
   var(--bg-0);
@@ -566,6 +566,14 @@ a{color:inherit;}
   border:1px solid var(--peach-20);
   margin-bottom:8px;
 }
+.contexto-tema-box, .valoracion-riesgo-box{
+  background:var(--bg-1);
+  border:1px solid var(--line);
+  border-radius:var(--radius-s);
+  padding:10px 12px;
+  margin:10px 0;
+}
+.riesgo-conteo-row{display:flex;gap:12px;font-size:12.5px;font-weight:600;margin-top:2px;}
 
 /* footer */
 .app-footer{
