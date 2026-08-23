@@ -77,7 +77,7 @@ function abrirModalTema(temaId){
   const color = colorCategoria(tema.categoria);
 
   const responsable = getActor(tema.responsable);
-  document.getElementById('modal-cat').textContent = tema.categoria + ' · Horizonte ' + tema.horizonte + (responsable ? ' · Responsable: ' + responsable.nombre : '');
+  document.getElementById('modal-cat').textContent = tema.categoria + ' · Horizonte ' + tema.horizonte + (responsable ? ' · Actor principal: ' + responsable.nombre : '');
   document.getElementById('modal-title').textContent = tema.nombre;
 
   const actoresHTML = tema.actores_involucrados.map(id=>{
@@ -93,11 +93,24 @@ function abrirModalTema(temaId){
 
   document.getElementById('modal-resumen').textContent = tema.resumen;
   document.getElementById('modal-actores').innerHTML = actoresHTML || '<span class="mono" style="font-size:11px;color:var(--ink-3)">Sin actores vinculados registrados.</span>';
+
+  const notasDelTema = ECOSISTEMA.eventos
+    .filter(e=>e.tema_id===temaId)
+    .sort((a,b)=> new Date(b.fecha) - new Date(a.fecha));
+  document.getElementById('modal-notas').innerHTML = notasDelTema.length
+    ? notasDelTema.map(n=>`
+        <div class="nota-item">
+          <div class="nota-fecha mono">${n.fecha}</div>
+          <div class="nota-desc">${n.descripcion}</div>
+          <a href="${n.fuente_url}" target="_blank" rel="noopener" class="nota-link">Ver fuente ↗</a>
+        </div>
+      `).join('')
+    : '<p style="font-size:12.5px;color:var(--ink-3)">Sin notas registradas todavía.</p>';
+
   document.getElementById('modal-source').innerHTML = `FUENTE · ${tema.fuente_nombre} · ${tema.fecha}<br><a href="${tema.fuente_url}" target="_blank" rel="noopener">${tema.fuente_url}</a>`;
 
-  dibujarSparkline(temaId, color);
-
   document.getElementById('modal-backdrop').classList.add('open');
+  dibujarSparkline(temaId, color); // se dibuja DESPUÉS de abrir el modal, si no el canvas mide 0 (está oculto) y queda en blanco
 
   document.getElementById('modal-actores').querySelectorAll('.actor-pill').forEach(btn=>{
     btn.addEventListener('click', ()=>{

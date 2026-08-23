@@ -212,7 +212,11 @@ function sintesisDeCombinacion(coresElegidos, nodes, links, contextosPorSatelite
   } else {
     // 2 o 3 núcleos: lo interesante es cuánto se superponen sus círculos DE MAYOR CERCANÍA (nivel 1)
     const nivel1PorCore = {};
-    coresElegidos.forEach(cid=>{ nivel1PorCore[cid] = new Set(redDeCore(cid).filter(r=>r.nivel===1).map(r=>r.satelite_id)); });
+    coresElegidos.forEach(cid=>{
+      nivel1PorCore[cid] = new Set(redDeCore(cid)
+        .filter(r=> r.nivel===1 && !(esTemas && r.etiqueta_nivel==='Responsable institucional')) // mismo filtro que las líneas visuales de cruce
+        .map(r=>r.satelite_id));
+    });
 
     const directos = links.filter(l=>l.tipoDirecto);
     if(directos.length){
@@ -592,7 +596,7 @@ function mostrarFichaTema(id){
       <span class="v">${tema.peso_politico}/10</span>
     </div>
     <div class="detail-row">
-      <span class="k">Responsable</span>
+      <span class="k">Actor principal</span>
       <span class="v">${responsable ? responsable.nombre : '—'}</span>
     </div>
     <div class="detail-row">
@@ -696,10 +700,11 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
   if(esModoTemas()){
     const temasDelActor = temasParaActor(id);
     const impacto = valoracionImpactoTemas(temasDelActor);
+    const numNotas = notasParaActor(id).length;
     impactoHTML = impacto ? `
       <div class="valoracion-riesgo-box">
         <div class="eyebrow">Impacto por temas de coyuntura (${impacto.n})</div>
-        <div style="font-size:12.5px;margin-top:2px;">Peso político promedio: <strong>${impacto.promedio}/10</strong> · Máximo: <strong>${impacto.maxPeso}/10</strong></div>
+        <div style="font-size:12.5px;margin-top:2px;">Peso político promedio: <strong>${impacto.promedio}/10</strong> · Máximo: <strong>${impacto.maxPeso}/10</strong> · Notas registradas: <strong>${numNotas}</strong></div>
         <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${impacto.texto}</p>
         <p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;border-top:1px solid var(--line);padding-top:5px;">Cálculo: promedio y máximo del "peso político" (1–10) de los ${impacto.n} temas donde este actor aparece en la agenda nacional.</p>
       </div>` : '';
