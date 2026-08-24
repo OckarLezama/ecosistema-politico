@@ -12,6 +12,14 @@
 
 let nivelImpactoFiltro = '';
 const INICIO_SEXENIO = '2024-10';
+const UMBRAL_ELEVADO = 21;
+const UMBRAL_CRITICO = 39;
+
+function clasificarMes(total){
+  if(total >= UMBRAL_CRITICO) return {nivel:'crítica', color:'var(--riesgo-alto)'};
+  if(total >= UMBRAL_ELEVADO) return {nivel:'elevada', color:'var(--riesgo-medio)'};
+  return {nivel:'normal', color:'var(--riesgo-bajo)'};
+}
 
 function initHeatmap(){
   document.getElementById('heatmap-categoria').addEventListener('change', (e)=>{
@@ -97,20 +105,33 @@ function renderResumenEjecutivo(){
 
   if(nivelImpactoFiltro){
     const filtrados = temasFiltrados();
-    const nombres = filtrados.map(t=>t.nombre);
     const categorias = [...new Set(filtrados.map(t=>t.categoria))];
-    const dominante = categorias.length===1 ? ` — todos de categoría <strong>${categorias[0]}</strong>` : '';
-    cont.innerHTML = `<strong>${filtrados.length}</strong> tema${filtrados.length!==1?'s':''} en zona <strong>${nivelImpactoFiltro}</strong>${dominante}: ${nombres.join(', ') || 'ninguno con los datos actuales'}.`;
+    const dominante = categorias.length===1 ? categorias[0] : `${categorias.length} categorías`;
+    cont.innerHTML = `
+      <div class="kpi-card">
+        <div class="kpi-numero">${filtrados.length}</div>
+        <div class="kpi-etiqueta">temas en zona ${nivelImpactoFiltro}</div>
+        <div class="kpi-detalle">${dominante}</div>
+      </div>
+      <div class="kpi-lista">${filtrados.map(t=>`<span class="kpi-chip" data-tema="${t.id}">${t.nombre}</span>`).join('')}</div>
+    `;
+    cont.querySelectorAll('.kpi-chip').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); }));
     return;
   }
 
   const picos = temas.map(t=>{
     const p = puntoPrincipalDeTema(t.id);
-    return p ? {nombre:t.nombre, fecha:p.fecha, intensidad:p.intensidad} : null;
+    return p ? {id:t.id, nombre:t.nombre, fecha:p.fecha, intensidad:p.intensidad} : null;
   }).filter(Boolean).sort((a,b)=>b.intensidad-a.intensidad).slice(0,2);
-  if(!picos.length){ cont.innerHTML = ''; return; }
-  const partes = picos.map(p=> `<strong>${p.fecha.slice(0,7)}</strong>: ${p.nombre}`);
-  cont.innerHTML = `Los momentos de mayor tensión del sexenio hasta ahora — ${partes.join(' · ')}.`;
+
+  cont.innerHTML = picos.map(p=>`
+    <div class="kpi-card kpi-clickable" data-tema="${p.id}">
+      <div class="kpi-numero" style="font-size:15px;">${p.fecha.slice(0,7)}</div>
+      <div class="kpi-etiqueta">${p.nombre}</div>
+      <div class="kpi-detalle">Intensidad ${p.intensidad}/10 — momento de mayor tensión</div>
+    </div>
+  `).join('');
+  cont.querySelectorAll('.kpi-clickable').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); }));
 }
 
 function renderRecurrencia(){
@@ -124,12 +145,15 @@ function renderRecurrencia(){
     return { nombre:t.nombre, id:t.id, dias, veces: evs.length, ultima: evs[evs.length-1] };
   }).filter(Boolean).sort((a,b)=> b.dias-a.dias).slice(0,3);
 
-  cont.innerHTML = stats.map(s=>
-    `<span class="recurrencia-item" data-tema="${s.id}"><strong>${s.nombre}</strong>: ${s.dias} días en agenda · mencionado ${s.veces} ${s.veces!==1?'veces':'vez'} · última nota ${s.ultima}</span>`
-  ).join('');
-  cont.querySelectorAll('.recurrencia-item').forEach(el=>{
-    el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); });
-  });
+  cont.innerHTML = `<div class="eyebrow" style="margin-bottom:6px;">Temas más persistentes en la agenda</div>` +
+    stats.map(s=>`
+    <div class="kpi-card kpi-clickable" data-tema="${s.id}">
+      <div class="kpi-numero">${s.dias}<span style="font-size:11px;font-weight:400;"> días</span></div>
+      <div class="kpi-etiqueta">${s.nombre}</div>
+      <div class="kpi-detalle">${s.veces} menciones · última: ${s.ultima}</div>
+    </div>
+  `).join('');
+  cont.querySelectorAll('.kpi-clickable').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); }));
 }
 
 function empaquetarZigzag(puntos, minEspacioPx){
@@ -175,6 +199,18 @@ function renderTimelineZigzag(){
   pat.append('path').attr('d','M 24 0 L 0 0 0 24').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
   svgSel.insert('rect','.zoom-container').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#grid-blueprint)');
 
+  // franja de umbral: color real por mes (crítica/elevada/normal), no decorativa — reafirma el mismo dato del resumen KPI
+  const meses0 = rangoDeMeses();
+  const totalesPorMes = meses0.map(m=> ECOSISTEMA.eventos.filter(e=>e.fecha.slice(0,7)===m).reduce((s,e)=>s+e.intensidad,0));
+  meses0.forEach((m,i)=>{
+    const clase = clasificarMes(totalesPorMes[i]);
+    const x1 = xScaleBase(new Date(m+'-01'));
+    const x2 = xScaleBase(new Date(m+'-01')); // se ajusta abajo con el ancho de un mes
+    const anchoMes = xScaleBase(new Date(meses0[Math.min(i+1,meses0.length-1)]+'-01')) - x1 || 20;
+    svgSel.insert('rect','.zoom-container').attr('x',x1).attr('y',yLineaGlobal-3).attr('width',anchoMes).attr('height',6)
+      .attr('fill', clase.color).attr('fill-opacity',0.35);
+  });
+
   const temas = temasFiltrados();
   const puntosBase = temas.map(t=>{
     const p = puntoPrincipalDeTema(t.id);
@@ -189,7 +225,7 @@ function renderTimelineZigzag(){
     return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: xScaleBase(new Date(p.fecha)), esInformativo:true };
   }).filter(Boolean);
 
-  puntosConGeometria = empaquetarZigzag([...puntosBase, ...infoBase], 160);
+  puntosConGeometria = empaquetarZigzag([...puntosBase, ...infoBase], 210); // verificado con Node: 0 solapes y 0 "casi-toques" incluso en el peor caso de zoom-out
 
   svgSel.call(d3.zoom().scaleExtent([0.5,4]).on('zoom', ev=>{
     const xNueva = ev.transform.rescaleX(xScaleBase);
@@ -239,23 +275,30 @@ function dibujar(xScaleActual){
     const largo = altoBase + d.tier*altoPorTier;
     const yFin = d.lado==='up' ? yLineaGlobal-largo : yLineaGlobal+largo;
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
-    const gg = d3.select(this).attr('opacity', d.esInformativo ? 0.75 : 1);
+    const gg = d3.select(this).attr('opacity', d.esInformativo ? 0.5 : 1);
+    const anchoT = d.esInformativo ? anchoTarjeta*0.75 : anchoTarjeta;
+    const fuenteNombre = d.esInformativo ? '8px' : '9.5px';
 
     gg.append('circle').attr('cx',x).attr('cy',yLineaGlobal).attr('r',5)
       .attr('fill',colorNivel).attr('stroke','#fff').attr('stroke-width',1.5);
     gg.append('line').attr('x1',x).attr('y1',yLineaGlobal).attr('x2',x).attr('y2',yFin)
       .attr('stroke',colorNivel).attr('stroke-dasharray','2 3').attr('stroke-opacity',0.6);
     gg.append('rect')
-      .attr('x', x-anchoTarjeta/2).attr('y', yTarjeta)
-      .attr('width', anchoTarjeta).attr('height', altoTarjeta).attr('rx',6)
+      .attr('x', x-anchoT/2).attr('y', yTarjeta)
+      .attr('width', anchoT).attr('height', altoTarjeta).attr('rx',6)
       .attr('fill', 'var(--bg-0)').attr('stroke', colorNivel).attr('stroke-width',1.5)
       .attr('filter','drop-shadow(0 2px 4px rgba(35,35,35,.12))');
     gg.append('rect')
-      .attr('x', x-anchoTarjeta/2).attr('y', yTarjeta).attr('width',4).attr('height',altoTarjeta)
+      .attr('x', x-anchoT/2).attr('y', yTarjeta).attr('width',4).attr('height',altoTarjeta)
       .attr('fill', colorNivel);
+    if(!d.esInformativo && d.tema.estado==='activo'){
+      gg.append('circle').attr('cx', x+anchoT/2-8).attr('cy', yTarjeta+8).attr('r',3)
+        .attr('fill','var(--riesgo-alto)').attr('stroke','#fff').attr('stroke-width',1)
+        .append('title').text('Sigue activo — sin cierre confirmado');
+    }
     gg.append('text')
       .attr('x', x).attr('y', yTarjeta+14)
-      .attr('text-anchor','middle').attr('font-size','9.5px').attr('font-weight','700').attr('fill','var(--ink-1)')
+      .attr('text-anchor','middle').attr('font-size',fuenteNombre).attr('font-weight','700').attr('fill','var(--ink-1)')
       .text(d.tema.nombre.length>26 ? d.tema.nombre.slice(0,24)+'…' : d.tema.nombre);
     gg.append('text')
       .attr('x', x).attr('y', yTarjeta+27)

@@ -628,6 +628,26 @@ a{color:inherit;}
   max-width:240px; box-shadow:var(--shadow-card);
 }
 .heatmap-tooltip.visible{opacity:1;}
+
+.kpi-row{
+  display:flex; flex-wrap:wrap; gap:8px;
+  padding:10px 14px 4px; margin:0;
+}
+.kpi-card{
+  background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-m);
+  padding:8px 12px; min-width:150px; flex:1 1 auto;
+}
+.kpi-card.kpi-clickable{cursor:pointer; transition:box-shadow .1s;}
+.kpi-card.kpi-clickable:hover{box-shadow:var(--shadow-card);}
+.kpi-numero{font-family:var(--f-display); font-weight:700; font-size:22px; color:var(--familia-nucleo); line-height:1.1;}
+.kpi-etiqueta{font-size:11.5px; font-weight:600; color:var(--ink-1); margin-top:2px;}
+.kpi-detalle{font-size:10px; color:var(--ink-3); margin-top:2px;}
+.kpi-lista{display:flex; flex-wrap:wrap; gap:6px; padding:0 14px 6px; width:100%;}
+.kpi-chip{
+  font-size:10.5px; padding:3px 9px; border-radius:99px;
+  background:var(--bg-2); color:var(--ink-2); cursor:pointer;
+}
+.kpi-chip:hover{background:var(--line-strong);}
 .mes-header, .mes-label{user-select:none;}
 .celda{transition:opacity .1s;}
 .celda:hover{opacity:.75;}
