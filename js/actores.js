@@ -858,6 +858,94 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
   document.getElementById('btn-ver-notas-fuente').addEventListener('click', ()=> abrirModalActor(id));
 }
 
+// mini-grafo interactivo: el actor al centro, sus temas como satélites (mismo lenguaje visual
+// que el resto del sistema, pero autocontenido dentro del modal). Clic en un tema cierra este
+// modal y abre el del tema.
+function renderGrafoTemasDeActor(actorId){
+  const svgEl = document.getElementById('actor-modal-grafo-temas');
+  svgEl.innerHTML = '';
+  const temas = temasParaActor(actorId);
+  if(!temas.length){ svgEl.style.display='none'; return; }
+  svgEl.style.display='block';
+
+  const width = svgEl.clientWidth || 500, height = 220;
+  const RADIOS = {1:55, 2:85, 3:112};
+
+  const actor = getActor(actorId);
+  const nodeActor = {id:'__actor__', esCentro:true, x:width/2, y:height/2, fx:width/2, fy:height/2};
+  const nodesTemas = temas.map(t=>{
+    const temaObj = ECOSISTEMA.temas.find(x=>x.id===t.temaId);
+    return {
+      id:t.temaId, temaObj, nivelRel: temaObj?Number(temaObj.nivel_relevancia||3):3,
+      peso: temaObj?temaObj.peso_politico:5, categoria: temaObj?temaObj.categoria:'', nombre: t.temaNombre
+    };
+  });
+  const nodes = [nodeActor, ...nodesTemas];
+  const links = nodesTemas.map(t=>({source:'__actor__', target:t.id, nivel:t.nivelRel}));
+
+  const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
+  const container = svg.append('g');
+
+  const link = container.selectAll('line').data(links).join('line')
+    .attr('stroke','var(--gray)').attr('stroke-opacity',0.4).attr('stroke-width',1.3);
+
+  const node = container.selectAll('g.mini-node').data(nodes).join('g')
+    .attr('class','mini-node')
+    .style('cursor','pointer')
+    .on('click', (ev,d)=>{
+      if(d.esCentro) return;
+      document.getElementById('actor-modal-backdrop').classList.remove('open');
+      if(typeof abrirModalTema==='function') abrirModalTema(d.id);
+    })
+    .call(d3.drag()
+      .on('start',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0.3).restart(); if(!d.esCentro){ d.fx=d.x; d.fy=d.y; } })
+      .on('drag',(ev,d)=>{ if(!d.esCentro){ d.fx=ev.x; d.fy=ev.y; } })
+      .on('end',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0); if(!d.esCentro){ d.fx=null; d.fy=null; } }));
+
+  function radio(d){ return d.esCentro ? 20 : (8 + (d.peso||5)*0.8); }
+
+  node.append('circle')
+    .attr('r', radio)
+    .attr('fill', d=> d.esCentro ? (colorRiesgo(actor.nivel_riesgo)) : colorCategoria(d.categoria))
+    .attr('stroke','#fff').attr('stroke-width', d=>d.esCentro?2.5:1.3);
+
+  node.append('text')
+    .attr('dy', d=> radio(d)+10)
+    .attr('text-anchor','middle')
+    .attr('font-size', d=>d.esCentro?'10px':'8.5px')
+    .attr('font-weight', d=>d.esCentro?'700':'400')
+    .attr('fill','var(--ink-1)')
+    .text(d=> d.esCentro ? actor.nombre.split(' ').slice(0,2).join(' ') : (d.nombre.length>16?d.nombre.slice(0,14)+'…':d.nombre));
+
+  const nodesById = {}; nodes.forEach(n=>nodesById[n.id]=n);
+  function forceOrbita(strength){
+    let ref;
+    const f = (alpha)=>{
+      ref.forEach(n=>{
+        if(n.esCentro) return;
+        const centro = nodesById['__actor__'];
+        const t = RADIOS[n.nivelRel] || 85;
+        const dx=n.x-centro.x, dy=n.y-centro.y, dist=Math.sqrt(dx*dx+dy*dy)||0.001;
+        const k=(t-dist)/dist*alpha*strength;
+        n.vx += dx*k; n.vy += dy*k;
+      });
+    };
+    f.initialize = ns=>{ ref = ns; };
+    return f;
+  }
+
+  const sim = d3.forceSimulation(nodes)
+    .force('orbita', forceOrbita(0.9))
+    .force('charge', d3.forceManyBody().strength(-40))
+    .force('collide', d3.forceCollide().radius(d=>radio(d)+14).strength(0.9))
+    .on('tick', ()=>{
+      const margen=16;
+      nodes.forEach(n=>{ if(!n.esCentro){ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); } });
+      link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      node.attr('transform', d=>`translate(${d.x},${d.y})`);
+    });
+}
+
 function abrirModalActor(id){
   const actor = getActor(id);
   if(!actor) return;
@@ -874,6 +962,8 @@ function abrirModalActor(id){
   }
 
   document.getElementById('actor-modal-title').textContent = actor.nombre;
+  document.getElementById('actor-modal-backdrop').classList.add('open');
+  renderGrafoTemasDeActor(id); // se dibuja DESPUÉS de abrir, si no el SVG mide 0 (oculto)
   document.getElementById('actor-modal-cargo').textContent = actor.cargo;
 
   document.getElementById('actor-modal-temas').innerHTML = temas.length
@@ -902,8 +992,6 @@ function abrirModalActor(id){
   document.getElementById('actor-modal-source').innerHTML = esAnalisisInterno
     ? `<span class="badge-interno">ANÁLISIS</span> · sin fuente pública — valoración propia del equipo`
     : `FUENTE PRINCIPAL · ${actor.fuente_nombre} · ${actor.fecha_corte}<br><a href="${actor.fuente_url}" target="_blank" rel="noopener">Ver artículo completo ↗</a>`;
-
-  document.getElementById('actor-modal-backdrop').classList.add('open');
 }
 
 document.addEventListener('ecosistema:datos-listos', initModuloActores);

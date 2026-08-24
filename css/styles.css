@@ -617,14 +617,15 @@ a{color:inherit;}
   border-bottom:1px solid var(--line);
   flex-wrap:wrap;
 }
-#indice-tension-wrap{border-bottom:1px solid var(--line);}
-#indice-tension-svg{width:100%;height:220px;display:block;}
+#indice-tension-wrap{border-bottom:1px solid var(--line);overflow-x:auto;}
+#indice-tension-svg{height:260px;display:block;}
 #heatmap-grid-wrap{padding-bottom:14px;}
 #heatmap-grid-scroll{overflow-x:auto;padding:0 14px;}
 #heatmap-grid-svg{display:block;}
 .mes-header, .mes-label{user-select:none;}
 .celda{transition:opacity .1s;}
 .celda:hover{opacity:.75;}
+#actor-modal-grafo-temas{width:100%;height:220px;display:block;margin-bottom:8px;background:var(--bg-1);border-radius:var(--radius-s);}
 
 
 /* footer */
