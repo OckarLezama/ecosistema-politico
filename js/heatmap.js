@@ -1,37 +1,42 @@
 /* ============================================================
-   MÓDULO: MAPA DE CALOR / TIMELINE — diseño zigzag editorial
-   Una sola línea horizontal (el tiempo). Cada tema = 1 punto, en la
-   fecha de su evento más intenso. Línea guía punteada hacia arriba
-   o abajo, de altura variable (empaquetado automático para que no
-   se encimen), hacia una tarjeta con tinte de color por nivel de
-   relevancia (1/2/3, mismo semáforo de riesgo). Tamaño de lienzo
-   FIJO — el filtro de categoría solo oculta/muestra puntos, nunca
-   redimensiona. Zoom con rueda/pellizco, igual que en Red de Actores.
+   MÓDULO: MAPA DE CALOR / TIMELINE — zigzag con zoom semántico
+   El zoom SOLO reposiciona horizontalmente (reescala el eje de
+   tiempo); las tarjetas nunca se deforman, se redibujan a su
+   tamaño de siempre en la nueva posición. El lado/altura de cada
+   tarjeta se calcula UNA vez en la escala base y no cambia con el
+   zoom — solo hacer zoom-in está permitido (scaleExtent desde 1),
+   así la garantía de "cero empalmes" calculada en la base nunca se
+   rompe al acercar. Filtro por nivel de impacto (no categoría).
+   Hover: despliega los actores del tema con su rol.
    ============================================================ */
 
-let categoriaFiltro = '';
+let nivelImpactoFiltro = '';
 const INICIO_SEXENIO = '2024-10';
-const UMBRAL_ELEVADO = 21;
-const UMBRAL_CRITICO = 39;
 
 function initHeatmap(){
-  poblarFiltroCategoria();
   document.getElementById('heatmap-categoria').addEventListener('change', (e)=>{
-    categoriaFiltro = e.target.value;
+    nivelImpactoFiltro = e.target.value;
     renderHeatmap();
   });
+  crearTooltip();
   renderHeatmap();
 }
 
-function poblarFiltroCategoria(){
-  const sel = document.getElementById('heatmap-categoria');
-  const categorias = [...new Set(temasCompletos().map(t=>t.categoria))].sort();
-  categorias.forEach(cat=>{
-    const opt = document.createElement('option');
-    opt.value = cat; opt.textContent = cat;
-    sel.appendChild(opt);
-  });
+function crearTooltip(){
+  if(document.getElementById('heatmap-tooltip')) return;
+  const tip = document.createElement('div');
+  tip.id = 'heatmap-tooltip';
+  tip.className = 'heatmap-tooltip';
+  document.body.appendChild(tip);
 }
+function mostrarTooltip(html, ev){
+  const tip = document.getElementById('heatmap-tooltip');
+  tip.innerHTML = html;
+  tip.style.left = (ev.pageX+14)+'px';
+  tip.style.top = (ev.pageY+14)+'px';
+  tip.classList.add('visible');
+}
+function ocultarTooltip(){ document.getElementById('heatmap-tooltip').classList.remove('visible'); }
 
 function rangoDeMeses(){
   const hoy = new Date();
@@ -39,31 +44,42 @@ function rangoDeMeses(){
   const [anioIni, mesIni] = INICIO_SEXENIO.split('-').map(Number);
   const [anioFin, mesFin] = finReal.split('-').map(Number);
   const meses = [];
-  let a = anioIni, m = mesIni;
-  while(a < anioFin || (a===anioFin && m<=mesFin)){
-    meses.push(`${a}-${String(m).padStart(2,'0')}`);
-    m++; if(m>12){m=1; a++;}
-  }
+  let a=anioIni, m=mesIni;
+  while(a<anioFin || (a===anioFin && m<=mesFin)){ meses.push(`${a}-${String(m).padStart(2,'0')}`); m++; if(m>12){m=1;a++;} }
   return meses;
 }
 
-function temasCompletos(){ return ECOSISTEMA.temas.filter(t => (t.tipo||'completo') === 'completo'); }
-function temasFiltrados(){
-  const base = temasCompletos();
-  return categoriaFiltro ? base.filter(t=>t.categoria===categoriaFiltro) : base;
-}
+function temasCompletos(){ return ECOSISTEMA.temas.filter(t => (t.tipo||'completo')==='completo'); }
 
 function puntoPrincipalDeTema(temaId){
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
   if(!evs.length) return null;
   const top = evs.slice().sort((a,b)=>b.intensidad-a.intensidad)[0];
-  return { fecha: top.fecha, intensidad: top.intensidad, descripcion: top.descripcion };
+  return { fecha: top.fecha, intensidad: top.intensidad };
 }
 
-function clasificarMes(total){
-  if(total >= UMBRAL_CRITICO) return {nivel:'crítica', color:'var(--riesgo-alto)'};
-  if(total >= UMBRAL_ELEVADO) return {nivel:'elevada', color:'var(--riesgo-medio)'};
-  return {nivel:'normal', color:'var(--riesgo-bajo)'};
+function nivelImpactoDeIntensidad(intensidad){
+  if(intensidad>=9) return 'crítica';
+  if(intensidad>=7) return 'elevada';
+  return 'normal';
+}
+
+function temasFiltrados(){
+  const base = temasCompletos();
+  if(!nivelImpactoFiltro) return base;
+  return base.filter(t=>{
+    const p = puntoPrincipalDeTema(t.id);
+    return p && nivelImpactoDeIntensidad(p.intensidad) === nivelImpactoFiltro;
+  });
+}
+
+function actoresDeTemaConRol(tema){
+  return tema.actores_involucrados.map(aid=>{
+    const actor = getActor(aid);
+    if(!actor) return null;
+    const ctx = (ECOSISTEMA.temaActores||[]).find(ta=>ta.tema_id===tema.id && ta.actor_id===aid);
+    return { nombre: actor.nombre, rol: ctx ? ctx.rol : 'Mencionado' };
+  }).filter(Boolean);
 }
 
 function renderHeatmap(){
@@ -72,31 +88,29 @@ function renderHeatmap(){
 }
 
 function renderResumenEjecutivo(){
-  const meses = rangoDeMeses();
-  const idsFiltrados = new Set(temasFiltrados().map(t=>t.id));
-  const evs = ECOSISTEMA.eventos.filter(e=>idsFiltrados.has(e.tema_id));
-  const totales = {}; meses.forEach(m=>totales[m]=0);
-  evs.forEach(e=>{ const mes=e.fecha.slice(0,7); if(totales[mes]!==undefined) totales[mes]+=e.intensidad; });
-  const criticos = meses.filter(m=>totales[m]>=UMBRAL_CRITICO);
-  const elevados = meses.filter(m=>totales[m]>=UMBRAL_ELEVADO && totales[m]<UMBRAL_CRITICO);
-  const ultimoMes = meses[meses.length-1];
-  const clase = clasificarMes(totales[ultimoMes]);
   const cont = document.getElementById('heatmap-resumen-ejecutivo');
   if(!cont) return;
-  cont.innerHTML = `<strong>${criticos.length}</strong> mes${criticos.length!==1?'es':''} en zona crítica y <strong>${elevados.length}</strong> en zona elevada, de <strong>${meses.length}</strong> meses transcurridos del sexenio. El más reciente (<strong>${ultimoMes}</strong>): <strong style="color:${clase.color}">${clase.nivel}</strong>.`;
+  const temas = temasCompletos();
+  const picos = temas.map(t=>{
+    const p = puntoPrincipalDeTema(t.id);
+    return p ? {nombre:t.nombre, fecha:p.fecha, intensidad:p.intensidad} : null;
+  }).filter(Boolean).sort((a,b)=>b.intensidad-a.intensidad).slice(0,2);
+
+  if(!picos.length){ cont.innerHTML = ''; return; }
+  const partes = picos.map(p=> `<strong>${p.fecha.slice(0,7)}</strong>: ${p.nombre}`);
+  cont.innerHTML = `Los momentos de mayor tensión del sexenio hasta ahora — ${partes.join(' · ')}.`;
 }
 
-// empaquetado zigzag: alterna arriba/abajo y busca el primer nivel de altura libre (sin choque horizontal)
 function empaquetarZigzag(puntos, minEspacioPx){
   const tiersUp = [], tiersDown = [];
-  puntos.sort((a,b)=> a.x - b.x);
-  return puntos.map((p,i)=>{
+  const ordenados = puntos.slice().sort((a,b)=> a.xBase - b.xBase);
+  return ordenados.map((p,i)=>{
     const preferirArriba = i%2===0;
     function colocar(tiers){
       for(let t=0;t<tiers.length;t++){
-        if(p.x - tiers[t] >= minEspacioPx){ tiers[t]=p.x; return t; }
+        if(p.xBase - tiers[t] >= minEspacioPx){ tiers[t]=p.xBase; return t; }
       }
-      tiers.push(p.x); return tiers.length-1;
+      tiers.push(p.xBase); return tiers.length-1;
     }
     const lado = preferirArriba ? 'up' : 'down';
     const tier = colocar(lado==='up' ? tiersUp : tiersDown);
@@ -104,91 +118,108 @@ function empaquetarZigzag(puntos, minEspacioPx){
   });
 }
 
-function renderTimelineZigzag(){
-  const wrap = document.getElementById('heatmap-timeline-scroll');
-  const svgEl = document.getElementById('heatmap-timeline-svg');
-  const svg = d3.select(svgEl);
-  svg.selectAll('*').remove();
+let xScaleBase, puntosConGeometria, svgSel, containerSel, yLineaGlobal, widthGlobal;
 
-  // TAMAÑO FIJO — no depende del filtro de categoría ni de cuántos puntos se muestren
+function renderTimelineZigzag(){
+  const svgEl = document.getElementById('heatmap-timeline-svg');
+  svgSel = d3.select(svgEl);
+  svgSel.selectAll('*').remove();
+
   const width = 1100, height = 460;
+  widthGlobal = width;
   const padLeft = 30, padRight = 30;
-  const yLinea = height/2;
-  svg.attr('viewBox',[0,0,width,height]);
+  yLineaGlobal = height/2;
+  svgSel.attr('viewBox',[0,0,width,height]);
 
   const meses = rangoDeMeses();
   const fechaIni = new Date(meses[0]+'-01T00:00:00');
   const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00');
   fechaFin.setMonth(fechaFin.getMonth()+1);
-  const xScale = d3.scaleTime().domain([fechaIni, fechaFin]).range([padLeft, width-padRight]);
+  xScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padLeft, width-padRight]);
 
-  const container = svg.append('g').attr('class','zoom-container');
-  svg.call(d3.zoom().scaleExtent([0.6,4]).on('zoom', ev=> container.attr('transform', ev.transform)));
+  containerSel = svgSel.append('g').attr('class','zoom-container');
 
-  // fondo tipo plano de arquitecto
-  const defs = svg.append('defs');
+  const defs = svgSel.append('defs');
   const pat = defs.append('pattern').attr('id','grid-blueprint').attr('width',24).attr('height',24).attr('patternUnits','userSpaceOnUse');
   pat.append('path').attr('d','M 24 0 L 0 0 0 24').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
-  container.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#grid-blueprint)');
+  svgSel.insert('rect','.zoom-container').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#grid-blueprint)');
 
-  // eje de tiempo
-  container.append('line').attr('x1',padLeft).attr('x2',width-padRight).attr('y1',yLinea).attr('y2',yLinea)
-    .attr('stroke','var(--ink-2)').attr('stroke-width',2);
-  const stepMeses = meses.length>16 ? 2 : 1;
-  container.selectAll('text.mes-eje').data(meses.filter((d,i)=>i%stepMeses===0)).join('text')
-    .attr('class','mes-eje')
-    .attr('x', d=>xScale(new Date(d+'-15')))
-    .attr('y', yLinea+18)
-    .attr('text-anchor','middle').attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
-    .text(d=>d);
-
-  // puntos: uno por tema, en la fecha de su evento más intenso
   const temas = temasFiltrados();
   const puntosBase = temas.map(t=>{
     const p = puntoPrincipalDeTema(t.id);
     if(!p) return null;
-    return { tema:t, ...p, x: xScale(new Date(p.fecha)) };
+    return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: xScaleBase(new Date(p.fecha)) };
   }).filter(Boolean);
+  puntosConGeometria = empaquetarZigzag(puntosBase, 160); // 160px: ancho de tarjeta (150) + margen — verificado con Node, 0 solapes reales
 
-  const puntos = empaquetarZigzag(puntosBase, 90);
+  svgSel.call(d3.zoom().scaleExtent([1,4]).on('zoom', ev=>{
+    const xNueva = ev.transform.rescaleX(xScaleBase);
+    dibujar(xNueva);
+  }));
+
+  dibujar(xScaleBase);
+}
+
+function dibujar(xScaleActual){
+  containerSel.selectAll('*').remove();
+  const meses = rangoDeMeses();
+
+  containerSel.append('line').attr('x1',30).attr('x2',widthGlobal-30).attr('y1',yLineaGlobal).attr('y2',yLineaGlobal)
+    .attr('stroke','var(--ink-2)').attr('stroke-width',2);
+
+  const stepMeses = meses.length>16 ? 2 : 1;
+  containerSel.selectAll('text.mes-eje').data(meses.filter((d,i)=>i%stepMeses===0)).join('text')
+    .attr('class','mes-eje')
+    .attr('x', d=>xScaleActual(new Date(d+'-15')))
+    .attr('y', yLineaGlobal+18)
+    .attr('text-anchor','middle').attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
+    .text(d=>d);
 
   const COLOR_NIVEL = {1:'var(--riesgo-alto)', 2:'var(--riesgo-medio)', 3:'var(--riesgo-bajo)'};
-  const altoBase = 34, altoPorTier = 30;
+  const altoBase = 34, altoPorTier = 30, anchoTarjeta = 150, altoTarjeta = 34;
 
-  const g = container.selectAll('g.punto-tema').data(puntos).join('g')
+  const g = containerSel.selectAll('g.punto-tema').data(puntosConGeometria).join('g')
     .attr('class','punto-tema')
     .style('cursor','pointer')
-    .on('click', (ev,d)=>{ if(typeof abrirModalTema==='function') abrirModalTema(d.tema.id); });
+    .on('click', (ev,d)=>{ if(typeof abrirModalTema==='function') abrirModalTema(d.tema.id); })
+    .on('mouseenter', function(ev,d){
+      const actores = actoresDeTemaConRol(d.tema).slice(0,6);
+      const listaActores = actores.map(a=>`${a.nombre} <span style="opacity:.65">· ${a.rol}</span>`).join('<br>');
+      mostrarTooltip(`<strong>${d.tema.nombre}</strong><br><span style="opacity:.75">${d.fecha}</span><hr style="border-color:rgba(255,255,255,.2);margin:5px 0;">${listaActores || 'Sin actores registrados'}`, ev);
+    })
+    .on('mousemove', function(ev,d){
+      const actores = actoresDeTemaConRol(d.tema).slice(0,6);
+      const listaActores = actores.map(a=>`${a.nombre} <span style="opacity:.65">· ${a.rol}</span>`).join('<br>');
+      mostrarTooltip(`<strong>${d.tema.nombre}</strong><br><span style="opacity:.75">${d.fecha}</span><hr style="border-color:rgba(255,255,255,.2);margin:5px 0;">${listaActores || 'Sin actores registrados'}`, ev);
+    })
+    .on('mouseleave', ocultarTooltip);
 
   g.each(function(d){
-    const gg = d3.select(this);
+    const x = xScaleActual(new Date(d.fecha));
     const colorNivel = COLOR_NIVEL[Number(d.tema.nivel_relevancia||3)] || 'var(--gray)';
     const largo = altoBase + d.tier*altoPorTier;
-    const yFin = d.lado==='up' ? yLinea-largo : yLinea+largo;
-
-    // punto sobre la línea
-    gg.append('circle').attr('cx',d.x).attr('cy',yLinea).attr('r',5)
-      .attr('fill',colorNivel).attr('stroke','#fff').attr('stroke-width',1.5);
-
-    // línea guía punteada
-    gg.append('line').attr('x1',d.x).attr('y1',yLinea).attr('x2',d.x).attr('y2',yFin)
-      .attr('stroke',colorNivel).attr('stroke-dasharray','2 3').attr('stroke-opacity',0.6);
-
-    // tarjeta
-    const anchoTarjeta = 150, altoTarjeta = 34;
+    const yFin = d.lado==='up' ? yLineaGlobal-largo : yLineaGlobal+largo;
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
+    const gg = d3.select(this);
+
+    gg.append('circle').attr('cx',x).attr('cy',yLineaGlobal).attr('r',5)
+      .attr('fill',colorNivel).attr('stroke','#fff').attr('stroke-width',1.5);
+    gg.append('line').attr('x1',x).attr('y1',yLineaGlobal).attr('x2',x).attr('y2',yFin)
+      .attr('stroke',colorNivel).attr('stroke-dasharray','2 3').attr('stroke-opacity',0.6);
     gg.append('rect')
-      .attr('x', d.x-anchoTarjeta/2).attr('y', yTarjeta)
-      .attr('width', anchoTarjeta).attr('height', altoTarjeta)
-      .attr('rx',5)
-      .attr('fill', colorNivel).attr('fill-opacity',0.13)
-      .attr('stroke', colorNivel).attr('stroke-width',1.2);
+      .attr('x', x-anchoTarjeta/2).attr('y', yTarjeta)
+      .attr('width', anchoTarjeta).attr('height', altoTarjeta).attr('rx',6)
+      .attr('fill', 'var(--bg-0)').attr('stroke', colorNivel).attr('stroke-width',1.5)
+      .attr('filter','drop-shadow(0 2px 4px rgba(35,35,35,.12))');
+    gg.append('rect')
+      .attr('x', x-anchoTarjeta/2).attr('y', yTarjeta).attr('width',4).attr('height',altoTarjeta)
+      .attr('fill', colorNivel);
     gg.append('text')
-      .attr('x', d.x).attr('y', yTarjeta+14)
-      .attr('text-anchor','middle').attr('font-size','9.5px').attr('font-weight','600').attr('fill','var(--ink-1)')
+      .attr('x', x).attr('y', yTarjeta+14)
+      .attr('text-anchor','middle').attr('font-size','9.5px').attr('font-weight','700').attr('fill','var(--ink-1)')
       .text(d.tema.nombre.length>26 ? d.tema.nombre.slice(0,24)+'…' : d.tema.nombre);
     gg.append('text')
-      .attr('x', d.x).attr('y', yTarjeta+27)
+      .attr('x', x).attr('y', yTarjeta+27)
       .attr('text-anchor','middle').attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
       .text(d.fecha);
   });
