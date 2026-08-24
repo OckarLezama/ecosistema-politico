@@ -1,34 +1,40 @@
 /* ============================================================
    MÓDULO: MAPA DE CALOR / TIMELINE
-   Pieza central: streamgraph (área apilada, base cero) con cada
-   tema como una banda de color — más impactante que un heatmap de
-   cuadros, y conserva el concepto de umbral (la altura total sigue
-   siendo el índice agregado). Umbrales FIJOS, calibrados una sola
-   vez con estadística real (media + desviación estándar de los 23
-   meses del sexenio, incluyendo meses en cero) — no se recalculan
-   con cada dato nuevo. Debajo: heatmap de detalle (temas completos)
-   y, aparte, una franja gris de "menciones informativas" (temas
-   ligeros tipo mañanera, sin la profundidad de un tema completo).
+   Línea de tiempo horizontal, tipo infografía de centro de mando:
+   3 carriles por Nivel de relevancia + 1 carril gris de informativos.
+   Cada tema es una píldora (primera a última mención), con ícono de
+   categoría (no color de categoría — eso saturaba). El índice
+   agregado corre transparente de fondo, como ambiente. Marcadores
+   de impacto (▲) donde el índice cruza el umbral crítico. Tooltip
+   propio (no nativo). Ancho medido del contenedor real, no una
+   fórmula fija — así no se corta ni desalinea.
    ============================================================ */
 
 let categoriaFiltro = '';
 const INICIO_SEXENIO = '2024-10';
-
-// --- Umbrales calibrados el 23-ago-2026 sobre los 23 meses del sexenio (oct-2024 a ago-2026),
-// incluyendo meses sin eventos. Media=12.6, desviación estándar=17.6 (población).
-// Elevada = media + 0.5*desv ≈ 21 · Crítica = media + 1.5*desv ≈ 39. FIJOS: no se recalculan
-// automáticamente al agregar eventos nuevos, para que la clasificación de un mes no cambie sola.
 const UMBRAL_ELEVADO = 21;
 const UMBRAL_CRITICO = 39;
+
+const ICONO_CATEGORIA = {
+  'Seguridad': '🛡',
+  'Bilateral/Exterior': '🌐',
+  'Bilateral/Seguridad': '⚔',
+  'Político': '🏛',
+  'Económico': '💰',
+  'Económico/Bilateral': '📈',
+  'Social/Político': '📢'
+};
 
 function initHeatmap(){
   poblarFiltroCategoria();
   poblarLeyendaCategorias();
+  crearTooltip();
   document.getElementById('heatmap-categoria').addEventListener('change', (e)=>{
     categoriaFiltro = e.target.value;
     renderHeatmap();
   });
   renderHeatmap();
+  window.addEventListener('resize', ()=>{ if(ECOSISTEMA.ready) renderHeatmap(); });
 }
 
 function poblarFiltroCategoria(){
@@ -36,7 +42,7 @@ function poblarFiltroCategoria(){
   const categorias = [...new Set(temasCompletos().map(t=>t.categoria))].sort();
   categorias.forEach(cat=>{
     const opt = document.createElement('option');
-    opt.value = cat; opt.textContent = cat;
+    opt.value = cat; opt.textContent = (ICONO_CATEGORIA[cat]||'') + ' ' + cat;
     sel.appendChild(opt);
   });
 }
@@ -45,9 +51,28 @@ function poblarLeyendaCategorias(){
   const categorias = [...new Set(temasCompletos().map(t=>t.categoria))].sort();
   const cont = document.getElementById('heatmap-leyenda-categorias');
   if(!cont) return;
-  cont.innerHTML = categorias.map(cat=>
-    `<span><span class="legend-dot" style="background:${colorCategoria(cat)}"></span>${cat}</span>`
-  ).join('');
+  cont.innerHTML = categorias.map(cat=>`<span>${ICONO_CATEGORIA[cat]||'•'} ${cat}</span>`).join('');
+}
+
+function crearTooltip(){
+  if(document.getElementById('heatmap-tooltip')) return;
+  const tip = document.createElement('div');
+  tip.id = 'heatmap-tooltip';
+  tip.className = 'heatmap-tooltip';
+  document.body.appendChild(tip);
+}
+
+function mostrarTooltip(html, ev){
+  const tip = document.getElementById('heatmap-tooltip');
+  if(!tip) return;
+  tip.innerHTML = html;
+  tip.style.left = (ev.pageX + 14) + 'px';
+  tip.style.top = (ev.pageY + 14) + 'px';
+  tip.classList.add('visible');
+}
+function ocultarTooltip(){
+  const tip = document.getElementById('heatmap-tooltip');
+  if(tip) tip.classList.remove('visible');
 }
 
 function rangoDeMeses(){
@@ -64,24 +89,18 @@ function rangoDeMeses(){
   return meses;
 }
 
-// temas "completos" (con investigación real) vs "informativos" (seguimiento ligero, ej. mañanera)
 function temasCompletos(){ return ECOSISTEMA.temas.filter(t => (t.tipo||'completo') === 'completo'); }
 function temasInformativos(){ return ECOSISTEMA.temas.filter(t => t.tipo === 'informativo'); }
-
 function temasFiltrados(){
   const base = temasCompletos();
   return categoriaFiltro ? base.filter(t=>t.categoria===categoriaFiltro) : base;
 }
 
-function eventosFiltrados(){
-  const idsFiltrados = new Set(temasFiltrados().map(t=>t.id));
-  return ECOSISTEMA.eventos.filter(e=>idsFiltrados.has(e.tema_id));
-}
-
-function truncarEtiqueta(texto, anchoPx, pxPorChar){
-  pxPorChar = pxPorChar || 5.6;
-  const presupuesto = Math.max(8, Math.floor((anchoPx-14)/pxPorChar));
-  return texto.length > presupuesto ? texto.slice(0, presupuesto-1)+'…' : texto;
+function rangoFechasDeTema(temaId){
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).map(e=>e.fecha).sort();
+  if(!evs.length) return null;
+  const maxInt = Math.max(...ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).map(e=>e.intensidad));
+  return { inicio: evs[0], fin: evs[evs.length-1], maxIntensidad: maxInt };
 }
 
 function clasificarMes(total){
@@ -92,246 +111,166 @@ function clasificarMes(total){
 
 function renderHeatmap(){
   renderResumenEjecutivo();
-  renderStreamgraph();
-  renderGrillaHeatmap();
-  renderFranjaInformativa();
+  renderTimelineCarriles();
 }
 
-// ---- resumen ejecutivo: el titular antes del gráfico ----
 function renderResumenEjecutivo(){
   const meses = rangoDeMeses();
-  const evs = eventosFiltrados();
+  const idsFiltrados = new Set(temasFiltrados().map(t=>t.id));
+  const evs = ECOSISTEMA.eventos.filter(e=>idsFiltrados.has(e.tema_id));
   const totales = {}; meses.forEach(m=>totales[m]=0);
   evs.forEach(e=>{ const mes=e.fecha.slice(0,7); if(totales[mes]!==undefined) totales[mes]+=e.intensidad; });
 
   const criticos = meses.filter(m=>totales[m]>=UMBRAL_CRITICO);
   const elevados = meses.filter(m=>totales[m]>=UMBRAL_ELEVADO && totales[m]<UMBRAL_CRITICO);
   const ultimoMes = meses[meses.length-1];
-  const ultimoTotal = totales[ultimoMes];
-  const clase = clasificarMes(ultimoTotal);
+  const clase = clasificarMes(totales[ultimoMes]);
 
   const cont = document.getElementById('heatmap-resumen-ejecutivo');
   if(!cont) return;
-  cont.innerHTML = `<strong>${criticos.length}</strong> mes${criticos.length!==1?'es':''} en zona crítica y <strong>${elevados.length}</strong> en zona elevada de <strong>${meses.length}</strong> totales del sexenio — el más reciente (<strong>${ultimoMes}</strong>) está en zona <strong style="color:${clase.color}">${clase.nivel}</strong>.`;
+  cont.innerHTML = `<strong>${criticos.length}</strong> mes${criticos.length!==1?'es':''} en zona crítica y <strong>${elevados.length}</strong> en zona elevada, de <strong>${meses.length}</strong> meses transcurridos del sexenio. El más reciente (<strong>${ultimoMes}</strong>): <strong style="color:${clase.color}">${clase.nivel}</strong>.`;
 }
 
-// ---- streamgraph: cada tema es una banda apilada, base cero (así la altura total = índice agregado) ----
-function renderStreamgraph(){
-  const svg = d3.select('#indice-tension-svg');
-  svg.selectAll('*').remove();
-  const meses = rangoDeMeses();
-  const temas = temasFiltrados();
-  if(!meses.length || !temas.length) return;
-
-  const width = Math.max(900, meses.length*46), height = 300;
-  const padLeft=48, padRight=24, padTop=46, padBottom=38;
-  const plotW = width-padLeft-padRight, plotH = height-padTop-padBottom;
-  svg.attr('viewBox',[0,0,width,height]).attr('width', width);
-
-  // matriz tema x mes
-  const matriz = {};
-  temas.forEach(t=>{ matriz[t.id]={}; meses.forEach(m=>matriz[t.id][m]=0); });
-  ECOSISTEMA.eventos.forEach(e=>{
-    if(matriz[e.tema_id]){ const mes=e.fecha.slice(0,7); if(matriz[e.tema_id][mes]!==undefined) matriz[e.tema_id][mes]+=e.intensidad; }
+function empaquetarEnSubfilas(temasConRango){
+  const subfilas = [];
+  const asignaciones = [];
+  temasConRango.sort((a,b)=> a.rango.inicio.localeCompare(b.rango.inicio));
+  temasConRango.forEach(item=>{
+    let fila = subfilas.findIndex(f => f < item.rango.inicio);
+    if(fila === -1){ fila = subfilas.length; subfilas.push(item.rango.fin); }
+    else { subfilas[fila] = item.rango.fin; }
+    asignaciones.push({...item, subfila: fila});
   });
-  const totalesPorMes = meses.map(m => temas.reduce((s,t)=>s+matriz[t.id][m],0));
-  const maxTotal = Math.max(...totalesPorMes, UMBRAL_CRITICO*1.15, 1);
+  return {asignaciones, totalSubfilas: subfilas.length || 1};
+}
 
-  const x = d3.scalePoint().domain(meses).range([padLeft, padLeft+plotW]).padding(0.5);
-  const y = d3.scaleLinear().domain([0, maxTotal*1.05]).range([padTop+plotH, padTop]);
+function renderTimelineCarriles(){
+  const wrap = document.getElementById('heatmap-timeline-scroll');
+  const svg = d3.select('#heatmap-timeline-svg');
+  svg.selectAll('*').remove();
 
-  // --- fondo tipo "plano de arquitecto": cuadrícula fina ---
+  const meses = rangoDeMeses();
+  const anchoDisponible = (wrap.clientWidth || 928) - 28; // 28 = padding horizontal del contenedor (14px cada lado)
+  const width = Math.max(600, anchoDisponible);
+  const padLeft = 130, padRight = 20;
+  const plotW = width - padLeft - padRight;
+
+  const fechaIni = new Date(meses[0]+'-01T00:00:00');
+  const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00');
+  fechaFin.setMonth(fechaFin.getMonth()+1);
+  const xScale = d3.scaleTime().domain([fechaIni, fechaFin]).range([padLeft, padLeft+plotW]);
+  const xDeFecha = f => xScale(new Date(f+(f.length===7?'-15':'')));
+
+  const altoPildora = 20, gapPildora = 4;
+  const altoCarrilLabel = 26;
+
+  function prepararCarril(temasDelNivel){
+    const conRango = temasDelNivel.map(t=>({tema:t, rango: rangoFechasDeTema(t.id)})).filter(x=>x.rango);
+    return empaquetarEnSubfilas(conRango);
+  }
+
+  const nivel1 = prepararCarril(temasFiltrados().filter(t=>Number(t.nivel_relevancia)===1));
+  const nivel2 = prepararCarril(temasFiltrados().filter(t=>Number(t.nivel_relevancia)===2));
+  const nivel3 = prepararCarril(temasFiltrados().filter(t=>Number(t.nivel_relevancia)===3));
+  const informativos = prepararCarril(temasInformativos());
+
+  const carriles = [
+    {titulo:'Nivel 1 · Máxima relevancia', color:'var(--riesgo-alto)', datos:nivel1, chico:false},
+    {titulo:'Nivel 2 · Alta relevancia', color:'var(--riesgo-medio)', datos:nivel2, chico:false},
+    {titulo:'Nivel 3 · Relevancia media', color:'var(--riesgo-bajo)', datos:nivel3, chico:false},
+    {titulo:'Informativo · seguimiento ligero', color:'var(--gray)', datos:informativos, chico:true},
+  ].filter(c => c.datos.asignaciones.length > 0);
+
+  let yCursor = 40;
+  const posicionesCarril = [];
+  carriles.forEach(c=>{
+    const altoCarril = altoCarrilLabel + c.datos.totalSubfilas*(altoPildora+gapPildora);
+    posicionesCarril.push({...c, y: yCursor, alto: altoCarril});
+    yCursor += altoCarril + 10;
+  });
+  const height = yCursor + 10;
+
+  svg.attr('viewBox',[0,0,width,height]).attr('width', width).attr('height', height);
+
   const defs = svg.append('defs');
   const patId = 'grid-blueprint';
   const pat = defs.append('pattern').attr('id',patId).attr('width',24).attr('height',24).attr('patternUnits','userSpaceOnUse');
   pat.append('path').attr('d','M 24 0 L 0 0 0 24').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
-  svg.append('rect').attr('x',padLeft).attr('y',padTop).attr('width',plotW).attr('height',plotH).attr('fill',`url(#${patId})`);
+  svg.append('rect').attr('x',padLeft).attr('y',0).attr('width',plotW).attr('height',height).attr('fill',`url(#${patId})`);
 
-  // bandas de umbral fijas
-  svg.append('rect').attr('x',padLeft).attr('y', y(UMBRAL_ELEVADO)).attr('width',plotW).attr('height', (padTop+plotH)-y(UMBRAL_ELEVADO)).attr('fill','var(--teal-10)');
-  svg.append('rect').attr('x',padLeft).attr('y', y(UMBRAL_CRITICO)).attr('width',plotW).attr('height', y(UMBRAL_ELEVADO)-y(UMBRAL_CRITICO)).attr('fill','var(--peach-10)');
-  svg.append('rect').attr('x',padLeft).attr('y', padTop).attr('width',plotW).attr('height', Math.max(0,y(UMBRAL_CRITICO)-padTop)).attr('fill','var(--coral-10)');
-  [UMBRAL_ELEVADO, UMBRAL_CRITICO].forEach(u=>{
-    if(y(u) >= padTop){
-      svg.append('line').attr('x1',padLeft).attr('x2',padLeft+plotW).attr('y1',y(u)).attr('y2',y(u))
-        .attr('stroke','var(--ink-2)').attr('stroke-dasharray','2 3').attr('stroke-opacity',0.5);
-    }
+  const idsFiltrados = new Set(temasFiltrados().map(t=>t.id));
+  const totalesPorMes = meses.map(m=>{
+    return ECOSISTEMA.eventos.filter(e=> idsFiltrados.has(e.tema_id) && e.fecha.slice(0,7)===m).reduce((s,e)=>s+e.intensidad,0);
   });
-
-  // apilado (stack) por tema, base cero
-  const datosStack = meses.map((mes,i)=>{
-    const fila = {mes};
-    temas.forEach(t=> fila[t.id] = matriz[t.id][mes]);
-    return fila;
-  });
-  const stack = d3.stack().keys(temas.map(t=>t.id));
-  const series = stack(datosStack);
-
-  const area = d3.area()
-    .x(d=>x(d.data.mes))
-    .y0(d=>y(d[0]))
-    .y1(d=>y(d[1]))
+  const maxTotal = Math.max(...totalesPorMes, UMBRAL_CRITICO*1.15, 1);
+  const yIndice = d3.scaleLinear().domain([0, maxTotal]).range([height-4, 34]);
+  const areaIndice = d3.area()
+    .x((d,i)=> xDeFecha(meses[i]))
+    .y0(height-4).y1(d=>yIndice(d))
     .curve(d3.curveMonotoneX);
+  svg.append('path').datum(totalesPorMes).attr('d',areaIndice).attr('fill','var(--familia-nucleo)').attr('fill-opacity',0.08);
 
-  svg.selectAll('path.banda-tema').data(series).join('path')
-    .attr('class','banda-tema')
-    .attr('d', area)
-    .attr('fill', (d)=> colorCategoria(temas.find(t=>t.id===d.key).categoria))
-    .attr('fill-opacity', 0.82)
-    .attr('stroke','#fff').attr('stroke-width',0.6)
-    .style('cursor','pointer')
-    .on('click', (ev,d)=>{ if(typeof abrirModalTema==='function') abrirModalTema(d.key); })
-    .append('title')
-    .text(d=> temas.find(t=>t.id===d.key).nombre);
-
-  // línea del total + puntos con tooltip individual en CADA mes (no solo picos)
-  const linea = d3.line().x((d,i)=>x(meses[i])).y(d=>y(d)).curve(d3.curveMonotoneX);
-  svg.append('path').datum(totalesPorMes).attr('d',linea).attr('fill','none').attr('stroke','var(--ink-1)').attr('stroke-width',1.8).attr('stroke-dasharray','none');
-
-  const gPuntos = svg.selectAll('g.punto-mes').data(meses).join('g').attr('class','punto-mes');
-  gPuntos.append('circle')
-    .attr('cx',d=>x(d)).attr('cy',(d,i)=>y(totalesPorMes[i]))
-    .attr('r', (d,i)=> totalesPorMes[i]>=UMBRAL_CRITICO?5:3.5)
-    .attr('fill', (d,i)=> totalesPorMes[i]===0 ? 'var(--bg-2)' : 'var(--ink-1)')
-    .attr('stroke','#fff').attr('stroke-width',1.3)
-    .style('cursor', (d,i)=> totalesPorMes[i]>0 ? 'pointer':'default')
-    .on('click', (ev,d)=> mostrarDetalleMes(d));
-  gPuntos.append('title').text((d,i)=>{
-    const evsDelMes = eventosFiltrados().filter(e=>e.fecha.slice(0,7)===d);
-    const temaTop = evsDelMes.sort((a,b)=>b.intensidad-a.intensidad)[0];
-    const nombreTemaTop = temaTop ? (temas.find(t=>t.id===temaTop.tema_id)||{}).nombre : null;
-    const clase = clasificarMes(totalesPorMes[i]);
-    return `${d} · índice ${totalesPorMes[i]} (${clase.nivel})` + (nombreTemaTop ? ` · tema principal: ${nombreTemaTop}` : ' · sin eventos');
+  meses.forEach((m,i)=>{
+    if(totalesPorMes[i] >= UMBRAL_CRITICO){
+      svg.append('text').attr('x', xDeFecha(m)).attr('y', 30)
+        .attr('text-anchor','middle').attr('font-size','12px').attr('fill','var(--riesgo-alto)')
+        .text('▲')
+        .style('cursor','pointer')
+        .on('mouseenter', function(ev){ mostrarTooltip(`<strong>${m}</strong><br>Índice crítico: ${totalesPorMes[i]}`, ev); })
+        .on('mousemove', function(ev){ mostrarTooltip(`<strong>${m}</strong><br>Índice crítico: ${totalesPorMes[i]}`, ev); })
+        .on('mouseleave', ocultarTooltip);
+    }
   });
 
   const step = meses.length>16 ? 2 : 1;
-  svg.selectAll('text.mes-label').data(meses.filter((d,i)=>i%step===0)).join('text')
-    .attr('class','mes-label')
-    .attr('x',d=>x(d)).attr('y', height-14)
-    .attr('text-anchor','middle').attr('font-size','10px').attr('font-family','var(--f-mono)')
-    .attr('fill','var(--ink-3)')
+  svg.selectAll('text.mes-eje').data(meses.filter((d,i)=>i%step===0)).join('text')
+    .attr('class','mes-eje')
+    .attr('x', d=>xDeFecha(d+'-01')).attr('y', 12)
+    .attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
     .text(d=>d);
 
-  svg.append('text').attr('x',10).attr('y',padTop+10).attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('Crítica ≥'+UMBRAL_CRITICO);
-  svg.append('text').attr('x',10).attr('y',y(UMBRAL_ELEVADO)-4).attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('Elevada ≥'+UMBRAL_ELEVADO);
-  svg.append('text').attr('x',10).attr('y',padTop+plotH-4).attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('Normal');
-}
-
-function mostrarDetalleMes(mes){
-  const evs = eventosFiltrados().filter(e=>e.fecha.slice(0,7)===mes);
-  if(!evs.length) return;
-  const masIntenso = evs.sort((a,b)=>b.intensidad-a.intensidad)[0];
-  if(typeof abrirModalTema === 'function') abrirModalTema(masIntenso.tema_id);
-}
-
-// ---- heatmap de detalle: temas completos, precisos y clickeables ----
-function renderGrillaHeatmap(){
-  const svg = d3.select('#heatmap-grid-svg');
-  svg.selectAll('*').remove();
-  const meses = rangoDeMeses();
-  const temas = temasFiltrados().slice().sort((a,b)=> Number(a.nivel_relevancia||3)-Number(b.nivel_relevancia||3) || b.peso_politico-a.peso_politico);
-  if(!meses.length || !temas.length) return;
-
-  const cellW = 30, cellH = 28, labelW = 330, headerH = 32;
-  const width = labelW + meses.length*cellW + 10;
-  const height = headerH + temas.length*cellH + 10;
-  svg.attr('viewBox',[0,0,width,height]).attr('width', width).attr('height', height);
-
-  const matriz = {};
-  temas.forEach(t=>{ matriz[t.id]={}; meses.forEach(m=> matriz[t.id][m]=0); });
-  ECOSISTEMA.eventos.forEach(e=>{
-    if(matriz[e.tema_id]){
-      const mes = e.fecha.slice(0,7);
-      if(matriz[e.tema_id][mes]!==undefined) matriz[e.tema_id][mes] += e.intensidad;
-    }
-  });
-  const maxCelda = Math.max(1, ...temas.flatMap(t=>meses.map(m=>matriz[t.id][m])));
-
-  svg.selectAll('text.mes-header').data(meses).join('text')
-    .attr('class','mes-header')
-    .attr('x',(d,i)=> labelW + i*cellW + cellW/2)
-    .attr('y', headerH-11)
-    .attr('text-anchor','middle').attr('font-size','9px').attr('font-family','var(--f-mono)')
-    .attr('fill','var(--ink-3)')
-    .text(d=>d.slice(2));
-
-  const filas = svg.selectAll('g.fila-tema').data(temas).join('g')
-    .attr('class','fila-tema')
-    .attr('transform',(d,i)=>`translate(0,${headerH + i*cellH})`);
-
-  filas.append('circle')
-    .attr('cx', 8).attr('cy', cellH/2).attr('r',3)
-    .attr('fill', d=> ({1:'var(--riesgo-alto)',2:'var(--riesgo-medio)',3:'var(--riesgo-bajo)'})[Number(d.nivel_relevancia||3)] );
-
-  const etiquetas = filas.append('text')
-    .attr('x',18).attr('y', cellH/2+4)
-    .attr('font-size','11px').attr('fill','var(--ink-1)')
-    .style('cursor','pointer')
-    .text(d=> truncarEtiqueta(d.nombre, labelW-24))
-    .on('click', (ev,d)=>{ if(typeof abrirModalTema==='function') abrirModalTema(d.id); });
-  etiquetas.append('title').text(d=>d.nombre);
-
-  temas.forEach((t, filaIdx)=>{
-    const g = svg.selectAll('g.fila-tema').filter((d,i)=>i===filaIdx);
-    const celdas = g.selectAll('rect.celda').data(meses.map(m=>({mes:m, valor:matriz[t.id][m], temaId:t.id}))).join('rect')
-      .attr('class','celda')
-      .attr('x',(d,i)=> labelW + i*cellW)
-      .attr('y', 3)
-      .attr('width', cellW-3).attr('height', cellH-6)
-      .attr('rx',3)
-      .attr('fill', d=> d.valor===0 ? 'var(--bg-2)' : colorCategoria(t.categoria))
-      .attr('fill-opacity', d=> d.valor===0 ? 1 : Math.max(0.18, d.valor/maxCelda))
-      .style('cursor', d=> d.valor>0 ? 'pointer' : 'default')
-      .on('click', (ev,d)=>{ if(d.valor>0 && typeof abrirModalTema==='function') abrirModalTema(d.temaId); });
-    celdas.append('title').text(d=> d.valor>0 ? `${t.nombre} · ${d.mes} · intensidad ${d.valor}` : `${t.nombre} · ${d.mes} · sin eventos`);
-  });
-}
-
-// ---- franja gris de temas informativos: seguimiento ligero, sin el peso visual de los completos ----
-function renderFranjaInformativa(){
-  const wrap = document.getElementById('heatmap-informativos-wrap');
-  if(!wrap) return;
-  const informativos = temasInformativos();
-  if(!informativos.length){ wrap.style.display='none'; return; }
-  wrap.style.display='block';
-
-  const svg = d3.select('#heatmap-informativos-svg');
-  svg.selectAll('*').remove();
-  const meses = rangoDeMeses();
-  const cellW = 30, cellH = 24, labelW = 330, headerH = 0;
-  const width = labelW + meses.length*cellW + 10;
-  const height = informativos.length*cellH + 6;
-  svg.attr('viewBox',[0,0,width,height]).attr('width', width).attr('height', height);
-
-  const matriz = {};
-  informativos.forEach(t=>{ matriz[t.id]={}; meses.forEach(m=>matriz[t.id][m]=0); });
-  ECOSISTEMA.eventos.forEach(e=>{
-    if(matriz[e.tema_id]){ const mes=e.fecha.slice(0,7); if(matriz[e.tema_id][mes]!==undefined) matriz[e.tema_id][mes]+=1; } // aquí solo cuenta MENCIONES, no intensidad
+  meses.filter(m=>m.endsWith('-01')).forEach(m=>{
+    svg.append('line').attr('x1',xDeFecha(m+'-01')).attr('x2',xDeFecha(m+'-01')).attr('y1',20).attr('y2',height-4)
+      .attr('stroke','var(--line-strong)').attr('stroke-dasharray','2 3');
   });
 
-  const filas = svg.selectAll('g.fila-info').data(informativos).join('g')
-    .attr('class','fila-info')
-    .attr('transform',(d,i)=>`translate(0,${i*cellH})`);
+  posicionesCarril.forEach(carril=>{
+    svg.append('text').attr('x',10).attr('y', carril.y+14)
+      .attr('font-size','10px').attr('font-family','var(--f-mono)').attr('fill', carril.color)
+      .attr('font-weight','700')
+      .text(carril.titulo);
 
-  filas.append('text')
-    .attr('x',10).attr('y', cellH/2+4)
-    .attr('font-size','10.5px').attr('fill','var(--ink-3)')
-    .style('cursor','pointer')
-    .text(d=> truncarEtiqueta(d.nombre, labelW-16))
-    .on('click', (ev,d)=>{ if(typeof abrirModalTema==='function') abrirModalTema(d.id); })
-    .append('title').text(d=>d.nombre);
+    carril.datos.asignaciones.forEach(item=>{
+      const t = item.tema;
+      const yPildora = carril.y + altoCarrilLabel + item.subfila*(altoPildora+gapPildora);
+      const x1 = xDeFecha(item.rango.inicio+'-01');
+      const x2 = Math.max(x1+18, xDeFecha(item.rango.fin+'-01')+18);
+      const colorPildora = carril.chico ? 'var(--gray)' : colorRiesgo(item.rango.maxIntensidad>=8?'alto':(item.rango.maxIntensidad>=5?'medio':'bajo'));
 
-  informativos.forEach((t, filaIdx)=>{
-    const g = svg.selectAll('g.fila-info').filter((d,i)=>i===filaIdx);
-    const celdas = g.selectAll('circle.punto-info').data(meses.map(m=>({mes:m, valor:matriz[t.id][m], temaId:t.id}))).join('circle')
-      .attr('class','punto-info')
-      .attr('cx',(d,i)=> labelW + i*cellW + cellW/2)
-      .attr('cy', cellH/2)
-      .attr('r', d=> d.valor>0 ? 5 : 2)
-      .attr('fill', d=> d.valor>0 ? 'var(--gray)' : 'var(--bg-2)')
-      .style('cursor', d=> d.valor>0 ? 'pointer':'default')
-      .on('click', (ev,d)=>{ if(d.valor>0 && typeof abrirModalTema==='function') abrirModalTema(d.temaId); });
-    celdas.append('title').text(d=> d.valor>0 ? `${t.nombre} · ${d.mes} · ${d.valor} mención(es)` : `${t.nombre} · ${d.mes} · sin mención`);
+      const g = svg.append('g').style('cursor','pointer')
+        .on('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(t.id); })
+        .on('mouseenter', function(ev){
+          mostrarTooltip(`<strong>${t.nombre}</strong><br>${item.rango.inicio} → ${item.rango.fin}<br>Intensidad máxima: ${item.rango.maxIntensidad}/10`, ev);
+        })
+        .on('mousemove', function(ev){
+          mostrarTooltip(`<strong>${t.nombre}</strong><br>${item.rango.inicio} → ${item.rango.fin}<br>Intensidad máxima: ${item.rango.maxIntensidad}/10`, ev);
+        })
+        .on('mouseleave', ocultarTooltip);
+
+      g.append('rect')
+        .attr('x',x1).attr('y',yPildora).attr('width', x2-x1).attr('height', altoPildora)
+        .attr('rx', altoPildora/2)
+        .attr('fill', colorPildora).attr('fill-opacity', carril.chico?0.5:0.85)
+        .attr('stroke','#fff').attr('stroke-width',1);
+
+      g.append('text').attr('x', x1+8).attr('y', yPildora+altoPildora/2+4)
+        .attr('font-size','10px').attr('fill','#fff')
+        .text(ICONO_CATEGORIA[t.categoria]||'•');
+
+      g.append('text').attr('x', x2+6).attr('y', yPildora+altoPildora/2+4)
+        .attr('font-size', carril.chico?'9px':'10px').attr('fill','var(--ink-2)')
+        .text(t.nombre.length>34 ? t.nombre.slice(0,32)+'…' : t.nombre);
+    });
   });
 }
 
