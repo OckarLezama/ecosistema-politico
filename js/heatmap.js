@@ -64,6 +64,8 @@ function nivelImpactoDeIntensidad(intensidad){
   return 'normal';
 }
 
+function temasInformativos(){ return ECOSISTEMA.temas.filter(t => t.tipo === 'informativo'); }
+
 function temasFiltrados(){
   const base = temasCompletos();
   if(!nivelImpactoFiltro) return base;
@@ -84,6 +86,7 @@ function actoresDeTemaConRol(tema){
 
 function renderHeatmap(){
   renderResumenEjecutivo();
+  renderRecurrencia();
   renderTimelineZigzag();
 }
 
@@ -91,14 +94,42 @@ function renderResumenEjecutivo(){
   const cont = document.getElementById('heatmap-resumen-ejecutivo');
   if(!cont) return;
   const temas = temasCompletos();
+
+  if(nivelImpactoFiltro){
+    const filtrados = temasFiltrados();
+    const nombres = filtrados.map(t=>t.nombre);
+    const categorias = [...new Set(filtrados.map(t=>t.categoria))];
+    const dominante = categorias.length===1 ? ` — todos de categoría <strong>${categorias[0]}</strong>` : '';
+    cont.innerHTML = `<strong>${filtrados.length}</strong> tema${filtrados.length!==1?'s':''} en zona <strong>${nivelImpactoFiltro}</strong>${dominante}: ${nombres.join(', ') || 'ninguno con los datos actuales'}.`;
+    return;
+  }
+
   const picos = temas.map(t=>{
     const p = puntoPrincipalDeTema(t.id);
     return p ? {nombre:t.nombre, fecha:p.fecha, intensidad:p.intensidad} : null;
   }).filter(Boolean).sort((a,b)=>b.intensidad-a.intensidad).slice(0,2);
-
   if(!picos.length){ cont.innerHTML = ''; return; }
   const partes = picos.map(p=> `<strong>${p.fecha.slice(0,7)}</strong>: ${p.nombre}`);
   cont.innerHTML = `Los momentos de mayor tensión del sexenio hasta ahora — ${partes.join(' · ')}.`;
+}
+
+function renderRecurrencia(){
+  const cont = document.getElementById('heatmap-recurrencia');
+  if(!cont) return;
+  const hoy = new Date();
+  const stats = temasCompletos().map(t=>{
+    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).map(e=>e.fecha).sort();
+    if(!evs.length) return null;
+    const dias = Math.round((hoy - new Date(evs[0])) / 86400000);
+    return { nombre:t.nombre, id:t.id, dias, veces: evs.length, ultima: evs[evs.length-1] };
+  }).filter(Boolean).sort((a,b)=> b.dias-a.dias).slice(0,3);
+
+  cont.innerHTML = stats.map(s=>
+    `<span class="recurrencia-item" data-tema="${s.id}"><strong>${s.nombre}</strong>: ${s.dias} días en agenda · mencionado ${s.veces} ${s.veces!==1?'veces':'vez'} · última nota ${s.ultima}</span>`
+  ).join('');
+  cont.querySelectorAll('.recurrencia-item').forEach(el=>{
+    el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); });
+  });
 }
 
 function empaquetarZigzag(puntos, minEspacioPx){
@@ -148,11 +179,19 @@ function renderTimelineZigzag(){
   const puntosBase = temas.map(t=>{
     const p = puntoPrincipalDeTema(t.id);
     if(!p) return null;
-    return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: xScaleBase(new Date(p.fecha)) };
+    return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: xScaleBase(new Date(p.fecha)), esInformativo:false };
   }).filter(Boolean);
-  puntosConGeometria = empaquetarZigzag(puntosBase, 160); // 160px: ancho de tarjeta (150) + margen — verificado con Node, 0 solapes reales
 
-  svgSel.call(d3.zoom().scaleExtent([1,4]).on('zoom', ev=>{
+  // temas informativos (gris, seguimiento ligero) — se agregan al mismo timeline, no filtran por nivel de impacto
+  const infoBase = temasInformativos().map(t=>{
+    const p = puntoPrincipalDeTema(t.id);
+    if(!p) return null;
+    return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: xScaleBase(new Date(p.fecha)), esInformativo:true };
+  }).filter(Boolean);
+
+  puntosConGeometria = empaquetarZigzag([...puntosBase, ...infoBase], 160);
+
+  svgSel.call(d3.zoom().scaleExtent([0.5,4]).on('zoom', ev=>{
     const xNueva = ev.transform.rescaleX(xScaleBase);
     dibujar(xNueva);
   }));
@@ -196,11 +235,11 @@ function dibujar(xScaleActual){
 
   g.each(function(d){
     const x = xScaleActual(new Date(d.fecha));
-    const colorNivel = COLOR_NIVEL[Number(d.tema.nivel_relevancia||3)] || 'var(--gray)';
+    const colorNivel = d.esInformativo ? 'var(--gray)' : (COLOR_NIVEL[Number(d.tema.nivel_relevancia||3)] || 'var(--gray)');
     const largo = altoBase + d.tier*altoPorTier;
     const yFin = d.lado==='up' ? yLineaGlobal-largo : yLineaGlobal+largo;
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
-    const gg = d3.select(this);
+    const gg = d3.select(this).attr('opacity', d.esInformativo ? 0.75 : 1);
 
     gg.append('circle').attr('cx',x).attr('cy',yLineaGlobal).attr('r',5)
       .attr('fill',colorNivel).attr('stroke','#fff').attr('stroke-width',1.5);
