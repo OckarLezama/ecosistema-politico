@@ -120,13 +120,30 @@
       <div class="module-head">
         <div>
           <h2>Mapa de Calor / Timeline</h2>
-          <p>Tensión política por periodo y categoría.</p>
+          <p>Tensión política nacional por periodo — el índice agregado con bandas de umbral (normal/elevada/crítica) arriba, el detalle por tema abajo.</p>
         </div>
       </div>
-      <div class="placeholder-card">
-        <div class="eyebrow">Fase 3 — próximamente</div>
-        <h3>En construcción</h3>
-        <p>Este módulo se activará una vez validada la Red de Actores y la Agenda de Coyuntura.</p>
+      <div class="heatmap-card">
+        <div class="heatmap-toolbar">
+          <div class="core-select">
+            <label for="heatmap-categoria">Categoría</label>
+            <select id="heatmap-categoria"><option value="">Todas</option></select>
+          </div>
+          <div class="legend-inline">
+            <span><span class="legend-dot" style="background:var(--riesgo-bajo)"></span>Normal</span>
+            <span><span class="legend-dot" style="background:var(--riesgo-medio)"></span>Elevada</span>
+            <span><span class="legend-dot" style="background:var(--riesgo-alto)"></span>Crítica</span>
+          </div>
+        </div>
+        <div id="indice-tension-wrap">
+          <div class="eyebrow" style="padding:10px 14px 0;">Índice de tensión nacional por mes</div>
+          <svg id="indice-tension-svg"></svg>
+          <p style="font-size:10.5px;color:var(--ink-3);padding:0 14px 10px;">Suma de la intensidad (1–10) de todos los eventos fechados del mes, sobre todos los temas — mismo dato que alimenta "Frecuencia de menciones" en cada tema, agregado aquí a nivel nacional.</p>
+        </div>
+        <div id="heatmap-grid-wrap">
+          <div class="eyebrow" style="padding:14px 14px 8px;">Detalle por tema</div>
+          <div id="heatmap-grid-scroll"><svg id="heatmap-grid-svg"></svg></div>
+        </div>
       </div>
     </section>
 
@@ -164,7 +181,7 @@
 
   <footer class="app-footer">
     Ecosistema de Inteligencia Política · Datos sustentados con fuente y URL verificable · Uso institucional
-    <br><span style="opacity:.6">build 2026-08-23-04 — si no ves este número, tu navegador está sirviendo una copia vieja de estos archivos</span>
+    <br><span style="opacity:.6">build 2026-08-23-06 — si no ves este número, tu navegador está sirviendo una copia vieja de estos archivos</span>
   </footer>
 </div>
 
@@ -229,6 +246,7 @@
 <script src="js/data-loader.js"></script>
 <script src="js/actores.js"></script>
 <script src="js/agenda.js"></script>
+<script src="js/heatmap.js"></script>
 <script>
   // navegación entre módulos
   document.getElementById('module-nav').addEventListener('click', (e)=>{

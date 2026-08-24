@@ -116,7 +116,8 @@ function getActor(id){
 function colorRiesgo(nivel){
   if(nivel === 'alto') return getComputedStyle(document.documentElement).getPropertyValue('--riesgo-alto').trim();
   if(nivel === 'medio') return getComputedStyle(document.documentElement).getPropertyValue('--riesgo-medio').trim();
-  return getComputedStyle(document.documentElement).getPropertyValue('--riesgo-bajo').trim();
+  if(nivel === 'bajo') return getComputedStyle(document.documentElement).getPropertyValue('--riesgo-bajo').trim();
+  return getComputedStyle(document.documentElement).getPropertyValue('--gray').trim(); // 'sin_evaluar' u otro valor no reconocido — nunca cae en verde por defecto
 }
 
 function colorCategoria(cat){

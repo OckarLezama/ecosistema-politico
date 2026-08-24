@@ -174,6 +174,8 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
   const influenciaNucleo = Number(nucleoActor.nivel_influencia) || 5;
   const influenciaProm = satelites.reduce((s,n)=> s + (Number(n.nivel_influencia)||5), 0) / satelites.length;
 
+  const masInfluyente = [...satelites].sort((a,b)=> (Number(b.nivel_influencia)||0) - (Number(a.nivel_influencia)||0))[0];
+
   const conRiesgoAlto = satelites.filter(n=>n.nivel_riesgo==='alto');
   const pctRiesgoAlto = conRiesgoAlto.length/satelites.length;
 
@@ -182,13 +184,21 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
   });
   const pctFractura = conFracturaAlta.length/satelites.length;
 
-  // 40% peso del núcleo, 20% peso promedio de su red, 20% cohesión (poco riesgo alto), 20% estabilidad (poca fractura)
   const score = (influenciaNucleo/10*0.4) + (influenciaProm/10*0.2) + ((1-pctRiesgoAlto)*0.2) + ((1-pctFractura)*0.2);
 
   let nivel, texto;
-  if(score >= 0.7){ nivel='alta'; texto='grupo con peso propio real: núcleo influyente, red de bajo riesgo y sin fisuras internas visibles.'; }
-  else if(score >= 0.5){ nivel='media'; texto='grupo con peso moderado — combina algo de solidez con puntos de vulnerabilidad.'; }
-  else { nivel='baja'; texto='grupo vulnerable — riesgo o fractura interna pesan más que el peso institucional del núcleo.'; }
+  if(score >= 0.7){
+    nivel='alta';
+    texto=`Con <strong>${influenciaNucleo}/10</strong> de influencia propia y una red mayormente de bajo riesgo, este es un grupo con peso institucional real, no solo numeroso.`;
+  } else if(score >= 0.5){
+    nivel='media';
+    texto = conFracturaAlta.length
+      ? `El peso lo sostiene sobre todo <strong>${nucleoActor.nombre.split(' ').slice(0,2).join(' ')}</strong> — la red combina solidez con puntos de vulnerabilidad concretos, empezando por ${conFracturaAlta.slice(0,2).map(n=>n.nombre.split(' ').slice(0,2).join(' ')).join(' y ')}.`
+      : `Grupo con peso moderado, sostenido más por <strong>${nucleoActor.nombre.split(' ').slice(0,2).join(' ')}</strong> que por la fuerza propia de su red.`;
+  } else {
+    nivel='baja';
+    texto = `Ni <strong>${nucleoActor.nombre.split(' ').slice(0,2).join(' ')}</strong> ni su red aportan peso institucional fuerte por sí solos${masInfluyente ? ` — ni siquiera ${masInfluyente.nombre.split(' ').slice(0,2).join(' ')}, el más influyente de la red, alcanza a compensarlo` : ''}.`;
+  }
 
   return {
     nivel, texto,
@@ -705,16 +715,20 @@ function mostrarFichaTema(id){
 }
 
 function valoracionRiesgoRed(conteo, nombresAlto){
-  const total = conteo.alto + conteo.medio + conteo.bajo;
+  const evaluados = conteo.alto + conteo.medio + conteo.bajo;
+  const sinEvaluar = conteo.sin_evaluar || 0;
+  const total = evaluados + sinEvaluar;
   if(total === 0) return 'Sin satélites en esta red todavía.';
-  const pctAlto = Math.round(conteo.alto / total * 100);
-  const pctMedio = Math.round(conteo.medio / total * 100);
+  if(evaluados === 0) return `Los <strong>${sinEvaluar}</strong> vínculos de esta red todavía no tienen riesgo evaluado.`;
+  const pctAlto = Math.round(conteo.alto / evaluados * 100);
+  const pctMedio = Math.round(conteo.medio / evaluados * 100);
+  const notaSinEvaluar = sinEvaluar ? ` (de los <strong>${evaluados}</strong> evaluados — quedan <strong>${sinEvaluar}</strong> sin evaluar)` : '';
   if(conteo.alto > 0){
     const listado = (nombresAlto||[]).slice(0,3).join(', ') + ((nombresAlto||[]).length>3 ? ' y otros' : '');
-    return `<strong>${pctAlto}%</strong> de riesgo alto (${listado})${pctAlto>=40 ? ' — proporción alta, red con exposición real.' : ' — el resto de la red diluye ese riesgo.'}`;
+    return `<strong>${pctAlto}%</strong> de riesgo alto${notaSinEvaluar} (${listado})${pctAlto>=40 ? ' — proporción alta, red con exposición real.' : ' — el resto de la red diluye ese riesgo.'}`;
   }
-  if(pctMedio >= 60) return `Sin riesgo alto, pero <strong>${pctMedio}%</strong> de los vínculos son de riesgo medio — red de exposición sostenida, no crítica.`;
-  return `Predominan los vínculos de bajo riesgo (<strong>${100-pctAlto-pctMedio}%</strong> del total) — red de perfil bajo.`;
+  if(pctMedio >= 60) return `Sin riesgo alto, pero <strong>${pctMedio}%</strong> de los evaluados son de riesgo medio${notaSinEvaluar} — red de exposición sostenida, no crítica.`;
+  return `Predominan los vínculos de bajo riesgo entre los evaluados (<strong>${100-pctAlto-pctMedio}%</strong>)${notaSinEvaluar} — red de perfil bajo.`;
 }
 
 function valoracionImpactoTemas(temasList){
@@ -768,10 +782,11 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
   let valoracionHTML = '';
   if(!esModoTemas() && nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
     const satelites = nodesEnGrafo.filter(n=> n.coreId===nodoClicado.coreId && n.id!==nodoClicado.id);
-    const conteo = {alto:0, medio:0, bajo:0};
+    const conteo = {alto:0, medio:0, bajo:0, sin_evaluar:0};
     const nombresAlto = [];
     satelites.forEach(s=>{
-      if(conteo[s.nivel_riesgo]!==undefined) conteo[s.nivel_riesgo]++;
+      const clave = conteo[s.nivel_riesgo]!==undefined ? s.nivel_riesgo : 'sin_evaluar';
+      conteo[clave]++;
       if(s.nivel_riesgo==='alto') nombresAlto.push(s.nombre.split(' ').slice(0,2).join(' '));
     });
     valoracionHTML = `
@@ -781,6 +796,7 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
           <span style="color:var(--riesgo-alto)">● ${conteo.alto} alto</span>
           <span style="color:var(--riesgo-medio)">● ${conteo.medio} medio</span>
           <span style="color:var(--riesgo-bajo)">● ${conteo.bajo} bajo</span>
+          ${conteo.sin_evaluar ? `<span style="color:var(--gray)">● ${conteo.sin_evaluar} sin evaluar</span>` : ''}
         </div>
         <p style="font-size:12px;color:var(--ink-2);margin-top:4px;">${valoracionRiesgoRed(conteo, nombresAlto)}</p>
         ${(()=>{
@@ -817,7 +833,7 @@ function mostrarFichaActor(id, nodoClicado, nodesEnGrafo, todosLosContextos){
 
     <div class="detail-row">
       <span class="k">Nivel de riesgo</span>
-      <span class="v"><span class="riesgo-badge" style="background:${riesgoColor}22;color:${riesgoColor}">${actor.nivel_riesgo.toUpperCase()}</span></span>
+      <span class="v"><span class="riesgo-badge" style="background:${riesgoColor}22;color:${riesgoColor}">${actor.nivel_riesgo === 'sin_evaluar' ? 'SIN EVALUAR' : actor.nivel_riesgo.toUpperCase()}</span></span>
     </div>
     <div class="detail-row">
       <span class="k">Nivel de influencia</span>

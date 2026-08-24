@@ -135,6 +135,10 @@ function cerrarModalTema(){
 }
 
 function dibujarSparkline(temaId, color){
+  // defensa: si el color que llega no es un hex válido (ej. la hoja de estilos externa no
+  // cargó a tiempo), usar un color de respaldo — antes esto tronaba el degradado sin avisar.
+  if(!/^#[0-9a-f]{6}$/i.test(color)) color = '#4cc1ba';
+
   const canvas = document.getElementById('sparkline-canvas');
   const ctx = canvas.getContext('2d');
   const w = canvas.width = canvas.clientWidth * 2;
@@ -163,6 +167,23 @@ function dibujarSparkline(temaId, color){
       y: padTop + plotH - (e.intensidad/maxI)*plotH
     };
   }
+
+  // área degradada bajo la línea de tendencia
+  ctx.beginPath();
+  evs.forEach((e,i)=>{
+    const {x,y} = coords(i,e);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  const ultimoPunto = coords(evs.length-1, evs[evs.length-1]);
+  const primerPunto = coords(0, evs[0]);
+  ctx.lineTo(ultimoPunto.x, padTop+plotH);
+  ctx.lineTo(primerPunto.x, padTop+plotH);
+  ctx.closePath();
+  const gradiente = ctx.createLinearGradient(0, padTop, 0, padTop+plotH);
+  gradiente.addColorStop(0, color+'55');
+  gradiente.addColorStop(1, color+'02');
+  ctx.fillStyle = gradiente;
+  ctx.fill();
 
   // línea
   ctx.beginPath();
