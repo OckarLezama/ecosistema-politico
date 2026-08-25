@@ -236,7 +236,7 @@ function dibujar(xScaleActual){
   const g = containerSel.selectAll('g.punto-tema').data(puntosConGeometria).join('g')
     .attr('class','punto-tema')
     .style('cursor','pointer')
-    .on('click', (ev,d)=>{ if(typeof abrirModalTema==='function') abrirModalTema(d.tema.id); })
+    .on('click', (ev,d)=>{ if(typeof abrirModalTema==='function') abrirModalTema(d.tema.id, true); })
     .on('mouseenter', function(ev,d){
       const actores = actoresDeTemaConRol(d.tema).slice(0,6);
       const listaActores = actores.map(a=>`${a.nombre} <span style="opacity:.65">· ${a.rol}</span>`).join('<br>');

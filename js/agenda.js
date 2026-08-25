@@ -161,6 +161,27 @@ function generarEscenarios(tema){
   };
 }
 
+function dibujarMedidor(valor, nivel){
+  const cx=100, cy=95, rOut=80, rIn=64;
+  const colorNivel = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[nivel];
+  function angulo(v){ return Math.PI * (1 - v/100); }
+  function polar(r,v){ const a=angulo(v); return [cx + r*Math.cos(a), cy - r*Math.sin(a)]; }
+  function arco(v0,v1,r0,r1){
+    const [x0,y0]=polar(r0,v0), [x1,y1]=polar(r0,v1), [x2,y2]=polar(r1,v1), [x3,y3]=polar(r1,v0);
+    return `M ${x0} ${y0} A ${r0} ${r0} 0 0 1 ${x1} ${y1} L ${x2} ${y2} A ${r1} ${r1} 0 0 0 ${x3} ${y3} Z`;
+  }
+  const [nx,ny] = polar(rOut-6, valor);
+  return `
+    <svg viewBox="0 0 200 110" style="width:180px;height:99px;display:block;margin:0 auto;">
+      <path d="${arco(0,40,rOut,rIn)}" fill="var(--riesgo-bajo)" fill-opacity="0.35"/>
+      <path d="${arco(40,70,rOut,rIn)}" fill="var(--riesgo-medio)" fill-opacity="0.35"/>
+      <path d="${arco(70,100,rOut,rIn)}" fill="var(--riesgo-alto)" fill-opacity="0.35"/>
+      <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="${colorNivel}" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="${cx}" cy="${cy}" r="5" fill="${colorNivel}"/>
+      <text x="${cx}" y="${cy-14}" text-anchor="middle" font-size="22" font-weight="700" font-family="var(--f-display)" fill="${colorNivel}">${valor}</text>
+    </svg>`;
+}
+
 function renderProbabilistico(tema){
   const cont = document.getElementById('modal-probabilistico');
   if(!cont) return;
@@ -169,9 +190,10 @@ function renderProbabilistico(tema){
   const colorIndice = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
 
   cont.innerHTML = `
-    <div class="valoracion-riesgo-box" style="margin-top:0;">
-      <div class="eyebrow">Índice de escalamiento: <span style="color:${colorIndice};font-weight:700;">${indice.total}/100 — ${indice.nivel.toUpperCase()}</span></div>
-      <p style="font-size:11px;color:var(--ink-3);margin-top:4px;">Tendencia reciente: ${indice.tendencia} · peso político, si sigue activo, y nivel de relevancia — fórmula documentada en el código, no un modelo estadístico.</p>
+    <div class="valoracion-riesgo-box" style="margin-top:0;text-align:center;">
+      ${dibujarMedidor(indice.total, indice.nivel)}
+      <div class="eyebrow" style="margin-top:2px;">Índice de escalamiento — <span style="color:${colorIndice};font-weight:700;">${indice.nivel.toUpperCase()}</span></div>
+      <p style="font-size:11px;color:var(--ink-3);margin-top:4px;text-align:left;">Tendencia reciente: ${indice.tendencia} · peso político, si sigue activo, y nivel de relevancia — fórmula documentada en el código, no un modelo estadístico.</p>
     </div>
     <div class="escenario-selector">
       <button class="escenario-tab active" data-esc="masProbable">Más probable</button>
@@ -202,11 +224,20 @@ function renderProbabilistico(tema){
   pintarEscenario('masProbable');
 }
 
-function abrirModalTema(temaId){
+function abrirModalTema(temaId, mostrarProbabilistico){
   const tema = ECOSISTEMA.temas.find(t=>t.id===temaId);
   if(!tema) return;
   const color = colorCategoria(tema.categoria);
-  renderProbabilistico(tema);
+
+  // Probabilístico/Escenarios es exclusivo del flujo que viene de Timeline (trayectoria en el
+  // tiempo) — desde Agenda la ficha se queda solo con lo descriptivo (resumen, actores, notas).
+  const seccionProb = document.getElementById('modal-seccion-probabilistico');
+  if(mostrarProbabilistico){
+    if(seccionProb) seccionProb.style.display = '';
+    renderProbabilistico(tema);
+  } else {
+    if(seccionProb) seccionProb.style.display = 'none';
+  }
 
   const responsable = getActor(tema.responsable);
   const horizonteTooltip = {
