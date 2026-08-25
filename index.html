@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/styles.css?v=2026-08-24-01">
+<link rel="stylesheet" href="css/styles.css?v=2026-08-24-03">
 </head>
 <body>
 
@@ -43,8 +43,6 @@
       <button class="active" data-module="actores">Red de Actores</button>
       <button data-module="agenda">Agenda &amp; Coyuntura</button>
       <button data-module="heatmap">Mapa de Calor / Timeline</button>
-      <button data-module="probabilistico">Valoración Probabilística</button>
-      <button data-module="escenarios">Escenarios</button>
     </nav>
 
     <div class="ticker-wrap">
@@ -145,41 +143,11 @@
       </div>
     </section>
 
-    <!-- MÓDULO 4: PROBABILÍSTICO -->
-    <section class="module-panel" id="panel-probabilistico">
-      <div class="module-head">
-        <div>
-          <h2>Valoración Probabilística</h2>
-          <p>Motor heurístico de riesgo de escalación y estabilidad estructural — transparente, con pesos ajustables.</p>
-        </div>
-      </div>
-      <div class="placeholder-card">
-        <div class="eyebrow">Fase 4 — próximamente</div>
-        <h3>En construcción</h3>
-        <p>Se integrará sobre la misma base de eventos y temas ya cargada.</p>
-      </div>
-    </section>
-
-    <!-- MÓDULO 5: ESCENARIOS -->
-    <section class="module-panel" id="panel-escenarios">
-      <div class="module-head">
-        <div>
-          <h2>Escenarios</h2>
-          <p>Tres proyecciones por tema — continuista, escalación y distensión — a partir del histórico verificado.</p>
-        </div>
-      </div>
-      <div class="placeholder-card">
-        <div class="eyebrow">Fase 4 — próximamente</div>
-        <h3>En construcción</h3>
-        <p>Depende del motor probabilístico para calcular las tres trayectorias por tema.</p>
-      </div>
-    </section>
-
   </main>
 
   <footer class="app-footer">
     Ecosistema de Inteligencia Política · Datos sustentados con fuente y URL verificable · Uso institucional
-    <br><span style="opacity:.6">build 2026-08-24-01 — si no ves este número, tu navegador está sirviendo una copia vieja de estos archivos</span>
+    <br><span style="opacity:.6">build 2026-08-24-03 — si no ves este número, tu navegador está sirviendo una copia vieja de estos archivos</span>
   </footer>
 </div>
 
@@ -247,10 +215,10 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
 <!-- ============== APP ============== -->
-<script src="js/data-loader.js?v=2026-08-24-01"></script>
-<script src="js/actores.js?v=2026-08-24-01"></script>
-<script src="js/agenda.js?v=2026-08-24-01"></script>
-<script src="js/heatmap.js?v=2026-08-24-01"></script>
+<script src="js/data-loader.js?v=2026-08-24-03"></script>
+<script src="js/actores.js?v=2026-08-24-03"></script>
+<script src="js/agenda.js?v=2026-08-24-03"></script>
+<script src="js/heatmap.js?v=2026-08-24-03"></script>
 <script>
   // navegación entre módulos
   document.getElementById('module-nav').addEventListener('click', (e)=>{

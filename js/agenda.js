@@ -124,35 +124,41 @@ function generarEscenarios(tema){
   const reaccionOposicion = contextos.find(c=>c.rol==='Reacción de oposición');
   const indice = calcularIndiceEscalamiento(tema);
 
-  // continuista
-  let continuista = `Si nada cambia, <strong>${tema.nombre}</strong> se mantiene bajo la conducción de <strong>${nombreResp}</strong>, sin un evento que lo saque de su patrón actual`;
-  continuista += tema.estado==='activo'
+  // MÁS PROBABLE (MLCOA): el patrón actual se sostiene, con su acción recomendada
+  let masProbableTexto = `Si nada cambia, <strong>${tema.nombre}</strong> se mantiene bajo la conducción de <strong>${nombreResp}</strong>, sin un evento que lo saque de su patrón actual`;
+  masProbableTexto += tema.estado==='activo'
     ? ` — sigue activo, generando menciones esporádicas sin convertirse en crisis mayor mientras no aparezca un hecho nuevo.`
     : ` — ya sin actividad reciente, es previsible que permanezca cerrado salvo un hallazgo nuevo que lo reabra.`;
 
-  // escalación: usa la señal más fuerte que SÍ existe en los datos, no una genérica
-  let escalacion;
+  let masProbableAccion;
+  if(tema.estado==='activo'){
+    masProbableAccion = `Mantener el mensaje institucional actual desde <strong>${nombreResp}</strong> y monitoreo rutinario — no se justifica, con lo que hay hoy, escalar la respuesta.`;
+  } else {
+    masProbableAccion = `No requiere acción proactiva — solo vigilancia pasiva por si reaparece un hallazgo nuevo que lo reabra.`;
+  }
+
+  // DE MAYOR RIESGO (MDCOA): la señal más fuerte que SÍ existe en los datos, con su acción recomendada
+  let mayorRiesgoTexto, mayorRiesgoAccion;
   if(reaccionOposicion){
     const actorOp = getActor(reaccionOposicion.actor_id);
-    escalacion = `El punto de mayor riesgo de escalamiento es que <strong>${actorOp?nombreCortoAgenda(actorOp.nombre):'la oposición'}</strong> ya se pronunció públicamente (${reaccionOposicion.detalle.replace(/"/g,'').slice(0,140)}${reaccionOposicion.detalle.length>140?'…':''}) — si el tema vuelve a la conversación pública, ese señalamiento es el que más fácilmente se reactiva y presiona.`;
+    const nombreOp = actorOp ? nombreCortoAgenda(actorOp.nombre) : 'la oposición';
+    mayorRiesgoTexto = `El punto de mayor riesgo es que <strong>${nombreOp}</strong> ya se pronunció públicamente (${reaccionOposicion.detalle.replace(/"/g,'').slice(0,140)}${reaccionOposicion.detalle.length>140?'…':''}) — si el tema vuelve a la conversación pública, ese señalamiento es el que más fácilmente se reactiva y presiona.`;
+    mayorRiesgoAccion = `Preparar de antemano una respuesta a los señalamientos de <strong>${nombreOp}</strong>, para no reaccionar tarde si retoma el tema — anticipar la narrativa, no seguirla.`;
   } else if(investigados>0){
-    escalacion = `Con <strong>${investigados}</strong> actor${investigados>1?'es':''} en calidad de investigado${investigados>1?'s':''}, el riesgo real de escalamiento es procesal: una nueva imputación, detención o filtración de expediente puede reactivar el tema de golpe, no de forma gradual.`;
+    mayorRiesgoTexto = `Con <strong>${investigados}</strong> actor${investigados>1?'es':''} en calidad de investigado${investigados>1?'s':''}, el riesgo real es procesal: una nueva imputación, detención o filtración de expediente puede reactivar el tema de golpe, no de forma gradual.`;
+    mayorRiesgoAccion = `Coordinar con anticipación el manejo de comunicación ante una posible nueva imputación o filtración — el riesgo aquí es de velocidad, no de intensidad.`;
   } else if(indice.tendencia==='ascenso'){
-    escalacion = `La intensidad de sus últimos eventos va en ascenso — si ese patrón se mantiene un ciclo más, el tema puede cruzar a zona de mayor exposición antes de estabilizarse.`;
+    mayorRiesgoTexto = `La intensidad de sus últimos eventos va en ascenso — si ese patrón se mantiene un ciclo más, el tema puede cruzar a zona de mayor exposición antes de estabilizarse.`;
+    mayorRiesgoAccion = `Reforzar el seguimiento diario del tema — la tendencia ascendente sugiere que un pico está próximo, no lejano.`;
   } else {
-    escalacion = `No hay hoy una señal concreta de escalamiento en los datos (sin investigados formales, sin reacción de oposición registrada) — un repunte dependería de un hecho externo al patrón ya documentado.`;
+    mayorRiesgoTexto = `No hay hoy una señal concreta de escalamiento en los datos (sin investigados formales, sin reacción de oposición registrada) — un repunte dependería de un hecho externo al patrón ya documentado.`;
+    mayorRiesgoAccion = `Sin acción específica que tomar hoy — el riesgo real está fuera de lo que los datos actuales permiten anticipar.`;
   }
 
-  // distensión: busca un precedente REAL — un tema ya cerrado de la misma categoría
-  const precedente = ECOSISTEMA.temas.find(t=> t.id!==tema.id && t.categoria===tema.categoria && t.estado==='cerrado');
-  let distension;
-  if(precedente){
-    distension = `El precedente más cercano dentro de la misma categoría (${tema.categoria}) es <strong>${precedente.nombre}</strong>, que se dio por cerrado sin que el patrón se repitiera después — es la ruta de distensión más plausible: una postura institucional pública que cierre el ciclo mediático, más que una resolución judicial de fondo.`;
-  } else {
-    distension = `No hay, todavía, un precedente cerrado dentro de su misma categoría (${tema.categoria}) que sirva de referencia — la distensión de este tema sería, hasta ahora, la primera de su tipo.`;
-  }
-
-  return { continuista, escalacion, distension };
+  return {
+    masProbable: { texto: masProbableTexto, accion: masProbableAccion },
+    mayorRiesgo: { texto: mayorRiesgoTexto, accion: mayorRiesgoAccion }
+  };
 }
 
 function renderProbabilistico(tema){
@@ -167,15 +173,33 @@ function renderProbabilistico(tema){
       <div class="eyebrow">Índice de escalamiento: <span style="color:${colorIndice};font-weight:700;">${indice.total}/100 — ${indice.nivel.toUpperCase()}</span></div>
       <p style="font-size:11px;color:var(--ink-3);margin-top:4px;">Tendencia reciente: ${indice.tendencia} · peso político, si sigue activo, y nivel de relevancia — fórmula documentada en el código, no un modelo estadístico.</p>
     </div>
-    <div style="margin-top:10px;">
-      <div class="eyebrow" style="color:var(--riesgo-bajo);">Continuista</div>
-      <p style="font-size:12px;margin:3px 0 8px;">${escenarios.continuista}</p>
-      <div class="eyebrow" style="color:var(--riesgo-alto);">Escalación</div>
-      <p style="font-size:12px;margin:3px 0 8px;">${escenarios.escalacion}</p>
-      <div class="eyebrow" style="color:var(--riesgo-medio);">Distensión</div>
-      <p style="font-size:12px;margin:3px 0;">${escenarios.distension}</p>
+    <div class="escenario-selector">
+      <button class="escenario-tab active" data-esc="masProbable">Más probable</button>
+      <button class="escenario-tab" data-esc="mayorRiesgo">De mayor riesgo</button>
     </div>
+    <div id="escenario-contenido"></div>
   `;
+
+  function pintarEscenario(clave){
+    const e = escenarios[clave];
+    const colorAccion = clave==='mayorRiesgo' ? 'var(--riesgo-alto)' : 'var(--riesgo-bajo)';
+    document.getElementById('escenario-contenido').innerHTML = `
+      <p style="font-size:12.5px;margin:10px 0 8px;">${e.texto}</p>
+      <div class="escenario-accion" style="border-left-color:${colorAccion};">
+        <div class="eyebrow" style="font-size:9.5px;">Acción recomendada</div>
+        <p style="font-size:12px;margin-top:2px;">${e.accion}</p>
+      </div>
+    `;
+  }
+
+  cont.querySelectorAll('.escenario-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      cont.querySelectorAll('.escenario-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      pintarEscenario(btn.dataset.esc);
+    });
+  });
+  pintarEscenario('masProbable');
 }
 
 function abrirModalTema(temaId){
