@@ -197,8 +197,9 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .feed-card .feed-lista::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:99px;}
 .feed-card .feed-lista::-webkit-scrollbar-thumb:hover{background:var(--teal);}
 
-#timeline-scroll{width:100%; overflow-x:auto; padding:14px;}
-#timeline-svg{display:block; width:1100px;}
+#timeline-scroll{width:100%; padding:14px; flex:1; min-height:0; box-sizing:border-box;}
+#timeline-svg{display:block; width:100%; height:100%;}
+#panel-timeline .graph-card{height:609px; display:flex; flex-direction:column;} /* mismo alto total que Red de Actores (toolbar 49px + svg 560px) */
 
 .ficha-notas-scroll{
   max-height:180px; overflow-y:auto;
