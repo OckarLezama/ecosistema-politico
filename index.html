@@ -71,20 +71,20 @@
       <p>Los temas que marcan la agenda, con el pulso cronológico de todo lo que va saliendo, al lado.</p>
     </div>
     <div class="agenda-layout">
-      <div id="agenda-grid" class="agenda-grid">
-        <div class="agenda-toolbar">
+      <div class="agenda-grid graph-card">
+        <div class="graph-toolbar">
           <div class="core-select">
             <label for="agenda-categoria">Categoría</label>
             <select id="agenda-categoria"><option value="">Todas</option></select>
           </div>
-          <div id="agenda-kpis" class="kpi-row" style="padding:0;"></div>
           <button class="chip-btn kpi-activo" id="btn-agenda-nacional">Nivel 1</button>
           <div class="vista-toggle">
             <button class="chip-btn active" data-vista="matriz">Matriz</button>
             <button class="chip-btn" data-vista="lista">Lista</button>
           </div>
-          <div id="agenda-desglose" style="visibility:hidden;width:100%;min-height:22px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+          <div class="legend-inline" id="agenda-kpis"></div>
         </div>
+        <div class="legend-inline" id="agenda-desglose" style="visibility:hidden;padding:0 14px;min-height:18px;"></div>
         <div id="agenda-contenido"></div>
       </div>
       <div class="feed-card">

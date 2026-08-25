@@ -177,10 +177,9 @@ function renderKpisImpacto(){
   const LABEL = {alto:'Alto', medio:'Medio', bajo:'Bajo'};
 
   cont.innerHTML = ['alto','medio','bajo'].map(niv=>`
-    <div class="kpi-chip2 kpi-clickable ${impactoFiltroAgenda===niv?'kpi-activo':''}" data-niv="${niv}" style="cursor:pointer;">
-      <div class="kpi-chip2-badge" style="background:${COLOR[niv]};">${conteo[niv]}</div>
-      <div class="kpi-chip2-label">${LABEL[niv]}<br>impacto</div>
-    </div>`).join('');
+    <span class="kpi-clickable ${impactoFiltroAgenda===niv?'kpi-activo':''}" data-niv="${niv}" style="cursor:pointer;">
+      <span class="legend-dot" style="background:${COLOR[niv]}"></span>${LABEL[niv]} impacto (${conteo[niv]})
+    </span>`).join('');
 
   cont.querySelectorAll('.kpi-clickable').forEach(el=>{
     el.addEventListener('click', ()=>{
@@ -197,7 +196,7 @@ function renderKpisImpacto(){
     const enNivel = baseCategoria.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
     const porCategoria = {};
     enNivel.forEach(t=> porCategoria[t.categoria]=(porCategoria[t.categoria]||0)+1);
-    const texto = Object.entries(porCategoria).map(([cat,n])=>`<span class="desglose-chip">${cat} <strong>${n}</strong></span>`).join('');
+    const texto = Object.entries(porCategoria).map(([cat,n])=>`<span><span class="legend-dot" style="background:${colorCategoria(cat)}"></span>${cat} (${n})</span>`).join('');
     if(desglose){ desglose.innerHTML = texto; desglose.style.visibility='visible'; }
   } else if(desglose){ desglose.innerHTML=''; desglose.style.visibility='hidden'; }
 }
@@ -285,8 +284,8 @@ function dibujarMatrizRiesgo(){
   svg.append('line').attr('x1',pad.left).attr('x2',width-pad.right).attr('y1',y(5)).attr('y2',y(5)).attr('stroke','var(--ink-3)').attr('stroke-width',1.3).attr('stroke-dasharray','4 3');
   svg.append('line').attr('x1',pad.left).attr('x2',width-pad.right).attr('y1',height-pad.bottom).attr('y2',height-pad.bottom).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
   svg.append('line').attr('x1',pad.left).attr('x2',pad.left).attr('y1',pad.top).attr('y2',height-pad.bottom).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
-  svg.append('text').attr('x',width/2).attr('y',height-10).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').text('IMPACTO (peso político) →');
-  svg.append('text').attr('x',10).attr('y',height/2).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').attr('transform',`rotate(-90,10,${height/2})`).text('RIESGO (intensidad máxima) →');
+  svg.append('text').attr('x',width/2).attr('y',(height-pad.bottom)+20).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').text('IMPACTO (peso político) →');
+  svg.append('text').attr('x',pad.left-20).attr('y',height/2).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').attr('transform',`rotate(-90,${pad.left-20},${height/2})`).text('RIESGO (intensidad máxima) →');
 
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
