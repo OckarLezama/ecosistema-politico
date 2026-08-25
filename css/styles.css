@@ -159,3 +159,27 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .feed-desc{font-size:12.5px; color:var(--ink-1); line-height:1.5; margin:5px 0;}
 .feed-fuente{font-size:11px; color:var(--teal); text-decoration:none;}
 .feed-fuente:hover{text-decoration:underline;}
+
+/* ============================================================
+   AGENDA — rejilla + Feed como caja lateral con SU PROPIO scroll,
+   nunca mueve la página completa
+   ============================================================ */
+.agenda-layout{display:grid; grid-template-columns:1fr 300px; gap:16px; align-items:start;}
+@media (max-width:880px){ .agenda-layout{grid-template-columns:1fr;} }
+
+.agenda-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px;}
+.tema-card{
+  background:var(--bg-1); border:1px solid var(--line); border-top-width:3px; border-top-style:solid;
+  border-radius:var(--radius-m); padding:12px;
+}
+.tema-card h4{font-family:var(--f-display); font-size:13px; margin:4px 0 6px; color:var(--ink-1);}
+.tema-peso{font-family:var(--f-mono); font-size:10px; color:var(--ink-3);}
+
+.feed-card{
+  background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
+  box-shadow:var(--shadow-card);
+  max-height:600px; display:flex; flex-direction:column; overflow:hidden;
+}
+.feed-card .feed-lista{
+  overflow-y:auto; padding:10px 14px 14px; margin:0; max-width:none;
+}
