@@ -122,15 +122,11 @@ function colorRiesgo(nivel){
 
 function colorCategoria(cat){
   const map = {
-    'Seguridad': '--coral',
-    'Político': '--peach',
-    'Bilateral/Exterior': '--teal',
-    'Bilateral': '--teal',
-    'Bilateral/Seguridad': '--coral',
-    'Económico': '--peach',
-    'Económico/Bilateral': '--peach',
-    'Social/Político': '--teal',
-    'Social': '--teal'
+    'Seguridad Nacional': '--coral',
+    'Gobierno': '--peach',
+    'Economía': '--familia-cruce2',
+    'Relación Bilateral': '--teal',
+    'Social': '--familia-nucleo'
   };
   const varName = map[cat] || '--gray';
   return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
