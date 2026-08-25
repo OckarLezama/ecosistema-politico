@@ -224,7 +224,7 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
       const colorNivel = {alta:'var(--riesgo-bajo)', media:'var(--riesgo-medio)', baja:'var(--riesgo-alto)'}[f.nivel];
       fortalezaHTML = `
         <div class="detail-row"><span class="k">Fortaleza del grupo</span><span class="v" style="color:${colorNivel};font-weight:700;">${f.nivel.toUpperCase()}</span></div>
-        <div style="font-size:10.5px;color:var(--ink-3);padding:2px 0 4px;">Influencia del núcleo ${f.influenciaNucleo}/10 · red ${f.influenciaProm}/10 · ${f.pctRiesgoAlto}% riesgo alto</div>`;
+        <div style="font-size:10.5px;color:var(--ink-3);padding:2px 0 4px;">Influencia propia (del núcleo): <strong style="color:var(--ink-2);">${f.influenciaNucleo}/10</strong> · Influencia promedio de su red: <strong style="color:var(--ink-2);">${f.influenciaProm}/10</strong> · <strong style="color:var(--ink-2);">${f.pctRiesgoAlto}%</strong> de su red es de riesgo alto</div>`;
     }
   }
 

@@ -32,3 +32,18 @@ function renderFeed(){
 }
 
 document.addEventListener('ecosistema:datos-listos', initFeed);
+
+// desplazamiento lento y continuo, con pausa al pasar el cursor (para poder leer y dar clic)
+function iniciarAutoScrollFeed(){
+  const cont = document.getElementById('feed-lista');
+  if(!cont) return;
+  let pausado = false;
+  cont.addEventListener('mouseenter', ()=> pausado = true);
+  cont.addEventListener('mouseleave', ()=> pausado = false);
+  setInterval(()=>{
+    if(pausado) return;
+    cont.scrollTop += 0.5;
+    if(cont.scrollTop >= cont.scrollHeight - cont.clientHeight) cont.scrollTop = 0;
+  }, 40);
+}
+document.addEventListener('ecosistema:datos-listos', ()=> setTimeout(iniciarAutoScrollFeed, 300));
