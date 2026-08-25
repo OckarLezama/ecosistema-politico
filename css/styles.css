@@ -209,8 +209,32 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .feed-card .feed-lista::-webkit-scrollbar-thumb:hover{background:var(--teal);}
 
 .agenda-toolbar{
-  display:flex; align-items:center; flex-wrap:wrap; gap:14px;
-  margin-bottom:12px;
+  display:flex; align-items:center; flex-wrap:wrap; gap:10px;
+  margin-bottom:12px; min-height:56px; /* reserva espacio fijo para que el desglose no cause salto de layout */
+}
+.agenda-toolbar .core-select, .agenda-toolbar select, .agenda-toolbar .chip-btn, .agenda-toolbar .vista-btn{
+  height:32px; box-sizing:border-box; font-size:11px;
+}
+.agenda-toolbar select{border-radius:var(--radius-s);}
+.agenda-toolbar .chip-btn{border-radius:var(--radius-s); padding:0 12px; display:flex; align-items:center;}
+.agenda-toolbar .kpi-chip2{height:32px; padding:0 10px 0 3px;}
+.agenda-toolbar .kpi-chip2-badge{min-width:26px; height:26px; font-size:10px;}
+.agenda-toolbar .vista-toggle{height:32px;}
+.agenda-toolbar .vista-btn{border-radius:0;}
+
+.ficha-modal-backdrop{
+  display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:300;
+  align-items:center; justify-content:center;
+}
+.ficha-modal-backdrop.open{display:flex;}
+.ficha-modal-card{
+  background:var(--bg-1); border:1px solid var(--line-strong); border-radius:var(--radius-l);
+  max-width:520px; width:90%; max-height:82vh; overflow-y:auto; padding:20px;
+  box-shadow:0 24px 60px -12px rgba(0,0,0,.6); position:relative;
+}
+.ficha-modal-close{
+  position:absolute; top:14px; right:14px; background:var(--bg-2); border:1px solid var(--line-strong);
+  color:var(--ink-2); border-radius:50%; width:26px; height:26px; cursor:pointer;
 }
 .kpi-row{display:flex; gap:8px; flex-wrap:wrap;}
 .kpi-chip2{display:flex; align-items:center; gap:8px; background:var(--bg-1); border:1px solid var(--line); border-radius:99px; padding:5px 12px 5px 5px;}

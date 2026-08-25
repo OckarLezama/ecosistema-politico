@@ -2,6 +2,47 @@
    V2 — AGENDA & COYUNTURA
    ============================================================ */
 
+function diasSinActividad(temaId){
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).map(e=>e.fecha).sort();
+  if(!evs.length) return null;
+  return Math.round((new Date() - new Date(evs[evs.length-1])) / 86400000);
+}
+
+function abrirFichaTema(temaId){
+  const tema = getTema(temaId);
+  if(!tema) return;
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  const actores = (tema.actores_involucrados||'').split(';').map(id=>getActor(id.trim())).filter(Boolean);
+  const dias = diasSinActividad(temaId);
+  const color = colorCategoria(tema.categoria);
+
+  let modal = document.getElementById('ficha-tema-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'ficha-tema-modal'; modal.className = 'ficha-modal-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = `
+    <div class="ficha-modal-card">
+      <button class="ficha-modal-close">✕</button>
+      <div class="eyebrow" style="color:${color};">${tema.categoria}</div>
+      <h3 style="font-family:var(--f-display);margin:4px 0 10px;">${tema.nombre}</h3>
+      <div class="detail-row"><span class="k">Peso político</span><span class="v">${tema.peso_politico}/10</span></div>
+      <div class="detail-row"><span class="k">Nivel de relevancia</span><span class="v">${tema.nivel_relevancia}</span></div>
+      <div class="detail-row"><span class="k">Última actividad</span><span class="v">${dias===null?'—':(dias===0?'Hoy':dias+' días atrás')}</span></div>
+      ${tema.resumen ? `<p style="font-size:12.5px;margin-top:10px;color:var(--ink-1);line-height:1.55;">${tema.resumen}</p>` : ''}
+      ${actores.length ? `<div class="eyebrow" style="margin-top:10px;">Actores</div><p style="font-size:12px;">${actores.map(a=>a.nombre).join(', ')}</p>` : ''}
+      <div class="eyebrow" style="margin-top:10px;">Notas (${evs.length})</div>
+      <div style="max-height:180px;overflow-y:auto;">
+        ${evs.map(e=>`<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--ink-3);">${e.fecha}</strong> — ${e.descripcion} ${e.fuente_url?`<a href="${e.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`).join('')}
+      </div>
+    </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.classList.add('open');
+}
+
+let soloHoy = false;
 let categoriaFiltroAgenda = '';
 let impactoFiltroAgenda = '';
 let soloAgendaNacional = false;
@@ -18,6 +59,15 @@ function initAgenda(){
       renderAgendaGrid();
     });
     btnNivel1.dataset.conectado = '1';
+  }
+  const btnHoy = document.getElementById('btn-hoy');
+  if(btnHoy && !btnHoy.dataset.conectado){
+    btnHoy.addEventListener('click', ()=>{
+      soloHoy = !soloHoy;
+      btnHoy.classList.toggle('kpi-activo', soloHoy);
+      renderAgendaGrid();
+    });
+    btnHoy.dataset.conectado = '1';
   }
   document.querySelectorAll('.vista-btn').forEach(btn=>{
     if(btn.dataset.conectado) return;
@@ -36,6 +86,11 @@ function renderListaAgenda(){
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
+  if(soloHoy){
+    const hoy = new Date().toISOString().slice(0,10);
+    const idsHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
+    temasBase = temasBase.filter(t=>idsHoy.has(t.id));
+  }
   temasBase = temasBase.slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
   const cont = document.getElementById('agenda-grid');
@@ -43,11 +98,15 @@ function renderListaAgenda(){
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
     const color = COLOR_IMPACTO_CACHE[nivelImpacto(t.peso_politico)];
-    return `<div class="lista-item" style="border-left-color:${color};">
+    const primeraMencion = evs.length ? evs.map(e=>e.fecha).sort()[0] : '—';
+    const dias = diasSinActividad(t.id);
+    const estadoTexto = dias===null ? 'Sin datos' : dias<=30 ? `Activo · última nota hace ${dias}d` : `Sin actividad reciente (${dias}d)`;
+    return `<div class="lista-item" style="border-left-color:${color};cursor:pointer;" data-tema="${t.id}">
       <div class="lista-nombre">${t.nombre}</div>
-      <div class="lista-meta">${t.categoria} · Impacto ${t.peso_politico}/10 · Riesgo ${riesgoMax}/10 · ${t.estado==='activo'?'Activo':'Cerrado'}</div>
+      <div class="lista-meta">${t.categoria} · Impacto ${t.peso_politico}/10 · Riesgo ${riesgoMax}/10 · desde ${primeraMencion} · ${estadoTexto}</div>
     </div>`;
   }).join('')}</div>`;
+  cont.querySelectorAll('.lista-item').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
 }
 const COLOR_IMPACTO_CACHE = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
 
@@ -114,15 +173,16 @@ function renderKpisImpacto(){
     });
   });
 
-  // desglose por categoría cuando hay un nivel de impacto activo
+  // desglose por categoría cuando hay un nivel de impacto activo — visibility, no display,
+  // así siempre reserva su espacio y no causa salto de layout al aparecer/desaparecer
   const desglose = document.getElementById('agenda-desglose');
   if(impactoFiltroAgenda){
     const enNivel = baseCategoria.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
     const porCategoria = {};
     enNivel.forEach(t=> porCategoria[t.categoria]=(porCategoria[t.categoria]||0)+1);
     const texto = Object.entries(porCategoria).map(([cat,n])=>`${cat}: <strong>${n}</strong>`).join(' · ');
-    if(desglose){ desglose.innerHTML = texto; desglose.style.display='block'; }
-  } else if(desglose){ desglose.style.display='none'; }
+    if(desglose){ desglose.innerHTML = texto; desglose.style.visibility='visible'; }
+  } else if(desglose){ desglose.innerHTML=''; desglose.style.visibility='hidden'; }
 }
 
 // repulsión real por pares, con el límite del cuadro aplicado EN CADA iteración (no solo al
@@ -164,6 +224,11 @@ function dibujarMatrizRiesgo(){
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
+  if(soloHoy){
+    const hoy = new Date().toISOString().slice(0,10);
+    const idsHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
+    temasBase = temasBase.filter(t=>idsHoy.has(t.id));
+  }
 
   const x = d3.scaleLinear().domain([0,10]).range([pad.left, width-pad.right]);
   const y = d3.scaleLinear().domain([0,10]).range([height-pad.bottom, pad.top]);
@@ -171,9 +236,11 @@ function dibujarMatrizRiesgo(){
   const crudos = temasBase.map(t=>{
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
-    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, veces:evs.length, x: x(t.peso_politico), y: y(riesgoMax) };
+    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, veces:evs.length,
+      primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
+      x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 50, 600, {xMin:pad.left+26, xMax:width-pad.right-26, yMin:pad.top+26, yMax:height-pad.bottom-26});
+  const datos = separarPuntos(crudos, 70, 600, {xMin:pad.left+26, xMax:width-pad.right-26, yMin:pad.top+26, yMax:height-pad.bottom-26}); // 70: verificado con Node considerando el rectángulo de la etiqueta, no solo el círculo
 
   const defs = svg.append('defs');
   const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
@@ -198,15 +265,16 @@ function dibujarMatrizRiesgo(){
   svg.append('line').attr('x1',pad.left).attr('x2',width-pad.right).attr('y1',y(5)).attr('y2',y(5)).attr('stroke','var(--ink-3)').attr('stroke-width',1.3).attr('stroke-dasharray','4 3');
   svg.append('line').attr('x1',pad.left).attr('x2',width-pad.right).attr('y1',height-pad.bottom).attr('y2',height-pad.bottom).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
   svg.append('line').attr('x1',pad.left).attr('x2',pad.left).attr('y1',pad.top).attr('y2',height-pad.bottom).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
-  svg.append('text').attr('x',width/2).attr('y',height-8).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').text('IMPACTO (peso político) →');
-  svg.append('text').attr('x',12).attr('y',height/2).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').attr('transform',`rotate(-90,12,${height/2})`).text('RIESGO (intensidad máxima) →');
+  svg.append('text').attr('x',width/2).attr('y',height-10).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').text('IMPACTO (peso político) →');
+  svg.append('text').attr('x',10).attr('y',height/2).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').attr('transform',`rotate(-90,10,${height/2})`).text('RIESGO (intensidad máxima) →');
 
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
     .attr('transform', d=>`translate(${d.x},${d.y})`)
-    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',20); })
-    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''}`, ev); })
-    .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',16); });
+    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',20); })
+    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''} · desde ${d.primeraMencion||'—'}`, ev); })
+    .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',16); })
+    .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
   g.append('circle').attr('class','nodo-halo').attr('r',22)
     .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('fill-opacity',0.25).attr('filter','url(#glow-blur)');
@@ -218,7 +286,7 @@ function dibujarMatrizRiesgo(){
 
   g.append('text').attr('text-anchor','middle').attr('dy', d=> d.y < height/2 ? 32 : -26)
     .attr('font-size','9.5px').attr('font-weight','600').attr('fill','var(--ink-1)')
-    .text(d=> d.tema.nombre.length>20 ? d.tema.nombre.slice(0,18)+'…' : d.tema.nombre);
+    .text(d=> d.tema.nombre.length>12 ? d.tema.nombre.slice(0,11)+'…' : d.tema.nombre);
 }
 
 document.addEventListener('ecosistema:datos-listos', initAgenda);
