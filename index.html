@@ -79,8 +79,8 @@
       <button class="chip-btn" id="btn-agenda-nacional">Nivel 1</button>
       <button class="chip-btn" id="btn-hoy">Hoy</button>
       <div class="vista-toggle">
-        <button class="vista-btn active" data-vista="matriz">Matriz</button>
-        <button class="vista-btn" data-vista="lista">Lista</button>
+        <button class="chip-btn active" data-vista="matriz">Matriz</button>
+        <button class="chip-btn" data-vista="lista">Lista</button>
       </div>
       <div id="agenda-desglose" class="eyebrow" style="visibility:hidden;width:100%;min-height:14px;"></div>
     </div>
@@ -102,6 +102,10 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
   document.querySelectorAll('.module-panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('panel-'+btn.dataset.module).classList.add('active');
+  // redibujar SIEMPRE al activar la pestaña: recién visible, el contenedor ya mide su ancho real
+  // (antes se medía 0px porque el panel estaba oculto, causando el corte inicial)
+  if(btn.dataset.module==='agenda' && typeof renderAgendaGrid==='function') renderAgendaGrid();
+  if(btn.dataset.module==='actores' && typeof renderGrafo==='function' && (seleccion.nucleo||seleccion.cruce1||seleccion.cruce2)) renderGrafo();
 });
 </script>
 <script src="js/data-loader.js?v=1"></script>

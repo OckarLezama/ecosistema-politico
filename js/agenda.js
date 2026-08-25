@@ -12,9 +12,37 @@ function abrirFichaTema(temaId){
   const tema = getTema(temaId);
   if(!tema) return;
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).sort((a,b)=>b.fecha.localeCompare(a.fecha));
-  const actores = (tema.actores_involucrados||'').split(';').map(id=>getActor(id.trim())).filter(Boolean);
+  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===temaId);
   const dias = diasSinActividad(temaId);
   const color = colorCategoria(tema.categoria);
+  const primeraMencion = evs.length ? evs.map(e=>e.fecha).sort()[0] : '—';
+
+  // agrupar actores por su rol real, no como lista plana — separa quién es sospechoso/investigado
+  // de quién aparece en calidad institucional (gobierno respondiendo, no señalado)
+  const grupos = { 'Investigado / señalado': [], 'Institucional (gobierno)': [], 'Reacción de oposición': [], 'Operador / red': [], 'Mencionado': [] };
+  const rolAGrupo = { 'Investigado':'Investigado / señalado', 'Acusado':'Investigado / señalado',
+    'Responsable institucional':'Institucional (gobierno)', 'Autoridad':'Institucional (gobierno)',
+    'Reacción de oposición':'Reacción de oposición', 'Operador':'Operador / red', 'Red empresarial':'Operador / red' };
+  contextos.forEach(c=>{
+    const actor = getActor(c.actor_id);
+    if(!actor) return;
+    const grupo = rolAGrupo[c.rol] || 'Mencionado';
+    grupos[grupo].push({actor, detalle:c.detalle});
+  });
+  // actores_involucrados sin fila explícita en tema_actores.csv -> Mencionado por defecto
+  const idsConContexto = new Set(contextos.map(c=>c.actor_id));
+  (tema.actores_involucrados||'').split(';').map(s=>s.trim()).filter(Boolean).forEach(id=>{
+    if(!idsConContexto.has(id)){ const actor = getActor(id); if(actor) grupos['Mencionado'].push({actor, detalle:null}); }
+  });
+
+  const bloquesActores = Object.entries(grupos).filter(([,lista])=>lista.length).map(([grupo,lista])=>`
+    <div class="eyebrow" style="margin-top:8px;">${grupo}</div>
+    ${lista.map(x=>`<div style="font-size:12px;padding:2px 0;">${x.actor.nombre}${x.detalle?`<br><span style="color:var(--ink-3);font-size:10.5px;">${x.detalle}</span>`:''}</div>`).join('')}
+  `).join('');
+
+  const estadoTexto = dias===null ? 'Sin datos' :
+    dias<=14 ? `Activo · última nota hace ${dias===0?'hoy':dias+' días'}` :
+    `Sin hechos nuevos hace ${dias} días — pero puede seguir presente vía posicionamiento de actores` + (grupos['Reacción de oposición'].length ? ', ver abajo' : '');
 
   let modal = document.getElementById('ficha-tema-modal');
   if(!modal){
@@ -26,15 +54,15 @@ function abrirFichaTema(temaId){
   modal.innerHTML = `
     <div class="ficha-modal-card">
       <button class="ficha-modal-close">✕</button>
-      <div class="eyebrow" style="color:${color};">${tema.categoria}</div>
+      <div class="eyebrow" style="color:${color};">${tema.categoria} · desde ${primeraMencion}</div>
       <h3 style="font-family:var(--f-display);margin:4px 0 10px;">${tema.nombre}</h3>
-      <div class="detail-row"><span class="k">Peso político</span><span class="v">${tema.peso_politico}/10</span></div>
-      <div class="detail-row"><span class="k">Nivel de relevancia</span><span class="v">${tema.nivel_relevancia}</span></div>
-      <div class="detail-row"><span class="k">Última actividad</span><span class="v">${dias===null?'—':(dias===0?'Hoy':dias+' días atrás')}</span></div>
+      <div class="detail-row"><span class="k">Impacto político</span><span class="v">${tema.peso_politico}/10</span></div>
+      <div class="detail-row"><span class="k">Nivel de relevancia</span><span class="v">${tema.nivel_relevancia} de 3</span></div>
+      <div class="detail-row"><span class="k">Estado</span><span class="v" style="font-size:11px;text-align:right;max-width:60%;">${estadoTexto}</span></div>
       ${tema.resumen ? `<p style="font-size:12.5px;margin-top:10px;color:var(--ink-1);line-height:1.55;">${tema.resumen}</p>` : ''}
-      ${actores.length ? `<div class="eyebrow" style="margin-top:10px;">Actores</div><p style="font-size:12px;">${actores.map(a=>a.nombre).join(', ')}</p>` : ''}
+      ${bloquesActores}
       <div class="eyebrow" style="margin-top:10px;">Notas (${evs.length})</div>
-      <div style="max-height:180px;overflow-y:auto;">
+      <div class="ficha-notas-scroll">
         ${evs.map(e=>`<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--ink-3);">${e.fecha}</strong> — ${e.descripcion} ${e.fuente_url?`<a href="${e.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`).join('')}
       </div>
     </div>`;
@@ -66,14 +94,15 @@ function initAgenda(){
       soloHoy = !soloHoy;
       btnHoy.classList.toggle('kpi-activo', soloHoy);
       renderAgendaGrid();
+      if(typeof renderFeed==='function') renderFeed();
     });
     btnHoy.dataset.conectado = '1';
   }
-  document.querySelectorAll('.vista-btn').forEach(btn=>{
+  document.querySelectorAll('.vista-toggle .chip-btn').forEach(btn=>{
     if(btn.dataset.conectado) return;
     btn.addEventListener('click', ()=>{
       vistaAgenda = btn.dataset.vista;
-      document.querySelectorAll('.vista-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.vista-toggle .chip-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
       renderAgendaGrid();
     });
@@ -94,6 +123,10 @@ function renderListaAgenda(){
   temasBase = temasBase.slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
   const cont = document.getElementById('agenda-grid');
+  if(!temasBase.length){
+    cont.innerHTML = `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">${soloHoy?'Sin novedades registradas hoy':'Sin temas con este filtro'}</div>`;
+    return;
+  }
   cont.innerHTML = `<div class="lista-agenda">${temasBase.map(t=>{
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
@@ -180,7 +213,7 @@ function renderKpisImpacto(){
     const enNivel = baseCategoria.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
     const porCategoria = {};
     enNivel.forEach(t=> porCategoria[t.categoria]=(porCategoria[t.categoria]||0)+1);
-    const texto = Object.entries(porCategoria).map(([cat,n])=>`${cat}: <strong>${n}</strong>`).join(' · ');
+    const texto = Object.entries(porCategoria).map(([cat,n])=>`<span class="desglose-chip">${cat} <strong>${n}</strong></span>`).join('');
     if(desglose){ desglose.innerHTML = texto; desglose.style.visibility='visible'; }
   } else if(desglose){ desglose.innerHTML=''; desglose.style.visibility='hidden'; }
 }
@@ -240,7 +273,15 @@ function dibujarMatrizRiesgo(){
       primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
       x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 70, 600, {xMin:pad.left+26, xMax:width-pad.right-26, yMin:pad.top+26, yMax:height-pad.bottom-26}); // 70: verificado con Node considerando el rectángulo de la etiqueta, no solo el círculo
+  const datos = separarPuntos(crudos, 70, 600, {xMin:pad.left+26, xMax:width-pad.right-26, yMin:pad.top+26, yMax:height-pad.bottom-26});
+
+  if(!datos.length){
+    svg.attr('viewBox',[0,0,width,height]);
+    svg.append('text').attr('x',width/2).attr('y',height/2).attr('text-anchor','middle')
+      .attr('font-family','var(--f-display)').attr('font-size','14px').attr('fill','var(--ink-3)')
+      .text(soloHoy ? 'Sin novedades registradas hoy' : 'Sin temas con este filtro');
+    return;
+  } // 70: verificado con Node considerando el rectángulo de la etiqueta, no solo el círculo
 
   const defs = svg.append('defs');
   const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');

@@ -1,4 +1,4 @@
-const ECOSISTEMA = { ready:false, actores:[], redesPersonales:[], conexiones:[], temas:[], eventos:[] };
+const ECOSISTEMA = { ready:false, actores:[], redesPersonales:[], conexiones:[], temas:[], eventos:[], temaActores:[] };
 
 function cargarCSV(nombreArchivo){
   return new Promise((resolve)=>{
@@ -11,14 +11,15 @@ function cargarCSV(nombreArchivo){
 }
 
 async function inicializarDatos(){
-  const [actores, redes, conexiones, temas, eventos] = await Promise.all([
+  const [actores, redes, conexiones, temas, eventos, temaActores] = await Promise.all([
     cargarCSV('actores.csv'),
     cargarCSV('redes_personales.csv'),
     cargarCSV('conexiones.csv'),
     cargarCSV('temas.csv'),
     cargarCSV('eventos.csv'),
+    cargarCSV('tema_actores.csv'),
   ]);
-  if(!actores || !redes || !conexiones || !temas || !eventos){
+  if(!actores || !redes || !conexiones || !temas || !eventos || !temaActores){
     console.error('Error cargando datos base.');
     return;
   }
@@ -28,6 +29,7 @@ async function inicializarDatos(){
   ECOSISTEMA.conexiones = conexiones;
   ECOSISTEMA.temas = temas.map(t=>({...t, peso_politico:Number(t.peso_politico)||5}));
   ECOSISTEMA.eventos = eventos.map(e=>({...e, intensidad:Number(e.intensidad)||1}));
+  ECOSISTEMA.temaActores = temaActores;
   ECOSISTEMA.ready = true;
 
   document.dispatchEvent(new CustomEvent('ecosistema:datos-listos'));
