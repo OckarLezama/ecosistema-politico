@@ -75,10 +75,114 @@ function renderAgendaGrid(){
   });
 }
 
+/* ============================================================
+   VALORACIÓN PROBABILÍSTICA — índice de escalamiento (fórmula
+   transparente, documentada aquí mismo) + 3 escenarios narrativos
+   escritos con los datos reales del tema (no una plantilla rellenada).
+   Vive dentro de la ficha del tema — no se justifica un módulo aparte
+   para esto (ver conversación: no aporta nada que la ficha no cubra).
+   ============================================================ */
+
+// Índice de escalamiento (0-100). Peso documentado:
+// 35% tendencia reciente de intensidad · 25% peso político del tema ·
+// 25% si sigue activo (sin cierre confirmado) · 15% nivel de relevancia.
+function calcularIndiceEscalamiento(tema){
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===tema.id).sort((a,b)=> a.fecha.localeCompare(b.fecha));
+  let tendencia = 'estable', puntosTendencia = 17.5;
+  if(evs.length >= 2){
+    const ultimo = evs[evs.length-1].intensidad;
+    const anterior = evs[evs.length-2].intensidad;
+    if(ultimo > anterior){ tendencia = 'ascenso'; puntosTendencia = 35; }
+    else if(ultimo < anterior){ tendencia = 'descenso'; puntosTendencia = 0; }
+  }
+  const puntosPeso = (Number(tema.peso_politico)||5)/10 * 25;
+  const puntosEstado = tema.estado==='activo' ? 25 : 0;
+  const puntosNivel = {1:15, 2:10, 3:5}[Number(tema.nivel_relevancia)||3] || 5;
+  const total = Math.round(puntosTendencia + puntosPeso + puntosEstado + puntosNivel);
+  let nivel;
+  if(total>=70) nivel='alto';
+  else if(total>=40) nivel='medio';
+  else nivel='bajo';
+  return { total, nivel, tendencia };
+}
+
+// nombre corto de un actor, reutilizando el mismo criterio del resto del sistema
+function nombreCortoAgenda(nombre){
+  const m = nombre.match(/\(([^)]+)\)/);
+  if(m) return nombre.split(' ')[0] + ' (' + m[1].replace(/'/g,'') + ')';
+  return nombre.split(' ').slice(0,2).join(' ');
+}
+
+// 3 escenarios como ANÁLISIS DE INTELIGENCIA real: argumento apoyado en datos concretos
+// (actor principal, roles reales, reacciones de oposición, precedentes de otros temas ya
+// cerrados de la misma categoría) — no una oración con espacios en blanco rellenados.
+function generarEscenarios(tema){
+  const responsable = getActor(tema.responsable);
+  const nombreResp = responsable ? nombreCortoAgenda(responsable.nombre) : 'el actor a cargo';
+  const contextos = (ECOSISTEMA.temaActores||[]).filter(ta=>ta.tema_id===tema.id);
+  const investigados = contextos.filter(c=>c.rol==='Investigado').length;
+  const reaccionOposicion = contextos.find(c=>c.rol==='Reacción de oposición');
+  const indice = calcularIndiceEscalamiento(tema);
+
+  // continuista
+  let continuista = `Si nada cambia, <strong>${tema.nombre}</strong> se mantiene bajo la conducción de <strong>${nombreResp}</strong>, sin un evento que lo saque de su patrón actual`;
+  continuista += tema.estado==='activo'
+    ? ` — sigue activo, generando menciones esporádicas sin convertirse en crisis mayor mientras no aparezca un hecho nuevo.`
+    : ` — ya sin actividad reciente, es previsible que permanezca cerrado salvo un hallazgo nuevo que lo reabra.`;
+
+  // escalación: usa la señal más fuerte que SÍ existe en los datos, no una genérica
+  let escalacion;
+  if(reaccionOposicion){
+    const actorOp = getActor(reaccionOposicion.actor_id);
+    escalacion = `El punto de mayor riesgo de escalamiento es que <strong>${actorOp?nombreCortoAgenda(actorOp.nombre):'la oposición'}</strong> ya se pronunció públicamente (${reaccionOposicion.detalle.replace(/"/g,'').slice(0,140)}${reaccionOposicion.detalle.length>140?'…':''}) — si el tema vuelve a la conversación pública, ese señalamiento es el que más fácilmente se reactiva y presiona.`;
+  } else if(investigados>0){
+    escalacion = `Con <strong>${investigados}</strong> actor${investigados>1?'es':''} en calidad de investigado${investigados>1?'s':''}, el riesgo real de escalamiento es procesal: una nueva imputación, detención o filtración de expediente puede reactivar el tema de golpe, no de forma gradual.`;
+  } else if(indice.tendencia==='ascenso'){
+    escalacion = `La intensidad de sus últimos eventos va en ascenso — si ese patrón se mantiene un ciclo más, el tema puede cruzar a zona de mayor exposición antes de estabilizarse.`;
+  } else {
+    escalacion = `No hay hoy una señal concreta de escalamiento en los datos (sin investigados formales, sin reacción de oposición registrada) — un repunte dependería de un hecho externo al patrón ya documentado.`;
+  }
+
+  // distensión: busca un precedente REAL — un tema ya cerrado de la misma categoría
+  const precedente = ECOSISTEMA.temas.find(t=> t.id!==tema.id && t.categoria===tema.categoria && t.estado==='cerrado');
+  let distension;
+  if(precedente){
+    distension = `El precedente más cercano dentro de la misma categoría (${tema.categoria}) es <strong>${precedente.nombre}</strong>, que se dio por cerrado sin que el patrón se repitiera después — es la ruta de distensión más plausible: una postura institucional pública que cierre el ciclo mediático, más que una resolución judicial de fondo.`;
+  } else {
+    distension = `No hay, todavía, un precedente cerrado dentro de su misma categoría (${tema.categoria}) que sirva de referencia — la distensión de este tema sería, hasta ahora, la primera de su tipo.`;
+  }
+
+  return { continuista, escalacion, distension };
+}
+
+function renderProbabilistico(tema){
+  const cont = document.getElementById('modal-probabilistico');
+  if(!cont) return;
+  const indice = calcularIndiceEscalamiento(tema);
+  const escenarios = generarEscenarios(tema);
+  const colorIndice = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
+
+  cont.innerHTML = `
+    <div class="valoracion-riesgo-box" style="margin-top:0;">
+      <div class="eyebrow">Índice de escalamiento: <span style="color:${colorIndice};font-weight:700;">${indice.total}/100 — ${indice.nivel.toUpperCase()}</span></div>
+      <p style="font-size:11px;color:var(--ink-3);margin-top:4px;">Tendencia reciente: ${indice.tendencia} · peso político, si sigue activo, y nivel de relevancia — fórmula documentada en el código, no un modelo estadístico.</p>
+    </div>
+    <div style="margin-top:10px;">
+      <div class="eyebrow" style="color:var(--riesgo-bajo);">Continuista</div>
+      <p style="font-size:12px;margin:3px 0 8px;">${escenarios.continuista}</p>
+      <div class="eyebrow" style="color:var(--riesgo-alto);">Escalación</div>
+      <p style="font-size:12px;margin:3px 0 8px;">${escenarios.escalacion}</p>
+      <div class="eyebrow" style="color:var(--riesgo-medio);">Distensión</div>
+      <p style="font-size:12px;margin:3px 0;">${escenarios.distension}</p>
+    </div>
+  `;
+}
+
 function abrirModalTema(temaId){
   const tema = ECOSISTEMA.temas.find(t=>t.id===temaId);
   if(!tema) return;
   const color = colorCategoria(tema.categoria);
+  renderProbabilistico(tema);
 
   const responsable = getActor(tema.responsable);
   const horizonteTooltip = {
