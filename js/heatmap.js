@@ -93,8 +93,6 @@ function actoresDeTemaConRol(tema){
 }
 
 function renderHeatmap(){
-  renderResumenEjecutivo();
-  renderRecurrencia();
   renderTimelineZigzag();
 }
 
