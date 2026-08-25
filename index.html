@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/styles.css?v=2026-08-23-16">
+<link rel="stylesheet" href="css/styles.css?v=2026-08-23-17">
 </head>
 <body>
 
@@ -120,7 +120,7 @@
       <div class="module-head">
         <div>
           <h2>Mapa de Calor / Timeline</h2>
-          <p>Tensión política nacional por periodo — el índice agregado con bandas de umbral (normal/elevada/crítica) arriba, el detalle por tema abajo.</p>
+          <p>Tensión política nacional por periodo — cada tema es una tarjeta en la fecha de su evento más intenso.</p>
         </div>
       </div>
       <div class="heatmap-card">
@@ -143,7 +143,7 @@
         <div id="heatmap-resumen-ejecutivo" class="kpi-row"></div>
         <div id="heatmap-recurrencia" class="kpi-row"></div>
         <div id="heatmap-timeline-scroll"><svg id="heatmap-timeline-svg"></svg></div>
-        <p style="font-size:10.5px;color:var(--ink-3);padding:8px 14px 12px;">Cada tarjeta es un tema, ubicada en la fecha de su evento más intenso. El color del borde indica su nivel de relevancia; la franja de color sobre la línea de tiempo marca los meses en zona normal/elevada/crítica. Clic en cualquier tarjeta abre su ficha completa.</p>
+        <p style="font-size:10.5px;color:var(--ink-3);padding:8px 14px 12px;">Cada tarjeta es un tema, ubicada en la fecha de su evento más intenso. El borde indica su nivel de relevancia; el relleno de color indica que sigue activo (sin relleno = ya se cerró). Clic en cualquier tarjeta abre su ficha completa.</p>
       </div>
     </section>
 
@@ -181,7 +181,7 @@
 
   <footer class="app-footer">
     Ecosistema de Inteligencia Política · Datos sustentados con fuente y URL verificable · Uso institucional
-    <br><span style="opacity:.6">build 2026-08-23-16 — si no ves este número, tu navegador está sirviendo una copia vieja de estos archivos</span>
+    <br><span style="opacity:.6">build 2026-08-23-17 — si no ves este número, tu navegador está sirviendo una copia vieja de estos archivos</span>
   </footer>
 </div>
 
@@ -244,10 +244,10 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
 <!-- ============== APP ============== -->
-<script src="js/data-loader.js?v=2026-08-23-16"></script>
-<script src="js/actores.js?v=2026-08-23-16"></script>
-<script src="js/agenda.js?v=2026-08-23-16"></script>
-<script src="js/heatmap.js?v=2026-08-23-16"></script>
+<script src="js/data-loader.js?v=2026-08-23-17"></script>
+<script src="js/actores.js?v=2026-08-23-17"></script>
+<script src="js/agenda.js?v=2026-08-23-17"></script>
+<script src="js/heatmap.js?v=2026-08-23-17"></script>
 <script>
   // navegación entre módulos
   document.getElementById('module-nav').addEventListener('click', (e)=>{

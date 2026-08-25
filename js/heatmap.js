@@ -224,16 +224,6 @@ function dibujar(xScaleActual){
   containerSel.selectAll('*').remove();
   const meses = rangoDeMeses();
 
-  // franja de umbral, sutil y transparente — AHORA sí adentro del grupo que se mueve con pan/zoom
-  const totalesPorMes = meses.map(m=> ECOSISTEMA.eventos.filter(e=>e.fecha.slice(0,7)===m).reduce((s,e)=>s+e.intensidad,0));
-  meses.forEach((m,i)=>{
-    const clase = clasificarMes(totalesPorMes[i]);
-    const x1 = xScaleActual(new Date(m+'-01'));
-    const anchoMes = xScaleActual(new Date(meses[Math.min(i+1,meses.length-1)]+'-01')) - x1 || 20;
-    containerSel.append('rect').attr('x',x1).attr('y',yLineaGlobal-2.5).attr('width',anchoMes).attr('height',5)
-      .attr('fill', clase.color).attr('fill-opacity',0.18);
-  });
-
   containerSel.append('line').attr('x1',30).attr('x2',widthGlobal-30).attr('y1',yLineaGlobal).attr('y2',yLineaGlobal)
     .attr('stroke','var(--ink-2)').attr('stroke-width',2);
 
