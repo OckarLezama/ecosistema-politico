@@ -205,9 +205,21 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
   const conRiesgoAlto = satelites.filter(n=>n.nivel_riesgo==='alto');
   const pctRiesgoAlto = conRiesgoAlto.length/satelites.length;
   const score = (influenciaNucleo/10*0.5) + (influenciaProm/10*0.3) + ((1-pctRiesgoAlto)*0.2);
-  let nivel;
-  if(score>=0.7) nivel='alta'; else if(score>=0.5) nivel='media'; else nivel='baja';
-  return { nivel, influenciaNucleo, influenciaProm: influenciaProm.toFixed(1), pctRiesgoAlto: Math.round(pctRiesgoAlto*100) };
+  let nivel, explicacion;
+  const nombreCorto = nucleoActor.nombre.split(' ').slice(0,2).join(' ');
+  if(score>=0.7){
+    nivel='alta';
+    explicacion = influenciaProm < influenciaNucleo*0.6
+      ? `El peso lo sostiene <strong>${nombreCorto}</strong> mismo (${influenciaNucleo}/10) — su red de satélites es de menor peso individual (${influenciaProm.toFixed(1)}/10 en promedio), pero eso no debilita al grupo mientras el riesgo se mantenga bajo (${Math.round(pctRiesgoAlto*100)}% alto).`
+      : `Tanto <strong>${nombreCorto}</strong> (${influenciaNucleo}/10) como su red (${influenciaProm.toFixed(1)}/10 en promedio) aportan peso real — es una red fuerte de origen, no solo por quién la encabeza.`;
+  } else if(score>=0.5){
+    nivel='media';
+    explicacion = `Combina algo de peso (${nombreCorto}: ${influenciaNucleo}/10, red: ${influenciaProm.toFixed(1)}/10 en promedio) con puntos de vulnerabilidad — no es una red débil, pero tampoco domina por sí sola.`;
+  } else {
+    nivel='baja';
+    explicacion = `Ni <strong>${nombreCorto}</strong> (${influenciaNucleo}/10) ni su red (${influenciaProm.toFixed(1)}/10 en promedio) aportan peso institucional fuerte por sí solos.`;
+  }
+  return { nivel, explicacion };
 }
 
 function mostrarFicha(id, nodoClicado, nodesEnGrafo){
@@ -224,7 +236,7 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
       const colorNivel = {alta:'var(--riesgo-bajo)', media:'var(--riesgo-medio)', baja:'var(--riesgo-alto)'}[f.nivel];
       fortalezaHTML = `
         <div class="detail-row"><span class="k">Fortaleza del grupo</span><span class="v" style="color:${colorNivel};font-weight:700;">${f.nivel.toUpperCase()}</span></div>
-        <div style="font-size:10.5px;color:var(--ink-3);padding:2px 0 4px;">Influencia propia (del núcleo): <strong style="color:var(--ink-2);">${f.influenciaNucleo}/10</strong> · Influencia promedio de su red: <strong style="color:var(--ink-2);">${f.influenciaProm}/10</strong> · <strong style="color:var(--ink-2);">${f.pctRiesgoAlto}%</strong> de su red es de riesgo alto</div>`;
+        <div style="font-size:11px;color:var(--ink-3);padding:2px 0 4px;line-height:1.5;">${f.explicacion}</div>`;
     }
   }
 
