@@ -4,11 +4,52 @@
 
 let categoriaFiltroAgenda = '';
 let impactoFiltroAgenda = '';
+let soloAgendaNacional = false;
+
+let vistaAgenda = 'matriz';
 
 function initAgenda(){
   poblarFiltroCategoriaAgenda();
+  const btnNivel1 = document.getElementById('btn-agenda-nacional');
+  if(btnNivel1 && !btnNivel1.dataset.conectado){
+    btnNivel1.addEventListener('click', ()=>{
+      soloAgendaNacional = !soloAgendaNacional;
+      btnNivel1.classList.toggle('kpi-activo', soloAgendaNacional);
+      renderAgendaGrid();
+    });
+    btnNivel1.dataset.conectado = '1';
+  }
+  document.querySelectorAll('.vista-btn').forEach(btn=>{
+    if(btn.dataset.conectado) return;
+    btn.addEventListener('click', ()=>{
+      vistaAgenda = btn.dataset.vista;
+      document.querySelectorAll('.vista-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAgendaGrid();
+    });
+    btn.dataset.conectado='1';
+  });
   renderAgendaGrid();
 }
+
+function renderListaAgenda(){
+  let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
+  if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
+  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
+  temasBase = temasBase.slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+
+  const cont = document.getElementById('agenda-grid');
+  cont.innerHTML = `<div class="lista-agenda">${temasBase.map(t=>{
+    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
+    const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
+    const color = COLOR_IMPACTO_CACHE[nivelImpacto(t.peso_politico)];
+    return `<div class="lista-item" style="border-left-color:${color};">
+      <div class="lista-nombre">${t.nombre}</div>
+      <div class="lista-meta">${t.categoria} · Impacto ${t.peso_politico}/10 · Riesgo ${riesgoMax}/10 · ${t.estado==='activo'?'Activo':'Cerrado'}</div>
+    </div>`;
+  }).join('')}</div>`;
+}
+const COLOR_IMPACTO_CACHE = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
 
 function poblarFiltroCategoriaAgenda(){
   const sel = document.getElementById('agenda-categoria');
@@ -26,9 +67,10 @@ function poblarFiltroCategoriaAgenda(){
 function renderAgendaGrid(){
   const cont = document.getElementById('agenda-grid');
   if(!cont) return;
-  cont.innerHTML = `<div id="agenda-kpis" class="kpi-row" style="padding:12px 14px 0;"></div><svg id="matriz-riesgo-svg"></svg>`;
   crearTooltipAgenda();
   renderKpisImpacto();
+  if(vistaAgenda==='lista'){ renderListaAgenda(); return; }
+  if(!cont.querySelector('#matriz-riesgo-svg')) cont.innerHTML = `<svg id="matriz-riesgo-svg"></svg>`;
   dibujarMatrizRiesgo();
 }
 
@@ -83,12 +125,12 @@ function renderKpisImpacto(){
   } else if(desglose){ desglose.style.display='none'; }
 }
 
-// repulsión real por pares — verificada con Node (MIN_DIST=50, 600 iteraciones -> 0 encimados,
-// incluso en el cúmulo denso de 4 temas alrededor de impacto=9 que antes sí se encimaba)
-function separarPuntos(datos, minDist, iteraciones){
+// repulsión real por pares, con el límite del cuadro aplicado EN CADA iteración (no solo al
+// final) — verificado con Node: así no hay forma de que un punto termine fuera del cuadro
+function separarPuntos(datos, minDist, iteraciones, limites){
   datos.forEach((d,idx)=>{
     const jitterIni = idx*0.7;
-    d.x += Math.cos(jitterIni)*0.01; d.y += Math.sin(jitterIni)*0.01; // rompe empates exactos
+    d.x += Math.cos(jitterIni)*0.01; d.y += Math.sin(jitterIni)*0.01;
   });
   for(let iter=0; iter<iteraciones; iter++){
     for(let i=0;i<datos.length;i++) for(let j=i+1;j<datos.length;j++){
@@ -100,6 +142,10 @@ function separarPuntos(datos, minDist, iteraciones){
         a.x+=ux*empuje; a.y+=uy*empuje; b.x-=ux*empuje; b.y-=uy*empuje;
       }
     }
+    datos.forEach(d=>{
+      d.x = Math.max(limites.xMin, Math.min(limites.xMax, d.x));
+      d.y = Math.max(limites.yMin, Math.min(limites.yMax, d.y));
+    });
   }
   return datos;
 }
@@ -117,6 +163,7 @@ function dibujarMatrizRiesgo(){
 
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
+  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
 
   const x = d3.scaleLinear().domain([0,10]).range([pad.left, width-pad.right]);
   const y = d3.scaleLinear().domain([0,10]).range([height-pad.bottom, pad.top]);
@@ -124,9 +171,9 @@ function dibujarMatrizRiesgo(){
   const crudos = temasBase.map(t=>{
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
-    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, x: x(t.peso_politico), y: y(riesgoMax) };
+    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, veces:evs.length, x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 50, 600);
+  const datos = separarPuntos(crudos, 50, 600, {xMin:pad.left+26, xMax:width-pad.right-26, yMin:pad.top+26, yMax:height-pad.bottom-26});
 
   const defs = svg.append('defs');
   const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
@@ -157,17 +204,17 @@ function dibujarMatrizRiesgo(){
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
     .attr('transform', d=>`translate(${d.x},${d.y})`)
-    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10`, ev); d3.select(this).select('circle.nodo-principal').attr('r',20); })
-    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10`, ev); })
+    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',20); })
+    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''}`, ev); })
     .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',16); });
 
   g.append('circle').attr('class','nodo-halo').attr('r',22)
     .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('fill-opacity',0.25).attr('filter','url(#glow-blur)');
   g.append('circle').attr('class','nodo-principal').attr('r',16)
     .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('fill-opacity',0.9)
-    .attr('stroke','var(--bg-0)').attr('stroke-width',2.5).style('transition','r .12s');
+    .attr('stroke','#fff').attr('stroke-width',2.5).style('transition','r .12s');
   g.append('circle').attr('r',16).attr('fill','none').attr('stroke', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('stroke-width',1).attr('stroke-opacity',0.6);
-  g.append('circle').attr('r',5).attr('fill','var(--bg-0)').attr('stroke', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('stroke-width',1.5);
+  g.append('circle').attr('r',5).attr('fill','#fff').attr('stroke', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('stroke-width',1.5);
 
   g.append('text').attr('text-anchor','middle').attr('dy', d=> d.y < height/2 ? 32 : -26)
     .attr('font-size','9.5px').attr('font-weight','600').attr('fill','var(--ink-1)')

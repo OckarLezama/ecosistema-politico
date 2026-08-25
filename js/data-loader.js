@@ -46,7 +46,7 @@ function colorRiesgo(nivel){
 
 function colorCategoria(cat){
   const map = {
-    'Seguridad Nacional':'--rojo', 'Gobierno':'--arena', 'Economía':'--verde',
+    'Seguridad Nacional':'--rojo', 'Gobernabilidad':'--arena', 'Economía':'--verde',
     'Relación Bilateral':'--teal', 'Social':'--puente'
   };
   const varName = map[cat] || '--gris-2';
