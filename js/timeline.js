@@ -116,7 +116,7 @@ function renderTimeline(){
   // panel de temas más persistentes — FUERA del grupo con zoom (para que no se borre en cada redibujo), esquina superior izquierda, sin estorbar las tarjetas
   const persistentes = temasPersistentesTL();
   const gPanel = tlSvg.append('g').attr('class','tl-panel-persistentes');
-  gPanel.append('rect').attr('x',36).attr('y',10).attr('width',190).attr('height',14+persistentes.length*15)
+  gPanel.append('rect').attr('x',36).attr('y',10).attr('width',225).attr('height',14+persistentes.length*15)
     .attr('fill','var(--bg-2)').attr('fill-opacity',0.95).attr('stroke','var(--line-strong)').attr('rx',6);
   gPanel.append('text').attr('x',44).attr('y',22).attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('MÁS PERSISTENTES');
   persistentes.forEach((p,i)=>{

@@ -8,6 +8,126 @@ function diasSinActividad(temaId){
   return Math.round((new Date() - new Date(evs[evs.length-1])) / 86400000);
 }
 
+function calcularIndiceEscalamiento(tema){
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===tema.id).sort((a,b)=> a.fecha.localeCompare(b.fecha));
+  let tendencia = 'estable', puntosTendencia = 17.5;
+  if(evs.length >= 2){
+    const ultimo = evs[evs.length-1].intensidad, anterior = evs[evs.length-2].intensidad;
+    if(ultimo > anterior){ tendencia = 'ascenso'; puntosTendencia = 35; }
+    else if(ultimo < anterior){ tendencia = 'descenso'; puntosTendencia = 0; }
+  }
+  const dias = diasSinActividad(tema.id);
+  const puntosPeso = (Number(tema.peso_politico)||5)/10 * 25;
+  const puntosActividad = (dias!==null && dias<=30) ? 25 : 0;
+  const puntosNivel = {1:15, 2:10, 3:5}[Number(tema.nivel_relevancia)||3] || 5;
+  const total = Math.round(puntosTendencia + puntosPeso + puntosActividad + puntosNivel);
+  let nivel;
+  if(total>=70) nivel='alto'; else if(total>=40) nivel='medio'; else nivel='bajo';
+  return { total, nivel, tendencia, dias };
+}
+
+function nombreCortoTema(nombre){
+  const m = nombre.match(/\(([^)]+)\)/);
+  if(m) return nombre.split(' ')[0] + ' (' + m[1].replace(/'/g,'') + ')';
+  return nombre.split(' ').slice(0,2).join(' ');
+}
+
+function generarEscenarios(tema){
+  const responsable = getActor(tema.responsable);
+  const nombreResp = responsable ? nombreCortoTema(responsable.nombre) : 'el actor a cargo';
+  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===tema.id);
+  const investigados = contextos.filter(c=>c.rol==='Investigado').length;
+  const reaccionOposicion = contextos.find(c=>c.rol==='Reacción de oposición');
+  const indice = calcularIndiceEscalamiento(tema);
+  const reciente = indice.dias!==null && indice.dias<=30;
+
+  let masProbableTexto = `Si nada cambia, <strong>${tema.nombre}</strong> se mantiene bajo la conducción de <strong>${nombreResp}</strong>, sin un evento que lo saque de su patrón actual`;
+  masProbableTexto += reciente
+    ? ` — sigue con actividad reciente, generando menciones esporádicas sin convertirse en crisis mayor mientras no aparezca un hecho nuevo.`
+    : ` — sin hechos nuevos por un tiempo, es previsible que la conversación pública se sostenga vía posicionamiento de actores, no vía nueva evidencia.`;
+  const masProbableAccion = reciente
+    ? `Mantener el mensaje institucional actual desde <strong>${nombreResp}</strong> y monitoreo rutinario — no se justifica, con lo que hay hoy, escalar la respuesta.`
+    : `No requiere acción proactiva — vigilancia pasiva por si reaparece un hallazgo nuevo.`;
+
+  let mayorRiesgoTexto, mayorRiesgoAccion;
+  if(reaccionOposicion){
+    const actorOp = getActor(reaccionOposicion.actor_id);
+    const nombreOp = actorOp ? nombreCortoTema(actorOp.nombre) : 'la oposición';
+    mayorRiesgoTexto = `El punto de mayor riesgo es que <strong>${nombreOp}</strong> ya se pronunció públicamente (${reaccionOposicion.detalle.replace(/"/g,'').slice(0,140)}${reaccionOposicion.detalle.length>140?'…':''}) — si el tema vuelve a la conversación pública, ese señalamiento es el que más fácilmente se reactiva y presiona.`;
+    mayorRiesgoAccion = `Preparar de antemano una respuesta a los señalamientos de <strong>${nombreOp}</strong>, para no reaccionar tarde si retoma el tema.`;
+  } else if(investigados>0){
+    mayorRiesgoTexto = `Con <strong>${investigados}</strong> actor${investigados>1?'es':''} en calidad de investigado${investigados>1?'s':''}, el riesgo real es procesal: una nueva imputación, detención o filtración de expediente puede reactivar el tema de golpe.`;
+    mayorRiesgoAccion = `Coordinar con anticipación el manejo de comunicación ante una posible nueva imputación o filtración.`;
+  } else if(indice.tendencia==='ascenso'){
+    mayorRiesgoTexto = `La intensidad de sus últimos eventos va en ascenso — si ese patrón se mantiene un ciclo más, el tema puede cruzar a zona de mayor exposición antes de estabilizarse.`;
+    mayorRiesgoAccion = `Reforzar el seguimiento diario del tema — la tendencia ascendente sugiere que un pico está próximo.`;
+  } else {
+    mayorRiesgoTexto = `No hay hoy una señal concreta de escalamiento en los datos (sin investigados formales, sin reacción de oposición registrada).`;
+    mayorRiesgoAccion = `Sin acción específica que tomar hoy.`;
+  }
+
+  return { masProbable:{texto:masProbableTexto, accion:masProbableAccion}, mayorRiesgo:{texto:mayorRiesgoTexto, accion:mayorRiesgoAccion} };
+}
+
+function dibujarMedidorTema(valor, nivel){
+  const cx=100, cy=95, rOut=80, rIn=64;
+  const colorNivel = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[nivel];
+  function angulo(v){ return Math.PI * (1 - v/100); }
+  function polar(r,v){ const a=angulo(v); return [cx + r*Math.cos(a), cy - r*Math.sin(a)]; }
+  function arco(v0,v1,r0,r1){
+    const [x0,y0]=polar(r0,v0), [x1,y1]=polar(r0,v1), [x2,y2]=polar(r1,v1), [x3,y3]=polar(r1,v0);
+    return `M ${x0} ${y0} A ${r0} ${r0} 0 0 1 ${x1} ${y1} L ${x2} ${y2} A ${r1} ${r1} 0 0 0 ${x3} ${y3} Z`;
+  }
+  const [nx,ny] = polar(rOut-6, valor);
+  return `<svg viewBox="0 0 200 110" style="width:170px;height:94px;display:block;margin:0 auto;">
+    <path d="${arco(0,40,rOut,rIn)}" fill="var(--riesgo-bajo)" fill-opacity="0.35"/>
+    <path d="${arco(40,70,rOut,rIn)}" fill="var(--riesgo-medio)" fill-opacity="0.35"/>
+    <path d="${arco(70,100,rOut,rIn)}" fill="var(--riesgo-alto)" fill-opacity="0.35"/>
+    <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="${colorNivel}" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="5" fill="${colorNivel}"/>
+    <text x="${cx}" y="${cy-14}" text-anchor="middle" font-size="22" font-weight="700" font-family="var(--f-display)" fill="${colorNivel}">${valor}</text>
+  </svg>`;
+}
+
+function renderProbabilisticoTema(tema){
+  const cont = document.getElementById('modal-probabilistico');
+  if(!cont) return;
+  const indice = calcularIndiceEscalamiento(tema);
+  const escenarios = generarEscenarios(tema);
+  const colorIndice = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
+
+  cont.innerHTML = `
+    <div style="text-align:center;">
+      ${dibujarMedidorTema(indice.total, indice.nivel)}
+      <div class="eyebrow">Índice de escalamiento — <span style="color:${colorIndice};font-weight:700;">${indice.nivel.toUpperCase()}</span></div>
+      <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;text-align:left;">Tendencia: ${indice.tendencia} · peso político · actividad reciente · nivel de relevancia — fórmula visible, no un modelo estadístico.</p>
+    </div>
+    <div class="vista-toggle" style="margin-top:8px;">
+      <button class="chip-btn active" data-esc="masProbable" style="flex:1;">Más probable</button>
+      <button class="chip-btn" data-esc="mayorRiesgo" style="flex:1;">De mayor riesgo</button>
+    </div>
+    <div id="escenario-contenido-tema"></div>`;
+
+  function pintar(clave){
+    const e = escenarios[clave];
+    const colorAccion = clave==='mayorRiesgo' ? 'var(--riesgo-alto)' : 'var(--riesgo-bajo)';
+    document.getElementById('escenario-contenido-tema').innerHTML = `
+      <p style="font-size:12px;margin:10px 0 6px;">${e.texto}</p>
+      <div style="border-left:3px solid ${colorAccion};background:var(--bg-2);padding:6px 10px;border-radius:0 6px 6px 0;">
+        <div class="eyebrow" style="font-size:9px;">Acción recomendada</div>
+        <p style="font-size:11.5px;margin-top:2px;">${e.accion}</p>
+      </div>`;
+  }
+  cont.querySelectorAll('[data-esc]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      cont.querySelectorAll('[data-esc]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      pintar(btn.dataset.esc);
+    });
+  });
+  pintar('masProbable');
+}
+
 function abrirFichaTema(temaId){
   const tema = getTema(temaId);
   if(!tema) return;
@@ -65,9 +185,12 @@ function abrirFichaTema(temaId){
       <div class="ficha-notas-scroll">
         ${evs.map(e=>`<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--ink-3);">${e.fecha}</strong> — ${e.descripcion} ${e.fuente_url?`<a href="${e.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`).join('')}
       </div>
+      <div class="eyebrow" style="margin-top:10px;">Valoración probabilística</div>
+      <div id="modal-probabilistico"></div>
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
   modal.classList.add('open');
+  renderProbabilisticoTema(tema);
 }
 
 let categoriaFiltroAgenda = '';
