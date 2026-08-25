@@ -105,13 +105,10 @@ function renderResumenEjecutivo(){
 
   if(nivelImpactoFiltro){
     const filtrados = temasFiltrados();
-    const categorias = [...new Set(filtrados.map(t=>t.categoria))];
-    const dominante = categorias.length===1 ? categorias[0] : `${categorias.length} categorías`;
     cont.innerHTML = `
-      <div class="kpi-card">
-        <div class="kpi-numero">${filtrados.length}</div>
-        <div class="kpi-etiqueta">temas en zona ${nivelImpactoFiltro}</div>
-        <div class="kpi-detalle">${dominante}</div>
+      <div class="kpi-chip2">
+        <div class="kpi-chip2-badge">${filtrados.length}</div>
+        <div class="kpi-chip2-label">en zona<br>${nivelImpactoFiltro}</div>
       </div>
       <div class="kpi-lista">${filtrados.map(t=>`<span class="kpi-chip" data-tema="${t.id}">${t.nombre}</span>`).join('')}</div>
     `;
@@ -125,10 +122,9 @@ function renderResumenEjecutivo(){
   }).filter(Boolean).sort((a,b)=>b.intensidad-a.intensidad).slice(0,2);
 
   cont.innerHTML = picos.map(p=>`
-    <div class="kpi-card kpi-clickable" data-tema="${p.id}">
-      <div class="kpi-numero" style="font-size:15px;">${p.fecha.slice(0,7)}</div>
-      <div class="kpi-etiqueta">${p.nombre}</div>
-      <div class="kpi-detalle">Intensidad ${p.intensidad}/10 — momento de mayor tensión</div>
+    <div class="kpi-chip2 kpi-clickable" data-tema="${p.id}">
+      <div class="kpi-chip2-badge">${p.fecha.slice(2,7)}</div>
+      <div class="kpi-chip2-label">${p.nombre.length>22?p.nombre.slice(0,20)+'…':p.nombre}</div>
     </div>
   `).join('');
   cont.querySelectorAll('.kpi-clickable').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); }));
@@ -138,19 +134,20 @@ function renderRecurrencia(){
   const cont = document.getElementById('heatmap-recurrencia');
   if(!cont) return;
   const hoy = new Date();
-  const stats = temasCompletos().map(t=>{
+  const universo = nivelImpactoFiltro ? temasFiltrados() : temasCompletos();
+  const stats = universo.map(t=>{
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).map(e=>e.fecha).sort();
     if(!evs.length) return null;
     const dias = Math.round((hoy - new Date(evs[0])) / 86400000);
-    return { nombre:t.nombre, id:t.id, dias, veces: evs.length, ultima: evs[evs.length-1] };
+    return { nombre:t.nombre, id:t.id, dias, veces: evs.length, inicio: evs[0], ultima: evs[evs.length-1] };
   }).filter(Boolean).sort((a,b)=> b.dias-a.dias).slice(0,3);
 
-  cont.innerHTML = `<div class="eyebrow" style="margin-bottom:6px;">Temas más persistentes en la agenda</div>` +
+  if(!stats.length){ cont.innerHTML=''; return; }
+  cont.innerHTML = `<div class="eyebrow" style="width:100%;margin-bottom:4px;">Más persistentes${nivelImpactoFiltro?' en zona '+nivelImpactoFiltro:''}</div>` +
     stats.map(s=>`
-    <div class="kpi-card kpi-clickable" data-tema="${s.id}">
-      <div class="kpi-numero">${s.dias}<span style="font-size:11px;font-weight:400;"> días</span></div>
-      <div class="kpi-etiqueta">${s.nombre}</div>
-      <div class="kpi-detalle">${s.veces} menciones · última: ${s.ultima}</div>
+    <div class="kpi-chip2 kpi-clickable" data-tema="${s.id}" title="Activo desde ${s.inicio} · última mención ${s.ultima}">
+      <div class="kpi-chip2-badge">${s.dias}d</div>
+      <div class="kpi-chip2-label">${s.nombre.length>22?s.nombre.slice(0,20)+'…':s.nombre}<br><span style="opacity:.6;">desde ${s.inicio}</span></div>
     </div>
   `).join('');
   cont.querySelectorAll('.kpi-clickable').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); }));
@@ -199,18 +196,6 @@ function renderTimelineZigzag(){
   pat.append('path').attr('d','M 24 0 L 0 0 0 24').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
   svgSel.insert('rect','.zoom-container').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#grid-blueprint)');
 
-  // franja de umbral: color real por mes (crítica/elevada/normal), no decorativa — reafirma el mismo dato del resumen KPI
-  const meses0 = rangoDeMeses();
-  const totalesPorMes = meses0.map(m=> ECOSISTEMA.eventos.filter(e=>e.fecha.slice(0,7)===m).reduce((s,e)=>s+e.intensidad,0));
-  meses0.forEach((m,i)=>{
-    const clase = clasificarMes(totalesPorMes[i]);
-    const x1 = xScaleBase(new Date(m+'-01'));
-    const x2 = xScaleBase(new Date(m+'-01')); // se ajusta abajo con el ancho de un mes
-    const anchoMes = xScaleBase(new Date(meses0[Math.min(i+1,meses0.length-1)]+'-01')) - x1 || 20;
-    svgSel.insert('rect','.zoom-container').attr('x',x1).attr('y',yLineaGlobal-3).attr('width',anchoMes).attr('height',6)
-      .attr('fill', clase.color).attr('fill-opacity',0.35);
-  });
-
   const temas = temasFiltrados();
   const puntosBase = temas.map(t=>{
     const p = puntoPrincipalDeTema(t.id);
@@ -238,6 +223,16 @@ function renderTimelineZigzag(){
 function dibujar(xScaleActual){
   containerSel.selectAll('*').remove();
   const meses = rangoDeMeses();
+
+  // franja de umbral, sutil y transparente — AHORA sí adentro del grupo que se mueve con pan/zoom
+  const totalesPorMes = meses.map(m=> ECOSISTEMA.eventos.filter(e=>e.fecha.slice(0,7)===m).reduce((s,e)=>s+e.intensidad,0));
+  meses.forEach((m,i)=>{
+    const clase = clasificarMes(totalesPorMes[i]);
+    const x1 = xScaleActual(new Date(m+'-01'));
+    const anchoMes = xScaleActual(new Date(meses[Math.min(i+1,meses.length-1)]+'-01')) - x1 || 20;
+    containerSel.append('rect').attr('x',x1).attr('y',yLineaGlobal-2.5).attr('width',anchoMes).attr('height',5)
+      .attr('fill', clase.color).attr('fill-opacity',0.18);
+  });
 
   containerSel.append('line').attr('x1',30).attr('x2',widthGlobal-30).attr('y1',yLineaGlobal).attr('y2',yLineaGlobal)
     .attr('stroke','var(--ink-2)').attr('stroke-width',2);
@@ -283,19 +278,16 @@ function dibujar(xScaleActual){
       .attr('fill',colorNivel).attr('stroke','#fff').attr('stroke-width',1.5);
     gg.append('line').attr('x1',x).attr('y1',yLineaGlobal).attr('x2',x).attr('y2',yFin)
       .attr('stroke',colorNivel).attr('stroke-dasharray','2 3').attr('stroke-opacity',0.6);
+    const relleno = (!d.esInformativo && d.tema.estado==='activo') ? colorNivel : 'var(--bg-0)';
+    const opacidadRelleno = (!d.esInformativo && d.tema.estado==='activo') ? 0.13 : 1;
     gg.append('rect')
       .attr('x', x-anchoT/2).attr('y', yTarjeta)
       .attr('width', anchoT).attr('height', altoTarjeta).attr('rx',6)
-      .attr('fill', 'var(--bg-0)').attr('stroke', colorNivel).attr('stroke-width',1.5)
+      .attr('fill', relleno).attr('fill-opacity', opacidadRelleno).attr('stroke', colorNivel).attr('stroke-width',1.5)
       .attr('filter','drop-shadow(0 2px 4px rgba(35,35,35,.12))');
     gg.append('rect')
       .attr('x', x-anchoT/2).attr('y', yTarjeta).attr('width',4).attr('height',altoTarjeta)
       .attr('fill', colorNivel);
-    if(!d.esInformativo && d.tema.estado==='activo'){
-      gg.append('circle').attr('cx', x+anchoT/2-8).attr('cy', yTarjeta+8).attr('r',3)
-        .attr('fill','var(--riesgo-alto)').attr('stroke','#fff').attr('stroke-width',1)
-        .append('title').text('Sigue activo — sin cierre confirmado');
-    }
     gg.append('text')
       .attr('x', x).attr('y', yTarjeta+14)
       .attr('text-anchor','middle').attr('font-size',fuenteNombre).attr('font-weight','700').attr('fill','var(--ink-1)')
