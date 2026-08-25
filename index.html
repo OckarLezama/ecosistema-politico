@@ -22,6 +22,7 @@
 <nav class="module-nav" id="module-nav">
   <button class="active" data-module="actores">Red de Actores</button>
   <button data-module="agenda">Agenda &amp; Coyuntura</button>
+  <button data-module="timeline">Timeline</button>
 </nav>
 
 <main class="app-main">
@@ -93,6 +94,16 @@
       </div>
     </div>
   </section>
+
+  <section class="module-panel" id="panel-timeline">
+    <div class="module-head">
+      <h2>Timeline</h2>
+      <p>Todo el sexenio en una sola línea — la franja marca el nivel de tensión por mes.</p>
+    </div>
+    <div class="graph-card">
+      <div id="timeline-scroll"><svg id="timeline-svg"></svg></div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -107,11 +118,13 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
   // (antes se medía 0px porque el panel estaba oculto, causando el corte inicial)
   if(btn.dataset.module==='agenda' && typeof renderAgendaGrid==='function') renderAgendaGrid();
   if(btn.dataset.module==='actores' && typeof renderGrafo==='function' && (seleccion.nucleo||seleccion.cruce1||seleccion.cruce2)) renderGrafo();
+  if(btn.dataset.module==='timeline' && typeof renderTimeline==='function') renderTimeline();
 });
 </script>
 <script src="js/data-loader.js?v=1"></script>
 <script src="js/actores.js?v=1"></script>
 <script src="js/feed.js?v=1"></script>
 <script src="js/agenda.js?v=1"></script>
+<script src="js/timeline.js?v=1"></script>
 </body>
 </html>
