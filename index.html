@@ -21,6 +21,7 @@
 
 <nav class="module-nav" id="module-nav">
   <button class="active" data-module="actores">Red de Actores</button>
+  <button data-module="feed">Feed</button>
 </nav>
 
 <main class="app-main">
@@ -63,9 +64,28 @@
       </div>
     </div>
   </section>
+
+  <section class="module-panel" id="panel-feed">
+    <div class="module-head">
+      <h2>Feed</h2>
+      <p>Todo lo que ha pasado, en el orden real en que pasó — sin filtrar por tema.</p>
+    </div>
+    <div id="feed-lista" class="feed-lista"></div>
+  </section>
 </main>
 
+<script>
+document.getElementById('module-nav').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-module]');
+  if(!btn) return;
+  document.querySelectorAll('.module-nav button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.module-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+btn.dataset.module).classList.add('active');
+});
+</script>
 <script src="js/data-loader.js?v=1"></script>
 <script src="js/actores.js?v=1"></script>
+<script src="js/feed.js?v=1"></script>
 </body>
 </html>
