@@ -136,7 +136,7 @@ function renderGrafo(){
 
   const node = container.selectAll('g.node').data(nodes).join('g')
     .attr('class','node').style('cursor','pointer')
-    .on('click', (ev,d)=> mostrarFicha(d.id))
+    .on('click', (ev,d)=> mostrarFicha(d.id, d, nodes))
     .call(d3.drag()
       .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
       .on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
@@ -198,11 +198,36 @@ function renderGrafo(){
     });
 }
 
-function mostrarFicha(id){
+function calcularFortalezaGrupo(nucleoActor, satelites){
+  if(!satelites.length) return null;
+  const influenciaNucleo = Number(nucleoActor.nivel_influencia)||5;
+  const influenciaProm = satelites.reduce((s,n)=>s+(Number(n.nivel_influencia)||5),0)/satelites.length;
+  const conRiesgoAlto = satelites.filter(n=>n.nivel_riesgo==='alto');
+  const pctRiesgoAlto = conRiesgoAlto.length/satelites.length;
+  const score = (influenciaNucleo/10*0.5) + (influenciaProm/10*0.3) + ((1-pctRiesgoAlto)*0.2);
+  let nivel;
+  if(score>=0.7) nivel='alta'; else if(score>=0.5) nivel='media'; else nivel='baja';
+  return { nivel, influenciaNucleo, influenciaProm: influenciaProm.toFixed(1), pctRiesgoAlto: Math.round(pctRiesgoAlto*100) };
+}
+
+function mostrarFicha(id, nodoClicado, nodesEnGrafo){
   const actor = getActor(id);
   if(!actor) return;
   const panel = document.getElementById('detail-panel');
   const color = colorRiesgo(actor.nivel_riesgo);
+
+  let fortalezaHTML = '';
+  if(nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
+    const satelites = nodesEnGrafo.filter(n=>n.coreId===nodoClicado.coreId && n.id!==nodoClicado.id);
+    const f = calcularFortalezaGrupo(actor, satelites);
+    if(f){
+      const colorNivel = {alta:'var(--riesgo-bajo)', media:'var(--riesgo-medio)', baja:'var(--riesgo-alto)'}[f.nivel];
+      fortalezaHTML = `
+        <div class="detail-row"><span class="k">Fortaleza del grupo</span><span class="v" style="color:${colorNivel};font-weight:700;">${f.nivel.toUpperCase()}</span></div>
+        <div style="font-size:10.5px;color:var(--ink-3);padding:2px 0 4px;">Influencia del núcleo ${f.influenciaNucleo}/10 · red ${f.influenciaProm}/10 · ${f.pctRiesgoAlto}% riesgo alto</div>`;
+    }
+  }
+
   panel.innerHTML = `
     <div class="detail-avatar" style="background:${color}">${actor.iniciales||'?'}</div>
     <div class="detail-name">${actor.nombre}</div>
@@ -210,6 +235,7 @@ function mostrarFicha(id){
     <div class="detail-row"><span class="k">Riesgo</span><span class="v"><span class="riesgo-badge" style="background:${color}22;color:${color}">${(actor.nivel_riesgo||'').toUpperCase()}</span></span></div>
     <div class="detail-row"><span class="k">Influencia</span><span class="v">${actor.nivel_influencia}/10</span></div>
     <div class="detail-row"><span class="k">Grupo</span><span class="v">${actor.grupo}</span></div>
+    ${fortalezaHTML}
   `;
 }
 
