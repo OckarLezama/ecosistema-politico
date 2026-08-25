@@ -27,6 +27,29 @@ function mesesSexenioTL(){
 
 function nivelImpactoTL(intensidad){ if(intensidad>=9) return 'alto'; if(intensidad>=7) return 'medio'; return 'bajo'; }
 
+// temas más persistentes (más días activos desde su primera mención) — para el panel de esquina
+function temasPersistentesTL(){
+  const hoy = new Date();
+  return ECOSISTEMA.temas.map(t=>{
+    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).map(e=>e.fecha).sort();
+    if(!evs.length) return null;
+    const dias = Math.round((hoy-new Date(evs[0]))/86400000);
+    return { tema:t, dias, veces:evs.length };
+  }).filter(Boolean).sort((a,b)=>b.dias-a.dias).slice(0,3);
+}
+
+function renderKpisTL(){
+  const cont = document.getElementById('timeline-kpis');
+  if(!cont) return;
+  const nivel1 = ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1);
+  const conteo = {alto:0,medio:0,bajo:0};
+  nivel1.forEach(t=>{ const p = puntoPrincipalTL(t.id); if(p) conteo[nivelImpactoTL(p.intensidad)]++; });
+  const COLOR = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
+  cont.innerHTML = ['alto','medio','bajo'].map(niv=>
+    `<span><span class="legend-dot" style="background:${COLOR[niv]}"></span>${niv[0].toUpperCase()+niv.slice(1)} repercusión (${conteo[niv]})</span>`
+  ).join('') + `<span style="border-left:1px solid var(--line);padding-left:10px;color:var(--ink-3);">Nivel 2/3 en gris</span>`;
+}
+
 function puntoPrincipalTL(temaId){
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
   if(!evs.length) return null;
@@ -53,11 +76,13 @@ function empaquetarZigzagTL(puntos, minEspacio){
 
 function renderTimeline(){
   const svgEl = document.getElementById('timeline-svg');
+  const wrapEl = document.getElementById('timeline-scroll');
   if(!svgEl) return;
   tlSvg = d3.select(svgEl);
   tlSvg.selectAll('*').remove();
 
-  tlWidth = 1100; tlHeight = 540; const padX = 30;
+  tlWidth = (wrapEl && wrapEl.clientWidth) ? wrapEl.clientWidth-28 : 1100;
+  tlHeight = 470; const padX = 30;
   tlYLinea = tlHeight/2 + 10;
   tlSvg.attr('viewBox',[0,0,tlWidth,tlHeight]);
 
@@ -80,11 +105,25 @@ function renderTimeline(){
   }).filter(Boolean);
   tlPuntos = empaquetarZigzagTL(puntosBase, 210);
 
+  renderKpisTL();
+
   tlSvg.call(d3.zoom().scaleExtent([1,4]).on('zoom', ev=>{
     dibujarTL(ev.transform.rescaleX(tlXScaleBase));
   }));
 
   dibujarTL(tlXScaleBase);
+
+  // panel de temas más persistentes — FUERA del grupo con zoom (para que no se borre en cada redibujo), esquina superior izquierda, sin estorbar las tarjetas
+  const persistentes = temasPersistentesTL();
+  const gPanel = tlSvg.append('g').attr('class','tl-panel-persistentes');
+  gPanel.append('rect').attr('x',36).attr('y',10).attr('width',190).attr('height',14+persistentes.length*15)
+    .attr('fill','var(--bg-2)').attr('fill-opacity',0.95).attr('stroke','var(--line-strong)').attr('rx',6);
+  gPanel.append('text').attr('x',44).attr('y',22).attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('MÁS PERSISTENTES');
+  persistentes.forEach((p,i)=>{
+    gPanel.append('text').attr('x',44).attr('y',36+i*15).attr('font-size','9px').attr('fill','var(--ink-1)').style('cursor','pointer')
+      .on('click', ()=> abrirFichaTema(p.tema.id))
+      .text(`${p.dias}d — ${p.tema.nombre.length>22?p.tema.nombre.slice(0,20)+'…':p.tema.nombre}`);
+  });
 }
 
 function dibujarTL(xScaleActual){
@@ -106,25 +145,26 @@ function dibujarTL(xScaleActual){
   });
 
   const COLOR_RIESGO = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
+  const COLOR_RIESGO_2 = {alto:'var(--rojo)', medio:'var(--arena)', bajo:'var(--verde)'}; // paleta distinta para Nivel 2/3, no compite visualmente con Nivel 1
 
   const g = tlContainer.selectAll('g.tl-punto').data(tlPuntos).join('g')
     .attr('class','tl-punto').style('cursor','pointer')
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id))
     .on('mouseenter', function(ev,d){
       const actores = actoresDeTemaTL(d.tema);
-      mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>${d.fecha} · Intensidad ${d.intensidad}/10${actores.length?'<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;">'+actores.join('<br>'):''}`, ev);
+      mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.fecha} · Repercusión ${d.intensidad}/10</span>${actores.length?'<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.4;">'+actores.join('<br>')+'</span>':''}`, ev);
     })
     .on('mousemove', function(ev,d){
       const actores = actoresDeTemaTL(d.tema);
-      mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>${d.fecha} · Intensidad ${d.intensidad}/10${actores.length?'<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;">'+actores.join('<br>'):''}`, ev);
+      mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.fecha} · Repercusión ${d.intensidad}/10</span>${actores.length?'<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.4;">'+actores.join('<br>')+'</span>':''}`, ev);
     })
     .on('mouseleave', ocultarTooltipAgenda);
 
   g.each(function(d){
     const esNivel1 = Number(d.tema.nivel_relevancia)===1;
     const x = xScaleActual(new Date(d.fecha));
-    const color = esNivel1 ? COLOR_RIESGO[nivelImpactoTL(d.intensidad)] : 'var(--gris-2)';
-    const anchoTarjeta = esNivel1 ? 150 : 110, altoTarjeta = esNivel1 ? 34 : 26;
+    const color = esNivel1 ? COLOR_RIESGO[nivelImpactoTL(d.intensidad)] : COLOR_RIESGO_2[nivelImpactoTL(d.intensidad)];
+    const anchoTarjeta = esNivel1 ? 150 : 128, altoTarjeta = esNivel1 ? 34 : 26;
     const altoBase = esNivel1 ? 34 : 24, altoPorTier = esNivel1 ? 30 : 22;
     const largo = altoBase + d.tier*altoPorTier;
     const yFin = d.lado==='up' ? tlYLinea-largo-14 : tlYLinea+largo+14;
@@ -142,7 +182,7 @@ function dibujarTL(xScaleActual){
     gg.append('rect').attr('x',x-anchoTarjeta/2).attr('y',yTarjeta).attr('width',4).attr('height',altoTarjeta).attr('fill',color);
     gg.append('text').attr('x',x).attr('y',yTarjeta+(esNivel1?14:12)).attr('text-anchor','middle')
       .attr('font-size', esNivel1?'9.5px':'8px').attr('font-weight',esNivel1?'700':'500').attr('fill', esNivel1?'var(--ink-1)':'var(--ink-3)')
-      .text(d.tema.nombre.length>(esNivel1?24:18) ? d.tema.nombre.slice(0,(esNivel1?22:16))+'…' : d.tema.nombre);
+      .text(d.tema.nombre.length>(esNivel1?24:22) ? d.tema.nombre.slice(0,(esNivel1?22:20))+'…' : d.tema.nombre);
     if(esNivel1){
       gg.append('text').attr('x',x).attr('y',yTarjeta+27).attr('text-anchor','middle').attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(d.fecha);
     }

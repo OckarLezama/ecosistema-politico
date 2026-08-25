@@ -11,12 +11,8 @@ function initFeed(){
 }
 
 function renderFeed(){
-  const cont = document.getElementById('feed-lista');
-  if(!cont) return;
-
   const eventos = ECOSISTEMA.eventos.slice().sort((a,b)=> b.fecha.localeCompare(a.fecha));
-
-  cont.innerHTML = eventos.map(e=>{
+  const html = eventos.map(e=>{
     const tema = getTema(e.tema_id);
     const color = tema ? colorCategoria(tema.categoria) : 'var(--gris-2)';
     return `
@@ -27,21 +23,29 @@ function renderFeed(){
         <a href="${e.fuente_url}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
       </div>`;
   }).join('');
+  // alimenta CUALQUIER contenedor de feed presente en la página (Agenda y Timeline comparten el mismo dato)
+  ['feed-lista','feed-lista-tl'].forEach(id=>{
+    const cont = document.getElementById(id);
+    if(cont) cont.innerHTML = html;
+  });
 }
 
 document.addEventListener('ecosistema:datos-listos', initFeed);
 
 // desplazamiento lento y continuo, con pausa al pasar el cursor (para poder leer y dar clic)
 function iniciarAutoScrollFeed(){
-  const cont = document.getElementById('feed-lista');
-  if(!cont) return;
-  let pausado = false;
-  cont.addEventListener('mouseenter', ()=> pausado = true);
-  cont.addEventListener('mouseleave', ()=> pausado = false);
-  setInterval(()=>{
-    if(pausado) return;
-    cont.scrollTop += 0.5;
-    if(cont.scrollTop >= cont.scrollHeight - cont.clientHeight) cont.scrollTop = 0;
-  }, 40);
+  ['feed-lista','feed-lista-tl'].forEach(id=>{
+    const cont = document.getElementById(id);
+    if(!cont || cont.dataset.autoscroll) return;
+    cont.dataset.autoscroll = '1';
+    let pausado = false;
+    cont.addEventListener('mouseenter', ()=> pausado = true);
+    cont.addEventListener('mouseleave', ()=> pausado = false);
+    setInterval(()=>{
+      if(pausado) return;
+      cont.scrollTop += 0.5;
+      if(cont.scrollTop >= cont.scrollHeight - cont.clientHeight) cont.scrollTop = 0;
+    }, 40);
+  });
 }
 document.addEventListener('ecosistema:datos-listos', ()=> setTimeout(iniciarAutoScrollFeed, 300));

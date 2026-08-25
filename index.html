@@ -98,10 +98,19 @@
   <section class="module-panel" id="panel-timeline">
     <div class="module-head">
       <h2>Timeline</h2>
-      <p>Todo el sexenio en una sola línea — la franja marca el nivel de tensión por mes.</p>
+      <p>Todo el sexenio en una sola línea, nivel 1/2/3 desde el inicio de la administración.</p>
     </div>
-    <div class="graph-card">
-      <div id="timeline-scroll"><svg id="timeline-svg"></svg></div>
+    <div class="agenda-layout">
+      <div class="agenda-grid graph-card">
+        <div class="graph-toolbar">
+          <div class="legend-inline" id="timeline-kpis"></div>
+        </div>
+        <div id="timeline-scroll"><svg id="timeline-svg"></svg></div>
+      </div>
+      <div class="feed-card">
+        <div class="eyebrow" style="padding:12px 14px 0;">Pulso — todo, en orden real</div>
+        <div id="feed-lista-tl" class="feed-lista"></div>
+      </div>
     </div>
   </section>
 </main>
