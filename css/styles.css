@@ -171,6 +171,11 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card); padding:0; height:600px; display:flex; flex-direction:column; overflow:hidden;
 }
+.agenda-toolbar{
+  display:flex; align-items:center; flex-wrap:wrap; gap:10px;
+  padding:12px 14px; border-bottom:1px solid var(--line); margin-bottom:0;
+}
+#agenda-contenido{flex:1; min-height:0; display:flex; flex-direction:column;}
 #matriz-riesgo-svg{width:100%; flex:1; display:block;}
 .kpi-chip2.kpi-activo{border-color:var(--teal); box-shadow:0 0 0 1px var(--teal);}
 .chip-btn.kpi-activo{border-color:var(--teal); color:var(--teal);}
@@ -208,11 +213,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .feed-card .feed-lista::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:99px;}
 .feed-card .feed-lista::-webkit-scrollbar-thumb:hover{background:var(--teal);}
 
-.agenda-toolbar{
-  display:flex; align-items:center; flex-wrap:wrap; gap:10px;
-  margin-bottom:12px; min-height:56px; /* reserva espacio fijo para que el desglose no cause salto de layout */
-}
-.agenda-toolbar .core-select, .agenda-toolbar select, .agenda-toolbar .chip-btn, .agenda-toolbar .vista-btn{
+.agenda-toolbar .core-select, .agenda-toolbar select, .agenda-toolbar .chip-btn{
   height:32px; box-sizing:border-box; font-size:11px;
 }
 .agenda-toolbar select{border-radius:var(--radius-s);}

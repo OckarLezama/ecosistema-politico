@@ -41,7 +41,7 @@ function abrirFichaTema(temaId){
   `).join('');
 
   const estadoTexto = dias===null ? 'Sin datos' :
-    dias<=14 ? `Activo · última nota hace ${dias===0?'hoy':dias+' días'}` :
+    dias<=14 ? `Última nota hace ${dias===0?'hoy':dias+' días'}` :
     `Sin hechos nuevos hace ${dias} días — pero puede seguir presente vía posicionamiento de actores` + (grupos['Reacción de oposición'].length ? ', ver abajo' : '');
 
   let modal = document.getElementById('ficha-tema-modal');
@@ -57,7 +57,7 @@ function abrirFichaTema(temaId){
       <div class="eyebrow" style="color:${color};">${tema.categoria} · desde ${primeraMencion}</div>
       <h3 style="font-family:var(--f-display);margin:4px 0 10px;">${tema.nombre}</h3>
       <div class="detail-row"><span class="k">Impacto político</span><span class="v">${tema.peso_politico}/10</span></div>
-      <div class="detail-row"><span class="k">Nivel de relevancia</span><span class="v">${tema.nivel_relevancia} de 3</span></div>
+      <div class="detail-row"><span class="k">Prioridad</span><span class="v">${{1:'Máxima (Nivel 1 — marca agenda nacional)',2:'Alta (Nivel 2)',3:'Media (Nivel 3)'}[Number(tema.nivel_relevancia)] || tema.nivel_relevancia}</span></div>
       <div class="detail-row"><span class="k">Estado</span><span class="v" style="font-size:11px;text-align:right;max-width:60%;">${estadoTexto}</span></div>
       ${tema.resumen ? `<p style="font-size:12.5px;margin-top:10px;color:var(--ink-1);line-height:1.55;">${tema.resumen}</p>` : ''}
       ${bloquesActores}
@@ -70,10 +70,9 @@ function abrirFichaTema(temaId){
   modal.classList.add('open');
 }
 
-let soloHoy = false;
 let categoriaFiltroAgenda = '';
 let impactoFiltroAgenda = '';
-let soloAgendaNacional = false;
+let soloAgendaNacional = true; // activo por defecto — distingue agenda nacional real del resto desde el primer vistazo
 
 let vistaAgenda = 'matriz';
 
@@ -87,16 +86,6 @@ function initAgenda(){
       renderAgendaGrid();
     });
     btnNivel1.dataset.conectado = '1';
-  }
-  const btnHoy = document.getElementById('btn-hoy');
-  if(btnHoy && !btnHoy.dataset.conectado){
-    btnHoy.addEventListener('click', ()=>{
-      soloHoy = !soloHoy;
-      btnHoy.classList.toggle('kpi-activo', soloHoy);
-      renderAgendaGrid();
-      if(typeof renderFeed==='function') renderFeed();
-    });
-    btnHoy.dataset.conectado = '1';
   }
   document.querySelectorAll('.vista-toggle .chip-btn').forEach(btn=>{
     if(btn.dataset.conectado) return;
@@ -115,16 +104,11 @@ function renderListaAgenda(){
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
-  if(soloHoy){
-    const hoy = new Date().toISOString().slice(0,10);
-    const idsHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
-    temasBase = temasBase.filter(t=>idsHoy.has(t.id));
-  }
   temasBase = temasBase.slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
-  const cont = document.getElementById('agenda-grid');
+  const cont = document.getElementById('agenda-contenido');
   if(!temasBase.length){
-    cont.innerHTML = `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">${soloHoy?'Sin novedades registradas hoy':'Sin temas con este filtro'}</div>`;
+    cont.innerHTML = `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">Sin temas con este filtro</div>`;
     return;
   }
   cont.innerHTML = `<div class="lista-agenda">${temasBase.map(t=>{
@@ -133,7 +117,7 @@ function renderListaAgenda(){
     const color = COLOR_IMPACTO_CACHE[nivelImpacto(t.peso_politico)];
     const primeraMencion = evs.length ? evs.map(e=>e.fecha).sort()[0] : '—';
     const dias = diasSinActividad(t.id);
-    const estadoTexto = dias===null ? 'Sin datos' : dias<=30 ? `Activo · última nota hace ${dias}d` : `Sin actividad reciente (${dias}d)`;
+    const estadoTexto = dias===null ? 'Sin datos' : dias<=30 ? `Última nota hace ${dias}d` : `Sin actividad reciente (${dias}d)`;
     return `<div class="lista-item" style="border-left-color:${color};cursor:pointer;" data-tema="${t.id}">
       <div class="lista-nombre">${t.nombre}</div>
       <div class="lista-meta">${t.categoria} · Impacto ${t.peso_politico}/10 · Riesgo ${riesgoMax}/10 · desde ${primeraMencion} · ${estadoTexto}</div>
@@ -157,7 +141,7 @@ function poblarFiltroCategoriaAgenda(){
 }
 
 function renderAgendaGrid(){
-  const cont = document.getElementById('agenda-grid');
+  const cont = document.getElementById('agenda-contenido');
   if(!cont) return;
   crearTooltipAgenda();
   renderKpisImpacto();
@@ -249,7 +233,7 @@ function dibujarMatrizRiesgo(){
   svg.selectAll('*').remove();
 
   const width = svgEl.clientWidth || 700, height = 560; // 560 ≈ misma altura que la caja del Feed (600) descontando el encabezado de KPI
-  const pad = {left:20, right:20, top:20, bottom:36}; // márgenes reducidos: ocupa casi todo el ancho del SVG
+  const pad = {left:32, right:20, top:20, bottom:36}; // 32 a la izquierda: espacio real para la etiqueta rotada del eje Y, ya no se ve apretada
   svg.attr('viewBox',[0,0,width,height]);
 
   const COLOR_IMPACTO = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
@@ -257,11 +241,6 @@ function dibujarMatrizRiesgo(){
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
-  if(soloHoy){
-    const hoy = new Date().toISOString().slice(0,10);
-    const idsHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
-    temasBase = temasBase.filter(t=>idsHoy.has(t.id));
-  }
 
   const x = d3.scaleLinear().domain([0,10]).range([pad.left, width-pad.right]);
   const y = d3.scaleLinear().domain([0,10]).range([height-pad.bottom, pad.top]);
@@ -279,7 +258,7 @@ function dibujarMatrizRiesgo(){
     svg.attr('viewBox',[0,0,width,height]);
     svg.append('text').attr('x',width/2).attr('y',height/2).attr('text-anchor','middle')
       .attr('font-family','var(--f-display)').attr('font-size','14px').attr('fill','var(--ink-3)')
-      .text(soloHoy ? 'Sin novedades registradas hoy' : 'Sin temas con este filtro');
+      .text('Sin temas con este filtro');
     return;
   } // 70: verificado con Node considerando el rectángulo de la etiqueta, no solo el círculo
 

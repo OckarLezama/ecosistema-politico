@@ -14,17 +14,7 @@ function renderFeed(){
   const cont = document.getElementById('feed-lista');
   if(!cont) return;
 
-  let eventos = ECOSISTEMA.eventos.slice();
-  if(typeof soloHoy !== 'undefined' && soloHoy){
-    const hoy = new Date().toISOString().slice(0,10);
-    eventos = eventos.filter(e=>e.fecha===hoy);
-  }
-  eventos.sort((a,b)=> b.fecha.localeCompare(a.fecha)); // más reciente primero
-
-  if(!eventos.length){
-    cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);font-family:var(--f-display);font-size:13px;">Sin novedades registradas hoy</div>`;
-    return;
-  }
+  const eventos = ECOSISTEMA.eventos.slice().sort((a,b)=> b.fecha.localeCompare(a.fecha));
 
   cont.innerHTML = eventos.map(e=>{
     const tema = getTema(e.tema_id);

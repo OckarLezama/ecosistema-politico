@@ -70,22 +70,23 @@
       <h2>Agenda &amp; Coyuntura</h2>
       <p>Los temas que marcan la agenda, con el pulso cronológico de todo lo que va saliendo, al lado.</p>
     </div>
-    <div class="agenda-toolbar">
-      <div class="core-select">
-        <label for="agenda-categoria">Categoría</label>
-        <select id="agenda-categoria"><option value="">Todas</option></select>
-      </div>
-      <div id="agenda-kpis" class="kpi-row" style="padding:0;"></div>
-      <button class="chip-btn" id="btn-agenda-nacional">Nivel 1</button>
-      <button class="chip-btn" id="btn-hoy">Hoy</button>
-      <div class="vista-toggle">
-        <button class="chip-btn active" data-vista="matriz">Matriz</button>
-        <button class="chip-btn" data-vista="lista">Lista</button>
-      </div>
-      <div id="agenda-desglose" class="eyebrow" style="visibility:hidden;width:100%;min-height:14px;"></div>
-    </div>
     <div class="agenda-layout">
-      <div id="agenda-grid" class="agenda-grid"></div>
+      <div id="agenda-grid" class="agenda-grid">
+        <div class="agenda-toolbar">
+          <div class="core-select">
+            <label for="agenda-categoria">Categoría</label>
+            <select id="agenda-categoria"><option value="">Todas</option></select>
+          </div>
+          <div id="agenda-kpis" class="kpi-row" style="padding:0;"></div>
+          <button class="chip-btn kpi-activo" id="btn-agenda-nacional">Nivel 1</button>
+          <div class="vista-toggle">
+            <button class="chip-btn active" data-vista="matriz">Matriz</button>
+            <button class="chip-btn" data-vista="lista">Lista</button>
+          </div>
+          <div id="agenda-desglose" style="visibility:hidden;width:100%;min-height:22px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+        </div>
+        <div id="agenda-contenido"></div>
+      </div>
       <div class="feed-card">
         <div class="eyebrow" style="padding:12px 14px 0;">Pulso — todo, en orden real</div>
         <div id="feed-lista" class="feed-lista"></div>
