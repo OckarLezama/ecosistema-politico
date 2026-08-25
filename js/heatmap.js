@@ -106,12 +106,12 @@ function renderResumenEjecutivo(){
   if(nivelImpactoFiltro){
     const filtrados = temasFiltrados();
     cont.innerHTML = `
-      <div class="kpi-chip2">
-        <div class="kpi-chip2-badge">${filtrados.length}</div>
-        <div class="kpi-chip2-label">en zona<br>${nivelImpactoFiltro}</div>
-      </div>
-      <div class="kpi-lista">${filtrados.map(t=>`<span class="kpi-chip" data-tema="${t.id}">${t.nombre}</span>`).join('')}</div>
-    `;
+      <div class="valoracion-riesgo-box" style="width:100%;margin:0;">
+        <div class="eyebrow">${filtrados.length} tema${filtrados.length!==1?'s':''} en zona ${nivelImpactoFiltro}</div>
+        <p style="font-size:12.5px;color:var(--ink-1);margin-top:4px;">
+          ${filtrados.map(t=>`<span class="kpi-chip" data-tema="${t.id}">${t.nombre}</span>`).join(' ')}
+        </p>
+      </div>`;
     cont.querySelectorAll('.kpi-chip').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); }));
     return;
   }
@@ -121,12 +121,11 @@ function renderResumenEjecutivo(){
     return p ? {id:t.id, nombre:t.nombre, fecha:p.fecha, intensidad:p.intensidad} : null;
   }).filter(Boolean).sort((a,b)=>b.intensidad-a.intensidad).slice(0,2);
 
-  cont.innerHTML = picos.map(p=>`
-    <div class="kpi-chip2 kpi-clickable" data-tema="${p.id}">
-      <div class="kpi-chip2-badge">${p.fecha.slice(2,7)}</div>
-      <div class="kpi-chip2-label">${p.nombre.length>22?p.nombre.slice(0,20)+'…':p.nombre}</div>
-    </div>
-  `).join('');
+  cont.innerHTML = `
+    <div class="valoracion-riesgo-box" style="width:100%;margin:0;">
+      <div class="eyebrow">Momentos de mayor tensión del sexenio</div>
+      ${picos.map(p=>`<p style="font-size:12.5px;color:var(--ink-1);margin-top:4px;cursor:pointer;" class="kpi-clickable" data-tema="${p.id}"><strong>${p.fecha.slice(0,7)}</strong> — ${p.nombre} <span style="color:var(--ink-3);">(intensidad ${p.intensidad}/10)</span></p>`).join('')}
+    </div>`;
   cont.querySelectorAll('.kpi-clickable').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); }));
 }
 
@@ -141,15 +140,13 @@ function renderRecurrencia(){
     const dias = Math.round((hoy - new Date(evs[0])) / 86400000);
     return { nombre:t.nombre, id:t.id, dias, veces: evs.length, inicio: evs[0], ultima: evs[evs.length-1] };
   }).filter(Boolean).sort((a,b)=> b.dias-a.dias).slice(0,3);
-
   if(!stats.length){ cont.innerHTML=''; return; }
-  cont.innerHTML = `<div class="eyebrow" style="width:100%;margin-bottom:4px;">Más persistentes${nivelImpactoFiltro?' en zona '+nivelImpactoFiltro:''}</div>` +
-    stats.map(s=>`
-    <div class="kpi-chip2 kpi-clickable" data-tema="${s.id}" title="Activo desde ${s.inicio} · última mención ${s.ultima}">
-      <div class="kpi-chip2-badge">${s.dias}d</div>
-      <div class="kpi-chip2-label">${s.nombre.length>22?s.nombre.slice(0,20)+'…':s.nombre}<br><span style="opacity:.6;">desde ${s.inicio}</span></div>
-    </div>
-  `).join('');
+
+  cont.innerHTML = `
+    <div class="valoracion-riesgo-box" style="width:100%;margin:0;">
+      <div class="eyebrow">Más persistentes${nivelImpactoFiltro?' en zona '+nivelImpactoFiltro:''}</div>
+      ${stats.map(s=>`<p style="font-size:12.5px;color:var(--ink-1);margin-top:4px;cursor:pointer;" class="kpi-clickable" data-tema="${s.id}"><strong>${s.dias} días</strong> en agenda — ${s.nombre} <span style="color:var(--ink-3);">(desde ${s.inicio}, ${s.veces} menciones)</span></p>`).join('')}
+    </div>`;
   cont.querySelectorAll('.kpi-clickable').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirModalTema==='function') abrirModalTema(el.dataset.tema); }));
 }
 
