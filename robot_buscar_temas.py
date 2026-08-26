@@ -14,6 +14,9 @@ Requiere: pip install feedparser --break-system-packages
 import csv
 import feedparser
 import hashlib
+import urllib.request
+import urllib.parse
+import json
 from datetime import datetime, timezone, timedelta
 
 RUTA_TEMAS = 'data/temas.csv'
@@ -50,7 +53,7 @@ def calcular_intensidad(texto_completo, tema_id, eventos_existentes, actores_alt
 # Fuentes RSS reales, verificadas manualmente antes de usarlas (no inventadas)
 FUENTES_RSS = [
     {'nombre': 'El Informador', 'url': 'https://www.informador.mx/rss/mexico.xml'},
-    # agregar más fuentes reales aquí conforme se verifiquen (Expansión, El Universal, etc.)
+    {'nombre': 'La Jornada', 'url': 'https://www.jornada.com.mx/rss/politica.xml?v=1'},
 ]
 
 # palabras clave por tema — se ajustan a mano, no se adivinan del nombre del tema solo
@@ -81,6 +84,22 @@ def cargar_candidatos_existentes():
             return {r['hash_enlace'] for r in csv.DictReader(f)}
     except FileNotFoundError:
         return set()
+
+
+def consultar_gdelt(query_texto, minutos=90):
+    """Consulta la API pública de GDELT (100k+ medios, filtrado a México) — sin llave,
+    sin costo. Devuelve artículos reales de las últimas horas que mencionan el texto dado."""
+    url = ('https://api.gdeltproject.org/api/v2/doc/doc?query='
+           + urllib.parse.quote(f'"{query_texto}" sourcecountry:mexico')
+           + f'&mode=artlist&maxrecords=15&lastminutes={minutos}&format=json')
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode('utf-8'))
+        return data.get('articles', [])
+    except Exception as e:
+        print(f'  GDELT: error consultando "{query_texto}": {e}')
+        return []
 
 
 def cargar_eventos_existentes():
@@ -267,6 +286,29 @@ def buscar_candidatos():
                         'categoria': categoria_real, 'intensidad': 5,
                         'descripcion': titulo_original, 'fuente_url': enlace,
                     })
+
+    # GDELT: consulta directa por cada tema Nivel 1, filtrado a México — no depende de
+    # palabras clave ni de que una fuente RSS específica lo haya cubierto
+    for tema in temas:
+        articulos = consultar_gdelt(tema['nombre'])
+        for art in articulos:
+            enlace = art.get('url', '')
+            if not enlace or enlace in ya_procesados_eventos:
+                continue
+            hash_enlace = hashlib.md5(enlace.encode()).hexdigest()
+            if hash_enlace in ya_vistos:
+                continue
+            titulo_original = art.get('title', '')
+            texto_completo = titulo_original.lower()
+            conteo_hoy_por_tema[tema['id']] = conteo_hoy_por_tema.get(tema['id'], 0) + 1
+            intensidad = calcular_intensidad(texto_completo, tema['id'], eventos_existentes,
+                                               actores_altos, conteo_hoy_por_tema[tema['id']])
+            eventos_nuevos.append({
+                'tema_id': tema['id'], 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                'categoria': tema.get('categoria', 'Gobernabilidad'), 'intensidad': intensidad,
+                'descripcion': titulo_original, 'fuente_url': enlace,
+            })
+            ya_procesados_eventos.add(enlace)
 
     return eventos_nuevos, candidatos_sin_tema
 
