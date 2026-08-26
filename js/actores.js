@@ -226,6 +226,30 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
   return { nivel, explicacion };
 }
 
+function temasDelActorHTML(actorId){
+  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId);
+  if(!contextos.length) return '';
+  const filas = contextos.map(c=>{
+    const tema = getTema(c.tema_id);
+    if(!tema) return null;
+    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===tema.id);
+    const expMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 0;
+    const nivelExp = expMax>=9?'alto':expMax>=7?'medio':'bajo';
+    const colorExp = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[nivelExp];
+    return {tema, rol:c.rol, expMax, nivelExp, colorExp};
+  }).filter(Boolean).sort((a,b)=>b.expMax-a.expMax);
+
+  return `
+    <div class="eyebrow" style="margin-top:10px;">Temas donde aparece (${filas.length})</div>
+    <div style="display:flex;flex-direction:column;gap:5px;margin-top:4px;">
+      ${filas.map(f=>`
+        <div class="tema-actor-item" style="border-left-color:${f.colorExp};" data-tema="${f.tema.id}">
+          <span style="font-size:11.5px;font-weight:600;">${f.tema.nombre}</span>
+          <span style="font-size:9.5px;color:var(--ink-3);"> · ${f.rol} · exposición ${f.nivelExp} (${f.expMax}/10)</span>
+        </div>`).join('')}
+    </div>`;
+}
+
 function dibujarRadarActor(actor){
   const ejes = [
     {clave:'op_politica', label:'Operación Política'},
@@ -308,13 +332,20 @@ function abrirFichaActorCompleta(id){
       ${actor.op_politica ? `<div class="eyebrow" style="margin-top:10px;">Valoración de habilidades (piloto — no todos los actores la tienen aún)</div>${dibujarRadarActor(actor)}` : ''}
       ${actor.foda_fortalezas ? `
       <div class="eyebrow" style="margin-top:10px;">FODA</div>
-      <p style="font-size:11px;margin-top:2px;"><strong style="color:var(--riesgo-bajo);">Fortalezas:</strong> ${actor.foda_fortalezas}</p>
-      <p style="font-size:11px;margin-top:4px;"><strong style="color:var(--teal);">Oportunidades:</strong> ${actor.foda_oportunidades}</p>
-      <p style="font-size:11px;margin-top:4px;"><strong style="color:var(--riesgo-medio);">Debilidades:</strong> ${actor.foda_debilidades}</p>
-      <p style="font-size:11px;margin-top:4px;"><strong style="color:var(--riesgo-alto);">Amenazas:</strong> ${actor.foda_amenazas}</p>` : ''}
+      <div class="foda-grid">
+        <div class="foda-cuad" style="border-color:var(--riesgo-bajo);"><div class="foda-titulo" style="color:var(--riesgo-bajo);">Fortalezas</div><p>${actor.foda_fortalezas}</p></div>
+        <div class="foda-cuad" style="border-color:var(--teal);"><div class="foda-titulo" style="color:var(--teal);">Oportunidades</div><p>${actor.foda_oportunidades}</p></div>
+        <div class="foda-cuad" style="border-color:var(--riesgo-medio);"><div class="foda-titulo" style="color:var(--riesgo-medio);">Debilidades</div><p>${actor.foda_debilidades}</p></div>
+        <div class="foda-cuad" style="border-color:var(--riesgo-alto);"><div class="foda-titulo" style="color:var(--riesgo-alto);">Amenazas</div><p>${actor.foda_amenazas}</p></div>
+      </div>` : ''}
+      ${temasDelActorHTML(id)}
       ${actor.fuente_url ? `<div class="eyebrow" style="margin-top:10px;">Fuente</div><p style="font-size:11px;"><a href="${actor.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">${actor.fuente_nombre||'Ver fuente'} ↗</a> · ${actor.fecha_corte||''}</p>` : ''}
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.querySelectorAll('.tema-actor-item').forEach(el=>{
+    el.style.cursor='pointer';
+    el.addEventListener('click', ()=>{ if(typeof abrirFichaTema==='function') abrirFichaTema(el.dataset.tema); });
+  });
   modal.classList.add('open');
 }
 

@@ -229,6 +229,11 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   position:absolute; top:14px; right:14px; background:var(--bg-2); border:1px solid var(--line-strong);
   color:var(--ink-2); border-radius:50%; width:26px; height:26px; cursor:pointer;
 }
+.foda-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;}
+.foda-cuad{border:1px solid; border-radius:var(--radius-s); padding:8px; background:var(--bg-2);}
+.foda-titulo{font-family:var(--f-mono); font-size:9px; font-weight:700; text-transform:uppercase; margin-bottom:4px;}
+.foda-cuad p{font-size:10.5px; color:var(--ink-1); margin:0; line-height:1.4;}
+.tema-actor-item{border-left:3px solid; background:var(--bg-2); border-radius:0 var(--radius-s) var(--radius-s) 0; padding:6px 10px;}
 .kpi-row{display:flex; gap:8px; flex-wrap:wrap;}
 
 .heatmap-tooltip{
