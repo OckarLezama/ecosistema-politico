@@ -161,6 +161,10 @@ function renderGrafo(){
     .attr('cx', d=>-radioNodo(d)*0.7).attr('cy', d=>-radioNodo(d)*0.7)
     .attr('fill', d=>colorRiesgo(d.nivel_riesgo)).attr('stroke','#fff').attr('stroke-width',1.3);
 
+  // insignia de figura Nivel A apareciendo dentro de la red de otro núcleo (ej. Sheinbaum satélite en la red de AMLO)
+  node.filter(d => !d.esCentro && d.nucleo === 'A')
+    .append('text').attr('x',0).attr('y', d=>-radioNodo(d)-6).attr('text-anchor','middle').attr('font-size','11px').text('★');
+
   node.append('text').attr('class','node-label')
     .attr('dy', d=>radioNodo(d)+12).attr('text-anchor','middle')
     .attr('font-size', d=>d.esCentro?'11px':'9.5px').attr('font-weight', d=>d.esCentro?'700':'400')
