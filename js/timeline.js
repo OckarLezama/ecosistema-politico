@@ -13,7 +13,21 @@
 const INICIO_SEXENIO_TL = '2024-10';
 let tlXScaleBase, tlPuntos, tlSvg, tlContainer, tlYLinea, tlWidth, tlHeight;
 
-function initTimeline(){ tlSvg = null; }
+let anioFiltroTL = '';
+function initTimeline(){ tlSvg = null; poblarFiltroAnioTL(); }
+
+function poblarFiltroAnioTL(){
+  const sel = document.getElementById('timeline-anio');
+  if(!sel || sel.dataset.poblado) return;
+  const anios = [...new Set(ECOSISTEMA.eventos.map(e=>e.fecha.slice(0,4)))].sort();
+  anios.forEach(a=>{
+    const opt = document.createElement('option');
+    opt.value = a; opt.textContent = a;
+    sel.appendChild(opt);
+  });
+  sel.dataset.poblado = '1';
+  sel.addEventListener('change', (e)=>{ anioFiltroTL = e.target.value; renderTimeline(); });
+}
 
 function mesesSexenioTL(){
   const hoy = new Date();
@@ -29,13 +43,36 @@ function nivelImpactoTL(intensidad){ if(intensidad>=9) return 'alto'; if(intensi
 
 // temas más persistentes (más días activos desde su primera mención) — para el panel de esquina
 function temasPersistentesTL(){
-  const hoy = new Date();
+  // score combinado (menciones × impacto promedio), no solo días — un tema mencionado muchas
+  // veces con eventos de alto impacto pesa más que uno solo "viejo" con menciones menores
   return ECOSISTEMA.temas.map(t=>{
-    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).map(e=>e.fecha).sort();
+    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     if(!evs.length) return null;
-    const dias = Math.round((hoy-new Date(evs[0]))/86400000);
-    return { tema:t, dias, veces:evs.length };
-  }).filter(Boolean).sort((a,b)=>b.dias-a.dias).slice(0,3);
+    const impactoProm = evs.reduce((s,e)=>s+e.intensidad,0)/evs.length;
+    const score = evs.length * impactoProm;
+    return { tema:t, veces:evs.length, impactoProm: impactoProm.toFixed(1), score };
+  }).filter(Boolean).sort((a,b)=>b.score-a.score).slice(0,3);
+}
+
+function mesConMasAgendaTL(){
+  const meses = mesesSexenioTL();
+  const idsNivel1 = new Set(ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1).map(t=>t.id));
+  const conteoPorMes = {};
+  meses.forEach(m=>conteoPorMes[m]=0);
+  ECOSISTEMA.eventos.forEach(e=>{
+    if(idsNivel1.has(e.tema_id)){
+      const mes = e.fecha.slice(0,7);
+      if(conteoPorMes[mes]!==undefined) conteoPorMes[mes]++;
+    }
+  });
+  const [mesTop, conteoTop] = Object.entries(conteoPorMes).sort((a,b)=>b[1]-a[1])[0];
+  return { mes: mesTop, conteo: conteoTop };
+}
+
+function anioConMasTemasTL(){
+  const porAnio = {};
+  ECOSISTEMA.eventos.forEach(e=>{ const a=e.fecha.slice(0,4); porAnio[a]=(porAnio[a]||0)+1; });
+  return Object.entries(porAnio).sort((a,b)=>b[1]-a[1]);
 }
 
 function renderKpisTL(){
@@ -48,6 +85,13 @@ function renderKpisTL(){
   cont.innerHTML = ['alto','medio','bajo'].map(niv=>
     `<span><span class="legend-dot" style="background:${COLOR[niv]}"></span>${niv[0].toUpperCase()+niv.slice(1)} repercusión (${conteo[niv]})</span>`
   ).join('') + `<span style="border-left:1px solid var(--line);padding-left:10px;color:var(--ink-3);">Nivel 2/3 en gris</span>`;
+
+  // valoración por año: cuál concentra más eventos — visible junto a los KPI, sin panel aparte
+  const anios = anioConMasTemasTL();
+  if(anios.length){
+    const [anioTop, conteoTop] = anios[0];
+    cont.innerHTML += `<span style="border-left:1px solid var(--line);padding-left:10px;color:var(--ink-2);">Año con más actividad: <strong style="color:var(--ink-1);">${anioTop}</strong> (${conteoTop} eventos)</span>`;
+  }
 }
 
 function puntoPrincipalTL(temaId){
@@ -118,6 +162,7 @@ function renderTimeline(){
   const puntosBase = ECOSISTEMA.temas.map(t=>{
     const p = puntoPrincipalTL(t.id);
     if(!p) return null;
+    if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return null;
     return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: tlXScaleBase(new Date(p.fecha)) };
   }).filter(Boolean);
   tlPuntos = empaquetarZigzagTL(puntosBase, 210);
@@ -130,17 +175,22 @@ function renderTimeline(){
 
   dibujarTL(tlXScaleBase);
 
-  // panel de temas más persistentes — FUERA del grupo con zoom (para que no se borre en cada redibujo), esquina superior izquierda, sin estorbar las tarjetas
+  // panel de temas más persistentes + mes con más agenda — FUERA del grupo con zoom
   const persistentes = temasPersistentesTL();
+  const mesTop = mesConMasAgendaTL();
+  const altoPersistentes = 14+persistentes.length*15;
   const gPanel = tlSvg.append('g').attr('class','tl-panel-persistentes');
-  gPanel.append('rect').attr('x',36).attr('y',10).attr('width',225).attr('height',14+persistentes.length*15)
+  gPanel.append('rect').attr('x',36).attr('y',10).attr('width',225).attr('height',altoPersistentes+22)
     .attr('fill','var(--bg-2)').attr('fill-opacity',0.95).attr('stroke','var(--line-strong)').attr('rx',6);
-  gPanel.append('text').attr('x',44).attr('y',22).attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('MÁS PERSISTENTES');
+  gPanel.append('text').attr('x',44).attr('y',22).attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('MÁS PERSISTENTES (menciones × impacto)');
   persistentes.forEach((p,i)=>{
     gPanel.append('text').attr('x',44).attr('y',36+i*15).attr('font-size','9px').attr('fill','var(--ink-1)').style('cursor','pointer')
       .on('click', ()=> abrirFichaTema(p.tema.id))
-      .text(`${p.dias}d — ${p.tema.nombre.length>22?p.tema.nombre.slice(0,20)+'…':p.tema.nombre}`);
+      .text(`${p.score.toFixed(0)} pts — ${p.tema.nombre.length>20?p.tema.nombre.slice(0,18)+'…':p.tema.nombre}`);
   });
+  gPanel.append('line').attr('x1',44).attr('x2',251).attr('y1',24+altoPersistentes).attr('y2',24+altoPersistentes).attr('stroke','var(--line)');
+  gPanel.append('text').attr('x',44).attr('y',24+altoPersistentes+13).attr('font-size','9px').attr('fill','var(--ink-1)')
+    .text(`Mes con más agenda nacional: ${mesTop.mes} (${mesTop.conteo} eventos)`);
 }
 
 function dibujarTL(xScaleActual){
