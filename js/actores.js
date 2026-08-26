@@ -226,6 +226,42 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
   return { nivel, explicacion };
 }
 
+function dibujarRadarActor(actor){
+  const ejes = [
+    {clave:'op_politica', label:'Operación Política'},
+    {clave:'cap_conciliadora', label:'Cap. Conciliadora'},
+    {clave:'com_conectiva', label:'Comunicación'},
+    {clave:'legitimidad', label:'Legitimidad'},
+    {clave:'resiliencia', label:'Resiliencia'},
+  ];
+  const valores = ejes.map(e=> Number(actor[e.clave])||0);
+  valores.push(Number(actor.nivel_influencia)||0);
+  const labels = [...ejes.map(e=>e.label), 'Influencia'];
+
+  const cx=100, cy=100, rMax=75;
+  function punto(i,v){ const a=(Math.PI*2/6)*i - Math.PI/2; const r=(v/10)*rMax; return [cx+r*Math.cos(a), cy+r*Math.sin(a)]; }
+  const puntosPoligono = valores.map((v,i)=>punto(i,v).join(',')).join(' ');
+
+  let anillos = '';
+  [0.33,0.66,1].forEach(f=>{
+    const pts = labels.map((l,i)=>punto(i,10*f).join(',')).join(' ');
+    anillos += `<polygon points="${pts}" fill="none" stroke="var(--line-strong)" stroke-width="0.6"/>`;
+  });
+  let ejesLineas = '', etiquetas = '';
+  labels.forEach((l,i)=>{
+    const [x,y] = punto(i,10);
+    ejesLineas += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--line-strong)" stroke-width="0.6"/>`;
+    const [lx,ly] = punto(i,11.8);
+    etiquetas += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="7.5" fill="var(--ink-3)">${l}</text>`;
+  });
+
+  return `<svg viewBox="0 0 200 210" style="width:100%;max-width:260px;display:block;margin:0 auto;">
+    ${anillos}${ejesLineas}
+    <polygon points="${puntosPoligono}" fill="var(--teal)" fill-opacity="0.28" stroke="var(--teal)" stroke-width="1.5"/>
+    ${etiquetas}
+  </svg>`;
+}
+
 function abrirFichaActorCompleta(id){
   const actor = getActor(id);
   if(!actor) return;
@@ -269,6 +305,13 @@ function abrirFichaActorCompleta(id){
       <p style="font-size:12px;">${actor.grupo || '—'}</p>
       <div class="eyebrow" style="margin-top:10px;">Red de cercanía real (documentada)</div>
       ${redHTML}
+      ${actor.op_politica ? `<div class="eyebrow" style="margin-top:10px;">Valoración de habilidades (piloto — no todos los actores la tienen aún)</div>${dibujarRadarActor(actor)}` : ''}
+      ${actor.foda_fortalezas ? `
+      <div class="eyebrow" style="margin-top:10px;">FODA</div>
+      <p style="font-size:11px;margin-top:2px;"><strong style="color:var(--riesgo-bajo);">Fortalezas:</strong> ${actor.foda_fortalezas}</p>
+      <p style="font-size:11px;margin-top:4px;"><strong style="color:var(--teal);">Oportunidades:</strong> ${actor.foda_oportunidades}</p>
+      <p style="font-size:11px;margin-top:4px;"><strong style="color:var(--riesgo-medio);">Debilidades:</strong> ${actor.foda_debilidades}</p>
+      <p style="font-size:11px;margin-top:4px;"><strong style="color:var(--riesgo-alto);">Amenazas:</strong> ${actor.foda_amenazas}</p>` : ''}
       ${actor.fuente_url ? `<div class="eyebrow" style="margin-top:10px;">Fuente</div><p style="font-size:11px;"><a href="${actor.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">${actor.fuente_nombre||'Ver fuente'} ↗</a> · ${actor.fecha_corte||''}</p>` : ''}
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
