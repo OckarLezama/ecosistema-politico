@@ -36,17 +36,30 @@
     <div class="actores-layout">
       <div class="graph-card">
         <div class="graph-toolbar">
-          <div class="core-select">
-            <label for="nucleo-select">Actor</label>
-            <select id="nucleo-select"><option value="">— sin selección —</option></select>
+          <div class="vista-toggle" id="modo-red-toggle">
+            <button class="chip-btn active" data-modo="grupo">Por grupo</button>
+            <button class="chip-btn" data-modo="agenda">Por agenda</button>
+            <button class="chip-btn" data-modo="actor">Por actor</button>
           </div>
-          <div class="core-select">
-            <label for="cruce1-select">Cruce 1</label>
-            <select id="cruce1-select"><option value="">— sin selección —</option></select>
+          <div id="controles-grupo" style="display:flex; gap:10px; flex-wrap:wrap;">
+            <div class="core-select">
+              <label for="nucleo-select">Actor</label>
+              <select id="nucleo-select"><option value="">— sin selección —</option></select>
+            </div>
+            <div class="core-select">
+              <label for="cruce1-select">Cruce 1</label>
+              <select id="cruce1-select"><option value="">— sin selección —</option></select>
+            </div>
+            <div class="core-select">
+              <label for="cruce2-select">Cruce 2</label>
+              <select id="cruce2-select"><option value="">— sin selección —</option></select>
+            </div>
           </div>
-          <div class="core-select">
-            <label for="cruce2-select">Cruce 2</label>
-            <select id="cruce2-select"><option value="">— sin selección —</option></select>
+          <div id="controles-actor" style="display:none;">
+            <div class="core-select">
+              <label for="actor-buscar-input">Actor</label>
+              <input type="text" id="actor-buscar-input" placeholder="Escribe un nombre..." style="background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1); border-radius:var(--radius-s); padding:6px 10px; font-size:12px; width:200px;">
+            </div>
           </div>
           <button class="chip-btn" id="btn-reset-grafo">Restablecer</button>
           <div class="legend-inline">

@@ -6,6 +6,8 @@
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
 let simulacion = null;
+let modoRed = 'grupo';
+let actorUnicoSeleccionado = null;
 const RADIOS_ANILLO = {1:85, 2:145, 3:200};
 const COLOR_POR_SLOT = { nucleo:'var(--familia-nucleo)', cruce1:'var(--familia-cruce1)', cruce2:'var(--familia-cruce2)' };
 
@@ -23,14 +25,42 @@ function initRedActores(){
 
   document.getElementById('btn-reset-grafo').addEventListener('click', ()=>{
     seleccion = { nucleo:null, cruce1:null, cruce2:null };
+    actorUnicoSeleccionado = null;
+    document.getElementById('actor-buscar-input').value = '';
     poblarSelectores();
     document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
+    renderGrafo();
+  });
+
+  document.querySelectorAll('#modo-red-toggle .chip-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      modoRed = btn.dataset.modo;
+      document.querySelectorAll('#modo-red-toggle .chip-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      seleccion = { nucleo:null, cruce1:null, cruce2:null };
+      actorUnicoSeleccionado = null;
+      document.getElementById('controles-grupo').style.display = modoRed==='actor' ? 'none' : 'flex';
+      document.getElementById('controles-actor').style.display = modoRed==='actor' ? 'block' : 'none';
+      document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
+      poblarSelectores();
+      renderGrafo();
+    });
+  });
+
+  document.getElementById('actor-buscar-input').addEventListener('input', (e)=>{
+    const q = e.target.value.trim().toLowerCase();
+    if(q.length<2){ actorUnicoSeleccionado=null; renderGrafo(); return; }
+    const match = ECOSISTEMA.actores.find(a=>a.nombre.toLowerCase().includes(q));
+    actorUnicoSeleccionado = match ? match.id : null;
     renderGrafo();
   });
 }
 
 function candidatosPara(slot){
   const yaElegidos = Object.entries(seleccion).filter(([k,v])=>k!==slot && v).map(([,v])=>v);
+  if(modoRed==='agenda'){
+    return ECOSISTEMA.temas.filter(t=>!yaElegidos.includes(t.id)).sort((a,b)=>b.peso_politico-a.peso_politico);
+  }
   return ECOSISTEMA.actores
     .filter(a=>['A','B','C'].includes(a.nucleo))
     .filter(a=>!yaElegidos.includes(a.id))
@@ -38,14 +68,15 @@ function candidatosPara(slot){
 }
 
 function poblarSelectores(){
+  if(modoRed==='actor') return;
   ['nucleo','cruce1','cruce2'].forEach(slot=>{
     const sel = document.getElementById(slot+'-select');
     const valorActual = seleccion[slot] || '';
     sel.innerHTML = '<option value="">— sin selección —</option>';
-    candidatosPara(slot).forEach(a=>{
+    candidatosPara(slot).forEach(item=>{
       const opt = document.createElement('option');
-      opt.value = a.id; opt.textContent = a.nombre;
-      if(redPersonalDe(a.id).length>0) opt.style.fontWeight='700';
+      opt.value = item.id; opt.textContent = item.nombre;
+      if(modoRed==='grupo' && redPersonalDe(item.id).length>0) opt.style.fontWeight='700';
       sel.appendChild(opt);
     });
     sel.value = valorActual;
@@ -60,7 +91,14 @@ function radioNodo(d){ if(d.esCentro) return 26; return {1:15,2:12,3:9}[d.nivelA
 
 function renderGrafo(){
   const svgEl = document.getElementById('graph-svg');
-  const coresElegidos = ['nucleo','cruce1','cruce2'].map(s=>seleccion[s]).filter(Boolean);
+
+  // ---- determinar los "cores" elegidos según el modo ----
+  let coresElegidos = [];
+  if(modoRed==='actor'){
+    coresElegidos = actorUnicoSeleccionado ? [actorUnicoSeleccionado] : [];
+  } else {
+    coresElegidos = ['nucleo','cruce1','cruce2'].map(s=>seleccion[s]).filter(Boolean);
+  }
 
   if(coresElegidos.length===0){
     svgEl.style.display='none';
@@ -71,7 +109,12 @@ function renderGrafo(){
       svgEl.parentNode.insertBefore(empty, svgEl);
     }
     empty.style.display='flex';
-    empty.innerHTML = `<div class="eyebrow">Sin selección</div><h3>Elige un actor</h3><p style="font-size:12px;">Los actores en <strong>negritas</strong> ya tienen red documentada.</p>`;
+    const mensajes = {
+      grupo: `<div class="eyebrow">Sin selección</div><h3>Elige un actor</h3><p style="font-size:12px;">Los actores en <strong>negritas</strong> ya tienen red documentada.</p>`,
+      agenda: `<div class="eyebrow">Sin selección</div><h3>Elige un tema</h3><p style="font-size:12px;">Se muestran los actores vinculados a ese tema de agenda.</p>`,
+      actor: `<div class="eyebrow">Sin búsqueda</div><h3>Escribe un nombre</h3><p style="font-size:12px;">Verás al actor con sus temas de agenda alrededor.</p>`,
+    };
+    empty.innerHTML = mensajes[modoRed];
     return;
   }
   svgEl.style.display='block';
@@ -81,34 +124,65 @@ function renderGrafo(){
 
   const width = svgEl.clientWidth || 900, height = 560;
 
-  // ---- construcción de nodos: paso 1 núcleos (siempre ganan), paso 2 satélites ----
+  // ---- construcción de nodos: distinta según el modo, pero misma forma de datos para reusar
+  // toda la física y el dibujo que sigue abajo sin duplicar código ----
   const nodesMap = new Map();
   const linksBase = [];
   const slotDeCore = {};
   coresElegidos.forEach((id,i)=>{ slotDeCore[id] = ['nucleo','cruce1','cruce2'][i]; });
 
-  coresElegidos.forEach((coreId, idx)=>{
-    const slot = ['nucleo','cruce1','cruce2'][idx];
-    const actor = getActor(coreId);
-    if(!actor) return;
-    nodesMap.set(coreId, {...actor, nivelAnillo:0, coreId, slot, esCentro:true});
-  });
-  coresElegidos.forEach((coreId, idx)=>{
-    const slot = ['nucleo','cruce1','cruce2'][idx];
-    redPersonalDe(coreId).forEach(r=>{
-      const sat = getActor(r.satelite_id);
-      if(!sat) return;
-      const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
-      if(yaEsNucleo){
-        linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot});
-        return;
-      }
-      if(!nodesMap.has(r.satelite_id)){
-        nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot});
-      }
-      linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot});
+  if(modoRed==='grupo'){
+    coresElegidos.forEach((coreId, idx)=>{
+      const slot = ['nucleo','cruce1','cruce2'][idx];
+      const actor = getActor(coreId);
+      if(!actor) return;
+      nodesMap.set(coreId, {...actor, nivelAnillo:0, coreId, slot, esCentro:true});
     });
-  });
+    coresElegidos.forEach((coreId, idx)=>{
+      const slot = ['nucleo','cruce1','cruce2'][idx];
+      redPersonalDe(coreId).forEach(r=>{
+        const sat = getActor(r.satelite_id);
+        if(!sat) return;
+        const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
+        if(yaEsNucleo){ linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot}); return; }
+        if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot});
+        linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot});
+      });
+    });
+  } else if(modoRed==='agenda'){
+    const ROL_A_NIVEL = {'Investigado':1,'Acusado':1,'Responsable institucional':1,'Autoridad':1,'Operador':1,
+      'Reacción de oposición':2,'Reacción del gobierno':2,'Reacción social/mediática':2,'Red empresarial':2};
+    coresElegidos.forEach((temaId, idx)=>{
+      const slot = ['nucleo','cruce1','cruce2'][idx];
+      const tema = getTema(temaId);
+      if(!tema) return;
+      nodesMap.set(temaId, {id:temaId, nombre:tema.nombre, nivelAnillo:0, coreId:temaId, slot, esCentro:true, esTema:true, nivel_riesgo:null});
+    });
+    coresElegidos.forEach((temaId, idx)=>{
+      const slot = ['nucleo','cruce1','cruce2'][idx];
+      ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===temaId).forEach(ta=>{
+        const sat = getActor(ta.actor_id);
+        if(!sat) return;
+        const nivel = ROL_A_NIVEL[ta.rol] || 3;
+        const yaEsNucleo = nodesMap.has(ta.actor_id) && nodesMap.get(ta.actor_id).esCentro;
+        if(yaEsNucleo){ linksBase.push({origen:temaId, destino:ta.actor_id, nivelDestino:nivel, slot}); return; }
+        if(!nodesMap.has(ta.actor_id)) nodesMap.set(ta.actor_id, {...sat, nivelAnillo:nivel, coreId:temaId, slot, rolEnTema:ta.rol});
+        linksBase.push({origen:temaId, destino:ta.actor_id, nivelDestino:nivel, slot});
+      });
+    });
+  } else if(modoRed==='actor'){
+    const actorId = coresElegidos[0];
+    const actor = getActor(actorId);
+    if(!actor) return;
+    nodesMap.set(actorId, {...actor, nivelAnillo:0, coreId:actorId, slot:'nucleo', esCentro:true});
+    ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId).forEach(ta=>{
+      const tema = getTema(ta.tema_id);
+      if(!tema) return;
+      const nivel = Number(tema.nivel_relevancia)||3;
+      nodesMap.set(tema.id, {id:tema.id, nombre:tema.nombre, nivelAnillo:nivel, coreId:actorId, slot:'nucleo', esCentro:false, esTema:true, nivel_riesgo:null});
+      linksBase.push({origen:actorId, destino:tema.id, nivelDestino:nivel, slot:'nucleo'});
+    });
+  }
 
   const nodes = [...nodesMap.values()];
   const nodeIds = new Set(nodes.map(n=>n.id));
@@ -136,7 +210,10 @@ function renderGrafo(){
 
   const node = container.selectAll('g.node').data(nodes).join('g')
     .attr('class','node').style('cursor','pointer')
-    .on('click', (ev,d)=> mostrarFicha(d.id, d, nodes))
+    .on('click', (ev,d)=>{
+      if(d.esTema){ if(typeof abrirFichaTema==='function') abrirFichaTema(d.id); return; }
+      mostrarFicha(d.id, d, nodes);
+    })
     .call(d3.drag()
       .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
       .on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
@@ -442,7 +519,6 @@ function abrirFichaActorCompleta(id){
         <div class="foda-cuad" style="border-color:var(--riesgo-medio);"><div class="foda-titulo" style="color:var(--riesgo-medio);">Debilidades</div><p>${actor.foda_debilidades}</p></div>
         <div class="foda-cuad" style="border-color:var(--riesgo-alto);"><div class="foda-titulo" style="color:var(--riesgo-alto);">Amenazas</div><p>${actor.foda_amenazas}</p></div>
       </div>` : ''}
-      ${temasDelActorHTML(id)}
       ${notasDelActorHTML(id)}
       ${actor.fuente_url ? `<div class="eyebrow" style="margin-top:10px;">Fuente</div><p style="font-size:11px;"><a href="${actor.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">${actor.fuente_nombre||'Ver fuente'} ↗</a> · ${actor.fecha_corte||''}</p>` : ''}
     </div>`;
