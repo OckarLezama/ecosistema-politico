@@ -93,12 +93,28 @@ def siguiente_id_evento(eventos_existentes):
     return f"e{(max(numeros)+1) if numeros else 1}"
 
 
+CATEGORIA_KEYWORDS = {
+    'Seguridad Nacional': ['cártel', 'narco', 'cjng', 'chapitos', 'homicidio', 'violencia', 'guardia nacional', 'fgr', 'sedena', 'marina'],
+    'Relación Bilateral': ['trump', 'eeuu', 'estados unidos', 'washington', 'embajada', 'aranceles', 'visa', 'rubio'],
+    'Economía': ['peso', 'inflación', 'pib', 'banxico', 'exportación', 'arancel', 't-mec', 'tmec'],
+    'Social': ['periodista', 'derechos humanos', 'protesta', 'huelga'],
+}
+
+def clasificar_categoria(texto_completo):
+    """Categoría real por palabras clave — la etiqueta <category> del feed es demasiado
+    genérica ('México' siempre), no distingue nada útil."""
+    for cat, palabras in CATEGORIA_KEYWORDS.items():
+        if any(p in texto_completo for p in palabras):
+            return cat
+    return 'Gobernabilidad'  # respaldo: temas de gobierno/política interna por defecto
+
+
 def cargar_temas_todos():
     with open(RUTA_TEMAS, encoding='utf-8') as f:
         return list(csv.DictReader(f))
 
 
-def crear_tema_informativo(titulo, fecha):
+def crear_tema_informativo(titulo, fecha, categoria='Gobernabilidad'):
     """Crea un tema NUEVO automático cuando hay señal fuerte (2+ actores de alta influencia)
     pero no existe tema para eso. tipo=informativo, nivel_relevancia=3 — bajo perfil, visible
     en Feed/Timeline, pero NO se cuela como agenda nacional oficial sin revisión humana."""
@@ -109,7 +125,7 @@ def crear_tema_informativo(titulo, fecha):
         return nuevo_id
     nuevo = {c: '' for c in campos}
     nuevo.update({
-        'id': nuevo_id, 'nombre': titulo[:80], 'categoria': 'Gobernabilidad',
+        'id': nuevo_id, 'nombre': titulo[:80], 'categoria': categoria,
         'peso_politico': '5', 'horizonte': 'corto', 'resumen': titulo,
         'nivel_relevancia': '3', 'tipo': 'informativo', 'estado': 'activo',
     })
@@ -221,6 +237,14 @@ def buscar_candidatos():
                 if tema_id in temas_ids_validos and any(p in texto_completo for p in palabras):
                     tema_encontrado = tema_id
                     break
+            if not tema_encontrado:
+                # respaldo automático: cualquier tema Nivel 1 SIN palabras clave curadas se
+                # busca por su propio nombre — así un tema nuevo que agregues a temas.csv
+                # ya se detecta solo, sin que nadie edite este script
+                for t in temas:
+                    if t['id'] not in PALABRAS_CLAVE and t['nombre'].lower() in texto_completo:
+                        tema_encontrado = t['id']
+                        break
 
             if tema_encontrado:
                 conteo_hoy_por_tema[tema_encontrado] = conteo_hoy_por_tema.get(tema_encontrado, 0) + 1
@@ -236,10 +260,11 @@ def buscar_candidatos():
                 # revisar aunque no sepamos a qué tema pertenece todavía (posible tema nuevo)
                 menciones = sum(1 for a in actores_altos if a['nombre'].split()[-1].lower() in texto_completo)
                 if menciones >= 2 and hash_enlace not in ya_vistos:
-                    tema_auto = crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'))
+                    categoria_real = clasificar_categoria(texto_completo)
+                    tema_auto = crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
                     eventos_nuevos.append({
                         'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
-                        'categoria': 'Gobernabilidad', 'intensidad': 5,
+                        'categoria': categoria_real, 'intensidad': 5,
                         'descripcion': titulo_original, 'fuente_url': enlace,
                     })
 
