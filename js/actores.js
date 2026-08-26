@@ -233,6 +233,26 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
   return { nivel, explicacion };
 }
 
+function notasDelActorHTML(actorId){
+  const temaIds = new Set(ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId).map(ta=>ta.tema_id));
+  const notas = ECOSISTEMA.eventos
+    .filter(e=>temaIds.has(e.tema_id))
+    .sort((a,b)=> b.fecha.localeCompare(a.fecha))
+    .slice(0,5);
+  if(!notas.length) return '';
+  return `
+    <div class="eyebrow" style="margin-top:10px;">Notas y menciones relevantes</div>
+    <div class="ficha-notas-scroll" style="max-height:160px;">
+      ${notas.map(n=>{
+        const tema = getTema(n.tema_id);
+        return `<div style="font-size:11px;padding:6px 0;border-top:1px solid var(--line);">
+          <strong style="font-family:var(--f-mono);color:var(--ink-3);">${n.fecha}</strong> · ${tema?tema.nombre:n.tema_id}<br>
+          ${n.descripcion} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
 function temasDelActorHTML(actorId){
   const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId);
   if(!contextos.length) return '';
@@ -423,6 +443,7 @@ function abrirFichaActorCompleta(id){
         <div class="foda-cuad" style="border-color:var(--riesgo-alto);"><div class="foda-titulo" style="color:var(--riesgo-alto);">Amenazas</div><p>${actor.foda_amenazas}</p></div>
       </div>` : ''}
       ${temasDelActorHTML(id)}
+      ${notasDelActorHTML(id)}
       ${actor.fuente_url ? `<div class="eyebrow" style="margin-top:10px;">Fuente</div><p style="font-size:11px;"><a href="${actor.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">${actor.fuente_nombre||'Ver fuente'} ↗</a> · ${actor.fecha_corte||''}</p>` : ''}
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
