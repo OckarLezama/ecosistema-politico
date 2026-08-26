@@ -58,8 +58,10 @@ function puntoPrincipalTL(temaId){
 }
 
 function actoresDeTemaTL(tema){
-  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===tema.id);
-  return contextos.slice(0,5).map(c=>{ const a=getActor(c.actor_id); return a?`${a.nombre} · ${c.rol}`:null; }).filter(Boolean);
+  // solo reacciones en el hover — no nombres sueltos de "Mencionado" ni otros roles
+  const ROLES_REACCION = ['Reacción de oposición','Reacción del gobierno','Reacción social/mediática'];
+  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===tema.id && ROLES_REACCION.includes(ta.rol));
+  return contextos.slice(0,3).map(c=>{ const a=getActor(c.actor_id); return a?`${a.nombre} · ${c.rol}`:null; }).filter(Boolean);
 }
 
 function empaquetarZigzagTL(puntos, minEspacio){
@@ -72,6 +74,21 @@ function empaquetarZigzagTL(puntos, minEspacio){
     const tier = colocar(lado==='up'?tiersUp:tiersDown);
     return {...p, lado, tier};
   });
+}
+
+function mostrarTooltipTL(d, ev){
+  const reacciones = actoresDeTemaTL(d.tema);
+  const esNivel1 = Number(d.tema.nivel_relevancia)===1;
+  let html = `<strong>${d.tema.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.fecha} · Repercusión ${d.intensidad}/10</span>`;
+  if(esNivel1 && typeof calcularIndiceEscalamiento==='function'){
+    const indice = calcularIndiceEscalamiento(d.tema);
+    const colorIdx = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
+    html += `<br><span style="font-size:10px;color:${colorIdx};font-weight:700;">Índice de escalamiento: ${indice.total}/100 (${indice.nivel})</span>`;
+  }
+  if(reacciones.length){
+    html += `<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.4;">${reacciones.join('<br>')}</span>`;
+  }
+  mostrarTooltipAgenda(html, ev);
 }
 
 function renderTimeline(){
@@ -164,14 +181,8 @@ function dibujarTL(xScaleActual){
   const g = tlContainer.selectAll('g.tl-punto').data(tlPuntos).join('g')
     .attr('class','tl-punto').style('cursor','pointer')
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id))
-    .on('mouseenter', function(ev,d){
-      const actores = actoresDeTemaTL(d.tema);
-      mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.fecha} · Repercusión ${d.intensidad}/10</span>${actores.length?'<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.4;">'+actores.join('<br>')+'</span>':''}`, ev);
-    })
-    .on('mousemove', function(ev,d){
-      const actores = actoresDeTemaTL(d.tema);
-      mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.fecha} · Repercusión ${d.intensidad}/10</span>${actores.length?'<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.4;">'+actores.join('<br>')+'</span>':''}`, ev);
-    })
+    .on('mouseenter', function(ev,d){ mostrarTooltipTL(d, ev); })
+    .on('mousemove', function(ev,d){ mostrarTooltipTL(d, ev); })
     .on('mouseleave', ocultarTooltipAgenda);
 
   g.each(function(d){
@@ -203,8 +214,7 @@ function dibujarTL(xScaleActual){
       const indice = calcularIndiceEscalamiento(d.tema);
       const colorIdx = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
       const cxBadge = x+anchoTarjeta/2-9, cyBadge = yTarjeta+9;
-      gg.append('circle').attr('cx',cxBadge).attr('cy',cyBadge).attr('r',9).attr('fill',colorIdx).attr('stroke','var(--bg-1)').attr('stroke-width',1.5)
-        .append('title').text(`Índice de escalamiento: ${indice.total}/100 (${indice.nivel})`);
+      gg.append('circle').attr('cx',cxBadge).attr('cy',cyBadge).attr('r',9).attr('fill',colorIdx).attr('stroke','var(--bg-1)').attr('stroke-width',1.5);
       gg.append('text').attr('x',cxBadge).attr('y',cyBadge+3).attr('text-anchor','middle').attr('font-size','7px').attr('font-weight','700').attr('font-family','var(--f-mono)').attr('fill','#0E1116').text(indice.total);
     }
     }
