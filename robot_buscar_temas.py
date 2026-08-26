@@ -119,6 +119,61 @@ def crear_tema_informativo(titulo, fecha):
     return nuevo_id
 
 
+def escalar_temas_informativos():
+    """Un tema 'informativo' se vuelve Nivel 1 (agenda nacional) SOLO si acumula señal real por
+    sí mismo — sin que nadie lo marque a mano. Criterio: 3+ eventos propios, o mencionan 2+
+    actores de alta influencia en notas distintas."""
+    temas = cargar_temas_todos()
+    eventos = cargar_eventos_existentes()
+    actores_altos = cargar_actores_alta_influencia()
+    cambios = 0
+    for t in temas:
+        if t.get('tipo') != 'informativo':
+            continue
+        evs_del_tema = [e for e in eventos if e['tema_id'] == t['id']]
+        if len(evs_del_tema) == 0:
+            continue
+        menciona_altos = set()
+        for e in evs_del_tema:
+            texto = e['descripcion'].lower()
+            for a in actores_altos:
+                if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
+                    menciona_altos.add(a['id'])
+        if len(evs_del_tema) >= 3 or len(menciona_altos) >= 2:
+            t['tipo'] = 'completo'
+            t['nivel_relevancia'] = '1'
+            cambios += 1
+    if cambios:
+        campos = list(temas[0].keys())
+        with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+            w.writeheader()
+            for t in temas: w.writerow(t)
+        print(f'{cambios} tema(s) escalado(s) automáticamente a agenda nacional (Nivel 1).')
+
+
+def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes):
+    """Sube un tema de informativo (nivel 3) a agenda nacional (nivel 1) SOLO con señal
+    real y repetida: 3+ notas el mismo día, O ya lleva 2+ días distintos con eventos —
+    cobertura real sostenida, no una nota aislada. Nunca escala con una sola mención."""
+    temas = cargar_temas_todos()
+    tema = next((t for t in temas if t['id']==tema_id), None)
+    if not tema or tema.get('tipo') != 'informativo':
+        return
+    dias_distintos = len(set(e['fecha'] for e in eventos_existentes if e['tema_id']==tema_id))
+    if conteo_hoy >= 3 or dias_distintos >= 2:
+        campos = list(temas[0].keys())
+        for t in temas:
+            if t['id']==tema_id:
+                t['nivel_relevancia'] = '1'
+                t['tipo'] = 'completo'  # deja de ser "informativo ligero", ya se ganó el lugar
+        with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+            w.writeheader()
+            for t in temas: w.writerow(t)
+        print(f'  -> Tema {tema_id} ESCALADO a agenda nacional (cobertura real confirmada).')
+
+
 def guardar_evento_directo(evento):
     """Escribe DIRECTO a eventos.csv — solo para temas que YA existen en temas.csv.
     Es el camino automático de verdad: sin revisión manual, en tiempo real."""
@@ -155,10 +210,11 @@ def buscar_candidatos():
             texto_completo = (titulo_original + ' ' + (entrada.get('description') or '')).lower()
             enlace = entrada.get('link') or ''
             if enlace in ya_procesados_eventos:
-                continue
+                continue  # solo se descarta si YA está en eventos.csv de verdad
             hash_enlace = hashlib.md5(enlace.encode()).hexdigest()
-            if hash_enlace in ya_vistos:
-                continue
+            # "ya_vistos" (candidatos_revision.csv) ya NO bloquea aquí — eso dejaba fuera
+            # para siempre notas que sí coinciden con un tema conocido, solo por haber
+            # aparecido antes como candidato "sin tema" en una corrida vieja
 
             tema_encontrado = None
             for tema_id, palabras in PALABRAS_CLAVE.items():
@@ -179,7 +235,7 @@ def buscar_candidatos():
                 # sin tema conocido: si menciona 2+ actores de alta influencia, sí vale la pena
                 # revisar aunque no sepamos a qué tema pertenece todavía (posible tema nuevo)
                 menciones = sum(1 for a in actores_altos if a['nombre'].split()[-1].lower() in texto_completo)
-                if menciones >= 2:
+                if menciones >= 2 and hash_enlace not in ya_vistos:
                     tema_auto = crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'))
                     eventos_nuevos.append({
                         'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
@@ -217,9 +273,18 @@ if __name__ == '__main__':
         eventos_ya = cargar_eventos_existentes()
         ev['id'] = siguiente_id_evento(eventos_ya)
         guardar_evento_directo(ev)
+
+    # tras escribir todo, revisar si algún tema informativo ya se ganó pasar a agenda nacional
+    conteo_final = {}
+    for ev in eventos_nuevos:
+        conteo_final[ev['tema_id']] = conteo_final.get(ev['tema_id'], 0) + 1
+    for tema_id, conteo in conteo_final.items():
+        escalar_a_agenda_nacional_si_aplica(tema_id, conteo, cargar_eventos_existentes())
+
     if eventos_nuevos:
         print(f'{len(eventos_nuevos)} evento(s) NUEVO(S) escrito(s) directo a eventos.csv (tiempo real, tema ya conocido).')
     else:
         print('Sin eventos nuevos de temas conocidos esta corrida.')
 
     guardar_candidatos(candidatos_sin_tema)
+    escalar_temas_informativos()
