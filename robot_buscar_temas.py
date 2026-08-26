@@ -287,33 +287,9 @@ def buscar_candidatos():
                         'descripcion': titulo_original, 'fuente_url': enlace,
                     })
 
-    # GDELT: consulta directa por cada tema Nivel 1, filtrado a México — no depende de
-    # palabras clave ni de que una fuente RSS específica lo haya cubierto
-    for tema in temas:
-        # usar palabras clave curadas y cortas (lo que la gente/medios sí escribe), no el
-        # nombre formal completo del tema — eso casi nunca aparece tal cual en un artículo real
-        terminos_busqueda = PALABRAS_CLAVE.get(tema['id'], [tema['nombre']])
-        articulos = []
-        for termino in terminos_busqueda[:2]:  # máximo 2 consultas por tema, para no saturar la API
-            articulos += consultar_gdelt(termino)
-        for art in articulos:
-            enlace = art.get('url', '')
-            if not enlace or enlace in ya_procesados_eventos:
-                continue
-            hash_enlace = hashlib.md5(enlace.encode()).hexdigest()
-            if hash_enlace in ya_vistos:
-                continue
-            titulo_original = art.get('title', '')
-            texto_completo = titulo_original.lower()
-            conteo_hoy_por_tema[tema['id']] = conteo_hoy_por_tema.get(tema['id'], 0) + 1
-            intensidad = calcular_intensidad(texto_completo, tema['id'], eventos_existentes,
-                                               actores_altos, conteo_hoy_por_tema[tema['id']])
-            eventos_nuevos.append({
-                'tema_id': tema['id'], 'fecha': hoy_mx.strftime('%Y-%m-%d'),
-                'categoria': tema.get('categoria', 'Gobernabilidad'), 'intensidad': intensidad,
-                'descripcion': titulo_original, 'fuente_url': enlace,
-            })
-            ya_procesados_eventos.add(enlace)
+    # GDELT se intentó integrar pero la API bloqueó/tronó las 17 consultas desde GitHub
+    # Actions (todas "timed out") — probable bloqueo de tráfico automatizado de su lado.
+    # Se retira para no perder 5 minutos por corrida sin ningún resultado real.
 
     return eventos_nuevos, candidatos_sin_tema
 
