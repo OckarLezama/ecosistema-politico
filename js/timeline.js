@@ -179,14 +179,15 @@ function renderTimeline(){
   const persistentes = temasPersistentesTL();
   const mesTop = mesConMasAgendaTL();
   const altoPersistentes = 14+persistentes.length*15;
+  const altoTotal = altoPersistentes + 40; // suficiente para título + items + línea + mes, verificado abajo
   const gPanel = tlSvg.append('g').attr('class','tl-panel-persistentes');
-  gPanel.append('rect').attr('x',36).attr('y',10).attr('width',225).attr('height',altoPersistentes+22)
+  gPanel.append('rect').attr('x',36).attr('y',10).attr('width',225).attr('height',altoTotal)
     .attr('fill','var(--bg-2)').attr('fill-opacity',0.95).attr('stroke','var(--line-strong)').attr('rx',6);
   gPanel.append('text').attr('x',44).attr('y',22).attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('MÁS PERSISTENTES (menciones × impacto)');
   persistentes.forEach((p,i)=>{
     gPanel.append('text').attr('x',44).attr('y',36+i*15).attr('font-size','9px').attr('fill','var(--ink-1)').style('cursor','pointer')
       .on('click', ()=> abrirFichaTema(p.tema.id))
-      .text(`${p.score.toFixed(0)} pts — ${p.tema.nombre.length>20?p.tema.nombre.slice(0,18)+'…':p.tema.nombre}`);
+      .text(`Persistencia ${p.score.toFixed(0)} — ${p.tema.nombre.length>20?p.tema.nombre.slice(0,18)+'…':p.tema.nombre}`);
   });
   gPanel.append('line').attr('x1',44).attr('x2',251).attr('y1',24+altoPersistentes).attr('y2',24+altoPersistentes).attr('stroke','var(--line)');
   gPanel.append('text').attr('x',44).attr('y',24+altoPersistentes+13).attr('font-size','9px').attr('fill','var(--ink-1)')

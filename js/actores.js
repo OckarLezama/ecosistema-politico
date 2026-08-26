@@ -375,9 +375,7 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
     <div class="detail-row"><span class="k">Influencia</span><span class="v">${actor.nivel_influencia}/10</span></div>
     <div class="detail-row"><span class="k">Grupo</span><span class="v">${actor.grupo}</span></div>
     ${fortalezaHTML}
-    <button class="chip-btn" id="btn-ficha-completa" style="margin-top:10px;width:100%;">Ver ficha completa</button>
   `;
-  document.getElementById('btn-ficha-completa').addEventListener('click', ()=> abrirFichaActorCompleta(id));
 }
 
 document.addEventListener('ecosistema:datos-listos', initRedActores);

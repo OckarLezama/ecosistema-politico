@@ -23,6 +23,7 @@
   <button class="active" data-module="actores">Red de Actores</button>
   <button data-module="agenda">Agenda &amp; Coyuntura</button>
   <button data-module="timeline">Timeline</button>
+  <button data-module="buscador">Actores</button>
 </nav>
 
 <main class="app-main">
@@ -117,6 +118,20 @@
       </div>
     </div>
   </section>
+
+  <section class="module-panel" id="panel-buscador">
+    <div class="module-head">
+      <h2>Actores</h2>
+      <p>Busca por nombre y consulta su ficha completa — misma información que ya viste en Red de Actores.</p>
+    </div>
+    <div class="graph-card" style="padding:16px;">
+      <div class="core-select" style="max-width:340px;">
+        <label for="buscador-input">Nombre</label>
+        <input type="text" id="buscador-input" placeholder="Ej. Sheinbaum, García Harfuch..." style="background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1); border-radius:var(--radius-s); padding:6px 10px; font-size:12px; width:100%;">
+      </div>
+      <div id="buscador-resultados" style="margin-top:12px; display:flex; flex-direction:column; gap:6px;"></div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -139,5 +154,28 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/feed.js?v=1"></script>
 <script src="js/agenda.js?v=1"></script>
 <script src="js/timeline.js?v=1"></script>
+<script>
+document.addEventListener('ecosistema:datos-listos', ()=>{
+  const input = document.getElementById('buscador-input');
+  const resultados = document.getElementById('buscador-resultados');
+  input.addEventListener('input', ()=>{
+    const q = input.value.trim().toLowerCase();
+    resultados.innerHTML = '';
+    if(q.length<2) return;
+    const coincidencias = ECOSISTEMA.actores.filter(a=>a.nombre.toLowerCase().includes(q)).slice(0,10);
+    if(!coincidencias.length){ resultados.innerHTML = '<p style="font-size:12px;color:var(--ink-3);">Sin coincidencias en los datos actuales.</p>'; return; }
+    coincidencias.forEach(a=>{
+      const color = colorRiesgo(a.nivel_riesgo);
+      const div = document.createElement('div');
+      div.className = 'lista-item';
+      div.style.borderLeftColor = color;
+      div.style.cursor = 'pointer';
+      div.innerHTML = `<span class="lista-nombre">${a.nombre}</span><br><span class="lista-meta">${a.cargo}</span>`;
+      div.addEventListener('click', ()=> abrirFichaActorCompleta(a.id));
+      resultados.appendChild(div);
+    });
+  });
+});
+</script>
 </body>
 </html>
