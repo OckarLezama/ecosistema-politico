@@ -139,14 +139,16 @@ function abrirFichaTema(temaId){
 
   // agrupar actores por su rol real, no como lista plana — separa quién es sospechoso/investigado
   // de quién aparece en calidad institucional (gobierno respondiendo, no señalado)
-  const grupos = { 'Investigado / señalado': [], 'Institucional (gobierno)': [], 'Reacción de oposición': [], 'Operador / red': [], 'Mencionado': [] };
+  const grupos = { 'Investigado / señalado': [], 'Institucional (gobierno)': [], 'Reacción de oposición': [], 'Reacción del gobierno': [], 'Reacción social/mediática': [], 'Operador / red': [] };
   const rolAGrupo = { 'Investigado':'Investigado / señalado', 'Acusado':'Investigado / señalado',
     'Responsable institucional':'Institucional (gobierno)', 'Autoridad':'Institucional (gobierno)',
-    'Reacción de oposición':'Reacción de oposición', 'Operador':'Operador / red', 'Red empresarial':'Operador / red' };
+    'Reacción de oposición':'Reacción de oposición', 'Reacción del gobierno':'Reacción del gobierno',
+    'Reacción social/mediática':'Reacción social/mediática', 'Operador':'Operador / red', 'Red empresarial':'Operador / red' };
   contextos.forEach(c=>{
     const actor = getActor(c.actor_id);
     if(!actor) return;
-    const grupo = rolAGrupo[c.rol] || 'Mencionado';
+    const grupo = rolAGrupo[c.rol]; // 'Mencionado' ya no entra a la ficha — se queda solo en el hover del Timeline
+    if(!grupo) return;
     grupos[grupo].push({actor, detalle:c.detalle});
   });
   // Ya NO se agregan actores solo desde actores_involucrados sin fuente — ese campo es una lista
@@ -183,12 +185,9 @@ function abrirFichaTema(temaId){
       <div class="ficha-notas-scroll">
         ${evs.map(e=>`<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--ink-3);">${e.fecha}</strong> — ${e.descripcion} ${e.fuente_url?`<a href="${e.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`).join('')}
       </div>
-      <div class="eyebrow" style="margin-top:10px;">Valoración probabilística</div>
-      <div id="modal-probabilistico"></div>
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
   modal.classList.add('open');
-  renderProbabilisticoTema(tema);
 }
 
 let categoriaFiltroAgenda = '';

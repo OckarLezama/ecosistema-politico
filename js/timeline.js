@@ -199,6 +199,14 @@ function dibujarTL(xScaleActual){
       .text(d.tema.nombre.length>(esNivel1?24:22) ? d.tema.nombre.slice(0,(esNivel1?22:20))+'…' : d.tema.nombre);
     if(esNivel1){
       gg.append('text').attr('x',x).attr('y',yTarjeta+27).attr('text-anchor','middle').attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(d.fecha);
+    if(esNivel1 && typeof calcularIndiceEscalamiento==='function'){
+      const indice = calcularIndiceEscalamiento(d.tema);
+      const colorIdx = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
+      const cxBadge = x+anchoTarjeta/2-9, cyBadge = yTarjeta+9;
+      gg.append('circle').attr('cx',cxBadge).attr('cy',cyBadge).attr('r',9).attr('fill',colorIdx).attr('stroke','var(--bg-1)').attr('stroke-width',1.5)
+        .append('title').text(`Índice de escalamiento: ${indice.total}/100 (${indice.nivel})`);
+      gg.append('text').attr('x',cxBadge).attr('y',cyBadge+3).attr('text-anchor','middle').attr('font-size','7px').attr('font-weight','700').attr('font-family','var(--f-mono)').attr('fill','#0E1116').text(indice.total);
+    }
     }
   });
 }
