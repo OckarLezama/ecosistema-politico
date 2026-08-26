@@ -290,7 +290,12 @@ def buscar_candidatos():
     # GDELT: consulta directa por cada tema Nivel 1, filtrado a México — no depende de
     # palabras clave ni de que una fuente RSS específica lo haya cubierto
     for tema in temas:
-        articulos = consultar_gdelt(tema['nombre'])
+        # usar palabras clave curadas y cortas (lo que la gente/medios sí escribe), no el
+        # nombre formal completo del tema — eso casi nunca aparece tal cual en un artículo real
+        terminos_busqueda = PALABRAS_CLAVE.get(tema['id'], [tema['nombre']])
+        articulos = []
+        for termino in terminos_busqueda[:2]:  # máximo 2 consultas por tema, para no saturar la API
+            articulos += consultar_gdelt(termino)
         for art in articulos:
             enlace = art.get('url', '')
             if not enlace or enlace in ya_procesados_eventos:
