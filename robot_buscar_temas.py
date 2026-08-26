@@ -93,6 +93,32 @@ def siguiente_id_evento(eventos_existentes):
     return f"e{(max(numeros)+1) if numeros else 1}"
 
 
+def cargar_temas_todos():
+    with open(RUTA_TEMAS, encoding='utf-8') as f:
+        return list(csv.DictReader(f))
+
+
+def crear_tema_informativo(titulo, fecha):
+    """Crea un tema NUEVO automático cuando hay señal fuerte (2+ actores de alta influencia)
+    pero no existe tema para eso. tipo=informativo, nivel_relevancia=3 — bajo perfil, visible
+    en Feed/Timeline, pero NO se cuela como agenda nacional oficial sin revisión humana."""
+    temas = cargar_temas_todos()
+    campos = list(temas[0].keys()) if temas else []
+    nuevo_id = 'auto-' + hashlib.md5((titulo+fecha).encode()).hexdigest()[:10]
+    if any(t['id']==nuevo_id for t in temas):
+        return nuevo_id
+    nuevo = {c: '' for c in campos}
+    nuevo.update({
+        'id': nuevo_id, 'nombre': titulo[:80], 'categoria': 'Gobernabilidad',
+        'peso_politico': '5', 'horizonte': 'corto', 'resumen': titulo,
+        'nivel_relevancia': '3', 'tipo': 'informativo', 'estado': 'activo',
+    })
+    with open(RUTA_TEMAS, 'a', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+        w.writerow(nuevo)
+    return nuevo_id
+
+
 def guardar_evento_directo(evento):
     """Escribe DIRECTO a eventos.csv — solo para temas que YA existen en temas.csv.
     Es el camino automático de verdad: sin revisión manual, en tiempo real."""
@@ -154,10 +180,11 @@ def buscar_candidatos():
                 # revisar aunque no sepamos a qué tema pertenece todavía (posible tema nuevo)
                 menciones = sum(1 for a in actores_altos if a['nombre'].split()[-1].lower() in texto_completo)
                 if menciones >= 2:
-                    candidatos_sin_tema.append({
-                        'hash_enlace': hash_enlace, 'tema_id_sugerido': '(sin tema — posible tema nuevo)',
-                        'fecha_encontrado': hoy_mx.strftime('%Y-%m-%d'), 'titular': titulo_original,
-                        'fuente_nombre': fuente['nombre'], 'fuente_url': enlace, 'estado': 'pendiente_revision',
+                    tema_auto = crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'))
+                    eventos_nuevos.append({
+                        'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                        'categoria': 'Gobernabilidad', 'intensidad': 5,
+                        'descripcion': titulo_original, 'fuente_url': enlace,
                     })
 
     return eventos_nuevos, candidatos_sin_tema
