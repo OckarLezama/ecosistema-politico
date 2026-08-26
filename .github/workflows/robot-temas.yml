@@ -1,10 +1,8 @@
-name: Robot de monitoreo — temas Nivel 1
-
-on:
+name: Robot de monitoreo - temas Nivel 1
+"on":
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch: {}
-
 jobs:
   buscar-candidatos:
     runs-on: ubuntu-latest
@@ -19,5 +17,5 @@ jobs:
           git config user.name "robot-temas"
           git config user.email "robot@ecosistema-politico.local"
           git add data/eventos.csv data/candidatos_revision.csv
-          git diff --staged --quiet || git commit -m "Robot: actualización automática $(date -u +%Y-%m-%d)"
+          git diff --staged --quiet || git commit -m "Robot: actualizacion automatica $(date -u +%Y-%m-%d)"
           git push
