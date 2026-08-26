@@ -222,6 +222,55 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
   return { nivel, explicacion };
 }
 
+function abrirFichaActorCompleta(id){
+  const actor = getActor(id);
+  if(!actor) return;
+  const color = colorRiesgo(actor.nivel_riesgo);
+  const red = redPersonalDe(id); // red de cercanía real (redes_personales.csv) — distinta del campo 'grupo' (facción/afiliación)
+
+  let modal = document.getElementById('ficha-actor-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'ficha-actor-modal'; modal.className = 'ficha-modal-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+
+  function barra(label, valor10){
+    const pct = Math.max(0,Math.min(100,valor10*10));
+    return `<div style="margin:6px 0;">
+      <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-2);"><span>${label}</span><span>${valor10}/10</span></div>
+      <div style="background:var(--bg-2);border-radius:99px;height:6px;overflow:hidden;margin-top:2px;">
+        <div style="background:${color};width:${pct}%;height:100%;"></div>
+      </div>
+    </div>`;
+  }
+
+  const redHTML = red.length
+    ? red.map(r=>{ const sat=getActor(r.satelite_id); return sat?`<div style="font-size:11.5px;padding:2px 0;">${sat.nombre} <span style="color:var(--ink-3);font-size:10px;">· ${r.etiqueta_nivel}</span></div>`:''; }).join('')
+    : `<p style="font-size:11px;color:var(--ink-3);">Sin red de cercanía documentada.</p>`;
+
+  modal.innerHTML = `
+    <div class="ficha-modal-card">
+      <button class="ficha-modal-close">✕</button>
+      <div class="detail-avatar" style="background:${color};margin:0 auto 8px;">${actor.iniciales||'?'}</div>
+      <h3 style="font-family:var(--f-display);text-align:center;margin:0 0 2px;">${actor.nombre}</h3>
+      <p style="text-align:center;font-size:11.5px;color:var(--ink-3);margin:0 0 10px;">${actor.cargo}</p>
+      ${barra('Influencia', actor.nivel_influencia)}
+      ${barra('Riesgo', {alto:9,medio:5,bajo:2,sin_evaluar:0}[actor.nivel_riesgo] ?? 0)}
+      ${actor.fractura_nivel ? barra('Riesgo de fractura política', {alto:9,medio:5,bajo:2}[actor.fractura_nivel] ?? 0) : ''}
+      ${actor.fractura_motivo ? `<p style="font-size:10.5px;color:var(--ink-3);margin-top:2px;">${actor.fractura_motivo}</p>` : ''}
+      ${actor.descripcion ? `<p style="font-size:12px;margin-top:10px;line-height:1.55;">${actor.descripcion}</p>` : ''}
+      <div class="eyebrow" style="margin-top:10px;">Grupo / facción (afiliación política)</div>
+      <p style="font-size:12px;">${actor.grupo || '—'}</p>
+      <div class="eyebrow" style="margin-top:10px;">Red de cercanía real (documentada)</div>
+      ${redHTML}
+      ${actor.fuente_url ? `<div class="eyebrow" style="margin-top:10px;">Fuente</div><p style="font-size:11px;"><a href="${actor.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">${actor.fuente_nombre||'Ver fuente'} ↗</a> · ${actor.fecha_corte||''}</p>` : ''}
+    </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.classList.add('open');
+}
+
 function mostrarFicha(id, nodoClicado, nodesEnGrafo){
   const actor = getActor(id);
   if(!actor) return;
@@ -248,7 +297,9 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
     <div class="detail-row"><span class="k">Influencia</span><span class="v">${actor.nivel_influencia}/10</span></div>
     <div class="detail-row"><span class="k">Grupo</span><span class="v">${actor.grupo}</span></div>
     ${fortalezaHTML}
+    <button class="chip-btn" id="btn-ficha-completa" style="margin-top:10px;width:100%;">Ver ficha completa</button>
   `;
+  document.getElementById('btn-ficha-completa').addEventListener('click', ()=> abrirFichaActorCompleta(id));
 }
 
 document.addEventListener('ecosistema:datos-listos', initRedActores);

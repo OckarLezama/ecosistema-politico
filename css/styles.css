@@ -167,9 +167,9 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .agenda-layout{display:grid; grid-template-columns:1fr 300px; gap:16px; align-items:start;}
 @media (max-width:880px){ .agenda-layout{grid-template-columns:1fr;} }
 
-.agenda-grid{ display:flex; flex-direction:column; } /* .graph-card ya aporta fondo/borde/sombra — misma caja exacta que Red de Actores, sin duplicar reglas */
+.agenda-grid{ display:flex; flex-direction:column; height:609px; } /* altura fija total, igual a Feed y Red de Actores — así no importa cuántas filas tenga el toolbar */
 #agenda-contenido{flex:1; min-height:0; display:flex; flex-direction:column;}
-#matriz-riesgo-svg{width:100%; height:560px; display:block;} /* igual a #graph-svg — garantiza la misma altura total de caja */
+#matriz-riesgo-svg{width:100%; flex:1; display:block;} /* flex, no fijo — se ajusta solo al espacio que sobra */
 .chip-btn.kpi-activo{border-color:var(--teal); color:var(--teal);}
 .legend-inline .kpi-activo{color:var(--teal); font-weight:700;}
 .vista-toggle{display:flex; gap:6px;}
