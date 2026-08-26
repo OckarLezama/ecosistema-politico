@@ -155,8 +155,8 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   padding:10px 14px; margin-bottom:6px;
 }
 .feed-fecha{font-family:var(--f-mono); font-size:10px; color:var(--ink-3);}
-.feed-tema{font-family:var(--f-display); font-weight:700; font-size:12.5px; margin-top:2px;}
-.feed-desc{font-size:12.5px; color:var(--ink-1); line-height:1.5; margin:5px 0;}
+.feed-desc{font-family:var(--f-display); font-weight:700; font-size:13px; color:var(--ink-1); line-height:1.4; margin:2px 0 3px;}
+.feed-tema{font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.02em;}
 .feed-fuente{font-size:11px; color:var(--teal); text-decoration:none;}
 .feed-fuente:hover{text-decoration:underline;}
 

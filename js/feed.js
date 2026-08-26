@@ -11,18 +11,20 @@ function initFeed(){
 }
 
 function renderFeed(){
-  const eventos = ECOSISTEMA.eventos.slice().sort((a,b)=> b.fecha.localeCompare(a.fecha));
-  const html = eventos.map(e=>{
+  const hoy = new Date().toISOString().slice(0,10);
+  const eventos = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).slice().sort((a,b)=> b.fecha.localeCompare(a.fecha));
+
+  const html = eventos.length ? eventos.map(e=>{
     const tema = getTema(e.tema_id);
     const color = tema ? colorCategoria(tema.categoria) : 'var(--gris-2)';
     return `
       <div class="feed-item" data-tema="${e.tema_id}" style="border-left-color:${color};">
         <div class="feed-fecha">${e.fecha}</div>
-        <div class="feed-tema" style="color:${color};">${tema ? tema.nombre : e.tema_id}</div>
         <p class="feed-desc">${e.descripcion}</p>
+        <div class="feed-tema" style="color:${color};">${tema ? tema.nombre : e.tema_id}</div>
         <a href="${e.fuente_url}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
       </div>`;
-  }).join('');
+  }).join('') : `<div style="padding:20px;text-align:center;color:var(--ink-3);font-family:var(--f-display);font-size:13px;">Sin novedades registradas hoy</div>`;
   // alimenta CUALQUIER contenedor de feed presente en la página (Agenda y Timeline comparten el mismo dato)
   ['feed-lista','feed-lista-tl'].forEach(id=>{
     const cont = document.getElementById(id);
