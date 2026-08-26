@@ -80,7 +80,12 @@ function renderKpisTL(){
   if(!cont) return;
   const nivel1 = ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1);
   const conteo = {alto:0,medio:0,bajo:0};
-  nivel1.forEach(t=>{ const p = puntoPrincipalTL(t.id); if(p) conteo[nivelImpactoTL(p.intensidad)]++; });
+  nivel1.forEach(t=>{
+    const p = puntoPrincipalTL(t.id);
+    if(!p) return;
+    if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return; // respeta el año seleccionado
+    conteo[nivelImpactoTL(p.intensidad)]++;
+  });
   const COLOR = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
   cont.innerHTML = ['alto','medio','bajo'].map(niv=>
     `<span><span class="legend-dot" style="background:${COLOR[niv]}"></span>${niv[0].toUpperCase()+niv.slice(1)} repercusión (${conteo[niv]})</span>`
@@ -191,7 +196,7 @@ function renderTimeline(){
   });
   gPanel.append('line').attr('x1',44).attr('x2',251).attr('y1',24+altoPersistentes).attr('y2',24+altoPersistentes).attr('stroke','var(--line)');
   gPanel.append('text').attr('x',44).attr('y',24+altoPersistentes+13).attr('font-size','9px').attr('fill','var(--ink-1)')
-    .text(`Mes con más agenda nacional: ${mesTop.mes} (${mesTop.conteo} eventos)`);
+    .text(`Mes con mayor temas: ${mesTop.mes} (${mesTop.conteo} eventos)`);
 }
 
 function dibujarTL(xScaleActual){
