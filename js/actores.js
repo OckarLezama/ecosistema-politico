@@ -165,6 +165,13 @@ function renderGrafo(){
   node.filter(d => !d.esCentro && d.nucleo === 'A')
     .append('text').attr('x',0).attr('y', d=>-radioNodo(d)-6).attr('text-anchor','middle').attr('font-size','11px').text('★');
 
+  // indicador de "este actor tiene temas de agenda asociados" — se había quedado en V1 sin portar
+  const idsConTemas = new Set(ECOSISTEMA.temaActores.map(ta=>ta.actor_id));
+  node.filter(d => idsConTemas.has(d.id))
+    .append('circle').attr('r',3.5).attr('cx', d=>radioNodo(d)*0.7).attr('cy', d=>-radioNodo(d)*0.7)
+    .attr('fill','var(--ink-1)').attr('stroke','#fff').attr('stroke-width',1)
+    .append('title').text('Tiene temas de agenda asociados');
+
   node.append('text').attr('class','node-label')
     .attr('dy', d=>radioNodo(d)+12).attr('text-anchor','middle')
     .attr('font-size', d=>d.esCentro?'11px':'9.5px').attr('font-weight', d=>d.esCentro?'700':'400')
@@ -241,6 +248,7 @@ function temasDelActorHTML(actorId){
 
   return `
     <div class="eyebrow" style="margin-top:10px;">Temas donde aparece (${filas.length})</div>
+    <svg id="ficha-actor-grafo-temas" style="width:100%;height:220px;display:block;background:var(--bg-2);border-radius:var(--radius-s);margin-bottom:6px;"></svg>
     <div style="display:flex;flex-direction:column;gap:5px;margin-top:4px;">
       ${filas.map(f=>`
         <div class="tema-actor-item" style="border-left-color:${f.colorExp};" data-tema="${f.tema.id}">
@@ -284,6 +292,82 @@ function dibujarRadarActor(actor){
     <polygon points="${puntosPoligono}" fill="var(--teal)" fill-opacity="0.28" stroke="var(--teal)" stroke-width="1.5"/>
     ${etiquetas}
   </svg>`;
+}
+
+function renderGrafoTemasActorV2(actorId){
+  const svgEl = document.getElementById('ficha-actor-grafo-temas');
+  if(!svgEl) return;
+  svgEl.innerHTML = '';
+  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId);
+  if(!contextos.length){ svgEl.style.display='none'; return; }
+  svgEl.style.display='block';
+
+  const width = svgEl.clientWidth || 460, height = 220;
+  const RADIOS = {1:55, 2:85, 3:112};
+  const actor = getActor(actorId);
+
+  const nodeActor = {id:'__actor__', esCentro:true, x:width/2, y:height/2, fx:width/2, fy:height/2};
+  const nodesTemas = contextos.map(c=>{
+    const t = getTema(c.tema_id);
+    if(!t) return null;
+    return { id:t.id, nivelRel:Number(t.nivel_relevancia||3), peso:t.peso_politico, categoria:t.categoria, nombre:t.nombre };
+  }).filter(Boolean);
+  const nodes = [nodeActor, ...nodesTemas];
+  const links = nodesTemas.map(t=>({source:'__actor__', target:t.id, nivel:t.nivelRel}));
+
+  const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
+  const container = svg.append('g');
+
+  const link = container.selectAll('line').data(links).join('line')
+    .attr('stroke','var(--line-strong)').attr('stroke-opacity',0.6).attr('stroke-width',1.3);
+
+  const node = container.selectAll('g.mini-node').data(nodes).join('g')
+    .attr('class','mini-node').style('cursor','pointer')
+    .on('click', (ev,d)=>{
+      if(d.esCentro) return;
+      document.getElementById('ficha-actor-modal').classList.remove('open');
+      if(typeof abrirFichaTema==='function') abrirFichaTema(d.id);
+    })
+    .call(d3.drag()
+      .on('start',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0.3).restart(); if(!d.esCentro){ d.fx=d.x; d.fy=d.y; } })
+      .on('drag',(ev,d)=>{ if(!d.esCentro){ d.fx=ev.x; d.fy=ev.y; } })
+      .on('end',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0); if(!d.esCentro){ d.fx=null; d.fy=null; } }));
+
+  function radio(d){ return d.esCentro ? 20 : (8 + (d.peso||5)*0.8); }
+
+  node.append('circle').attr('r', radio)
+    .attr('fill', d=> d.esCentro ? colorRiesgo(actor.nivel_riesgo) : colorCategoria(d.categoria))
+    .attr('stroke','#fff').attr('stroke-width', d=>d.esCentro?2.5:1.3);
+
+  node.append('text').attr('dy', d=>radio(d)+10).attr('text-anchor','middle')
+    .attr('font-size', d=>d.esCentro?'10px':'8.5px').attr('font-weight', d=>d.esCentro?'700':'400').attr('fill','var(--ink-1)')
+    .text(d=> d.esCentro ? actor.nombre.split(' ').slice(0,2).join(' ') : (d.nombre.length>16?d.nombre.slice(0,14)+'…':d.nombre));
+
+  const nodesById = {}; nodes.forEach(n=>nodesById[n.id]=n);
+  function forceOrbita(strength){
+    let ref;
+    const f=(alpha)=>{ ref.forEach(n=>{
+      if(n.esCentro) return;
+      const centro=nodesById['__actor__'];
+      const t=RADIOS[n.nivelRel]||85;
+      const dx=n.x-centro.x, dy=n.y-centro.y, dist=Math.sqrt(dx*dx+dy*dy)||0.001;
+      const k=(t-dist)/dist*alpha*strength;
+      n.vx+=dx*k; n.vy+=dy*k;
+    }); };
+    f.initialize = ns=>{ ref=ns; };
+    return f;
+  }
+
+  const sim = d3.forceSimulation(nodes)
+    .force('orbita', forceOrbita(0.9))
+    .force('charge', d3.forceManyBody().strength(-40))
+    .force('collide', d3.forceCollide().radius(d=>radio(d)+14).strength(0.9))
+    .on('tick', ()=>{
+      const margen=16;
+      nodes.forEach(n=>{ if(!n.esCentro){ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); } });
+      link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      node.attr('transform', d=>`translate(${d.x},${d.y})`);
+    });
 }
 
 function abrirFichaActorCompleta(id){
@@ -347,6 +431,7 @@ function abrirFichaActorCompleta(id){
     el.addEventListener('click', ()=>{ if(typeof abrirFichaTema==='function') abrirFichaTema(el.dataset.tema); });
   });
   modal.classList.add('open');
+  renderGrafoTemasActorV2(id);
 }
 
 function mostrarFicha(id, nodoClicado, nodesEnGrafo){
