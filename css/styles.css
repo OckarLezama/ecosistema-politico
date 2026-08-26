@@ -234,6 +234,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .foda-titulo{font-family:var(--f-mono); font-size:9px; font-weight:700; text-transform:uppercase; margin-bottom:4px;}
 .foda-cuad p{font-size:10.5px; color:var(--ink-1); margin:0; line-height:1.4;}
 .tema-actor-item{border-left:3px solid; background:var(--bg-2); border-radius:0 var(--radius-s) var(--radius-s) 0; padding:6px 10px;}
+.contexto-tema-box{background:var(--bg-2); border:1px solid var(--line); border-radius:var(--radius-s); padding:8px 10px; margin:8px 0;}
 .kpi-row{display:flex; gap:8px; flex-wrap:wrap;}
 
 .heatmap-tooltip{

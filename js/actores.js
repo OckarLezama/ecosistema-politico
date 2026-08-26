@@ -461,6 +461,16 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
   const panel = document.getElementById('detail-panel');
   const color = colorRiesgo(actor.nivel_riesgo);
 
+  // contexto "por qué aparece" — al clickear un satélite (no el centro), de qué red viene y con qué nivel
+  let contextoHTML = '';
+  if(nodoClicado && !nodoClicado.esCentro && nodoClicado.coreId){
+    const coreActor = getActor(nodoClicado.coreId);
+    contextoHTML = `<div class="contexto-tema-box">
+      <div class="eyebrow">En la red de "${coreActor?coreActor.nombre:nodoClicado.coreId}"</div>
+      <div style="font-weight:700;font-size:13px;">Nivel ${nodoClicado.nivelAnillo||''}</div>
+    </div>`;
+  }
+
   let fortalezaHTML = '';
   if(nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
     const satelites = nodesEnGrafo.filter(n=>n.coreId===nodoClicado.coreId && n.id!==nodoClicado.id);
@@ -477,6 +487,7 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
     <div class="detail-avatar" style="background:${color}">${actor.iniciales||'?'}</div>
     <div class="detail-name">${actor.nombre}</div>
     <div class="detail-cargo">${actor.cargo}</div>
+    ${contextoHTML}
     <div class="detail-row"><span class="k">Riesgo</span><span class="v"><span class="riesgo-badge" style="background:${color}22;color:${color}">${(actor.nivel_riesgo||'').toUpperCase()}</span></span></div>
     <div class="detail-row"><span class="k">Influencia</span><span class="v">${actor.nivel_influencia}/10</span></div>
     <div class="detail-row"><span class="k">Grupo</span><span class="v">${actor.grupo}</span></div>
