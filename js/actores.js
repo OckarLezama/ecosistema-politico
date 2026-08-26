@@ -537,18 +537,26 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
   const panel = document.getElementById('detail-panel');
   const color = colorRiesgo(actor.nivel_riesgo);
 
-  // contexto "por qué aparece" — al clickear un satélite (no el centro), de qué red viene y con qué nivel
+  // contexto "por qué aparece" — interpretación distinta según el modo, no un texto genérico
   let contextoHTML = '';
   if(nodoClicado && !nodoClicado.esCentro && nodoClicado.coreId){
-    const coreActor = getActor(nodoClicado.coreId);
-    contextoHTML = `<div class="contexto-tema-box">
-      <div class="eyebrow">En la red de "${coreActor?coreActor.nombre:nodoClicado.coreId}"</div>
-      <div style="font-weight:700;font-size:13px;">Nivel ${nodoClicado.nivelAnillo||''}</div>
-    </div>`;
+    if(modoRed==='agenda'){
+      const temaOrigen = getTema(nodoClicado.coreId);
+      contextoHTML = `<div class="contexto-tema-box">
+        <div class="eyebrow">En el tema "${temaOrigen?temaOrigen.nombre:nodoClicado.coreId}"</div>
+        <div style="font-weight:700;font-size:13px;">${nodoClicado.rolEnTema||'Mencionado'}</div>
+      </div>`;
+    } else {
+      const coreActor = getActor(nodoClicado.coreId);
+      contextoHTML = `<div class="contexto-tema-box">
+        <div class="eyebrow">En la red de "${coreActor?coreActor.nombre:nodoClicado.coreId}"</div>
+        <div style="font-weight:700;font-size:13px;">Nivel ${nodoClicado.nivelAnillo||''}</div>
+      </div>`;
+    }
   }
 
   let fortalezaHTML = '';
-  if(nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
+  if(modoRed==='grupo' && nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
     const satelites = nodesEnGrafo.filter(n=>n.coreId===nodoClicado.coreId && n.id!==nodoClicado.id);
     const f = calcularFortalezaGrupo(actor, satelites);
     if(f){
