@@ -11,7 +11,8 @@ function initFeed(){
 }
 
 function renderFeed(){
-  const hoy = new Date().toISOString().slice(0,10);
+  // fecha de HOY en hora de México, no en UTC del navegador (evitar el desfase de husos horarios)
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'}); // 'en-CA' da formato YYYY-MM-DD directo
   const eventos = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).slice().sort((a,b)=> b.fecha.localeCompare(a.fecha));
 
   const html = eventos.length ? eventos.map(e=>{
