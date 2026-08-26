@@ -149,11 +149,9 @@ function abrirFichaTema(temaId){
     const grupo = rolAGrupo[c.rol] || 'Mencionado';
     grupos[grupo].push({actor, detalle:c.detalle});
   });
-  // actores_involucrados sin fila explícita en tema_actores.csv -> Mencionado por defecto
-  const idsConContexto = new Set(contextos.map(c=>c.actor_id));
-  (tema.actores_involucrados||'').split(';').map(s=>s.trim()).filter(Boolean).forEach(id=>{
-    if(!idsConContexto.has(id)){ const actor = getActor(id); if(actor) grupos['Mencionado'].push({actor, detalle:null}); }
-  });
+  // Ya NO se agregan actores solo desde actores_involucrados sin fuente — ese campo es una lista
+  // sin fecha ni respaldo verificable. Solo entran actores con fila real en tema_actores.csv
+  // (que sí tiene contexto/fuente detrás). Evita mostrar un nombre que no podemos sustentar.
 
   const bloquesActores = Object.entries(grupos).filter(([,lista])=>lista.length).map(([grupo,lista])=>`
     <div class="eyebrow" style="margin-top:8px;">${grupo}</div>

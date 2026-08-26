@@ -134,6 +134,20 @@ function dibujarTL(xScaleActual){
   tlContainer.append('line').attr('x1',30).attr('x2',tlWidth-30).attr('y1',tlYLinea).attr('y2',tlYLinea)
     .attr('stroke','var(--ink-2)').attr('stroke-width',2);
 
+  // puntos que SÍ parpadean en el mes exacto que cruzó umbral crítico/elevado — versión chica
+  // de la franja que falló, solo la señal puntual, no un bloque completo
+  const UMBRAL_EL=21, UMBRAL_CR=39;
+  const totalesPorMesUmbral = meses.map(m=> ECOSISTEMA.eventos.filter(e=>e.fecha.slice(0,7)===m).reduce((s,e)=>s+e.intensidad,0));
+  meses.forEach((m,i)=>{
+    const total = totalesPorMesUmbral[i];
+    if(total>=UMBRAL_EL){
+      const color = total>=UMBRAL_CR ? 'var(--riesgo-alto)' : 'var(--riesgo-medio)';
+      tlContainer.append('circle').attr('class','nodo-halo').attr('cx',xScaleActual(new Date(m+'-15'))).attr('cy',tlYLinea)
+        .attr('r',7).attr('fill',color).attr('fill-opacity',0.5)
+        .append('title').text(`${m}: umbral ${total>=UMBRAL_CR?'crítico':'elevado'} (${total})`);
+    }
+  });
+
   const stepMeses = meses.length>16 ? 2 : 1;
   tlContainer.selectAll('text.tl-mes').data(meses.filter((d,i)=>i%stepMeses===0)).join('text')
     .attr('class','tl-mes').attr('x', d=>xScaleActual(new Date(d+'-15'))).attr('y', tlYLinea+34)
