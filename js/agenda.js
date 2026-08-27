@@ -220,6 +220,147 @@ function initAgenda(){
   renderAgendaGrid();
 }
 
+// COLOR POR ROL — para que nunca se sugiera que un actor "mencionado" está señalado igual
+// que uno "investigado" (riesgo real de mala lectura, ya lo hablamos)
+const COLOR_ROL_NOTAS = {
+  'Investigado':'var(--riesgo-alto)', 'Acusado':'var(--riesgo-alto)',
+  'Responsable institucional':'var(--familia-nucleo)', 'Autoridad':'var(--familia-nucleo)',
+  'Reacción de oposición':'var(--riesgo-medio)', 'Reacción del gobierno':'var(--familia-nucleo)',
+  'Reacción social/mediática':'var(--riesgo-medio)', 'Operador':'var(--riesgo-medio)', 'Red empresarial':'var(--riesgo-medio)',
+  'Mencionado':'var(--ink-3)',
+};
+const TEXTO_ROL_NOTAS = {
+  'Investigado':'Investigado', 'Acusado':'Acusado',
+  'Responsable institucional':'Responsable institucional', 'Autoridad':'Autoridad institucional',
+  'Reacción de oposición':'Reacción de oposición', 'Reacción del gobierno':'Reacción del gobierno',
+  'Reacción social/mediática':'Reacción social/mediática', 'Operador':'Operador', 'Red empresarial':'Red empresarial',
+  'Mencionado':'Mencionó / comentó el caso — no señalado',
+};
+
+let temaNotasSeleccionado = null;
+
+function renderNotasAgenda(){
+  const cont = document.getElementById('agenda-contenido');
+  const temasDisponibles = (categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas)
+    .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+  if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){
+    temaNotasSeleccionado = temasDisponibles[0]?.id || null;
+  }
+  if(!temaNotasSeleccionado){ cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return; }
+
+  cont.innerHTML = `
+    <div style="padding:10px 14px 0;">
+      <select id="notas-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
+        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
+      </select>
+    </div>
+    <svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`;
+  document.getElementById('notas-tema-select').addEventListener('change', (e)=>{ temaNotasSeleccionado = e.target.value; renderNotasAgenda(); });
+
+  dibujarNotasAgenda(temaNotasSeleccionado);
+}
+
+function dibujarNotasAgenda(temaId){
+  const svgEl = document.getElementById('notas-svg');
+  const tema = getTema(temaId);
+  if(!tema) return;
+  const width = svgEl.clientWidth || 900, height = 500;
+  const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
+
+  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===temaId);
+  const nodeTema = {id:temaId, esCentro:true, nombre:tema.nombre, x:width/2, y:height/2, fx:width/2, fy:height/2};
+  const nodesActores = contextos.map(c=>{
+    const a = getActor(c.actor_id);
+    if(!a) return null;
+    return {id:a.id, nombre:a.nombre, rol:c.rol, esCentro:false};
+  }).filter(Boolean);
+  const nodes = [nodeTema, ...nodesActores];
+  const links = nodesActores.map(n=>({source:temaId, target:n.id}));
+
+  const container = svg.append('g');
+  const link = container.selectAll('line').data(links).join('line').attr('stroke','var(--line-strong)').attr('stroke-opacity',0.6).attr('stroke-width',1.3);
+
+  const node = container.selectAll('g.notas-node').data(nodes).join('g')
+    .attr('class','notas-node').style('cursor', d=>d.esCentro?'pointer':'default')
+    .on('click', (ev,d)=>{ if(d.esCentro) abrirFichaTema(d.id); })
+    .on('mouseenter', function(ev,d){
+      if(d.esCentro) return;
+      mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${COLOR_ROL_NOTAS[d.rol]||'var(--ink-3)'};">${TEXTO_ROL_NOTAS[d.rol]||d.rol}</span>`, ev);
+    })
+    .on('mousemove', function(ev,d){
+      if(d.esCentro) return;
+      mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${COLOR_ROL_NOTAS[d.rol]||'var(--ink-3)'};">${TEXTO_ROL_NOTAS[d.rol]||d.rol}</span>`, ev);
+    })
+    .on('mouseleave', ocultarTooltipAgenda)
+    .call(d3.drag()
+      .on('start',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0.3).restart(); if(!d.esCentro){d.fx=d.x; d.fy=d.y;} })
+      .on('drag',(ev,d)=>{ if(!d.esCentro){ d.fx=ev.x; d.fy=ev.y; } })
+      .on('end',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0); if(!d.esCentro){ d.fx=null; d.fy=null; } }));
+
+  function radio(d){ return d.esCentro?24:12; }
+  node.append('circle').attr('r',radio)
+    .attr('fill', d=> d.esCentro ? colorCategoria(tema.categoria) : (COLOR_ROL_NOTAS[d.rol]||'var(--ink-3)'))
+    .attr('stroke','#fff').attr('stroke-width', d=>d.esCentro?2.5:1.3);
+  node.append('text').attr('dy', d=>radio(d)+11).attr('text-anchor','middle')
+    .attr('font-size', d=>d.esCentro?'10px':'8.5px').attr('font-weight',d=>d.esCentro?'700':'400').attr('fill','var(--ink-1)')
+    .text(d=> d.esCentro ? (d.nombre.length>28?d.nombre.slice(0,26)+'…':d.nombre) : d.nombre.split(' ').slice(0,2).join(' '));
+
+  const sim = d3.forceSimulation(nodes)
+    .force('charge', d3.forceManyBody().strength(-90))
+    .force('collide', d3.forceCollide().radius(d=>radio(d)+16).strength(0.9))
+    .force('radial', d3.forceRadial(130, width/2, height/2).strength(d=>d.esCentro?0:0.35))
+    .on('tick', ()=>{
+      const m=20;
+      nodes.forEach(n=>{ if(!n.esCentro){ n.x=Math.max(m,Math.min(width-m,n.x)); n.y=Math.max(m,Math.min(height-m,n.y)); } });
+      link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      node.attr('transform', d=>`translate(${d.x},${d.y})`);
+    });
+}
+
+function renderGenealogiaAgenda(){
+  const cont = document.getElementById('agenda-contenido');
+  const temasDisponibles = (categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas)
+    .filter(t=> ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).length>1)
+    .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+
+  if(!temasDisponibles.length){
+    cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema tiene todavía 2+ notas para armar una genealogía — aparecerá aquí en cuanto el robot vaya sumando eventos.</div>`;
+    return;
+  }
+  if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)) temaNotasSeleccionado = temasDisponibles[0].id;
+
+  cont.innerHTML = `
+    <div style="padding:10px 14px 0;">
+      <select id="geneal-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
+        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
+      </select>
+    </div>
+    <div id="geneal-cadena" style="padding:16px;overflow-x:auto;display:flex;align-items:center;gap:0;flex:1;"></div>`;
+  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaNotasSeleccionado = e.target.value; renderGenealogiaAgenda(); });
+
+  dibujarGenealogia(temaNotasSeleccionado);
+}
+
+function dibujarGenealogia(temaId){
+  const cadena = document.getElementById('geneal-cadena');
+  const tema = getTema(temaId);
+  const eventos = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const colorNivel = colorCategoria(tema.categoria);
+
+  cadena.innerHTML = eventos.map((e,i)=>{
+    const esOrigenExplicito = !!e.evento_origen_id;
+    return `
+      <div style="display:flex;align-items:center;flex-shrink:0;">
+        ${i>0 ? `<div style="width:36px;height:2px;background:${esOrigenExplicito?'var(--teal)':'transparent'};border-top:${esOrigenExplicito?'none':'2px dashed var(--line-strong)'};"></div>` : ''}
+        <div style="width:190px;background:var(--bg-2);border:1px solid ${colorNivel};border-radius:var(--radius-s);padding:9px 11px;cursor:pointer;" data-tema="${temaId}">
+          <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);">${e.fecha}</div>
+          <div style="font-size:11px;font-weight:600;margin-top:2px;line-height:1.35;">${e.descripcion.length>90?e.descripcion.slice(0,87)+'...':e.descripcion}</div>
+        </div>
+      </div>`;
+  }).join('');
+  cadena.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
+}
+
 function renderListaAgenda(){
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
@@ -266,6 +407,8 @@ function renderAgendaGrid(){
   crearTooltipAgenda();
   renderKpisImpacto();
   if(vistaAgenda==='lista'){ renderListaAgenda(); return; }
+  if(vistaAgenda==='notas'){ renderNotasAgenda(); return; }
+  if(vistaAgenda==='genealogia'){ renderGenealogiaAgenda(); return; }
   if(!cont.querySelector('#matriz-riesgo-svg')) cont.innerHTML = `<svg id="matriz-riesgo-svg"></svg>`;
   dibujarMatrizRiesgo();
 }
