@@ -41,6 +41,7 @@ function initRedActores(){
       actorUnicoSeleccionado = null;
       document.getElementById('controles-grupo').style.display = modoRed==='actor' ? 'none' : 'flex';
       document.getElementById('controles-actor').style.display = modoRed==='actor' ? 'block' : 'none';
+      document.getElementById('leyenda-riesgo-grafo').style.display = modoRed==='actor' ? 'none' : 'flex'; // en modo Actor no hay riesgo/núcleo/cruces que explicar
       document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
       poblarSelectores();
       renderGrafo();

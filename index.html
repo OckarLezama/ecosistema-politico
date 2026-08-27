@@ -37,9 +37,8 @@
       <div class="graph-card">
         <div class="graph-toolbar">
           <div class="vista-toggle" id="modo-red-toggle">
-            <button class="chip-btn active" data-modo="grupo">Por grupo</button>
-            <button class="chip-btn" data-modo="agenda">Por agenda</button>
-            <button class="chip-btn" data-modo="actor">Por actor</button>
+            <button class="chip-btn active" data-modo="grupo">Red</button>
+            <button class="chip-btn" data-modo="actor">Actor</button>
           </div>
           <div id="controles-grupo" style="display:flex; gap:10px; flex-wrap:wrap;">
             <div class="core-select">
@@ -47,11 +46,11 @@
               <select id="nucleo-select"><option value="">— sin selección —</option></select>
             </div>
             <div class="core-select">
-              <label for="cruce1-select">Cruce 1</label>
+              <label for="cruce1-select">Actor 2</label>
               <select id="cruce1-select"><option value="">— sin selección —</option></select>
             </div>
             <div class="core-select">
-              <label for="cruce2-select">Cruce 2</label>
+              <label for="cruce2-select">Actor 3</label>
               <select id="cruce2-select"><option value="">— sin selección —</option></select>
             </div>
           </div>
@@ -62,13 +61,13 @@
             </div>
           </div>
           <button class="chip-btn" id="btn-reset-grafo">Restablecer</button>
-          <div class="legend-inline">
+          <div class="legend-inline" id="leyenda-riesgo-grafo">
             <span><span class="legend-dot" style="background:var(--riesgo-alto)"></span>Riesgo alto</span>
             <span><span class="legend-dot" style="background:var(--riesgo-medio)"></span>Medio</span>
             <span><span class="legend-dot" style="background:var(--riesgo-bajo)"></span>Bajo</span>
             <span style="border-left:1px solid var(--line);padding-left:10px;"><span class="legend-dot" style="background:var(--familia-nucleo)"></span>Núcleo</span>
-            <span><span class="legend-dot" style="background:var(--familia-cruce1)"></span>Cruce 1</span>
-            <span><span class="legend-dot" style="background:var(--familia-cruce2)"></span>Cruce 2</span>
+            <span><span class="legend-dot" style="background:var(--familia-cruce1)"></span>Actor 2</span>
+            <span><span class="legend-dot" style="background:var(--familia-cruce2)"></span>Actor 3</span>
           </div>
         </div>
         <svg id="graph-svg"></svg>
