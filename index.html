@@ -159,7 +159,10 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
   // redibujar SIEMPRE al activar la pestaña: recién visible, el contenedor ya mide su ancho real
   // (antes se medía 0px porque el panel estaba oculto, causando el corte inicial)
   if(btn.dataset.module==='agenda' && typeof renderAgendaGrid==='function') renderAgendaGrid();
-  if(btn.dataset.module==='actores' && typeof renderGrafo==='function' && (seleccion.nucleo||seleccion.cruce1||seleccion.cruce2)) renderGrafo();
+  if(btn.dataset.module==='actores' && typeof renderGrafo==='function'){
+    modoRed = document.querySelector('#modo-red-toggle .chip-btn.active')?.dataset.modo || 'grupo'; // nunca hereda modo "agenda" de Notas
+    if(seleccion.nucleo||seleccion.cruce1||seleccion.cruce2||actorUnicoSeleccionado) renderGrafo();
+  }
   if(btn.dataset.module==='timeline' && typeof renderTimeline==='function') renderTimeline();
 });
 </script>
