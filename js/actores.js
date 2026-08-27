@@ -61,9 +61,10 @@ function initRedActores(){
 
   document.getElementById('actor-buscar-input').addEventListener('input', (e)=>{
     const q = e.target.value.trim().toLowerCase();
-    if(q.length<2){ actorUnicoSeleccionado=null; renderGrafo(); return; }
+    if(q.length<2){ actorUnicoSeleccionado=null; document.getElementById('detail-panel').innerHTML='<div class="detail-empty">Escribe un nombre para ver su red.</div>'; renderGrafo(); return; }
     const match = ECOSISTEMA.actores.find(a=>a.nombre.toLowerCase().includes(q));
     actorUnicoSeleccionado = match ? match.id : null;
+    if(actorUnicoSeleccionado) mostrarTemasPorRolDeActor(actorUnicoSeleccionado);
     renderGrafo();
   });
 }
@@ -590,6 +591,34 @@ function abrirFichaActorCompleta(id){
   });
   modal.classList.add('open');
   renderGrafoTemasActorV2(id);
+}
+
+function mostrarTemasPorRolDeActor(actorId){
+  const panel = document.getElementById('detail-panel');
+  const actor = getActor(actorId);
+  if(!actor){ panel.innerHTML = '<div class="detail-empty">Escribe un nombre para ver su red.</div>'; return; }
+  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId);
+  let html = `<div class="detail-name">${actor.nombre}</div><div class="detail-cargo">${actor.cargo}</div>`;
+  if(!contextos.length){
+    html += `<p style="font-size:12px;color:var(--ink-3);margin-top:10px;">Sin temas de agenda documentados para este actor por ahora.</p>`;
+  } else {
+    html += `<div class="eyebrow" style="margin-top:10px;">Aparece en ${contextos.length} tema${contextos.length!==1?'s':''} de agenda</div>`;
+    html += contextos.map(ctx=>{
+      const tema = getTema(ctx.tema_id);
+      if(!tema) return '';
+      const nivelImp = nivelImpacto(tema.peso_politico);
+      const colorImp = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[nivelImp];
+      return `<div class="contexto-tema-box">
+        <div class="eyebrow">${tema.nombre}</div>
+        <div style="display:flex;gap:6px;align-items:center;margin-top:3px;">
+          <span style="font-weight:700;font-size:13px;">${ctx.rol}</span>
+          <span style="background:${colorImp};color:#0E1116;font-family:var(--f-mono);font-weight:700;font-size:9px;padding:1px 7px;border-radius:99px;">Impacto ${nivelImp}</span>
+        </div>
+        ${ctx.detalle ? `<p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${ctx.detalle}</p>` : ''}
+      </div>`;
+    }).join('');
+  }
+  panel.innerHTML = html;
 }
 
 function mostrarVinculosEntreActores(coresElegidos){
