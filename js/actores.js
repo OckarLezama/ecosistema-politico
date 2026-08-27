@@ -90,8 +90,8 @@ function colorDeCore(coreId, slotDeCore){
 function opacidadPorNivel(nivel){ return {0:1,1:0.85,2:0.55,3:0.35}[nivel] ?? 0.5; }
 function radioNodo(d){ if(d.esCentro) return 26; return {1:15,2:12,3:9}[d.nivelAnillo]||8; }
 
-function renderGrafo(){
-  const svgEl = document.getElementById('graph-svg');
+function renderGrafo(svgId='graph-svg'){
+  const svgEl = document.getElementById(svgId);
 
   // ---- determinar los "cores" elegidos según el modo ----
   let coresElegidos = [];
@@ -103,10 +103,10 @@ function renderGrafo(){
 
   if(coresElegidos.length===0){
     svgEl.style.display='none';
-    let empty = document.getElementById('graph-empty-state');
+    let empty = document.getElementById(svgId+'-empty-state');
     if(!empty){
       empty = document.createElement('div');
-      empty.id='graph-empty-state'; empty.className='graph-empty-state';
+      empty.id=svgId+'-empty-state'; empty.className='graph-empty-state';
       svgEl.parentNode.insertBefore(empty, svgEl);
     }
     empty.style.display='flex';
@@ -119,7 +119,7 @@ function renderGrafo(){
     return;
   }
   svgEl.style.display='block';
-  const empty = document.getElementById('graph-empty-state');
+  const empty = document.getElementById(svgId+'-empty-state');
   if(empty) empty.style.display='none';
   svgEl.innerHTML='';
 
@@ -210,10 +210,22 @@ function renderGrafo(){
     .attr('stroke-opacity', d=>opacidadPorNivel(d.nivelDestino)*0.8);
 
   const node = container.selectAll('g.node').data(nodes).join('g')
-    .attr('class','node').style('cursor','pointer')
+    .attr('class','node').style('cursor', d=> (svgId==='notas-svg' && !d.esTema) ? 'default' : 'pointer')
     .on('click', (ev,d)=>{
       if(d.esTema){ if(typeof abrirFichaTema==='function') abrirFichaTema(d.id); return; }
+      if(svgId==='notas-svg') return; // en Notas, los actores solo tienen hover, no ficha lateral (no existe ese panel en Agenda)
       mostrarFicha(d.id, d, nodes);
+    })
+    .on('mouseenter', function(ev,d){
+      if(svgId!=='notas-svg' || d.esTema || !d.rolEnTema) return;
+      if(typeof mostrarTooltipAgenda==='function') mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${(typeof COLOR_ROL_NOTAS!=='undefined'&&COLOR_ROL_NOTAS[d.rolEnTema])||'var(--ink-3)'};">${(typeof TEXTO_ROL_NOTAS!=='undefined'&&TEXTO_ROL_NOTAS[d.rolEnTema])||d.rolEnTema}</span>`, ev);
+    })
+    .on('mousemove', function(ev,d){
+      if(svgId!=='notas-svg' || d.esTema || !d.rolEnTema) return;
+      if(typeof mostrarTooltipAgenda==='function') mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${(typeof COLOR_ROL_NOTAS!=='undefined'&&COLOR_ROL_NOTAS[d.rolEnTema])||'var(--ink-3)'};">${(typeof TEXTO_ROL_NOTAS!=='undefined'&&TEXTO_ROL_NOTAS[d.rolEnTema])||d.rolEnTema}</span>`, ev);
+    })
+    .on('mouseleave', function(ev,d){
+      if(svgId==='notas-svg' && typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda();
     })
     .call(d3.drag()
       .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
