@@ -26,12 +26,6 @@ function initRedActores(){
   ['nucleo','cruce1','cruce2'].forEach(slot=>{
     document.getElementById(slot+'-select').addEventListener('change', (e)=>{
       seleccion[slot] = e.target.value || null;
-      // con 2+ actores comparándose, la red política se vuelve confusa (mezclaría partidos
-      // distintos en un solo grafo) — se deshabilita y se fuerza a solo confianza
-      const multiSeleccion = !!(seleccion.cruce1 || seleccion.cruce2);
-      const chkP = document.getElementById('chk-red-personal'), chkPol = document.getElementById('chk-red-politica');
-      chkPol.disabled = multiSeleccion;
-      if(multiSeleccion){ redPoliticaActiva = false; chkPol.checked = false; redPersonalActiva = true; chkP.checked = true; }
       poblarSelectores();
       renderGrafo();
     });
@@ -160,11 +154,15 @@ function renderGrafo(svgId='graph-svg'){
       const slot = ['nucleo','cruce1','cruce2'][idx];
       const actor = getActor(coreId);
       if(!actor) return;
-      nodesMap.set(coreId, {...actor, nivelAnillo:0, coreId, slot, esCentro:true});
+      nodesMap.set(coreId, {...actor, nivelAnillo:0, coreId, slot, esCentro:true, x:width/2+(idx-1)*90, y:height/2});
     });
     coresElegidos.forEach((coreId, idx)=>{
       const slot = ['nucleo','cruce1','cruce2'][idx];
-      if(redPersonalActiva){
+      // el checkbox SOLO controla al núcleo — Actor 2 y 3 siempre muestran ambas redes,
+      // porque su función es revelar cómo se conectan al núcleo, por cualquier canal
+      const usarPersonal = slot==='nucleo' ? redPersonalActiva : true;
+      const usarPolitica = slot==='nucleo' ? redPoliticaActiva : true;
+      if(usarPersonal){
         redPersonalDe(coreId).forEach(r=>{
           const sat = getActor(r.satelite_id);
           if(!sat) return;
@@ -174,12 +172,14 @@ function renderGrafo(svgId='graph-svg'){
           linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
         });
       }
-      if(redPoliticaActiva){
+      if(usarPolitica){
         const coreActor = getActor(coreId);
         if(coreActor && coreActor.grupo){
           // red política = mismo grupo/facción declarada — dato distinto a la cercanía real
           // documentada; máximo 8 para no saturar el grafo con partidos grandes
-          ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId).slice(0,8).forEach(sat=>{
+          // se excluyen gobernadores: comparten partido, pero no son parte del círculo político
+          // personal de la presidenta — son electos por su cuenta, no operan bajo su mando directo
+          ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId && !/gobernador/i.test(a.cargo||'')).slice(0,8).forEach(sat=>{
             const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
             if(yaEsNucleo){ linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
             if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId, slot, esPolitica:true});
@@ -195,7 +195,7 @@ function renderGrafo(svgId='graph-svg'){
       const slot = ['nucleo','cruce1','cruce2'][idx];
       const tema = getTema(temaId);
       if(!tema) return;
-      nodesMap.set(temaId, {id:temaId, nombre:tema.nombre, nivelAnillo:0, coreId:temaId, slot, esCentro:true, esTema:true, nivel_riesgo:null});
+      nodesMap.set(temaId, {id:temaId, nombre:tema.nombre, nivelAnillo:0, coreId:temaId, slot, esCentro:true, esTema:true, nivel_riesgo:null, x:width/2+(idx-1)*90, y:height/2});
     });
     coresElegidos.forEach((temaId, idx)=>{
       const slot = ['nucleo','cruce1','cruce2'][idx];
@@ -213,7 +213,7 @@ function renderGrafo(svgId='graph-svg'){
     const actorId = coresElegidos[0];
     const actor = getActor(actorId);
     if(!actor) return;
-    nodesMap.set(actorId, {...actor, nivelAnillo:0, coreId:actorId, slot:'nucleo', esCentro:true});
+    nodesMap.set(actorId, {...actor, nivelAnillo:0, coreId:actorId, slot:'nucleo', esCentro:true, x:width/2, y:height/2});
     ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId).forEach(ta=>{
       const tema = getTema(ta.tema_id);
       if(!tema) return;
