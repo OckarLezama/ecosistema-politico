@@ -17,6 +17,7 @@ import hashlib
 import urllib.request
 import urllib.parse
 import json
+import re
 from datetime import datetime, timezone, timedelta
 
 RUTA_TEMAS = 'data/temas.csv'
@@ -112,6 +113,19 @@ def siguiente_id_evento(eventos_existentes):
     return f"e{(max(numeros)+1) if numeros else 1}"
 
 
+MIGRACION_KEYWORDS = ['migración', 'migrante', 'migrantes', 'deportación', 'deportados', 'frontera sur',
+    'caravana migrante', 'redadas', 'ice ', 'instituto nacional de migración', 'refugio', 'asilo']
+ALERTA_NOMBRES = {'sergio_salomon': ['salomón céspedes', 'sergio salomón']} # menciones que disparan alerta especial, no solo detección normal
+
+def esTemaMigracion(texto_completo):
+    return any(p in texto_completo for p in MIGRACION_KEYWORDS)
+
+def tieneAlertaEspecial(texto_completo):
+    for actor_id, patrones in ALERTA_NOMBRES.items():
+        if any(p in texto_completo for p in patrones):
+            return actor_id
+    return None
+
 CATEGORIA_KEYWORDS = {
     'Seguridad Nacional': ['cártel', 'narco', 'cjng', 'chapitos', 'homicidio', 'violencia', 'guardia nacional', 'fgr', 'sedena', 'marina'],
     'Relación Bilateral': ['trump', 'eeuu', 'estados unidos', 'washington', 'embajada', 'aranceles', 'visa', 'rubio'],
@@ -126,6 +140,44 @@ def clasificar_categoria(texto_completo):
         if any(p in texto_completo for p in palabras):
             return cat
     return 'Gobernabilidad'  # respaldo: temas de gobierno/política interna por defecto
+
+
+
+def obtener_mananera_hoy():
+    """Extrae el resumen por puntos de mananeradehoy.com — actualiza cada mañana con un
+    resumen real (no genérico) generado de la transcripción completa de la conferencia.
+    No tiene RSS, así que se extrae directo del HTML con expresiones regulares."""
+    try:
+        req = urllib.request.Request('https://mananeradehoy.com/mananera-de-hoy', headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            html = resp.read().decode('utf-8', errors='ignore')
+    except Exception as e:
+        print(f'  Mañanera de Hoy: error de conexión: {e}')
+        return None, []
+
+    # confirmar que la página es de HOY (hora de México) — si no, no se procesa nada
+    hoy_mx = datetime.now(ZONA_MX).date()
+    fecha_pagina_match = re.search(r'Conferencia matutina · (\d{1,2}) de (\w+) de (\d{4})', html)
+    MESES = {'enero':1,'febrero':2,'marzo':3,'abril':4,'mayo':5,'junio':6,'julio':7,'agosto':8,'septiembre':9,'octubre':10,'noviembre':11,'diciembre':12}
+    if not fecha_pagina_match:
+        return None, []
+    dia, mes_txt, anio = fecha_pagina_match.groups()
+    mes = MESES.get(mes_txt.lower())
+    if not mes:
+        return None, []
+    fecha_pagina = f'{anio}-{mes:02d}-{int(dia):02d}'
+    if fecha_pagina != hoy_mx.strftime('%Y-%m-%d'):
+        return fecha_pagina, []  # la página existe pero es de otro día — normal fuera de la ventana de mañanera
+
+    # extraer los puntos del resumen: bloques de texto largos dentro de <li>...</li>
+    bloques = re.findall(r'<li[^>]*>(.*?)</li>', html, re.DOTALL)
+    puntos = []
+    for b in bloques:
+        texto = re.sub(r'<[^>]+>', ' ', b)  # quitar etiquetas HTML internas (enlaces al minuto exacto, etc.)
+        texto = re.sub(r'\s+', ' ', texto).strip()
+        if len(texto) > 80:  # descarta enlaces de menú y otros <li> cortos que no son puntos del resumen
+            puntos.append(texto)
+    return fecha_pagina, puntos
 
 
 def cargar_temas_todos():
@@ -275,18 +327,51 @@ def buscar_candidatos():
                     'intensidad': intensidad, 'descripcion': titulo_original, 'fuente_url': enlace,
                 })
             else:
-                # sin tema conocido: 2+ actores de alta influencia mencionados, O 1 solo si es
-                # de máximo nivel (9-10, ej. Sheinbaum, Trump, Monreal) — ese peso solo ya basta
+                # sin tema conocido: 2+ actores de alta influencia, 1 solo si es de máximo nivel,
+                # O cualquier mención de migración (tema prioritario), O alerta especial de nombre
                 menciones = sum(1 for a in actores_altos if a['nombre'].split()[-1].lower() in texto_completo)
                 mencion_top = any(int(a['nivel_influencia'])>=9 and a['nombre'].split()[-1].lower() in texto_completo for a in actores_altos)
-                if (menciones >= 2 or mencion_top) and hash_enlace not in ya_vistos:
-                    categoria_real = clasificar_categoria(texto_completo)
+                es_migracion = esTemaMigracion(texto_completo)
+                alerta_actor = tieneAlertaEspecial(texto_completo)
+                if (menciones >= 2 or mencion_top or es_migracion or alerta_actor) and hash_enlace not in ya_vistos:
+                    categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
+                    titulo_final = f'🔔 ALERTA — {titulo_original}' if alerta_actor else titulo_original
                     tema_auto = crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
+                    intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5) # alerta y migración pesan más que el genérico
                     eventos_nuevos.append({
                         'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
-                        'categoria': categoria_real, 'intensidad': 5,
-                        'descripcion': titulo_original, 'fuente_url': enlace,
+                        'categoria': categoria_real, 'intensidad': intensidad_final,
+                        'descripcion': titulo_final, 'fuente_url': enlace,
                     })
+
+    # Mañanera de Hoy — solo procesa si la página ya tiene el resumen de HOY (evita reprocesar
+    # el de ayer fuera de la ventana de mañanera, o si la página aún no se actualizó)
+    fecha_pagina_manan, puntos_manan = obtener_mananera_hoy()
+    if fecha_pagina_manan == hoy_mx.strftime('%Y-%m-%d'):
+        for punto in puntos_manan:
+            hash_punto = hashlib.md5(('mananera-'+punto[:120]).encode()).hexdigest()
+            if hash_punto in ya_vistos: continue
+            texto_completo = punto.lower()
+            tema_encontrado = None
+            for tema_id, palabras in PALABRAS_CLAVE.items():
+                if tema_id in temas_ids_validos and any(p in texto_completo for p in palabras):
+                    tema_encontrado = tema_id; break
+            es_migracion = esTemaMigracion(texto_completo)
+            alerta_actor = tieneAlertaEspecial(texto_completo)
+            if tema_encontrado:
+                conteo_hoy_por_tema[tema_encontrado] = conteo_hoy_por_tema.get(tema_encontrado, 0) + 1
+                intensidad = calcular_intensidad(texto_completo, tema_encontrado, eventos_existentes, actores_altos, conteo_hoy_por_tema[tema_encontrado])
+                eventos_nuevos.append({'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                    'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
+                    'intensidad': intensidad, 'descripcion': f'[Mañanera] {punto[:200]}', 'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
+            elif es_migracion or alerta_actor:
+                categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
+                titulo_final = f'🔔 ALERTA — [Mañanera] {punto[:180]}' if alerta_actor else f'[Mañanera] {punto[:200]}'
+                tema_auto = crear_tema_informativo(punto[:80], hoy_mx.strftime('%Y-%m-%d'), categoria_real)
+                intensidad_final = 8 if alerta_actor else 6
+                eventos_nuevos.append({'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                    'categoria': categoria_real, 'intensidad': intensidad_final, 'descripcion': titulo_final,
+                    'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
 
     # GDELT se intentó integrar pero la API bloqueó/tronó las 17 consultas desde GitHub
     # Actions (todas "timed out") — probable bloqueo de tráfico automatizado de su lado.
