@@ -26,6 +26,9 @@ function initRedActores(){
   ['nucleo','cruce1','cruce2'].forEach(slot=>{
     document.getElementById(slot+'-select').addEventListener('change', (e)=>{
       seleccion[slot] = e.target.value || null;
+      const coresElegidos = ['nucleo','cruce1','cruce2'].map(s=>seleccion[s]).filter(Boolean);
+      if(coresElegidos.length>=2) mostrarVinculosEntreActores(coresElegidos);
+      else document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
       poblarSelectores();
       renderGrafo();
     });
@@ -587,6 +590,34 @@ function abrirFichaActorCompleta(id){
   });
   modal.classList.add('open');
   renderGrafoTemasActorV2(id);
+}
+
+function mostrarVinculosEntreActores(coresElegidos){
+  const panel = document.getElementById('detail-panel');
+  const actores = coresElegidos.map(id=>getActor(id)).filter(Boolean);
+  if(actores.length<2){ panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; return; }
+  const nombresCortos = actores.map(a=>a.nombre.split(' ').slice(0,2).join(' '));
+
+  const directas = ECOSISTEMA.conexiones.filter(c=> coresElegidos.includes(c.origen) && coresElegidos.includes(c.destino));
+  const redesDeCada = coresElegidos.map(id=> new Set(redPersonalDe(id).map(r=>r.satelite_id)));
+  const idsCompartidosPersonal = [...redesDeCada[0]].filter(id=> redesDeCada.every(s=>s.has(id)) && !coresElegidos.includes(id));
+  const temasDeCada = coresElegidos.map(id=> new Set(ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===id).map(ta=>ta.tema_id)));
+  const idsTemasCompartidos = temasDeCada.length ? [...temasDeCada[0]].filter(id=> temasDeCada.every(s=>s.has(id))) : [];
+
+  let html = `<div class="eyebrow">Vínculos entre ${nombresCortos.join(' y ')}</div>`;
+  if(directas.length){
+    html += directas.map(c=> `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--familia-nucleo)">Vínculo directo · ${c.tipo_vinculo} (${c.fuerza})</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${c.descripcion}</p></div>`).join('');
+  }
+  if(idsCompartidosPersonal.length){
+    html += `<div class="contexto-tema-box"><div class="eyebrow">Contactos en común (red de cercanía)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${idsCompartidosPersonal.map(id=>{const a=getActor(id); return a?a.nombre:id;}).join(', ')}</p></div>`;
+  }
+  if(idsTemasCompartidos.length){
+    html += `<div class="contexto-tema-box"><div class="eyebrow">Aparecen juntos en ${idsTemasCompartidos.length} tema${idsTemasCompartidos.length!==1?'s':''} de agenda</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${idsTemasCompartidos.map(id=>{const t=getTema(id); return t?t.nombre:id;}).join(', ')}</p></div>`;
+  }
+  if(!directas.length && !idsCompartidosPersonal.length && !idsTemasCompartidos.length){
+    html += `<p style="font-size:12px;color:var(--ink-3);margin-top:8px;">Sin vínculo documentado entre estos actores por ahora — ni conexión directa, ni contactos ni temas compartidos.</p>`;
+  }
+  panel.innerHTML = html;
 }
 
 function mostrarFicha(id, nodoClicado, nodesEnGrafo){
