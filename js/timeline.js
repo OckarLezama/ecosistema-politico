@@ -45,7 +45,7 @@ function nivelImpactoTL(intensidad){ if(intensidad>=9) return 'alto'; if(intensi
 function temasPersistentesTL(){
   // score combinado (menciones × impacto promedio), no solo días — un tema mencionado muchas
   // veces con eventos de alto impacto pesa más que uno solo "viejo" con menciones menores
-  return ECOSISTEMA.temas.map(t=>{
+  return ECOSISTEMA.temas.filter(t=>t.tipo!=='informativo').map(t=>{
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     if(!evs.length) return null;
     const impactoProm = evs.reduce((s,e)=>s+e.intensidad,0)/evs.length;
@@ -164,7 +164,7 @@ function renderTimeline(){
   pat.append('path').attr('d','M 24 0 L 0 0 0 24').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
   tlSvg.insert('rect','.tl-zoom-container').attr('x',0).attr('y',0).attr('width',tlWidth).attr('height',tlHeight).attr('fill','url(#tl-grid)');
 
-  const puntosBase = ECOSISTEMA.temas.map(t=>{
+  const puntosBase = ECOSISTEMA.temas.filter(t=>t.tipo!=='informativo').map(t=>{ // los temas automáticos del robot (informativos, del Feed) NUNCA se muestran aquí — Timeline es solo agenda real, no ruido del día
     const p = puntoPrincipalTL(t.id);
     if(!p) return null;
     if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return null;

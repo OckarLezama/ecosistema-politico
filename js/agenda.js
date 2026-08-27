@@ -238,6 +238,7 @@ const TEXTO_ROL_NOTAS = {
 };
 
 let temaNotasSeleccionado = null;
+let temaGenealogiaSeleccionado = null;
 
 function renderNotasAgenda(){
   const cont = document.getElementById('agenda-contenido');
@@ -361,48 +362,70 @@ let genealogiaRevelados = 1;
 
 function renderGenealogiaAgenda(){
   const cont = document.getElementById('agenda-contenido');
-  const temasDisponibles = (categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas)
+  const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
+  const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1) // solo agenda nacional real — mismo criterio que Notas
     .filter(t=> ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).length>1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
   if(!temasDisponibles.length){
-    cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema tiene todavía 2+ notas para armar una genealogía — aparecerá aquí en cuanto el robot vaya sumando eventos.</div>`;
+    cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ notas para armar una genealogía.</div>`;
     return;
   }
-  if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){ temaNotasSeleccionado = temasDisponibles[0].id; genealogiaRevelados = 1; }
+  if(!temaGenealogiaSeleccionado || !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)){ temaGenealogiaSeleccionado = temasDisponibles[0].id; genealogiaRevelados = 1; }
 
   cont.innerHTML = `
     <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;">
       <select id="geneal-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
-        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
+        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
       </select>
-      <span style="font-size:10.5px;color:var(--ink-3);">Clic en cada nota para revelar la siguiente, en orden real</span>
+      <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
-    <svg id="geneal-svg" style="width:100%;flex:1;display:block;"></svg>`;
-  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaNotasSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
+    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
+  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
 
-  dibujarGenealogia(temaNotasSeleccionado);
+  dibujarGenealogia(temaGenealogiaSeleccionado);
 }
 
 function dibujarGenealogia(temaId){
+  const scrollEl = document.getElementById('geneal-scroll');
   const svgEl = document.getElementById('geneal-svg');
   const tema = getTema(temaId);
   const eventos = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
   const colorTema = colorCategoria(tema.categoria);
-  const width = svgEl.clientWidth || 900, height = 480;
-  const y = height/2;
-  const espacio = Math.min(140, (width-140)/(eventos.length-1||1));
-  const xInicio = 60;
+
+  const espacio = 170; // FIJO — así nunca se aprieta con muchas notas, se desplaza en cambio
+  const xInicio = 150; // suficiente para que la etiqueta del origen (centrada) no se salga por la izquierda
+  const height = 480, y = height/2;
+  const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150;
+  const width = Math.max(scrollEl.clientWidth||900, anchoNecesario);
+  svgEl.style.width = width+'px';
+
   const posiciones = eventos.map((e,i)=>({x:xInicio+i*espacio, y}));
 
   const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
   svg.selectAll('*').remove();
 
-  // la línea va DEBAJO (se dibuja primero, los puntos se dibujan encima después)
+  // cuadrícula de fondo, mismo estilo que Timeline
+  const defs = svg.append('defs');
+  const pat = defs.append('pattern').attr('id','geneal-grid').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
+  pat.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
+  svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#geneal-grid)');
+  defs.append('marker').attr('id','flecha-geneal').attr('viewBox','0 0 10 10').attr('refX',9).attr('refY',5)
+    .attr('markerWidth',6).attr('markerHeight',6).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M 0 0 L 10 5 L 0 10 z').attr('fill','var(--teal)');
+
+  // franja de frecuencia de fondo — picos según la intensidad de cada nota en su fecha real,
+  // aporta contexto de "cuánto pesó" cada momento sin estorbar la línea principal
+  const gFrecuencia = svg.append('g').attr('opacity',0.35);
+  const maxIntensidad = Math.max(...eventos.map(e=>e.intensidad), 1);
+  const puntosFrecuencia = eventos.map((e,i)=> [xInicio+i*espacio, y - (e.intensidad/maxIntensidad)*70]);
+  const lineaFrecuencia = d3.line().curve(d3.curveMonotoneX);
+  gFrecuencia.append('path').attr('d', lineaFrecuencia(puntosFrecuencia)).attr('fill','none').attr('stroke',colorTema).attr('stroke-width',1.5);
+  puntosFrecuencia.forEach(p=> gFrecuencia.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2).attr('fill',colorTema));
+
   const lineaBase = svg.append('g').attr('class','geneal-linea-capa');
   const puntosBase = svg.append('g').attr('class','geneal-puntos-capa');
 
-  // origen — visible desde el inicio, con nombre del tema
   const gOrigen = puntosBase.append('g').attr('transform',`translate(${posiciones[0].x},${posiciones[0].y})`).style('cursor', genealogiaRevelados>1?'default':'pointer');
   gOrigen.append('circle').attr('r',26).attr('fill',colorTema).attr('stroke','#fff').attr('stroke-width',3);
   gOrigen.append('text').attr('text-anchor','middle').attr('dy','0.35em').attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','#fff').text(eventos[0].fecha.slice(5));
@@ -412,32 +435,34 @@ function dibujarGenealogia(temaId){
   if(genealogiaRevelados<=1){
     gOrigen.on('click', ()=> reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height));
   } else {
-    // ya se reprodujo antes (ej. cambiaste de tema y volviste) — mostrar todo de una vez, sin animar otra vez
     for(let i=1;i<genealogiaRevelados;i++){
-      lineaBase.append('line').attr('x1',posiciones[i-1].x).attr('y1',y).attr('x2',posiciones[i].x).attr('y2',y).attr('stroke','var(--teal)').attr('stroke-width',1.8);
+      lineaBase.append('line').attr('x1',posiciones[i-1].x).attr('y1',y).attr('x2',posiciones[i].x).attr('y2',y).attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
       dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, false, width, height);
     }
+    scrollEl.scrollLeft = width; // ir directo al final si ya se había reproducido antes
   }
 
-  svg.append('text').attr('class','geneal-contador').attr('x',width/2).attr('y',height-10).attr('text-anchor','middle')
+  svg.append('text').attr('class','geneal-contador').attr('x',xInicio).attr('y',height-10).attr('text-anchor','middle')
     .attr('font-size','10px').attr('fill','var(--ink-3)')
     .text(genealogiaRevelados<=1 ? `Clic en el origen para reproducir el recorrido (${eventos.length} notas)` : `${genealogiaRevelados} de ${eventos.length} notas — recorrido completo`);
 }
 
 function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height){
+  const scrollEl = document.getElementById('geneal-scroll');
   d3.select('#geneal-svg .geneal-contador').text(`Reproduciendo — 1 de ${eventos.length}`);
   function siguienteTramo(i){
     if(i>=eventos.length){ genealogiaRevelados = eventos.length; return; }
+    scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'}); // el scroll sigue el avance solo
     const linea = lineaBase.append('line')
       .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y).attr('x2',posiciones[i-1].x).attr('y2',posiciones[i-1].y)
-      .attr('stroke','var(--teal)').attr('stroke-width',1.8);
+      .attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
     linea.transition().duration(600).ease(d3.easeLinear)
       .attr('x2',posiciones[i].x).attr('y2',posiciones[i].y)
       .on('end', ()=>{
         dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, true, width, height);
         genealogiaRevelados = i+1;
         d3.select('#geneal-svg .geneal-contador').text(i+1<eventos.length ? `Reproduciendo — ${i+1} de ${eventos.length}` : `${eventos.length} de ${eventos.length} notas — recorrido completo`);
-        setTimeout(()=> siguienteTramo(i+1), 700); // pausa breve para leer el resumen antes de seguir
+        setTimeout(()=> siguienteTramo(i+1), 700);
       });
   }
   siguienteTramo(1);
@@ -448,7 +473,6 @@ function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, heigh
   if(animado) g.transition().duration(200).style('opacity',1);
   g.append('circle').attr('r',16).attr('fill','var(--bg-2)').attr('stroke',colorTema).attr('stroke-width',1.8);
   g.append('text').attr('text-anchor','middle').attr('dy','0.35em').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-2)').text(e.fecha.slice(5));
-  // resumen alternado arriba/abajo del punto, para no encimarse entre notas seguidas
   mostrarResumenGenealogiaFijo(e, pos, i%2===0, width, height, i);
 }
 
