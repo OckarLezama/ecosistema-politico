@@ -140,7 +140,61 @@ function mostrarTooltipTL(d, ev){
   mostrarTooltipAgenda(html, ev);
 }
 
+function dibujarHeatmapTimeline(){
+  const svgEl = document.getElementById('timeline-heatmap-svg');
+  if(!svgEl) return;
+  const svg = d3.select(svgEl);
+  svg.selectAll('*').remove();
+  const width = svgEl.clientWidth || 900, height = 64;
+
+  let meses = mesesSexenioTL();
+  if(anioFiltroTL) meses = meses.filter(m=>m.startsWith(anioFiltroTL));
+  if(!meses.length) return;
+  svg.attr('viewBox',[0,0,width,height]);
+
+  const datos = meses.map(mes=>{
+    const evs = ECOSISTEMA.eventos.filter(e=>e.fecha.startsWith(mes));
+    const intensidadProm = evs.length ? evs.reduce((s,e)=>s+e.intensidad,0)/evs.length : 0;
+    return {mes, total:evs.length, intensidadProm};
+  });
+  const maxIntensidad = Math.max(...datos.map(d=>d.intensidadProm), 1);
+  const anchoBloque = width/datos.length;
+
+  const escalaColor = v=>{
+    // de teal (bajo) a coral (alto) — mismo lenguaje de riesgo ya usado en toda la app
+    if(v===0) return 'var(--bg-2)';
+    const t = v/maxIntensidad;
+    return t>0.66 ? 'var(--riesgo-alto)' : t>0.33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+  };
+
+  const g = svg.selectAll('g.mes-bloque').data(datos).join('g').attr('class','mes-bloque')
+    .attr('transform',(d,i)=>`translate(${i*anchoBloque},0)`).style('cursor','pointer');
+
+  g.append('rect').attr('width',anchoBloque-2).attr('height',36).attr('y',4).attr('rx',3)
+    .attr('fill', d=>escalaColor(d.intensidadProm)).attr('fill-opacity',0).style('opacity',0)
+    .transition().delay((d,i)=>i*12).duration(300).attr('fill-opacity', d=>d.total?0.85:0.15).style('opacity',1); // entra con dinamismo, no de golpe
+
+  // el mes de mayor intensidad promedio destaca con un halo pulsante — "esto es lo más caliente"
+  const mesTop = datos.reduce((a,b)=> b.intensidadProm>a.intensidadProm ? b : a, datos[0]);
+  if(mesTop && mesTop.total){
+    g.filter(d=>d.mes===mesTop.mes).append('rect').attr('class','nodo-halo')
+      .attr('width',anchoBloque-2).attr('height',36).attr('y',4).attr('rx',3)
+      .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',2);
+  }
+
+  g.append('text').attr('x',(anchoBloque-2)/2).attr('y',54).attr('text-anchor','middle')
+    .attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
+    .text(d=> anchoBloque>26 ? d.mes.slice(2) : ''); // oculta etiqueta si hay demasiados meses y no cabe
+
+  g.on('mouseenter', function(ev,d){
+    mostrarTooltipAgenda(`<strong>${d.mes}</strong><br>${d.total} nota${d.total!==1?'s':''} · intensidad promedio ${d.intensidadProm.toFixed(1)}/10`, ev);
+  }).on('mousemove', function(ev,d){
+    mostrarTooltipAgenda(`<strong>${d.mes}</strong><br>${d.total} nota${d.total!==1?'s':''} · intensidad promedio ${d.intensidadProm.toFixed(1)}/10`, ev);
+  }).on('mouseleave', ocultarTooltipAgenda);
+}
+
 function renderTimeline(){
+  dibujarHeatmapTimeline();
   const svgEl = document.getElementById('timeline-svg');
   const wrapEl = document.getElementById('timeline-scroll');
   if(!svgEl) return;

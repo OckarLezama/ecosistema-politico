@@ -199,6 +199,8 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .feed-card .feed-lista::-webkit-scrollbar-thumb:hover{background:var(--teal);}
 
 #timeline-scroll{width:100%; padding:14px; flex:1; min-height:0; box-sizing:border-box;}
+#timeline-heatmap-wrap{width:100%; padding:12px 14px 4px; box-sizing:border-box;}
+#timeline-heatmap-svg{display:block; width:100%; height:64px;}
 #timeline-svg{display:block; width:100%; height:100%;}
 #panel-timeline .graph-card{height:609px; display:flex; flex-direction:column;} /* mismo alto total que Red de Actores (toolbar 49px + svg 560px) */
 
@@ -265,7 +267,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .ticker-track{ overflow:hidden; flex:1; }
 .ticker-inner{
   display:flex; align-items:center; gap:26px; padding:0 16px; width:max-content;
-  animation:desplazar-cintillo 120s linear infinite;
+  animation:desplazar-cintillo 90s linear infinite;
 }
 .ticker-wrap:hover .ticker-inner{ animation-play-state:paused; }
 @keyframes desplazar-cintillo{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
