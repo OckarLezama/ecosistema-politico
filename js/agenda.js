@@ -756,7 +756,7 @@ function dibujarMatrizRiesgo(){
       primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
       x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 24, 600, {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14}); // 24: verificado con la vista por defecto (17 temas Nivel 1), permite puntos un poco más grandes sin distorsionar demasiado
+  const datos = separarPuntos(crudos, 40, 600, {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14}); // 24: verificado con la vista por defecto (17 temas Nivel 1), permite puntos un poco más grandes sin distorsionar demasiado
 
   if(!datos.length){
     svg.attr('viewBox',[0,0,width,height]);

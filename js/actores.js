@@ -131,7 +131,7 @@ function renderGrafo(svgId='graph-svg'){
   if(empty) empty.style.display='none';
   svgEl.innerHTML='';
 
-  const width = svgEl.clientWidth || 900, height = 560;
+  const width = (svgEl.clientWidth>100 ? svgEl.clientWidth : svgEl.parentElement.clientWidth) || 900, height = 560;
 
   // ---- construcción de nodos: distinta según el modo, pero misma forma de datos para reusar
   // toda la física y el dibujo que sigue abajo sin duplicar código ----
