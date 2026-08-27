@@ -55,6 +55,7 @@ function iniciarActualizacionAutomatica(){
     ECOSISTEMA.temaActores = temaActores;
 
     if(typeof renderFeed==='function') renderFeed();
+    if(typeof renderCintillo==='function') renderCintillo();
     const panelActivo = document.querySelector('.module-panel.active');
     if(panelActivo){
       if(panelActivo.id==='panel-agenda' && typeof renderAgendaGrid==='function') renderAgendaGrid();

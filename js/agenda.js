@@ -196,6 +196,29 @@ let soloAgendaNacional = true; // activo por defecto — distingue agenda nacion
 
 let vistaAgenda = 'matriz';
 
+function renderCintillo(){
+  const inner = document.getElementById('ticker-inner');
+  if(!inner) return;
+  const temas = ECOSISTEMA.temas.filter(t=>t.tipo!=='informativo').slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+  const itemsHTML = temas.map(t=>{
+    const color = colorCategoria(t.categoria);
+    const indice = calcularIndiceEscalamiento(t);
+    const flecha = indice.tendencia==='ascenso' ? '▲' : (indice.tendencia==='descenso' ? '▼' : '—');
+    const claseFlecha = indice.tendencia==='ascenso' ? 'up' : (indice.tendencia==='descenso' ? 'down' : 'flat');
+    return `<button class="ticker-item" data-tema="${t.id}">
+      <span class="riesgo-chip" style="background:${color}"></span>
+      <span class="tema-name">${t.nombre}</span>
+      <span class="trend ${claseFlecha}">${flecha}</span>
+    </button>`;
+  }).join('');
+  // el contenido se duplica una vez — así la animación de desplazamiento se ve continua, sin salto ni corte al reiniciar
+  inner.innerHTML = itemsHTML + itemsHTML;
+  inner.querySelectorAll('.ticker-item').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ if(typeof abrirFichaTema==='function') abrirFichaTema(btn.dataset.tema); });
+  });
+}
+document.addEventListener('ecosistema:datos-listos', renderCintillo);
+
 function initAgenda(){
   poblarFiltroCategoriaAgenda();
   const btnNivel1 = document.getElementById('btn-agenda-nacional');
