@@ -5,6 +5,7 @@
    ============================================================ */
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
+let redPersonalActiva = true, redPoliticaActiva = false;
 let simulacion = null;
 let modoRed = 'grupo';
 let actorUnicoSeleccionado = null;
@@ -14,6 +15,13 @@ const COLOR_POR_SLOT = { nucleo:'var(--familia-nucleo)', cruce1:'var(--familia-c
 function initRedActores(){
   poblarSelectores();
   renderGrafo();
+
+  const chkPersonal = document.getElementById('chk-red-personal'), chkPolitica = document.getElementById('chk-red-politica');
+  if(chkPersonal && !chkPersonal.dataset.conectado){
+    chkPersonal.addEventListener('change', ()=>{ redPersonalActiva = chkPersonal.checked; renderGrafo(); });
+    chkPolitica.addEventListener('change', ()=>{ redPoliticaActiva = chkPolitica.checked; renderGrafo(); });
+    chkPersonal.dataset.conectado = '1';
+  }
 
   ['nucleo','cruce1','cruce2'].forEach(slot=>{
     document.getElementById(slot+'-select').addEventListener('change', (e)=>{
@@ -149,14 +157,29 @@ function renderGrafo(svgId='graph-svg'){
     });
     coresElegidos.forEach((coreId, idx)=>{
       const slot = ['nucleo','cruce1','cruce2'][idx];
-      redPersonalDe(coreId).forEach(r=>{
-        const sat = getActor(r.satelite_id);
-        if(!sat) return;
-        const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
-        if(yaEsNucleo){ linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot}); return; }
-        if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot});
-        linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot});
-      });
+      if(redPersonalActiva){
+        redPersonalDe(coreId).forEach(r=>{
+          const sat = getActor(r.satelite_id);
+          if(!sat) return;
+          const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
+          if(yaEsNucleo){ linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'}); return; }
+          if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot});
+          linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
+        });
+      }
+      if(redPoliticaActiva){
+        const coreActor = getActor(coreId);
+        if(coreActor && coreActor.grupo){
+          // red política = mismo grupo/facción declarada — dato distinto a la cercanía real
+          // documentada; máximo 8 para no saturar el grafo con partidos grandes
+          ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId).slice(0,8).forEach(sat=>{
+            const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
+            if(yaEsNucleo){ linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
+            if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId, slot});
+            linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
+          });
+        }
+      }
     });
   } else if(modoRed==='agenda'){
     const ROL_A_NIVEL = {'Investigado':1,'Acusado':1,'Responsable institucional':1,'Autoridad':1,'Operador':1,
@@ -221,7 +244,8 @@ function renderGrafo(svgId='graph-svg'){
     .data(links).join('line')
     .attr('stroke', d=>colorDeCore(d.origen, slotDeCore))
     .attr('stroke-width', d=>({1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
-    .attr('stroke-opacity', d=>opacidadPorNivel(d.nivelDestino)*0.8);
+    .attr('stroke-opacity', d=>opacidadPorNivel(d.nivelDestino)*0.8)
+    .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null); // punteada = red política (mismo grupo/facción), sólida = cercanía real documentada
 
   const node = container.selectAll('g.node').data(nodes).join('g')
     .attr('class','node').style('cursor', d=> (svgId==='notas-svg' && !d.esTema) ? 'default' : 'pointer')
