@@ -26,6 +26,12 @@ function initRedActores(){
   ['nucleo','cruce1','cruce2'].forEach(slot=>{
     document.getElementById(slot+'-select').addEventListener('change', (e)=>{
       seleccion[slot] = e.target.value || null;
+      // con 2+ actores comparándose, la red política se vuelve confusa (mezclaría partidos
+      // distintos en un solo grafo) — se deshabilita y se fuerza a solo confianza
+      const multiSeleccion = !!(seleccion.cruce1 || seleccion.cruce2);
+      const chkP = document.getElementById('chk-red-personal'), chkPol = document.getElementById('chk-red-politica');
+      chkPol.disabled = multiSeleccion;
+      if(multiSeleccion){ redPoliticaActiva = false; chkPol.checked = false; redPersonalActiva = true; chkP.checked = true; }
       poblarSelectores();
       renderGrafo();
     });
@@ -98,6 +104,7 @@ function colorDeCore(coreId, slotDeCore){
 // en modo Notas (agenda), el color del nodo satélite es por ROL (investigado/mencionado/etc.),
 // no por familia — así se distingue de un vistazo, no solo con el hover
 function colorNodoReal(d, svgId, slotDeCore){
+  if(d.esPolitica) return 'var(--puente)'; // color distinto para satélites que solo vienen de la red política, no de cercanía real
   if(svgId==='notas-svg' && !d.esTema && d.rolEnTema && typeof COLOR_ROL_NOTAS!=='undefined'){
     return COLOR_ROL_NOTAS[d.rolEnTema] || 'var(--ink-3)';
   }
@@ -175,7 +182,7 @@ function renderGrafo(svgId='graph-svg'){
           ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId).slice(0,8).forEach(sat=>{
             const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
             if(yaEsNucleo){ linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
-            if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId, slot});
+            if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId, slot, esPolitica:true});
             linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
           });
         }
@@ -221,12 +228,6 @@ function renderGrafo(svgId='graph-svg'){
   const links = linksBase.filter(e=>nodeIds.has(e.origen)&&nodeIds.has(e.destino)).map(e=>({...e, source:e.origen, target:e.destino}));
 
   const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
-  if(svgId==='notas-svg'){
-    const defsGrid = svg.append('defs');
-    const patGrid = defsGrid.append('pattern').attr('id','notas-grid').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
-    patGrid.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
-    svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#notas-grid)');
-  }
   const defs = svg.append('defs');
   const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
   blur.append('feGaussianBlur').attr('stdDeviation', 6);
@@ -303,7 +304,13 @@ function renderGrafo(svgId='graph-svg'){
   node.append('text').attr('class','node-label')
     .attr('dy', d=>radioNodo(d)+12).attr('text-anchor','middle')
     .attr('font-size', d=>d.esCentro?'11px':'9.5px').attr('font-weight', d=>d.esCentro?'700':'400')
-    .text(d=>d.nombre.split(' ').slice(0,2).join(' '));
+    .text(d=>{
+      // el centro en Notas es el NOMBRE COMPLETO de un tema, no una persona — recortar a 2
+      // palabras lo deja sin sentido ("Acusación de"); aquí se recorta por caracteres, más largo
+      if(d.esCentro && svgId==='notas-svg') return d.nombre.length>34 ? d.nombre.slice(0,32)+'…' : d.nombre;
+      return d.nombre.split(' ').slice(0,2).join(' ');
+    })
+    .append('title').text(d=> (d.esCentro && svgId==='notas-svg') ? d.nombre : null); // nombre completo real en hover si se recortó
 
   const nodesById = {}; nodes.forEach(n=>nodesById[n.id]=n);
   function forceOrbita(strength){
