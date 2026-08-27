@@ -199,7 +199,13 @@ let vistaAgenda = 'matriz';
 function renderCintillo(){
   const inner = document.getElementById('ticker-inner');
   if(!inner) return;
-  const temas = ECOSISTEMA.temas.filter(t=>t.tipo!=='informativo').slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const idsConNotaHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
+  const temas = ECOSISTEMA.temas.filter(t=>t.tipo!=='informativo' && idsConNotaHoy.has(t.id)).slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+  if(!temas.length){
+    inner.innerHTML = `<span style="padding:7px 0;color:var(--ink-3);font-size:12px;">Sin novedades registradas hoy</span>`;
+    return;
+  }
   const itemsHTML = temas.map(t=>{
     const color = colorCategoria(t.categoria);
     const indice = calcularIndiceEscalamiento(t);
