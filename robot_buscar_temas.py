@@ -212,7 +212,7 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes)
 def guardar_evento_directo(evento):
     """Escribe DIRECTO a eventos.csv — solo para temas que YA existen en temas.csv.
     Es el camino automático de verdad: sin revisión manual, en tiempo real."""
-    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url']
+    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id']
     with open(RUTA_EVENTOS, 'a', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         w.writerow(evento)

@@ -383,11 +383,13 @@ function dibujarGenealogia(temaId){
     .append('path').attr('d','M 0 0 L 10 5 L 0 10 z').attr('fill','var(--teal)');
 
   // posición en espiral (ángulo dorado) — el origen queda literal al centro, cada revelado se
-  // aleja un poco más, así nunca se encimarían aunque hubiera muchos eventos
+  // radio limitado al espacio real disponible — antes crecía sin tope y las notas de temas con
+  // muchos eventos (ej. Huachicol, 8) se salían del recuadro
+  const radioMax = Math.min(width,height)/2 - 50;
   const posiciones = eventos.map((e,i)=>{
     if(i===0) return {x:cx, y:cy};
     const angulo = i*137.5*(Math.PI/180);
-    const radio = 85 + i*38;
+    const radio = Math.min(70 + i*30, radioMax);
     return {x:cx+radio*Math.cos(angulo), y:cy+radio*Math.sin(angulo)};
   });
 
@@ -402,24 +404,29 @@ function dibujarGenealogia(temaId){
       .attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)')
       .attr('stroke-dasharray', function(){ return this.getTotalLength ? this.getTotalLength() : 400; })
       .attr('stroke-dashoffset', function(){ return this.getTotalLength ? this.getTotalLength() : 400; })
-      .transition().duration(450).attr('stroke-dashoffset',0); // se dibuja como trazo animado, no aparece de golpe
+      .transition().duration(450).attr('stroke-dashoffset',0);
   });
 
   visibles.forEach((e,i)=>{
     const esOrigen = i===0;
     const g = svg.append('g').attr('transform',`translate(${posiciones[i].x},${posiciones[i].y})`)
       .style('cursor','pointer').style('opacity',0);
-    g.transition().delay(i>0?200:0).duration(350).style('opacity',1); // entra con transición, no estático
+    g.transition().delay(i>0?200:0).duration(350).style('opacity',1);
 
-    g.append('circle').attr('r', esOrigen?28:16)
+    g.append('circle').attr('r', esOrigen?30:16)
       .attr('fill', esOrigen?colorTema:'var(--bg-2)').attr('stroke',colorTema).attr('stroke-width',esOrigen?3:1.8);
     g.append('text').attr('text-anchor','middle').attr('dy','0.35em')
       .attr('font-size', esOrigen?'9px':'8px').attr('font-family','var(--f-mono)').attr('fill', esOrigen?'#fff':'var(--ink-2)')
       .text(e.fecha.slice(5));
 
+    // nombre del tema visible junto al centro — antes solo se veía la fecha, sin decir de qué tema se trataba
+    if(esOrigen){
+      g.append('text').attr('text-anchor','middle').attr('dy',48).attr('font-size','11px').attr('font-weight','700')
+        .attr('fill','var(--ink-1)').text(tema.nombre.length>34?tema.nombre.slice(0,32)+'…':tema.nombre);
+    }
+
     g.on('click', ()=>{
-      if(esOrigen){ abrirFichaTema(temaId); }
-      else{ mostrarResumenGenealogia(e, posiciones[i], width, height); }
+      mostrarResumenGenealogia(e, posiciones[i], width, height); // ninguno abre la ficha completa aquí, solo resumen breve
       if(genealogiaRevelados < eventos.length && i===genealogiaRevelados-1){
         genealogiaRevelados++;
         dibujarGenealogia(temaId);
@@ -427,11 +434,12 @@ function dibujarGenealogia(temaId){
     });
   });
 
-  if(genealogiaRevelados<eventos.length){
-    svg.append('text').attr('x',width/2).attr('y',height-10).attr('text-anchor','middle')
-      .attr('font-size','10px').attr('fill','var(--ink-3)')
-      .text(`${genealogiaRevelados} de ${eventos.length} — clic en la última nota para seguir`);
-  }
+  // contador siempre visible, no solo cuando falta revelar
+  svg.append('text').attr('x',width/2).attr('y',height-10).attr('text-anchor','middle')
+    .attr('font-size','10px').attr('fill','var(--ink-3)')
+    .text(genealogiaRevelados<eventos.length
+      ? `${genealogiaRevelados} de ${eventos.length} notas desprendidas — clic en la última para seguir`
+      : `${eventos.length} de ${eventos.length} notas desprendidas — completo`);
 }
 
 function mostrarResumenGenealogia(evento, pos, width, height){
