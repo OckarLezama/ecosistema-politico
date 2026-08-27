@@ -2,7 +2,9 @@ const ECOSISTEMA = { ready:false, actores:[], redesPersonales:[], conexiones:[],
 
 function cargarCSV(nombreArchivo){
   return new Promise((resolve)=>{
-    Papa.parse('data/'+nombreArchivo, {
+    // ?t=... evita que el navegador sirva una copia vieja en caché — sin esto, el robot
+    // puede actualizar el archivo real y tu navegador seguir mostrando la versión anterior
+    Papa.parse('data/'+nombreArchivo+'?t='+Date.now(), {
       download:true, header:true, skipEmptyLines:true,
       complete: (res)=> resolve(res.data),
       error: ()=> resolve(null)
@@ -34,6 +36,33 @@ async function inicializarDatos(){
 
   document.dispatchEvent(new CustomEvent('ecosistema:datos-listos'));
 }
+
+// actualización automática — cada 3 minutos revisa si hay datos nuevos, sin que el usuario
+// tenga que recargar la página. Solo redibuja el Feed (barato) y el módulo que esté visible.
+function iniciarActualizacionAutomatica(){
+  setInterval(async ()=>{
+    const [actores, redes, conexiones, temas, eventos, temaActores] = await Promise.all([
+      cargarCSV('actores.csv'), cargarCSV('redes_personales.csv'), cargarCSV('conexiones.csv'),
+      cargarCSV('temas.csv'), cargarCSV('eventos.csv'), cargarCSV('tema_actores.csv'),
+    ]);
+    if(!actores || !redes || !conexiones || !temas || !eventos || !temaActores) return; // si falla, no rompe lo que ya había
+
+    ECOSISTEMA.actores = actores.map(a=>({...a, nivel_influencia:Number(a.nivel_influencia)||5}));
+    ECOSISTEMA.redesPersonales = redes.map(r=>({...r, nivel:Number(r.nivel)}));
+    ECOSISTEMA.conexiones = conexiones;
+    ECOSISTEMA.temas = temas.map(t=>({...t, peso_politico:Number(t.peso_politico)||5}));
+    ECOSISTEMA.eventos = eventos.map(e=>({...e, intensidad:Number(e.intensidad)||1}));
+    ECOSISTEMA.temaActores = temaActores;
+
+    if(typeof renderFeed==='function') renderFeed();
+    const panelActivo = document.querySelector('.module-panel.active');
+    if(panelActivo){
+      if(panelActivo.id==='panel-agenda' && typeof renderAgendaGrid==='function') renderAgendaGrid();
+      if(panelActivo.id==='panel-timeline' && typeof renderTimeline==='function') renderTimeline();
+    }
+  }, 3*60*1000);
+}
+document.addEventListener('ecosistema:datos-listos', iniciarActualizacionAutomatica, {once:true});
 
 function getTema(id){ return ECOSISTEMA.temas.find(t=>t.id===id); }
 
