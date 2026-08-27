@@ -196,14 +196,77 @@ let soloAgendaNacional = true; // activo por defecto — distingue agenda nacion
 
 let vistaAgenda = 'matriz';
 
+function abrirTarjetaHoy(temaId){
+  const tema = getTema(temaId);
+  if(!tema) return;
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const ahoraMX = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Mexico_City'}));
+  const diaSemana = ahoraMX.getDay(), hora = ahoraMX.getHours();
+  const enVentanaMananera = diaSemana>=1 && diaSemana<=5 && hora>=7 && hora<10;
+
+  let eventosHoy = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId && e.fecha===hoy);
+  if(enVentanaMananera){
+    const soloMananera = eventosHoy.filter(e=>e.descripcion.startsWith('[Mañanera]'));
+    if(soloMananera.length) eventosHoy = soloMananera;
+  }
+  if(!eventosHoy.length) return; // no debería pasar (el cintillo solo muestra temas con nota de hoy), pero por seguridad
+
+  const color = colorCategoria(tema.categoria);
+  const nivelImp = nivelImpacto(tema.peso_politico);
+  const colorImp = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[nivelImp];
+
+  let modal = document.getElementById('tarjeta-hoy-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'tarjeta-hoy-modal'; modal.className = 'ficha-modal-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+
+  modal.innerHTML = `
+    <div class="ficha-modal-card" style="max-width:420px;">
+      <button class="ficha-modal-close">✕</button>
+      <div class="eyebrow" style="color:${color};">${tema.categoria} · ${tema.nombre}</div>
+      <div style="display:flex;gap:8px;align-items:center;margin:6px 0 10px;">
+        <span style="background:${colorImp};color:#0E1116;font-family:var(--f-mono);font-weight:700;font-size:10px;padding:2px 8px;border-radius:99px;">Prioridad ${nivelImp}</span>
+        <span style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);">${hoy}</span>
+      </div>
+      ${eventosHoy.map(e=>{
+        const texto = e.descripcion.replace('[Mañanera] ','');
+        const nombresActores = ECOSISTEMA.actores.filter(a=> texto.toLowerCase().includes(a.nombre.split(' ').slice(-1)[0].toLowerCase()) && a.nombre.split(' ').slice(-1)[0].length>4);
+        return `
+        <div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--line);">
+          <p style="font-size:13px;line-height:1.5;">${texto}</p>
+          ${nombresActores.length ? `<p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Menciona a: ${nombresActores.map(a=>a.nombre).join(', ')}</p>` : ''}
+          <a href="${e.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);font-size:11px;">Ver fuente ↗</a>
+        </div>`;
+      }).join('')}
+    </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.classList.add('open');
+}
+
 function renderCintillo(){
   const inner = document.getElementById('ticker-inner');
   if(!inner) return;
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
-  const idsConNotaHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
+
+  // ventana de mañanera (7-10am, L-V, hora de México) — si estamos en ella y ya hay contenido
+  // real de mañanera hoy, el cintillo muestra SOLO eso, nada más, como quedó acordado
+  const ahoraMX = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Mexico_City'}));
+  const diaSemana = ahoraMX.getDay(), hora = ahoraMX.getHours();
+  const enVentanaMananera = diaSemana>=1 && diaSemana<=5 && hora>=7 && hora<10;
+  const eventosMananeraHoy = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy && e.descripcion.startsWith('[Mañanera]'));
+
+  let idsConNotaHoy;
+  if(enVentanaMananera && eventosMananeraHoy.length){
+    idsConNotaHoy = new Set(eventosMananeraHoy.map(e=>e.tema_id));
+  } else {
+    idsConNotaHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
+  }
   const temas = ECOSISTEMA.temas.filter(t=>idsConNotaHoy.has(t.id)).slice().sort((a,b)=>b.peso_politico-a.peso_politico);
   if(!temas.length){
-    inner.innerHTML = `<span style="padding:7px 0;color:var(--ink-3);font-size:12px;">Sin novedades registradas hoy</span>`;
+    inner.innerHTML = `<span style="padding:7px 0;color:var(--ink-3);font-size:12px;">${enVentanaMananera ? 'Esperando el resumen de la mañanera...' : 'Sin novedades registradas hoy'}</span>`;
     return;
   }
   const itemsHTML = temas.map(t=>{
@@ -220,7 +283,7 @@ function renderCintillo(){
   // el contenido se duplica una vez — así la animación de desplazamiento se ve continua, sin salto ni corte al reiniciar
   inner.innerHTML = itemsHTML + itemsHTML;
   inner.querySelectorAll('.ticker-item').forEach(btn=>{
-    btn.addEventListener('click', ()=>{ if(typeof abrirFichaTema==='function') abrirFichaTema(btn.dataset.tema); });
+    btn.addEventListener('click', ()=>{ if(typeof abrirTarjetaHoy==='function') abrirTarjetaHoy(btn.dataset.tema); });
   });
 }
 document.addEventListener('ecosistema:datos-listos', renderCintillo);
@@ -692,7 +755,7 @@ function dibujarMatrizRiesgo(){
       primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
       x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 22, 600, {xMin:pad.left+10, xMax:width-pad.right-10, yMin:pad.top+10, yMax:height-pad.bottom-10}); // 22: verificado con los 25 temas reales, baja el desplazamiento máximo de 176px a 34px
+  const datos = separarPuntos(crudos, 24, 600, {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14}); // 24: verificado con la vista por defecto (17 temas Nivel 1), permite puntos un poco más grandes sin distorsionar demasiado
 
   if(!datos.length){
     svg.attr('viewBox',[0,0,width,height]);
@@ -731,16 +794,21 @@ function dibujarMatrizRiesgo(){
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
     .attr('transform', d=>`translate(${d.x},${d.y})`)
-    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',10); })
+    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',13); })
     .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''} · desde ${d.primeraMencion||'—'}`, ev); })
-    .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',6); })
+    .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',9); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
+
+  // halo pulsante — mismo patrón ya validado en Timeline, señala "esto es interactivo" sin
+  // necesitar texto permanente que distorsionaría la posición real en el cuadrante
+  g.append('circle').attr('class','nodo-halo').attr('r',15)
+    .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.riesgoReal)]).attr('fill-opacity',0.28);
 
   // relleno = intensidad (riesgo real), borde = categoría — así se distinguen ambas dimensiones
   // a la vez, sin uno taparle info al otro
-  g.append('circle').attr('class','nodo-principal').attr('r',6)
+  g.append('circle').attr('class','nodo-principal').attr('r',9)
     .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.riesgoReal)]).attr('fill-opacity',0.9)
-    .attr('stroke', d=>colorCategoria(d.tema.categoria)).attr('stroke-width',2).style('transition','r .12s');
+    .attr('stroke', d=>colorCategoria(d.tema.categoria)).attr('stroke-width',2.5).style('transition','r .12s');
 }
 
 document.addEventListener('ecosistema:datos-listos', initAgenda);
