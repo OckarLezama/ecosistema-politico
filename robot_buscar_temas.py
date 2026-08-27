@@ -31,7 +31,7 @@ def cargar_actores_alta_influencia():
     nivel_influencia alto, el robot los usa solos, sin tocar este script de nuevo."""
     with open(RUTA_ACTORES, encoding='utf-8') as f:
         actores = list(csv.DictReader(f))
-    return [a for a in actores if a.get('nivel_influencia') and int(a['nivel_influencia']) >= 8]
+    return [a for a in actores if a.get('nivel_influencia') and int(a['nivel_influencia']) >= 7]
 
 
 def calcular_intensidad(texto_completo, tema_id, eventos_existentes, actores_altos, apariciones_hoy):
@@ -275,10 +275,11 @@ def buscar_candidatos():
                     'intensidad': intensidad, 'descripcion': titulo_original, 'fuente_url': enlace,
                 })
             else:
-                # sin tema conocido: si menciona 2+ actores de alta influencia, sí vale la pena
-                # revisar aunque no sepamos a qué tema pertenece todavía (posible tema nuevo)
+                # sin tema conocido: 2+ actores de alta influencia mencionados, O 1 solo si es
+                # de máximo nivel (9-10, ej. Sheinbaum, Trump, Monreal) — ese peso solo ya basta
                 menciones = sum(1 for a in actores_altos if a['nombre'].split()[-1].lower() in texto_completo)
-                if menciones >= 2 and hash_enlace not in ya_vistos:
+                mencion_top = any(int(a['nivel_influencia'])>=9 and a['nombre'].split()[-1].lower() in texto_completo for a in actores_altos)
+                if (menciones >= 2 or mencion_top) and hash_enlace not in ya_vistos:
                     categoria_real = clasificar_categoria(texto_completo)
                     tema_auto = crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
                     eventos_nuevos.append({
