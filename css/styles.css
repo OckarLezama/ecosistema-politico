@@ -168,7 +168,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 @media (max-width:880px){ .agenda-layout{grid-template-columns:1fr;} }
 
 .agenda-grid{ display:flex; flex-direction:column; height:609px; } /* altura fija total, igual a Feed y Red de Actores — así no importa cuántas filas tenga el toolbar */
-#agenda-contenido{flex:1; min-height:0; display:flex; flex-direction:column;}
+#agenda-contenido{flex:1; min-height:0; display:flex; flex-direction:column; position:relative;}
 #matriz-riesgo-svg{width:100%; flex:1; display:block;} /* flex, no fijo — se ajusta solo al espacio que sobra */
 .chip-btn.kpi-activo{border-color:var(--teal); color:var(--teal);}
 .legend-inline .kpi-activo{color:var(--teal); font-weight:700;}

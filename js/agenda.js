@@ -267,15 +267,23 @@ function dibujarNotasAgenda(temaId){
   const width = svgEl.clientWidth || 900, height = 500;
   const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
 
+  const defs = svg.append('defs');
+  const blur = defs.append('filter').attr('id','glow-notas').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
+  blur.append('feGaussianBlur').attr('stdDeviation', 4);
+
   const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===temaId);
   const nodeTema = {id:temaId, esCentro:true, nombre:tema.nombre, x:width/2, y:height/2, fx:width/2, fy:height/2};
   const nodesActores = contextos.map(c=>{
     const a = getActor(c.actor_id);
     if(!a) return null;
-    return {id:a.id, nombre:a.nombre, rol:c.rol, esCentro:false};
+    return {id:a.id, nombre:a.nombre, rol:c.rol, esCentro:false, iniciales:a.iniciales||a.nombre.split(' ').map(w=>w[0]).slice(0,2).join('')};
   }).filter(Boolean);
   const nodes = [nodeTema, ...nodesActores];
   const links = nodesActores.map(n=>({source:temaId, target:n.id}));
+  const colorTema = colorCategoria(tema.categoria);
+
+  function radioNota(d){ return d.esCentro?26:14; }
+  function colorNota(d){ return d.esCentro ? colorTema : (COLOR_ROL_NOTAS[d.rol]||'var(--ink-3)'); }
 
   const container = svg.append('g');
   const link = container.selectAll('line').data(links).join('line').attr('stroke','var(--line-strong)').attr('stroke-opacity',0.6).attr('stroke-width',1.3);
@@ -297,18 +305,32 @@ function dibujarNotasAgenda(temaId){
       .on('drag',(ev,d)=>{ if(!d.esCentro){ d.fx=ev.x; d.fy=ev.y; } })
       .on('end',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0); if(!d.esCentro){ d.fx=null; d.fy=null; } }));
 
-  function radio(d){ return d.esCentro?24:12; }
-  node.append('circle').attr('r',radio)
-    .attr('fill', d=> d.esCentro ? colorCategoria(tema.categoria) : (COLOR_ROL_NOTAS[d.rol]||'var(--ink-3)'))
-    .attr('stroke','#fff').attr('stroke-width', d=>d.esCentro?2.5:1.3);
-  node.append('text').attr('dy', d=>radio(d)+11).attr('text-anchor','middle')
-    .attr('font-size', d=>d.esCentro?'10px':'8.5px').attr('font-weight',d=>d.esCentro?'700':'400').attr('fill','var(--ink-1)')
+  // halo del centro (mismo patrón que Red de Actores)
+  node.filter(d=>d.esCentro).append('circle')
+    .attr('r', d=>radioNota(d)+16).attr('fill', colorTema).attr('fill-opacity',0.28).attr('filter','url(#glow-notas)');
+
+  node.append('circle').attr('r', radioNota)
+    .attr('fill', colorNota).attr('fill-opacity', d=>d.esCentro?1:0.85)
+    .attr('stroke', d=>d.esCentro?'#fff':'var(--bg-0)').attr('stroke-width', d=>d.esCentro?3.5:1.5);
+
+  // anillo exterior del centro (mismo patrón)
+  node.filter(d=>d.esCentro).append('circle')
+    .attr('r', d=>radioNota(d)+6).attr('fill','none').attr('stroke',colorTema).attr('stroke-width',2).attr('stroke-opacity',0.55);
+
+  // iniciales dentro del nodo, como en Red de Actores
+  node.append('text').attr('text-anchor','middle').attr('dy','0.35em')
+    .attr('font-size', d=>d.esCentro?'11px':'9px').attr('font-weight','700').attr('fill','#fff')
+    .text(d=> d.esCentro ? '' : d.iniciales);
+
+  node.append('text').attr('class','node-label')
+    .attr('dy', d=>radioNota(d)+13).attr('text-anchor','middle')
+    .attr('font-size', d=>d.esCentro?'11px':'9.5px').attr('font-weight', d=>d.esCentro?'700':'400').attr('fill','var(--ink-1)')
     .text(d=> d.esCentro ? (d.nombre.length>28?d.nombre.slice(0,26)+'…':d.nombre) : d.nombre.split(' ').slice(0,2).join(' '));
 
   const sim = d3.forceSimulation(nodes)
-    .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d=>radio(d)+16).strength(0.9))
-    .force('radial', d3.forceRadial(130, width/2, height/2).strength(d=>d.esCentro?0:0.35))
+    .force('charge', d3.forceManyBody().strength(-100))
+    .force('collide', d3.forceCollide().radius(d=>radioNota(d)+20).strength(0.9))
+    .force('radial', d3.forceRadial(140, width/2, height/2).strength(d=>d.esCentro?0:0.35))
     .on('tick', ()=>{
       const m=20;
       nodes.forEach(n=>{ if(!n.esCentro){ n.x=Math.max(m,Math.min(width-m,n.x)); n.y=Math.max(m,Math.min(height-m,n.y)); } });
@@ -316,6 +338,8 @@ function dibujarNotasAgenda(temaId){
       node.attr('transform', d=>`translate(${d.x},${d.y})`);
     });
 }
+
+let genealogiaRevelados = 1;
 
 function renderGenealogiaAgenda(){
   const cont = document.getElementById('agenda-contenido');
@@ -327,38 +351,105 @@ function renderGenealogiaAgenda(){
     cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema tiene todavía 2+ notas para armar una genealogía — aparecerá aquí en cuanto el robot vaya sumando eventos.</div>`;
     return;
   }
-  if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)) temaNotasSeleccionado = temasDisponibles[0].id;
+  if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){ temaNotasSeleccionado = temasDisponibles[0].id; genealogiaRevelados = 1; }
 
   cont.innerHTML = `
-    <div style="padding:10px 14px 0;">
+    <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;">
       <select id="geneal-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
         ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
       </select>
+      <span style="font-size:10.5px;color:var(--ink-3);">Clic en cada nota para revelar la siguiente, en orden real</span>
     </div>
-    <div id="geneal-cadena" style="padding:16px;overflow-x:auto;display:flex;align-items:center;gap:0;flex:1;"></div>`;
-  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaNotasSeleccionado = e.target.value; renderGenealogiaAgenda(); });
+    <svg id="geneal-svg" style="width:100%;flex:1;display:block;"></svg>`;
+  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaNotasSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
 
   dibujarGenealogia(temaNotasSeleccionado);
 }
 
 function dibujarGenealogia(temaId){
-  const cadena = document.getElementById('geneal-cadena');
+  const svgEl = document.getElementById('geneal-svg');
   const tema = getTema(temaId);
   const eventos = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
-  const colorNivel = colorCategoria(tema.categoria);
+  const colorTema = colorCategoria(tema.categoria);
+  const width = svgEl.clientWidth || 900, height = 480;
+  const cx = width/2, cy = height/2;
 
-  cadena.innerHTML = eventos.map((e,i)=>{
-    const esOrigenExplicito = !!e.evento_origen_id;
-    return `
-      <div style="display:flex;align-items:center;flex-shrink:0;">
-        ${i>0 ? `<div style="width:36px;height:2px;background:${esOrigenExplicito?'var(--teal)':'transparent'};border-top:${esOrigenExplicito?'none':'2px dashed var(--line-strong)'};"></div>` : ''}
-        <div style="width:190px;background:var(--bg-2);border:1px solid ${colorNivel};border-radius:var(--radius-s);padding:9px 11px;cursor:pointer;" data-tema="${temaId}">
-          <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);">${e.fecha}</div>
-          <div style="font-size:11px;font-weight:600;margin-top:2px;line-height:1.35;">${e.descripcion.length>90?e.descripcion.slice(0,87)+'...':e.descripcion}</div>
-        </div>
-      </div>`;
-  }).join('');
-  cadena.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
+  const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
+  svg.selectAll('*').remove();
+
+  const defs = svg.append('defs');
+  defs.append('marker').attr('id','flecha-geneal').attr('viewBox','0 0 10 10').attr('refX',9).attr('refY',5)
+    .attr('markerWidth',6).attr('markerHeight',6).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M 0 0 L 10 5 L 0 10 z').attr('fill','var(--teal)');
+
+  // posición en espiral (ángulo dorado) — el origen queda literal al centro, cada revelado se
+  // aleja un poco más, así nunca se encimarían aunque hubiera muchos eventos
+  const posiciones = eventos.map((e,i)=>{
+    if(i===0) return {x:cx, y:cy};
+    const angulo = i*137.5*(Math.PI/180);
+    const radio = 85 + i*38;
+    return {x:cx+radio*Math.cos(angulo), y:cy+radio*Math.sin(angulo)};
+  });
+
+  const visibles = eventos.slice(0, genealogiaRevelados);
+
+  // líneas con flecha, entre cada nodo revelado y el anterior
+  visibles.forEach((e,i)=>{
+    if(i===0) return;
+    svg.append('line')
+      .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y)
+      .attr('x2',posiciones[i].x).attr('y2',posiciones[i].y)
+      .attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)')
+      .attr('stroke-dasharray', function(){ return this.getTotalLength ? this.getTotalLength() : 400; })
+      .attr('stroke-dashoffset', function(){ return this.getTotalLength ? this.getTotalLength() : 400; })
+      .transition().duration(450).attr('stroke-dashoffset',0); // se dibuja como trazo animado, no aparece de golpe
+  });
+
+  visibles.forEach((e,i)=>{
+    const esOrigen = i===0;
+    const g = svg.append('g').attr('transform',`translate(${posiciones[i].x},${posiciones[i].y})`)
+      .style('cursor','pointer').style('opacity',0);
+    g.transition().delay(i>0?200:0).duration(350).style('opacity',1); // entra con transición, no estático
+
+    g.append('circle').attr('r', esOrigen?28:16)
+      .attr('fill', esOrigen?colorTema:'var(--bg-2)').attr('stroke',colorTema).attr('stroke-width',esOrigen?3:1.8);
+    g.append('text').attr('text-anchor','middle').attr('dy','0.35em')
+      .attr('font-size', esOrigen?'9px':'8px').attr('font-family','var(--f-mono)').attr('fill', esOrigen?'#fff':'var(--ink-2)')
+      .text(e.fecha.slice(5));
+
+    g.on('click', ()=>{
+      if(esOrigen){ abrirFichaTema(temaId); }
+      else{ mostrarResumenGenealogia(e, posiciones[i], width, height); }
+      if(genealogiaRevelados < eventos.length && i===genealogiaRevelados-1){
+        genealogiaRevelados++;
+        dibujarGenealogia(temaId);
+      }
+    });
+  });
+
+  if(genealogiaRevelados<eventos.length){
+    svg.append('text').attr('x',width/2).attr('y',height-10).attr('text-anchor','middle')
+      .attr('font-size','10px').attr('fill','var(--ink-3)')
+      .text(`${genealogiaRevelados} de ${eventos.length} — clic en la última nota para seguir`);
+  }
+}
+
+function mostrarResumenGenealogia(evento, pos, width, height){
+  let popup = document.getElementById('geneal-popup');
+  if(!popup){
+    popup = document.createElement('div');
+    popup.id = 'geneal-popup';
+    popup.style.cssText = 'position:absolute;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:8px 10px;max-width:220px;font-size:11px;box-shadow:var(--shadow-card);z-index:50;';
+    document.getElementById('geneal-svg').parentNode.appendChild(popup);
+  }
+  const svgRect = document.getElementById('geneal-svg').getBoundingClientRect();
+  const escalaX = svgRect.width/width;
+  popup.style.left = (pos.x*escalaX + 16) + 'px';
+  popup.style.top = (pos.y*escalaX) + 'px';
+  popup.innerHTML = `<strong style="font-family:var(--f-mono);color:var(--ink-3);font-size:9.5px;">${evento.fecha}</strong><br>${evento.descripcion}`;
+  popup.style.display = 'block';
+  clearTimeout(popup._t);
+  popup._t = setTimeout(()=> popup.style.display='none', 6000); // se cierra solo, no estorba
 }
 
 function renderListaAgenda(){
