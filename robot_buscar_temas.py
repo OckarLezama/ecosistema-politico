@@ -61,7 +61,7 @@ FUENTES_RSS = [
 # (un nombre de tema como "Visa de Andy" es muy específico; "huachicol" es más genérico
 # y aparece en más notas reales, por eso cada tema tiene su propia lista curada)
 PALABRAS_CLAVE = {
-    'huachicol-fiscal': ['huachicol fiscal', 'farías laguna', 'contrabando de combustible'],
+    'huachicol-fiscal': ['huachicol fiscal', 'farías laguna', 'farías', 'contrabando de combustible'],
     'visa-de-andy': ['andy lópez beltrán', 'visa de andy', 'andrés manuel lópez beltrán'],
     'visas-politicos-eeuu': ['revocación de visa', 'visa revocada', 'políticos mexicanos visa'],
     'tmec-revision': ['t-mec', 'tmec', 'revisión del tratado'],
