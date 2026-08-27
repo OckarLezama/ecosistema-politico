@@ -282,6 +282,7 @@ def buscar_candidatos():
     ya_procesados_eventos = {e['fuente_url'] for e in eventos_existentes}
     actores_altos = cargar_actores_alta_influencia()
     hoy_mx = datetime.now(ZONA_MX).date()
+    titulos_ya_agregados_hoy = {e['descripcion'].strip().lower() for e in eventos_existentes if e['fecha']==hoy_mx.strftime('%Y-%m-%d')}
 
     candidatos_sin_tema = []
     eventos_nuevos = []
@@ -302,6 +303,11 @@ def buscar_candidatos():
             enlace = entrada.get('link') or ''
             if enlace in ya_procesados_eventos:
                 continue  # solo se descarta si YA está en eventos.csv de verdad
+            # Google Noticias da URLs de redirección DISTINTAS para la misma nota exacta —
+            # este chequeo por título evita el duplicado que el chequeo por URL no detecta
+            titulo_normalizado = titulo_original.strip().lower()
+            if titulo_normalizado in titulos_ya_agregados_hoy:
+                continue
             hash_enlace = hashlib.md5(enlace.encode()).hexdigest()
             # "ya_vistos" (candidatos_revision.csv) ya NO bloquea aquí — eso dejaba fuera
             # para siempre notas que sí coinciden con un tema conocido, solo por haber
@@ -330,6 +336,7 @@ def buscar_candidatos():
                     'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
                     'intensidad': intensidad, 'descripcion': titulo_original, 'fuente_url': enlace,
                 })
+                titulos_ya_agregados_hoy.add(titulo_normalizado)
             else:
                 # sin tema conocido: 2+ actores de alta influencia, 1 solo si es de máximo nivel,
                 # O cualquier mención de migración (tema prioritario), O alerta especial de nombre
