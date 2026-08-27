@@ -18,11 +18,17 @@ function renderFeed(){
   const html = eventos.length ? eventos.map(e=>{
     const tema = getTema(e.tema_id);
     const color = tema ? colorCategoria(tema.categoria) : 'var(--gris-2)';
+    const descRecortada = e.descripcion.length>140 ? e.descripcion.slice(0,137)+'...' : e.descripcion;
+    // si el nombre del tema es igual (o casi igual) a la descripción del evento —le pasa a
+    // los temas que el robot crea automáticos, donde el nombre ES el propio titular— mostramos
+    // la categoría en la etiqueta chica en vez de repetir el mismo texto dos veces
+    const etiqueta = tema && tema.nombre && !e.descripcion.toLowerCase().startsWith(tema.nombre.toLowerCase().slice(0,30))
+      ? tema.nombre : (tema ? tema.categoria : e.tema_id);
     return `
       <div class="feed-item" data-tema="${e.tema_id}" style="border-left-color:${color};">
         <div class="feed-fecha">${e.fecha}</div>
-        <p class="feed-desc">${e.descripcion}</p>
-        <div class="feed-tema" style="color:${color};">${tema ? tema.nombre : e.tema_id}</div>
+        <p class="feed-desc">${descRecortada}</p>
+        <div class="feed-tema" style="color:${color};">${etiqueta}</div>
         <a href="${e.fuente_url}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
       </div>`;
   }).join('') : `<div style="padding:20px;text-align:center;color:var(--ink-3);font-family:var(--f-display);font-size:13px;">Sin novedades registradas hoy</div>`;
