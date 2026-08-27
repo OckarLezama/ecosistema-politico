@@ -265,7 +265,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .ticker-track{ overflow:hidden; flex:1; }
 .ticker-inner{
   display:flex; align-items:center; gap:26px; padding:0 16px; width:max-content;
-  animation:desplazar-cintillo 60s linear infinite;
+  animation:desplazar-cintillo 120s linear infinite;
 }
 .ticker-wrap:hover .ticker-inner{ animation-play-state:paused; }
 @keyframes desplazar-cintillo{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
