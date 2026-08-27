@@ -346,7 +346,7 @@ def buscar_candidatos():
                 alerta_actor = tieneAlertaEspecial(texto_completo)
                 if (menciones >= 2 or mencion_top or es_migracion or alerta_actor) and hash_enlace not in ya_vistos:
                     categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
-                    titulo_final = f'🔔 ALERTA — {titulo_original}' if alerta_actor else titulo_original
+                    titulo_final = f'🔔 ALERTA — {titulo_original}' if (alerta_actor or es_migracion) else titulo_original
                     tema_auto = crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
                     intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5) # alerta y migración pesan más que el genérico
                     eventos_nuevos.append({
@@ -377,7 +377,7 @@ def buscar_candidatos():
                     'intensidad': intensidad, 'descripcion': f'[Mañanera] {punto[:200]}', 'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
             elif es_migracion or alerta_actor:
                 categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
-                titulo_final = f'🔔 ALERTA — [Mañanera] {punto[:180]}' if alerta_actor else f'[Mañanera] {punto[:200]}'
+                titulo_final = f'🔔 ALERTA — [Mañanera] {punto[:180]}' if (alerta_actor or es_migracion) else f'[Mañanera] {punto[:200]}'
                 tema_auto = crear_tema_informativo(punto[:80], hoy_mx.strftime('%Y-%m-%d'), categoria_real)
                 intensidad_final = 8 if alerta_actor else 6
                 eventos_nuevos.append({'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
