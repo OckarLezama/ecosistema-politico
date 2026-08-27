@@ -198,6 +198,12 @@ function renderGrafo(svgId='graph-svg'){
   const links = linksBase.filter(e=>nodeIds.has(e.origen)&&nodeIds.has(e.destino)).map(e=>({...e, source:e.origen, target:e.destino}));
 
   const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
+  if(svgId==='notas-svg'){
+    const defsGrid = svg.append('defs');
+    const patGrid = defsGrid.append('pattern').attr('id','notas-grid').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
+    patGrid.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
+    svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#notas-grid)');
+  }
   const defs = svg.append('defs');
   const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
   blur.append('feGaussianBlur').attr('stdDeviation', 6);
@@ -265,7 +271,7 @@ function renderGrafo(svgId='graph-svg'){
 
   // indicador de "este actor tiene temas de agenda asociados" — se había quedado en V1 sin portar
   const idsConTemas = new Set(ECOSISTEMA.temaActores.map(ta=>ta.actor_id));
-  node.filter(d => idsConTemas.has(d.id))
+  node.filter(d => idsConTemas.has(d.id) && svgId!=='notas-svg') // en Notas todos los satélites ya están ligados al tema, el punto no aporta nada ahí
     .append('circle').attr('r',3.5).attr('cx', d=>radioNodo(d)*0.7).attr('cy', d=>-radioNodo(d)*0.7)
     .attr('fill','var(--ink-1)').attr('stroke','#fff').attr('stroke-width',1)
     .append('title').text('Tiene temas de agenda asociados');

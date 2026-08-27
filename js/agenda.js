@@ -692,7 +692,7 @@ function dibujarMatrizRiesgo(){
       primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
       x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 70, 600, {xMin:pad.left+26, xMax:width-pad.right-26, yMin:pad.top+26, yMax:height-pad.bottom-26});
+  const datos = separarPuntos(crudos, 22, 600, {xMin:pad.left+10, xMax:width-pad.right-10, yMin:pad.top+10, yMax:height-pad.bottom-10}); // 22: verificado con los 25 temas reales, baja el desplazamiento máximo de 176px a 34px
 
   if(!datos.length){
     svg.attr('viewBox',[0,0,width,height]);
@@ -731,22 +731,16 @@ function dibujarMatrizRiesgo(){
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
     .attr('transform', d=>`translate(${d.x},${d.y})`)
-    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',20); })
+    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',10); })
     .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} vez${d.veces!==1?'es':''} · desde ${d.primeraMencion||'—'}`, ev); })
-    .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',16); })
+    .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',6); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
-  g.append('circle').attr('class','nodo-halo').attr('r',22)
-    .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('fill-opacity',0.25).attr('filter','url(#glow-blur)');
-  g.append('circle').attr('class','nodo-principal').attr('r',16)
-    .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('fill-opacity',0.9)
-    .attr('stroke','#fff').attr('stroke-width',2.5).style('transition','r .12s');
-  g.append('circle').attr('r',16).attr('fill','none').attr('stroke', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('stroke-width',1).attr('stroke-opacity',0.6);
-  g.append('circle').attr('r',5).attr('fill','#fff').attr('stroke', d=>COLOR_IMPACTO[nivelImpacto(d.impactoReal)]).attr('stroke-width',1.5);
-
-  g.append('text').attr('text-anchor','middle').attr('dy', d=> d.y < height/2 ? 32 : -26)
-    .attr('font-size','9.5px').attr('font-weight','600').attr('fill','var(--ink-1)')
-    .text(d=> d.tema.nombre.length>12 ? d.tema.nombre.slice(0,11)+'…' : d.tema.nombre);
+  // relleno = intensidad (riesgo real), borde = categoría — así se distinguen ambas dimensiones
+  // a la vez, sin uno taparle info al otro
+  g.append('circle').attr('class','nodo-principal').attr('r',6)
+    .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.riesgoReal)]).attr('fill-opacity',0.9)
+    .attr('stroke', d=>colorCategoria(d.tema.categoria)).attr('stroke-width',2).style('transition','r .12s');
 }
 
 document.addEventListener('ecosistema:datos-listos', initAgenda);

@@ -98,6 +98,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .graph-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card); overflow:hidden;
+  height:609px; display:flex; flex-direction:column; /* mismo alto fijo en todos los módulos que comparten esta clase base (Actores, Agenda) */
 }
 .graph-toolbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
@@ -116,7 +117,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .legend-inline{display:flex; gap:12px; flex-wrap:wrap; font-size:10.5px; color:var(--ink-3); align-items:center;}
 .legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle;}
 
-#graph-svg{width:100%;height:560px;display:block;background:
+#graph-svg{width:100%;flex:1;display:block;background:
   radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),
   radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),
   var(--bg-0);
