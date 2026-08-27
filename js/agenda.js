@@ -449,25 +449,41 @@ function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, heigh
   g.append('circle').attr('r',16).attr('fill','var(--bg-2)').attr('stroke',colorTema).attr('stroke-width',1.8);
   g.append('text').attr('text-anchor','middle').attr('dy','0.35em').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-2)').text(e.fecha.slice(5));
   // resumen alternado arriba/abajo del punto, para no encimarse entre notas seguidas
-  mostrarResumenGenealogiaFijo(e, pos, i%2===0, width, height);
+  mostrarResumenGenealogiaFijo(e, pos, i%2===0, width, height, i);
 }
 
 
-function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height){
+function partirEnLineas(texto, maxPorLinea, maxLineas){
+  const palabras = texto.split(' ');
+  const lineas = []; let actual = '';
+  for(const p of palabras){
+    if((actual+' '+p).trim().length > maxPorLinea){ lineas.push(actual.trim()); actual = p; if(lineas.length>=maxLineas) break; }
+    else actual = (actual+' '+p).trim();
+  }
+  if(lineas.length<maxLineas && actual) lineas.push(actual.trim());
+  if(lineas.length===maxLineas && lineas.join(' ').length < texto.length) lineas[maxLineas-1] = lineas[maxLineas-1].slice(0, maxPorLinea-3)+'...';
+  return lineas;
+}
+
+function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
   const svg = d3.select('#geneal-svg');
-  const anchoCaja = 170, altoCaja = 44;
-  const y = arriba ? pos.y-24-altoCaja : pos.y+24;
+  const anchoCaja = 235, altoCaja = 90;
+  const distancia = 26 + (i%3)*24;
+  const y = arriba ? pos.y-distancia-altoCaja : pos.y+distancia;
   const x = Math.max(6, Math.min(width-anchoCaja-6, pos.x-anchoCaja/2));
   const g = svg.append('g').attr('class','geneal-resumen-capa');
+
+  g.append('line').attr('x1',pos.x).attr('y1',pos.y).attr('x2',pos.x).attr('y2', arriba?y+altoCaja:y)
+    .attr('stroke','var(--line-strong)').attr('stroke-width',1).attr('stroke-dasharray','2 3');
+
   g.append('rect').attr('x',x).attr('y',y).attr('width',anchoCaja).attr('height',altoCaja).attr('rx',5)
     .attr('fill','var(--bg-2)').attr('stroke','var(--line-strong)').attr('stroke-width',1);
-  g.append('text').attr('x',x+8).attr('y',y+13).attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(evento.fecha);
-  const texto = evento.descripcion.length>85 ? evento.descripcion.slice(0,82)+'...' : evento.descripcion;
-  // partir en 2 líneas simples, sin librería de word-wrap — suficiente para un resumen breve
-  const mitad = Math.ceil(texto.length/2);
-  let corte = texto.lastIndexOf(' ', mitad); if(corte<0) corte = mitad;
-  g.append('text').attr('x',x+8).attr('y',y+26).attr('font-size','9.5px').attr('font-weight','600').attr('fill','var(--ink-1)').text(texto.slice(0,corte));
-  g.append('text').attr('x',x+8).attr('y',y+37).attr('font-size','9.5px').attr('font-weight','600').attr('fill','var(--ink-1)').text(texto.slice(corte+1));
+  g.append('text').attr('x',x+9).attr('y',y+15).attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(evento.fecha);
+
+  const lineas = partirEnLineas(evento.descripcion, 40, 4);
+  lineas.forEach((linea,li)=>{
+    g.append('text').attr('x',x+9).attr('y',y+29+li*13).attr('font-size','9.5px').attr('font-weight','600').attr('fill','var(--ink-1)').text(linea);
+  });
 }
 
 function renderListaAgenda(){
