@@ -55,6 +55,10 @@ def calcular_intensidad(texto_completo, tema_id, eventos_existentes, actores_alt
 FUENTES_RSS = [
     {'nombre': 'El Informador', 'url': 'https://www.informador.mx/rss/mexico.xml'},
     {'nombre': 'La Jornada', 'url': 'https://www.jornada.com.mx/rss/politica.xml?v=1'},
+    # Google Noticias: una sola búsqueda cubre docenas de medios a la vez — no verificado en vivo
+    # desde aquí (mismo aviso robots.txt que GDELT), pero es un patrón real y usado por muchos
+    # desarrolladores, a diferencia de GDELT. Prueba real: tu próxima corrida en GitHub Actions.
+    {'nombre': 'Google Noticias', 'url': 'https://news.google.com/rss/search?q=Sheinbaum+OR+%22Rocha+Moya%22+OR+%22huachicol+fiscal%22+OR+aranceles+OR+migraci%C3%B3n+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
 ]
 
 # palabras clave por tema — se ajustan a mano, no se adivinan del nombre del tema solo
