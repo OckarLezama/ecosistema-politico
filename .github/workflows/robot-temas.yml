@@ -2,6 +2,7 @@ name: Robot de monitoreo - temas Nivel 1
 "on":
   schedule:
     - cron: '*/15 * * * *'
+    - cron: '*/5 13-16 * * 1-5'
   workflow_dispatch: {}
 jobs:
   buscar-candidatos:
