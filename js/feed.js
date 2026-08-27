@@ -19,12 +19,10 @@ function renderFeed(){
     const tema = getTema(e.tema_id);
     const color = tema ? colorCategoria(tema.categoria) : 'var(--gris-2)';
     const descRecortada = e.descripcion.length>140 ? e.descripcion.slice(0,137)+'...' : e.descripcion;
-    const etiqueta = tema && tema.nombre ? (tema.nombre.length>50 ? tema.nombre.slice(0,47)+'...' : tema.nombre) : e.tema_id;
     return `
       <div class="feed-item" data-tema="${e.tema_id}" style="border-left-color:${color};">
         <div class="feed-fecha">${e.fecha}</div>
         <p class="feed-desc">${descRecortada}</p>
-        <div class="feed-tema" style="color:${color};">${etiqueta}</div>
         <a href="${e.fuente_url}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
       </div>`;
   }).join('') : `<div style="padding:20px;text-align:center;color:var(--ink-3);font-family:var(--f-display);font-size:13px;">Sin novedades registradas hoy</div>`;

@@ -87,6 +87,14 @@ function poblarSelectores(){
 function colorDeCore(coreId, slotDeCore){
   return COLOR_POR_SLOT[slotDeCore[coreId]] || 'var(--gris-2)';
 }
+// en modo Notas (agenda), el color del nodo satélite es por ROL (investigado/mencionado/etc.),
+// no por familia — así se distingue de un vistazo, no solo con el hover
+function colorNodoReal(d, svgId, slotDeCore){
+  if(svgId==='notas-svg' && !d.esTema && d.rolEnTema && typeof COLOR_ROL_NOTAS!=='undefined'){
+    return COLOR_ROL_NOTAS[d.rolEnTema] || 'var(--ink-3)';
+  }
+  return colorDeCore(d.coreId, slotDeCore);
+}
 function opacidadPorNivel(nivel){ return {0:1,1:0.85,2:0.55,3:0.35}[nivel] ?? 0.5; }
 function radioNodo(d){ if(d.esCentro) return 26; return {1:15,2:12,3:9}[d.nivelAnillo]||8; }
 
@@ -196,7 +204,7 @@ function renderGrafo(svgId='graph-svg'){
   const container = svg.append('g');
   svg.call(d3.zoom().scaleExtent([0.5,2.5]).on('zoom', ev=> container.attr('transform', ev.transform)));
 
-  const guiaCentros = nodes.filter(n=>n.esCentro && redPersonalDe(n.coreId).length>0);
+  const guiaCentros = nodes.filter(n=>n.esCentro && (redPersonalDe(n.coreId).length>0 || svgId==='notas-svg'));
   const guias = container.selectAll('circle.anillo-guia')
     .data(guiaCentros.flatMap(c=>[1,2,3].map(nivel=>({core:c, nivel}))))
     .join('circle').attr('class','anillo-guia')
@@ -238,7 +246,7 @@ function renderGrafo(svgId='graph-svg'){
 
   node.append('circle').attr('class','node-circle')
     .attr('r', radioNodo)
-    .attr('fill', d=>colorDeCore(d.coreId, slotDeCore))
+    .attr('fill', d=>colorNodoReal(d, svgId, slotDeCore))
     .attr('fill-opacity', d=>opacidadPorNivel(d.nivelAnillo))
     .attr('stroke', d=> d.esCentro?'#fff':'var(--bg-0)')
     .attr('stroke-width', d=> d.esCentro?3.5:1.5);
