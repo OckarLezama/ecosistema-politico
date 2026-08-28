@@ -1,6 +1,6 @@
 /* ============================================================
    V2 — FEED CRONOLÓGICO
-   Todos los eventos de todos los temas, ordenados por fecha real —
+   Todos los eventos de todos los temas, ordenados por fecha real — 
    sin filtrar por tema. Responde "qué salió, en qué orden real"
    (Andy → Rocha Moya → lo que sea que venga después), algo que
    ningún otro módulo (organizado por tema) responde hoy.
