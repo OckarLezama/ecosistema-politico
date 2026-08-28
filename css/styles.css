@@ -190,8 +190,9 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   height:609px; display:flex; flex-direction:column; overflow:hidden;
 }
 .feed-card .feed-lista{
-  overflow-y:auto; padding:10px 14px 14px; margin:0; max-width:none;
+  overflow-y:auto; padding:12px 14px 20px; margin:0; max-width:none;
   scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);
+  scroll-padding:8px 0; /* evita que la primera/última tarjeta queden pegadas al borde y se vean cortadas */
 }
 .feed-card .feed-lista::-webkit-scrollbar{width:6px;}
 .feed-card .feed-lista::-webkit-scrollbar-track{background:var(--bg-1);}

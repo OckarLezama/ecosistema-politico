@@ -121,6 +121,20 @@ MIGRACION_KEYWORDS = ['migración', 'migrante', 'migrantes', 'deportación', 'de
     'caravana migrante', 'redadas', 'ice ', 'instituto nacional de migración', 'refugio', 'asilo']
 ALERTA_NOMBRES = {'sergio_salomon': ['salomón céspedes', 'sergio salomón']} # menciones que disparan alerta especial, no solo detección normal
 
+import re
+
+def palabras_significativas(texto):
+    """Palabras de 4+ letras, sin conectores — para comparar si 2 titulares hablan de lo mismo."""
+    conectores = {'para','como','pero','este','esta','estos','estas','desde','hasta','sobre','tras','entre','dice','ante','contra'}
+    palabras = re.findall(r'\w+', texto.lower())
+    return set(p for p in palabras if p not in conectores and len(p)>3)
+
+def similitud_titulares(t1, t2):
+    """Jaccard sobre palabras significativas — 0 (nada en común) a 1 (idénticos)."""
+    p1, p2 = palabras_significativas(t1), palabras_significativas(t2)
+    if not p1 or not p2: return 0
+    return len(p1 & p2) / len(p1 | p2)
+
 def esTemaMigracion(texto_completo):
     return any(p in texto_completo for p in MIGRACION_KEYWORDS)
 
@@ -268,7 +282,7 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes)
 def guardar_evento_directo(evento):
     """Escribe DIRECTO a eventos.csv — solo para temas que YA existen en temas.csv.
     Es el camino automático de verdad: sin revisión manual, en tiempo real."""
-    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id']
+    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura']
     with open(RUTA_EVENTOS, 'a', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         w.writerow(evento)
@@ -328,13 +342,24 @@ def buscar_candidatos():
                         break
 
             if tema_encontrado:
+                # antes de agregar, revisar si ya hay un evento MUY PARECIDO del mismo tema hoy
+                # (misma noticia real, distinta fuente/titular) — si sí, suma cobertura en vez de duplicar
+                similar_existente = None
+                for ev_prev in eventos_nuevos:
+                    if ev_prev['tema_id']==tema_encontrado and ev_prev['fecha']==hoy_mx.strftime('%Y-%m-%d'):
+                        if similitud_titulares(ev_prev['descripcion'], titulo_original) >= 0.15:
+                            similar_existente = ev_prev; break
+                if similar_existente:
+                    similar_existente['cobertura'] = int(similar_existente.get('cobertura', 1)) + 1
+                    titulos_ya_agregados_hoy.add(titulo_normalizado)
+                    continue
                 conteo_hoy_por_tema[tema_encontrado] = conteo_hoy_por_tema.get(tema_encontrado, 0) + 1
                 intensidad = calcular_intensidad(texto_completo, tema_encontrado, eventos_existentes,
                                                    actores_altos, conteo_hoy_por_tema[tema_encontrado])
                 eventos_nuevos.append({
                     'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                     'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
-                    'intensidad': intensidad, 'descripcion': titulo_original, 'fuente_url': enlace,
+                    'intensidad': intensidad, 'descripcion': titulo_original, 'fuente_url': enlace, 'cobertura': 1,
                 })
                 titulos_ya_agregados_hoy.add(titulo_normalizado)
             else:

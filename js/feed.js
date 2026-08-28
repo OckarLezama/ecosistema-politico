@@ -24,6 +24,7 @@ function renderFeed(){
         <div class="feed-fecha">${e.fecha}</div>
         <p class="feed-desc">${descRecortada}</p>
         <a href="${e.fuente_url}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
+        ${Number(e.cobertura)>1 ? `<span style="font-size:10px;color:var(--ink-3);margin-left:8px;">· cubierto por ${e.cobertura} medios</span>` : ''}
       </div>`;
   }).join('') : `<div style="padding:20px;text-align:center;color:var(--ink-3);font-family:var(--f-display);font-size:13px;">Sin novedades registradas hoy</div>`;
   // alimenta CUALQUIER contenedor de feed presente en la página (Agenda y Timeline comparten el mismo dato)
