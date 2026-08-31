@@ -132,20 +132,28 @@ function actoresDeTemaTL(tema){
 }
 
 function enjambreTL(puntos){
-  // "beeswarm" con primer espacio libre: cada punto busca la distancia MÁS CHICA posible que
-  // no choque con sus vecinos reales (cercanos en fecha) ya colocados — más orgánico que
-  // simplemente ir subiendo siempre al siguiente nivel disponible
+  // secuencia FIJA de niveles que rebota (4,2,3,1,4,2,3,1...) — nunca crece indefinidamente,
+  // aunque haya muchas notas cercanas en fecha. Se prioriza mantenerse dentro de estos 4
+  // niveles sobre garantizar cero contacto entre vecinos muy lejanos en el tiempo.
+  const NIVELES = [4,2,3,1];
   const ord = puntos.slice().sort((a,b)=>a.xBase-b.xBase);
   const arr = ord.map((p,i)=>({...p, lado: i%2===0?'up':'down'}));
-  const minDistX = 55, alturaTarjeta = 38, distMin = 40;
+  const minDistX = 55, alturaNivel = 38, distBase = 30;
+  const contador = {up:0, down:0};
   arr.forEach((p,i)=>{
     const vecinos = arr.slice(0,i).filter(o=>o.lado===p.lado && Math.abs(o.xBase-p.xBase)<=minDistX);
-    let dist = distMin;
-    while(vecinos.some(v=>Math.abs(v.dist-dist)<alturaTarjeta)) dist += alturaTarjeta;
-    p.dist = dist;
+    let nivel, intentos=0;
+    do {
+      nivel = NIVELES[contador[p.lado] % NIVELES.length];
+      contador[p.lado]++;
+      intentos++;
+    } while(vecinos.some(v=>v.nivel===nivel) && intentos<=NIVELES.length);
+    p.nivel = nivel;
+    p.dist = distBase + nivel*alturaNivel;
   });
   return arr;
 }
+
 
 
 
