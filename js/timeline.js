@@ -14,7 +14,15 @@ const INICIO_SEXENIO_TL = '2024-10';
 let tlXScaleBase, tlPuntos, tlSvg, tlContainer, tlYLinea, tlWidth, tlHeight;
 
 let anioFiltroTL = '';
-function initTimeline(){ tlSvg = null; poblarFiltroAnioTL(); }
+let mostrarTodosNivelesTL = false;
+function initTimeline(){
+  tlSvg = null; poblarFiltroAnioTL();
+  const chk = document.getElementById('chk-timeline-todos-niveles');
+  if(chk && !chk.dataset.conectado){
+    chk.addEventListener('change', ()=>{ mostrarTodosNivelesTL = chk.checked; renderTimeline(); });
+    chk.dataset.conectado = '1';
+  }
+}
 
 function poblarFiltroAnioTL(){
   const sel = document.getElementById('timeline-anio');
@@ -46,7 +54,7 @@ function temasPersistentesTL(){
   // score combinado (menciones × impacto promedio), no solo días — un tema mencionado muchas
   // veces con eventos de alto impacto pesa más que uno solo "viejo" con menciones menores
   return ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-')).map(t=>{
-    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
+    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && (!anioFiltroTL || e.fecha.startsWith(anioFiltroTL))); // respeta el año seleccionado
     if(!evs.length) return null;
     const impactoProm = evs.reduce((s,e)=>s+e.intensidad,0)/evs.length;
     const score = evs.length * impactoProm;
@@ -99,6 +107,16 @@ function renderKpisTL(){
   }
 }
 
+function puntosPorDiaTL(temaId){
+  // un punto por cada DIA DISTINTO con actividad real, no solo el pico historico de siempre.
+  // Si el mismo dia hay 2+ eventos (ya deduplicados entre si antes de esto), se usa el de
+  // mayor intensidad de ese dia como representativo.
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
+  const porDia = {};
+  evs.forEach(e=>{ if(!porDia[e.fecha] || e.intensidad>porDia[e.fecha].intensidad) porDia[e.fecha]=e; });
+  return Object.values(porDia);
+}
+
 function puntoPrincipalTL(temaId){
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
   if(!evs.length) return null;
@@ -113,17 +131,26 @@ function actoresDeTemaTL(tema){
   return contextos.slice(0,3).map(c=>{ const a=getActor(c.actor_id); return a?`${a.nombre} · ${c.rol}`:null; }).filter(Boolean);
 }
 
-function empaquetarZigzagTL(puntos, minEspacio){
-  const tiersUp=[], tiersDown=[];
+function enjambreTL(puntos){
+  // "beeswarm": la posición horizontal (xBase) NUNCA se mueve — siempre exacta sobre su fecha
+  // real. Solo la distancia vertical a la línea crece, y únicamente cuando 2 puntos del mismo
+  // lado están realmente cerca en fecha — orgánico, no columnas fijas alineadas entre sí.
   const ord = puntos.slice().sort((a,b)=>a.xBase-b.xBase);
-  return ord.map((p,i)=>{
-    const arriba = i%2===0;
-    function colocar(tiers){ for(let t=0;t<tiers.length;t++){ if(p.xBase-tiers[t]>=minEspacio){tiers[t]=p.xBase;return t;} } tiers.push(p.xBase); return tiers.length-1; }
-    const lado = arriba?'up':'down';
-    const tier = colocar(lado==='up'?tiersUp:tiersDown);
-    return {...p, lado, tier};
-  });
+  const arr = ord.map((p,i)=>({...p, lado: i%2===0?'up':'down', dist: 40}));
+  const minDistX = 55, alturaTarjeta = 38;
+  for(let it=0; it<300; it++){
+    for(let i=0;i<arr.length;i++) for(let j=i+1;j<arr.length;j++){
+      const a=arr[i], b=arr[j];
+      if(a.lado!==b.lado) continue;
+      if(Math.abs(a.xBase-b.xBase) > minDistX) continue; // lejos en fecha real, no compiten por espacio
+      if(Math.abs(a.dist-b.dist) < alturaTarjeta){
+        if(a.dist<=b.dist) b.dist = a.dist+alturaTarjeta; else a.dist = b.dist+alturaTarjeta;
+      }
+    }
+  }
+  return arr;
 }
+
 
 function mostrarTooltipTL(d, ev){
   const reacciones = actoresDeTemaTL(d.tema);
@@ -210,19 +237,19 @@ function renderTimeline(){
   const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00'); fechaFin.setMonth(fechaFin.getMonth()+1);
   tlXScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padX, tlWidth-padX]);
 
-  const puntosBase = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>{ // criterio real y definitivo: SOLO temas investigados a mano (nunca "auto-", sin importar a qué nivel se hayan "graduado" por acumulación de duplicados) Y Nivel 1 confirmado
-    const p = puntoPrincipalTL(t.id);
-    if(!p) return null;
-    if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return null;
-    return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: tlXScaleBase(new Date(p.fecha)) };
-  }).filter(Boolean);
-  tlPuntos = empaquetarZigzagTL(puntosBase, 210);
+  const temasIncluidos = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && (mostrarTodosNivelesTL || Number(t.nivel_relevancia)===1));
+  const puntosBase = temasIncluidos.flatMap(t=>
+    puntosPorDiaTL(t.id)
+      .filter(p=> !anioFiltroTL || p.fecha.startsWith(anioFiltroTL))
+      .map(p=> ({ tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: tlXScaleBase(new Date(p.fecha)) }))
+  );
+  tlPuntos = enjambreTL(puntosBase);
 
   // alto DINÁMICO según cuántos niveles hagan falta de verdad — antes era fijo (470px) y con
   // muchos puntos cercanos en fecha, las tarjetas de los niveles más altos se salían del cuadro
-  const maxTier = tlPuntos.length ? Math.max(...tlPuntos.map(p=>p.tier)) : 0;
-  const alturaPorTier = 30; // mismo valor que altoPorTier usado al dibujar, para que coincida exacto
-  tlHeight = Math.max(470, 260 + (maxTier+1)*alturaPorTier*2); // *2: crece hacia arriba Y abajo del centro
+  const maxDist = tlPuntos.length ? Math.max(...tlPuntos.map(p=>p.dist)) : 0;
+  const alturaPorTier = 1; // ya no se usa por nivel, dist ya viene en píxeles reales
+  tlHeight = Math.max(470, 100 + maxDist*2 + 50); // +50: margen para que quepa la tarjeta completa más allá de su distancia a la línea, no solo el punto
   tlYLinea = tlHeight/2 + 10;
   tlSvg.attr('viewBox',[0,0,tlWidth,tlHeight]).style('height', tlHeight+'px'); // alto real en píxeles, no solo viewBox — si no, el navegador comprime todo para caber en el alto fijo anterior, sin ganar espacio de verdad
 
@@ -315,8 +342,7 @@ function dibujarTL(xScaleActual){
     const x = xScaleActual(new Date(d.fecha));
     const color = esNivel1 ? COLOR_RIESGO[nivelImpactoTL(d.intensidad)] : COLOR_RIESGO_2[nivelImpactoTL(d.intensidad)];
     const anchoTarjeta = esNivel1 ? 150 : 128, altoTarjeta = esNivel1 ? 34 : 26;
-    const altoBase = esNivel1 ? 34 : 24, altoPorTier = esNivel1 ? 30 : 22;
-    const largo = altoBase + d.tier*altoPorTier;
+    const largo = d.dist;
     const yFin = d.lado==='up' ? tlYLinea-largo-14 : tlYLinea+largo+14;
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
     const gg = d3.select(this).attr('opacity', esNivel1?1:0.7);

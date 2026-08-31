@@ -199,7 +199,12 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .feed-card .feed-lista::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:99px;}
 .feed-card .feed-lista::-webkit-scrollbar-thumb:hover{background:var(--teal);}
 
-#timeline-scroll{width:100%; padding:14px; flex:1; min-height:0; box-sizing:border-box; overflow-y:auto;}
+#timeline-scroll{width:100%; padding:14px; flex:1; min-height:0; box-sizing:border-box; overflow-y:auto;
+  scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);}
+#timeline-scroll::-webkit-scrollbar{width:6px;}
+#timeline-scroll::-webkit-scrollbar-track{background:var(--bg-1);}
+#timeline-scroll::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:99px;}
+#timeline-scroll::-webkit-scrollbar-thumb:hover{background:var(--teal);}
 #timeline-heatmap-wrap{width:100%; padding:12px 14px 4px; box-sizing:border-box;}
 #timeline-heatmap-svg{display:block; width:100%; height:64px;}
 #timeline-svg{display:block; width:100%;}
