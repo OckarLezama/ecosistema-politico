@@ -203,13 +203,29 @@ def cargar_temas_todos():
         return list(csv.DictReader(f))
 
 
-def buscar_tema_informativo_similar(titulo, umbral=0.15):
+def actorMencionadoEn(nombre_actor, texto):
+    """Revisa CUALQUIER apellido del actor en el texto, no solo el último — nombres con 2
+    apellidos (ej. 'Claudia Sheinbaum Pardo') se conocen públicamente por el primer apellido
+    ('Sheinbaum'), no el segundo ('Pardo'), que es como .split()[-1] los buscaba antes (bug)."""
+    palabras = [p.lower() for p in nombre_actor.split()[1:] if len(p)>3]  # todo menos el nombre de pila
+    return any(p in texto for p in palabras)
+
+def buscar_tema_informativo_similar(titulo, actores_altos, umbral=0.15):
     """Antes de crear un tema informativo nuevo, revisa si YA existe uno muy parecido —
-    evita que la misma noticia real, contada por 5 medios con títulos distintos, cree
-    5 temas separados en vez de reconocerse como la misma historia real."""
+    evita que la misma noticia real, contada por varios medios con títulos MUY distintos,
+    cree un tema separado por cada uno. Dos señales, cualquiera basta:
+    1) similitud de palabras del titular (paráfrasis cercana)
+    2) comparten 2+ de los mismos actores de alta influencia el mismo día — señal más fuerte
+       cuando la redacción es tan distinta entre medios que casi no comparten palabras."""
     temas_todos = cargar_temas_todos()
+    texto_nuevo = titulo.lower()
+    actores_en_nuevo = {a['nombre'] for a in actores_altos if actorMencionadoEn(a['nombre'], texto_nuevo)}
     for t in temas_todos:
-        if t.get('tipo')=='informativo' and similitud_titulares(t['nombre'], titulo) >= umbral:
+        if t.get('tipo') != 'informativo': continue
+        if similitud_titulares(t['nombre'], titulo) >= umbral:
+            return t['id']
+        actores_en_existente = {a['nombre'] for a in actores_altos if actorMencionadoEn(a['nombre'], t['nombre'].lower())}
+        if len(actores_en_nuevo & actores_en_existente) >= 2:
             return t['id']
     return None
 
@@ -376,14 +392,14 @@ def buscar_candidatos():
             else:
                 # sin tema conocido: 2+ actores de alta influencia, 1 solo si es de máximo nivel,
                 # O cualquier mención de migración (tema prioritario), O alerta especial de nombre
-                menciones = sum(1 for a in actores_altos if a['nombre'].split()[-1].lower() in texto_completo)
-                mencion_top = any(int(a['nivel_influencia'])>=9 and a['nombre'].split()[-1].lower() in texto_completo for a in actores_altos)
+                menciones = sum(1 for a in actores_altos if actorMencionadoEn(a['nombre'], texto_completo))
+                mencion_top = any(int(a['nivel_influencia'])>=9 and actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
                 es_migracion = esTemaMigracion(texto_completo)
                 alerta_actor = tieneAlertaEspecial(texto_completo)
                 if (menciones >= 2 or mencion_top or es_migracion or alerta_actor) and hash_enlace not in ya_vistos:
                     categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
                     titulo_final = f'🔔 ALERTA — {titulo_original}' if (alerta_actor or es_migracion) else titulo_original
-                    tema_auto = buscar_tema_informativo_similar(titulo_original) or crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
+                    tema_auto = buscar_tema_informativo_similar(titulo_original, actores_altos) or crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
                     intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5)
 
                     # mismo chequeo de cobertura que el camino de tema conocido — la misma
