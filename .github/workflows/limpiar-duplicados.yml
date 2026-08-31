@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Instalar dependencias
+        run: pip install feedparser --break-system-packages
       - name: Ejecutar limpieza
         run: python3 limpiar_duplicados.py
       - name: Guardar resultado
