@@ -131,6 +131,61 @@ function actoresDeTemaTL(tema){
   return contextos.slice(0,3).map(c=>{ const a=getActor(c.actor_id); return a?`${a.nombre} · ${c.rol}`:null; }).filter(Boolean);
 }
 
+function abrirListaRacimoTL(d){
+  let modal = document.getElementById('racimo-lista-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'racimo-lista-modal'; modal.className = 'ficha-modal-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+  const color = colorCategoria(d.tema.categoria);
+  modal.innerHTML = `
+    <div class="ficha-modal-card" style="max-width:400px;">
+      <button class="ficha-modal-close">\u2715</button>
+      <div class="eyebrow" style="color:${color};">${d.tema.nombre} \u00b7 ${d.eventosDelRacimo.length} notas</div>
+      ${d.eventosDelRacimo.map(e=>{
+        const texto = e.descripcion.replace('[Ma\u00f1anera] ','');
+        return `<div class="contexto-tema-box" style="cursor:pointer;" data-fecha="${e.fecha}">
+          <div class="eyebrow" style="font-size:9px;">${e.fecha}</div>
+          <p style="font-size:12px;margin-top:2px;">${texto.length>90?texto.slice(0,87)+'...':texto}</p>
+        </div>`;
+      }).join('')}
+    </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.querySelectorAll('[data-fecha]').forEach(el=> el.addEventListener('click', ()=>{
+    modal.classList.remove('open');
+    abrirTarjetaHoy(d.tema.id, el.dataset.fecha);
+  }));
+  modal.classList.add('open');
+}
+
+function agruparRacimosTL(puntos){
+  // agrupa por tema; si 5+ eventos del MISMO tema quedan muy cerca en fecha (competirian por
+  // los mismos 4 niveles fijos), se colapsan en un solo "racimo" con conteo, en vez de forzar
+  // 5+ tarjetas individuales que inevitablemente chocarian entre si
+  const porTema = {};
+  puntos.forEach(p=>{ (porTema[p.tema.id] = porTema[p.tema.id]||[]).push(p); });
+  const resultado = [];
+  Object.values(porTema).forEach(grupo=>{
+    const ord = grupo.slice().sort((a,b)=>a.xBase-b.xBase);
+    let i=0;
+    while(i<ord.length){
+      let j=i;
+      while(j+1<ord.length && Math.abs(ord[j+1].xBase-ord[j].xBase)<=55) j++;
+      const cadena = ord.slice(i, j+1);
+      if(cadena.length>=5){
+        resultado.push({ esRacimo:true, tema:cadena[0].tema, fecha:cadena[0].fecha, xBase:cadena[0].xBase,
+          eventosDelRacimo:cadena, intensidad: Math.max(...cadena.map(c=>c.intensidad)) });
+      } else {
+        resultado.push(...cadena);
+      }
+      i = j+1;
+    }
+  });
+  return resultado;
+}
+
 function enjambreTL(puntos){
   // secuencia FIJA de niveles que rebota (4,2,3,1,4,2,3,1...) — nunca crece indefinidamente,
   // aunque haya muchas notas cercanas en fecha. Se prioriza mantenerse dentro de estos 4
@@ -246,9 +301,9 @@ function renderTimeline(){
   const puntosBase = temasIncluidos.flatMap(t=>
     puntosPorDiaTL(t.id)
       .filter(p=> !anioFiltroTL || p.fecha.startsWith(anioFiltroTL))
-      .map(p=> ({ tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: tlXScaleBase(new Date(p.fecha)) }))
+      .map(p=> ({ tema:t, fecha:p.fecha, intensidad:p.intensidad, descripcion:p.descripcion, xBase: tlXScaleBase(new Date(p.fecha)) }))
   );
-  tlPuntos = enjambreTL(puntosBase);
+  tlPuntos = enjambreTL(agruparRacimosTL(puntosBase));
 
   // alto DINÁMICO según cuántos niveles hagan falta de verdad — antes era fijo (470px) y con
   // muchos puntos cercanos en fecha, las tarjetas de los niveles más altos se salían del cuadro
@@ -347,14 +402,25 @@ function dibujarTL(xScaleActual){
 
   const g = tlContainer.selectAll('g.tl-punto').data(tlPuntos).join('g')
     .attr('class','tl-punto').style('cursor','pointer')
-    .on('click', (ev,d)=> abrirFichaTema(d.tema.id))
-    .on('mouseenter', function(ev,d){ mostrarTooltipTL(d, ev); })
-    .on('mousemove', function(ev,d){ mostrarTooltipTL(d, ev); })
+    .on('click', (ev,d)=> d.esRacimo ? abrirListaRacimoTL(d) : abrirTarjetaHoy(d.tema.id, d.fecha))
+    .on('mouseenter', function(ev,d){ if(!d.esRacimo) mostrarTooltipTL(d, ev); })
+    .on('mousemove', function(ev,d){ if(!d.esRacimo) mostrarTooltipTL(d, ev); })
     .on('mouseleave', ocultarTooltipAgenda);
 
   g.each(function(d){
-    const esNivel1 = Number(d.tema.nivel_relevancia)===1;
     const x = xScaleActual(new Date(d.fecha));
+    if(d.esRacimo){
+      // racimo: círculo con el conteo, no una tarjeta — evita el choque inevitable de 5+ notas
+      const color = colorCategoria(d.tema.categoria);
+      const largo = d.dist;
+      const yCentro = d.lado==='up' ? tlYLinea-largo-14 : tlYLinea+largo+14;
+      const gg = d3.select(this);
+      gg.append('line').attr('x1',x).attr('y1',tlYLinea).attr('x2',x).attr('y2',yCentro).attr('stroke',color).attr('stroke-dasharray','2 3').attr('stroke-opacity',0.6);
+      gg.append('circle').attr('cx',x).attr('cy',yCentro).attr('r',16).attr('fill',color).attr('stroke','var(--bg-1)').attr('stroke-width',2);
+      gg.append('text').attr('x',x).attr('y',yCentro+4).attr('text-anchor','middle').attr('font-size','11px').attr('font-weight','700').attr('fill','#fff').text(`+${d.eventosDelRacimo.length}`);
+      return;
+    }
+    const esNivel1 = Number(d.tema.nivel_relevancia)===1;
     const color = esNivel1 ? COLOR_RIESGO[nivelImpactoTL(d.intensidad)] : COLOR_RIESGO_2[nivelImpactoTL(d.intensidad)];
     const anchoTarjeta = esNivel1 ? 150 : 128, altoTarjeta = esNivel1 ? 34 : 26;
     const largo = d.dist;

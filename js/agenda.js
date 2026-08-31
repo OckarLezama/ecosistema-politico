@@ -196,13 +196,13 @@ let soloAgendaNacional = true; // activo por defecto — distingue agenda nacion
 
 let vistaAgenda = 'matriz';
 
-function abrirTarjetaHoy(temaId){
+function abrirTarjetaHoy(temaId, fechaEspecifica){
   const tema = getTema(temaId);
   if(!tema) return;
-  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const hoy = fechaEspecifica || new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
   const ahoraMX = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Mexico_City'}));
   const diaSemana = ahoraMX.getDay(), hora = ahoraMX.getHours();
-  const enVentanaMananera = diaSemana>=1 && diaSemana<=5 && hora>=7 && hora<10;
+  const enVentanaMananera = !fechaEspecifica && diaSemana>=1 && diaSemana<=5 && hora>=7 && hora<10;
 
   let eventosHoy = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId && e.fecha===hoy);
   if(enVentanaMananera){
