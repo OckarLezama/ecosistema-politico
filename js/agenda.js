@@ -290,15 +290,6 @@ document.addEventListener('ecosistema:datos-listos', renderCintillo);
 
 function initAgenda(){
   poblarFiltroCategoriaAgenda();
-  const btnNivel1 = document.getElementById('btn-agenda-nacional');
-  if(btnNivel1 && !btnNivel1.dataset.conectado){
-    btnNivel1.addEventListener('click', ()=>{
-      soloAgendaNacional = !soloAgendaNacional;
-      btnNivel1.classList.toggle('kpi-activo', soloAgendaNacional);
-      renderAgendaGrid();
-    });
-    btnNivel1.dataset.conectado = '1';
-  }
   document.querySelectorAll('.vista-toggle .chip-btn').forEach(btn=>{
     if(btn.dataset.conectado) return;
     btn.addEventListener('click', ()=>{
@@ -337,14 +328,13 @@ function renderNotasAgenda(){
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   const temasDisponibles = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1) // SOLO los que marcaron agenda nacional real — nunca temas automáticos, mismo criterio que el mapa de calor y Timeline
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
-  if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){
-    temaNotasSeleccionado = temasDisponibles[0]?.id || null;
-  }
-  if(!temaNotasSeleccionado){ cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return; }
+  if(temaNotasSeleccionado && !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)) temaNotasSeleccionado = null; // si el filtro de categoría cambia y ya no aplica, no forzar otro — se queda vacío hasta que el usuario elija
+  if(!temasDisponibles.length){ cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return; }
 
   cont.innerHTML = `
     <div style="padding:10px 14px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
       <select id="notas-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
+        <option value="">— sin selección —</option>
         ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
       </select>
       <div class="legend-inline">
@@ -354,11 +344,11 @@ function renderNotasAgenda(){
     </div>
     <svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`;
   document.getElementById('notas-tema-select').addEventListener('change', (e)=>{
-    temaNotasSeleccionado = e.target.value;
+    temaNotasSeleccionado = e.target.value || null;
     dibujarNotasConGrafoReal();
   });
 
-  dibujarNotasConGrafoReal();
+  dibujarNotasConGrafoReal(); // si temaNotasSeleccionado es null, renderGrafo ya muestra solo su estado vacío — mismo patrón que Red de Actores
 }
 
 function dibujarNotasConGrafoReal(){
@@ -463,19 +453,20 @@ function renderGenealogiaAgenda(){
     cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ notas para armar una genealogía.</div>`;
     return;
   }
-  if(!temaGenealogiaSeleccionado || !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)){ temaGenealogiaSeleccionado = temasDisponibles[0].id; genealogiaRevelados = 1; }
+  if(temaGenealogiaSeleccionado && !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)) temaGenealogiaSeleccionado = null;
 
   cont.innerHTML = `
     <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;">
       <select id="geneal-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
+        <option value="">— sin selección —</option>
         ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
       </select>
       <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
-    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
-  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
+    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;">${temaGenealogiaSeleccionado ? '<svg id="geneal-svg" style="height:100%;display:block;"></svg>' : '<div style="padding:40px 20px;text-align:center;color:var(--ink-3);">Selecciona un tema para ver su genealogía.</div>'}</div>`;
+  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value || null; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
 
-  dibujarGenealogia(temaGenealogiaSeleccionado);
+  if(temaGenealogiaSeleccionado) dibujarGenealogia(temaGenealogiaSeleccionado);
 }
 
 function dibujarGenealogia(temaId){
@@ -608,7 +599,7 @@ function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
 function renderListaAgenda(){
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
-  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
+  temasBase = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1); // siempre agenda nacional real, sin excepción — el toggle se quitó
   temasBase = temasBase.slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
   const cont = document.getElementById('agenda-contenido');
@@ -677,7 +668,7 @@ function renderKpisImpacto(){
   const cont = document.getElementById('agenda-kpis');
   if(!cont) return;
   const baseCategoria = (categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas)
-    .filter(t=> !soloAgendaNacional || Number(t.nivel_relevancia)===1);
+    .filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1); // siempre agenda nacional real
   const conteo = {alto:0, medio:0, bajo:0};
   baseCategoria.forEach(t=> conteo[nivelImpacto(t.peso_politico)]++);
 
@@ -747,7 +738,7 @@ function dibujarMatrizRiesgo(){
 
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
-  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
+  temasBase = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1); // siempre agenda nacional real, sin excepción — el toggle se quitó
 
   const x = d3.scaleLinear().domain([0,10]).range([pad.left, width-pad.right]);
   const y = d3.scaleLinear().domain([0,10]).range([height-pad.bottom, pad.top]);

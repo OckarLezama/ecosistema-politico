@@ -290,7 +290,7 @@ function renderGrafo(svgId='graph-svg'){
     .attr('r', d=>radioNodo(d)+6).attr('fill','none')
     .attr('stroke', d=>colorDeCore(d.coreId, slotDeCore)).attr('stroke-width',2).attr('stroke-opacity',0.55);
 
-  node.append('circle').attr('r', d=>d.esCentro?6:4.5)
+  node.filter(d=>svgId!=='notas-svg').append('circle').attr('r', d=>d.esCentro?6:4.5)
     .attr('cx', d=>-radioNodo(d)*0.7).attr('cy', d=>-radioNodo(d)*0.7)
     .attr('fill', d=>colorRiesgo(d.nivel_riesgo)).attr('stroke','#fff').attr('stroke-width',1.3);
 
