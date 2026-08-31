@@ -203,6 +203,17 @@ def cargar_temas_todos():
         return list(csv.DictReader(f))
 
 
+def buscar_tema_informativo_similar(titulo, umbral=0.15):
+    """Antes de crear un tema informativo nuevo, revisa si YA existe uno muy parecido —
+    evita que la misma noticia real, contada por 5 medios con títulos distintos, cree
+    5 temas separados en vez de reconocerse como la misma historia real."""
+    temas_todos = cargar_temas_todos()
+    for t in temas_todos:
+        if t.get('tipo')=='informativo' and similitud_titulares(t['nombre'], titulo) >= umbral:
+            return t['id']
+    return None
+
+
 def crear_tema_informativo(titulo, fecha, categoria='Gobernabilidad'):
     """Crea un tema NUEVO automático cuando hay señal fuerte (2+ actores de alta influencia)
     pero no existe tema para eso. tipo=informativo, nivel_relevancia=3 — bajo perfil, visible
@@ -372,13 +383,24 @@ def buscar_candidatos():
                 if (menciones >= 2 or mencion_top or es_migracion or alerta_actor) and hash_enlace not in ya_vistos:
                     categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
                     titulo_final = f'🔔 ALERTA — {titulo_original}' if (alerta_actor or es_migracion) else titulo_original
-                    tema_auto = crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
-                    intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5) # alerta y migración pesan más que el genérico
-                    eventos_nuevos.append({
-                        'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
-                        'categoria': categoria_real, 'intensidad': intensidad_final,
-                        'descripcion': titulo_final, 'fuente_url': enlace,
-                    })
+                    tema_auto = buscar_tema_informativo_similar(titulo_original) or crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
+                    intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5)
+
+                    # mismo chequeo de cobertura que el camino de tema conocido — la misma
+                    # noticia real, aunque ahora comparta tema_id, no debe duplicarse como evento
+                    similar_existente = None
+                    for ev_prev in eventos_nuevos:
+                        if ev_prev['tema_id']==tema_auto and ev_prev['fecha']==hoy_mx.strftime('%Y-%m-%d'):
+                            if similitud_titulares(ev_prev['descripcion'], titulo_original) >= 0.15:
+                                similar_existente = ev_prev; break
+                    if similar_existente:
+                        similar_existente['cobertura'] = int(similar_existente.get('cobertura', 1)) + 1
+                    else:
+                        eventos_nuevos.append({
+                            'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                            'categoria': categoria_real, 'intensidad': intensidad_final,
+                            'descripcion': titulo_final, 'fuente_url': enlace, 'cobertura': 1,
+                        })
 
     # Mañanera de Hoy — solo procesa si la página ya tiene el resumen de HOY (evita reprocesar
     # el de ayer fuera de la ventana de mañanera, o si la página aún no se actualizó)
