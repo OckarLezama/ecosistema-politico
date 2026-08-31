@@ -11,7 +11,7 @@
    ============================================================ */
 
 const INICIO_SEXENIO_TL = '2024-10';
-let tlXScaleBase, tlPuntos, tlSvg, tlContainer, tlYLinea, tlWidth, tlHeight, tlZoomBehavior;
+let tlXScaleBase, tlPuntos, tlToques, tlSvg, tlContainer, tlYLinea, tlWidth, tlHeight, tlZoomBehavior;
 
 let anioFiltroTL = '';
 let mostrarTodosNivelesTL = false;
@@ -297,13 +297,30 @@ function renderTimeline(){
   const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00'); fechaFin.setMonth(fechaFin.getMonth()+1);
   tlXScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padX, tlWidth-padX]);
 
-  const temasIncluidos = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && (mostrarTodosNivelesTL ? Number(t.nivel_relevancia)!==1 : Number(t.nivel_relevancia)===1));
-  const puntosBase = temasIncluidos.flatMap(t=>
-    puntosPorDiaTL(t.id)
-      .filter(p=> !anioFiltroTL || p.fecha.startsWith(anioFiltroTL))
-      .map(p=> ({ tema:t, fecha:p.fecha, intensidad:p.intensidad, descripcion:p.descripcion, xBase: tlXScaleBase(new Date(p.fecha)) }))
-  );
-  tlPuntos = enjambreTL(agruparRacimosTL(puntosBase));
+  const temasIncluidos = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1); // el switch ya no cambia DE nivel, cambia el DETALLE dentro de agenda nacional
+
+  const puntosPorTema = temasIncluidos.map(t=>{
+    const dias = puntosPorDiaTL(t.id).filter(p=> !anioFiltroTL || p.fecha.startsWith(anioFiltroTL));
+    if(!dias.length) return null;
+    // hito: intensidad alta de verdad (8+), o si el tema nunca llegó ahí, su propio pico —
+    // así ningún tema real se queda sin nada visible
+    const maxInt = Math.max(...dias.map(d=>d.intensidad));
+    const umbralHito = Math.min(8, maxInt);
+    return dias.map(p=>({ tema:t, fecha:p.fecha, intensidad:p.intensidad, descripcion:p.descripcion,
+      xBase: tlXScaleBase(new Date(p.fecha)), esHito: p.intensidad>=umbralHito }));
+  }).filter(Boolean).flat();
+
+  let puntosBase;
+  if(mostrarTodosNivelesTL){ // "vista detallada" — todo con tarjeta completa, como ya funcionaba
+    puntosBase = puntosPorTema;
+    tlPuntos = enjambreTL(agruparRacimosTL(puntosBase));
+    tlToques = [];
+  } else { // "vista de agenda" — solo hitos con tarjeta, el resto como puntos chicos de seguimiento
+    const hitos = puntosPorTema.filter(p=>p.esHito);
+    const toques = puntosPorTema.filter(p=>!p.esHito);
+    tlPuntos = enjambreTL(agruparRacimosTL(hitos));
+    tlToques = toques; // se dibujan aparte, sin competir por los mismos 4 niveles
+  }
 
   // alto DINÁMICO según cuántos niveles hagan falta de verdad — antes era fijo (470px) y con
   // muchos puntos cercanos en fecha, las tarjetas de los niveles más altos se salían del cuadro
@@ -372,6 +389,33 @@ function dibujarTL(xScaleActual){
   // línea limpia, sin umbral por segmentos (se intentó dos veces sin buen resultado)
   tlContainer.append('line').attr('x1',30).attr('x2',tlWidth-30).attr('y1',tlYLinea).attr('y2',tlYLinea)
     .attr('stroke','var(--ink-2)').attr('stroke-width',2);
+
+  // puntos chicos de seguimiento (vista de agenda) — no compiten por los 4 niveles de las
+  // tarjetas de hito; se conectan con una línea fina cuando son del mismo tema, muy pegados
+  // a la línea principal, para señalar "aquí también se tocó el tema" sin saturar
+  if(tlToques && tlToques.length){
+    const porTema = {};
+    tlToques.forEach(t=>{ (porTema[t.tema.id] = porTema[t.tema.id]||[]).push(t); });
+    Object.values(porTema).forEach(grupo=>{
+      const ord = grupo.slice().sort((a,b)=>a.xBase-b.xBase);
+      const color = colorCategoria(ord[0].tema.categoria);
+      const yToque = tlYLinea-14;
+      if(ord.length>1){
+        const linea = d3.line().x(d=>xScaleActual(new Date(d.fecha))).y(()=>yToque);
+        tlContainer.append('path').attr('d', linea(ord)).attr('fill','none').attr('stroke',color).attr('stroke-width',1).attr('stroke-opacity',0.5).attr('stroke-dasharray','2 2');
+      }
+      ord.forEach(t=>{
+        const x = xScaleActual(new Date(t.fecha));
+        tlContainer.append('circle').attr('cx',x).attr('cy',yToque).attr('r',3).attr('fill',color).attr('stroke','var(--bg-1)').attr('stroke-width',1)
+          .style('cursor','pointer')
+          .on('click', ()=> abrirTarjetaHoy(t.tema.id, t.fecha))
+          .on('mouseenter', function(ev){ mostrarTooltipAgenda(`<strong>${t.tema.nombre}</strong><br><span style="font-size:9.5px;opacity:.8;">${t.fecha} · seguimiento</span>`, ev); })
+          .on('mousemove', function(ev){ mostrarTooltipAgenda(`<strong>${t.tema.nombre}</strong><br><span style="font-size:9.5px;opacity:.8;">${t.fecha} · seguimiento</span>`, ev); })
+          .on('mouseleave', ocultarTooltipAgenda)
+          .append('title').text(`${t.tema.nombre} — ${t.fecha}`);
+      });
+    });
+  }
 
   // puntos que SÍ parpadean en el mes exacto que cruzó umbral crítico/elevado — versión chica
   // de la franja que falló, solo la señal puntual, no un bloque completo
