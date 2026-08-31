@@ -7,7 +7,7 @@
    visualmente con lo que sí marcó agenda. Sin franja de umbral —
    se intentó dos veces (aquí y en V1) sin lograr que se viera bien;
    en su lugar, línea limpia que cubre todo el ancho. Hover con
-   actores del tema. Zoom semántico ya validado.
+   actores del tema. Zoom semántico ya validado. 
    ============================================================ */
 
 const INICIO_SEXENIO_TL = '2024-10';
