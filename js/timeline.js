@@ -11,7 +11,7 @@
    ============================================================ */
 
 const INICIO_SEXENIO_TL = '2024-10';
-let tlXScaleBase, tlPuntos, tlSvg, tlContainer, tlYLinea, tlWidth, tlHeight;
+let tlXScaleBase, tlPuntos, tlSvg, tlContainer, tlYLinea, tlWidth, tlHeight, tlZoomBehavior;
 
 let anioFiltroTL = '';
 let mostrarTodosNivelesTL = false;
@@ -132,24 +132,21 @@ function actoresDeTemaTL(tema){
 }
 
 function enjambreTL(puntos){
-  // "beeswarm": la posición horizontal (xBase) NUNCA se mueve — siempre exacta sobre su fecha
-  // real. Solo la distancia vertical a la línea crece, y únicamente cuando 2 puntos del mismo
-  // lado están realmente cerca en fecha — orgánico, no columnas fijas alineadas entre sí.
+  // "beeswarm" con primer espacio libre: cada punto busca la distancia MÁS CHICA posible que
+  // no choque con sus vecinos reales (cercanos en fecha) ya colocados — más orgánico que
+  // simplemente ir subiendo siempre al siguiente nivel disponible
   const ord = puntos.slice().sort((a,b)=>a.xBase-b.xBase);
-  const arr = ord.map((p,i)=>({...p, lado: i%2===0?'up':'down', dist: 40}));
-  const minDistX = 55, alturaTarjeta = 38;
-  for(let it=0; it<300; it++){
-    for(let i=0;i<arr.length;i++) for(let j=i+1;j<arr.length;j++){
-      const a=arr[i], b=arr[j];
-      if(a.lado!==b.lado) continue;
-      if(Math.abs(a.xBase-b.xBase) > minDistX) continue; // lejos en fecha real, no compiten por espacio
-      if(Math.abs(a.dist-b.dist) < alturaTarjeta){
-        if(a.dist<=b.dist) b.dist = a.dist+alturaTarjeta; else a.dist = b.dist+alturaTarjeta;
-      }
-    }
-  }
+  const arr = ord.map((p,i)=>({...p, lado: i%2===0?'up':'down'}));
+  const minDistX = 55, alturaTarjeta = 38, distMin = 40;
+  arr.forEach((p,i)=>{
+    const vecinos = arr.slice(0,i).filter(o=>o.lado===p.lado && Math.abs(o.xBase-p.xBase)<=minDistX);
+    let dist = distMin;
+    while(vecinos.some(v=>Math.abs(v.dist-dist)<alturaTarjeta)) dist += alturaTarjeta;
+    p.dist = dist;
+  });
   return arr;
 }
+
 
 
 function mostrarTooltipTL(d, ev){
@@ -237,7 +234,7 @@ function renderTimeline(){
   const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00'); fechaFin.setMonth(fechaFin.getMonth()+1);
   tlXScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padX, tlWidth-padX]);
 
-  const temasIncluidos = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && (mostrarTodosNivelesTL || Number(t.nivel_relevancia)===1));
+  const temasIncluidos = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && (mostrarTodosNivelesTL ? Number(t.nivel_relevancia)!==1 : Number(t.nivel_relevancia)===1));
   const puntosBase = temasIncluidos.flatMap(t=>
     puntosPorDiaTL(t.id)
       .filter(p=> !anioFiltroTL || p.fecha.startsWith(anioFiltroTL))
@@ -270,29 +267,39 @@ function renderTimeline(){
 
   // el usuario puede alejar manualmente (rueda del mouse / gesto de pellizco) si hay mucha
   // densidad — el auto-alejado automático se intentó y rompió el zoom, se revirtió
-  tlSvg.call(d3.zoom().scaleExtent([0.3,4]).on('zoom', ev=>{
+  tlZoomBehavior = d3.zoom().scaleExtent([0.3,15]).on('zoom', ev=>{
     dibujarTL(ev.transform.rescaleX(tlXScaleBase));
-  }));
+  });
+  tlSvg.call(tlZoomBehavior);
 
-  dibujarTL(tlXScaleBase);
+  // si hay un año filtrado, posicionar la vista ahí — el eje sigue siendo el sexenio completo,
+  // pero no tiene sentido que el usuario tenga que buscar manualmente dónde quedó ese año
+  if(anioFiltroTL){
+    const xAnio = tlXScaleBase(new Date(anioFiltroTL+'-01-01'));
+    const transformAnio = d3.zoomIdentity.translate(-xAnio+padX+20, 0);
+    tlSvg.call(tlZoomBehavior.transform, transformAnio);
+  } else {
+    dibujarTL(tlXScaleBase);
+  }
 
-  // panel de temas más persistentes + mes con más agenda — FUERA del grupo con zoom
+  // panel de temas más persistentes + mes con más agenda — overlay HTML fijo, FUERA del SVG
+  // por completo, para que nunca se pierda al hacer scroll vertical (antes vivía dentro del
+  // SVG cerca del borde superior absoluto, y con el alto dinámico grande quedaba fuera de vista)
   const persistentes = temasPersistentesTL();
   const mesTop = mesConMasAgendaTL();
-  const altoPersistentes = 14+persistentes.length*15;
-  const altoTotal = altoPersistentes + 40; // suficiente para título + items + línea + mes, verificado abajo
-  const gPanel = tlSvg.append('g').attr('class','tl-panel-persistentes');
-  gPanel.append('rect').attr('x',36).attr('y',10).attr('width',225).attr('height',altoTotal)
-    .attr('fill','var(--bg-2)').attr('fill-opacity',0.95).attr('stroke','var(--line-strong)').attr('rx',6);
-  gPanel.append('text').attr('x',44).attr('y',22).attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('MÁS PERSISTENTES (menciones × impacto)');
-  persistentes.forEach((p,i)=>{
-    gPanel.append('text').attr('x',44).attr('y',36+i*15).attr('font-size','9px').attr('fill','var(--ink-1)').style('cursor','pointer')
-      .on('click', ()=> abrirFichaTema(p.tema.id))
-      .text(`Persistencia ${p.score.toFixed(0)} — ${p.tema.nombre.length>20?p.tema.nombre.slice(0,18)+'…':p.tema.nombre}`);
-  });
-  gPanel.append('line').attr('x1',44).attr('x2',251).attr('y1',24+altoPersistentes).attr('y2',24+altoPersistentes).attr('stroke','var(--line)');
-  gPanel.append('text').attr('x',44).attr('y',24+altoPersistentes+13).attr('font-size','9px').attr('fill','var(--ink-1)')
-    .text(`Mes con mayor temas: ${mesTop.mes} (${mesTop.conteo} eventos)`);
+  let panelHtml = document.getElementById('tl-panel-persistentes-html');
+  if(!panelHtml){
+    panelHtml = document.createElement('div');
+    panelHtml.id = 'tl-panel-persistentes-html';
+    panelHtml.style.cssText = 'position:absolute; top:10px; left:36px; width:225px; background:var(--bg-2); border:1px solid var(--line-strong); border-radius:6px; padding:8px 10px; font-size:9px; z-index:5;';
+    wrapEl.style.position = 'relative';
+    wrapEl.appendChild(panelHtml);
+  }
+  panelHtml.innerHTML = `
+    <div style="font-family:var(--f-mono);color:var(--ink-3);margin-bottom:6px;">MÁS PERSISTENTES (menciones × impacto)</div>
+    ${persistentes.map(p=>`<div style="cursor:pointer;color:var(--ink-1);padding:2px 0;" data-tema="${p.tema.id}">Persistencia ${p.score.toFixed(0)} — ${p.tema.nombre.length>20?p.tema.nombre.slice(0,18)+'…':p.tema.nombre}</div>`).join('')}
+    <div style="border-top:1px solid var(--line);margin-top:6px;padding-top:6px;color:var(--ink-1);">Mes con mayor temas: ${mesTop.mes} (${mesTop.conteo} eventos)</div>`;
+  panelHtml.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
 }
 
 function dibujarTL(xScaleActual){
