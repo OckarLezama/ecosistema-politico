@@ -302,12 +302,12 @@ function renderTimeline(){
   const puntosPorTema = temasIncluidos.map(t=>{
     const dias = puntosPorDiaTL(t.id).filter(p=> !anioFiltroTL || p.fecha.startsWith(anioFiltroTL));
     if(!dias.length) return null;
-    // hito: intensidad alta de verdad (8+), o si el tema nunca llegó ahí, su propio pico —
-    // así ningún tema real se queda sin nada visible
-    const maxInt = Math.max(...dias.map(d=>d.intensidad));
-    const umbralHito = Math.min(8, maxInt);
+    // hito real: MÁXIMO 2 por tema, los de mayor intensidad — no un umbral fijo, porque casos
+    // grandes (Rocha Moya, Huachicol) sostienen intensidad alta MUCHOS días seguidos y un
+    // umbral simple los volvía todos "hito", formando racimos hasta dentro de la vista de Agenda
+    const idsHito = new Set(dias.slice().sort((a,b)=>b.intensidad-a.intensidad).slice(0,2).map(d=>d.fecha));
     return dias.map(p=>({ tema:t, fecha:p.fecha, intensidad:p.intensidad, descripcion:p.descripcion,
-      xBase: tlXScaleBase(new Date(p.fecha)), esHito: p.intensidad>=umbralHito }));
+      xBase: tlXScaleBase(new Date(p.fecha)), esHito: idsHito.has(p.fecha) }));
   }).filter(Boolean).flat();
 
   let puntosBase;
@@ -400,9 +400,21 @@ function dibujarTL(xScaleActual){
       const ord = grupo.slice().sort((a,b)=>a.xBase-b.xBase);
       const color = colorCategoria(ord[0].tema.categoria);
       const yToque = tlYLinea-14;
-      if(ord.length>1){
+
+      // buscar el hito real de este mismo tema (para conectar el hilo completo, no solo los
+      // toques entre sí) — puede estar suelto o dentro de un racimo
+      let hitoDeEsteTema = tlPuntos.find(p=>!p.esRacimo && p.tema.id===ord[0].tema.id);
+      if(!hitoDeEsteTema){
+        const racimoConEsteTema = tlPuntos.find(p=>p.esRacimo && p.tema.id===ord[0].tema.id);
+        if(racimoConEsteTema) hitoDeEsteTema = racimoConEsteTema;
+      }
+      const puntosLinea = ord.map(d=>({fecha:d.fecha}));
+      if(hitoDeEsteTema) puntosLinea.push({fecha:hitoDeEsteTema.fecha}); // el hilo llega hasta el hito, no solo entre toques
+
+      if(puntosLinea.length>1){
+        const ordConHito = puntosLinea.slice().sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
         const linea = d3.line().x(d=>xScaleActual(new Date(d.fecha))).y(()=>yToque);
-        tlContainer.append('path').attr('d', linea(ord)).attr('fill','none').attr('stroke',color).attr('stroke-width',1).attr('stroke-opacity',0.5).attr('stroke-dasharray','2 2');
+        tlContainer.append('path').attr('d', linea(ordConHito)).attr('fill','none').attr('stroke',color).attr('stroke-width',1).attr('stroke-opacity',0.5).attr('stroke-dasharray','2 2');
       }
       ord.forEach(t=>{
         const x = xScaleActual(new Date(t.fecha));
@@ -466,11 +478,13 @@ function dibujarTL(xScaleActual){
     }
     const esNivel1 = Number(d.tema.nivel_relevancia)===1;
     const color = esNivel1 ? COLOR_RIESGO[nivelImpactoTL(d.intensidad)] : COLOR_RIESGO_2[nivelImpactoTL(d.intensidad)];
-    const anchoTarjeta = esNivel1 ? 150 : 128, altoTarjeta = esNivel1 ? 34 : 26;
+    // vista detallada: tarjetas más chicas y transparentes (es el detalle día a día, no debe
+    // competir visualmente con los hitos de la vista de Agenda que sí llevan tamaño completo)
+    const anchoTarjeta = mostrarTodosNivelesTL ? 118 : 150, altoTarjeta = mostrarTodosNivelesTL ? 26 : 34;
     const largo = d.dist;
     const yFin = d.lado==='up' ? tlYLinea-largo-14 : tlYLinea+largo+14;
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
-    const gg = d3.select(this).attr('opacity', esNivel1?1:0.7);
+    const gg = d3.select(this).attr('opacity', mostrarTodosNivelesTL?0.65:1);
 
     // el punto de nivel 1 pulsa suavemente (mismo patrón ya validado en la Matriz de Agenda)
     gg.append('circle').attr('cx',x).attr('cy',tlYLinea).attr('r', esNivel1?9:4)
