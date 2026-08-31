@@ -201,7 +201,8 @@ function renderTimeline(){
   tlSvg = d3.select(svgEl);
   tlSvg.selectAll('*').remove();
 
-  tlWidth = (wrapEl && wrapEl.clientWidth) ? wrapEl.clientWidth-28 : 1100;
+  const anchoReal = (wrapEl && wrapEl.clientWidth>200) ? wrapEl.clientWidth : (wrapEl && wrapEl.parentElement ? wrapEl.parentElement.clientWidth : 1100); // >200: si el navegador aún no terminó el layout, clientWidth da un valor chico falso — se usa el contenedor padre como respaldo
+  tlWidth = anchoReal-28;
   tlHeight = 470; const padX = 30;
   tlYLinea = tlHeight/2 + 10;
   tlSvg.attr('viewBox',[0,0,tlWidth,tlHeight]);
