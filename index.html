@@ -29,6 +29,7 @@
   <button data-module="agenda">Agenda &amp; Coyuntura</button>
   <button data-module="timeline">Timeline</button>
   <button data-module="buscador">Actores</button>
+  <button data-module="analisis">Análisis</button>
 </nav>
 
 <main class="app-main">
@@ -156,6 +157,16 @@
       <div id="buscador-resultados" style="margin-top:12px; display:flex; flex-direction:column; gap:6px;"></div>
     </div>
   </section>
+
+  <section class="module-panel" id="panel-analisis">
+    <div class="module-head">
+      <h2>Análisis</h2>
+      <p>Tendencias automáticas — hacia dónde va cada tema, con base en la actividad real registrada.</p>
+    </div>
+    <div class="graph-card" style="padding:16px;">
+      <div id="analisis-contenido"></div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -174,6 +185,7 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
     if(seleccion.nucleo||seleccion.cruce1||seleccion.cruce2||actorUnicoSeleccionado) renderGrafo();
   }
   if(btn.dataset.module==='timeline' && typeof renderTimeline==='function') renderTimeline();
+  if(btn.dataset.module==='analisis' && typeof renderAnalisis==='function') renderAnalisis();
 });
 </script>
 <script src="js/data-loader.js?v=2"></script>
@@ -181,6 +193,7 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/feed.js?v=2"></script>
 <script src="js/agenda.js?v=2"></script>
 <script src="js/timeline.js?v=2"></script>
+<script src="js/analisis.js?v=1"></script>
 <script>
 document.addEventListener('ecosistema:datos-listos', ()=>{
   const input = document.getElementById('buscador-input');

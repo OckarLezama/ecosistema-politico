@@ -155,10 +155,13 @@ function abrirFichaTema(temaId){
   // sin fecha ni respaldo verificable. Solo entran actores con fila real en tema_actores.csv
   // (que sí tiene contexto/fuente detrás). Evita mostrar un nombre que no podemos sustentar.
 
-  const bloquesActores = Object.entries(grupos).filter(([,lista])=>lista.length).map(([grupo,lista])=>`
-    <div class="eyebrow" style="margin-top:8px;">${grupo}</div>
-    ${lista.map(x=>`<div style="font-size:12px;padding:2px 0;">${x.actor.nombre}${x.detalle?`<br><span style="color:var(--ink-3);font-size:10.5px;">${x.detalle}</span>`:''}</div>`).join('')}
-  `).join('');
+  const bloquesActores = Object.entries(grupos).filter(([grupo,lista])=> lista.length || grupo==='Reacción de oposición').map(([grupo,lista])=>{
+    const esOposicion = grupo==='Reacción de oposición';
+    return `
+    <div class="eyebrow" style="margin-top:8px;${esOposicion?'color:var(--riesgo-alto);':''}">${esOposicion?'⚔ ':''}${grupo}</div>
+    ${lista.length ? lista.map(x=>`<div style="font-size:12px;padding:2px 0;${esOposicion?'border-left:2px solid var(--riesgo-alto);padding-left:8px;':''}">${x.actor.nombre}${x.detalle?`<br><span style="color:var(--ink-3);font-size:10.5px;">${x.detalle}</span>`:''}</div>`).join('')
+      : (esOposicion ? `<p style="font-size:11px;color:var(--ink-3);">Sin reacción de oposición documentada por ahora.</p>` : '')}
+  `;}).join('');
 
   const estadoTexto = dias===null ? 'Sin datos' :
     dias<=14 ? `Última nota hace ${dias===0?'hoy':dias+' días'}` :
@@ -475,7 +478,7 @@ function renderGenealogiaAgenda(){
       </select>
       <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
-    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;">${temaGenealogiaSeleccionado ? '<svg id="geneal-svg" style="height:100%;display:block;"></svg>' : '<div style="padding:40px 20px;text-align:center;color:var(--ink-3);">Selecciona un tema para ver su genealogía.</div>'}</div>`;
+    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;">${temaGenealogiaSeleccionado ? '<svg id="geneal-svg" style="height:100%;display:block;"></svg>' : '<div class="detail-empty"><div class="eyebrow">Sin selección</div><h3>Elige un tema</h3><p style="font-size:12px;">Se muestra el recorrido cronológico de ese tema de agenda.</p></div>'}</div>`;
   document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value || null; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
 
   if(temaGenealogiaSeleccionado) dibujarGenealogia(temaGenealogiaSeleccionado);
