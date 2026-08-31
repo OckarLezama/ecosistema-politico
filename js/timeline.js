@@ -24,10 +24,10 @@ function abrirMapaDeCalorModalTL(){
     document.body.appendChild(modal);
   }
   modal.innerHTML = `
-    <div class="ficha-modal-card" style="max-width:640px;">
+    <div class="ficha-modal-card" style="max-width:760px;max-height:85vh;overflow-y:auto;">
       <button class="ficha-modal-close">✕</button>
-      <div class="eyebrow">Mapa de calor — solo agenda nacional, por mes</div>
-      <svg id="timeline-heatmap-svg" style="width:100%;height:120px;display:block;margin-top:8px;"></svg>
+      <div class="eyebrow">Mapa de calor — temas × mes</div>
+      <svg id="timeline-heatmap-svg" style="width:100%;height:auto;display:block;margin-top:8px;"></svg>
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
   modal.classList.add('open');
@@ -256,53 +256,75 @@ function dibujarHeatmapTimeline(){
   if(!svgEl) return;
   const svg = d3.select(svgEl);
   svg.selectAll('*').remove();
-  const width = svgEl.clientWidth || 900, height = 64;
 
   let meses = mesesSexenioTL();
   if(anioFiltroTL) meses = meses.filter(m=>m.startsWith(anioFiltroTL));
   if(!meses.length) return;
-  svg.attr('viewBox',[0,0,width,height]);
 
-  const datos = meses.map(mes=>{
-    const evs = ECOSISTEMA.eventos.filter(e=>e.fecha.startsWith(mes));
-    const intensidadProm = evs.length ? evs.reduce((s,e)=>s+e.intensidad,0)/evs.length : 0;
-    return {mes, total:evs.length, intensidadProm};
-  });
-  const maxIntensidad = Math.max(...datos.map(d=>d.intensidadProm), 1);
-  const anchoBloque = width/datos.length;
+  // filas: temas -- respeta el mismo switch Agenda/Detallada que ya usa el Timeline principal,
+  // ordenados por actividad total (lo mas relevante arriba, no orden alfabetico sin sentido)
+  const temasFiltrados = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') &&
+    (mostrarTodosNivelesTL ? Number(t.nivel_relevancia)!==1 : Number(t.nivel_relevancia)===1));
 
-  const escalaColor = v=>{
-    // de teal (bajo) a coral (alto) — mismo lenguaje de riesgo ya usado en toda la app
-    if(v===0) return 'var(--bg-2)';
-    const t = v/maxIntensidad;
-    return t>0.66 ? 'var(--riesgo-alto)' : t>0.33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
-  };
+  const filas = temasFiltrados.map(t=>{
+    const porMes = meses.map(mes=>{
+      const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && e.fecha.startsWith(mes));
+      return evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 0;
+    });
+    const totalActividad = porMes.reduce((s,v)=>s+v,0);
+    return { tema:t, porMes, totalActividad };
+  }).filter(f=>f.totalActividad>0).sort((a,b)=>b.totalActividad-a.totalActividad);
 
-  const g = svg.selectAll('g.mes-bloque').data(datos).join('g').attr('class','mes-bloque')
-    .attr('transform',(d,i)=>`translate(${i*anchoBloque},0)`).style('cursor','pointer');
-
-  g.append('rect').attr('width',anchoBloque-2).attr('height',36).attr('y',4).attr('rx',3)
-    .attr('fill', d=>escalaColor(d.intensidadProm)).attr('fill-opacity',0).style('opacity',0)
-    .transition().delay((d,i)=>i*12).duration(300).attr('fill-opacity', d=>d.total?0.85:0.15).style('opacity',1); // entra con dinamismo, no de golpe
-
-  // el mes de mayor intensidad promedio destaca con un halo pulsante — "esto es lo más caliente"
-  const mesTop = datos.reduce((a,b)=> b.intensidadProm>a.intensidadProm ? b : a, datos[0]);
-  if(mesTop && mesTop.total){
-    g.filter(d=>d.mes===mesTop.mes).append('rect').attr('class','nodo-halo')
-      .attr('width',anchoBloque-2).attr('height',36).attr('y',4).attr('rx',3)
-      .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',2);
+  if(!filas.length){
+    svg.attr('viewBox',[0,0,600,60]);
+    svg.append('text').attr('x',20).attr('y',30).attr('font-size','11px').attr('fill','var(--ink-3)').text('Sin actividad registrada en este periodo.');
+    return;
   }
 
-  g.append('text').attr('x',(anchoBloque-2)/2).attr('y',54).attr('text-anchor','middle')
-    .attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
-    .text(d=> anchoBloque>26 ? d.mes.slice(2) : ''); // oculta etiqueta si hay demasiados meses y no cabe
+  const anchoEtiqueta = 190, anchoCelda = 20, altoCelda = 18, altoCabecera = 34;
+  const width = anchoEtiqueta + meses.length*anchoCelda + 10;
+  const height = altoCabecera + filas.length*altoCelda + 6;
+  svg.attr('viewBox',[0,0,width,height]);
 
-  g.on('mouseenter', function(ev,d){
-    mostrarTooltipAgenda(`<strong>${d.mes}</strong><br>${d.total} nota${d.total!==1?'s':''} · intensidad promedio ${d.intensidadProm.toFixed(1)}/10`, ev);
-  }).on('mousemove', function(ev,d){
-    mostrarTooltipAgenda(`<strong>${d.mes}</strong><br>${d.total} nota${d.total!==1?'s':''} · intensidad promedio ${d.intensidadProm.toFixed(1)}/10`, ev);
-  }).on('mouseleave', ocultarTooltipAgenda);
+  const escalaColor = v=>{
+    if(v===0) return 'var(--bg-2)';
+    if(v>=8) return 'var(--riesgo-alto)';
+    if(v>=5) return 'var(--riesgo-medio)';
+    return 'var(--riesgo-bajo)';
+  };
+
+  // encabezado: mes por columna, en diagonal para que quepan los 23 sin amontonarse
+  const gCab = svg.append('g');
+  meses.forEach((mes,c)=>{
+    gCab.append('text').attr('x',anchoEtiqueta+c*anchoCelda+anchoCelda/2).attr('y',altoCabecera-6)
+      .attr('text-anchor','start').attr('font-size','7.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
+      .attr('transform',`rotate(-55, ${anchoEtiqueta+c*anchoCelda+anchoCelda/2}, ${altoCabecera-6})`)
+      .text(mes);
+  });
+
+  // filas: nombre del tema a la izquierda + celdas de color por mes
+  filas.forEach((fila,r)=>{
+    const y = altoCabecera + r*altoCelda;
+    const color = colorCategoria(fila.tema.categoria);
+    svg.append('text').attr('x',anchoEtiqueta-8).attr('y',y+altoCelda/2+3).attr('text-anchor','end')
+      .attr('font-size','9px').attr('fill','var(--ink-1)').style('cursor','pointer')
+      .on('click', ()=> abrirFichaTema(fila.tema.id))
+      .text(fila.tema.nombre.length>26 ? fila.tema.nombre.slice(0,24)+'…' : fila.tema.nombre)
+      .append('title').text(fila.tema.nombre);
+    svg.append('rect').attr('x',0).attr('y',y).attr('width',6).attr('height',altoCelda-2).attr('fill',color); // franja de categoria, para reconocer de un vistazo
+
+    fila.porMes.forEach((valor,c)=>{
+      svg.append('rect').attr('x',anchoEtiqueta+c*anchoCelda).attr('y',y).attr('width',anchoCelda-2).attr('height',altoCelda-2).attr('rx',2)
+        .attr('fill',escalaColor(valor)).attr('fill-opacity', valor?0.9:0.25)
+        .style('cursor', valor?'pointer':'default')
+        .on('mouseenter', function(ev){ if(valor) mostrarTooltipAgenda(`<strong>${fila.tema.nombre}</strong><br>${meses[c]} · intensidad ${valor}/10`, ev); })
+        .on('mousemove', function(ev){ if(valor) mostrarTooltipAgenda(`<strong>${fila.tema.nombre}</strong><br>${meses[c]} · intensidad ${valor}/10`, ev); })
+        .on('mouseleave', ocultarTooltipAgenda)
+        .on('click', ()=>{ if(valor) abrirTarjetaHoy(fila.tema.id, ECOSISTEMA.eventos.find(e=>e.tema_id===fila.tema.id && e.fecha.startsWith(meses[c]) && e.intensidad===valor)?.fecha); });
+    });
+  });
 }
+
 
 function renderTimeline(){
   // mapa de calor removido de aquí (arriba del Timeline) — quedará como su propia vista aparte más adelante
