@@ -335,7 +335,7 @@ let temaGenealogiaSeleccionado = null;
 function renderNotasAgenda(){
   const cont = document.getElementById('agenda-contenido');
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1) // SOLO los que marcaron agenda nacional — no los informativos que crea el robot
+  const temasDisponibles = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1) // SOLO los que marcaron agenda nacional real — nunca temas automáticos, mismo criterio que el mapa de calor y Timeline
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
   if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){
     temaNotasSeleccionado = temasDisponibles[0]?.id || null;
@@ -455,7 +455,7 @@ let genealogiaRevelados = 1;
 function renderGenealogiaAgenda(){
   const cont = document.getElementById('agenda-contenido');
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1) // solo agenda nacional real — mismo criterio que Notas
+  const temasDisponibles = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1) // solo agenda nacional real, nunca "auto-" — mismo criterio que Notas y el mapa de calor
     .filter(t=> ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).length>1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 

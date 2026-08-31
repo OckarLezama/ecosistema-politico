@@ -27,6 +27,12 @@ function abrirMapaDeCalorModalTL(){
     <div class="ficha-modal-card" style="max-width:760px;max-height:85vh;overflow-y:auto;">
       <button class="ficha-modal-close">✕</button>
       <div class="eyebrow">Mapa de calor — temas × mes</div>
+      <div class="legend-inline" style="margin:4px 0 0;">
+        <span><span class="legend-dot" style="background:var(--riesgo-alto)"></span>Intensidad alta (8-10)</span>
+        <span><span class="legend-dot" style="background:var(--riesgo-medio)"></span>Media (5-7)</span>
+        <span><span class="legend-dot" style="background:var(--riesgo-bajo)"></span>Baja (1-4)</span>
+        <span><span class="legend-dot" style="background:var(--bg-2);border:1px solid var(--line);"></span>Sin actividad</span>
+      </div>
       <svg id="timeline-heatmap-svg" style="width:100%;height:auto;display:block;margin-top:8px;"></svg>
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
