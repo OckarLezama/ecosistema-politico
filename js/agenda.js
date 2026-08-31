@@ -288,6 +288,16 @@ function renderCintillo(){
 }
 document.addEventListener('ecosistema:datos-listos', renderCintillo);
 
+function actualizarVisibilidadFiltrosAgenda(){
+  // categoría y KPI de impacto solo tienen sentido en Matriz/Lista — en Notas/Genealogía
+  // no filtran nada visible, solo ocupaban espacio sin propósito
+  const aplica = vistaAgenda==='matriz' || vistaAgenda==='lista';
+  const wrapCat = document.getElementById('agenda-categoria-wrap');
+  const wrapKpis = document.getElementById('agenda-kpis');
+  if(wrapCat) wrapCat.style.display = aplica ? 'flex' : 'none';
+  if(wrapKpis) wrapKpis.style.display = aplica ? 'flex' : 'none';
+}
+
 function initAgenda(){
   poblarFiltroCategoriaAgenda();
   document.querySelectorAll('.vista-toggle .chip-btn').forEach(btn=>{
@@ -296,10 +306,12 @@ function initAgenda(){
       vistaAgenda = btn.dataset.vista;
       document.querySelectorAll('.vista-toggle .chip-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
+      actualizarVisibilidadFiltrosAgenda();
       renderAgendaGrid();
     });
     btn.dataset.conectado='1';
   });
+  actualizarVisibilidadFiltrosAgenda();
   renderAgendaGrid();
 }
 

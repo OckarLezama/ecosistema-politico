@@ -65,8 +65,16 @@ function initRedActores(){
     const match = ECOSISTEMA.actores.find(a=>a.nombre.toLowerCase().includes(q));
     actorUnicoSeleccionado = match ? match.id : null;
     if(actorUnicoSeleccionado) mostrarTemasPorRolDeActor(actorUnicoSeleccionado);
+    else document.getElementById('detail-panel').innerHTML = `<div class="detail-empty">No se encontró a alguien con ese nombre en la base de actores documentados.</div>`;
     renderGrafo();
   });
+}
+
+function tieneRedDocumentada(actorId){
+  // al menos 1 vínculo real, en cualquier dirección: es núcleo con satélites, o aparece como
+  // satélite de alguien más — antes se filtraba por 'nucleo A/B/C' (una etiqueta aparte, no
+  // garantizaba tener vínculos reales documentados)
+  return redPersonalDe(actorId).length>0 || ECOSISTEMA.redesPersonales.some(r=>r.satelite_id===actorId);
 }
 
 function candidatosPara(slot){
@@ -75,7 +83,7 @@ function candidatosPara(slot){
     return ECOSISTEMA.temas.filter(t=>!yaElegidos.includes(t.id)).sort((a,b)=>b.peso_politico-a.peso_politico);
   }
   return ECOSISTEMA.actores
-    .filter(a=>['A','B','C'].includes(a.nucleo))
+    .filter(a=>tieneRedDocumentada(a.id))
     .filter(a=>!yaElegidos.includes(a.id))
     .sort((a,b)=> b.nivel_influencia - a.nivel_influencia);
 }
@@ -164,8 +172,10 @@ function renderGrafo(svgId='graph-svg'){
       const slot = ['nucleo','cruce1','cruce2'][idx];
       // el checkbox SOLO controla al núcleo — Actor 2 y 3 siempre muestran ambas redes,
       // porque su función es revelar cómo se conectan al núcleo, por cualquier canal
-      const usarPersonal = slot==='nucleo' ? redPersonalActiva : true;
-      const usarPolitica = slot==='nucleo' ? redPoliticaActiva : true;
+      // el switch ahora aplica igual a los 3 (núcleo, Actor 2, Actor 3) — antes solo controlaba
+      // al núcleo; así se puede ver de verdad si 2-3 actores cruzan por confianza o política
+      const usarPersonal = redPersonalActiva;
+      const usarPolitica = redPoliticaActiva;
       if(usarPersonal){
         redPersonalDe(coreId).forEach(r=>{
           const sat = getActor(r.satelite_id);
@@ -689,6 +699,7 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
     <div class="detail-avatar" style="background:${color}">${actor.iniciales||'?'}</div>
     <div class="detail-name">${actor.nombre}</div>
     <div class="detail-cargo">${actor.cargo}</div>
+    ${actor.descripcion ? `<p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 8px;">${actor.descripcion}</p>` : ''}
     ${contextoHTML}
     <div class="detail-row"><span class="k">Riesgo</span><span class="v"><span class="riesgo-badge" style="background:${color}22;color:${color}">${(actor.nivel_riesgo||'').toUpperCase()}</span></span></div>
     <div class="detail-row"><span class="k">Influencia</span><span class="v">${actor.nivel_influencia}/10</span></div>
