@@ -7,7 +7,7 @@
    visualmente con lo que sí marcó agenda. Sin franja de umbral —
    se intentó dos veces (aquí y en V1) sin lograr que se viera bien;
    en su lugar, línea limpia que cubre todo el ancho. Hover con
-   actores del tema. Zoom semántico ya validado.ok
+   actores del tema. Zoom semántico ya validado.
    ============================================================ */
 
 const INICIO_SEXENIO_TL = '2024-10';
@@ -45,7 +45,7 @@ function nivelImpactoTL(intensidad){ if(intensidad>=9) return 'alto'; if(intensi
 function temasPersistentesTL(){
   // score combinado (menciones × impacto promedio), no solo días — un tema mencionado muchas
   // veces con eventos de alto impacto pesa más que uno solo "viejo" con menciones menores
-  return ECOSISTEMA.temas.filter(t=>t.tipo!=='informativo').map(t=>{
+  return ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-')).map(t=>{
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     if(!evs.length) return null;
     const impactoProm = evs.reduce((s,e)=>s+e.intensidad,0)/evs.length;
@@ -210,7 +210,7 @@ function renderTimeline(){
   const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00'); fechaFin.setMonth(fechaFin.getMonth()+1);
   tlXScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padX, tlWidth-padX]);
 
-  const puntosBase = ECOSISTEMA.temas.filter(t=>t.tipo!=='informativo').map(t=>{ // los temas automáticos del robot (informativos, del Feed) NUNCA se muestran aquí — Timeline es solo agenda real, no ruido del día
+  const puntosBase = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>{ // criterio real y definitivo: SOLO temas investigados a mano (nunca "auto-", sin importar a qué nivel se hayan "graduado" por acumulación de duplicados) Y Nivel 1 confirmado
     const p = puntoPrincipalTL(t.id);
     if(!p) return null;
     if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return null;
@@ -225,6 +225,12 @@ function renderTimeline(){
   tlHeight = Math.max(470, 260 + (maxTier+1)*alturaPorTier*2); // *2: crece hacia arriba Y abajo del centro
   tlYLinea = tlHeight/2 + 10;
   tlSvg.attr('viewBox',[0,0,tlWidth,tlHeight]).style('height', tlHeight+'px'); // alto real en píxeles, no solo viewBox — si no, el navegador comprime todo para caber en el alto fijo anterior, sin ganar espacio de verdad
+
+  // centrar el scroll vertical en la línea principal al entrar — sin esto, arranca hasta
+  // arriba del todo y la línea (a la mitad del alto real) queda fuera de la vista inicial
+  setTimeout(()=>{
+    if(wrapEl) wrapEl.scrollTop = Math.max(0, tlYLinea - wrapEl.clientHeight/2);
+  }, 0);
 
   tlContainer = tlSvg.append('g').attr('class','tl-zoom-container');
 
