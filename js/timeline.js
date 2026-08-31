@@ -281,7 +281,7 @@ function dibujarHeatmapTimeline(){
 }
 
 function renderTimeline(){
-  dibujarHeatmapTimeline();
+  // mapa de calor removido de aquí (arriba del Timeline) — quedará como su propia vista aparte más adelante
   const svgEl = document.getElementById('timeline-svg');
   const wrapEl = document.getElementById('timeline-scroll');
   if(!svgEl) return;
@@ -305,7 +305,15 @@ function renderTimeline(){
     // hito real: MÁXIMO 2 por tema, los de mayor intensidad — no un umbral fijo, porque casos
     // grandes (Rocha Moya, Huachicol) sostienen intensidad alta MUCHOS días seguidos y un
     // umbral simple los volvía todos "hito", formando racimos hasta dentro de la vista de Agenda
-    const idsHito = new Set(dias.slice().sort((a,b)=>b.intensidad-a.intensidad).slice(0,2).map(d=>d.fecha));
+    // hito 1: SIEMPRE el origen (primera mención real del tema) — permanente.
+    // hito 2: el de mayor intensidad entre el resto (no solo "el más reciente" — así no se
+    // pierde un momento clave real solo porque después salió una nota menor de seguimiento);
+    // empate de intensidad se resuelve por el más reciente.
+    const ordenados = dias.slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
+    const origen = ordenados[0];
+    const resto = ordenados.slice(1);
+    const segundo = resto.length ? resto.slice().sort((a,b)=> (b.intensidad-a.intensidad) || b.fecha.localeCompare(a.fecha))[0] : null;
+    const idsHito = new Set([origen.fecha, ...(segundo?[segundo.fecha]:[])]);
     return dias.map(p=>({ tema:t, fecha:p.fecha, intensidad:p.intensidad, descripcion:p.descripcion,
       xBase: tlXScaleBase(new Date(p.fecha)), esHito: idsHito.has(p.fecha) }));
   }).filter(Boolean).flat();
@@ -359,7 +367,15 @@ function renderTimeline(){
     const transformAnio = d3.zoomIdentity.translate(-xAnio+padX+20, 0);
     tlSvg.call(tlZoomBehavior.transform, transformAnio);
   } else {
-    dibujarTL(tlXScaleBase);
+    // vista inicial: últimos 12 meses, no el sexenio completo — se acerca automático, pero
+    // el usuario sigue pudiendo alejar/mover libremente después (mismo comportamiento de zoom
+    // ya probado con el filtro de año, no algo nuevo y riesgoso)
+    const hace12Meses = new Date(); hace12Meses.setMonth(hace12Meses.getMonth()-12);
+    const totalMeses = mesesSexenioTL().length;
+    const escalaInicial = Math.min(15, Math.max(1, totalMeses/12));
+    const xHace12Meses = tlXScaleBase(hace12Meses);
+    const transformInicial = d3.zoomIdentity.translate(-xHace12Meses*escalaInicial+padX+10, 0).scale(escalaInicial);
+    tlSvg.call(tlZoomBehavior.transform, transformInicial);
   }
 
   // panel de temas más persistentes + mes con más agenda — overlay HTML fijo, FUERA del SVG
@@ -476,15 +492,15 @@ function dibujarTL(xScaleActual){
       gg.append('text').attr('x',x).attr('y',yCentro+4).attr('text-anchor','middle').attr('font-size','11px').attr('font-weight','700').attr('fill','#fff').text(`+${d.eventosDelRacimo.length}`);
       return;
     }
-    const esNivel1 = Number(d.tema.nivel_relevancia)===1;
-    const color = esNivel1 ? COLOR_RIESGO[nivelImpactoTL(d.intensidad)] : COLOR_RIESGO_2[nivelImpactoTL(d.intensidad)];
-    // vista detallada: tarjetas más chicas y transparentes (es el detalle día a día, no debe
-    // competir visualmente con los hitos de la vista de Agenda que sí llevan tamaño completo)
+    const color = mostrarTodosNivelesTL ? COLOR_RIESGO_2[nivelImpactoTL(d.intensidad)] : COLOR_RIESGO[nivelImpactoTL(d.intensidad)];
+    const esNivel1 = !mostrarTodosNivelesTL; // reusado: controla el estilo prominente (vista Agenda) vs sutil (vista Detallada)
+    // vista detallada: mismo formato apagado que ya usaba Nivel 2/3 antes — tarjetas más
+    // chicas, paleta sutil (no solo opacidad reducida de los colores vivos)
     const anchoTarjeta = mostrarTodosNivelesTL ? 118 : 150, altoTarjeta = mostrarTodosNivelesTL ? 26 : 34;
     const largo = d.dist;
     const yFin = d.lado==='up' ? tlYLinea-largo-14 : tlYLinea+largo+14;
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
-    const gg = d3.select(this).attr('opacity', mostrarTodosNivelesTL?0.65:1);
+    const gg = d3.select(this).attr('opacity', mostrarTodosNivelesTL?0.85:1);
 
     // el punto de nivel 1 pulsa suavemente (mismo patrón ya validado en la Matriz de Agenda)
     gg.append('circle').attr('cx',x).attr('cy',tlYLinea).attr('r', esNivel1?9:4)
