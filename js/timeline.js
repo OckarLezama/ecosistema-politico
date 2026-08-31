@@ -7,7 +7,7 @@
    visualmente con lo que sí marcó agenda. Sin franja de umbral —
    se intentó dos veces (aquí y en V1) sin lograr que se viera bien;
    en su lugar, línea limpia que cubre todo el ancho. Hover con
-   actores del tema. Zoom semántico ya validado. 
+   actores del tema. Zoom semántico ya validado.
    ============================================================ */
 
 const INICIO_SEXENIO_TL = '2024-10';
@@ -203,21 +203,12 @@ function renderTimeline(){
 
   const anchoReal = (wrapEl && wrapEl.clientWidth>200) ? wrapEl.clientWidth : (wrapEl && wrapEl.parentElement ? wrapEl.parentElement.clientWidth : 1100); // >200: si el navegador aún no terminó el layout, clientWidth da un valor chico falso — se usa el contenedor padre como respaldo
   tlWidth = anchoReal-28;
-  tlHeight = 470; const padX = 30;
-  tlYLinea = tlHeight/2 + 10;
-  tlSvg.attr('viewBox',[0,0,tlWidth,tlHeight]);
+  const padX = 30;
 
   const meses = mesesSexenioTL();
   const fechaIni = new Date(meses[0]+'-01T00:00:00');
   const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00'); fechaFin.setMonth(fechaFin.getMonth()+1);
   tlXScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padX, tlWidth-padX]);
-
-  tlContainer = tlSvg.append('g').attr('class','tl-zoom-container');
-
-  const defs = tlSvg.append('defs');
-  const pat = defs.append('pattern').attr('id','tl-grid').attr('width',24).attr('height',24).attr('patternUnits','userSpaceOnUse');
-  pat.append('path').attr('d','M 24 0 L 0 0 0 24').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
-  tlSvg.insert('rect','.tl-zoom-container').attr('x',0).attr('y',0).attr('width',tlWidth).attr('height',tlHeight).attr('fill','url(#tl-grid)');
 
   const puntosBase = ECOSISTEMA.temas.filter(t=>t.tipo!=='informativo').map(t=>{ // los temas automáticos del robot (informativos, del Feed) NUNCA se muestran aquí — Timeline es solo agenda real, no ruido del día
     const p = puntoPrincipalTL(t.id);
@@ -227,13 +218,33 @@ function renderTimeline(){
   }).filter(Boolean);
   tlPuntos = empaquetarZigzagTL(puntosBase, 210);
 
+  // alto DINÁMICO según cuántos niveles hagan falta de verdad — antes era fijo (470px) y con
+  // muchos puntos cercanos en fecha, las tarjetas de los niveles más altos se salían del cuadro
+  const maxTier = tlPuntos.length ? Math.max(...tlPuntos.map(p=>p.tier)) : 0;
+  const alturaPorTier = 30; // mismo valor que altoPorTier usado al dibujar, para que coincida exacto
+  tlHeight = Math.max(470, 260 + (maxTier+1)*alturaPorTier*2); // *2: crece hacia arriba Y abajo del centro
+  tlYLinea = tlHeight/2 + 10;
+  tlSvg.attr('viewBox',[0,0,tlWidth,tlHeight]).style('height', tlHeight+'px'); // alto real en píxeles, no solo viewBox — si no, el navegador comprime todo para caber en el alto fijo anterior, sin ganar espacio de verdad
+
+  tlContainer = tlSvg.append('g').attr('class','tl-zoom-container');
+
+  const defs = tlSvg.append('defs');
+  const pat = defs.append('pattern').attr('id','tl-grid').attr('width',24).attr('height',24).attr('patternUnits','userSpaceOnUse');
+  pat.append('path').attr('d','M 24 0 L 0 0 0 24').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
+  tlSvg.insert('rect','.tl-zoom-container').attr('x',0).attr('y',0).attr('width',tlWidth).attr('height',tlHeight).attr('fill','url(#tl-grid)');
+
   renderKpisTL();
 
-  tlSvg.call(d3.zoom().scaleExtent([1,4]).on('zoom', ev=>{
-    dibujarTL(ev.transform.rescaleX(tlXScaleBase));
-  }));
+  // si hay muchos puntos/niveles, arranca ya alejado (zoom out) para que la primera vista
+  // quepa completa — el usuario puede acercar después si quiere ver el detalle de una zona
+  const maxTierReal = tlPuntos.length ? Math.max(...tlPuntos.map(p=>p.tier)) : 0;
+  const escalaInicial = maxTierReal>6 ? 0.4 : (maxTierReal>3 ? 0.65 : 1);
+  const transformInicial = d3.zoomIdentity.scale(escalaInicial);
 
-  dibujarTL(tlXScaleBase);
+  const zoomBehavior = d3.zoom().scaleExtent([0.2,4]).on('zoom', ev=>{
+    dibujarTL(ev.transform.rescaleX(tlXScaleBase));
+  });
+  tlSvg.call(zoomBehavior).call(zoomBehavior.transform, transformInicial);
 
   // panel de temas más persistentes + mes con más agenda — FUERA del grupo con zoom
   const persistentes = temasPersistentesTL();
