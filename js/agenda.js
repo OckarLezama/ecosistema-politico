@@ -482,7 +482,10 @@ function dibujarGenealogia(temaId){
   const scrollEl = document.getElementById('geneal-scroll');
   const svgEl = document.getElementById('geneal-svg');
   const tema = getTema(temaId);
-  const eventos = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const eventosCrudos = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
+  const porDia = {};
+  eventosCrudos.forEach(e=>{ if(!porDia[e.fecha] || e.intensidad>porDia[e.fecha].intensidad) porDia[e.fecha]=e; }); // 1 por día, mismo criterio que Timeline — si el robot dejó pasar un duplicado real, aquí no se ve
+  const eventos = Object.values(porDia).sort((a,b)=>a.fecha.localeCompare(b.fecha));
   const colorTema = colorCategoria(tema.categoria);
 
   const espacio = 170; // FIJO — así nunca se aprieta con muchas notas, se desplaza en cambio
