@@ -15,8 +15,32 @@ let tlXScaleBase, tlPuntos, tlToques, tlSvg, tlContainer, tlYLinea, tlWidth, tlH
 
 let anioFiltroTL = '';
 let mostrarTodosNivelesTL = false;
+function abrirMapaDeCalorModalTL(){
+  let modal = document.getElementById('mapa-calor-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'mapa-calor-modal'; modal.className = 'ficha-modal-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = `
+    <div class="ficha-modal-card" style="max-width:640px;">
+      <button class="ficha-modal-close">✕</button>
+      <div class="eyebrow">Mapa de calor — solo agenda nacional, por mes</div>
+      <svg id="timeline-heatmap-svg" style="width:100%;height:120px;display:block;margin-top:8px;"></svg>
+    </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.classList.add('open');
+  dibujarHeatmapTimeline(); // misma función ya validada, solo que ahora vive dentro del modal, no arriba del Timeline
+}
+
 function initTimeline(){
   tlSvg = null; poblarFiltroAnioTL();
+  const btnCalor = document.getElementById('btn-ver-mapa-calor');
+  if(btnCalor && !btnCalor.dataset.conectado){
+    btnCalor.addEventListener('click', abrirMapaDeCalorModalTL);
+    btnCalor.dataset.conectado = '1';
+  }
   const chk = document.getElementById('chk-timeline-todos-niveles');
   if(chk && !chk.dataset.conectado){
     chk.addEventListener('change', ()=>{ mostrarTodosNivelesTL = chk.checked; renderTimeline(); });
