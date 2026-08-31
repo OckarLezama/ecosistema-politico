@@ -294,3 +294,12 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 #geneal-scroll::-webkit-scrollbar-track{ background:var(--bg-1); }
 #geneal-scroll::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:99px; }
 #geneal-scroll::-webkit-scrollbar-thumb:hover{ background:var(--teal); }
+
+/* --- brief ejecutivo en PDF (vía window.print) — solo el contenido de Análisis, nada más --- */
+@media print{
+  body.modo-impresion-analisis > *:not(#panel-analisis){ display:none !important; }
+  body.modo-impresion-analisis #panel-analisis{ display:block !important; }
+  body.modo-impresion-analisis #btn-exportar-pdf-analisis{ display:none !important; }
+  body.modo-impresion-analisis{ background:#fff; color:#000; }
+  body.modo-impresion-analisis .eyebrow{ color:#000 !important; }
+}
