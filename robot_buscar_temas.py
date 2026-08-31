@@ -135,6 +135,21 @@ def similitud_titulares(t1, t2):
     if not p1 or not p2: return 0
     return len(p1 & p2) / len(p1 | p2)
 
+VERBOS_PRESION = ['presiona', 'presiono', 'presionó', 'exige', 'exigio', 'exigió', 'advierte',
+                  'advirtio', 'advirtió', 'amenaza', 'amenazo', 'amenazó', 'insta ', 'insto ',
+                  'instó', 'ultimatum', 'ultimatum']
+
+def detectarPresion(texto_completo, actores_altos):
+    """Sugerencia por coincidencia de patron (verbo de presion + mencion de actor de alta
+    influencia cerca) -- NUNCA una afirmacion confirmada, se marca como 'posible' en el titulo
+    para que quede claro que es una senal a revisar, no un hecho verificado."""
+    if not any(v in texto_completo for v in VERBOS_PRESION):
+        return None
+    for a in actores_altos:
+        if actorMencionadoEn(a['nombre'], texto_completo):
+            return a['nombre']
+    return None
+
 def esTemaMigracion(texto_completo):
     return any(p in texto_completo for p in MIGRACION_KEYWORDS)
 
@@ -383,10 +398,12 @@ def buscar_candidatos():
                 conteo_hoy_por_tema[tema_encontrado] = conteo_hoy_por_tema.get(tema_encontrado, 0) + 1
                 intensidad = calcular_intensidad(texto_completo, tema_encontrado, eventos_existentes,
                                                    actores_altos, conteo_hoy_por_tema[tema_encontrado])
+                actor_presion_kt = detectarPresion(texto_completo, actores_altos)
+                descripcion_final_kt = (f'⚡ Posible presión de {actor_presion_kt} — {titulo_original}') if actor_presion_kt else titulo_original
                 eventos_nuevos.append({
                     'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                     'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
-                    'intensidad': intensidad, 'descripcion': titulo_original, 'fuente_url': enlace, 'cobertura': 1,
+                    'intensidad': intensidad, 'descripcion': descripcion_final_kt, 'fuente_url': enlace, 'cobertura': 1,
                 })
                 titulos_ya_agregados_hoy.add(titulo_normalizado)
             else:
@@ -396,9 +413,12 @@ def buscar_candidatos():
                 mencion_top = any(int(a['nivel_influencia'])>=9 and actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
                 es_migracion = esTemaMigracion(texto_completo)
                 alerta_actor = tieneAlertaEspecial(texto_completo)
+                actor_presion = detectarPresion(texto_completo, actores_altos)
                 if (menciones >= 2 or mencion_top or es_migracion or alerta_actor) and hash_enlace not in ya_vistos:
                     categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
-                    titulo_final = f'🔔 ALERTA — {titulo_original}' if (alerta_actor or es_migracion) else titulo_original
+                    prefijo = '🔔 ALERTA — ' if (alerta_actor or es_migracion) else ''
+                    prefijo += f'⚡ Posible presión de {actor_presion} — ' if actor_presion else ''
+                    titulo_final = prefijo + titulo_original
                     tema_auto = buscar_tema_informativo_similar(titulo_original, actores_altos) or crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
                     intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5)
 
