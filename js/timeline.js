@@ -235,16 +235,13 @@ function renderTimeline(){
 
   renderKpisTL();
 
-  // si hay muchos puntos/niveles, arranca ya alejado (zoom out) para que la primera vista
-  // quepa completa — el usuario puede acercar después si quiere ver el detalle de una zona
-  const maxTierReal = tlPuntos.length ? Math.max(...tlPuntos.map(p=>p.tier)) : 0;
-  const escalaInicial = maxTierReal>6 ? 0.4 : (maxTierReal>3 ? 0.65 : 1);
-  const transformInicial = d3.zoomIdentity.scale(escalaInicial);
-
-  const zoomBehavior = d3.zoom().scaleExtent([0.2,4]).on('zoom', ev=>{
+  // el usuario puede alejar manualmente (rueda del mouse / gesto de pellizco) si hay mucha
+  // densidad — el auto-alejado automático se intentó y rompió el zoom, se revirtió
+  tlSvg.call(d3.zoom().scaleExtent([0.3,4]).on('zoom', ev=>{
     dibujarTL(ev.transform.rescaleX(tlXScaleBase));
-  });
-  tlSvg.call(zoomBehavior).call(zoomBehavior.transform, transformInicial);
+  }));
+
+  dibujarTL(tlXScaleBase);
 
   // panel de temas más persistentes + mes con más agenda — FUERA del grupo con zoom
   const persistentes = temasPersistentesTL();
