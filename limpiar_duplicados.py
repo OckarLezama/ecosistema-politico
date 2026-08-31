@@ -14,8 +14,12 @@ UMBRAL = 0.15
 def limpiar():
     with open(RUTA_EVENTOS, encoding='utf-8') as f:
         eventos = list(csv.DictReader(f))
-        campos_ev = list(eventos[0].keys())
-        if 'cobertura' not in campos_ev: campos_ev.append('cobertura')
+    # algunas filas tienen una coma extra al final (columna vacía de más) — Python las mete
+    # bajo la llave especial None, que rompe todo si no se limpia ANTES de calcular las columnas
+    for e in eventos:
+        e.pop(None, None)
+    campos_ev = list(eventos[0].keys())
+    if 'cobertura' not in campos_ev: campos_ev.append('cobertura')
 
     with open(RUTA_TEMAS, encoding='utf-8') as f:
         temas = list(csv.DictReader(f))
