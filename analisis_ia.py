@@ -149,34 +149,40 @@ def construir_prompt(datos):
 un jefe de Estado. Recibes datos YA CALCULADOS (no artículos, no texto crudo) sobre la agenda
 política de México, sexenio de Sheinbaum.
 
-ERROR A EVITAR, el más grave: NO conviertas esto en una narración de los números ("X subió 1700%,
-Y bajó"). Eso NO es análisis, es solo leer una tabla en voz alta. Cada oración que escribas debe
-responder "¿y por qué le importa esto a quien toma decisiones?" — la implicación, no solo el dato.
-Ejemplo de lo que NO quiero: "Rocha Moya subió 1700% con 36 notas." Ejemplo de lo que SÍ quiero:
-"Rocha Moya concentra el mayor volumen de cobertura de la semana, lo que indica que cualquier
-comunicación oficial sobre el caso tendrá alta exposición mediática inmediata."
+REGLA MÁS IMPORTANTE, la que más se ha fallado antes: NUNCA dejes un número o término técnico
+suelto sin traducir en la MISMA oración. Prohibido escribir "z-score de 1.2", "31 notas", "1
+mención" como si el lector supiera qué significa eso. En vez de "z-score de 1.2" escribe algo
+como "un nivel claramente por encima de lo habitual para este tema". En vez de "31 notas en 30
+días" escribe "cobertura sostenida y creciente a lo largo del mes". Los números pueden aparecer
+como respaldo entre paréntesis, nunca como el contenido principal de la oración. El lector no
+tiene por qué saber qué es un z-score, una correlación de Pearson, o qué significa "N menciones”
+— tu trabajo es traducirlo, no reportarlo.
 
-Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías como bloque abstracto ("Seguridad
-Nacional concentró 66 notas" no dice nada útil por sí solo — di CUÁLES temas de esa categoría
-y qué implica).
+SEGUNDA REGLA: cada oración debe responder "¿y por qué le importa esto a quien toma decisiones?"
+— la implicación, no solo el dato. Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías
+como bloque abstracto.
 
-Para la sección de alertas, no basta con listar el tema: di además a qué tipo de instancia
-correspondería típicamente por su naturaleza (seguridad, diplomática, económica, institucional,
-social) — es un mapeo directo de categoría, no una opinión.
+Para alertas: usa el "tipo_atencion_por_categoria" que ya viene en los datos para decir a qué
+instancia correspondería típicamente (es un mapeo directo, no una opinión tuya).
+
+Si algo en los datos rompe un patrón esperado (ej. una persona aparece tanto en un bando como en
+otro), dilo con una explicación concreta de qué podría significar en términos simples (ej. "puede
+tratarse de menciones en contextos distintos, vale la pena revisar el detalle") — nunca dejes la
+frase "merece revisión" sin decir de qué tipo o por qué.
 
 Otras reglas estrictas:
 - NUNCA inventes datos que no estén en el JSON de entrada.
 - NUNCA predigas el futuro ni especules sobre facciones internas, causalidad no documentada,
   o motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
-- Un patrón con menos de 4 semanas de coincidencia es "base limitada, señal temprana" — dilo así.
-- Tono: directo, seguro, como quien ya hizo el trabajo de pensar por el lector, no quien solo
-  reporta.
+- Un patrón con menos de 4 semanas de coincidencia es "todavía es pronto para tratarlo como
+  patrón confirmado" — dilo en palabras simples, no como jerga de "base limitada".
+- Tono: directo, seguro, como quien ya pensó por el lector — nunca jerga técnica sin traducir.
 
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
 
 Responde ÚNICAMENTE con un objeto JSON con estas 6 claves (cada valor: 2-4 oraciones en español,
-cada una con dato + implicación, nunca solo dato):
+cada una con dato traducido a lenguaje simple + implicación):
 {{
   "estado_general": "...",
   "pulso_politico": "...",
