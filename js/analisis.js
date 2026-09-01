@@ -22,6 +22,14 @@ function desgloseCategoria(items){
 function conNegritas(texto){
   return (texto||'').replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--ink-1);">$1</strong>');
 }
+// convierte "2026-S33" en una fecha aproximada legible ("11 ago") -- mismo cálculo simple
+// que usa el backend (día del año / 7), solo para mostrar, nunca para filtrar datos
+function fechaDeSemana(semanaStr){
+  const [anio, sTxt] = semanaStr.split('-S');
+  const numSemana = parseInt(sTxt, 10);
+  const d = new Date(parseInt(anio,10), 0, 1 + (numSemana-1)*7);
+  return d.toLocaleDateString('es-MX', {day:'numeric', month:'short'});
+}
 
 function renderAnalisis(){
   const cont = document.getElementById('analisis-contenido');
@@ -68,11 +76,11 @@ function pintarDashboard(datos, temas){
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:62% 36%;gap:20px;margin-bottom:20px;">
+    <div style="display:grid;grid-template-columns:76% 21%;gap:24px;margin-bottom:20px;">
       <div>
         <p style="font-size:13.5px;line-height:1.8;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.estado_general)} ${conNegritas(l.pulso_politico)}</p>
       </div>
-      <svg id="velocimetro-tension" viewBox="0 0 220 130" style="width:190px;height:112px;margin:0 auto;"></svg>
+      <svg id="velocimetro-tension" viewBox="0 0 220 155" style="width:100%;height:100%;min-height:130px;"></svg>
     </div>
 
     <div style="display:flex;gap:24px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);margin-bottom:20px;">
@@ -89,33 +97,34 @@ function pintarDashboard(datos, temas){
       </div>
     </div>
 
-    <div style="border-top:1px solid var(--line-strong);padding-top:16px;margin-bottom:20px;">
+    <div style="margin-bottom:20px;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
         <div>
-          <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-alto);margin-bottom:6px;">Requiere atención</div>
-          <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;">${conNegritas(l.alertas_tempranas)}</p>
-          <div id="lista-propuestas-atencion"></div>
+          <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-alto);margin-bottom:6px;height:34px;">Requiere atención</div>
+          <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;min-height:64px;">${conNegritas(l.alertas_tempranas)}</p>
+          <div id="lista-propuestas-atencion" style="border-top:1px solid var(--line-strong);"></div>
         </div>
         <div>
-          <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-medio);margin-bottom:6px;">Patrones detectados</div>
-          <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;">${conNegritas(l.patrones_detectados)}</p>
-          <div id="tabla-patrones"></div>
+          <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-medio);margin-bottom:6px;height:34px;">Patrones detectados</div>
+          <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;min-height:64px;">${conNegritas(l.patrones_detectados)}</p>
+          <div id="tabla-patrones" style="border-top:1px solid var(--line-strong);"></div>
         </div>
       </div>
     </div>
 
     <div style="border-top:1px solid var(--line-strong);padding-top:16px;margin-bottom:20px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div style="display:grid;grid-template-columns:40% 40% 20%;gap:20px;align-items:start;">
         <div>
           <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Actores centrales</div>
           <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.actores_centrales)}</p>
         </div>
         <div>
           <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Tendencia por categoría</div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <svg id="dona-categoria-svg" viewBox="0 0 150 150" style="width:88px;height:88px;flex-shrink:0;"></svg>
-            <p style="font-size:11.5px;line-height:1.6;color:var(--ink-2);margin:0;text-align:justify;flex:1;">${conNegritas(l.tendencia_por_categoria)}</p>
-          </div>
+          <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.tendencia_por_categoria)}</p>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <svg id="dona-categoria-svg" viewBox="0 0 150 150" style="width:100px;height:100px;"></svg>
+          <div id="dona-categoria-leyenda" style="width:100%;font-size:9px;margin-top:6px;"></div>
         </div>
       </div>
     </div>
@@ -161,16 +170,20 @@ function pintarDashboard(datos, temas){
 
 // hover en cada KPI -- muestra la lista real de temas de ese grupo, sin necesitar clic ni modal
 function activarHoverKpis(db){
-  const listas = {
-    activos: (ECOSISTEMA.temas||[]).filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>t.nombre),
-    alertas: db.alertas.map(a=>a.nombre),
-    alza: db.en_alza.map(a=>a.nombre),
-    baja: db.en_baja.map(a=>a.nombre),
+  const grupos = {
+    activos: {titulo:'Temas de agenda activos', lista: (ECOSISTEMA.temas||[]).filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>t.nombre)},
+    alertas: {titulo:'Requieren atención esta semana', lista: db.alertas.map(a=>a.nombre)},
+    alza: {titulo:'Temas en alza', lista: db.en_alza.map(a=>a.nombre)},
+    baja: {titulo:'Temas en baja', lista: db.en_baja.map(a=>a.nombre)},
   };
   document.querySelectorAll('.kpi-hover').forEach(el=>{
-    const lista = listas[el.dataset.kpi] || [];
+    const g = grupos[el.dataset.kpi];
+    if(!g) return;
     el.addEventListener('mousemove', ev=>{
-      const html = lista.length ? lista.slice(0,10).map(n=>`• ${n}`).join('<br>') : 'Sin temas en este grupo.';
+      let html = `<strong>${g.titulo}</strong><br><span style="font-size:10px;opacity:.85;">${g.lista.length} tema${g.lista.length!==1?'s':''}</span>`;
+      if(g.lista.length){
+        html += `<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.5;">${g.lista.slice(0,10).join('<br>')}</span>`;
+      }
       mostrarTooltipAgenda(html, ev);
     });
     el.addEventListener('mouseleave', ocultarTooltipAgenda);
@@ -182,7 +195,7 @@ function activarHoverKpis(db){
 function dibujarVelocimetro(valor){
   const svgEl = document.getElementById('velocimetro-tension');
   if(!svgEl) return;
-  const cx=110, cy=100, r=82, grosor=15;
+  const cx=110, cy=125, r=100, grosor=18;
   const colorEn = v => v>=66 ? '#F45B69' : v>=33 ? '#E0A85C' : '#59C48A';
   let arcos = '';
   const segmentos = 60;
@@ -209,8 +222,8 @@ function dibujarVelocimetro(valor){
     ${arcos}${marcas}
     <line x1="${cx}" y1="${cy}" x2="${puntaX}" y2="${puntaY}" stroke="var(--ink-1)" stroke-width="3" stroke-linecap="round" filter="url(#sombra-aguja)"/>
     <circle cx="${cx}" cy="${cy}" r="6" fill="var(--bg-1)" stroke="var(--ink-1)" stroke-width="2.5"/>
-    <text x="${cx}" y="${cy+30}" text-anchor="middle" font-family="var(--f-display)" font-size="26" font-weight="700" fill="${colorTexto}">${valor}</text>
-    <text x="${cx}" y="${cy+42}" text-anchor="middle" font-size="8" fill="var(--ink-3)" letter-spacing="0.3">tensión general</text>`;
+    <text x="${cx}" y="${cy+28}" text-anchor="middle" font-family="var(--f-display)" font-size="30" font-weight="700" fill="${colorTexto}">${valor}</text>
+    <text x="${cx}" y="${cy+41}" text-anchor="middle" font-size="9" fill="var(--ink-3)" letter-spacing="0.3">tensión general</text>`;
 }
 
 function dibujarDona(temas){
@@ -248,7 +261,7 @@ function pintarPropuestasAtencion(propuestas, alertas){
   if(!alertas || !alertas.length){ cont.innerHTML = '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'; return; }
   const mapa = {}; (propuestas||[]).forEach(p=> mapa[p.tema]=p.propuesta);
   cont.innerHTML = alertas.map(a=>`
-    <div style="padding:8px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema-nombre="${a.nombre}">
+    <div style="padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer;" data-tema-nombre="${a.nombre}">
       <div style="font-size:12.5px;font-weight:700;">${a.nombre}</div>
       <p style="font-size:11px;color:var(--ink-3);margin:3px 0 0;line-height:1.5;">${mapa[a.nombre] || 'Monitorear su evolución en los próximos días.'}</p>
     </div>`).join('');
@@ -280,12 +293,17 @@ function pintarTablaPulso(serie){
   const ultimas = serie.slice(-8);
   const max = Math.max(...ultimas.map(s=>s.intensidad), 1);
   cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+    <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
+      <th style="text-align:left;padding:4px;color:var(--ink-3);font-weight:600;">Semana de</th>
+      <th></th>
+      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Intensidad acumulada</th>
+    </tr></thead>
     <tbody>${ultimas.map(s=>{
       const pct = Math.round((s.intensidad/max)*100);
       return `<tr style="border-bottom:1px solid var(--line);">
-        <td style="padding:4px 4px;color:var(--ink-3);white-space:nowrap;">${s.semana}</td>
-        <td style="padding:4px 4px;width:100%;"><div style="background:var(--bg-1);border-radius:99px;height:8px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--riesgo-alto);opacity:0.8;"></div></div></td>
-        <td style="padding:4px 4px;text-align:right;color:var(--ink-2);font-weight:600;">${s.intensidad}</td>
+        <td style="padding:4px;color:var(--ink-3);white-space:nowrap;">${fechaDeSemana(s.semana)}</td>
+        <td style="padding:4px;width:100%;"><div style="background:var(--bg-1);border-radius:99px;height:8px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--riesgo-alto);opacity:0.8;"></div></div></td>
+        <td style="padding:4px;text-align:right;color:var(--ink-2);font-weight:600;">${s.intensidad}</td>
       </tr>`;
     }).join('')}</tbody></table>`;
 }
@@ -295,13 +313,18 @@ function pintarTablaTemas(burbujas){
   if(!cont || !burbujas || !burbujas.length) { if(cont) cont.innerHTML=''; return; }
   const top = [...burbujas].sort((a,b)=>b.volumen_total-a.volumen_total).slice(0,8);
   cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+    <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
+      <th style="text-align:left;padding:4px;color:var(--ink-3);font-weight:600;">Tema</th>
+      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Notas acumuladas</th>
+      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Tendencia</th>
+    </tr></thead>
     <tbody>${top.map(t=>{
       const colorTend = t.tendencia_pct>0 ? 'var(--riesgo-alto)' : t.tendencia_pct<0 ? 'var(--riesgo-bajo)' : 'var(--ink-3)';
-      const flecha = t.tendencia_pct>0 ? '↑' : t.tendencia_pct<0 ? '↓' : '→';
+      const flecha = t.tendencia_pct>0 ? '↑ sube' : t.tendencia_pct<0 ? '↓ baja' : '→ estable';
       return `<tr style="border-bottom:1px solid var(--line);cursor:pointer;" data-tema-nombre="${t.nombre}">
-        <td style="padding:4px 4px;"><span style="width:7px;height:7px;border-radius:2px;background:${colorCategoriaFijo(t.categoria)};display:inline-block;margin-right:5px;"></span>${t.nombre.length>26?t.nombre.slice(0,24)+'…':t.nombre}</td>
-        <td style="padding:4px 4px;text-align:right;color:var(--ink-2);">${t.volumen_total}</td>
-        <td style="padding:4px 4px;text-align:right;color:${colorTend};font-weight:600;">${flecha}</td>
+        <td style="padding:4px;"><span style="width:7px;height:7px;border-radius:2px;background:${colorCategoriaFijo(t.categoria)};display:inline-block;margin-right:5px;"></span>${t.nombre.length>24?t.nombre.slice(0,22)+'…':t.nombre}</td>
+        <td style="padding:4px;text-align:right;color:var(--ink-2);">${t.volumen_total}</td>
+        <td style="padding:4px;text-align:right;color:${colorTend};font-weight:600;">${flecha}</td>
       </tr>`;
     }).join('')}</tbody></table>`;
 }
@@ -312,13 +335,19 @@ function pintarTablaActores(actores){
   const top = actores.slice(0,8);
   const max = Math.max(...top.map(a=>a.presencia), 1);
   cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+    <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
+      <th></th>
+      <th style="text-align:left;padding:4px;color:var(--ink-3);font-weight:600;">Actor</th>
+      <th></th>
+      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Apariciones en medios</th>
+    </tr></thead>
     <tbody>${top.map((a,i)=>{
       const pct = Math.round((a.presencia/max)*100);
       return `<tr style="border-bottom:1px solid var(--line);">
-        <td style="padding:4px 4px;color:var(--ink-3);">${i+1}</td>
-        <td style="padding:4px 4px;">${a.nombre.length>22?a.nombre.slice(0,20)+'…':a.nombre}</td>
-        <td style="padding:4px 4px;width:60px;"><div style="background:var(--bg-1);border-radius:99px;height:7px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--teal);"></div></div></td>
-        <td style="padding:4px 4px;text-align:right;color:var(--ink-2);font-weight:600;">${a.presencia}</td>
+        <td style="padding:4px;color:var(--ink-3);">${i+1}</td>
+        <td style="padding:4px;">${a.nombre.length>20?a.nombre.slice(0,18)+'…':a.nombre}</td>
+        <td style="padding:4px;width:60px;"><div style="background:var(--bg-1);border-radius:99px;height:7px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--teal);"></div></div></td>
+        <td style="padding:4px;text-align:right;color:var(--ink-2);font-weight:600;">${a.presencia}</td>
       </tr>`;
     }).join('')}</tbody></table>`;
 }
