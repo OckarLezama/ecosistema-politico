@@ -2,10 +2,9 @@ name: Análisis con IA — lectura de inteligencia (2x al día)
 
 on:
   schedule:
-    # 8:00 y 14:00 hora de Ciudad de México (UTC-6) -- corte de mañana y de medio día,
-    # como se acordó -- no corre más seguido, para mantener el costo mínimo
+    # 8:00 hora de Ciudad de México (UTC-6) -- 1 sola vez al día, como se acordó. Las alertas
+    # (calculadas en el navegador, sin costo) avisan si algo cambia el resto del día.
     - cron: '0 14 * * *'
-    - cron: '0 20 * * *'
   workflow_dispatch: {}  # permite correrlo manualmente desde GitHub para probar
 
 jobs:
