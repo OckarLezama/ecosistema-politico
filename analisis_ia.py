@@ -32,11 +32,10 @@ TZ_MX = ZoneInfo('America/Mexico_City')
 INICIO_SEXENIO = datetime(2024, 10, 1).date()
 
 # frases/patrones prohibidos -- si el texto de la IA los contiene, se le pide reescribir
-# antes de guardarlo. Esto es un candado real, no solo una instrucción que puede fallar.
+# antes de guardarlo. Solo jerga técnica real -- ya no bloqueamos números sueltos, porque
+# ahora SÍ queremos números resaltados en negritas dentro del texto (regla de formato nueva)
 PATRONES_PROHIBIDOS = [
     r'z-score', r'z score', r'correlaci[oó]n de pearson',
-    r'\b\d+\s*notas?\b(?!\s*\()',  # "31 notas" suelto, fuera de paréntesis
-    r'\b\d+\s*menci(o|ó)n(es)?\b(?!\s*\()',  # "1 mención" suelto
 ]
 
 
@@ -209,6 +208,11 @@ qué significa eso. En vez de "z-score de 1.2" escribe "un nivel claramente por 
 habitual para este tema". En vez de "31 notas en 30 días" escribe "cobertura sostenida y
 creciente a lo largo del mes". Los números pueden ir de respaldo entre paréntesis, nunca como
 contenido principal de la oración.
+
+REGLA DE FORMATO: envuelve en dobles asteriscos (**así**) los 2-4 datos o nombres más importantes
+de cada sección -- el nombre de un tema clave, un porcentaje, un número que de verdad importa.
+Esto se muestra resaltado en el diseño final. No abuses: solo lo genuinamente importante, no cada
+número que aparezca.
 
 SEGUNDA REGLA: cada oración responde "¿y por qué le importa esto a quien toma decisiones?" — la
 implicación, no solo el dato. Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías como
