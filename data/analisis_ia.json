@@ -1,12 +1,12 @@
 {
-  "generado_en": "2026-09-01T12:48:10.681576-06:00",
+  "generado_en": "2026-09-01T13:06:09.026074-06:00",
   "lectura": {
-    "estado_general": "Se registran 21 temas activos con un índice de tensión general de 73, nivel elevado dentro de la agenda. El volumen de discusión está fuertemente concentrado en Seguridad Nacional, categoría que domina tanto el listado de temas en alza como el de alertas de intensidad.",
-    "pulso_politico": "El movimiento más pronunciado es la Acusación de Narcotráfico contra Rocha Moya, con un incremento de 1700% y 36 notas en 30 días, seguido por Huachicol Fiscal con 100% de variación y 31 notas. En contraste, dos temas de seguridad que antes tuvieron relevancia -el asesinato de Carlos Manzo y la sentencia de 'El Mayo' Zambada- cayeron a variación de -100% y 0 notas en el mismo periodo, indicando salida completa de la conversación activa.",
-    "patrones_detectados": "El único patrón con base sólida es la coincidencia entre Huachicol Fiscal y la Acusación contra Rocha Moya, con 4 semanas consecutivas de presencia conjunta. Las demás combinaciones detectadas (Huachicol-Visa de Andy, Huachicol-T-MEC, Visa de Andy-Rocha Moya, T-MEC-Rocha Moya) muestran solo 2 semanas de coincidencia, por lo que se consideran de base limitada, señal temprana.",
-    "alertas_tempranas": "Rocha Moya presenta la intensidad más alta en 7 días (252.0, z-score 1.2) con 35 notas, seguido de Huachicol Fiscal (216.0, z-score 0.7, 30 notas), ambos dentro de rango de atención pero sin desviación estadística extrema. T-MEC y el Segundo Informe de Gobierno muestran intensidades menores (48.0 y 15.0) sin z-score calculable, lo que sugiere volumen de datos aún insuficiente para evaluar anomalía.",
-    "tendencia_por_categoria": "Seguridad Nacional concentra el mayor peso informativo, con los dos temas de mayor crecimiento (Rocha Moya, Huachicol Fiscal) y las dos principales alertas de intensidad. Economía mantiene tres temas en alza con variación uniforme de 100% pero volumen bajo de notas (T-MEC con 7, Gusano Barrenador con apenas 1), mientras que Gobernabilidad y Relación Bilateral registran presencia marginal con un solo tema activo cada una.",
-    "actores_centrales": "En la agenda oficialista, Claudia Sheinbaum Pardo encabeza el ranking de tendencia con 4 menciones, seguida por Andrés Manuel López Beltrán ('Andy') y Andrés Manuel López Obrador, ambos con 2. En el bloque de oposición el volumen es notablemente menor: Alejandro 'Alito' Moreno, Claudia Sheinbaum Pardo y Rubén Moreira Valdez registran 1 mención cada uno, sin actor dominante."
+    "estado_general": "La tensión general de 73 puntos sobre 21 temas activos está altamente concentrada, no distribuida: dos temas de Seguridad Nacional (Rocha Moya y Huachicol Fiscal) absorben el grueso del volumen reciente. Al mismo tiempo, casos que hace poco dominaban la conversación —el asesinato de Carlos Manzo y la sentencia de 'El Mayo' Zambada— cayeron a cero notas en 30 días, lo que indica que la atención mediática se desplazó, no que esos asuntos se resolvieron o perdieron relevancia institucional. Esta combinación exige separar 'silencio mediático' de 'cierre real del caso' antes de bajar la guardia en cualquiera de los dos.",
+    "pulso_politico": "Rocha Moya es el tema que definirá la exposición inmediata de cualquier comunicación oficial esta semana: 36 notas en 30 días y un salto de 1700% no es ruido, es un pico que absorbe atención de forma desproporcionada. Huachicol Fiscal corre en paralelo con 31 notas y un crecimiento también marcado, y ambos comparten la misma naturaleza de seguridad/procuración de justicia, lo que multiplica el riesgo de que se lean como una sola narrativa de corrupción institucional. Temas de menor volumen —Visa de Andy, Revisión del T-MEC, Segundo Informe de Gobierno— apenas están despegando (crecimientos de 100% pero con muy pocas notas), lo que abre una ventana corta para posicionar mensaje antes de que escalen en cobertura.",
+    "patrones_detectados": "El único patrón con base sólida es la coincidencia de 4 semanas entre Huachicol Fiscal y la Acusación contra Rocha Moya: la cobertura los trata de forma recurrente como narrativa conjunta, por lo que cualquier pronunciamiento sobre uno debe anticipar que se leerá también en clave del otro. Los cruces de Visa de Andy y Revisión del T-MEC con estos dos temas de seguridad tienen solo 2 semanas de coincidencia cada uno —base limitada, señal temprana— por lo que no puede afirmarse todavía que exista una relación consolidada entre la agenda bilateral/económica y la de seguridad. Vale la pena monitorear si esas coincidencias de 2 semanas se sostienen otro ciclo antes de tratarlas como patrón real.",
+    "alertas_tempranas": "Rocha Moya y Huachicol Fiscal activan alertas del tipo seguridad/procuración de justicia, con Rocha Moya mostrando el z-score más alto del conjunto (1.2), lo que confirma que su intensidad actual (252 en 7 días) es una desviación real de su comportamiento histórico y no una fluctuación normal — corresponde a instancias de seguridad y procuración de justicia mantener este tema bajo vigilancia activa. Huachicol Fiscal, con z-score de 0.7, también se desvía de su patrón habitual aunque con menor fuerza, misma naturaleza de atención. La Revisión del T-MEC y el Segundo Informe de Gobierno no tienen z-score calculable por volumen insuficiente, pero su tipo de atención correspondería a instancias económica/comunicación e institucional/legislativa respectivamente: ausencia de alarma estadística no equivale a ausencia de riesgo, solo a datos aún insuficientes.",
+    "tendencia_por_categoria": "Seguridad Nacional no se está enfriando, se está redirigiendo: Rocha Moya y Huachicol Fiscal escalan con fuerza mientras Manzo y Mayo Zambada se apagan por completo, lo que sugiere un relevo de foco dentro de la misma categoría más que una baja real de interés en temas de seguridad. Economía muestra dos temas entrando en fase inicial —Revisión del T-MEC y Gusano Barrenador/Frontera Ganadera— con volumen todavía bajo (7 y 1 notas), apenas visibles pero en arranque, lo que permite anticipar postura antes de que crezcan. Gobernabilidad, con el Segundo Informe de Gobierno apenas en 2 notas, es la categoría con menor tracción por ahora, pero su naturaleza institucional/legislativa amerita vigilancia aunque el volumen actual no lo justifique por sí solo.",
+    "actores_centrales": "Sheinbaum encabeza el ranking de tendencia con 4 menciones, consistente con su posición como figura de mayor exposición natural del ciclo político actual. Su aparición simultánea con 1 mención en el ranking de oposición es un dato que rompe el patrón esperado y merece revisión de contexto específico, no una lectura automática. Andy (López Beltrán) y López Obrador mantienen 2 menciones cada uno en tendencia, señal de que ambos siguen presentes en la conversación pública pese a no ocupar el cargo actual. En oposición, Alito Moreno y Rubén Moreira registran apenas 1 mención cada uno — volumen demasiado bajo para hablar de una figura opositora dominante en este corte de datos."
   },
   "datos_base": {
     "temas_activos": 21,
@@ -67,6 +67,7 @@
       {
         "nombre": "Acusación de Narcotráfico contra Rocha Moya",
         "categoria": "Seguridad Nacional",
+        "tipo_atencion_por_categoria": "seguridad/procuración de justicia",
         "notas_7d": 35,
         "intensidad_7d": 252.0,
         "z_score": 1.2
@@ -74,6 +75,7 @@
       {
         "nombre": "Huachicol Fiscal",
         "categoria": "Seguridad Nacional",
+        "tipo_atencion_por_categoria": "seguridad/procuración de justicia",
         "notas_7d": 30,
         "intensidad_7d": 216.0,
         "z_score": 0.7
@@ -81,6 +83,7 @@
       {
         "nombre": "Revisión del T-MEC",
         "categoria": "Economía",
+        "tipo_atencion_por_categoria": "económica/comunicación",
         "notas_7d": 7,
         "intensidad_7d": 48.0,
         "z_score": null
@@ -88,6 +91,7 @@
       {
         "nombre": "Segundo Informe de Gobierno de Claudia Sheinbaum",
         "categoria": "Gobernabilidad",
+        "tipo_atencion_por_categoria": "institucional/legislativa",
         "notas_7d": 2,
         "intensidad_7d": 15.0,
         "z_score": null
