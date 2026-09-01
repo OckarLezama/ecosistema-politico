@@ -255,6 +255,55 @@ function abrirModalKpi(titulo, items){
   modal.classList.add('open');
 }
 
+// --- REDACCIÓN INTELIGENTE: cada frase se arma a partir de los valores reales de ESTE
+// cálculo específico, no de una plantilla fija — cambia de verdad según los datos.
+
+function lecturaEstadoGeneral(temas, tensionGeneral, pctAlza){
+  const catConteo = desgloseCategoria(temas);
+  const catsOrdenadas = Object.entries(catConteo).sort((a,b)=>b[1]-a[1]);
+  const [catDom, nDom] = catsOrdenadas[0] || [null,0];
+  const pctDom = catDom ? Math.round((nDom/temas.length)*100) : 0;
+  const bandaTension = tensionGeneral>=66 ? 'alta' : tensionGeneral>=33 ? 'moderada' : 'baja';
+
+  let f1 = `Tensión política general ${bandaTension} (${tensionGeneral}/100)`;
+  if(catDom && pctDom>=35) f1 += `, concentrada en ${catDom} (${pctDom}% de los temas activos)`;
+  else f1 += `, sin una categoría que concentre claramente la agenda`;
+  f1 += '.';
+
+  let f2;
+  if(pctAlza>=60) f2 = `${pctAlza}% de los temas con tendencia definida está en escalamiento — más del doble que los que bajan; el ambiente informativo se está calentando.`;
+  else if(pctAlza<=40) f2 = `Solo ${pctAlza}% de los temas con tendencia definida está en escalamiento — la mayoría de los frentes activos se está enfriando.`;
+  else f2 = `Temas en alza y en baja están casi equilibrados (${pctAlza}% vs ${100-pctAlza}%), sin dirección predominante.`;
+
+  return f1+' '+f2;
+}
+
+function lecturaAtencion(a, at){
+  const urgencia = a.z!==null && a.z>=2
+    ? `con un comportamiento estadísticamente atípico frente a su propio historial (z=${a.z})`
+    : a.notas>=5 ? `con cobertura mediática sostenida esta semana (${a.notas} notas)`
+    : `con actividad reciente por encima del umbral de seguimiento`;
+  return `Acumuló ${a.notas} nota${a.notas!==1?'s':''} en 7 días e intensidad ${a.suma}, ${urgencia}. Por su categoría, correspondería típicamente a ${at.texto.charAt(0).toLowerCase()+at.texto.slice(1)}.`;
+}
+
+function lecturaTendenciaGeneral(serie){
+  const totales = {}; CATEGORIAS_ANALISIS.forEach(c=> totales[c]=0);
+  const ultimos3 = serie.slice(-3);
+  ultimos3.forEach(f=> CATEGORIAS_ANALISIS.forEach(c=> totales[c]+=f[c]));
+  const anteriores3 = serie.slice(-6,-3);
+  const totalesAnt = {}; CATEGORIAS_ANALISIS.forEach(c=> totalesAnt[c] = anteriores3.reduce((s,f)=>s+f[c],0));
+  const ordenadas = Object.entries(totales).sort((a,b)=>b[1]-a[1]);
+  const [catDom, nDom] = ordenadas[0] || [null,0];
+  const totalUlt3 = Object.values(totales).reduce((s,v)=>s+v,0);
+  const totalAnt3 = Object.values(totalesAnt).reduce((s,v)=>s+v,0);
+  if(!totalUlt3) return 'Sin actividad suficiente en los últimos meses para describir una tendencia.';
+  const cambio = totalAnt3 ? Math.round(((totalUlt3-totalAnt3)/totalAnt3)*100) : null;
+  let f = `${catDom || 'Ninguna categoría'} concentró ${nDom} de ${totalUlt3} notas en el último trimestre`;
+  if(cambio!==null) f += cambio>0 ? `, con un volumen ${cambio}% mayor que el trimestre anterior.` : cambio<0 ? `, con un volumen ${Math.abs(cambio)}% menor que el trimestre anterior.` : ', igual que el trimestre anterior.';
+  else f += '.';
+  return f;
+}
+
 function renderAnalisis(){
   const cont = document.getElementById('analisis-contenido');
   if(!cont) return;
@@ -277,6 +326,7 @@ function renderAnalisis(){
   cont.innerHTML = `
     <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
       <div class="eyebrow" style="font-size:11px;">📊 ESTADO GENERAL</div>
+      <p style="font-size:12px;line-height:1.6;background:var(--bg-1);border-left:3px solid var(--teal);padding:8px 12px;margin:8px 0;">${lecturaEstadoGeneral(temas, tensionGeneral, pctAlza)}</p>
       <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:10px 0 14px;">
         <div style="flex:1;min-width:220px;">${svgVelocimetro(tensionGeneral)}</div>
         <div style="flex:1;min-width:220px;">
@@ -303,14 +353,12 @@ function renderAnalisis(){
       <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Intensidad acumulada de 7 días sobre ${UMBRAL_ALERTA_7D} puntos, con el z-score de anomalía frente a su propia historia — no una predicción.</p>
       ${alertas.length ? alertas.map(a=>{
         const at = TIPO_ATENCION[a.tema.categoria] || {icono:'•',texto:'Atención general'};
-        const zTexto = a.z!==null ? (a.z>=2 ? `<strong style="color:var(--riesgo-alto);">ANOMALÍA ALTA</strong> (z=${a.z} — esta semana está muy por encima de lo normal para este tema)` : a.z>=1 ? `<strong style="color:var(--riesgo-medio);">POR ENCIMA DE LO NORMAL</strong> (z=${a.z})` : `<span style="color:var(--ink-3);">dentro de su comportamiento habitual</span> (z=${a.z})`) : 'sin historia suficiente para comparar';
         return `
         <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${a.tema.id}">
           <span style="font-size:16px;">${at.icono}</span>
           <div style="flex:1;">
             <div style="font-size:13px;font-weight:700;">${a.tema.nombre}</div>
-            <div style="font-size:11px;margin-top:2px;">${zTexto}</div>
-            <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);margin-top:2px;">${at.texto} · ${a.notas} notas esta semana · intensidad acumulada ${a.suma}</div>
+            <p style="font-size:11px;line-height:1.5;color:var(--ink-2);margin:3px 0 0;">${lecturaAtencion(a, at)}</p>
           </div>
         </div>`;}).join('')
       : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
@@ -318,6 +366,7 @@ function renderAnalisis(){
 
     <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
       <div class="eyebrow" style="font-size:11px;">📈 TENDENCIA GENERAL</div>
+      <p style="font-size:12px;line-height:1.6;background:var(--bg-1);border-left:3px solid var(--teal);padding:8px 12px;margin:8px 0;">${lecturaTendenciaGeneral(construirSerieArea(temas))}</p>
       <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 8px;">Frecuencia por categoría, todo el sexenio — pasa el cursor para ver el detalle de cada mes.</p>
       <svg id="analisis-area-svg" style="width:100%;height:200px;display:block;"></svg>
     </div>
@@ -360,17 +409,20 @@ function renderAnalisis(){
         <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Tema B</th>
         <th style="text-align:right;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Semanas</th>
         <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Fuerza del patrón</th>
+        <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Confiabilidad</th>
       </tr></thead>
       <tbody>
         ${patrones.map(p=>{
           const abs = Math.abs(p.r);
           const colorR = abs>=0.6 ? 'var(--riesgo-alto)' : abs>=0.3 ? 'var(--riesgo-medio)' : 'var(--ink-3)';
           const lectura = abs>=0.6 ? 'FUERTE' : abs>=0.3 ? 'MODERADA' : 'DÉBIL';
+          const conf = p.semanas>=6 ? {t:'Base suficiente', c:'var(--riesgo-bajo)'} : p.semanas>=4 ? {t:'Base moderada — seguir observando', c:'var(--riesgo-medio)'} : {t:'Base limitada — señal temprana, no confirmada', c:'var(--ink-3)'};
           return `<tr style="border-bottom:1px solid var(--line);">
           <td style="padding:7px 4px;cursor:pointer;" data-tema="${p.a.id}">${p.a.nombre}</td>
           <td style="padding:7px 4px;cursor:pointer;" data-tema="${p.b.id}">${p.b.nombre}</td>
           <td style="padding:7px 4px;text-align:right;font-family:var(--f-mono);">${p.semanas}</td>
           <td style="padding:7px 4px;"><strong style="color:${colorR};">${lectura}</strong> <span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);">(r=${p.r>0?'+':''}${p.r})</span></td>
+          <td style="padding:7px 4px;font-size:10px;color:${conf.c};">${conf.t}</td>
         </tr>`;}).join('')}
       </tbody>
     </table>` : '<p style="font-size:11px;color:var(--ink-3);">Sin coincidencias repetidas entre temas todavía.</p>';
