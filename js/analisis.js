@@ -146,7 +146,10 @@ function pintarDashboard(datos, temas){
       </div>
     </div>
 
-    <button class="chip-btn" id="btn-exportar-pdf-analisis" style="margin-top:22px;">Descargar brief ejecutivo (PDF)</button>
+    <div style="display:flex;gap:10px;margin-top:22px;">
+      <button class="chip-btn" id="btn-exportar-pdf-analisis">Descargar brief ejecutivo (PDF)</button>
+      <button class="chip-btn" id="btn-abrir-mapa-red">Ver mapa de red completo</button>
+    </div>
   `;
 
   dibujarVelocimetro(tension);
@@ -162,6 +165,8 @@ function pintarDashboard(datos, temas){
     window.print();
     setTimeout(()=> document.body.classList.remove('modo-impresion-analisis'), 500);
   });
+
+  document.getElementById('btn-abrir-mapa-red').addEventListener('click', ()=> abrirMapaRed(db));
 }
 
 // hover en cada KPI -- muestra la lista real de temas de ese grupo, sin necesitar clic ni modal
@@ -324,3 +329,119 @@ function pintarTablaActores(actores){
 }
 
 document.addEventListener('ecosistema:datos-listos', renderAnalisis);
+
+// ============================================================
+// MAPA DE RED -- vista aparte, temas + actores conectados, con
+// movimiento continuo suave (tipo sistema solar). Los nodos de
+// mayor peso naturalmente terminan más al centro por la física
+// de la simulación, no por un centro forzado -- no hay un nodo
+// "México" artificial, eso sería inventar algo que no está en
+// los datos.
+// ============================================================
+let simuladorRedActivo = null;
+
+function abrirMapaRed(db){
+  let overlay = document.getElementById('mapa-red-overlay');
+  if(!overlay){
+    overlay = document.createElement('div');
+    overlay.id = 'mapa-red-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:var(--bg-0);z-index:500;display:flex;flex-direction:column;';
+    document.body.appendChild(overlay);
+  }
+  overlay.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line-strong);">
+      <div style="font-family:var(--f-display);font-size:16px;font-weight:700;">Mapa de red — temas y actores conectados</div>
+      <button class="chip-btn" id="btn-cerrar-mapa-red">Cerrar</button>
+    </div>
+    <svg id="mapa-red-svg" style="flex:1;width:100%;"></svg>
+  `;
+  overlay.style.display = 'flex';
+  document.getElementById('btn-cerrar-mapa-red').addEventListener('click', ()=>{
+    overlay.style.display = 'none';
+    if(simuladorRedActivo) simuladorRedActivo.stop();
+  });
+  requestAnimationFrame(()=> dibujarMapaRed(db));
+}
+
+function dibujarMapaRed(db){
+  const svgEl = document.getElementById('mapa-red-svg');
+  if(!svgEl) return;
+  const w = svgEl.clientWidth || 900, h = svgEl.clientHeight || 600;
+
+  // nodos: temas (top 12 por volumen reciente) + actores (top 15 por presencia)
+  const temasTop = [...(db.burbujas_temas||[])].sort((a,b)=>b.notas_30d-a.notas_30d).slice(0,12);
+  const actoresTop = (db.burbujas_actores||[]).slice(0,15);
+
+  const maxVolTema = Math.max(...temasTop.map(t=>t.notas_30d), 1);
+  const maxPresActor = Math.max(...actoresTop.map(a=>a.presencia), 1);
+
+  const nodos = [
+    ...temasTop.map(t=>({id:'tema:'+t.nombre, nombre:t.nombre, tipo:'tema', categoria:t.categoria,
+      r: 12 + (t.notas_30d/maxVolTema)*24, peso: t.notas_30d})),
+    ...actoresTop.map(a=>({id:'actor:'+a.nombre, nombre:a.nombre, tipo:'actor',
+      r: 6 + (a.presencia/maxPresActor)*14, peso: a.presencia})),
+  ];
+  const idsTemasEnMapa = new Set(temasTop.map(t=>'tema:'+t.nombre));
+  const idsActoresEnMapa = new Set(actoresTop.map(a=>'actor:'+a.nombre));
+
+  // enlaces tema-tema (de los patrones ya calculados) y tema-actor (de tema_actores.csv real)
+  const enlaces = [];
+  (db.patrones||[]).forEach(p=>{
+    const a='tema:'+p.tema_a, b='tema:'+p.tema_b;
+    if(idsTemasEnMapa.has(a) && idsTemasEnMapa.has(b)) enlaces.push({source:a, target:b, grosor:Math.min(6,p.semanas_comun), tipo:'patron'});
+  });
+  const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
+  const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
+  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
+    const temaNombre = nombreTemaPorId[ta.tema_id];
+    const actorNombre = nombrePorId[ta.actor_id];
+    const idTema = 'tema:'+temaNombre, idActor = 'actor:'+actorNombre;
+    if(idsTemasEnMapa.has(idTema) && idsActoresEnMapa.has(idActor)) enlaces.push({source:idTema, target:idActor, grosor:1, tipo:'actor'});
+  });
+
+  const svg = d3.select(svgEl);
+  svg.selectAll('*').remove();
+  svg.attr('viewBox', [0,0,w,h]);
+
+  const gEnlaces = svg.append('g');
+  const gNodos = svg.append('g');
+
+  const enlacesSel = gEnlaces.selectAll('line').data(enlaces).join('line')
+    .attr('stroke', d=> d.tipo==='patron' ? 'var(--riesgo-medio)' : 'var(--line-strong)')
+    .attr('stroke-width', d=>d.grosor)
+    .attr('stroke-dasharray', d=> d.tipo==='actor' ? '2 3' : null)
+    .attr('opacity', d=> d.tipo==='patron' ? 0.55 : 0.35);
+
+  const nodosSel = gNodos.selectAll('g').data(nodos).join('g').style('cursor','pointer');
+  nodosSel.append('circle')
+    .attr('r', d=>d.r)
+    .attr('fill', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--teal)')
+    .attr('opacity', 0.82)
+    .attr('stroke', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--teal)')
+    .attr('stroke-width', 1.5);
+  nodosSel.append('text')
+    .attr('text-anchor','middle').attr('dy', d=>d.r+11)
+    .attr('font-size', 9).attr('fill','var(--ink-2)')
+    .text(d=> d.nombre.length>18 ? d.nombre.slice(0,16)+'…' : d.nombre);
+
+  nodosSel.on('mousemove', function(ev,d){
+    mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.tipo==='tema' ? 'Tema · '+d.peso+' notas en 30 días' : 'Actor · presente en '+d.peso+' tema(s)'}</span>`, ev);
+  }).on('mouseleave', ocultarTooltipAgenda)
+  .on('click', function(ev,d){
+    if(d.tipo==='tema'){ const t=ECOSISTEMA.temas.find(x=>x.nombre===d.nombre); if(t) abrirFichaTema(t.id); }
+  });
+
+  if(simuladorRedActivo) simuladorRedActivo.stop();
+  simuladorRedActivo = d3.forceSimulation(nodos)
+    .force('link', d3.forceLink(enlaces).id(d=>d.id).distance(d=> d.tipo==='patron' ? 90 : 60).strength(0.25))
+    .force('charge', d3.forceManyBody().strength(-90))
+    .force('center', d3.forceCenter(w/2, h/2))
+    .force('collide', d3.forceCollide(d=>d.r+18))
+    // nodos de mayor peso, más cerca del centro -- emerge de la física, no forzado a mano
+    .force('radial', d3.forceRadial(d=> Math.max(30, 220 - d.peso*8), w/2, h/2).strength(0.04))
+    .alphaTarget(0.05) // se mantiene "tibia" -- movimiento continuo suave, nunca se detiene del todo
+    .on('tick', ()=>{
+      enlacesSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      nodosSel.attr('transform', d=>`translate(${d.x},${d.y})`);
+    });
+}
