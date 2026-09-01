@@ -21,6 +21,13 @@ import anthropic
 RUTA_DATOS = 'data'
 RUTA_SALIDA = os.path.join(RUTA_DATOS, 'analisis_ia.json')
 CATEGORIAS = ['Seguridad Nacional', 'Gobernabilidad', 'Economía', 'Relación Bilateral', 'Social']
+TIPO_ATENCION = {
+    'Seguridad Nacional': 'seguridad/procuración de justicia',
+    'Relación Bilateral': 'diplomática',
+    'Economía': 'económica/comunicación',
+    'Gobernabilidad': 'institucional/legislativa',
+    'Social': 'social/comunicación',
+}
 UMBRAL_ALERTA_7D = 15
 TZ_MX = ZoneInfo('America/Mexico_City')
 
@@ -84,7 +91,7 @@ def calcular_todo():
             m, desv = mean(valores), pstdev(valores)
             semana_actual = semana_de(hoy.strftime('%Y-%m-%d'))
             z = round(((por_semana.get(semana_actual, 0) - m) / desv), 1) if desv > 0 else 0
-        alertas.append({'nombre': t['nombre'], 'categoria': t['categoria'], 'notas_7d': len(evs_7d), 'intensidad_7d': suma, 'z_score': z})
+        alertas.append({'nombre': t['nombre'], 'categoria': t['categoria'], 'tipo_atencion_por_categoria': TIPO_ATENCION.get(t['categoria'], 'general'), 'notas_7d': len(evs_7d), 'intensidad_7d': suma, 'z_score': z})
     alertas.sort(key=lambda a: a['intensidad_7d'], reverse=True)
 
     # patrones de coincidencia semanal + correlacion simple
@@ -138,20 +145,38 @@ def calcular_todo():
 
 
 def construir_prompt(datos):
-    return f"""Eres un analista de inteligencia política senior. Recibes datos YA CALCULADOS
-(no artículos, no texto crudo) sobre la agenda política de México, sexenio de Sheinbaum.
-Escribe la "Lectura de Inteligencia" del día en español, con las 6 secciones exactas de
-abajo, en JSON. Reglas estrictas:
+    return f"""Eres un analista de inteligencia política senior, del nivel que prepara briefs para
+un jefe de Estado. Recibes datos YA CALCULADOS (no artículos, no texto crudo) sobre la agenda
+política de México, sexenio de Sheinbaum.
+
+ERROR A EVITAR, el más grave: NO conviertas esto en una narración de los números ("X subió 1700%,
+Y bajó"). Eso NO es análisis, es solo leer una tabla en voz alta. Cada oración que escribas debe
+responder "¿y por qué le importa esto a quien toma decisiones?" — la implicación, no solo el dato.
+Ejemplo de lo que NO quiero: "Rocha Moya subió 1700% con 36 notas." Ejemplo de lo que SÍ quiero:
+"Rocha Moya concentra el mayor volumen de cobertura de la semana, lo que indica que cualquier
+comunicación oficial sobre el caso tendrá alta exposición mediática inmediata."
+
+Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías como bloque abstracto ("Seguridad
+Nacional concentró 66 notas" no dice nada útil por sí solo — di CUÁLES temas de esa categoría
+y qué implica).
+
+Para la sección de alertas, no basta con listar el tema: di además a qué tipo de instancia
+correspondería típicamente por su naturaleza (seguridad, diplomática, económica, institucional,
+social) — es un mapeo directo de categoría, no una opinión.
+
+Otras reglas estrictas:
 - NUNCA inventes datos que no estén en el JSON de entrada.
 - NUNCA predigas el futuro ni especules sobre facciones internas, causalidad no documentada,
-  o motivaciones no declaradas. Describe patrones, no intenciones.
+  o motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
 - Un patrón con menos de 4 semanas de coincidencia es "base limitada, señal temprana" — dilo así.
-- Tono: directo, profesional, como un brief real, no un resumen genérico.
+- Tono: directo, seguro, como quien ya hizo el trabajo de pensar por el lector, no quien solo
+  reporta.
 
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
 
-Responde ÚNICAMENTE con un objeto JSON con estas 6 claves (cada valor: 2-4 oraciones en español):
+Responde ÚNICAMENTE con un objeto JSON con estas 6 claves (cada valor: 2-4 oraciones en español,
+cada una con dato + implicación, nunca solo dato):
 {{
   "estado_general": "...",
   "pulso_politico": "...",
