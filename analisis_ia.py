@@ -175,7 +175,13 @@ def generar_analisis():
         max_tokens=1200,
         messages=[{'role': 'user', 'content': construir_prompt(datos)}],
     )
-    texto = respuesta.content[0].text.strip()
+    # la respuesta puede traer bloques de tipos distintos (pensamiento, texto) -- se busca
+    # específicamente el bloque de texto, nunca se asume que es el primero de la lista
+    bloque_texto = next((b for b in respuesta.content if b.type == 'text'), None)
+    if bloque_texto is None:
+        print('La respuesta no trajo bloque de texto. Contenido recibido:', respuesta.content)
+        return
+    texto = bloque_texto.text.strip()
     if texto.startswith('```'):
         texto = texto.split('```')[1]
         if texto.startswith('json'):
