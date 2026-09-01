@@ -55,7 +55,7 @@ function pintarDashboard(datos, temas){
   const totalBalance = db.en_alza.length + db.en_baja.length;
   const pctAlza = totalBalance ? Math.round((db.en_alza.length/totalBalance)*100) : 50;
 
-  const kpi = (valor, etiqueta, color) => `<div style="flex:1;min-width:90px;">
+  const kpi = (id, valor, etiqueta, color) => `<div class="kpi-hover" data-kpi="${id}" style="flex:1;min-width:90px;cursor:pointer;">
     <div style="font-family:var(--f-display);font-size:26px;font-weight:700;color:${color||'var(--ink-1)'};line-height:1;">${valor}</div>
     <div style="font-size:9.5px;color:var(--ink-3);margin-top:3px;">${etiqueta}</div>
   </div>`;
@@ -66,58 +66,62 @@ function pintarDashboard(datos, temas){
         <div style="font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--ink-1);letter-spacing:-.01em;">Lectura de Inteligencia</div>
         <div style="font-size:11px;color:var(--ink-3);margin-top:2px;">${fecha}</div>
       </div>
-      <svg id="velocimetro-tension" viewBox="0 0 220 130" style="width:190px;height:112px;"></svg>
     </div>
 
     <div style="display:grid;grid-template-columns:62% 36%;gap:20px;margin-bottom:20px;">
       <div>
         <p style="font-size:13.5px;line-height:1.8;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.estado_general)} ${conNegritas(l.pulso_politico)}</p>
       </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <svg id="dona-categoria-svg" viewBox="0 0 150 150" style="width:100px;height:100px;flex-shrink:0;"></svg>
-        <div id="dona-categoria-leyenda" style="flex:1;font-size:10.5px;"></div>
-      </div>
+      <svg id="velocimetro-tension" viewBox="0 0 220 130" style="width:190px;height:112px;margin:0 auto;"></svg>
     </div>
 
     <div style="display:flex;gap:24px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);margin-bottom:20px;">
-      ${kpi(db.temas_activos, 'temas de agenda con actividad en 30 días')}
-      ${kpi(db.alertas.length, 'requieren atención esta semana', db.alertas.length?'var(--riesgo-alto)':null)}
-      ${kpi(db.en_alza.length, 'en alza', 'var(--riesgo-alto)')}
-      ${kpi(db.en_baja.length, 'en baja', 'var(--riesgo-bajo)')}
-      <div style="flex:2;min-width:160px;">
-        <div style="height:10px;border-radius:99px;overflow:hidden;display:flex;">
-          <div style="width:${pctAlza}%;background:var(--riesgo-alto);"></div>
-          <div style="width:${100-pctAlza}%;background:var(--riesgo-bajo);"></div>
+      ${kpi('activos', db.temas_activos, 'temas de agenda con actividad en 30 días')}
+      ${kpi('alertas', db.alertas.length, 'requieren atención esta semana', db.alertas.length?'var(--riesgo-alto)':null)}
+      ${kpi('alza', db.en_alza.length, 'en alza', 'var(--riesgo-alto)')}
+      ${kpi('baja', db.en_baja.length, 'en baja', 'var(--riesgo-bajo)')}
+      <div style="flex:2;min-width:180px;">
+        <div style="height:20px;border-radius:6px;overflow:hidden;display:flex;">
+          <div style="width:${pctAlza}%;background:var(--riesgo-alto);display:flex;align-items:center;padding-left:6px;">${pctAlza>=18?`<span style="font-size:9px;font-weight:700;color:#0E1116;">${pctAlza}% en alza</span>`:''}</div>
+          <div style="width:${100-pctAlza}%;background:var(--riesgo-bajo);display:flex;align-items:center;justify-content:flex-end;padding-right:6px;">${100-pctAlza>=18?`<span style="font-size:9px;font-weight:700;color:#0E1116;">${100-pctAlza}% en baja</span>`:''}</div>
         </div>
-        <div style="font-size:9px;color:var(--ink-3);margin-top:4px;">balance de tendencia entre los temas con movimiento definido</div>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:4px;">de los ${totalBalance} temas con tendencia definida (subiendo o bajando) esta semana</div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
-      <div>
-        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-alto);margin-bottom:6px;">Requiere atención</div>
-        <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;">${conNegritas(l.alertas_tempranas)}</p>
-        <div id="lista-propuestas-atencion"></div>
-      </div>
-      <div>
-        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-medio);margin-bottom:6px;">Patrones detectados</div>
-        <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;">${conNegritas(l.patrones_detectados)}</p>
-        <div id="tabla-patrones"></div>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
-      <div>
-        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Actores centrales</div>
-        <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.actores_centrales)}</p>
-      </div>
-      <div>
-        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Tendencia por categoría</div>
-        <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.tendencia_por_categoria)}</p>
+    <div style="border-top:1px solid var(--line-strong);padding-top:16px;margin-bottom:20px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div>
+          <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-alto);margin-bottom:6px;">Requiere atención</div>
+          <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;">${conNegritas(l.alertas_tempranas)}</p>
+          <div id="lista-propuestas-atencion"></div>
+        </div>
+        <div>
+          <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-medio);margin-bottom:6px;">Patrones detectados</div>
+          <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;">${conNegritas(l.patrones_detectados)}</p>
+          <div id="tabla-patrones"></div>
+        </div>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:32% 34% 32%;gap:16px;">
+    <div style="border-top:1px solid var(--line-strong);padding-top:16px;margin-bottom:20px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div>
+          <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Actores centrales</div>
+          <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.actores_centrales)}</p>
+        </div>
+        <div>
+          <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Tendencia por categoría</div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <svg id="dona-categoria-svg" viewBox="0 0 150 150" style="width:88px;height:88px;flex-shrink:0;"></svg>
+            <p style="font-size:11.5px;line-height:1.6;color:var(--ink-2);margin:0;text-align:justify;flex:1;">${conNegritas(l.tendencia_por_categoria)}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid var(--line-strong);padding-top:16px;">
+      <div style="display:grid;grid-template-columns:32% 34% 32%;gap:16px;">
       <div>
         <div style="font-family:var(--f-display);font-size:12.5px;font-weight:700;color:var(--ink-1);margin-bottom:4px;">Pulso del sexenio</div>
         <p style="font-size:10.5px;color:var(--ink-3);margin:0 0 8px;">${conNegritas(l.resumen_pulso_sexenio)}</p>
@@ -133,6 +137,7 @@ function pintarDashboard(datos, temas){
         <p style="font-size:10.5px;color:var(--ink-3);margin:0 0 8px;">${conNegritas(l.resumen_actores)}</p>
         <div id="tabla-actores"></div>
       </div>
+      </div>
     </div>
 
     <button class="chip-btn" id="btn-exportar-pdf-analisis" style="margin-top:22px;">Descargar brief ejecutivo (PDF)</button>
@@ -145,11 +150,30 @@ function pintarDashboard(datos, temas){
   pintarTablaPulso(db.aura_intensidad);
   pintarTablaTemas(db.burbujas_temas);
   pintarTablaActores(db.burbujas_actores);
+  activarHoverKpis(db);
 
   document.getElementById('btn-exportar-pdf-analisis').addEventListener('click', ()=>{
     document.body.classList.add('modo-impresion-analisis');
     window.print();
     setTimeout(()=> document.body.classList.remove('modo-impresion-analisis'), 500);
+  });
+}
+
+// hover en cada KPI -- muestra la lista real de temas de ese grupo, sin necesitar clic ni modal
+function activarHoverKpis(db){
+  const listas = {
+    activos: (ECOSISTEMA.temas||[]).filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>t.nombre),
+    alertas: db.alertas.map(a=>a.nombre),
+    alza: db.en_alza.map(a=>a.nombre),
+    baja: db.en_baja.map(a=>a.nombre),
+  };
+  document.querySelectorAll('.kpi-hover').forEach(el=>{
+    const lista = listas[el.dataset.kpi] || [];
+    el.addEventListener('mousemove', ev=>{
+      const html = lista.length ? lista.slice(0,10).map(n=>`• ${n}`).join('<br>') : 'Sin temas en este grupo.';
+      mostrarTooltipAgenda(html, ev);
+    });
+    el.addEventListener('mouseleave', ocultarTooltipAgenda);
   });
 }
 
@@ -207,12 +231,15 @@ function dibujarDona(temas){
   g.append('text').attr('text-anchor','middle').attr('dy',-2).attr('font-family','var(--f-display)').attr('font-size',20).attr('font-weight',700).attr('fill','var(--ink-1)').text(total);
   g.append('text').attr('text-anchor','middle').attr('dy',12).attr('font-size',6.5).attr('fill','var(--ink-3)').text('temas activos');
 
-  document.getElementById('dona-categoria-leyenda').innerHTML = datos.sort((a,b)=>b.n-a.n).map(d=>`
-    <div style="display:flex;align-items:center;gap:6px;padding:2px 0;">
-      <span style="width:8px;height:8px;border-radius:2px;background:${colorCategoriaFijo(d.cat)};flex-shrink:0;"></span>
-      <span style="flex:1;color:var(--ink-2);">${d.cat}</span>
-      <span style="color:var(--ink-3);">${Math.round(d.n/total*100)}%</span>
-    </div>`).join('');
+  const leyendaEl = document.getElementById('dona-categoria-leyenda');
+  if(leyendaEl){
+    leyendaEl.innerHTML = datos.sort((a,b)=>b.n-a.n).map(d=>`
+      <div style="display:flex;align-items:center;gap:6px;padding:2px 0;">
+        <span style="width:8px;height:8px;border-radius:2px;background:${colorCategoriaFijo(d.cat)};flex-shrink:0;"></span>
+        <span style="flex:1;color:var(--ink-2);">${d.cat}</span>
+        <span style="color:var(--ink-3);">${Math.round(d.n/total*100)}%</span>
+      </div>`).join('');
+  }
 }
 
 function pintarPropuestasAtencion(propuestas, alertas){
