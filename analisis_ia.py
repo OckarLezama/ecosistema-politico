@@ -172,7 +172,8 @@ def generar_analisis():
     cliente = anthropic.Anthropic(api_key=llave)
     respuesta = cliente.messages.create(
         model='claude-sonnet-5',
-        max_tokens=1200,
+        max_tokens=4000,  # antes 1200 -- se cortaba a la mitad del JSON porque el modelo usa
+                          # parte del espacio para razonar antes de responder
         messages=[{'role': 'user', 'content': construir_prompt(datos)}],
     )
     # la respuesta puede traer bloques de tipos distintos (pensamiento, texto) -- se busca
@@ -186,7 +187,12 @@ def generar_analisis():
         texto = texto.split('```')[1]
         if texto.startswith('json'):
             texto = texto[4:]
-    lectura = json.loads(texto)
+    try:
+        lectura = json.loads(texto)
+    except json.JSONDecodeError as e:
+        print('No se pudo leer el JSON de la respuesta. Texto recibido completo:')
+        print(texto)
+        raise e
 
     salida = {
         'generado_en': datetime.now(TZ_MX).isoformat(),
