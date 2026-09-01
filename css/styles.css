@@ -303,3 +303,9 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   body.modo-impresion-analisis{ background:#fff; color:#000; }
   body.modo-impresion-analisis .eyebrow{ color:#000 !important; }
 }
+
+#analisis-contenedor-scroll{ scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1); }
+#analisis-contenedor-scroll::-webkit-scrollbar{ width:6px; }
+#analisis-contenedor-scroll::-webkit-scrollbar-track{ background:var(--bg-1); }
+#analisis-contenedor-scroll::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:99px; }
+#analisis-contenedor-scroll::-webkit-scrollbar-thumb:hover{ background:var(--teal); }

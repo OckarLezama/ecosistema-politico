@@ -303,13 +303,14 @@ function renderAnalisis(){
       <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Intensidad acumulada de 7 días sobre ${UMBRAL_ALERTA_7D} puntos, con el z-score de anomalía frente a su propia historia — no una predicción.</p>
       ${alertas.length ? alertas.map(a=>{
         const at = TIPO_ATENCION[a.tema.categoria] || {icono:'•',texto:'Atención general'};
-        const zTexto = a.z!==null ? (a.z>=2 ? `<span style="color:var(--riesgo-alto);font-weight:700;">z=${a.z} — muy inusual</span>` : a.z>=1 ? `z=${a.z} — por encima de su promedio` : `z=${a.z}`) : 'sin historia suficiente';
+        const zTexto = a.z!==null ? (a.z>=2 ? `<strong style="color:var(--riesgo-alto);">ANOMALÍA ALTA</strong> (z=${a.z} — esta semana está muy por encima de lo normal para este tema)` : a.z>=1 ? `<strong style="color:var(--riesgo-medio);">POR ENCIMA DE LO NORMAL</strong> (z=${a.z})` : `<span style="color:var(--ink-3);">dentro de su comportamiento habitual</span> (z=${a.z})`) : 'sin historia suficiente para comparar';
         return `
         <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${a.tema.id}">
           <span style="font-size:16px;">${at.icono}</span>
           <div style="flex:1;">
             <div style="font-size:13px;font-weight:700;">${a.tema.nombre}</div>
-            <div style="font-size:10px;color:var(--ink-3);font-family:var(--f-mono);">${at.texto} · ${a.notas} notas · intensidad ${a.suma} · ${zTexto}</div>
+            <div style="font-size:11px;margin-top:2px;">${zTexto}</div>
+            <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);margin-top:2px;">${at.texto} · ${a.notas} notas esta semana · intensidad acumulada ${a.suma}</div>
           </div>
         </div>`;}).join('')
       : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
@@ -358,16 +359,18 @@ function renderAnalisis(){
         <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Tema A</th>
         <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Tema B</th>
         <th style="text-align:right;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Semanas</th>
-        <th style="text-align:right;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Correlación (r)</th>
+        <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Fuerza del patrón</th>
       </tr></thead>
       <tbody>
         ${patrones.map(p=>{
-          const colorR = Math.abs(p.r)>=0.6 ? 'var(--riesgo-alto)' : Math.abs(p.r)>=0.3 ? 'var(--riesgo-medio)' : 'var(--ink-3)';
+          const abs = Math.abs(p.r);
+          const colorR = abs>=0.6 ? 'var(--riesgo-alto)' : abs>=0.3 ? 'var(--riesgo-medio)' : 'var(--ink-3)';
+          const lectura = abs>=0.6 ? 'FUERTE' : abs>=0.3 ? 'MODERADA' : 'DÉBIL';
           return `<tr style="border-bottom:1px solid var(--line);">
           <td style="padding:7px 4px;cursor:pointer;" data-tema="${p.a.id}">${p.a.nombre}</td>
           <td style="padding:7px 4px;cursor:pointer;" data-tema="${p.b.id}">${p.b.nombre}</td>
           <td style="padding:7px 4px;text-align:right;font-family:var(--f-mono);">${p.semanas}</td>
-          <td style="padding:7px 4px;text-align:right;font-family:var(--f-mono);font-weight:700;color:${colorR};">${p.r>0?'+':''}${p.r}</td>
+          <td style="padding:7px 4px;"><strong style="color:${colorR};">${lectura}</strong> <span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);">(r=${p.r>0?'+':''}${p.r})</span></td>
         </tr>`;}).join('')}
       </tbody>
     </table>` : '<p style="font-size:11px;color:var(--ink-3);">Sin coincidencias repetidas entre temas todavía.</p>';
