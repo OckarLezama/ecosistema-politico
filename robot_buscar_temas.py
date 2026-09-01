@@ -59,6 +59,13 @@ FUENTES_RSS = [
     # desde aquí (mismo aviso robots.txt que GDELT), pero es un patrón real y usado por muchos
     # desarrolladores, a diferencia de GDELT. Prueba real: tu próxima corrida en GitHub Actions.
     {'nombre': 'Google Noticias', 'url': 'https://news.google.com/rss/search?q=Sheinbaum+OR+%22Rocha+Moya%22+OR+%22huachicol+fiscal%22+OR+aranceles+OR+migraci%C3%B3n+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    # El Heraldo de México, sección Nacional -- URL oficial de su propia página de RSS. Al
+    # probarla desde aquí devolvió contenido de Cultura en vez de Nacional (posible caché
+    # momentáneo de mi herramienta) -- se deja para que la corrida real del robot confirme.
+    {'nombre': 'El Heraldo de México', 'url': 'https://heraldodemexico.com.mx/rss/feed.html?r=4'},
+    # El Financiero -- verificada en vivo, contenido real del mismo día, cobertura política de
+    # primer nivel confirmada (Segundo Informe de Sheinbaum, caso Inzunza, seguridad, etc.)
+    {'nombre': 'El Financiero', 'url': 'https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml'},
 ]
 
 # palabras clave por tema — se ajustan a mano, no se adivinan del nombre del tema solo
