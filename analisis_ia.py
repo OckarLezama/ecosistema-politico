@@ -263,10 +263,10 @@ def encontrar_problemas(lectura):
     return encontrados
 
 
-def llamar_claude(cliente, prompt):
+def llamar_claude(cliente, prompt, max_tokens=8000):
     respuesta = cliente.messages.create(
         model='claude-sonnet-5',
-        max_tokens=4000,
+        max_tokens=max_tokens,
         messages=[{'role': 'user', 'content': prompt}],
     )
     bloque_texto = next((b for b in respuesta.content if b.type == 'text'), None)
@@ -277,7 +277,15 @@ def llamar_claude(cliente, prompt):
         texto = texto.split('```')[1]
         if texto.startswith('json'):
             texto = texto[4:]
-    return json.loads(texto)
+    try:
+        return json.loads(texto)
+    except json.JSONDecodeError:
+        if max_tokens < 16000:
+            # la respuesta se cortó a la mitad -- reintenta una vez con más espacio,
+            # en vez de solo tronar
+            print(f'JSON incompleto con max_tokens={max_tokens}, reintentando con más espacio...')
+            return llamar_claude(cliente, prompt, max_tokens=max_tokens*2)
+        raise
 
 
 def generar_analisis():
