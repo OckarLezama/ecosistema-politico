@@ -1,10 +1,11 @@
 /* ============================================================
    V2 — ANÁLISIS
-   Rediseño tipo dashboard real, no tarjetas de app apiladas.
-   Space Grotesk para títulos (ya existe en la app, sin inventar
-   tipografía nueva). Velocímetro real. Narrativa con números
-   resaltados en línea. Grid horizontal, no todo apilado hacia
-   abajo. Mapa de red: pendiente, próxima entrega.
+   Dashboard ejecutivo: Lectura de Inteligencia (párrafos
+   justificados, sintetizados) + velocímetro real con marcas de
+   escala + KPIs con representación visual + Requiere Atención
+   (con propuesta de la IA) + Patrones (enfoque en confiabilidad)
+   + 3 tablas alineadas (pulso del sexenio, temas, actores) en
+   vez de gráficas que no aportaban. Todo en columnas, no apilado.
    ============================================================ */
 
 const CATEGORIAS_ANALISIS = ['Seguridad Nacional','Gobernabilidad','Economía','Relación Bilateral','Social'];
@@ -13,15 +14,11 @@ function colorCategoriaFijo(cat){
   const map = { 'Seguridad Nacional':'#F46883', 'Gobernabilidad':'#BDB58D', 'Economía':'#4CC1BA', 'Relación Bilateral':'#5B7FDB', 'Social':'#B15FBD' };
   return map[cat] || '#8A8F98';
 }
-
 function desgloseCategoria(items){
   const conteo = {};
   items.forEach(it=>{ if(it.categoria) conteo[it.categoria]=(conteo[it.categoria]||0)+1; });
   return conteo;
 }
-
-// convierte **texto** (markdown simple que ya le pedimos a la IA) en <strong> real --
-// así los números y temas clave quedan resaltados DENTRO del párrafo, no en cajas aparte
 function conNegritas(texto){
   return (texto||'').replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--ink-1);">$1</strong>');
 }
@@ -30,9 +27,7 @@ function renderAnalisis(){
   const cont = document.getElementById('analisis-contenido');
   if(!cont) return;
   const temas = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1);
-
   cont.innerHTML = `<div id="zona-lectura-ia"><p style="font-size:11px;color:var(--ink-3);text-align:center;padding:40px 0;">Cargando lectura de inteligencia...</p></div>`;
-
   cont.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
   cargarLecturaIA(temas);
 }
@@ -54,8 +49,16 @@ function cargarLecturaIA(temas){
 function pintarDashboard(datos, temas){
   const zona = document.getElementById('zona-lectura-ia');
   const l = datos.lectura;
-  const tension = datos.datos_base.tension_general;
+  const db = datos.datos_base;
+  const tension = db.tension_general;
   const fecha = new Date(datos.generado_en).toLocaleDateString('es-MX', {day:'numeric', month:'long', year:'numeric'});
+  const totalBalance = db.en_alza.length + db.en_baja.length;
+  const pctAlza = totalBalance ? Math.round((db.en_alza.length/totalBalance)*100) : 50;
+
+  const kpi = (valor, etiqueta, color) => `<div style="flex:1;min-width:90px;">
+    <div style="font-family:var(--f-display);font-size:26px;font-weight:700;color:${color||'var(--ink-1)'};line-height:1;">${valor}</div>
+    <div style="font-size:9.5px;color:var(--ink-3);margin-top:3px;">${etiqueta}</div>
+  </div>`;
 
   zona.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-bottom:14px;border-bottom:2px solid var(--line-strong);margin-bottom:18px;">
@@ -63,68 +66,85 @@ function pintarDashboard(datos, temas){
         <div style="font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--ink-1);letter-spacing:-.01em;">Lectura de Inteligencia</div>
         <div style="font-size:11px;color:var(--ink-3);margin-top:2px;">${fecha}</div>
       </div>
-      <svg id="velocimetro-tension" viewBox="0 0 200 110" style="width:170px;height:94px;"></svg>
+      <svg id="velocimetro-tension" viewBox="0 0 220 130" style="width:190px;height:112px;"></svg>
     </div>
 
-    <div style="display:grid;grid-template-columns:64% 34%;gap:18px;margin-bottom:18px;">
+    <div style="display:grid;grid-template-columns:62% 36%;gap:20px;margin-bottom:20px;">
       <div>
-        <p style="font-size:14px;line-height:1.75;color:var(--ink-2);margin:0 0 14px;">${conNegritas(l.estado_general)} ${conNegritas(l.pulso_politico)}</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-          <div>
-            <div style="font-family:var(--f-display);font-size:12px;font-weight:700;color:var(--riesgo-medio);margin-bottom:5px;">Patrones detectados</div>
-            <p style="font-size:12px;line-height:1.6;color:var(--ink-2);margin:0;">${conNegritas(l.patrones_detectados)}</p>
-          </div>
-          <div>
-            <div style="font-family:var(--f-display);font-size:12px;font-weight:700;color:var(--riesgo-bajo);margin-bottom:5px;">Tendencia por categoría</div>
-            <p style="font-size:12px;line-height:1.6;color:var(--ink-2);margin:0;">${conNegritas(l.tendencia_por_categoria)}</p>
-          </div>
-        </div>
+        <p style="font-size:13.5px;line-height:1.8;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.estado_general)} ${conNegritas(l.pulso_politico)}</p>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        <div>
-          <div style="display:flex;align-items:center;gap:14px;">
-            <svg id="dona-categoria-svg" viewBox="0 0 160 160" style="width:110px;height:110px;flex-shrink:0;"></svg>
-            <div id="dona-categoria-leyenda" style="flex:1;font-size:10.5px;"></div>
-          </div>
-        </div>
-        <div style="border-top:1px solid var(--line-strong);padding-top:10px;">
-          <div style="font-family:var(--f-display);font-size:12px;font-weight:700;color:var(--riesgo-alto);margin-bottom:5px;">Alertas tempranas</div>
-          <p style="font-size:12px;line-height:1.6;color:var(--ink-2);margin:0;">${conNegritas(l.alertas_tempranas)}</p>
-        </div>
-        <div style="border-top:1px solid var(--line-strong);padding-top:10px;">
-          <div style="font-family:var(--f-display);font-size:12px;font-weight:700;color:var(--arena);margin-bottom:5px;">Actores centrales</div>
-          <p style="font-size:12px;line-height:1.6;color:var(--ink-2);margin:0;">${conNegritas(l.actores_centrales)}</p>
-        </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <svg id="dona-categoria-svg" viewBox="0 0 150 150" style="width:100px;height:100px;flex-shrink:0;"></svg>
+        <div id="dona-categoria-leyenda" style="flex:1;font-size:10.5px;"></div>
       </div>
     </div>
 
-    <div style="margin-bottom:18px;">
-      <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:4px;">Pulso del sexenio</div>
-      <p style="font-size:11.5px;line-height:1.6;color:var(--ink-3);margin:0 0 8px;">${conNegritas(l.interpretacion_aura)}</p>
-      <svg id="aura-svg" viewBox="0 0 1000 90" style="width:100%;height:90px;display:block;"></svg>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);margin-bottom:20px;">
+      ${kpi(db.temas_activos, 'temas de agenda con actividad en 30 días')}
+      ${kpi(db.alertas.length, 'requieren atención esta semana', db.alertas.length?'var(--riesgo-alto)':null)}
+      ${kpi(db.en_alza.length, 'en alza', 'var(--riesgo-alto)')}
+      ${kpi(db.en_baja.length, 'en baja', 'var(--riesgo-bajo)')}
+      <div style="flex:2;min-width:160px;">
+        <div style="height:10px;border-radius:99px;overflow:hidden;display:flex;">
+          <div style="width:${pctAlza}%;background:var(--riesgo-alto);"></div>
+          <div style="width:${100-pctAlza}%;background:var(--riesgo-bajo);"></div>
+        </div>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:4px;">balance de tendencia entre los temas con movimiento definido</div>
+      </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
       <div>
-        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:4px;">Temas — volumen y tendencia</div>
-        <p style="font-size:11.5px;line-height:1.6;color:var(--ink-3);margin:0 0 8px;">${conNegritas(l.interpretacion_burbujas_temas)}</p>
-        <svg id="burbujas-temas-svg" viewBox="0 0 440 280" style="width:100%;height:280px;display:block;"></svg>
+        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-alto);margin-bottom:6px;">Requiere atención</div>
+        <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;">${conNegritas(l.alertas_tempranas)}</p>
+        <div id="lista-propuestas-atencion"></div>
       </div>
       <div>
-        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:4px;">Actores — presencia en medios</div>
-        <p style="font-size:11.5px;line-height:1.6;color:var(--ink-3);margin:0 0 8px;">${conNegritas(l.interpretacion_burbujas_actores)}</p>
-        <div id="ranking-actores-vis"></div>
+        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-medio);margin-bottom:6px;">Patrones detectados</div>
+        <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;">${conNegritas(l.patrones_detectados)}</p>
+        <div id="tabla-patrones"></div>
       </div>
     </div>
 
-    <button class="chip-btn" id="btn-exportar-pdf-analisis" style="margin-top:20px;">Descargar brief ejecutivo (PDF)</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+      <div>
+        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Actores centrales</div>
+        <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.actores_centrales)}</p>
+      </div>
+      <div>
+        <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Tendencia por categoría</div>
+        <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.tendencia_por_categoria)}</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:32% 34% 32%;gap:16px;">
+      <div>
+        <div style="font-family:var(--f-display);font-size:12.5px;font-weight:700;color:var(--ink-1);margin-bottom:4px;">Pulso del sexenio</div>
+        <p style="font-size:10.5px;color:var(--ink-3);margin:0 0 8px;">${conNegritas(l.resumen_pulso_sexenio)}</p>
+        <div id="tabla-pulso"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--f-display);font-size:12.5px;font-weight:700;color:var(--ink-1);margin-bottom:4px;">Temas — volumen y tendencia</div>
+        <p style="font-size:10.5px;color:var(--ink-3);margin:0 0 8px;">${conNegritas(l.resumen_temas)}</p>
+        <div id="tabla-temas"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--f-display);font-size:12.5px;font-weight:700;color:var(--ink-1);margin-bottom:4px;">Actores — presencia en medios</div>
+        <p style="font-size:10.5px;color:var(--ink-3);margin:0 0 8px;">${conNegritas(l.resumen_actores)}</p>
+        <div id="tabla-actores"></div>
+      </div>
+    </div>
+
+    <button class="chip-btn" id="btn-exportar-pdf-analisis" style="margin-top:22px;">Descargar brief ejecutivo (PDF)</button>
   `;
 
   dibujarVelocimetro(tension);
   dibujarDona(temas);
-  dibujarAura(datos.datos_base.aura_intensidad);
-  dibujarBurbujasTemas(datos.datos_base.burbujas_temas);
-  dibujarRankingActores(datos.datos_base.burbujas_actores);
+  pintarPropuestasAtencion(l.propuestas_atencion, db.alertas);
+  pintarTablaPatrones(db.patrones);
+  pintarTablaPulso(db.aura_intensidad);
+  pintarTablaTemas(db.burbujas_temas);
+  pintarTablaActores(db.burbujas_actores);
 
   document.getElementById('btn-exportar-pdf-analisis').addEventListener('click', ()=>{
     document.body.classList.add('modo-impresion-analisis');
@@ -133,28 +153,42 @@ function pintarDashboard(datos, temas){
   });
 }
 
-// VELOCÍMETRO REAL -- aguja, no número suelto
+// VELOCÍMETRO -- mejor calidad visual: gradiente suave real (muchos segmentos finos en vez
+// de 3 bloques duros), marcas de escala, aguja con sombra sutil
 function dibujarVelocimetro(valor){
   const svgEl = document.getElementById('velocimetro-tension');
   if(!svgEl) return;
-  const cx=100, cy=90, r=75;
+  const cx=110, cy=100, r=82, grosor=15;
+  const colorEn = v => v>=66 ? '#F45B69' : v>=33 ? '#E0A85C' : '#59C48A';
+  let arcos = '';
+  const segmentos = 60;
+  for(let i=0;i<segmentos;i++){
+    const v0 = (i/segmentos)*100, v1 = ((i+1)/segmentos)*100;
+    const a0 = Math.PI*(1-v0/100), a1 = Math.PI*(1-v1/100);
+    const x0=cx+r*Math.cos(a0), y0=cy-r*Math.sin(a0), x1=cx+r*Math.cos(a1), y1=cy-r*Math.sin(a1);
+    arcos += `<path d="M${x0},${y0} A${r},${r} 0 0 1 ${x1},${y1}" fill="none" stroke="${colorEn((v0+v1)/2)}" stroke-width="${grosor}" stroke-linecap="butt"/>`;
+  }
+  let marcas = '';
+  [0,25,50,75,100].forEach(v=>{
+    const a = Math.PI*(1-v/100);
+    const xi=cx+(r-grosor/2-3)*Math.cos(a), yi=cy-(r-grosor/2-3)*Math.sin(a);
+    const xo=cx+(r+grosor/2+3)*Math.cos(a), yo=cy-(r+grosor/2+3)*Math.sin(a);
+    marcas += `<line x1="${xi}" y1="${yi}" x2="${xo}" y2="${yo}" stroke="var(--bg-2)" stroke-width="2"/>`;
+  });
   const angulo = Math.PI - (valor/100)*Math.PI;
-  const puntaX = cx + r*0.75*Math.cos(angulo), puntaY = cy - r*0.75*Math.sin(angulo);
-  const color = valor>=66 ? 'var(--riesgo-alto)' : valor>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
-  const arco = (desde, hasta, col) => {
-    const a1 = Math.PI*(1-desde/100), a2 = Math.PI*(1-hasta/100);
-    const x1=cx+r*Math.cos(a1), y1=cy-r*Math.sin(a1), x2=cx+r*Math.cos(a2), y2=cy-r*Math.sin(a2);
-    return `<path d="M${x1},${y1} A${r},${r} 0 0 1 ${x2},${y2}" fill="none" stroke="${col}" stroke-width="13" stroke-linecap="round"/>`;
-  };
+  const puntaX = cx + (r-grosor/2-6)*Math.cos(angulo), puntaY = cy - (r-grosor/2-6)*Math.sin(angulo);
+  const colorTexto = colorEn(valor);
   svgEl.innerHTML = `
-    ${arco(0,33,'var(--riesgo-bajo)')}${arco(33,66,'var(--riesgo-medio)')}${arco(66,100,'var(--riesgo-alto)')}
-    <line x1="${cx}" y1="${cy}" x2="${puntaX}" y2="${puntaY}" stroke="var(--ink-1)" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy}" r="5" fill="var(--ink-1)"/>
-    <text x="${cx}" y="${cy+22}" text-anchor="middle" font-family="var(--f-display)" font-size="24" font-weight="700" fill="${color}">${valor}</text>
-    <text x="${cx}" y="${cy+34}" text-anchor="middle" font-size="8" fill="var(--ink-3)">tensión general</text>`;
+    <defs><filter id="sombra-aguja" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.4"/>
+    </filter></defs>
+    ${arcos}${marcas}
+    <line x1="${cx}" y1="${cy}" x2="${puntaX}" y2="${puntaY}" stroke="var(--ink-1)" stroke-width="3" stroke-linecap="round" filter="url(#sombra-aguja)"/>
+    <circle cx="${cx}" cy="${cy}" r="6" fill="var(--bg-1)" stroke="var(--ink-1)" stroke-width="2.5"/>
+    <text x="${cx}" y="${cy+30}" text-anchor="middle" font-family="var(--f-display)" font-size="26" font-weight="700" fill="${colorTexto}">${valor}</text>
+    <text x="${cx}" y="${cy+42}" text-anchor="middle" font-size="8" fill="var(--ink-3)" letter-spacing="0.3">tensión general</text>`;
 }
 
-// DONA compacta de categoría
 function dibujarDona(temas){
   const svgEl = document.getElementById('dona-categoria-svg');
   if(!svgEl) return;
@@ -163,15 +197,15 @@ function dibujarDona(temas){
   const total = datos.reduce((s,d)=>s+d.n,0) || 1;
   const svg = d3.select(svgEl);
   svg.selectAll('*').remove();
-  const g = svg.append('g').attr('transform','translate(80,80)');
-  const arco = d3.arc().innerRadius(44).outerRadius(70);
+  const g = svg.append('g').attr('transform','translate(75,75)');
+  const arco = d3.arc().innerRadius(42).outerRadius(66);
   const arcos = d3.pie().value(d=>d.n).sort(null)(datos);
   g.selectAll('path').data(arcos).join('path').attr('d',arco).attr('fill',d=>colorCategoriaFijo(d.data.cat))
     .attr('stroke','var(--bg-1)').attr('stroke-width',2).style('cursor','pointer')
     .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.data.cat}</strong>: ${d.data.n} (${Math.round(d.data.n/total*100)}%)`, ev); })
     .on('mouseleave', ocultarTooltipAgenda);
-  g.append('text').attr('text-anchor','middle').attr('dy',-2).attr('font-family','var(--f-display)').attr('font-size',22).attr('font-weight',700).attr('fill','var(--ink-1)').text(total);
-  g.append('text').attr('text-anchor','middle').attr('dy',12).attr('font-size',7.5).attr('fill','var(--ink-3)').text('temas de agenda');
+  g.append('text').attr('text-anchor','middle').attr('dy',-2).attr('font-family','var(--f-display)').attr('font-size',20).attr('font-weight',700).attr('fill','var(--ink-1)').text(total);
+  g.append('text').attr('text-anchor','middle').attr('dy',12).attr('font-size',6.5).attr('fill','var(--ink-3)').text('temas activos');
 
   document.getElementById('dona-categoria-leyenda').innerHTML = datos.sort((a,b)=>b.n-a.n).map(d=>`
     <div style="display:flex;align-items:center;gap:6px;padding:2px 0;">
@@ -181,75 +215,85 @@ function dibujarDona(temas){
     </div>`).join('');
 }
 
-// AURA -- área suave con degradado, no barras duras
-function dibujarAura(serie){
-  const svgEl = document.getElementById('aura-svg');
-  if(!svgEl || !serie || !serie.length) return;
-  const w=1000, h=90, pad=6;
-  const max = Math.max(...serie.map(s=>s.intensidad), 1);
-  const paso = (w-pad*2) / (serie.length-1 || 1);
-  const puntos = serie.map((s,i)=>[pad+i*paso, h-pad-((s.intensidad/max)*(h-pad*2))]);
-  const linea = d3.line().curve(d3.curveMonotoneX);
-  const area = d3.area().curve(d3.curveMonotoneX).y0(h-pad).y1(d=>d[1]);
-  const svg = d3.select(svgEl);
-  svg.selectAll('*').remove();
-  const defs = svg.append('defs');
-  const grad = defs.append('linearGradient').attr('id','grad-aura').attr('x1','0').attr('y1','0').attr('x2','0').attr('y2','1');
-  grad.append('stop').attr('offset','0%').attr('stop-color','var(--riesgo-alto)').attr('stop-opacity',0.55);
-  grad.append('stop').attr('offset','100%').attr('stop-color','var(--riesgo-alto)').attr('stop-opacity',0.02);
-  svg.append('path').attr('d', area(puntos.map(p=>[p[0],p[1]]))).attr('fill','url(#grad-aura)');
-  svg.append('path').attr('d', linea(puntos)).attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',2);
-  serie.forEach((s,i)=>{
-    svg.append('rect').attr('x',puntos[i][0]-paso/2).attr('y',0).attr('width',paso).attr('height',h).attr('fill','transparent').style('cursor','pointer')
-      .on('mousemove', ev=> mostrarTooltipAgenda(`<strong>${s.semana}</strong><br>Intensidad: ${s.intensidad}`, ev))
-      .on('mouseleave', ocultarTooltipAgenda);
-  });
+function pintarPropuestasAtencion(propuestas, alertas){
+  const cont = document.getElementById('lista-propuestas-atencion');
+  if(!cont) return;
+  if(!alertas || !alertas.length){ cont.innerHTML = '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'; return; }
+  const mapa = {}; (propuestas||[]).forEach(p=> mapa[p.tema]=p.propuesta);
+  cont.innerHTML = alertas.map(a=>`
+    <div style="padding:8px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema-nombre="${a.nombre}">
+      <div style="font-size:12.5px;font-weight:700;">${a.nombre}</div>
+      <p style="font-size:11px;color:var(--ink-3);margin:3px 0 0;line-height:1.5;">${mapa[a.nombre] || 'Monitorear su evolución en los próximos días.'}</p>
+    </div>`).join('');
 }
 
-// BURBUJAS DE TEMAS -- fuerza real, arriba=alza / abajo=baja
-function dibujarBurbujasTemas(burbujas){
-  const svgEl = document.getElementById('burbujas-temas-svg');
-  if(!svgEl || !burbujas || !burbujas.length) return;
-  const w=440, h=280;
-  const maxValor = Math.max(...burbujas.map(b=>b.volumen_total), 1);
-  const radioDe = v => 10 + (v/maxValor) * 32;
-  const nodos = burbujas.map(b=>({
-    ...b, r: radioDe(b.volumen_total), color: colorCategoriaFijo(b.categoria),
-    x: 40+Math.random()*(w-80),
-    y: b.tendencia_pct>0 ? h*0.25+Math.random()*40 : b.tendencia_pct<0 ? h*0.75-Math.random()*40 : h*0.5
-  }));
-  const sim = d3.forceSimulation(nodos).force('x',d3.forceX(w/2).strength(0.03))
-    .force('y',d3.forceY(d=>d.y).strength(0.12)).force('collide',d3.forceCollide(d=>d.r+2)).stop();
-  for(let i=0;i<150;i++) sim.tick();
-  const svg = d3.select(svgEl);
-  svg.selectAll('*').remove();
-  svg.append('line').attr('x1',0).attr('x2',w).attr('y1',h/2).attr('y2',h/2).attr('stroke','var(--line)').attr('stroke-dasharray','3 3');
-  svg.append('text').attr('x',6).attr('y',14).attr('font-size',8).attr('fill','var(--ink-3)').text('en alza');
-  svg.append('text').attr('x',6).attr('y',h-6).attr('font-size',8).attr('fill','var(--ink-3)').text('en baja');
-  const g = svg.selectAll('g').data(nodos).join('g').attr('transform',d=>`translate(${d.x},${d.y})`).style('cursor','pointer');
-  g.append('circle').attr('r',d=>d.r).attr('fill',d=>d.color).attr('opacity',0.8).attr('stroke',d=>d.color).attr('stroke-width',1.5);
-  g.filter(d=>d.r>22).append('text').attr('text-anchor','middle').attr('dy',3).attr('font-size',d=>Math.min(9.5,d.r*0.32)).attr('fill','#0E1116').attr('font-weight',700)
-    .text(d=> d.nombre.length>14 ? d.nombre.slice(0,12)+'…' : d.nombre);
-  g.on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br>Volumen: ${d.volumen_total} · Tendencia: ${d.tendencia_pct>0?'+':''}${d.tendencia_pct}%`, ev); }).on('mouseleave', ocultarTooltipAgenda);
+function pintarTablaPatrones(patrones){
+  const cont = document.getElementById('tabla-patrones');
+  if(!cont) return;
+  if(!patrones || !patrones.length){ cont.innerHTML = '<p style="font-size:11px;color:var(--ink-3);">Sin coincidencias repetidas todavía.</p>'; return; }
+  cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:11px;">
+    <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
+      <th style="text-align:left;padding:4px 4px;color:var(--ink-3);font-weight:600;">Tema A</th>
+      <th style="text-align:left;padding:4px 4px;color:var(--ink-3);font-weight:600;">Tema B</th>
+      <th style="text-align:right;padding:4px 4px;color:var(--ink-3);font-weight:600;">Confiabilidad</th>
+    </tr></thead>
+    <tbody>${patrones.slice(0,6).map(p=>{
+      const conf = p.semanas_comun>=6 ? {t:'Sólida', c:'var(--riesgo-bajo)'} : p.semanas_comun>=4 ? {t:'Moderada', c:'var(--riesgo-medio)'} : {t:'Temprana', c:'var(--ink-3)'};
+      return `<tr style="border-bottom:1px solid var(--line);">
+        <td style="padding:5px 4px;">${p.tema_a}</td>
+        <td style="padding:5px 4px;">${p.tema_b}</td>
+        <td style="padding:5px 4px;text-align:right;color:${conf.c};font-weight:600;">${conf.t}</td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
 }
 
-// ACTORES -- ranking horizontal con barra de magnitud, estilo DISTINTO a las burbujas
-function dibujarRankingActores(actores){
-  const cont = document.getElementById('ranking-actores-vis');
-  if(!cont || !actores || !actores.length) return;
+function pintarTablaPulso(serie){
+  const cont = document.getElementById('tabla-pulso');
+  if(!cont || !serie || !serie.length) { if(cont) cont.innerHTML=''; return; }
+  const ultimas = serie.slice(-8);
+  const max = Math.max(...ultimas.map(s=>s.intensidad), 1);
+  cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+    <tbody>${ultimas.map(s=>{
+      const pct = Math.round((s.intensidad/max)*100);
+      return `<tr style="border-bottom:1px solid var(--line);">
+        <td style="padding:4px 4px;color:var(--ink-3);white-space:nowrap;">${s.semana}</td>
+        <td style="padding:4px 4px;width:100%;"><div style="background:var(--bg-1);border-radius:99px;height:8px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--riesgo-alto);opacity:0.8;"></div></div></td>
+        <td style="padding:4px 4px;text-align:right;color:var(--ink-2);font-weight:600;">${s.intensidad}</td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
+}
+
+function pintarTablaTemas(burbujas){
+  const cont = document.getElementById('tabla-temas');
+  if(!cont || !burbujas || !burbujas.length) { if(cont) cont.innerHTML=''; return; }
+  const top = [...burbujas].sort((a,b)=>b.volumen_total-a.volumen_total).slice(0,8);
+  cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+    <tbody>${top.map(t=>{
+      const colorTend = t.tendencia_pct>0 ? 'var(--riesgo-alto)' : t.tendencia_pct<0 ? 'var(--riesgo-bajo)' : 'var(--ink-3)';
+      const flecha = t.tendencia_pct>0 ? '↑' : t.tendencia_pct<0 ? '↓' : '→';
+      return `<tr style="border-bottom:1px solid var(--line);cursor:pointer;" data-tema-nombre="${t.nombre}">
+        <td style="padding:4px 4px;"><span style="width:7px;height:7px;border-radius:2px;background:${colorCategoriaFijo(t.categoria)};display:inline-block;margin-right:5px;"></span>${t.nombre.length>26?t.nombre.slice(0,24)+'…':t.nombre}</td>
+        <td style="padding:4px 4px;text-align:right;color:var(--ink-2);">${t.volumen_total}</td>
+        <td style="padding:4px 4px;text-align:right;color:${colorTend};font-weight:600;">${flecha}</td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
+}
+
+function pintarTablaActores(actores){
+  const cont = document.getElementById('tabla-actores');
+  if(!cont || !actores || !actores.length) { if(cont) cont.innerHTML=''; return; }
   const top = actores.slice(0,8);
   const max = Math.max(...top.map(a=>a.presencia), 1);
-  cont.innerHTML = top.map((a,i)=>{
-    const pct = Math.round((a.presencia/max)*100);
-    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <span style="font-family:var(--f-display);font-size:11px;color:var(--ink-3);width:16px;">${i+1}</span>
-      <span style="font-size:11.5px;width:150px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${a.nombre}</span>
-      <div style="flex:1;background:var(--bg-1);border-radius:99px;height:10px;overflow:hidden;">
-        <div style="width:${pct}%;height:100%;background:var(--teal);"></div>
-      </div>
-      <span style="font-size:10px;color:var(--ink-3);width:24px;text-align:right;">${a.presencia}</span>
-    </div>`;
-  }).join('');
+  cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+    <tbody>${top.map((a,i)=>{
+      const pct = Math.round((a.presencia/max)*100);
+      return `<tr style="border-bottom:1px solid var(--line);">
+        <td style="padding:4px 4px;color:var(--ink-3);">${i+1}</td>
+        <td style="padding:4px 4px;">${a.nombre.length>22?a.nombre.slice(0,20)+'…':a.nombre}</td>
+        <td style="padding:4px 4px;width:60px;"><div style="background:var(--bg-1);border-radius:99px;height:7px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--teal);"></div></div></td>
+        <td style="padding:4px 4px;text-align:right;color:var(--ink-2);font-weight:600;">${a.presencia}</td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
 }
 
 document.addEventListener('ecosistema:datos-listos', renderAnalisis);
