@@ -304,6 +304,24 @@ function lecturaTendenciaGeneral(serie){
   return f;
 }
 
+function dibujarBarrasCategoria(temas){
+  const cont = document.getElementById('analisis-barras-categoria');
+  if(!cont) return;
+  const conteo = desgloseCategoria(temas);
+  const total = Object.values(conteo).reduce((s,v)=>s+v,0) || 1;
+  const ordenado = CATEGORIAS_ANALISIS.map(c=>({cat:c, n:conteo[c]||0})).sort((a,b)=>b.n-a.n);
+  cont.innerHTML = ordenado.map(({cat,n})=>{
+    const pct = Math.round((n/total)*100);
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">
+      <span style="font-size:11px;width:140px;flex-shrink:0;">${cat}</span>
+      <div style="flex:1;background:var(--bg-1);border-radius:99px;height:14px;overflow:hidden;">
+        <div style="width:${pct}%;height:100%;background:${colorCategoriaFijo(cat)};"></div>
+      </div>
+      <span style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);width:60px;text-align:right;">${n} tema${n!==1?'s':''} (${pct}%)</span>
+    </div>`;
+  }).join('');
+}
+
 function renderAnalisis(){
   const cont = document.getElementById('analisis-contenido');
   if(!cont) return;
@@ -330,7 +348,6 @@ function renderAnalisis(){
     </div>
     <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
       <div class="eyebrow" style="font-size:11px;">📊 ESTADO GENERAL</div>
-      <p style="font-size:12px;line-height:1.6;background:var(--bg-1);border-left:3px solid var(--teal);padding:8px 12px;margin:8px 0;">${lecturaEstadoGeneral(temas, tensionGeneral, pctAlza)}</p>
       <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:10px 0 14px;">
         <div style="flex:1;min-width:220px;">${svgVelocimetro(tensionGeneral)}</div>
         <div style="flex:1;min-width:220px;">
@@ -362,15 +379,20 @@ function renderAnalisis(){
           <span style="font-size:16px;">${at.icono}</span>
           <div style="flex:1;">
             <div style="font-size:13px;font-weight:700;">${a.tema.nombre}</div>
-            <p style="font-size:11px;line-height:1.5;color:var(--ink-2);margin:3px 0 0;">${lecturaAtencion(a, at)}</p>
+            <p style="font-size:10.5px;color:var(--ink-3);font-family:var(--f-mono);margin:3px 0 0;">${at.texto} · ${a.notas} notas en 7 días</p>
           </div>
         </div>`;}).join('')
       : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
     </div>
 
     <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
+      <div class="eyebrow" style="font-size:11px;">📊 PESO ACTUAL POR CATEGORÍA</div>
+      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Qué categoría domina la agenda hoy, de un vistazo — temas activos, no histórico.</p>
+      <div id="analisis-barras-categoria"></div>
+    </div>
+
+    <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
       <div class="eyebrow" style="font-size:11px;">📈 TENDENCIA GENERAL</div>
-      <p style="font-size:12px;line-height:1.6;background:var(--bg-1);border-left:3px solid var(--teal);padding:8px 12px;margin:8px 0;">${lecturaTendenciaGeneral(construirSerieArea(temas))}</p>
       <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 8px;">Frecuencia por categoría, todo el sexenio — pasa el cursor para ver el detalle de cada mes.</p>
       <svg id="analisis-area-svg" style="width:100%;height:200px;display:block;"></svg>
     </div>
@@ -405,6 +427,7 @@ function renderAnalisis(){
   `;
 
   dibujarAreaApilada(temas);
+  dibujarBarrasCategoria(temas);
 
   document.getElementById('analisis-patrones').innerHTML = patrones.length ? `
     <table style="width:100%;border-collapse:collapse;font-size:11.5px;">
