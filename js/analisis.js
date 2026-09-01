@@ -207,19 +207,19 @@ function abrirModalListaKpi(titulo, lista){
 function dibujarVelocimetro(valor){
   const svgEl = document.getElementById('velocimetro-tension');
   if(!svgEl) return;
-  const cx=100, cy=90, r=68, grosor=11;
-  const color = valor>=66 ? '#F45B69' : valor>=33 ? '#E0A85C' : '#59C48A';
-  const arco = (desde, hasta, col, op) => {
-    const a1 = Math.PI*(1-desde/100), a2 = Math.PI*(1-hasta/100);
-    const x1=cx+r*Math.cos(a1), y1=cy-r*Math.sin(a1), x2=cx+r*Math.cos(a2), y2=cy-r*Math.sin(a2);
-    return `<path d="M${x1},${y1} A${r},${r} 0 0 1 ${x2},${y2}" fill="none" stroke="${col}" stroke-width="${grosor}" stroke-linecap="round" opacity="${op}"/>`;
-  };
-  const angulo = Math.PI - (valor/100)*Math.PI;
-  const puntaX = cx + (r-2)*Math.cos(angulo), puntaY = cy - (r-2)*Math.sin(angulo);
+  const cx=100, cy=88, r=68, grosor=13;
+  const colorEn = v => v>=66 ? '#F45B69' : v>=33 ? '#E0A85C' : '#59C48A';
+  let arcos = '';
+  const segmentos = 40;
+  for(let i=0;i<segmentos;i++){
+    const v0 = (i/segmentos)*100, v1 = ((i+1)/segmentos)*100;
+    const a0 = Math.PI*(1-v0/100), a1 = Math.PI*(1-v1/100);
+    const x0=cx+r*Math.cos(a0), y0=cy-r*Math.sin(a0), x1=cx+r*Math.cos(a1), y1=cy-r*Math.sin(a1);
+    arcos += `<path d="M${x0},${y0} A${r},${r} 0 0 1 ${x1},${y1}" fill="none" stroke="${colorEn((v0+v1)/2)}" stroke-width="${grosor}" stroke-linecap="butt" opacity="${v1<=valor?1:0.18}"/>`;
+  }
+  const color = colorEn(valor);
   svgEl.innerHTML = `
-    ${arco(0.5,99.5,'var(--bg-1)',1)}
-    ${arco(0.5,valor,color,1)}
-    <circle cx="${puntaX}" cy="${puntaY}" r="7" fill="${color}" stroke="var(--bg-0)" stroke-width="2.5"/>
+    ${arcos}
     <text x="${cx}" y="${cy+24}" text-anchor="middle" font-family="var(--f-display)" font-size="26" font-weight="700" fill="${color}">${valor}</text>
     <text x="${cx}" y="${cy+37}" text-anchor="middle" font-size="8.5" fill="var(--ink-3)">tensión general</text>`;
 }
@@ -261,11 +261,12 @@ function pintarTablaPulso(serie){
   if(!cont || !serie || !serie.length) { if(cont) cont.innerHTML=''; return; }
   const ultimas = serie.slice(-8);
   const max = Math.max(...ultimas.map(s=>s.intensidad), 1);
-  cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+  cont.innerHTML = `<p style="font-size:9px;color:var(--ink-3);margin:0 0 6px;">Suma de la intensidad (0-10) de todas las notas de esa semana, en todos los temas activos — a más alto, más "caliente" estuvo la agenda esa semana.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:10.5px;">
     <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
       <th style="text-align:left;padding:4px;color:var(--ink-3);font-weight:600;">Semana de</th>
       <th></th>
-      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Intensidad acumulada</th>
+      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Intensidad de la semana</th>
     </tr></thead>
     <tbody>${ultimas.map(s=>{
       const pct = Math.round((s.intensidad/max)*100);
@@ -280,11 +281,11 @@ function pintarTablaPulso(serie){
 function pintarTablaTemas(burbujas){
   const cont = document.getElementById('tabla-temas');
   if(!cont || !burbujas || !burbujas.length) { if(cont) cont.innerHTML=''; return; }
-  const top = [...burbujas].sort((a,b)=>b.volumen_total-a.volumen_total).slice(0,8);
+  const top = [...burbujas].sort((a,b)=>b.notas_30d-a.notas_30d).slice(0,8);
   cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
     <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
       <th style="text-align:left;padding:4px;color:var(--ink-3);font-weight:600;">Tema</th>
-      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Notas acumuladas</th>
+      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Notas (30 días)</th>
       <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Tendencia</th>
     </tr></thead>
     <tbody>${top.map(t=>{
@@ -292,7 +293,7 @@ function pintarTablaTemas(burbujas){
       const flecha = t.tendencia_pct>0 ? '↑ sube' : t.tendencia_pct<0 ? '↓ baja' : '→ estable';
       return `<tr style="border-bottom:1px solid var(--line);cursor:pointer;" data-tema-nombre="${t.nombre}">
         <td style="padding:4px;"><span style="width:7px;height:7px;border-radius:2px;background:${colorCategoriaFijo(t.categoria)};display:inline-block;margin-right:5px;"></span>${t.nombre.length>24?t.nombre.slice(0,22)+'…':t.nombre}</td>
-        <td style="padding:4px;text-align:right;color:var(--ink-2);">${t.volumen_total}</td>
+        <td style="padding:4px;text-align:right;color:var(--ink-2);">${t.notas_30d}</td>
         <td style="padding:4px;text-align:right;color:${colorTend};font-weight:600;">${flecha}</td>
       </tr>`;
     }).join('')}</tbody></table>`;
@@ -303,12 +304,13 @@ function pintarTablaActores(actores){
   if(!cont || !actores || !actores.length) { if(cont) cont.innerHTML=''; return; }
   const top = actores.slice(0,8);
   const max = Math.max(...top.map(a=>a.presencia), 1);
-  cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+  cont.innerHTML = `<p style="font-size:9px;color:var(--ink-3);margin:0 0 6px;">En cuántos temas distintos de la agenda aparece este actor — no es conteo de notas individuales.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:10.5px;">
     <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
       <th></th>
       <th style="text-align:left;padding:4px;color:var(--ink-3);font-weight:600;">Actor</th>
       <th></th>
-      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Apariciones en medios</th>
+      <th style="text-align:right;padding:4px;color:var(--ink-3);font-weight:600;">Temas donde aparece</th>
     </tr></thead>
     <tbody>${top.map((a,i)=>{
       const pct = Math.round((a.presencia/max)*100);
