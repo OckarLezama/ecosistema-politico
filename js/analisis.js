@@ -324,6 +324,10 @@ function renderAnalisis(){
   const colorBalance = pctAlza>=60 ? 'var(--riesgo-alto)' : pctAlza<=40 ? 'var(--riesgo-bajo)' : 'var(--riesgo-medio)';
 
   cont.innerHTML = `
+    <div class="zona-analisis" id="zona-lectura-ia" style="background:var(--bg-2);border:1.5px solid var(--teal);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
+      <div class="eyebrow" style="font-size:11px;color:var(--teal);">🧠 LECTURA DE INTELIGENCIA</div>
+      <p style="font-size:11px;color:var(--ink-3);margin:4px 0 0;">Cargando...</p>
+    </div>
     <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
       <div class="eyebrow" style="font-size:11px;">📊 ESTADO GENERAL</div>
       <p style="font-size:12px;line-height:1.6;background:var(--bg-1);border-left:3px solid var(--teal);padding:8px 12px;margin:8px 0;">${lecturaEstadoGeneral(temas, tensionGeneral, pctAlza)}</p>
@@ -482,6 +486,35 @@ function renderAnalisis(){
     window.print();
     setTimeout(()=> document.body.classList.remove('modo-impresion-analisis'), 500);
   });
+
+  cargarLecturaIA();
+}
+
+// carga la lectura generada por la API de Claude 2x al día -- si aún no existe (primera vez,
+// o falló la corrida), muestra un mensaje honesto, nunca inventa el texto en el navegador
+function cargarLecturaIA(){
+  const zona = document.getElementById('zona-lectura-ia');
+  if(!zona) return;
+  fetch('data/analisis_ia.json?t=' + Date.now())
+    .then(r=>{ if(!r.ok) throw new Error('sin archivo'); return r.json(); })
+    .then(datos=>{
+      const l = datos.lectura;
+      const fecha = new Date(datos.generado_en).toLocaleString('es-MX', {dateStyle:'medium', timeStyle:'short'});
+      zona.innerHTML = `
+        <div class="eyebrow" style="font-size:11px;color:var(--teal);">🧠 LECTURA DE INTELIGENCIA</div>
+        <p style="font-size:9.5px;color:var(--ink-3);margin:2px 0 8px;font-family:var(--f-mono);">Generada ${fecha}</p>
+        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Estado general:</strong> ${l.estado_general}</p>
+        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Pulso político:</strong> ${l.pulso_politico}</p>
+        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Patrones:</strong> ${l.patrones_detectados}</p>
+        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Alertas:</strong> ${l.alertas_tempranas}</p>
+        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Tendencia por categoría:</strong> ${l.tendencia_por_categoria}</p>
+        <p style="font-size:12px;line-height:1.6;margin:0;"><strong>Actores centrales:</strong> ${l.actores_centrales}</p>`;
+    })
+    .catch(()=>{
+      zona.innerHTML = `
+        <div class="eyebrow" style="font-size:11px;color:var(--teal);">🧠 LECTURA DE INTELIGENCIA</div>
+        <p style="font-size:11px;color:var(--ink-3);margin:4px 0 0;">Aún no se ha generado la primera lectura — corre cada día a las 8:00 y 14:00 (hora CDMX). Mientras tanto, las secciones de abajo siguen funcionando con el cálculo automático de siempre.</p>`;
+    });
 }
 
 document.addEventListener('ecosistema:datos-listos', renderAnalisis);
