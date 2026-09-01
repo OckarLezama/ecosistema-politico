@@ -76,11 +76,11 @@ function pintarDashboard(datos, temas){
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:76% 21%;gap:24px;margin-bottom:20px;">
+    <div style="display:grid;grid-template-columns:78% 19%;gap:24px;margin-bottom:20px;align-items:center;">
       <div>
         <p style="font-size:13.5px;line-height:1.8;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.estado_general)} ${conNegritas(l.pulso_politico)}</p>
       </div>
-      <svg id="velocimetro-tension" viewBox="0 0 220 155" style="width:100%;height:100%;min-height:130px;"></svg>
+      <svg id="velocimetro-tension" viewBox="0 0 200 130" style="width:150px;height:98px;margin:0 auto;"></svg>
     </div>
 
     <div style="display:flex;gap:24px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);margin-bottom:20px;">
@@ -102,18 +102,19 @@ function pintarDashboard(datos, temas){
         <div>
           <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-alto);margin-bottom:6px;height:34px;">Requiere atención</div>
           <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;min-height:64px;">${conNegritas(l.alertas_tempranas)}</p>
-          <div id="lista-propuestas-atencion" style="border-top:1px solid var(--line-strong);"></div>
+          <div id="lista-propuestas-atencion"></div>
         </div>
         <div>
           <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--riesgo-medio);margin-bottom:6px;height:34px;">Patrones detectados</div>
           <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;text-align:justify;min-height:64px;">${conNegritas(l.patrones_detectados)}</p>
-          <div id="tabla-patrones" style="border-top:1px solid var(--line-strong);"></div>
+          <p style="font-size:9.5px;color:var(--ink-3);margin:0 0 6px;">Estos temas coincidieron en actividad la misma semana varias veces seguidas — sugiere que se mueven juntos. Confiabilidad = cuántas veces se ha repetido ese patrón.</p>
+          <div id="tabla-patrones"></div>
         </div>
       </div>
     </div>
 
     <div style="border-top:1px solid var(--line-strong);padding-top:16px;margin-bottom:20px;">
-      <div style="display:grid;grid-template-columns:40% 40% 20%;gap:20px;align-items:start;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
         <div>
           <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Actores centrales</div>
           <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.actores_centrales)}</p>
@@ -121,10 +122,6 @@ function pintarDashboard(datos, temas){
         <div>
           <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--ink-1);margin-bottom:6px;">Tendencia por categoría</div>
           <p style="font-size:12px;line-height:1.65;color:var(--ink-2);margin:0;text-align:justify;">${conNegritas(l.tendencia_por_categoria)}</p>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;">
-          <svg id="dona-categoria-svg" viewBox="0 0 150 150" style="width:100px;height:100px;"></svg>
-          <div id="dona-categoria-leyenda" style="width:100%;font-size:9px;margin-top:6px;"></div>
         </div>
       </div>
     </div>
@@ -153,7 +150,6 @@ function pintarDashboard(datos, temas){
   `;
 
   dibujarVelocimetro(tension);
-  dibujarDona(temas);
   pintarPropuestasAtencion(l.propuestas_atencion, db.alertas);
   pintarTablaPatrones(db.patrones);
   pintarTablaPulso(db.aura_intensidad);
@@ -179,15 +175,31 @@ function activarHoverKpis(db){
   document.querySelectorAll('.kpi-hover').forEach(el=>{
     const g = grupos[el.dataset.kpi];
     if(!g) return;
-    el.addEventListener('mousemove', ev=>{
-      let html = `<strong>${g.titulo}</strong><br><span style="font-size:10px;opacity:.85;">${g.lista.length} tema${g.lista.length!==1?'s':''}</span>`;
-      if(g.lista.length){
-        html += `<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.5;">${g.lista.slice(0,10).join('<br>')}</span>`;
-      }
-      mostrarTooltipAgenda(html, ev);
-    });
-    el.addEventListener('mouseleave', ocultarTooltipAgenda);
+    el.addEventListener('click', ()=> abrirModalListaKpi(g.titulo, g.lista));
   });
+}
+
+function abrirModalListaKpi(titulo, lista){
+  let modal = document.getElementById('kpi-lista-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'kpi-lista-modal'; modal.className = 'ficha-modal-backdrop';
+    modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = `<div class="ficha-modal-card" style="max-width:420px;max-height:70vh;overflow-y:auto;">
+    <button class="ficha-modal-close">✕</button>
+    <div class="eyebrow">${titulo} (${lista.length})</div>
+    ${lista.length ? lista.map(n=>`<div style="font-size:11.5px;padding:5px 0;border-bottom:1px solid var(--line);cursor:pointer;" data-tema-nombre="${n}">${n}</div>`).join('')
+      : '<p style="font-size:12px;color:var(--ink-3);">Sin temas en este grupo.</p>'}
+  </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.querySelectorAll('[data-tema-nombre]').forEach(el=> el.addEventListener('click', ()=>{
+    modal.classList.remove('open');
+    const t = ECOSISTEMA.temas.find(x=>x.nombre===el.dataset.temaNombre);
+    if(t) abrirFichaTema(t.id);
+  }));
+  modal.classList.add('open');
 }
 
 // VELOCÍMETRO -- mejor calidad visual: gradiente suave real (muchos segmentos finos en vez
@@ -195,64 +207,21 @@ function activarHoverKpis(db){
 function dibujarVelocimetro(valor){
   const svgEl = document.getElementById('velocimetro-tension');
   if(!svgEl) return;
-  const cx=110, cy=125, r=100, grosor=18;
-  const colorEn = v => v>=66 ? '#F45B69' : v>=33 ? '#E0A85C' : '#59C48A';
-  let arcos = '';
-  const segmentos = 60;
-  for(let i=0;i<segmentos;i++){
-    const v0 = (i/segmentos)*100, v1 = ((i+1)/segmentos)*100;
-    const a0 = Math.PI*(1-v0/100), a1 = Math.PI*(1-v1/100);
-    const x0=cx+r*Math.cos(a0), y0=cy-r*Math.sin(a0), x1=cx+r*Math.cos(a1), y1=cy-r*Math.sin(a1);
-    arcos += `<path d="M${x0},${y0} A${r},${r} 0 0 1 ${x1},${y1}" fill="none" stroke="${colorEn((v0+v1)/2)}" stroke-width="${grosor}" stroke-linecap="butt"/>`;
-  }
-  let marcas = '';
-  [0,25,50,75,100].forEach(v=>{
-    const a = Math.PI*(1-v/100);
-    const xi=cx+(r-grosor/2-3)*Math.cos(a), yi=cy-(r-grosor/2-3)*Math.sin(a);
-    const xo=cx+(r+grosor/2+3)*Math.cos(a), yo=cy-(r+grosor/2+3)*Math.sin(a);
-    marcas += `<line x1="${xi}" y1="${yi}" x2="${xo}" y2="${yo}" stroke="var(--bg-2)" stroke-width="2"/>`;
-  });
+  const cx=100, cy=90, r=68, grosor=11;
+  const color = valor>=66 ? '#F45B69' : valor>=33 ? '#E0A85C' : '#59C48A';
+  const arco = (desde, hasta, col, op) => {
+    const a1 = Math.PI*(1-desde/100), a2 = Math.PI*(1-hasta/100);
+    const x1=cx+r*Math.cos(a1), y1=cy-r*Math.sin(a1), x2=cx+r*Math.cos(a2), y2=cy-r*Math.sin(a2);
+    return `<path d="M${x1},${y1} A${r},${r} 0 0 1 ${x2},${y2}" fill="none" stroke="${col}" stroke-width="${grosor}" stroke-linecap="round" opacity="${op}"/>`;
+  };
   const angulo = Math.PI - (valor/100)*Math.PI;
-  const puntaX = cx + (r-grosor/2-6)*Math.cos(angulo), puntaY = cy - (r-grosor/2-6)*Math.sin(angulo);
-  const colorTexto = colorEn(valor);
+  const puntaX = cx + (r-2)*Math.cos(angulo), puntaY = cy - (r-2)*Math.sin(angulo);
   svgEl.innerHTML = `
-    <defs><filter id="sombra-aguja" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.4"/>
-    </filter></defs>
-    ${arcos}${marcas}
-    <line x1="${cx}" y1="${cy}" x2="${puntaX}" y2="${puntaY}" stroke="var(--ink-1)" stroke-width="3" stroke-linecap="round" filter="url(#sombra-aguja)"/>
-    <circle cx="${cx}" cy="${cy}" r="6" fill="var(--bg-1)" stroke="var(--ink-1)" stroke-width="2.5"/>
-    <text x="${cx}" y="${cy+28}" text-anchor="middle" font-family="var(--f-display)" font-size="30" font-weight="700" fill="${colorTexto}">${valor}</text>
-    <text x="${cx}" y="${cy+41}" text-anchor="middle" font-size="9" fill="var(--ink-3)" letter-spacing="0.3">tensión general</text>`;
-}
-
-function dibujarDona(temas){
-  const svgEl = document.getElementById('dona-categoria-svg');
-  if(!svgEl) return;
-  const conteo = desgloseCategoria(temas);
-  const datos = CATEGORIAS_ANALISIS.map(c=>({cat:c, n:conteo[c]||0})).filter(d=>d.n>0);
-  const total = datos.reduce((s,d)=>s+d.n,0) || 1;
-  const svg = d3.select(svgEl);
-  svg.selectAll('*').remove();
-  const g = svg.append('g').attr('transform','translate(75,75)');
-  const arco = d3.arc().innerRadius(42).outerRadius(66);
-  const arcos = d3.pie().value(d=>d.n).sort(null)(datos);
-  g.selectAll('path').data(arcos).join('path').attr('d',arco).attr('fill',d=>colorCategoriaFijo(d.data.cat))
-    .attr('stroke','var(--bg-1)').attr('stroke-width',2).style('cursor','pointer')
-    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.data.cat}</strong>: ${d.data.n} (${Math.round(d.data.n/total*100)}%)`, ev); })
-    .on('mouseleave', ocultarTooltipAgenda);
-  g.append('text').attr('text-anchor','middle').attr('dy',-2).attr('font-family','var(--f-display)').attr('font-size',20).attr('font-weight',700).attr('fill','var(--ink-1)').text(total);
-  g.append('text').attr('text-anchor','middle').attr('dy',12).attr('font-size',6.5).attr('fill','var(--ink-3)').text('temas activos');
-
-  const leyendaEl = document.getElementById('dona-categoria-leyenda');
-  if(leyendaEl){
-    leyendaEl.innerHTML = datos.sort((a,b)=>b.n-a.n).map(d=>`
-      <div style="display:flex;align-items:center;gap:6px;padding:2px 0;">
-        <span style="width:8px;height:8px;border-radius:2px;background:${colorCategoriaFijo(d.cat)};flex-shrink:0;"></span>
-        <span style="flex:1;color:var(--ink-2);">${d.cat}</span>
-        <span style="color:var(--ink-3);">${Math.round(d.n/total*100)}%</span>
-      </div>`).join('');
-  }
+    ${arco(0.5,99.5,'var(--bg-1)',1)}
+    ${arco(0.5,valor,color,1)}
+    <circle cx="${puntaX}" cy="${puntaY}" r="7" fill="${color}" stroke="var(--bg-0)" stroke-width="2.5"/>
+    <text x="${cx}" y="${cy+24}" text-anchor="middle" font-family="var(--f-display)" font-size="26" font-weight="700" fill="${color}">${valor}</text>
+    <text x="${cx}" y="${cy+37}" text-anchor="middle" font-size="8.5" fill="var(--ink-3)">tensión general</text>`;
 }
 
 function pintarPropuestasAtencion(propuestas, alertas){
@@ -260,8 +229,8 @@ function pintarPropuestasAtencion(propuestas, alertas){
   if(!cont) return;
   if(!alertas || !alertas.length){ cont.innerHTML = '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'; return; }
   const mapa = {}; (propuestas||[]).forEach(p=> mapa[p.tema]=p.propuesta);
-  cont.innerHTML = alertas.map(a=>`
-    <div style="padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer;" data-tema-nombre="${a.nombre}">
+  cont.innerHTML = alertas.map((a,i)=>`
+    <div style="padding:8px 0;${i<alertas.length-1?'border-bottom:1px solid var(--line);':''}cursor:pointer;" data-tema-nombre="${a.nombre}">
       <div style="font-size:12.5px;font-weight:700;">${a.nombre}</div>
       <p style="font-size:11px;color:var(--ink-3);margin:3px 0 0;line-height:1.5;">${mapa[a.nombre] || 'Monitorear su evolución en los próximos días.'}</p>
     </div>`).join('');
