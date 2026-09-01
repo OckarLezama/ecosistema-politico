@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-ANÁLISIS CON IA — genera la lectura de inteligencia 1-2 veces al día.
+ANÁLISIS CON IA — genera la lectura de inteligencia 1 vez al día.
 
 Regla de oro: Claude NUNCA recibe artículos crudos ni inventa datos nuevos.
-Solo recibe los MISMOS números que ya calcula el sitio (JS) — alertas, z-score,
-correlación de Pearson, tendencias, rankings — y los convierte en prosa real,
-como lo haría un analista. Nunca se le pide predecir el futuro ni especular
-sobre facciones internas o causalidad no documentada (eso quedó fuera desde
-las conversaciones anteriores). El resultado se guarda en un JSON que el
-sitio solo lee y muestra — el sitio nunca llama a la API directo (la llave
-quedaría expuesta en el navegador).
+Solo recibe los MISMOS números que ya calcula el sitio (JS) -- alertas, z-score,
+correlación de Pearson, tendencias, rankings -- y los convierte en prosa real,
+en lenguaje simple, con un candado automático que revisa que no se cuele jerga
+técnica sin traducir. Nunca se le pide predecir el futuro ni especular sobre
+facciones internas o causalidad no documentada. El resultado se guarda en un
+JSON que el sitio solo lee y muestra -- el sitio nunca llama a la API directo.
 """
-import os, csv, json, math
+import os, csv, json, math, re
 from datetime import datetime, timedelta
 from statistics import mean, pstdev
 from zoneinfo import ZoneInfo
@@ -30,6 +29,15 @@ TIPO_ATENCION = {
 }
 UMBRAL_ALERTA_7D = 15
 TZ_MX = ZoneInfo('America/Mexico_City')
+INICIO_SEXENIO = datetime(2024, 10, 1).date()
+
+# frases/patrones prohibidos -- si el texto de la IA los contiene, se le pide reescribir
+# antes de guardarlo. Esto es un candado real, no solo una instrucción que puede fallar.
+PATRONES_PROHIBIDOS = [
+    r'z-score', r'z score', r'correlaci[oó]n de pearson',
+    r'\b\d+\s*notas?\b(?!\s*\()',  # "31 notas" suelto, fuera de paréntesis
+    r'\b\d+\s*menci(o|ó)n(es)?\b(?!\s*\()',  # "1 mención" suelto
+]
 
 
 def cargar_csv(nombre):
@@ -74,7 +82,7 @@ def calcular_todo():
         (en_alza if cambio > 0 else en_baja if cambio < 0 else en_alza).append(item)
     en_alza = [i for i in en_alza if i['cambio_pct'] > 0]
 
-    # alertas con z-score real
+    # alertas con z-score real (el dato se calcula igual, solo cambia cómo se REDACTA después)
     alertas = []
     for t in temas_reales:
         evs = eventos_por_tema[t['id']]
@@ -94,6 +102,10 @@ def calcular_todo():
         alertas.append({'nombre': t['nombre'], 'categoria': t['categoria'], 'tipo_atencion_por_categoria': TIPO_ATENCION.get(t['categoria'], 'general'), 'notas_7d': len(evs_7d), 'intensidad_7d': suma, 'z_score': z})
     alertas.sort(key=lambda a: a['intensidad_7d'], reverse=True)
 
+    # los 3 temas de mayor peso REAL esta semana -- la IA los menciona por nombre,
+    # nunca los elige libremente
+    temas_destacados_semana = [a['nombre'] for a in alertas[:3]]
+
     # patrones de coincidencia semanal + correlacion simple
     semanas_por_tema = {t['id']: {semana_de(e['fecha']) for e in eventos_por_tema[t['id']]} for t in temas_reales}
     patrones = []
@@ -105,9 +117,9 @@ def calcular_todo():
             if len(comunes) >= 2:
                 patrones.append({'tema_a': a['nombre'], 'tema_b': b['nombre'], 'semanas_comun': len(comunes)})
     patrones.sort(key=lambda p: p['semanas_comun'], reverse=True)
-    patrones = patrones[:5]
+    patrones = patrones[:8]
 
-    # tension general (aprox: intensidad promedio normalizada 0-100 por tema activo)
+    # tension general (intensidad promedio normalizada 0-100 por tema activo)
     intensidades_totales = []
     for t in temas_reales:
         evs = eventos_por_tema[t['id']]
@@ -115,11 +127,14 @@ def calcular_todo():
             intensidades_totales.append(mean(float(e['intensidad']) for e in evs))
     tension_general = round((mean(intensidades_totales) / 10) * 100) if intensidades_totales else 0
 
-    # ranking actores en temas en alza + reaccion de oposicion
+    # ranking actores en temas en alza + reaccion de oposicion + presencia general en medios
     ids_alza = {i['nombre'] for i in en_alza}
     nombres_temas_alza = {t['id'] for t in temas_reales if t['nombre'] in ids_alza}
-    conteo_tendencia, conteo_oposicion = defaultdict(int), defaultdict(int)
+    conteo_tendencia, conteo_oposicion, conteo_presencia = defaultdict(int), defaultdict(int), defaultdict(int)
     for ta in tema_actores:
+        if ta['tema_id'] not in ids_reales:
+            continue
+        conteo_presencia[ta['actor_id']] += 1
         if ta['tema_id'] in nombres_temas_alza:
             conteo_tendencia[ta['actor_id']] += 1
         if ta.get('rol') == 'Reacción de oposición':
@@ -132,65 +147,137 @@ def calcular_todo():
         [{'nombre': actores.get(k, k), 'conteo': v} for k, v in conteo_oposicion.items()],
         key=lambda x: x['conteo'], reverse=True)[:6]
 
+    # burbujas de temas: todos los temas activos con su volumen y tendencia
+    burbujas_temas = []
+    for t in temas_reales:
+        evs = eventos_por_tema[t['id']]
+        if not evs:
+            continue
+        tend = next((i['cambio_pct'] for i in en_alza if i['nombre'] == t['nombre']), None)
+        if tend is None:
+            tend = next((i['cambio_pct'] for i in en_baja if i['nombre'] == t['nombre']), 0)
+        burbujas_temas.append({'nombre': t['nombre'], 'categoria': t['categoria'], 'volumen_total': len(evs), 'tendencia_pct': tend})
+
+    # burbujas de actores: presencia general en medios (todos los temas reales)
+    burbujas_actores = sorted(
+        [{'nombre': actores.get(k, k), 'presencia': v} for k, v in conteo_presencia.items()],
+        key=lambda x: x['presencia'], reverse=True)[:15]
+
+    # aura de intensidad: suma semanal de intensidad de TODOS los temas reales,
+    # desde el inicio del sexenio hasta hoy (nunca hacia el futuro)
+    intensidad_por_semana = defaultdict(float)
+    for t in temas_reales:
+        for e in eventos_por_tema[t['id']]:
+            fecha_ev = datetime.strptime(e['fecha'], '%Y-%m-%d').date()
+            if fecha_ev >= INICIO_SEXENIO:
+                intensidad_por_semana[semana_de(e['fecha'])] += float(e['intensidad'])
+    aura_intensidad = [{'semana': s, 'intensidad': round(v, 1)} for s, v in sorted(intensidad_por_semana.items())]
+
     return {
         'temas_activos': len(temas_reales),
         'tension_general': tension_general,
         'en_alza': sorted(en_alza, key=lambda x: x['cambio_pct'], reverse=True)[:8],
         'en_baja': sorted(en_baja, key=lambda x: x['cambio_pct'])[:8],
         'alertas': alertas,
+        'temas_destacados_semana': temas_destacados_semana,
         'patrones': patrones,
         'ranking_tendencia': ranking_tendencia,
         'ranking_oposicion': ranking_oposicion,
+        'burbujas_temas': burbujas_temas,
+        'burbujas_actores': burbujas_actores,
+        'aura_intensidad': aura_intensidad,
     }
 
 
-def construir_prompt(datos):
+def construir_prompt(datos, correccion_previa=None):
+    instruccion_correccion = ''
+    if correccion_previa:
+        instruccion_correccion = f"""
+ATENCIÓN: tu respuesta anterior todavía tenía jerga técnica sin traducir o números sueltos.
+Aquí está lo que escribiste, que debes corregir por completo, sin dejar ni un solo caso:
+{correccion_previa}
+Vuelve a escribir TODO desde cero, sin ese problema."""
+
     return f"""Eres un analista de inteligencia política senior, del nivel que prepara briefs para
 un jefe de Estado. Recibes datos YA CALCULADOS (no artículos, no texto crudo) sobre la agenda
 política de México, sexenio de Sheinbaum.
+{instruccion_correccion}
 
-REGLA MÁS IMPORTANTE, la que más se ha fallado antes: NUNCA dejes un número o término técnico
-suelto sin traducir en la MISMA oración. Prohibido escribir "z-score de 1.2", "31 notas", "1
-mención" como si el lector supiera qué significa eso. En vez de "z-score de 1.2" escribe algo
-como "un nivel claramente por encima de lo habitual para este tema". En vez de "31 notas en 30
-días" escribe "cobertura sostenida y creciente a lo largo del mes". Los números pueden aparecer
-como respaldo entre paréntesis, nunca como el contenido principal de la oración. El lector no
-tiene por qué saber qué es un z-score, una correlación de Pearson, o qué significa "N menciones”
-— tu trabajo es traducirlo, no reportarlo.
+REGLA MÁS IMPORTANTE: NUNCA dejes un número o término técnico suelto sin traducir en la MISMA
+oración. Prohibido escribir "z-score de 1.2", "31 notas", "1 mención" como si el lector supiera
+qué significa eso. En vez de "z-score de 1.2" escribe "un nivel claramente por encima de lo
+habitual para este tema". En vez de "31 notas en 30 días" escribe "cobertura sostenida y
+creciente a lo largo del mes". Los números pueden ir de respaldo entre paréntesis, nunca como
+contenido principal de la oración.
 
-SEGUNDA REGLA: cada oración debe responder "¿y por qué le importa esto a quien toma decisiones?"
-— la implicación, no solo el dato. Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías
-como bloque abstracto.
+SEGUNDA REGLA: cada oración responde "¿y por qué le importa esto a quien toma decisiones?" — la
+implicación, no solo el dato. Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías como
+bloque abstracto.
+
+TERCERA REGLA: en "pulso_politico" y "estado_general", menciona por nombre los temas de esta
+lista -- son los de mayor peso real de la semana, ya calculados, no los elijas tú:
+{json.dumps(datos['temas_destacados_semana'], ensure_ascii=False)}
 
 Para alertas: usa el "tipo_atencion_por_categoria" que ya viene en los datos para decir a qué
-instancia correspondería típicamente (es un mapeo directo, no una opinión tuya).
+instancia correspondería típicamente (mapeo directo, no opinión tuya).
 
-Si algo en los datos rompe un patrón esperado (ej. una persona aparece tanto en un bando como en
-otro), dilo con una explicación concreta de qué podría significar en términos simples (ej. "puede
-tratarse de menciones en contextos distintos, vale la pena revisar el detalle") — nunca dejes la
-frase "merece revisión" sin decir de qué tipo o por qué.
+Para actores_centrales: si un mismo actor aparece tanto en tendencia oficialista como en
+reacción de oposición, dilo con una explicación concreta de qué podría significar en términos
+simples (ej. contextos distintos de mención) — nunca dejes "vale la pena revisar" sin decir de
+qué tipo. Menciona explícitamente si hay o no un actor de oposición que domine claramente el
+posicionamiento crítico esta semana, o si el campo opositor está disperso.
 
 Otras reglas estrictas:
 - NUNCA inventes datos que no estén en el JSON de entrada.
-- NUNCA predigas el futuro ni especules sobre facciones internas, causalidad no documentada,
-  o motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
+- NUNCA prediga el futuro ni especules sobre facciones internas, causalidad no documentada, o
+  motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
 - Un patrón con menos de 4 semanas de coincidencia es "todavía es pronto para tratarlo como
-  patrón confirmado" — dilo en palabras simples, no como jerga de "base limitada".
-- Tono: directo, seguro, como quien ya pensó por el lector — nunca jerga técnica sin traducir.
+  patrón confirmado" — en palabras simples, nunca "base limitada".
 
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
 
-Responde ÚNICAMENTE con un objeto JSON con estas 6 claves (cada valor: 2-4 oraciones en español,
-cada una con dato traducido a lenguaje simple + implicación):
+Responde ÚNICAMENTE con un objeto JSON con estas claves. Las primeras 6 son la lectura
+principal (2-4 oraciones cada una). Las últimas 3 son interpretaciones CORTAS (1-2 oraciones)
+para acompañar gráficas específicas -- mismas reglas de lenguaje simple:
 {{
   "estado_general": "...",
   "pulso_politico": "...",
   "patrones_detectados": "...",
   "alertas_tempranas": "...",
   "tendencia_por_categoria": "...",
-  "actores_centrales": "..."
+  "actores_centrales": "...",
+  "interpretacion_aura": "...",
+  "interpretacion_burbujas_temas": "...",
+  "interpretacion_burbujas_actores": "..."
 }}"""
+
+
+def encontrar_problemas(lectura):
+    texto_completo = ' '.join(str(v) for v in lectura.values())
+    encontrados = []
+    for patron in PATRONES_PROHIBIDOS:
+        m = re.search(patron, texto_completo, re.IGNORECASE)
+        if m:
+            encontrados.append(m.group(0))
+    return encontrados
+
+
+def llamar_claude(cliente, prompt):
+    respuesta = cliente.messages.create(
+        model='claude-sonnet-5',
+        max_tokens=4000,
+        messages=[{'role': 'user', 'content': prompt}],
+    )
+    bloque_texto = next((b for b in respuesta.content if b.type == 'text'), None)
+    if bloque_texto is None:
+        raise ValueError(f'La respuesta no trajo bloque de texto: {respuesta.content}')
+    texto = bloque_texto.text.strip()
+    if texto.startswith('```'):
+        texto = texto.split('```')[1]
+        if texto.startswith('json'):
+            texto = texto[4:]
+    return json.loads(texto)
 
 
 def generar_analisis():
@@ -201,29 +288,17 @@ def generar_analisis():
         return
 
     cliente = anthropic.Anthropic(api_key=llave)
-    respuesta = cliente.messages.create(
-        model='claude-sonnet-5',
-        max_tokens=4000,  # antes 1200 -- se cortaba a la mitad del JSON porque el modelo usa
-                          # parte del espacio para razonar antes de responder
-        messages=[{'role': 'user', 'content': construir_prompt(datos)}],
-    )
-    # la respuesta puede traer bloques de tipos distintos (pensamiento, texto) -- se busca
-    # específicamente el bloque de texto, nunca se asume que es el primero de la lista
-    bloque_texto = next((b for b in respuesta.content if b.type == 'text'), None)
-    if bloque_texto is None:
-        print('La respuesta no trajo bloque de texto. Contenido recibido:', respuesta.content)
-        return
-    texto = bloque_texto.text.strip()
-    if texto.startswith('```'):
-        texto = texto.split('```')[1]
-        if texto.startswith('json'):
-            texto = texto[4:]
-    try:
-        lectura = json.loads(texto)
-    except json.JSONDecodeError as e:
-        print('No se pudo leer el JSON de la respuesta. Texto recibido completo:')
-        print(texto)
-        raise e
+    lectura = llamar_claude(cliente, construir_prompt(datos))
+
+    # candado de lenguaje: si se coló jerga técnica o un número suelto, se le pide
+    # reescribir UNA vez más, mostrándole exactamente qué encontró mal
+    problemas = encontrar_problemas(lectura)
+    if problemas:
+        print('Jerga técnica detectada, pidiendo reescritura:', problemas)
+        lectura = llamar_claude(cliente, construir_prompt(datos, correccion_previa=json.dumps(lectura, ensure_ascii=False)))
+        problemas_2 = encontrar_problemas(lectura)
+        if problemas_2:
+            print('Seguía habiendo jerga técnica tras la corrección:', problemas_2, '-- se guarda de todas formas, revisar manualmente.')
 
     salida = {
         'generado_en': datetime.now(TZ_MX).isoformat(),
