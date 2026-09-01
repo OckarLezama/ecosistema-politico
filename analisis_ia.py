@@ -205,14 +205,15 @@ política de México, sexenio de Sheinbaum.
 REGLA MÁS IMPORTANTE: NUNCA dejes un número o término técnico suelto sin traducir en la MISMA
 oración. Prohibido escribir "z-score de 1.2", "31 notas", "1 mención" como si el lector supiera
 qué significa eso. En vez de "z-score de 1.2" escribe "un nivel claramente por encima de lo
-habitual para este tema". En vez de "31 notas en 30 días" escribe "cobertura sostenida y
-creciente a lo largo del mes". Los números pueden ir de respaldo entre paréntesis, nunca como
-contenido principal de la oración.
+habitual para este tema". Si usas un número de respaldo, que sea siempre COMPARATIVO (ej. "el
+doble de su semana anterior", "tres veces más que el segundo lugar") -- nunca un conteo aislado
+como "35 menciones" sin nada contra qué compararlo.
 
 REGLA DE FORMATO: envuelve en dobles asteriscos (**así**) los 2-4 datos o nombres más importantes
-de cada sección -- el nombre de un tema clave, un porcentaje, un número que de verdad importa.
-Esto se muestra resaltado en el diseño final. No abuses: solo lo genuinamente importante, no cada
-número que aparezca.
+de cada sección. No abuses: solo lo genuinamente importante.
+
+SÉ CONCISO: 2-3 oraciones por sección, no más. Prefiere una oración densa y bien pensada sobre
+dos oraciones que dicen lo mismo con más palabras. El lector es alguien ocupado.
 
 SEGUNDA REGLA: cada oración responde "¿y por qué le importa esto a quien toma decisiones?" — la
 implicación, no solo el dato. Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías como
@@ -222,28 +223,34 @@ TERCERA REGLA: en "pulso_politico" y "estado_general", menciona por nombre los t
 lista -- son los de mayor peso real de la semana, ya calculados, no los elijas tú:
 {json.dumps(datos['temas_destacados_semana'], ensure_ascii=False)}
 
-Para alertas: usa el "tipo_atencion_por_categoria" que ya viene en los datos para decir a qué
-instancia correspondería típicamente (mapeo directo, no opinión tuya).
+Para "propuestas_atencion": para cada tema en alertas, propone en 1 oración QUÉ TIPO de atención
+o respuesta correspondería (ej. "ameritaría un pronunciamiento oficial breve desde la instancia
+de seguridad" o "conviene monitorear sin acción inmediata, el volumen aún es manejable") -- usa
+el "tipo_atencion_por_categoria" ya calculado como base. Esto es una PROPUESTA de tu parte, no
+una orden -- nunca la presentes como si fuera una decisión ya tomada.
+
+Para "patrones_detectados": el foco es la CONFIABILIDAD del patrón, no el número de correlación.
+Di en palabras simples si el patrón ya tiene base sólida (4+ semanas) o si es aún temprano para
+confiar en él, y qué implicaría en cada caso.
 
 Para actores_centrales: si un mismo actor aparece tanto en tendencia oficialista como en
 reacción de oposición, dilo con una explicación concreta de qué podría significar en términos
-simples (ej. contextos distintos de mención) — nunca dejes "vale la pena revisar" sin decir de
-qué tipo. Menciona explícitamente si hay o no un actor de oposición que domine claramente el
-posicionamiento crítico esta semana, o si el campo opositor está disperso.
+simples — nunca dejes "vale la pena revisar" sin decir de qué tipo. Menciona explícitamente si
+hay o no un actor de oposición que domine claramente el posicionamiento crítico esta semana.
 
 Otras reglas estrictas:
 - NUNCA inventes datos que no estén en el JSON de entrada.
 - NUNCA prediga el futuro ni especules sobre facciones internas, causalidad no documentada, o
   motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
-- Un patrón con menos de 4 semanas de coincidencia es "todavía es pronto para tratarlo como
-  patrón confirmado" — en palabras simples, nunca "base limitada".
 
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
 
 Responde ÚNICAMENTE con un objeto JSON con estas claves. Las primeras 6 son la lectura
-principal (2-4 oraciones cada una). Las últimas 3 son interpretaciones CORTAS (1-2 oraciones)
-para acompañar gráficas específicas -- mismas reglas de lenguaje simple:
+principal (2-3 oraciones cada una, concisas). Las siguientes 3 son interpretaciones CORTAS
+(1-2 oraciones). "propuestas_atencion" es una lista de objetos {{tema, propuesta}}, una por cada
+alerta recibida, en el mismo orden.
+Responde ÚNICAMENTE con un objeto JSON con estas claves (2-3 oraciones concisas cada texto):
 {{
   "estado_general": "...",
   "pulso_politico": "...",
@@ -251,9 +258,10 @@ para acompañar gráficas específicas -- mismas reglas de lenguaje simple:
   "alertas_tempranas": "...",
   "tendencia_por_categoria": "...",
   "actores_centrales": "...",
-  "interpretacion_aura": "...",
-  "interpretacion_burbujas_temas": "...",
-  "interpretacion_burbujas_actores": "..."
+  "resumen_pulso_sexenio": "1-2 oraciones sobre cómo se ha movido la intensidad general en el tiempo",
+  "resumen_temas": "1-2 oraciones sobre qué muestra la tabla de temas por volumen y tendencia",
+  "resumen_actores": "1-2 oraciones sobre qué muestra la tabla de actores por presencia",
+  "propuestas_atencion": [{{"tema": "nombre exacto del tema", "propuesta": "..."}}]
 }}"""
 
 
