@@ -1,0 +1,31 @@
+name: Análisis con IA — lectura de inteligencia (2x al día)
+
+on:
+  schedule:
+    # 8:00 y 14:00 hora de Ciudad de México (UTC-6) -- corte de mañana y de medio día,
+    # como se acordó -- no corre más seguido, para mantener el costo mínimo
+    - cron: '0 14 * * *'
+    - cron: '0 20 * * *'
+  workflow_dispatch: {}  # permite correrlo manualmente desde GitHub para probar
+
+jobs:
+  generar-lectura:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar dependencias
+        run: pip install anthropic --break-system-packages
+
+      - name: Generar la lectura de inteligencia con Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 analisis_ia.py
+
+      - name: Guardar el resultado
+        run: |
+          git config user.name "analisis-ia"
+          git config user.email "analisis-ia@ecosistema-politico.local"
+          git add data/analisis_ia.json
+          git diff --staged --quiet || git commit -m "Análisis IA: actualización $(date -u +%Y-%m-%d)"
+          git push
