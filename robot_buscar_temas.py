@@ -249,8 +249,13 @@ def crear_tema_informativo(titulo, fecha, categoria='Gobernabilidad'):
     """Crea un tema NUEVO automático cuando hay señal fuerte (2+ actores de alta influencia)
     pero no existe tema para eso. tipo=informativo, nivel_relevancia=3 — bajo perfil, visible
     en Feed/Timeline, pero NO se cuela como agenda nacional oficial sin revisión humana."""
+    # columnas FIJAS, no derivadas de una lectura que puede fallar o venir vacía en ese
+    # instante (causaba temas "huérfanos": el evento se guardaba pero el tema nunca se creaba
+    # bien, o con columnas incompletas que luego no cargaban)
+    campos = ['id', 'nombre', 'categoria', 'peso_politico', 'horizonte', 'resumen',
+              'actores_involucrados', 'responsable', 'fuente_nombre', 'fuente_url',
+              'fecha', 'nivel_relevancia', 'tipo', 'estado']
     temas = cargar_temas_todos()
-    campos = list(temas[0].keys()) if temas else []
     nuevo_id = 'auto-' + hashlib.md5((titulo+fecha).encode()).hexdigest()[:10]
     if any(t['id']==nuevo_id for t in temas):
         return nuevo_id
