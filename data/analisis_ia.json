@@ -1,0 +1,164 @@
+{
+  "generado_en": "2026-09-01T12:48:10.681576-06:00",
+  "lectura": {
+    "estado_general": "Se registran 21 temas activos con un índice de tensión general de 73, nivel elevado dentro de la agenda. El volumen de discusión está fuertemente concentrado en Seguridad Nacional, categoría que domina tanto el listado de temas en alza como el de alertas de intensidad.",
+    "pulso_politico": "El movimiento más pronunciado es la Acusación de Narcotráfico contra Rocha Moya, con un incremento de 1700% y 36 notas en 30 días, seguido por Huachicol Fiscal con 100% de variación y 31 notas. En contraste, dos temas de seguridad que antes tuvieron relevancia -el asesinato de Carlos Manzo y la sentencia de 'El Mayo' Zambada- cayeron a variación de -100% y 0 notas en el mismo periodo, indicando salida completa de la conversación activa.",
+    "patrones_detectados": "El único patrón con base sólida es la coincidencia entre Huachicol Fiscal y la Acusación contra Rocha Moya, con 4 semanas consecutivas de presencia conjunta. Las demás combinaciones detectadas (Huachicol-Visa de Andy, Huachicol-T-MEC, Visa de Andy-Rocha Moya, T-MEC-Rocha Moya) muestran solo 2 semanas de coincidencia, por lo que se consideran de base limitada, señal temprana.",
+    "alertas_tempranas": "Rocha Moya presenta la intensidad más alta en 7 días (252.0, z-score 1.2) con 35 notas, seguido de Huachicol Fiscal (216.0, z-score 0.7, 30 notas), ambos dentro de rango de atención pero sin desviación estadística extrema. T-MEC y el Segundo Informe de Gobierno muestran intensidades menores (48.0 y 15.0) sin z-score calculable, lo que sugiere volumen de datos aún insuficiente para evaluar anomalía.",
+    "tendencia_por_categoria": "Seguridad Nacional concentra el mayor peso informativo, con los dos temas de mayor crecimiento (Rocha Moya, Huachicol Fiscal) y las dos principales alertas de intensidad. Economía mantiene tres temas en alza con variación uniforme de 100% pero volumen bajo de notas (T-MEC con 7, Gusano Barrenador con apenas 1), mientras que Gobernabilidad y Relación Bilateral registran presencia marginal con un solo tema activo cada una.",
+    "actores_centrales": "En la agenda oficialista, Claudia Sheinbaum Pardo encabeza el ranking de tendencia con 4 menciones, seguida por Andrés Manuel López Beltrán ('Andy') y Andrés Manuel López Obrador, ambos con 2. En el bloque de oposición el volumen es notablemente menor: Alejandro 'Alito' Moreno, Claudia Sheinbaum Pardo y Rubén Moreira Valdez registran 1 mención cada uno, sin actor dominante."
+  },
+  "datos_base": {
+    "temas_activos": 21,
+    "tension_general": 73,
+    "en_alza": [
+      {
+        "nombre": "Acusación de Narcotráfico contra Rocha Moya",
+        "categoria": "Seguridad Nacional",
+        "cambio_pct": 1700,
+        "notas_30d": 36
+      },
+      {
+        "nombre": "Huachicol Fiscal",
+        "categoria": "Seguridad Nacional",
+        "cambio_pct": 100,
+        "notas_30d": 31
+      },
+      {
+        "nombre": "Visa de Andy",
+        "categoria": "Relación Bilateral",
+        "cambio_pct": 100,
+        "notas_30d": 6
+      },
+      {
+        "nombre": "Revisión del T-MEC",
+        "categoria": "Economía",
+        "cambio_pct": 100,
+        "notas_30d": 7
+      },
+      {
+        "nombre": "Gusano Barrenador y Frontera Ganadera",
+        "categoria": "Economía",
+        "cambio_pct": 100,
+        "notas_30d": 1
+      },
+      {
+        "nombre": "Segundo Informe de Gobierno de Claudia Sheinbaum",
+        "categoria": "Gobernabilidad",
+        "cambio_pct": 100,
+        "notas_30d": 2
+      }
+    ],
+    "en_baja": [
+      {
+        "nombre": "Asesinato de Carlos Manzo",
+        "categoria": "Seguridad Nacional",
+        "cambio_pct": -100,
+        "notas_30d": 0
+      },
+      {
+        "nombre": "Declaración de Culpabilidad y Sentencia de \"El Mayo\" Zambada",
+        "categoria": "Seguridad Nacional",
+        "cambio_pct": -100,
+        "notas_30d": 0
+      }
+    ],
+    "alertas": [
+      {
+        "nombre": "Acusación de Narcotráfico contra Rocha Moya",
+        "categoria": "Seguridad Nacional",
+        "notas_7d": 35,
+        "intensidad_7d": 252.0,
+        "z_score": 1.2
+      },
+      {
+        "nombre": "Huachicol Fiscal",
+        "categoria": "Seguridad Nacional",
+        "notas_7d": 30,
+        "intensidad_7d": 216.0,
+        "z_score": 0.7
+      },
+      {
+        "nombre": "Revisión del T-MEC",
+        "categoria": "Economía",
+        "notas_7d": 7,
+        "intensidad_7d": 48.0,
+        "z_score": null
+      },
+      {
+        "nombre": "Segundo Informe de Gobierno de Claudia Sheinbaum",
+        "categoria": "Gobernabilidad",
+        "notas_7d": 2,
+        "intensidad_7d": 15.0,
+        "z_score": null
+      }
+    ],
+    "patrones": [
+      {
+        "tema_a": "Huachicol Fiscal",
+        "tema_b": "Acusación de Narcotráfico contra Rocha Moya",
+        "semanas_comun": 4
+      },
+      {
+        "tema_a": "Huachicol Fiscal",
+        "tema_b": "Visa de Andy",
+        "semanas_comun": 2
+      },
+      {
+        "tema_a": "Huachicol Fiscal",
+        "tema_b": "Revisión del T-MEC",
+        "semanas_comun": 2
+      },
+      {
+        "tema_a": "Visa de Andy",
+        "tema_b": "Acusación de Narcotráfico contra Rocha Moya",
+        "semanas_comun": 2
+      },
+      {
+        "tema_a": "Revisión del T-MEC",
+        "tema_b": "Acusación de Narcotráfico contra Rocha Moya",
+        "semanas_comun": 2
+      }
+    ],
+    "ranking_tendencia": [
+      {
+        "nombre": "Claudia Sheinbaum Pardo",
+        "conteo": 4
+      },
+      {
+        "nombre": "Andrés Manuel López Beltrán ('Andy')",
+        "conteo": 2
+      },
+      {
+        "nombre": "Andrés Manuel López Obrador",
+        "conteo": 2
+      },
+      {
+        "nombre": "Fernando Farías Laguna",
+        "conteo": 1
+      },
+      {
+        "nombre": "Manuel Roberto Farías Laguna",
+        "conteo": 1
+      },
+      {
+        "nombre": "Roberto Blanco Cantú",
+        "conteo": 1
+      }
+    ],
+    "ranking_oposicion": [
+      {
+        "nombre": "Alejandro 'Alito' Moreno",
+        "conteo": 1
+      },
+      {
+        "nombre": "Claudia Sheinbaum Pardo",
+        "conteo": 1
+      },
+      {
+        "nombre": "Rubén Moreira Valdez",
+        "conteo": 1
+      }
+    ]
+  }
+}
