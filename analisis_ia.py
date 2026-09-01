@@ -152,10 +152,11 @@ def calcular_todo():
         evs = eventos_por_tema[t['id']]
         if not evs:
             continue
+        recientes_30d = [e for e in evs if datetime.strptime(e['fecha'], '%Y-%m-%d').date() >= hace30]
         tend = next((i['cambio_pct'] for i in en_alza if i['nombre'] == t['nombre']), None)
         if tend is None:
             tend = next((i['cambio_pct'] for i in en_baja if i['nombre'] == t['nombre']), 0)
-        burbujas_temas.append({'nombre': t['nombre'], 'categoria': t['categoria'], 'volumen_total': len(evs), 'tendencia_pct': tend})
+        burbujas_temas.append({'nombre': t['nombre'], 'categoria': t['categoria'], 'volumen_total': len(evs), 'notas_30d': len(recientes_30d), 'tendencia_pct': tend})
 
     # burbujas de actores: presencia general en medios (todos los temas reales)
     burbujas_actores = sorted(
