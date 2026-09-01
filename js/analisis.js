@@ -205,58 +205,70 @@ function renderAnalisis(){
   const pctAlza = totalBalance ? Math.round((enAlza.length/totalBalance)*100) : 50;
 
   cont.innerHTML = `
-    <div class="eyebrow">Pulso general — frecuencia por categoría, todo el sexenio (pasa el cursor para ver el detalle de cada mes)</div>
-    <svg id="analisis-area-svg" style="width:100%;height:200px;display:block;margin:6px 0 18px;"></svg>
-
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;">
-      ${tarjetaKpi('activos', temas.length, 'Temas de agenda activos')}
-      ${tarjetaKpi('alertas', alertas.length, 'Alertas esta semana', alertas.length?'var(--riesgo-alto)':'var(--ink-1)')}
-      ${tarjetaKpi('alza', enAlza.length, 'Temas en alza', 'var(--riesgo-alto)')}
-      ${tarjetaKpi('baja', enBaja.length, 'Temas en baja', 'var(--riesgo-bajo)')}
-    </div>
-
-    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-bottom:18px;">
-      <div style="flex:1;min-width:220px;">${svgVelocimetro(tensionGeneral)}</div>
-      <div style="flex:1;min-width:220px;">
-        <div class="eyebrow" style="margin-bottom:6px;">Balance — alza vs. baja</div>
-        <div style="height:22px;border-radius:99px;overflow:hidden;display:flex;background:var(--bg-2);">
-          <div style="width:${pctAlza}%;background:var(--riesgo-alto);"></div>
-          <div style="width:${100-pctAlza}%;background:var(--riesgo-bajo);"></div>
+    <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
+      <div class="eyebrow" style="font-size:11px;">📊 ESTADO GENERAL</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:10px 0 14px;">
+        <div style="flex:1;min-width:220px;">${svgVelocimetro(tensionGeneral)}</div>
+        <div style="flex:1;min-width:220px;">
+          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">Balance — alza vs. baja</div>
+          <div style="height:22px;border-radius:99px;overflow:hidden;display:flex;background:var(--bg-1);">
+            <div style="width:${pctAlza}%;background:var(--riesgo-alto);"></div>
+            <div style="width:${100-pctAlza}%;background:var(--riesgo-bajo);"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink-3);margin-top:4px;font-family:var(--f-mono);">
+            <span>${pctAlza}% en alza</span><span>${100-pctAlza}% en baja</span>
+          </div>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink-3);margin-top:4px;font-family:var(--f-mono);">
-          <span>${pctAlza}% en alza</span><span>${100-pctAlza}% en baja</span>
-        </div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        ${tarjetaKpi('activos', temas.length, 'Temas de agenda activos')}
+        ${tarjetaKpi('alertas', alertas.length, 'Alertas esta semana', alertas.length?'var(--riesgo-alto)':'var(--ink-1)')}
+        ${tarjetaKpi('alza', enAlza.length, 'Temas en alza', 'var(--riesgo-alto)')}
+        ${tarjetaKpi('baja', enBaja.length, 'Temas en baja', 'var(--riesgo-bajo)')}
       </div>
     </div>
 
-    <div style="background:var(--bg-2);border:1px solid var(--riesgo-alto);border-radius:var(--radius-s);padding:12px 14px;margin-bottom:18px;">
-      <div class="eyebrow" style="color:var(--riesgo-alto);">⚠ Alertas tempranas — ${alertas.length} tema${alertas.length!==1?'s':''} con actividad inusual esta semana</div>
-      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 8px;">Un tema entra aquí cuando su intensidad acumulada de los últimos 7 días supera ${UMBRAL_ALERTA_7D} puntos — señal de que algo se está calentando, no una predicción.</p>
+    <div class="zona-analisis" style="background:var(--bg-1);border:1.5px solid var(--riesgo-alto);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
+      <div class="eyebrow" style="color:var(--riesgo-alto);font-size:11px;">⚠ REQUIERE ATENCIÓN — ${alertas.length} tema${alertas.length!==1?'s':''}</div>
+      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Un tema entra aquí cuando su intensidad acumulada de los últimos 7 días supera ${UMBRAL_ALERTA_7D} puntos — señal de que algo se está calentando, no una predicción.</p>
       ${alertas.length ? alertas.map(a=>`
-        <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${a.tema.id}">
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${a.tema.id}">
           <div style="flex:1;">
-            <div style="font-size:12.5px;font-weight:600;">${a.tema.nombre}</div>
+            <div style="font-size:13px;font-weight:700;">${a.tema.nombre}</div>
             <div style="font-size:10px;color:var(--ink-3);font-family:var(--f-mono);">${a.notas} notas · intensidad acumulada ${a.suma}/${UMBRAL_ALERTA_7D}+</div>
           </div>
         </div>`).join('')
       : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
     </div>
 
-    <div class="eyebrow">Patrones de coincidencia — temas que suelen activarse la misma semana</div>
-    <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 8px;">Coincidencia de calendario documentada, no una relación de causa — útil para notar si 2 temas se mueven juntos.</p>
-    <div id="analisis-patrones" style="margin-bottom:18px;"></div>
+    <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
+      <div class="eyebrow" style="font-size:11px;">📈 TENDENCIA GENERAL</div>
+      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 8px;">Frecuencia por categoría, todo el sexenio — pasa el cursor para ver el detalle de cada mes.</p>
+      <svg id="analisis-area-svg" style="width:100%;height:200px;display:block;"></svg>
+    </div>
 
-    <div class="eyebrow">Trayectoria de los temas en alza</div>
-    <div id="analisis-graficas" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;margin-bottom:18px;"></div>
+    <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
+      <div class="eyebrow" style="font-size:11px;">🔗 PATRONES DETECTADOS</div>
+      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Coincidencia de calendario documentada, no una relación de causa — útil para notar si 2 temas se mueven juntos.</p>
+      <div id="analisis-patrones"></div>
+    </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-      <div>
-        <div class="eyebrow">Actores más presentes en temas en alza</div>
-        <div id="analisis-ranking" style="margin-top:6px;"></div>
-      </div>
-      <div>
-        <div class="eyebrow" style="color:var(--riesgo-alto);">Actores con más reacción de oposición</div>
-        <div id="analisis-ranking-oposicion" style="margin-top:6px;"></div>
+    <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
+      <div class="eyebrow" style="font-size:11px;">📉 TRAYECTORIAS INDIVIDUALES</div>
+      <div id="analisis-graficas" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;"></div>
+    </div>
+
+    <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
+      <div class="eyebrow" style="font-size:11px;">👤 ACTORES RELEVANTES</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:10px;">
+        <div>
+          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">Más presentes en temas en alza</div>
+          <div id="analisis-ranking"></div>
+        </div>
+        <div>
+          <div style="font-size:10.5px;color:var(--riesgo-alto);margin-bottom:6px;">Más reacción de oposición</div>
+          <div id="analisis-ranking-oposicion"></div>
+        </div>
       </div>
     </div>
 
@@ -265,13 +277,21 @@ function renderAnalisis(){
 
   dibujarAreaApilada(temas);
 
-  document.getElementById('analisis-patrones').innerHTML = patrones.length ? patrones.map(p=>`
-    <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:12px;">
-      <span style="cursor:pointer;text-decoration:underline;" data-tema="${p.a.id}">${p.a.nombre}</span>
-      <span style="color:var(--ink-3);">↔</span>
-      <span style="cursor:pointer;text-decoration:underline;" data-tema="${p.b.id}">${p.b.nombre}</span>
-      <span style="margin-left:auto;font-family:var(--f-mono);font-size:10px;color:var(--ink-3);">coincidieron ${p.semanas} semanas</span>
-    </div>`).join('') : '<p style="font-size:11px;color:var(--ink-3);">Sin coincidencias repetidas entre temas todavía.</p>';
+  document.getElementById('analisis-patrones').innerHTML = patrones.length ? `
+    <table style="width:100%;border-collapse:collapse;font-size:11.5px;">
+      <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
+        <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Tema A</th>
+        <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Tema B</th>
+        <th style="text-align:right;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Semanas en común</th>
+      </tr></thead>
+      <tbody>
+        ${patrones.map(p=>`<tr style="border-bottom:1px solid var(--line);">
+          <td style="padding:7px 4px;cursor:pointer;" data-tema="${p.a.id}">${p.a.nombre}</td>
+          <td style="padding:7px 4px;cursor:pointer;" data-tema="${p.b.id}">${p.b.nombre}</td>
+          <td style="padding:7px 4px;text-align:right;font-family:var(--f-mono);font-weight:700;color:var(--riesgo-medio);">${p.semanas}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>` : '<p style="font-size:11px;color:var(--ink-3);">Sin coincidencias repetidas entre temas todavía.</p>';
 
   const top6 = enAlza.slice(0,6);
   document.getElementById('analisis-graficas').innerHTML = top6.length ? top6.map(t=>`
