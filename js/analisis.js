@@ -1,13 +1,30 @@
 /* ============================================================
    V2 — ANÁLISIS
-   Terminal financiero: KPIs clicables, velocímetro, balance, área
-   apilada con cuadrícula y hover real, alertas tempranas claras,
-   patrones de coincidencia temporal (automatizado, sin especular
-   causalidad). Escenarios/árbol de decisiones: módulo futuro.
+   Terminal financiero con rigor metodológico real:
+   - Z-score: anomalía de cada tema contra su propia historia
+   - Correlación de Pearson: fuerza real del patrón entre 2 temas
+   - Media móvil: tendencia de fondo sin ruido de picos aislados
+   Todo 100% automatizado sobre datos existentes, sin predicción
+   ni especulación de causalidad. Escenarios/árbol de decisiones:
+   guardados para módulo futuro de pago.
    ============================================================ */
 
 const UMBRAL_ALERTA_7D = 15;
 const CATEGORIAS_ANALISIS = ['Seguridad Nacional','Gobernabilidad','Economía','Relación Bilateral','Social'];
+const TIPO_ATENCION = {
+  'Seguridad Nacional': {icono:'🛡️', texto:'Atención de seguridad'},
+  'Relación Bilateral': {icono:'🤝', texto:'Atención diplomática'},
+  'Economía': {icono:'💰', texto:'Atención económica'},
+  'Gobernabilidad': {icono:'🏛️', texto:'Atención institucional'},
+  'Social': {icono:'📢', texto:'Atención social'}
+};
+
+function colorCategoriaFijo(cat){
+  const map = { 'Seguridad Nacional':'#F46883', 'Gobernabilidad':'#BDB58D', 'Economía':'#4CC1BA', 'Relación Bilateral':'#5B7FDB', 'Social':'#B15FBD' };
+  return map[cat] || '#8A8F98';
+}
+
+function semanaDe(fecha){ const d=new Date(fecha); const ini=new Date(d.getFullYear(),0,1); return d.getFullYear()+'-S'+Math.ceil((((d-ini)/86400000)+ini.getDay()+1)/7); }
 
 function calcularTendenciaTema(tema){
   const hoy = new Date();
@@ -20,31 +37,61 @@ function calcularTendenciaTema(tema){
   return { tema, menciones30d: recientes.length, menciones30dPrevios: previos.length, cambioPct: cambio, evs };
 }
 
+// --- MÉTODO 1: Z-SCORE — ¿esta semana es estadísticamente inusual PARA ESTE TEMA, contra su
+// propia historia? Más riguroso que un umbral fijo igual para todos.
+function calcularZScore(tema){
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===tema.id);
+  if(evs.length<3) return null;
+  const porSemana = {};
+  evs.forEach(e=>{ const s=semanaDe(e.fecha); porSemana[s]=(porSemana[s]||0)+1; });
+  const valores = Object.values(porSemana);
+  if(valores.length<3) return null;
+  const media = valores.reduce((s,v)=>s+v,0)/valores.length;
+  const varianza = valores.reduce((s,v)=>s+(v-media)**2,0)/valores.length;
+  const desv = Math.sqrt(varianza);
+  const semanaActual = semanaDe(new Date().toISOString().slice(0,10));
+  const valorActual = porSemana[semanaActual]||0;
+  const z = desv>0 ? (valorActual-media)/desv : 0;
+  return { z: Math.round(z*10)/10, valorActual, media: Math.round(media*10)/10 };
+}
+
 function calcularAlertasTempranas(temas){
   const hoy = new Date(); const hace7 = new Date(hoy); hace7.setDate(hoy.getDate()-7);
   return temas.map(t=>{
     const evs7d = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && new Date(e.fecha)>=hace7);
     const suma = evs7d.reduce((s,e)=>s+Number(e.intensidad),0);
-    return { tema:t, suma, notas:evs7d.length };
+    const zinfo = calcularZScore(t);
+    return { tema:t, suma, notas:evs7d.length, z: zinfo?zinfo.z:null };
   }).filter(x=>x.suma>=UMBRAL_ALERTA_7D).sort((a,b)=>b.suma-a.suma);
 }
 
+// --- MÉTODO 2: CORRELACIÓN DE PEARSON — fuerza real del patrón entre 2 temas (-1 a 1),
+// no solo "coincidieron en calendario". Sigue sin ser una afirmación de causa.
+function serieMensual(temaId, meses){
+  return meses.map(m=> ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId && e.fecha.startsWith(m)).length);
+}
+function pearson(x,y){
+  const n=x.length; const mx=x.reduce((s,v)=>s+v,0)/n, my=y.reduce((s,v)=>s+v,0)/n;
+  let num=0,dx2=0,dy2=0;
+  for(let i=0;i<n;i++){ const dx=x[i]-mx, dy=y[i]-my; num+=dx*dy; dx2+=dx*dx; dy2+=dy*dy; }
+  const den=Math.sqrt(dx2*dy2);
+  return den ? Math.round((num/den)*100)/100 : 0;
+}
 function calcularPatronesCoincidencia(temas){
-  // patron real, automatizado: que 2 temas hayan tenido actividad en la MISMA semana varias
-  // veces a lo largo del sexenio -- coincidencia de calendario documentada, NUNCA una relacion
-  // causal (eso quedo fuera, guardado como hipotesis manual futura)
-  function semanaDe(fecha){ const d=new Date(fecha); const ini=new Date(d.getFullYear(),0,1); return d.getFullYear()+'-S'+Math.ceil((((d-ini)/86400000)+ini.getDay()+1)/7); }
+  const meses=[]; const ini=new Date('2024-10-01'); const fin=new Date(); let c=new Date(ini);
+  while(c<=fin){ meses.push(`${c.getFullYear()}-${String(c.getMonth()+1).padStart(2,'0')}`); c.setMonth(c.getMonth()+1); }
+  const series = {}; temas.forEach(t=> series[t.id]=serieMensual(t.id,meses));
   const semanasPorTema = {};
-  temas.forEach(t=>{
-    semanasPorTema[t.id] = new Set(ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).map(e=>semanaDe(e.fecha)));
-  });
-  const pares = [];
+  temas.forEach(t=> semanasPorTema[t.id] = new Set(ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).map(e=>semanaDe(e.fecha))));
+  const pares=[];
   for(let i=0;i<temas.length;i++) for(let j=i+1;j<temas.length;j++){
     const a=temas[i], b=temas[j];
-    const comunes = [...semanasPorTema[a.id]].filter(s=>semanasPorTema[b.id].has(s));
-    if(comunes.length>=2) pares.push({a,b,semanas:comunes.length});
+    const comunes=[...semanasPorTema[a.id]].filter(s=>semanasPorTema[b.id].has(s));
+    if(comunes.length<2) continue;
+    const r = pearson(series[a.id], series[b.id]);
+    pares.push({a,b,semanas:comunes.length,r});
   }
-  return pares.sort((x,y)=>y.semanas-x.semanas).slice(0,5);
+  return pares.sort((x,y)=>Math.abs(y.r)-Math.abs(x.r)).slice(0,6);
 }
 
 function calcularRankingPorRol(temasFiltro, rolBuscado){
@@ -56,6 +103,15 @@ function calcularRankingPorRol(temasFiltro, rolBuscado){
   return Object.entries(conteo).map(([id,count])=>({actor:getActor(id), count})).filter(x=>x.actor).sort((a,b)=>b.count-a.count).slice(0,6);
 }
 
+// --- MÉTODO 3: MEDIA MÓVIL — tendencia de fondo sin el ruido de picos de un solo mes
+function mediaMovil(valores, ventana=3){
+  return valores.map((v,i)=>{
+    const desde = Math.max(0,i-ventana+1);
+    const slice = valores.slice(desde,i+1);
+    return slice.reduce((s,x)=>s+x,0)/slice.length;
+  });
+}
+
 function svgSparkline(evs, color){
   if(!evs.length) return '';
   const meses = {};
@@ -63,18 +119,16 @@ function svgSparkline(evs, color){
   const claves = Object.keys(meses).sort();
   if(claves.length<2) return '<span style="font-size:10px;color:var(--ink-3);">Muy poca historia para graficar</span>';
   const valores = claves.map(k=>meses[k]);
-  const max = Math.max(...valores,1);
+  const suavizado = mediaMovil(valores);
+  const max = Math.max(...valores,...suavizado,1);
   const w=260, h=54, paso=w/(claves.length-1);
   const puntos = valores.map((v,i)=>`${i*paso},${h-(v/max)*(h-6)-3}`).join(' ');
+  const puntosSuave = suavizado.map((v,i)=>`${i*paso},${h-(v/max)*(h-6)-3}`).join(' ');
   return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:54px;display:block;">
+    <polyline points="${puntosSuave}" fill="none" stroke="${color}" stroke-width="1.5" stroke-dasharray="4 3" stroke-opacity="0.55"/>
     <polyline points="${puntos}" fill="none" stroke="${color}" stroke-width="2.2"/>
     ${valores.map((v,i)=>`<circle cx="${i*paso}" cy="${h-(v/max)*(h-6)-3}" r="3" fill="${color}"/>`).join('')}
   </svg>`;
-}
-
-function colorCategoriaFijo(cat){
-  const map = { 'Seguridad Nacional':'#F46883', 'Gobernabilidad':'#BDB58D', 'Economía':'#4CC1BA', 'Relación Bilateral':'#5B7FDB', 'Social':'#B15FBD' };
-  return map[cat] || '#8A8F98';
 }
 
 function construirSerieArea(temasNivel1){
@@ -100,7 +154,6 @@ function dibujarAreaApilada(temasNivel1){
   const w=900, h=200, padL=10, padR=10, padT=10, padB=10;
   svg.attr('viewBox',[0,0,w,h]);
 
-  // cuadricula de fondo -- mismo patron ya usado en Timeline
   const defs = svg.append('defs');
   const pat = defs.append('pattern').attr('id','analisis-grid').attr('width',24).attr('height',24).attr('patternUnits','userSpaceOnUse');
   pat.append('path').attr('d','M 24 0 L 0 0 0 24').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
@@ -109,7 +162,6 @@ function dibujarAreaApilada(temasNivel1){
   const maxTotal = Math.max(...serie.map(f=> CATEGORIAS_ANALISIS.reduce((s,c)=>s+f[c],0)), 1);
   const escalaX = i => padL + i*((w-padL-padR)/(serie.length-1||1));
   const escalaY = v => h-padB - (v/maxTotal)*(h-padT-padB);
-
   serie.forEach(f=>{ f.total = CATEGORIAS_ANALISIS.reduce((s,c)=>s+f[c],0); });
 
   CATEGORIAS_ANALISIS.forEach((cat,i)=>{
@@ -126,13 +178,12 @@ function dibujarAreaApilada(temasNivel1){
     svg.append('path').attr('d', linea(arriba.concat(abajo))+'Z').attr('fill',`url(#grad-analisis-${i})`).attr('stroke',colorCategoriaFijo(cat)).attr('stroke-width',1).attr('stroke-opacity',0.7);
   });
 
-  // hover real: franja invisible por mes + linea guia + tooltip con desglose por categoria
   serie.forEach((f,idx)=>{
     const xIni = idx===0 ? escalaX(0) : (escalaX(idx-1)+escalaX(idx))/2;
     const xFin = idx===serie.length-1 ? escalaX(idx) : (escalaX(idx)+escalaX(idx+1))/2;
     svg.append('rect').attr('x',xIni).attr('y',0).attr('width',Math.max(1,xFin-xIni)).attr('height',h).attr('fill','transparent').style('cursor','pointer')
       .on('mouseenter', function(ev){
-        d3.select(this.parentNode).selectAll('.linea-guia-analisis').remove();
+        d3.select(svgEl).selectAll('.linea-guia-analisis').remove();
         d3.select(svgEl).append('line').attr('class','linea-guia-analisis').attr('x1',escalaX(idx)).attr('x2',escalaX(idx)).attr('y1',0).attr('y2',h).attr('stroke','var(--ink-2)').attr('stroke-width',1).attr('stroke-dasharray','3 2');
         const desglose = CATEGORIAS_ANALISIS.filter(c=>f[c]>0).map(c=>`<span style="color:${colorCategoriaFijo(c)};">●</span> ${c}: ${f[c]}`).join('<br>');
         mostrarTooltipAgenda(`<strong>${f.mes}</strong><br>${f.total} nota${f.total!==1?'s':''} en total<br>${desglose||'Sin actividad'}`, ev);
@@ -161,10 +212,27 @@ function svgVelocimetro(valor){
   </svg>`;
 }
 
-function tarjetaKpi(id, valor, etiqueta, color){
-  return `<div class="kpi-clicable" data-kpi="${id}" style="flex:1;min-width:120px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-s);padding:12px 14px;cursor:pointer;transition:border-color .15s;">
-    <div style="font-family:var(--f-mono);font-size:26px;font-weight:700;color:${color||'var(--ink-1)'};">${valor}</div>
-    <div style="font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.03em;margin-top:2px;">${etiqueta} <span style="text-decoration:underline;">ver detalle →</span></div>
+function desgloseCategoria(items){
+  const conteo = {};
+  items.forEach(it=>{ const cat = it.categoria || (it.tema && it.tema.categoria); if(cat) conteo[cat]=(conteo[cat]||0)+1; });
+  return conteo;
+}
+
+function miniBarraCategoria(conteo, kpiId){
+  const total = Object.values(conteo).reduce((s,v)=>s+v,0);
+  if(!total) return '';
+  return `<div class="mini-barra-cat" data-kpi-barra="${kpiId}" style="display:flex;height:7px;border-radius:99px;overflow:hidden;margin-top:7px;">
+    ${Object.entries(conteo).map(([cat,n])=>`<div class="seg-barra" data-cat="${cat}" data-n="${n}" style="width:${(n/total)*100}%;background:${colorCategoriaFijo(cat)};cursor:pointer;"></div>`).join('')}
+  </div>`;
+}
+
+function tarjetaKpi(id, valor, etiqueta, color, conteoCategoria){
+  return `<div style="flex:1;min-width:150px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-s);padding:12px 14px;">
+    <div class="kpi-clicable" data-kpi="${id}" style="cursor:pointer;">
+      <div style="font-family:var(--f-mono);font-size:26px;font-weight:700;color:${color||'var(--ink-1)'};">${valor}</div>
+      <div style="font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.03em;margin-top:2px;">${etiqueta} <span style="text-decoration:underline;">ver detalle →</span></div>
+    </div>
+    ${conteoCategoria ? miniBarraCategoria(conteoCategoria, id) : ''}
   </div>`;
 }
 
@@ -203,6 +271,8 @@ function renderAnalisis(){
   const tensionGeneral = indices.length ? Math.round(indices.reduce((s,v)=>s+v,0)/indices.length) : 0;
   const totalBalance = enAlza.length + enBaja.length;
   const pctAlza = totalBalance ? Math.round((enAlza.length/totalBalance)*100) : 50;
+  const lecturaBalance = pctAlza>=60 ? 'Mayormente en escalamiento' : pctAlza<=40 ? 'Mayormente en desescalamiento' : 'Equilibrado';
+  const colorBalance = pctAlza>=60 ? 'var(--riesgo-alto)' : pctAlza<=40 ? 'var(--riesgo-bajo)' : 'var(--riesgo-medio)';
 
   cont.innerHTML = `
     <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
@@ -210,7 +280,7 @@ function renderAnalisis(){
       <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:10px 0 14px;">
         <div style="flex:1;min-width:220px;">${svgVelocimetro(tensionGeneral)}</div>
         <div style="flex:1;min-width:220px;">
-          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">Balance — alza vs. baja</div>
+          <span style="display:inline-block;background:${colorBalance};color:#0E1116;font-weight:700;font-size:11px;padding:3px 10px;border-radius:99px;margin-bottom:8px;">${lecturaBalance}</span>
           <div style="height:22px;border-radius:99px;overflow:hidden;display:flex;background:var(--bg-1);">
             <div style="width:${pctAlza}%;background:var(--riesgo-alto);"></div>
             <div style="width:${100-pctAlza}%;background:var(--riesgo-bajo);"></div>
@@ -221,23 +291,27 @@ function renderAnalisis(){
         </div>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        ${tarjetaKpi('activos', temas.length, 'Temas de agenda activos')}
-        ${tarjetaKpi('alertas', alertas.length, 'Alertas esta semana', alertas.length?'var(--riesgo-alto)':'var(--ink-1)')}
-        ${tarjetaKpi('alza', enAlza.length, 'Temas en alza', 'var(--riesgo-alto)')}
-        ${tarjetaKpi('baja', enBaja.length, 'Temas en baja', 'var(--riesgo-bajo)')}
+        ${tarjetaKpi('activos', temas.length, 'Temas de agenda activos', null, desgloseCategoria(temas))}
+        ${tarjetaKpi('alertas', alertas.length, 'Alertas esta semana', alertas.length?'var(--riesgo-alto)':'var(--ink-1)', desgloseCategoria(alertas.map(a=>a.tema)))}
+        ${tarjetaKpi('alza', enAlza.length, 'Temas en alza', 'var(--riesgo-alto)', desgloseCategoria(enAlza.map(t=>t.tema)))}
+        ${tarjetaKpi('baja', enBaja.length, 'Temas en baja', 'var(--riesgo-bajo)', desgloseCategoria(enBaja.map(t=>t.tema)))}
       </div>
     </div>
 
     <div class="zona-analisis" style="background:var(--bg-1);border:1.5px solid var(--riesgo-alto);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
       <div class="eyebrow" style="color:var(--riesgo-alto);font-size:11px;">⚠ REQUIERE ATENCIÓN — ${alertas.length} tema${alertas.length!==1?'s':''}</div>
-      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Un tema entra aquí cuando su intensidad acumulada de los últimos 7 días supera ${UMBRAL_ALERTA_7D} puntos — señal de que algo se está calentando, no una predicción.</p>
-      ${alertas.length ? alertas.map(a=>`
+      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Intensidad acumulada de 7 días sobre ${UMBRAL_ALERTA_7D} puntos, con el z-score de anomalía frente a su propia historia — no una predicción.</p>
+      ${alertas.length ? alertas.map(a=>{
+        const at = TIPO_ATENCION[a.tema.categoria] || {icono:'•',texto:'Atención general'};
+        const zTexto = a.z!==null ? (a.z>=2 ? `<span style="color:var(--riesgo-alto);font-weight:700;">z=${a.z} — muy inusual</span>` : a.z>=1 ? `z=${a.z} — por encima de su promedio` : `z=${a.z}`) : 'sin historia suficiente';
+        return `
         <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${a.tema.id}">
+          <span style="font-size:16px;">${at.icono}</span>
           <div style="flex:1;">
             <div style="font-size:13px;font-weight:700;">${a.tema.nombre}</div>
-            <div style="font-size:10px;color:var(--ink-3);font-family:var(--f-mono);">${a.notas} notas · intensidad acumulada ${a.suma}/${UMBRAL_ALERTA_7D}+</div>
+            <div style="font-size:10px;color:var(--ink-3);font-family:var(--f-mono);">${at.texto} · ${a.notas} notas · intensidad ${a.suma} · ${zTexto}</div>
           </div>
-        </div>`).join('')
+        </div>`;}).join('')
       : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
     </div>
 
@@ -248,13 +322,14 @@ function renderAnalisis(){
     </div>
 
     <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
-      <div class="eyebrow" style="font-size:11px;">🔗 PATRONES DETECTADOS</div>
-      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Coincidencia de calendario documentada, no una relación de causa — útil para notar si 2 temas se mueven juntos.</p>
+      <div class="eyebrow" style="font-size:11px;">🔗 PATRONES DETECTADOS — correlación de Pearson</div>
+      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Coeficiente de -1 a 1: qué tan fuerte es el patrón, no solo que coincidieron — nunca una relación de causa.</p>
       <div id="analisis-patrones"></div>
     </div>
 
     <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
       <div class="eyebrow" style="font-size:11px;">📉 TRAYECTORIAS INDIVIDUALES</div>
+      <p style="font-size:10px;color:var(--ink-3);margin:4px 0 0;">Línea sólida: notas reales por mes. Línea punteada: media móvil (tendencia de fondo, sin ruido de picos aislados).</p>
       <div id="analisis-graficas" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;"></div>
     </div>
 
@@ -282,14 +357,18 @@ function renderAnalisis(){
       <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
         <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Tema A</th>
         <th style="text-align:left;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Tema B</th>
-        <th style="text-align:right;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Semanas en común</th>
+        <th style="text-align:right;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Semanas</th>
+        <th style="text-align:right;padding:5px 4px;color:var(--ink-3);font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;">Correlación (r)</th>
       </tr></thead>
       <tbody>
-        ${patrones.map(p=>`<tr style="border-bottom:1px solid var(--line);">
+        ${patrones.map(p=>{
+          const colorR = Math.abs(p.r)>=0.6 ? 'var(--riesgo-alto)' : Math.abs(p.r)>=0.3 ? 'var(--riesgo-medio)' : 'var(--ink-3)';
+          return `<tr style="border-bottom:1px solid var(--line);">
           <td style="padding:7px 4px;cursor:pointer;" data-tema="${p.a.id}">${p.a.nombre}</td>
           <td style="padding:7px 4px;cursor:pointer;" data-tema="${p.b.id}">${p.b.nombre}</td>
-          <td style="padding:7px 4px;text-align:right;font-family:var(--f-mono);font-weight:700;color:var(--riesgo-medio);">${p.semanas}</td>
-        </tr>`).join('')}
+          <td style="padding:7px 4px;text-align:right;font-family:var(--f-mono);">${p.semanas}</td>
+          <td style="padding:7px 4px;text-align:right;font-family:var(--f-mono);font-weight:700;color:${colorR};">${p.r>0?'+':''}${p.r}</td>
+        </tr>`;}).join('')}
       </tbody>
     </table>` : '<p style="font-size:11px;color:var(--ink-3);">Sin coincidencias repetidas entre temas todavía.</p>';
 
@@ -315,7 +394,6 @@ function renderAnalisis(){
 
   cont.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
 
-  // KPIs clicables -- abren el detalle real de esa categoria
   cont.querySelectorAll('.kpi-clicable').forEach(el=>{
     el.addEventListener('click', ()=>{
       const tipo = el.dataset.kpi;
@@ -323,6 +401,24 @@ function renderAnalisis(){
       if(tipo==='alertas') abrirModalKpi('Alertas esta semana', alertas.map(a=>({id:a.tema.id, nombre:a.tema.nombre, detalle:`${a.notas} notas · intensidad ${a.suma}`})));
       if(tipo==='alza') abrirModalKpi('Temas en alza', enAlza.map(t=>({id:t.tema.id, nombre:t.tema.nombre, detalle:`+${t.cambioPct}%`})));
       if(tipo==='baja') abrirModalKpi('Temas en baja', enBaja.map(t=>({id:t.tema.id, nombre:t.tema.nombre, detalle:`${t.cambioPct}%`})));
+    });
+  });
+
+  // segmentos de las mini-barras -- clic filtra por esa categoria dentro del mismo KPI
+  cont.querySelectorAll('.seg-barra').forEach(seg=>{
+    seg.addEventListener('mouseenter', function(ev){ mostrarTooltipAgenda(`<strong>${this.dataset.cat}</strong>: ${this.dataset.n}`, ev); });
+    seg.addEventListener('mousemove', function(ev){ mostrarTooltipAgenda(`<strong>${this.dataset.cat}</strong>: ${this.dataset.n}`, ev); });
+    seg.addEventListener('mouseleave', ocultarTooltipAgenda);
+    seg.addEventListener('click', function(e){
+      e.stopPropagation();
+      const kpiId = this.parentElement.dataset.kpiBarra;
+      const cat = this.dataset.cat;
+      let fuente = [];
+      if(kpiId==='activos') fuente = temas.filter(t=>t.categoria===cat).map(t=>({id:t.id, nombre:t.nombre}));
+      if(kpiId==='alertas') fuente = alertas.filter(a=>a.tema.categoria===cat).map(a=>({id:a.tema.id, nombre:a.tema.nombre}));
+      if(kpiId==='alza') fuente = enAlza.filter(t=>t.tema.categoria===cat).map(t=>({id:t.tema.id, nombre:t.tema.nombre, detalle:`+${t.cambioPct}%`}));
+      if(kpiId==='baja') fuente = enBaja.filter(t=>t.tema.categoria===cat).map(t=>({id:t.tema.id, nombre:t.tema.nombre, detalle:`${t.cambioPct}%`}));
+      abrirModalKpi(`${cat}`, fuente);
     });
   });
 
