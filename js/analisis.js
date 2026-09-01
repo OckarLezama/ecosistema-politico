@@ -40,54 +40,53 @@ function desgloseCategoria(items){
   return conteo;
 }
 
-function dibujarBarrasCategoria(temas){
-  const cont = document.getElementById('analisis-barras-categoria');
-  if(!cont) return;
+function dibujarDonaCategoria(temas){
+  const svgEl = document.getElementById('dona-categoria-svg');
+  if(!svgEl) return;
   const conteo = desgloseCategoria(temas);
-  const total = Object.values(conteo).reduce((s,v)=>s+v,0) || 1;
-  const ordenado = CATEGORIAS_ANALISIS.map(c=>({cat:c, n:conteo[c]||0})).sort((a,b)=>b.n-a.n);
-  cont.innerHTML = ordenado.map(({cat,n})=>{
-    const pct = Math.round((n/total)*100);
-    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">
-      <span style="font-size:11px;width:140px;flex-shrink:0;">${cat}</span>
-      <div style="flex:1;background:var(--bg-1);border-radius:99px;height:14px;overflow:hidden;">
-        <div style="width:${pct}%;height:100%;background:${colorCategoriaFijo(cat)};"></div>
-      </div>
-      <span style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);width:70px;text-align:right;">${n} (${pct}%)</span>
-    </div>`;
-  }).join('');
+  const datos = CATEGORIAS_ANALISIS.map(c=>({cat:c, n:conteo[c]||0})).filter(d=>d.n>0);
+  const total = datos.reduce((s,d)=>s+d.n,0) || 1;
+  const svg = d3.select(svgEl);
+  svg.selectAll('*').remove();
+  const w=260, h=260, r=110, grosor=42;
+  const g = svg.append('g').attr('transform', `translate(${w/2},${h/2})`);
+  const arco = d3.arc().innerRadius(r-grosor).outerRadius(r);
+  const pie = d3.pie().value(d=>d.n).sort(null);
+  const arcos = pie(datos);
+  g.selectAll('path').data(arcos).join('path')
+    .attr('d', arco).attr('fill', d=>colorCategoriaFijo(d.data.cat)).attr('stroke','var(--bg-1)').attr('stroke-width',2)
+    .style('cursor','pointer')
+    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.data.cat}</strong><br>${d.data.n} temas (${Math.round(d.data.n/total*100)}%)`, ev); })
+    .on('mouseleave', ocultarTooltipAgenda);
+  g.append('text').attr('text-anchor','middle').attr('dy',-4).attr('font-size',26).attr('font-weight',700).attr('fill','var(--ink-1)').attr('font-family','var(--f-mono)').text(total);
+  g.append('text').attr('text-anchor','middle').attr('dy',16).attr('font-size',9).attr('fill','var(--ink-3)').text('TEMAS ACTIVOS');
+
+  const leyenda = document.getElementById('dona-categoria-leyenda');
+  leyenda.innerHTML = datos.sort((a,b)=>b.n-a.n).map(d=>`
+    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;">
+      <span style="width:10px;height:10px;border-radius:2px;background:${colorCategoriaFijo(d.cat)};flex-shrink:0;"></span>
+      <span style="font-size:11.5px;flex:1;">${d.cat}</span>
+      <span style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);">${d.n} (${Math.round(d.n/total*100)}%)</span>
+    </div>`).join('');
 }
 
 function renderAnalisis(){
   const cont = document.getElementById('analisis-contenido');
   if(!cont) return;
   const temas = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1);
-  const alertas = calcularAlertasTempranas(temas);
 
   cont.innerHTML = `
     <div id="zona-lectura-ia" style="margin-bottom:18px;">
       <p style="font-size:11px;color:var(--ink-3);text-align:center;padding:30px 0;">Cargando lectura de inteligencia...</p>
     </div>
 
-    <div class="zona-analisis" style="background:var(--bg-1);border:1.5px solid var(--riesgo-alto);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
-      <div class="eyebrow" style="color:var(--riesgo-alto);font-size:11px;">REQUIERE ATENCIÓN — ${alertas.length} tema${alertas.length!==1?'s':''}</div>
-      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Intensidad acumulada de 7 días por encima de lo habitual para cada tema.</p>
-      ${alertas.length ? alertas.map(a=>{
-        const texto = TIPO_ATENCION[a.tema.categoria] || 'Atención general';
-        return `
-        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${a.tema.id}">
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:700;">${a.tema.nombre}</div>
-            <p style="font-size:10.5px;color:var(--ink-3);font-family:var(--f-mono);margin:3px 0 0;">${texto} · ${a.notas} notas en 7 días</p>
-          </div>
-        </div>`;}).join('')
-      : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
-    </div>
-
     <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;margin-bottom:14px;">
       <div class="eyebrow" style="font-size:11px;">PESO ACTUAL POR CATEGORÍA</div>
       <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Qué categoría domina la agenda hoy, de un vistazo.</p>
-      <div id="analisis-barras-categoria"></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center;">
+        <svg id="dona-categoria-svg" viewBox="0 0 260 260" style="width:220px;height:220px;flex-shrink:0;"></svg>
+        <div id="dona-categoria-leyenda" style="flex:1;min-width:200px;"></div>
+      </div>
     </div>
 
     <div id="zona-aura" style="margin-bottom:14px;"></div>
@@ -97,7 +96,7 @@ function renderAnalisis(){
     <button class="chip-btn" id="btn-exportar-pdf-analisis" style="margin-top:4px;">Descargar brief ejecutivo (PDF)</button>
   `;
 
-  dibujarBarrasCategoria(temas);
+  dibujarDonaCategoria(temas);
 
   cont.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
 
@@ -139,26 +138,36 @@ function cargarLecturaIA(){
 function pintarLecturaIA(datos){
   const zona = document.getElementById('zona-lectura-ia');
   const l = datos.lectura;
+  const tension = datos.datos_base.tension_general;
+  const colorTension = tension>=66 ? 'var(--riesgo-alto)' : tension>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
   const fecha = new Date(datos.generado_en).toLocaleString('es-MX', {dateStyle:'medium', timeStyle:'short'});
-  const bloque = (titulo, texto) => `<div style="background:var(--bg-1);border-radius:var(--radius-s);padding:12px 14px;">
-    <div style="font-size:10px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;">${titulo}</div>
-    <p style="font-size:12.5px;line-height:1.6;margin:0;">${texto}</p>
+  const bloque = (titulo, texto, color, tam) => `<div style="background:var(--bg-1);border-radius:var(--radius-s);padding:14px 16px;border-left:3px solid ${color};${tam==='grande'?'grid-column:span 2;':''}">
+    <div style="font-size:10px;font-weight:700;color:${color};text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px;">${titulo}</div>
+    <p style="font-size:${tam==='grande'?'13.5px':'12px'};line-height:1.65;margin:0;">${texto}</p>
   </div>`;
   zona.innerHTML = `
-    <div style="background:var(--bg-2);border:1.5px solid var(--teal);border-radius:var(--radius-l);padding:18px;">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;">
-        <div style="font-size:15px;font-weight:700;color:var(--teal);">Lectura de Inteligencia</div>
-        <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);">Generada ${fecha}</div>
+    <div style="background:var(--bg-2);border:1.5px solid var(--teal);border-radius:var(--radius-l);padding:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;border-bottom:1px solid var(--line-strong);padding-bottom:12px;">
+        <div>
+          <div style="font-size:17px;font-weight:700;color:var(--teal);letter-spacing:-.01em;">Lectura de Inteligencia</div>
+          <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);margin-top:2px;">Generada ${fecha}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:var(--f-mono);font-size:34px;font-weight:700;color:${colorTension};line-height:1;">${tension}</div>
+          <div style="font-size:8.5px;color:var(--ink-3);text-transform:uppercase;">tensión general</div>
+        </div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:12px;">
-        ${bloque('Estado general', l.estado_general)}
-        ${bloque('Pulso político', l.pulso_politico)}
-        ${bloque('Alertas tempranas', l.alertas_tempranas)}
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;">
+        ${bloque('Estado general', l.estado_general, 'var(--teal)', 'grande')}
+        ${bloque('Alertas tempranas', l.alertas_tempranas, 'var(--riesgo-alto)')}
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
-        ${bloque('Patrones detectados', l.patrones_detectados)}
-        ${bloque('Tendencia por categoría', l.tendencia_por_categoria)}
-        ${bloque('Actores centrales', l.actores_centrales)}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        ${bloque('Pulso político', l.pulso_politico, 'var(--puente)')}
+        ${bloque('Actores centrales', l.actores_centrales, 'var(--arena)')}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        ${bloque('Patrones detectados', l.patrones_detectados, 'var(--riesgo-medio)')}
+        ${bloque('Tendencia por categoría', l.tendencia_por_categoria, 'var(--riesgo-bajo)')}
       </div>
     </div>`;
 }
