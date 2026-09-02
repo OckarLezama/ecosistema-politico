@@ -41,12 +41,11 @@ function calcularDatosC3(){
     const idsTemas = new Set(notas.map(n=>n.tema_id));
     const temas = [...idsTemas].map(id=>nombreTemaPorId[id]).filter(Boolean);
 
-    // ACTORES: se priorizan los LOCALES de la entidad (su propio cargo menciona el estado --
-    // gobernador, coordinador, alcalde, etc.), no los conectados al tema nacional en general.
-    // Un actor nacional solo aparece si su nombre está EXPLÍCITAMENTE mencionado en el texto
-    // de alguna nota de esta entidad (ej. una visita real), no por conexión genérica al tema.
+    // ACTORES: se priorizan los LOCALES de la entidad -- solo se revisa el CARGO (no toda
+    // la descripción, que puede mencionar el estado por su historia pasada, como "fue
+    // gobernador de Puebla" en un cargo actual que ya no tiene relación con ese estado)
     const actoresLocales = todosLosActores.filter(a=>{
-      const texto = ((a.cargo||'')+' '+(a.descripcion||'')).toLowerCase();
+      const texto = (a.cargo||'').toLowerCase();
       return ent.palabras.some(p=>texto.includes(p));
     }).map(a=>a.nombre);
 
@@ -59,13 +58,13 @@ function calcularDatosC3(){
 
     const actores = [...actoresLocales, ...actoresMencionEspecifica];
 
-    // temasIdsPorActor: solo tiene sentido para actores con mención específica en notas
-    // (los locales no siempre tienen una nota propia que filtrar)
+    // temasIdsPorActor: se calcula para TODOS los actores del listado (locales y de mención
+    // específica) -- así el filtro funciona igual para cualquiera, sin distinción
     const temasIdsPorActor = {};
     notas.forEach(n=>{
-      actoresMencionEspecifica.forEach(nombreActor=>{
+      actores.forEach(nombreActor=>{
         const nombreCorto = nombreActor.split(' ').slice(0,2).join(' ').toLowerCase();
-        if(n.descripcion.toLowerCase().includes(nombreCorto)){
+        if(nombreCorto.length>4 && n.descripcion.toLowerCase().includes(nombreCorto)){
           if(!temasIdsPorActor[nombreActor]) temasIdsPorActor[nombreActor] = new Set();
           temasIdsPorActor[nombreActor].add(n.tema_id);
         }
@@ -109,7 +108,10 @@ function renderC3(){
 function pintarDetalleC3(ent, actorFiltro){
   const cont = document.getElementById('c3-detalle');
   if(!cont || !ent) return;
-  const idsPermitidos = actorFiltro ? ent.temasIdsPorActor[actorFiltro] : null;
+  // si se filtra por actor y no hay coincidencia registrada, el resultado debe ser CERO
+  // notas (con mensaje claro), nunca "mostrar todas" -- eso engañaría al usuario haciéndole
+  // creer que esas notas sí lo mencionan
+  const idsPermitidos = actorFiltro ? (ent.temasIdsPorActor[actorFiltro] || new Set()) : null;
   const notasFiltradas = idsPermitidos ? ent.notas.filter(n=>idsPermitidos.has(n.tema_id)) : ent.notas;
   const notasOrdenadas = [...notasFiltradas].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
   cont.innerHTML = `
