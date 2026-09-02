@@ -38,7 +38,7 @@ function renderPortada(){
   });
   const actoresHoyOrdenados = Object.entries(conteoMencionesActor)
     .sort((a,b)=>b[1]-a[1])
-    .map(([id])=>nombrePorId[id]);
+    .map(([id,n])=>({nombre:nombrePorId[id], n}));
 
   cont.innerHTML = `
     <div style="margin-bottom:14px;">
@@ -49,7 +49,7 @@ function renderPortada(){
             <span style="width:7px;height:7px;border-radius:2px;background:${colorCategoria(cat)};display:inline-block;margin-right:5px;"></span>${cat} · ${n}
           </button>`).join('')}
       </div>
-      ${actoresHoyOrdenados.length ? `<div style="font-size:10.5px;color:var(--ink-3);"><strong style="color:var(--ink-2);">En la nota hoy:</strong> ${actoresHoyOrdenados.join(' · ')}</div>` : ''}
+      ${actoresHoyOrdenados.length ? `<div style="font-size:10.5px;color:var(--ink-3);"><strong style="color:var(--ink-2);">En la nota hoy:</strong> ${actoresHoyOrdenados.map(a=>`${a.nombre} (${a.n})`).join(' · ')}</div>` : ''}
     </div>
     <input id="portada-buscador" type="text" placeholder="Buscar en las notas de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);margin-bottom:14px;">
     <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;"></div>
@@ -78,10 +78,18 @@ function renderPortada(){
 
 function filtrarEventosPortada(q, categoria){
   const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t.nombre);
+  const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
+  const actoresPorTema = {};
+  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
+    if(!actoresPorTema[ta.tema_id]) actoresPorTema[ta.tema_id] = [];
+    if(nombrePorId[ta.actor_id]) actoresPorTema[ta.tema_id].push(nombrePorId[ta.actor_id].toLowerCase());
+  });
   return eventosHoyCache.filter(ev=>{
     if(categoria && ev.categoria!==categoria) return false;
     if(!q) return true;
-    return ev.descripcion.toLowerCase().includes(q) || (nombreTemaPorId[ev.tema_id]||'').toLowerCase().includes(q);
+    const coincideTexto = ev.descripcion.toLowerCase().includes(q) || (nombreTemaPorId[ev.tema_id]||'').toLowerCase().includes(q);
+    const coincideActor = (actoresPorTema[ev.tema_id]||[]).some(nombre=>nombre.includes(q));
+    return coincideTexto || coincideActor;
   });
 }
 
@@ -104,17 +112,16 @@ function pintarTarjetasPortada(eventos){
     const bloqueImagen = tieneImagenReal
       ? `<img src="${e.imagen_url}" loading="lazy" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.outerHTML='<div style=\\'width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};\\'>${iniciales}</span></div>'">`
       : `<div style="width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};">${iniciales}</span></div>`;
-    return `<div style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);overflow:hidden;cursor:pointer;" data-tema="${e.tema_id}">
+    return `<div style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);overflow:hidden;cursor:pointer;" data-url="${e.fuente_url||''}">
       ${bloqueImagen}
       <div style="padding:10px 14px;">
         <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px;">${temaNombre}</div>
-        <p style="font-size:12.5px;line-height:1.5;margin:0 0 8px;color:var(--ink-1);">${textoLimpio}</p>
-        ${e.fuente_url ? `<a href="${e.fuente_url}" target="_blank" rel="noopener" style="font-size:10.5px;color:var(--teal);" onclick="event.stopPropagation()">Ver fuente →</a>` : ''}
+        <p style="font-size:12.5px;line-height:1.5;margin:0;color:var(--ink-1);">${textoLimpio}</p>
       </div>
     </div>`;
   }).join('');
-  cont.querySelectorAll('[data-tema]').forEach(el=>{
-    el.addEventListener('click', ()=>{ if(typeof abrirTarjetaHoy==='function') abrirTarjetaHoy(el.dataset.tema); else if(typeof abrirFichaTema==='function') abrirFichaTema(el.dataset.tema); });
+  cont.querySelectorAll('[data-url]').forEach(el=>{
+    el.addEventListener('click', ()=>{ if(el.dataset.url) window.open(el.dataset.url, '_blank', 'noopener'); });
   });
 }
 
