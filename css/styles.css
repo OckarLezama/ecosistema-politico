@@ -270,6 +270,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   animation:pulse-cintillo 2.2s ease-in-out infinite;
 }
 @keyframes pulse-cintillo{ 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.4;transform:scale(.7);} }
+@keyframes entrada-notificacion{ from{opacity:0;transform:translateX(20px);} to{opacity:1;transform:translateX(0);} }
 .ticker-track{ overflow:hidden; flex:1; }
 .ticker-inner{
   display:flex; align-items:center; gap:26px; padding:0 16px; width:max-content;
@@ -309,3 +310,9 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 #analisis-contenedor-scroll::-webkit-scrollbar-track{ background:var(--bg-1); }
 #analisis-contenedor-scroll::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:99px; }
 #analisis-contenedor-scroll::-webkit-scrollbar-thumb:hover{ background:var(--teal); }
+
+#portada-contenedor-scroll{ scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1); }
+#portada-contenedor-scroll::-webkit-scrollbar{ width:6px; }
+#portada-contenedor-scroll::-webkit-scrollbar-track{ background:var(--bg-1); }
+#portada-contenedor-scroll::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:99px; }
+#portada-contenedor-scroll::-webkit-scrollbar-thumb:hover{ background:var(--teal); }
