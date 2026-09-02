@@ -19,13 +19,6 @@ const ENTIDADES_C3 = [
     'san martín texmelucan','san martin texmelucan','cuautlancingo','ocoyucan','coronango','amozoc','tepeaca']},
 ];
 
-// casos confirmados a mano donde el cargo/descripción del actor NO menciona el estado de forma
-// clara (por eso la coincidencia automática por texto no lo agarra), pero SÍ tiene un rol real
-// y vigente ahí -- documentado aquí para que quede explícito, no adivinado
-const ACTORES_LOCALES_MANUALES = {
-  'sergio_salomon': ['Campeche','Chiapas','Oaxaca','Quintana Roo','Tabasco','Veracruz','Yucatán'],
-};
-
 function clasificarImpacto(intensidad){
   const n = Number(intensidad);
   if(n>=8) return 'alto';
@@ -60,42 +53,25 @@ function calcularDatosC3(){
     const desglose = {alto:0, mediano:0, bajo:0};
     notas.forEach(n=> desglose[clasificarImpacto(n.intensidad)]++);
     const pulso = notas.length ? Math.round(notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length*10) : 0;
-    const idsTemas = new Set(notas.map(n=>n.tema_id));
-    const temas = [...idsTemas].map(id=>nombreTemaPorId[id]).filter(Boolean);
 
-    // ACTORES: se priorizan los LOCALES de la entidad -- solo se revisa el CARGO (no toda
-    // la descripción, que puede mencionar el estado por su historia pasada, como "fue
-    // gobernador de Puebla" en un cargo actual que ya no tiene relación con ese estado),
-    // más los casos confirmados a mano en ACTORES_LOCALES_MANUALES
-    const actoresLocales = todosLosActores.filter(a=>{
-      const texto = (a.cargo||'').toLowerCase();
-      const porTexto = ent.palabras.some(p=>texto.includes(p));
-      const porListaManual = (ACTORES_LOCALES_MANUALES[a.id]||[]).includes(ent.nombre);
-      return porTexto || porListaManual;
-    }).map(a=>a.nombre);
-
-    const textoNotasCompleto = notas.map(n=>n.descripcion.toLowerCase()).join(' ');
-    const actoresMencionEspecifica = todosLosActores.filter(a=>{
-      if(actoresLocales.includes(a.nombre)) return false; // ya está en locales, no duplicar
-      return variantesDeNombre(a.nombre).some(v=>textoNotasCompleto.includes(v));
-    }).map(a=>a.nombre);
-
-    const actores = [...actoresLocales, ...actoresMencionEspecifica];
-
-    // temasIdsPorActor: se calcula para TODOS los actores del listado (locales y de mención
-    // específica) -- así el filtro funciona igual para cualquiera, sin distinción
+    // ACTORES: únicamente quien esté MENCIONADO de verdad en el texto de una nota de hoy de
+    // esta entidad -- nunca por cargo, nunca por lista manual. Si ninguna nota lo menciona,
+    // no aparece, sin excepción (esto es solo para el día a día; el cargo/rol servirá más
+    // adelante para el historial, donde sí tiene sentido buscar "qué ha dicho de este actor").
     const temasIdsPorActor = {};
+    const actoresSet = new Set();
     notas.forEach(n=>{
       const textoNota = n.descripcion.toLowerCase();
-      actores.forEach(nombreActor=>{
-        if(variantesDeNombre(nombreActor).some(v=>textoNota.includes(v))){
-          if(!temasIdsPorActor[nombreActor]) temasIdsPorActor[nombreActor] = new Set();
-          temasIdsPorActor[nombreActor].add(n.tema_id);
+      todosLosActores.forEach(a=>{
+        if(variantesDeNombre(a.nombre).some(v=>textoNota.includes(v))){
+          actoresSet.add(a.nombre);
+          if(!temasIdsPorActor[a.nombre]) temasIdsPorActor[a.nombre] = new Set();
+          temasIdsPorActor[a.nombre].add(n.tema_id);
         }
       });
     });
 
-    return {...ent, notas, desglose, pulso, temas, actores, temasIdsPorActor};
+    return {...ent, notas, desglose, pulso, actores:[...actoresSet], temasIdsPorActor};
   }).sort((a,b)=>b.notas.length-a.notas.length);
 }
 
@@ -113,7 +89,7 @@ function renderC3(){
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
             <div style="font-family:var(--f-display);font-size:18px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
           </div>
-          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:8px;">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.temas.length} tema${ent.temas.length!==1?'s':''} · ${ent.actores.length} actor${ent.actores.length!==1?'es':''}</div>
+          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:8px;">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.actores.length} actor${ent.actores.length!==1?'es':''} mencionado${ent.actores.length!==1?'s':''}</div>
           <div style="display:flex;gap:4px;height:8px;border-radius:99px;overflow:hidden;">
             <div style="width:${ent.notas.length?ent.desglose.alto/ent.notas.length*100:0}%;background:var(--riesgo-alto);" title="Alto: ${ent.desglose.alto}"></div>
             <div style="width:${ent.notas.length?ent.desglose.mediano/ent.notas.length*100:0}%;background:var(--riesgo-medio);" title="Mediano: ${ent.desglose.mediano}"></div>
@@ -141,18 +117,10 @@ function pintarDetalleC3(ent, actorFiltro){
   cont.innerHTML = `
     <div style="border-top:2px solid var(--line-strong);padding-top:16px;">
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre}</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-        <div>
-          <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Temas asociados</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            ${ent.temas.length ? ent.temas.map(t=>`<span style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;font-size:11px;color:var(--ink-2);">${t}</span>`).join('') : '<span style="font-size:12px;color:var(--ink-3);">Sin temas asociados.</span>'}
-          </div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Actores asociados — clic para ver sus notas</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            ${ent.actores.length ? ent.actores.map(a=>`<span data-actor="${a}" style="background:${a===actorFiltro?'var(--teal)':'var(--bg-2)'};border:1px solid ${a===actorFiltro?'var(--teal)':'var(--line-strong)'};border-radius:99px;padding:4px 10px;font-size:11px;color:${a===actorFiltro?'#0E1116':'var(--ink-2)'};cursor:pointer;">${a}</span>`).join('') : '<span style="font-size:12px;color:var(--ink-3);">Sin actores asociados.</span>'}
-          </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Actores mencionados hoy — clic para ver sus notas</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          ${ent.actores.length ? ent.actores.map(a=>`<span data-actor="${a}" style="background:${a===actorFiltro?'var(--teal)':'var(--bg-2)'};border:1px solid ${a===actorFiltro?'var(--teal)':'var(--line-strong)'};border-radius:99px;padding:4px 10px;font-size:11px;color:${a===actorFiltro?'#0E1116':'var(--ink-2)'};cursor:pointer;">${a}</span>`).join('') : '<span style="font-size:12px;color:var(--ink-3);">Ningún actor identificado en las notas de hoy.</span>'}
         </div>
       </div>
       <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">
