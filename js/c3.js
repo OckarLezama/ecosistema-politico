@@ -46,8 +46,13 @@ function calcularDatosC3(){
     const idsTemas = new Set(notas.map(n=>n.tema_id));
     const temas = [...idsTemas].map(id=>nombreTemaPorId[id]).filter(Boolean);
     const actoresSet = new Set();
-    idsTemas.forEach(id=> (actoresPorTema[id]||[]).forEach(a=>actoresSet.add(a)));
-    return {...ent, notas, desglose, pulso, temas, actores:[...actoresSet]};
+    const temasIdsPorActor = {}; // actor -> Set(tema_id) -- para poder filtrar notas al hacer clic
+    idsTemas.forEach(id=> (actoresPorTema[id]||[]).forEach(a=>{
+      actoresSet.add(a);
+      if(!temasIdsPorActor[a]) temasIdsPorActor[a] = new Set();
+      temasIdsPorActor[a].add(id);
+    }));
+    return {...ent, notas, desglose, pulso, temas, actores:[...actoresSet], temasIdsPorActor};
   }).sort((a,b)=>b.notas.length-a.notas.length);
 }
 
@@ -81,10 +86,12 @@ function renderC3(){
   });
 }
 
-function pintarDetalleC3(ent){
+function pintarDetalleC3(ent, actorFiltro){
   const cont = document.getElementById('c3-detalle');
   if(!cont || !ent) return;
-  const notasOrdenadas = [...ent.notas].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
+  const idsPermitidos = actorFiltro ? ent.temasIdsPorActor[actorFiltro] : null;
+  const notasFiltradas = idsPermitidos ? ent.notas.filter(n=>idsPermitidos.has(n.tema_id)) : ent.notas;
+  const notasOrdenadas = [...notasFiltradas].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
   cont.innerHTML = `
     <div style="border-top:2px solid var(--line-strong);padding-top:16px;">
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre}</div>
@@ -96,23 +103,30 @@ function pintarDetalleC3(ent){
           </div>
         </div>
         <div>
-          <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Actores asociados</div>
+          <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Actores asociados — clic para ver sus notas</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            ${ent.actores.length ? ent.actores.map(a=>`<span style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;font-size:11px;color:var(--ink-2);">${a}</span>`).join('') : '<span style="font-size:12px;color:var(--ink-3);">Sin actores asociados.</span>'}
+            ${ent.actores.length ? ent.actores.map(a=>`<span data-actor="${a}" style="background:${a===actorFiltro?'var(--teal)':'var(--bg-2)'};border:1px solid ${a===actorFiltro?'var(--teal)':'var(--line-strong)'};border-radius:99px;padding:4px 10px;font-size:11px;color:${a===actorFiltro?'#0E1116':'var(--ink-2)'};cursor:pointer;">${a}</span>`).join('') : '<span style="font-size:12px;color:var(--ink-3);">Sin actores asociados.</span>'}
           </div>
         </div>
       </div>
-      <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Notas (${notasOrdenadas.length})</div>
-      ${notasOrdenadas.slice(0,30).map(n=>{
+      <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">
+        Notas (${notasOrdenadas.length})${actorFiltro ? ` — filtradas por <strong style="color:var(--ink-2);">${actorFiltro}</strong> <button id="c3-quitar-filtro" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:11px;">quitar filtro</button>` : ''}
+      </div>
+      ${notasOrdenadas.length ? notasOrdenadas.slice(0,30).map(n=>{
         const imp = clasificarImpacto(n.intensidad);
         const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='mediano' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
         return `<div data-url="${n.fuente_url||''}" style="padding:6px 0;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:baseline;${n.fuente_url?'cursor:pointer;':''}">
           <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;width:52px;flex-shrink:0;">${imp}</span>
           <span style="font-size:12px;color:var(--ink-1);">${n.descripcion.replace(/^\[Mañanera\]\s*/,'')}</span>
         </div>`;
-      }).join('')}
+      }).join('') : '<p style="font-size:12px;color:var(--ink-3);">Sin notas para este filtro.</p>'}
     </div>
   `;
+  cont.querySelectorAll('[data-actor]').forEach(el=>{
+    el.addEventListener('click', ()=> pintarDetalleC3(ent, el.dataset.actor===actorFiltro ? null : el.dataset.actor));
+  });
+  const btnQuitar = document.getElementById('c3-quitar-filtro');
+  if(btnQuitar) btnQuitar.addEventListener('click', (e)=>{ e.stopPropagation(); pintarDetalleC3(ent, null); });
   cont.querySelectorAll('[data-url]').forEach(el=>{
     if(el.dataset.url) el.addEventListener('click', ()=> window.open(el.dataset.url, '_blank', 'noopener'));
   });
