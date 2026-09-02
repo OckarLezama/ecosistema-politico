@@ -22,6 +22,14 @@ function desgloseCategoria(items){
 function conNegritas(texto){
   return (texto||'').replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--ink-1);">$1</strong>');
 }
+// recorta en el último espacio antes del límite, nunca a media palabra -- se ve más
+// profesional que cortar "Asesinato de Carlo..." en cualquier punto
+function recortarTexto(texto, limite){
+  if(texto.length<=limite) return texto;
+  const corte = texto.slice(0,limite);
+  const ultimoEspacio = corte.lastIndexOf(' ');
+  return (ultimoEspacio>limite*0.5 ? corte.slice(0,ultimoEspacio) : corte) + '…';
+}
 // convierte "2026-S33" en una fecha aproximada legible ("11 ago") -- mismo cálculo simple
 // que usa el backend (día del año / 7), solo para mostrar, nunca para filtrar datos
 function fechaDeSemana(semanaStr){
@@ -436,9 +444,9 @@ function dibujarMapaRed(db){
 
   // líneas RECTAS simples, como la referencia -- no curvas
   const enlacesSel = gEnlaces.selectAll('line').data(enlaces).join('line')
-    .attr('stroke', d=> d.tipo==='patron' ? 'var(--riesgo-medio)' : 'var(--ink-3)')
+    .attr('stroke', d=> d.tipo==='patron' ? 'var(--riesgo-medio)' : 'var(--ink-2)')
     .attr('stroke-width', d=>d.grosor)
-    .attr('opacity', d=> d.tipo==='patron' ? 0.45 : 0.2);
+    .attr('opacity', d=> d.tipo==='patron' ? 0.55 : 0.45);
 
   const nodosSel = gNodos.selectAll('g').data(nodos).join('g').style('cursor','pointer');
   nodosSel.append('circle') // aro de mayor tamaño, invisible, solo para que el clic sea fácil de acertar
@@ -451,7 +459,7 @@ function dibujarMapaRed(db){
   nodosSel.filter(d=>d.tipo==='tema').append('text')
     .attr('text-anchor','middle').attr('dy', d=>d.r+12)
     .attr('font-size', 9.5).attr('fill', 'var(--ink-2)')
-    .text(d=> d.nombre.length>20 ? d.nombre.slice(0,18)+'…' : d.nombre);
+    .text(d=> recortarTexto(d.nombre, 22));
 
   nodosSel.on('mousemove', function(ev,d){
     mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.tipo==='tema' ? d.categoria+' · '+d.peso+' notas en 30 días' : 'Presente en '+d.peso+' tema(s)'}</span>`, ev);
@@ -472,6 +480,12 @@ function dibujarMapaRed(db){
     .force('y', d3.forceY(d=> d.tipo==='tema' ? d.ancla.y : h/2).strength(d=> d.tipo==='tema' ? 0.1 : 0.015))
     .alphaTarget(0.1)
     .on('tick', ()=>{
+      // límite real -- ningún nodo (ni su etiqueta debajo) se puede salir del lienzo visible
+      const margen = 40;
+      nodos.forEach(d=>{
+        d.x = Math.max(margen, Math.min(w-margen, d.x));
+        d.y = Math.max(margen, Math.min(h-margen-20, d.y)); // 20 extra abajo para la etiqueta
+      });
       enlacesSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
       nodosSel.attr('transform', d=>`translate(${d.x},${d.y})`);
     });
