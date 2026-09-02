@@ -71,10 +71,10 @@ function initRedActores(){
 }
 
 function tieneRedDocumentada(actorId){
-  // al menos 1 vínculo real, en cualquier dirección: es núcleo con satélites, o aparece como
-  // satélite de alguien más — antes se filtraba por 'nucleo A/B/C' (una etiqueta aparte, no
-  // garantizaba tener vínculos reales documentados)
-  return redPersonalDe(actorId).length>0 || ECOSISTEMA.redesPersonales.some(r=>r.satelite_id===actorId);
+  // solo cuenta si el actor ES núcleo de su propia red (tiene satélites propios) -- ya no
+  // basta con aparecer como satélite de alguien más, porque al seleccionarlo no habría
+  // nada propio que mostrar
+  return redPersonalDe(actorId).length>0;
 }
 
 function candidatosPara(slot){
