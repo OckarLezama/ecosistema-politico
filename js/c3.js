@@ -90,25 +90,32 @@ function pintarDetalleC3(ent){
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre}</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
         <div>
-          <div style="font-size:11px;color:var(--ink-3);margin-bottom:5px;">Temas asociados</div>
-          <div style="font-size:12px;line-height:1.7;">${ent.temas.length ? ent.temas.join('<br>') : 'Sin temas asociados.'}</div>
+          <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Temas asociados</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            ${ent.temas.length ? ent.temas.map(t=>`<span style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;font-size:11px;color:var(--ink-2);">${t}</span>`).join('') : '<span style="font-size:12px;color:var(--ink-3);">Sin temas asociados.</span>'}
+          </div>
         </div>
         <div>
-          <div style="font-size:11px;color:var(--ink-3);margin-bottom:5px;">Actores asociados</div>
-          <div style="font-size:12px;line-height:1.7;">${ent.actores.length ? ent.actores.join('<br>') : 'Sin actores asociados.'}</div>
+          <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Actores asociados</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            ${ent.actores.length ? ent.actores.map(a=>`<span style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;font-size:11px;color:var(--ink-2);">${a}</span>`).join('') : '<span style="font-size:12px;color:var(--ink-3);">Sin actores asociados.</span>'}
+          </div>
         </div>
       </div>
       <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Notas (${notasOrdenadas.length})</div>
       ${notasOrdenadas.slice(0,30).map(n=>{
         const imp = clasificarImpacto(n.intensidad);
         const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='mediano' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
-        return `<div style="padding:6px 0;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:baseline;">
+        return `<div data-url="${n.fuente_url||''}" style="padding:6px 0;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:baseline;${n.fuente_url?'cursor:pointer;':''}">
           <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;width:52px;flex-shrink:0;">${imp}</span>
           <span style="font-size:12px;color:var(--ink-1);">${n.descripcion.replace(/^\[Mañanera\]\s*/,'')}</span>
         </div>`;
       }).join('')}
     </div>
   `;
+  cont.querySelectorAll('[data-url]').forEach(el=>{
+    if(el.dataset.url) el.addEventListener('click', ()=> window.open(el.dataset.url, '_blank', 'noopener'));
+  });
 }
 
 document.addEventListener('ecosistema:datos-listos', renderC3);

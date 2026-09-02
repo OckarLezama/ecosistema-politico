@@ -50,7 +50,11 @@ function renderPortada(){
               <span style="width:7px;height:7px;border-radius:2px;background:${colorCategoria(cat)};display:inline-block;margin-right:5px;"></span>${cat} · ${n}
             </button>`).join('')}
         </div>
-        ${actoresHoyOrdenados.length ? `<div style="font-size:10.5px;color:var(--ink-3);max-height:54px;overflow-y:auto;line-height:1.6;"><strong style="color:var(--ink-2);">En la nota hoy:</strong> ${actoresHoyOrdenados.map(a=>`${a.nombre} (${a.n})`).join(' · ')}</div>` : ''}
+        ${actoresHoyOrdenados.length ? `<div style="font-size:10.5px;color:var(--ink-3);line-height:1.6;">
+          <strong style="color:var(--ink-2);">En la nota hoy:</strong>
+          <span id="portada-actores-visibles">${actoresHoyOrdenados.slice(0,10).map(a=>`${a.nombre} (${a.n})`).join(' · ')}</span>
+          ${actoresHoyOrdenados.length>10 ? `<button id="portada-ver-mas-actores" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:10.5px;padding:0;margin-left:4px;">+${actoresHoyOrdenados.length-10} más</button>` : ''}
+        </div>` : ''}
       </div>
       <input id="portada-buscador" type="text" placeholder="Buscar en las notas o actores de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);">
     </div>
@@ -58,6 +62,14 @@ function renderPortada(){
   `;
 
   pintarTarjetasPortada(eventosHoyCache);
+
+  const btnVerMas = document.getElementById('portada-ver-mas-actores');
+  if(btnVerMas){
+    btnVerMas.addEventListener('click', ()=>{
+      document.getElementById('portada-actores-visibles').textContent = actoresHoyOrdenados.map(a=>`${a.nombre} (${a.n})`).join(' · ');
+      btnVerMas.remove();
+    });
+  }
 
   let categoriaActiva = null;
   document.querySelectorAll('#portada-chips-categoria button').forEach(btn=>{
