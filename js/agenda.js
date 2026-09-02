@@ -261,26 +261,29 @@ function renderCintillo(){
   const enVentanaMananera = diaSemana>=1 && diaSemana<=5 && hora>=7 && hora<10;
   const eventosMananeraHoy = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy && e.descripcion.startsWith('[Mañanera]'));
 
-  let idsConNotaHoy;
+  let eventosDelDia;
   if(enVentanaMananera && eventosMananeraHoy.length){
-    idsConNotaHoy = new Set(eventosMananeraHoy.map(e=>e.tema_id));
+    eventosDelDia = eventosMananeraHoy;
   } else {
-    idsConNotaHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
+    eventosDelDia = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy);
   }
-  const temas = ECOSISTEMA.temas.filter(t=>idsConNotaHoy.has(t.id)).slice().sort((a,b)=>b.peso_politico-a.peso_politico);
-  if(!temas.length){
+  // 1 entrada por NOTA, no por tema -- así 2 notas del mismo tema se ven las 2, cada una
+  // con su propio fragmento de titular, en vez de una sola entrada genérica que las esconde
+  eventosDelDia = eventosDelDia.slice().sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
+  if(!eventosDelDia.length){
     inner.innerHTML = `<span style="padding:7px 0;color:var(--ink-3);font-size:12px;">${enVentanaMananera ? 'Esperando el resumen de la mañanera...' : 'Sin novedades registradas hoy'}</span>`;
     return;
   }
-  const itemsHTML = temas.map(t=>{
-    const color = colorCategoria(t.categoria);
-    const indice = calcularIndiceEscalamiento(t);
-    const flecha = indice.tendencia==='ascenso' ? '▲' : (indice.tendencia==='descenso' ? '▼' : '—');
-    const claseFlecha = indice.tendencia==='ascenso' ? 'up' : (indice.tendencia==='descenso' ? 'down' : 'flat');
-    return `<button class="ticker-item" data-tema="${t.id}">
+  const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t);
+  const itemsHTML = eventosDelDia.map(e=>{
+    const tema = nombreTemaPorId[e.tema_id];
+    if(!tema) return '';
+    const color = colorCategoria(e.categoria);
+    const fragmento = e.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,64);
+    const textoCorto = fragmento.length>=64 ? fragmento.trimEnd()+'…' : fragmento;
+    return `<button class="ticker-item" data-tema="${tema.id}">
       <span class="riesgo-chip" style="background:${color}"></span>
-      <span class="tema-name">${t.nombre}</span>
-      <span class="trend ${claseFlecha}">${flecha}</span>
+      <span class="tema-name">${textoCorto}</span>
     </button>`;
   }).join('');
   // el contenido se duplica una vez — así la animación de desplazamiento se ve continua, sin salto ni corte al reiniciar
