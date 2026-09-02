@@ -64,7 +64,13 @@ function calcularDatosC3(){
     });
     const desglose = {alto:0, mediano:0, bajo:0};
     notas.forEach(n=> desglose[clasificarImpacto(n.intensidad)]++);
-    const pulso = notas.length ? Math.round(notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length*10) : 0;
+    // el pulso ya no depende solo del promedio de intensidad -- con pocas notas (1 o 2),
+    // multiplicar por 10 directo inflaba el número (una sola nota mediana de intensidad 7
+    // daba "70 de 100", como si fuera tensión alta real). Se atempera según el volumen: con
+    // pocas notas, el número baja -- no es representativo todavía, y no debe verse como si lo fuera.
+    const promedioIntensidad = notas.length ? notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length : 0;
+    const factorConfianza = Math.min(1, notas.length/4); // menos de 4 notas = pulso atenuado
+    const pulso = Math.round(promedioIntensidad*10*factorConfianza);
 
     // conteo de actores mencionados -- solo para el número en la tarjeta resumen, el
     // detalle ya no usa esto para filtrar, solo resalta directo en el texto
