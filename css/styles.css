@@ -133,8 +133,13 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 
 .detail-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
-  box-shadow:var(--shadow-card); padding:16px; height:fit-content;
+  box-shadow:var(--shadow-card); padding:16px; height:609px; overflow-y:auto;
+  scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);
 }
+.detail-card::-webkit-scrollbar{ width:6px; }
+.detail-card::-webkit-scrollbar-track{ background:var(--bg-1); }
+.detail-card::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:99px; }
+.detail-card::-webkit-scrollbar-thumb:hover{ background:var(--teal); }
 .detail-empty{color:var(--ink-3); font-size:12.5px; text-align:center; padding:40px 10px;}
 .detail-avatar{
   width:56px;height:56px;border-radius:50%; display:flex; align-items:center; justify-content:center;
