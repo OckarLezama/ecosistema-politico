@@ -136,6 +136,24 @@ def palabras_significativas(texto):
     palabras = re.findall(r'\w+', texto.lower())
     return set(p for p in palabras if p not in conectores and len(p)>3)
 
+def extraer_imagen_entrada(entrada):
+    """Busca una imagen en la entrada del feed, en el orden más común de RSS:
+    media:thumbnail, media:content, <enclosure>. Si no encuentra nada, regresa
+    cadena vacía -- nunca falla, nunca bloquea el procesamiento del resto."""
+    try:
+        if hasattr(entrada, 'media_thumbnail') and entrada.media_thumbnail:
+            return entrada.media_thumbnail[0].get('url', '')
+        if hasattr(entrada, 'media_content') and entrada.media_content:
+            return entrada.media_content[0].get('url', '')
+        if hasattr(entrada, 'enclosures') and entrada.enclosures:
+            for enc in entrada.enclosures:
+                if 'image' in enc.get('type', ''):
+                    return enc.get('href', '')
+    except Exception:
+        pass
+    return ''
+
+
 def similitud_titulares(t1, t2):
     """Jaccard sobre palabras significativas — 0 (nada en común) a 1 (idénticos)."""
     p1, p2 = palabras_significativas(t1), palabras_significativas(t2)
@@ -336,7 +354,7 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes)
 def guardar_evento_directo(evento):
     """Escribe DIRECTO a eventos.csv — solo para temas que YA existen en temas.csv.
     Es el camino automático de verdad: sin revisión manual, en tiempo real."""
-    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura']
+    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url']
     with open(RUTA_EVENTOS, 'a', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         w.writerow(evento)
@@ -369,6 +387,7 @@ def buscar_candidatos():
             titulo_original = entrada.get('title', '')
             texto_completo = (titulo_original + ' ' + (entrada.get('description') or '')).lower()
             enlace = entrada.get('link') or ''
+            imagen_url = extraer_imagen_entrada(entrada)
             if enlace in ya_procesados_eventos:
                 continue  # solo se descarta si YA está en eventos.csv de verdad
             # Google Noticias da URLs de redirección DISTINTAS para la misma nota exacta —
@@ -416,6 +435,7 @@ def buscar_candidatos():
                     'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                     'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
                     'intensidad': intensidad, 'descripcion': descripcion_final_kt, 'fuente_url': enlace, 'cobertura': 1,
+                    'imagen_url': imagen_url,
                 })
                 titulos_ya_agregados_hoy.add(titulo_normalizado)
             else:
@@ -448,6 +468,7 @@ def buscar_candidatos():
                             'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                             'categoria': categoria_real, 'intensidad': intensidad_final,
                             'descripcion': titulo_final, 'fuente_url': enlace, 'cobertura': 1,
+                            'imagen_url': imagen_url,
                         })
 
     # Mañanera de Hoy — solo procesa si la página ya tiene el resumen de HOY (evita reprocesar
