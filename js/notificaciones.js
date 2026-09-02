@@ -41,8 +41,10 @@ function revisarNotificacionesPendientes(){
   const yaVistos = idsYaNotificados();
   const idsSergio = temasConSergioSalomon();
   const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t);
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
 
   const relevantes = ECOSISTEMA.eventos.filter(e=>{
+    if(e.fecha!==hoy) return false; // SOLO hoy -- antes revisaba todo el historial por error
     if(yaVistos.has(e.id)) return false;
     const tema = nombreTemaPorId[e.tema_id];
     if(!tema) return false;
