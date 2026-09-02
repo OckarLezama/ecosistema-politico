@@ -45,39 +45,18 @@ function clasificarTipoNota(texto){
 // genera las formas reales en que alguien aparece mencionado en noticias: su apodo entre
 // comillas si lo tiene (ej. "Mara Lezama" de "María...Espinosa ('Mara Lezama')"), su nombre +
 // primer apellido, y su último apellido solo -- cualquiera de estas cuenta como mención real
-// genera las formas reales en que alguien aparece mencionado en noticias. Para organizaciones
-// (nombres largos, con siglas entre paréntesis con o sin comillas) usa SOLO la sigla -- nunca
-// palabras sueltas del nombre oficial, que casi siempre son términos genéricos (ej. "nacional"
-// en "Coordinadora Nacional de..." generaría falsos positivos con cualquier nota que diga
-// "Guardia Nacional"). Para personas, usa su apodo entre comillas si lo tiene, nombre+primer
-// apellido, y el primer apellido solo (el que de verdad usan los medios en México).
-function variantesDeNombre(nombreCompleto){
-  const siglas = nombreCompleto.match(/\(([A-ZÑ]{2,})\)/);
-  if(siglas) return [siglas[1].toLowerCase()];
-
-  const variantes = [];
-  const apodo = nombreCompleto.match(/\(['"]([^'"]+)['"]\)/);
-  if(apodo) variantes.push(apodo[1].toLowerCase());
-  const sinApodo = nombreCompleto.replace(/\s*\(['"][^'"]+['"]\)/,'').trim();
-  const partes = sinApodo.split(' ').filter(Boolean);
-  // más de 4 palabras sin sigla = casi seguro es una organización con nombre largo, no una
-  // persona -- no generar variantes de "apellido suelto" para evitar falsos positivos
-  if(partes.length>4) return variantes;
-  if(partes.length>=2) variantes.push(partes.slice(0,2).join(' ').toLowerCase());
-  if(partes.length>=2) variantes.push(partes[1].toLowerCase());
-  if(partes.length>=3) variantes.push(partes[partes.length-1].toLowerCase());
-  return [...new Set(variantes)].filter(v=>v.length>3);
-}
+// (función compartida -- ver data-loader.js)
 
 function calcularDatosC3(){
   const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t.nombre);
   const todosLosActores = ECOSISTEMA.actores||[];
 
   return ENTIDADES_C3.map(ent=>{
-    const notas = ECOSISTEMA.eventos.filter(e=>{
-      const texto = (e.descripcion+' '+(nombreTemaPorId[e.tema_id]||'')).toLowerCase();
-      return ent.palabras.some(p=>texto.includes(p));
-    });
+    // SOLO notas etiquetadas como locales de verdad (campo entidad_c3, puesto por el robot
+    // según la fuente de la que vino) -- ya no cuenta cualquier nota nacional que solo
+    // mencione el nombre del estado de pasada. Si el archivo aún no trae ese campo (notas
+    // viejas, antes de este cambio), esa nota simplemente no cuenta para ninguna entidad.
+    const notas = ECOSISTEMA.eventos.filter(e=> e.entidad_c3 === ent.nombre);
     const desglose = {alto:0, mediano:0, bajo:0};
     notas.forEach(n=> desglose[clasificarImpacto(n.intensidad)]++);
     // el pulso ya no depende solo del promedio de intensidad -- con pocas notas (1 o 2),

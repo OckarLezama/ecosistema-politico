@@ -24,23 +24,24 @@ function renderPortada(){
 
   const fechaTexto = new Date().toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long', timeZone:'America/Mexico_City'});
 
-  // resumen: total por categoría + actores mencionados, ordenados por número real de
-  // menciones (notas de hoy en temas donde ese actor está conectado), de mayor a menor
+  // resumen: total por categoría + actores mencionados, contados por MENCIÓN REAL en el
+  // texto de cada nota (misma lógica que C3, compartida en data-loader.js) -- ya no por
+  // "el tema está conectado a este actor", que inflaba el conteo con notas que no lo mencionan
   const conteoCategoria = {};
-  const idsTemasHoy = eventosHoyCache.map(e=>e.tema_id);
   eventosHoyCache.forEach(e=> conteoCategoria[e.categoria]=(conteoCategoria[e.categoria]||0)+1);
-  const notasPorTemaHoy = {};
-  idsTemasHoy.forEach(id=> notasPorTemaHoy[id]=(notasPorTemaHoy[id]||0)+1);
-  const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
   const conteoMencionesActor = {};
-  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
-    if(notasPorTemaHoy[ta.tema_id] && nombrePorId[ta.actor_id]){
-      conteoMencionesActor[ta.actor_id] = (conteoMencionesActor[ta.actor_id]||0) + notasPorTemaHoy[ta.tema_id];
-    }
+  eventosHoyCache.forEach(e=>{
+    const textoNota = e.descripcion.toLowerCase();
+    (ECOSISTEMA.actores||[]).forEach(a=>{
+      if(variantesDeNombre(a.nombre).some(v=>{
+        const regex = new RegExp(`\\b${v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\b`);
+        return regex.test(textoNota);
+      })) conteoMencionesActor[a.nombre] = (conteoMencionesActor[a.nombre]||0) + 1;
+    });
   });
   const actoresHoyOrdenados = Object.entries(conteoMencionesActor)
     .sort((a,b)=>b[1]-a[1])
-    .map(([id,n])=>({nombre:nombrePorId[id], n}));
+    .map(([nombre,n])=>({nombre, n}));
 
   // encabezado va en un elemento DOM SEPARADO, físicamente fuera del área con scroll --
   // así es imposible que las tarjetas se vean detrás, sin depender de position:sticky
@@ -96,17 +97,18 @@ function renderPortada(){
 
 function filtrarEventosPortada(q, categoria){
   const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t.nombre);
-  const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
-  const actoresPorTema = {};
-  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
-    if(!actoresPorTema[ta.tema_id]) actoresPorTema[ta.tema_id] = [];
-    if(nombrePorId[ta.actor_id]) actoresPorTema[ta.tema_id].push(nombrePorId[ta.actor_id].toLowerCase());
-  });
   return eventosHoyCache.filter(ev=>{
     if(categoria && ev.categoria!==categoria) return false;
     if(!q) return true;
     const coincideTexto = ev.descripcion.toLowerCase().includes(q) || (nombreTemaPorId[ev.tema_id]||'').toLowerCase().includes(q);
-    const coincideActor = (actoresPorTema[ev.tema_id]||[]).some(nombre=>nombre.includes(q));
+    // coincidencia por actor: mención REAL en el texto (variantes de nombre, incluye apodos
+    // como "Alito", "Andy", "Gino", "AMLO"), nunca por tema conectado en general
+    const coincideActor = (ECOSISTEMA.actores||[]).some(a=>{
+      const variantes = variantesDeNombre(a.nombre);
+      const coincideConBusqueda = variantes.some(v=>v.includes(q)) || a.nombre.toLowerCase().includes(q);
+      if(!coincideConBusqueda) return false;
+      return variantes.some(v=>ev.descripcion.toLowerCase().includes(v));
+    });
     return coincideTexto || coincideActor;
   });
 }

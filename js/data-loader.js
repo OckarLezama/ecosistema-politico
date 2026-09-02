@@ -92,3 +92,27 @@ function redPersonalDe(nucleoId){
 }
 
 document.addEventListener('DOMContentLoaded', inicializarDatos);
+
+// genera las formas reales en que alguien aparece mencionado en noticias -- COMPARTIDA entre
+// Portada y C3, para que nunca se desincronicen contando distinto. Para organizaciones
+// (siglas entre paréntesis, con o sin comillas) usa SOLO la sigla -- nunca palabras sueltas
+// del nombre oficial, que casi siempre son términos genéricos (ej. "nacional" en
+// "Coordinadora Nacional de..." generaría falsos positivos con "Guardia Nacional"). Para
+// personas, usa su apodo entre comillas si lo tiene, nombre+primer apellido, y el primer
+// apellido solo (el que de verdad usan los medios en México, ej. "Armenta", no "Mier").
+function variantesDeNombre(nombreCompleto){
+  const siglas = nombreCompleto.match(/\(([A-ZÑ]{2,})\)/);
+  if(siglas) return [siglas[1].toLowerCase()];
+
+  const variantes = [];
+  // el apodo puede venir con paréntesis ("Andrés...('Andy')") o sin ellos ("Alejandro 'Alito' Moreno")
+  const apodo = nombreCompleto.match(/\(?['"]([^'"]+)['"]\)?/);
+  if(apodo) variantes.push(apodo[1].toLowerCase());
+  const sinApodo = nombreCompleto.replace(/\s*\(?['"][^'"]+['"]\)?/,'').trim();
+  const partes = sinApodo.split(' ').filter(Boolean);
+  if(partes.length>4) return variantes;
+  if(partes.length>=2) variantes.push(partes.slice(0,2).join(' ').toLowerCase());
+  if(partes.length>=2) variantes.push(partes[1].toLowerCase());
+  if(partes.length>=3) variantes.push(partes[partes.length-1].toLowerCase());
+  return [...new Set(variantes)].filter(v=>v.length>3);
+}
