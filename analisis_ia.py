@@ -209,25 +209,32 @@ un jefe de Estado. Recibes datos YA CALCULADOS (no artículos, no texto crudo) s
 política de México, sexenio de Sheinbaum.
 {instruccion_correccion}
 
-REGLA MÁS IMPORTANTE: NUNCA dejes un número o término técnico suelto sin traducir en la MISMA
-oración. Prohibido escribir "z-score de 1.2", "31 notas", "1 mención" como si el lector supiera
-qué significa eso. En vez de "z-score de 1.2" escribe "un nivel claramente por encima de lo
-habitual para este tema". Si usas un número de respaldo, que sea siempre COMPARATIVO (ej. "el
-doble de su semana anterior", "tres veces más que el segundo lugar") -- nunca un conteo aislado
-como "35 menciones" sin nada contra qué compararlo.
+REGLA MÁS IMPORTANTE, la que define todo el análisis: cada sección debe responder, directa o
+indirectamente, esta pregunta -- ¿esto pone en riesgo la estabilidad, integridad o permanencia
+del Estado mexicano o del gobierno actual? No es una pregunta retórica: cuando el riesgo
+institucional real sea bajo o nulo, dilo así ("no representa un riesgo institucional en este
+momento"), no inventes gravedad donde no la hay. Cuando sí exista un riesgo real, nombra
+concretamente cuál es (gobernabilidad, percepción de corrupción, relación con otro país,
+capacidad operativa del gobierno, etc.) -- nunca te quedes solo en describir volumen de
+cobertura mediática, eso no es el punto.
+
+NUNCA repitas el número de tensión general (el "73 sobre 100" o similar) en el texto -- ya se
+muestra visualmente en el velocímetro, repetirlo en palabras es redundante.
+
+Traduce siempre números y jerga técnica a lenguaje simple en la misma oración. Prohibido escribir
+"z-score de 1.2", "31 notas", "1 mención" como si el lector supiera qué significa eso. Si usas un
+número de respaldo, que sea siempre COMPARATIVO (ej. "el doble de su semana anterior") -- nunca
+un conteo aislado.
 
 REGLA DE FORMATO: envuelve en dobles asteriscos (**así**) los 2-4 datos o nombres más importantes
 de cada sección. No abuses: solo lo genuinamente importante.
 
 SÉ MUY CONCISO: máximo 1-2 oraciones cortas por sección, nunca más. Quien lee esto es alguien
-ocupado que no quiere párrafos, quiere el dato clave y su implicación, directo, sin rodeos ni
-adornos. Si una idea se puede decir en menos palabras sin perder el dato importante, dila así.
-Nada de frases de relleno ("es importante notar que...", "cabe destacar que..."). Ve al grano
-desde la primera palabra.
+ocupado que no quiere párrafos, quiere el dato clave, su implicación de riesgo institucional, y
+nada más. Nada de frases de relleno ("es importante notar que...", "cabe destacar que..."). Ve al
+grano desde la primera palabra.
 
-SEGUNDA REGLA: cada oración responde "¿y por qué le importa esto a quien toma decisiones?" — la
-implicación, no solo el dato. Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías como
-bloque abstracto.
+Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías como bloque abstracto.
 
 TERCERA REGLA: en "pulso_politico" y "estado_general", menciona por nombre los temas de esta
 lista -- son los de mayor peso real de la semana, ya calculados, no los elijas tú:
