@@ -66,6 +66,21 @@ FUENTES_RSS = [
     # El Financiero -- verificada en vivo, contenido real del mismo día, cobertura política de
     # primer nivel confirmada (Segundo Informe de Sheinbaum, caso Inzunza, seguridad, etc.)
     {'nombre': 'El Financiero', 'url': 'https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml'},
+
+    # ---- MEDIOS LOCALES C3 (Veracruz, Oaxaca, Chiapas, Tabasco, Campeche, Yucatán,
+    # Quintana Roo) + Puebla -- agregados para que C3 tenga cobertura genuinamente local,
+    # no solo menciones de pasada en medios nacionales. Los de Google Noticias por búsqueda
+    # cubren varios medios de golpe; los directos son los de mayor circulación por estado
+    # según el Observatorio Mexicano de Medios y Grupo SIPSE. Igual que arriba: no todos
+    # verificados en vivo desde aquí, la corrida real del robot lo confirma.
+    {'nombre': 'Diario de Yucatán', 'url': 'https://www.yucatan.com.mx/feed'},  # cubre además Campeche y Quintana Roo, más del 60% de circulación de la península (Grupo SIPSE)
+    {'nombre': 'El Imparcial de Oaxaca', 'url': 'https://imparcialoaxaca.mx/feed'},
+    {'nombre': 'Diario de Xalapa (Veracruz)', 'url': 'https://www.diariodexalapa.com.mx/rss'},
+    {'nombre': 'Cuarto Poder (Chiapas)', 'url': 'https://www.cuartopoder.mx/feed/'},
+    {'nombre': 'Tabasco Hoy', 'url': 'https://www.tabascohoy.com/feed'},
+    {'nombre': 'Campeche Hoy', 'url': 'https://campechehoy.mx/feed/'},
+    {'nombre': 'e-consulta (Puebla)', 'url': 'https://www.e-consulta.com/rss.xml'},
+    {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
 ]
 
 # palabras clave por tema — se ajustan a mano, no se adivinan del nombre del tema solo
