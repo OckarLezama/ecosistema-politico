@@ -136,10 +136,12 @@ def palabras_significativas(texto):
     palabras = re.findall(r'\w+', texto.lower())
     return set(p for p in palabras if p not in conectores and len(p)>3)
 
-def extraer_imagen_entrada(entrada):
+def extraer_imagen_entrada(entrada, enlace_articulo=None):
     """Busca una imagen en la entrada del feed, en el orden más común de RSS:
-    media:thumbnail, media:content, <enclosure>. Si no encuentra nada, regresa
-    cadena vacía -- nunca falla, nunca bloquea el procesamiento del resto."""
+    media:thumbnail, media:content, <enclosure>. Si el feed no trae nada, visita
+    la página del artículo y busca su og:image (casi todo sitio de noticias lo
+    declara para compartir en redes -- es la fuente más confiable). Si todo
+    falla, regresa cadena vacía -- nunca truena, nunca bloquea el resto."""
     try:
         if hasattr(entrada, 'media_thumbnail') and entrada.media_thumbnail:
             return entrada.media_thumbnail[0].get('url', '')
@@ -151,6 +153,19 @@ def extraer_imagen_entrada(entrada):
                     return enc.get('href', '')
     except Exception:
         pass
+
+    if enlace_articulo:
+        try:
+            req = urllib.request.Request(enlace_articulo, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=6) as resp:
+                html_parcial = resp.read(60000).decode('utf-8', errors='ignore')  # basta el <head>, no hace falta la página completa
+            m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html_parcial, re.IGNORECASE)
+            if not m:
+                m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', html_parcial, re.IGNORECASE)
+            if m:
+                return m.group(1)
+        except Exception:
+            pass
     return ''
 
 
@@ -387,7 +402,7 @@ def buscar_candidatos():
             titulo_original = entrada.get('title', '')
             texto_completo = (titulo_original + ' ' + (entrada.get('description') or '')).lower()
             enlace = entrada.get('link') or ''
-            imagen_url = extraer_imagen_entrada(entrada)
+            imagen_url = extraer_imagen_entrada(entrada, enlace)
             if enlace in ya_procesados_eventos:
                 continue  # solo se descarta si YA está en eventos.csv de verdad
             # Google Noticias da URLs de redirección DISTINTAS para la misma nota exacta —
