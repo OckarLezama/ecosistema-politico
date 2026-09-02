@@ -72,12 +72,18 @@ FUENTES_RSS = [
     # de que el texto mencione el nombre del estado. Así C3 mide notas genuinamente locales,
     # no notas nacionales que solo lo mencionan de pasada.
     {'nombre': 'Diario de Yucatán', 'url': 'https://www.yucatan.com.mx/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
+    {'nombre': 'Por Esto! (Yucatán/QRoo/Campeche)', 'url': 'https://www.poresto.net/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
     {'nombre': 'El Imparcial de Oaxaca', 'url': 'https://imparcialoaxaca.mx/feed', 'entidades_c3': ['Oaxaca']},
+    {'nombre': 'Noticias Voz e Imagen de Oaxaca', 'url': 'https://www.nvinoticias.com/feed', 'entidades_c3': ['Oaxaca']},
     {'nombre': 'Diario de Xalapa (Veracruz)', 'url': 'https://www.diariodexalapa.com.mx/rss', 'entidades_c3': ['Veracruz']},
+    {'nombre': 'Notiver (Veracruz)', 'url': 'https://www.notiver.com.mx/feed', 'entidades_c3': ['Veracruz']},
     {'nombre': 'Cuarto Poder (Chiapas)', 'url': 'https://www.cuartopoder.mx/feed/', 'entidades_c3': ['Chiapas']},
+    {'nombre': 'Diario del Sur (Chiapas)', 'url': 'https://www.diariodelsur.com.mx/rss', 'entidades_c3': ['Chiapas']},
     {'nombre': 'Tabasco Hoy', 'url': 'https://www.tabascohoy.com/feed', 'entidades_c3': ['Tabasco']},
+    {'nombre': 'Presente (Tabasco)', 'url': 'https://presente.mx/feed', 'entidades_c3': ['Tabasco']},
     {'nombre': 'Campeche Hoy', 'url': 'https://campechehoy.mx/feed/', 'entidades_c3': ['Campeche']},
     {'nombre': 'e-consulta (Puebla)', 'url': 'https://www.e-consulta.com/rss.xml', 'entidades_c3': ['Puebla']},
+    {'nombre': 'Angulo 7 (Puebla)', 'url': 'https://www.angulo7.com.mx/feed/', 'entidades_c3': ['Puebla']},
     # Google Noticias C3 -- cubre varios estados a la vez, no se puede saber cuál sin leer el
     # texto, así que a este SÍ se le busca el nombre del estado en el texto (única excepción)
     {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': None},
@@ -150,6 +156,22 @@ def palabras_significativas(texto):
     conectores = {'para','como','pero','este','esta','estos','estas','desde','hasta','sobre','tras','entre','dice','ante','contra'}
     palabras = re.findall(r'\w+', texto.lower())
     return set(p for p in palabras if p not in conectores and len(p)>3)
+
+PALABRAS_POLITICA_LOCAL = ['gobernador', 'gobernadora', 'alcalde', 'alcaldesa', 'presidente municipal',
+    'ayuntamiento', 'secretaría de gobierno', 'secretaria de gobierno', 'cabildo', 'congreso',
+    'diputado', 'diputada', 'senador', 'senadora', 'elección', 'eleccion', 'corrupción', 'corrupcion',
+    'seguridad pública', 'seguridad publica', 'fiscalía', 'fiscalia', 'gobierno del estado',
+    'gobierno estatal', 'morena', 'oposición', 'oposicion', 'coordinador estatal', 'candidato',
+    'candidata', 'huachicol', 'cártel', 'cartel', 'narcotráfico', 'narcotrafico', 'homicidio',
+    'detención', 'detencion', 'protesta', 'bloqueo', 'presupuesto estatal', 'reforma']
+
+def esContenidoPoliticoLocal(texto_completo):
+    """Filtro de calidad SOLO para fuentes locales C3 -- su feed suele traer TODO el sitio
+    (deportes, cultura, karate, fiestas patrias), no solo política. Sin este filtro, cualquier
+    nota del sitio se auto-crea como tema, llenando C3 de ruido genérico. Requiere al menos
+    1 palabra clara de política/gobierno/seguridad local para pasar."""
+    return any(p in texto_completo for p in PALABRAS_POLITICA_LOCAL)
+
 
 def extraer_imagen_entrada(entrada, enlace_articulo=None):
     """Busca una imagen en la entrada del feed, en el orden más común de RSS:
@@ -497,7 +519,18 @@ def buscar_candidatos():
                 es_migracion = esTemaMigracion(texto_completo)
                 alerta_actor = tieneAlertaEspecial(texto_completo)
                 actor_presion = detectarPresion(texto_completo, actores_altos)
-                if (menciones >= 2 or mencion_top or es_migracion or alerta_actor) and hash_enlace not in ya_vistos:
+                es_fuente_local_c3 = bool(fuente.get('entidades_c3'))
+                # para fuentes locales, el criterio es OTRO: no necesita mencionar a un actor
+                # nacional de alta influencia (rara vez lo hace) -- basta con que sea
+                # contenido político/de gobierno local real, filtrado por esContenidoPoliticoLocal
+                if es_fuente_local_c3:
+                    # pasa si tiene palabras claras de política/gobierno local, O si menciona
+                    # a una figura nacional de alto perfil (ej. "afirma Sheinbaum" sobre un
+                    # tema local sí es política real, aunque no diga "gobernador" ni similar)
+                    disparador = (esContenidoPoliticoLocal(texto_completo) or menciones>=1 or mencion_top) and hash_enlace not in ya_vistos
+                else:
+                    disparador = (menciones >= 2 or mencion_top or es_migracion or alerta_actor) and hash_enlace not in ya_vistos
+                if disparador:
                     categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
                     prefijo = '🔔 ALERTA — ' if (alerta_actor or es_migracion) else ''
                     prefijo += f'⚡ Posible presión de {actor_presion} — ' if actor_presion else ''
