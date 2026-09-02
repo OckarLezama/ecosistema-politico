@@ -28,12 +28,7 @@ function clasificarImpacto(intensidad){
 
 function calcularDatosC3(){
   const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t.nombre);
-  const nombreActorPorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombreActorPorId[a.id]=a.nombre);
-  const actoresPorTema = {};
-  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
-    if(!actoresPorTema[ta.tema_id]) actoresPorTema[ta.tema_id]=[];
-    if(nombreActorPorId[ta.actor_id]) actoresPorTema[ta.tema_id].push(nombreActorPorId[ta.actor_id]);
-  });
+  const todosLosActores = ECOSISTEMA.actores||[];
 
   return ENTIDADES_C3.map(ent=>{
     const notas = ECOSISTEMA.eventos.filter(e=>{
@@ -45,14 +40,39 @@ function calcularDatosC3(){
     const pulso = notas.length ? Math.round(notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length*10) : 0;
     const idsTemas = new Set(notas.map(n=>n.tema_id));
     const temas = [...idsTemas].map(id=>nombreTemaPorId[id]).filter(Boolean);
-    const actoresSet = new Set();
-    const temasIdsPorActor = {}; // actor -> Set(tema_id) -- para poder filtrar notas al hacer clic
-    idsTemas.forEach(id=> (actoresPorTema[id]||[]).forEach(a=>{
-      actoresSet.add(a);
-      if(!temasIdsPorActor[a]) temasIdsPorActor[a] = new Set();
-      temasIdsPorActor[a].add(id);
-    }));
-    return {...ent, notas, desglose, pulso, temas, actores:[...actoresSet], temasIdsPorActor};
+
+    // ACTORES: se priorizan los LOCALES de la entidad (su propio cargo menciona el estado --
+    // gobernador, coordinador, alcalde, etc.), no los conectados al tema nacional en general.
+    // Un actor nacional solo aparece si su nombre está EXPLÍCITAMENTE mencionado en el texto
+    // de alguna nota de esta entidad (ej. una visita real), no por conexión genérica al tema.
+    const actoresLocales = todosLosActores.filter(a=>{
+      const texto = ((a.cargo||'')+' '+(a.descripcion||'')).toLowerCase();
+      return ent.palabras.some(p=>texto.includes(p));
+    }).map(a=>a.nombre);
+
+    const textoNotasCompleto = notas.map(n=>n.descripcion.toLowerCase()).join(' ');
+    const actoresMencionEspecifica = todosLosActores.filter(a=>{
+      if(actoresLocales.includes(a.nombre)) return false; // ya está en locales, no duplicar
+      const nombreCorto = a.nombre.split(' ').slice(0,2).join(' ').toLowerCase(); // nombre+apellido, evita falsos negativos por segundo apellido
+      return nombreCorto.length>4 && textoNotasCompleto.includes(nombreCorto);
+    }).map(a=>a.nombre);
+
+    const actores = [...actoresLocales, ...actoresMencionEspecifica];
+
+    // temasIdsPorActor: solo tiene sentido para actores con mención específica en notas
+    // (los locales no siempre tienen una nota propia que filtrar)
+    const temasIdsPorActor = {};
+    notas.forEach(n=>{
+      actoresMencionEspecifica.forEach(nombreActor=>{
+        const nombreCorto = nombreActor.split(' ').slice(0,2).join(' ').toLowerCase();
+        if(n.descripcion.toLowerCase().includes(nombreCorto)){
+          if(!temasIdsPorActor[nombreActor]) temasIdsPorActor[nombreActor] = new Set();
+          temasIdsPorActor[nombreActor].add(n.tema_id);
+        }
+      });
+    });
+
+    return {...ent, notas, desglose, pulso, temas, actores, temasIdsPorActor};
   }).sort((a,b)=>b.notas.length-a.notas.length);
 }
 

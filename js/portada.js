@@ -8,7 +8,8 @@ let eventosHoyCache = [];
 
 function renderPortada(){
   const cont = document.getElementById('portada-contenido');
-  if(!cont) return;
+  const encabezado = document.getElementById('portada-encabezado-fijo');
+  if(!cont || !encabezado) return;
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
   eventosHoyCache = ECOSISTEMA.eventos
     .filter(e=>e.fecha===hoy)
@@ -16,6 +17,7 @@ function renderPortada(){
     .sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
 
   if(!eventosHoyCache.length){
+    encabezado.innerHTML = '';
     cont.innerHTML = `<p style="font-size:13px;color:var(--ink-3);text-align:center;padding:40px 0;">Aún no hay notas registradas hoy — vuelve más tarde.</p>`;
     return;
   }
@@ -40,8 +42,9 @@ function renderPortada(){
     .sort((a,b)=>b[1]-a[1])
     .map(([id,n])=>({nombre:nombrePorId[id], n}));
 
-  cont.innerHTML = `
-    <div style="position:sticky;top:0;background:var(--bg-1);z-index:20;margin:-16px -16px 2px -16px;padding:16px 16px 12px 16px;border-bottom:1px solid var(--line);">
+  // encabezado va en un elemento DOM SEPARADO, físicamente fuera del área con scroll --
+  // así es imposible que las tarjetas se vean detrás, sin depender de position:sticky
+  encabezado.innerHTML = `
       <div style="margin-bottom:10px;">
         <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
@@ -57,7 +60,8 @@ function renderPortada(){
         </div>` : ''}
       </div>
       <input id="portada-buscador" type="text" placeholder="Buscar en las notas o actores de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);">
-    </div>
+  `;
+  cont.innerHTML = `
     <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding-top:14px;"></div>
   `;
 
