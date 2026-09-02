@@ -41,18 +41,20 @@ function renderPortada(){
     .map(([id,n])=>({nombre:nombrePorId[id], n}));
 
   cont.innerHTML = `
-    <div style="margin-bottom:14px;">
-      <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
-        ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
-          <button data-cat="${cat}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;font-size:10.5px;color:var(--ink-2);cursor:pointer;">
-            <span style="width:7px;height:7px;border-radius:2px;background:${colorCategoria(cat)};display:inline-block;margin-right:5px;"></span>${cat} · ${n}
-          </button>`).join('')}
+    <div style="position:sticky;top:0;background:var(--bg-1);z-index:5;padding-bottom:12px;margin-bottom:2px;border-bottom:1px solid var(--line);">
+      <div style="margin-bottom:10px;">
+        <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
+          ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
+            <button data-cat="${cat}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;font-size:10.5px;color:var(--ink-2);cursor:pointer;">
+              <span style="width:7px;height:7px;border-radius:2px;background:${colorCategoria(cat)};display:inline-block;margin-right:5px;"></span>${cat} · ${n}
+            </button>`).join('')}
+        </div>
+        ${actoresHoyOrdenados.length ? `<div style="font-size:10.5px;color:var(--ink-3);max-height:54px;overflow-y:auto;line-height:1.6;"><strong style="color:var(--ink-2);">En la nota hoy:</strong> ${actoresHoyOrdenados.map(a=>`${a.nombre} (${a.n})`).join(' · ')}</div>` : ''}
       </div>
-      ${actoresHoyOrdenados.length ? `<div style="font-size:10.5px;color:var(--ink-3);"><strong style="color:var(--ink-2);">En la nota hoy:</strong> ${actoresHoyOrdenados.map(a=>`${a.nombre} (${a.n})`).join(' · ')}</div>` : ''}
+      <input id="portada-buscador" type="text" placeholder="Buscar en las notas o actores de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);">
     </div>
-    <input id="portada-buscador" type="text" placeholder="Buscar en las notas de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);margin-bottom:14px;">
-    <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;"></div>
+    <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding-top:14px;"></div>
   `;
 
   pintarTarjetasPortada(eventosHoyCache);
@@ -108,7 +110,9 @@ function pintarTarjetasPortada(eventos){
     const temaNombre = nombreTemaPorId[e.tema_id] || '';
     const textoLimpio = e.descripcion.replace(/^\[Mañanera\]\s*/,'');
     const tieneImagenReal = e.imagen_url && e.imagen_url.trim();
-    const iniciales = temaNombre.split(' ').filter(w=>w.length>2).slice(0,2).map(w=>w[0]).join('').toUpperCase() || '•';
+    const palabrasValidas = temaNombre.split(' ').filter(w=>w.length>2);
+    const palabrasParaIniciales = palabrasValidas.length ? palabrasValidas : temaNombre.split(' ').filter(w=>w.length>0);
+    const iniciales = palabrasParaIniciales.slice(0,2).map(w=>w[0]).join('').toUpperCase() || (e.categoria ? e.categoria.slice(0,2).toUpperCase() : '··');
     const bloqueImagen = tieneImagenReal
       ? `<img src="${e.imagen_url}" loading="lazy" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.outerHTML='<div style=\\'width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};\\'>${iniciales}</span></div>'">`
       : `<div style="width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};">${iniciales}</span></div>`;
