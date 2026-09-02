@@ -19,11 +19,33 @@ const ENTIDADES_C3 = [
     'san martín texmelucan','san martin texmelucan','cuautlancingo','ocoyucan','coronango','amozoc','tepeaca']},
 ];
 
+// casos confirmados a mano donde el cargo/descripción del actor NO menciona el estado de forma
+// clara (por eso la coincidencia automática por texto no lo agarra), pero SÍ tiene un rol real
+// y vigente ahí -- documentado aquí para que quede explícito, no adivinado
+const ACTORES_LOCALES_MANUALES = {
+  'sergio_salomon': ['Campeche','Chiapas','Oaxaca','Quintana Roo','Tabasco','Veracruz','Yucatán'],
+};
+
 function clasificarImpacto(intensidad){
   const n = Number(intensidad);
   if(n>=8) return 'alto';
   if(n>=4) return 'mediano';
   return 'bajo';
+}
+
+// genera las formas reales en que alguien aparece mencionado en noticias: su apodo entre
+// comillas si lo tiene (ej. "Mara Lezama" de "María...Espinosa ('Mara Lezama')"), su nombre +
+// primer apellido, y su último apellido solo -- cualquiera de estas cuenta como mención real
+function variantesDeNombre(nombreCompleto){
+  const variantes = [];
+  const apodo = nombreCompleto.match(/\(['"]([^'"]+)['"]\)/);
+  if(apodo) variantes.push(apodo[1].toLowerCase());
+  const sinApodo = nombreCompleto.replace(/\s*\(['"][^'"]+['"]\)/,'').trim();
+  const partes = sinApodo.split(' ').filter(Boolean);
+  if(partes.length>=2) variantes.push(partes.slice(0,2).join(' ').toLowerCase()); // nombre + primer apellido
+  if(partes.length>=2) variantes.push(partes[1].toLowerCase()); // primer apellido solo -- el que de verdad usan los medios en México (ej. "Armenta", no "Mier")
+  if(partes.length>=3) variantes.push(partes[partes.length-1].toLowerCase()); // último apellido, por si acaso también se usa
+  return [...new Set(variantes)].filter(v=>v.length>3);
 }
 
 function calcularDatosC3(){
@@ -43,17 +65,19 @@ function calcularDatosC3(){
 
     // ACTORES: se priorizan los LOCALES de la entidad -- solo se revisa el CARGO (no toda
     // la descripción, que puede mencionar el estado por su historia pasada, como "fue
-    // gobernador de Puebla" en un cargo actual que ya no tiene relación con ese estado)
+    // gobernador de Puebla" en un cargo actual que ya no tiene relación con ese estado),
+    // más los casos confirmados a mano en ACTORES_LOCALES_MANUALES
     const actoresLocales = todosLosActores.filter(a=>{
       const texto = (a.cargo||'').toLowerCase();
-      return ent.palabras.some(p=>texto.includes(p));
+      const porTexto = ent.palabras.some(p=>texto.includes(p));
+      const porListaManual = (ACTORES_LOCALES_MANUALES[a.id]||[]).includes(ent.nombre);
+      return porTexto || porListaManual;
     }).map(a=>a.nombre);
 
     const textoNotasCompleto = notas.map(n=>n.descripcion.toLowerCase()).join(' ');
     const actoresMencionEspecifica = todosLosActores.filter(a=>{
       if(actoresLocales.includes(a.nombre)) return false; // ya está en locales, no duplicar
-      const nombreCorto = a.nombre.split(' ').slice(0,2).join(' ').toLowerCase(); // nombre+apellido, evita falsos negativos por segundo apellido
-      return nombreCorto.length>4 && textoNotasCompleto.includes(nombreCorto);
+      return variantesDeNombre(a.nombre).some(v=>textoNotasCompleto.includes(v));
     }).map(a=>a.nombre);
 
     const actores = [...actoresLocales, ...actoresMencionEspecifica];
@@ -62,9 +86,9 @@ function calcularDatosC3(){
     // específica) -- así el filtro funciona igual para cualquiera, sin distinción
     const temasIdsPorActor = {};
     notas.forEach(n=>{
+      const textoNota = n.descripcion.toLowerCase();
       actores.forEach(nombreActor=>{
-        const nombreCorto = nombreActor.split(' ').slice(0,2).join(' ').toLowerCase();
-        if(nombreCorto.length>4 && n.descripcion.toLowerCase().includes(nombreCorto)){
+        if(variantesDeNombre(nombreActor).some(v=>textoNota.includes(v))){
           if(!temasIdsPorActor[nombreActor]) temasIdsPorActor[nombreActor] = new Set();
           temasIdsPorActor[nombreActor].add(n.tema_id);
         }
