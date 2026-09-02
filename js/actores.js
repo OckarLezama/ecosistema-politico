@@ -651,7 +651,11 @@ function mostrarVinculosEntreActores(coresElegidos){
   for(let i=0;i<coresElegidos.length;i++){
     for(let j=0;j<coresElegidos.length;j++){
       if(i===j) continue;
-      const grupoA = [coresElegidos[i], ...redesDeCada[i]]; // el núcleo A + todos sus satélites
+      // el núcleo A + sus satélites -- EXCLUYE a los otros núcleos comparados, aunque
+      // aparezcan como "satélite" de A (ej. Sheinbaum→Trump es un vínculo directo, no hace
+      // a Trump parte del "equipo" de Sheinbaum) -- si no se excluye, el equipo del otro
+      // núcleo termina comparándose contra sí mismo y genera vínculos falsos sin sentido
+      const grupoA = [coresElegidos[i], ...redesDeCada[i]].filter(id=> id===coresElegidos[i] || !coresElegidos.includes(id));
       const grupoBSet = new Set([coresElegidos[j], ...redesDeCada[j]]);
       grupoA.forEach(idPersonaA=>{
         redPersonalDe(idPersonaA).forEach(r=>{
