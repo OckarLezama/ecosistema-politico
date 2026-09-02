@@ -26,6 +26,22 @@ function clasificarImpacto(intensidad){
   return 'bajo';
 }
 
+// clasificación por tipo de hecho, por palabras clave -- primera versión, se puede afinar
+// con casos reales que vayan apareciendo
+const CATEGORIAS_NOTA = [
+  {tipo:'Censura', palabras:['censura','censuró','silenciar','veto a medios','restricción a la prensa']},
+  {tipo:'Persecución política', palabras:['persecución política','represalia','venganza política','orden de aprehensión política']},
+  {tipo:'Ataque/agresión', palabras:['agresión','atacó','atentado','balacera','disparo','asesinato','homicidio']},
+  {tipo:'Corrupción', palabras:['corrupción','desvío de recursos','malversación','soborno','sobornos']},
+  {tipo:'Protesta/bloqueo', palabras:['bloqueo','marcha','plantón','paro','manifestación']},
+  {tipo:'Detención/investigación', palabras:['detuvo','detención','carpeta de investigación','vinculación a proceso','arraigo']},
+];
+function clasificarTipoNota(texto){
+  const t = texto.toLowerCase();
+  const encontrados = CATEGORIAS_NOTA.filter(c=>c.palabras.some(p=>t.includes(p))).map(c=>c.tipo);
+  return encontrados.length ? encontrados : ['General'];
+}
+
 // genera las formas reales en que alguien aparece mencionado en noticias: su apodo entre
 // comillas si lo tiene (ej. "Mara Lezama" de "María...Espinosa ('Mara Lezama')"), su nombre +
 // primer apellido, y su último apellido solo -- cualquiera de estas cuenta como mención real
@@ -98,8 +114,9 @@ function renderC3(){
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
       ${datos.map(ent=>{
         const colorPulso = ent.pulso>=66 ? 'var(--riesgo-alto)' : ent.pulso>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
-        return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px;cursor:pointer;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+        const esPuebla = ent.nombre==='Puebla';
+        return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:1px solid ${esPuebla?'var(--arena)':'var(--line-strong)'};${esPuebla?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;position:relative;">
+          ${esPuebla ? '<div style="position:absolute;top:8px;right:8px;font-size:8px;font-family:var(--f-mono);color:var(--arena);text-transform:uppercase;">fuera de C3</div>' : ''}          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
             <div style="font-family:var(--f-display);font-size:18px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
           </div>
@@ -146,9 +163,11 @@ function pintarDetalleC3(ent){
         const imp = clasificarImpacto(n.intensidad);
         const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='mediano' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
         const textoResaltado = resaltarActoresEnTexto(n.descripcion.replace(/^\[Mañanera\]\s*/,''), todosLosActores);
+        const tipos = clasificarTipoNota(n.descripcion);
         return `<div data-url="${n.fuente_url||''}" style="padding:6px 0;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:baseline;${n.fuente_url?'cursor:pointer;':''}">
           <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;width:52px;flex-shrink:0;">${imp}</span>
-          <span style="font-size:12px;color:var(--ink-1);">${textoResaltado}</span>
+          <span style="font-size:12px;color:var(--ink-1);flex:1;">${textoResaltado}</span>
+          <span style="font-size:9px;color:var(--ink-3);white-space:nowrap;">${tipos.join(' · ')}</span>
         </div>`;
       }).join('') : '<p style="font-size:12px;color:var(--ink-3);">Sin notas hoy.</p>'}
     </div>
