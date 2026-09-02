@@ -41,7 +41,7 @@ function renderPortada(){
     .map(([id,n])=>({nombre:nombrePorId[id], n}));
 
   cont.innerHTML = `
-    <div style="position:sticky;top:0;background:var(--bg-1);z-index:5;padding-bottom:12px;margin-bottom:2px;border-bottom:1px solid var(--line);">
+    <div style="position:sticky;top:0;background:var(--bg-1);z-index:20;margin:-16px -16px 2px -16px;padding:16px 16px 12px 16px;border-bottom:1px solid var(--line);">
       <div style="margin-bottom:10px;">
         <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
