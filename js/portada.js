@@ -33,11 +33,11 @@ function renderPortada(){
   cont.innerHTML = `
     <div style="margin-bottom:14px;">
       <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
         ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
-          <span style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;font-size:10.5px;color:var(--ink-2);">
+          <button data-cat="${cat}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;font-size:10.5px;color:var(--ink-2);cursor:pointer;">
             <span style="width:7px;height:7px;border-radius:2px;background:${colorCategoria(cat)};display:inline-block;margin-right:5px;"></span>${cat} · ${n}
-          </span>`).join('')}
+          </button>`).join('')}
       </div>
       ${actoresHoy.size ? `<div style="font-size:10.5px;color:var(--ink-3);"><strong style="color:var(--ink-2);">En la nota hoy:</strong> ${[...actoresHoy].join(' · ')}</div>` : ''}
     </div>
@@ -46,13 +46,32 @@ function renderPortada(){
   `;
 
   pintarTarjetasPortada(eventosHoyCache);
+
+  let categoriaActiva = null;
+  document.querySelectorAll('#portada-chips-categoria button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      categoriaActiva = (categoriaActiva===btn.dataset.cat) ? null : btn.dataset.cat; // clic de nuevo quita el filtro
+      document.querySelectorAll('#portada-chips-categoria button').forEach(b=>{
+        b.style.borderColor = (b.dataset.cat===categoriaActiva) ? 'var(--teal)' : 'var(--line-strong)';
+        b.style.color = (b.dataset.cat===categoriaActiva) ? 'var(--ink-1)' : 'var(--ink-2)';
+      });
+      const q = document.getElementById('portada-buscador').value.trim().toLowerCase();
+      pintarTarjetasPortada(filtrarEventosPortada(q, categoriaActiva));
+    });
+  });
+
   document.getElementById('portada-buscador').addEventListener('input', (e)=>{
     const q = e.target.value.trim().toLowerCase();
-    const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t.nombre);
-    const filtrados = !q ? eventosHoyCache : eventosHoyCache.filter(ev=>
-      ev.descripcion.toLowerCase().includes(q) || (nombreTemaPorId[ev.tema_id]||'').toLowerCase().includes(q)
-    );
-    pintarTarjetasPortada(filtrados);
+    pintarTarjetasPortada(filtrarEventosPortada(q, categoriaActiva));
+  });
+}
+
+function filtrarEventosPortada(q, categoria){
+  const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t.nombre);
+  return eventosHoyCache.filter(ev=>{
+    if(categoria && ev.categoria!==categoria) return false;
+    if(!q) return true;
+    return ev.descripcion.toLowerCase().includes(q) || (nombreTemaPorId[ev.tema_id]||'').toLowerCase().includes(q);
   });
 }
 
@@ -60,18 +79,23 @@ function pintarTarjetasPortada(eventos){
   const cont = document.getElementById('portada-tarjetas');
   if(!cont) return;
   const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t.nombre);
-  if(!eventos.length){
-    cont.innerHTML = `<p style="font-size:12px;color:var(--ink-3);grid-column:1/-1;">Sin resultados para tu búsqueda.</p>`;
+  // solo se muestran notas con imagen real -- como se acordó
+  const conImagen = eventos.filter(e=>e.imagen_url && e.imagen_url.trim());
+  if(!conImagen.length){
+    cont.innerHTML = `<p style="font-size:12px;color:var(--ink-3);grid-column:1/-1;">Sin notas con imagen disponible ${eventos.length ? 'para este filtro' : 'hoy'}.</p>`;
     return;
   }
-  cont.innerHTML = eventos.map(e=>{
+  cont.innerHTML = conImagen.map(e=>{
     const color = colorCategoria(e.categoria);
     const temaNombre = nombreTemaPorId[e.tema_id] || '';
     const textoLimpio = e.descripcion.replace(/^\[Mañanera\]\s*/,'');
-    return `<div style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);padding:12px 14px;cursor:pointer;" data-tema="${e.tema_id}">
-      <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px;">${temaNombre}</div>
-      <p style="font-size:12.5px;line-height:1.5;margin:0 0 8px;color:var(--ink-1);">${textoLimpio}</p>
-      ${e.fuente_url ? `<a href="${e.fuente_url}" target="_blank" rel="noopener" style="font-size:10.5px;color:var(--teal);" onclick="event.stopPropagation()">Ver fuente →</a>` : ''}
+    return `<div style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);overflow:hidden;cursor:pointer;" data-tema="${e.tema_id}">
+      <img src="${e.imagen_url}" loading="lazy" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.parentElement.remove()">
+      <div style="padding:10px 14px;">
+        <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px;">${temaNombre}</div>
+        <p style="font-size:12.5px;line-height:1.5;margin:0 0 8px;color:var(--ink-1);">${textoLimpio}</p>
+        ${e.fuente_url ? `<a href="${e.fuente_url}" target="_blank" rel="noopener" style="font-size:10.5px;color:var(--teal);" onclick="event.stopPropagation()">Ver fuente →</a>` : ''}
+      </div>
     </div>`;
   }).join('');
   cont.querySelectorAll('[data-tema]').forEach(el=>{
