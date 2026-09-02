@@ -351,16 +351,19 @@ function abrirMapaRed(db){
   overlay.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line-strong);">
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;">Mapa de red — temas y actores conectados</div>
-      <button class="chip-btn" id="btn-cerrar-mapa-red">Cerrar</button>
+      <button class="chip-btn" id="btn-cerrar-mapa-red">← Regresar</button>
     </div>
-    <svg id="mapa-red-svg" style="flex:1;width:100%;"></svg>
+    <svg id="mapa-red-svg" style="flex:1;width:100%;height:100%;display:block;min-height:500px;"></svg>
   `;
   overlay.style.display = 'flex';
   document.getElementById('btn-cerrar-mapa-red').addEventListener('click', ()=>{
     overlay.style.display = 'none';
     if(simuladorRedActivo) simuladorRedActivo.stop();
   });
-  requestAnimationFrame(()=> dibujarMapaRed(db));
+  // doble espera (rAF + timeout corto) para asegurar que el layout de flex ya calculó
+  // la altura real del SVG antes de medirla -- si se mide muy pronto, da 0 o un valor
+  // chico y todo el mapa se amontona
+  requestAnimationFrame(()=> setTimeout(()=> dibujarMapaRed(db), 50));
 }
 
 function dibujarMapaRed(db){
@@ -464,7 +467,7 @@ function dibujarMapaRed(db){
     // al centro por peso -- así se ven grupos reales, como en un mapa de red de verdad
     .force('x', d3.forceX(d=> d.tipo==='tema' ? d.ancla.x : w/2).strength(d=> d.tipo==='tema' ? 0.12 : 0.02))
     .force('y', d3.forceY(d=> d.tipo==='tema' ? d.ancla.y : h/2).strength(d=> d.tipo==='tema' ? 0.12 : 0.02))
-    .alphaTarget(0.04) // se mantiene "tibia" -- movimiento continuo suave, nunca se detiene del todo
+    .alphaTarget(0.12) // más alto que antes (0.04) -- ese valor era casi imperceptible
     .on('tick', ()=>{
       enlacesSel.attr('d', d=>{
         const dx=d.target.x-d.source.x, dy=d.target.y-d.source.y;
