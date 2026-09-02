@@ -219,8 +219,11 @@ como "35 menciones" sin nada contra qué compararlo.
 REGLA DE FORMATO: envuelve en dobles asteriscos (**así**) los 2-4 datos o nombres más importantes
 de cada sección. No abuses: solo lo genuinamente importante.
 
-SÉ CONCISO: 2-3 oraciones por sección, no más. Prefiere una oración densa y bien pensada sobre
-dos oraciones que dicen lo mismo con más palabras. El lector es alguien ocupado.
+SÉ MUY CONCISO: máximo 1-2 oraciones cortas por sección, nunca más. Quien lee esto es alguien
+ocupado que no quiere párrafos, quiere el dato clave y su implicación, directo, sin rodeos ni
+adornos. Si una idea se puede decir en menos palabras sin perder el dato importante, dila así.
+Nada de frases de relleno ("es importante notar que...", "cabe destacar que..."). Ve al grano
+desde la primera palabra.
 
 SEGUNDA REGLA: cada oración responde "¿y por qué le importa esto a quien toma decisiones?" — la
 implicación, no solo el dato. Habla de TEMAS ESPECÍFICOS por nombre, nunca de categorías como
@@ -253,11 +256,7 @@ Otras reglas estrictas:
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
 
-Responde ÚNICAMENTE con un objeto JSON con estas claves. Las primeras 6 son la lectura
-principal (2-3 oraciones cada una, concisas). Las siguientes 3 son interpretaciones CORTAS
-(1-2 oraciones). "propuestas_atencion" es una lista de objetos {{tema, propuesta}}, una por cada
-alerta recibida, en el mismo orden.
-Responde ÚNICAMENTE con un objeto JSON con estas claves (2-3 oraciones concisas cada texto):
+Responde ÚNICAMENTE con un objeto JSON con estas claves (1-2 oraciones cortas cada texto, sin excepción):
 {{
   "estado_general": "...",
   "pulso_politico": "...",
@@ -265,10 +264,10 @@ Responde ÚNICAMENTE con un objeto JSON con estas claves (2-3 oraciones concisas
   "alertas_tempranas": "...",
   "tendencia_por_categoria": "...",
   "actores_centrales": "...",
-  "resumen_pulso_sexenio": "1-2 oraciones sobre cómo se ha movido la intensidad general en el tiempo",
-  "resumen_temas": "1-2 oraciones sobre qué muestra la tabla de temas por volumen y tendencia",
-  "resumen_actores": "1-2 oraciones sobre qué muestra la tabla de actores por presencia",
-  "propuestas_atencion": [{{"tema": "nombre exacto del tema", "propuesta": "..."}}]
+  "resumen_pulso_sexenio": "1 oración sobre cómo se ha movido la intensidad general",
+  "resumen_temas": "1 oración sobre qué muestra la tabla de temas",
+  "resumen_actores": "1 oración sobre qué muestra la tabla de actores",
+  "propuestas_atencion": [{{"tema": "nombre exacto del tema", "propuesta": "1 oración corta"}}]
 }}"""
 
 
