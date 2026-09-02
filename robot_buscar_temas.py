@@ -67,20 +67,20 @@ FUENTES_RSS = [
     # primer nivel confirmada (Segundo Informe de Sheinbaum, caso Inzunza, seguridad, etc.)
     {'nombre': 'El Financiero', 'url': 'https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml'},
 
-    # ---- MEDIOS LOCALES C3 (Veracruz, Oaxaca, Chiapas, Tabasco, Campeche, Yucatán,
-    # Quintana Roo) + Puebla -- agregados para que C3 tenga cobertura genuinamente local,
-    # no solo menciones de pasada en medios nacionales. Los de Google Noticias por búsqueda
-    # cubren varios medios de golpe; los directos son los de mayor circulación por estado
-    # según el Observatorio Mexicano de Medios y Grupo SIPSE. Igual que arriba: no todos
-    # verificados en vivo desde aquí, la corrida real del robot lo confirma.
-    {'nombre': 'Diario de Yucatán', 'url': 'https://www.yucatan.com.mx/feed'},  # cubre además Campeche y Quintana Roo, más del 60% de circulación de la península (Grupo SIPSE)
-    {'nombre': 'El Imparcial de Oaxaca', 'url': 'https://imparcialoaxaca.mx/feed'},
-    {'nombre': 'Diario de Xalapa (Veracruz)', 'url': 'https://www.diariodexalapa.com.mx/rss'},
-    {'nombre': 'Cuarto Poder (Chiapas)', 'url': 'https://www.cuartopoder.mx/feed/'},
-    {'nombre': 'Tabasco Hoy', 'url': 'https://www.tabascohoy.com/feed'},
-    {'nombre': 'Campeche Hoy', 'url': 'https://campechehoy.mx/feed/'},
-    {'nombre': 'e-consulta (Puebla)', 'url': 'https://www.e-consulta.com/rss.xml'},
-    {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    # ---- MEDIOS LOCALES C3 -- cada uno lleva 'entidades_c3': la nota que traiga de aquí se
+    # etiqueta DIRECTO con esa entidad (campo nuevo 'entidad_c3' en eventos.csv), sin depender
+    # de que el texto mencione el nombre del estado. Así C3 mide notas genuinamente locales,
+    # no notas nacionales que solo lo mencionan de pasada.
+    {'nombre': 'Diario de Yucatán', 'url': 'https://www.yucatan.com.mx/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
+    {'nombre': 'El Imparcial de Oaxaca', 'url': 'https://imparcialoaxaca.mx/feed', 'entidades_c3': ['Oaxaca']},
+    {'nombre': 'Diario de Xalapa (Veracruz)', 'url': 'https://www.diariodexalapa.com.mx/rss', 'entidades_c3': ['Veracruz']},
+    {'nombre': 'Cuarto Poder (Chiapas)', 'url': 'https://www.cuartopoder.mx/feed/', 'entidades_c3': ['Chiapas']},
+    {'nombre': 'Tabasco Hoy', 'url': 'https://www.tabascohoy.com/feed', 'entidades_c3': ['Tabasco']},
+    {'nombre': 'Campeche Hoy', 'url': 'https://campechehoy.mx/feed/', 'entidades_c3': ['Campeche']},
+    {'nombre': 'e-consulta (Puebla)', 'url': 'https://www.e-consulta.com/rss.xml', 'entidades_c3': ['Puebla']},
+    # Google Noticias C3 -- cubre varios estados a la vez, no se puede saber cuál sin leer el
+    # texto, así que a este SÍ se le busca el nombre del estado en el texto (única excepción)
+    {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': None},
 ]
 
 # palabras clave por tema — se ajustan a mano, no se adivinan del nombre del tema solo
@@ -384,7 +384,7 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes)
 def guardar_evento_directo(evento):
     """Escribe DIRECTO a eventos.csv — solo para temas que YA existen en temas.csv.
     Es el camino automático de verdad: sin revisión manual, en tiempo real."""
-    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url']
+    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url', 'entidad_c3']
     with open(RUTA_EVENTOS, 'a', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         w.writerow(evento)
@@ -422,6 +422,22 @@ def buscar_candidatos():
             texto_completo = (titulo_original + ' ' + (entrada.get('description') or '')).lower()
             enlace = entrada.get('link') or ''
             imagen_url = extraer_imagen_entrada(entrada, enlace)
+
+            # entidad C3 de esta nota: si la fuente cubre 1 sola entidad, se asigna directo
+            # (nota genuinamente local, no depende de que el texto mencione el estado). Si
+            # cubre varias (ej. Diario de Yucatán cubre 3), se busca cuál de esas por texto.
+            # Si la fuente es nacional (entidades_c3=None), queda vacía -- nunca se adivina.
+            entidad_c3_nota = ''
+            entidades_de_esta_fuente = fuente.get('entidades_c3')
+            if entidades_de_esta_fuente:
+                if len(entidades_de_esta_fuente) == 1:
+                    entidad_c3_nota = entidades_de_esta_fuente[0]
+                else:
+                    texto_para_entidad = (titulo_original + ' ' + (entrada.get('description') or '')).lower()
+                    for ent in entidades_de_esta_fuente:
+                        if ent.lower() in texto_para_entidad:
+                            entidad_c3_nota = ent
+                            break
             if enlace in ya_procesados_eventos:
                 continue  # solo se descarta si YA está en eventos.csv de verdad
             # Google Noticias da URLs de redirección DISTINTAS para la misma nota exacta —
@@ -469,7 +485,7 @@ def buscar_candidatos():
                     'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                     'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
                     'intensidad': intensidad, 'descripcion': descripcion_final_kt, 'fuente_url': enlace, 'cobertura': 1,
-                    'imagen_url': imagen_url,
+                    'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota,
                 })
                 conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
                 titulos_ya_agregados_hoy.add(titulo_normalizado)
@@ -503,7 +519,7 @@ def buscar_candidatos():
                             'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                             'categoria': categoria_real, 'intensidad': intensidad_final,
                             'descripcion': titulo_final, 'fuente_url': enlace, 'cobertura': 1,
-                            'imagen_url': imagen_url,
+                            'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota,
                         })
                         conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
 
