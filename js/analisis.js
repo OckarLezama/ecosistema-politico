@@ -379,12 +379,28 @@ function dibujarMapaRed(db){
   if(!svgEl) return;
   const w = svgEl.clientWidth || 900, h = svgEl.clientHeight || 600;
 
-  // nodos: temas (top 10 por volumen reciente) + SOLO los actores que de verdad están
-  // conectados a esos temas (evita puntos sueltos sin relación, que solo estorban)
-  const temasTop = [...(db.burbujas_temas||[])].sort((a,b)=>b.notas_30d-a.notas_30d).slice(0,10);
-  const idsTemasEnMapa = new Set(temasTop.map(t=>'tema:'+t.nombre));
   const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
   const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
+
+  // candidatos iniciales: top 10 por volumen
+  const candidatos = [...(db.burbujas_temas||[])].sort((a,b)=>b.notas_30d-a.notas_30d).slice(0,10);
+  const idsCandidatos = new Set(candidatos.map(t=>'tema:'+t.nombre));
+
+  // un tema con CERO conexiones (ni patrón con otro tema, ni ningún actor) se descarta --
+  // en un mapa que se llama "de red", un punto totalmente aislado no aporta, solo estorba
+  const temasConPatron = new Set();
+  (db.patrones||[]).forEach(p=>{
+    if(idsCandidatos.has('tema:'+p.tema_a) && idsCandidatos.has('tema:'+p.tema_b)){
+      temasConPatron.add(p.tema_a); temasConPatron.add(p.tema_b);
+    }
+  });
+  const temasConActor = new Set();
+  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
+    const nombreTema = nombreTemaPorId[ta.tema_id];
+    if(idsCandidatos.has('tema:'+nombreTema)) temasConActor.add(nombreTema);
+  });
+  const temasTop = candidatos.filter(t=> temasConPatron.has(t.nombre) || temasConActor.has(t.nombre));
+  const idsTemasEnMapa = new Set(temasTop.map(t=>'tema:'+t.nombre));
 
   const presenciaPorActor = {};
   (ECOSISTEMA.temaActores||[]).forEach(ta=>{
@@ -399,17 +415,24 @@ function dibujarMapaRed(db){
     .sort((a,b)=>b.presencia-a.presencia).slice(0,14);
   const idsActoresEnMapa = new Set(actoresConectados.map(a=>'actor:'+a.nombre));
 
+  if(!temasTop.length){
+    svgEl.innerHTML = `<text x="50%" y="50%" text-anchor="middle" fill="var(--ink-3)" font-size="13">Aún no hay suficientes temas conectados entre sí para armar el mapa.</text>`;
+    return;
+  }
+
   const maxVolTema = Math.max(...temasTop.map(t=>t.notas_30d), 1);
   const maxPresActor = Math.max(...actoresConectados.map(a=>a.presencia), 1);
 
   // agrupa por categoría -- cada categoría tiene su propio punto de anclaje repartido
   // en círculo, así los temas de la misma categoría quedan naturalmente cerca entre sí,
-  // como en un mapa de red real (no todo revuelto sin orden)
+  // como en un mapa de red real (no todo revuelto sin orden). Radio más chico que antes
+  // para que el conjunto se vea lleno, no perdido en un lienzo casi vacío.
   const categoriasPresentes = [...new Set(temasTop.map(t=>t.categoria))];
   const anclaCategoria = {};
+  const radioAnclas = Math.min(w,h) * (categoriasPresentes.length<=2 ? 0.18 : 0.26);
   categoriasPresentes.forEach((cat,i)=>{
     const ang = (i/categoriasPresentes.length)*Math.PI*2 - Math.PI/2;
-    anclaCategoria[cat] = { x: w/2 + Math.cos(ang)*(Math.min(w,h)*0.36), y: h/2 + Math.sin(ang)*(Math.min(w,h)*0.36) };
+    anclaCategoria[cat] = { x: w/2 + Math.cos(ang)*radioAnclas, y: h/2 + Math.sin(ang)*radioAnclas };
   });
 
   const nodos = [
