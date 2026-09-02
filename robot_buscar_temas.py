@@ -388,10 +388,14 @@ def buscar_candidatos():
     candidatos_sin_tema = []
     eventos_nuevos = []
     conteo_hoy_por_tema = {}
+    conteo_hoy_por_fuente = {}
+    LIMITE_POR_FUENTE = 20  # evita que una sola fuente (ej. La Jornada) domine el día completo
 
     for fuente in FUENTES_RSS:
         feed = feedparser.parse(fuente['url'])
         for entrada in feed.entries:
+            if conteo_hoy_por_fuente.get(fuente['nombre'], 0) >= LIMITE_POR_FUENTE:
+                continue  # esta fuente ya llegó a su cupo del día -- se le da espacio a las demás
             fecha_pub = entrada.get('published_parsed') or entrada.get('updated_parsed')
             if not fecha_pub:
                 continue
@@ -452,6 +456,7 @@ def buscar_candidatos():
                     'intensidad': intensidad, 'descripcion': descripcion_final_kt, 'fuente_url': enlace, 'cobertura': 1,
                     'imagen_url': imagen_url,
                 })
+                conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
                 titulos_ya_agregados_hoy.add(titulo_normalizado)
             else:
                 # sin tema conocido: 2+ actores de alta influencia, 1 solo si es de máximo nivel,
@@ -485,6 +490,7 @@ def buscar_candidatos():
                             'descripcion': titulo_final, 'fuente_url': enlace, 'cobertura': 1,
                             'imagen_url': imagen_url,
                         })
+                        conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
 
     # Mañanera de Hoy — solo procesa si la página ya tiene el resumen de HOY (evita reprocesar
     # el de ayer fuera de la ventana de mañanera, o si la página aún no se actualizó)
