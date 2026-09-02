@@ -29,15 +29,27 @@ function clasificarImpacto(intensidad){
 // genera las formas reales en que alguien aparece mencionado en noticias: su apodo entre
 // comillas si lo tiene (ej. "Mara Lezama" de "María...Espinosa ('Mara Lezama')"), su nombre +
 // primer apellido, y su último apellido solo -- cualquiera de estas cuenta como mención real
+// genera las formas reales en que alguien aparece mencionado en noticias. Para organizaciones
+// (nombres largos, con siglas entre paréntesis con o sin comillas) usa SOLO la sigla -- nunca
+// palabras sueltas del nombre oficial, que casi siempre son términos genéricos (ej. "nacional"
+// en "Coordinadora Nacional de..." generaría falsos positivos con cualquier nota que diga
+// "Guardia Nacional"). Para personas, usa su apodo entre comillas si lo tiene, nombre+primer
+// apellido, y el primer apellido solo (el que de verdad usan los medios en México).
 function variantesDeNombre(nombreCompleto){
+  const siglas = nombreCompleto.match(/\(([A-ZÑ]{2,})\)/);
+  if(siglas) return [siglas[1].toLowerCase()];
+
   const variantes = [];
   const apodo = nombreCompleto.match(/\(['"]([^'"]+)['"]\)/);
   if(apodo) variantes.push(apodo[1].toLowerCase());
   const sinApodo = nombreCompleto.replace(/\s*\(['"][^'"]+['"]\)/,'').trim();
   const partes = sinApodo.split(' ').filter(Boolean);
-  if(partes.length>=2) variantes.push(partes.slice(0,2).join(' ').toLowerCase()); // nombre + primer apellido
-  if(partes.length>=2) variantes.push(partes[1].toLowerCase()); // primer apellido solo -- el que de verdad usan los medios en México (ej. "Armenta", no "Mier")
-  if(partes.length>=3) variantes.push(partes[partes.length-1].toLowerCase()); // último apellido, por si acaso también se usa
+  // más de 4 palabras sin sigla = casi seguro es una organización con nombre largo, no una
+  // persona -- no generar variantes de "apellido suelto" para evitar falsos positivos
+  if(partes.length>4) return variantes;
+  if(partes.length>=2) variantes.push(partes.slice(0,2).join(' ').toLowerCase());
+  if(partes.length>=2) variantes.push(partes[1].toLowerCase());
+  if(partes.length>=3) variantes.push(partes[partes.length-1].toLowerCase());
   return [...new Set(variantes)].filter(v=>v.length>3);
 }
 
@@ -54,24 +66,20 @@ function calcularDatosC3(){
     notas.forEach(n=> desglose[clasificarImpacto(n.intensidad)]++);
     const pulso = notas.length ? Math.round(notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length*10) : 0;
 
-    // ACTORES: únicamente quien esté MENCIONADO de verdad en el texto de una nota de hoy de
-    // esta entidad -- nunca por cargo, nunca por lista manual. Si ninguna nota lo menciona,
-    // no aparece, sin excepción (esto es solo para el día a día; el cargo/rol servirá más
-    // adelante para el historial, donde sí tiene sentido buscar "qué ha dicho de este actor").
-    const temasIdsPorActor = {};
+    // conteo de actores mencionados -- solo para el número en la tarjeta resumen, el
+    // detalle ya no usa esto para filtrar, solo resalta directo en el texto
     const actoresSet = new Set();
     notas.forEach(n=>{
       const textoNota = n.descripcion.toLowerCase();
       todosLosActores.forEach(a=>{
-        if(variantesDeNombre(a.nombre).some(v=>textoNota.includes(v))){
-          actoresSet.add(a.nombre);
-          if(!temasIdsPorActor[a.nombre]) temasIdsPorActor[a.nombre] = new Set();
-          temasIdsPorActor[a.nombre].add(n.tema_id);
-        }
+        if(variantesDeNombre(a.nombre).some(v=>{
+          const regex = new RegExp(`\\b${v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\b`);
+          return regex.test(textoNota);
+        })) actoresSet.add(a.nombre);
       });
     });
 
-    return {...ent, notas, desglose, pulso, actores:[...actoresSet], temasIdsPorActor};
+    return {...ent, notas, desglose, pulso, actores:[...actoresSet]};
   }).sort((a,b)=>b.notas.length-a.notas.length);
 }
 
@@ -105,42 +113,40 @@ function renderC3(){
   });
 }
 
-function pintarDetalleC3(ent, actorFiltro){
+// resalta en negrita cualquier variante de nombre de actor que de verdad aparezca en el
+// texto -- reemplaza el intento anterior de "chips clicables con filtro", que fallaba de
+// formas distintas cada vez. Resaltar dentro del texto real nunca puede mentir.
+function resaltarActoresEnTexto(texto, todosLosActores){
+  let resultado = texto;
+  todosLosActores.forEach(a=>{
+    variantesDeNombre(a.nombre).forEach(v=>{
+      const regex = new RegExp(`\\b(${v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})\\b`, 'gi');
+      resultado = resultado.replace(regex, '<strong style="color:var(--teal);">$1</strong>');
+    });
+  });
+  return resultado;
+}
+
+function pintarDetalleC3(ent){
   const cont = document.getElementById('c3-detalle');
   if(!cont || !ent) return;
-  // si se filtra por actor y no hay coincidencia registrada, el resultado debe ser CERO
-  // notas (con mensaje claro), nunca "mostrar todas" -- eso engañaría al usuario haciéndole
-  // creer que esas notas sí lo mencionan
-  const idsPermitidos = actorFiltro ? (ent.temasIdsPorActor[actorFiltro] || new Set()) : null;
-  const notasFiltradas = idsPermitidos ? ent.notas.filter(n=>idsPermitidos.has(n.tema_id)) : ent.notas;
-  const notasOrdenadas = [...notasFiltradas].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
+  const notasOrdenadas = [...ent.notas].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
+  const todosLosActores = ECOSISTEMA.actores||[];
   cont.innerHTML = `
     <div style="border-top:2px solid var(--line-strong);padding-top:16px;">
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre}</div>
-      <div style="margin-bottom:16px;">
-        <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Actores mencionados hoy — clic para ver sus notas</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          ${ent.actores.length ? ent.actores.map(a=>`<span data-actor="${a}" style="background:${a===actorFiltro?'var(--teal)':'var(--bg-2)'};border:1px solid ${a===actorFiltro?'var(--teal)':'var(--line-strong)'};border-radius:99px;padding:4px 10px;font-size:11px;color:${a===actorFiltro?'#0E1116':'var(--ink-2)'};cursor:pointer;">${a}</span>`).join('') : '<span style="font-size:12px;color:var(--ink-3);">Ningún actor identificado en las notas de hoy.</span>'}
-        </div>
-      </div>
-      <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">
-        Notas (${notasOrdenadas.length})${actorFiltro ? ` — filtradas por <strong style="color:var(--ink-2);">${actorFiltro}</strong> <button id="c3-quitar-filtro" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:11px;">quitar filtro</button>` : ''}
-      </div>
+      <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px;">Notas (${notasOrdenadas.length}) — los nombres resaltados son actores mencionados directamente en el texto</div>
       ${notasOrdenadas.length ? notasOrdenadas.slice(0,30).map(n=>{
         const imp = clasificarImpacto(n.intensidad);
         const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='mediano' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+        const textoResaltado = resaltarActoresEnTexto(n.descripcion.replace(/^\[Mañanera\]\s*/,''), todosLosActores);
         return `<div data-url="${n.fuente_url||''}" style="padding:6px 0;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:baseline;${n.fuente_url?'cursor:pointer;':''}">
           <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;width:52px;flex-shrink:0;">${imp}</span>
-          <span style="font-size:12px;color:var(--ink-1);">${n.descripcion.replace(/^\[Mañanera\]\s*/,'')}</span>
+          <span style="font-size:12px;color:var(--ink-1);">${textoResaltado}</span>
         </div>`;
-      }).join('') : '<p style="font-size:12px;color:var(--ink-3);">Sin notas para este filtro.</p>'}
+      }).join('') : '<p style="font-size:12px;color:var(--ink-3);">Sin notas hoy.</p>'}
     </div>
   `;
-  cont.querySelectorAll('[data-actor]').forEach(el=>{
-    el.addEventListener('click', ()=> pintarDetalleC3(ent, el.dataset.actor===actorFiltro ? null : el.dataset.actor));
-  });
-  const btnQuitar = document.getElementById('c3-quitar-filtro');
-  if(btnQuitar) btnQuitar.addEventListener('click', (e)=>{ e.stopPropagation(); pintarDetalleC3(ent, null); });
   cont.querySelectorAll('[data-url]').forEach(el=>{
     if(el.dataset.url) el.addEventListener('click', ()=> window.open(el.dataset.url, '_blank', 'noopener'));
   });
