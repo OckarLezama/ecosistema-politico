@@ -266,8 +266,7 @@ function pintarTablaPulso(serie){
   if(!cont || !serie || !serie.length) { if(cont) cont.innerHTML=''; return; }
   const ultimas = serie.slice(-8);
   const max = Math.max(...ultimas.map(s=>s.intensidad), 1);
-  cont.innerHTML = `<p style="font-size:9px;color:var(--ink-3);margin:0 0 6px;">Suma de la intensidad (0-10) de todas las notas de esa semana, en todos los temas activos — a más alto, más "caliente" estuvo la agenda esa semana.</p>
-    <table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+  cont.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:10.5px;">
     <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
       <th style="text-align:left;padding:4px;color:var(--ink-3);font-weight:600;">Semana de</th>
       <th></th>
@@ -280,7 +279,8 @@ function pintarTablaPulso(serie){
         <td style="padding:4px;width:100%;"><div style="background:var(--bg-1);border-radius:99px;height:8px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--riesgo-alto);opacity:0.8;"></div></div></td>
         <td style="padding:4px;text-align:right;color:var(--ink-2);font-weight:600;">${s.intensidad}</td>
       </tr>`;
-    }).join('')}</tbody></table>`;
+    }).join('')}</tbody></table>
+    <p style="font-size:9px;color:var(--ink-3);margin:6px 0 0;">Suma de la intensidad (0-10) de todas las notas de esa semana, en todos los temas activos — a más alto, más "caliente" estuvo la agenda esa semana.</p>`;
 }
 
 function pintarTablaTemas(burbujas){
@@ -401,7 +401,7 @@ function dibujarMapaRed(db){
   const anclaCategoria = {};
   categoriasPresentes.forEach((cat,i)=>{
     const ang = (i/categoriasPresentes.length)*Math.PI*2 - Math.PI/2;
-    anclaCategoria[cat] = { x: w/2 + Math.cos(ang)*(Math.min(w,h)*0.3), y: h/2 + Math.sin(ang)*(Math.min(w,h)*0.3) };
+    anclaCategoria[cat] = { x: w/2 + Math.cos(ang)*(Math.min(w,h)*0.36), y: h/2 + Math.sin(ang)*(Math.min(w,h)*0.36) };
   });
 
   const nodos = [
@@ -425,29 +425,32 @@ function dibujarMapaRed(db){
   svg.selectAll('*').remove();
   svg.attr('viewBox', [0,0,w,h]);
 
+  // círculo punteado de fondo, mismo recurso visual que la referencia -- le da estructura
+  // al conjunto aunque los nodos no lo llenen por completo
+  const radioFondo = Math.min(w,h)*0.42;
+  svg.append('circle').attr('cx',w/2).attr('cy',h/2).attr('r',radioFondo)
+    .attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',1).attr('stroke-dasharray','3 5').attr('opacity',0.4);
+
   const gEnlaces = svg.append('g');
   const gNodos = svg.append('g');
 
-  const enlacesSel = gEnlaces.selectAll('path').data(enlaces).join('path')
-    .attr('fill','none')
+  // líneas RECTAS simples, como la referencia -- no curvas
+  const enlacesSel = gEnlaces.selectAll('line').data(enlaces).join('line')
     .attr('stroke', d=> d.tipo==='patron' ? 'var(--riesgo-medio)' : 'var(--ink-3)')
     .attr('stroke-width', d=>d.grosor)
-    .attr('stroke-dasharray', d=> d.tipo==='actor' ? '2 3' : null)
-    .attr('opacity', d=> d.tipo==='patron' ? 0.6 : 0.3);
+    .attr('opacity', d=> d.tipo==='patron' ? 0.45 : 0.2);
 
   const nodosSel = gNodos.selectAll('g').data(nodos).join('g').style('cursor','pointer');
   nodosSel.append('circle') // aro de mayor tamaño, invisible, solo para que el clic sea fácil de acertar
     .attr('r', d=>d.r+8).attr('fill','transparent');
   nodosSel.append('circle')
     .attr('r', d=>d.r)
-    .attr('fill', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--bg-1)')
-    .attr('opacity', d=> d.tipo==='tema' ? 0.85 : 1)
-    .attr('stroke', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--ink-3)')
-    .attr('stroke-width', d=> d.tipo==='tema' ? 1.5 : 1.2);
-  nodosSel.filter(d=>d.tipo==='tema' || d.r>9).append('text')
-    .attr('text-anchor','middle').attr('dy', d=>d.r+11)
-    .attr('font-size', d=> d.tipo==='tema' ? 10 : 8.5).attr('fill', d=> d.tipo==='tema' ? 'var(--ink-1)' : 'var(--ink-3)')
-    .attr('font-weight', d=> d.tipo==='tema' ? 600 : 400)
+    .attr('fill', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--ink-3)')
+    .attr('opacity', d=> d.tipo==='tema' ? 0.65 : 0.5)
+    .attr('stroke', 'none');
+  nodosSel.filter(d=>d.tipo==='tema').append('text')
+    .attr('text-anchor','middle').attr('dy', d=>d.r+12)
+    .attr('font-size', 9.5).attr('fill', 'var(--ink-2)')
     .text(d=> d.nombre.length>20 ? d.nombre.slice(0,18)+'…' : d.nombre);
 
   nodosSel.on('mousemove', function(ev,d){
@@ -460,20 +463,16 @@ function dibujarMapaRed(db){
 
   if(simuladorRedActivo) simuladorRedActivo.stop();
   simuladorRedActivo = d3.forceSimulation(nodos)
-    .force('link', d3.forceLink(enlaces).id(d=>d.id).distance(d=> d.tipo==='patron' ? 130 : 55).strength(d=> d.tipo==='patron' ? 0.15 : 0.35))
-    .force('charge', d3.forceManyBody().strength(d=> d.tipo==='tema' ? -260 : -90))
-    .force('collide', d3.forceCollide(d=>d.r+14))
+    .force('link', d3.forceLink(enlaces).id(d=>d.id).distance(d=> d.tipo==='patron' ? 170 : 75).strength(d=> d.tipo==='patron' ? 0.1 : 0.3))
+    .force('charge', d3.forceManyBody().strength(d=> d.tipo==='tema' ? -420 : -140))
+    .force('collide', d3.forceCollide(d=>d.r+22))
     // agrupa los temas por categoría (ancla real repartida en círculo), no todos jalados
     // al centro por peso -- así se ven grupos reales, como en un mapa de red de verdad
-    .force('x', d3.forceX(d=> d.tipo==='tema' ? d.ancla.x : w/2).strength(d=> d.tipo==='tema' ? 0.12 : 0.02))
-    .force('y', d3.forceY(d=> d.tipo==='tema' ? d.ancla.y : h/2).strength(d=> d.tipo==='tema' ? 0.12 : 0.02))
-    .alphaTarget(0.12) // más alto que antes (0.04) -- ese valor era casi imperceptible
+    .force('x', d3.forceX(d=> d.tipo==='tema' ? d.ancla.x : w/2).strength(d=> d.tipo==='tema' ? 0.1 : 0.015))
+    .force('y', d3.forceY(d=> d.tipo==='tema' ? d.ancla.y : h/2).strength(d=> d.tipo==='tema' ? 0.1 : 0.015))
+    .alphaTarget(0.1)
     .on('tick', ()=>{
-      enlacesSel.attr('d', d=>{
-        const dx=d.target.x-d.source.x, dy=d.target.y-d.source.y;
-        const dr=Math.sqrt(dx*dx+dy*dy)*1.3; // curva suave, no línea recta -- más legible con muchos enlaces
-        return `M${d.source.x},${d.source.y} A${dr},${dr} 0 0 1 ${d.target.x},${d.target.y}`;
-      });
+      enlacesSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
       nodosSel.attr('transform', d=>`translate(${d.x},${d.y})`);
     });
 }
