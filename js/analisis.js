@@ -368,34 +368,53 @@ function dibujarMapaRed(db){
   if(!svgEl) return;
   const w = svgEl.clientWidth || 900, h = svgEl.clientHeight || 600;
 
-  // nodos: temas (top 12 por volumen reciente) + actores (top 15 por presencia)
-  const temasTop = [...(db.burbujas_temas||[])].sort((a,b)=>b.notas_30d-a.notas_30d).slice(0,12);
-  const actoresTop = (db.burbujas_actores||[]).slice(0,15);
+  // nodos: temas (top 10 por volumen reciente) + SOLO los actores que de verdad están
+  // conectados a esos temas (evita puntos sueltos sin relación, que solo estorban)
+  const temasTop = [...(db.burbujas_temas||[])].sort((a,b)=>b.notas_30d-a.notas_30d).slice(0,10);
+  const idsTemasEnMapa = new Set(temasTop.map(t=>'tema:'+t.nombre));
+  const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
+  const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
+
+  const presenciaPorActor = {};
+  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
+    const temaNombre = nombreTemaPorId[ta.tema_id];
+    if(idsTemasEnMapa.has('tema:'+temaNombre)){
+      presenciaPorActor[ta.actor_id] = (presenciaPorActor[ta.actor_id]||0)+1;
+    }
+  });
+  const actoresConectados = Object.entries(presenciaPorActor)
+    .map(([id,n])=>({id, nombre:nombrePorId[id], presencia:n}))
+    .filter(a=>a.nombre)
+    .sort((a,b)=>b.presencia-a.presencia).slice(0,14);
+  const idsActoresEnMapa = new Set(actoresConectados.map(a=>'actor:'+a.nombre));
 
   const maxVolTema = Math.max(...temasTop.map(t=>t.notas_30d), 1);
-  const maxPresActor = Math.max(...actoresTop.map(a=>a.presencia), 1);
+  const maxPresActor = Math.max(...actoresConectados.map(a=>a.presencia), 1);
+
+  // agrupa por categoría -- cada categoría tiene su propio punto de anclaje repartido
+  // en círculo, así los temas de la misma categoría quedan naturalmente cerca entre sí,
+  // como en un mapa de red real (no todo revuelto sin orden)
+  const categoriasPresentes = [...new Set(temasTop.map(t=>t.categoria))];
+  const anclaCategoria = {};
+  categoriasPresentes.forEach((cat,i)=>{
+    const ang = (i/categoriasPresentes.length)*Math.PI*2 - Math.PI/2;
+    anclaCategoria[cat] = { x: w/2 + Math.cos(ang)*(Math.min(w,h)*0.3), y: h/2 + Math.sin(ang)*(Math.min(w,h)*0.3) };
+  });
 
   const nodos = [
     ...temasTop.map(t=>({id:'tema:'+t.nombre, nombre:t.nombre, tipo:'tema', categoria:t.categoria,
-      r: 12 + (t.notas_30d/maxVolTema)*24, peso: t.notas_30d})),
-    ...actoresTop.map(a=>({id:'actor:'+a.nombre, nombre:a.nombre, tipo:'actor',
-      r: 6 + (a.presencia/maxPresActor)*14, peso: a.presencia})),
+      r: 14 + (t.notas_30d/maxVolTema)*26, peso: t.notas_30d, ancla: anclaCategoria[t.categoria]})),
+    ...actoresConectados.map(a=>({id:'actor:'+a.nombre, nombre:a.nombre, tipo:'actor',
+      r: 6 + (a.presencia/maxPresActor)*10, peso: a.presencia})),
   ];
-  const idsTemasEnMapa = new Set(temasTop.map(t=>'tema:'+t.nombre));
-  const idsActoresEnMapa = new Set(actoresTop.map(a=>'actor:'+a.nombre));
 
-  // enlaces tema-tema (de los patrones ya calculados) y tema-actor (de tema_actores.csv real)
   const enlaces = [];
   (db.patrones||[]).forEach(p=>{
     const a='tema:'+p.tema_a, b='tema:'+p.tema_b;
-    if(idsTemasEnMapa.has(a) && idsTemasEnMapa.has(b)) enlaces.push({source:a, target:b, grosor:Math.min(6,p.semanas_comun), tipo:'patron'});
+    if(idsTemasEnMapa.has(a) && idsTemasEnMapa.has(b)) enlaces.push({source:a, target:b, grosor:Math.min(5,p.semanas_comun), tipo:'patron'});
   });
-  const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
-  const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
   (ECOSISTEMA.temaActores||[]).forEach(ta=>{
-    const temaNombre = nombreTemaPorId[ta.tema_id];
-    const actorNombre = nombrePorId[ta.actor_id];
-    const idTema = 'tema:'+temaNombre, idActor = 'actor:'+actorNombre;
+    const idTema = 'tema:'+nombreTemaPorId[ta.tema_id], idActor = 'actor:'+nombrePorId[ta.actor_id];
     if(idsTemasEnMapa.has(idTema) && idsActoresEnMapa.has(idActor)) enlaces.push({source:idTema, target:idActor, grosor:1, tipo:'actor'});
   });
 
@@ -406,42 +425,52 @@ function dibujarMapaRed(db){
   const gEnlaces = svg.append('g');
   const gNodos = svg.append('g');
 
-  const enlacesSel = gEnlaces.selectAll('line').data(enlaces).join('line')
-    .attr('stroke', d=> d.tipo==='patron' ? 'var(--riesgo-medio)' : 'var(--line-strong)')
+  const enlacesSel = gEnlaces.selectAll('path').data(enlaces).join('path')
+    .attr('fill','none')
+    .attr('stroke', d=> d.tipo==='patron' ? 'var(--riesgo-medio)' : 'var(--ink-3)')
     .attr('stroke-width', d=>d.grosor)
     .attr('stroke-dasharray', d=> d.tipo==='actor' ? '2 3' : null)
-    .attr('opacity', d=> d.tipo==='patron' ? 0.55 : 0.35);
+    .attr('opacity', d=> d.tipo==='patron' ? 0.6 : 0.3);
 
   const nodosSel = gNodos.selectAll('g').data(nodos).join('g').style('cursor','pointer');
+  nodosSel.append('circle') // aro de mayor tamaño, invisible, solo para que el clic sea fácil de acertar
+    .attr('r', d=>d.r+8).attr('fill','transparent');
   nodosSel.append('circle')
     .attr('r', d=>d.r)
-    .attr('fill', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--teal)')
-    .attr('opacity', 0.82)
-    .attr('stroke', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--teal)')
-    .attr('stroke-width', 1.5);
-  nodosSel.append('text')
+    .attr('fill', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--bg-1)')
+    .attr('opacity', d=> d.tipo==='tema' ? 0.85 : 1)
+    .attr('stroke', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--ink-3)')
+    .attr('stroke-width', d=> d.tipo==='tema' ? 1.5 : 1.2);
+  nodosSel.filter(d=>d.tipo==='tema' || d.r>9).append('text')
     .attr('text-anchor','middle').attr('dy', d=>d.r+11)
-    .attr('font-size', 9).attr('fill','var(--ink-2)')
-    .text(d=> d.nombre.length>18 ? d.nombre.slice(0,16)+'…' : d.nombre);
+    .attr('font-size', d=> d.tipo==='tema' ? 10 : 8.5).attr('fill', d=> d.tipo==='tema' ? 'var(--ink-1)' : 'var(--ink-3)')
+    .attr('font-weight', d=> d.tipo==='tema' ? 600 : 400)
+    .text(d=> d.nombre.length>20 ? d.nombre.slice(0,18)+'…' : d.nombre);
 
   nodosSel.on('mousemove', function(ev,d){
-    mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.tipo==='tema' ? 'Tema · '+d.peso+' notas en 30 días' : 'Actor · presente en '+d.peso+' tema(s)'}</span>`, ev);
+    mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.tipo==='tema' ? d.categoria+' · '+d.peso+' notas en 30 días' : 'Presente en '+d.peso+' tema(s)'}</span>`, ev);
   }).on('mouseleave', ocultarTooltipAgenda)
   .on('click', function(ev,d){
+    ev.stopPropagation();
     if(d.tipo==='tema'){ const t=ECOSISTEMA.temas.find(x=>x.nombre===d.nombre); if(t) abrirFichaTema(t.id); }
   });
 
   if(simuladorRedActivo) simuladorRedActivo.stop();
   simuladorRedActivo = d3.forceSimulation(nodos)
-    .force('link', d3.forceLink(enlaces).id(d=>d.id).distance(d=> d.tipo==='patron' ? 90 : 60).strength(0.25))
-    .force('charge', d3.forceManyBody().strength(-90))
-    .force('center', d3.forceCenter(w/2, h/2))
-    .force('collide', d3.forceCollide(d=>d.r+18))
-    // nodos de mayor peso, más cerca del centro -- emerge de la física, no forzado a mano
-    .force('radial', d3.forceRadial(d=> Math.max(30, 220 - d.peso*8), w/2, h/2).strength(0.04))
-    .alphaTarget(0.05) // se mantiene "tibia" -- movimiento continuo suave, nunca se detiene del todo
+    .force('link', d3.forceLink(enlaces).id(d=>d.id).distance(d=> d.tipo==='patron' ? 130 : 55).strength(d=> d.tipo==='patron' ? 0.15 : 0.35))
+    .force('charge', d3.forceManyBody().strength(d=> d.tipo==='tema' ? -260 : -90))
+    .force('collide', d3.forceCollide(d=>d.r+14))
+    // agrupa los temas por categoría (ancla real repartida en círculo), no todos jalados
+    // al centro por peso -- así se ven grupos reales, como en un mapa de red de verdad
+    .force('x', d3.forceX(d=> d.tipo==='tema' ? d.ancla.x : w/2).strength(d=> d.tipo==='tema' ? 0.12 : 0.02))
+    .force('y', d3.forceY(d=> d.tipo==='tema' ? d.ancla.y : h/2).strength(d=> d.tipo==='tema' ? 0.12 : 0.02))
+    .alphaTarget(0.04) // se mantiene "tibia" -- movimiento continuo suave, nunca se detiene del todo
     .on('tick', ()=>{
-      enlacesSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      enlacesSel.attr('d', d=>{
+        const dx=d.target.x-d.source.x, dy=d.target.y-d.source.y;
+        const dr=Math.sqrt(dx*dx+dy*dy)*1.3; // curva suave, no línea recta -- más legible con muchos enlaces
+        return `M${d.source.x},${d.source.y} A${dr},${dr} 0 0 1 ${d.target.x},${d.target.y}`;
+      });
       nodosSel.attr('transform', d=>`translate(${d.x},${d.y})`);
     });
 }
