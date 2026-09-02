@@ -88,14 +88,18 @@ function renderC3(){
   const cont = document.getElementById('c3-contenido');
   if(!cont) return;
   const datos = calcularDatosC3();
+  const totalNotasLocales = datos.reduce((s,e)=>s+e.notas.length, 0);
+
+  const avisoSinDatos = totalNotasLocales===0 ? `<div style="background:var(--bg-2);border:1.5px solid var(--riesgo-medio);border-radius:var(--radius-s);padding:14px;margin-bottom:16px;font-size:12px;color:var(--ink-2);">Aún no hay notas etiquetadas como locales — esto pasa una sola vez, mientras el robot procesa las primeras notas con los medios locales nuevos. En cuanto corra, esto se llena solo.</div>` : '';
 
   cont.innerHTML = `
+    ${avisoSinDatos}
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
       ${datos.map(ent=>{
         const colorPulso = ent.pulso>=66 ? 'var(--riesgo-alto)' : ent.pulso>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
         const esPuebla = ent.nombre==='Puebla';
         return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:1px solid ${esPuebla?'var(--arena)':'var(--line-strong)'};${esPuebla?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;position:relative;">
-          ${esPuebla ? '<div style="position:absolute;top:8px;right:8px;font-size:8px;font-family:var(--f-mono);color:var(--arena);text-transform:uppercase;">fuera de C3</div>' : ''}          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
             <div style="font-family:var(--f-display);font-size:18px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
           </div>
@@ -132,7 +136,7 @@ function resaltarActoresEnTexto(texto, todosLosActores){
 function pintarDetalleC3(ent){
   const cont = document.getElementById('c3-detalle');
   if(!cont || !ent) return;
-  const notasOrdenadas = [...ent.notas].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
+  const notasOrdenadas = [...ent.notas].sort((a,b)=> b.fecha.localeCompare(a.fecha) || String(b.id).localeCompare(String(a.id)));
   const todosLosActores = ECOSISTEMA.actores||[];
   cont.innerHTML = `
     <div style="border-top:2px solid var(--line-strong);padding-top:16px;">

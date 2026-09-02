@@ -643,9 +643,42 @@ function mostrarVinculosEntreActores(coresElegidos){
   const temasDeCada = coresElegidos.map(id=> new Set(ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===id).map(ta=>ta.tema_id)));
   const idsTemasCompartidos = temasDeCada.length ? [...temasDeCada[0]].filter(id=> temasDeCada.every(s=>s.has(id))) : [];
 
+  // vínculos CRUZADOS: un satélite de un núcleo puede tener su propio vínculo directo
+  // (en redes_personales.csv) con el otro núcleo o con un satélite del otro núcleo -- esto
+  // antes nunca se revisaba, por eso Harfuch-Cole/Johnson (satélites de Sheinbaum y Trump)
+  // no aparecían al comparar Sheinbaum vs Trump como núcleos
+  const vinculosCruzados = [];
+  for(let i=0;i<coresElegidos.length;i++){
+    for(let j=0;j<coresElegidos.length;j++){
+      if(i===j) continue;
+      const grupoA = [coresElegidos[i], ...redesDeCada[i]]; // el núcleo A + todos sus satélites
+      const grupoBSet = new Set([coresElegidos[j], ...redesDeCada[j]]);
+      grupoA.forEach(idPersonaA=>{
+        redPersonalDe(idPersonaA).forEach(r=>{
+          if(grupoBSet.has(r.satelite_id) && !(coresElegidos.includes(idPersonaA) && coresElegidos.includes(r.satelite_id))){
+            vinculosCruzados.push({desde:idPersonaA, hacia:r.satelite_id, etiqueta:r.etiqueta_nivel});
+          }
+        });
+      });
+    }
+  }
+  // quita duplicados (A->B y B->A cuentan como el mismo vínculo real)
+  const vinculosCruzadosUnicos = [];
+  const vistos = new Set();
+  vinculosCruzados.forEach(v=>{
+    const clave = [v.desde,v.hacia].sort().join('|');
+    if(!vistos.has(clave)){ vistos.add(clave); vinculosCruzadosUnicos.push(v); }
+  });
+
   let html = `<div class="eyebrow">Vínculos entre ${nombresCortos.join(' y ')}</div>`;
   if(directas.length){
     html += directas.map(c=> `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--familia-nucleo)">Vínculo directo · ${c.tipo_vinculo} (${c.fuerza})</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${c.descripcion}</p></div>`).join('');
+  }
+  if(vinculosCruzadosUnicos.length){
+    html += vinculosCruzadosUnicos.map(v=>{
+      const desde = getActor(v.desde), hacia = getActor(v.hacia);
+      return `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--teal)">Vínculo indirecto (vía red de cercanía)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;"><strong>${desde?desde.nombre:v.desde}</strong> ↔ <strong>${hacia?hacia.nombre:v.hacia}</strong> — ${v.etiqueta}</p></div>`;
+    }).join('');
   }
   if(idsCompartidosPersonal.length){
     html += `<div class="contexto-tema-box"><div class="eyebrow">Contactos en común (red de cercanía)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${idsCompartidosPersonal.map(id=>{const a=getActor(id); return a?a.nombre:id;}).join(', ')}</p></div>`;
@@ -653,8 +686,8 @@ function mostrarVinculosEntreActores(coresElegidos){
   if(idsTemasCompartidos.length){
     html += `<div class="contexto-tema-box"><div class="eyebrow">Aparecen juntos en ${idsTemasCompartidos.length} tema${idsTemasCompartidos.length!==1?'s':''} de agenda</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${idsTemasCompartidos.map(id=>{const t=getTema(id); return t?t.nombre:id;}).join(', ')}</p></div>`;
   }
-  if(!directas.length && !idsCompartidosPersonal.length && !idsTemasCompartidos.length){
-    html += `<p style="font-size:12px;color:var(--ink-3);margin-top:8px;">Sin vínculo documentado entre estos actores por ahora — ni conexión directa, ni contactos ni temas compartidos.</p>`;
+  if(!directas.length && !vinculosCruzadosUnicos.length && !idsCompartidosPersonal.length && !idsTemasCompartidos.length){
+    html += `<p style="font-size:12px;color:var(--ink-3);margin-top:8px;">Sin vínculo documentado entre estos actores por ahora — ni conexión directa, ni de sus redes, ni contactos ni temas compartidos.</p>`;
   }
   panel.innerHTML = html;
 }
