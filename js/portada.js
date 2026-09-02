@@ -22,13 +22,23 @@ function renderPortada(){
 
   const fechaTexto = new Date().toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long', timeZone:'America/Mexico_City'});
 
-  // resumen: total por categoría + actores mencionados (de los temas con nota hoy)
+  // resumen: total por categoría + actores mencionados, ordenados por número real de
+  // menciones (notas de hoy en temas donde ese actor está conectado), de mayor a menor
   const conteoCategoria = {};
-  const idsTemasHoy = new Set(eventosHoyCache.map(e=>e.tema_id));
+  const idsTemasHoy = eventosHoyCache.map(e=>e.tema_id);
   eventosHoyCache.forEach(e=> conteoCategoria[e.categoria]=(conteoCategoria[e.categoria]||0)+1);
+  const notasPorTemaHoy = {};
+  idsTemasHoy.forEach(id=> notasPorTemaHoy[id]=(notasPorTemaHoy[id]||0)+1);
   const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
-  const actoresHoy = new Set();
-  (ECOSISTEMA.temaActores||[]).forEach(ta=>{ if(idsTemasHoy.has(ta.tema_id) && nombrePorId[ta.actor_id]) actoresHoy.add(nombrePorId[ta.actor_id]); });
+  const conteoMencionesActor = {};
+  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
+    if(notasPorTemaHoy[ta.tema_id] && nombrePorId[ta.actor_id]){
+      conteoMencionesActor[ta.actor_id] = (conteoMencionesActor[ta.actor_id]||0) + notasPorTemaHoy[ta.tema_id];
+    }
+  });
+  const actoresHoyOrdenados = Object.entries(conteoMencionesActor)
+    .sort((a,b)=>b[1]-a[1])
+    .map(([id])=>nombrePorId[id]);
 
   cont.innerHTML = `
     <div style="margin-bottom:14px;">
@@ -39,7 +49,7 @@ function renderPortada(){
             <span style="width:7px;height:7px;border-radius:2px;background:${colorCategoria(cat)};display:inline-block;margin-right:5px;"></span>${cat} · ${n}
           </button>`).join('')}
       </div>
-      ${actoresHoy.size ? `<div style="font-size:10.5px;color:var(--ink-3);"><strong style="color:var(--ink-2);">En la nota hoy:</strong> ${[...actoresHoy].join(' · ')}</div>` : ''}
+      ${actoresHoyOrdenados.length ? `<div style="font-size:10.5px;color:var(--ink-3);"><strong style="color:var(--ink-2);">En la nota hoy:</strong> ${actoresHoyOrdenados.join(' · ')}</div>` : ''}
     </div>
     <input id="portada-buscador" type="text" placeholder="Buscar en las notas de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);margin-bottom:14px;">
     <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;"></div>
@@ -79,18 +89,23 @@ function pintarTarjetasPortada(eventos){
   const cont = document.getElementById('portada-tarjetas');
   if(!cont) return;
   const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t.nombre);
-  // solo se muestran notas con imagen real -- como se acordó
-  const conImagen = eventos.filter(e=>e.imagen_url && e.imagen_url.trim());
-  if(!conImagen.length){
-    cont.innerHTML = `<p style="font-size:12px;color:var(--ink-3);grid-column:1/-1;">Sin notas con imagen disponible ${eventos.length ? 'para este filtro' : 'hoy'}.</p>`;
+  if(!eventos.length){
+    cont.innerHTML = `<p style="font-size:12px;color:var(--ink-3);grid-column:1/-1;">Sin resultados para este filtro.</p>`;
     return;
   }
-  cont.innerHTML = conImagen.map(e=>{
+  // GARANTÍA: toda tarjeta muestra una imagen -- real cuando el feed la trae, o un respaldo
+  // diseñado (color de categoría + iniciales del tema) cuando no. Nunca se ve un hueco vacío.
+  cont.innerHTML = eventos.map(e=>{
     const color = colorCategoria(e.categoria);
     const temaNombre = nombreTemaPorId[e.tema_id] || '';
     const textoLimpio = e.descripcion.replace(/^\[Mañanera\]\s*/,'');
+    const tieneImagenReal = e.imagen_url && e.imagen_url.trim();
+    const iniciales = temaNombre.split(' ').filter(w=>w.length>2).slice(0,2).map(w=>w[0]).join('').toUpperCase() || '•';
+    const bloqueImagen = tieneImagenReal
+      ? `<img src="${e.imagen_url}" loading="lazy" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.outerHTML='<div style=\\'width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};\\'>${iniciales}</span></div>'">`
+      : `<div style="width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};">${iniciales}</span></div>`;
     return `<div style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);overflow:hidden;cursor:pointer;" data-tema="${e.tema_id}">
-      <img src="${e.imagen_url}" loading="lazy" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.parentElement.remove()">
+      ${bloqueImagen}
       <div style="padding:10px 14px;">
         <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px;">${temaNombre}</div>
         <p style="font-size:12.5px;line-height:1.5;margin:0 0 8px;color:var(--ink-1);">${textoLimpio}</p>
