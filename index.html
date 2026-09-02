@@ -39,7 +39,7 @@
       <h2>Portada del Día</h2>
       <p>Todos los titulares registrados hoy, de un vistazo — se actualiza sola cada día.</p>
     </div>
-    <div style="background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l); box-shadow:var(--shadow-card); padding:16px; max-height:calc(100vh - 160px); overflow-y:auto;">
+    <div style="background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l); box-shadow:var(--shadow-card); padding:16px; max-height:calc(100vh - 160px); overflow-y:auto;" id="portada-contenedor-scroll">
       <div id="portada-contenido"></div>
     </div>
   </section>
@@ -204,6 +204,7 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/feed.js?v=2"></script>
 <script src="js/agenda.js?v=2"></script>
 <script src="js/timeline.js?v=2"></script>
+<script src="js/notificaciones.js?v=1"></script>
 <script src="js/analisis.js?v=1"></script>
 <script>
 document.addEventListener('ecosistema:datos-listos', ()=>{
