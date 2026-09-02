@@ -6,6 +6,29 @@
 
 let eventosHoyCache = [];
 
+// agrupa notas que hablan del MISMO hecho real (aunque vengan de fuentes/titulares
+// distintos) -- Jaccard sobre palabras significativas, mismo principio que ya usa el robot
+// para no duplicar en un solo día/tema, aplicado aquí entre TODAS las notas del día
+const PALABRAS_VACIAS_AGRUPAR = new Set(['que','de','la','el','en','y','a','los','las','un','una','por','con','para','su','se','del','al','es','no','más','como','este','esta','o']);
+function palabrasSignificativasPortada(texto){
+  return new Set(texto.toLowerCase().replace(/[^\wáéíóúñ\s]/g,' ').split(/\s+/).filter(p=>p.length>3 && !PALABRAS_VACIAS_AGRUPAR.has(p)));
+}
+function similitudTitularesPortada(t1, t2){
+  const p1 = palabrasSignificativasPortada(t1), p2 = palabrasSignificativasPortada(t2);
+  if(!p1.size || !p2.size) return 0;
+  let comunes = 0; p1.forEach(p=>{ if(p2.has(p)) comunes++; });
+  return comunes / (p1.size + p2.size - comunes);
+}
+function agruparPorHechoReal(eventos){
+  const grupos = [];
+  eventos.forEach(ev=>{
+    const grupoExistente = grupos.find(g => similitudTitularesPortada(ev.descripcion, g[0].descripcion) >= 0.32);
+    if(grupoExistente) grupoExistente.push(ev);
+    else grupos.push([ev]);
+  });
+  return grupos;
+}
+
 function renderPortada(){
   const cont = document.getElementById('portada-contenido');
   const encabezado = document.getElementById('portada-encabezado-fijo');
@@ -121,29 +144,52 @@ function pintarTarjetasPortada(eventos){
     cont.innerHTML = `<p style="font-size:12px;color:var(--ink-3);grid-column:1/-1;">Sin resultados para este filtro.</p>`;
     return;
   }
-  // GARANTÍA: toda tarjeta muestra una imagen -- real cuando el feed la trae, o un respaldo
-  // diseñado (color de categoría + iniciales del tema) cuando no. Nunca se ve un hueco vacío.
-  cont.innerHTML = eventos.map(e=>{
-    const color = colorCategoria(e.categoria);
-    const temaNombre = nombreTemaPorId[e.tema_id] || '';
-    const textoLimpio = e.descripcion.replace(/^\[Mañanera\]\s*/,'');
-    const tieneImagenReal = e.imagen_url && e.imagen_url.trim();
+  // GARANTÍA: toda tarjeta muestra una imagen -- la primera real que exista entre TODAS las
+  // fuentes agrupadas del mismo hecho, o un respaldo diseñado si de plano ninguna trae.
+  const grupos = agruparPorHechoReal(eventos);
+  const totalNotasDelDia = eventosHoyCache.length || 1;
+  cont.innerHTML = grupos.map((grupo,i)=>{
+    const principal = [...grupo].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad))[0];
+    const color = colorCategoria(principal.categoria);
+    const temaNombre = nombreTemaPorId[principal.tema_id] || '';
+    const textoLimpio = principal.descripcion.replace(/^\[Mañanera\]\s*/,'');
+    const imagenDelGrupo = grupo.map(e=>e.imagen_url).find(u=>u && u.trim());
     const palabrasValidas = temaNombre.split(' ').filter(w=>w.length>2);
     const palabrasParaIniciales = palabrasValidas.length ? palabrasValidas : temaNombre.split(' ').filter(w=>w.length>0);
-    const iniciales = palabrasParaIniciales.slice(0,2).map(w=>w[0]).join('').toUpperCase() || (e.categoria ? e.categoria.slice(0,2).toUpperCase() : '··');
-    const bloqueImagen = tieneImagenReal
-      ? `<img src="${e.imagen_url}" loading="lazy" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.outerHTML='<div style=\\'width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};\\'>${iniciales}</span></div>'">`
+    const iniciales = palabrasParaIniciales.slice(0,2).map(w=>w[0]).join('').toUpperCase() || (principal.categoria ? principal.categoria.slice(0,2).toUpperCase() : '··');
+    const bloqueImagen = imagenDelGrupo
+      ? `<img src="${imagenDelGrupo}" loading="lazy" style="width:100%;height:130px;object-fit:cover;display:block;" onerror="this.outerHTML='<div style=\\'width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};\\'>${iniciales}</span></div>'">`
       : `<div style="width:100%;height:130px;background:${color}22;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--f-display);font-size:28px;font-weight:700;color:${color};">${iniciales}</span></div>`;
-    return `<div style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);overflow:hidden;cursor:pointer;" data-url="${e.fuente_url||''}">
-      ${bloqueImagen}
-      <div style="padding:10px 14px;">
-        <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px;">${temaNombre}</div>
-        <p style="font-size:12.5px;line-height:1.5;margin:0;color:var(--ink-1);">${textoLimpio}</p>
+    const pctPresencia = Math.round((grupo.length/totalNotasDelDia)*100);
+    return `<div style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);overflow:hidden;">
+      <div style="cursor:${grupo.length>1?'pointer':(principal.fuente_url?'pointer':'default')};" data-grupo="${i}" data-url="${grupo.length===1?(principal.fuente_url||''):''}">
+        ${bloqueImagen}
+        <div style="padding:10px 14px;">
+          <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px;">${temaNombre}</div>
+          <p style="font-size:12.5px;line-height:1.5;margin:0 0 6px;color:var(--ink-1);">${textoLimpio}</p>
+          ${grupo.length>1 ? `<div style="font-size:10px;color:var(--teal);">Cubierto por ${grupo.length} fuentes (${pctPresencia}% de las notas de hoy) — ver todas ↓</div>` : (principal.fuente_url ? `<div style="font-size:10px;color:var(--teal);">Ver fuente →</div>` : '')}
+        </div>
       </div>
+      <div id="portada-expandido-${i}" style="display:none;border-top:1px solid var(--line);padding:8px 14px;"></div>
     </div>`;
   }).join('');
-  cont.querySelectorAll('[data-url]').forEach(el=>{
-    el.addEventListener('click', ()=>{ if(el.dataset.url) window.open(el.dataset.url, '_blank', 'noopener'); });
+  cont.querySelectorAll('[data-grupo]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const i = Number(el.dataset.grupo);
+      const grupo = grupos[i];
+      if(grupo.length===1){ if(el.dataset.url) window.open(el.dataset.url, '_blank', 'noopener'); return; }
+      // expande EN EL MISMO LUGAR de la tarjeta, no en ventana aparte
+      const zonaExpandida = document.getElementById('portada-expandido-'+i);
+      const yaAbierto = zonaExpandida.style.display==='block';
+      zonaExpandida.style.display = yaAbierto ? 'none' : 'block';
+      if(!yaAbierto){
+        const ordenadas = [...grupo].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
+        zonaExpandida.innerHTML = ordenadas.map(e=>`<div style="padding:6px 0;border-bottom:1px solid var(--line);">
+          <p style="font-size:11.5px;color:var(--ink-2);margin:0 0 3px;">${e.descripcion.replace(/^\[Mañanera\]\s*/,'')}</p>
+          ${e.fuente_url ? `<a href="${e.fuente_url}" target="_blank" rel="noopener" style="font-size:10px;color:var(--teal);">Ver nota →</a>` : ''}
+        </div>`).join('');
+      }
+    });
   });
 }
 
