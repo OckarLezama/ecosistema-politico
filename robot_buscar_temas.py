@@ -194,11 +194,24 @@ def extraer_imagen_entrada(entrada, enlace_articulo=None):
     if enlace_articulo:
         try:
             req = urllib.request.Request(enlace_articulo, headers={'User-Agent': 'Mozilla/5.0'})
-            with urllib.request.urlopen(req, timeout=6) as resp:
-                html_parcial = resp.read(60000).decode('utf-8', errors='ignore')  # basta el <head>, no hace falta la página completa
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                html_parcial = resp.read(120000).decode('utf-8', errors='ignore')  # un poco más de margen -- algunos sitios ponen las meta tags más abajo del <head>
+            # intento 1: og:image (el más confiable, casi todo sitio de noticias lo declara)
             m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html_parcial, re.IGNORECASE)
             if not m:
                 m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', html_parcial, re.IGNORECASE)
+            # intento 2: twitter:image (casi todo sitio con WordPress/Yoast SEO también lo trae)
+            if not m:
+                m = re.search(r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']', html_parcial, re.IGNORECASE)
+            if not m:
+                m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']twitter:image["\']', html_parcial, re.IGNORECASE)
+            # intento 3: la primera <img> real del cuerpo del artículo (último recurso, se
+            # descartan iconos/logos chicos por su nombre de archivo típico)
+            if not m:
+                for img_url in re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', html_parcial, re.IGNORECASE):
+                    if not any(p in img_url.lower() for p in ['logo', 'icon', 'avatar', 'spacer', '.svg']):
+                        m = type('M', (), {'group': lambda self, n: img_url})()
+                        break
             if m:
                 return m.group(1)
         except Exception:
