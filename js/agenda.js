@@ -288,6 +288,14 @@ function renderCintillo(){
   inner.querySelectorAll('.ticker-item').forEach(btn=>{
     btn.addEventListener('click', ()=>{ if(typeof abrirTarjetaHoy==='function') abrirTarjetaHoy(btn.dataset.tema); });
   });
+  // misma velocidad real que el feed (12.5px por segundo) -- se calcula la duración según
+  // el ancho real del contenido, en vez de un número de segundos fijo adivinado
+  requestAnimationFrame(()=>{
+    const anchoMitad = inner.scrollWidth / 2;
+    const PX_POR_SEGUNDO = 12.5; // mismo ritmo que iniciarAutoScrollFeed (0.5px cada 40ms)
+    const duracion = Math.max(20, anchoMitad / PX_POR_SEGUNDO);
+    inner.style.animationDuration = duracion.toFixed(1) + 's';
+  });
 }
 document.addEventListener('ecosistema:datos-listos', renderCintillo);
 

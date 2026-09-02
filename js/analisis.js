@@ -1,6 +1,6 @@
 /* ============================================================
    V2 — ANÁLISIS
-   Dashboard ejecutivo: Lectura de Inteligencia (párrafos
+   Dashboard ejecutivo: Lectura de los acontecimientos (párrafos
    justificados, sintetizados) + velocímetro real con marcas de
    escala + KPIs con representación visual + Requiere Atención
    (con propuesta de la IA) + Patrones (enfoque en confiabilidad)
@@ -56,7 +56,7 @@ function cargarLecturaIA(temas){
     .then(datos=> pintarDashboard(datos, temas))
     .catch(()=>{
       zona.innerHTML = `<div style="text-align:center;padding:50px 20px;">
-        <div style="font-family:var(--f-display);font-size:16px;color:var(--ink-1);margin-bottom:6px;">Lectura de Inteligencia</div>
+        <div style="font-family:var(--f-display);font-size:16px;color:var(--ink-1);margin-bottom:6px;">Lectura de los acontecimientos</div>
         <p style="font-size:11px;color:var(--ink-3);">Aún no se ha generado la primera lectura del día — corre cada mañana a las 8:00 (hora CDMX).</p>
       </div>`;
     });
@@ -79,7 +79,7 @@ function pintarDashboard(datos, temas){
   zona.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-bottom:14px;border-bottom:2px solid var(--line-strong);margin-bottom:18px;">
       <div>
-        <div style="font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--ink-1);letter-spacing:-.01em;">Lectura de Inteligencia</div>
+        <div style="font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--ink-1);letter-spacing:-.01em;">Lectura de los acontecimientos</div>
         <div style="font-size:11px;color:var(--ink-3);margin-top:2px;">${fecha}</div>
       </div>
     </div>
@@ -154,10 +154,7 @@ function pintarDashboard(datos, temas){
       </div>
     </div>
 
-    <div style="display:flex;gap:10px;margin-top:22px;">
-      <button class="chip-btn" id="btn-exportar-pdf-analisis">Descargar brief ejecutivo (PDF)</button>
-      <button class="chip-btn" id="btn-abrir-mapa-red">Ver mapa de red completo</button>
-    </div>
+    <button class="chip-btn" id="btn-exportar-pdf-analisis" style="margin-top:22px;">Descargar brief ejecutivo (PDF)</button>
   `;
 
   dibujarVelocimetro(tension);
@@ -173,8 +170,6 @@ function pintarDashboard(datos, temas){
     window.print();
     setTimeout(()=> document.body.classList.remove('modo-impresion-analisis'), 500);
   });
-
-  document.getElementById('btn-abrir-mapa-red').addEventListener('click', ()=> abrirMapaRed(db));
 }
 
 // hover en cada KPI -- muestra la lista real de temas de ese grupo, sin necesitar clic ni modal
@@ -337,179 +332,3 @@ function pintarTablaActores(actores){
 }
 
 document.addEventListener('ecosistema:datos-listos', renderAnalisis);
-
-// ============================================================
-// MAPA DE RED -- vista aparte, temas + actores conectados, con
-// movimiento continuo suave (tipo sistema solar). Los nodos de
-// mayor peso naturalmente terminan más al centro por la física
-// de la simulación, no por un centro forzado -- no hay un nodo
-// "México" artificial, eso sería inventar algo que no está en
-// los datos.
-// ============================================================
-let simuladorRedActivo = null;
-
-function abrirMapaRed(db){
-  let overlay = document.getElementById('mapa-red-overlay');
-  if(!overlay){
-    overlay = document.createElement('div');
-    overlay.id = 'mapa-red-overlay';
-    overlay.style.cssText = 'position:fixed;inset:0;background:var(--bg-0);z-index:500;display:flex;flex-direction:column;';
-    document.body.appendChild(overlay);
-  }
-  overlay.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line-strong);">
-      <div style="font-family:var(--f-display);font-size:16px;font-weight:700;">Mapa de red — temas y actores conectados</div>
-      <button class="chip-btn" id="btn-cerrar-mapa-red">← Regresar</button>
-    </div>
-    <svg id="mapa-red-svg" style="flex:1;width:100%;height:100%;display:block;min-height:500px;"></svg>
-  `;
-  overlay.style.display = 'flex';
-  document.getElementById('btn-cerrar-mapa-red').addEventListener('click', ()=>{
-    overlay.style.display = 'none';
-    if(simuladorRedActivo) simuladorRedActivo.stop();
-  });
-  // doble espera (rAF + timeout corto) para asegurar que el layout de flex ya calculó
-  // la altura real del SVG antes de medirla -- si se mide muy pronto, da 0 o un valor
-  // chico y todo el mapa se amontona
-  requestAnimationFrame(()=> setTimeout(()=> dibujarMapaRed(db), 50));
-}
-
-function dibujarMapaRed(db){
-  const svgEl = document.getElementById('mapa-red-svg');
-  if(!svgEl) return;
-  const w = svgEl.clientWidth || 900, h = svgEl.clientHeight || 600;
-
-  const nombrePorId = {}; (ECOSISTEMA.actores||[]).forEach(a=> nombrePorId[a.id]=a.nombre);
-  const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
-
-  // candidatos iniciales: top 10 por volumen
-  const candidatos = [...(db.burbujas_temas||[])].sort((a,b)=>b.notas_30d-a.notas_30d).slice(0,10);
-  const idsCandidatos = new Set(candidatos.map(t=>'tema:'+t.nombre));
-
-  // un tema con CERO conexiones (ni patrón con otro tema, ni ningún actor) se descarta --
-  // en un mapa que se llama "de red", un punto totalmente aislado no aporta, solo estorba
-  const temasConPatron = new Set();
-  (db.patrones||[]).forEach(p=>{
-    if(idsCandidatos.has('tema:'+p.tema_a) && idsCandidatos.has('tema:'+p.tema_b)){
-      temasConPatron.add(p.tema_a); temasConPatron.add(p.tema_b);
-    }
-  });
-  const temasConActor = new Set();
-  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
-    const nombreTema = nombreTemaPorId[ta.tema_id];
-    if(idsCandidatos.has('tema:'+nombreTema)) temasConActor.add(nombreTema);
-  });
-  const temasTop = candidatos.filter(t=> temasConPatron.has(t.nombre) || temasConActor.has(t.nombre));
-  const idsTemasEnMapa = new Set(temasTop.map(t=>'tema:'+t.nombre));
-
-  const presenciaPorActor = {};
-  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
-    const temaNombre = nombreTemaPorId[ta.tema_id];
-    if(idsTemasEnMapa.has('tema:'+temaNombre)){
-      presenciaPorActor[ta.actor_id] = (presenciaPorActor[ta.actor_id]||0)+1;
-    }
-  });
-  const actoresConectados = Object.entries(presenciaPorActor)
-    .map(([id,n])=>({id, nombre:nombrePorId[id], presencia:n}))
-    .filter(a=>a.nombre)
-    .sort((a,b)=>b.presencia-a.presencia).slice(0,14);
-  const idsActoresEnMapa = new Set(actoresConectados.map(a=>'actor:'+a.nombre));
-
-  if(!temasTop.length){
-    svgEl.innerHTML = `<text x="50%" y="50%" text-anchor="middle" fill="var(--ink-3)" font-size="13">Aún no hay suficientes temas conectados entre sí para armar el mapa.</text>`;
-    return;
-  }
-
-  const maxVolTema = Math.max(...temasTop.map(t=>t.notas_30d), 1);
-  const maxPresActor = Math.max(...actoresConectados.map(a=>a.presencia), 1);
-
-  // agrupa por categoría -- cada categoría tiene su propio punto de anclaje repartido
-  // en círculo, así los temas de la misma categoría quedan naturalmente cerca entre sí,
-  // como en un mapa de red real (no todo revuelto sin orden). Radio más chico que antes
-  // para que el conjunto se vea lleno, no perdido en un lienzo casi vacío.
-  const categoriasPresentes = [...new Set(temasTop.map(t=>t.categoria))];
-  const anclaCategoria = {};
-  const radioAnclas = Math.min(w,h) * (categoriasPresentes.length<=2 ? 0.18 : 0.26);
-  categoriasPresentes.forEach((cat,i)=>{
-    const ang = (i/categoriasPresentes.length)*Math.PI*2 - Math.PI/2;
-    anclaCategoria[cat] = { x: w/2 + Math.cos(ang)*radioAnclas, y: h/2 + Math.sin(ang)*radioAnclas };
-  });
-
-  const nodos = [
-    ...temasTop.map(t=>({id:'tema:'+t.nombre, nombre:t.nombre, tipo:'tema', categoria:t.categoria,
-      r: 14 + (t.notas_30d/maxVolTema)*26, peso: t.notas_30d, ancla: anclaCategoria[t.categoria]})),
-    ...actoresConectados.map(a=>({id:'actor:'+a.nombre, nombre:a.nombre, tipo:'actor',
-      r: 6 + (a.presencia/maxPresActor)*10, peso: a.presencia})),
-  ];
-
-  const enlaces = [];
-  (db.patrones||[]).forEach(p=>{
-    const a='tema:'+p.tema_a, b='tema:'+p.tema_b;
-    if(idsTemasEnMapa.has(a) && idsTemasEnMapa.has(b)) enlaces.push({source:a, target:b, grosor:Math.min(5,p.semanas_comun), tipo:'patron'});
-  });
-  (ECOSISTEMA.temaActores||[]).forEach(ta=>{
-    const idTema = 'tema:'+nombreTemaPorId[ta.tema_id], idActor = 'actor:'+nombrePorId[ta.actor_id];
-    if(idsTemasEnMapa.has(idTema) && idsActoresEnMapa.has(idActor)) enlaces.push({source:idTema, target:idActor, grosor:1, tipo:'actor'});
-  });
-
-  const svg = d3.select(svgEl);
-  svg.selectAll('*').remove();
-  svg.attr('viewBox', [0,0,w,h]);
-
-  // círculo punteado de fondo, mismo recurso visual que la referencia -- le da estructura
-  // al conjunto aunque los nodos no lo llenen por completo
-  const radioFondo = Math.min(w,h)*0.42;
-  svg.append('circle').attr('cx',w/2).attr('cy',h/2).attr('r',radioFondo)
-    .attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',1).attr('stroke-dasharray','3 5').attr('opacity',0.4);
-
-  const gEnlaces = svg.append('g');
-  const gNodos = svg.append('g');
-
-  // líneas RECTAS simples, como la referencia -- no curvas
-  const enlacesSel = gEnlaces.selectAll('line').data(enlaces).join('line')
-    .attr('stroke', d=> d.tipo==='patron' ? 'var(--riesgo-medio)' : 'var(--ink-2)')
-    .attr('stroke-width', d=>d.grosor)
-    .attr('opacity', d=> d.tipo==='patron' ? 0.55 : 0.45);
-
-  const nodosSel = gNodos.selectAll('g').data(nodos).join('g').style('cursor','pointer');
-  nodosSel.append('circle') // aro de mayor tamaño, invisible, solo para que el clic sea fácil de acertar
-    .attr('r', d=>d.r+8).attr('fill','transparent');
-  nodosSel.append('circle')
-    .attr('r', d=>d.r)
-    .attr('fill', d=> d.tipo==='tema' ? colorCategoriaFijo(d.categoria) : 'var(--ink-3)')
-    .attr('opacity', d=> d.tipo==='tema' ? 0.65 : 0.5)
-    .attr('stroke', 'none');
-  nodosSel.filter(d=>d.tipo==='tema').append('text')
-    .attr('text-anchor','middle').attr('dy', d=>d.r+12)
-    .attr('font-size', 9.5).attr('fill', 'var(--ink-2)')
-    .text(d=> recortarTexto(d.nombre, 22));
-
-  nodosSel.on('mousemove', function(ev,d){
-    mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.tipo==='tema' ? d.categoria+' · '+d.peso+' notas en 30 días' : 'Presente en '+d.peso+' tema(s)'}</span>`, ev);
-  }).on('mouseleave', ocultarTooltipAgenda)
-  .on('click', function(ev,d){
-    ev.stopPropagation();
-    if(d.tipo==='tema'){ const t=ECOSISTEMA.temas.find(x=>x.nombre===d.nombre); if(t) abrirFichaTema(t.id); }
-  });
-
-  if(simuladorRedActivo) simuladorRedActivo.stop();
-  simuladorRedActivo = d3.forceSimulation(nodos)
-    .force('link', d3.forceLink(enlaces).id(d=>d.id).distance(d=> d.tipo==='patron' ? 170 : 75).strength(d=> d.tipo==='patron' ? 0.1 : 0.3))
-    .force('charge', d3.forceManyBody().strength(d=> d.tipo==='tema' ? -420 : -140))
-    .force('collide', d3.forceCollide(d=>d.r+22))
-    // agrupa los temas por categoría (ancla real repartida en círculo), no todos jalados
-    // al centro por peso -- así se ven grupos reales, como en un mapa de red de verdad
-    .force('x', d3.forceX(d=> d.tipo==='tema' ? d.ancla.x : w/2).strength(d=> d.tipo==='tema' ? 0.1 : 0.015))
-    .force('y', d3.forceY(d=> d.tipo==='tema' ? d.ancla.y : h/2).strength(d=> d.tipo==='tema' ? 0.1 : 0.015))
-    .alphaTarget(0.1)
-    .on('tick', ()=>{
-      // límite real -- ningún nodo (ni su etiqueta debajo) se puede salir del lienzo visible
-      const margen = 40;
-      nodos.forEach(d=>{
-        d.x = Math.max(margen, Math.min(w-margen, d.x));
-        d.y = Math.max(margen, Math.min(h-margen-20, d.y)); // 20 extra abajo para la etiqueta
-      });
-      enlacesSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-      nodosSel.attr('transform', d=>`translate(${d.x},${d.y})`);
-    });
-}
