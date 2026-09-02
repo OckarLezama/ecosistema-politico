@@ -171,7 +171,13 @@ def calcular_todo():
             fecha_ev = datetime.strptime(e['fecha'], '%Y-%m-%d').date()
             if fecha_ev >= INICIO_SEXENIO:
                 intensidad_por_semana[semana_de(e['fecha'])] += float(e['intensidad'])
-    aura_intensidad = [{'semana': s, 'intensidad': round(v, 1)} for s, v in sorted(intensidad_por_semana.items())]
+    def clave_orden_semana(item):
+        # ordena por (año, número de semana) real, no como texto -- "2026-S3" ordenado como
+        # texto queda después de "2026-S30", que es cronológicamente incorrecto
+        semana_str = item[0]
+        anio, num = semana_str.split('-S')
+        return (int(anio), int(num))
+    aura_intensidad = [{'semana': s, 'intensidad': round(v, 1)} for s, v in sorted(intensidad_por_semana.items(), key=clave_orden_semana)]
 
     return {
         'temas_activos': len(temas_reales),
