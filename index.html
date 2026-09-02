@@ -31,6 +31,7 @@
   <button data-module="timeline">Timeline</button>
   <button data-module="buscador">Actores</button>
   <button data-module="analisis">Análisis</button>
+  <button data-module="c3">C3</button>
 </nav>
 
 <main class="app-main">
@@ -177,6 +178,16 @@
       <div id="analisis-contenido"></div>
     </div>
   </section>
+
+  <section class="module-panel" id="panel-c3">
+    <div class="module-head">
+      <h2>C3 — Circunscripción 3</h2>
+      <p>Pulso político por entidad — impacto, temas y actores asociados a cada estado.</p>
+    </div>
+    <div style="background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l); box-shadow:var(--shadow-card); padding:16px; max-height:calc(100vh - 160px); overflow-y:auto;" id="c3-contenedor-scroll">
+      <div id="c3-contenido"></div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -206,6 +217,7 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/timeline.js?v=2"></script>
 <script src="js/notificaciones.js?v=1"></script>
 <script src="js/analisis.js?v=1"></script>
+<script src="js/c3.js?v=1"></script>
 <script>
 document.addEventListener('ecosistema:datos-listos', ()=>{
   const input = document.getElementById('buscador-input');
