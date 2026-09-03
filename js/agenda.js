@@ -769,10 +769,14 @@ function dibujarMatrizRiesgo(){
   const x = d3.scaleLinear().domain([0,10]).range([pad.left, width-pad.right]);
   const y = d3.scaleLinear().domain([0,10]).range([height-pad.bottom, pad.top]);
 
+  const hoy = new Date(), hace30 = new Date(hoy); hace30.setDate(hoy.getDate()-30); const hace60 = new Date(hoy); hace60.setDate(hoy.getDate()-60);
   const crudos = temasBase.map(t=>{
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
-    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, veces:evs.length,
+    const recientes = evs.filter(e=>new Date(e.fecha)>=hace30).length;
+    const previos = evs.filter(e=>{ const f=new Date(e.fecha); return f>=hace60 && f<hace30; }).length;
+    const tendenciaPct = previos ? Math.round(((recientes-previos)/previos)*100) : (recientes?100:0);
+    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, veces:evs.length, tendenciaPct,
       primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
       x: x(t.peso_politico), y: y(riesgoMax) };
   });
@@ -815,8 +819,8 @@ function dibujarMatrizRiesgo(){
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
     .attr('transform', d=>`translate(${d.x},${d.y})`)
-    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',13); })
-    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); })
+    .on('mouseenter', function(ev,d){ const flecha=d.tendenciaPct>0?`↑ +${d.tendenciaPct}%`:d.tendenciaPct<0?`↓ ${d.tendenciaPct}%`:'→ estable'; mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10 · Tendencia 30d: ${flecha}<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',13); })
+    .on('mousemove', function(ev,d){ const flecha=d.tendenciaPct>0?`↑ +${d.tendenciaPct}%`:d.tendenciaPct<0?`↓ ${d.tendenciaPct}%`:'→ estable'; mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10 · Tendencia 30d: ${flecha}<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); })
     .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',9); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
