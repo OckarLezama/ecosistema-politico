@@ -105,8 +105,14 @@ function colorDeCore(coreId, slotDeCore){
 }
 // en modo Notas (agenda), el color del nodo satélite es por ROL (investigado/mencionado/etc.),
 // no por familia — así se distingue de un vistazo, no solo con el hover
+const COLOR_POR_CATEGORIA = {
+  'Familia':'#F46883', 'Empresarial':'#BDB58D', 'Institucional':'#4CC1BA',
+  'Político':'#5B7FDB', 'Compañeros de partido':'#B15FBD',
+};
 function colorNodoReal(d, svgId, slotDeCore){
-  if(d.esPolitica) return 'var(--puente)'; // color distinto para satélites que solo vienen de la red política, no de cercanía real
+  if(d.esPolitica || (d.esCategoria && d.nombre==='Compañeros de partido')) return COLOR_POR_CATEGORIA['Compañeros de partido'];
+  if(d.categoriaHeredada && COLOR_POR_CATEGORIA[d.categoriaHeredada]) return COLOR_POR_CATEGORIA[d.categoriaHeredada];
+  if(d.esCategoria && COLOR_POR_CATEGORIA[d.nombre]) return COLOR_POR_CATEGORIA[d.nombre];
   if(svgId==='notas-svg' && !d.esTema && d.rolEnTema && typeof COLOR_ROL_NOTAS!=='undefined'){
     return COLOR_ROL_NOTAS[d.rolEnTema] || 'var(--ink-3)';
   }
@@ -187,7 +193,7 @@ function renderGrafo(svgId='graph-svg'){
               nodesMap.set(idCategoria, {id:idCategoria, nombre:r.categoria, nivelAnillo:1, coreId, slot, esCategoria:true, iniciales:r.categoria.slice(0,2).toUpperCase()});
               linksBase.push({origen:coreId, destino:idCategoria, nivelDestino:1, slot, tipoVinculo:'personal'});
             }
-            if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:idCategoria, slot, esSateliteDeCategoria:true});
+            if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:idCategoria, slot, esSateliteDeCategoria:true, categoriaHeredada:r.categoria});
             linksBase.push({origen:idCategoria, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
             return;
           }
@@ -204,15 +210,15 @@ function renderGrafo(svgId='graph-svg'){
           // personal de la presidenta — son electos por su cuenta, no operan bajo su mando directo
           const candidatosPolitica = ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId && !/gobernador/i.test(a.cargo||'')).slice(0,8);
           if(candidatosPolitica.length){
-            const idCategoriaPolitica = 'cat:'+coreId+':Misma facción';
+            const idCategoriaPolitica = 'cat:'+coreId+':Compañeros de partido';
             if(!nodesMap.has(idCategoriaPolitica)){
-              nodesMap.set(idCategoriaPolitica, {id:idCategoriaPolitica, nombre:'Misma facción', nivelAnillo:1, coreId, slot, esCategoria:true});
+              nodesMap.set(idCategoriaPolitica, {id:idCategoriaPolitica, nombre:'Compañeros de partido', nivelAnillo:1, coreId, slot, esCategoria:true});
               linksBase.push({origen:coreId, destino:idCategoriaPolitica, nivelDestino:1, slot, tipoVinculo:'politica'});
             }
             candidatosPolitica.forEach(sat=>{
               const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
               if(yaEsNucleo){ linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
-              if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId:idCategoriaPolitica, slot, esPolitica:true});
+              if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId:idCategoriaPolitica, slot, esPolitica:true, categoriaHeredada:'Compañeros de partido'});
               linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
             });
           }
@@ -276,6 +282,37 @@ function renderGrafo(svgId='graph-svg'){
   }
 
   const nodes = [...nodesMap.values()];
+
+  // ángulo fijo por categoría -- cada categoría (Familia, Empresarial, Institucional, etc.)
+  // recibe su propio sector alrededor del núcleo, y sus satélites se reparten DENTRO de ese
+  // sector nada más, nunca invadiendo el de otra categoría -- así se evitan los cruces
+  const categoriasPorNucleo = {};
+  nodes.filter(n=>n.esCategoria).forEach(n=>{
+    if(!categoriasPorNucleo[n.coreId]) categoriasPorNucleo[n.coreId] = [];
+    categoriasPorNucleo[n.coreId].push(n.id);
+  });
+  Object.entries(categoriasPorNucleo).forEach(([nucleoId, catIds])=>{
+    catIds.forEach((catId,i)=>{
+      const angulo = (i/catIds.length)*Math.PI*2 - Math.PI/2;
+      nodesMap.get(catId).anguloAsignado = angulo;
+    });
+  });
+  // los satélites heredan el ángulo de su categoría, con un pequeño abanico entre ellos
+  // (no todos exactamente en la misma línea, pero sin salirse del sector de su categoría)
+  const satelitesPorCategoria = {};
+  nodes.filter(n=>!n.esCentro && !n.esCategoria && String(n.coreId).startsWith('cat:')).forEach(n=>{
+    if(!satelitesPorCategoria[n.coreId]) satelitesPorCategoria[n.coreId] = [];
+    satelitesPorCategoria[n.coreId].push(n.id);
+  });
+  Object.entries(satelitesPorCategoria).forEach(([catId, satIds])=>{
+    const catNode = nodesMap.get(catId);
+    if(!catNode) return;
+    const ABANICO = Math.PI/5; // sector angosto dentro del sector de la categoría, no todo el círculo
+    satIds.forEach((satId,i)=>{
+      const offset = satIds.length>1 ? (i/(satIds.length-1)-0.5)*ABANICO : 0;
+      nodesMap.get(satId).anguloAsignado = catNode.anguloAsignado + offset;
+    });
+  });
   const nodeIds = new Set(nodes.map(n=>n.id));
   const links = linksBase.filter(e=>nodeIds.has(e.origen)&&nodeIds.has(e.destino)).map(e=>({...e, source:e.origen, target:e.destino}));
 
@@ -371,6 +408,14 @@ function renderGrafo(svgId='graph-svg'){
       if(n.esCentro) return;
       const core=nodesById[n.coreId]; if(!core) return;
       const t=RADIOS_ANILLO[n.nivelAnillo]||130;
+      if(n.anguloAsignado!==undefined){
+        // con ángulo fijo asignado (por categoría): se jala directo al punto exacto del
+        // sector que le toca, no solo a la distancia -- así no puede girar y cruzarse
+        // con el sector de otra categoría
+        const tx = core.x + Math.cos(n.anguloAsignado)*t, ty = core.y + Math.sin(n.anguloAsignado)*t;
+        n.vx += (tx-n.x)*alpha*strength; n.vy += (ty-n.y)*alpha*strength;
+        return;
+      }
       const dx=n.x-core.x, dy=n.y-core.y, dist=Math.sqrt(dx*dx+dy*dy)||0.001;
       const k=(t-dist)/dist*alpha*strength;
       n.vx+=dx*k; n.vy+=dy*k;
