@@ -5,7 +5,7 @@
    ============================================================ */
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
-let redPersonalActiva = true, redPoliticaActiva = false;
+let redPersonalActiva = true, redPoliticaActiva = true; // ya no hay checks -- todo se muestra siempre, se distingue por categoría/tipo al hacer clic
 let simulacion = null;
 let modoRed = 'grupo';
 let actorUnicoSeleccionado = null;
@@ -16,12 +16,8 @@ function initRedActores(){
   poblarSelectores();
   renderGrafo();
 
-  const chkPersonal = document.getElementById('chk-red-personal'), chkPolitica = document.getElementById('chk-red-politica');
-  if(chkPersonal && !chkPersonal.dataset.conectado){
-    chkPersonal.addEventListener('change', ()=>{ redPersonalActiva = chkPersonal.checked; renderGrafo(); });
-    chkPolitica.addEventListener('change', ()=>{ redPoliticaActiva = chkPolitica.checked; renderGrafo(); });
-    chkPersonal.dataset.conectado = '1';
-  }
+  // (ya no hay checks de Confianza/Política -- ambas redes siempre se muestran juntas,
+  // la distinción de tipo se ve al hacer clic en cada quién, en el panel derecho)
 
   ['nucleo','cruce1','cruce2'].forEach(slot=>{
     document.getElementById(slot+'-select').addEventListener('change', (e)=>{
@@ -206,12 +202,20 @@ function renderGrafo(svgId='graph-svg'){
           // documentada; máximo 8 para no saturar el grafo con partidos grandes
           // se excluyen gobernadores: comparten partido, pero no son parte del círculo político
           // personal de la presidenta — son electos por su cuenta, no operan bajo su mando directo
-          ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId && !/gobernador/i.test(a.cargo||'')).slice(0,8).forEach(sat=>{
-            const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
-            if(yaEsNucleo){ linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
-            if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId, slot, esPolitica:true});
-            linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
-          });
+          const candidatosPolitica = ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId && !/gobernador/i.test(a.cargo||'')).slice(0,8);
+          if(candidatosPolitica.length){
+            const idCategoriaPolitica = 'cat:'+coreId+':Misma facción';
+            if(!nodesMap.has(idCategoriaPolitica)){
+              nodesMap.set(idCategoriaPolitica, {id:idCategoriaPolitica, nombre:'Misma facción', nivelAnillo:1, coreId, slot, esCategoria:true});
+              linksBase.push({origen:coreId, destino:idCategoriaPolitica, nivelDestino:1, slot, tipoVinculo:'politica'});
+            }
+            candidatosPolitica.forEach(sat=>{
+              const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
+              if(yaEsNucleo){ linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
+              if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId:idCategoriaPolitica, slot, esPolitica:true});
+              linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
+            });
+          }
         }
       }
     });
@@ -746,17 +750,35 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
         <div style="font-weight:700;font-size:13px;">${nodoClicado.rolEnTema||'Mencionado'}</div>
       </div>`;
     } else {
-      const coreActor = getActor(nodoClicado.coreId);
+      let nombreNucleoReal = nodoClicado.coreId, tipoTexto = 'Cercanía real documentada';
+      if(String(nodoClicado.coreId).startsWith('cat:')){
+        const [,idNucleoReal, nombreCategoria] = nodoClicado.coreId.split(':');
+        const nucleoReal = getActor(idNucleoReal);
+        nombreNucleoReal = nucleoReal ? nucleoReal.nombre : idNucleoReal;
+        tipoTexto = nombreCategoria; // "Familia", "Empresarial", "Político-Institucional", "Misma facción"
+      } else {
+        const coreActor = getActor(nodoClicado.coreId);
+        nombreNucleoReal = coreActor ? coreActor.nombre : nodoClicado.coreId;
+      }
       contextoHTML = `<div class="contexto-tema-box">
-        <div class="eyebrow">En la red de "${coreActor?coreActor.nombre:nodoClicado.coreId}"</div>
-        <div style="font-weight:700;font-size:13px;">Nivel ${nodoClicado.nivelAnillo||''}</div>
+        <div class="eyebrow">En la red de "${nombreNucleoReal}"</div>
+        <div style="font-weight:700;font-size:13px;">${tipoTexto}</div>
+        <p style="font-size:10.5px;color:var(--ink-3);margin-top:2px;">${nodoClicado.esPolitica ? 'Vínculo por misma afiliación política/facción, no cercanía personal documentada.' : 'Cercanía documentada directamente.'}</p>
       </div>`;
     }
   }
 
   let fortalezaHTML = '';
   if(modoRed==='grupo' && nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
-    const satelites = nodesEnGrafo.filter(n=>n.coreId===nodoClicado.coreId && n.id!==nodoClicado.id);
+    // cuenta tanto satélites directos como los que cuelgan de un nodo de categoría
+    // (ej. Andy → Familia → AMLO) -- si no, "fortaleza del grupo" solo vería a quien
+    // no tiene categoría asignada, subestimando la red real
+    const satelites = nodesEnGrafo.filter(n=>{
+      if(n.id===nodoClicado.id || n.esCentro) return false;
+      if(n.coreId===nodoClicado.coreId) return true;
+      if(String(n.coreId).startsWith('cat:'+nodoClicado.id+':')) return true;
+      return false;
+    });
     const f = calcularFortalezaGrupo(actor, satelites);
     if(f){
       const colorNivel = {alta:'var(--riesgo-bajo)', media:'var(--riesgo-medio)', baja:'var(--riesgo-alto)'}[f.nivel];
