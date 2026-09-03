@@ -68,7 +68,7 @@ function renderPortada(){
 
   // encabezado va en un elemento DOM SEPARADO, físicamente fuera del área con scroll --
   // así es imposible que las tarjetas se vean detrás, sin depender de position:sticky
-  encabezado.innerHTML = `
+  encabezado.innerHTML = `<div id="portada-dispersion" style="margin-bottom:10px;"></div>` + `
       <div style="margin-bottom:10px;">
         <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
@@ -85,6 +85,7 @@ function renderPortada(){
       </div>
       <input id="portada-buscador" type="text" placeholder="Buscar en las notas o actores de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);">
   `;
+  dibujarDispersionHoraria(eventosHoyCache);
   cont.innerHTML = `
     <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding-top:14px;"></div>
   `;
@@ -134,6 +135,52 @@ function filtrarEventosPortada(q, categoria){
     });
     return coincideTexto || coincideActor;
   });
+}
+
+// "hora de aparición" real: la primera vez que el navegador ve una nota, se guarda la hora
+// exacta en localStorage bajo su id -- así se puede armar la dispersión de a qué hora del
+// día van saliendo las notas, sin que el robot tenga que guardar hora (solo guarda fecha)
+function horaDeteccionDe(evento){
+  // preferir la hora REAL que el robot guardó (consistente para todos los dispositivos) --
+  // el localStorage por dispositivo queda solo de respaldo para notas viejas sin ese campo
+  if(evento.hora_registro){
+    const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+    return new Date(hoy+'T'+evento.hora_registro+':00');
+  }
+  const clave = 'hora-deteccion:'+evento.id;
+  let guardada = localStorage.getItem(clave);
+  if(!guardada){
+    guardada = new Date().toISOString();
+    try{ localStorage.setItem(clave, guardada); }catch(e){}
+  }
+  return new Date(guardada);
+}
+
+function dibujarDispersionHoraria(eventos){
+  const cont = document.getElementById('portada-dispersion');
+  if(!cont) return;
+  if(eventos.length<2){ cont.innerHTML=''; return; }
+  const ancho = cont.clientWidth || 760, alto = 90, margenIzq = 34, margenDer = 14;
+  const puntos = eventos.map(e=>({ e, hora: horaDeteccionDe(e) }));
+  const minMax = puntos.reduce((acc,p)=>{ const h=p.hora.getHours()+p.hora.getMinutes()/60; return [Math.min(acc[0],h), Math.max(acc[1],h)]; }, [24,0]);
+  const [horaMin, horaMax] = minMax[0]<=minMax[1] ? minMax : [0,24];
+  const rango = Math.max(horaMax-horaMin, 1);
+  const colorCat = c=>colorCategoria(c);
+  const svgPuntos = puntos.map(p=>{
+    const h = p.hora.getHours()+p.hora.getMinutes()/60;
+    const x = margenIzq + ((h-horaMin)/rango)*(ancho-margenIzq-margenDer);
+    const y = alto - 18 - (Number(p.e.intensidad)/10)*(alto-34);
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="${colorCat(p.e.categoria)}" fill-opacity="0.75"><title>${p.hora.getHours().toString().padStart(2,'0')}:${p.hora.getMinutes().toString().padStart(2,'0')} — ${p.e.descripcion.slice(0,60)}</title></circle>`;
+  }).join('');
+  const etiquetaInicio = `${Math.floor(horaMin).toString().padStart(2,'0')}:00`, etiquetaFin = `${Math.ceil(horaMax).toString().padStart(2,'0')}:00`;
+  cont.innerHTML = `
+    <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">A qué hora salen las notas de hoy</div>
+    <svg width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" style="display:block;">
+      <line x1="${margenIzq}" y1="${alto-16}" x2="${ancho-margenDer}" y2="${alto-16}" stroke="var(--line)" stroke-width="1"/>
+      ${svgPuntos}
+      <text x="${margenIzq}" y="${alto-3}" font-size="9" fill="var(--ink-3)">${etiquetaInicio}</text>
+      <text x="${ancho-margenDer}" y="${alto-3}" font-size="9" fill="var(--ink-3)" text-anchor="end">${etiquetaFin}</text>
+    </svg>`;
 }
 
 function pintarTarjetasPortada(eventos){

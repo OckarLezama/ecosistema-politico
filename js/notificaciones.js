@@ -42,10 +42,22 @@ function revisarNotificacionesPendientes(){
   const idsSergio = temasConSergioSalomon();
   const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t);
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const ahoraCDMX = new Date().toLocaleTimeString('en-GB', {timeZone:'America/Mexico_City', hour12:false});
+  const [horaAhora, minAhora] = ahoraCDMX.split(':').map(Number);
+  const minutosAhora = horaAhora*60 + minAhora;
 
   const relevantes = ECOSISTEMA.eventos.filter(e=>{
     if(e.fecha!==hoy) return false; // SOLO hoy -- antes revisaba todo el historial por error
     if(yaVistos.has(e.id)) return false;
+    // RECIENTE DE VERDAD -- usa la hora real que el robot guardó (hora_registro), no solo
+    // "primera vez que ESTE dispositivo lo ve". Sin esto, entrar desde un aparato nuevo
+    // dispara notificaciones de cosas que pasaron hace horas, solo porque ese aparato
+    // nunca las había visto -- el bug real que se reportó.
+    if(e.hora_registro){
+      const [h,m] = e.hora_registro.split(':').map(Number);
+      const minutosEvento = h*60+m;
+      if(minutosAhora - minutosEvento > 45) return false; // más de 45 min, ya no es "reciente"
+    }
     const tema = nombreTemaPorId[e.tema_id];
     if(!tema) return false;
     const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8;
