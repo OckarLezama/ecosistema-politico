@@ -35,7 +35,7 @@ function renderPortada(){
   if(!cont || !encabezado) return;
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
   eventosHoyCache = ECOSISTEMA.eventos
-    .filter(e=>e.fecha===hoy)
+    .filter(e=>e.fecha===hoy && !e.entidad_c3) // Portada es cobertura NACIONAL -- las notas locales (con entidad_c3 puesta) se quedan solo en C3, aquí no se mezclan
     .slice()
     .sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
 
