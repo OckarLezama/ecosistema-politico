@@ -345,6 +345,7 @@ function renderGrafo(svgId='graph-svg'){
 
   const link = container.selectAll('line.link-line')
     .data(links).join('line')
+    .attr('class','link-line')
     .attr('stroke', d=> d.tipoVinculo==='cruzado' ? 'var(--teal)' : colorDeCore(d.origen, slotDeCore))
     .attr('stroke-width', d=>({1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
     .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null) // punteada = red política (mismo grupo/facción), sólida = cercanía real documentada
