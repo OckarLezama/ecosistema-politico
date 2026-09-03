@@ -106,11 +106,19 @@ function colorDeCore(coreId, slotDeCore){
 // en modo Notas (agenda), el color del nodo satélite es por ROL (investigado/mencionado/etc.),
 // no por familia — así se distingue de un vistazo, no solo con el hover
 const COLOR_POR_CATEGORIA = {
-  'Familiar/Confianza':'#F46883', 'Político/Institucional':'#5B7FDB', 'Institucional':'#4CC1BA',
-  'Operadores':'#E0A85C', 'Empresarial':'#BDB58D', 'Compañeros de partido':'#B15FBD',
+  'Familiar':'#F46883', 'Político/Institucional':'#5B7FDB',
+  'Operadores/Confianza':'#E0A85C', 'Empresarial':'#BDB58D',
 };
+// dentro de Político/Institucional, un tono distinto para quien SÍ está en el gabinete
+// (secretario, fiscal, consejero jurídico, director general) vs. quien no
+function esGabinete(actor){
+  return /secretari|fiscal general|consejer[ao] jur[ií]dic|director general|titular de la/i.test(actor.cargo||'');
+}
 function colorNodoReal(d, svgId, slotDeCore){
-  if(d.esPolitica || (d.esCategoria && d.nombre==='Compañeros de partido')) return COLOR_POR_CATEGORIA['Compañeros de partido'];
+  if(d.categoriaHeredada==='Político/Institucional' && !d.esCategoria){
+    // dentro de la misma categoría, tono más claro/oscuro según si está en el gabinete o no
+    return esGabinete(d) ? '#5B7FDB' : '#8FA3E8';
+  }
   if(d.categoriaHeredada && COLOR_POR_CATEGORIA[d.categoriaHeredada]) return COLOR_POR_CATEGORIA[d.categoriaHeredada];
   if(d.esCategoria && COLOR_POR_CATEGORIA[d.nombre]) return COLOR_POR_CATEGORIA[d.nombre];
   if(svgId==='notas-svg' && !d.esTema && d.rolEnTema && typeof COLOR_ROL_NOTAS!=='undefined'){
@@ -204,21 +212,21 @@ function renderGrafo(svgId='graph-svg'){
       if(usarPolitica){
         const coreActor = getActor(coreId);
         if(coreActor && coreActor.grupo){
-          // red política = mismo grupo/facción declarada — dato distinto a la cercanía real
-          // documentada; máximo 8 para no saturar el grafo con partidos grandes
-          // se excluyen gobernadores: comparten partido, pero no son parte del círculo político
-          // personal de la presidenta — son electos por su cuenta, no operan bajo su mando directo
-          const candidatosPolitica = ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId && !/gobernador/i.test(a.cargo||'')).slice(0,8);
+          // se fusiona con el mismo hub de "Político/Institucional" -- ya no es una
+          // categoría aparte ("Compañeros de partido" se eliminó, según se definió)
+          // máximo 8 para no saturar el grafo con partidos grandes; se excluyen
+          // gobernadores (comparten partido, pero no son círculo personal directo)
+          const candidatosPolitica = ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId && !/gobernador/i.test(a.cargo||'') && !nodesMap.has(a.id)).slice(0,8);
           if(candidatosPolitica.length){
-            const idCategoriaPolitica = 'cat:'+coreId+':Compañeros de partido';
+            const idCategoriaPolitica = 'cat:'+coreId+':Político/Institucional';
             if(!nodesMap.has(idCategoriaPolitica)){
-              nodesMap.set(idCategoriaPolitica, {id:idCategoriaPolitica, nombre:'Compañeros de partido', nivelAnillo:1, coreId, slot, esCategoria:true});
+              nodesMap.set(idCategoriaPolitica, {id:idCategoriaPolitica, nombre:'Político/Institucional', nivelAnillo:1, coreId, slot, esCategoria:true});
               linksBase.push({origen:coreId, destino:idCategoriaPolitica, nivelDestino:1, slot, tipoVinculo:'politica'});
             }
             candidatosPolitica.forEach(sat=>{
               const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
               if(yaEsNucleo){ linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
-              if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId:idCategoriaPolitica, slot, esPolitica:true, categoriaHeredada:'Compañeros de partido'});
+              if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId:idCategoriaPolitica, slot, esPolitica:true, categoriaHeredada:'Político/Institucional'});
               linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
             });
           }
