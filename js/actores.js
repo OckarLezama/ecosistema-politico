@@ -202,6 +202,27 @@ function renderGrafo(svgId='graph-svg'){
         }
       }
     });
+    // enlaces CRUZADOS entre satélites de distintos núcleos (ej. Harfuch, satélite de
+    // Sheinbaum, con su propio vínculo directo a Terrance Cole, satélite de Trump) -- antes
+    // solo se mostraban como texto en el panel derecho, nunca como línea real en el grafo
+    if(redPersonalActiva && coresElegidos.length>=2){
+      const vistosCruce = new Set();
+      for(let i=0;i<coresElegidos.length;i++){
+        for(let j=i+1;j<coresElegidos.length;j++){
+          const satelitesDeI = new Set(redPersonalDe(coresElegidos[i]).map(r=>r.satelite_id).filter(id=>!coresElegidos.includes(id)));
+          const satelitesDeJ = new Set(redPersonalDe(coresElegidos[j]).map(r=>r.satelite_id).filter(id=>!coresElegidos.includes(id)));
+          [...satelitesDeI].forEach(idSatI=>{
+            redPersonalDe(idSatI).forEach(r=>{
+              const clave = [idSatI, r.satelite_id].sort().join('|');
+              if(satelitesDeJ.has(r.satelite_id) && nodesMap.has(idSatI) && nodesMap.has(r.satelite_id) && !vistosCruce.has(clave)){
+                vistosCruce.add(clave);
+                linksBase.push({origen:idSatI, destino:r.satelite_id, nivelDestino:r.nivel, slot:slotDeCore[coresElegidos[i]], tipoVinculo:'cruzado'});
+              }
+            });
+          });
+        }
+      }
+    }
   } else if(modoRed==='agenda'){
     const ROL_A_NIVEL = {'Investigado':1,'Acusado':1,'Responsable institucional':1,'Autoridad':1,'Operador':1,
       'Reacción de oposición':2,'Reacción del gobierno':2,'Reacción social/mediática':2,'Red empresarial':2};
@@ -257,9 +278,9 @@ function renderGrafo(svgId='graph-svg'){
 
   const link = container.selectAll('line.link-line')
     .data(links).join('line')
-    .attr('stroke', d=>colorDeCore(d.origen, slotDeCore))
+    .attr('stroke', d=> d.tipoVinculo==='cruzado' ? 'var(--teal)' : colorDeCore(d.origen, slotDeCore))
     .attr('stroke-width', d=>({1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
-    .attr('stroke-opacity', d=>opacidadPorNivel(d.nivelDestino)*0.8)
+    .attr('stroke-opacity', d=> d.tipoVinculo==='cruzado' ? 0.9 : opacidadPorNivel(d.nivelDestino)*0.8)
     .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null); // punteada = red política (mismo grupo/facción), sólida = cercanía real documentada
 
   const node = container.selectAll('g.node').data(nodes).join('g')
