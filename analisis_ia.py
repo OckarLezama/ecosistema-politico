@@ -179,6 +179,30 @@ def calcular_todo():
         return (int(anio), int(num))
     aura_intensidad = [{'semana': s, 'intensidad': round(v, 1)} for s, v in sorted(intensidad_por_semana.items(), key=clave_orden_semana)]
 
+    # ---- datos de RED para Análisis de Núcleos (Red de Actores) -- solo para los núcleos
+    # que ya tienen sus satélites clasificados en las 4 categorías reales (Familiar,
+    # Político/Institucional, Operadores/Confianza, Empresarial) -- sin esto, la IA no
+    # tendría con qué interpretar, y clasificar a ciegas ya demostró salir mal
+    NUCLEOS_CATEGORIZADOS = ['sheinbaum', 'andy']
+    redes_por_nucleo = {}
+    try:
+        with open(os.path.join(RUTA_DATOS, 'redes_personales.csv'), encoding='utf-8') as f:
+            todas_las_redes = list(csv.DictReader(f))
+        with open(os.path.join(RUTA_DATOS, 'actores.csv'), encoding='utf-8') as f:
+            todos_los_actores = {a['id']: a for a in csv.DictReader(f)}
+        for nid in NUCLEOS_CATEGORIZADOS:
+            filas_nucleo = [r for r in todas_las_redes if r['nucleo_id']==nid and r.get('categoria')]
+            por_categoria = {}
+            for r in filas_nucleo:
+                cat = r['categoria']
+                actor = todos_los_actores.get(r['satelite_id'])
+                if not actor: continue
+                por_categoria.setdefault(cat, []).append({'nombre': actor['nombre'], 'cargo': actor.get('cargo',''), 'nivel': r['nivel']})
+            if por_categoria:
+                redes_por_nucleo[nid] = por_categoria
+    except Exception:
+        pass
+
     return {
         'temas_activos': len(temas_reales),
         'tension_general': tension_general,
@@ -192,6 +216,7 @@ def calcular_todo():
         'burbujas_temas': burbujas_temas,
         'burbujas_actores': burbujas_actores,
         'aura_intensidad': aura_intensidad,
+        'redes_por_nucleo': redes_por_nucleo,
     }
 
 
@@ -260,6 +285,12 @@ Otras reglas estrictas:
 - NUNCA prediga el futuro ni especules sobre facciones internas, causalidad no documentada, o
   motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
 
+Si el JSON de entrada trae "redes_por_nucleo", para cada núcleo ahí presente escribe un análisis
+real de su red (2-3 oraciones): qué revela la composición por categoría (ej. "su red está
+dominada por perfiles institucionales, con poca presencia empresarial directa" -- solo si es
+cierto según los datos), qué categoría concentra más peso, y una lectura de qué tan cerrado o
+diverso es el círculo. Nunca inventes vínculos que no estén en los datos.
+
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
 
@@ -274,6 +305,7 @@ Responde ÚNICAMENTE con un objeto JSON con estas claves (1-2 oraciones cortas c
   "resumen_pulso_sexenio": "1 oración sobre cómo se ha movido la intensidad general",
   "resumen_temas": "1 oración sobre qué muestra la tabla de temas",
   "resumen_actores": "1 oración sobre qué muestra la tabla de actores",
+  "analisis_redes": {{"id_del_nucleo": "análisis de 2-3 oraciones -- una clave por cada núcleo presente en redes_por_nucleo"}},
   "propuestas_atencion": [{{"tema": "nombre exacto del tema", "propuesta": "1 oración corta"}}]
 }}"""
 
