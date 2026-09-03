@@ -1,18 +1,18 @@
 nucleo_id,satelite_id,nivel,etiqueta_nivel,categoria
 sheinbaum,garcia_harfuch,1,Núcleo de máxima cercanía,Institucional
 sheinbaum,rosa_icela,1,Núcleo de máxima cercanía,Institucional
-sheinbaum,lazaro_cardenas_batel,1,Núcleo de máxima cercanía,Institucional
+sheinbaum,lazaro_cardenas_batel,1,Núcleo de máxima cercanía,Operadores
 sheinbaum,luz_elena_gonzalez_escobar,1,Núcleo de máxima cercanía,Institucional
-sheinbaum,altagracia_gomez_sierra,1,Núcleo de máxima cercanía,Institucional
-sheinbaum,montiel,1,Núcleo de máxima cercanía,Institucional
-sheinbaum,sergio_salomon,2,Alta cercanía / peso operativo,Institucional
+sheinbaum,altagracia_gomez_sierra,1,Núcleo de máxima cercanía,Operadores
+sheinbaum,montiel,1,Núcleo de máxima cercanía,Operadores
+sheinbaum,sergio_salomon,2,Alta cercanía / peso operativo,Familiar/Confianza
 sheinbaum,ebrard,2,Alta cercanía / peso operativo,Institucional
-sheinbaum,mario_delgado,2,Alta cercanía / peso operativo,Político
-sheinbaum,godoy,2,Alta cercanía / peso operativo,Institucional
+sheinbaum,mario_delgado,2,Alta cercanía / peso operativo,Político/Institucional
+sheinbaum,godoy,2,Alta cercanía / peso operativo,Familiar/Confianza
 sheinbaum,jose_antonio_pena_merino,2,Alta cercanía / peso operativo,Institucional
 sheinbaum,velasco,2,Alta cercanía / peso operativo,Institucional
 sheinbaum,luisa_maria_alcalde,2,Alta cercanía / peso operativo,Institucional
-sheinbaum,citlalli,3,Red ampliada / aliados,Político
+sheinbaum,citlalli,3,Red ampliada / aliados,Político/Institucional
 sheinbaum,alfonso_durazo,3,Red ampliada / aliados,Institucional
 sheinbaum,clara_brugada_molina,3,Red ampliada / aliados,Institucional
 amlo,andy,1,Núcleo de máxima cercanía,
@@ -99,19 +99,19 @@ montiel,rosa_icela,3,Red ampliada / aliados,
 montiel,jesus_ramirez_cuevas,3,Red ampliada / aliados,
 montiel,clara_brugada_molina,3,Red ampliada / aliados,
 montiel,mario_delgado,3,Red ampliada / aliados,
-andy,amlo,1,Núcleo de máxima cercanía,Familia
-andy,jose_ramon_lopez_beltran,1,Núcleo de máxima cercanía,Familia
-andy,gonzalo_lopez_beltran,1,Núcleo de máxima cercanía,Familia
-andy,daniel_asaf_manjarrez,1,Núcleo de máxima cercanía,Político-Institucional
+andy,amlo,1,Núcleo de máxima cercanía,Familiar/Confianza
+andy,jose_ramon_lopez_beltran,1,Núcleo de máxima cercanía,Familiar/Confianza
+andy,gonzalo_lopez_beltran,1,Núcleo de máxima cercanía,Familiar/Confianza
+andy,daniel_asaf_manjarrez,1,Núcleo de máxima cercanía,Operadores
 andy,amilcar_olan_aparicio,2,Alta cercanía / peso operativo,Empresarial
-andy,alex_tonatiuh_marquez_hernandez,2,Alta cercanía / peso operativo,Político-Institucional
-andy,mario_mabarak,2,Alta cercanía / peso operativo,Político-Institucional
-andy,ricardo_pacheco,2,Alta cercanía / peso operativo,Político-Institucional
-andy,adan_augusto,2,Alta cercanía / peso operativo,Político-Institucional
-andy,montiel,3,Red ampliada / aliados,Político-Institucional
-andy,citlalli,3,Red ampliada / aliados,Político-Institucional
-andy,luisa_maria_alcalde,3,Red ampliada / aliados,Político-Institucional
-andy,rocha_moya,3,Red ampliada / aliados,Político-Institucional
+andy,alex_tonatiuh_marquez_hernandez,2,Alta cercanía / peso operativo,Institucional
+andy,mario_mabarak,2,Alta cercanía / peso operativo,Operadores
+andy,ricardo_pacheco,2,Alta cercanía / peso operativo,Operadores
+andy,adan_augusto,2,Alta cercanía / peso operativo,Político/Institucional
+andy,montiel,3,Red ampliada / aliados,Político/Institucional
+andy,citlalli,3,Red ampliada / aliados,Político/Institucional
+andy,luisa_maria_alcalde,3,Red ampliada / aliados,Institucional
+andy,rocha_moya,3,Red ampliada / aliados,Político/Institucional
 luisa_maria_alcalde,amlo,1,Núcleo de máxima cercanía,
 luisa_maria_alcalde,sheinbaum,1,Núcleo de máxima cercanía,
 luisa_maria_alcalde,bertha_lujan_uranga,1,Núcleo de máxima cercanía,
@@ -176,20 +176,20 @@ rocha_moya,joaquin_landeros,2,Alta cercanía / peso operativo — operación pol
 rocha_moya,damaso_castro,2,Alta cercanía / peso operativo — operación política,
 rocha_moya,gerardo_merida,2,Alta cercanía / peso operativo — operación política,
 rocha_moya,marco_almanzar,2,Alta cercanía / peso operativo — operación política,
-sheinbaum,amlo,1,Núcleo de máxima cercanía — predecesor y mentor político,Político
+sheinbaum,amlo,1,Núcleo de máxima cercanía — predecesor y mentor político,Político/Institucional
 amlo,sheinbaum,1,Núcleo de máxima cercanía — sucesora que impulsó,
-sheinbaum,trump,3,Red ampliada — contraparte central de la fricción bilateral con Estados Unidos,Internacional
+sheinbaum,trump,3,Red ampliada — contraparte central de la fricción bilateral con Estados Unidos,Político/Institucional
 ebrard,rubio,3,Red ampliada — contraparte directa en negociaciones comerciales y arancelarias con EE.UU.,
 rubio,ebrard,3,Red ampliada — contraparte mexicana en negociaciones comerciales,
 garcia_harfuch,terrance_cole,3,Red ampliada — contraparte de seguridad/antidrogas de EE.UU.,
 garcia_harfuch,ronald_johnson,3,Red ampliada — contraparte diplomática/seguridad de EE.UU.,
-andy,jose_ramiro_lopez_obrador,1,Núcleo de máxima cercanía — tío,Familia
-andy,pio_lopez_obrador,1,Núcleo de máxima cercanía — tío,Familia
-andy,jesus_selvan_garcia,2,Alta cercanía / peso operativo,Político-Institucional
-andy,antonio_martinez_dagnino,2,Alta cercanía / peso operativo,Político-Institucional
-andy,juan_pablo_de_botton,2,Alta cercanía / peso operativo,Político-Institucional
-andy,carlos_torres_rosas,2,Alta cercanía / peso operativo,Político-Institucional
-andy,claudia_curiel_icaza,2,Alta cercanía / peso operativo,Político-Institucional
+andy,jose_ramiro_lopez_obrador,1,Núcleo de máxima cercanía — tío,Familiar/Confianza
+andy,pio_lopez_obrador,1,Núcleo de máxima cercanía — tío,Familiar/Confianza
+andy,jesus_selvan_garcia,2,Alta cercanía / peso operativo,Político/Institucional
+andy,antonio_martinez_dagnino,2,Alta cercanía / peso operativo,Institucional
+andy,juan_pablo_de_botton,2,Alta cercanía / peso operativo,Institucional
+andy,carlos_torres_rosas,2,Alta cercanía / peso operativo,Institucional
+andy,claudia_curiel_icaza,2,Alta cercanía / peso operativo,Institucional
 andy,alejandro_calderon_alipi,3,Red ampliada — eje de contrataciones públicas,Empresarial
 andy,cesar_calderon_alipi,3,Red ampliada — eje de contrataciones públicas,Empresarial
 andy,alejandro_castro_jimenez_labora,3,Red ampliada — eje de infraestructura/amigos empresarios,Empresarial
@@ -203,3 +203,4 @@ sheinbaum,edgar_amador,2,Alta cercanía / peso operativo — gabinete,Institucio
 sheinbaum,julio_berdegue,2,Alta cercanía / peso operativo — gabinete,Institucional
 sheinbaum,rosaura_ruiz,2,Alta cercanía / peso operativo — gabinete,Institucional
 sheinbaum,ernestina_godoy,2,Alta cercanía / peso operativo — gabinete,Institucional
+sheinbaum,cesar_yanez,1,Núcleo de máxima cercanía — coordinador de giras,Familiar/Confianza
