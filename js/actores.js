@@ -291,6 +291,11 @@ function renderGrafo(svgId='graph-svg'){
 
   const nodes = [...nodesMap.values()];
 
+  // posición inicial: todos arrancan justo en el centro de su núcleo (no dispersos al azar)
+  // -- así el grafo "crece" suave desde el centro, en vez de aparecer todo de golpe y saltar
+  const nucleoPrincipal = nodes.find(n=>n.esCentro) || {x:width/2, y:height/2};
+  nodes.forEach(n=>{ if(!n.esCentro && n.x===undefined){ n.x = nucleoPrincipal.x; n.y = nucleoPrincipal.y; } });
+
   // ángulo fijo por categoría -- cada categoría (Familia, Empresarial, Institucional, etc.)
   // recibe su propio sector alrededor del núcleo, y sus satélites se reparten DENTRO de ese
   // sector nada más, nunca invadiendo el de otra categoría -- así se evitan los cruces
@@ -342,11 +347,14 @@ function renderGrafo(svgId='graph-svg'){
     .data(links).join('line')
     .attr('stroke', d=> d.tipoVinculo==='cruzado' ? 'var(--teal)' : colorDeCore(d.origen, slotDeCore))
     .attr('stroke-width', d=>({1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
-    .attr('stroke-opacity', d=> d.tipoVinculo==='cruzado' ? 0.9 : opacidadPorNivel(d.nivelDestino)*0.8)
-    .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null); // punteada = red política (mismo grupo/facción), sólida = cercanía real documentada
+    .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null) // punteada = red política (mismo grupo/facción), sólida = cercanía real documentada
+    .style('opacity', 0)
+    .call(sel=> sel.transition().duration(500).delay(150).style('opacity', d=> d.tipoVinculo==='cruzado' ? 0.9 : opacidadPorNivel(d.nivelDestino)*0.8));
 
   const node = container.selectAll('g.node').data(nodes).join('g')
     .attr('class','node').style('cursor', d=> (svgId==='notas-svg' && !d.esTema) ? 'default' : 'pointer')
+    .style('opacity', 0)
+    .call(sel=> sel.transition().duration(450).delay((d,i)=>d.esCentro?0:i*8).style('opacity',1))
     .on('click', (ev,d)=>{
       if(d.esTema){ if(typeof abrirFichaTema==='function') abrirFichaTema(d.id); return; }
       if(svgId==='notas-svg') return; // en Notas, los actores solo tienen hover, no ficha lateral (no existe ese panel en Agenda)
@@ -434,6 +442,7 @@ function renderGrafo(svgId='graph-svg'){
 
   if(simulacion) simulacion.stop();
   simulacion = d3.forceSimulation(nodes)
+    .alpha(0.6).velocityDecay(0.55) // arranque más calmado (menos "salto") -- ahora los nodos ya empiezan centrados, no hace falta tanta energía inicial
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
     .force('collide', d3.forceCollide().radius(d=>radioNodo(d)+22).strength(0.95))
