@@ -53,47 +53,47 @@
 
     <div class="actores-layout" id="actores-layout-completo">
       <div class="graph-card">
-        <div class="graph-toolbar">
-          <div class="vista-toggle" id="modo-red-toggle">
-            <button class="chip-btn active" data-modo="grupo">Red</button>
-            <button class="chip-btn" data-modo="actor">Actor</button>
+        <div class="graph-toolbar" style="flex-direction:column;align-items:stretch;gap:8px;">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <div class="vista-toggle" id="modo-red-toggle">
+              <button class="chip-btn active" data-modo="grupo">Red</button>
+              <button class="chip-btn" data-modo="actor">Actor</button>
+            </div>
+            <div id="controles-grupo" style="display:flex; gap:10px; flex-wrap:wrap;">
+              <div class="core-select">
+                <label for="nucleo-select">Actor</label>
+                <select id="nucleo-select"><option value="">— sin selección —</option></select>
+              </div>
+              <div class="core-select">
+                <label for="cruce1-select">Actor 2</label>
+                <select id="cruce1-select"><option value="">— sin selección —</option></select>
+              </div>
+              <div class="core-select">
+                <label for="cruce2-select">Actor 3</label>
+                <select id="cruce2-select"><option value="">— sin selección —</option></select>
+              </div>
+            </div>
+            <div id="controles-actor" style="display:none;">
+              <div class="core-select">
+                <label for="actor-buscar-input">Actor</label>
+                <input type="text" id="actor-buscar-input" placeholder="Escribe un nombre..." style="background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1); border-radius:var(--radius-s); padding:6px 10px; font-size:12px; width:200px;">
+              </div>
+            </div>
           </div>
-          <div id="controles-grupo" style="display:flex; gap:10px; flex-wrap:wrap;">
-            <div class="core-select">
-              <label for="nucleo-select">Actor</label>
-              <select id="nucleo-select"><option value="">— sin selección —</option></select>
-            </div>
-            <div class="core-select">
-              <label for="cruce1-select">Actor 2</label>
-              <select id="cruce1-select"><option value="">— sin selección —</option></select>
-            </div>
-            <div class="core-select">
-              <label for="cruce2-select">Actor 3</label>
-              <select id="cruce2-select"><option value="">— sin selección —</option></select>
-            </div>
-            <div class="core-select" style="gap:10px;">
-              <span style="font-size:10.5px;color:var(--ink-3);">Familiar · Empresarial · Político · Facción — todo visible a la vez, clic en cada quién para ver su tipo</span>
-            </div>
-          </div>
-          <div id="controles-actor" style="display:none;">
-            <div class="core-select">
-              <label for="actor-buscar-input">Actor</label>
-              <input type="text" id="actor-buscar-input" placeholder="Escribe un nombre..." style="background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1); border-radius:var(--radius-s); padding:6px 10px; font-size:12px; width:200px;">
-            </div>
-          </div>
-          <button class="chip-btn" id="btn-reset-grafo">Restablecer</button>
-          <button class="chip-btn" id="btn-pantalla-completa" title="Ver en pantalla completa">⛶ Ampliar</button>
-          <div class="legend-inline" id="leyenda-riesgo-grafo">
-            <span><span class="legend-dot" style="background:var(--riesgo-alto)"></span>Riesgo alto</span>
-            <span><span class="legend-dot" style="background:var(--riesgo-medio)"></span>Medio</span>
-            <span><span class="legend-dot" style="background:var(--riesgo-bajo)"></span>Bajo</span>
-            <span style="border-left:1px solid var(--line);padding-left:10px;"><span class="legend-dot" style="background:var(--familia-nucleo)"></span>Núcleo</span>
-            <span><span class="legend-dot" style="background:var(--familia-cruce1)"></span>Actor 2</span>
-            <span><span class="legend-dot" style="background:var(--familia-cruce2)"></span>Actor 3</span>
-            <span style="border-left:1px solid var(--line);padding-left:10px;font-size:10px;color:var(--ink-3);">
-              <svg width="16" height="2" style="vertical-align:middle;margin-right:3px;"><line x1="0" y1="1" x2="16" y2="1" stroke="var(--ink-3)" stroke-width="2"/></svg>Cercanía real ·
-              <svg width="16" height="2" style="vertical-align:middle;margin:0 3px;"><line x1="0" y1="1" x2="16" y2="1" stroke="var(--ink-3)" stroke-width="2" stroke-dasharray="4 3"/></svg>Misma red/facción ·
-              <svg width="16" height="2" style="vertical-align:middle;margin:0 3px;"><line x1="0" y1="1" x2="16" y2="1" stroke="var(--teal)" stroke-width="2"/></svg>Vínculo entre 2 núcleos distintos ·
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <button class="chip-btn" id="btn-reset-grafo">Restablecer</button>
+            <button class="chip-btn" id="btn-pantalla-completa" title="Ver en pantalla completa">⛶</button>
+            <div class="legend-inline" id="leyenda-riesgo-grafo">
+              <span><span class="legend-dot" style="background:var(--riesgo-alto)"></span>Riesgo alto</span>
+              <span><span class="legend-dot" style="background:var(--riesgo-medio)"></span>Medio</span>
+              <span><span class="legend-dot" style="background:var(--riesgo-bajo)"></span>Bajo</span>
+              <span style="border-left:1px solid var(--line);padding-left:10px;"><span class="legend-dot" style="background:var(--familia-nucleo)"></span>Núcleo</span>
+              <span><span class="legend-dot" style="background:var(--familia-cruce1)"></span>Actor 2</span>
+              <span><span class="legend-dot" style="background:var(--familia-cruce2)"></span>Actor 3</span>
+              <span style="border-left:1px solid var(--line);padding-left:10px;font-size:10px;color:var(--ink-3);">
+                <svg width="16" height="2" style="vertical-align:middle;margin-right:3px;"><line x1="0" y1="1" x2="16" y2="1" stroke="var(--ink-3)" stroke-width="2"/></svg>Cercanía real ·
+                <svg width="16" height="2" style="vertical-align:middle;margin:0 3px;"><line x1="0" y1="1" x2="16" y2="1" stroke="var(--ink-3)" stroke-width="2" stroke-dasharray="4 3"/></svg>Misma red/facción ·
+                <svg width="16" height="2" style="vertical-align:middle;margin:0 3px;"><line x1="0" y1="1" x2="16" y2="1" stroke="var(--teal)" stroke-width="2"/></svg>Vínculo entre 2 núcleos distintos ·
               grosor = qué tan fuerte
             </span>
           </div>
