@@ -181,7 +181,13 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .vista-toggle{display:flex; gap:6px;}
 .vista-toggle .chip-btn.active{background:var(--familia-nucleo); border-color:var(--familia-nucleo); color:#fff;}
 
-.lista-agenda{padding:14px; display:flex; flex-direction:column; gap:6px; overflow-y:auto; height:560px;}
+.lista-agenda{padding:14px; display:flex; flex-direction:column; gap:6px; overflow-y:auto; height:560px;
+  scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);}
+.lista-agenda::-webkit-scrollbar{width:6px;}
+.lista-agenda::-webkit-scrollbar-track{background:var(--bg-1);}
+.lista-agenda::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:99px;}
+.lista-agenda::-webkit-scrollbar-thumb:hover{background:var(--teal);}
+
 .lista-item{background:var(--bg-2); border-left:3px solid; border-radius:0 var(--radius-s) var(--radius-s) 0; padding:9px 12px;}
 .lista-nombre{font-family:var(--f-display); font-weight:700; font-size:12.5px; color:var(--ink-1);}
 .lista-meta{font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3); margin-top:3px;}
