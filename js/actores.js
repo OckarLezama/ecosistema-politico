@@ -106,8 +106,8 @@ function colorDeCore(coreId, slotDeCore){
 // en modo Notas (agenda), el color del nodo satélite es por ROL (investigado/mencionado/etc.),
 // no por familia — así se distingue de un vistazo, no solo con el hover
 const COLOR_POR_CATEGORIA = {
-  'Familia':'#F46883', 'Empresarial':'#BDB58D', 'Institucional':'#4CC1BA',
-  'Político':'#5B7FDB', 'Compañeros de partido':'#B15FBD',
+  'Familiar/Confianza':'#F46883', 'Político/Institucional':'#5B7FDB', 'Institucional':'#4CC1BA',
+  'Operadores':'#E0A85C', 'Empresarial':'#BDB58D', 'Compañeros de partido':'#B15FBD',
 };
 function colorNodoReal(d, svgId, slotDeCore){
   if(d.esPolitica || (d.esCategoria && d.nombre==='Compañeros de partido')) return COLOR_POR_CATEGORIA['Compañeros de partido'];
@@ -119,7 +119,7 @@ function colorNodoReal(d, svgId, slotDeCore){
   return colorDeCore(d.coreId, slotDeCore);
 }
 function opacidadPorNivel(nivel){ return {0:1,1:0.85,2:0.55,3:0.35}[nivel] ?? 0.5; }
-function radioNodo(d){ if(d.esCentro) return 26; return {1:15,2:12,3:9}[d.nivelAnillo]||8; }
+function radioNodo(d){ if(d.esCentro) return 26; if(d.esCategoria) return 15; return {1:12,2:10,3:8}[d.nivelAnillo]||7; }
 
 function renderGrafo(svgId='graph-svg'){
   const svgEl = document.getElementById(svgId);
@@ -367,7 +367,7 @@ function renderGrafo(svgId='graph-svg'){
   node.append('circle').attr('class','node-circle')
     .attr('r', radioNodo)
     .attr('fill', d=>colorNodoReal(d, svgId, slotDeCore))
-    .attr('fill-opacity', d=>opacidadPorNivel(d.nivelAnillo))
+    .attr('fill-opacity', d=> d.esCategoria ? 0.95 : opacidadPorNivel(d.nivelAnillo)*0.85)
     .attr('stroke', d=> d.esCentro?'#fff':'var(--bg-0)')
     .attr('stroke-width', d=> d.esCentro?3.5:1.5);
 
@@ -743,7 +743,7 @@ function mostrarVinculosEntreActores(coresElegidos){
       grupoA.forEach(idPersonaA=>{
         redPersonalDe(idPersonaA).forEach(r=>{
           if(grupoBSet.has(r.satelite_id) && !(coresElegidos.includes(idPersonaA) && coresElegidos.includes(r.satelite_id))){
-            vinculosCruzados.push({desde:idPersonaA, hacia:r.satelite_id, etiqueta:r.etiqueta_nivel});
+            vinculosCruzados.push({desde:idPersonaA, hacia:r.satelite_id, etiqueta:r.etiqueta_nivel, nivel:r.nivel});
           }
         });
       });
@@ -762,10 +762,22 @@ function mostrarVinculosEntreActores(coresElegidos){
     html += directas.map(c=> `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--familia-nucleo)">Vínculo directo · ${c.tipo_vinculo} (${c.fuerza})</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${c.descripcion}</p></div>`).join('');
   }
   if(vinculosCruzadosUnicos.length){
-    html += vinculosCruzadosUnicos.map(v=>{
-      const desde = getActor(v.desde), hacia = getActor(v.hacia);
-      return `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--teal)">Vínculo indirecto (vía red de cercanía)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;"><strong>${desde?desde.nombre:v.desde}</strong> ↔ <strong>${hacia?hacia.nombre:v.hacia}</strong> — ${v.etiqueta}</p></div>`;
-    }).join('');
+    if(vinculosCruzadosUnicos.length>3){
+      // con muchos vínculos, no se listan todos -- se resume el número y se destacan solo
+      // los más fuertes (nivel 1), que es lo que de verdad importa para leer la red rápido
+      const masFuertes = [...vinculosCruzadosUnicos].sort((a,b)=>Number(a.nivel||3)-Number(b.nivel||3)).slice(0,2);
+      html += `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--teal)">${vinculosCruzadosUnicos.length} vínculos cruzados detectados entre sus redes</div>`;
+      html += masFuertes.map(v=>{
+        const desde = getActor(v.desde), hacia = getActor(v.hacia);
+        return `<p style="font-size:12px;color:var(--ink-2);margin-top:3px;">Destaca: <strong>${desde?desde.nombre:v.desde}</strong> ↔ <strong>${hacia?hacia.nombre:v.hacia}</strong> — ${v.etiqueta}</p>`;
+      }).join('');
+      html += `</div>`;
+    } else {
+      html += vinculosCruzadosUnicos.map(v=>{
+        const desde = getActor(v.desde), hacia = getActor(v.hacia);
+        return `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--teal)">Vínculo indirecto (vía red de cercanía)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;"><strong>${desde?desde.nombre:v.desde}</strong> ↔ <strong>${hacia?hacia.nombre:v.hacia}</strong> — ${v.etiqueta}</p></div>`;
+      }).join('');
+    }
   }
   if(idsCompartidosPersonal.length){
     html += `<div class="contexto-tema-box"><div class="eyebrow">Contactos en común (red de cercanía)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${idsCompartidosPersonal.map(id=>{const a=getActor(id); return a?a.nombre:id;}).join(', ')}</p></div>`;
