@@ -241,7 +241,11 @@ def detectarPresion(texto_completo, actores_altos):
     return None
 
 def esTemaMigracion(texto_completo):
-    return any(p in texto_completo for p in MIGRACION_KEYWORDS)
+    if any(p in texto_completo for p in MIGRACION_KEYWORDS if p != 'ice '):
+        return True
+    # "ice" necesita ser palabra exacta (la sigla ICE) -- como substring simple, coincide con
+    # cualquier palabra que termine en "ice " (dice, policía, etc.), como ya pasó una vez
+    return bool(re.search(r'\bice\b', texto_completo))
 
 def tieneAlertaEspecial(texto_completo):
     for actor_id, patrones in ALERTA_NOMBRES.items():
