@@ -6,6 +6,7 @@
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
 let analisisRedesIA = {}; // texto real de IA por núcleo, del mismo archivo que ya genera el robot 1 vez al día
+let ultimosNodosRenderizados = []; // referencia a los nodos del grafo actual, para poder llamar mostrarFicha() justo al seleccionar (sin esperar un clic)
 fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{ if(d && d.lectura && d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes; }).catch(()=>{});
 let redPersonalActiva = true, redPoliticaActiva = true; // ya no hay checks -- todo se muestra siempre, se distingue por categoría/tipo al hacer clic
 let simulacion = null;
@@ -25,10 +26,10 @@ function initRedActores(){
     document.getElementById(slot+'-select').addEventListener('change', (e)=>{
       seleccion[slot] = e.target.value || null;
       const coresElegidos = ['nucleo','cruce1','cruce2'].map(s=>seleccion[s]).filter(Boolean);
-      if(coresElegidos.length>=2) mostrarVinculosEntreActores(coresElegidos);
-      else document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
+      if(coresElegidos.length>=2){ renderGrafo(); mostrarVinculosEntreActores(coresElegidos); }
+      else if(coresElegidos.length===1){ renderGrafo(); mostrarFicha(coresElegidos[0], {esCentro:true}, ultimosNodosRenderizados); }
+      else { document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; renderGrafo(); }
       poblarSelectores();
-      renderGrafo();
     });
   });
 
@@ -292,6 +293,7 @@ function renderGrafo(svgId='graph-svg'){
   }
 
   const nodes = [...nodesMap.values()];
+  if(svgId==='graph-svg') ultimosNodosRenderizados = nodes;
 
   // posición inicial: todos arrancan justo en el centro de su núcleo (no dispersos al azar)
   // -- así el grafo "crece" suave desde el centro, en vez de aparecer todo de golpe y saltar
