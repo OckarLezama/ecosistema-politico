@@ -68,12 +68,13 @@ function renderPortada(){
 
   // encabezado va en un elemento DOM SEPARADO, físicamente fuera del área con scroll --
   // así es imposible que las tarjetas se vean detrás, sin depender de position:sticky
-  encabezado.innerHTML = `<div id="portada-dispersion" style="margin-bottom:10px;"></div>` + `
+  encabezado.innerHTML = `
       <div style="margin-bottom:10px;">
         <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
+        <div id="portada-dispersion" style="margin-bottom:10px;width:100%;"></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
           ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
-            <button data-cat="${cat}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;font-size:10.5px;color:var(--ink-2);cursor:pointer;">
+            <button data-cat="${cat}" style="background:${categoriaFiltroDispersion===cat?'var(--teal)':'var(--bg-2)'};border:1px solid ${categoriaFiltroDispersion===cat?'var(--teal)':'var(--line-strong)'};border-radius:99px;padding:3px 10px;font-size:10.5px;color:${categoriaFiltroDispersion===cat?'#0E1116':'var(--ink-2)'};cursor:pointer;">
               <span style="width:7px;height:7px;border-radius:2px;background:${colorCategoria(cat)};display:inline-block;margin-right:5px;"></span>${cat} · ${n}
             </button>`).join('')}
         </div>
@@ -108,6 +109,8 @@ function renderPortada(){
         b.style.borderColor = (b.dataset.cat===categoriaActiva) ? 'var(--teal)' : 'var(--line-strong)';
         b.style.color = (b.dataset.cat===categoriaActiva) ? 'var(--ink-1)' : 'var(--ink-2)';
       });
+      categoriaFiltroDispersion = categoriaActiva; // misma categoría también filtra la gráfica de dispersión
+      dibujarDispersionHoraria(eventosHoyCache);
       const q = document.getElementById('portada-buscador').value.trim().toLowerCase();
       pintarTarjetasPortada(filtrarEventosPortada(q, categoriaActiva));
     });
@@ -156,31 +159,73 @@ function horaDeteccionDe(evento){
   return new Date(guardada);
 }
 
+let categoriaFiltroDispersion = null; // clic en una categoría filtra también la gráfica, no solo las tarjetas
+
+function colorPorImpactoDispersion(intensidad){
+  const n = Number(intensidad);
+  if(n>=8) return 'var(--riesgo-alto)';
+  if(n>=4) return 'var(--riesgo-medio)';
+  return 'var(--riesgo-bajo)';
+}
+
 function dibujarDispersionHoraria(eventos){
   const cont = document.getElementById('portada-dispersion');
   if(!cont) return;
-  if(eventos.length<2){ cont.innerHTML=''; return; }
-  const ancho = cont.clientWidth || 760, alto = 90, margenIzq = 34, margenDer = 14;
-  const puntos = eventos.map(e=>({ e, hora: horaDeteccionDe(e) }));
-  const minMax = puntos.reduce((acc,p)=>{ const h=p.hora.getHours()+p.hora.getMinutes()/60; return [Math.min(acc[0],h), Math.max(acc[1],h)]; }, [24,0]);
-  const [horaMin, horaMax] = minMax[0]<=minMax[1] ? minMax : [0,24];
-  const rango = Math.max(horaMax-horaMin, 1);
-  const colorCat = c=>colorCategoria(c);
-  const svgPuntos = puntos.map(p=>{
+  const eventosFiltrados = categoriaFiltroDispersion ? eventos.filter(e=>e.categoria===categoriaFiltroDispersion) : eventos;
+  if(!eventosFiltrados.length){ cont.innerHTML = `<div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div><p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
+  // coordenadas LÓGICAS fijas (1000x110) + width:100% con preserveAspectRatio="none" --
+  // así siempre ocupa el ancho real del contenedor, sin depender de medir clientWidth
+  // en el momento exacto (que a veces da 0 si el elemento aún no está visible)
+  const ancho = 1000, alto = 110, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 8;
+  const altoUtil = alto - margenArriba - margenAbajo;
+  const puntos = eventosFiltrados.map(e=>({ e, hora: horaDeteccionDe(e) }));
+
+  // SIEMPRE 24 horas completas del día -- no se va "encogiendo" al rango de datos que
+  // exista ahorita; conforme el día avanza, los puntos van llenando más del eje
+  const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
+
+  // cuadrícula de fondo, 1 línea por cada 4 horas -- mismo espíritu visual que el timeline
+  let grilla = '';
+  for(let h=0; h<=24; h+=4){
+    const x = xDeHora(h);
+    grilla += `<line x1="${x}" y1="${margenArriba}" x2="${x}" y2="${alto-margenAbajo}" stroke="var(--line)" stroke-width="1" stroke-opacity="0.4"/>`;
+    grilla += `<text x="${x}" y="${alto-4}" font-size="9" fill="var(--ink-3)" text-anchor="middle">${String(h).padStart(2,'0')}:00</text>`;
+  }
+
+  const svgPuntos = puntos.map((p,i)=>{
     const h = p.hora.getHours()+p.hora.getMinutes()/60;
-    const x = margenIzq + ((h-horaMin)/rango)*(ancho-margenIzq-margenDer);
-    const y = alto - 18 - (Number(p.e.intensidad)/10)*(alto-34);
-    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="${colorCat(p.e.categoria)}" fill-opacity="0.75"><title>${p.hora.getHours().toString().padStart(2,'0')}:${p.hora.getMinutes().toString().padStart(2,'0')} — ${p.e.descripcion.slice(0,60)}</title></circle>`;
+    const x = xDeHora(h);
+    const y = margenArriba + altoUtil - (Number(p.e.intensidad)/10)*altoUtil;
+    const color = colorPorImpactoDispersion(p.e.intensidad);
+    const horaTxt = `${p.hora.getHours().toString().padStart(2,'0')}:${p.hora.getMinutes().toString().padStart(2,'0')}`;
+    return `<circle class="punto-dispersion" data-hora="${horaTxt}" data-desc="${p.e.descripcion.replace(/"/g,'&quot;').slice(0,90)}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="${color}" fill-opacity="0.85" stroke="var(--bg-1)" stroke-width="1" style="cursor:pointer;"/>`;
   }).join('');
-  const etiquetaInicio = `${Math.floor(horaMin).toString().padStart(2,'0')}:00`, etiquetaFin = `${Math.ceil(horaMax).toString().padStart(2,'0')}:00`;
+
   cont.innerHTML = `
-    <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">A qué hora salen las notas de hoy</div>
-    <svg width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" style="display:block;">
-      <line x1="${margenIzq}" y1="${alto-16}" x2="${ancho-margenDer}" y2="${alto-16}" stroke="var(--line)" stroke-width="1"/>
-      ${svgPuntos}
-      <text x="${margenIzq}" y="${alto-3}" font-size="9" fill="var(--ink-3)">${etiquetaInicio}</text>
-      <text x="${ancho-margenDer}" y="${alto-3}" font-size="9" fill="var(--ink-3)" text-anchor="end">${etiquetaFin}</text>
-    </svg>`;
+    <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div>
+    <div style="position:relative;width:100%;">
+      <svg width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" preserveAspectRatio="none" style="display:block;">
+        <rect x="${margenIzq}" y="${margenArriba}" width="${ancho-margenIzq-margenDer}" height="${altoUtil}" fill="var(--bg-2)" fill-opacity="0.3"/>
+        ${grilla}
+        ${svgPuntos}
+      </svg>
+      <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:5px 9px;font-size:10.5px;color:var(--ink-1);pointer-events:none;white-space:nowrap;z-index:20;box-shadow:var(--shadow-card);"></div>
+    </div>`;
+
+  const tooltip = document.getElementById('portada-dispersion-tooltip');
+  cont.querySelectorAll('.punto-dispersion').forEach(p=>{
+    p.addEventListener('mouseenter', (ev)=>{
+      tooltip.innerHTML = `<strong>${p.dataset.hora}</strong> — ${p.dataset.desc}`;
+      tooltip.style.display = 'block';
+      p.setAttribute('r','6');
+    });
+    p.addEventListener('mousemove', (ev)=>{
+      const rect = cont.querySelector('svg').getBoundingClientRect();
+      tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-220)+'px';
+      tooltip.style.top = (ev.clientY-rect.top-28)+'px';
+    });
+    p.addEventListener('mouseleave', ()=>{ tooltip.style.display='none'; p.setAttribute('r','4'); });
+  });
 }
 
 function pintarTarjetasPortada(eventos){

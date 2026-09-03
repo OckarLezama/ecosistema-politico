@@ -56,7 +56,7 @@ function revisarNotificacionesPendientes(){
     if(e.hora_registro){
       const [h,m] = e.hora_registro.split(':').map(Number);
       const minutosEvento = h*60+m;
-      if(minutosAhora - minutosEvento > 45) return false; // más de 45 min, ya no es "reciente"
+      if(minutosAhora - minutosEvento > 15) return false; // más de 15 min, ya no es "reciente" -- son alertas, no recordatorios
     }
     const tema = nombreTemaPorId[e.tema_id];
     if(!tema) return false;
