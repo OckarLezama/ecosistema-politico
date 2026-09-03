@@ -7,6 +7,19 @@
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
 let analisisRedesIA = {}; // texto real de IA por núcleo, del mismo archivo que ya genera el robot 1 vez al día
 let ultimosNodosRenderizados = []; // referencia a los nodos del grafo actual, para poder llamar mostrarFicha() justo al seleccionar (sin esperar un clic)
+
+// al seleccionar un núcleo (sin dar clic todavía), solo se muestra el análisis de su red --
+// la ficha completa (cargo, riesgo, fortaleza, etc.) se queda para cuando sí den clic en el nodo
+function mostrarSoloAnalisisRed(id){
+  const panel = document.getElementById('detail-panel');
+  const actor = getActor(id);
+  if(!actor){ panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; return; }
+  if(analisisRedesIA[id]){
+    panel.innerHTML = `<div class="contexto-tema-box" style="border-left-color:var(--teal);"><div class="eyebrow" style="color:var(--teal);">Análisis de su red (IA)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${analisisRedesIA[id]}</p></div><p style="font-size:10.5px;color:var(--ink-3);margin-top:10px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>`;
+  } else {
+    panel.innerHTML = `<div class="detail-empty"><p style="font-size:11.5px;">Esta red aún no tiene análisis de IA (solo disponible para núcleos ya clasificados por categoría).</p></div><p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>`;
+  }
+}
 fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{ if(d && d.lectura && d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes; }).catch(()=>{});
 let redPersonalActiva = true, redPoliticaActiva = true; // ya no hay checks -- todo se muestra siempre, se distingue por categoría/tipo al hacer clic
 let simulacion = null;
@@ -27,7 +40,7 @@ function initRedActores(){
       seleccion[slot] = e.target.value || null;
       const coresElegidos = ['nucleo','cruce1','cruce2'].map(s=>seleccion[s]).filter(Boolean);
       if(coresElegidos.length>=2){ renderGrafo(); mostrarVinculosEntreActores(coresElegidos); }
-      else if(coresElegidos.length===1){ renderGrafo(); mostrarFicha(coresElegidos[0], {esCentro:true}, ultimosNodosRenderizados); }
+      else if(coresElegidos.length===1){ renderGrafo(); mostrarSoloAnalisisRed(coresElegidos[0]); }
       else { document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; renderGrafo(); }
       poblarSelectores();
     });
@@ -41,6 +54,20 @@ function initRedActores(){
     document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
     renderGrafo();
   });
+
+  const btnPantallaCompleta = document.getElementById('btn-pantalla-completa');
+  if(btnPantallaCompleta && !btnPantallaCompleta.dataset.conectado){
+    btnPantallaCompleta.addEventListener('click', ()=>{
+      const cont = document.getElementById('actores-layout-completo');
+      if(!document.fullscreenElement) cont.requestFullscreen().catch(()=>{});
+      else document.exitFullscreen();
+    });
+    document.addEventListener('fullscreenchange', ()=>{
+      btnPantallaCompleta.textContent = document.fullscreenElement ? '⤢ Salir de pantalla completa' : '⛶ Ampliar';
+      setTimeout(renderGrafo, 120); // el SVG necesita el nuevo tamaño real para no verse recortado
+    });
+    btnPantallaCompleta.dataset.conectado = '1';
+  }
 
   document.querySelectorAll('#modo-red-toggle .chip-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
