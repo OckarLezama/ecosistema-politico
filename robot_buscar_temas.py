@@ -423,7 +423,7 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes)
 def guardar_evento_directo(evento):
     """Escribe DIRECTO a eventos.csv — solo para temas que YA existen en temas.csv.
     Es el camino automático de verdad: sin revisión manual, en tiempo real."""
-    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url', 'entidad_c3']
+    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url', 'entidad_c3', 'hora_registro']
     with open(RUTA_EVENTOS, 'a', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         w.writerow(evento)
@@ -524,7 +524,7 @@ def buscar_candidatos():
                     'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                     'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
                     'intensidad': intensidad, 'descripcion': descripcion_final_kt, 'fuente_url': enlace, 'cobertura': 1,
-                    'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota,
+                    'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota, 'hora_registro': datetime.now(ZONA_MX).strftime('%H:%M'),
                 })
                 conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
                 titulos_ya_agregados_hoy.add(titulo_normalizado)
@@ -569,7 +569,7 @@ def buscar_candidatos():
                             'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                             'categoria': categoria_real, 'intensidad': intensidad_final,
                             'descripcion': titulo_final, 'fuente_url': enlace, 'cobertura': 1,
-                            'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota,
+                            'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota, 'hora_registro': datetime.now(ZONA_MX).strftime('%H:%M'),
                         })
                         conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
 
