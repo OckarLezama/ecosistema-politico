@@ -5,6 +5,8 @@
    ============================================================ */
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
+let analisisRedesIA = {}; // texto real de IA por núcleo, del mismo archivo que ya genera el robot 1 vez al día
+fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{ if(d && d.lectura && d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes; }).catch(()=>{});
 let redPersonalActiva = true, redPoliticaActiva = true; // ya no hay checks -- todo se muestra siempre, se distingue por categoría/tipo al hacer clic
 let simulacion = null;
 let modoRed = 'grupo';
@@ -863,12 +865,17 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
     }
   }
 
+  const analisisIA = (nodoClicado && nodoClicado.esCentro && analisisRedesIA[id])
+    ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);"><div class="eyebrow" style="color:var(--teal);">Análisis de su red (IA)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${analisisRedesIA[id]}</p></div>`
+    : '';
+
   panel.innerHTML = `
     <div class="detail-avatar" style="background:${color}">${actor.iniciales||'?'}</div>
     <div class="detail-name">${actor.nombre}</div>
     <div class="detail-cargo">${actor.cargo}</div>
     ${actor.descripcion ? `<p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 8px;">${actor.descripcion}</p>` : ''}
     ${contextoHTML}
+    ${analisisIA}
     <div class="detail-row"><span class="k">Riesgo</span><span class="v"><span class="riesgo-badge" style="background:${color}22;color:${color}">${(actor.nivel_riesgo||'').toUpperCase()}</span></span></div>
     <div class="detail-row"><span class="k">Influencia</span><span class="v">${actor.nivel_influencia}/10</span></div>
     <div class="detail-row"><span class="k">Grupo</span><span class="v">${actor.grupo}</span></div>
