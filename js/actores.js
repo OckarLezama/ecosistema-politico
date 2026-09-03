@@ -182,6 +182,19 @@ function renderGrafo(svgId='graph-svg'){
           if(!sat) return;
           const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
           if(yaEsNucleo){ linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'}); return; }
+          if(r.categoria){
+            // nodo de CATEGORÍA como hub intermedio (ej. Andy → Familia → AMLO, hermanos, tíos)
+            // -- solo se activa para quien tenga categoría puesta en redes_personales.csv,
+            // el resto de núcleos sigue orbitando directo como siempre (sin romper nada)
+            const idCategoria = 'cat:'+coreId+':'+r.categoria;
+            if(!nodesMap.has(idCategoria)){
+              nodesMap.set(idCategoria, {id:idCategoria, nombre:r.categoria, nivelAnillo:1, coreId, slot, esCategoria:true, iniciales:r.categoria.slice(0,2).toUpperCase()});
+              linksBase.push({origen:coreId, destino:idCategoria, nivelDestino:1, slot, tipoVinculo:'personal'});
+            }
+            if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:idCategoria, slot, esSateliteDeCategoria:true});
+            linksBase.push({origen:idCategoria, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
+            return;
+          }
           if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot});
           linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
         });
@@ -321,7 +334,7 @@ function renderGrafo(svgId='graph-svg'){
     .attr('r', d=>radioNodo(d)+6).attr('fill','none')
     .attr('stroke', d=>colorDeCore(d.coreId, slotDeCore)).attr('stroke-width',2).attr('stroke-opacity',0.55);
 
-  node.filter(d=>svgId!=='notas-svg').append('circle').attr('r', d=>d.esCentro?6:4.5)
+  node.filter(d=>svgId!=='notas-svg' && !d.esCategoria).append('circle').attr('r', d=>d.esCentro?6:4.5)
     .attr('cx', d=>-radioNodo(d)*0.7).attr('cy', d=>-radioNodo(d)*0.7)
     .attr('fill', d=>colorRiesgo(d.nivel_riesgo)).attr('stroke','#fff').attr('stroke-width',1.3);
 

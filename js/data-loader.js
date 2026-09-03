@@ -88,7 +88,7 @@ function colorCategoria(cat){
 function redPersonalDe(nucleoId){
   return ECOSISTEMA.redesPersonales
     .filter(r=>r.nucleo_id===nucleoId)
-    .map(r=>({satelite_id:r.satelite_id, nivel:r.nivel, etiqueta_nivel:r.etiqueta_nivel}));
+    .map(r=>({satelite_id:r.satelite_id, nivel:r.nivel, etiqueta_nivel:r.etiqueta_nivel, categoria:r.categoria||''}));
 }
 
 document.addEventListener('DOMContentLoaded', inicializarDatos);
