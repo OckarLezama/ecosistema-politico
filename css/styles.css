@@ -333,10 +333,3 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 #c3-contenedor-scroll::-webkit-scrollbar-track{ background:var(--bg-1); }
 #c3-contenedor-scroll::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:99px; }
 #c3-contenedor-scroll::-webkit-scrollbar-thumb:hover{ background:var(--teal); }
-
-/* --- pantalla completa de Red de Actores --- */
-#actores-layout-completo:fullscreen{
-  background:var(--bg-0); padding:20px; display:grid; grid-template-columns:1fr 320px; gap:16px;
-}
-#actores-layout-completo:fullscreen .graph-card{ height:calc(100vh - 40px) !important; }
-#actores-layout-completo:fullscreen .detail-card{ height:calc(100vh - 40px) !important; }
