@@ -234,6 +234,20 @@ VERBOS_PRESION = ['presiona', 'presiono', 'presionó', 'exige', 'exigio', 'exigi
                   'advirtio', 'advirtió', 'amenaza', 'amenazo', 'amenazó', 'insta ', 'insto ',
                   'instó', 'ultimatum', 'ultimatum']
 
+CARGOS_FUNCIONARIO_PUBLICO = ['diputado', 'diputada', 'senador', 'senadora', 'alcalde', 'alcaldesa',
+    'gobernador', 'gobernadora', 'regidor', 'regidora', 'presidente municipal', 'síndico', 'sindica',
+    'magistrado', 'magistrada', 'fiscal', 'secretario de estado', 'secretaria de estado']
+PALABRAS_MUERTE_VIOLENTA = ['muerto', 'muerta', 'asesinado', 'asesinada', 'asesinato', 'ejecutado',
+    'ejecutada', 'privado de la vida', 'privada de la vida', 'atentado', 'balacera', 'baleado', 'baleada']
+
+def esMuerteDeFuncionario(texto_completo):
+    """La muerte o asesinato de CUALQUIER funcionario público electo es noticia política real,
+    sin importar si esa persona está en la lista de actores de alto perfil trackeados -- es un
+    hueco real que dejaba fuera notas como la de un diputado federal asesinado."""
+    tiene_cargo = any(c in texto_completo for c in CARGOS_FUNCIONARIO_PUBLICO)
+    tiene_muerte = any(m in texto_completo for m in PALABRAS_MUERTE_VIOLENTA)
+    return tiene_cargo and tiene_muerte
+
 def detectarPresion(texto_completo, actores_altos):
     """Sugerencia por coincidencia de patron (verbo de presion + mencion de actor de alta
     influencia cerca) -- NUNCA una afirmacion confirmada, se marca como 'posible' en el titulo
@@ -551,7 +565,7 @@ def buscar_candidatos():
                     # tema local sí es política real, aunque no diga "gobernador" ni similar)
                     disparador = (esContenidoPoliticoLocal(texto_completo) or menciones>=1 or mencion_top) and hash_enlace not in ya_vistos
                 else:
-                    disparador = (menciones >= 2 or mencion_top or es_migracion or alerta_actor) and hash_enlace not in ya_vistos
+                    disparador = (menciones >= 2 or mencion_top or es_migracion or alerta_actor or esMuerteDeFuncionario(texto_completo)) and hash_enlace not in ya_vistos
                 if disparador:
                     categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
                     prefijo = '🔔 ALERTA — ' if (alerta_actor or es_migracion) else ''
