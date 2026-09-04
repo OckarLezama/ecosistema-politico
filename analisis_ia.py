@@ -355,21 +355,24 @@ def encontrar_problemas(lectura):
 
 
 def llamar_claude(cliente, prompt, max_tokens=16000):
-    respuesta = cliente.messages.create(
+    # a partir de cierto tamaño de respuesta, la librería exige streaming en vez de la
+    # llamada normal (para peticiones que pueden tardar más de 10 minutos) -- con 16
+    # núcleos y análisis profundo, ya se necesita ese espacio, así que se usa streaming
+    # siempre y se junta el texto completo al final, sin cambiar nada más del flujo
+    texto_completo = ''
+    with cliente.messages.stream(
         model='claude-sonnet-5',
         max_tokens=max_tokens,
         messages=[{'role': 'user', 'content': prompt}],
-    )
-    bloque_texto = next((b for b in respuesta.content if b.type == 'text'), None)
-    if bloque_texto is None:
-        # con 16 núcleos y análisis más profundo, el modelo puede gastar todo el espacio
-        # "pensando" y nunca llegar a escribir el texto final -- antes esto tronaba;
-        # ahora reintenta con más espacio, igual que cuando el JSON viene incompleto
+    ) as stream:
+        for evento in stream.text_stream:
+            texto_completo += evento
+    texto = texto_completo.strip()
+    if not texto:
         if max_tokens < 32000:
-            print(f'Sin bloque de texto (se quedó sin espacio pensando) con max_tokens={max_tokens}, reintentando con más espacio...')
+            print(f'Sin texto (se quedó sin espacio pensando) con max_tokens={max_tokens}, reintentando con más espacio...')
             return llamar_claude(cliente, prompt, max_tokens=max_tokens*2)
-        raise ValueError(f'La respuesta no trajo bloque de texto ni con max_tokens={max_tokens}: {respuesta.content}')
-    texto = bloque_texto.text.strip()
+        raise ValueError(f'La respuesta llegó vacía ni con max_tokens={max_tokens}')
     if texto.startswith('```'):
         texto = texto.split('```')[1]
         if texto.startswith('json'):
