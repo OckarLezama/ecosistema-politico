@@ -59,20 +59,6 @@ function initRedActores(){
     renderGrafo();
   });
 
-  const btnPantallaCompleta = document.getElementById('btn-pantalla-completa');
-  if(btnPantallaCompleta && !btnPantallaCompleta.dataset.conectado){
-    btnPantallaCompleta.addEventListener('click', ()=>{
-      const cont = document.getElementById('actores-layout-completo');
-      if(!document.fullscreenElement) cont.requestFullscreen().catch(()=>{});
-      else document.exitFullscreen();
-    });
-    document.addEventListener('fullscreenchange', ()=>{
-      btnPantallaCompleta.textContent = document.fullscreenElement ? '⤢ Salir de pantalla completa' : '⛶ Ampliar';
-      setTimeout(renderGrafo, 120); // el SVG necesita el nuevo tamaño real para no verse recortado
-    });
-    btnPantallaCompleta.dataset.conectado = '1';
-  }
-
   document.querySelectorAll('#modo-red-toggle .chip-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       modoRed = btn.dataset.modo;
