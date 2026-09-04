@@ -175,55 +175,40 @@ function dibujarDispersionHoraria(eventos){
   if(!eventosFiltrados.length){ cont.innerHTML = `<div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div><p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
   const ancho = 1000, alto = 130, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 8;
   const altoUtil = alto - margenArriba - margenAbajo;
-  const puntos = eventosFiltrados.map(e=>({ e, hora: horaDeteccionDe(e) }));
-
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
+  const anchoBarra = (ancho-margenIzq-margenDer)/24;
 
-  // cuadrícula de fondo tipo papel cuadriculado -- líneas verticales cada 2h, horizontales
-  // cada 20% de intensidad, formando cuadros reales (no solo líneas verticales sueltas)
+  // GRÁFICA DE FRECUENCIA -- con muchas notas, puntos individuales se amontonan y ya no se
+  // leen; una barra por hora (0-23) es mucho más clara: cuántas notas salieron en esa hora,
+  // coloreada según su impacto promedio
+  const porHora = Array.from({length:24}, ()=>[]);
+  eventosFiltrados.forEach(e=>{
+    const h = horaDeteccionDe(e).getHours();
+    porHora[h].push(e);
+  });
+  const maxConteo = Math.max(...porHora.map(l=>l.length), 1);
+
   let grilla = '';
   for(let h=0; h<=24; h+=2){
     const x = xDeHora(h);
     grilla += `<line x1="${x}" y1="${margenArriba}" x2="${x}" y2="${alto-margenAbajo}" stroke="var(--line)" stroke-width="1" stroke-opacity="${h%4===0?0.4:0.18}"/>`;
     if(h%4===0) grilla += `<text x="${x}" y="${alto-4}" font-size="9" fill="var(--ink-3)" text-anchor="middle">${String(h).padStart(2,'0')}:00</text>`;
   }
-  for(let i=0; i<=5; i++){
-    const y = margenArriba + (i/5)*altoUtil;
+  for(let i=0; i<=4; i++){
+    const y = margenArriba + (i/4)*altoUtil;
     grilla += `<line x1="${margenIzq}" y1="${y}" x2="${ancho-margenDer}" y2="${y}" stroke="var(--line)" stroke-width="1" stroke-opacity="0.18"/>`;
   }
 
-  // posiciones base -- con un mínimo de variación aleatoria inicial cuando 2 notas caen
-  // EXACTO en el mismo punto (misma hora, misma intensidad): sin esto, no hay dirección
-  // en la que empujarlas para separarlas (0 dividido entre 0)
-  const datosPunto = puntos.map(p=>{
-    const h = p.hora.getHours()+p.hora.getMinutes()/60;
-    return { p, x: xDeHora(h)+(Math.random()-0.5)*0.6, y: margenArriba + altoUtil - (Number(p.e.intensidad)/10)*altoUtil + (Math.random()-0.5)*0.6 };
-  });
-  // separación real: si 2 puntos quedan muy cerca (se encimarían), se empujan aparte poco
-  // a poco -- varias pasadas suaves, nunca un salto brusco
-  const RADIO_MIN = 9;
-  for(let iter=0; iter<25; iter++){
-    for(let i=0;i<datosPunto.length;i++){
-      for(let j=i+1;j<datosPunto.length;j++){
-        const a=datosPunto[i], b=datosPunto[j];
-        const dx=b.x-a.x, dy=b.y-a.y;
-        const dist = Math.sqrt(dx*dx+dy*dy) || 0.001;
-        if(dist < RADIO_MIN){
-          const empuje = (RADIO_MIN-dist)/2;
-          const ux=dx/dist, uy=dy/dist;
-          a.x -= ux*empuje; a.y -= uy*empuje*0.6; // se mueve más en x (hora) que en y (intensidad, que sí es un dato real)
-          b.x += ux*empuje; b.y += uy*empuje*0.6;
-          a.x = Math.max(margenIzq+2, Math.min(ancho-margenDer-2, a.x));
-          b.x = Math.max(margenIzq+2, Math.min(ancho-margenDer-2, b.x));
-        }
-      }
-    }
-  }
-
-  const svgPuntos = datosPunto.map(d=>{
-    const color = colorPorImpactoDispersion(d.p.e.intensidad);
-    const horaTxt = `${d.p.hora.getHours().toString().padStart(2,'0')}:${d.p.hora.getMinutes().toString().padStart(2,'0')}`;
-    return `<circle class="punto-dispersion" data-hora="${horaTxt}" data-desc="${d.p.e.descripcion.replace(/"/g,'&quot;').slice(0,90)}" cx="${d.x.toFixed(1)}" cy="${d.y.toFixed(1)}" r="4" fill="${color}" fill-opacity="0.85" stroke="var(--bg-1)" stroke-width="1" style="cursor:pointer;"/>`;
+  const barras = porHora.map((lista, h)=>{
+    if(!lista.length) return '';
+    const promedioImpacto = lista.reduce((s,e)=>s+Number(e.intensidad),0)/lista.length;
+    const color = colorPorImpactoDispersion(promedioImpacto);
+    const alturaBarra = (lista.length/maxConteo)*altoUtil;
+    const x = xDeHora(h) + anchoBarra*0.12;
+    const y = margenArriba + altoUtil - alturaBarra;
+    const anchoReal = anchoBarra*0.76;
+    const titulares = lista.slice(0,4).map(e=>e.descripcion.slice(0,70)).join(' | ');
+    return `<rect class="barra-frecuencia" data-hora="${String(h).padStart(2,'0')}:00" data-conteo="${lista.length}" data-desc="${titulares.replace(/"/g,'&quot;')}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${anchoReal.toFixed(1)}" height="${alturaBarra.toFixed(1)}" fill="${color}" fill-opacity="0.85" rx="2" style="cursor:pointer;"/>`;
   }).join('');
 
   cont.innerHTML = `
@@ -232,24 +217,24 @@ function dibujarDispersionHoraria(eventos){
       <svg width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" preserveAspectRatio="none" style="display:block;">
         <rect x="${margenIzq}" y="${margenArriba}" width="${ancho-margenIzq-margenDer}" height="${altoUtil}" fill="var(--bg-2)" fill-opacity="0.3"/>
         ${grilla}
-        ${svgPuntos}
+        ${barras}
       </svg>
-      <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:5px 9px;font-size:10.5px;color:var(--ink-1);pointer-events:none;white-space:nowrap;z-index:20;box-shadow:var(--shadow-card);"></div>
+      <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:5px 9px;font-size:10.5px;color:var(--ink-1);pointer-events:none;max-width:260px;z-index:20;box-shadow:var(--shadow-card);"></div>
     </div>`;
 
   const tooltip = document.getElementById('portada-dispersion-tooltip');
-  cont.querySelectorAll('.punto-dispersion').forEach(p=>{
-    p.addEventListener('mouseenter', (ev)=>{
-      tooltip.innerHTML = `<strong>${p.dataset.hora}</strong> — ${p.dataset.desc}`;
+  cont.querySelectorAll('.barra-frecuencia').forEach(b=>{
+    b.addEventListener('mouseenter', ()=>{
+      tooltip.innerHTML = `<strong>${b.dataset.hora}</strong> — ${b.dataset.conteo} nota${b.dataset.conteo!=='1'?'s':''}<br><span style="color:var(--ink-3);">${b.dataset.desc}</span>`;
       tooltip.style.display = 'block';
-      p.setAttribute('r','6');
+      b.setAttribute('fill-opacity','1');
     });
-    p.addEventListener('mousemove', (ev)=>{
+    b.addEventListener('mousemove', (ev)=>{
       const rect = cont.querySelector('svg').getBoundingClientRect();
-      tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-220)+'px';
-      tooltip.style.top = (ev.clientY-rect.top-28)+'px';
+      tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-270)+'px';
+      tooltip.style.top = Math.max(0, ev.clientY-rect.top-50)+'px';
     });
-    p.addEventListener('mouseleave', ()=>{ tooltip.style.display='none'; p.setAttribute('r','4'); });
+    b.addEventListener('mouseleave', ()=>{ tooltip.style.display='none'; b.setAttribute('fill-opacity','0.85'); });
   });
 }
 
