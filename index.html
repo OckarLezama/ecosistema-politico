@@ -210,6 +210,7 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
   if(btn.dataset.module==='actores' && typeof renderGrafo==='function'){
     modoRed = document.querySelector('#modo-red-toggle .chip-btn.active')?.dataset.modo || 'grupo'; // nunca hereda modo "agenda" de Notas
     if(seleccion.nucleo||seleccion.cruce1||seleccion.cruce2||actorUnicoSeleccionado) renderGrafo();
+    if(typeof posicionarPanelDetalle==='function') setTimeout(posicionarPanelDetalle, 30);
   }
   if(btn.dataset.module==='timeline' && typeof renderTimeline==='function') renderTimeline();
   if(btn.dataset.module==='analisis' && typeof renderAnalisis==='function') renderAnalisis();
