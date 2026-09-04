@@ -558,10 +558,10 @@ function renderGrafo(svgId='graph-svg'){
     .alpha(0.6).velocityDecay(0.55) // arranque más calmado (menos "salto") -- ahora los nodos ya empiezan centrados, no hace falta tanta energía inicial
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+205 : radioNodo(d)+22).strength(0.95))
+    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+130 : radioNodo(d)+22).strength(0.95))
     .force('link', d3.forceLink(links).id(d=>d.id).distance(90).strength(0.05))
-    .force('x', d3.forceX(width/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
-    .force('y', d3.forceY(height/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
+    .force('x', d3.forceX(width/2).strength(0.15))
+    .force('y', d3.forceY(height/2).strength(0.15))
     .on('tick', ()=>{
       const margen=30;
       nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
