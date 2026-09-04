@@ -183,7 +183,9 @@ def calcular_todo():
     # que ya tienen sus satélites clasificados en las 4 categorías reales (Familiar,
     # Político/Institucional, Operadores/Confianza, Empresarial) -- sin esto, la IA no
     # tendría con qué interpretar, y clasificar a ciegas ya demostró salir mal
-    NUCLEOS_CATEGORIZADOS = ['sheinbaum', 'andy', 'amlo', 'trump', 'garcia_harfuch', 'ebrard']
+    NUCLEOS_CATEGORIZADOS = ['sheinbaum', 'andy', 'amlo', 'trump', 'garcia_harfuch', 'ebrard',
+        'rosa_icela', 'godoy', 'montiel', 'luisa_maria_alcalde', 'citlalli', 'mario_delgado',
+        'adan_augusto', 'monreal', 'rocha_moya', 'rubio']
     redes_por_nucleo = {}
     try:
         with open(os.path.join(RUTA_DATOS, 'redes_personales.csv'), encoding='utf-8') as f:
@@ -199,7 +201,18 @@ def calcular_todo():
                 if not actor: continue
                 por_categoria.setdefault(cat, []).append({'nombre': actor['nombre'], 'cargo': actor.get('cargo',''), 'nivel': r['nivel']})
             if por_categoria:
-                redes_por_nucleo[nid] = por_categoria
+                total = sum(len(v) for v in por_categoria.values())
+                # estadísticas explícitas -- así la IA no tiene que inferir "cuál pesa más",
+                # ya viene calculado, y el texto que genere puede citar el número real
+                conteo_por_categoria = {cat: len(personas) for cat, personas in por_categoria.items()}
+                categoria_dominante = max(conteo_por_categoria, key=conteo_por_categoria.get)
+                redes_por_nucleo[nid] = {
+                    'satelites_por_categoria': por_categoria,
+                    'total_satelites': total,
+                    'conteo_por_categoria': conteo_por_categoria,
+                    'categoria_dominante': categoria_dominante,
+                    'pct_categoria_dominante': round(conteo_por_categoria[categoria_dominante]/total*100),
+                }
     except Exception:
         pass
 
@@ -285,16 +298,23 @@ Otras reglas estrictas:
 - NUNCA prediga el futuro ni especules sobre facciones internas, causalidad no documentada, o
   motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
 
-Si el JSON de entrada trae "redes_por_nucleo", para cada núcleo ahí presente escribe:
-- "resumen": qué revela la composición por categoría (ej. "su red está dominada por perfiles
-  institucionales, con poca presencia empresarial directa" -- solo si es cierto según los
-  datos), qué categoría concentra más peso, y qué tan cerrado o diverso es el círculo.
-- "fortaleza": lo que realmente hace fuerte a ESTA red en particular, basado en su
-  composición real -- no una frase genérica que sirva para cualquier núcleo.
-- "debilidad": el punto real de vulnerabilidad de ESTA red -- ej. si depende de muy pocos
-  operadores de confianza, si casi no tiene presencia empresarial, si es puramente
-  institucional sin gente propia de confianza personal, etc.
-Nunca inventes vínculos que no estén en los datos.
+Si el JSON de entrada trae "redes_por_nucleo", cada núcleo ahí ya trae "conteo_por_categoria"
+(cuántos satélites tiene en cada categoría), "categoria_dominante" y "pct_categoria_dominante"
+(el % real que representa) -- YA CALCULADOS. Para cada núcleo escribe, usando esos números
+reales (nunca los inventes, nunca digas "prácticamente todo" sin el número exacto detrás):
+- "resumen": cita el conteo real por categoría (ej. "de sus 11 vínculos documentados, 7 son
+  Político/Institucional y 4 Operadores/Confianza -- el 64% de su red"), y qué tan cerrado o
+  diverso es el círculo según esa distribución real.
+- "fortaleza": lo que realmente hace fuerte a ESTA red según su composición -- cita la
+  categoría y el número que la sostiene (ej. "su base Empresarial (4 de 10 vínculos) le da
+  independencia económica del aparato de gobierno"). Nunca una frase que sirva para cualquier
+  núcleo sin cambiar los números.
+- "debilidad": el punto real de vulnerabilidad -- cita qué categoría le falta o es
+  desproporcionadamente chica (ej. "solo 1 vínculo Empresarial de 12 totales, casi sin base
+  económica propia" o "sin ningún vínculo Familiar documentado, depende por completo de la
+  estructura institucional").
+Nunca inventes vínculos que no estén en los datos. Nunca uses el mismo fraseo genérico entre
+distintos núcleos -- cada texto debe poder identificarse solo con los números que cita.
 
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
