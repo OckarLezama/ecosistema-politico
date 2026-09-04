@@ -72,6 +72,7 @@
                 <label for="cruce2-select">Actor 3</label>
                 <select id="cruce2-select"><option value="">— sin selección —</option></select>
               </div>
+              <button class="chip-btn" id="btn-reset-grafo" style="align-self:flex-end;">Restablecer</button>
             </div>
             <div id="controles-actor" style="display:none;">
               <div class="core-select">
@@ -81,7 +82,6 @@
             </div>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-            <button class="chip-btn" id="btn-reset-grafo">Restablecer</button>
             <div class="legend-inline" id="leyenda-riesgo-grafo">
               <span><span class="legend-dot" style="background:var(--riesgo-alto)"></span>Riesgo alto</span>
               <span><span class="legend-dot" style="background:var(--riesgo-medio)"></span>Medio</span>
@@ -210,6 +210,10 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
   if(btn.dataset.module==='actores' && typeof renderGrafo==='function'){
     modoRed = document.querySelector('#modo-red-toggle .chip-btn.active')?.dataset.modo || 'grupo'; // nunca hereda modo "agenda" de Notas
     if(seleccion.nucleo||seleccion.cruce1||seleccion.cruce2||actorUnicoSeleccionado) renderGrafo();
+    // el panel flotante (position:fixed) solo se reposiciona dentro de renderGrafo() -- si
+    // no hay selección todavía, renderGrafo no se llama arriba, y el panel se queda con la
+    // posición vieja de la última vez que se vio esta pestaña. Esto lo corrige siempre.
+    if(typeof posicionarPanelDetalle==='function') setTimeout(posicionarPanelDetalle, 30);
   }
   if(btn.dataset.module==='timeline' && typeof renderTimeline==='function') renderTimeline();
   if(btn.dataset.module==='analisis' && typeof renderAnalisis==='function') renderAnalisis();

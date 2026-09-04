@@ -220,10 +220,15 @@ def extraer_imagen_entrada(entrada, enlace_articulo=None):
 
 
 def similitud_titulares(t1, t2):
-    """Jaccard sobre palabras significativas — 0 (nada en común) a 1 (idénticos)."""
+    """Jaccard sobre palabras significativas -- 0 (nada en común) a 1 (idénticos). Compara
+    por RAÍZ de palabra (primeros 6 caracteres), no la palabra exacta -- sin esto,
+    "migrantes" y "migración", o "frontera" y "fronterizo", cuentan como palabras
+    distintas y notas que hablan de lo mismo salen con similitud artificialmente baja."""
     p1, p2 = palabras_significativas(t1), palabras_significativas(t2)
     if not p1 or not p2: return 0
-    return len(p1 & p2) / len(p1 | p2)
+    raiz = lambda palabras: set(p[:6] for p in palabras)
+    r1, r2 = raiz(p1), raiz(p2)
+    return len(r1 & r2) / len(r1 | r2)
 
 VERBOS_PRESION = ['presiona', 'presiono', 'presionó', 'exige', 'exigio', 'exigió', 'advierte',
                   'advirtio', 'advirtió', 'amenaza', 'amenazo', 'amenazó', 'insta ', 'insto ',
