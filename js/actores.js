@@ -511,12 +511,15 @@ function renderGrafo(svgId='graph-svg'){
     .append('title').text(d=> (d.esCentro && svgId==='notas-svg') ? d.nombre : null); // nombre completo real en hover si se recortó
 
   const nodesById = {}; nodes.forEach(n=>nodesById[n.id]=n);
+  // con más núcleos activos, cada uno usa un radio de órbita más chico -- compartida entre
+  // la física de órbita y la separación entre núcleos, para que ambas usen la misma escala
+  const escalaGlobalOrbita = coresElegidos.length>=3 ? 0.6 : coresElegidos.length===2 ? 0.75 : 1;
   function forceOrbita(strength){
     let ref;
     // con 2-3 núcleos activos a la vez, cada uno reclamaba el mismo radio de órbita que si
     // estuviera solo -- eso causaba amontonamiento y que el último se recorriera fuera del
     // área visible. Con más núcleos activos, cada uno usa un radio más chico.
-    const escalaPorNucleos = coresElegidos.length>=3 ? 0.6 : coresElegidos.length===2 ? 0.75 : 1;
+    const escalaPorNucleos = escalaGlobalOrbita;
     const f=(alpha)=>{ ref.forEach(n=>{
       if(n.esCentro) return;
       const core=nodesById[n.coreId]; if(!core) return;
@@ -542,10 +545,10 @@ function renderGrafo(svgId='graph-svg'){
     .alpha(0.6).velocityDecay(0.55) // arranque más calmado (menos "salto") -- ahora los nodos ya empiezan centrados, no hace falta tanta energía inicial
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d=>radioNodo(d)+22).strength(0.95))
+    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+220*escalaGlobalOrbita : radioNodo(d)+22).strength(0.95))
     .force('link', d3.forceLink(links).id(d=>d.id).distance(220).strength(0.05))
-    .force('x', d3.forceX(width/2).strength(0.15))
-    .force('y', d3.forceY(height/2).strength(0.15))
+    .force('x', d3.forceX(width/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
+    .force('y', d3.forceY(height/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
     .on('tick', ()=>{
       const margen=30;
       nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
@@ -821,7 +824,7 @@ function mostrarTemasPorRolDeActor(actorId){
           <span style="font-weight:700;font-size:13px;">${ctx.rol}</span>
           <span style="background:${colorImp};color:#0E1116;font-family:var(--f-mono);font-weight:700;font-size:9px;padding:1px 7px;border-radius:99px;">Impacto ${nivelImp}</span>
         </div>
-        ${ctx.detalle ? `<p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${ctx.detalle}</p>` : ''}
+        ${ctx.detalle ? `<p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${convertirNegritasMarkdown(ctx.detalle)}</p>` : ''}
       </div>`;
     }).join('');
   }
@@ -873,15 +876,20 @@ function mostrarVinculosEntreActores(coresElegidos){
 
   let html = `<div class="eyebrow">Vínculos entre ${nombresCortos.join(' y ')}</div>`;
   if(directas.length){
-    html += directas.map(c=> `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--familia-nucleo)">Vínculo directo · ${c.tipo_vinculo} (${c.fuerza})</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${c.descripcion}</p></div>`).join('');
+    html += directas.map(c=> `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--familia-nucleo)">Vínculo directo · ${c.tipo_vinculo} (${c.fuerza})</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${convertirNegritasMarkdown(c.descripcion)}</p></div>`).join('');
   }
   if(vinculosCruzadosUnicos.length){
     if(vinculosCruzadosUnicos.length>3){
-      // con muchos vínculos, no se listan todos -- se resume el número y se destacan solo
-      // los más fuertes (nivel 1), que es lo que de verdad importa para leer la red rápido
-      const masFuertes = [...vinculosCruzadosUnicos].sort((a,b)=>Number(a.nivel||3)-Number(b.nivel||3)).slice(0,2);
+      // con muchos vínculos, no se listan todos -- se resume el número y se destacan los más
+      // fuertes, pero DIVERSIFICADOS por quién es el puente (antes tomaba los 2 más fuertes
+      // en general, y si coincidía que ambos partían del mismo actor -ej. Harfuch-, los demás
+      // núcleos con vínculos igual de reales -ej. Ebrard- quedaban invisibles)
+      const vistos = new Set();
+      const diversos = [...vinculosCruzadosUnicos].sort((a,b)=>Number(a.nivel||3)-Number(b.nivel||3))
+        .filter(v=>{ if(vistos.has(v.desde)) return false; vistos.add(v.desde); return true; })
+        .slice(0,3);
       html += `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--teal)">${vinculosCruzadosUnicos.length} vínculos cruzados detectados entre sus redes</div>`;
-      html += masFuertes.map(v=>{
+      html += diversos.map(v=>{
         const desde = getActor(v.desde), hacia = getActor(v.hacia);
         return `<p style="font-size:12px;color:var(--ink-2);margin-top:3px;">Destaca: <strong>${desde?desde.nombre:v.desde}</strong> ↔ <strong>${hacia?hacia.nombre:v.hacia}</strong> — ${v.etiqueta}</p>`;
       }).join('');

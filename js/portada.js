@@ -235,7 +235,7 @@ function dibujarDispersionHoraria(eventos){
     const h = Math.floor(i/2), m = (i%2)*30;
     const horaTxt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
     const titulares = p.lista.slice(0,4).map(e=>e.descripcion.slice(0,70)).join(' | ');
-    const r = 2.5 + Math.min(3, p.lista.length/3);
+    const r = 2; // punto sutil y del mismo tamaño siempre -- antes crecía con el conteo y se veía como una "bola" cuando muchas notas caían en el mismo bloque de 30 min
     return `<circle class="punto-densidad" data-hora="${horaTxt}" data-conteo="${p.lista.length}" data-desc="${titulares.replace(/"/g,'&quot;')}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="${color}" stroke="var(--bg-1)" stroke-width="1" style="cursor:pointer;"/>`;
   }).join('');
 
@@ -253,6 +253,7 @@ function dibujarDispersionHoraria(eventos){
         ${grilla}
         <path d="${areaD}" fill="url(#grad-densidad)"/>
         <path d="${lineaD}" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-opacity="0.8"/>
+        <circle r="3" fill="var(--teal)"><animateMotion dur="9s" repeatCount="indefinite" path="${lineaD}"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" dur="9s" repeatCount="indefinite"/></circle>
         ${puntosVisibles}
         <line id="portada-linea-guia" x1="0" y1="${margenArriba}" x2="0" y2="${alto-margenAbajo}" stroke="var(--ink-1)" stroke-width="1" stroke-opacity="0" stroke-dasharray="2 2"/>
       </svg>
