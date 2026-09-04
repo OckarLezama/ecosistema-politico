@@ -14,17 +14,15 @@ let ultimosNodosRenderizados = []; // referencia a los nodos del grafo actual, p
 // al seleccionar un núcleo (sin dar clic todavía), solo se muestra el análisis de su red --
 // la ficha completa (cargo, riesgo, fortaleza, etc.) se queda para cuando sí den clic en el nodo
 function mostrarSoloAnalisisRed(id){
-  // se restaura la ficha COMPLETA al seleccionar (como funcionaba antes) -- el análisis de
-  // IA se agrega ENCIMA cuando existe, nunca reemplaza el resto de la información. Antes
-  // esta función solo mostraba el análisis (o casi nada si el núcleo no tenía uno), dejando
-  // vacíos a todos los núcleos que no fueran Sheinbaum/Andy -- ese fue el bug real.
+  // al SELECCIONAR (sin dar clic todavía) se muestra SOLO el análisis -- la ficha completa
+  // del actor (avatar, cargo, riesgo, fortaleza) es exclusiva del clic, nunca se mezclan
+  const panel = document.getElementById('detail-panel');
   const actor = getActor(id);
-  if(!actor){ document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; return; }
-  mostrarFicha(id, {esCentro:true, coreId:id}, ultimosNodosRenderizados);
+  if(!actor){ panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; return; }
   if(analisisRedesIA[id]){
-    const panel = document.getElementById('detail-panel');
-    const cajaAnalisis = `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin-bottom:8px;"><div class="eyebrow" style="color:var(--teal);">Análisis de su red (IA)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${analisisRedesIA[id]}</p></div>`;
-    panel.innerHTML = cajaAnalisis + panel.innerHTML;
+    panel.innerHTML = `<div class="contexto-tema-box" style="border-left-color:var(--teal);"><div class="eyebrow" style="color:var(--teal);">Análisis de su red (IA)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${analisisRedesIA[id]}</p></div><p style="font-size:10.5px;color:var(--ink-3);margin-top:10px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>`;
+  } else {
+    panel.innerHTML = `<div class="detail-empty"><p style="font-size:11.5px;">Esta red aún no tiene análisis de IA (solo disponible para núcleos ya clasificados por categoría).</p></div><p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>`;
   }
 }
 fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{ if(d && d.lectura && d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes; }).catch(()=>{});
