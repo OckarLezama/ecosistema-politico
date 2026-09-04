@@ -1,5 +1,5 @@
 /* ============================================================
-   V2 — RED DE ACTORES (diseño nuevo, física de constelación heredada 
+   V2 — RED DE ACTORES (diseño nuevo, física de constelación heredada
    y ya validada de V1: cada satélite orbita su propio núcleo, radios
    de anillo probados sin solapes en Node)
    ============================================================ */
