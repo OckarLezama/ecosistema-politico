@@ -534,16 +534,20 @@ function renderGrafo(svgId='graph-svg'){
       if(n.esCentro) return;
       const core=nodesById[n.coreId]; if(!core) return;
       const t=(RADIOS_ANILLO[n.nivelAnillo]||130)*escalaPorNucleos;
+      // el nodo de categoría (hub) tiene sus propios satélites empujándolo por colisión --
+      // sin una fuerza mucho más fuerte, esos empujones lo alejaban de su órbita real
+      // (se veía a 250-700px del núcleo en vez de a los 85px que le tocan)
+      const fuerzaReal = n.esCategoria ? strength*6 : strength;
       if(n.anguloAsignado!==undefined){
         // con ángulo fijo asignado (por categoría): se jala directo al punto exacto del
         // sector que le toca, no solo a la distancia -- así no puede girar y cruzarse
         // con el sector de otra categoría
         const tx = core.x + Math.cos(n.anguloAsignado)*t, ty = core.y + Math.sin(n.anguloAsignado)*t;
-        n.vx += (tx-n.x)*alpha*strength; n.vy += (ty-n.y)*alpha*strength;
+        n.vx += (tx-n.x)*alpha*fuerzaReal; n.vy += (ty-n.y)*alpha*fuerzaReal;
         return;
       }
       const dx=n.x-core.x, dy=n.y-core.y, dist=Math.sqrt(dx*dx+dy*dy)||0.001;
-      const k=(t-dist)/dist*alpha*strength;
+      const k=(t-dist)/dist*alpha*fuerzaReal;
       n.vx+=dx*k; n.vy+=dy*k;
     }); };
     f.initialize = ns=>{ ref=ns; };
@@ -556,11 +560,21 @@ function renderGrafo(svgId='graph-svg'){
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
     .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+205 : radioNodo(d)+22).strength(0.95))
-    .force('link', d3.forceLink(links).id(d=>d.id).distance(220).strength(0.05))
+    .force('link', d3.forceLink(links).id(d=>d.id).distance(90).strength(0.05))
     .force('x', d3.forceX(width/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
     .force('y', d3.forceY(height/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
     .on('tick', ()=>{
       const margen=30;
+      // el nodo de categoría se fija a su distancia real cada tick (conserva el ángulo que
+      // ya traía, para no chocar con otras categorías, pero la distancia exacta ya no depende
+      // de ganarle la competencia de fuerzas a sus propios satélites empujando por colisión)
+      nodes.forEach(n=>{
+        if(!n.esCategoria) return;
+        const core = nodesById[n.coreId]; if(!core) return;
+        const t = (RADIOS_ANILLO[1]||85);
+        const dx=n.x-core.x, dy=n.y-core.y, dist=Math.sqrt(dx*dx+dy*dy)||0.001;
+        n.x = core.x + (dx/dist)*t; n.y = core.y + (dy/dist)*t;
+      });
       nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
       link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
       guias.attr('cx',d=>d.core.x).attr('cy',d=>d.core.y);
