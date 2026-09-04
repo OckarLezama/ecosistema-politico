@@ -92,10 +92,9 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 /* ============================================================
    RED DE ACTORES
    ============================================================ */
-.actores-layout{display:block;margin-right:320px;}
+.actores-layout{display:block;}
 @media (max-width:880px){
-  .actores-layout{margin-right:0;}
-  .detail-card{position:static !important;width:100%;height:auto;max-height:400px;margin-top:16px;top:auto;right:auto;}
+  .detail-card{position:static !important;width:100%;height:auto;max-height:400px;margin-top:16px;top:auto;right:auto;left:auto;}
 }
 
 .graph-card{
