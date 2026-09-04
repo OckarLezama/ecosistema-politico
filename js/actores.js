@@ -254,16 +254,6 @@ function renderGrafo(svgId='graph-svg'){
   const anchoReal = svgEl.parentElement.getBoundingClientRect().width;
   const width = (anchoReal>100 ? anchoReal : svgEl.clientWidth) || 900, height = 560;
 
-  // AUTO-CORRECCIÓN: si el ancho recién capturado no coincide con el que el navegador
-  // termina asentando un instante después (layout que aún no se resolvía del todo en este
-  // momento exacto), se vuelve a dibujar una sola vez con el ancho ya correcto -- sin esto,
-  // el contenido interno del SVG podía quedar calculado para un ancho viejo y más angosto
-  // aunque la caja del SVG en pantalla ya fuera más ancha.
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    const anchoFinal = svgEl.parentElement.getBoundingClientRect().width;
-    if(Math.abs(anchoFinal-width) > 15 && document.getElementById('panel-actores')?.classList.contains('active')) renderGrafo(svgId);
-  }));
-
   // ---- construcción de nodos: distinta según el modo, pero misma forma de datos para reusar
   // toda la física y el dibujo que sigue abajo sin duplicar código ----
   const nodesMap = new Map();
@@ -476,7 +466,15 @@ function renderGrafo(svgId='graph-svg'){
     .call(d3.drag()
       .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
       .on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
-      .on('end',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0); d.fx=null; d.fy=null; }));
+      .on('end',(ev,d)=>{
+        if(!ev.active) simulacion.alphaTarget(0);
+        // los núcleos se QUEDAN donde el usuario los suelta -- antes fx/fy se ponían en
+        // null al soltar, liberando el nodo de vuelta a la física, que lo regresaba a su
+        // posición automática. Eso hacía que el arrastre "no sirviera" en la práctica,
+        // aunque técnicamente sí se ejecutaba. Los satélites sí se sueltan (su posición
+        // depende de su propio núcleo, no tiene sentido fijarlos aparte).
+        if(!d.esCentro){ d.fx=null; d.fy=null; }
+      }));
 
   node.filter(d=>d.esCentro).append('circle')
     .attr('r', d=>radioNodo(d)+16).attr('fill', d=>colorDeCore(d.coreId, slotDeCore))
