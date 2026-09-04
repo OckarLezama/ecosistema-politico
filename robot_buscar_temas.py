@@ -240,6 +240,20 @@ CARGOS_FUNCIONARIO_PUBLICO = ['diputado', 'diputada', 'senador', 'senadora', 'al
 PALABRAS_MUERTE_VIOLENTA = ['muerto', 'muerta', 'asesinado', 'asesinada', 'asesinato', 'ejecutado',
     'ejecutada', 'privado de la vida', 'privada de la vida', 'atentado', 'balacera', 'baleado', 'baleada']
 
+PALABRAS_ESCANDALO_PERSONAL = ['señalado', 'señalada', 'acusado', 'acusada', 'denuncia', 'denunciado',
+    'denunciada', 'corrupción', 'corrupcion', 'usar influencias', 'tráfico de influencias',
+    'trafico de influencias', 'despojar', 'despojo', 'nepotismo', 'conflicto de interés',
+    'conflicto de interes', 'enriquecimiento', 'investigado', 'investigada']
+
+def esEscandaloPersonalDeActor(texto_completo, actores_altos):
+    """Un señalamiento de corrupción/escándalo contra CUALQUIER actor trackeado (sin importar
+    su nivel de influencia) es relevante real -- antes se perdían casos como el de un
+    exfuncionario acusado por su propia hermana de usar influencias, solo porque su nivel de
+    influencia (3) no alcanzaba el umbral normal y la nota solo lo mencionaba a él."""
+    tiene_escandalo = any(p in texto_completo for p in PALABRAS_ESCANDALO_PERSONAL)
+    if not tiene_escandalo: return False
+    return any(actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
+
 def esMuerteDeFuncionario(texto_completo):
     """La muerte o asesinato de CUALQUIER funcionario público electo es noticia política real,
     sin importar si esa persona está en la lista de actores de alto perfil trackeados -- es un
@@ -552,6 +566,10 @@ def buscar_candidatos():
                 # O cualquier mención de migración (tema prioritario), O alerta especial de nombre
                 menciones = sum(1 for a in actores_altos if actorMencionadoEn(a['nombre'], texto_completo))
                 mencion_top = any(int(a['nivel_influencia'])>=9 and actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
+                # actores de nivel medio-alto (5+) también cuentan con 1 sola mención -- antes
+                # solo contaban si eran nivel 9+ o si aparecían 2+, lo que dejaba fuera notas
+                # reales como "Alito Moreno presume al PRI" (nivel 5, mención única)
+                mencion_relevante = any(int(a['nivel_influencia'])>=5 and actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
                 es_migracion = esTemaMigracion(texto_completo)
                 alerta_actor = tieneAlertaEspecial(texto_completo)
                 actor_presion = detectarPresion(texto_completo, actores_altos)
@@ -565,7 +583,7 @@ def buscar_candidatos():
                     # tema local sí es política real, aunque no diga "gobernador" ni similar)
                     disparador = (esContenidoPoliticoLocal(texto_completo) or menciones>=1 or mencion_top) and hash_enlace not in ya_vistos
                 else:
-                    disparador = (menciones >= 2 or mencion_top or es_migracion or alerta_actor or esMuerteDeFuncionario(texto_completo)) and hash_enlace not in ya_vistos
+                    disparador = (menciones >= 2 or mencion_top or mencion_relevante or es_migracion or alerta_actor or esMuerteDeFuncionario(texto_completo) or esEscandaloPersonalDeActor(texto_completo, actores_altos)) and hash_enlace not in ya_vistos
                 if disparador:
                     categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
                     prefijo = '🔔 ALERTA — ' if (alerta_actor or es_migracion) else ''
