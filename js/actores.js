@@ -161,16 +161,31 @@ function asegurarPanelDetalle(){
   // visto que aparece un instante y luego se pierde, sin error en consola -- causa no
   // identificada con certeza), esto lo vuelve a crear en el lugar correcto, siempre
   let panel = document.getElementById('detail-panel');
-  if(panel) return panel;
-  const layout = document.querySelector('.actores-layout');
-  if(!layout) return null;
-  panel = document.createElement('aside');
-  panel.className = 'detail-card';
-  panel.id = 'detail-panel';
-  panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
-  layout.appendChild(panel);
+  if(!panel){
+    const layout = document.querySelector('.actores-layout');
+    if(!layout) return null;
+    panel = document.createElement('aside');
+    panel.className = 'detail-card';
+    panel.id = 'detail-panel';
+    panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
+    layout.appendChild(panel);
+  }
+  posicionarPanelDetalle();
   return panel;
 }
+
+function posicionarPanelDetalle(){
+  // el panel es position:fixed (así se garantiza que siempre se vea, sin depender del
+  // grid que fallaba) -- esto lo coloca exactamente junto al grafo, como el Feed
+  const panel = document.getElementById('detail-panel');
+  const graphCard = document.querySelector('#panel-actores .graph-card');
+  if(!panel || !graphCard || window.innerWidth<=880) return; // en pantallas angostas se queda estático, definido en el CSS
+  const rect = graphCard.getBoundingClientRect();
+  panel.style.top = rect.top+'px';
+  panel.style.left = (rect.right+16)+'px';
+}
+window.addEventListener('scroll', posicionarPanelDetalle);
+window.addEventListener('resize', posicionarPanelDetalle);
 
 function renderGrafo(svgId='graph-svg'){
   if(svgId==='graph-svg') asegurarPanelDetalle();
