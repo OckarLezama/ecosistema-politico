@@ -35,6 +35,10 @@ const COLOR_POR_SLOT = { nucleo:'var(--familia-nucleo)', cruce1:'var(--familia-c
 function initRedActores(){
   poblarSelectores();
   renderGrafo();
+  // por si algo posterior (otro módulo que también escucha "datos-listos") lo quita después
+  // de este punto, se vuelve a asegurar con un pequeño margen
+  setTimeout(asegurarPanelDetalle, 50);
+  setTimeout(asegurarPanelDetalle, 500);
 
   // (ya no hay checks de Confianza/Política -- ambas redes siempre se muestran juntas,
   // la distinción de tipo se ve al hacer clic en cada quién, en el panel derecho)
