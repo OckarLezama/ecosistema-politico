@@ -354,7 +354,7 @@ def encontrar_problemas(lectura):
     return encontrados
 
 
-def llamar_claude(cliente, prompt, max_tokens=8000):
+def llamar_claude(cliente, prompt, max_tokens=16000):
     respuesta = cliente.messages.create(
         model='claude-sonnet-5',
         max_tokens=max_tokens,
@@ -362,7 +362,13 @@ def llamar_claude(cliente, prompt, max_tokens=8000):
     )
     bloque_texto = next((b for b in respuesta.content if b.type == 'text'), None)
     if bloque_texto is None:
-        raise ValueError(f'La respuesta no trajo bloque de texto: {respuesta.content}')
+        # con 16 núcleos y análisis más profundo, el modelo puede gastar todo el espacio
+        # "pensando" y nunca llegar a escribir el texto final -- antes esto tronaba;
+        # ahora reintenta con más espacio, igual que cuando el JSON viene incompleto
+        if max_tokens < 32000:
+            print(f'Sin bloque de texto (se quedó sin espacio pensando) con max_tokens={max_tokens}, reintentando con más espacio...')
+            return llamar_claude(cliente, prompt, max_tokens=max_tokens*2)
+        raise ValueError(f'La respuesta no trajo bloque de texto ni con max_tokens={max_tokens}: {respuesta.content}')
     texto = bloque_texto.text.strip()
     if texto.startswith('```'):
         texto = texto.split('```')[1]
@@ -371,7 +377,7 @@ def llamar_claude(cliente, prompt, max_tokens=8000):
     try:
         return json.loads(texto)
     except json.JSONDecodeError:
-        if max_tokens < 16000:
+        if max_tokens < 32000:
             # la respuesta se cortó a la mitad -- reintenta una vez con más espacio,
             # en vez de solo tronar
             print(f'JSON incompleto con max_tokens={max_tokens}, reintentando con más espacio...')
