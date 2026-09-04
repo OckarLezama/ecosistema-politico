@@ -14,34 +14,26 @@ let ultimosNodosRenderizados = []; // referencia a los nodos del grafo actual, p
 // al seleccionar un núcleo (sin dar clic todavía), solo se muestra el análisis de su red --
 // la ficha completa (cargo, riesgo, fortaleza, etc.) se queda para cuando sí den clic en el nodo
 function mostrarSoloAnalisisRed(id){
-  // al SELECCIONAR (sin dar clic todavía) se muestra el análisis -- con el mismo formato de
-  // encabezado que la ficha completa (nombre/cargo/descripción), más fortaleza y debilidad
-  // reales de la red, generadas por la misma IA -- no un texto genérico repetido
+  // al SELECCIONAR se muestra SOLO el análisis -- con el mismo peso visual que el nombre/cargo
+  // de la ficha (título grande, texto de descripción), pero sin repetir nombre/cargo/bio, que
+  // ya se sabe por haberlo seleccionado. La ficha completa es exclusiva del clic.
   const panel = document.getElementById('detail-panel');
   const actor = getActor(id);
   if(!actor){ panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; return; }
-  const color = colorRiesgo(actor.nivel_riesgo);
-  const encabezado = `
-    <div class="detail-avatar" style="background:${color}">${actor.iniciales||'?'}</div>
-    <div class="detail-name">${actor.nombre}</div>
-    <div class="detail-cargo">${actor.cargo}</div>
-    ${actor.descripcion ? `<p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 8px;">${actor.descripcion}</p>` : ''}
-  `;
   const analisis = analisisRedesIA[id];
   if(analisis){
-    // compatibilidad: si algún día llega como texto plano (formato viejo), no se rompe
     const resumen = typeof analisis==='string' ? analisis : analisis.resumen;
     const fortaleza = typeof analisis==='object' ? analisis.fortaleza : null;
     const debilidad = typeof analisis==='object' ? analisis.debilidad : null;
-    panel.innerHTML = encabezado + `
-      <div class="eyebrow" style="margin-top:10px;color:var(--teal);">Análisis de su red (IA)</div>
-      <p style="font-size:12px;color:var(--ink-2);line-height:1.5;margin-top:3px;">${resumen}</p>
+    panel.innerHTML = `
+      <div class="detail-name">Análisis de su red (IA)</div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 8px;">${resumen}</p>
       ${fortaleza ? `<div class="detail-row" style="align-items:flex-start;margin-top:8px;"><span class="k" style="color:var(--riesgo-bajo);flex-shrink:0;">Fortaleza</span></div><p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;">${fortaleza}</p>` : ''}
       ${debilidad ? `<div class="detail-row" style="align-items:flex-start;margin-top:6px;"><span class="k" style="color:var(--riesgo-alto);flex-shrink:0;">Debilidad</span></div><p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;">${debilidad}</p>` : ''}
       <p style="font-size:10.5px;color:var(--ink-3);margin-top:10px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>
     `;
   } else {
-    panel.innerHTML = encabezado + `<p style="font-size:11.5px;color:var(--ink-3);margin-top:8px;">Esta red aún no tiene análisis de IA (solo disponible para núcleos ya clasificados por categoría).</p><p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>`;
+    panel.innerHTML = `<div class="detail-empty"><p style="font-size:11.5px;">Esta red aún no tiene análisis de IA (solo disponible para núcleos ya clasificados por categoría).</p></div><p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>`;
   }
 }
 fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{ if(d && d.lectura && d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes; }).catch(()=>{});
