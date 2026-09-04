@@ -1,6 +1,6 @@
 /* ============================================================
    V2 — FEED CRONOLÓGICO
-   Todos los eventos de todos los temas, ordenados por fecha real — 
+   Todos los eventos de todos los temas, ordenados por fecha real —
    sin filtrar por tema. Responde "qué salió, en qué orden real"
    (Andy → Rocha Moya → lo que sea que venga después), algo que
    ningún otro módulo (organizado por tema) responde hoy.
@@ -16,16 +16,21 @@ function renderFeed(){
   const eventos = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).slice().sort((a,b)=> b.fecha.localeCompare(a.fecha));
 
   const html = eventos.length ? eventos.map(e=>{
-    const tema = getTema(e.tema_id);
-    const color = tema ? colorCategoria(tema.categoria) : 'var(--gris-2)';
-    const descRecortada = e.descripcion.length>140 ? e.descripcion.slice(0,137)+'...' : e.descripcion;
-    return `
-      <div class="feed-item" data-tema="${e.tema_id}" style="border-left-color:${color};">
-        <div class="feed-fecha">${e.fecha}</div>
-        <p class="feed-desc">${descRecortada}</p>
-        <a href="${e.fuente_url}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
-        ${Number(e.cobertura)>1 ? `<span style="font-size:10px;color:var(--ink-3);margin-left:8px;">· cubierto por ${e.cobertura} medios</span>` : ''}
-      </div>`;
+    // protección: si UNA sola nota llega con la descripción vacía o mal formada, antes
+    // esto tronaba el .map() completo y dejaba el Feed entero en blanco, sin aviso
+    try{
+      const tema = getTema(e.tema_id);
+      const color = tema ? colorCategoria(tema.categoria) : 'var(--gris-2)';
+      const desc = e.descripcion || '(sin descripción)';
+      const descRecortada = desc.length>140 ? desc.slice(0,137)+'...' : desc;
+      return `
+        <div class="feed-item" data-tema="${e.tema_id}" style="border-left-color:${color};">
+          <div class="feed-fecha">${e.fecha}</div>
+          <p class="feed-desc">${descRecortada}</p>
+          <a href="${e.fuente_url||'#'}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
+          ${Number(e.cobertura)>1 ? `<span style="font-size:10px;color:var(--ink-3);margin-left:8px;">· cubierto por ${e.cobertura} medios</span>` : ''}
+        </div>`;
+    }catch(err){ return ''; } // se omite esa nota puntual, el resto del Feed sigue mostrándose
   }).join('') : `<div style="padding:20px;text-align:center;color:var(--ink-3);font-family:var(--f-display);font-size:13px;">Sin novedades registradas hoy</div>`;
   // alimenta CUALQUIER contenedor de feed presente en la página (Agenda y Timeline comparten el mismo dato)
   ['feed-lista','feed-lista-tl'].forEach(id=>{
