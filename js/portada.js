@@ -191,15 +191,17 @@ function dibujarDispersionHoraria(eventos){
   });
   const maxConteo = Math.max(...porBloque.map(l=>l.length), 1);
 
+  // cuadrícula real tipo papel cuadriculado -- cuadros finos parejos, no solo líneas sueltas
+  const PASO_H = 1; // una línea vertical cada 1h -- cuadros chicos de verdad
   let grilla = '';
-  for(let h=0; h<=24; h+=2){
+  for(let h=0; h<=24; h+=PASO_H){
     const x = xDeHora(h);
-    grilla += `<line x1="${x}" y1="${margenArriba}" x2="${x}" y2="${alto-margenAbajo}" stroke="var(--line)" stroke-width="1" stroke-opacity="${h%4===0?0.4:0.18}"/>`;
+    grilla += `<line x1="${x}" y1="${margenArriba}" x2="${x}" y2="${alto-margenAbajo}" stroke="var(--line)" stroke-width="1" stroke-opacity="${h%4===0?0.4:0.14}"/>`;
     if(h%4===0) grilla += `<text x="${x}" y="${alto-4}" font-size="9" fill="var(--ink-3)" text-anchor="middle">${String(h).padStart(2,'0')}:00</text>`;
   }
-  for(let i=0; i<=4; i++){
-    const y = margenArriba + (i/4)*altoUtil;
-    grilla += `<line x1="${margenIzq}" y1="${y}" x2="${ancho-margenDer}" y2="${y}" stroke="var(--line)" stroke-width="1" stroke-opacity="0.18"/>`;
+  for(let i=0; i<=8; i++){
+    const y = margenArriba + (i/8)*altoUtil;
+    grilla += `<line x1="${margenIzq}" y1="${y}" x2="${ancho-margenDer}" y2="${y}" stroke="var(--line)" stroke-width="1" stroke-opacity="${i%2===0?0.22:0.12}"/>`;
   }
 
   // puntos de la curva: 1 por bloque, x = centro del bloque, y = altura según conteo
@@ -240,7 +242,7 @@ function dibujarDispersionHoraria(eventos){
   cont.innerHTML = `
     <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div>
     <div style="position:relative;width:100%;">
-      <svg width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" preserveAspectRatio="none" style="display:block;">
+      <svg id="portada-svg-dispersion" width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" preserveAspectRatio="none" style="display:block;cursor:crosshair;">
         <defs>
           <linearGradient id="grad-densidad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="var(--teal)" stop-opacity="0.35"/>
@@ -252,24 +254,37 @@ function dibujarDispersionHoraria(eventos){
         <path d="${areaD}" fill="url(#grad-densidad)"/>
         <path d="${lineaD}" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-opacity="0.8"/>
         ${puntosVisibles}
+        <line id="portada-linea-guia" x1="0" y1="${margenArriba}" x2="0" y2="${alto-margenAbajo}" stroke="var(--ink-1)" stroke-width="1" stroke-opacity="0" stroke-dasharray="2 2"/>
       </svg>
       <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:5px 9px;font-size:10.5px;color:var(--ink-1);pointer-events:none;max-width:260px;z-index:20;box-shadow:var(--shadow-card);"></div>
     </div>`;
 
+  // línea guía tipo monitor de hospital -- sigue al mouse en vez de agrandar el punto
+  // (antes el punto crecía en cada hover, dando la sensación de una "bola" acumulándose)
+  const svgEl = document.getElementById('portada-svg-dispersion');
+  const lineaGuia = document.getElementById('portada-linea-guia');
   const tooltip = document.getElementById('portada-dispersion-tooltip');
-  cont.querySelectorAll('.punto-densidad').forEach(p=>{
-    p.addEventListener('mouseenter', ()=>{
-      tooltip.innerHTML = `<strong>${p.dataset.hora}</strong> — ${p.dataset.conteo} nota${p.dataset.conteo!=='1'?'s':''}<br><span style="color:var(--ink-3);">${p.dataset.desc}</span>`;
+  svgEl.addEventListener('mousemove', (ev)=>{
+    const rect = svgEl.getBoundingClientRect();
+    const xRel = ((ev.clientX-rect.left)/rect.width)*ancho;
+    // busca el punto de dato más cercano en X
+    let cercano = puntos[0], distMin = Infinity;
+    puntos.forEach(p=>{ const d = Math.abs(p.x-xRel); if(d<distMin){ distMin=d; cercano=p; } });
+    lineaGuia.setAttribute('x1', cercano.x); lineaGuia.setAttribute('x2', cercano.x);
+    lineaGuia.setAttribute('stroke-opacity', '0.5');
+    if(cercano.lista.length){
+      const idx = puntos.indexOf(cercano);
+      const h = Math.floor(idx/2), m = (idx%2)*30;
+      const titulares = cercano.lista.slice(0,4).map(e=>e.descripcion.slice(0,70)).join(' | ');
+      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}<br><span style="color:var(--ink-3);">${titulares}</span>`;
       tooltip.style.display = 'block';
-      p.setAttribute('r', (parseFloat(p.getAttribute('r'))+1.5).toString());
-    });
-    p.addEventListener('mousemove', (ev)=>{
-      const rect = cont.querySelector('svg').getBoundingClientRect();
       tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-270)+'px';
       tooltip.style.top = Math.max(0, ev.clientY-rect.top-50)+'px';
-    });
-    p.addEventListener('mouseleave', function(){ tooltip.style.display='none'; });
+    } else {
+      tooltip.style.display = 'none';
+    }
   });
+  svgEl.addEventListener('mouseleave', ()=>{ lineaGuia.setAttribute('stroke-opacity','0'); tooltip.style.display='none'; });
 }
 
 function pintarTarjetasPortada(eventos){

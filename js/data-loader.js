@@ -60,6 +60,8 @@ function iniciarActualizacionAutomatica(){
     if(panelActivo){
       if(panelActivo.id==='panel-agenda' && typeof renderAgendaGrid==='function') renderAgendaGrid();
       if(panelActivo.id==='panel-timeline' && typeof renderTimeline==='function') renderTimeline();
+      if(panelActivo.id==='panel-analisis' && typeof renderAnalisis==='function') renderAnalisis();
+      if(panelActivo.id==='panel-portada' && typeof renderPortada==='function') renderPortada();
     }
   }, 3*60*1000);
 }

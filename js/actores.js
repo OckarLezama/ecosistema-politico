@@ -13,6 +13,13 @@ let ultimosNodosRenderizados = []; // referencia a los nodos del grafo actual, p
 
 // al seleccionar un núcleo (sin dar clic todavía), solo se muestra el análisis de su red --
 // la ficha completa (cargo, riesgo, fortaleza, etc.) se queda para cuando sí den clic en el nodo
+function convertirNegritasMarkdown(texto){
+  // la IA a veces sigue usando **negritas** estilo markdown -- esto las pasa a <strong> real,
+  // que sí se ve en negrita en el HTML (los ** sueltos no se renderizan como nada)
+  if(!texto) return texto;
+  return texto.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+}
+
 function mostrarSoloAnalisisRed(id){
   // al SELECCIONAR se muestra SOLO el análisis -- con el mismo peso visual que el nombre/cargo
   // de la ficha (título grande, texto de descripción), pero sin repetir nombre/cargo/bio, que
@@ -22,14 +29,27 @@ function mostrarSoloAnalisisRed(id){
   if(!actor){ panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; return; }
   const analisis = analisisRedesIA[id];
   if(analisis){
-    const resumen = typeof analisis==='string' ? analisis : analisis.resumen;
-    const fortaleza = typeof analisis==='object' ? analisis.fortaleza : null;
-    const debilidad = typeof analisis==='object' ? analisis.debilidad : null;
+    const resumen = convertirNegritasMarkdown(typeof analisis==='string' ? analisis : analisis.resumen);
+    const fortaleza = convertirNegritasMarkdown(typeof analisis==='object' ? analisis.fortaleza : null);
+    const debilidad = convertirNegritasMarkdown(typeof analisis==='object' ? analisis.debilidad : null);
+    // mismo formato de tarjeta que ya se usa en "Notas relacionadas" (eyebrow + badge + texto)
     panel.innerHTML = `
       <div class="detail-name">Análisis de su red (IA)</div>
-      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 8px;">${resumen}</p>
-      ${fortaleza ? `<div class="detail-row" style="align-items:flex-start;margin-top:8px;"><span class="k" style="color:var(--riesgo-bajo);flex-shrink:0;">Fortaleza</span></div><p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;">${fortaleza}</p>` : ''}
-      ${debilidad ? `<div class="detail-row" style="align-items:flex-start;margin-top:6px;"><span class="k" style="color:var(--riesgo-alto);flex-shrink:0;">Debilidad</span></div><p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;">${debilidad}</p>` : ''}
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 10px;">${resumen}</p>
+      ${fortaleza ? `<div class="contexto-tema-box" style="border-left-color:var(--riesgo-bajo);margin-bottom:6px;">
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-weight:700;font-size:13px;">Fortaleza</span>
+          <span style="background:var(--riesgo-bajo);color:#0E1116;font-family:var(--f-mono);font-weight:700;font-size:9px;padding:1px 7px;border-radius:99px;">Capacidad real</span>
+        </div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${fortaleza}</p>
+      </div>` : ''}
+      ${debilidad ? `<div class="contexto-tema-box" style="border-left-color:var(--riesgo-alto);">
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-weight:700;font-size:13px;">Debilidad</span>
+          <span style="background:var(--riesgo-alto);color:#0E1116;font-family:var(--f-mono);font-weight:700;font-size:9px;padding:1px 7px;border-radius:99px;">Punto expuesto</span>
+        </div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${debilidad}</p>
+      </div>` : ''}
       <p style="font-size:10.5px;color:var(--ink-3);margin-top:10px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>
     `;
   } else {
@@ -230,7 +250,10 @@ function renderGrafo(svgId='graph-svg'){
   if(empty) empty.style.display='none';
   svgEl.innerHTML='';
 
-  const width = (svgEl.clientWidth>100 ? svgEl.clientWidth : svgEl.parentElement.clientWidth) || 900, height = 560;
+  // getBoundingClientRect es más confiable que clientWidth (que a veces da un valor viejo
+  // si la pestaña no estaba visible en el instante exacto de esta llamada)
+  const anchoReal = svgEl.parentElement.getBoundingClientRect().width;
+  const width = (anchoReal>100 ? anchoReal : svgEl.clientWidth) || 900, height = 560;
 
   // ---- construcción de nodos: distinta según el modo, pero misma forma de datos para reusar
   // toda la física y el dibujo que sigue abajo sin duplicar código ----
@@ -490,10 +513,14 @@ function renderGrafo(svgId='graph-svg'){
   const nodesById = {}; nodes.forEach(n=>nodesById[n.id]=n);
   function forceOrbita(strength){
     let ref;
+    // con 2-3 núcleos activos a la vez, cada uno reclamaba el mismo radio de órbita que si
+    // estuviera solo -- eso causaba amontonamiento y que el último se recorriera fuera del
+    // área visible. Con más núcleos activos, cada uno usa un radio más chico.
+    const escalaPorNucleos = coresElegidos.length>=3 ? 0.6 : coresElegidos.length===2 ? 0.75 : 1;
     const f=(alpha)=>{ ref.forEach(n=>{
       if(n.esCentro) return;
       const core=nodesById[n.coreId]; if(!core) return;
-      const t=RADIOS_ANILLO[n.nivelAnillo]||130;
+      const t=(RADIOS_ANILLO[n.nivelAnillo]||130)*escalaPorNucleos;
       if(n.anguloAsignado!==undefined){
         // con ángulo fijo asignado (por categoría): se jala directo al punto exacto del
         // sector que le toca, no solo a la distancia -- así no puede girar y cruzarse
@@ -950,3 +977,8 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
 
 document.addEventListener('ecosistema:datos-listos', initRedActores);
 window.addEventListener('resize', ()=>{ if(ECOSISTEMA.ready && (seleccion.nucleo||seleccion.cruce1||seleccion.cruce2)) renderGrafo(); });
+window.addEventListener('load', ()=>{
+  // si el primer render capturó un ancho viejo/incorrecto (pestaña no visible aún, fuentes
+  // sin cargar), esto lo corrige una vez que la página termina de cargar del todo
+  if(ECOSISTEMA.ready && document.getElementById('panel-actores')?.classList.contains('active') && (seleccion.nucleo||seleccion.cruce1||seleccion.cruce2)) renderGrafo();
+});
