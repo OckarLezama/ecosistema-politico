@@ -173,32 +173,57 @@ function dibujarDispersionHoraria(eventos){
   if(!cont) return;
   const eventosFiltrados = categoriaFiltroDispersion ? eventos.filter(e=>e.categoria===categoriaFiltroDispersion) : eventos;
   if(!eventosFiltrados.length){ cont.innerHTML = `<div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div><p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
-  // coordenadas LÓGICAS fijas (1000x110) + width:100% con preserveAspectRatio="none" --
-  // así siempre ocupa el ancho real del contenedor, sin depender de medir clientWidth
-  // en el momento exacto (que a veces da 0 si el elemento aún no está visible)
-  const ancho = 1000, alto = 110, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 8;
+  const ancho = 1000, alto = 130, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 8;
   const altoUtil = alto - margenArriba - margenAbajo;
   const puntos = eventosFiltrados.map(e=>({ e, hora: horaDeteccionDe(e) }));
 
-  // SIEMPRE 24 horas completas del día -- no se va "encogiendo" al rango de datos que
-  // exista ahorita; conforme el día avanza, los puntos van llenando más del eje
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
 
-  // cuadrícula de fondo, 1 línea por cada 4 horas -- mismo espíritu visual que el timeline
+  // cuadrícula de fondo tipo papel cuadriculado -- líneas verticales cada 2h, horizontales
+  // cada 20% de intensidad, formando cuadros reales (no solo líneas verticales sueltas)
   let grilla = '';
-  for(let h=0; h<=24; h+=4){
+  for(let h=0; h<=24; h+=2){
     const x = xDeHora(h);
-    grilla += `<line x1="${x}" y1="${margenArriba}" x2="${x}" y2="${alto-margenAbajo}" stroke="var(--line)" stroke-width="1" stroke-opacity="0.4"/>`;
-    grilla += `<text x="${x}" y="${alto-4}" font-size="9" fill="var(--ink-3)" text-anchor="middle">${String(h).padStart(2,'0')}:00</text>`;
+    grilla += `<line x1="${x}" y1="${margenArriba}" x2="${x}" y2="${alto-margenAbajo}" stroke="var(--line)" stroke-width="1" stroke-opacity="${h%4===0?0.4:0.18}"/>`;
+    if(h%4===0) grilla += `<text x="${x}" y="${alto-4}" font-size="9" fill="var(--ink-3)" text-anchor="middle">${String(h).padStart(2,'0')}:00</text>`;
+  }
+  for(let i=0; i<=5; i++){
+    const y = margenArriba + (i/5)*altoUtil;
+    grilla += `<line x1="${margenIzq}" y1="${y}" x2="${ancho-margenDer}" y2="${y}" stroke="var(--line)" stroke-width="1" stroke-opacity="0.18"/>`;
   }
 
-  const svgPuntos = puntos.map((p,i)=>{
+  // posiciones base -- con un mínimo de variación aleatoria inicial cuando 2 notas caen
+  // EXACTO en el mismo punto (misma hora, misma intensidad): sin esto, no hay dirección
+  // en la que empujarlas para separarlas (0 dividido entre 0)
+  const datosPunto = puntos.map(p=>{
     const h = p.hora.getHours()+p.hora.getMinutes()/60;
-    const x = xDeHora(h);
-    const y = margenArriba + altoUtil - (Number(p.e.intensidad)/10)*altoUtil;
-    const color = colorPorImpactoDispersion(p.e.intensidad);
-    const horaTxt = `${p.hora.getHours().toString().padStart(2,'0')}:${p.hora.getMinutes().toString().padStart(2,'0')}`;
-    return `<circle class="punto-dispersion" data-hora="${horaTxt}" data-desc="${p.e.descripcion.replace(/"/g,'&quot;').slice(0,90)}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="${color}" fill-opacity="0.85" stroke="var(--bg-1)" stroke-width="1" style="cursor:pointer;"/>`;
+    return { p, x: xDeHora(h)+(Math.random()-0.5)*0.6, y: margenArriba + altoUtil - (Number(p.e.intensidad)/10)*altoUtil + (Math.random()-0.5)*0.6 };
+  });
+  // separación real: si 2 puntos quedan muy cerca (se encimarían), se empujan aparte poco
+  // a poco -- varias pasadas suaves, nunca un salto brusco
+  const RADIO_MIN = 9;
+  for(let iter=0; iter<25; iter++){
+    for(let i=0;i<datosPunto.length;i++){
+      for(let j=i+1;j<datosPunto.length;j++){
+        const a=datosPunto[i], b=datosPunto[j];
+        const dx=b.x-a.x, dy=b.y-a.y;
+        const dist = Math.sqrt(dx*dx+dy*dy) || 0.001;
+        if(dist < RADIO_MIN){
+          const empuje = (RADIO_MIN-dist)/2;
+          const ux=dx/dist, uy=dy/dist;
+          a.x -= ux*empuje; a.y -= uy*empuje*0.6; // se mueve más en x (hora) que en y (intensidad, que sí es un dato real)
+          b.x += ux*empuje; b.y += uy*empuje*0.6;
+          a.x = Math.max(margenIzq+2, Math.min(ancho-margenDer-2, a.x));
+          b.x = Math.max(margenIzq+2, Math.min(ancho-margenDer-2, b.x));
+        }
+      }
+    }
+  }
+
+  const svgPuntos = datosPunto.map(d=>{
+    const color = colorPorImpactoDispersion(d.p.e.intensidad);
+    const horaTxt = `${d.p.hora.getHours().toString().padStart(2,'0')}:${d.p.hora.getMinutes().toString().padStart(2,'0')}`;
+    return `<circle class="punto-dispersion" data-hora="${horaTxt}" data-desc="${d.p.e.descripcion.replace(/"/g,'&quot;').slice(0,90)}" cx="${d.x.toFixed(1)}" cy="${d.y.toFixed(1)}" r="4" fill="${color}" fill-opacity="0.85" stroke="var(--bg-1)" stroke-width="1" style="cursor:pointer;"/>`;
   }).join('');
 
   cont.innerHTML = `
