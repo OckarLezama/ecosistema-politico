@@ -1,7 +1,7 @@
 /* ============================================================
    V2 — RED DE ACTORES (diseño nuevo, física de constelación heredada
    y ya validada de V1: cada satélite orbita su propio núcleo, radios
-   de anillo probados sin solapes en Node)
+   de anillo probados sin solapes en Node) v2
    ============================================================ */
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
