@@ -297,14 +297,21 @@ function dibujarDispersionHoraria(eventos){
     if(cercano.lista.length){
       const idx = puntos.indexOf(cercano);
       const h = Math.floor(idx/2), m = (idx%2)*30;
-      // solo el total + las relevantes (impacto alto), no la lista completa
+      // rediseño: cada nota destacada en su propia línea, con su color de impacto -- antes
+      // se veían todas amontonadas separadas por "|", como una lista cruda, no un análisis
       const relevantes = notasRelevantesDe(cercano.lista);
-      const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
-      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` +
-        (titulares ? `<br><span style="color:var(--ink-3);">${titulares}</span>` : '');
+      const listaHTML = relevantes.map(e=>
+        `<div style="display:flex;gap:5px;align-items:flex-start;margin-top:4px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:${colorPorImpactoDispersion(e.intensidad)};flex-shrink:0;margin-top:4px;"></span>
+          <span>${e.descripcion.slice(0,80)}</span>
+        </div>`
+      ).join('');
+      tooltip.innerHTML = `<div><strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''} registrada${cercano.lista.length!==1?'s':''}</div>` +
+        (listaHTML || `<div style="color:var(--ink-3);margin-top:3px;">Ninguna con impacto suficiente para destacar</div>`);
       tooltip.style.display = 'block';
-      tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-270)+'px';
-      tooltip.style.top = Math.max(0, ev.clientY-rect.top-50)+'px';
+      tooltip.style.width = '280px';
+      tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-290)+'px';
+      tooltip.style.top = Math.max(0, ev.clientY-rect.top-60)+'px';
     } else {
       tooltip.style.display = 'none';
     }
