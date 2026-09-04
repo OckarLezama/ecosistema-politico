@@ -92,7 +92,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 /* ============================================================
    RED DE ACTORES
    ============================================================ */
-.actores-layout{display:grid;grid-template-columns:1fr 300px;gap:16px;}
+.actores-layout{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start;}
 @media (max-width:880px){ .actores-layout{grid-template-columns:1fr;} }
 
 .graph-card{
@@ -135,7 +135,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card); padding:16px; height:609px; overflow-y:auto;
   scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);
-  display:block !important; visibility:visible !important; opacity:1 !important; min-width:250px;
+  display:flex !important; flex-direction:column; visibility:visible !important; opacity:1 !important; min-width:250px;
 }
 .detail-card::-webkit-scrollbar{ width:6px; }
 .detail-card::-webkit-scrollbar-track{ background:var(--bg-1); }
