@@ -1,7 +1,7 @@
 /* ============================================================
    V2 — RED DE ACTORES (diseño nuevo, física de constelación heredada
    y ya validada de V1: cada satélite orbita su propio núcleo, radios
-   de anillo probados sin solapes en Node) v2
+   de anillo probados sin solapes en Node)
    ============================================================ */
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
@@ -149,7 +149,24 @@ function colorNodoReal(d, svgId, slotDeCore){
 function opacidadPorNivel(nivel){ return {0:1,1:0.85,2:0.55,3:0.35}[nivel] ?? 0.5; }
 function radioNodo(d){ if(d.esCentro) return 26; if(d.esCategoria) return 15; return {1:12,2:10,3:8}[d.nivelAnillo]||7; }
 
+function asegurarPanelDetalle(){
+  // AUTO-REPARACIÓN: si por cualquier motivo el panel derecho desaparece del DOM (se ha
+  // visto que aparece un instante y luego se pierde, sin error en consola -- causa no
+  // identificada con certeza), esto lo vuelve a crear en el lugar correcto, siempre
+  let panel = document.getElementById('detail-panel');
+  if(panel) return panel;
+  const layout = document.querySelector('.actores-layout');
+  if(!layout) return null;
+  panel = document.createElement('aside');
+  panel.className = 'detail-card';
+  panel.id = 'detail-panel';
+  panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
+  layout.appendChild(panel);
+  return panel;
+}
+
 function renderGrafo(svgId='graph-svg'){
+  if(svgId==='graph-svg') asegurarPanelDetalle();
   const svgEl = document.getElementById(svgId);
 
   // ---- determinar los "cores" elegidos según el modo ----
