@@ -1,3 +1,6 @@
+/* MARCA-UNICA-VERIFICACION-OCKAR-20260903-2 -- si buscas este texto exacto en GitHub y lo
+   encuentras, este archivo SÍ es el que se está sirviendo. Si no lo encuentras, el archivo
+   que ves en pantalla NO es este. */
 /* ============================================================
    V2 — RED DE ACTORES (diseño nuevo, física de constelación heredada
    y ya validada de V1: cada satélite orbita su propio núcleo, radios
