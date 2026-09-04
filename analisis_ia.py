@@ -323,7 +323,8 @@ de verdad ahí y QUÉ IMPLICA su presencia, no solo cuántos hay. Para cada núc
 Está prohibido usar el mismo fraseo genérico entre núcleos distintos (si puedes intercambiar
 dos análisis sin que se note, están mal escritos). Nunca inventes vínculos, cargos o nombres
 que no estén en los datos -- si el dato no alcanza para nombrar a alguien específico, dilo con
-los números que sí tienes, pero no inventes una persona para llenar el hueco.
+los números que sí tienes, pero no inventes una persona para llenar el hueco. Nunca uses
+asteriscos ni markdown para negritas (**texto**) -- texto plano, sin formato.
 
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
