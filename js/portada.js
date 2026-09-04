@@ -176,17 +176,20 @@ function dibujarDispersionHoraria(eventos){
   const ancho = 1000, alto = 130, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 8;
   const altoUtil = alto - margenArriba - margenAbajo;
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
-  const anchoBarra = (ancho-margenIzq-margenDer)/24;
 
-  // GRÁFICA DE FRECUENCIA -- con muchas notas, puntos individuales se amontonan y ya no se
-  // leen; una barra por hora (0-23) es mucho más clara: cuántas notas salieron en esa hora,
-  // coloreada según su impacto promedio
-  const porHora = Array.from({length:24}, ()=>[]);
+  // CURVA DE DENSIDAD SUAVE -- con 250+ notas, barras por hora ya se ven "en bloques" y
+  // pierden precisión. Una curva continua, con bloques de 30 min (el doble de fino que
+  // antes), se lee mejor a este volumen y no tiene el efecto de "cajones"
+  const BLOQUES = 48; // 30 min cada uno
+  const porBloque = Array.from({length:BLOQUES}, ()=>[]);
   eventosFiltrados.forEach(e=>{
-    const h = horaDeteccionDe(e).getHours();
-    porHora[h].push(e);
+    const hora = horaDeteccionDe(e);
+    const horaDecimal = hora.getHours()+hora.getMinutes()/60;
+    if(isNaN(horaDecimal)) return; // protección: nunca truena si algún dato de hora viene mal formado
+    const idx = Math.min(BLOQUES-1, Math.max(0, Math.floor(horaDecimal*2)));
+    porBloque[idx].push(e);
   });
-  const maxConteo = Math.max(...porHora.map(l=>l.length), 1);
+  const maxConteo = Math.max(...porBloque.map(l=>l.length), 1);
 
   let grilla = '';
   for(let h=0; h<=24; h+=2){
@@ -199,42 +202,73 @@ function dibujarDispersionHoraria(eventos){
     grilla += `<line x1="${margenIzq}" y1="${y}" x2="${ancho-margenDer}" y2="${y}" stroke="var(--line)" stroke-width="1" stroke-opacity="0.18"/>`;
   }
 
-  const barras = porHora.map((lista, h)=>{
-    if(!lista.length) return '';
-    const promedioImpacto = lista.reduce((s,e)=>s+Number(e.intensidad),0)/lista.length;
+  // puntos de la curva: 1 por bloque, x = centro del bloque, y = altura según conteo
+  const puntos = porBloque.map((lista,i)=>{
+    const x = xDeHora((i+0.5)/2);
+    const y = margenArriba + altoUtil - (lista.length/maxConteo)*altoUtil;
+    return {x, y, lista};
+  });
+
+  // curva suave tipo Catmull-Rom -> Bézier, para que no se vea de "picos" angulosos
+  function curvaSuave(pts){
+    if(pts.length<2) return '';
+    let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
+    for(let i=0;i<pts.length-1;i++){
+      const p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || p2;
+      const c1x = p1.x + (p2.x-p0.x)/6, c1y = p1.y + (p2.y-p0.y)/6;
+      const c2x = p2.x - (p3.x-p1.x)/6, c2y = p2.y - (p3.y-p1.y)/6;
+      d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+    }
+    return d;
+  }
+  const lineaD = curvaSuave(puntos);
+  const areaD = lineaD + ` L ${puntos[puntos.length-1].x.toFixed(1)} ${margenArriba+altoUtil} L ${puntos[0].x.toFixed(1)} ${margenArriba+altoUtil} Z`;
+
+  // puntos visibles solo donde SÍ hay notas -- coloreados por impacto promedio de ese bloque,
+  // para no perder la lectura de "qué tan fuerte" fue cada momento
+  const puntosVisibles = puntos.map((p,i)=>{
+    if(!p.lista.length) return '';
+    const promedioImpacto = p.lista.reduce((s,e)=>s+Number(e.intensidad),0)/p.lista.length;
     const color = colorPorImpactoDispersion(promedioImpacto);
-    const alturaBarra = (lista.length/maxConteo)*altoUtil;
-    const x = xDeHora(h) + anchoBarra*0.12;
-    const y = margenArriba + altoUtil - alturaBarra;
-    const anchoReal = anchoBarra*0.76;
-    const titulares = lista.slice(0,4).map(e=>e.descripcion.slice(0,70)).join(' | ');
-    return `<rect class="barra-frecuencia" data-hora="${String(h).padStart(2,'0')}:00" data-conteo="${lista.length}" data-desc="${titulares.replace(/"/g,'&quot;')}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${anchoReal.toFixed(1)}" height="${alturaBarra.toFixed(1)}" fill="${color}" fill-opacity="0.85" rx="2" style="cursor:pointer;"/>`;
+    const h = Math.floor(i/2), m = (i%2)*30;
+    const horaTxt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    const titulares = p.lista.slice(0,4).map(e=>e.descripcion.slice(0,70)).join(' | ');
+    const r = 2.5 + Math.min(3, p.lista.length/3);
+    return `<circle class="punto-densidad" data-hora="${horaTxt}" data-conteo="${p.lista.length}" data-desc="${titulares.replace(/"/g,'&quot;')}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="${color}" stroke="var(--bg-1)" stroke-width="1" style="cursor:pointer;"/>`;
   }).join('');
 
   cont.innerHTML = `
     <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div>
     <div style="position:relative;width:100%;">
       <svg width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" preserveAspectRatio="none" style="display:block;">
+        <defs>
+          <linearGradient id="grad-densidad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--teal)" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="var(--teal)" stop-opacity="0.03"/>
+          </linearGradient>
+        </defs>
         <rect x="${margenIzq}" y="${margenArriba}" width="${ancho-margenIzq-margenDer}" height="${altoUtil}" fill="var(--bg-2)" fill-opacity="0.3"/>
         ${grilla}
-        ${barras}
+        <path d="${areaD}" fill="url(#grad-densidad)"/>
+        <path d="${lineaD}" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-opacity="0.8"/>
+        ${puntosVisibles}
       </svg>
       <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:5px 9px;font-size:10.5px;color:var(--ink-1);pointer-events:none;max-width:260px;z-index:20;box-shadow:var(--shadow-card);"></div>
     </div>`;
 
   const tooltip = document.getElementById('portada-dispersion-tooltip');
-  cont.querySelectorAll('.barra-frecuencia').forEach(b=>{
-    b.addEventListener('mouseenter', ()=>{
-      tooltip.innerHTML = `<strong>${b.dataset.hora}</strong> — ${b.dataset.conteo} nota${b.dataset.conteo!=='1'?'s':''}<br><span style="color:var(--ink-3);">${b.dataset.desc}</span>`;
+  cont.querySelectorAll('.punto-densidad').forEach(p=>{
+    p.addEventListener('mouseenter', ()=>{
+      tooltip.innerHTML = `<strong>${p.dataset.hora}</strong> — ${p.dataset.conteo} nota${p.dataset.conteo!=='1'?'s':''}<br><span style="color:var(--ink-3);">${p.dataset.desc}</span>`;
       tooltip.style.display = 'block';
-      b.setAttribute('fill-opacity','1');
+      p.setAttribute('r', (parseFloat(p.getAttribute('r'))+1.5).toString());
     });
-    b.addEventListener('mousemove', (ev)=>{
+    p.addEventListener('mousemove', (ev)=>{
       const rect = cont.querySelector('svg').getBoundingClientRect();
       tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-270)+'px';
       tooltip.style.top = Math.max(0, ev.clientY-rect.top-50)+'px';
     });
-    b.addEventListener('mouseleave', ()=>{ tooltip.style.display='none'; b.setAttribute('fill-opacity','0.85'); });
+    p.addEventListener('mouseleave', function(){ tooltip.style.display='none'; });
   });
 }
 

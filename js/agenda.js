@@ -2,6 +2,45 @@
    V2 — AGENDA & COYUNTURA
    ============================================================ */
 
+// dropdown propio -- el <select> nativo del navegador no se puede estilizar (su scroll
+// interno queda fuera del control del CSS), así que esto lo reemplaza con un botón +
+// lista desplegable propia, con el mismo estilo de scroll que ya usa el Feed
+function crearDropdownPersonalizado(contenedorId, opciones, valorInicial, onCambio){
+  const cont = document.getElementById(contenedorId);
+  if(!cont) return;
+  const seleccionActual = opciones.find(o=>o.value===valorInicial) || opciones[0];
+  cont.innerHTML = `
+    <div class="dropdown-propio" style="position:relative;display:inline-block;">
+      <button type="button" class="dropdown-propio-boton" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;cursor:pointer;display:flex;align-items:center;gap:6px;max-width:280px;">
+        <span class="dropdown-propio-texto" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${seleccionActual ? seleccionActual.label : '— sin selección —'}</span>
+        <span style="font-size:9px;color:var(--ink-3);">▾</span>
+      </button>
+      <div class="dropdown-propio-lista" style="display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:220px;max-height:240px;overflow-y:auto;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);box-shadow:var(--shadow-card);z-index:50;
+        scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);">
+        ${opciones.map(o=>`<div class="dropdown-propio-opcion" data-valor="${o.value}" style="padding:7px 10px;font-size:11.5px;cursor:pointer;${o.value===valorInicial?'background:var(--bg-2);font-weight:700;':''}">${o.label}</div>`).join('')}
+      </div>
+    </div>`;
+  const boton = cont.querySelector('.dropdown-propio-boton');
+  const lista = cont.querySelector('.dropdown-propio-lista');
+  const texto = cont.querySelector('.dropdown-propio-texto');
+  boton.addEventListener('click', (ev)=>{
+    ev.stopPropagation();
+    const abierto = lista.style.display==='block';
+    document.querySelectorAll('.dropdown-propio-lista').forEach(l=>l.style.display='none'); // cierra cualquier otro dropdown propio abierto
+    lista.style.display = abierto ? 'none' : 'block';
+  });
+  lista.querySelectorAll('.dropdown-propio-opcion').forEach(op=>{
+    op.addEventListener('click', ()=>{
+      texto.textContent = op.textContent;
+      lista.style.display = 'none';
+      lista.querySelectorAll('.dropdown-propio-opcion').forEach(o=>{ o.style.background=''; o.style.fontWeight='400'; });
+      op.style.background = 'var(--bg-2)'; op.style.fontWeight = '700';
+      onCambio(op.dataset.valor);
+    });
+  });
+}
+document.addEventListener('click', ()=> document.querySelectorAll('.dropdown-propio-lista').forEach(l=>l.style.display='none')); // clic afuera cierra
+
 function diasSinActividad(temaId){
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).map(e=>e.fecha).sort();
   if(!evs.length) return null;
@@ -359,18 +398,15 @@ function renderNotasAgenda(){
 
   cont.innerHTML = `
     <div style="padding:10px 14px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-      <select id="notas-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
-        <option value="">— sin selección —</option>
-        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
-      </select>
+      <div id="notas-tema-dropdown"></div>
       <div class="legend-inline">
         ${Object.entries(COLOR_ROL_NOTAS).filter(([r])=>!['Acusado','Autoridad','Reacción del gobierno','Operador'].includes(r)).map(([rol,color])=>
           `<span><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('')}
       </div>
     </div>
     <svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`;
-  document.getElementById('notas-tema-select').addEventListener('change', (e)=>{
-    temaNotasSeleccionado = e.target.value || null;
+  crearDropdownPersonalizado('notas-tema-dropdown', temasDisponibles.map(t=>({value:t.id, label:t.nombre})), temaNotasSeleccionado, (valor)=>{
+    temaNotasSeleccionado = valor || null;
     dibujarNotasConGrafoReal();
   });
 
@@ -483,14 +519,11 @@ function renderGenealogiaAgenda(){
 
   cont.innerHTML = `
     <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;">
-      <select id="geneal-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
-        <option value="">— sin selección —</option>
-        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
-      </select>
+      <div id="geneal-tema-dropdown"></div>
       <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
     <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;">${temaGenealogiaSeleccionado ? '<svg id="geneal-svg" style="height:100%;display:block;"></svg>' : '<div class="detail-empty"><div class="eyebrow">Sin selección</div><h3>Elige un tema</h3><p style="font-size:12px;">Se muestra el recorrido cronológico de ese tema de agenda.</p></div>'}</div>`;
-  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value || null; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
+  crearDropdownPersonalizado('geneal-tema-dropdown', temasDisponibles.map(t=>({value:t.id, label:t.nombre})), temaGenealogiaSeleccionado, (valor)=>{ temaGenealogiaSeleccionado = valor || null; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
 
   if(temaGenealogiaSeleccionado) dibujarGenealogia(temaGenealogiaSeleccionado);
 }
