@@ -226,17 +226,24 @@ function dibujarDispersionHoraria(eventos){
   const lineaD = curvaSuave(puntos);
   const areaD = lineaD + ` L ${puntos[puntos.length-1].x.toFixed(1)} ${margenArriba+altoUtil} L ${puntos[0].x.toFixed(1)} ${margenArriba+altoUtil} Z`;
 
-  // puntos visibles solo donde SÍ hay notas -- coloreados por impacto promedio de ese bloque,
-  // para no perder la lectura de "qué tan fuerte" fue cada momento
-  const puntosVisibles = puntos.map((p,i)=>{
+  // puntos visibles solo donde SÍ hay notas -- como <div> HTML normal (no <circle> de SVG),
+  // porque el SVG usa preserveAspectRatio="none" para estirarse al ancho completo, y eso
+  // ESTIRA cualquier <circle> dibujado adentro convirtiéndolo en óvalo. Un div con
+  // border-radius:50%, posicionado por %, siempre es un círculo real sin importar el
+  // estiramiento del SVG que tiene debajo.
+  const puntosVisiblesHTML = puntos.map((p,i)=>{
     if(!p.lista.length) return '';
     const promedioImpacto = p.lista.reduce((s,e)=>s+Number(e.intensidad),0)/p.lista.length;
     const color = colorPorImpactoDispersion(promedioImpacto);
     const h = Math.floor(i/2), m = (i%2)*30;
     const horaTxt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
-    const titulares = p.lista.slice(0,4).map(e=>e.descripcion.slice(0,70)).join(' | ');
-    const r = 2; // punto sutil y del mismo tamaño siempre -- antes crecía con el conteo y se veía como una "bola" cuando muchas notas caían en el mismo bloque de 30 min
-    return `<circle class="punto-densidad" data-hora="${horaTxt}" data-conteo="${p.lista.length}" data-desc="${titulares.replace(/"/g,'&quot;')}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="${color}" stroke="var(--bg-1)" stroke-width="1" style="cursor:pointer;"/>`;
+    // solo las relevantes en el tooltip (impacto alto), no todas -- con muchas notas
+    // apiladas, listar las 4 primeras sin criterio se veía amontonado y sin utilidad
+    const relevantes = p.lista.filter(e=>Number(e.intensidad)>=7).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,3);
+    const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
+    const xPct = (p.x/ancho*100).toFixed(2), yPct = (p.y/alto*100).toFixed(2);
+    return `<div class="punto-densidad" data-hora="${horaTxt}" data-conteo="${p.lista.length}" data-relevantes="${relevantes.length}" data-desc="${titulares.replace(/"/g,'&quot;')}"
+      style="position:absolute;left:${xPct}%;top:${yPct}%;width:5px;height:5px;margin:-2.5px;border-radius:50%;background:${color};border:1px solid var(--bg-1);cursor:pointer;"></div>`;
   }).join('');
 
   cont.innerHTML = `
@@ -254,11 +261,14 @@ function dibujarDispersionHoraria(eventos){
         <path d="${areaD}" fill="url(#grad-densidad)"/>
         <path d="${lineaD}" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-opacity="0.8"/>
         <circle r="3" fill="var(--teal)"><animateMotion dur="9s" repeatCount="indefinite" path="${lineaD}"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" dur="9s" repeatCount="indefinite"/></circle>
-        ${puntosVisibles}
         <line id="portada-linea-guia" x1="0" y1="${margenArriba}" x2="0" y2="${alto-margenAbajo}" stroke="var(--ink-1)" stroke-width="1" stroke-opacity="0" stroke-dasharray="2 2"/>
       </svg>
+      <div style="position:absolute;inset:0;pointer-events:none;">${puntosVisiblesHTML}</div>
       <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:5px 9px;font-size:10.5px;color:var(--ink-1);pointer-events:none;max-width:260px;z-index:20;box-shadow:var(--shadow-card);"></div>
     </div>`;
+  // el contenedor de puntos tiene pointer-events:none (para no tapar el mousemove del SVG de
+  // abajo), pero cada punto individual sí necesita recibir su propio hover
+  cont.querySelectorAll('.punto-densidad').forEach(p=> p.style.pointerEvents='auto');
 
   // línea guía tipo monitor de hospital -- sigue al mouse en vez de agrandar el punto
   // (antes el punto crecía en cada hover, dando la sensación de una "bola" acumulándose)
@@ -276,8 +286,11 @@ function dibujarDispersionHoraria(eventos){
     if(cercano.lista.length){
       const idx = puntos.indexOf(cercano);
       const h = Math.floor(idx/2), m = (idx%2)*30;
-      const titulares = cercano.lista.slice(0,4).map(e=>e.descripcion.slice(0,70)).join(' | ');
-      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}<br><span style="color:var(--ink-3);">${titulares}</span>`;
+      // solo el total + las relevantes (impacto alto), no la lista completa
+      const relevantes = cercano.lista.filter(e=>Number(e.intensidad)>=7).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,3);
+      const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
+      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` +
+        (titulares ? `<br><span style="color:var(--ink-3);">${titulares}</span>` : '');
       tooltip.style.display = 'block';
       tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-270)+'px';
       tooltip.style.top = Math.max(0, ev.clientY-rect.top-50)+'px';

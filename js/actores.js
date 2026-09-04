@@ -255,6 +255,16 @@ function renderGrafo(svgId='graph-svg'){
   const anchoReal = svgEl.parentElement.getBoundingClientRect().width;
   const width = (anchoReal>100 ? anchoReal : svgEl.clientWidth) || 900, height = 560;
 
+  // AUTO-CORRECCIÓN: si el ancho recién capturado no coincide con el que el navegador
+  // termina asentando un instante después (layout que aún no se resolvía del todo en este
+  // momento exacto), se vuelve a dibujar una sola vez con el ancho ya correcto -- sin esto,
+  // el contenido interno del SVG podía quedar calculado para un ancho viejo y más angosto
+  // aunque la caja del SVG en pantalla ya fuera más ancha.
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const anchoFinal = svgEl.parentElement.getBoundingClientRect().width;
+    if(Math.abs(anchoFinal-width) > 15 && document.getElementById('panel-actores')?.classList.contains('active')) renderGrafo(svgId);
+  }));
+
   // ---- construcción de nodos: distinta según el modo, pero misma forma de datos para reusar
   // toda la física y el dibujo que sigue abajo sin duplicar código ----
   const nodesMap = new Map();
@@ -513,7 +523,7 @@ function renderGrafo(svgId='graph-svg'){
   const nodesById = {}; nodes.forEach(n=>nodesById[n.id]=n);
   // con más núcleos activos, cada uno usa un radio de órbita más chico -- compartida entre
   // la física de órbita y la separación entre núcleos, para que ambas usen la misma escala
-  const escalaGlobalOrbita = coresElegidos.length>=3 ? 0.6 : coresElegidos.length===2 ? 0.75 : 1;
+  const escalaGlobalOrbita = 1; // los satélites SIEMPRE guardan su distancia normal a su propio núcleo -- lo único que debe separarse es núcleo contra núcleo (ver collide abajo)
   function forceOrbita(strength){
     let ref;
     // con 2-3 núcleos activos a la vez, cada uno reclamaba el mismo radio de órbita que si
@@ -545,7 +555,7 @@ function renderGrafo(svgId='graph-svg'){
     .alpha(0.6).velocityDecay(0.55) // arranque más calmado (menos "salto") -- ahora los nodos ya empiezan centrados, no hace falta tanta energía inicial
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+220*escalaGlobalOrbita : radioNodo(d)+22).strength(0.95))
+    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+205 : radioNodo(d)+22).strength(0.95))
     .force('link', d3.forceLink(links).id(d=>d.id).distance(220).strength(0.05))
     .force('x', d3.forceX(width/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
     .force('y', d3.forceY(height/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
