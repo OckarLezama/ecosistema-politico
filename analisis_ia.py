@@ -183,7 +183,7 @@ def calcular_todo():
     # que ya tienen sus satélites clasificados en las 4 categorías reales (Familiar,
     # Político/Institucional, Operadores/Confianza, Empresarial) -- sin esto, la IA no
     # tendría con qué interpretar, y clasificar a ciegas ya demostró salir mal
-    NUCLEOS_CATEGORIZADOS = ['sheinbaum', 'andy']
+    NUCLEOS_CATEGORIZADOS = ['sheinbaum', 'andy', 'amlo', 'trump', 'garcia_harfuch', 'ebrard']
     redes_por_nucleo = {}
     try:
         with open(os.path.join(RUTA_DATOS, 'redes_personales.csv'), encoding='utf-8') as f:
@@ -285,11 +285,16 @@ Otras reglas estrictas:
 - NUNCA prediga el futuro ni especules sobre facciones internas, causalidad no documentada, o
   motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
 
-Si el JSON de entrada trae "redes_por_nucleo", para cada núcleo ahí presente escribe un análisis
-real de su red (2-3 oraciones): qué revela la composición por categoría (ej. "su red está
-dominada por perfiles institucionales, con poca presencia empresarial directa" -- solo si es
-cierto según los datos), qué categoría concentra más peso, y una lectura de qué tan cerrado o
-diverso es el círculo. Nunca inventes vínculos que no estén en los datos.
+Si el JSON de entrada trae "redes_por_nucleo", para cada núcleo ahí presente escribe:
+- "resumen": qué revela la composición por categoría (ej. "su red está dominada por perfiles
+  institucionales, con poca presencia empresarial directa" -- solo si es cierto según los
+  datos), qué categoría concentra más peso, y qué tan cerrado o diverso es el círculo.
+- "fortaleza": lo que realmente hace fuerte a ESTA red en particular, basado en su
+  composición real -- no una frase genérica que sirva para cualquier núcleo.
+- "debilidad": el punto real de vulnerabilidad de ESTA red -- ej. si depende de muy pocos
+  operadores de confianza, si casi no tiene presencia empresarial, si es puramente
+  institucional sin gente propia de confianza personal, etc.
+Nunca inventes vínculos que no estén en los datos.
 
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
@@ -305,7 +310,7 @@ Responde ÚNICAMENTE con un objeto JSON con estas claves (1-2 oraciones cortas c
   "resumen_pulso_sexenio": "1 oración sobre cómo se ha movido la intensidad general",
   "resumen_temas": "1 oración sobre qué muestra la tabla de temas",
   "resumen_actores": "1 oración sobre qué muestra la tabla de actores",
-  "analisis_redes": {{"id_del_nucleo": "análisis de 2-3 oraciones -- una clave por cada núcleo presente en redes_por_nucleo"}},
+  "analisis_redes": {{"id_del_nucleo": {{"resumen": "2-3 oraciones sobre la composición de la red", "fortaleza": "1-2 oraciones -- qué hace fuerte a esta red específica (ej. control institucional, diversidad de canales, peso propio del núcleo)", "debilidad": "1-2 oraciones -- qué la hace vulnerable (ej. dependencia de pocos operadores, poca presencia territorial, riesgo de un solo punto de falla)"}} -- una clave por cada núcleo presente en redes_por_nucleo}},
   "propuestas_atencion": [{{"tema": "nombre exacto del tema", "propuesta": "1 oración corta"}}]
 }}"""
 
