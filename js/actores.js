@@ -187,7 +187,7 @@ function radioNodo(d){ if(d.esCentro) return 26; if(d.esCategoria) return 15; re
 
 function asegurarPanelDetalle(){
   // AUTO-REPARACIÓN: si por cualquier motivo el panel derecho desaparece del DOM, esto lo
-  // vuelve a crear en el lugar correcto (dentro del grid, como cualquier tarjeta normal)
+  // vuelve a crear en el lugar correcto, siempre
   let panel = document.getElementById('detail-panel');
   if(!panel){
     const layout = document.querySelector('.actores-layout');
@@ -198,8 +198,22 @@ function asegurarPanelDetalle(){
     panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
     layout.appendChild(panel);
   }
+  posicionarPanelDetalle();
   return panel;
 }
+
+function posicionarPanelDetalle(){
+  // el panel es position:fixed (así se garantiza que siempre se vea, sin depender del
+  // grid) -- esto lo coloca exactamente junto al grafo, como el Feed
+  const panel = document.getElementById('detail-panel');
+  const graphCard = document.querySelector('#panel-actores .graph-card');
+  if(!panel || !graphCard || window.innerWidth<=880) return;
+  const rect = graphCard.getBoundingClientRect();
+  panel.style.top = rect.top+'px';
+  panel.style.left = (rect.right+16)+'px';
+}
+window.addEventListener('scroll', posicionarPanelDetalle);
+window.addEventListener('resize', posicionarPanelDetalle);
 
 function renderGrafo(svgId='graph-svg'){
   if(svgId==='graph-svg') asegurarPanelDetalle();
