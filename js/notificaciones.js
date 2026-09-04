@@ -60,7 +60,13 @@ function revisarNotificacionesPendientes(){
     }
     const tema = nombreTemaPorId[e.tema_id];
     if(!tema) return false;
-    const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8;
+    // alto impacto real = categoría sensible (Gobernabilidad/Seguridad/Relación Bilateral) +
+    // alcance mediático genuino (varios medios cubriendo el mismo hecho) -- no depende de que
+    // mencione a un actor "top" trackeado, así se detectan casos como la muerte de un
+    // funcionario que no está en la lista de actores de alto perfil, pero sí es relevante real
+    const categoriasSensibles = ['Gobernabilidad', 'Seguridad Nacional', 'Relación Bilateral'];
+    const altoImpactoReal = categoriasSensibles.includes(e.categoria) && Number(e.cobertura||1)>=3;
+    const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8 || altoImpactoReal;
     return esRelevante;
   }).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
 
