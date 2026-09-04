@@ -564,17 +564,22 @@ function renderGrafo(svgId='graph-svg'){
     .force('y', d3.forceY(height/2).strength(coresElegidos.length>=2 ? 0.04 : 0.15))
     .on('tick', ()=>{
       const margen=30;
-      // el nodo de categoría se fija a su distancia real cada tick (conserva el ángulo que
-      // ya traía, para no chocar con otras categorías, pero la distancia exacta ya no depende
-      // de ganarle la competencia de fuerzas a sus propios satélites empujando por colisión)
+      nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
+      // el nodo de categoría se fija DESPUÉS del clamp de bordes, usando la posición YA
+      // final del núcleo -- si esto corre antes, el clamp de arriba reescribe la posición
+      // que yo calculé y la tira, sin importar qué tan bien calculada estuviera
       nodes.forEach(n=>{
         if(!n.esCategoria) return;
         const core = nodesById[n.coreId]; if(!core) return;
         const t = (RADIOS_ANILLO[1]||85);
-        const dx=n.x-core.x, dy=n.y-core.y, dist=Math.sqrt(dx*dx+dy*dy)||0.001;
-        n.x = core.x + (dx/dist)*t; n.y = core.y + (dy/dist)*t;
+        if(n.anguloPropio===undefined){
+          const idsCategoriasDeEsteNucleo = nodes.filter(x=>x.esCategoria && x.coreId===n.coreId).map(x=>x.id);
+          n.anguloPropio = (idsCategoriasDeEsteNucleo.indexOf(n.id) * 2.4) % (Math.PI*2); // separadas entre sí, nunca 0/0
+        }
+        n.x = core.x + Math.cos(n.anguloPropio)*t;
+        n.y = core.y + Math.sin(n.anguloPropio)*t;
+        n.vx = 0; n.vy = 0;
       });
-      nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
       link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
       guias.attr('cx',d=>d.core.x).attr('cy',d=>d.core.y);
       node.attr('transform', d=>`translate(${d.x},${d.y})`);
