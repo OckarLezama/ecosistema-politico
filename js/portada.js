@@ -168,12 +168,23 @@ function colorPorImpactoDispersion(intensidad){
   return 'var(--riesgo-bajo)';
 }
 
+function notasRelevantesDe(lista, maximo=5){
+  // "relevante de verdad" combina impacto (intensidad) y cobertura (cuántos medios la
+  // cubrieron) -- no solo tomar cualquiera con intensidad alta, ni listar todo lo que haya
+  return [...lista]
+    .map(e=>({ e, score: Number(e.intensidad||0)*2 + Number(e.cobertura||1) }))
+    .sort((a,b)=>b.score-a.score)
+    .filter(x=>x.score>=8) // umbral mínimo real -- por debajo de esto no "destaca", aunque queden huecos en el top 5
+    .slice(0,maximo)
+    .map(x=>x.e);
+}
+
 function dibujarDispersionHoraria(eventos){
   const cont = document.getElementById('portada-dispersion');
   if(!cont) return;
   const eventosFiltrados = categoriaFiltroDispersion ? eventos.filter(e=>e.categoria===categoriaFiltroDispersion) : eventos;
   if(!eventosFiltrados.length){ cont.innerHTML = `<div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div><p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
-  const ancho = 1000, alto = 130, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 8;
+  const ancho = 1000, alto = 130, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 14;
   const altoUtil = alto - margenArriba - margenAbajo;
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
 
@@ -207,7 +218,7 @@ function dibujarDispersionHoraria(eventos){
   // puntos de la curva: 1 por bloque, x = centro del bloque, y = altura según conteo
   const puntos = porBloque.map((lista,i)=>{
     const x = xDeHora((i+0.5)/2);
-    const y = margenArriba + altoUtil - (lista.length/maxConteo)*altoUtil;
+    const y = margenArriba + altoUtil - (lista.length/maxConteo)*altoUtil*0.85; // el pico más alto llega a 85% de la altura, nunca toca el borde de arriba
     return {x, y, lista};
   });
 
@@ -239,7 +250,7 @@ function dibujarDispersionHoraria(eventos){
     const horaTxt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
     // solo las relevantes en el tooltip (impacto alto), no todas -- con muchas notas
     // apiladas, listar las 4 primeras sin criterio se veía amontonado y sin utilidad
-    const relevantes = p.lista.filter(e=>Number(e.intensidad)>=7).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,3);
+    const relevantes = notasRelevantesDe(p.lista);
     const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
     const xPct = (p.x/ancho*100).toFixed(2), yPct = (p.y/alto*100).toFixed(2);
     return `<div class="punto-densidad" data-hora="${horaTxt}" data-conteo="${p.lista.length}" data-relevantes="${relevantes.length}" data-desc="${titulares.replace(/"/g,'&quot;')}"
@@ -287,7 +298,7 @@ function dibujarDispersionHoraria(eventos){
       const idx = puntos.indexOf(cercano);
       const h = Math.floor(idx/2), m = (idx%2)*30;
       // solo el total + las relevantes (impacto alto), no la lista completa
-      const relevantes = cercano.lista.filter(e=>Number(e.intensidad)>=7).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,3);
+      const relevantes = notasRelevantesDe(cercano.lista);
       const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
       tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` +
         (titulares ? `<br><span style="color:var(--ink-3);">${titulares}</span>` : '');

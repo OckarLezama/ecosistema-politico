@@ -186,9 +186,8 @@ function opacidadPorNivel(nivel){ return {0:1,1:0.85,2:0.55,3:0.35}[nivel] ?? 0.
 function radioNodo(d){ if(d.esCentro) return 26; if(d.esCategoria) return 15; return {1:12,2:10,3:8}[d.nivelAnillo]||7; }
 
 function asegurarPanelDetalle(){
-  // AUTO-REPARACIÓN: si por cualquier motivo el panel derecho desaparece del DOM (se ha
-  // visto que aparece un instante y luego se pierde, sin error en consola -- causa no
-  // identificada con certeza), esto lo vuelve a crear en el lugar correcto, siempre
+  // AUTO-REPARACIÓN: si por cualquier motivo el panel derecho desaparece del DOM, esto lo
+  // vuelve a crear en el lugar correcto (dentro del grid, como cualquier tarjeta normal)
   let panel = document.getElementById('detail-panel');
   if(!panel){
     const layout = document.querySelector('.actores-layout');
@@ -199,22 +198,8 @@ function asegurarPanelDetalle(){
     panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
     layout.appendChild(panel);
   }
-  posicionarPanelDetalle();
   return panel;
 }
-
-function posicionarPanelDetalle(){
-  // el panel es position:fixed (así se garantiza que siempre se vea, sin depender del
-  // grid que fallaba) -- esto lo coloca exactamente junto al grafo, como el Feed
-  const panel = document.getElementById('detail-panel');
-  const graphCard = document.querySelector('#panel-actores .graph-card');
-  if(!panel || !graphCard || window.innerWidth<=880) return; // en pantallas angostas se queda estático, definido en el CSS
-  const rect = graphCard.getBoundingClientRect();
-  panel.style.top = rect.top+'px';
-  panel.style.left = (rect.right+16)+'px';
-}
-window.addEventListener('scroll', posicionarPanelDetalle);
-window.addEventListener('resize', posicionarPanelDetalle);
 
 function renderGrafo(svgId='graph-svg'){
   if(svgId==='graph-svg') asegurarPanelDetalle();
