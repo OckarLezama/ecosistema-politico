@@ -298,23 +298,32 @@ Otras reglas estrictas:
 - NUNCA prediga el futuro ni especules sobre facciones internas, causalidad no documentada, o
   motivaciones no declaradas. Interpreta el presente, no proyectes el futuro.
 
-Si el JSON de entrada trae "redes_por_nucleo", cada núcleo ahí ya trae "conteo_por_categoria"
-(cuántos satélites tiene en cada categoría), "categoria_dominante" y "pct_categoria_dominante"
-(el % real que representa) -- YA CALCULADOS. Para cada núcleo escribe, usando esos números
-reales (nunca los inventes, nunca digas "prácticamente todo" sin el número exacto detrás):
-- "resumen": cita el conteo real por categoría (ej. "de sus 11 vínculos documentados, 7 son
-  Político/Institucional y 4 Operadores/Confianza -- el 64% de su red"), y qué tan cerrado o
-  diverso es el círculo según esa distribución real.
-- "fortaleza": lo que realmente hace fuerte a ESTA red según su composición -- cita la
-  categoría y el número que la sostiene (ej. "su base Empresarial (4 de 10 vínculos) le da
-  independencia económica del aparato de gobierno"). Nunca una frase que sirva para cualquier
-  núcleo sin cambiar los números.
-- "debilidad": el punto real de vulnerabilidad -- cita qué categoría le falta o es
-  desproporcionadamente chica (ej. "solo 1 vínculo Empresarial de 12 totales, casi sin base
-  económica propia" o "sin ningún vínculo Familiar documentado, depende por completo de la
-  estructura institucional").
-Nunca inventes vínculos que no estén en los datos. Nunca uses el mismo fraseo genérico entre
-distintos núcleos -- cada texto debe poder identificarse solo con los números que cita.
+Si el JSON de entrada trae "redes_por_nucleo", cada núcleo ahí ya trae "conteo_por_categoria",
+"categoria_dominante", "pct_categoria_dominante" (YA CALCULADOS) y "satelites_por_categoria"
+(la lista real de personas, con nombre y cargo, en cada categoría). Esto es un producto de
+INTELIGENCIA, no una descripción de categorías -- el lector necesita saber QUIÉNES importan
+de verdad ahí y QUÉ IMPLICA su presencia, no solo cuántos hay. Para cada núcleo escribe:
+
+- "resumen": arranca con el número real (ej. "de sus 11 vínculos, 7 son Político/Institucional"),
+  pero de inmediato NOMBRA a las 2-3 personas de esa lista que más importan -- no por nivel de
+  cercanía nada más, sino por lo que su cargo real permite hacer (control de presupuesto,
+  mando de fuerzas de seguridad, operación electoral, relación con otro país, etc.). Explica
+  qué tan cerrado o diverso es el círculo y qué tipo de poder concentra (institucional,
+  económico, de operación territorial, de seguridad).
+- "fortaleza": no repitas la categoría dominante en abstracto -- di qué CAPACIDAD REAL le da
+  esa composición (ej. "con Harfuch y Rosa Icela en su círculo, tiene mando directo sobre
+  seguridad interior y política interna al mismo tiempo, algo que pocos núcleos combinan").
+  La fortaleza debe responder: ¿qué puede hacer este actor gracias a esta red que otro con
+  una red distinta no podría?
+- "debilidad": igual, nombra la implicación real -- si depende de 1-2 personas para una
+  función crítica (ej. "toda su operación territorial pasa por un solo operador, Fulano"),
+  dilo así, no como "poca diversidad". La debilidad debe responder: ¿qué pasa si esta persona
+  clave sale, se distancia, o queda expuesta públicamente?
+
+Está prohibido usar el mismo fraseo genérico entre núcleos distintos (si puedes intercambiar
+dos análisis sin que se note, están mal escritos). Nunca inventes vínculos, cargos o nombres
+que no estén en los datos -- si el dato no alcanza para nombrar a alguien específico, dilo con
+los números que sí tienes, pero no inventes una persona para llenar el hueco.
 
 DATOS:
 {json.dumps(datos, ensure_ascii=False, indent=2)}
