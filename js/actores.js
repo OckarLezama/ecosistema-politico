@@ -147,6 +147,7 @@ const COLOR_POR_CATEGORIA = {
   'Familiar':'#F46883', 'Político/Institucional':'#5B7FDB',
   'Operadores/Confianza':'#E0A85C', 'Empresarial':'#BDB58D',
 };
+const ORDEN_CATEGORIAS = ['Familiar', 'Político/Institucional', 'Operadores/Confianza', 'Empresarial'];
 function esGabinete(actor){
   return /secretari|fiscal general|consejer[ao] jur[ií]dic|director general|titular de la/i.test(actor.cargo||'');
 }
@@ -248,10 +249,6 @@ function renderGrafo(svgId='graph-svg'){
           if(!sat) return;
           const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
           if(yaEsNucleo){ linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'}); return; }
-          // el satélite orbita DIRECTO al núcleo, como en el diseño original -- la
-          // categoría ya no crea un nodo intermedio (eso causaba que la física se
-          // volviera rígida e impredecible); ahora la categoría solo define el COLOR
-          // del satélite (categoriaHeredada), la física vuelve a ser simple y probada
           if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot, categoriaHeredada:r.categoria||undefined});
           linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
         });
@@ -328,10 +325,7 @@ function renderGrafo(svgId='graph-svg'){
   const nucleoPrincipal = nodes.find(n=>n.esCentro) || {x:width/2, y:height/2};
   nodes.forEach(n=>{ if(!n.esCentro && n.x===undefined){ n.x = nucleoPrincipal.x; n.y = nucleoPrincipal.y; } });
 
-  // media luna a nivel de SATÉLITE directo (ya no hay nodo de categoría intermedio) --
-  // se agrupan por categoría dentro del arco que le toca a su núcleo, para que sigan
-  // viéndose ordenados por tipo aunque ya no haya un "hub" visual de por medio
-  const ANGULO_POR_SLOT = { nucleo: Math.PI, cruce1: Math.PI/2, cruce2: 0 }; // izquierda, abajo, derecha
+  const ANGULO_POR_SLOT = { nucleo: Math.PI, cruce1: Math.PI/2, cruce2: 0 };
   const ARCO_MEDIA_LUNA = Math.PI*0.78;
   const gruposPorNucleoYCategoria = {};
   nodes.filter(n=>!n.esCentro && n.categoriaHeredada).forEach(n=>{
@@ -346,6 +340,13 @@ function renderGrafo(svgId='graph-svg'){
     categoriasDeCadaNucleo[nucleoId].push(clave);
   });
   Object.entries(categoriasDeCadaNucleo).forEach(([nucleoId, claves])=>{
+    // orden FIJO por categoría (ORDEN_CATEGORIAS), no por aparición -- esto es lo que
+    // alinea la misma categoría entre distintos núcleos (ej. "Político/Institucional"
+    // siempre en la misma posición relativa dentro del arco de cada núcleo)
+    claves.sort((a,b)=>{
+      const catA = a.split('|')[1], catB = b.split('|')[1];
+      return ORDEN_CATEGORIAS.indexOf(catA) - ORDEN_CATEGORIAS.indexOf(catB);
+    });
     const nucleoNode = nodesMap.get(nucleoId);
     const usarMediaLuna = coresElegidos.length>=2 && nucleoNode && ANGULO_POR_SLOT[nucleoNode.slot]!==undefined;
     claves.forEach((clave, iCat)=>{
@@ -368,7 +369,20 @@ function renderGrafo(svgId='graph-svg'){
   const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
   blur.append('feGaussianBlur').attr('stdDeviation', 6);
   const container = svg.append('g');
-  svg.call(d3.zoom().scaleExtent([0.5,2.5]).on('zoom', ev=> container.attr('transform', ev.transform)));
+  const comportamientoZoom = d3.zoom().scaleExtent([0.3,2.5]).on('zoom', ev=> container.attr('transform', ev.transform));
+  svg.call(comportamientoZoom);
+
+  // ZOOM-OUT AUTOMÁTICO -- con muchos nodos activos, todo no cabe cómodo en el área
+  // visible. Se aplica un alejamiento inicial proporcional a cuántos nodos hay, usando
+  // el mismo mecanismo de zoom que ya existía -- el usuario puede seguir acercando o
+  // alejando a mano después, esto solo pone un punto de partida razonable.
+  const UMBRAL_ZOOM_OUT = 25;
+  if(nodes.length > UMBRAL_ZOOM_OUT){
+    const escala = Math.max(0.45, 1 - (nodes.length - UMBRAL_ZOOM_OUT) * 0.012);
+    const cx = width/2, cy = height/2;
+    const transformInicial = d3.zoomIdentity.translate(cx,cy).scale(escala).translate(-cx,-cy);
+    svg.call(comportamientoZoom.transform, transformInicial);
+  }
 
   const guiaCentros = nodes.filter(n=>n.esCentro && (redPersonalDe(n.coreId).length>0 || svgId==='notas-svg'));
   const guias = container.selectAll('circle.anillo-guia')
@@ -382,9 +396,6 @@ function renderGrafo(svgId='graph-svg'){
     .attr('class','link-line')
     .attr('stroke', d=> {
       if(d.tipoVinculo==='cruzado') return 'var(--teal)';
-      // el color de la línea es el de la categoría del satélite al que llega -- antes
-      // usaba el color genérico del núcleo (todas las líneas del mismo color), ahora
-      // combina con el color real del nodo destino según su clasificación
       const destino = nodesMap.get(d.destino);
       if(destino && destino.categoriaHeredada && COLOR_POR_CATEGORIA[destino.categoriaHeredada]) return COLOR_POR_CATEGORIA[destino.categoriaHeredada];
       return colorDeCore(d.origen, slotDeCore);
@@ -419,8 +430,6 @@ function renderGrafo(svgId='graph-svg'){
       .on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
       .on('end',(ev,d)=>{
         if(!ev.active) simulacion.alphaTarget(0);
-        // los núcleos se QUEDAN donde el usuario los suelta -- los satélites se sueltan
-        // de vuelta a la física (siguen a su núcleo, no tiene sentido fijarlos aparte)
         if(!d.esCentro){ d.fx=null; d.fy=null; }
       }));
 
@@ -466,7 +475,7 @@ function renderGrafo(svgId='graph-svg'){
     let ref;
     const f=(alpha)=>{ ref.forEach(n=>{
       if(n.esCentro) return;
-      if(n.fx!=null) return; // el usuario ya lo movió a mano -- no compite con la física
+      if(n.fx!=null) return;
       const core=nodesById[n.coreId]; if(!core) return;
       const t=RADIOS_ANILLO[n.nivelAnillo]||130;
       if(n.anguloAsignado!==undefined){
@@ -484,7 +493,7 @@ function renderGrafo(svgId='graph-svg'){
 
   if(simulacion) simulacion.stop();
   simulacion = d3.forceSimulation(nodes)
-    .alpha(0.5).velocityDecay(0.22) // amortiguamiento bajo de verdad -- que el reacomodo se sienta como flotar, no como pelearse el espacio de golpe
+    .alpha(0.5).velocityDecay(0.22)
     .force('orbita', forceOrbita(1.8))
     .force('charge', d3.forceManyBody().strength(-45))
     .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+40 : radioNodo(d)+22).strength(0.6))
@@ -859,8 +868,6 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
     } else {
       const coreActor = getActor(nodoClicado.coreId);
       const nombreNucleoReal = coreActor ? coreActor.nombre : nodoClicado.coreId;
-      // se muestra la clasificación real (Familiar/Político/Operadores/Empresarial) --
-      // antes decía "Cercanía real documentada" genérico sin importar cuál fuera
       const tipoTexto = nodoClicado.categoriaHeredada || 'Sin categoría asignada';
       contextoHTML = `<div class="contexto-tema-box">
         <div class="eyebrow">En la red de "${nombreNucleoReal}"</div>
