@@ -397,6 +397,13 @@ function renderGrafo(svgId='graph-svg'){
   const node = container.selectAll('g.node').data(nodes).join('g')
     .attr('class','node').style('cursor', d=> (svgId==='notas-svg' && !d.esTema) ? 'default' : 'pointer')
     .style('opacity', 0)
+    // TRANSICIÓN CSS NATIVA: en vez de depender de acertarle a los números exactos de la
+    // física (amortiguamiento, fuerzas, etc.) para que el movimiento se vea fluido, esto
+    // hace que el NAVEGADOR interpole suavemente cada cambio de posición -- garantiza que
+    // se vea fluido sin importar qué tan brusco sea el salto real entre un tick y el
+    // siguiente. Se apaga solo mientras se arrastra activamente (el nodo debe seguir al
+    // mouse al instante, sin retraso) y se prende de nuevo al soltar.
+    .style('transition', 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)')
     .call(sel=> sel.transition().duration(450).delay((d,i)=>d.esCentro?0:i*8).style('opacity',1))
     .on('click', (ev,d)=>{
       if(d.esTema){ if(typeof abrirFichaTema==='function') abrirFichaTema(d.id); return; }
@@ -415,14 +422,14 @@ function renderGrafo(svgId='graph-svg'){
       if(svgId==='notas-svg' && typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda();
     })
     .call(d3.drag()
-      .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.12).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('start',function(ev,d){ if(!ev.active) simulacion.alphaTarget(0.12).restart(); d.fx=d.x; d.fy=d.y; d3.select(this).style('transition','none'); })
       .on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
-      .on('end',(ev,d)=>{
+      .on('end',function(ev,d){
         if(!ev.active) simulacion.alphaTarget(0);
-        // los núcleos Y los nodos de categoría se QUEDAN donde el usuario los suelta --
-        // antes esto solo aplicaba a esCentro; los de categoría se quedaban sin poder
-        // arrastrarse porque el tick los recalculaba solo, aunque aquí sí se guardara fx/fy
+        // los núcleos se QUEDAN donde el usuario los suelta -- los satélites se sueltan
+        // de vuelta a la física (siguen a su núcleo, no tiene sentido fijarlos aparte)
         if(!d.esCentro){ d.fx=null; d.fy=null; }
+        d3.select(this).style('transition','transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)');
       }));
 
   node.filter(d=>d.esCentro).append('circle')
