@@ -260,19 +260,12 @@ function renderGrafo(svgId='graph-svg'){
         const coreActor = getActor(coreId);
         if(coreActor && coreActor.grupo){
           const candidatosPolitica = ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId && !/gobernador/i.test(a.cargo||'') && !nodesMap.has(a.id)).slice(0,8);
-          if(candidatosPolitica.length){
-            const idCategoriaPolitica = 'cat:'+coreId+':Político/Institucional';
-            if(!nodesMap.has(idCategoriaPolitica)){
-              nodesMap.set(idCategoriaPolitica, {id:idCategoriaPolitica, nombre:'Político/Institucional', nivelAnillo:1, coreId, slot, esCategoria:true});
-              linksBase.push({origen:coreId, destino:idCategoriaPolitica, nivelDestino:1, slot, tipoVinculo:'politica'});
-            }
-            candidatosPolitica.forEach(sat=>{
-              const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
-              if(yaEsNucleo){ linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
-              if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId:idCategoriaPolitica, slot, esPolitica:true, categoriaHeredada:'Político/Institucional'});
-              linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
-            });
-          }
+          candidatosPolitica.forEach(sat=>{
+            const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
+            if(yaEsNucleo){ linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
+            if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId, slot, esPolitica:true, categoriaHeredada:'Político/Institucional'});
+            linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
+          });
         }
       }
     });
@@ -387,7 +380,15 @@ function renderGrafo(svgId='graph-svg'){
   const link = container.selectAll('line.link-line')
     .data(links).join('line')
     .attr('class','link-line')
-    .attr('stroke', d=> d.tipoVinculo==='cruzado' ? 'var(--teal)' : colorDeCore(d.origen, slotDeCore))
+    .attr('stroke', d=> {
+      if(d.tipoVinculo==='cruzado') return 'var(--teal)';
+      // el color de la línea es el de la categoría del satélite al que llega -- antes
+      // usaba el color genérico del núcleo (todas las líneas del mismo color), ahora
+      // combina con el color real del nodo destino según su clasificación
+      const destino = nodesMap.get(d.destino);
+      if(destino && destino.categoriaHeredada && COLOR_POR_CATEGORIA[destino.categoriaHeredada]) return COLOR_POR_CATEGORIA[destino.categoriaHeredada];
+      return colorDeCore(d.origen, slotDeCore);
+    })
     .attr('stroke-width', d=>({1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
     .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null)
     .style('opacity', 0)
@@ -485,9 +486,9 @@ function renderGrafo(svgId='graph-svg'){
   if(simulacion) simulacion.stop();
   simulacion = d3.forceSimulation(nodes)
     .alpha(0.6).velocityDecay(0.35) // menos amortiguamiento que antes -- así el arrastre y el acomodo se sienten con inercia real, no seco/rígido
-    .force('orbita', forceOrbita(0.9))
+    .force('orbita', forceOrbita(1.8))
     .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+130 : radioNodo(d)+22).strength(0.95))
+    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+40 : radioNodo(d)+22).strength(0.95))
     .force('link', d3.forceLink(links).id(d=>d.id).distance(90).strength(0.05))
     .force('x', d3.forceX(width/2).strength(0.15))
     .force('y', d3.forceY(height/2).strength(0.22))
@@ -857,20 +858,14 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
         <div style="font-weight:700;font-size:13px;">${nodoClicado.rolEnTema||'Mencionado'}</div>
       </div>`;
     } else {
-      let nombreNucleoReal = nodoClicado.coreId, tipoTexto = 'Cercanía real documentada';
-      if(String(nodoClicado.coreId).startsWith('cat:')){
-        const [,idNucleoReal, nombreCategoria] = nodoClicado.coreId.split(':');
-        const nucleoReal = getActor(idNucleoReal);
-        nombreNucleoReal = nucleoReal ? nucleoReal.nombre : idNucleoReal;
-        tipoTexto = nombreCategoria;
-      } else {
-        const coreActor = getActor(nodoClicado.coreId);
-        nombreNucleoReal = coreActor ? coreActor.nombre : nodoClicado.coreId;
-      }
+      const coreActor = getActor(nodoClicado.coreId);
+      const nombreNucleoReal = coreActor ? coreActor.nombre : nodoClicado.coreId;
+      // se muestra la clasificación real (Familiar/Político/Operadores/Empresarial) --
+      // antes decía "Cercanía real documentada" genérico sin importar cuál fuera
+      const tipoTexto = nodoClicado.categoriaHeredada || 'Sin categoría asignada';
       contextoHTML = `<div class="contexto-tema-box">
         <div class="eyebrow">En la red de "${nombreNucleoReal}"</div>
         <div style="font-weight:700;font-size:13px;">${tipoTexto}</div>
-        <p style="font-size:10.5px;color:var(--ink-3);margin-top:2px;">${nodoClicado.esPolitica ? 'Vínculo por misma afiliación política/facción, no cercanía personal documentada.' : 'Cercanía documentada directamente.'}</p>
       </div>`;
     }
   }
@@ -879,9 +874,7 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
   if(modoRed==='grupo' && nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
     const satelites = nodesEnGrafo.filter(n=>{
       if(n.id===nodoClicado.id || n.esCentro) return false;
-      if(n.coreId===nodoClicado.coreId) return true;
-      if(String(n.coreId).startsWith('cat:'+nodoClicado.id+':')) return true;
-      return false;
+      return n.coreId===nodoClicado.coreId;
     });
     const f = calcularFortalezaGrupo(actor, satelites);
     if(f){
