@@ -415,7 +415,7 @@ function renderGrafo(svgId='graph-svg'){
       if(svgId==='notas-svg' && typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda();
     })
     .call(d3.drag()
-      .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.12).restart(); d.fx=d.x; d.fy=d.y; })
       .on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
       .on('end',(ev,d)=>{
         if(!ev.active) simulacion.alphaTarget(0);
@@ -485,10 +485,10 @@ function renderGrafo(svgId='graph-svg'){
 
   if(simulacion) simulacion.stop();
   simulacion = d3.forceSimulation(nodes)
-    .alpha(0.6).velocityDecay(0.35) // menos amortiguamiento que antes -- así el arrastre y el acomodo se sienten con inercia real, no seco/rígido
+    .alpha(0.5).velocityDecay(0.22) // amortiguamiento bajo de verdad -- que el reacomodo se sienta como flotar, no como pelearse el espacio de golpe
     .force('orbita', forceOrbita(1.8))
-    .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+40 : radioNodo(d)+22).strength(0.95))
+    .force('charge', d3.forceManyBody().strength(-45))
+    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+40 : radioNodo(d)+22).strength(0.6))
     .force('link', d3.forceLink(links).id(d=>d.id).distance(90).strength(0.05))
     .force('x', d3.forceX(width/2).strength(0.15))
     .force('y', d3.forceY(height/2).strength(0.22))
