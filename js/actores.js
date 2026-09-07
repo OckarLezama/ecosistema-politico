@@ -501,13 +501,13 @@ function renderGrafo(svgId='graph-svg'){
 
   if(simulacion) simulacion.stop();
   simulacion = d3.forceSimulation(nodes)
-    .alpha(0.6).velocityDecay(0.55)
+    .alpha(0.6).velocityDecay(0.35) // menos amortiguamiento que antes -- así el arrastre y el acomodo se sienten con inercia real, no seco/rígido
     .force('orbita', forceOrbita(0.9))
     .force('charge', d3.forceManyBody().strength(-90))
     .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+130 : radioNodo(d)+22).strength(0.95))
     .force('link', d3.forceLink(links).id(d=>d.id).distance(90).strength(0.05))
     .force('x', d3.forceX(width/2).strength(0.15))
-    .force('y', d3.forceY(height/2).strength(0.15))
+    .force('y', d3.forceY(height/2).strength(0.22))
     .on('tick', ()=>{
       const margen=30;
       nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
@@ -520,9 +520,13 @@ function renderGrafo(svgId='graph-svg'){
           const idsCategoriasDeEsteNucleo = nodes.filter(x=>x.esCategoria && x.coreId===n.coreId).map(x=>x.id);
           n.anguloPropio = (idsCategoriasDeEsteNucleo.indexOf(n.id) * 2.4) % (Math.PI*2);
         }
-        n.x = core.x + Math.cos(n.anguloPropio)*t;
-        n.y = core.y + Math.sin(n.anguloPropio)*t;
-        n.vx = 0; n.vy = 0;
+        // acercamiento SUAVE al punto correcto, no un salto directo -- antes esto ponía
+        // x/y de golpe y apagaba la velocidad cada instante, así que la categoría se veía
+        // "teletransportada" en vez de deslizarse. Ahora se mueve solo una fracción hacia
+        // el objetivo por cuadro, como un resorte suave, y conserva algo de inercia real.
+        const tx = core.x + Math.cos(n.anguloPropio)*t, ty = core.y + Math.sin(n.anguloPropio)*t;
+        n.x += (tx-n.x)*0.7; n.y += (ty-n.y)*0.7;
+        n.vx *= 0.3; n.vy *= 0.3; // se amortigua, no se apaga de golpe
       });
       link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
       guias.attr('cx',d=>d.core.x).attr('cy',d=>d.core.y);
