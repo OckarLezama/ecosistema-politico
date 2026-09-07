@@ -346,9 +346,24 @@ function renderGrafo(svgId='graph-svg'){
     if(!categoriasPorNucleo[n.coreId]) categoriasPorNucleo[n.coreId] = [];
     categoriasPorNucleo[n.coreId].push(n.id);
   });
+  // LAYOUT MEDIA LUNA: con 2+ núcleos activos, cada uno abre su red solo hacia su lado
+  // exterior (izquierda/derecha/abajo según su posición), no en círculo completo -- así
+  // nunca "invade" el espacio del núcleo vecino. Con 1 solo núcleo, sigue siendo círculo
+  // completo (no hay "lado exterior" que respetar si no hay otro núcleo al lado).
+  const ANGULO_POR_SLOT = { nucleo: Math.PI, cruce1: Math.PI/2, cruce2: 0 }; // izquierda, abajo, derecha
+  const ARCO_MEDIA_LUNA = Math.PI*0.78; // arco amplio pero sin llegar a invadir el lado contrario
   Object.entries(categoriasPorNucleo).forEach(([nucleoId, catIds])=>{
+    const nucleoNode = nodesMap.get(nucleoId);
+    const usarMediaLuna = coresElegidos.length>=2 && nucleoNode && ANGULO_POR_SLOT[nucleoNode.slot]!==undefined;
     catIds.forEach((catId,i)=>{
-      const angulo = (i/catIds.length)*Math.PI*2 - Math.PI/2;
+      let angulo;
+      if(usarMediaLuna){
+        const centro = ANGULO_POR_SLOT[nucleoNode.slot];
+        const t = catIds.length>1 ? (i/(catIds.length-1)-0.5) : 0; // -0.5..0.5
+        angulo = centro + t*ARCO_MEDIA_LUNA;
+      } else {
+        angulo = (i/catIds.length)*Math.PI*2 - Math.PI/2;
+      }
       nodesMap.get(catId).anguloAsignado = angulo;
     });
   });
