@@ -1,3 +1,6 @@
+/* MARCA-UNICA-VERIFICACION-OCKAR-20260903-2 -- si buscas este texto exacto en GitHub y lo
+   encuentras, este archivo SÍ es el que se está sirviendo. Si no lo encuentras, el archivo
+   que ves en pantalla NO es este. */
 /* ============================================================
    V2 — RED DE ACTORES (diseño nuevo, física de constelación heredada
    y ya validada de V1: cada satélite orbita su propio núcleo, radios
@@ -5,10 +8,48 @@
    ============================================================ */
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
-let analisisRedesIA = {}; // texto real de IA por núcleo, del mismo archivo que ya genera el robot 1 vez al día
-let ultimosNodosRenderizados = []; // referencia a los nodos del grafo actual, para poder llamar mostrarFicha() justo al seleccionar (sin esperar un clic)
+let analisisRedesIA = {};
+let ultimosNodosRenderizados = [];
+
+function convertirNegritasMarkdown(texto){
+  if(!texto) return texto;
+  return texto.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+}
+
+function mostrarSoloAnalisisRed(id){
+  const panel = document.getElementById('detail-panel');
+  const actor = getActor(id);
+  if(!actor){ panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; return; }
+  const analisis = analisisRedesIA[id];
+  if(analisis){
+    const resumen = convertirNegritasMarkdown(typeof analisis==='string' ? analisis : analisis.resumen);
+    const fortaleza = convertirNegritasMarkdown(typeof analisis==='object' ? analisis.fortaleza : null);
+    const debilidad = convertirNegritasMarkdown(typeof analisis==='object' ? analisis.debilidad : null);
+    panel.innerHTML = `
+      <div class="detail-name">Análisis de su red (IA)</div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 10px;">${resumen}</p>
+      ${fortaleza ? `<div class="contexto-tema-box" style="border-left-color:var(--riesgo-bajo);margin-bottom:6px;">
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-weight:700;font-size:13px;">Fortaleza</span>
+          <span style="background:var(--riesgo-bajo);color:#0E1116;font-family:var(--f-mono);font-weight:700;font-size:9px;padding:1px 7px;border-radius:99px;">Capacidad real</span>
+        </div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${fortaleza}</p>
+      </div>` : ''}
+      ${debilidad ? `<div class="contexto-tema-box" style="border-left-color:var(--riesgo-alto);">
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-weight:700;font-size:13px;">Debilidad</span>
+          <span style="background:var(--riesgo-alto);color:#0E1116;font-family:var(--f-mono);font-weight:700;font-size:9px;padding:1px 7px;border-radius:99px;">Punto expuesto</span>
+        </div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${debilidad}</p>
+      </div>` : ''}
+      <p style="font-size:10.5px;color:var(--ink-3);margin-top:10px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>
+    `;
+  } else {
+    panel.innerHTML = `<div class="detail-empty"><p style="font-size:11.5px;">Esta red aún no tiene análisis de IA (solo disponible para núcleos ya clasificados por categoría).</p></div><p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>`;
+  }
+}
 fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{ if(d && d.lectura && d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes; }).catch(()=>{});
-let redPersonalActiva = true, redPoliticaActiva = true; // ya no hay checks -- todo se muestra siempre, se distingue por categoría/tipo al hacer clic
+let redPersonalActiva = true, redPoliticaActiva = true;
 let simulacion = null;
 let modoRed = 'grupo';
 let actorUnicoSeleccionado = null;
@@ -18,16 +59,15 @@ const COLOR_POR_SLOT = { nucleo:'var(--familia-nucleo)', cruce1:'var(--familia-c
 function initRedActores(){
   poblarSelectores();
   renderGrafo();
-
-  // (ya no hay checks de Confianza/Política -- ambas redes siempre se muestran juntas,
-  // la distinción de tipo se ve al hacer clic en cada quién, en el panel derecho)
+  setTimeout(asegurarPanelDetalle, 50);
+  setTimeout(asegurarPanelDetalle, 500);
 
   ['nucleo','cruce1','cruce2'].forEach(slot=>{
     document.getElementById(slot+'-select').addEventListener('change', (e)=>{
       seleccion[slot] = e.target.value || null;
       const coresElegidos = ['nucleo','cruce1','cruce2'].map(s=>seleccion[s]).filter(Boolean);
       if(coresElegidos.length>=2){ renderGrafo(); mostrarVinculosEntreActores(coresElegidos); }
-      else if(coresElegidos.length===1){ renderGrafo(); mostrarFicha(coresElegidos[0], {esCentro:true}, ultimosNodosRenderizados); }
+      else if(coresElegidos.length===1){ renderGrafo(); mostrarSoloAnalisisRed(coresElegidos[0]); }
       else { document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>'; renderGrafo(); }
       poblarSelectores();
     });
@@ -51,7 +91,7 @@ function initRedActores(){
       actorUnicoSeleccionado = null;
       document.getElementById('controles-grupo').style.display = modoRed==='actor' ? 'none' : 'flex';
       document.getElementById('controles-actor').style.display = modoRed==='actor' ? 'block' : 'none';
-      document.getElementById('leyenda-riesgo-grafo').style.display = modoRed==='actor' ? 'none' : 'flex'; // en modo Actor no hay riesgo/núcleo/cruces que explicar
+      document.getElementById('leyenda-riesgo-grafo').style.display = modoRed==='actor' ? 'none' : 'flex';
       document.getElementById('detail-panel').innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
       poblarSelectores();
       renderGrafo();
@@ -70,9 +110,6 @@ function initRedActores(){
 }
 
 function tieneRedDocumentada(actorId){
-  // solo cuenta si el actor ES núcleo de su propia red (tiene satélites propios) -- ya no
-  // basta con aparecer como satélite de alguien más, porque al seleccionarlo no habría
-  // nada propio que mostrar
   return redPersonalDe(actorId).length>0;
 }
 
@@ -106,20 +143,15 @@ function poblarSelectores(){
 function colorDeCore(coreId, slotDeCore){
   return COLOR_POR_SLOT[slotDeCore[coreId]] || 'var(--gris-2)';
 }
-// en modo Notas (agenda), el color del nodo satélite es por ROL (investigado/mencionado/etc.),
-// no por familia — así se distingue de un vistazo, no solo con el hover
 const COLOR_POR_CATEGORIA = {
   'Familiar':'#F46883', 'Político/Institucional':'#5B7FDB',
   'Operadores/Confianza':'#E0A85C', 'Empresarial':'#BDB58D',
 };
-// dentro de Político/Institucional, un tono distinto para quien SÍ está en el gabinete
-// (secretario, fiscal, consejero jurídico, director general) vs. quien no
 function esGabinete(actor){
   return /secretari|fiscal general|consejer[ao] jur[ií]dic|director general|titular de la/i.test(actor.cargo||'');
 }
 function colorNodoReal(d, svgId, slotDeCore){
   if(d.categoriaHeredada==='Político/Institucional' && !d.esCategoria){
-    // dentro de la misma categoría, tono más claro/oscuro según si está en el gabinete o no
     return esGabinete(d) ? '#5B7FDB' : '#8FA3E8';
   }
   if(d.categoriaHeredada && COLOR_POR_CATEGORIA[d.categoriaHeredada]) return COLOR_POR_CATEGORIA[d.categoriaHeredada];
@@ -132,10 +164,36 @@ function colorNodoReal(d, svgId, slotDeCore){
 function opacidadPorNivel(nivel){ return {0:1,1:0.85,2:0.55,3:0.35}[nivel] ?? 0.5; }
 function radioNodo(d){ if(d.esCentro) return 26; if(d.esCategoria) return 15; return {1:12,2:10,3:8}[d.nivelAnillo]||7; }
 
+function asegurarPanelDetalle(){
+  let panel = document.getElementById('detail-panel');
+  if(!panel){
+    const layout = document.querySelector('.actores-layout');
+    if(!layout) return null;
+    panel = document.createElement('aside');
+    panel.className = 'detail-card';
+    panel.id = 'detail-panel';
+    panel.innerHTML = '<div class="detail-empty">Selecciona un actor para ver su red.</div>';
+    layout.appendChild(panel);
+  }
+  posicionarPanelDetalle();
+  return panel;
+}
+
+function posicionarPanelDetalle(){
+  const panel = document.getElementById('detail-panel');
+  const graphCard = document.querySelector('#panel-actores .graph-card');
+  if(!panel || !graphCard || window.innerWidth<=880) return;
+  const rect = graphCard.getBoundingClientRect();
+  panel.style.top = rect.top+'px';
+  panel.style.left = (rect.right+16)+'px';
+}
+window.addEventListener('scroll', posicionarPanelDetalle);
+window.addEventListener('resize', posicionarPanelDetalle);
+
 function renderGrafo(svgId='graph-svg'){
+  if(svgId==='graph-svg') asegurarPanelDetalle();
   const svgEl = document.getElementById(svgId);
 
-  // ---- determinar los "cores" elegidos según el modo ----
   let coresElegidos = [];
   if(modoRed==='actor'){
     coresElegidos = actorUnicoSeleccionado ? [actorUnicoSeleccionado] : [];
@@ -165,10 +223,9 @@ function renderGrafo(svgId='graph-svg'){
   if(empty) empty.style.display='none';
   svgEl.innerHTML='';
 
-  const width = (svgEl.clientWidth>100 ? svgEl.clientWidth : svgEl.parentElement.clientWidth) || 900, height = 560;
+  const anchoReal = svgEl.parentElement.getBoundingClientRect().width;
+  const width = (anchoReal>100 ? anchoReal : svgEl.clientWidth) || 900, height = 560;
 
-  // ---- construcción de nodos: distinta según el modo, pero misma forma de datos para reusar
-  // toda la física y el dibujo que sigue abajo sin duplicar código ----
   const nodesMap = new Map();
   const linksBase = [];
   const slotDeCore = {};
@@ -183,10 +240,6 @@ function renderGrafo(svgId='graph-svg'){
     });
     coresElegidos.forEach((coreId, idx)=>{
       const slot = ['nucleo','cruce1','cruce2'][idx];
-      // el checkbox SOLO controla al núcleo — Actor 2 y 3 siempre muestran ambas redes,
-      // porque su función es revelar cómo se conectan al núcleo, por cualquier canal
-      // el switch ahora aplica igual a los 3 (núcleo, Actor 2, Actor 3) — antes solo controlaba
-      // al núcleo; así se puede ver de verdad si 2-3 actores cruzan por confianza o política
       const usarPersonal = redPersonalActiva;
       const usarPolitica = redPoliticaActiva;
       if(usarPersonal){
@@ -195,50 +248,27 @@ function renderGrafo(svgId='graph-svg'){
           if(!sat) return;
           const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
           if(yaEsNucleo){ linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'}); return; }
-          if(r.categoria){
-            // nodo de CATEGORÍA como hub intermedio (ej. Andy → Familia → AMLO, hermanos, tíos)
-            // -- solo se activa para quien tenga categoría puesta en redes_personales.csv,
-            // el resto de núcleos sigue orbitando directo como siempre (sin romper nada)
-            const idCategoria = 'cat:'+coreId+':'+r.categoria;
-            if(!nodesMap.has(idCategoria)){
-              nodesMap.set(idCategoria, {id:idCategoria, nombre:r.categoria, nivelAnillo:1, coreId, slot, esCategoria:true, iniciales:r.categoria.slice(0,2).toUpperCase()});
-              linksBase.push({origen:coreId, destino:idCategoria, nivelDestino:1, slot, tipoVinculo:'personal'});
-            }
-            if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:idCategoria, slot, esSateliteDeCategoria:true, categoriaHeredada:r.categoria});
-            linksBase.push({origen:idCategoria, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
-            return;
-          }
-          if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot});
+          // el satélite orbita DIRECTO al núcleo, como en el diseño original -- la
+          // categoría ya no crea un nodo intermedio (eso causaba que la física se
+          // volviera rígida e impredecible); ahora la categoría solo define el COLOR
+          // del satélite (categoriaHeredada), la física vuelve a ser simple y probada
+          if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot, categoriaHeredada:r.categoria||undefined});
           linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
         });
       }
       if(usarPolitica){
         const coreActor = getActor(coreId);
         if(coreActor && coreActor.grupo){
-          // se fusiona con el mismo hub de "Político/Institucional" -- ya no es una
-          // categoría aparte ("Compañeros de partido" se eliminó, según se definió)
-          // máximo 8 para no saturar el grafo con partidos grandes; se excluyen
-          // gobernadores (comparten partido, pero no son círculo personal directo)
           const candidatosPolitica = ECOSISTEMA.actores.filter(a=>a.grupo===coreActor.grupo && a.id!==coreId && !/gobernador/i.test(a.cargo||'') && !nodesMap.has(a.id)).slice(0,8);
-          if(candidatosPolitica.length){
-            const idCategoriaPolitica = 'cat:'+coreId+':Político/Institucional';
-            if(!nodesMap.has(idCategoriaPolitica)){
-              nodesMap.set(idCategoriaPolitica, {id:idCategoriaPolitica, nombre:'Político/Institucional', nivelAnillo:1, coreId, slot, esCategoria:true});
-              linksBase.push({origen:coreId, destino:idCategoriaPolitica, nivelDestino:1, slot, tipoVinculo:'politica'});
-            }
-            candidatosPolitica.forEach(sat=>{
-              const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
-              if(yaEsNucleo){ linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
-              if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId:idCategoriaPolitica, slot, esPolitica:true, categoriaHeredada:'Político/Institucional'});
-              linksBase.push({origen:idCategoriaPolitica, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
-            });
-          }
+          candidatosPolitica.forEach(sat=>{
+            const yaEsNucleo = nodesMap.has(sat.id) && nodesMap.get(sat.id).esCentro;
+            if(yaEsNucleo){ linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'}); return; }
+            if(!nodesMap.has(sat.id)) nodesMap.set(sat.id, {...sat, nivelAnillo:2, coreId, slot, esPolitica:true, categoriaHeredada:'Político/Institucional'});
+            linksBase.push({origen:coreId, destino:sat.id, nivelDestino:2, slot, tipoVinculo:'politica'});
+          });
         }
       }
     });
-    // enlaces CRUZADOS entre satélites de distintos núcleos (ej. Harfuch, satélite de
-    // Sheinbaum, con su propio vínculo directo a Terrance Cole, satélite de Trump) -- antes
-    // solo se mostraban como texto en el panel derecho, nunca como línea real en el grafo
     if(redPersonalActiva && coresElegidos.length>=2){
       const vistosCruce = new Set();
       for(let i=0;i<coresElegidos.length;i++){
@@ -295,39 +325,39 @@ function renderGrafo(svgId='graph-svg'){
   const nodes = [...nodesMap.values()];
   if(svgId==='graph-svg') ultimosNodosRenderizados = nodes;
 
-  // posición inicial: todos arrancan justo en el centro de su núcleo (no dispersos al azar)
-  // -- así el grafo "crece" suave desde el centro, en vez de aparecer todo de golpe y saltar
   const nucleoPrincipal = nodes.find(n=>n.esCentro) || {x:width/2, y:height/2};
   nodes.forEach(n=>{ if(!n.esCentro && n.x===undefined){ n.x = nucleoPrincipal.x; n.y = nucleoPrincipal.y; } });
 
-  // ángulo fijo por categoría -- cada categoría (Familia, Empresarial, Institucional, etc.)
-  // recibe su propio sector alrededor del núcleo, y sus satélites se reparten DENTRO de ese
-  // sector nada más, nunca invadiendo el de otra categoría -- así se evitan los cruces
-  const categoriasPorNucleo = {};
-  nodes.filter(n=>n.esCategoria).forEach(n=>{
-    if(!categoriasPorNucleo[n.coreId]) categoriasPorNucleo[n.coreId] = [];
-    categoriasPorNucleo[n.coreId].push(n.id);
+  // media luna a nivel de SATÉLITE directo (ya no hay nodo de categoría intermedio) --
+  // se agrupan por categoría dentro del arco que le toca a su núcleo, para que sigan
+  // viéndose ordenados por tipo aunque ya no haya un "hub" visual de por medio
+  const ANGULO_POR_SLOT = { nucleo: Math.PI, cruce1: Math.PI/2, cruce2: 0 }; // izquierda, abajo, derecha
+  const ARCO_MEDIA_LUNA = Math.PI*0.78;
+  const gruposPorNucleoYCategoria = {};
+  nodes.filter(n=>!n.esCentro && n.categoriaHeredada).forEach(n=>{
+    const clave = n.coreId+'|'+n.categoriaHeredada;
+    if(!gruposPorNucleoYCategoria[clave]) gruposPorNucleoYCategoria[clave] = [];
+    gruposPorNucleoYCategoria[clave].push(n.id);
   });
-  Object.entries(categoriasPorNucleo).forEach(([nucleoId, catIds])=>{
-    catIds.forEach((catId,i)=>{
-      const angulo = (i/catIds.length)*Math.PI*2 - Math.PI/2;
-      nodesMap.get(catId).anguloAsignado = angulo;
-    });
+  const categoriasDeCadaNucleo = {};
+  Object.keys(gruposPorNucleoYCategoria).forEach(clave=>{
+    const [nucleoId] = clave.split('|');
+    if(!categoriasDeCadaNucleo[nucleoId]) categoriasDeCadaNucleo[nucleoId] = [];
+    categoriasDeCadaNucleo[nucleoId].push(clave);
   });
-  // los satélites heredan el ángulo de su categoría, con un pequeño abanico entre ellos
-  // (no todos exactamente en la misma línea, pero sin salirse del sector de su categoría)
-  const satelitesPorCategoria = {};
-  nodes.filter(n=>!n.esCentro && !n.esCategoria && String(n.coreId).startsWith('cat:')).forEach(n=>{
-    if(!satelitesPorCategoria[n.coreId]) satelitesPorCategoria[n.coreId] = [];
-    satelitesPorCategoria[n.coreId].push(n.id);
-  });
-  Object.entries(satelitesPorCategoria).forEach(([catId, satIds])=>{
-    const catNode = nodesMap.get(catId);
-    if(!catNode) return;
-    const ABANICO = Math.PI/5; // sector angosto dentro del sector de la categoría, no todo el círculo
-    satIds.forEach((satId,i)=>{
-      const offset = satIds.length>1 ? (i/(satIds.length-1)-0.5)*ABANICO : 0;
-      nodesMap.get(satId).anguloAsignado = catNode.anguloAsignado + offset;
+  Object.entries(categoriasDeCadaNucleo).forEach(([nucleoId, claves])=>{
+    const nucleoNode = nodesMap.get(nucleoId);
+    const usarMediaLuna = coresElegidos.length>=2 && nucleoNode && ANGULO_POR_SLOT[nucleoNode.slot]!==undefined;
+    claves.forEach((clave, iCat)=>{
+      const idsDeEstaCategoria = gruposPorNucleoYCategoria[clave];
+      const centroCategoria = usarMediaLuna
+        ? ANGULO_POR_SLOT[nucleoNode.slot] + (claves.length>1 ? (iCat/(claves.length-1)-0.5) : 0)*ARCO_MEDIA_LUNA
+        : (iCat/claves.length)*Math.PI*2;
+      idsDeEstaCategoria.forEach((satId,i)=>{
+        const ABANICO = Math.PI/6;
+        const offset = idsDeEstaCategoria.length>1 ? (i/(idsDeEstaCategoria.length-1)-0.5)*ABANICO : 0;
+        nodesMap.get(satId).anguloAsignado = centroCategoria + offset;
+      });
     });
   });
   const nodeIds = new Set(nodes.map(n=>n.id));
@@ -350,9 +380,17 @@ function renderGrafo(svgId='graph-svg'){
   const link = container.selectAll('line.link-line')
     .data(links).join('line')
     .attr('class','link-line')
-    .attr('stroke', d=> d.tipoVinculo==='cruzado' ? 'var(--teal)' : colorDeCore(d.origen, slotDeCore))
+    .attr('stroke', d=> {
+      if(d.tipoVinculo==='cruzado') return 'var(--teal)';
+      // el color de la línea es el de la categoría del satélite al que llega -- antes
+      // usaba el color genérico del núcleo (todas las líneas del mismo color), ahora
+      // combina con el color real del nodo destino según su clasificación
+      const destino = nodesMap.get(d.destino);
+      if(destino && destino.categoriaHeredada && COLOR_POR_CATEGORIA[destino.categoriaHeredada]) return COLOR_POR_CATEGORIA[destino.categoriaHeredada];
+      return colorDeCore(d.origen, slotDeCore);
+    })
     .attr('stroke-width', d=>({1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
-    .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null) // punteada = red política (mismo grupo/facción), sólida = cercanía real documentada
+    .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null)
     .style('opacity', 0)
     .call(sel=> sel.transition().duration(500).delay(150).style('opacity', d=> d.tipoVinculo==='cruzado' ? 0.9 : opacidadPorNivel(d.nivelDestino)*0.8));
 
@@ -362,7 +400,7 @@ function renderGrafo(svgId='graph-svg'){
     .call(sel=> sel.transition().duration(450).delay((d,i)=>d.esCentro?0:i*8).style('opacity',1))
     .on('click', (ev,d)=>{
       if(d.esTema){ if(typeof abrirFichaTema==='function') abrirFichaTema(d.id); return; }
-      if(svgId==='notas-svg') return; // en Notas, los actores solo tienen hover, no ficha lateral (no existe ese panel en Agenda)
+      if(svgId==='notas-svg') return;
       mostrarFicha(d.id, d, nodes);
     })
     .on('mouseenter', function(ev,d){
@@ -377,9 +415,14 @@ function renderGrafo(svgId='graph-svg'){
       if(svgId==='notas-svg' && typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda();
     })
     .call(d3.drag()
-      .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.12).restart(); d.fx=d.x; d.fy=d.y; })
       .on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
-      .on('end',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0); d.fx=null; d.fy=null; }));
+      .on('end',(ev,d)=>{
+        if(!ev.active) simulacion.alphaTarget(0);
+        // los núcleos se QUEDAN donde el usuario los suelta -- los satélites se sueltan
+        // de vuelta a la física (siguen a su núcleo, no tiene sentido fijarlos aparte)
+        if(!d.esCentro){ d.fx=null; d.fy=null; }
+      }));
 
   node.filter(d=>d.esCentro).append('circle')
     .attr('r', d=>radioNodo(d)+16).attr('fill', d=>colorDeCore(d.coreId, slotDeCore))
@@ -400,13 +443,11 @@ function renderGrafo(svgId='graph-svg'){
     .attr('cx', d=>-radioNodo(d)*0.7).attr('cy', d=>-radioNodo(d)*0.7)
     .attr('fill', d=>colorRiesgo(d.nivel_riesgo)).attr('stroke','#fff').attr('stroke-width',1.3);
 
-  // insignia de figura Nivel A apareciendo dentro de la red de otro núcleo (ej. Sheinbaum satélite en la red de AMLO)
   node.filter(d => !d.esCentro && d.nucleo === 'A')
     .append('text').attr('x',0).attr('y', d=>-radioNodo(d)-6).attr('text-anchor','middle').attr('font-size','11px').text('★');
 
-  // indicador de "este actor tiene temas de agenda asociados" — se había quedado en V1 sin portar
   const idsConTemas = new Set(ECOSISTEMA.temaActores.map(ta=>ta.actor_id));
-  node.filter(d => idsConTemas.has(d.id) && svgId!=='notas-svg') // en Notas todos los satélites ya están ligados al tema, el punto no aporta nada ahí
+  node.filter(d => idsConTemas.has(d.id) && svgId!=='notas-svg')
     .append('circle').attr('r',3.5).attr('cx', d=>radioNodo(d)*0.7).attr('cy', d=>-radioNodo(d)*0.7)
     .attr('fill','var(--ink-1)').attr('stroke','#fff').attr('stroke-width',1)
     .append('title').text('Tiene temas de agenda asociados');
@@ -415,24 +456,20 @@ function renderGrafo(svgId='graph-svg'){
     .attr('dy', d=>radioNodo(d)+12).attr('text-anchor','middle')
     .attr('font-size', d=>d.esCentro?'11px':'9.5px').attr('font-weight', d=>d.esCentro?'700':'400')
     .text(d=>{
-      // el centro en Notas es el NOMBRE COMPLETO de un tema, no una persona — recortar a 2
-      // palabras lo deja sin sentido ("Acusación de"); aquí se recorta por caracteres, más largo
       if(d.esCentro && svgId==='notas-svg') return d.nombre.length>34 ? d.nombre.slice(0,32)+'…' : d.nombre;
       return d.nombre.split(' ').slice(0,2).join(' ');
     })
-    .append('title').text(d=> (d.esCentro && svgId==='notas-svg') ? d.nombre : null); // nombre completo real en hover si se recortó
+    .append('title').text(d=> (d.esCentro && svgId==='notas-svg') ? d.nombre : null);
 
   const nodesById = {}; nodes.forEach(n=>nodesById[n.id]=n);
   function forceOrbita(strength){
     let ref;
     const f=(alpha)=>{ ref.forEach(n=>{
       if(n.esCentro) return;
+      if(n.fx!=null) return; // el usuario ya lo movió a mano -- no compite con la física
       const core=nodesById[n.coreId]; if(!core) return;
       const t=RADIOS_ANILLO[n.nivelAnillo]||130;
       if(n.anguloAsignado!==undefined){
-        // con ángulo fijo asignado (por categoría): se jala directo al punto exacto del
-        // sector que le toca, no solo a la distancia -- así no puede girar y cruzarse
-        // con el sector de otra categoría
         const tx = core.x + Math.cos(n.anguloAsignado)*t, ty = core.y + Math.sin(n.anguloAsignado)*t;
         n.vx += (tx-n.x)*alpha*strength; n.vy += (ty-n.y)*alpha*strength;
         return;
@@ -447,13 +484,13 @@ function renderGrafo(svgId='graph-svg'){
 
   if(simulacion) simulacion.stop();
   simulacion = d3.forceSimulation(nodes)
-    .alpha(0.6).velocityDecay(0.55) // arranque más calmado (menos "salto") -- ahora los nodos ya empiezan centrados, no hace falta tanta energía inicial
-    .force('orbita', forceOrbita(0.9))
-    .force('charge', d3.forceManyBody().strength(-90))
-    .force('collide', d3.forceCollide().radius(d=>radioNodo(d)+22).strength(0.95))
-    .force('link', d3.forceLink(links).id(d=>d.id).distance(220).strength(0.05))
+    .alpha(0.5).velocityDecay(0.22) // amortiguamiento bajo de verdad -- que el reacomodo se sienta como flotar, no como pelearse el espacio de golpe
+    .force('orbita', forceOrbita(1.8))
+    .force('charge', d3.forceManyBody().strength(-45))
+    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+40 : radioNodo(d)+22).strength(0.6))
+    .force('link', d3.forceLink(links).id(d=>d.id).distance(90).strength(0.05))
     .force('x', d3.forceX(width/2).strength(0.15))
-    .force('y', d3.forceY(height/2).strength(0.15))
+    .force('y', d3.forceY(height/2).strength(0.22))
     .on('tick', ()=>{
       const margen=30;
       nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
@@ -648,7 +685,7 @@ function abrirFichaActorCompleta(id){
   const actor = getActor(id);
   if(!actor) return;
   const color = colorRiesgo(actor.nivel_riesgo);
-  const red = redPersonalDe(id); // red de cercanía real (redes_personales.csv) — distinta del campo 'grupo' (facción/afiliación)
+  const red = redPersonalDe(id);
 
   let modal = document.getElementById('ficha-actor-modal');
   if(!modal){
@@ -729,7 +766,7 @@ function mostrarTemasPorRolDeActor(actorId){
           <span style="font-weight:700;font-size:13px;">${ctx.rol}</span>
           <span style="background:${colorImp};color:#0E1116;font-family:var(--f-mono);font-weight:700;font-size:9px;padding:1px 7px;border-radius:99px;">Impacto ${nivelImp}</span>
         </div>
-        ${ctx.detalle ? `<p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${ctx.detalle}</p>` : ''}
+        ${ctx.detalle ? `<p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${convertirNegritasMarkdown(ctx.detalle)}</p>` : ''}
       </div>`;
     }).join('');
   }
@@ -748,18 +785,10 @@ function mostrarVinculosEntreActores(coresElegidos){
   const temasDeCada = coresElegidos.map(id=> new Set(ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===id).map(ta=>ta.tema_id)));
   const idsTemasCompartidos = temasDeCada.length ? [...temasDeCada[0]].filter(id=> temasDeCada.every(s=>s.has(id))) : [];
 
-  // vínculos CRUZADOS: un satélite de un núcleo puede tener su propio vínculo directo
-  // (en redes_personales.csv) con el otro núcleo o con un satélite del otro núcleo -- esto
-  // antes nunca se revisaba, por eso Harfuch-Cole/Johnson (satélites de Sheinbaum y Trump)
-  // no aparecían al comparar Sheinbaum vs Trump como núcleos
   const vinculosCruzados = [];
   for(let i=0;i<coresElegidos.length;i++){
     for(let j=0;j<coresElegidos.length;j++){
       if(i===j) continue;
-      // el núcleo A + sus satélites -- EXCLUYE a los otros núcleos comparados, aunque
-      // aparezcan como "satélite" de A (ej. Sheinbaum→Trump es un vínculo directo, no hace
-      // a Trump parte del "equipo" de Sheinbaum) -- si no se excluye, el equipo del otro
-      // núcleo termina comparándose contra sí mismo y genera vínculos falsos sin sentido
       const grupoA = [coresElegidos[i], ...redesDeCada[i]].filter(id=> id===coresElegidos[i] || !coresElegidos.includes(id));
       const grupoBSet = new Set([coresElegidos[j], ...redesDeCada[j]]);
       grupoA.forEach(idPersonaA=>{
@@ -771,7 +800,6 @@ function mostrarVinculosEntreActores(coresElegidos){
       });
     }
   }
-  // quita duplicados (A->B y B->A cuentan como el mismo vínculo real)
   const vinculosCruzadosUnicos = [];
   const vistos = new Set();
   vinculosCruzados.forEach(v=>{
@@ -781,15 +809,16 @@ function mostrarVinculosEntreActores(coresElegidos){
 
   let html = `<div class="eyebrow">Vínculos entre ${nombresCortos.join(' y ')}</div>`;
   if(directas.length){
-    html += directas.map(c=> `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--familia-nucleo)">Vínculo directo · ${c.tipo_vinculo} (${c.fuerza})</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${c.descripcion}</p></div>`).join('');
+    html += directas.map(c=> `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--familia-nucleo)">Vínculo directo · ${c.tipo_vinculo} (${c.fuerza})</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${convertirNegritasMarkdown(c.descripcion)}</p></div>`).join('');
   }
   if(vinculosCruzadosUnicos.length){
     if(vinculosCruzadosUnicos.length>3){
-      // con muchos vínculos, no se listan todos -- se resume el número y se destacan solo
-      // los más fuertes (nivel 1), que es lo que de verdad importa para leer la red rápido
-      const masFuertes = [...vinculosCruzadosUnicos].sort((a,b)=>Number(a.nivel||3)-Number(b.nivel||3)).slice(0,2);
+      const vistos2 = new Set();
+      const diversos = [...vinculosCruzadosUnicos].sort((a,b)=>Number(a.nivel||3)-Number(b.nivel||3))
+        .filter(v=>{ if(vistos2.has(v.desde)) return false; vistos2.add(v.desde); return true; })
+        .slice(0,3);
       html += `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--teal)">${vinculosCruzadosUnicos.length} vínculos cruzados detectados entre sus redes</div>`;
-      html += masFuertes.map(v=>{
+      html += diversos.map(v=>{
         const desde = getActor(v.desde), hacia = getActor(v.hacia);
         return `<p style="font-size:12px;color:var(--ink-2);margin-top:3px;">Destaca: <strong>${desde?desde.nombre:v.desde}</strong> ↔ <strong>${hacia?hacia.nombre:v.hacia}</strong> — ${v.etiqueta}</p>`;
       }).join('');
@@ -819,7 +848,6 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
   const panel = document.getElementById('detail-panel');
   const color = colorRiesgo(actor.nivel_riesgo);
 
-  // contexto "por qué aparece" — interpretación distinta según el modo, no un texto genérico
   let contextoHTML = '';
   if(nodoClicado && !nodoClicado.esCentro && nodoClicado.coreId){
     if(modoRed==='agenda'){
@@ -829,34 +857,23 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
         <div style="font-weight:700;font-size:13px;">${nodoClicado.rolEnTema||'Mencionado'}</div>
       </div>`;
     } else {
-      let nombreNucleoReal = nodoClicado.coreId, tipoTexto = 'Cercanía real documentada';
-      if(String(nodoClicado.coreId).startsWith('cat:')){
-        const [,idNucleoReal, nombreCategoria] = nodoClicado.coreId.split(':');
-        const nucleoReal = getActor(idNucleoReal);
-        nombreNucleoReal = nucleoReal ? nucleoReal.nombre : idNucleoReal;
-        tipoTexto = nombreCategoria; // "Familia", "Empresarial", "Político-Institucional", "Misma facción"
-      } else {
-        const coreActor = getActor(nodoClicado.coreId);
-        nombreNucleoReal = coreActor ? coreActor.nombre : nodoClicado.coreId;
-      }
+      const coreActor = getActor(nodoClicado.coreId);
+      const nombreNucleoReal = coreActor ? coreActor.nombre : nodoClicado.coreId;
+      // se muestra la clasificación real (Familiar/Político/Operadores/Empresarial) --
+      // antes decía "Cercanía real documentada" genérico sin importar cuál fuera
+      const tipoTexto = nodoClicado.categoriaHeredada || 'Sin categoría asignada';
       contextoHTML = `<div class="contexto-tema-box">
         <div class="eyebrow">En la red de "${nombreNucleoReal}"</div>
         <div style="font-weight:700;font-size:13px;">${tipoTexto}</div>
-        <p style="font-size:10.5px;color:var(--ink-3);margin-top:2px;">${nodoClicado.esPolitica ? 'Vínculo por misma afiliación política/facción, no cercanía personal documentada.' : 'Cercanía documentada directamente.'}</p>
       </div>`;
     }
   }
 
   let fortalezaHTML = '';
   if(modoRed==='grupo' && nodoClicado && nodoClicado.esCentro && nodesEnGrafo){
-    // cuenta tanto satélites directos como los que cuelgan de un nodo de categoría
-    // (ej. Andy → Familia → AMLO) -- si no, "fortaleza del grupo" solo vería a quien
-    // no tiene categoría asignada, subestimando la red real
     const satelites = nodesEnGrafo.filter(n=>{
       if(n.id===nodoClicado.id || n.esCentro) return false;
-      if(n.coreId===nodoClicado.coreId) return true;
-      if(String(n.coreId).startsWith('cat:'+nodoClicado.id+':')) return true;
-      return false;
+      return n.coreId===nodoClicado.coreId;
     });
     const f = calcularFortalezaGrupo(actor, satelites);
     if(f){
@@ -867,17 +884,12 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
     }
   }
 
-  const analisisIA = (nodoClicado && nodoClicado.esCentro && analisisRedesIA[id])
-    ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);"><div class="eyebrow" style="color:var(--teal);">Análisis de su red (IA)</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${analisisRedesIA[id]}</p></div>`
-    : '';
-
   panel.innerHTML = `
     <div class="detail-avatar" style="background:${color}">${actor.iniciales||'?'}</div>
     <div class="detail-name">${actor.nombre}</div>
     <div class="detail-cargo">${actor.cargo}</div>
     ${actor.descripcion ? `<p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 8px;">${actor.descripcion}</p>` : ''}
     ${contextoHTML}
-    ${analisisIA}
     <div class="detail-row"><span class="k">Riesgo</span><span class="v"><span class="riesgo-badge" style="background:${color}22;color:${color}">${(actor.nivel_riesgo||'').toUpperCase()}</span></span></div>
     <div class="detail-row"><span class="k">Influencia</span><span class="v">${actor.nivel_influencia}/10</span></div>
     <div class="detail-row"><span class="k">Grupo</span><span class="v">${actor.grupo}</span></div>
@@ -887,3 +899,6 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
 
 document.addEventListener('ecosistema:datos-listos', initRedActores);
 window.addEventListener('resize', ()=>{ if(ECOSISTEMA.ready && (seleccion.nucleo||seleccion.cruce1||seleccion.cruce2)) renderGrafo(); });
+window.addEventListener('load', ()=>{
+  if(ECOSISTEMA.ready && document.getElementById('panel-actores')?.classList.contains('active') && (seleccion.nucleo||seleccion.cruce1||seleccion.cruce2)) renderGrafo();
+});
