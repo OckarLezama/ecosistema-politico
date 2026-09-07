@@ -5,6 +5,7 @@
    ============================================================ */
 
 let eventosHoyCache = [];
+let pulsoDelDiaCache = null;
 
 // agrupa notas que hablan del MISMO hecho real (aunque vengan de fuentes/titulares
 // distintos) -- Jaccard sobre palabras significativas, mismo principio que ya usa el robot
@@ -27,6 +28,16 @@ function agruparPorHechoReal(eventos){
     else grupos.push([ev]);
   });
   return grupos;
+}
+
+// el "pulso del día" -- análisis real de IA sobre el ritmo y el TIPO de notas del momento,
+// generado por el mismo robot que ya corre cada rato -- se lee del mismo archivo que ya
+// usa Red de Actores para su análisis, en una clave nueva y separada
+function cargarPulsoDelDia(){
+  return fetch('data/analisis_ia.json?t='+Date.now())
+    .then(r=>r.ok?r.json():null)
+    .then(d=>{ pulsoDelDiaCache = (d && d.lectura && d.lectura.pulso_del_dia) ? d.lectura.pulso_del_dia : null; return pulsoDelDiaCache; })
+    .catch(()=>null);
 }
 
 function renderPortada(){
@@ -70,7 +81,6 @@ function renderPortada(){
   // así es imposible que las tarjetas se vean detrás, sin depender de position:sticky
   encabezado.innerHTML = `
       <div style="margin-bottom:10px;">
-        <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
         <div id="portada-dispersion" style="margin-bottom:10px;width:100%;"></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
           ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
@@ -86,7 +96,8 @@ function renderPortada(){
       </div>
       <input id="portada-buscador" type="text" placeholder="Buscar en las notas o actores de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);">
   `;
-  dibujarDispersionHoraria(eventosHoyCache);
+  cargarPulsoDelDia().then(()=> dibujarDispersionHoraria(eventosHoyCache, fechaTexto));
+  dibujarDispersionHoraria(eventosHoyCache, fechaTexto); // primer dibujo inmediato (sin esperar el fetch), se vuelve a dibujar arriba en cuanto llega el pulso
   cont.innerHTML = `
     <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding-top:14px;"></div>
   `;
@@ -110,7 +121,7 @@ function renderPortada(){
         b.style.color = (b.dataset.cat===categoriaActiva) ? 'var(--ink-1)' : 'var(--ink-2)';
       });
       categoriaFiltroDispersion = categoriaActiva; // misma categoría también filtra la gráfica de dispersión
-      dibujarDispersionHoraria(eventosHoyCache);
+      dibujarDispersionHoraria(eventosHoyCache, fechaTexto);
       const q = document.getElementById('portada-buscador').value.trim().toLowerCase();
       pintarTarjetasPortada(filtrarEventosPortada(q, categoriaActiva));
     });
@@ -179,11 +190,25 @@ function notasRelevantesDe(lista, maximo=5){
     .map(x=>x.e);
 }
 
-function dibujarDispersionHoraria(eventos){
+function dibujarDispersionHoraria(eventos, fechaTexto){
   const cont = document.getElementById('portada-dispersion');
   if(!cont) return;
   const eventosFiltrados = categoriaFiltroDispersion ? eventos.filter(e=>e.categoria===categoriaFiltroDispersion) : eventos;
-  if(!eventosFiltrados.length){ cont.innerHTML = `<div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div><p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
+
+  // encabezado propio de la gráfica: fecha + conteo (antes vivía afuera, suelto) y el
+  // "pulso" del día (análisis real de IA sobre el ritmo y tipo de notas, no una plantilla)
+  // -- todo lo que describe "el momento actual" queda junto, dentro del mismo bloque
+  const encabezadoGrafica = `
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
+      <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto||''} · ${eventos.length} nota${eventos.length!==1?'s':''}</div>
+      <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;">Notas de hoy</div>
+    </div>
+    ${pulsoDelDiaCache ? `<div style="background:var(--bg-2);border-left:2px solid var(--teal);border-radius:var(--radius-s);padding:7px 10px;margin-bottom:8px;">
+      <div style="font-size:9px;color:var(--teal);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px;">Pulso del día</div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.4;margin:0;">${pulsoDelDiaCache}</p>
+    </div>` : ''}`;
+
+  if(!eventosFiltrados.length){ cont.innerHTML = encabezadoGrafica + `<p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
   const ancho = 1000, alto = 130, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 14;
   const altoUtil = alto - margenArriba - margenAbajo;
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
@@ -202,7 +227,9 @@ function dibujarDispersionHoraria(eventos){
   });
   const maxConteo = Math.max(...porBloque.map(l=>l.length), 1);
 
-  // cuadrícula real tipo papel cuadriculado -- cuadros finos parejos, no solo líneas sueltas
+  // cuadrícula real tipo papel cuadriculado -- cuadros finos parejos, no solo líneas sueltas.
+  // Va de margenIzq hasta ancho-margenDer, igual que el <rect> de fondo -- ambos ocupan el
+  // mismo ancho útil del viewBox, que a su vez se estira a 100% del contenedor real.
   const PASO_H = 1; // una línea vertical cada 1h -- cuadros chicos de verdad
   let grilla = '';
   for(let h=0; h<=24; h+=PASO_H){
@@ -257,8 +284,7 @@ function dibujarDispersionHoraria(eventos){
       style="position:absolute;left:${xPct}%;top:${yPct}%;width:5px;height:5px;margin:-2.5px;border-radius:50%;background:${color};border:1px solid var(--bg-1);cursor:pointer;"></div>`;
   }).join('');
 
-  cont.innerHTML = `
-    <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div>
+  cont.innerHTML = encabezadoGrafica + `
     <div style="position:relative;width:100%;">
       <svg id="portada-svg-dispersion" width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" preserveAspectRatio="none" style="display:block;cursor:crosshair;">
         <defs>
@@ -297,21 +323,14 @@ function dibujarDispersionHoraria(eventos){
     if(cercano.lista.length){
       const idx = puntos.indexOf(cercano);
       const h = Math.floor(idx/2), m = (idx%2)*30;
-      // rediseño: cada nota destacada en su propia línea, con su color de impacto -- antes
-      // se veían todas amontonadas separadas por "|", como una lista cruda, no un análisis
+      // solo el total + las relevantes (impacto alto), no la lista completa
       const relevantes = notasRelevantesDe(cercano.lista);
-      const listaHTML = relevantes.map(e=>
-        `<div style="display:flex;gap:5px;align-items:flex-start;margin-top:4px;">
-          <span style="width:6px;height:6px;border-radius:50%;background:${colorPorImpactoDispersion(e.intensidad)};flex-shrink:0;margin-top:4px;"></span>
-          <span>${e.descripcion.slice(0,80)}</span>
-        </div>`
-      ).join('');
-      tooltip.innerHTML = `<div><strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''} registrada${cercano.lista.length!==1?'s':''}</div>` +
-        (listaHTML || `<div style="color:var(--ink-3);margin-top:3px;">Ninguna con impacto suficiente para destacar</div>`);
+      const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
+      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` +
+        (titulares ? `<br><span style="color:var(--ink-3);">${titulares}</span>` : '');
       tooltip.style.display = 'block';
-      tooltip.style.width = '280px';
-      tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-290)+'px';
-      tooltip.style.top = Math.max(0, ev.clientY-rect.top-60)+'px';
+      tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-270)+'px';
+      tooltip.style.top = Math.max(0, ev.clientY-rect.top-50)+'px';
     } else {
       tooltip.style.display = 'none';
     }
