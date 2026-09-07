@@ -248,17 +248,11 @@ function renderGrafo(svgId='graph-svg'){
           if(!sat) return;
           const yaEsNucleo = nodesMap.has(r.satelite_id) && nodesMap.get(r.satelite_id).esCentro;
           if(yaEsNucleo){ linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'}); return; }
-          if(r.categoria){
-            const idCategoria = 'cat:'+coreId+':'+r.categoria;
-            if(!nodesMap.has(idCategoria)){
-              nodesMap.set(idCategoria, {id:idCategoria, nombre:r.categoria, nivelAnillo:1, coreId, slot, esCategoria:true, iniciales:r.categoria.slice(0,2).toUpperCase()});
-              linksBase.push({origen:coreId, destino:idCategoria, nivelDestino:1, slot, tipoVinculo:'personal'});
-            }
-            if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId:idCategoria, slot, esSateliteDeCategoria:true, categoriaHeredada:r.categoria});
-            linksBase.push({origen:idCategoria, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
-            return;
-          }
-          if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot});
+          // el satélite orbita DIRECTO al núcleo, como en el diseño original -- la
+          // categoría ya no crea un nodo intermedio (eso causaba que la física se
+          // volviera rígida e impredecible); ahora la categoría solo define el COLOR
+          // del satélite (categoriaHeredada), la física vuelve a ser simple y probada
+          if(!nodesMap.has(r.satelite_id)) nodesMap.set(r.satelite_id, {...sat, nivelAnillo:r.nivel, coreId, slot, categoriaHeredada:r.categoria||undefined});
           linksBase.push({origen:coreId, destino:r.satelite_id, nivelDestino:r.nivel, slot, tipoVinculo:'personal'});
         });
       }
@@ -341,44 +335,36 @@ function renderGrafo(svgId='graph-svg'){
   const nucleoPrincipal = nodes.find(n=>n.esCentro) || {x:width/2, y:height/2};
   nodes.forEach(n=>{ if(!n.esCentro && n.x===undefined){ n.x = nucleoPrincipal.x; n.y = nucleoPrincipal.y; } });
 
-  const categoriasPorNucleo = {};
-  nodes.filter(n=>n.esCategoria).forEach(n=>{
-    if(!categoriasPorNucleo[n.coreId]) categoriasPorNucleo[n.coreId] = [];
-    categoriasPorNucleo[n.coreId].push(n.id);
-  });
-  // LAYOUT MEDIA LUNA: con 2+ núcleos activos, cada uno abre su red solo hacia su lado
-  // exterior (izquierda/derecha/abajo según su posición), no en círculo completo -- así
-  // nunca "invade" el espacio del núcleo vecino. Con 1 solo núcleo, sigue siendo círculo
-  // completo (no hay "lado exterior" que respetar si no hay otro núcleo al lado).
+  // media luna a nivel de SATÉLITE directo (ya no hay nodo de categoría intermedio) --
+  // se agrupan por categoría dentro del arco que le toca a su núcleo, para que sigan
+  // viéndose ordenados por tipo aunque ya no haya un "hub" visual de por medio
   const ANGULO_POR_SLOT = { nucleo: Math.PI, cruce1: Math.PI/2, cruce2: 0 }; // izquierda, abajo, derecha
-  const ARCO_MEDIA_LUNA = Math.PI*0.78; // arco amplio pero sin llegar a invadir el lado contrario
-  Object.entries(categoriasPorNucleo).forEach(([nucleoId, catIds])=>{
+  const ARCO_MEDIA_LUNA = Math.PI*0.78;
+  const gruposPorNucleoYCategoria = {};
+  nodes.filter(n=>!n.esCentro && n.categoriaHeredada).forEach(n=>{
+    const clave = n.coreId+'|'+n.categoriaHeredada;
+    if(!gruposPorNucleoYCategoria[clave]) gruposPorNucleoYCategoria[clave] = [];
+    gruposPorNucleoYCategoria[clave].push(n.id);
+  });
+  const categoriasDeCadaNucleo = {};
+  Object.keys(gruposPorNucleoYCategoria).forEach(clave=>{
+    const [nucleoId] = clave.split('|');
+    if(!categoriasDeCadaNucleo[nucleoId]) categoriasDeCadaNucleo[nucleoId] = [];
+    categoriasDeCadaNucleo[nucleoId].push(clave);
+  });
+  Object.entries(categoriasDeCadaNucleo).forEach(([nucleoId, claves])=>{
     const nucleoNode = nodesMap.get(nucleoId);
     const usarMediaLuna = coresElegidos.length>=2 && nucleoNode && ANGULO_POR_SLOT[nucleoNode.slot]!==undefined;
-    catIds.forEach((catId,i)=>{
-      let angulo;
-      if(usarMediaLuna){
-        const centro = ANGULO_POR_SLOT[nucleoNode.slot];
-        const t = catIds.length>1 ? (i/(catIds.length-1)-0.5) : 0; // -0.5..0.5
-        angulo = centro + t*ARCO_MEDIA_LUNA;
-      } else {
-        angulo = (i/catIds.length)*Math.PI*2 - Math.PI/2;
-      }
-      nodesMap.get(catId).anguloAsignado = angulo;
-    });
-  });
-  const satelitesPorCategoria = {};
-  nodes.filter(n=>!n.esCentro && !n.esCategoria && String(n.coreId).startsWith('cat:')).forEach(n=>{
-    if(!satelitesPorCategoria[n.coreId]) satelitesPorCategoria[n.coreId] = [];
-    satelitesPorCategoria[n.coreId].push(n.id);
-  });
-  Object.entries(satelitesPorCategoria).forEach(([catId, satIds])=>{
-    const catNode = nodesMap.get(catId);
-    if(!catNode) return;
-    const ABANICO = Math.PI/5;
-    satIds.forEach((satId,i)=>{
-      const offset = satIds.length>1 ? (i/(satIds.length-1)-0.5)*ABANICO : 0;
-      nodesMap.get(satId).anguloAsignado = catNode.anguloAsignado + offset;
+    claves.forEach((clave, iCat)=>{
+      const idsDeEstaCategoria = gruposPorNucleoYCategoria[clave];
+      const centroCategoria = usarMediaLuna
+        ? ANGULO_POR_SLOT[nucleoNode.slot] + (claves.length>1 ? (iCat/(claves.length-1)-0.5) : 0)*ARCO_MEDIA_LUNA
+        : (iCat/claves.length)*Math.PI*2;
+      idsDeEstaCategoria.forEach((satId,i)=>{
+        const ABANICO = Math.PI/6;
+        const offset = idsDeEstaCategoria.length>1 ? (i/(idsDeEstaCategoria.length-1)-0.5)*ABANICO : 0;
+        nodesMap.get(satId).anguloAsignado = centroCategoria + offset;
+      });
     });
   });
   const nodeIds = new Set(nodes.map(n=>n.id));
@@ -435,7 +421,7 @@ function renderGrafo(svgId='graph-svg'){
         // los núcleos Y los nodos de categoría se QUEDAN donde el usuario los suelta --
         // antes esto solo aplicaba a esCentro; los de categoría se quedaban sin poder
         // arrastrarse porque el tick los recalculaba solo, aunque aquí sí se guardara fx/fy
-        if(!d.esCentro && !d.esCategoria){ d.fx=null; d.fy=null; }
+        if(!d.esCentro){ d.fx=null; d.fy=null; }
       }));
 
   node.filter(d=>d.esCentro).append('circle')
@@ -476,23 +462,20 @@ function renderGrafo(svgId='graph-svg'){
     .append('title').text(d=> (d.esCentro && svgId==='notas-svg') ? d.nombre : null);
 
   const nodesById = {}; nodes.forEach(n=>nodesById[n.id]=n);
-  const escalaGlobalOrbita = 1;
   function forceOrbita(strength){
     let ref;
-    const escalaPorNucleos = escalaGlobalOrbita;
     const f=(alpha)=>{ ref.forEach(n=>{
       if(n.esCentro) return;
-      if(n.esCategoria && n.fx!=null) return; // ya lo fijó el usuario a mano -- no compite con la física
+      if(n.fx!=null) return; // el usuario ya lo movió a mano -- no compite con la física
       const core=nodesById[n.coreId]; if(!core) return;
-      const t=(RADIOS_ANILLO[n.nivelAnillo]||130)*escalaPorNucleos;
-      const fuerzaReal = n.esCategoria ? strength*6 : strength;
+      const t=RADIOS_ANILLO[n.nivelAnillo]||130;
       if(n.anguloAsignado!==undefined){
         const tx = core.x + Math.cos(n.anguloAsignado)*t, ty = core.y + Math.sin(n.anguloAsignado)*t;
-        n.vx += (tx-n.x)*alpha*fuerzaReal; n.vy += (ty-n.y)*alpha*fuerzaReal;
+        n.vx += (tx-n.x)*alpha*strength; n.vy += (ty-n.y)*alpha*strength;
         return;
       }
       const dx=n.x-core.x, dy=n.y-core.y, dist=Math.sqrt(dx*dx+dy*dy)||0.001;
-      const k=(t-dist)/dist*alpha*fuerzaReal;
+      const k=(t-dist)/dist*alpha*strength;
       n.vx+=dx*k; n.vy+=dy*k;
     }); };
     f.initialize = ns=>{ ref=ns; };
@@ -511,23 +494,6 @@ function renderGrafo(svgId='graph-svg'){
     .on('tick', ()=>{
       const margen=30;
       nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
-      nodes.forEach(n=>{
-        if(!n.esCategoria) return;
-        if(n.fx!=null){ n.x=n.fx; n.y=n.fy; return; } // el usuario ya lo movió a mano -- se respeta, no se recalcula
-        const core = nodesById[n.coreId]; if(!core) return;
-        const t = (RADIOS_ANILLO[1]||85);
-        if(n.anguloPropio===undefined){
-          const idsCategoriasDeEsteNucleo = nodes.filter(x=>x.esCategoria && x.coreId===n.coreId).map(x=>x.id);
-          n.anguloPropio = (idsCategoriasDeEsteNucleo.indexOf(n.id) * 2.4) % (Math.PI*2);
-        }
-        // acercamiento SUAVE al punto correcto, no un salto directo -- antes esto ponía
-        // x/y de golpe y apagaba la velocidad cada instante, así que la categoría se veía
-        // "teletransportada" en vez de deslizarse. Ahora se mueve solo una fracción hacia
-        // el objetivo por cuadro, como un resorte suave, y conserva algo de inercia real.
-        const tx = core.x + Math.cos(n.anguloPropio)*t, ty = core.y + Math.sin(n.anguloPropio)*t;
-        n.x += (tx-n.x)*0.7; n.y += (ty-n.y)*0.7;
-        n.vx *= 0.3; n.vy *= 0.3; // se amortigua, no se apaga de golpe
-      });
       link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
       guias.attr('cx',d=>d.core.x).attr('cy',d=>d.core.y);
       node.attr('transform', d=>`translate(${d.x},${d.y})`);
