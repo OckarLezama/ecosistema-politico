@@ -548,13 +548,20 @@ def aplicar_incrementos_cobertura(incrementos):
     coinciden, todo lo demás del archivo queda intacto."""
     if not incrementos:
         return
+    # los encabezados reales se leen del CSV directo (primera línea), NO de las llaves de
+    # una fila cualquiera vía DictReader -- si alguna fila vieja del archivo trae una coma
+    # de más (texto sin escapar de hace tiempo), DictReader mete esas columnas extra bajo
+    # una llave literal `None`, y usar esa fila como fuente de "campos" rompe el archivo
+    # completo al escribir de vuelta (eso fue el error real de esta corrida)
+    with open(RUTA_EVENTOS, encoding='utf-8') as f:
+        campos = next(csv.reader(f))
     eventos = cargar_eventos_existentes()
-    campos = list(eventos[0].keys())
     for e in eventos:
+        e.pop(None, None)  # por si esta fila en particular traía la sobra de columnas -- se descarta, nunca se escribe
         if e['id'] in incrementos:
             e['cobertura'] = str(int(e.get('cobertura') or 1) + incrementos[e['id']])
     with open(RUTA_EVENTOS, 'w', encoding='utf-8', newline='') as f:
-        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, extrasaction='ignore')
         w.writeheader()
         for e in eventos: w.writerow(e)
     print(f'Cobertura sumada a {len(incrementos)} nota(s) ya existente(s) del día (mismo hecho real, otra fuente).')
