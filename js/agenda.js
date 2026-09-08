@@ -506,9 +506,6 @@ function renderGenealogiaAgenda(){
   select.onchange = (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); };
 
   cont.innerHTML = `
-    <div style="padding:10px 14px 0;">
-      <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
-    </div>
     ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
       <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
@@ -584,7 +581,7 @@ function dibujarGenealogia(temaId){
 
   svg.append('text').attr('class','geneal-contador').attr('x',xInicio).attr('y',height-10).attr('text-anchor','middle')
     .attr('font-size','10px').attr('fill','var(--ink-3)')
-    .text(genealogiaRevelados<=1 ? `Clic en el origen para reproducir el recorrido (${eventos.length} notas)` : `${genealogiaRevelados} de ${eventos.length} notas — recorrido completo`);
+    .text(genealogiaRevelados<=1 ? '' : `${genealogiaRevelados} de ${eventos.length} notas — recorrido completo`);
 }
 
 let generacionGenealogiaActual = 0; // se incrementa en cada render fresco -- así una reproducción
