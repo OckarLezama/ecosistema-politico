@@ -17,13 +17,6 @@
   .icon-btn { transition: background-color .15s ease, color .15s ease; border-color: var(--line-strong) !important; }
   .icon-btn:hover:not(.active) { background-color: var(--bg-2); color: var(--teal); border-color: var(--line-strong) !important; }
   .icon-btn.active { background-color: var(--teal); color: #0E1116; border-color: var(--teal) !important; }
-  /* mismo formato de scroll que .feed-card .feed-lista (confirmado en styles.css real) --
-     antes usaba la barra de scroll genérica del navegador, sin estilo propio */
-  #geneal-scroll{ scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1); }
-  #geneal-scroll::-webkit-scrollbar{ height:6px; }
-  #geneal-scroll::-webkit-scrollbar-track{ background:var(--bg-1); }
-  #geneal-scroll::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:99px; }
-  #geneal-scroll::-webkit-scrollbar-thumb:hover{ background:var(--teal); }
 </style>
 </head>
 <body>
@@ -241,6 +234,10 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
     modoRed = document.querySelector('#modo-red-toggle .chip-btn.active')?.dataset.modo || 'grupo'; // nunca hereda modo "agenda" de Notas
     if(seleccion.nucleo||seleccion.cruce1||seleccion.cruce2||actorUnicoSeleccionado) renderGrafo();
     if(typeof posicionarPanelDetalle==='function') setTimeout(posicionarPanelDetalle, 30);
+    // el buscador de ficha completa siempre arranca vacío al entrar al módulo -- una
+    // consulta anterior no debe quedarse ahí cuando el usuario se fue y volvió
+    const inputFichaNav = document.getElementById('actor-ficha-buscar-input');
+    if(inputFichaNav) inputFichaNav.value = '';
   }
   if(btn.dataset.module==='timeline' && typeof renderTimeline==='function') renderTimeline();
   if(btn.dataset.module==='analisis' && typeof renderAnalisis==='function') renderAnalisis();
