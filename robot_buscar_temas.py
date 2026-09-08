@@ -328,17 +328,14 @@ def escalar_temas_informativos():
             for a in actores_altos:
                 if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
                     menciona_altos.add(a['id'])
-        # CRITERIO CORREGIDO -- el anterior (3+ notas O 2+ actores de alta influencia)
-        # subía a "agenda nacional" casi cualquier nota política real, porque Sheinbaum
-        # sola cuenta como 1 actor de alta influencia y aparece en prácticamente toda
-        # nota de gobierno -- bastaba con que mencionara a Sheinbaum + cualquier otro
-        # funcionario para escalar. Esto llenó la agenda nacional de cientos de temas
-        # genéricos (notas sueltas de mañanera, temas locales sin peso real), saturando
-        # la matriz de Agenda y Coyuntura. Ahora: Sheinbaum NUNCA cuenta sola para este
-        # criterio (se excluye explícitamente), y se necesitan 5+ notas reales en vez de 3
-        # -- cobertura sostenida de verdad, no una mención de paso.
+        # CRITERIO CORREGIDO, segunda vuelta -- 5+ notas por sí solas todavía se
+        # alcanzaban fácil en días de mucha noticia (ej. la semana del Segundo
+        # Informe), sin exigir que fuera un tema con vida propia en el tiempo. Ahora
+        # se pide ADEMÁS que esas notas no sean todas del mismo día -- un tema real de
+        # agenda nacional se sostiene varios días, no es una sola ráfaga de cobertura.
         menciona_altos_sin_sheinbaum = menciona_altos - {'sheinbaum'}
-        if len(evs_del_tema) >= 5 or len(menciona_altos_sin_sheinbaum) >= 2:
+        dias_distintos_del_tema = len({e['fecha'] for e in evs_del_tema})
+        if (len(evs_del_tema) >= 5 and dias_distintos_del_tema >= 2) or len(menciona_altos_sin_sheinbaum) >= 2:
             t['tipo'] = 'completo'
             t['nivel_relevancia'] = '1'
             cambios += 1
