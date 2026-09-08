@@ -598,7 +598,7 @@ function renderListaAgenda(){
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
   temasBase = temasBase.slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
-  const cont = document.getElementById('agenda-contenido');
+  const cont = document.getElementById('matriz-lista-zona') || document.getElementById('agenda-contenido');
   if(!temasBase.length){
     cont.innerHTML = `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">Sin temas con este filtro</div>`;
     return;
@@ -632,16 +632,42 @@ function poblarFiltroCategoriaAgenda(){
   sel.addEventListener('change', (e)=>{ categoriaFiltroAgenda = e.target.value; renderAgendaGrid(); });
 }
 
+let vistaMatrizInterna = 'cuadricula'; // 'cuadricula' o 'lista' -- fusiona lo que antes eran 2 pestañas separadas (Matriz y Lista) en una sola vista con un botón interno, mismos datos y mismo filtro
+
 function renderAgendaGrid(){
   const cont = document.getElementById('agenda-contenido');
   if(!cont) return;
   crearTooltipAgenda();
   renderKpisImpacto();
-  if(vistaAgenda==='lista'){ renderListaAgenda(); return; }
+  // "matriz" y "lista" ahora son la MISMA vista fusionada -- cualquiera de las 2
+  // pestañas (si tu HTML aún tiene ambos botones) cae en el mismo lugar, con un
+  // interruptor interno para alternar entre cuadrícula y lista
+  if(vistaAgenda==='matriz' || vistaAgenda==='lista'){ renderMatrizYLista(); return; }
   if(vistaAgenda==='notas'){ renderNotasAgenda(); return; }
   if(vistaAgenda==='genealogia'){ renderGenealogiaAgenda(); return; }
-  if(!cont.querySelector('#matriz-riesgo-svg')) cont.innerHTML = `<svg id="matriz-riesgo-svg"></svg>`;
-  dibujarMatrizRiesgo();
+}
+
+function renderMatrizYLista(){
+  const cont = document.getElementById('agenda-contenido');
+  cont.innerHTML = `
+    <div style="padding:8px 14px 0;display:flex;justify-content:flex-end;">
+      <div class="vista-toggle" style="width:auto;">
+        <button class="chip-btn ${vistaMatrizInterna==='cuadricula'?'active':''}" data-subvista="cuadricula">Cuadrícula</button>
+        <button class="chip-btn ${vistaMatrizInterna==='lista'?'active':''}" data-subvista="lista">Lista</button>
+      </div>
+    </div>
+    <div id="matriz-lista-zona" style="width:100%;flex:1;position:relative;"></div>`;
+  cont.querySelectorAll('[data-subvista]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      vistaMatrizInterna = btn.dataset.subvista;
+      renderMatrizYLista();
+    });
+  });
+  if(vistaMatrizInterna==='lista') renderListaAgenda();
+  else {
+    document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg>`;
+    dibujarMatrizRiesgo();
+  }
 }
 
 function crearTooltipAgenda(){
@@ -747,7 +773,16 @@ function dibujarMatrizRiesgo(){
       primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
       x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 40, Math.max(60, Math.round(20000/Math.max(crudos.length,1))), {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14});
+  // LÍMITE DE PUNTOS -- sin importar cuántos temas tenga nivel_relevancia=1 en los
+  // datos, la matriz nunca dibuja más de este número a la vez. Con muchos más puntos
+  // que esto, el espacio visual se satura y pierde sentido (se ve como un amontonado
+  // de círculos sin poder distinguir nada) -- se muestran los de mayor relevancia real
+  // (impacto + riesgo combinados), y se avisa cuántos quedaron fuera.
+  const LIMITE_PUNTOS_MATRIZ = 45;
+  const totalAntesDeLimite = crudos.length;
+  crudos.sort((a,b)=> (b.impactoReal+b.riesgoReal) - (a.impactoReal+a.riesgoReal));
+  const crudosLimitados = crudos.slice(0, LIMITE_PUNTOS_MATRIZ);
+  const datos = separarPuntos(crudosLimitados, 40, Math.max(60, Math.round(20000/Math.max(crudosLimitados.length,1))), {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14});
 
   if(!datos.length){
     svg.attr('viewBox',[0,0,width,height]);
@@ -755,6 +790,11 @@ function dibujarMatrizRiesgo(){
       .attr('font-family','var(--f-display)').attr('font-size','14px').attr('fill','var(--ink-3)')
       .text('Sin temas con este filtro');
     return;
+  }
+  if(totalAntesDeLimite > LIMITE_PUNTOS_MATRIZ){
+    svg.append('text').attr('x',width/2).attr('y',height-6).attr('text-anchor','middle')
+      .attr('font-family','var(--f-mono)').attr('font-size','9.5px').attr('fill','var(--ink-3)')
+      .text(`Mostrando los ${LIMITE_PUNTOS_MATRIZ} de mayor relevancia (de ${totalAntesDeLimite} en total) — ver el resto en la vista Lista`);
   }
 
   const defs = svg.append('defs');
