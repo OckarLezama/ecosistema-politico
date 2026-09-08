@@ -54,7 +54,11 @@ def limpiar():
                     menciona_altos.add(a['id'])
         menciona_altos_sin_sheinbaum = menciona_altos - {'sheinbaum'}
 
-        cumple_criterio_nuevo = len(evs_del_tema) >= 5 or len(menciona_altos_sin_sheinbaum) >= 2
+        # mismo criterio exacto que ahora usa robot_buscar_temas.py -- 5+ notas
+        # repartidas en 2+ días distintos (no una sola ráfaga de un día), O 2+
+        # actores de alta influencia sin contar a Sheinbaum
+        dias_distintos_del_tema = len({e['fecha'] for e in evs_del_tema})
+        cumple_criterio_nuevo = (len(evs_del_tema) >= 5 and dias_distintos_del_tema >= 2) or len(menciona_altos_sin_sheinbaum) >= 2
         if cumple_criterio_nuevo:
             mantenidos += 1
         else:
