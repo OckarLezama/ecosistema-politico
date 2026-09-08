@@ -289,6 +289,28 @@ def calcular_todo():
         'hora_actual_cdmx': f'{hora_actual}:00',
     }
 
+    # ---- AGENDA NACIONAL -- para Agenda y Coyuntura (Matriz + Genealogía). SOLO temas
+    # con nivel_relevancia=1 (agenda nacional real, ya filtrados por el criterio estricto
+    # del robot) -- nunca los "informativo" de nivel 3, que son la inmensa mayoría y no
+    # merecen gastar en análisis. Sin búsqueda web aquí (a diferencia de Red de Actores) --
+    # esto ya de por sí mantiene el costo bajo; se puede agregar después si hiciera falta.
+    temas_agenda_nacional = {}
+    for t in temas_reales:  # temas_reales ya excluye "auto-" Y ya solo quedan los nivel 1 reales al filtrar abajo
+        if t.get('nivel_relevancia') != '1':
+            continue
+        evs = sorted(eventos_por_tema[t['id']], key=lambda e: e['fecha'])
+        if not evs:
+            continue
+        dias_distintos = len({e['fecha'] for e in evs})
+        intensidad_total = sum(float(e.get('intensidad') or 0) for e in evs)
+        huella = hashlib.md5(f"{len(evs)}|{dias_distintos}|{intensidad_total}|{evs[-1]['fecha']}".encode()).hexdigest()
+        temas_agenda_nacional[t['id']] = {
+            'nombre': t['nombre'], 'categoria': t['categoria'],
+            'peso_politico': t['peso_politico'], 'notas_totales': len(evs),
+            'dias_distintos': dias_distintos, 'intensidad_maxima': max(float(e.get('intensidad') or 0) for e in evs),
+            'huella': huella,
+        }
+
     return {
         'temas_activos': len(temas_reales),
         'tension_general': tension_general,
@@ -306,6 +328,7 @@ def calcular_todo():
         'vinculos_cruzados_por_par': vinculos_cruzados_por_par,
         'pulso_datos': pulso_datos,
         'notas_por_actor_relevante': notas_por_actor_relevante,
+        'temas_agenda_nacional': temas_agenda_nacional,
     }
 
 
@@ -456,6 +479,27 @@ dar contexto actual, igual que en las demás secciones. Si las notas no dan para
 específico más allá de "aparece mencionado", dilo así de corto -- no inventes un escenario
 donde no lo hay.
 
+Si el JSON de entrada trae "temas_agenda_nacional" (Agenda y Coyuntura -- Matriz y Genealogía),
+NUNCA uses búsqueda web para esta sección específica -- son datos ya calculados sobre patrones
+internos (volumen, días de cobertura, intensidad), no necesitan verificación externa, y así se
+reserva la búsqueda para donde sí importa (Red de Actores). Para cada tema ahí presente:
+- "interpretacion_matriz": 1-2 oraciones -- qué implica su combinación de impacto y riesgo
+  REAL, no solo repetir los números (ej. "peso político alto pero intensidad de cobertura baja
+  sugiere que es un tema institucionalmente importante que aún no ha escalado en atención
+  mediática -- vale la pena vigilar si eso cambia"). Nunca "impacto 8, riesgo 6" sin decir qué
+  significa esa combinación.
+- "comportamiento_genealogia": SOLO para temas con "dias_distintos">=2 (los demás no tienen
+  suficiente recorrido para hablar de un patrón) -- 1-2 oraciones sobre el patrón de
+  comportamiento del tema en el tiempo: ¿se sostiene parejo, ha ido creciendo, tuvo un pico y
+  bajó? Y qué tan típico o atípico es ese patrón para el tipo de tema (ej. un escándalo que se
+  apaga rápido es normal; uno que sigue intensificándose después de varios días no lo es).
+
+Para "analisis_global_agenda": 1 párrafo corto (3-4 oraciones), un panorama de conjunto de TODA
+la agenda nacional de esta semana -- no tema por tema, sino qué patrón general se ve (¿está
+concentrada en pocos temas de alto impacto, o dispersa en muchos de impacto medio? ¿qué
+categoría domina?), y qué le diría esto a alguien que solo tiene 30 segundos para entender el
+estado de la agenda hoy.
+
 Está prohibido usar el mismo fraseo genérico entre núcleos distintos (si puedes intercambiar
 dos análisis sin que se note, están mal escritos). Nunca inventes vínculos, cargos o nombres
 que no estén en los datos -- si el dato no alcanza para nombrar a alguien específico, dilo con
@@ -481,6 +525,9 @@ Responde ÚNICAMENTE con un objeto JSON con estas claves (1-2 oraciones cortas c
   "escenario_prospectivo": {{"id_del_nucleo": "2-3 oraciones -- qué pasaría si cae/pierde peso y qué pasaría si no, con afectación a gobierno/Morena cuando aplique"}},
   "interpretacion_vinculos": {{"nucleoA|nucleoB": "1-2 oraciones -- qué implica esa combinación de vínculos, no describas de nuevo el cargo"}},
   "escenario_por_notas": {{"id_del_actor": "2-3 oraciones -- de qué trata su presencia real en la agenda + qué implicaría si escala o se diluye, una clave por cada actor en notas_por_actor_relevante"}},
+  "interpretacion_matriz": {{"id_del_tema": "1-2 oraciones -- qué implica su impacto+riesgo real, una clave por cada tema en temas_agenda_nacional"}},
+  "comportamiento_genealogia": {{"id_del_tema": "1-2 oraciones -- patrón de comportamiento en el tiempo, SOLO para temas con dias_distintos>=2"}},
+  "analisis_global_agenda": "1 párrafo corto (3-4 oraciones) -- panorama de conjunto de toda la agenda nacional de la semana",
   "propuestas_atencion": [{{"tema": "nombre exacto del tema", "propuesta": "1 oración corta"}}]
 }}"""
 
@@ -598,14 +645,24 @@ def generar_analisis():
         else:
             actores_notas_cambiados[actor_id] = info
 
+    temas_agenda_previos_datos = ((anterior or {}).get('datos_base') or {}).get('temas_agenda_nacional', {})
+    temas_agenda_cambiados, temas_agenda_sin_cambio = {}, {}
+    for tema_id, info in datos['temas_agenda_nacional'].items():
+        huella_previa = huella_de(temas_agenda_previos_datos.get(tema_id))
+        if huella_previa == info.get('huella') and tema_id in lectura_previa.get('interpretacion_matriz', {}):
+            temas_agenda_sin_cambio[tema_id] = info
+        else:
+            temas_agenda_cambiados[tema_id] = info
+
     print(f'Núcleos: {len(nucleos_cambiados)} cambiaron, {len(nucleos_sin_cambio)} sin cambio (se reutiliza su análisis previo).')
     print(f'Pares de vínculos: {len(pares_cambiados)} cambiaron, {len(pares_sin_cambio)} sin cambio.')
     print(f'Actores (por notas): {len(actores_notas_cambiados)} cambiaron, {len(actores_notas_sin_cambio)} sin cambio.')
+    print(f'Temas de agenda nacional: {len(temas_agenda_cambiados)} cambiaron, {len(temas_agenda_sin_cambio)} sin cambio.')
 
     # el JSON que de verdad se manda a la IA solo trae lo cambiado -- prompt más chico,
     # menos tokens, menos costo, sin perder nada (lo demás se recupera del archivo anterior)
     datos_para_ia = {**datos, 'redes_por_nucleo': nucleos_cambiados, 'vinculos_cruzados_por_par': pares_cambiados,
-        'notas_por_actor_relevante': actores_notas_cambiados}
+        'notas_por_actor_relevante': actores_notas_cambiados, 'temas_agenda_nacional': temas_agenda_cambiados}
 
     cliente = anthropic.Anthropic(api_key=llave)
     lectura = llamar_claude(cliente, construir_prompt(datos_para_ia))
@@ -624,6 +681,8 @@ def generar_analisis():
     lectura.setdefault('escenario_prospectivo', {})
     lectura.setdefault('interpretacion_vinculos', {})
     lectura.setdefault('escenario_por_notas', {})
+    lectura.setdefault('interpretacion_matriz', {})
+    lectura.setdefault('comportamiento_genealogia', {})
     for nid in nucleos_sin_cambio:
         lectura['analisis_redes'][nid] = lectura_previa['analisis_redes'][nid]
         if nid in lectura_previa.get('escenario_prospectivo', {}):
@@ -632,6 +691,11 @@ def generar_analisis():
         lectura['interpretacion_vinculos'][par] = lectura_previa['interpretacion_vinculos'][par]
     for actor_id in actores_notas_sin_cambio:
         lectura['escenario_por_notas'][actor_id] = lectura_previa['escenario_por_notas'][actor_id]
+    for tema_id in temas_agenda_sin_cambio:
+        if tema_id in lectura_previa.get('interpretacion_matriz', {}):
+            lectura['interpretacion_matriz'][tema_id] = lectura_previa['interpretacion_matriz'][tema_id]
+        if tema_id in lectura_previa.get('comportamiento_genealogia', {}):
+            lectura['comportamiento_genealogia'][tema_id] = lectura_previa['comportamiento_genealogia'][tema_id]
 
     salida = {
         'generado_en': datetime.now(TZ_MX).isoformat(),
