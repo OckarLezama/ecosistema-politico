@@ -201,7 +201,6 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
   const encabezadoGrafica = `
     <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
       <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto||''} · ${eventos.length} nota${eventos.length!==1?'s':''}</div>
-      <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;">Notas de hoy</div>
     </div>
     ${pulsoDelDiaCache ? `<div style="background:var(--bg-2);border-left:2px solid var(--teal);border-radius:var(--radius-s);padding:7px 10px;margin-bottom:8px;">
       <div style="font-size:9px;color:var(--teal);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px;">Pulso del día</div>
@@ -209,7 +208,7 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
     </div>` : ''}`;
 
   if(!eventosFiltrados.length){ cont.innerHTML = encabezadoGrafica + `<p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
-  const ancho = 1000, alto = 130, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 14;
+  const ancho = 1000, alto = 130, margenIzq = 16, margenDer = 12, margenAbajo = 20, margenArriba = 14;
   const altoUtil = alto - margenArriba - margenAbajo;
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
 
