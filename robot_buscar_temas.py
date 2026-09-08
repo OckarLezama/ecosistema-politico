@@ -328,7 +328,17 @@ def escalar_temas_informativos():
             for a in actores_altos:
                 if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
                     menciona_altos.add(a['id'])
-        if len(evs_del_tema) >= 3 or len(menciona_altos) >= 2:
+        # CRITERIO CORREGIDO -- el anterior (3+ notas O 2+ actores de alta influencia)
+        # subía a "agenda nacional" casi cualquier nota política real, porque Sheinbaum
+        # sola cuenta como 1 actor de alta influencia y aparece en prácticamente toda
+        # nota de gobierno -- bastaba con que mencionara a Sheinbaum + cualquier otro
+        # funcionario para escalar. Esto llenó la agenda nacional de cientos de temas
+        # genéricos (notas sueltas de mañanera, temas locales sin peso real), saturando
+        # la matriz de Agenda y Coyuntura. Ahora: Sheinbaum NUNCA cuenta sola para este
+        # criterio (se excluye explícitamente), y se necesitan 5+ notas reales en vez de 3
+        # -- cobertura sostenida de verdad, no una mención de paso.
+        menciona_altos_sin_sheinbaum = menciona_altos - {'sheinbaum'}
+        if len(evs_del_tema) >= 5 or len(menciona_altos_sin_sheinbaum) >= 2:
             t['tipo'] = 'completo'
             t['nivel_relevancia'] = '1'
             cambios += 1
@@ -347,7 +357,11 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes)
     if not tema or tema.get('tipo') != 'informativo':
         return
     dias_distintos = len(set(e['fecha'] for e in eventos_existentes if e['tema_id']==tema_id))
-    if conteo_hoy >= 3 or dias_distintos >= 2:
+    # umbral subido -- 3 menciones el mismo día o 2 días distintos era demasiado fácil de
+    # alcanzar para notas sueltas de mañanera o temas locales sin peso real, y eso fue lo
+    # que llenó la agenda nacional de temas genéricos. Ahora se pide cobertura sostenida
+    # de verdad: 6+ menciones el mismo día, o presencia en 4+ días distintos.
+    if conteo_hoy >= 6 or dias_distintos >= 4:
         campos = list(temas[0].keys())
         for t in temas:
             if t['id']==tema_id:
