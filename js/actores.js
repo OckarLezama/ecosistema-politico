@@ -71,6 +71,21 @@ function initRedActores(){
   setTimeout(asegurarPanelDetalle, 50);
   setTimeout(asegurarPanelDetalle, 500);
 
+  // buscador de ficha completa -- fusiona lo que antes era la pestaña separada
+  // "Actores": encuentra por nombre y abre directo la misma ficha completa (FODA, red
+  // de cercanía, notas) que ya se abre al hacer clic en un nodo del grafo
+  const inputFicha = document.getElementById('actor-ficha-buscar-input');
+  if(inputFicha && !inputFicha.dataset.conectado){
+    inputFicha.addEventListener('keydown', (e)=>{
+      if(e.key !== 'Enter') return;
+      const q = inputFicha.value.trim().toLowerCase();
+      if(q.length<2) return;
+      const match = ECOSISTEMA.actores.find(a=>a.nombre.toLowerCase().includes(q));
+      if(match) abrirFichaActorCompleta(match.id);
+    });
+    inputFicha.dataset.conectado = '1';
+  }
+
   ['nucleo','cruce1','cruce2'].forEach(slot=>{
     document.getElementById(slot+'-select').addEventListener('change', (e)=>{
       seleccion[slot] = e.target.value || null;
