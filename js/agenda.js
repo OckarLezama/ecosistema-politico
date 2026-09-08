@@ -334,7 +334,7 @@ const COLOR_ROL_NOTAS = {
   'Investigado':'var(--riesgo-alto)', 'Acusado':'var(--riesgo-alto)',
   'Responsable institucional':'var(--familia-nucleo)', 'Autoridad':'var(--familia-nucleo)',
   'Reacción de oposición':'var(--riesgo-medio)', 'Reacción del gobierno':'var(--familia-nucleo)',
-  'Reacción social/mediática':'var(--riesgo-medio)', 'Operador':'var(--riesgo-medio)', 'Red empresarial':'var(--riesgo-medio)',
+  'Reacción social/mediática':'var(--riesgo-medio)', 'Operador':'var(--arena)', 'Red empresarial':'var(--arena)',
   'Mencionado':'var(--ink-3)',
 };
 const TEXTO_ROL_NOTAS = {
@@ -344,6 +344,16 @@ const TEXTO_ROL_NOTAS = {
   'Reacción social/mediática':'Reaccionó — voz social o mediática', 'Operador':'Operador vinculado al caso', 'Red empresarial':'Vinculado — red empresarial señalada',
   'Mencionado':'Solo mencionado — no señalado',
 };
+// leyenda RESUMIDA para mostrar en el toolbar -- combina los 2 roles de "Reaccionó" en
+// una sola línea (antes ocupaban 2 renglones separados) y usa un color distinto para
+// "Red empresarial" (antes compartía el mismo color que "Reaccionó", ahora usa --arena)
+const LEYENDA_ROLES_RESUMIDA = [
+  {color:'var(--riesgo-alto)', texto:'Señalado / bajo investigación'},
+  {color:'var(--familia-nucleo)', texto:'Responsable institucional (gobierno)'},
+  {color:'var(--riesgo-medio)', texto:'Reaccionó — postura de oposición / voz social o mediática'},
+  {color:'var(--arena)', texto:'Vinculado — red empresarial señalada'},
+  {color:'var(--ink-3)', texto:'Solo mencionado — no señalado'},
+];
 
 let temaNotasSeleccionado = null;
 let temaGenealogiaSeleccionado = null;
@@ -373,16 +383,16 @@ function renderNotasAgenda(){
     cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return;
   }
 
-  // leyenda de roles de corrido, en el toolbar estático (no una por línea, no suelta
-  // arriba del contenido)
+  // leyenda de roles de corrido, en el toolbar estático -- versión resumida (5 líneas,
+  // no 8) para que quepa en una sola fila
   const leyendaEl = document.getElementById('agenda-notas-leyenda');
   if(leyendaEl){
     leyendaEl.style.display = 'flex';
-    leyendaEl.innerHTML = Object.entries(COLOR_ROL_NOTAS).filter(([r])=>!['Acusado','Autoridad','Reacción del gobierno','Operador'].includes(r)).map(([rol,color])=>
-      `<span><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('');
+    leyendaEl.innerHTML = LEYENDA_ROLES_RESUMIDA.map(({color,texto})=>
+      `<span style="white-space:nowrap;"><span class="legend-dot" style="background:${color}"></span>${texto}</span>`).join('');
   }
 
-  cont.innerHTML = `<svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`;
+  cont.innerHTML = `<svg id="notas-svg" style="width:100%;flex:1;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
 
   dibujarNotasConGrafoReal();
 }
@@ -506,7 +516,7 @@ function renderGenealogiaAgenda(){
       <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
     </div>` : ''}
-    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
+    <div id="geneal-scroll" style="width:100%;flex:1;min-height:0;overflow-x:auto;overflow-y:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
 
   dibujarGenealogia(temaGenealogiaSeleccionado);
 }
@@ -714,7 +724,7 @@ function renderMatrizYLista(){
   cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;position:relative;"></div>`;
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
-    document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg>`;
+    document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
     dibujarMatrizRiesgo();
   }
 }
@@ -840,10 +850,14 @@ function dibujarMatrizRiesgo(){
       .text('Sin temas con este filtro');
     return;
   }
-  if(totalAntesDeLimite > LIMITE_PUNTOS_MATRIZ){
-    svg.append('text').attr('x',width/2).attr('y',height-6).attr('text-anchor','middle')
-      .attr('font-family','var(--f-mono)').attr('font-size','9.5px').attr('fill','var(--ink-3)')
-      .text(`Mostrando los ${LIMITE_PUNTOS_MATRIZ} de mayor relevancia (de ${totalAntesDeLimite} en total) — ver el resto en la vista Lista`);
+  // el aviso de "mostrando los N de mayor relevancia" se muestra FUERA del SVG (en el
+  // div contenedor), no dentro del propio dibujo -- estaba a 10px de la etiqueta
+  // "IMPACTO" del eje, tapándola por completo
+  const avisoLimite = document.getElementById('matriz-aviso-limite');
+  if(avisoLimite){
+    avisoLimite.textContent = totalAntesDeLimite > LIMITE_PUNTOS_MATRIZ
+      ? `Mostrando los ${LIMITE_PUNTOS_MATRIZ} de mayor relevancia (de ${totalAntesDeLimite} en total) — ver el resto en la vista Lista`
+      : '';
   }
 
   const defs = svg.append('defs');
