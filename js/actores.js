@@ -10,6 +10,7 @@
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
 let analisisRedesIA = {};
 let escenarioProspectivoIA = {};
+let escenarioPorNotasIA = {};
 let interpretacionVinculosIA = {};
 let ultimosNodosRenderizados = [];
 
@@ -54,6 +55,7 @@ fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=
   if(!d || !d.lectura) return;
   if(d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes;
   if(d.lectura.escenario_prospectivo) escenarioProspectivoIA = d.lectura.escenario_prospectivo;
+  if(d.lectura.escenario_por_notas) escenarioPorNotasIA = d.lectura.escenario_por_notas;
   if(d.lectura.interpretacion_vinculos) interpretacionVinculosIA = d.lectura.interpretacion_vinculos;
 }).catch(()=>{});
 let redPersonalActiva = true, redPoliticaActiva = true;
@@ -771,7 +773,10 @@ function mostrarTemasPorRolDeActor(actorId){
   // que ya se muestran al hacer clic en un satélite dentro del modo Red
   let html = `<div class="detail-name">${actor.nombre}</div><div class="detail-cargo">${actor.cargo}</div>`;
   html += `<div class="detail-row" style="margin-top:6px;"><span class="k">Riesgo</span><span class="v"><span class="riesgo-badge" style="background:${colorNivelRiesgo}22;color:${colorNivelRiesgo}">${(actor.nivel_riesgo||'sin evaluar').toUpperCase()}</span></span></div>`;
-  const escenario = escenarioProspectivoIA[actorId];
+  // el escenario puede venir de 2 fuentes distintas -- si el actor ya tiene red
+  // categorizada (los 8 núcleos principales), su escenario sale de esa red; si no, sale
+  // del análisis basado en sus notas reales de agenda (la mayoría de actores caen aquí)
+  const escenario = escenarioProspectivoIA[actorId] || escenarioPorNotasIA[actorId];
   if(escenario){
     html += `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin-top:8px;">
       <div class="eyebrow" style="color:var(--teal);">Escenario prospectivo (IA)</div>
