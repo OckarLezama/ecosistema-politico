@@ -299,11 +299,25 @@ function initAgenda(){
     });
     btnNivel1.dataset.conectado = '1';
   }
-  document.querySelectorAll('.vista-toggle .chip-btn').forEach(btn=>{
+  document.querySelectorAll('#agenda-vista-principal .chip-btn').forEach(btn=>{
     if(btn.dataset.conectado) return;
     btn.addEventListener('click', ()=>{
       vistaAgenda = btn.dataset.vista;
-      document.querySelectorAll('.vista-toggle .chip-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('#agenda-vista-principal .chip-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      // el grupo de íconos secundario (Cuadrícula/Lista) solo tiene sentido cuando
+      // el ícono principal activo es Matriz -- se oculta para Notas y Genealogía
+      const secundaria = document.getElementById('agenda-vista-secundaria');
+      if(secundaria) secundaria.style.display = (vistaAgenda==='matriz') ? 'flex' : 'none';
+      renderAgendaGrid();
+    });
+    btn.dataset.conectado='1';
+  });
+  document.querySelectorAll('#agenda-vista-secundaria .chip-btn').forEach(btn=>{
+    if(btn.dataset.conectado) return;
+    btn.addEventListener('click', ()=>{
+      vistaMatrizInterna = btn.dataset.subvista;
+      document.querySelectorAll('#agenda-vista-secundaria .chip-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
       renderAgendaGrid();
     });
@@ -649,20 +663,9 @@ function renderAgendaGrid(){
 
 function renderMatrizYLista(){
   const cont = document.getElementById('agenda-contenido');
-  cont.innerHTML = `
-    <div style="padding:8px 14px 0;display:flex;justify-content:flex-end;">
-      <div class="vista-toggle" style="width:auto;">
-        <button class="chip-btn ${vistaMatrizInterna==='cuadricula'?'active':''}" data-subvista="cuadricula">Cuadrícula</button>
-        <button class="chip-btn ${vistaMatrizInterna==='lista'?'active':''}" data-subvista="lista">Lista</button>
-      </div>
-    </div>
-    <div id="matriz-lista-zona" style="width:100%;flex:1;position:relative;"></div>`;
-  cont.querySelectorAll('[data-subvista]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      vistaMatrizInterna = btn.dataset.subvista;
-      renderMatrizYLista();
-    });
-  });
+  // el interruptor Cuadrícula/Lista ahora es un ícono estático en el HTML
+  // (#agenda-vista-secundaria) -- aquí solo se dibuja el contenido según su estado
+  cont.innerHTML = `<div id="matriz-lista-zona" style="width:100%;flex:1;position:relative;"></div>`;
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
     document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg>`;
