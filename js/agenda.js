@@ -2,45 +2,6 @@
    V2 — AGENDA & COYUNTURA
    ============================================================ */
 
-// dropdown propio -- el <select> nativo del navegador no se puede estilizar (su scroll
-// interno queda fuera del control del CSS), así que esto lo reemplaza con un botón +
-// lista desplegable propia, con el mismo estilo de scroll que ya usa el Feed
-function crearDropdownPersonalizado(contenedorId, opciones, valorInicial, onCambio){
-  const cont = document.getElementById(contenedorId);
-  if(!cont) return;
-  const seleccionActual = opciones.find(o=>o.value===valorInicial) || opciones[0];
-  cont.innerHTML = `
-    <div class="dropdown-propio" style="position:relative;display:inline-block;">
-      <button type="button" class="dropdown-propio-boton" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;cursor:pointer;display:flex;align-items:center;gap:6px;max-width:280px;">
-        <span class="dropdown-propio-texto" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${seleccionActual ? seleccionActual.label : '— sin selección —'}</span>
-        <span style="font-size:9px;color:var(--ink-3);">▾</span>
-      </button>
-      <div class="dropdown-propio-lista" style="display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:220px;max-height:240px;overflow-y:auto;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);box-shadow:var(--shadow-card);z-index:50;
-        scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);">
-        ${opciones.map(o=>`<div class="dropdown-propio-opcion" data-valor="${o.value}" style="padding:7px 10px;font-size:11.5px;cursor:pointer;${o.value===valorInicial?'background:var(--bg-2);font-weight:700;':''}">${o.label}</div>`).join('')}
-      </div>
-    </div>`;
-  const boton = cont.querySelector('.dropdown-propio-boton');
-  const lista = cont.querySelector('.dropdown-propio-lista');
-  const texto = cont.querySelector('.dropdown-propio-texto');
-  boton.addEventListener('click', (ev)=>{
-    ev.stopPropagation();
-    const abierto = lista.style.display==='block';
-    document.querySelectorAll('.dropdown-propio-lista').forEach(l=>l.style.display='none'); // cierra cualquier otro dropdown propio abierto
-    lista.style.display = abierto ? 'none' : 'block';
-  });
-  lista.querySelectorAll('.dropdown-propio-opcion').forEach(op=>{
-    op.addEventListener('click', ()=>{
-      texto.textContent = op.textContent;
-      lista.style.display = 'none';
-      lista.querySelectorAll('.dropdown-propio-opcion').forEach(o=>{ o.style.background=''; o.style.fontWeight='400'; });
-      op.style.background = 'var(--bg-2)'; op.style.fontWeight = '700';
-      onCambio(op.dataset.valor);
-    });
-  });
-}
-document.addEventListener('click', ()=> document.querySelectorAll('.dropdown-propio-lista').forEach(l=>l.style.display='none')); // clic afuera cierra
-
 function diasSinActividad(temaId){
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).map(e=>e.fecha).sort();
   if(!evs.length) return null;
@@ -176,8 +137,6 @@ function abrirFichaTema(temaId){
   const color = colorCategoria(tema.categoria);
   const primeraMencion = evs.length ? evs.map(e=>e.fecha).sort()[0] : '—';
 
-  // agrupar actores por su rol real, no como lista plana — separa quién es sospechoso/investigado
-  // de quién aparece en calidad institucional (gobierno respondiendo, no señalado)
   const grupos = { 'Investigado / señalado': [], 'Institucional (gobierno)': [], 'Reacción de oposición': [], 'Reacción del gobierno': [], 'Reacción social/mediática': [], 'Operador / red': [] };
   const rolAGrupo = { 'Investigado':'Investigado / señalado', 'Acusado':'Investigado / señalado',
     'Responsable institucional':'Institucional (gobierno)', 'Autoridad':'Institucional (gobierno)',
@@ -186,21 +145,15 @@ function abrirFichaTema(temaId){
   contextos.forEach(c=>{
     const actor = getActor(c.actor_id);
     if(!actor) return;
-    const grupo = rolAGrupo[c.rol]; // 'Mencionado' ya no entra a la ficha — se queda solo en el hover del Timeline
+    const grupo = rolAGrupo[c.rol];
     if(!grupo) return;
     grupos[grupo].push({actor, detalle:c.detalle});
   });
-  // Ya NO se agregan actores solo desde actores_involucrados sin fuente — ese campo es una lista
-  // sin fecha ni respaldo verificable. Solo entran actores con fila real en tema_actores.csv
-  // (que sí tiene contexto/fuente detrás). Evita mostrar un nombre que no podemos sustentar.
 
-  const bloquesActores = Object.entries(grupos).filter(([grupo,lista])=> lista.length || grupo==='Reacción de oposición').map(([grupo,lista])=>{
-    const esOposicion = grupo==='Reacción de oposición';
-    return `
-    <div class="eyebrow" style="margin-top:8px;${esOposicion?'color:var(--riesgo-alto);':''}">${esOposicion?'⚔ ':''}${grupo}</div>
-    ${lista.length ? lista.map(x=>`<div style="font-size:12px;padding:2px 0;${esOposicion?'border-left:2px solid var(--riesgo-alto);padding-left:8px;':''}">${x.actor.nombre}${x.detalle?`<br><span style="color:var(--ink-3);font-size:10.5px;">${x.detalle}</span>`:''}</div>`).join('')
-      : (esOposicion ? `<p style="font-size:11px;color:var(--ink-3);">Sin reacción de oposición documentada por ahora.</p>` : '')}
-  `;}).join('');
+  const bloquesActores = Object.entries(grupos).filter(([,lista])=>lista.length).map(([grupo,lista])=>`
+    <div class="eyebrow" style="margin-top:8px;">${grupo}</div>
+    ${lista.map(x=>`<div style="font-size:12px;padding:2px 0;">${x.actor.nombre}${x.detalle?`<br><span style="color:var(--ink-3);font-size:10.5px;">${x.detalle}</span>`:''}</div>`).join('')}
+  `).join('');
 
   const estadoTexto = dias===null ? 'Sin datos' :
     dias<=14 ? `Última nota hace ${dias===0?'hoy':dias+' días'}` :
@@ -234,24 +187,24 @@ function abrirFichaTema(temaId){
 
 let categoriaFiltroAgenda = '';
 let impactoFiltroAgenda = '';
-let soloAgendaNacional = true; // activo por defecto — distingue agenda nacional real del resto desde el primer vistazo
+let soloAgendaNacional = true;
 
 let vistaAgenda = 'matriz';
 
-function abrirTarjetaHoy(temaId, fechaEspecifica){
+function abrirTarjetaHoy(temaId){
   const tema = getTema(temaId);
   if(!tema) return;
-  const hoy = fechaEspecifica || new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
   const ahoraMX = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Mexico_City'}));
   const diaSemana = ahoraMX.getDay(), hora = ahoraMX.getHours();
-  const enVentanaMananera = !fechaEspecifica && diaSemana>=1 && diaSemana<=5 && hora>=7 && hora<10;
+  const enVentanaMananera = diaSemana>=1 && diaSemana<=5 && hora>=7 && hora<10;
 
   let eventosHoy = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId && e.fecha===hoy);
   if(enVentanaMananera){
     const soloMananera = eventosHoy.filter(e=>e.descripcion.startsWith('[Mañanera]'));
     if(soloMananera.length) eventosHoy = soloMananera;
   }
-  if(!eventosHoy.length) return; // no debería pasar (el cintillo solo muestra temas con nota de hoy), pero por seguridad
+  if(!eventosHoy.length) return;
 
   const color = colorCategoria(tema.categoria);
   const nivelImp = nivelImpacto(tema.peso_politico);
@@ -293,83 +246,64 @@ function renderCintillo(){
   if(!inner) return;
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
 
-  // ventana de mañanera (7-10am, L-V, hora de México) — si estamos en ella y ya hay contenido
-  // real de mañanera hoy, el cintillo muestra SOLO eso, nada más, como quedó acordado
   const ahoraMX = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Mexico_City'}));
   const diaSemana = ahoraMX.getDay(), hora = ahoraMX.getHours();
   const enVentanaMananera = diaSemana>=1 && diaSemana<=5 && hora>=7 && hora<10;
   const eventosMananeraHoy = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy && e.descripcion.startsWith('[Mañanera]'));
 
-  let eventosDelDia;
+  let idsConNotaHoy;
   if(enVentanaMananera && eventosMananeraHoy.length){
-    eventosDelDia = eventosMananeraHoy;
+    idsConNotaHoy = new Set(eventosMananeraHoy.map(e=>e.tema_id));
   } else {
-    eventosDelDia = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy);
+    idsConNotaHoy = new Set(ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).map(e=>e.tema_id));
   }
-  // 1 entrada por NOTA, no por tema -- así 2 notas del mismo tema se ven las 2, cada una
-  // con su propio fragmento de titular, en vez de una sola entrada genérica que las esconde
-  eventosDelDia = eventosDelDia.slice().sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
-  if(!eventosDelDia.length){
+  const temas = ECOSISTEMA.temas.filter(t=>idsConNotaHoy.has(t.id)).slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+  if(!temas.length){
     inner.innerHTML = `<span style="padding:7px 0;color:var(--ink-3);font-size:12px;">${enVentanaMananera ? 'Esperando el resumen de la mañanera...' : 'Sin novedades registradas hoy'}</span>`;
     return;
   }
-  const nombreTemaPorId = {}; ECOSISTEMA.temas.forEach(t=> nombreTemaPorId[t.id]=t);
-  const itemsHTML = eventosDelDia.map(e=>{
-    const tema = nombreTemaPorId[e.tema_id];
-    if(!tema) return '';
-    const color = colorCategoria(e.categoria);
-    const fragmento = e.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,64);
-    const textoCorto = fragmento.length>=64 ? fragmento.trimEnd()+'…' : fragmento;
-    return `<button class="ticker-item" data-tema="${tema.id}">
+  const itemsHTML = temas.map(t=>{
+    const color = colorCategoria(t.categoria);
+    const indice = calcularIndiceEscalamiento(t);
+    const flecha = indice.tendencia==='ascenso' ? '▲' : (indice.tendencia==='descenso' ? '▼' : '—');
+    const claseFlecha = indice.tendencia==='ascenso' ? 'up' : (indice.tendencia==='descenso' ? 'down' : 'flat');
+    return `<button class="ticker-item" data-tema="${t.id}">
       <span class="riesgo-chip" style="background:${color}"></span>
-      <span class="tema-name">${textoCorto}</span>
+      <span class="tema-name">${t.nombre}</span>
+      <span class="trend ${claseFlecha}">${flecha}</span>
     </button>`;
   }).join('');
-  // el contenido se duplica una vez — así la animación de desplazamiento se ve continua, sin salto ni corte al reiniciar
   inner.innerHTML = itemsHTML + itemsHTML;
   inner.querySelectorAll('.ticker-item').forEach(btn=>{
     btn.addEventListener('click', ()=>{ if(typeof abrirTarjetaHoy==='function') abrirTarjetaHoy(btn.dataset.tema); });
   });
-  // misma velocidad real que el feed (12.5px por segundo) -- se calcula la duración según
-  // el ancho real del contenido, en vez de un número de segundos fijo adivinado
-  requestAnimationFrame(()=>{
-    const anchoMitad = inner.scrollWidth / 2;
-    const PX_POR_SEGUNDO = 12.5; // mismo ritmo que iniciarAutoScrollFeed (0.5px cada 40ms)
-    const duracion = Math.max(20, anchoMitad / PX_POR_SEGUNDO);
-    inner.style.animationDuration = duracion.toFixed(1) + 's';
-  });
 }
 document.addEventListener('ecosistema:datos-listos', renderCintillo);
 
-function actualizarVisibilidadFiltrosAgenda(){
-  // categoría y KPI de impacto solo tienen sentido en Matriz/Lista — en Notas/Genealogía
-  // no filtran nada visible, solo ocupaban espacio sin propósito
-  const aplica = vistaAgenda==='matriz' || vistaAgenda==='lista';
-  const wrapCat = document.getElementById('agenda-categoria-wrap');
-  const wrapKpis = document.getElementById('agenda-kpis');
-  if(wrapCat) wrapCat.style.display = aplica ? 'flex' : 'none';
-  if(wrapKpis) wrapKpis.style.display = aplica ? 'flex' : 'none';
-}
-
 function initAgenda(){
   poblarFiltroCategoriaAgenda();
+  const btnNivel1 = document.getElementById('btn-agenda-nacional');
+  if(btnNivel1 && !btnNivel1.dataset.conectado){
+    btnNivel1.addEventListener('click', ()=>{
+      soloAgendaNacional = !soloAgendaNacional;
+      btnNivel1.classList.toggle('kpi-activo', soloAgendaNacional);
+      renderAgendaGrid();
+    });
+    btnNivel1.dataset.conectado = '1';
+  }
   document.querySelectorAll('.vista-toggle .chip-btn').forEach(btn=>{
     if(btn.dataset.conectado) return;
     btn.addEventListener('click', ()=>{
       vistaAgenda = btn.dataset.vista;
       document.querySelectorAll('.vista-toggle .chip-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-      actualizarVisibilidadFiltrosAgenda();
       renderAgendaGrid();
     });
     btn.dataset.conectado='1';
   });
-  actualizarVisibilidadFiltrosAgenda();
   renderAgendaGrid();
 }
 
-// COLOR POR ROL — para que nunca se sugiera que un actor "mencionado" está señalado igual
-// que uno "investigado" (riesgo real de mala lectura, ya lo hablamos)
 const COLOR_ROL_NOTAS = {
   'Investigado':'var(--riesgo-alto)', 'Acusado':'var(--riesgo-alto)',
   'Responsable institucional':'var(--familia-nucleo)', 'Autoridad':'var(--familia-nucleo)',
@@ -391,31 +325,44 @@ let temaGenealogiaSeleccionado = null;
 function renderNotasAgenda(){
   const cont = document.getElementById('agenda-contenido');
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  const temasDisponibles = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1) // SOLO los que marcaron agenda nacional real — nunca temas automáticos, mismo criterio que el mapa de calor y Timeline
+  const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
-  if(temaNotasSeleccionado && !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)) temaNotasSeleccionado = null; // si el filtro de categoría cambia y ya no aplica, no forzar otro — se queda vacío hasta que el usuario elija
-  if(!temasDisponibles.length){ cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return; }
+  // ya NO se autoselecciona el primer tema -- arranca en "Sin selección", igual que Red de
+  // Actores, hasta que el usuario elija uno explícitamente
+  if(temaNotasSeleccionado && !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)) temaNotasSeleccionado = null;
 
   cont.innerHTML = `
     <div style="padding:10px 14px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-      <div id="notas-tema-dropdown"></div>
+      <select id="notas-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
+        <option value="">— sin selección —</option>
+        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
+      </select>
       <div class="legend-inline">
         ${Object.entries(COLOR_ROL_NOTAS).filter(([r])=>!['Acusado','Autoridad','Reacción del gobierno','Operador'].includes(r)).map(([rol,color])=>
           `<span><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('')}
       </div>
     </div>
-    <svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`;
-  crearDropdownPersonalizado('notas-tema-dropdown', temasDisponibles.map(t=>({value:t.id, label:t.nombre})), temaNotasSeleccionado, (valor)=>{
-    temaNotasSeleccionado = valor || null;
-    dibujarNotasConGrafoReal();
+    <div id="notas-zona-grafo" style="width:100%;flex:1;position:relative;"></div>`;
+  document.getElementById('notas-tema-select').addEventListener('change', (e)=>{
+    temaNotasSeleccionado = e.target.value || null;
+    pintarZonaNotas();
   });
 
-  dibujarNotasConGrafoReal(); // si temaNotasSeleccionado es null, renderGrafo ya muestra solo su estado vacío — mismo patrón que Red de Actores
+  pintarZonaNotas();
+}
+
+function pintarZonaNotas(){
+  const zona = document.getElementById('notas-zona-grafo');
+  if(!zona) return;
+  if(!temaNotasSeleccionado){
+    zona.innerHTML = `<div class="graph-empty-state" style="display:flex;"><div class="eyebrow">Sin selección</div><h3>Elige una nota</h3><p style="font-size:12px;">Selecciona un tema de agenda arriba para ver quién aparece y con qué rol.</p></div>`;
+    return;
+  }
+  if(!zona.querySelector('#notas-svg')) zona.innerHTML = `<svg id="notas-svg" style="width:100%;height:100%;display:block;"></svg>`;
+  dibujarNotasConGrafoReal();
 }
 
 function dibujarNotasConGrafoReal(){
-  // guarda el estado real de Red de Actores antes de pedir prestado renderGrafo(), y lo
-  // restaura al terminar — así Notas nunca deja "pegado" su propio estado en la otra página
   const modoPrevio = modoRed, seleccionPrevia = {...seleccion};
   modoRed = 'agenda';
   seleccion = { nucleo:temaNotasSeleccionado, cruce1:null, cruce2:null };
@@ -468,7 +415,6 @@ function dibujarNotasAgenda(temaId){
       .on('drag',(ev,d)=>{ if(!d.esCentro){ d.fx=ev.x; d.fy=ev.y; } })
       .on('end',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0); if(!d.esCentro){ d.fx=null; d.fy=null; } }));
 
-  // halo del centro (mismo patrón que Red de Actores)
   node.filter(d=>d.esCentro).append('circle')
     .attr('r', d=>radioNota(d)+16).attr('fill', colorTema).attr('fill-opacity',0.28).attr('filter','url(#glow-notas)');
 
@@ -476,11 +422,9 @@ function dibujarNotasAgenda(temaId){
     .attr('fill', colorNota).attr('fill-opacity', d=>d.esCentro?1:0.85)
     .attr('stroke', d=>d.esCentro?'#fff':'var(--bg-0)').attr('stroke-width', d=>d.esCentro?3.5:1.5);
 
-  // anillo exterior del centro (mismo patrón)
   node.filter(d=>d.esCentro).append('circle')
     .attr('r', d=>radioNota(d)+6).attr('fill','none').attr('stroke',colorTema).attr('stroke-width',2).attr('stroke-opacity',0.55);
 
-  // iniciales dentro del nodo, como en Red de Actores
   node.append('text').attr('text-anchor','middle').attr('dy','0.35em')
     .attr('font-size', d=>d.esCentro?'11px':'9px').attr('font-weight','700').attr('fill','#fff')
     .text(d=> d.esCentro ? '' : d.iniciales);
@@ -507,39 +451,47 @@ let genealogiaRevelados = 1;
 function renderGenealogiaAgenda(){
   const cont = document.getElementById('agenda-contenido');
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  const temasDisponibles = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1) // solo agenda nacional real, nunca "auto-" — mismo criterio que Notas y el mapa de calor
+  const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1)
     .filter(t=> ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).length>1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
-  if(!temasDisponibles.length){
-    cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ notas para armar una genealogía.</div>`;
-    return;
-  }
+  // ya NO se autoselecciona el primer tema -- arranca en "Sin selección"
   if(temaGenealogiaSeleccionado && !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)) temaGenealogiaSeleccionado = null;
 
   cont.innerHTML = `
-    <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;">
-      <div id="geneal-tema-dropdown"></div>
+    <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <select id="geneal-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
+        <option value="">— sin selección —</option>
+        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
+      </select>
       <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
-    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;">${temaGenealogiaSeleccionado ? '<svg id="geneal-svg" style="height:100%;display:block;"></svg>' : '<div class="detail-empty"><div class="eyebrow">Sin selección</div><h3>Elige un tema</h3><p style="font-size:12px;">Se muestra el recorrido cronológico de ese tema de agenda.</p></div>'}</div>`;
-  crearDropdownPersonalizado('geneal-tema-dropdown', temasDisponibles.map(t=>({value:t.id, label:t.nombre})), temaGenealogiaSeleccionado, (valor)=>{ temaGenealogiaSeleccionado = valor || null; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
+    <div id="geneal-zona" style="width:100%;flex:1;position:relative;overflow:hidden;"></div>`;
+  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value || null; genealogiaRevelados = 1; pintarZonaGenealogia(); });
 
-  if(temaGenealogiaSeleccionado) dibujarGenealogia(temaGenealogiaSeleccionado);
+  pintarZonaGenealogia();
+}
+
+function pintarZonaGenealogia(){
+  const zona = document.getElementById('geneal-zona');
+  if(!zona) return;
+  if(!temaGenealogiaSeleccionado){
+    zona.innerHTML = `<div class="graph-empty-state" style="display:flex;"><div class="eyebrow">Sin selección</div><h3>Elige una nota</h3><p style="font-size:12px;">Selecciona un tema de agenda arriba para ver su recorrido cronológico.</p></div>`;
+    return;
+  }
+  zona.innerHTML = `<div id="geneal-scroll" style="width:100%;height:100%;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
+  dibujarGenealogia(temaGenealogiaSeleccionado);
 }
 
 function dibujarGenealogia(temaId){
   const scrollEl = document.getElementById('geneal-scroll');
   const svgEl = document.getElementById('geneal-svg');
   const tema = getTema(temaId);
-  const eventosCrudos = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
-  const porDia = {};
-  eventosCrudos.forEach(e=>{ if(!porDia[e.fecha] || e.intensidad>porDia[e.fecha].intensidad) porDia[e.fecha]=e; }); // 1 por día, mismo criterio que Timeline — si el robot dejó pasar un duplicado real, aquí no se ve
-  const eventos = Object.values(porDia).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const eventos = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
   const colorTema = colorCategoria(tema.categoria);
 
-  const espacio = 170; // FIJO — así nunca se aprieta con muchas notas, se desplaza en cambio
-  const xInicio = 150; // suficiente para que la etiqueta del origen (centrada) no se salga por la izquierda
+  const espacio = 170;
+  const xInicio = 150;
   const height = 480, y = height/2;
   const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150;
   const width = Math.max(scrollEl.clientWidth||900, anchoNecesario);
@@ -550,7 +502,6 @@ function dibujarGenealogia(temaId){
   const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
   svg.selectAll('*').remove();
 
-  // cuadrícula de fondo, mismo estilo que Timeline
   const defs = svg.append('defs');
   const pat = defs.append('pattern').attr('id','geneal-grid').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
   pat.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
@@ -559,8 +510,6 @@ function dibujarGenealogia(temaId){
     .attr('markerWidth',6).attr('markerHeight',6).attr('orient','auto-start-reverse')
     .append('path').attr('d','M 0 0 L 10 5 L 0 10 z').attr('fill','var(--teal)');
 
-  // franja de frecuencia de fondo — picos según la intensidad de cada nota en su fecha real,
-  // aporta contexto de "cuánto pesó" cada momento sin estorbar la línea principal
   const gFrecuencia = svg.append('g').attr('opacity',0.35);
   const maxIntensidad = Math.max(...eventos.map(e=>e.intensidad), 1);
   const puntosFrecuencia = eventos.map((e,i)=> [xInicio+i*espacio, y - (e.intensidad/maxIntensidad)*70]);
@@ -584,7 +533,7 @@ function dibujarGenealogia(temaId){
       lineaBase.append('line').attr('x1',posiciones[i-1].x).attr('y1',y).attr('x2',posiciones[i].x).attr('y2',y).attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
       dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, false, width, height);
     }
-    scrollEl.scrollLeft = width; // ir directo al final si ya se había reproducido antes
+    scrollEl.scrollLeft = width;
   }
 
   svg.append('text').attr('class','geneal-contador').attr('x',xInicio).attr('y',height-10).attr('text-anchor','middle')
@@ -597,7 +546,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
   d3.select('#geneal-svg .geneal-contador').text(`Reproduciendo — 1 de ${eventos.length}`);
   function siguienteTramo(i){
     if(i>=eventos.length){ genealogiaRevelados = eventos.length; return; }
-    scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'}); // el scroll sigue el avance solo
+    scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
       .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y).attr('x2',posiciones[i-1].x).attr('y2',posiciones[i-1].y)
       .attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
@@ -658,7 +607,7 @@ function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
 function renderListaAgenda(){
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
-  temasBase = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1); // siempre agenda nacional real, sin excepción — el toggle se quitó
+  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
   temasBase = temasBase.slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
   const cont = document.getElementById('agenda-contenido');
@@ -721,13 +670,11 @@ function ocultarTooltipAgenda(){ document.getElementById('agenda-tooltip').class
 
 function nivelImpacto(peso){ if(peso>=8) return 'alto'; if(peso>=5) return 'medio'; return 'bajo'; }
 
-// los KPI ahora SON el filtro de nivel de impacto (clic para activar/desactivar) — y cuando uno
-// está activo, se desglosa por categoría, respondiendo "cuántos de cada categoría"
 function renderKpisImpacto(){
   const cont = document.getElementById('agenda-kpis');
   if(!cont) return;
   const baseCategoria = (categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas)
-    .filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1); // siempre agenda nacional real
+    .filter(t=> !soloAgendaNacional || Number(t.nivel_relevancia)===1);
   const conteo = {alto:0, medio:0, bajo:0};
   baseCategoria.forEach(t=> conteo[nivelImpacto(t.peso_politico)]++);
 
@@ -747,8 +694,6 @@ function renderKpisImpacto(){
     });
   });
 
-  // desglose por categoría cuando hay un nivel de impacto activo — visibility, no display,
-  // así siempre reserva su espacio y no causa salto de layout al aparecer/desaparecer
   const desglose = document.getElementById('agenda-desglose');
   if(impactoFiltroAgenda){
     const enNivel = baseCategoria.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
@@ -759,8 +704,6 @@ function renderKpisImpacto(){
   } else if(desglose){ desglose.innerHTML=''; desglose.style.visibility='hidden'; }
 }
 
-// repulsión real por pares, con el límite del cuadro aplicado EN CADA iteración (no solo al
-// final) — verificado con Node: así no hay forma de que un punto termine fuera del cuadro
 function separarPuntos(datos, minDist, iteraciones, limites){
   datos.forEach((d,idx)=>{
     const jitterIni = idx*0.7;
@@ -789,31 +732,27 @@ function dibujarMatrizRiesgo(){
   const svg = d3.select(svgEl);
   svg.selectAll('*').remove();
 
-  const width = svgEl.clientWidth || 700, height = 560; // 560 ≈ misma altura que la caja del Feed (600) descontando el encabezado de KPI
-  const pad = {left:32, right:20, top:20, bottom:36}; // 32 a la izquierda: espacio real para la etiqueta rotada del eje Y, ya no se ve apretada
+  const width = svgEl.clientWidth || 700, height = 560;
+  const pad = {left:32, right:20, top:20, bottom:36};
   svg.attr('viewBox',[0,0,width,height]);
 
   const COLOR_IMPACTO = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
 
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
-  temasBase = temasBase.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1); // siempre agenda nacional real, sin excepción — el toggle se quitó
+  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
 
   const x = d3.scaleLinear().domain([0,10]).range([pad.left, width-pad.right]);
   const y = d3.scaleLinear().domain([0,10]).range([height-pad.bottom, pad.top]);
 
-  const hoy = new Date(), hace30 = new Date(hoy); hace30.setDate(hoy.getDate()-30); const hace60 = new Date(hoy); hace60.setDate(hoy.getDate()-60);
   const crudos = temasBase.map(t=>{
     const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
     const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
-    const recientes = evs.filter(e=>new Date(e.fecha)>=hace30).length;
-    const previos = evs.filter(e=>{ const f=new Date(e.fecha); return f>=hace60 && f<hace30; }).length;
-    const tendenciaPct = previos ? Math.round(((recientes-previos)/previos)*100) : (recientes?100:0);
-    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, veces:evs.length, tendenciaPct,
+    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, veces:evs.length,
       primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
       x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 40, 600, {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14}); // 24: verificado con la vista por defecto (17 temas Nivel 1), permite puntos un poco más grandes sin distorsionar demasiado
+  const datos = separarPuntos(crudos, 40, 600, {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14});
 
   if(!datos.length){
     svg.attr('viewBox',[0,0,width,height]);
@@ -821,7 +760,7 @@ function dibujarMatrizRiesgo(){
       .attr('font-family','var(--f-display)').attr('font-size','14px').attr('fill','var(--ink-3)')
       .text('Sin temas con este filtro');
     return;
-  } // 70: verificado con Node considerando el rectángulo de la etiqueta, no solo el círculo
+  }
 
   const defs = svg.append('defs');
   const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
@@ -835,7 +774,6 @@ function dibujarMatrizRiesgo(){
   svg.append('rect').attr('x',x(5)).attr('y',y(5)).attr('width',x(10)-x(5)).attr('height',height-pad.bottom-y(5)).attr('fill','var(--riesgo-medio)').attr('fill-opacity',0.06);
   svg.append('rect').attr('x',pad.left).attr('y',y(5)).attr('width',x(5)-pad.left).attr('height',height-pad.bottom-y(5)).attr('fill','var(--riesgo-bajo)').attr('fill-opacity',0.06);
 
-  // etiquetas de cuadrante — semitransparentes
   const estiloEtiqueta = s=>s.attr('font-family','var(--f-display)').attr('font-size','22px').attr('font-weight','700').attr('fill','var(--ink-1)').attr('fill-opacity',0.08).style('pointer-events','none');
   estiloEtiqueta(svg.append('text')).attr('x',(pad.left+x(5))/2).attr('y',(pad.top+y(5))/2).attr('text-anchor','middle').text('MEDIO');
   estiloEtiqueta(svg.append('text')).attr('x',(x(5)+width-pad.right)/2).attr('y',(pad.top+y(5))/2).attr('text-anchor','middle').text('ALTO');
@@ -852,18 +790,14 @@ function dibujarMatrizRiesgo(){
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
     .attr('transform', d=>`translate(${d.x},${d.y})`)
-    .on('mouseenter', function(ev,d){ const flecha=d.tendenciaPct>0?`↑ +${d.tendenciaPct}%`:d.tendenciaPct<0?`↓ ${d.tendenciaPct}%`:'→ estable'; mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10 · Tendencia 30d: ${flecha}<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',13); })
-    .on('mousemove', function(ev,d){ const flecha=d.tendenciaPct>0?`↑ +${d.tendenciaPct}%`:d.tendenciaPct<0?`↓ ${d.tendenciaPct}%`:'→ estable'; mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10 · Tendencia 30d: ${flecha}<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); })
+    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',13); })
+    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); })
     .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',9); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
-  // halo pulsante — mismo patrón ya validado en Timeline, señala "esto es interactivo" sin
-  // necesitar texto permanente que distorsionaría la posición real en el cuadrante
   g.append('circle').attr('class','nodo-halo').attr('r',15)
     .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.riesgoReal)]).attr('fill-opacity',0.28);
 
-  // relleno = intensidad (riesgo real), borde = categoría — así se distinguen ambas dimensiones
-  // a la vez, sin uno taparle info al otro
   g.append('circle').attr('class','nodo-principal').attr('r',9)
     .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.riesgoReal)]).attr('fill-opacity',0.9)
     .attr('stroke', d=>colorCategoria(d.tema.categoria)).attr('stroke-width',2.5).style('transition','r .12s');
