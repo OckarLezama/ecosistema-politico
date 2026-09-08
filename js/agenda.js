@@ -506,6 +506,9 @@ function renderGenealogiaAgenda(){
   select.onchange = (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); };
 
   cont.innerHTML = `
+    <div style="padding:10px 14px 0;">
+      <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
+    </div>
     ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
       <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
@@ -516,6 +519,12 @@ function renderGenealogiaAgenda(){
 }
 
 function dibujarGenealogia(temaId){
+  // cada dibujo fresco invalida cualquier reproducción que estuviera corriendo de fondo
+  // (de otro tema, o de antes de salir y volver a la vista) -- esto es lo que realmente
+  // faltaba: la variable de protección existía pero nunca se incrementaba, así que nunca
+  // detenía nada
+  generacionGenealogiaActual++;
+  genealogiaRevelados = 1;
   const scrollEl = document.getElementById('geneal-scroll');
   const svgEl = document.getElementById('geneal-svg');
   const tema = getTema(temaId);
@@ -524,7 +533,12 @@ function dibujarGenealogia(temaId){
 
   const espacio = 170;
   const xInicio = 150;
-  const height = 480, y = height/2;
+  // el alto ahora se toma del contenedor real (min-height:0 permite que llegue a su
+  // altura completa disponible, igual que Timeline) -- antes era un valor fijo (480)
+  // que no coincidía con el alto real de la caja, y como el SVG usa
+  // preserveAspectRatio="none" (necesario para que el ancho scrollable funcione bien),
+  // ese desajuste estiraba los círculos hasta verse ovalados
+  const height = scrollEl.clientHeight || 480, y = height/2;
   const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150;
   const width = Math.max(scrollEl.clientWidth||900, anchoNecesario);
   svgEl.style.width = width+'px';
@@ -573,10 +587,16 @@ function dibujarGenealogia(temaId){
     .text(genealogiaRevelados<=1 ? `Clic en el origen para reproducir el recorrido (${eventos.length} notas)` : `${genealogiaRevelados} de ${eventos.length} notas — recorrido completo`);
 }
 
+let generacionGenealogiaActual = 0; // se incrementa en cada render fresco -- así una reproducción
+// en curso de un tema anterior (o de antes de salir de la vista) se detiene sola al notar
+// que ya no es la generación vigente, en vez de seguir corriendo de fondo indefinidamente
+
 function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height){
+  const miGeneracion = generacionGenealogiaActual;
   const scrollEl = document.getElementById('geneal-scroll');
   d3.select('#geneal-svg .geneal-contador').text(`Reproduciendo — 1 de ${eventos.length}`);
   function siguienteTramo(i){
+    if(generacionGenealogiaActual !== miGeneracion) return; // se cambió de tema o se salió de la vista -- detener aquí, no seguir de fondo
     if(i>=eventos.length){ genealogiaRevelados = eventos.length; return; }
     scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
@@ -585,6 +605,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
     linea.transition().duration(600).ease(d3.easeLinear)
       .attr('x2',posiciones[i].x).attr('y2',posiciones[i].y)
       .on('end', ()=>{
+        if(generacionGenealogiaActual !== miGeneracion) return; // revisar de nuevo -- pudo cambiar mientras corría la transición
         dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, true, width, height);
         genealogiaRevelados = i+1;
         d3.select('#geneal-svg .geneal-contador').text(i+1<eventos.length ? `Reproduciendo — ${i+1} de ${eventos.length}` : `${eventos.length} de ${eventos.length} notas — recorrido completo`);
