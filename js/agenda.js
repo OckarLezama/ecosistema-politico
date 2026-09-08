@@ -175,6 +175,10 @@ function abrirFichaTema(temaId){
       <div class="detail-row"><span class="k">Prioridad</span><span class="v">${{1:'Máxima (Nivel 1 — marca agenda nacional)',2:'Alta (Nivel 2)',3:'Media (Nivel 3)'}[Number(tema.nivel_relevancia)] || tema.nivel_relevancia}</span></div>
       <div class="detail-row"><span class="k">Estado</span><span class="v" style="font-size:11px;text-align:right;max-width:60%;">${estadoTexto}</span></div>
       ${tema.resumen ? `<p style="font-size:12.5px;margin-top:10px;color:var(--ink-1);line-height:1.55;">${tema.resumen}</p>` : ''}
+      ${interpretacionMatrizIA[temaId] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin-top:8px;">
+        <div class="eyebrow" style="color:var(--teal);">Qué implica (IA)</div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${interpretacionMatrizIA[temaId]}</p>
+      </div>` : ''}
       ${bloquesActores}
       <div class="eyebrow" style="margin-top:10px;">Notas (${evs.length})</div>
       <div class="ficha-notas-scroll">
@@ -479,6 +483,10 @@ function renderGenealogiaAgenda(){
       </select>
       <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
+    ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
+      <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
+    </div>` : ''}
     <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
   document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
 
@@ -665,7 +673,12 @@ function renderMatrizYLista(){
   const cont = document.getElementById('agenda-contenido');
   // el interruptor Cuadrícula/Lista ahora es un ícono estático en el HTML
   // (#agenda-vista-secundaria) -- aquí solo se dibuja el contenido según su estado
-  cont.innerHTML = `<div id="matriz-lista-zona" style="width:100%;flex:1;position:relative;"></div>`;
+  const bloqueGlobal = analisisGlobalAgendaIA
+    ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:10px 14px 0;">
+        <div class="eyebrow" style="color:var(--teal);">Panorama de la agenda (IA)</div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${analisisGlobalAgendaIA}</p>
+      </div>` : '';
+  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;position:relative;"></div>`;
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
     document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg>`;
@@ -840,5 +853,15 @@ function dibujarMatrizRiesgo(){
     .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.riesgoReal)]).attr('fill-opacity',0.9)
     .attr('stroke', d=>colorCategoria(d.tema.categoria)).attr('stroke-width',2.5).style('transition','r .12s');
 }
+
+let interpretacionMatrizIA = {};
+let comportamientoGenealogiaIA = {};
+let analisisGlobalAgendaIA = null;
+fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
+  if(!d || !d.lectura) return;
+  if(d.lectura.interpretacion_matriz) interpretacionMatrizIA = d.lectura.interpretacion_matriz;
+  if(d.lectura.comportamiento_genealogia) comportamientoGenealogiaIA = d.lectura.comportamiento_genealogia;
+  if(d.lectura.analisis_global_agenda) analisisGlobalAgendaIA = d.lectura.analisis_global_agenda;
+}).catch(()=>{});
 
 document.addEventListener('ecosistema:datos-listos', initAgenda);
