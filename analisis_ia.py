@@ -562,13 +562,20 @@ def generar_analisis():
     redes_previas_datos = ((anterior or {}).get('datos_base') or {}).get('redes_por_nucleo', {})
     vinculos_previos_datos = ((anterior or {}).get('datos_base') or {}).get('vinculos_cruzados_por_par', {})
 
+    def huella_de(entrada_previa):
+        """Extrae 'huella' de una entrada previa sin tronar -- el análisis anterior puede
+        venir de una versión más vieja del script donde este campo era una lista simple,
+        no un diccionario con huella (eso fue justo lo que tronó esta corrida). Cualquier
+        formato inesperado se trata como 'sin huella', o sea que se regenera -- nunca truena."""
+        return entrada_previa.get('huella') if isinstance(entrada_previa, dict) else None
+
     # ---- filtrar a solo lo que CAMBIÓ desde la corrida anterior -- si un núcleo tiene la
     # misma huella que la vez pasada, su análisis ya guardado sigue siendo válido, y pedirle
     # a la IA que lo regenere sería pagar de más por el mismo resultado. Solo se manda a la
     # IA lo que de verdad necesita un texto nuevo.
     nucleos_cambiados, nucleos_sin_cambio = {}, {}
     for nid, red in datos['redes_por_nucleo'].items():
-        huella_previa = (redes_previas_datos.get(nid) or {}).get('huella')
+        huella_previa = huella_de(redes_previas_datos.get(nid))
         if huella_previa == red.get('huella') and nid in lectura_previa.get('analisis_redes', {}):
             nucleos_sin_cambio[nid] = red
         else:
@@ -576,7 +583,7 @@ def generar_analisis():
 
     pares_cambiados, pares_sin_cambio = {}, {}
     for par, info in datos['vinculos_cruzados_por_par'].items():
-        huella_previa = (vinculos_previos_datos.get(par) or {}).get('huella')
+        huella_previa = huella_de(vinculos_previos_datos.get(par))
         if huella_previa == info.get('huella') and par in lectura_previa.get('interpretacion_vinculos', {}):
             pares_sin_cambio[par] = info
         else:
@@ -585,7 +592,7 @@ def generar_analisis():
     notas_actor_previas_datos = ((anterior or {}).get('datos_base') or {}).get('notas_por_actor_relevante', {})
     actores_notas_cambiados, actores_notas_sin_cambio = {}, {}
     for actor_id, info in datos['notas_por_actor_relevante'].items():
-        huella_previa = (notas_actor_previas_datos.get(actor_id) or {}).get('huella')
+        huella_previa = huella_de(notas_actor_previas_datos.get(actor_id))
         if huella_previa == info.get('huella') and actor_id in lectura_previa.get('escenario_por_notas', {}):
             actores_notas_sin_cambio[actor_id] = info
         else:
