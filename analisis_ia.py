@@ -10,7 +10,7 @@ técnica sin traducir. Nunca se le pide predecir el futuro ni especular sobre
 facciones internas o causalidad no documentada. El resultado se guarda en un
 JSON que el sitio solo lee y muestra -- el sitio nunca llama a la API directo.
 """
-import os, csv, json, math, re
+import os, csv, json, math, re, hashlib
 from datetime import datetime, timedelta
 from statistics import mean, pstdev
 from zoneinfo import ZoneInfo
@@ -163,9 +163,10 @@ def calcular_todo():
         return (int(anio), int(num))
     aura_intensidad = [{'semana': s, 'intensidad': round(v, 1)} for s, v in sorted(intensidad_por_semana.items(), key=clave_orden_semana)]
 
-    NUCLEOS_CATEGORIZADOS = ['sheinbaum', 'andy', 'amlo', 'trump', 'garcia_harfuch', 'ebrard',
-        'rosa_icela', 'godoy', 'montiel', 'luisa_maria_alcalde', 'citlalli', 'mario_delgado',
-        'adan_augusto', 'monreal', 'rocha_moya', 'rubio']
+    # antes 16 núcleos -- cada corrida con búsqueda web real cuesta más, y la mayoría rara
+    # vez se consulta. Se reduce a los de mayor peso real (los que sostienen el gobierno y
+    # su relación con EEUU) -- si con el tiempo se necesita otro, se agrega aquí a mano.
+    NUCLEOS_CATEGORIZADOS = ['sheinbaum', 'andy', 'amlo', 'trump', 'garcia_harfuch', 'ebrard', 'rocha_moya', 'rubio']
     redes_por_nucleo = {}
     todas_las_redes, todos_los_actores = [], {}
     try:
@@ -185,12 +186,16 @@ def calcular_todo():
                 total = sum(len(v) for v in por_categoria.values())
                 conteo_por_categoria = {cat: len(personas) for cat, personas in por_categoria.items()}
                 categoria_dominante = max(conteo_por_categoria, key=conteo_por_categoria.get)
+                # huella real de los datos de este núcleo -- si nada de esto cambia entre
+                # corridas, no hay razón para pagarle a la IA por regenerar el mismo texto
+                huella = hashlib.md5(json.dumps(por_categoria, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
                 redes_por_nucleo[nid] = {
                     'satelites_por_categoria': por_categoria,
                     'total_satelites': total,
                     'conteo_por_categoria': conteo_por_categoria,
                     'categoria_dominante': categoria_dominante,
                     'pct_categoria_dominante': round(conteo_por_categoria[categoria_dominante]/total*100),
+                    'huella': huella,
                 }
     except Exception:
         pass
@@ -221,7 +226,8 @@ def calcular_todo():
                                     'hacia': actorB['nombre'], 'hacia_cargo': actorB.get('cargo',''),
                                     'etiqueta': r.get('etiqueta_nivel','')})
                 if cruces:
-                    vinculos_cruzados_por_par[nA+'|'+nB] = cruces[:6]
+                    huella_par = hashlib.md5(json.dumps(cruces, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+                    vinculos_cruzados_por_par[nA+'|'+nB] = {'cruces': cruces[:6], 'huella': huella_par}
     except Exception:
         pass
 
@@ -238,6 +244,42 @@ def calcular_todo():
     horas_transcurridas_desde_las_6 = max(1, hora_actual - 6) if hora_actual >= 6 else 1
     promedio_por_hora_hoy = round(len(eventos_hoy) / horas_transcurridas_desde_las_6, 1)
     notas_alto_impacto_hoy = [e['descripcion'][:100] for e in eventos_hoy if float(e.get('intensidad') or 0) >= 8]
+    # ---- NOTAS POR ACTOR (para el switch de "Actor" en Red de Actores) -- la mayoría de
+    # actores NO tienen red categorizada (solo 16 la tienen), así que su escenario
+    # prospectivo no puede salir de "quién los rodea" -- tiene que salir de LAS NOTAS donde
+    # aparecen. Se usa tema_actores.csv (actor ligado a temas, con rol) para juntar sus
+    # eventos reales, sin inventar ninguna mención. Acotado a los actores con más presencia
+    # real y que NO ya tengan análisis de red (para no duplicar ni disparar el costo).
+    notas_por_actor_relevante = {}
+    try:
+        actor_a_temas = defaultdict(set)
+        for ta in tema_actores:
+            actor_a_temas[ta['actor_id']].add(ta['tema_id'])
+        actores_candidatos = []
+        for actor_id, temas_ids in actor_a_temas.items():
+            if actor_id in NUCLEOS_CATEGORIZADOS:
+                continue  # esos ya tienen escenario_prospectivo por red, no hace falta duplicar
+            evs_del_actor = [e for e in eventos if e['tema_id'] in temas_ids]
+            if len(evs_del_actor) >= 3:
+                actores_candidatos.append((actor_id, evs_del_actor))
+        # tope de 8 actores por corrida -- los de más presencia real primero, para no
+        # disparar el costo analizando a cualquiera con 3 menciones sueltas
+        actores_candidatos.sort(key=lambda x: len(x[1]), reverse=True)
+        for actor_id, evs_del_actor in actores_candidatos[:8]:
+            notas_top = sorted(evs_del_actor, key=lambda e: float(e.get('intensidad') or 0), reverse=True)[:5]
+            actor_info = todos_los_actores.get(actor_id, {})
+            textos = [e['descripcion'][:150] for e in notas_top]
+            huella = hashlib.md5(json.dumps(textos, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+            notas_por_actor_relevante[actor_id] = {
+                'nombre': actor_info.get('nombre', actor_id),
+                'cargo': actor_info.get('cargo', ''),
+                'total_notas': len(evs_del_actor),
+                'notas_destacadas': textos,
+                'huella': huella,
+            }
+    except Exception:
+        pass
+
     pulso_datos = {
         'total_notas_hoy': len(eventos_hoy),
         'conteo_por_categoria_hoy': dict(conteo_categoria_hoy),
@@ -263,6 +305,7 @@ def calcular_todo():
         'redes_por_nucleo': redes_por_nucleo,
         'vinculos_cruzados_por_par': vinculos_cruzados_por_par,
         'pulso_datos': pulso_datos,
+        'notas_por_actor_relevante': notas_por_actor_relevante,
     }
 
 
@@ -389,7 +432,8 @@ o cae en desgracia... si nada cambia..." como fórmula fija para todos) -- cada 
 situación distinta, que se note en cómo está escrito, no solo en el nombre que cambia.
 
 Si el JSON de entrada trae "vinculos_cruzados_por_par" (vínculos entre satélites de 2 núcleos
-distintos), CADA PAR puede traer VARIOS vínculos a la vez, por canales distintos (ej. uno de
+distintos, dentro de la clave "cruces" de cada par -- "huella" es solo uso interno del script,
+ignórala), CADA PAR puede traer VARIOS vínculos a la vez, por canales distintos (ej. uno de
 seguridad vía un operador, otro económico vía otro operador) -- la interpretación en
 "interpretacion_vinculos" debe dar cuenta de TODOS los canales presentes en ese par, no solo
 del primero o el más obvio. Si Sheinbaum-Trump tiene tanto un vínculo de Harfuch (seguridad)
@@ -401,6 +445,16 @@ canales): "La relación con Washington corre por 2 canales concentrados: segurid
 y comercio vía Ebrard -- ambos frentes dependen de que esas 2 personas mantengan su posición."
 Si un par no tiene vínculos reales suficientes para decir algo específico, omite esa clave --
 no rellenes con generalidades.
+
+Si el JSON de entrada trae "notas_por_actor_relevante" -- esto es para actores que NO tienen
+red categorizada (la mayoría), así que su "escenario_por_notas" tiene que salir de LAS NOTAS
+reales donde aparecen ("notas_destacadas"), no de quién los rodea. Para cada actor ahí
+presente, en 2-3 oraciones: ¿de qué trata realmente su presencia en la agenda estos días (no
+repitas el titular, sintetiza el patrón)? Y en el mismo tono condicional de siempre -- ¿qué
+implicaría si esto escala o si se diluye? Usa búsqueda web si el nombre/tema lo amerita para
+dar contexto actual, igual que en las demás secciones. Si las notas no dan para decir algo
+específico más allá de "aparece mencionado", dilo así de corto -- no inventes un escenario
+donde no lo hay.
 
 Está prohibido usar el mismo fraseo genérico entre núcleos distintos (si puedes intercambiar
 dos análisis sin que se note, están mal escritos). Nunca inventes vínculos, cargos o nombres
@@ -426,6 +480,7 @@ Responde ÚNICAMENTE con un objeto JSON con estas claves (1-2 oraciones cortas c
   "analisis_redes": {{"id_del_nucleo": {{"resumen": "2-3 oraciones sobre la composición de la red", "fortaleza": "1-2 oraciones -- qué hace fuerte a esta red específica (ej. control institucional, diversidad de canales, peso propio del núcleo)", "debilidad": "1-2 oraciones -- qué la hace vulnerable (ej. dependencia de pocos operadores, poca presencia territorial, riesgo de un solo punto de falla)"}} -- una clave por cada núcleo presente en redes_por_nucleo}},
   "escenario_prospectivo": {{"id_del_nucleo": "2-3 oraciones -- qué pasaría si cae/pierde peso y qué pasaría si no, con afectación a gobierno/Morena cuando aplique"}},
   "interpretacion_vinculos": {{"nucleoA|nucleoB": "1-2 oraciones -- qué implica esa combinación de vínculos, no describas de nuevo el cargo"}},
+  "escenario_por_notas": {{"id_del_actor": "2-3 oraciones -- de qué trata su presencia real en la agenda + qué implicaría si escala o se diluye, una clave por cada actor en notas_por_actor_relevante"}},
   "propuestas_atencion": [{{"tema": "nombre exacto del tema", "propuesta": "1 oración corta"}}]
 }}"""
 
@@ -440,7 +495,7 @@ def encontrar_problemas(lectura):
     return encontrados
 
 
-def llamar_claude(cliente, prompt, max_tokens=16000):
+def llamar_claude(cliente, prompt, max_tokens=16000, usar_busqueda=True):
     # a partir de cierto tamaño de respuesta, la librería exige streaming en vez de la
     # llamada normal (para peticiones que pueden tardar más de 10 minutos) -- con 16
     # núcleos y análisis profundo, ya se necesita ese espacio, así que se usa streaming
@@ -452,12 +507,15 @@ def llamar_claude(cliente, prompt, max_tokens=16000):
     # descriptivo y genérico comparado con un análisis que sí busca en vivo. Esto le da al
     # modelo la misma herramienta de búsqueda real, server-side (Anthropic la ejecuta y
     # devuelve el resultado ya incorporado en el texto final, sin que este script tenga que
-    # hacer nada más que declarar que existe).
+    # hacer nada más que declarar que existe). Tope bajo (4, no 8) para controlar el costo,
+    # y se desactiva por completo en la corrección de jerga técnica (usar_busqueda=False)
+    # -- ahí solo hay que reescribir texto que ya se generó, no buscar de nuevo.
+    herramientas = [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 4}] if usar_busqueda else []
     texto_completo = ''
     with cliente.messages.stream(
         model='claude-sonnet-5',
         max_tokens=max_tokens,
-        tools=[{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 8}],
+        tools=herramientas,
         messages=[{'role': 'user', 'content': prompt}],
     ) as stream:
         for evento in stream.text_stream:
@@ -466,7 +524,7 @@ def llamar_claude(cliente, prompt, max_tokens=16000):
     if not texto:
         if max_tokens < 32000:
             print(f'Sin texto (se quedó sin espacio pensando) con max_tokens={max_tokens}, reintentando con más espacio...')
-            return llamar_claude(cliente, prompt, max_tokens=max_tokens*2)
+            return llamar_claude(cliente, prompt, max_tokens=max_tokens*2, usar_busqueda=usar_busqueda)
         raise ValueError(f'La respuesta llegó vacía ni con max_tokens={max_tokens}')
     if texto.startswith('```'):
         texto = texto.split('```')[1]
@@ -481,6 +539,17 @@ def llamar_claude(cliente, prompt, max_tokens=16000):
         raise
 
 
+def cargar_analisis_previo():
+    """El análisis de ayer (o de la corrida anterior) -- se usa para 2 cosas: comparar contra
+    él (que ya se hacía) y, ahora, para saber qué núcleos/pares de vínculos YA tienen un
+    texto vigente que no hace falta regenerar (misma huella = mismos datos de origen)."""
+    try:
+        with open(RUTA_SALIDA, encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
 def generar_analisis():
     datos = calcular_todo()
     llave = os.environ.get('ANTHROPIC_API_KEY')
@@ -488,16 +557,74 @@ def generar_analisis():
         print('ANTHROPIC_API_KEY no configurada — se omite este paso.')
         return
 
+    anterior = cargar_analisis_previo()
+    lectura_previa = (anterior or {}).get('lectura', {})
+    redes_previas_datos = ((anterior or {}).get('datos_base') or {}).get('redes_por_nucleo', {})
+    vinculos_previos_datos = ((anterior or {}).get('datos_base') or {}).get('vinculos_cruzados_por_par', {})
+
+    # ---- filtrar a solo lo que CAMBIÓ desde la corrida anterior -- si un núcleo tiene la
+    # misma huella que la vez pasada, su análisis ya guardado sigue siendo válido, y pedirle
+    # a la IA que lo regenere sería pagar de más por el mismo resultado. Solo se manda a la
+    # IA lo que de verdad necesita un texto nuevo.
+    nucleos_cambiados, nucleos_sin_cambio = {}, {}
+    for nid, red in datos['redes_por_nucleo'].items():
+        huella_previa = (redes_previas_datos.get(nid) or {}).get('huella')
+        if huella_previa == red.get('huella') and nid in lectura_previa.get('analisis_redes', {}):
+            nucleos_sin_cambio[nid] = red
+        else:
+            nucleos_cambiados[nid] = red
+
+    pares_cambiados, pares_sin_cambio = {}, {}
+    for par, info in datos['vinculos_cruzados_por_par'].items():
+        huella_previa = (vinculos_previos_datos.get(par) or {}).get('huella')
+        if huella_previa == info.get('huella') and par in lectura_previa.get('interpretacion_vinculos', {}):
+            pares_sin_cambio[par] = info
+        else:
+            pares_cambiados[par] = info
+
+    notas_actor_previas_datos = ((anterior or {}).get('datos_base') or {}).get('notas_por_actor_relevante', {})
+    actores_notas_cambiados, actores_notas_sin_cambio = {}, {}
+    for actor_id, info in datos['notas_por_actor_relevante'].items():
+        huella_previa = (notas_actor_previas_datos.get(actor_id) or {}).get('huella')
+        if huella_previa == info.get('huella') and actor_id in lectura_previa.get('escenario_por_notas', {}):
+            actores_notas_sin_cambio[actor_id] = info
+        else:
+            actores_notas_cambiados[actor_id] = info
+
+    print(f'Núcleos: {len(nucleos_cambiados)} cambiaron, {len(nucleos_sin_cambio)} sin cambio (se reutiliza su análisis previo).')
+    print(f'Pares de vínculos: {len(pares_cambiados)} cambiaron, {len(pares_sin_cambio)} sin cambio.')
+    print(f'Actores (por notas): {len(actores_notas_cambiados)} cambiaron, {len(actores_notas_sin_cambio)} sin cambio.')
+
+    # el JSON que de verdad se manda a la IA solo trae lo cambiado -- prompt más chico,
+    # menos tokens, menos costo, sin perder nada (lo demás se recupera del archivo anterior)
+    datos_para_ia = {**datos, 'redes_por_nucleo': nucleos_cambiados, 'vinculos_cruzados_por_par': pares_cambiados,
+        'notas_por_actor_relevante': actores_notas_cambiados}
+
     cliente = anthropic.Anthropic(api_key=llave)
-    lectura = llamar_claude(cliente, construir_prompt(datos))
+    lectura = llamar_claude(cliente, construir_prompt(datos_para_ia))
 
     problemas = encontrar_problemas(lectura)
     if problemas:
         print('Jerga técnica detectada, pidiendo reescritura:', problemas)
-        lectura = llamar_claude(cliente, construir_prompt(datos, correccion_previa=json.dumps(lectura, ensure_ascii=False)))
+        lectura = llamar_claude(cliente, construir_prompt(datos_para_ia, correccion_previa=json.dumps(lectura, ensure_ascii=False)), usar_busqueda=False)
         problemas_2 = encontrar_problemas(lectura)
         if problemas_2:
             print('Seguía habiendo jerga técnica tras la corrección:', problemas_2, '-- se guarda de todas formas, revisar manualmente.')
+
+    # se completa con lo reutilizado de la corrida anterior -- el resultado final SÍ tiene
+    # los 16 núcleos, aunque la IA solo haya escrito de nuevo los que cambiaron
+    lectura.setdefault('analisis_redes', {})
+    lectura.setdefault('escenario_prospectivo', {})
+    lectura.setdefault('interpretacion_vinculos', {})
+    lectura.setdefault('escenario_por_notas', {})
+    for nid in nucleos_sin_cambio:
+        lectura['analisis_redes'][nid] = lectura_previa['analisis_redes'][nid]
+        if nid in lectura_previa.get('escenario_prospectivo', {}):
+            lectura['escenario_prospectivo'][nid] = lectura_previa['escenario_prospectivo'][nid]
+    for par in pares_sin_cambio:
+        lectura['interpretacion_vinculos'][par] = lectura_previa['interpretacion_vinculos'][par]
+    for actor_id in actores_notas_sin_cambio:
+        lectura['escenario_por_notas'][actor_id] = lectura_previa['escenario_por_notas'][actor_id]
 
     salida = {
         'generado_en': datetime.now(TZ_MX).isoformat(),
