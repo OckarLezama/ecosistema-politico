@@ -274,6 +274,14 @@ function renderCintillo(){
     </button>`;
   }).join('');
   inner.innerHTML = itemsHTML + itemsHTML;
+  // duración de la animación PROPORCIONAL a cuántos temas hay -- si el CSS tiene una
+  // duración fija (ej. "20s"), más temas significa recorrer más distancia en el mismo
+  // tiempo, y por eso se ve más rápido entre más temas de agenda existan. Se calcula
+  // aquí, en JS, para que la velocidad VISUAL sea siempre la misma sin importar si hay
+  // 5 o 50 temas -- no depende de tocar el CSS.
+  const SEGUNDOS_POR_TEMA = 3.2; // qué tan rápido pasa cada tema individual -- ajustable
+  const duracionSegundos = Math.max(15, temas.length * SEGUNDOS_POR_TEMA);
+  inner.style.animationDuration = duracionSegundos + 's';
   inner.querySelectorAll('.ticker-item').forEach(btn=>{
     btn.addEventListener('click', ()=>{ if(typeof abrirTarjetaHoy==='function') abrirTarjetaHoy(btn.dataset.tema); });
   });
@@ -684,17 +692,23 @@ function renderKpisImpacto(){
   } else if(desglose){ desglose.innerHTML=''; desglose.style.visibility='hidden'; }
 }
 
-function separarPuntos(datos, minDist, iteraciones, limites){
+function separarPuntos(datos, minDist, iteracionesMax, limites){
   datos.forEach((d,idx)=>{
     const jitterIni = idx*0.7;
     d.x += Math.cos(jitterIni)*0.01; d.y += Math.sin(jitterIni)*0.01;
   });
-  for(let iter=0; iter<iteraciones; iter++){
+  // con muchos temas (la matriz ahora puede tener bastantes más que antes gracias a que
+  // el robot detecta mucho más contenido real), comparar cada punto contra todos los demás
+  // 600 veces se vuelve lento de verdad -- se corta en cuanto ya no hay traslapes que
+  // corregir, en vez de siempre completar el máximo de iteraciones sin necesidad
+  for(let iter=0; iter<iteracionesMax; iter++){
+    let huboTraslape = false;
     for(let i=0;i<datos.length;i++) for(let j=i+1;j<datos.length;j++){
       const a=datos[i], b=datos[j];
       const dx=a.x-b.x, dy=a.y-b.y;
       const dist=Math.hypot(dx,dy)||0.001;
       if(dist<minDist){
+        huboTraslape = true;
         const empuje=(minDist-dist)/2, ux=dx/dist, uy=dy/dist;
         a.x+=ux*empuje; a.y+=uy*empuje; b.x-=ux*empuje; b.y-=uy*empuje;
       }
@@ -703,6 +717,7 @@ function separarPuntos(datos, minDist, iteraciones, limites){
       d.x = Math.max(limites.xMin, Math.min(limites.xMax, d.x));
       d.y = Math.max(limites.yMin, Math.min(limites.yMax, d.y));
     });
+    if(!huboTraslape) break; // ya quedaron separados -- no hace falta seguir iterando
   }
   return datos;
 }
@@ -732,7 +747,7 @@ function dibujarMatrizRiesgo(){
       primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
       x: x(t.peso_politico), y: y(riesgoMax) };
   });
-  const datos = separarPuntos(crudos, 40, 600, {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14});
+  const datos = separarPuntos(crudos, 40, Math.max(60, Math.round(20000/Math.max(crudos.length,1))), {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14});
 
   if(!datos.length){
     svg.attr('viewBox',[0,0,width,height]);
