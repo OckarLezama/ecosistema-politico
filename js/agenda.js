@@ -327,14 +327,14 @@ function renderNotasAgenda(){
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
-  // ya NO se autoselecciona el primer tema -- arranca en "Sin selección", igual que Red de
-  // Actores, hasta que el usuario elija uno explícitamente
-  if(temaNotasSeleccionado && !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)) temaNotasSeleccionado = null;
+  if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){
+    temaNotasSeleccionado = temasDisponibles[0]?.id || null;
+  }
+  if(!temaNotasSeleccionado){ cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return; }
 
   cont.innerHTML = `
     <div style="padding:10px 14px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
       <select id="notas-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
-        <option value="">— sin selección —</option>
         ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
       </select>
       <div class="legend-inline">
@@ -342,15 +342,13 @@ function renderNotasAgenda(){
           `<span><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('')}
       </div>
     </div>
-    ${temaNotasSeleccionado
-      ? `<svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`
-      : `<div class="graph-empty-state" id="notas-svg-empty-state" style="display:flex;"><div class="eyebrow">Sin selección</div><h3>Elige una nota</h3><p style="font-size:12px;">Selecciona un tema de agenda arriba para ver quién aparece y con qué rol.</p></div>`}`;
+    <svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`;
   document.getElementById('notas-tema-select').addEventListener('change', (e)=>{
-    temaNotasSeleccionado = e.target.value || null;
-    renderNotasAgenda();
+    temaNotasSeleccionado = e.target.value;
+    dibujarNotasConGrafoReal();
   });
 
-  if(temaNotasSeleccionado) dibujarNotasConGrafoReal();
+  dibujarNotasConGrafoReal();
 }
 
 function dibujarNotasConGrafoReal(){
@@ -446,23 +444,23 @@ function renderGenealogiaAgenda(){
     .filter(t=> ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).length>1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
-  // ya NO se autoselecciona el primer tema -- arranca en "Sin selección"
-  if(temaGenealogiaSeleccionado && !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)) temaGenealogiaSeleccionado = null;
+  if(!temasDisponibles.length){
+    cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ notas para armar una genealogía.</div>`;
+    return;
+  }
+  if(!temaGenealogiaSeleccionado || !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)){ temaGenealogiaSeleccionado = temasDisponibles[0].id; genealogiaRevelados = 1; }
 
   cont.innerHTML = `
-    <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;">
       <select id="geneal-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
-        <option value="">— sin selección —</option>
         ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
       </select>
       <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
-    ${temaGenealogiaSeleccionado
-      ? `<div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`
-      : `<div class="graph-empty-state" style="display:flex;"><div class="eyebrow">Sin selección</div><h3>Elige una nota</h3><p style="font-size:12px;">Selecciona un tema de agenda arriba para ver su recorrido cronológico.</p></div>`}`;
-  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value || null; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
+    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
+  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
 
-  if(temaGenealogiaSeleccionado) dibujarGenealogia(temaGenealogiaSeleccionado);
+  dibujarGenealogia(temaGenealogiaSeleccionado);
 }
 
 function dibujarGenealogia(temaId){
