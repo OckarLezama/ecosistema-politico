@@ -215,13 +215,13 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
   // CURVA DE DENSIDAD SUAVE -- con 250+ notas, barras por hora ya se ven "en bloques" y
   // pierden precisión. Una curva continua, con bloques de 30 min (el doble de fino que
   // antes), se lee mejor a este volumen y no tiene el efecto de "cajones"
-  const BLOQUES = 48; // 30 min cada uno
+  const BLOQUES = 96; // 15 min cada uno -- criterio correcto (no 30, no nota por nota)
   const porBloque = Array.from({length:BLOQUES}, ()=>[]);
   eventosFiltrados.forEach(e=>{
     const hora = horaDeteccionDe(e);
     const horaDecimal = hora.getHours()+hora.getMinutes()/60;
     if(isNaN(horaDecimal)) return; // protección: nunca truena si algún dato de hora viene mal formado
-    const idx = Math.min(BLOQUES-1, Math.max(0, Math.floor(horaDecimal*2)));
+    const idx = Math.min(BLOQUES-1, Math.max(0, Math.floor(horaDecimal*4)));
     porBloque[idx].push(e);
   });
   const maxConteo = Math.max(...porBloque.map(l=>l.length), 1);
@@ -243,7 +243,7 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
 
   // puntos de la curva: 1 por bloque, x = centro del bloque, y = altura según conteo
   const puntos = porBloque.map((lista,i)=>{
-    const x = xDeHora((i+0.5)/2);
+    const x = xDeHora((i+0.5)/4);
     const y = margenArriba + altoUtil - (lista.length/maxConteo)*altoUtil*0.85; // el pico más alto llega a 85% de la altura, nunca toca el borde de arriba
     return {x, y, lista};
   });
@@ -263,23 +263,19 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
   const lineaD = curvaSuave(puntos);
   const areaD = lineaD + ` L ${puntos[puntos.length-1].x.toFixed(1)} ${margenArriba+altoUtil} L ${puntos[0].x.toFixed(1)} ${margenArriba+altoUtil} Z`;
 
-  // puntos visibles solo donde SÍ hay notas -- como <div> HTML normal (no <circle> de SVG),
-  // porque el SVG usa preserveAspectRatio="none" para estirarse al ancho completo, y eso
-  // ESTIRA cualquier <circle> dibujado adentro convirtiéndolo en óvalo. Un div con
-  // border-radius:50%, posicionado por %, siempre es un círculo real sin importar el
-  // estiramiento del SVG que tiene debajo.
+  // puntos visibles: uno por cada bloque de 15 min que SÍ tenga notas -- criterio correcto
+  // (no 30 min, y no un punto por cada nota individual). Como <div> HTML (no <circle> de
+  // SVG) porque el SVG usa preserveAspectRatio="none" para estirarse al ancho completo, y
+  // eso deformaría cualquier <circle> dibujado adentro.
   const puntosVisiblesHTML = puntos.map((p,i)=>{
     if(!p.lista.length) return '';
     const promedioImpacto = p.lista.reduce((s,e)=>s+Number(e.intensidad),0)/p.lista.length;
     const color = colorPorImpactoDispersion(promedioImpacto);
-    const h = Math.floor(i/2), m = (i%2)*30;
+    const h = Math.floor(i/4), m = (i%4)*15;
     const horaTxt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
-    // solo las relevantes en el tooltip (impacto alto), no todas -- con muchas notas
-    // apiladas, listar las 4 primeras sin criterio se veía amontonado y sin utilidad
     const relevantes = notasRelevantesDe(p.lista);
-    const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
     const xPct = (p.x/ancho*100).toFixed(2), yPct = (p.y/alto*100).toFixed(2);
-    return `<div class="punto-densidad" data-hora="${horaTxt}" data-conteo="${p.lista.length}" data-relevantes="${relevantes.length}" data-desc="${titulares.replace(/"/g,'&quot;')}"
+    return `<div class="punto-densidad" data-idx="${i}" data-hora="${horaTxt}" data-conteo="${p.lista.length}"
       style="position:absolute;left:${xPct}%;top:${yPct}%;width:5px;height:5px;margin:-2.5px;border-radius:50%;background:${color};border:1px solid var(--bg-1);cursor:pointer;"></div>`;
   }).join('');
 
@@ -314,17 +310,15 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
   svgEl.addEventListener('mousemove', (ev)=>{
     const rect = svgEl.getBoundingClientRect();
     const xRel = ((ev.clientX-rect.left)/rect.width)*ancho;
-    // busca el punto de dato más cercano en X
+    // busca el BLOQUE de 15 min más cercano en X, y muestra el resumen de ese bloque
+    // (total de notas + las relevantes por impacto), no una sola nota suelta
     let cercano = puntos[0], distMin = Infinity;
     puntos.forEach(p=>{ const d = Math.abs(p.x-xRel); if(d<distMin){ distMin=d; cercano=p; } });
     lineaGuia.setAttribute('x1', cercano.x); lineaGuia.setAttribute('x2', cercano.x);
     lineaGuia.setAttribute('stroke-opacity', '0.5');
     if(cercano.lista.length){
       const idx = puntos.indexOf(cercano);
-      const h = Math.floor(idx/2), m = (idx%2)*30;
-      // solo el total + las relevantes (impacto alto), cada una en su propia línea con un
-      // punto de color según su intensidad -- antes se unían en una sola línea con " | ",
-      // sin interlineado definido, y al envolver se veían amontonadas
+      const h = Math.floor(idx/4), m = (idx%4)*15;
       const relevantes = notasRelevantesDe(cercano.lista);
       const lineasNotas = relevantes.map(e=>{
         const color = colorPorImpactoDispersion(e.intensidad);

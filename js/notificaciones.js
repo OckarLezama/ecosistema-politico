@@ -50,14 +50,17 @@ function revisarNotificacionesPendientes(){
     if(e.fecha!==hoy) return false; // SOLO hoy -- antes revisaba todo el historial por error
     if(yaVistos.has(e.id)) return false;
     // RECIENTE DE VERDAD -- usa la hora real que el robot guardó (hora_registro), no solo
-    // "primera vez que ESTE dispositivo lo ve". Sin esto, entrar desde un aparato nuevo
-    // dispara notificaciones de cosas que pasaron hace horas, solo porque ese aparato
-    // nunca las había visto -- el bug real que se reportó.
-    if(e.hora_registro){
-      const [h,m] = e.hora_registro.split(':').map(Number);
-      const minutosEvento = h*60+m;
-      if(minutosAhora - minutosEvento > 15) return false; // más de 15 min, ya no es "reciente" -- son alertas, no recordatorios
-    }
+    // "primera vez que ESTE dispositivo lo ve". CORRECCIÓN: este chequeo antes solo corría
+    // "si e.hora_registro existe" -- si ese campo venía vacío en algún evento (por la razón
+    // que sea), el filtro se saltaba POR COMPLETO y la nota pasaba sin importar qué tan
+    // vieja fuera. Ese fue el bug real reportado (una nota de las 00:09 apareciendo horas
+    // después). Ahora, sin hora_registro válida, la nota NUNCA se considera "reciente" --
+    // se descarta de notificaciones en vez de dejarla pasar por defecto.
+    if(!e.hora_registro) return false;
+    const [h,m] = e.hora_registro.split(':').map(Number);
+    if(isNaN(h) || isNaN(m)) return false;
+    const minutosEvento = h*60+m;
+    if(minutosAhora - minutosEvento > 15) return false; // más de 15 min, ya no es "reciente" -- son alertas, no recordatorios
     const tema = nombreTemaPorId[e.tema_id];
     if(!tema) return false;
     // alto impacto real = categoría sensible (Gobernabilidad/Seguridad/Relación Bilateral) +

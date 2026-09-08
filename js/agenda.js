@@ -515,16 +515,15 @@ function renderGenealogiaAgenda(){
       <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
     </div>` : ''}
-    <div id="geneal-scroll" style="width:100%;flex:1;min-height:0;overflow:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="width:100%;height:100%;display:block;cursor:grab;"></svg></div>`;
+    <div id="geneal-scroll" style="width:100%;flex:1;min-height:0;overflow-x:auto;overflow-y:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
 
   dibujarGenealogia(temaGenealogiaSeleccionado);
 }
 
 function dibujarGenealogia(temaId){
   // cada dibujo fresco invalida cualquier reproducción que estuviera corriendo de fondo
-  // (de otro tema, o de antes de salir y volver a la vista) -- esto es lo que realmente
-  // faltaba: la variable de protección existía pero nunca se incrementaba, así que nunca
-  // detenía nada
+  // (de otro tema, o de antes de salir y volver a la vista) -- la variable de protección
+  // existía pero nunca se incrementaba, así que nunca detenía nada
   generacionGenealogiaActual++;
   genealogiaRevelados = 1;
   const scrollEl = document.getElementById('geneal-scroll');
@@ -535,40 +534,36 @@ function dibujarGenealogia(temaId){
 
   const espacio = 170;
   const xInicio = 150;
-  // MISMO mecanismo de movimiento que Timeline (d3.zoom -- arrastrar y hacer zoom sobre
-  // el propio SVG) en vez del scroll nativo del navegador que tenía antes. El viewBox
-  // ahora es del tamaño real del contenedor visible (no de todo el contenido), y el
-  // contenido que no cabe se recorre arrastrando el grafo, igual que en Timeline.
+  // scroll nativo del navegador, como estaba antes de intentar el zoom estilo Timeline
+  // (no aportó y complicó la reproducción) -- el alto sí se queda dinámico, tomado del
+  // contenedor real, para que los círculos no se deformen
   const height = scrollEl.clientHeight || 480, y = height/2;
-  const width = scrollEl.clientWidth || 900;
-  const anchoContenido = Math.max(width, xInicio + (eventos.length-1)*espacio + 150);
+  const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150;
+  const width = Math.max(scrollEl.clientWidth||900, anchoNecesario);
+  svgEl.style.width = width+'px';
 
   const posiciones = eventos.map((e,i)=>({x:xInicio+i*espacio, y}));
 
-  const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
+  const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]).attr('preserveAspectRatio','none');
   svg.selectAll('*').remove();
 
   const defs = svg.append('defs');
   const pat = defs.append('pattern').attr('id','geneal-grid').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
   pat.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
-  svg.append('rect').attr('x',-anchoContenido).attr('y',0).attr('width',anchoContenido*3).attr('height',height).attr('fill','url(#geneal-grid)');
+  svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#geneal-grid)');
   defs.append('marker').attr('id','flecha-geneal').attr('viewBox','0 0 10 10').attr('refX',9).attr('refY',5)
     .attr('markerWidth',6).attr('markerHeight',6).attr('orient','auto-start-reverse')
     .append('path').attr('d','M 0 0 L 10 5 L 0 10 z').attr('fill','var(--teal)');
 
-  // grupo con zoom/pan -- todo el contenido que se mueve va aquí dentro, igual que
-  // tl-zoom-container en Timeline
-  const zoomContainer = svg.append('g').attr('class','geneal-zoom-container');
-
-  const gFrecuencia = zoomContainer.append('g').attr('opacity',0.35);
+  const gFrecuencia = svg.append('g').attr('opacity',0.35);
   const maxIntensidad = Math.max(...eventos.map(e=>e.intensidad), 1);
   const puntosFrecuencia = eventos.map((e,i)=> [xInicio+i*espacio, y - (e.intensidad/maxIntensidad)*70]);
   const lineaFrecuencia = d3.line().curve(d3.curveMonotoneX);
   gFrecuencia.append('path').attr('d', lineaFrecuencia(puntosFrecuencia)).attr('fill','none').attr('stroke',colorTema).attr('stroke-width',1.5);
   puntosFrecuencia.forEach(p=> gFrecuencia.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2).attr('fill',colorTema));
 
-  const lineaBase = zoomContainer.append('g').attr('class','geneal-linea-capa');
-  const puntosBase = zoomContainer.append('g').attr('class','geneal-puntos-capa');
+  const lineaBase = svg.append('g').attr('class','geneal-linea-capa');
+  const puntosBase = svg.append('g').attr('class','geneal-puntos-capa');
 
   const gOrigen = puntosBase.append('g').attr('transform',`translate(${posiciones[0].x},${posiciones[0].y})`).style('cursor', genealogiaRevelados>1?'default':'pointer');
   gOrigen.append('circle').attr('r',26).attr('fill',colorTema).attr('stroke','#fff').attr('stroke-width',3);
@@ -576,18 +571,14 @@ function dibujarGenealogia(temaId){
   gOrigen.append('text').attr('text-anchor','middle').attr('dy',44).attr('font-size','11px').attr('font-weight','700').attr('fill','var(--ink-1)')
     .text(tema.nombre.length>30?tema.nombre.slice(0,28)+'…':tema.nombre);
 
-  const zoomBehavior = d3.zoom().scaleExtent([1,2.5])
-    .translateExtent([[0,0],[anchoContenido,height]])
-    .on('zoom', ev=> zoomContainer.attr('transform', ev.transform));
-  svg.call(zoomBehavior);
-
   if(genealogiaRevelados<=1){
-    gOrigen.on('click', ()=> reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height, zoomBehavior));
+    gOrigen.on('click', ()=> reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height));
   } else {
     for(let i=1;i<genealogiaRevelados;i++){
       lineaBase.append('line').attr('x1',posiciones[i-1].x).attr('y1',y).attr('x2',posiciones[i].x).attr('y2',y).attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
       dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, false, width, height);
     }
+    scrollEl.scrollLeft = width;
   }
 
   svg.append('text').attr('class','geneal-contador').attr('x',xInicio).attr('y',height-10).attr('text-anchor','middle')
@@ -599,17 +590,14 @@ let generacionGenealogiaActual = 0; // se incrementa en cada render fresco -- as
 // en curso de un tema anterior (o de antes de salir de la vista) se detiene sola al notar
 // que ya no es la generación vigente, en vez de seguir corriendo de fondo indefinidamente
 
-function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height, zoomBehavior){
+function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height){
   const miGeneracion = generacionGenealogiaActual;
-  const svg = d3.select('#geneal-svg');
+  const scrollEl = document.getElementById('geneal-scroll');
   d3.select('#geneal-svg .geneal-contador').text(`Reproduciendo — 1 de ${eventos.length}`);
   function siguienteTramo(i){
     if(generacionGenealogiaActual !== miGeneracion) return; // se cambió de tema o se salió de la vista -- detener aquí, no seguir de fondo
     if(i>=eventos.length){ genealogiaRevelados = eventos.length; return; }
-    // paneo suave hacia el siguiente nodo -- mismo mecanismo de d3.zoom que Timeline,
-    // en vez del scrollTo nativo de antes
-    const destinoX = Math.max(0, posiciones[i].x - width/2);
-    svg.transition().duration(600).call(zoomBehavior.translateTo, posiciones[i].x, posiciones[i].y, [width/2, height/2]);
+    scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
       .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y).attr('x2',posiciones[i-1].x).attr('y2',posiciones[i-1].y)
       .attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
