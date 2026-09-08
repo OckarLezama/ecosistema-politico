@@ -9,11 +9,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <link rel="stylesheet" href="css/styles.css?v=100">
 <style>
-  /* hover propio para los botones de ícono -- reemplaza el hover genérico de .chip-btn
-     con algo más suave y acorde, sin depender de tocar styles.css directamente */
-  .icon-btn { transition: background-color .15s ease, color .15s ease; }
-  .icon-btn:hover:not(.active) { background-color: var(--bg-2); color: var(--teal); }
-  .icon-btn.active { background-color: var(--teal); color: #0E1116; }
+  /* hover propio para los botones de ícono -- el hover genérico de .chip-btn cambia
+     border-color a teal, lo que en un grupo segmentado (bordes internos entre botones)
+     se veía como que cada ícono resaltaba su propio borde por separado, rompiendo la
+     apariencia de un solo rectángulo unificado. Aquí se anula ese cambio de borde y
+     solo se usa fondo + color de ícono para el hover. */
+  .icon-btn { transition: background-color .15s ease, color .15s ease; border-color: var(--line-strong) !important; }
+  .icon-btn:hover:not(.active) { background-color: var(--bg-2); color: var(--teal); border-color: var(--line-strong) !important; }
+  .icon-btn.active { background-color: var(--teal); color: #0E1116; border-color: var(--teal) !important; }
 </style>
 </head>
 <body>
@@ -156,7 +159,7 @@
             <label for="agenda-tema-select">Tema</label>
             <select id="agenda-tema-select"></select>
           </div>
-          <div class="legend-inline" id="agenda-notas-leyenda" style="display:none;"></div>
+          <div class="legend-inline" id="agenda-notas-leyenda" style="display:none;flex-wrap:nowrap;overflow-x:auto;"></div>
           <span id="agenda-geneal-ayuda" style="display:none;font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
           <div class="legend-inline" id="agenda-kpis"></div>
         </div>
