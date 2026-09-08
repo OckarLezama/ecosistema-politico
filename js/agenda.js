@@ -350,6 +350,8 @@ let temaGenealogiaSeleccionado = null;
 
 function renderNotasAgenda(){
   const cont = document.getElementById('agenda-contenido');
+  const ayudaGeneal0 = document.getElementById('agenda-geneal-ayuda');
+  if(ayudaGeneal0) ayudaGeneal0.style.display = 'none';
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
@@ -365,16 +367,22 @@ function renderNotasAgenda(){
   select.innerHTML = temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('');
   select.onchange = (e)=>{ temaNotasSeleccionado = e.target.value; dibujarNotasConGrafoReal(); };
 
-  if(!temaNotasSeleccionado){ cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return; }
+  if(!temaNotasSeleccionado){
+    const leyendaNotas0 = document.getElementById('agenda-notas-leyenda');
+    if(leyendaNotas0) leyendaNotas0.style.display = 'none';
+    cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return;
+  }
 
-  // leyenda de roles: cada uno en su propia línea, con separación clara -- antes venía
-  // todo corrido en un solo párrafo, difícil de leer
-  cont.innerHTML = `
-    <div class="legend-inline" style="flex-direction:column;align-items:flex-start;gap:5px;padding:10px 14px 6px;">
-      ${Object.entries(COLOR_ROL_NOTAS).filter(([r])=>!['Acusado','Autoridad','Reacción del gobierno','Operador'].includes(r)).map(([rol,color])=>
-        `<span style="display:flex;align-items:center;gap:5px;"><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('')}
-    </div>
-    <svg id="notas-svg" style="width:100%;flex:1;display:block;background:var(--bg-2);border-radius:var(--radius-s);"></svg>`;
+  // leyenda de roles de corrido, en el toolbar estático (no una por línea, no suelta
+  // arriba del contenido)
+  const leyendaEl = document.getElementById('agenda-notas-leyenda');
+  if(leyendaEl){
+    leyendaEl.style.display = 'flex';
+    leyendaEl.innerHTML = Object.entries(COLOR_ROL_NOTAS).filter(([r])=>!['Acusado','Autoridad','Reacción del gobierno','Operador'].includes(r)).map(([rol,color])=>
+      `<span><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('');
+  }
+
+  cont.innerHTML = `<svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`;
 
   dibujarNotasConGrafoReal();
 }
@@ -467,6 +475,8 @@ let genealogiaRevelados = 1;
 
 function renderGenealogiaAgenda(){
   const cont = document.getElementById('agenda-contenido');
+  const leyendaNotas0 = document.getElementById('agenda-notas-leyenda');
+  if(leyendaNotas0) leyendaNotas0.style.display = 'none';
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1)
     .filter(t=> ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).length>1)
@@ -477,6 +487,8 @@ function renderGenealogiaAgenda(){
 
   if(!temasDisponibles.length){
     selectWrap.style.display = 'none';
+    const ayudaGeneal0 = document.getElementById('agenda-geneal-ayuda');
+    if(ayudaGeneal0) ayudaGeneal0.style.display = 'none';
     cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ notas para armar una genealogía.</div>`;
     return;
   }
@@ -486,16 +498,15 @@ function renderGenealogiaAgenda(){
   selectWrap.style.display = 'flex';
   select.innerHTML = temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('');
   select.onchange = (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); };
+  const ayudaGeneal = document.getElementById('agenda-geneal-ayuda');
+  if(ayudaGeneal) ayudaGeneal.style.display = 'inline';
 
   cont.innerHTML = `
-    <div style="padding:10px 14px 0;">
-      <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
-    </div>
     ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
       <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
     </div>` : ''}
-    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;background:var(--bg-2);border-radius:var(--radius-s);margin:8px 14px;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
+    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
 
   dibujarGenealogia(temaGenealogiaSeleccionado);
 }
@@ -667,7 +678,16 @@ function renderAgendaGrid(){
   const cont = document.getElementById('agenda-contenido');
   if(!cont) return;
   crearTooltipAgenda();
-  renderKpisImpacto();
+  // los KPIs de impacto (Alto/Medio/Bajo) son propios de la Matriz -- no tienen sentido
+  // en Notas ni Genealogía, así que solo se muestran ahí
+  const kpisEl = document.getElementById('agenda-kpis');
+  if(vistaAgenda==='matriz' || vistaAgenda==='lista'){
+    renderKpisImpacto();
+  } else if(kpisEl){
+    kpisEl.innerHTML = '';
+    const desgloseEl = document.getElementById('agenda-desglose');
+    if(desgloseEl){ desgloseEl.innerHTML=''; desgloseEl.style.visibility='hidden'; }
+  }
   // "matriz" y "lista" ahora son la MISMA vista fusionada -- cualquiera de las 2
   // pestañas (si tu HTML aún tiene ambos botones) cae en el mismo lugar, con un
   // interruptor interno para alternar entre cuadrícula y lista
@@ -680,6 +700,10 @@ function renderMatrizYLista(){
   const cont = document.getElementById('agenda-contenido');
   const selectWrap = document.getElementById('agenda-tema-select-wrap');
   if(selectWrap) selectWrap.style.display = 'none'; // el selector de tema es solo para Notas/Genealogía
+  const leyendaNotas = document.getElementById('agenda-notas-leyenda');
+  if(leyendaNotas) leyendaNotas.style.display = 'none';
+  const ayudaGeneal = document.getElementById('agenda-geneal-ayuda');
+  if(ayudaGeneal) ayudaGeneal.style.display = 'none';
   // el interruptor Cuadrícula/Lista ahora es un ícono estático en el HTML
   // (#agenda-vista-secundaria) -- aquí solo se dibuja el contenido según su estado
   const bloqueGlobal = analisisGlobalAgendaIA
