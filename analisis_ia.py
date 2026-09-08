@@ -31,9 +31,6 @@ UMBRAL_ALERTA_7D = 15
 TZ_MX = ZoneInfo('America/Mexico_City')
 INICIO_SEXENIO = datetime(2024, 10, 1).date()
 
-# frases/patrones prohibidos -- si el texto de la IA los contiene, se le pide reescribir
-# antes de guardarlo. Solo jerga técnica real -- ya no bloqueamos números sueltos, porque
-# ahora SÍ queremos números resaltados en negritas dentro del texto (regla de formato nueva)
 PATRONES_PROHIBIDOS = [
     r'z-score', r'z score', r'correlaci[oó]n de pearson',
 ]
@@ -68,7 +65,6 @@ def calcular_todo():
         if e['tema_id'] in ids_reales:
             eventos_por_tema[e['tema_id']].append(e)
 
-    # tendencias 30d vs 30d previos
     en_alza, en_baja = [], []
     for t in temas_reales:
         evs = eventos_por_tema[t['id']]
@@ -81,7 +77,6 @@ def calcular_todo():
         (en_alza if cambio > 0 else en_baja if cambio < 0 else en_alza).append(item)
     en_alza = [i for i in en_alza if i['cambio_pct'] > 0]
 
-    # alertas con z-score real (el dato se calcula igual, solo cambia cómo se REDACTA después)
     alertas = []
     for t in temas_reales:
         evs = eventos_por_tema[t['id']]
@@ -101,11 +96,8 @@ def calcular_todo():
         alertas.append({'nombre': t['nombre'], 'categoria': t['categoria'], 'tipo_atencion_por_categoria': TIPO_ATENCION.get(t['categoria'], 'general'), 'notas_7d': len(evs_7d), 'intensidad_7d': suma, 'z_score': z})
     alertas.sort(key=lambda a: a['intensidad_7d'], reverse=True)
 
-    # los 3 temas de mayor peso REAL esta semana -- la IA los menciona por nombre,
-    # nunca los elige libremente
     temas_destacados_semana = [a['nombre'] for a in alertas[:3]]
 
-    # patrones de coincidencia semanal + correlacion simple
     semanas_por_tema = {t['id']: {semana_de(e['fecha']) for e in eventos_por_tema[t['id']]} for t in temas_reales}
     patrones = []
     lista_temas = list(temas_reales)
@@ -118,7 +110,6 @@ def calcular_todo():
     patrones.sort(key=lambda p: p['semanas_comun'], reverse=True)
     patrones = patrones[:8]
 
-    # tension general (intensidad promedio normalizada 0-100 por tema activo)
     intensidades_totales = []
     for t in temas_reales:
         evs = eventos_por_tema[t['id']]
@@ -126,7 +117,6 @@ def calcular_todo():
             intensidades_totales.append(mean(float(e['intensidad']) for e in evs))
     tension_general = round((mean(intensidades_totales) / 10) * 100) if intensidades_totales else 0
 
-    # ranking actores en temas en alza + reaccion de oposicion + presencia general en medios
     ids_alza = {i['nombre'] for i in en_alza}
     nombres_temas_alza = {t['id'] for t in temas_reales if t['nombre'] in ids_alza}
     conteo_tendencia, conteo_oposicion, conteo_presencia = defaultdict(int), defaultdict(int), defaultdict(int)
@@ -146,7 +136,6 @@ def calcular_todo():
         [{'nombre': actores.get(k, k), 'conteo': v} for k, v in conteo_oposicion.items()],
         key=lambda x: x['conteo'], reverse=True)[:6]
 
-    # burbujas de temas: todos los temas activos con su volumen y tendencia
     burbujas_temas = []
     for t in temas_reales:
         evs = eventos_por_tema[t['id']]
@@ -158,13 +147,10 @@ def calcular_todo():
             tend = next((i['cambio_pct'] for i in en_baja if i['nombre'] == t['nombre']), 0)
         burbujas_temas.append({'nombre': t['nombre'], 'categoria': t['categoria'], 'volumen_total': len(evs), 'notas_30d': len(recientes_30d), 'tendencia_pct': tend})
 
-    # burbujas de actores: presencia general en medios (todos los temas reales)
     burbujas_actores = sorted(
         [{'nombre': actores.get(k, k), 'presencia': v} for k, v in conteo_presencia.items()],
         key=lambda x: x['presencia'], reverse=True)[:15]
 
-    # aura de intensidad: suma semanal de intensidad de TODOS los temas reales,
-    # desde el inicio del sexenio hasta hoy (nunca hacia el futuro)
     intensidad_por_semana = defaultdict(float)
     for t in temas_reales:
         for e in eventos_por_tema[t['id']]:
@@ -172,21 +158,16 @@ def calcular_todo():
             if fecha_ev >= INICIO_SEXENIO:
                 intensidad_por_semana[semana_de(e['fecha'])] += float(e['intensidad'])
     def clave_orden_semana(item):
-        # ordena por (año, número de semana) real, no como texto -- "2026-S3" ordenado como
-        # texto queda después de "2026-S30", que es cronológicamente incorrecto
         semana_str = item[0]
         anio, num = semana_str.split('-S')
         return (int(anio), int(num))
     aura_intensidad = [{'semana': s, 'intensidad': round(v, 1)} for s, v in sorted(intensidad_por_semana.items(), key=clave_orden_semana)]
 
-    # ---- datos de RED para Análisis de Núcleos (Red de Actores) -- solo para los núcleos
-    # que ya tienen sus satélites clasificados en las 4 categorías reales (Familiar,
-    # Político/Institucional, Operadores/Confianza, Empresarial) -- sin esto, la IA no
-    # tendría con qué interpretar, y clasificar a ciegas ya demostró salir mal
     NUCLEOS_CATEGORIZADOS = ['sheinbaum', 'andy', 'amlo', 'trump', 'garcia_harfuch', 'ebrard',
         'rosa_icela', 'godoy', 'montiel', 'luisa_maria_alcalde', 'citlalli', 'mario_delgado',
         'adan_augusto', 'monreal', 'rocha_moya', 'rubio']
     redes_por_nucleo = {}
+    todas_las_redes, todos_los_actores = [], {}
     try:
         with open(os.path.join(RUTA_DATOS, 'redes_personales.csv'), encoding='utf-8') as f:
             todas_las_redes = list(csv.DictReader(f))
@@ -202,8 +183,6 @@ def calcular_todo():
                 por_categoria.setdefault(cat, []).append({'nombre': actor['nombre'], 'cargo': actor.get('cargo',''), 'nivel': r['nivel']})
             if por_categoria:
                 total = sum(len(v) for v in por_categoria.values())
-                # estadísticas explícitas -- así la IA no tiene que inferir "cuál pesa más",
-                # ya viene calculado, y el texto que genere puede citar el número real
                 conteo_por_categoria = {cat: len(personas) for cat, personas in por_categoria.items()}
                 categoria_dominante = max(conteo_por_categoria, key=conteo_por_categoria.get)
                 redes_por_nucleo[nid] = {
@@ -215,6 +194,58 @@ def calcular_todo():
                 }
     except Exception:
         pass
+
+    # ---- VÍNCULOS CRUZADOS entre pares de núcleos -- lo mismo que ya calcula el sitio (JS)
+    # al seleccionar 2-3 actores en Red de Actores, pero aquí SE LE DA A LA IA para que
+    # interprete qué implica cada vínculo, no solo lo describa (ej. no "es el titular de la
+    # SSPC", sino "esto concentra investigación y vocería del caso más sensible en una sola
+    # persona -- si cae políticamente, se cae la narrativa oficial completa")
+    vinculos_cruzados_por_par = {}
+    try:
+        redes_por_id = {}
+        for r in todas_las_redes:
+            redes_por_id.setdefault(r['nucleo_id'], []).append(r)
+        for i in range(len(NUCLEOS_CATEGORIZADOS)):
+            for j in range(i+1, len(NUCLEOS_CATEGORIZADOS)):
+                nA, nB = NUCLEOS_CATEGORIZADOS[i], NUCLEOS_CATEGORIZADOS[j]
+                satelitesA = {r['satelite_id'] for r in redes_por_id.get(nA, [])}
+                satelitesB = {r['satelite_id'] for r in redes_por_id.get(nB, [])}
+                cruces = []
+                for idPersonaA in satelitesA:
+                    for r in redes_por_id.get(idPersonaA, []):
+                        if r['satelite_id'] in satelitesB or r['satelite_id']==nB:
+                            actorA = todos_los_actores.get(idPersonaA)
+                            actorB = todos_los_actores.get(r['satelite_id'])
+                            if actorA and actorB:
+                                cruces.append({'desde': actorA['nombre'], 'desde_cargo': actorA.get('cargo',''),
+                                    'hacia': actorB['nombre'], 'hacia_cargo': actorB.get('cargo',''),
+                                    'etiqueta': r.get('etiqueta_nivel','')})
+                if cruces:
+                    vinculos_cruzados_por_par[nA+'|'+nB] = cruces[:6]
+    except Exception:
+        pass
+
+    # ---- PULSO DEL DÍA -- para Portada del Día. A diferencia de todo lo de arriba (que mira
+    # semanas/meses), esto mira SOLO hoy: cuántas notas van, en qué categorías, y si el ritmo
+    # de la última hora es más alto o más bajo que el promedio del resto del día -- son los
+    # números que la IA convierte en el texto corto de "pulso_del_dia"
+    eventos_hoy = [e for e in eventos if e.get('fecha') == hoy.strftime('%Y-%m-%d')]
+    conteo_categoria_hoy = defaultdict(int)
+    for e in eventos_hoy:
+        conteo_categoria_hoy[e.get('categoria','')] += 1
+    hora_actual = datetime.now(TZ_MX).hour
+    notas_ultima_hora = sum(1 for e in eventos_hoy if e.get('hora_registro') and int(e['hora_registro'].split(':')[0]) == hora_actual)
+    horas_transcurridas_desde_las_6 = max(1, hora_actual - 6) if hora_actual >= 6 else 1
+    promedio_por_hora_hoy = round(len(eventos_hoy) / horas_transcurridas_desde_las_6, 1)
+    notas_alto_impacto_hoy = [e['descripcion'][:100] for e in eventos_hoy if float(e.get('intensidad') or 0) >= 8]
+    pulso_datos = {
+        'total_notas_hoy': len(eventos_hoy),
+        'conteo_por_categoria_hoy': dict(conteo_categoria_hoy),
+        'notas_en_la_ultima_hora': notas_ultima_hora,
+        'promedio_notas_por_hora_hoy': promedio_por_hora_hoy,
+        'notas_de_alto_impacto_hoy': notas_alto_impacto_hoy[:5],
+        'hora_actual_cdmx': f'{hora_actual}:00',
+    }
 
     return {
         'temas_activos': len(temas_reales),
@@ -230,6 +261,8 @@ def calcular_todo():
         'burbujas_actores': burbujas_actores,
         'aura_intensidad': aura_intensidad,
         'redes_por_nucleo': redes_por_nucleo,
+        'vinculos_cruzados_por_par': vinculos_cruzados_por_par,
+        'pulso_datos': pulso_datos,
     }
 
 
@@ -293,6 +326,15 @@ reacción de oposición, dilo con una explicación concreta de qué podría sign
 simples — nunca dejes "vale la pena revisar" sin decir de qué tipo. Menciona explícitamente si
 hay o no un actor de oposición que domine claramente el posicionamiento crítico esta semana.
 
+Para "pulso_del_dia" (usa el bloque "pulso_datos" del JSON, mira SOLO el día de hoy, no la
+semana): 1 oración corta, clara, que suene inteligente sin ser genérica -- di si el ritmo de
+hoy es alto/normal/bajo comparado con su propio promedio del día, qué categoría domina hasta
+ahora, y si hay alguna nota de alto impacto que valga la pena nombrar por su tema (nunca copies
+el titular textual, resume la idea). Ejemplo de tono correcto: "Ritmo elevado desde media
+mañana, con **Seguridad Nacional** dominando por el caso Rocha Moya -- **3 notas de alto
+impacto** en la última hora." Ejemplo de lo que NO se debe hacer: "Hoy se han registrado 12
+notas en distintas categorías." (describe la gráfica, no interpreta nada).
+
 Otras reglas estrictas:
 - NUNCA inventes datos que no estén en el JSON de entrada.
 - NUNCA prediga el futuro ni especules sobre facciones internas, causalidad no documentada, o
@@ -320,6 +362,25 @@ de verdad ahí y QUÉ IMPLICA su presencia, no solo cuántos hay. Para cada núc
   dilo así, no como "poca diversidad". La debilidad debe responder: ¿qué pasa si esta persona
   clave sale, se distancia, o queda expuesta públicamente?
 
+Para "escenario_prospectivo" de cada núcleo (mismo JSON de "redes_por_nucleo"): esto es lo que
+más valor le da al lector para anticiparse, no para describir el presente. Con base en la
+composición real de su red (quién lo rodea, en qué categoría, con qué cargo), responde en 2-3
+oraciones: ¿qué pasaría si este actor pierde peso político o cae en desgracia? ¿qué pasaría si
+NO pasa nada y todo sigue igual? Nombra explícitamente la afectación a gobierno/Morena cuando
+aplique (ej. "si Harfuch cae, el gobierno pierde su vocero de seguridad en el caso más sensible
+del sexenio, dejando ese vacío justo cuando más escrutinio hay"). Nunca es una predicción de
+que algo VA a pasar -- es "si pasara esto, esto es lo que implicaría", condicional siempre.
+
+Si el JSON de entrada trae "vinculos_cruzados_por_par" (vínculos entre satélites de 2 núcleos
+distintos), para cada PAR presente en "interpretacion_vinculos" escribe 1-2 oraciones que
+interpreten qué implica esa combinación de vínculos -- nunca describas de nuevo el cargo (eso
+ya lo tiene el dato crudo), di qué CONCENTRACIÓN DE PODER o QUÉ RIESGO revela. Ejemplo de lo que
+SÍ se pide: "Concentrar la investigación del caso Manzo y la vocería pública del gabinete de
+seguridad en la misma persona (Harfuch) hace que la narrativa oficial dependa por completo de
+su permanencia política." Ejemplo de lo que NO se pide (descripción, no análisis): "Harfuch es
+titular de la SSPC y encabeza la investigación de Manzo." Si un par no tiene vínculos reales
+suficientes para decir algo específico, omite esa clave -- no rellenes con generalidades.
+
 Está prohibido usar el mismo fraseo genérico entre núcleos distintos (si puedes intercambiar
 dos análisis sin que se note, están mal escritos). Nunca inventes vínculos, cargos o nombres
 que no estén en los datos -- si el dato no alcanza para nombrar a alguien específico, dilo con
@@ -333,6 +394,7 @@ Responde ÚNICAMENTE con un objeto JSON con estas claves (1-2 oraciones cortas c
 {{
   "estado_general": "...",
   "pulso_politico": "...",
+  "pulso_del_dia": "1 oración corta sobre el ritmo y tipo de notas de HOY -- ver instrucción arriba",
   "patrones_detectados": "...",
   "alertas_tempranas": "...",
   "tendencia_por_categoria": "...",
@@ -341,6 +403,8 @@ Responde ÚNICAMENTE con un objeto JSON con estas claves (1-2 oraciones cortas c
   "resumen_temas": "1 oración sobre qué muestra la tabla de temas",
   "resumen_actores": "1 oración sobre qué muestra la tabla de actores",
   "analisis_redes": {{"id_del_nucleo": {{"resumen": "2-3 oraciones sobre la composición de la red", "fortaleza": "1-2 oraciones -- qué hace fuerte a esta red específica (ej. control institucional, diversidad de canales, peso propio del núcleo)", "debilidad": "1-2 oraciones -- qué la hace vulnerable (ej. dependencia de pocos operadores, poca presencia territorial, riesgo de un solo punto de falla)"}} -- una clave por cada núcleo presente en redes_por_nucleo}},
+  "escenario_prospectivo": {{"id_del_nucleo": "2-3 oraciones -- qué pasaría si cae/pierde peso y qué pasaría si no, con afectación a gobierno/Morena cuando aplique"}},
+  "interpretacion_vinculos": {{"nucleoA|nucleoB": "1-2 oraciones -- qué implica esa combinación de vínculos, no describas de nuevo el cargo"}},
   "propuestas_atencion": [{{"tema": "nombre exacto del tema", "propuesta": "1 oración corta"}}]
 }}"""
 
@@ -382,8 +446,6 @@ def llamar_claude(cliente, prompt, max_tokens=16000):
         return json.loads(texto)
     except json.JSONDecodeError:
         if max_tokens < 32000:
-            # la respuesta se cortó a la mitad -- reintenta una vez con más espacio,
-            # en vez de solo tronar
             print(f'JSON incompleto con max_tokens={max_tokens}, reintentando con más espacio...')
             return llamar_claude(cliente, prompt, max_tokens=max_tokens*2)
         raise
@@ -399,8 +461,6 @@ def generar_analisis():
     cliente = anthropic.Anthropic(api_key=llave)
     lectura = llamar_claude(cliente, construir_prompt(datos))
 
-    # candado de lenguaje: si se coló jerga técnica o un número suelto, se le pide
-    # reescribir UNA vez más, mostrándole exactamente qué encontró mal
     problemas = encontrar_problemas(lectura)
     if problemas:
         print('Jerga técnica detectada, pidiendo reescritura:', problemas)
