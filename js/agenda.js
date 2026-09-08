@@ -349,10 +349,10 @@ const TEXTO_ROL_NOTAS = {
 // "Red empresarial" (antes compartía el mismo color que "Reaccionó", ahora usa --arena)
 const LEYENDA_ROLES_RESUMIDA = [
   {color:'var(--riesgo-alto)', texto:'Señalado / bajo investigación'},
-  {color:'var(--familia-nucleo)', texto:'Responsable institucional (gobierno)'},
+  {color:'var(--familia-nucleo)', texto:'Responsable institucional'},
   {color:'var(--riesgo-medio)', texto:'Reaccionó — postura de oposición / voz social o mediática'},
   {color:'var(--arena)', texto:'Vinculado — red empresarial señalada'},
-  {color:'var(--ink-3)', texto:'Solo mencionado — no señalado'},
+  {color:'var(--ink-3)', texto:'Mencionado — no señalado'},
 ];
 
 let temaNotasSeleccionado = null;
@@ -360,8 +360,6 @@ let temaGenealogiaSeleccionado = null;
 
 function renderNotasAgenda(){
   const cont = document.getElementById('agenda-contenido');
-  const ayudaGeneal0 = document.getElementById('agenda-geneal-ayuda');
-  if(ayudaGeneal0) ayudaGeneal0.style.display = 'none';
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
@@ -497,8 +495,6 @@ function renderGenealogiaAgenda(){
 
   if(!temasDisponibles.length){
     selectWrap.style.display = 'none';
-    const ayudaGeneal0 = document.getElementById('agenda-geneal-ayuda');
-    if(ayudaGeneal0) ayudaGeneal0.style.display = 'none';
     cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ notas para armar una genealogía.</div>`;
     return;
   }
@@ -508,8 +504,6 @@ function renderGenealogiaAgenda(){
   selectWrap.style.display = 'flex';
   select.innerHTML = temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('');
   select.onchange = (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); };
-  const ayudaGeneal = document.getElementById('agenda-geneal-ayuda');
-  if(ayudaGeneal) ayudaGeneal.style.display = 'inline';
 
   cont.innerHTML = `
     ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
@@ -537,7 +531,7 @@ function dibujarGenealogia(temaId){
 
   const posiciones = eventos.map((e,i)=>({x:xInicio+i*espacio, y}));
 
-  const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]);
+  const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]).attr('preserveAspectRatio','none');
   svg.selectAll('*').remove();
 
   const defs = svg.append('defs');
@@ -712,8 +706,6 @@ function renderMatrizYLista(){
   if(selectWrap) selectWrap.style.display = 'none'; // el selector de tema es solo para Notas/Genealogía
   const leyendaNotas = document.getElementById('agenda-notas-leyenda');
   if(leyendaNotas) leyendaNotas.style.display = 'none';
-  const ayudaGeneal = document.getElementById('agenda-geneal-ayuda');
-  if(ayudaGeneal) ayudaGeneal.style.display = 'none';
   // el interruptor Cuadrícula/Lista ahora es un ícono estático en el HTML
   // (#agenda-vista-secundaria) -- aquí solo se dibuja el contenido según su estado
   const bloqueGlobal = analisisGlobalAgendaIA
@@ -721,7 +713,7 @@ function renderMatrizYLista(){
         <div class="eyebrow" style="color:var(--teal);">Panorama de la agenda (IA)</div>
         <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${analisisGlobalAgendaIA}</p>
       </div>` : '';
-  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;position:relative;"></div>`;
+  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;"></div>`;
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
     document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
@@ -812,7 +804,7 @@ function dibujarMatrizRiesgo(){
   const svg = d3.select(svgEl);
   svg.selectAll('*').remove();
 
-  const width = svgEl.clientWidth || 700, height = 560;
+  const width = svgEl.clientWidth || 700, height = svgEl.clientHeight || 560;
   const pad = {left:32, right:20, top:20, bottom:36};
   svg.attr('viewBox',[0,0,width,height]);
 
