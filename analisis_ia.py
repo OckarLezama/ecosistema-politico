@@ -280,6 +280,21 @@ un jefe de Estado. Recibes datos YA CALCULADOS (no artículos, no texto crudo) s
 política de México, sexenio de Sheinbaum.
 {instruccion_correccion}
 
+TIENES BÚSQUEDA WEB REAL DISPONIBLE -- ÚSALA. Los datos del JSON de abajo son solo el
+esqueleto (quién está conectado con quién, cuántas notas hay); nunca vienen con el detalle
+concreto y actual (cifras oficiales, nombres vigentes de contrapartes extranjeras,
+declaraciones textuales recientes) que sí hace sonar a un análisis real y no a una
+descripción de una tabla. Antes de escribir "actores_centrales", "escenario_prospectivo" y
+"interpretacion_vinculos" -- que son las secciones donde MÁS se nota la diferencia -- busca
+en la web declaraciones o cifras de los últimos días relacionadas con los nombres y temas
+que aparecen en los datos (ej. si el dato dice que Ebrard está vinculado a Rubio y Greer,
+busca qué se ha dicho estos días sobre la negociación de T-MEC/aranceles con ellos). Usa lo
+que encuentres para dar nombres, cifras y contexto concretos y vigentes -- no inventes nada
+que no puedas encontrar, y si la búsqueda no trae nada útil para un caso puntual, usa
+solamente los datos del JSON sin inventar. No hace falta buscar para cada sección -- prioriza
+donde el dato crudo por sí solo se quedaría corto (vínculos entre países/actores externos,
+escenarios prospectivos de las figuras más relevantes).
+
 REGLA MÁS IMPORTANTE, la que define todo el análisis: cada sección debe responder, directa o
 indirectamente, esta pregunta -- ¿esto pone en riesgo la estabilidad, integridad o permanencia
 del Estado mexicano o del gobierno actual? No es una pregunta retórica: cuando el riesgo
@@ -364,22 +379,28 @@ de verdad ahí y QUÉ IMPLICA su presencia, no solo cuántos hay. Para cada núc
 
 Para "escenario_prospectivo" de cada núcleo (mismo JSON de "redes_por_nucleo"): esto es lo que
 más valor le da al lector para anticiparse, no para describir el presente. Con base en la
-composición real de su red (quién lo rodea, en qué categoría, con qué cargo), responde en 2-3
-oraciones: ¿qué pasaría si este actor pierde peso político o cae en desgracia? ¿qué pasaría si
-NO pasa nada y todo sigue igual? Nombra explícitamente la afectación a gobierno/Morena cuando
-aplique (ej. "si Harfuch cae, el gobierno pierde su vocero de seguridad en el caso más sensible
-del sexenio, dejando ese vacío justo cuando más escrutinio hay"). Nunca es una predicción de
-que algo VA a pasar -- es "si pasara esto, esto es lo que implicaría", condicional siempre.
+composición real de su red (quién lo rodea, en qué categoría, con qué cargo) Y lo que
+encuentres con búsqueda web sobre su situación actual, responde en 2-3 oraciones: ¿qué pasaría
+si este actor pierde peso político o cae en desgracia? ¿qué pasaría si NO pasa nada y todo
+sigue igual? Nombra explícitamente la afectación a gobierno/Morena cuando aplique. Nunca es una
+predicción de que algo VA a pasar -- es "si pasara esto, esto es lo que implicaría", condicional
+siempre. VARÍA la estructura de la oración entre un núcleo y otro (no repitas "si X pierde peso
+o cae en desgracia... si nada cambia..." como fórmula fija para todos) -- cada quien tiene una
+situación distinta, que se note en cómo está escrito, no solo en el nombre que cambia.
 
 Si el JSON de entrada trae "vinculos_cruzados_por_par" (vínculos entre satélites de 2 núcleos
-distintos), para cada PAR presente en "interpretacion_vinculos" escribe 1-2 oraciones que
-interpreten qué implica esa combinación de vínculos -- nunca describas de nuevo el cargo (eso
-ya lo tiene el dato crudo), di qué CONCENTRACIÓN DE PODER o QUÉ RIESGO revela. Ejemplo de lo que
-SÍ se pide: "Concentrar la investigación del caso Manzo y la vocería pública del gabinete de
-seguridad en la misma persona (Harfuch) hace que la narrativa oficial dependa por completo de
-su permanencia política." Ejemplo de lo que NO se pide (descripción, no análisis): "Harfuch es
-titular de la SSPC y encabeza la investigación de Manzo." Si un par no tiene vínculos reales
-suficientes para decir algo específico, omite esa clave -- no rellenes con generalidades.
+distintos), CADA PAR puede traer VARIOS vínculos a la vez, por canales distintos (ej. uno de
+seguridad vía un operador, otro económico vía otro operador) -- la interpretación en
+"interpretacion_vinculos" debe dar cuenta de TODOS los canales presentes en ese par, no solo
+del primero o el más obvio. Si Sheinbaum-Trump tiene tanto un vínculo de Harfuch (seguridad)
+como uno de Ebrard (comercio), dilo como un solo panorama que cubra ambos frentes, no elijas
+uno y ya. 1-2 oraciones, pero que mencionen cada canal real que exista en los datos para ese
+par -- nunca describas de nuevo el cargo (eso ya lo tiene el dato crudo), di qué CONCENTRACIÓN
+DE PODER o QUÉ RIESGO revela la combinación completa. Ejemplo de lo que SÍ se pide (cubre 2
+canales): "La relación con Washington corre por 2 canales concentrados: seguridad vía Harfuch
+y comercio vía Ebrard -- ambos frentes dependen de que esas 2 personas mantengan su posición."
+Si un par no tiene vínculos reales suficientes para decir algo específico, omite esa clave --
+no rellenes con generalidades.
 
 Está prohibido usar el mismo fraseo genérico entre núcleos distintos (si puedes intercambiar
 dos análisis sin que se note, están mal escritos). Nunca inventes vínculos, cargos o nombres
@@ -424,10 +445,19 @@ def llamar_claude(cliente, prompt, max_tokens=16000):
     # llamada normal (para peticiones que pueden tardar más de 10 minutos) -- con 16
     # núcleos y análisis profundo, ya se necesita ese espacio, así que se usa streaming
     # siempre y se junta el texto completo al final, sin cambiar nada más del flujo
+    #
+    # BÚSQUEDA WEB EN TIEMPO REAL -- antes el análisis SOLO veía los números ya calculados
+    # de los CSV (conteos, categorías, nombres) y nunca información actual real (cifras
+    # oficiales, declaraciones de hoy, nombres de contrapartes vigentes) -- por eso sonaba
+    # descriptivo y genérico comparado con un análisis que sí busca en vivo. Esto le da al
+    # modelo la misma herramienta de búsqueda real, server-side (Anthropic la ejecuta y
+    # devuelve el resultado ya incorporado en el texto final, sin que este script tenga que
+    # hacer nada más que declarar que existe).
     texto_completo = ''
     with cliente.messages.stream(
         model='claude-sonnet-5',
         max_tokens=max_tokens,
+        tools=[{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 8}],
         messages=[{'role': 'user', 'content': prompt}],
     ) as stream:
         for evento in stream.text_stream:
