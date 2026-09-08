@@ -9,6 +9,8 @@
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
 let analisisRedesIA = {};
+let escenarioProspectivoIA = {};
+let interpretacionVinculosIA = {};
 let ultimosNodosRenderizados = [];
 
 function convertirNegritasMarkdown(texto){
@@ -48,7 +50,12 @@ function mostrarSoloAnalisisRed(id){
     panel.innerHTML = `<div class="detail-empty"><p style="font-size:11.5px;">Esta red aún no tiene análisis de IA (solo disponible para núcleos ya clasificados por categoría).</p></div><p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Clic en el nodo de <strong>${actor.nombre}</strong> en el grafo para ver su ficha completa.</p>`;
   }
 }
-fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{ if(d && d.lectura && d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes; }).catch(()=>{});
+fetch('data/analisis_ia.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
+  if(!d || !d.lectura) return;
+  if(d.lectura.analisis_redes) analisisRedesIA = d.lectura.analisis_redes;
+  if(d.lectura.escenario_prospectivo) escenarioProspectivoIA = d.lectura.escenario_prospectivo;
+  if(d.lectura.interpretacion_vinculos) interpretacionVinculosIA = d.lectura.interpretacion_vinculos;
+}).catch(()=>{});
 let redPersonalActiva = true, redPoliticaActiva = true;
 let simulacion = null;
 let modoRed = 'grupo';
@@ -759,7 +766,18 @@ function mostrarTemasPorRolDeActor(actorId){
   const actor = getActor(actorId);
   if(!actor){ panel.innerHTML = '<div class="detail-empty">Escribe un nombre para ver su red.</div>'; return; }
   const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId);
+  const colorNivelRiesgo = colorRiesgo(actor.nivel_riesgo);
+  // el modo Actor no mostraba riesgo ni el escenario prospectivo -- se agregan aquí, igual
+  // que ya se muestran al hacer clic en un satélite dentro del modo Red
   let html = `<div class="detail-name">${actor.nombre}</div><div class="detail-cargo">${actor.cargo}</div>`;
+  html += `<div class="detail-row" style="margin-top:6px;"><span class="k">Riesgo</span><span class="v"><span class="riesgo-badge" style="background:${colorNivelRiesgo}22;color:${colorNivelRiesgo}">${(actor.nivel_riesgo||'sin evaluar').toUpperCase()}</span></span></div>`;
+  const escenario = escenarioProspectivoIA[actorId];
+  if(escenario){
+    html += `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin-top:8px;">
+      <div class="eyebrow" style="color:var(--teal);">Escenario prospectivo (IA)</div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${convertirNegritasMarkdown(escenario)}</p>
+    </div>`;
+  }
   if(!contextos.length){
     html += `<p style="font-size:12px;color:var(--ink-3);margin-top:10px;">Sin temas de agenda documentados para este actor por ahora.</p>`;
   } else {
@@ -817,6 +835,22 @@ function mostrarVinculosEntreActores(coresElegidos){
   });
 
   let html = `<div class="eyebrow">Vínculos entre ${nombresCortos.join(' y ')}</div>`;
+  // interpretación real de IA sobre lo que implican los vínculos cruzados -- se muestra
+  // ARRIBA de la lista descriptiva, porque es lo que de verdad responde "y esto qué
+  // significa", no solo repetir cargos. Se busca en ambos órdenes porque el cálculo en
+  // Python arma la clave según el orden fijo de su propia lista, no el orden en que el
+  // usuario los seleccionó aquí.
+  for(let i=0;i<coresElegidos.length;i++){
+    for(let j=i+1;j<coresElegidos.length;j++){
+      const interpretacion = interpretacionVinculosIA[coresElegidos[i]+'|'+coresElegidos[j]] || interpretacionVinculosIA[coresElegidos[j]+'|'+coresElegidos[i]];
+      if(interpretacion){
+        html += `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin-bottom:8px;">
+          <div class="eyebrow" style="color:var(--teal);">Qué implica (IA)</div>
+          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${convertirNegritasMarkdown(interpretacion)}</p>
+        </div>`;
+      }
+    }
+  }
   if(directas.length){
     html += directas.map(c=> `<div class="contexto-tema-box"><div class="eyebrow" style="color:var(--familia-nucleo)">Vínculo directo · ${c.tipo_vinculo} (${c.fuerza})</div><p style="font-size:12px;color:var(--ink-2);margin-top:3px;">${convertirNegritasMarkdown(c.descripcion)}</p></div>`).join('');
   }
