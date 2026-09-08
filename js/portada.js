@@ -202,7 +202,7 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
     <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
       <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto||''} · ${eventos.length} nota${eventos.length!==1?'s':''}</div>
     </div>
-    ${pulsoDelDiaCache ? `<div style="background:var(--bg-2);border-left:2px solid var(--teal);border-radius:var(--radius-s);padding:7px 10px;margin-bottom:8px;">
+    ${pulsoDelDiaCache ? `<div style="background:var(--bg-2);border-left:2px solid var(--teal);border-radius:var(--radius-s);padding:7px 10px;margin:0 1.2% 8px 1.6%;box-sizing:border-box;">
       <div style="font-size:9px;color:var(--teal);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px;">Pulso del día</div>
       <p style="font-size:11.5px;color:var(--ink-2);line-height:1.4;margin:0;">${pulsoDelDiaCache}</p>
     </div>` : ''}`;
@@ -300,7 +300,7 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
         <line id="portada-linea-guia" x1="0" y1="${margenArriba}" x2="0" y2="${alto-margenAbajo}" stroke="var(--ink-1)" stroke-width="1" stroke-opacity="0" stroke-dasharray="2 2"/>
       </svg>
       <div style="position:absolute;inset:0;pointer-events:none;">${puntosVisiblesHTML}</div>
-      <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:5px 9px;font-size:10.5px;color:var(--ink-1);pointer-events:none;max-width:260px;z-index:20;box-shadow:var(--shadow-card);"></div>
+      <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:6px 10px;font-size:10.5px;color:var(--ink-1);line-height:1.5;pointer-events:none;max-width:280px;z-index:20;box-shadow:var(--shadow-card);"></div>
     </div>`;
   // el contenedor de puntos tiene pointer-events:none (para no tapar el mousemove del SVG de
   // abajo), pero cada punto individual sí necesita recibir su propio hover
@@ -322,11 +322,15 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
     if(cercano.lista.length){
       const idx = puntos.indexOf(cercano);
       const h = Math.floor(idx/2), m = (idx%2)*30;
-      // solo el total + las relevantes (impacto alto), no la lista completa
+      // solo el total + las relevantes (impacto alto), cada una en su propia línea con un
+      // punto de color según su intensidad -- antes se unían en una sola línea con " | ",
+      // sin interlineado definido, y al envolver se veían amontonadas
       const relevantes = notasRelevantesDe(cercano.lista);
-      const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
-      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` +
-        (titulares ? `<br><span style="color:var(--ink-3);">${titulares}</span>` : '');
+      const lineasNotas = relevantes.map(e=>{
+        const color = colorPorImpactoDispersion(e.intensidad);
+        return `<div style="display:flex;gap:5px;align-items:flex-start;margin-top:3px;"><span style="width:6px;height:6px;border-radius:50%;background:${color};flex-shrink:0;margin-top:4px;"></span><span>${e.descripcion.slice(0,80)}</span></div>`;
+      }).join('');
+      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` + lineasNotas;
       tooltip.style.display = 'block';
       tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-270)+'px';
       tooltip.style.top = Math.max(0, ev.clientY-rect.top-50)+'px';
