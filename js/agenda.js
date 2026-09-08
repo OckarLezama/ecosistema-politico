@@ -342,24 +342,15 @@ function renderNotasAgenda(){
           `<span><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('')}
       </div>
     </div>
-    <div id="notas-zona-grafo" style="width:100%;flex:1;position:relative;"></div>`;
+    ${temaNotasSeleccionado
+      ? `<svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`
+      : `<div class="graph-empty-state" id="notas-svg-empty-state" style="display:flex;"><div class="eyebrow">Sin selección</div><h3>Elige una nota</h3><p style="font-size:12px;">Selecciona un tema de agenda arriba para ver quién aparece y con qué rol.</p></div>`}`;
   document.getElementById('notas-tema-select').addEventListener('change', (e)=>{
     temaNotasSeleccionado = e.target.value || null;
-    pintarZonaNotas();
+    renderNotasAgenda();
   });
 
-  pintarZonaNotas();
-}
-
-function pintarZonaNotas(){
-  const zona = document.getElementById('notas-zona-grafo');
-  if(!zona) return;
-  if(!temaNotasSeleccionado){
-    zona.innerHTML = `<div class="graph-empty-state" style="display:flex;"><div class="eyebrow">Sin selección</div><h3>Elige una nota</h3><p style="font-size:12px;">Selecciona un tema de agenda arriba para ver quién aparece y con qué rol.</p></div>`;
-    return;
-  }
-  if(!zona.querySelector('#notas-svg')) zona.innerHTML = `<svg id="notas-svg" style="width:100%;height:100%;display:block;"></svg>`;
-  dibujarNotasConGrafoReal();
+  if(temaNotasSeleccionado) dibujarNotasConGrafoReal();
 }
 
 function dibujarNotasConGrafoReal(){
@@ -466,21 +457,12 @@ function renderGenealogiaAgenda(){
       </select>
       <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
-    <div id="geneal-zona" style="width:100%;flex:1;position:relative;overflow:hidden;"></div>`;
-  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value || null; genealogiaRevelados = 1; pintarZonaGenealogia(); });
+    ${temaGenealogiaSeleccionado
+      ? `<div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`
+      : `<div class="graph-empty-state" style="display:flex;"><div class="eyebrow">Sin selección</div><h3>Elige una nota</h3><p style="font-size:12px;">Selecciona un tema de agenda arriba para ver su recorrido cronológico.</p></div>`}`;
+  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value || null; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
 
-  pintarZonaGenealogia();
-}
-
-function pintarZonaGenealogia(){
-  const zona = document.getElementById('geneal-zona');
-  if(!zona) return;
-  if(!temaGenealogiaSeleccionado){
-    zona.innerHTML = `<div class="graph-empty-state" style="display:flex;"><div class="eyebrow">Sin selección</div><h3>Elige una nota</h3><p style="font-size:12px;">Selecciona un tema de agenda arriba para ver su recorrido cronológico.</p></div>`;
-    return;
-  }
-  zona.innerHTML = `<div id="geneal-scroll" style="width:100%;height:100%;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
-  dibujarGenealogia(temaGenealogiaSeleccionado);
+  if(temaGenealogiaSeleccionado) dibujarGenealogia(temaGenealogiaSeleccionado);
 }
 
 function dibujarGenealogia(temaId){
