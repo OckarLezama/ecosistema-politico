@@ -76,11 +76,15 @@ function initRedActores(){
   // de cercanía, notas) que ya se abre al hacer clic en un nodo del grafo
   const inputFicha = document.getElementById('actor-ficha-buscar-input');
   if(inputFicha && !inputFicha.dataset.conectado){
+    // autocompletado nativo (datalist) -- ayuda a confirmar si el actor está o no en
+    // la base sin tener que adivinar el nombre exacto
+    const datalist = document.getElementById('lista-nombres-actores');
+    if(datalist) datalist.innerHTML = ECOSISTEMA.actores.map(a=>`<option value="${a.nombre}"></option>`).join('');
     inputFicha.addEventListener('keydown', (e)=>{
       if(e.key !== 'Enter') return;
       const q = inputFicha.value.trim().toLowerCase();
       if(q.length<2) return;
-      const match = ECOSISTEMA.actores.find(a=>a.nombre.toLowerCase().includes(q));
+      const match = ECOSISTEMA.actores.find(a=>a.nombre.toLowerCase()===q) || ECOSISTEMA.actores.find(a=>a.nombre.toLowerCase().includes(q));
       if(match) abrirFichaActorCompleta(match.id);
     });
     inputFicha.dataset.conectado = '1';

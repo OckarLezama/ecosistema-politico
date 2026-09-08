@@ -356,23 +356,25 @@ function renderNotasAgenda(){
   if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){
     temaNotasSeleccionado = temasDisponibles[0]?.id || null;
   }
+
+  // el selector de tema ahora vive en la fila principal del toolbar (junto a Categoría e
+  // íconos), no suelto arriba del contenido -- mismo lugar para Notas y Genealogía
+  const selectWrap = document.getElementById('agenda-tema-select-wrap');
+  const select = document.getElementById('agenda-tema-select');
+  selectWrap.style.display = 'flex';
+  select.innerHTML = temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('');
+  select.onchange = (e)=>{ temaNotasSeleccionado = e.target.value; dibujarNotasConGrafoReal(); };
+
   if(!temaNotasSeleccionado){ cont.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>`; return; }
 
+  // leyenda de roles: cada uno en su propia línea, con separación clara -- antes venía
+  // todo corrido en un solo párrafo, difícil de leer
   cont.innerHTML = `
-    <div style="padding:10px 14px 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-      <select id="notas-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
-        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
-      </select>
-      <div class="legend-inline">
-        ${Object.entries(COLOR_ROL_NOTAS).filter(([r])=>!['Acusado','Autoridad','Reacción del gobierno','Operador'].includes(r)).map(([rol,color])=>
-          `<span><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('')}
-      </div>
+    <div class="legend-inline" style="flex-direction:column;align-items:flex-start;gap:5px;padding:10px 14px 6px;">
+      ${Object.entries(COLOR_ROL_NOTAS).filter(([r])=>!['Acusado','Autoridad','Reacción del gobierno','Operador'].includes(r)).map(([rol,color])=>
+        `<span style="display:flex;align-items:center;gap:5px;"><span class="legend-dot" style="background:${color}"></span>${TEXTO_ROL_NOTAS[rol]}</span>`).join('')}
     </div>
-    <svg id="notas-svg" style="width:100%;flex:1;display:block;"></svg>`;
-  document.getElementById('notas-tema-select').addEventListener('change', (e)=>{
-    temaNotasSeleccionado = e.target.value;
-    dibujarNotasConGrafoReal();
-  });
+    <svg id="notas-svg" style="width:100%;flex:1;display:block;background:var(--bg-2);border-radius:var(--radius-s);"></svg>`;
 
   dibujarNotasConGrafoReal();
 }
@@ -470,25 +472,30 @@ function renderGenealogiaAgenda(){
     .filter(t=> ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).length>1)
     .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
 
+  const selectWrap = document.getElementById('agenda-tema-select-wrap');
+  const select = document.getElementById('agenda-tema-select');
+
   if(!temasDisponibles.length){
+    selectWrap.style.display = 'none';
     cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ notas para armar una genealogía.</div>`;
     return;
   }
   if(!temaGenealogiaSeleccionado || !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)){ temaGenealogiaSeleccionado = temasDisponibles[0].id; genealogiaRevelados = 1; }
 
+  // mismo selector estático que Notas -- una sola fila junto a Categoría e íconos
+  selectWrap.style.display = 'flex';
+  select.innerHTML = temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('');
+  select.onchange = (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); };
+
   cont.innerHTML = `
-    <div style="padding:10px 14px 0;display:flex;align-items:center;gap:10px;">
-      <select id="geneal-tema-select" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:11.5px;">
-        ${temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('')}
-      </select>
+    <div style="padding:10px 14px 0;">
       <span style="font-size:10.5px;color:var(--ink-3);">Clic en el origen para reproducir el recorrido completo</span>
     </div>
     ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
       <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
     </div>` : ''}
-    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
-  document.getElementById('geneal-tema-select').addEventListener('change', (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); });
+    <div id="geneal-scroll" style="width:100%;flex:1;overflow-x:auto;overflow-y:hidden;background:var(--bg-2);border-radius:var(--radius-s);margin:8px 14px;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
 
   dibujarGenealogia(temaGenealogiaSeleccionado);
 }
@@ -671,6 +678,8 @@ function renderAgendaGrid(){
 
 function renderMatrizYLista(){
   const cont = document.getElementById('agenda-contenido');
+  const selectWrap = document.getElementById('agenda-tema-select-wrap');
+  if(selectWrap) selectWrap.style.display = 'none'; // el selector de tema es solo para Notas/Genealogía
   // el interruptor Cuadrícula/Lista ahora es un ícono estático en el HTML
   // (#agenda-vista-secundaria) -- aquí solo se dibuja el contenido según su estado
   const bloqueGlobal = analisisGlobalAgendaIA
