@@ -376,9 +376,9 @@ function renderGrafo(svgId='graph-svg'){
   // visible. Se aplica un alejamiento inicial proporcional a cuántos nodos hay, usando
   // el mismo mecanismo de zoom que ya existía -- el usuario puede seguir acercando o
   // alejando a mano después, esto solo pone un punto de partida razonable.
-  const UMBRAL_ZOOM_OUT = 25;
+  const UMBRAL_ZOOM_OUT = 30; // antes 25 -- ahora hace falta más nodos para empezar a alejar
   if(nodes.length > UMBRAL_ZOOM_OUT){
-    const escala = Math.max(0.45, 1 - (nodes.length - UMBRAL_ZOOM_OUT) * 0.012);
+    const escala = Math.max(0.65, 1 - (nodes.length - UMBRAL_ZOOM_OUT) * 0.006); // la mitad de agresivo que antes, y nunca baja de 0.65
     const cx = width/2, cy = height/2;
     const transformInicial = d3.zoomIdentity.translate(cx,cy).scale(escala).translate(-cx,-cy);
     svg.call(comportamientoZoom.transform, transformInicial);
