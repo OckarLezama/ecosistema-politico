@@ -46,19 +46,14 @@ def limpiar():
             continue  # ya no está en agenda nacional, nada que corregir aquí
 
         evs_del_tema = [e for e in eventos if e['tema_id'] == t['id']]
-        menciona_altos = set()
-        for e in evs_del_tema:
-            texto = e['descripcion'].lower()
-            for a in actores_altos:
-                if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
-                    menciona_altos.add(a['id'])
-        menciona_altos_sin_sheinbaum = menciona_altos - {'sheinbaum'}
 
-        # mismo criterio exacto que ahora usa robot_buscar_temas.py -- 5+ notas
-        # repartidas en 2+ días distintos (no una sola ráfaga de un día), O 2+
-        # actores de alta influencia sin contar a Sheinbaum
+        # criterio DEFINITIVO -- se quitó por completo el atajo de "2+ actores de alta
+        # influencia" (un solo titular mencionando a 2 funcionarios ya no basta) --
+        # ahora el único criterio es 5+ notas repartidas en 2+ días distintos
         dias_distintos_del_tema = len({e['fecha'] for e in evs_del_tema})
-        cumple_criterio_nuevo = (len(evs_del_tema) >= 5 and dias_distintos_del_tema >= 2) or len(menciona_altos_sin_sheinbaum) >= 2
+        cumple_criterio_nuevo = len(evs_del_tema) >= 5 and dias_distintos_del_tema >= 2
+        dias_distintos_del_tema = len({e['fecha'] for e in evs_del_tema})
+        cumple_criterio_nuevo = len(evs_del_tema) >= 5 and dias_distintos_del_tema >= 2
         if cumple_criterio_nuevo:
             mantenidos += 1
         else:
