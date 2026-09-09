@@ -79,6 +79,24 @@ const COLOR_CATEGORIA_C3 = {
   'Economía':'var(--arena)', 'Social':'var(--riesgo-medio)', 'Gobernabilidad':'var(--teal)',
 };
 
+// lista curada para la gráfica de dispersión general -- los actores de más peso real por
+// estado, no todos los 75 (se saturaría). Un color fijo por estado para poder comparar
+// de un vistazo quién está más "caliente" que quién, sin importar en qué estado esté.
+const ACTORES_DISPERSION_C3 = [
+  {nombre:'Rocío Nahle García', estado:'Veracruz'},
+  {nombre:'Salomón Jara Cruz', estado:'Oaxaca'},
+  {nombre:'Eduardo Ramírez Aguilar', estado:'Chiapas'},
+  {nombre:'Javier May Rodríguez', estado:'Tabasco'}, {nombre:'Adán Augusto López Hernández', estado:'Tabasco'}, {nombre:'Andrés Manuel López Beltrán', estado:'Tabasco'},
+  {nombre:'Layda Sansores San Román', estado:'Campeche'}, {nombre:'Pablo Gutiérrez Lazarus', estado:'Campeche'}, {nombre:'Aníbal Ostoa Ortega', estado:'Campeche'}, {nombre:'Biby Rabelo de la Torre', estado:'Campeche'},
+  {nombre:'Joaquín Díaz Mena', estado:'Yucatán'}, {nombre:'Cecilia Patrón Laviada', estado:'Yucatán'},
+  {nombre:'Mara Lezama Espinosa', estado:'Quintana Roo'}, {nombre:'Eugenio Segura Vázquez', estado:'Quintana Roo'}, {nombre:'Ana Patricia Peralta de la Peña', estado:'Quintana Roo'}, {nombre:'Rafael Marín Mollinedo', estado:'Quintana Roo'}, {nombre:'Carlos Ulloa Pérez', estado:'Quintana Roo'},
+];
+const COLOR_ESTADO_DISPERSION_C3 = {
+  'Veracruz':'var(--riesgo-alto)', 'Oaxaca':'var(--riesgo-medio)', 'Chiapas':'var(--riesgo-bajo)',
+  'Tabasco':'var(--teal)', 'Campeche':'var(--familia-nucleo)', 'Yucatán':'var(--familia-cruce1)',
+  'Quintana Roo':'var(--familia-cruce2)', 'Puebla':'var(--arena)',
+};
+
 // palabras que marcan una nota como de alerta real de gobernabilidad -- se resalta
 // visualmente distinto en el feed (ej. "Regidores y síndico renuncian...")
 const PALABRAS_ALERTA_C3 = ['renuncia','renuncian','renunció','destituye','destituyen',
@@ -119,10 +137,10 @@ const ACTORES_SIEMPRE_VISIBLES_C3 = {
   'Veracruz': ['Rocío Nahle García'],
   'Oaxaca': ['Salomón Jara Cruz'],
   'Chiapas': ['Eduardo Ramírez Aguilar'],
-  'Tabasco': ['Javier May Rodríguez'],
-  'Campeche': ['Layda Sansores San Román'],
-  'Yucatán': ['Joaquín Díaz Mena'],
-  'Quintana Roo': ['Mara Lezama Espinosa', 'Eugenio Segura Vázquez', 'Carlos Ulloa Pérez', 'Rafael Marín Mollinedo'],
+  'Tabasco': ['Javier May Rodríguez', 'Adán Augusto López Hernández', 'Andrés Manuel López Beltrán'],
+  'Campeche': ['Layda Sansores San Román', 'Pablo Gutiérrez Lazarus', 'Aníbal Ostoa Ortega', 'Biby Rabelo de la Torre'],
+  'Yucatán': ['Joaquín Díaz Mena', 'Cecilia Patrón Laviada'],
+  'Quintana Roo': ['Mara Lezama Espinosa', 'Eugenio Segura Vázquez', 'Ana Patricia Peralta de la Peña', 'Rafael Marín Mollinedo', 'Carlos Ulloa Pérez'],
   'Puebla': ['Alejandro Armenta Mier'],
 };
 
@@ -161,13 +179,17 @@ function calcularDatosC3(){
       .sort((a,b)=>b.total-a.total);
 
     // los actores marcados como "siempre visibles" para este estado aparecen aunque hoy
-    // estén en 0 -- alguien con actividad de gobierno diaria casi nunca debería quedar en
-    // 0 de verdad, y si pasa, es útil notarlo (en vez de que simplemente desaparezca)
-    (ACTORES_SIEMPRE_VISIBLES_C3[nombre] || []).forEach(nombreSiempre=>{
-      if(actoresConMencion.some(a=>a.nombre===nombreSiempre)) return;
-      const datosActor = actoresDelEstado.find(([n])=>n===nombreSiempre);
-      if(datosActor) actoresConMencion.unshift({nombre:datosActor[0], cargo:datosActor[1], positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false, notasDeHoy:[]});
-    });
+    // estén en 0 -- el gobernador (y otros de peso real) primero, en el orden en que se
+    // definieron, no al revés. bug real encontrado: "unshift" dentro de un forEach pone
+    // cada uno en la posición 0, invirtiendo el orden -- se corrige armando aparte y
+    // anteponiendo todo de una vez, en el orden correcto.
+    const siempreVisiblesFaltantes = (ACTORES_SIEMPRE_VISIBLES_C3[nombre] || [])
+      .filter(nombreSiempre => !actoresConMencion.some(a=>a.nombre===nombreSiempre))
+      .map(nombreSiempre => {
+        const datosActor = actoresDelEstado.find(([n])=>n===nombreSiempre);
+        return datosActor ? {nombre:datosActor[0], cargo:datosActor[1], positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false, notasDeHoy:[]} : null;
+      }).filter(Boolean);
+    actoresConMencion.unshift(...siempreVisiblesFaltantes);
 
     const conteoCategoria = {};
     notas.forEach(n=>{ conteoCategoria[n.categoria] = (conteoCategoria[n.categoria]||0)+1; });
@@ -210,7 +232,7 @@ function renderC3(){
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
             <div style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
           </div>
-          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.actoresConMencion.length} actor${ent.actoresConMencion.length!==1?'es':''} mencionado${ent.actoresConMencion.length!==1?'s':''}</div>
+          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.actoresConMencion.filter(a=>a.total>0).length} actor${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'es':''} mencionado${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'s':''}</div>
           <div style="display:flex;gap:3px;height:6px;border-radius:99px;overflow:hidden;">
             <div style="width:${ent.notas.length?ent.desglose.alto/ent.notas.length*100:0}%;background:var(--riesgo-alto);" title="Alto: ${ent.desglose.alto}"></div>
             <div style="width:${ent.notas.length?ent.desglose.mediano/ent.notas.length*100:0}%;background:var(--riesgo-medio);" title="Mediano: ${ent.desglose.mediano}"></div>
@@ -220,13 +242,13 @@ function renderC3(){
       }).join('')}
     </div>
   `;
-  contFijo.querySelectorAll('[data-entidad]').forEach(el=>{
-    el.addEventListener('click', ()=>{ entidadActivaC3 = el.dataset.entidad; pintarDetalleC3(datos.find(d=>d.nombre===entidadActivaC3)); });
+  contFijo.querySelectorAll('[data-entidad]').forEach(el=>{    el.addEventListener('click', ()=>{ entidadActivaC3 = el.dataset.entidad; pintarDetalleC3(datos.find(d=>d.nombre===entidadActivaC3)); });
   });
   if(entidadActivaC3){
     const ent = datos.find(d=>d.nombre===entidadActivaC3);
     if(ent) pintarDetalleC3(ent);
   }
+  renderDispersionC3();
 }
 
 function inicialesDe(nombre){
@@ -419,6 +441,45 @@ function iniciarAutoScrollC3(){
   }, 40);
 }
 
+// dispersión general -- menciones totales (eje X) vs. balance positivo/negativo (eje Y),
+// color por estado. Responde algo que ningún otro lugar del sitio muestra: quién está
+// "caliente" en la conversación Y si ese calor le conviene o no.
+function renderDispersionC3(){
+  const cont = document.getElementById('c3-dispersion');
+  if(!cont) return;
+  cargarHistorialC3((historial)=>{
+    const datos = ACTORES_DISPERSION_C3.map(({nombre, estado})=>{
+      const menciones = historial.filter(m=>m.actor===nombre);
+      const total = menciones.length;
+      const pos = menciones.filter(m=>m.sentimiento==='positivo').length;
+      const neg = menciones.filter(m=>m.sentimiento==='negativo').length;
+      const balance = total ? Math.round((pos-neg)/total*100) : 0; // -100 (todo negativo) a +100 (todo positivo)
+      return {nombre, estado, total, balance};
+    });
+    const maxTotal = Math.max(...datos.map(d=>d.total), 1);
+
+    const width = cont.clientWidth || 900, height = 200;
+    const pad = {left:40, right:16, top:14, bottom:28};
+    const x = v => pad.left + (v/maxTotal)*(width-pad.left-pad.right);
+    const y = v => height/2 - (v/100)*(height/2-pad.top);
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;height:${height}px;display:block;">`;
+    svg += `<line x1="${pad.left}" y1="${height/2}" x2="${width-pad.right}" y2="${height/2}" stroke="var(--line)" stroke-dasharray="3 3"/>`;
+    svg += `<text x="${pad.left-6}" y="${pad.top+8}" text-anchor="end" font-size="8" fill="var(--riesgo-bajo)" font-family="var(--f-mono)">+</text>`;
+    svg += `<text x="${pad.left-6}" y="${height-pad.bottom}" text-anchor="end" font-size="8" fill="var(--riesgo-alto)" font-family="var(--f-mono)">-</text>`;
+    datos.forEach(d=>{
+      const cx = x(d.total), cy = y(d.balance);
+      const color = COLOR_ESTADO_DISPERSION_C3[d.estado] || 'var(--ink-3)';
+      const r = d.total===0 ? 4 : Math.min(14, 5+d.total*0.6);
+      svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="0.75" stroke="var(--bg-1)" stroke-width="1.5"><title>${d.nombre} (${d.estado}) — ${d.total} mención${d.total!==1?'es':''}, balance ${d.balance>0?'+':''}${d.balance}</title></circle>`;
+      svg += `<text x="${cx}" y="${cy-r-3}" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">${d.nombre.split(' ').slice(0,2).join(' ')}</text>`;
+    });
+    svg += `<text x="${width/2}" y="${height-6}" text-anchor="middle" font-size="8.5" fill="var(--ink-3)" font-family="var(--f-mono)">MENCIONES ACUMULADAS →</text>`;
+    svg += `</svg>`;
+    cont.innerHTML = svg;
+  });
+}
+
 function cargarHistorialC3(callback){
   if(mencionesHistorialC3){ callback(mencionesHistorialC3); return; }
   fetch('data/menciones_actores_c3.csv?t='+Date.now())
@@ -480,7 +541,9 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     }).join('');
     const filasHistorial = historicas.map(m=>{
       const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--ink-3)';
-      const titulo = tituloDesdeURL(m.fuente_url);
+      // el titular real (guardado por el robot desde ahora) se usa primero -- el
+      // extraído de la URL solo es respaldo para registros de antes de este cambio
+      const titulo = (m.titular && m.titular.trim()) || tituloDesdeURL(m.fuente_url);
       return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);">
         <div style="display:flex;gap:8px;align-items:baseline;">
           <span style="font-family:var(--f-mono);color:var(--ink-3);white-space:nowrap;">${m.fecha}</span>
