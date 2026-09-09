@@ -200,6 +200,23 @@ def calcular_todo():
     except Exception:
         pass
 
+    # marca cada núcleo con si tiene actividad reciente de verdad (evento en los últimos
+    # 3 días, vía tema_actores) -- esto decide si vale la pena activar búsqueda web para
+    # toda la corrida (capa 2 del criterio de optimización): un núcleo estable, sin
+    # novedades, no necesita salir a buscar contexto externo actualizado
+    try:
+        temas_por_actor = defaultdict(set)
+        for ta in tema_actores:
+            temas_por_actor[ta['actor_id']].add(ta['tema_id'])
+        for nid, red in redes_por_nucleo.items():
+            temas_del_nucleo = temas_por_actor.get(nid, set())
+            evs_del_nucleo = [e for e in eventos if e['tema_id'] in temas_del_nucleo]
+            fechas_recientes = [e['fecha'] for e in evs_del_nucleo if (hoy - datetime.strptime(e['fecha'], '%Y-%m-%d').date()).days <= 3]
+            red['tiene_actividad_reciente'] = len(fechas_recientes) > 0
+    except Exception:
+        for red in redes_por_nucleo.values():
+            red['tiene_actividad_reciente'] = True  # ante la duda, no bloquear la búsqueda
+
     # ---- VÍNCULOS CRUZADOS entre pares de núcleos -- lo mismo que ya calcula el sitio (JS)
     # al seleccionar 2-3 actores en Red de Actores, pero aquí SE LE DA A LA IA para que
     # interprete qué implica cada vínculo, no solo lo describa (ej. no "es el titular de la
@@ -620,10 +637,39 @@ def generar_analisis():
     # misma huella que la vez pasada, su análisis ya guardado sigue siendo válido, y pedirle
     # a la IA que lo regenere sería pagar de más por el mismo resultado. Solo se manda a la
     # IA lo que de verdad necesita un texto nuevo.
+    def cambio_es_sustancial(info_previa, info_nueva):
+        """Segunda capa de filtro, más allá de la huella técnica -- una huella distinta
+        no siempre significa que valga la pena pagar por un texto nuevo (ej. se sumó 1
+        satélite de bajo nivel, o un cargo se reescribió con otra puntuación). Solo se
+        considera SUSTANCIAL si cambió algo que de verdad alteraría lo que la IA diría:
+        - cambió la categoría dominante de la red
+        - el tamaño de la red cambió en 3 o más personas (crecimiento/reducción real)
+        - el balance interno (% de la categoría dominante) se movió 15 puntos o más
+        - apareció o desapareció una categoría completa
+        Si no hay datos previos que comparar (primera vez), siempre se considera sustancial.
+        """
+        if not info_previa:
+            return True
+        if info_previa.get('categoria_dominante') != info_nueva.get('categoria_dominante'):
+            return True
+        if abs((info_previa.get('total_satelites') or 0) - (info_nueva.get('total_satelites') or 0)) >= 3:
+            return True
+        if abs((info_previa.get('pct_categoria_dominante') or 0) - (info_nueva.get('pct_categoria_dominante') or 0)) >= 15:
+            return True
+        categorias_previas = set((info_previa.get('conteo_por_categoria') or {}).keys())
+        categorias_nuevas = set((info_nueva.get('conteo_por_categoria') or {}).keys())
+        if categorias_previas != categorias_nuevas:
+            return True
+        return False
+
     nucleos_cambiados, nucleos_sin_cambio = {}, {}
     for nid, red in datos['redes_por_nucleo'].items():
         huella_previa = huella_de(redes_previas_datos.get(nid))
-        if huella_previa == red.get('huella') and nid in lectura_previa.get('analisis_redes', {}):
+        ya_tiene_analisis = nid in lectura_previa.get('analisis_redes', {})
+        if huella_previa == red.get('huella') and ya_tiene_analisis:
+            nucleos_sin_cambio[nid] = red
+        elif ya_tiene_analisis and not cambio_es_sustancial(redes_previas_datos.get(nid), red):
+            # la huella técnica cambió pero el cambio real es menor -- no amerita gastar
             nucleos_sin_cambio[nid] = red
         else:
             nucleos_cambiados[nid] = red
@@ -665,7 +711,23 @@ def generar_analisis():
         'notas_por_actor_relevante': actores_notas_cambiados, 'temas_agenda_nacional': temas_agenda_cambiados}
 
     cliente = anthropic.Anthropic(api_key=llave)
-    lectura = llamar_claude(cliente, construir_prompt(datos_para_ia))
+    # CAPA 2 del criterio de optimización: si ninguno de los núcleos que van a regenerarse
+    # tiene actividad reciente de verdad (evento en los últimos 3 días), no hay nada nuevo
+    # que buscar en la web -- se desactiva la búsqueda para TODA la corrida (no es posible
+    # activarla solo para algunos núcleos dentro del mismo prompt combinado)
+    # CAPA 3 del criterio de optimización: max_tokens proporcional a cuánto cambió de
+    # verdad, no un techo fijo de 16000 sin importar si solo cambió 1 núcleo o los 8.
+    # Estimación conservadora por tipo de contenido (cada uno trae resumen + fortaleza +
+    # debilidad + escenario, o su equivalente más corto) -- nunca baja de un mínimo seguro
+    # ni sube del techo original.
+    cantidad_cambios = len(nucleos_cambiados)*1200 + len(pares_cambiados)*400 + len(actores_notas_cambiados)*500 + len(temas_agenda_cambiados)*400
+    max_tokens_dinamico = max(3000, min(16000, 2500 + cantidad_cambios))
+    print(f'max_tokens para esta corrida: {max_tokens_dinamico} (según {len(nucleos_cambiados)} núcleos, {len(pares_cambiados)} pares, {len(actores_notas_cambiados)} actores, {len(temas_agenda_cambiados)} temas de agenda cambiados)')
+
+    hay_actividad_reciente = any(red.get('tiene_actividad_reciente') for red in nucleos_cambiados.values())
+    if not hay_actividad_reciente and nucleos_cambiados:
+        print('Ningún núcleo cambiado tiene actividad reciente -- búsqueda web desactivada para esta corrida.')
+    lectura = llamar_claude(cliente, construir_prompt(datos_para_ia), max_tokens=max_tokens_dinamico, usar_busqueda=hay_actividad_reciente)
 
     problemas = encontrar_problemas(lectura)
     if problemas:
