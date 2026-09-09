@@ -112,6 +112,20 @@ function esNotaDeAlertaC3(texto){
   return PALABRAS_ALERTA_C3.some(p=> texto.includes(sinAcentos(p)));
 }
 
+// quiénes SIEMPRE se muestran en el tablero, aunque hoy tengan 0 menciones -- el
+// gobernador de cada estado siempre, más los que se pidieron explícito por su peso
+// político real (aspirantes/operadores clave), no solo "el primero de la lista"
+const ACTORES_SIEMPRE_VISIBLES_C3 = {
+  'Veracruz': ['Rocío Nahle García'],
+  'Oaxaca': ['Salomón Jara Cruz'],
+  'Chiapas': ['Eduardo Ramírez Aguilar'],
+  'Tabasco': ['Javier May Rodríguez'],
+  'Campeche': ['Layda Sansores San Román'],
+  'Yucatán': ['Joaquín Díaz Mena'],
+  'Quintana Roo': ['Mara Lezama Espinosa', 'Eugenio Segura Vázquez', 'Carlos Ulloa Pérez', 'Rafael Marín Mollinedo'],
+  'Puebla': ['Alejandro Armenta Mier'],
+};
+
 function calcularDatosC3(){
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
   return ORDEN_ENTIDADES_C3.map(nombre=>{
@@ -146,16 +160,14 @@ function calcularDatosC3(){
     const actoresConMencion = Object.entries(conteoActores).map(([nombre,d])=>({nombre, ...d}))
       .sort((a,b)=>b.total-a.total);
 
-    // el actor más importante del estado (primero en la lista curada -- casi siempre el
-    // gobernador) siempre se muestra, aunque hoy esté en 0 -- alguien con actividad de
-    // gobierno diaria casi nunca debería quedar en 0 de verdad, y si pasa, es útil
-    // notarlo (en vez de que simplemente desaparezca del tablero)
-    if(actoresDelEstado.length){
-      const [nombrePrincipal, cargoPrincipal] = actoresDelEstado[0];
-      if(!actoresConMencion.some(a=>a.nombre===nombrePrincipal)){
-        actoresConMencion.unshift({nombre:nombrePrincipal, cargo:cargoPrincipal, positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false, notasDeHoy:[]});
-      }
-    }
+    // los actores marcados como "siempre visibles" para este estado aparecen aunque hoy
+    // estén en 0 -- alguien con actividad de gobierno diaria casi nunca debería quedar en
+    // 0 de verdad, y si pasa, es útil notarlo (en vez de que simplemente desaparezca)
+    (ACTORES_SIEMPRE_VISIBLES_C3[nombre] || []).forEach(nombreSiempre=>{
+      if(actoresConMencion.some(a=>a.nombre===nombreSiempre)) return;
+      const datosActor = actoresDelEstado.find(([n])=>n===nombreSiempre);
+      if(datosActor) actoresConMencion.unshift({nombre:datosActor[0], cargo:datosActor[1], positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false, notasDeHoy:[]});
+    });
 
     const conteoCategoria = {};
     notas.forEach(n=>{ conteoCategoria[n.categoria] = (conteoCategoria[n.categoria]||0)+1; });
@@ -227,7 +239,12 @@ function inicialesDe(nombre){
 function tituloDesdeURL(url){
   if(!url) return null;
   try{
-    const partes = new URL(url).pathname.split('/').filter(Boolean);
+    const u = new URL(url);
+    // links de Google Noticias no traen texto legible en la ruta (es un id codificado) --
+    // ahí ni se intenta, se muestra solo el link (bug real encontrado: salía un bloque de
+    // texto sin sentido tipo "CBMiVkFVX3lx..." en vez de un título)
+    if(u.hostname.includes('news.google.com')) return null;
+    const partes = u.pathname.split('/').filter(Boolean);
     let ultimo = partes[partes.length-1] || '';
     ultimo = decodeURIComponent(ultimo).replace(/\.(html?|pdf|amp)$/i,'').replace(/[-_]+/g,' ').trim();
     if(ultimo.length<8 || /^\d+$/.test(ultimo)) return null; // muy corto o solo números -- no sirve como título
@@ -253,6 +270,19 @@ const FOTOS_ACTORES_C3 = {
   'Eduardo Ramírez Aguilar': 'img/Eduardo_Ramirez.jpg',
   'Rocío Nahle García': 'img/Rocio_Nahle.jpg',
   'Ignacio Mier Bañuelos': 'img/Ignacio_Mier.jpg',
+  'Mara Lezama Espinosa': 'img/Mara_Lezama.jpg',
+  'Adán Augusto López Hernández': 'img/Adan_Augusto.jpg',
+  'Andrés Manuel López Beltrán': 'img/ANDY.jpg',
+  // figuras nacionales -- no son actores de C3, pero si alguna vez aparecen mencionados
+  // en una nota local, esto evita que se vean solo con iniciales
+  'Ernestina Godoy': 'img/Ernestina_Godoy.jpg',
+  'Ricardo Monreal': 'img/Ricardo_Monreal.jpg',
+  'Rubén Rocha Moya': 'img/Ruben_Rocha.jpg',
+  'Donald Trump': 'img/Donald_Trump.jpg',
+  'Rosa Icela Rodríguez': 'img/Rosa_Icela.jpg',
+  'Marcelo Ebrard': 'img/Marcelo Ebrard.jpg',
+  'Omar García Harfuch': 'img/Omar_Garcia_Harfuch.jpg',
+  'Andrés Manuel López Obrador': 'img/AMLO.jpg',
 };
 // logos de partido -- para cuando el "actor" detectado es una institución/partido, no
 // una persona con nombre
@@ -462,7 +492,7 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     }).join('');
 
     modal.innerHTML = `
-      <div class="ficha-modal-card">
+      <div class="ficha-modal-card" style="max-width:560px;width:92vw;">
         <button class="ficha-modal-close">✕</button>
         <div style="display:flex;justify-content:center;margin-bottom:8px;">${avatarHTML(nombreActor, 56, conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)', esInstitucionModal)}</div>
         <h3 style="font-family:var(--f-display);text-align:center;margin:0 0 4px;">${nombreActor}</h3>
