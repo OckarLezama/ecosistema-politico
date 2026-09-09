@@ -225,15 +225,14 @@ function renderC3(){
     ${avisoSinDatos}
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
       ${datos.map(ent=>{
-        const colorPulso = ent.pulso>=66 ? 'var(--riesgo-alto)' : ent.pulso>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
-        const etiquetaPulso = ent.pulso>=66 ? 'ALTO' : ent.pulso>=33 ? 'MEDIO' : 'BAJO';
+        const {color:colorPulso, etiqueta:etiquetaPulso} = colorYEtiquetaPulso(ent.pulso);
         const esPuebla = ent.nombre==='Puebla';
         const esActiva = ent.nombre===entidadActivaC3;
         return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:${esActiva?'2px solid var(--teal)':'1px solid '+(esPuebla?'var(--arena)':'var(--line-strong)')};${esPuebla&&!esActiva?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;box-shadow:${esActiva?'0 0 0 3px rgba(76,193,186,.18)':'0 1px 4px rgba(0,0,0,.18)'};transition:transform .12s,box-shadow .12s;" onmouseenter="this.style.transform='translateY(-2px)';" onmouseleave="this.style.transform='none';">          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
             <div style="text-align:right;">
-              <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:${colorPulso};letter-spacing:.02em;">${etiquetaPulso}</div>
-              <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);">${ent.pulso}/100</div>
+              <div style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
+              <div style="font-family:var(--f-mono);font-size:8.5px;color:${colorPulso};letter-spacing:.03em;">${etiquetaPulso}</div>
             </div>
           </div>
           <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;"><strong style="color:var(--ink-1);">${ent.notas.length}</strong> nota${ent.notas.length!==1?'s':''} · <strong style="color:var(--ink-1);">${ent.actoresConMencion.filter(a=>a.total>0).length}</strong> actor${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'es':''} mencionado${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'s':''}</div>
@@ -377,6 +376,28 @@ function temasRelevantesHTML(temasRelevantes){
 
 const ALTURA_PANEL_C3 = 460; // ajustado -- el 609 anterior venía de .agenda-grid, que incluye su propio toolbar; aquí no aplica igual y se veía demasiado alto
 
+function colorYEtiquetaPulso(pulso){
+  if(pulso>=66) return {color:'var(--riesgo-alto)', etiqueta:'ALTO'};
+  if(pulso>=33) return {color:'var(--riesgo-medio)', etiqueta:'MEDIO'};
+  return {color:'var(--riesgo-bajo)', etiqueta:'BAJO'};
+}
+
+function termometroC3(pulso, colorPulso, etiquetaPulso){
+  const alturaFrasco = 60, anchoFrasco = 14;
+  const alturaLlenado = Math.max(4, (pulso/100)*alturaFrasco);
+  return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:8px;background:var(--bg-2);border-radius:var(--radius-s);">
+    <svg width="${anchoFrasco+8}" height="${alturaFrasco+16}" viewBox="0 0 ${anchoFrasco+8} ${alturaFrasco+16}">
+      <rect x="4" y="4" width="${anchoFrasco}" height="${alturaFrasco}" rx="7" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+      <rect x="4" y="${4+alturaFrasco-alturaLlenado}" width="${anchoFrasco}" height="${alturaLlenado}" rx="7" fill="${colorPulso}" fill-opacity="0.85"/>
+      <circle cx="${4+anchoFrasco/2}" cy="${alturaFrasco+10}" r="7" fill="${colorPulso}"/>
+    </svg>
+    <div>
+      <div style="font-family:var(--f-display);font-size:22px;font-weight:700;color:${colorPulso};line-height:1;">${pulso}</div>
+      <div style="font-family:var(--f-mono);font-size:9px;color:${colorPulso};letter-spacing:.03em;margin-top:2px;">PULSO ${etiquetaPulso}</div>
+    </div>
+  </div>`;
+}
+
 function pintarDetalleC3(ent){
   const cont = document.getElementById('c3-detalle');
   if(!cont || !ent) return;
@@ -429,6 +450,7 @@ function pintarDetalleC3(ent){
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre} — pulso de hoy</div>
       <div style="display:flex;height:${ALTURA_PANEL_C3}px;">
         <div style="flex:0 0 22%;background:var(--bg-1);border-radius:var(--radius-s) 0 0 var(--radius-s);padding:10px;overflow-y:auto;box-sizing:border-box;">
+          ${(() => { const {color,etiqueta} = colorYEtiquetaPulso(ent.pulso); return termometroC3(ent.pulso, color, etiqueta); })()}
           <div class="eyebrow" style="margin-bottom:6px;">Categorías de hoy</div>
           ${miniGraficaCategoriaC3(ent.conteoCategoria)}
           <div class="eyebrow" style="margin:14px 0 6px;">Temas relevantes</div>
