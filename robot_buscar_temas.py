@@ -72,6 +72,17 @@ FUENTES_RSS = [
     {'nombre': 'e-consulta (Puebla)', 'url': 'https://www.e-consulta.com/rss.xml', 'entidades_c3': ['Puebla']},
     {'nombre': 'Angulo 7 (Puebla)', 'url': 'https://www.angulo7.com.mx/feed/', 'entidades_c3': ['Puebla']},
     {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': None},
+    # búsqueda dedicada por estado -- además de los medios locales fijos de arriba, esto
+    # amplía cobertura real (incluye medios nacionales que sí cubren al estado cuando
+    # trasciende, no solo prensa local) -- mismo patrón de Google Noticias ya usado
+    {'nombre': 'Google Noticias Veracruz', 'url': 'https://news.google.com/rss/search?q=Veracruz+(gobernadora+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Veracruz']},
+    {'nombre': 'Google Noticias Oaxaca', 'url': 'https://news.google.com/rss/search?q=Oaxaca+(gobernador+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Oaxaca']},
+    {'nombre': 'Google Noticias Chiapas', 'url': 'https://news.google.com/rss/search?q=Chiapas+(gobernador+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Chiapas']},
+    {'nombre': 'Google Noticias Tabasco', 'url': 'https://news.google.com/rss/search?q=Tabasco+(gobernador+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Tabasco']},
+    {'nombre': 'Google Noticias Campeche', 'url': 'https://news.google.com/rss/search?q=Campeche+(gobernadora+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Campeche']},
+    {'nombre': 'Google Noticias Yucatán', 'url': 'https://news.google.com/rss/search?q=Yucat%C3%A1n+(gobernador+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Yucatán']},
+    {'nombre': 'Google Noticias Quintana Roo', 'url': 'https://news.google.com/rss/search?q=%22Quintana+Roo%22+(gobernadora+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Puebla', 'url': 'https://news.google.com/rss/search?q=Puebla+(gobernador+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
 ]
 
 # ============================================================
