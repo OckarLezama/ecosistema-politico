@@ -127,28 +127,35 @@ function calcularDatosC3(){
     const conteoActores = {};
     notas.forEach(n=>{
       const texto = sinAcentos(n.descripcion.toLowerCase());
-      let algoDetectado = false;
       actoresDelEstado.forEach(([actorNombre, cargo, apodo])=>{
         const variantes = generarVariantesActorC3(actorNombre, apodo);
         if(variantes.some(v=> texto.includes(v))){
-          algoDetectado = true;
-          if(!conteoActores[actorNombre]) conteoActores[actorNombre] = {cargo, positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false};
+          if(!conteoActores[actorNombre]) conteoActores[actorNombre] = {cargo, positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false, notasDeHoy:[]};
           registrarSentimiento(conteoActores[actorNombre], texto);
+          conteoActores[actorNombre].notasDeHoy.push(n);
         }
       });
-      // instituciones -- siempre se revisan, sean o no la única señal de la nota. Esto es
-      // lo que garantiza que casi siempre haya algo en el tablero, aunque ningún actor con
-      // nombre propio haya salido mencionado hoy
       INSTITUCIONES_C3_JS.forEach(inst=>{
         if(texto.includes(sinAcentos(inst.toLowerCase()))){
-          algoDetectado = true;
-          if(!conteoActores[inst]) conteoActores[inst] = {cargo:'Institución', positivo:0, negativo:0, neutro:0, total:0, esInstitucion:true};
+          if(!conteoActores[inst]) conteoActores[inst] = {cargo:'Institución', positivo:0, negativo:0, neutro:0, total:0, esInstitucion:true, notasDeHoy:[]};
           registrarSentimiento(conteoActores[inst], texto);
+          conteoActores[inst].notasDeHoy.push(n);
         }
       });
     });
     const actoresConMencion = Object.entries(conteoActores).map(([nombre,d])=>({nombre, ...d}))
       .sort((a,b)=>b.total-a.total);
+
+    // el actor más importante del estado (primero en la lista curada -- casi siempre el
+    // gobernador) siempre se muestra, aunque hoy esté en 0 -- alguien con actividad de
+    // gobierno diaria casi nunca debería quedar en 0 de verdad, y si pasa, es útil
+    // notarlo (en vez de que simplemente desaparezca del tablero)
+    if(actoresDelEstado.length){
+      const [nombrePrincipal, cargoPrincipal] = actoresDelEstado[0];
+      if(!actoresConMencion.some(a=>a.nombre===nombrePrincipal)){
+        actoresConMencion.unshift({nombre:nombrePrincipal, cargo:cargoPrincipal, positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false, notasDeHoy:[]});
+      }
+    }
 
     const conteoCategoria = {};
     notas.forEach(n=>{ conteoCategoria[n.categoria] = (conteoCategoria[n.categoria]||0)+1; });
@@ -170,7 +177,6 @@ function registrarSentimiento(entrada, texto){
   else if(pos>=neg) entrada.positivo++;
   else entrada.negativo++;
 }
-
 function renderC3(){
   const cont = document.getElementById('c3-contenido');
   if(!cont) return;
@@ -192,7 +198,12 @@ function renderC3(){
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
             <div style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
           </div>
-          <div style="font-size:10.5px;color:var(--ink-3);">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.actoresConMencion.length} actor${ent.actoresConMencion.length!==1?'es':''} mencionado${ent.actoresConMencion.length!==1?'s':''}</div>
+          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.actoresConMencion.length} actor${ent.actoresConMencion.length!==1?'es':''} mencionado${ent.actoresConMencion.length!==1?'s':''}</div>
+          <div style="display:flex;gap:3px;height:6px;border-radius:99px;overflow:hidden;">
+            <div style="width:${ent.notas.length?ent.desglose.alto/ent.notas.length*100:0}%;background:var(--riesgo-alto);" title="Alto: ${ent.desglose.alto}"></div>
+            <div style="width:${ent.notas.length?ent.desglose.mediano/ent.notas.length*100:0}%;background:var(--riesgo-medio);" title="Mediano: ${ent.desglose.mediano}"></div>
+            <div style="width:${ent.notas.length?ent.desglose.bajo/ent.notas.length*100:0}%;background:var(--riesgo-bajo);" title="Bajo: ${ent.desglose.bajo}"></div>
+          </div>
         </div>`;
       }).join('')}
     </div>
@@ -288,20 +299,20 @@ function pintarDetalleC3(ent){
   cont.innerHTML = `
     <div style="border-top:2px solid var(--line-strong);padding-top:14px;">
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre} — pulso de hoy</div>
-      <div style="display:flex;gap:14px;height:${ALTURA_PANEL_C3}px;">
-        <div style="flex:0 0 22%;background:var(--bg-1);border-radius:var(--radius-s);padding:10px;overflow-y:auto;">
+      <div style="display:flex;height:${ALTURA_PANEL_C3}px;">
+        <div style="flex:0 0 22%;background:var(--bg-1);border-radius:var(--radius-s) 0 0 var(--radius-s);padding:10px;overflow-y:auto;box-sizing:border-box;">
           <div class="eyebrow" style="margin-bottom:6px;">Categorías de hoy</div>
           ${miniGraficaCategoriaC3(ent.conteoCategoria)}
           <div class="eyebrow" style="margin:14px 0 6px;">Temas relevantes</div>
           ${temasRelevantesHTML(ent.temasRelevantes) || '<p style="font-size:10.5px;color:var(--ink-3);">Sin notas hoy.</p>'}
         </div>
-        <div style="flex:0 0 48%;overflow-y:auto;">
+        <div style="flex:0 0 48%;overflow-y:auto;box-sizing:border-box;padding:0 14px;border-left:1px solid var(--line);border-right:1px solid var(--line);">
           <div class="eyebrow" style="margin-bottom:8px;">Actores e instituciones mencionados hoy — clic para ver historial</div>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${tableroActores}</div>
         </div>
-        <div style="flex:0 0 26%;background:var(--bg-1);border-radius:var(--radius-s);padding:8px;">
-          <div class="eyebrow" style="margin-bottom:6px;padding:0 4px;">Notas de hoy (${ent.notas.length})</div>
-          <div id="c3-feed-notas" class="feed-lista" style="height:${ALTURA_PANEL_C3-40}px;overflow-y:auto;">${feedNotas}</div>
+        <div style="flex:0 0 30%;background:var(--bg-1);border-radius:0 var(--radius-s) var(--radius-s) 0;padding:8px;box-sizing:border-box;display:flex;flex-direction:column;">
+          <div class="eyebrow" style="margin-bottom:6px;padding:0 4px;flex-shrink:0;">Notas de hoy (${ent.notas.length})</div>
+          <div id="c3-feed-notas" class="feed-lista" style="flex:1;min-height:0;overflow-y:auto !important;box-sizing:border-box;">${feedNotas}</div>
         </div>
       </div>
     </div>
@@ -310,7 +321,8 @@ function pintarDetalleC3(ent){
     if(el.dataset.url) el.addEventListener('click', ()=> window.open(el.dataset.url, '_blank', 'noopener'));
   });
   cont.querySelectorAll('[data-actor]').forEach(el=>{
-    el.addEventListener('click', ()=> abrirHistorialActorC3(el.dataset.actor));
+    const actorData = ent.actoresConMencion.find(a=>a.nombre===el.dataset.actor);
+    el.addEventListener('click', ()=> abrirHistorialActorC3(el.dataset.actor, actorData?.notasDeHoy||[]));
   });
   // mismo desplazamiento lento y continuo que el Feed general, con pausa al pasar el cursor
   iniciarAutoScrollC3();
@@ -343,9 +355,15 @@ function cargarHistorialC3(callback){
     .catch(()=>{ mencionesHistorialC3 = []; callback(mencionesHistorialC3); });
 }
 
-function abrirHistorialActorC3(nombreActor){
+function abrirHistorialActorC3(nombreActor, notasDeHoy){
   cargarHistorialC3((historial)=>{
-    const menciones = historial.filter(m=>m.actor===nombreActor).sort((a,b)=> (b.fecha||'').localeCompare(a.fecha||''));
+    const historicas = historial.filter(m=>m.actor===nombreActor).sort((a,b)=> (b.fecha||'').localeCompare(a.fecha||''));
+    // se combina el historial guardado con las notas de HOY (que aún pueden no estar en
+    // el CSV si el robot no ha corrido desde que se detectaron) -- así el modal nunca se
+    // ve vacío para algo que se está viendo mencionado ahora mismo en el tablero
+    const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+    const idsYaEnHistorial = new Set(historicas.map(m=>String(m.evento_id)));
+    const notasDeHoySinDuplicar = (notasDeHoy||[]).filter(n=> !idsYaEnHistorial.has(String(n.id)));
 
     let modal = document.getElementById('c3-historial-modal');
     if(!modal){
@@ -354,22 +372,33 @@ function abrirHistorialActorC3(nombreActor){
       modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
       document.body.appendChild(modal);
     }
-    const conteoPos = menciones.filter(m=>m.sentimiento==='positivo').length;
-    const conteoNeg = menciones.filter(m=>m.sentimiento==='negativo').length;
+    const totalMenciones = historicas.length + notasDeHoySinDuplicar.length;
+    const conteoPos = historicas.filter(m=>m.sentimiento==='positivo').length;
+    const conteoNeg = historicas.filter(m=>m.sentimiento==='negativo').length;
+
+    const filasHoy = notasDeHoySinDuplicar.map(n=>{
+      const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
+      return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--ink-3);">${n.fecha} (hoy)</strong> — ${texto} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`;
+    }).join('');
+    const filasHistorial = historicas.map(m=>{
+      const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--ink-3)';
+      return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);display:flex;gap:8px;align-items:baseline;">
+        <span style="font-family:var(--f-mono);color:var(--ink-3);white-space:nowrap;">${m.fecha}</span>
+        <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;">${m.sentimiento}</span>
+        ${m.fuente_url ? `<a href="${m.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);margin-left:auto;">Ver nota ↗</a>` : ''}
+      </div>`;
+    }).join('');
+
     modal.innerHTML = `
       <div class="ficha-modal-card">
         <button class="ficha-modal-close">✕</button>
         <div style="width:44px;height:44px;border-radius:50%;background:${conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)'};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:14px;color:#0E1116;margin:0 auto 8px;">${inicialesDe(nombreActor)}</div>
         <h3 style="font-family:var(--f-display);text-align:center;margin:0 0 4px;">${nombreActor}</h3>
-        <p style="text-align:center;font-size:11px;color:var(--ink-3);margin:0 0 12px;">${menciones.length} ${menciones.length!==1?'menciones':'mención'} histórica${menciones.length!==1?'s':''} · ${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''}</p>
-        ${menciones.length ? menciones.map(m=>{
-          const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--ink-3)';
-          return `<div style="padding:6px 0;border-top:1px solid var(--line);display:flex;gap:8px;align-items:baseline;">
-            <span style="font-size:9px;font-family:var(--f-mono);color:var(--ink-3);white-space:nowrap;">${m.fecha}</span>
-            <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;">${m.sentimiento}</span>
-            ${m.fuente_url ? `<a href="${m.fuente_url}" target="_blank" rel="noopener" style="font-size:10.5px;color:var(--teal);margin-left:auto;">Ver nota ↗</a>` : ''}
-          </div>`;
-        }).join('') : '<p style="font-size:12px;color:var(--ink-3);text-align:center;">Sin historial registrado todavía.</p>'}
+        <p style="text-align:center;font-size:11px;color:var(--ink-3);margin:0 0 12px;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total · ${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
+        <div class="ficha-notas-scroll">
+          ${filasHoy}${filasHistorial}
+          ${!totalMenciones ? '<p style="font-size:12px;color:var(--ink-3);text-align:center;padding:10px 0;">Sin menciones registradas todavía.</p>' : ''}
+        </div>
       </div>`;
     modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
     modal.classList.add('open');
