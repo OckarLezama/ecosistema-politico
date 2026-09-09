@@ -42,6 +42,7 @@ const ACTORES_C3_JS = {
     ['Liz Hernández Romero','Operación política del Ejecutivo'], ['Raúl Ojeda Zubieta','Entorno de López Obrador'],
     ['Biby Rabelo de la Torre','Alcaldesa de Campeche (MC)'], ['Jorge Carlos Hurtado Montero','Referente opositor'],
     ['Christian Castro Bello','PRI'], ['Pablo Angulo Briceño','PRI'],
+    ['Eliseo Fernández Montúfar','MC; exalcalde de Campeche'],
   ],
   'Yucatán': [
     ['Joaquín Díaz Mena','Gobernador','Huacho'], ['Cecilia Patrón Laviada','Alcaldesa de Mérida'],
@@ -175,14 +176,12 @@ function calcularDatosC3(){
         }
       });
     });
-    const actoresConMencion = Object.entries(conteoActores).map(([nombre,d])=>({nombre, ...d}))
+    let actoresConMencion = Object.entries(conteoActores).map(([nombre,d])=>({nombre, ...d}))
       .sort((a,b)=>b.total-a.total);
 
     // los actores marcados como "siempre visibles" para este estado aparecen aunque hoy
     // estén en 0 -- el gobernador (y otros de peso real) primero, en el orden en que se
-    // definieron, no al revés. bug real encontrado: "unshift" dentro de un forEach pone
-    // cada uno en la posición 0, invirtiendo el orden -- se corrige armando aparte y
-    // anteponiendo todo de una vez, en el orden correcto.
+    // definieron, no al revés.
     const siempreVisiblesFaltantes = (ACTORES_SIEMPRE_VISIBLES_C3[nombre] || [])
       .filter(nombreSiempre => !actoresConMencion.some(a=>a.nombre===nombreSiempre))
       .map(nombreSiempre => {
@@ -190,6 +189,19 @@ function calcularDatosC3(){
         return datosActor ? {nombre:datosActor[0], cargo:datosActor[1], positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false, notasDeHoy:[]} : null;
       }).filter(Boolean);
     actoresConMencion.unshift(...siempreVisiblesFaltantes);
+
+    // el gobernador (primer nombre de la lista "siempre visibles" de este estado) SIEMPRE
+    // va primero en la tarjeta, sin importar cuántas menciones tenga hoy -- bug real
+    // encontrado: antes solo se garantizaba su lugar cuando estaba en 0; si tenía
+    // menciones genuinas pero MENOS que otro actor, el orden por conteo lo mandaba abajo
+    const nombreGobernador = (ACTORES_SIEMPRE_VISIBLES_C3[nombre] || [])[0];
+    if(nombreGobernador){
+      const idxGobernador = actoresConMencion.findIndex(a=>a.nombre===nombreGobernador);
+      if(idxGobernador>0){
+        const [gobernador] = actoresConMencion.splice(idxGobernador,1);
+        actoresConMencion.unshift(gobernador);
+      }
+    }
 
     const conteoCategoria = {};
     notas.forEach(n=>{ conteoCategoria[n.categoria] = (conteoCategoria[n.categoria]||0)+1; });
@@ -220,9 +232,19 @@ function renderC3(){
   const datos = calcularDatosC3();
   const totalNotasHoy = datos.reduce((s,e)=>s+e.notas.length, 0);
 
+  // indicador de vida -- hora real de esta actualización, con un punto que pulsa (mismo
+  // patrón ya usado en el cintillo de Agenda) -- refuerza que esto se está viendo en
+  // vivo, no es un dato estático
+  const horaActualizacion = new Date().toLocaleTimeString('es-MX', {timeZone:'America/Mexico_City', hour:'2-digit', minute:'2-digit'});
+  const indicadorVivo = `<div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:10px;color:var(--ink-3);font-family:var(--f-mono);">
+    <span class="pulse" style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;"></span>
+    Actualizado ${horaActualizacion}
+  </div>`;
+
   const avisoSinDatos = totalNotasHoy===0 ? `<div style="background:var(--bg-2);border:1.5px solid var(--riesgo-medio);border-radius:var(--radius-s);padding:14px;margin-bottom:16px;font-size:12px;color:var(--ink-2);">Aún no hay notas locales registradas hoy.</div>` : '';
 
   contFijo.innerHTML = `
+    ${indicadorVivo}
     ${avisoSinDatos}
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
       ${datos.map(ent=>{
@@ -248,7 +270,6 @@ function renderC3(){
     const ent = datos.find(d=>d.nombre===entidadActivaC3);
     if(ent) pintarDetalleC3(ent);
   }
-  renderDispersionC3();
 }
 
 function inicialesDe(nombre){
@@ -441,44 +462,10 @@ function iniciarAutoScrollC3(){
   }, 40);
 }
 
-// dispersión general -- menciones totales (eje X) vs. balance positivo/negativo (eje Y),
-// color por estado. Responde algo que ningún otro lugar del sitio muestra: quién está
-// "caliente" en la conversación Y si ese calor le conviene o no.
-function renderDispersionC3(){
-  const cont = document.getElementById('c3-dispersion');
-  if(!cont) return;
-  cargarHistorialC3((historial)=>{
-    const datos = ACTORES_DISPERSION_C3.map(({nombre, estado})=>{
-      const menciones = historial.filter(m=>m.actor===nombre);
-      const total = menciones.length;
-      const pos = menciones.filter(m=>m.sentimiento==='positivo').length;
-      const neg = menciones.filter(m=>m.sentimiento==='negativo').length;
-      const balance = total ? Math.round((pos-neg)/total*100) : 0; // -100 (todo negativo) a +100 (todo positivo)
-      return {nombre, estado, total, balance};
-    });
-    const maxTotal = Math.max(...datos.map(d=>d.total), 1);
-
-    const width = cont.clientWidth || 900, height = 200;
-    const pad = {left:40, right:16, top:14, bottom:28};
-    const x = v => pad.left + (v/maxTotal)*(width-pad.left-pad.right);
-    const y = v => height/2 - (v/100)*(height/2-pad.top);
-
-    let svg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;height:${height}px;display:block;">`;
-    svg += `<line x1="${pad.left}" y1="${height/2}" x2="${width-pad.right}" y2="${height/2}" stroke="var(--line)" stroke-dasharray="3 3"/>`;
-    svg += `<text x="${pad.left-6}" y="${pad.top+8}" text-anchor="end" font-size="8" fill="var(--riesgo-bajo)" font-family="var(--f-mono)">+</text>`;
-    svg += `<text x="${pad.left-6}" y="${height-pad.bottom}" text-anchor="end" font-size="8" fill="var(--riesgo-alto)" font-family="var(--f-mono)">-</text>`;
-    datos.forEach(d=>{
-      const cx = x(d.total), cy = y(d.balance);
-      const color = COLOR_ESTADO_DISPERSION_C3[d.estado] || 'var(--ink-3)';
-      const r = d.total===0 ? 4 : Math.min(14, 5+d.total*0.6);
-      svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="0.75" stroke="var(--bg-1)" stroke-width="1.5"><title>${d.nombre} (${d.estado}) — ${d.total} mención${d.total!==1?'es':''}, balance ${d.balance>0?'+':''}${d.balance}</title></circle>`;
-      svg += `<text x="${cx}" y="${cy-r-3}" text-anchor="middle" font-size="7.5" fill="var(--ink-2)">${d.nombre.split(' ').slice(0,2).join(' ')}</text>`;
-    });
-    svg += `<text x="${width/2}" y="${height-6}" text-anchor="middle" font-size="8.5" fill="var(--ink-3)" font-family="var(--f-mono)">MENCIONES ACUMULADAS →</text>`;
-    svg += `</svg>`;
-    cont.innerHTML = svg;
-  });
-}
+// gráfica de dispersión general -- se intentó y se quitó por decisión explícita: no se
+// veía clara con 17 nombres en poco espacio, sin forma de verificar visualmente si
+// mejoraba. Puede retomarse más adelante con otro enfoque (quizá barras horizontales
+// simples, más fácil de leer con muchos nombres) si se decide que vale la pena.
 
 function cargarHistorialC3(callback){
   if(mencionesHistorialC3){ callback(mencionesHistorialC3); return; }
