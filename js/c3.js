@@ -37,7 +37,7 @@ const ACTORES_C3_JS = {
     ['Óscar Cantón Zetina','Diputado federal'], ['Jorge Orlando Bracamonte Hernández','Congreso local'],
   ],
   'Campeche': [
-    ['Pablo Gutiérrez Lazarus','Coordinador estatal de Morena 2027'], ['Layda Sansores San Román','Gobernadora'],
+    ['Layda Sansores San Román','Gobernadora'], ['Pablo Gutiérrez Lazarus','Coordinador estatal de Morena 2027'],
     ['Rocío Abreu Artiñano','Senadora'], ['Aníbal Ostoa Ortega','Senador'],
     ['Liz Hernández Romero','Operación política del Ejecutivo'], ['Raúl Ojeda Zubieta','Entorno de López Obrador'],
     ['Biby Rabelo de la Torre','Alcaldesa de Campeche (MC)'], ['Jorge Carlos Hurtado Montero','Referente opositor'],
@@ -221,6 +221,20 @@ function inicialesDe(nombre){
   return nombre.split(' ').filter(p=>p.length>2).slice(0,2).map(p=>p[0]).join('').toUpperCase();
 }
 
+// las notas del historial (CSV) solo traen fecha+sentimiento+link, no el texto de la
+// nota -- se extrae un título legible del último segmento de la URL como respaldo (casi
+// siempre trae el titular real, separado por guiones)
+function tituloDesdeURL(url){
+  if(!url) return null;
+  try{
+    const partes = new URL(url).pathname.split('/').filter(Boolean);
+    let ultimo = partes[partes.length-1] || '';
+    ultimo = decodeURIComponent(ultimo).replace(/\.(html?|pdf|amp)$/i,'').replace(/[-_]+/g,' ').trim();
+    if(ultimo.length<8 || /^\d+$/.test(ultimo)) return null; // muy corto o solo números -- no sirve como título
+    return ultimo.charAt(0).toUpperCase()+ultimo.slice(1);
+  }catch(e){ return null; }
+}
+
 // fotos reales subidas por Ockar a img/ -- si un actor no está aquí, cae al avatar de
 // iniciales automáticamente (nunca se rompe, nunca queda vacío)
 const FOTOS_ACTORES_C3 = {
@@ -243,9 +257,8 @@ const FOTOS_ACTORES_C3 = {
 // logos de partido -- para cuando el "actor" detectado es una institución/partido, no
 // una persona con nombre
 const LOGOS_PARTIDO_C3 = {
-  'Pvem': 'img/PVEM.png', 'Pt': 'img/PT.png', 'Mc': 'img/MC.png',
-  'Movimiento Ciudadano': 'img/MC.png', 'Morena': 'img/MORENA.png',
-  'Pan': 'img/PAN.png', 'Pri': 'img/PRI.png',
+  'PVEM': 'img/PVEM.png', 'PT': 'img/PT.png', 'Movimiento Ciudadano': 'img/MC.png',
+  'Morena': 'img/MORENA.png', 'PAN': 'img/PAN.png', 'PRI': 'img/PRI.png',
 };
 
 function avatarHTML(nombre, tamano, colorFondo, esInstitucion){
@@ -437,10 +450,14 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     }).join('');
     const filasHistorial = historicas.map(m=>{
       const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--ink-3)';
-      return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);display:flex;gap:8px;align-items:baseline;">
-        <span style="font-family:var(--f-mono);color:var(--ink-3);white-space:nowrap;">${m.fecha}</span>
-        <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;">${m.sentimiento}</span>
-        ${m.fuente_url ? `<a href="${m.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);margin-left:auto;">Ver nota ↗</a>` : ''}
+      const titulo = tituloDesdeURL(m.fuente_url);
+      return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);">
+        <div style="display:flex;gap:8px;align-items:baseline;">
+          <span style="font-family:var(--f-mono);color:var(--ink-3);white-space:nowrap;">${m.fecha}</span>
+          <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;">${m.sentimiento}</span>
+        </div>
+        ${titulo ? `<p style="margin:3px 0 2px;color:var(--ink-1);line-height:1.35;">${titulo}</p>` : ''}
+        ${m.fuente_url ? `<a href="${m.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver nota ↗</a>` : ''}
       </div>`;
     }).join('');
 
