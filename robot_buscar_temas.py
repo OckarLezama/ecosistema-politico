@@ -74,7 +74,7 @@ FUENTES_RSS = [
 ]
 
 PALABRAS_CLAVE = {
-    'huachicol-fiscal': ['huachicol fiscal', 'farías laguna', 'farías', 'contrabando de combustible'],
+    'huachicol-fiscal': ['huachicol fiscal', 'farías laguna', 'contrabando de combustible'],
     'visa-de-andy': ['andy lópez beltrán', 'visa de andy', 'andrés manuel lópez beltrán'],
     'visas-politicos-eeuu': ['revocación de visa', 'visa revocada', 'políticos mexicanos visa'],
     'tmec-revision': ['t-mec', 'tmec', 'revisión del tratado'],
