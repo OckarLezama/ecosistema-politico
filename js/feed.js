@@ -13,7 +13,17 @@ function initFeed(){
 function renderFeed(){
   // fecha de HOY en hora de México, no en UTC del navegador (evitar el desfase de husos horarios)
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'}); // 'en-CA' da formato YYYY-MM-DD directo
-  const eventos = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).slice().sort((a,b)=> b.fecha.localeCompare(a.fecha));
+  // CORRECCIÓN: antes ordenaba solo por "fecha", pero como ya se filtró a solo el día de
+  // hoy, TODAS las notas comparten la misma fecha -- ese sort no hacía nada de verdad, y
+  // el orden mostrado terminaba siendo el orden de aparición en el archivo, no el orden
+  // real en que salieron. Ahora ordena por hora_registro (más reciente primero), que sí
+  // varía nota por nota -- las que no tengan ese dato quedan al final, no se pierden.
+  const eventos = ECOSISTEMA.eventos.filter(e=>e.fecha===hoy).slice().sort((a,b)=>{
+    if(!a.hora_registro && !b.hora_registro) return 0;
+    if(!a.hora_registro) return 1;
+    if(!b.hora_registro) return -1;
+    return b.hora_registro.localeCompare(a.hora_registro);
+  });
 
   const html = eventos.length ? eventos.map(e=>{
     // protección: si UNA sola nota llega con la descripción vacía o mal formada, antes
@@ -25,7 +35,7 @@ function renderFeed(){
       const descRecortada = desc.length>140 ? desc.slice(0,137)+'...' : desc;
       return `
         <div class="feed-item" data-tema="${e.tema_id}" style="border-left-color:${color};">
-          <div class="feed-fecha">${e.fecha}</div>
+          <div class="feed-fecha">${e.hora_registro ? e.hora_registro+' · '+e.fecha : e.fecha}</div>
           <p class="feed-desc">${descRecortada}</p>
           <a href="${e.fuente_url||'#'}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
           ${Number(e.cobertura)>1 ? `<span style="font-size:10px;color:var(--ink-3);margin-left:8px;">· cubierto por ${e.cobertura} medios</span>` : ''}
