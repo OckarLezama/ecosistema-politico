@@ -83,6 +83,17 @@ FUENTES_RSS = [
     {'nombre': 'Google Noticias Yucatán', 'url': 'https://news.google.com/rss/search?q=Yucat%C3%A1n+(gobernador+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Yucatán']},
     {'nombre': 'Google Noticias Quintana Roo', 'url': 'https://news.google.com/rss/search?q=%22Quintana+Roo%22+(gobernadora+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
     {'nombre': 'Google Noticias Puebla', 'url': 'https://news.google.com/rss/search?q=Puebla+(gobernador+OR+congreso+OR+gobierno+estatal)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
+    # búsqueda DIRECTA por nombre del gobernador -- más confiable que depender de que el
+    # artículo también diga "gobernador" o "Puebla" en el mismo titular; una nota puede
+    # mencionar solo su nombre y aun así ser relevante
+    {'nombre': 'Google Noticias Rocío Nahle', 'url': 'https://news.google.com/rss/search?q=%22Roc%C3%ADo+Nahle%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Veracruz']},
+    {'nombre': 'Google Noticias Salomón Jara', 'url': 'https://news.google.com/rss/search?q=%22Salom%C3%B3n+Jara%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Oaxaca']},
+    {'nombre': 'Google Noticias Eduardo Ramírez', 'url': 'https://news.google.com/rss/search?q=%22Eduardo+Ram%C3%ADrez%22+Chiapas+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Chiapas']},
+    {'nombre': 'Google Noticias Javier May', 'url': 'https://news.google.com/rss/search?q=%22Javier+May%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Tabasco']},
+    {'nombre': 'Google Noticias Layda Sansores', 'url': 'https://news.google.com/rss/search?q=%22Layda+Sansores%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Campeche']},
+    {'nombre': 'Google Noticias Joaquín Díaz Mena', 'url': 'https://news.google.com/rss/search?q=(%22Joaqu%C3%ADn+D%C3%ADaz+Mena%22+OR+Huacho)+Yucat%C3%A1n+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Yucatán']},
+    {'nombre': 'Google Noticias Mara Lezama', 'url': 'https://news.google.com/rss/search?q=%22Mara+Lezama%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Alejandro Armenta', 'url': 'https://news.google.com/rss/search?q=%22Alejandro+Armenta%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
 ]
 
 # ============================================================
