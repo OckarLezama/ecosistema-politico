@@ -188,7 +188,11 @@ ACTORES_C3 = {
 # clima político estatal igual (gobierno, congreso, sindicatos, partidos, sociedad civil)
 INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estado',
     'cnte', 'snte', 'sección 22', 'seccion 22', 'sociedad civil', 'colectivo',
-    'morena', 'pan', 'pri', 'movimiento ciudadano', 'pvem', 'pt']
+    'morena', 'pan', 'pri', 'movimiento ciudadano', 'pvem', 'pt',
+    'cfe', 'comisión federal de electricidad', 'imss', 'issste', 'sedena', 'guardia nacional',
+    'fiscalía general del estado', 'fiscalia general del estado', 'poder judicial',
+    'secretaría de seguridad', 'secretaria de seguridad', 'ayuntamiento', 'cabildo',
+    'universidad autónoma', 'universidad autonoma']
 
 PALABRAS_CLAVE = {
     'huachicol-fiscal': ['huachicol fiscal', 'farías laguna', 'contrabando de combustible'],
