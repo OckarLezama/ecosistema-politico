@@ -257,7 +257,7 @@ function temasRelevantesHTML(temasRelevantes){
   }).join('');
 }
 
-const ALTURA_PANEL_C3 = 609; // misma altura que .agenda-grid en Agenda/Actores/Timeline -- consistencia visual entre secciones
+const ALTURA_PANEL_C3 = 460; // ajustado -- el 609 anterior venía de .agenda-grid, que incluye su propio toolbar; aquí no aplica igual y se veía demasiado alto
 
 function pintarDetalleC3(ent){
   const cont = document.getElementById('c3-detalle');
@@ -297,7 +297,7 @@ function pintarDetalleC3(ent){
     : '<div style="padding:16px 0;text-align:center;color:var(--ink-3);font-size:11.5px;">Sin notas registradas hoy.</div>';
 
   cont.innerHTML = `
-    <div style="border-top:2px solid var(--line-strong);padding-top:14px;">
+    <div style="padding-top:2px;">
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre} — pulso de hoy</div>
       <div style="display:flex;height:${ALTURA_PANEL_C3}px;">
         <div style="flex:0 0 22%;background:var(--bg-1);border-radius:var(--radius-s) 0 0 var(--radius-s);padding:10px;overflow-y:auto;box-sizing:border-box;">
