@@ -73,6 +73,123 @@ FUENTES_RSS = [
     {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': None},
 ]
 
+# ============================================================
+# C3 -- actores locales de interés por entidad (Circunscripción 3 + Puebla)
+# ============================================================
+# Variantes de detección: SIEMPRE nombre completo y "nombre + primer apellido"
+# (2+ palabras, seguro contra falsos positivos) -- el apellido solo NUNCA se agrega
+# por default (mismo aprendizaje del bug de "Farías": un apellido común se cuela en
+# notas sin relación). Solo se agrega un apodo cuando fue dado explícitamente
+# ("Huacho", "Gino", "El Choco"), porque esos SÍ son lo bastante distintivos.
+def variantes_actor_c3(nombre_completo, apodo=None):
+    partes = nombre_completo.split()
+    variantes = [nombre_completo]
+    if len(partes) >= 2:
+        variantes.append(f'{partes[0]} {partes[1]}')
+    if apodo:
+        variantes.append(apodo)
+    return variantes
+
+ACTORES_C3 = {
+    'Veracruz': [
+        ('Rocío Nahle García', 'Gobernadora', None),
+        ('Ricardo Ahued Bardahuil', 'Secretario de Gobierno', None),
+        ('Manuel Huerta Ladrón de Guevara', 'Senador', None),
+        ('Sergio Gutiérrez Luna', 'Diputado federal', None),
+        ('Miguel Ángel Yunes Márquez', 'Senador', None),
+        ('Esteban Bautista Hernández', 'Diputado federal', None),
+        ('José Yunes Zorrilla', 'PRI', None),
+        ('Alberto Islas Reyes', 'Alcalde de Xalapa', None),
+    ],
+    'Oaxaca': [
+        ('Salomón Jara Cruz', 'Gobernador', None),
+        ('Jesús Romero López', 'Secretario de Gobierno', None),
+        ('Antonino Morales Toledo', 'Senador', None),
+        ('Laura Estrada Mauro', 'Senadora', None),
+        ('Susana Harp Iturribarría', 'Senadora', None),
+        ('Nino Morales Toledo', 'Senador', None),
+        ('César Yáñez Centeno', 'Entorno presidencial', None),
+        ('Flavio Sosa Villavicencio', 'Operador de Morena', None),
+        ('Benjamín Robles Montoya', 'PT', None),
+        ('Raymundo Chagoya Villanueva', 'Alcalde de Oaxaca de Juárez', None),
+    ],
+    'Chiapas': [
+        ('Eduardo Ramírez Aguilar', 'Gobernador', None),
+        ('Sasil de León Villard', 'Senadora', None),
+        ('José Manuel Cruz Castellanos', 'Senador', None),
+        ('Luis Armando Melgar Bravo', 'Senador (PVEM)', None),
+        ('Antonio Santos Romero', 'Entorno de Sheinbaum', None),
+        ('Zoé Robledo Aburto', 'Figura nacional en Chiapas', None),
+        ('Jorge Luis Llaven Abarca', 'Morena/PVEM', None),
+        ('Ismael Brito Mazariegos', 'Diputado federal', None),
+        ('Carlos Molina Velasco', 'Morena', None),
+        ('Yamil Melgar Bravo', 'Presencia territorial', None),
+    ],
+    'Tabasco': [
+        ('Javier May Rodríguez', 'Gobernador', None),
+        ('Adán Augusto López Hernández', 'Senador', None),
+        ('José Ramiro López Obrador', 'Secretario de Gobierno', None),
+        ('Andrés Manuel López Beltrán', 'Proyecto electoral en Tabasco', None),
+        ('Yolanda Osuna Huerta', 'Alcaldesa de Centro (Villahermosa)', None),
+        ('Octavio Romero Oropeza', 'Figura histórica tabasqueña', None),
+        ('Rafael Marín Mollinedo', 'Vínculos nacionales', None),
+        ('Marcos Rosendo Medina Filigrana', 'Legislativo', None),
+        ('Óscar Cantón Zetina', 'Diputado federal', None),
+        ('Jorge Orlando Bracamonte Hernández', 'Congreso local', None),
+    ],
+    'Campeche': [
+        ('Pablo Gutiérrez Lazarus', 'Coordinador estatal de Morena 2027', None),
+        ('Layda Sansores San Román', 'Gobernadora', None),
+        ('Rocío Abreu Artiñano', 'Senadora', None),
+        ('Aníbal Ostoa Ortega', 'Senador', None),
+        ('Liz Hernández Romero', 'Operación política del Ejecutivo', None),
+        ('Raúl Ojeda Zubieta', 'Entorno de López Obrador', None),
+        ('Biby Rabelo de la Torre', 'Alcaldesa de Campeche (MC)', None),
+        ('Jorge Carlos Hurtado Montero', 'Referente opositor', None),
+        ('Christian Castro Bello', 'PRI', None),
+        ('Pablo Angulo Briceño', 'PRI', None),
+    ],
+    'Yucatán': [
+        ('Joaquín Díaz Mena', 'Gobernador', 'Huacho'),
+        ('Cecilia Patrón Laviada', 'Alcaldesa de Mérida', None),
+        ('Mauricio Vila Dosal', 'Senador (PAN)', None),
+        ('Renán Barrera Concha', 'Ex candidato a gobernador', None),
+        ('Rommel Pacheco Marrufo', 'Morena', None),
+        ('Verónica Camino Farjat', 'Senadora', None),
+        ('Jorge Carlos Ramírez Marín', 'Morena/PVEM', None),
+        ('Raúl Paz Alonzo', 'Morena', None),
+        ('Rolando Zapata Bello', 'PRI', None),
+        ('Vida Gómez Herrera', 'MC', None),
+    ],
+    'Quintana Roo': [
+        ('Mara Lezama Espinosa', 'Gobernadora', None),
+        ('Eugenio Segura Vázquez', 'Senador', 'Gino'),
+        ('Ana Patricia Peralta de la Peña', 'Alcaldesa de Benito Juárez (Cancún)', None),
+        ('Marybel Villegas Canché', 'Senadora', None),
+        ('Rafael Marín Mollinedo', 'Vínculos nacionales', None),
+        ('Juan Carrillo Soberanis', 'Diputado federal (PVEM)', None),
+        ('Renán Sánchez Tajonar', 'PVEM', None),
+        ('Humberto Aldana Navarro', 'Diputado federal (Morena)', None),
+        ('Julián Ricalde Magaña', 'Estructura en Benito Juárez', None),
+        ('Carlos Ulloa Pérez', 'Conexión nacional (entorno Sheinbaum)', None),
+    ],
+    'Puebla': [
+        ('Alejandro Armenta Mier', 'Gobernador', None),
+        ('José Luis García Parra', 'Coordinador de Gabinete', 'El Choco'),
+        ('José Chedraui Budib', 'Alcalde de Puebla', None),
+        ('Ignacio Mier Bañuelos', 'Diputado federal', None),
+        ('Rodrigo Abdala Dartigues', 'Morena', None),
+        ('Sergio Salomón Céspedes Peregrina', 'Exgobernador', None),
+        ('Mario Riestra Piña', 'PAN', None),
+    ],
+}
+
+# instituciones/organizaciones -- no son personas, pero son actores relevantes del
+# clima político estatal igual (gobierno, congreso, sindicatos, partidos, sociedad civil)
+INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estado',
+    'cnte', 'snte', 'sección 22', 'seccion 22', 'sociedad civil', 'colectivo',
+    'morena', 'pan', 'pri', 'movimiento ciudadano', 'pvem', 'pt']
+
 PALABRAS_CLAVE = {
     'huachicol-fiscal': ['huachicol fiscal', 'farías laguna', 'contrabando de combustible'],
     'visa-de-andy': ['andy lópez beltrán', 'visa de andy', 'andrés manuel lópez beltrán'],
@@ -127,7 +244,62 @@ PALABRAS_POLITICA_LOCAL = ['gobernador', 'gobernadora', 'alcalde', 'alcaldesa', 
     'detención', 'detencion', 'protesta', 'bloqueo', 'presupuesto estatal', 'reforma']
 
 def esContenidoPoliticoLocal(texto_completo):
-    return any(p in texto_completo for p in PALABRAS_POLITICA_LOCAL)
+    # coincidencia con límites de palabra real (\b), no subcadena simple -- una coincidencia
+    # de texto plano dejaba pasar falsos positivos como "cartel" (cárteles) encontrado
+    # dentro de "cartelera" (anuncio de evento de lucha libre, sin relación alguna)
+    return any(re.search(r'\b' + re.escape(p) + r'\b', texto_completo) for p in PALABRAS_POLITICA_LOCAL)
+
+
+# clasificación positivo/negativo por palabras clave -- funcional pero limitado (falla
+# con sarcasmo o ironía); primera versión sin IA, se puede mejorar más adelante
+PALABRAS_POSITIVAS_C3 = ['impulsa', 'impulsó', 'logra', 'logró', 'reconoce', 'reconoció',
+    'avanza', 'avanzó', 'consolida', 'consolidó', 'inaugura', 'inauguró', 'anuncia inversión',
+    'felicita', 'celebra', 'aprueba', 'aprobó', 'firma acuerdo', 'entrega']
+PALABRAS_NEGATIVAS_C3 = ['acusan', 'acusa', 'señalan', 'señala', 'crítica', 'critica',
+    'fractura', 'renuncia', 'renunció', 'escándalo', 'destituye', 'destituyó', 'investigación',
+    'denuncia', 'denuncian', 'protesta', 'bloqueo', 'rechazo', 'rechazan', 'corrupción',
+    'desvío', 'desvio', 'fracasa', 'fracasó', 'crisis']
+
+def clasificarSentimientoC3(texto_completo):
+    positivas = sum(1 for p in PALABRAS_POSITIVAS_C3 if p in texto_completo)
+    negativas = sum(1 for p in PALABRAS_NEGATIVAS_C3 if p in texto_completo)
+    if positivas==0 and negativas==0:
+        return 'neutro'
+    return 'positivo' if positivas>=negativas else 'negativo'
+
+
+def actoresYEntidadesMencionadosC3(texto_completo, entidad):
+    """Revisa el texto contra los actores curados de ESA entidad específica (no de todas),
+    y contra la lista de instituciones (que aplica igual en cualquier entidad). Devuelve
+    la lista de nombres que sí aparecen mencionados de verdad."""
+    encontrados = []
+    for nombre, cargo, apodo in ACTORES_C3.get(entidad, []):
+        if any(v.lower() in texto_completo for v in variantes_actor_c3(nombre, apodo)):
+            encontrados.append(nombre)
+    for inst in INSTITUCIONES_C3:
+        if inst in texto_completo:
+            encontrados.append(inst.title())
+    return encontrados
+
+
+RUTA_MENCIONES_C3 = 'data/menciones_actores_c3.csv'
+
+def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_id, fuente_url):
+    if not actores_mencionados:
+        return
+    try:
+        with open(RUTA_MENCIONES_C3, encoding='utf-8'):
+            existe = True
+    except FileNotFoundError:
+        existe = False
+    with open(RUTA_MENCIONES_C3, 'a', newline='', encoding='utf-8') as f:
+        campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url']
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+        if not existe:
+            w.writeheader()
+        for actor in actores_mencionados:
+            w.writerow({'fecha':fecha, 'entidad':entidad, 'actor':actor, 'sentimiento':sentimiento,
+                        'evento_id':evento_id, 'fuente_url':fuente_url})
 
 
 # secciones típicas de opinión/columnas en medios mexicanos -- si la URL del artículo
@@ -436,6 +608,13 @@ def buscar_candidatos():
                         if ent.lower() in texto_para_entidad:
                             entidad_c3_nota = ent
                             break
+                # filtro estricto para C3 -- una fuente local también publica cosas sin
+                # ningún valor de análisis político (nota roja, espectáculos, deportes
+                # genéricos). Si no pasa el filtro de contenido político real, se le quita
+                # la etiqueta de entidad -- nunca debe verse en C3 (ej. "CMLL llega a
+                # Villahermosa" nunca debe contar como pulso político de Tabasco)
+                if entidad_c3_nota and not esContenidoPoliticoLocal(texto_completo):
+                    entidad_c3_nota = ''
             if enlace in ya_procesados_eventos:
                 continue
             titulo_normalizado = titulo_original.strip().lower()
@@ -621,6 +800,16 @@ if __name__ == '__main__':
         eventos_ya = cargar_eventos_existentes()
         ev['id'] = siguiente_id_evento(eventos_ya)
         guardar_evento_directo(ev)
+        # C3 -- si esta nota es de una entidad de interés, revisa qué actores/instituciones
+        # curadas se mencionan de verdad, clasifica el tono, y lo guarda en un historial
+        # aparte (nunca en eventos.csv) -- esto es lo que permite consultar después
+        # "todas las veces que se mencionó a X actor y si fue bueno o malo"
+        if ev.get('entidad_c3'):
+            texto_c3 = ev['descripcion'].lower()
+            mencionados = actoresYEntidadesMencionadosC3(texto_c3, ev['entidad_c3'])
+            if mencionados:
+                sentimiento = clasificarSentimientoC3(texto_c3)
+                guardarMencionesC3(ev['fecha'], ev['entidad_c3'], mencionados, sentimiento, ev['id'], ev.get('fuente_url',''))
 
     aplicar_incrementos_cobertura(incrementos_cobertura_existente)
 
