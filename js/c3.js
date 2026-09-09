@@ -56,7 +56,7 @@ const ACTORES_C3_JS = {
     ['Ana Patricia Peralta de la Peña','Alcaldesa de Benito Juárez (Cancún)'], ['Marybel Villegas Canché','Senadora'],
     ['Rafael Marín Mollinedo','Vínculos nacionales'], ['Juan Carrillo Soberanis','Diputado federal (PVEM)'],
     ['Renán Sánchez Tajonar','PVEM'], ['Humberto Aldana Navarro','Diputado federal (Morena)'],
-    ['Julián Ricalde Magaña','Estructura en Benito Juárez'], ['Carlos Ulloa Pérez','Conexión nacional'],
+    ['Julián Ricalde Magaña','Estructura en Benito Juárez'], ['Carlos Ulloa Pérez','Actor de relevancia federal, entorno de Sheinbaum'],
   ],
   'Puebla': [
     ['Alejandro Armenta Mier','Gobernador'], ['José Luis García Parra','Coordinador de Gabinete','El Choco'],
@@ -78,24 +78,6 @@ const INSTITUCIONES_C3_JS = ['Gobierno del Estado', 'Congreso Local', 'Congreso 
 const COLOR_CATEGORIA_C3 = {
   'Seguridad Nacional':'var(--riesgo-alto)', 'Relación Bilateral':'var(--familia-nucleo)',
   'Economía':'var(--arena)', 'Social':'var(--riesgo-medio)', 'Gobernabilidad':'var(--teal)',
-};
-
-// lista curada para la gráfica de dispersión general -- los actores de más peso real por
-// estado, no todos los 75 (se saturaría). Un color fijo por estado para poder comparar
-// de un vistazo quién está más "caliente" que quién, sin importar en qué estado esté.
-const ACTORES_DISPERSION_C3 = [
-  {nombre:'Rocío Nahle García', estado:'Veracruz'},
-  {nombre:'Salomón Jara Cruz', estado:'Oaxaca'},
-  {nombre:'Eduardo Ramírez Aguilar', estado:'Chiapas'},
-  {nombre:'Javier May Rodríguez', estado:'Tabasco'}, {nombre:'Adán Augusto López Hernández', estado:'Tabasco'}, {nombre:'Andrés Manuel López Beltrán', estado:'Tabasco'},
-  {nombre:'Layda Sansores San Román', estado:'Campeche'}, {nombre:'Pablo Gutiérrez Lazarus', estado:'Campeche'}, {nombre:'Aníbal Ostoa Ortega', estado:'Campeche'}, {nombre:'Biby Rabelo de la Torre', estado:'Campeche'},
-  {nombre:'Joaquín Díaz Mena', estado:'Yucatán'}, {nombre:'Cecilia Patrón Laviada', estado:'Yucatán'},
-  {nombre:'Mara Lezama Espinosa', estado:'Quintana Roo'}, {nombre:'Eugenio Segura Vázquez', estado:'Quintana Roo'}, {nombre:'Ana Patricia Peralta de la Peña', estado:'Quintana Roo'}, {nombre:'Rafael Marín Mollinedo', estado:'Quintana Roo'}, {nombre:'Carlos Ulloa Pérez', estado:'Quintana Roo'},
-];
-const COLOR_ESTADO_DISPERSION_C3 = {
-  'Veracruz':'var(--riesgo-alto)', 'Oaxaca':'var(--riesgo-medio)', 'Chiapas':'var(--riesgo-bajo)',
-  'Tabasco':'var(--teal)', 'Campeche':'var(--familia-nucleo)', 'Yucatán':'var(--familia-cruce1)',
-  'Quintana Roo':'var(--familia-cruce2)', 'Puebla':'var(--arena)',
 };
 
 // palabras que marcan una nota como de alerta real de gobernabilidad -- se resalta
@@ -123,7 +105,7 @@ function generarVariantesActorC3(nombre, apodo){
 function clasificarImpacto(intensidad){
   const n = Number(intensidad);
   if(n>=8) return 'alto';
-  if(n>=4) return 'mediano';
+  if(n>=4) return 'medio';
   return 'bajo';
 }
 
@@ -139,10 +121,10 @@ const ACTORES_SIEMPRE_VISIBLES_C3 = {
   'Oaxaca': ['Salomón Jara Cruz'],
   'Chiapas': ['Eduardo Ramírez Aguilar'],
   'Tabasco': ['Javier May Rodríguez', 'Adán Augusto López Hernández', 'Andrés Manuel López Beltrán'],
-  'Campeche': ['Layda Sansores San Román', 'Pablo Gutiérrez Lazarus', 'Aníbal Ostoa Ortega', 'Biby Rabelo de la Torre'],
+  'Campeche': ['Layda Sansores San Román', 'Pablo Gutiérrez Lazarus', 'Aníbal Ostoa Ortega', 'Biby Rabelo de la Torre', 'Eliseo Fernández Montúfar'],
   'Yucatán': ['Joaquín Díaz Mena', 'Cecilia Patrón Laviada'],
   'Quintana Roo': ['Mara Lezama Espinosa', 'Eugenio Segura Vázquez', 'Ana Patricia Peralta de la Peña', 'Rafael Marín Mollinedo', 'Carlos Ulloa Pérez'],
-  'Puebla': ['Alejandro Armenta Mier'],
+  'Puebla': ['Alejandro Armenta Mier', 'Sergio Salomón Céspedes Peregrina', 'Ignacio Mier Bañuelos', 'José Chedraui Budib', 'José Luis García Parra'],
 };
 
 function calcularDatosC3(){
@@ -150,7 +132,7 @@ function calcularDatosC3(){
   return ORDEN_ENTIDADES_C3.map(nombre=>{
     const notas = ECOSISTEMA.eventos.filter(e=> e.entidad_c3===nombre && e.fecha===hoy)
       .sort((a,b)=> (b.hora_registro||'').localeCompare(a.hora_registro||''));
-    const desglose = {alto:0, mediano:0, bajo:0};
+    const desglose = {alto:0, medio:0, bajo:0};
     notas.forEach(n=> desglose[clasificarImpacto(n.intensidad)]++);
     const promedioIntensidad = notas.length ? notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length : 0;
     const factorConfianza = Math.min(1, notas.length/4);
@@ -209,7 +191,12 @@ function calcularDatosC3(){
     // temas relevantes del día -- las notas de mayor intensidad, como proxy de "lo que
     // más está marcando la agenda estatal hoy" (sin agrupar por similitud todavía, eso
     // necesitaría un análisis más fino)
-    const temasRelevantes = [...notas].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,4);
+    // criterio real, no solo "lo que haya" -- con pocas notas en el día, mostrar las 4
+    // más intensas sin filtro hacía que TODO se viera "relevante" aunque fuera rutina.
+    // Ahora exige intensidad 6+ (umbral ya usado en el resto del sitio para "empieza a
+    // importar") -- si nada la alcanza, la sección se queda vacía honestamente, en vez de
+    // forzar contenido de bajo peso a verse como si fuera destacado
+    const temasRelevantes = [...notas].filter(n=>Number(n.intensidad)>=6).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,4);
 
     return { nombre, notas, desglose, pulso, actoresConMencion, conteoCategoria, temasRelevantes };
   });
@@ -232,45 +219,52 @@ function renderC3(){
   const datos = calcularDatosC3();
   const totalNotasHoy = datos.reduce((s,e)=>s+e.notas.length, 0);
 
-  // indicador de vida -- hora real de esta actualización, con un punto que pulsa (mismo
-  // patrón ya usado en el cintillo de Agenda) -- refuerza que esto se está viendo en
-  // vivo, no es un dato estático
-  const horaActualizacion = new Date().toLocaleTimeString('es-MX', {timeZone:'America/Mexico_City', hour:'2-digit', minute:'2-digit'});
-  const indicadorVivo = `<div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:10px;color:var(--ink-3);font-family:var(--f-mono);">
-    <span class="pulse" style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;"></span>
-    Actualizado ${horaActualizacion}
-  </div>`;
-
   const avisoSinDatos = totalNotasHoy===0 ? `<div style="background:var(--bg-2);border:1.5px solid var(--riesgo-medio);border-radius:var(--radius-s);padding:14px;margin-bottom:16px;font-size:12px;color:var(--ink-2);">Aún no hay notas locales registradas hoy.</div>` : '';
 
   contFijo.innerHTML = `
-    ${indicadorVivo}
     ${avisoSinDatos}
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
       ${datos.map(ent=>{
         const colorPulso = ent.pulso>=66 ? 'var(--riesgo-alto)' : ent.pulso>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+        const etiquetaPulso = ent.pulso>=66 ? 'ALTO' : ent.pulso>=33 ? 'MEDIO' : 'BAJO';
         const esPuebla = ent.nombre==='Puebla';
-        return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:1px solid ${esPuebla?'var(--arena)':'var(--line-strong)'};${esPuebla?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:transform .12s,box-shadow .12s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 14px rgba(0,0,0,.28)';" onmouseleave="this.style.transform='none';this.style.boxShadow='0 1px 4px rgba(0,0,0,.18)';">          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+        const esActiva = ent.nombre===entidadActivaC3;
+        return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:${esActiva?'2px solid var(--teal)':'1px solid '+(esPuebla?'var(--arena)':'var(--line-strong)')};${esPuebla&&!esActiva?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;box-shadow:${esActiva?'0 0 0 3px rgba(76,193,186,.18)':'0 1px 4px rgba(0,0,0,.18)'};transition:transform .12s,box-shadow .12s;" onmouseenter="this.style.transform='translateY(-2px)';" onmouseleave="this.style.transform='none';">          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
-            <div style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
+            <div style="text-align:right;">
+              <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:${colorPulso};letter-spacing:.02em;">${etiquetaPulso}</div>
+              <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);">${ent.pulso}/100</div>
+            </div>
           </div>
-          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.actoresConMencion.filter(a=>a.total>0).length} actor${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'es':''} mencionado${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'s':''}</div>
+          <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;"><strong style="color:var(--ink-1);">${ent.notas.length}</strong> nota${ent.notas.length!==1?'s':''} · <strong style="color:var(--ink-1);">${ent.actoresConMencion.filter(a=>a.total>0).length}</strong> actor${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'es':''} mencionado${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'s':''}</div>
           <div style="display:flex;gap:3px;height:6px;border-radius:99px;overflow:hidden;background:var(--bg-1);">
             <div style="width:${ent.notas.length?ent.desglose.alto/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-alto);flex-shrink:0;" title="Alto: ${ent.desglose.alto}"></div>
-            <div style="width:${ent.notas.length?ent.desglose.mediano/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-medio);flex-shrink:0;" title="Mediano: ${ent.desglose.mediano}"></div>
+            <div style="width:${ent.notas.length?ent.desglose.medio/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-medio);flex-shrink:0;" title="Medio: ${ent.desglose.medio}"></div>
             <div style="width:${ent.notas.length?ent.desglose.bajo/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-bajo);flex-shrink:0;" title="Bajo: ${ent.desglose.bajo}"></div>
           </div>
         </div>`;
       }).join('')}
     </div>
   `;
-  contFijo.querySelectorAll('[data-entidad]').forEach(el=>{    el.addEventListener('click', ()=>{ entidadActivaC3 = el.dataset.entidad; pintarDetalleC3(datos.find(d=>d.nombre===entidadActivaC3)); });
+  contFijo.querySelectorAll('[data-entidad]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      entidadActivaC3 = el.dataset.entidad;
+      // marca visualmente cuál está activa sin tener que rehacer toda la cuadrícula
+      contFijo.querySelectorAll('[data-entidad]').forEach(otro=>{
+        const esEsta = otro===el;
+        otro.style.border = esEsta ? '2px solid var(--teal)' : (otro.dataset.entidad==='Puebla' ? '1.5px solid var(--arena)' : '1px solid var(--line-strong)');
+        otro.style.boxShadow = esEsta ? '0 0 0 3px rgba(76,193,186,.18)' : '0 1px 4px rgba(0,0,0,.18)';
+      });
+      pintarDetalleC3(datos.find(d=>d.nombre===entidadActivaC3));
+    });
   });
   if(entidadActivaC3){
     const ent = datos.find(d=>d.nombre===entidadActivaC3);
     if(ent) pintarDetalleC3(ent);
   }
 }
+
+const ICONO_INSTITUCION_SVG = `<svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="#0E1116" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/><path d="M9 9h.01M12 9h.01M15 9h.01"/></svg>`;
 
 function inicialesDe(nombre){
   return nombre.split(' ').filter(p=>p.length>2).slice(0,2).map(p=>p[0]).join('').toUpperCase();
@@ -341,9 +335,9 @@ const LOGOS_PARTIDO_C3 = {
 function avatarHTML(nombre, tamano, colorFondo, esInstitucion){
   const foto = FOTOS_ACTORES_C3[nombre] || (esInstitucion ? LOGOS_PARTIDO_C3[nombre] : null);
   if(foto){
-    return `<img src="${encodeURI(foto)}" alt="${nombre}" style="width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};object-fit:cover;flex-shrink:0;border:1.5px solid var(--line-strong);" onerror="this.outerHTML=\`<div style='width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};background:${colorFondo};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;flex-shrink:0;'>${esInstitucion?'🏛':inicialesDe(nombre)}</div>\`">`;
+    return `<img src="${encodeURI(foto)}" alt="${nombre}" style="width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};object-fit:cover;flex-shrink:0;border:1.5px solid var(--line-strong);" onerror="this.outerHTML=\`<div style='width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};background:${colorFondo};display:flex;align-items:center;justify-content:center;flex-shrink:0;'>${esInstitucion?ICONO_INSTITUCION_SVG:`<span style='font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;'>${inicialesDe(nombre)}</span>`}</div>\`">`;
   }
-  return `<div style="width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};background:${colorFondo};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;flex-shrink:0;">${esInstitucion?'🏛':inicialesDe(nombre)}</div>`;
+  return `<div style="width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};background:${colorFondo};display:flex;align-items:center;justify-content:center;flex-shrink:0;">${esInstitucion?ICONO_INSTITUCION_SVG:`<span style="font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;">${inicialesDe(nombre)}</span>`}</div>`;
 }
 
 function colorPorBalanceC3(actor){
@@ -373,7 +367,7 @@ function temasRelevantesHTML(temasRelevantes){
   if(!temasRelevantes.length) return '';
   return temasRelevantes.map(n=>{
     const imp = clasificarImpacto(n.intensidad);
-    const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='mediano' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+    const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='medio' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
     const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
     return `<div data-url="${n.fuente_url||''}" style="border-left:3px solid ${color};padding:4px 8px;margin-bottom:5px;${n.fuente_url?'cursor:pointer;':''}">
       <p style="font-size:10.5px;color:var(--ink-1);line-height:1.35;margin:0;">${texto.length>90?texto.slice(0,88)+'…':texto}</p>
@@ -387,26 +381,34 @@ function pintarDetalleC3(ent){
   const cont = document.getElementById('c3-detalle');
   if(!cont || !ent) return;
 
+  function tarjetaActorHTML(a){
+    const color = colorPorBalanceC3(a);
+    return `<div class="c3-actor-card" data-actor="${a.nombre}" data-es-institucion="${a.esInstitucion?'1':''}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);padding:10px 12px;cursor:pointer;display:flex;gap:10px;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.15);transition:transform .12s,box-shadow .12s;" onmouseenter="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 10px rgba(0,0,0,.25)';" onmouseleave="this.style.transform='none';this.style.boxShadow='0 1px 3px rgba(0,0,0,.15)';">
+      ${avatarHTML(a.nombre, 38, color, a.esInstitucion)}
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.nombre}</div>
+        <div style="font-size:9px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;letter-spacing:.02em;">${a.cargo}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-family:var(--f-mono);font-weight:700;font-size:15px;color:${color};">${a.total}</div>
+      </div>
+    </div>`;
+  }
+  // bloques separados -- personas primero, instituciones después, nunca mezclados, con
+  // una línea delgada entre los 2 grupos cuando ambos existen
+  const personasC3 = ent.actoresConMencion.filter(a=>!a.esInstitucion);
+  const institucionesC3 = ent.actoresConMencion.filter(a=>a.esInstitucion);
+  const gridPersonas = personasC3.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${personasC3.map(tarjetaActorHTML).join('')}</div>` : '';
+  const separadorC3 = (personasC3.length && institucionesC3.length) ? `<div style="border-top:1px solid var(--line);margin:12px 0;"></div>` : '';
+  const gridInstituciones = institucionesC3.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${institucionesC3.map(tarjetaActorHTML).join('')}</div>` : '';
   const tableroActores = ent.actoresConMencion.length
-    ? ent.actoresConMencion.map(a=>{
-        const color = colorPorBalanceC3(a);
-        return `<div class="c3-actor-card" data-actor="${a.nombre}" data-es-institucion="${a.esInstitucion?'1':''}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);padding:10px 12px;cursor:pointer;display:flex;gap:10px;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.15);transition:transform .12s,box-shadow .12s;" onmouseenter="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 10px rgba(0,0,0,.25)';" onmouseleave="this.style.transform='none';this.style.boxShadow='0 1px 3px rgba(0,0,0,.15)';">
-          ${avatarHTML(a.nombre, 38, color, a.esInstitucion)}
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:11.5px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.nombre}</div>
-            <div style="font-size:9px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;letter-spacing:.02em;">${a.cargo}</div>
-          </div>
-          <div style="text-align:right;flex-shrink:0;">
-            <div style="font-family:var(--f-mono);font-weight:700;font-size:15px;color:${color};">${a.total}</div>
-          </div>
-        </div>`;
-      }).join('')
+    ? `${gridPersonas}${separadorC3}${gridInstituciones}`
     : `<p style="font-size:11.5px;color:var(--ink-3);padding:16px 0;text-align:center;">Sin actores ni instituciones detectadas hoy en ${ent.nombre}.</p>`;
 
   const feedNotas = ent.notas.length
     ? ent.notas.map(n=>{
         const imp = clasificarImpacto(n.intensidad);
-        const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='mediano' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+        const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='medio' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
         const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
         const esAlerta = esNotaDeAlertaC3(sinAcentos(texto.toLowerCase()));
         return `<div data-url="${n.fuente_url||''}" class="feed-item" style="border-left-color:${esAlerta?'var(--riesgo-alto)':color};${esAlerta?'background:rgba(244,104,131,.08);':''}${n.fuente_url?'cursor:pointer;':''}">
@@ -428,11 +430,11 @@ function pintarDetalleC3(ent){
           <div class="eyebrow" style="margin-bottom:6px;">Categorías de hoy</div>
           ${miniGraficaCategoriaC3(ent.conteoCategoria)}
           <div class="eyebrow" style="margin:14px 0 6px;">Temas relevantes</div>
-          ${temasRelevantesHTML(ent.temasRelevantes) || '<p style="font-size:10.5px;color:var(--ink-3);">Sin notas hoy.</p>'}
+          ${temasRelevantesHTML(ent.temasRelevantes) || '<p style="font-size:10.5px;color:var(--ink-3);">Nada de alta intensidad hoy todavía.</p>'}
         </div>
         <div style="flex:0 0 48%;overflow-y:auto;box-sizing:border-box;padding:0 14px;border-left:1px solid var(--line);border-right:1px solid var(--line);">
           <div class="eyebrow" style="margin-bottom:8px;">Actores e instituciones mencionados hoy — clic para ver historial</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${tableroActores}</div>
+          ${tableroActores}
         </div>
         <div style="flex:0 0 30%;background:var(--bg-1);border-radius:0 var(--radius-s) var(--radius-s) 0;padding:8px;box-sizing:border-box;display:flex;flex-direction:column;">
           <div class="eyebrow" style="margin-bottom:6px;padding:0 4px;flex-shrink:0;">Notas de hoy (${ent.notas.length})</div>
