@@ -18,6 +18,7 @@ import urllib.request
 import urllib.parse
 import json
 import re
+import unicodedata
 from datetime import datetime, timezone, timedelta
 
 RUTA_TEMAS = 'data/temas.csv'
@@ -81,14 +82,22 @@ FUENTES_RSS = [
 # por default (mismo aprendizaje del bug de "Farías": un apellido común se cuela en
 # notas sin relación). Solo se agrega un apodo cuando fue dado explícitamente
 # ("Huacho", "Gino", "El Choco"), porque esos SÍ son lo bastante distintivos.
+def sin_acentos(s):
+    return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+
 def variantes_actor_c3(nombre_completo, apodo=None):
     partes = nombre_completo.split()
     variantes = [nombre_completo]
     if len(partes) >= 2:
         variantes.append(f'{partes[0]} {partes[1]}')
+    if len(partes) >= 3:
+        variantes.append(f'{partes[0]} {partes[-1]}')
     if apodo:
         variantes.append(apodo)
-    return variantes
+    # sin acentos y en minúsculas -- una fuente puede escribir "Yanez" donde otra pone
+    # "Yáñez"; sin esto, la variante fallaba por ese detalle (bug real encontrado al
+    # probar detección en fuentes nacionales)
+    return [sin_acentos(v.lower()) for v in variantes]
 
 ACTORES_C3 = {
     'Veracruz': [
@@ -194,6 +203,22 @@ INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estad
     'secretaría de seguridad', 'secretaria de seguridad', 'ayuntamiento', 'cabildo',
     'universidad autónoma', 'universidad autonoma']
 
+def buscarEntidadC3PorActorMencionado(texto_completo):
+    """Para fuentes NACIONALES (sin entidades_c3 propia) -- si el texto menciona a algún
+    actor de la lista curada de C3 por su nombre, se asigna esa entidad igual. Esto es lo
+    que permite capturar, por ejemplo, una nota nacional sobre un gobernador de la C3 que
+    nunca habría llegado por un medio local. Se exige contenido político real también
+    aquí, mismo filtro que las fuentes locales."""
+    if not esContenidoPoliticoLocal(texto_completo):
+        return ''
+    texto_sin_acentos = sin_acentos(texto_completo)
+    for entidad, actores in ACTORES_C3.items():
+        for nombre, cargo, apodo in actores:
+            if any(v in texto_sin_acentos for v in variantes_actor_c3(nombre, apodo)):
+                return entidad
+    return ''
+
+
 PALABRAS_CLAVE = {
     'huachicol-fiscal': ['huachicol fiscal', 'farías laguna', 'contrabando de combustible'],
     'visa-de-andy': ['andy lópez beltrán', 'visa de andy', 'andrés manuel lópez beltrán'],
@@ -277,8 +302,9 @@ def actoresYEntidadesMencionadosC3(texto_completo, entidad):
     y contra la lista de instituciones (que aplica igual en cualquier entidad). Devuelve
     la lista de nombres que sí aparecen mencionados de verdad."""
     encontrados = []
+    texto_sin_acentos = sin_acentos(texto_completo)
     for nombre, cargo, apodo in ACTORES_C3.get(entidad, []):
-        if any(v.lower() in texto_completo for v in variantes_actor_c3(nombre, apodo)):
+        if any(v in texto_sin_acentos for v in variantes_actor_c3(nombre, apodo)):
             encontrados.append(nombre)
     for inst in INSTITUCIONES_C3:
         if inst in texto_completo:
@@ -619,6 +645,11 @@ def buscar_candidatos():
                 # Villahermosa" nunca debe contar como pulso político de Tabasco)
                 if entidad_c3_nota and not esContenidoPoliticoLocal(texto_completo):
                     entidad_c3_nota = ''
+            else:
+                # fuente NACIONAL (sin etiqueta propia de C3) -- igual se revisa si
+                # menciona a algún actor curado de la C3 por nombre (ej. una nota nacional
+                # sobre un gobernador). Así no depende solo de que el medio sea local.
+                entidad_c3_nota = buscarEntidadC3PorActorMencionado(texto_completo)
             if enlace in ya_procesados_eventos:
                 continue
             titulo_normalizado = titulo_original.strip().lower()
