@@ -284,10 +284,26 @@ function renderCintillo(){
     const iconoMananera = idsDeMananera.has(t.id)
       ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--riesgo-medio)" stroke-width="2.2" stroke-linecap="round" style="margin-right:2px;flex-shrink:0;" title="Mencionado en la mañanera"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/></svg>`
       : '';
-    return `<button class="ticker-item" data-tema="${t.id}">
+    // "hace Xh" -- señal de frescura como TEXTO (inequívoco), con la opacidad como
+    // refuerzo visual secundario, no como única señal (el color solo no se entiende
+    // sin aprender una escala)
+    const eventosDeHoyDelTema = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && e.fecha===hoy && e.hora_registro);
+    let etiquetaFrescura = '', opacidadItem = 1;
+    if(eventosDeHoyDelTema.length){
+      const masReciente = eventosDeHoyDelTema.sort((a,b)=> b.hora_registro.localeCompare(a.hora_registro))[0];
+      const [hEv, mEv] = masReciente.hora_registro.split(':').map(Number);
+      const minutosEvento = hEv*60+mEv;
+      const minutosAhora = ahoraMX.getHours()*60+ahoraMX.getMinutes();
+      const minutosTranscurridos = Math.max(0, minutosAhora-minutosEvento);
+      if(minutosTranscurridos < 60) etiquetaFrescura = `hace ${minutosTranscurridos}min`;
+      else etiquetaFrescura = `hace ${Math.floor(minutosTranscurridos/60)}h`;
+      opacidadItem = minutosTranscurridos <= 60 ? 1 : minutosTranscurridos <= 180 ? 0.85 : 0.65;
+    }
+    return `<button class="ticker-item" data-tema="${t.id}" style="opacity:${opacidadItem};">
       <span class="riesgo-chip" style="background:${color}"></span>
       ${iconoMananera}
       <span class="tema-name">${t.nombre}</span>
+      ${etiquetaFrescura ? `<span style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);margin-left:4px;">${etiquetaFrescura}</span>` : ''}
       <span class="trend ${claseFlecha}">${flecha}</span>
     </button>`;
   }).join('');
