@@ -271,13 +271,22 @@ function renderCintillo(){
     inner.innerHTML = `<span style="padding:7px 0;color:var(--ink-3);font-size:12px;">${enVentanaMananera ? 'Esperando el resumen de la mañanera...' : 'Sin novedades registradas hoy'}</span>`;
     return;
   }
+  // marca qué temas vienen de la mañanera (para el ícono distintivo), independiente de
+  // si estamos dentro de la ventana horaria o no -- un tema puede haber salido en la
+  // mañanera y seguir mostrándose el resto del día
+  const idsDeMananera = new Set(eventosMananeraHoy.map(e=>e.tema_id));
+
   const itemsHTML = temas.map(t=>{
     const color = colorCategoria(t.categoria);
     const indice = calcularIndiceEscalamiento(t);
     const flecha = indice.tendencia==='ascenso' ? '▲' : (indice.tendencia==='descenso' ? '▼' : '—');
     const claseFlecha = indice.tendencia==='ascenso' ? 'up' : (indice.tendencia==='descenso' ? 'down' : 'flat');
+    const iconoMananera = idsDeMananera.has(t.id)
+      ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--riesgo-medio)" stroke-width="2.2" stroke-linecap="round" style="margin-right:2px;flex-shrink:0;" title="Mencionado en la mañanera"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/></svg>`
+      : '';
     return `<button class="ticker-item" data-tema="${t.id}">
       <span class="riesgo-chip" style="background:${color}"></span>
+      ${iconoMananera}
       <span class="tema-name">${t.nombre}</span>
       <span class="trend ${claseFlecha}">${flecha}</span>
     </button>`;
@@ -288,7 +297,7 @@ function renderCintillo(){
   // tiempo, y por eso se ve más rápido entre más temas de agenda existan. Se calcula
   // aquí, en JS, para que la velocidad VISUAL sea siempre la misma sin importar si hay
   // 5 o 50 temas -- no depende de tocar el CSS.
-  const SEGUNDOS_POR_TEMA = 3.2; // qué tan rápido pasa cada tema individual -- ajustable
+  const SEGUNDOS_POR_TEMA = 4.2; // qué tan rápido pasa cada tema individual -- subido de 3.2 a 4.2, un poco más lento
   const duracionSegundos = Math.max(15, temas.length * SEGUNDOS_POR_TEMA);
   inner.style.animationDuration = duracionSegundos + 's';
   inner.querySelectorAll('.ticker-item').forEach(btn=>{
