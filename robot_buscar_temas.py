@@ -130,6 +130,19 @@ def esContenidoPoliticoLocal(texto_completo):
     return any(p in texto_completo for p in PALABRAS_POLITICA_LOCAL)
 
 
+# secciones típicas de opinión/columnas en medios mexicanos -- si la URL del artículo
+# pasa por alguna de estas rutas, casi con certeza es una columna de opinión, no una
+# nota informativa. Se revisa la URL (no el texto) porque es la señal más confiable y
+# barata -- no necesita IA ni depender de reconocer nombres de columnistas específicos.
+SEGMENTOS_URL_OPINION = ['/opinion/', '/columna/', '/columnas/', '/columnistas/',
+    '/blogs/', '/editorial/', '/analisis-y-opinion/']
+
+def esColumnaDeOpinion(url):
+    if not url:
+        return False
+    return any(seg in url.lower() for seg in SEGMENTOS_URL_OPINION)
+
+
 def extraer_imagen_entrada(entrada, enlace_articulo=None):
     try:
         if hasattr(entrada, 'media_thumbnail') and entrada.media_thumbnail:
@@ -469,6 +482,8 @@ def buscar_candidatos():
                                                    actores_altos, conteo_hoy_por_tema[tema_encontrado])
                 actor_presion_kt = detectarPresion(texto_completo, actores_altos)
                 descripcion_final_kt = (f'⚡ Posible presión de {actor_presion_kt} — {titulo_original}') if actor_presion_kt else titulo_original
+                if esColumnaDeOpinion(enlace):
+                    descripcion_final_kt = f'[Opinión] {descripcion_final_kt}'
                 eventos_nuevos.append({
                     'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                     'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
@@ -494,6 +509,8 @@ def buscar_candidatos():
                     prefijo = '🔔 ALERTA — ' if (alerta_actor or es_migracion) else ''
                     prefijo += f'⚡ Posible presión de {actor_presion} — ' if actor_presion else ''
                     titulo_final = prefijo + titulo_original
+                    if esColumnaDeOpinion(enlace):
+                        titulo_final = f'[Opinión] {titulo_final}'
                     tema_auto = buscar_tema_informativo_similar(titulo_original, actores_altos) or crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
                     intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5)
 
