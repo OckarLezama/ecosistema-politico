@@ -45,6 +45,12 @@ def corregir():
 
     cambios_fecha, cambios_sentimiento, cambios_nombre, urls_vaciadas = 0, 0, 0, 0
     for fila in filas:
+        # filas mal formadas (con comas sueltas dentro de texto sin comillas) generan
+        # columnas de más -- csv.DictReader las mete en la llave especial None. Se
+        # descartan aquí en vez de tronar al escribir (ya identificamos antes esas 2
+        # filas específicas con párrafo completo en vez de URL -- esto las limpia también)
+        fila.pop(None, None)
+
         fecha_nueva = corregir_fecha(fila['fecha'])
         if fecha_nueva != fila['fecha']:
             cambios_fecha += 1
