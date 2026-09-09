@@ -231,8 +231,8 @@ function renderC3(){
         return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:${esActiva?'2px solid var(--teal)':'1px solid '+(esPuebla?'var(--arena)':'var(--line-strong)')};${esPuebla&&!esActiva?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;box-shadow:${esActiva?'0 0 0 3px rgba(76,193,186,.18)':'0 1px 4px rgba(0,0,0,.18)'};transition:transform .12s,box-shadow .12s;" onmouseenter="this.style.transform='translateY(-2px)';" onmouseleave="this.style.transform='none';">          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
             <div style="text-align:right;">
-              <div style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
-              <div style="font-family:var(--f-mono);font-size:8.5px;color:${colorPulso};letter-spacing:.03em;">${etiquetaPulso}</div>
+              <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:${colorPulso};letter-spacing:.02em;">${etiquetaPulso}</div>
+              <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);">${ent.pulso}/100</div>
             </div>
           </div>
           <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;"><strong style="color:var(--ink-1);">${ent.notas.length}</strong> nota${ent.notas.length!==1?'s':''} · <strong style="color:var(--ink-1);">${ent.actoresConMencion.filter(a=>a.total>0).length}</strong> actor${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'es':''} mencionado${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'s':''}</div>
@@ -383,13 +383,18 @@ function colorYEtiquetaPulso(pulso){
 }
 
 function termometroC3(pulso, colorPulso, etiquetaPulso){
-  const alturaFrasco = 60, anchoFrasco = 14;
-  const alturaLlenado = Math.max(4, (pulso/100)*alturaFrasco);
-  return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:8px;background:var(--bg-2);border-radius:var(--radius-s);">
-    <svg width="${anchoFrasco+8}" height="${alturaFrasco+16}" viewBox="0 0 ${anchoFrasco+8} ${alturaFrasco+16}">
-      <rect x="4" y="4" width="${anchoFrasco}" height="${alturaFrasco}" rx="7" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
-      <rect x="4" y="${4+alturaFrasco-alturaLlenado}" width="${anchoFrasco}" height="${alturaLlenado}" rx="7" fill="${colorPulso}" fill-opacity="0.85"/>
-      <circle cx="${4+anchoFrasco/2}" cy="${alturaFrasco+10}" r="7" fill="${colorPulso}"/>
+  // velocímetro tipo arco -- se anima llenándose desde 0 hasta el valor real cada vez que
+  // se abre el estado (efecto de "vivo"), usando stroke-dasharray animado. Un arco es más
+  // fácil de acertar visualmente que una aguja con física propia, y transmite lo mismo.
+  const radio = 34, grosor = 8, circunferenciaMedioArco = Math.PI*radio; // medio círculo (180°)
+  const idUnico = 'gauge-'+Math.random().toString(36).slice(2,8);
+  return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:10px 8px 4px;background:var(--bg-2);border-radius:var(--radius-s);">
+    <svg width="84" height="46" viewBox="0 0 84 46">
+      <path d="M 6 40 A ${radio} ${radio} 0 0 1 78 40" fill="none" stroke="var(--line-strong)" stroke-width="${grosor}" stroke-linecap="round"/>
+      <path id="${idUnico}" d="M 6 40 A ${radio} ${radio} 0 0 1 78 40" fill="none" stroke="${colorPulso}" stroke-width="${grosor}" stroke-linecap="round"
+        stroke-dasharray="${circunferenciaMedioArco}" stroke-dashoffset="${circunferenciaMedioArco}">
+        <animate attributeName="stroke-dashoffset" from="${circunferenciaMedioArco}" to="${circunferenciaMedioArco*(1-pulso/100)}" dur="0.9s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+      </path>
     </svg>
     <div>
       <div style="font-family:var(--f-display);font-size:22px;font-weight:700;color:${colorPulso};line-height:1;">${pulso}</div>
@@ -423,7 +428,9 @@ function pintarDetalleC3(ent){
   const gridPersonas = personasC3.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${personasC3.map(tarjetaActorHTML).join('')}</div>` : '';
   const gridPartidos = partidosC3.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${partidosC3.map(tarjetaActorHTML).join('')}</div>` : '';
   const gridInstituciones = institucionesC3.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${institucionesC3.map(tarjetaActorHTML).join('')}</div>` : '';
-  const separador = (a,b) => (a.length && b.length) ? `<div style="border-top:1px solid var(--line);margin:12px 0;"></div>` : '';
+  // sin línea divisoria -- el borde de color a la izquierda de cada tarjeta ya distingue
+  // suficiente, la línea completa quitaba espacio sin agregar información nueva
+  const separador = (a,b) => (a.length && b.length) ? `<div style="margin:8px 0;"></div>` : '';
   const tableroActores = ent.actoresConMencion.length
     ? `${gridPersonas}${separador(personasC3, [...partidosC3,...institucionesC3])}${gridPartidos}${separador(partidosC3, institucionesC3)}${gridInstituciones}`
     : `<p style="font-size:11.5px;color:var(--ink-3);padding:16px 0;text-align:center;">Sin actores ni instituciones detectadas hoy en ${ent.nombre}.</p>`;
