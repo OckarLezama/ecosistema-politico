@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Correr diagnostico
-        run: python3 diagnostico_tema.py huachicol-fiscal
+        run: python3 corregir_menciones_c3.py
