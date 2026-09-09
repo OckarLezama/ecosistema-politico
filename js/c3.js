@@ -178,16 +178,17 @@ function registrarSentimiento(entrada, texto){
   else entrada.negativo++;
 }
 function renderC3(){
-  const cont = document.getElementById('c3-contenido');
-  if(!cont) return;
+  // ahora la cuadrícula de estados vive en un contenedor FIJO aparte (igual que la
+  // fecha+encabezado de Portada del Día) -- solo el detalle de abajo tiene scroll, así
+  // la cuadrícula nunca se mueve ni desaparece al consultar un estado
+  const contFijo = document.getElementById('c3-grid-entidades');
+  if(!contFijo) return;
   const datos = calcularDatosC3();
   const totalNotasHoy = datos.reduce((s,e)=>s+e.notas.length, 0);
 
   const avisoSinDatos = totalNotasHoy===0 ? `<div style="background:var(--bg-2);border:1.5px solid var(--riesgo-medio);border-radius:var(--radius-s);padding:14px;margin-bottom:16px;font-size:12px;color:var(--ink-2);">Aún no hay notas locales registradas hoy.</div>` : '';
 
-  // cuadrícula fija de 4 columnas (2 filas de 4) -- cada tarjeta con el mismo resumen
-  // "notas · actores mencionados" que ya se usaba antes
-  cont.innerHTML = `
+  contFijo.innerHTML = `
     ${avisoSinDatos}
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
       ${datos.map(ent=>{
@@ -207,9 +208,8 @@ function renderC3(){
         </div>`;
       }).join('')}
     </div>
-    <div id="c3-detalle" style="margin-top:20px;"></div>
   `;
-  cont.querySelectorAll('[data-entidad]').forEach(el=>{
+  contFijo.querySelectorAll('[data-entidad]').forEach(el=>{
     el.addEventListener('click', ()=>{ entidadActivaC3 = el.dataset.entidad; pintarDetalleC3(datos.find(d=>d.nombre===entidadActivaC3)); });
   });
   if(entidadActivaC3){
@@ -373,12 +373,32 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
       document.body.appendChild(modal);
     }
     const totalMenciones = historicas.length + notasDeHoySinDuplicar.length;
-    const conteoPos = historicas.filter(m=>m.sentimiento==='positivo').length;
-    const conteoNeg = historicas.filter(m=>m.sentimiento==='negativo').length;
+    // clasificar el sentimiento real de las notas de hoy (mismas palabras clave que ya
+    // usa el resto de C3), no asumir que todas son positivas
+    const PALABRAS_POS = ['impulsa','impulso','logra','logro','reconoce','avanza','consolida','inaugura','felicita','celebra','aprueba','firma acuerdo'];
+    const PALABRAS_NEG = ['acusan','acusa','senalan','critica','fractura','renuncia','escandalo','destituye','investigacion','denuncia','protesta','bloqueo','rechazo','corrupcion','fracasa','crisis'];
+    const sentimientoDeHoy = notasDeHoySinDuplicar.map(n=>{
+      const t = sinAcentos(n.descripcion.toLowerCase());
+      const pos = PALABRAS_POS.filter(p=>t.includes(p)).length;
+      const neg = PALABRAS_NEG.filter(p=>t.includes(p)).length;
+      return pos===0 && neg===0 ? 'neutro' : (pos>=neg ? 'positivo' : 'negativo');
+    });
+    const conteoPos = historicas.filter(m=>m.sentimiento==='positivo').length + sentimientoDeHoy.filter(s=>s==='positivo').length;
+    const conteoNeg = historicas.filter(m=>m.sentimiento==='negativo').length + sentimientoDeHoy.filter(s=>s==='negativo').length;
+    const conteoNeu = totalMenciones - conteoPos - conteoNeg;
+
+    // barra visual del balance -- en vez de solo texto plano "X positivas, Y negativas"
+    const totalParaBarra = Math.max(1, totalMenciones);
+    const barraBalance = totalMenciones ? `
+      <div style="display:flex;gap:2px;height:6px;border-radius:99px;overflow:hidden;margin:8px auto 4px;max-width:220px;">
+        <div style="width:${conteoPos/totalParaBarra*100}%;background:var(--riesgo-bajo);"></div>
+        <div style="width:${conteoNeu/totalParaBarra*100}%;background:var(--ink-3);"></div>
+        <div style="width:${conteoNeg/totalParaBarra*100}%;background:var(--riesgo-alto);"></div>
+      </div>` : '';
 
     const filasHoy = notasDeHoySinDuplicar.map(n=>{
       const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
-      return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--ink-3);">${n.fecha} (hoy)</strong> — ${texto} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`;
+      return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--teal);">${n.fecha} (hoy)</strong> — ${texto} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`;
     }).join('');
     const filasHistorial = historicas.map(m=>{
       const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--ink-3)';
@@ -394,7 +414,9 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
         <button class="ficha-modal-close">✕</button>
         <div style="width:44px;height:44px;border-radius:50%;background:${conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)'};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:14px;color:#0E1116;margin:0 auto 8px;">${inicialesDe(nombreActor)}</div>
         <h3 style="font-family:var(--f-display);text-align:center;margin:0 0 4px;">${nombreActor}</h3>
-        <p style="text-align:center;font-size:11px;color:var(--ink-3);margin:0 0 12px;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total · ${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
+        <p style="text-align:center;font-size:11px;color:var(--ink-3);margin:0;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total</p>
+        ${barraBalance}
+        <p style="text-align:center;font-size:10px;color:var(--ink-3);margin:0 0 10px;">${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeu} neutra${conteoNeu!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
         <div class="ficha-notas-scroll">
           ${filasHoy}${filasHistorial}
           ${!totalMenciones ? '<p style="font-size:12px;color:var(--ink-3);text-align:center;padding:10px 0;">Sin menciones registradas todavía.</p>' : ''}
