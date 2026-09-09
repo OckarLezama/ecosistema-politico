@@ -59,7 +59,7 @@ FUENTES_RSS = [
     {'nombre': 'El Heraldo de México', 'url': 'https://heraldodemexico.com.mx/rss/feed.html?r=4'},
     {'nombre': 'El Financiero', 'url': 'https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml'},
     {'nombre': 'Diario de Yucatán', 'url': 'https://www.yucatan.com.mx/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
-    {'nombre': 'Por Esto! (Yucatán/QRoo/Campeche)', 'url': 'https://www.poresto.net/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
+    {'nombre': 'Por Esto! (Yucatán/QRoo/Campeche)', 'url': 'https://www.poresto.com/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
     {'nombre': 'El Imparcial de Oaxaca', 'url': 'https://imparcialoaxaca.mx/feed', 'entidades_c3': ['Oaxaca']},
     {'nombre': 'Noticias Voz e Imagen de Oaxaca', 'url': 'https://www.nvinoticias.com/feed', 'entidades_c3': ['Oaxaca']},
     {'nombre': 'Diario de Xalapa (Veracruz)', 'url': 'https://www.diariodexalapa.com.mx/rss', 'entidades_c3': ['Veracruz']},
@@ -93,6 +93,9 @@ FUENTES_RSS = [
     {'nombre': 'Google Noticias Layda Sansores', 'url': 'https://news.google.com/rss/search?q=%22Layda+Sansores%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Campeche']},
     {'nombre': 'Google Noticias Joaquín Díaz Mena', 'url': 'https://news.google.com/rss/search?q=(%22Joaqu%C3%ADn+D%C3%ADaz+Mena%22+OR+Huacho)+Yucat%C3%A1n+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Yucatán']},
     {'nombre': 'Google Noticias Mara Lezama', 'url': 'https://news.google.com/rss/search?q=%22Mara+Lezama%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Gino Segura', 'url': 'https://news.google.com/rss/search?q=(%22Gino+Segura%22+OR+%22Eugenio+Segura%22)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Rafael Marín', 'url': 'https://news.google.com/rss/search?q=%22Rafael+Mar%C3%ADn+Mollinedo%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Carlos Ulloa', 'url': 'https://news.google.com/rss/search?q=%22Carlos+Ulloa%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
     {'nombre': 'Google Noticias Alejandro Armenta', 'url': 'https://news.google.com/rss/search?q=%22Alejandro+Armenta%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
 ]
 
