@@ -336,7 +336,7 @@ def actoresYEntidadesMencionadosC3(texto_completo, entidad):
 
 RUTA_MENCIONES_C3 = 'data/menciones_actores_c3.csv'
 
-def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_id, fuente_url):
+def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_id, fuente_url, titular):
     if not actores_mencionados:
         return
     try:
@@ -345,13 +345,13 @@ def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_
     except FileNotFoundError:
         existe = False
     with open(RUTA_MENCIONES_C3, 'a', newline='', encoding='utf-8') as f:
-        campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url']
+        campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url', 'titular']
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         if not existe:
             w.writeheader()
         for actor in actores_mencionados:
             w.writerow({'fecha':fecha, 'entidad':entidad, 'actor':actor, 'sentimiento':sentimiento,
-                        'evento_id':evento_id, 'fuente_url':fuente_url})
+                        'evento_id':evento_id, 'fuente_url':fuente_url, 'titular':titular[:150]})
 
 
 # secciones típicas de opinión/columnas en medios mexicanos -- si la URL del artículo
@@ -866,7 +866,7 @@ if __name__ == '__main__':
             mencionados = actoresYEntidadesMencionadosC3(texto_c3, ev['entidad_c3'])
             if mencionados:
                 sentimiento = clasificarSentimientoC3(texto_c3)
-                guardarMencionesC3(ev['fecha'], ev['entidad_c3'], mencionados, sentimiento, ev['id'], ev.get('fuente_url',''))
+                guardarMencionesC3(ev['fecha'], ev['entidad_c3'], mencionados, sentimiento, ev['id'], ev.get('fuente_url',''), ev.get('descripcion',''))
 
     aplicar_incrementos_cobertura(incrementos_cobertura_existente)
 
