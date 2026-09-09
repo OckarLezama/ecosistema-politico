@@ -194,8 +194,7 @@ function renderC3(){
       ${datos.map(ent=>{
         const colorPulso = ent.pulso>=66 ? 'var(--riesgo-alto)' : ent.pulso>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
         const esPuebla = ent.nombre==='Puebla';
-        return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:1px solid ${esPuebla?'var(--arena)':'var(--line-strong)'};${esPuebla?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+        return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:1px solid ${esPuebla?'var(--arena)':'var(--line-strong)'};${esPuebla?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:transform .12s,box-shadow .12s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 14px rgba(0,0,0,.28)';" onmouseleave="this.style.transform='none';this.style.boxShadow='0 1px 4px rgba(0,0,0,.18)';">          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
             <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
             <div style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
           </div>
@@ -220,6 +219,41 @@ function renderC3(){
 
 function inicialesDe(nombre){
   return nombre.split(' ').filter(p=>p.length>2).slice(0,2).map(p=>p[0]).join('').toUpperCase();
+}
+
+// fotos reales subidas por Ockar a img/ -- si un actor no está aquí, cae al avatar de
+// iniciales automáticamente (nunca se rompe, nunca queda vacío)
+const FOTOS_ACTORES_C3 = {
+  'José Luis García Parra': 'img/Jose_Luis_Parra_Choco.jpg',
+  'José Chedraui Budib': 'img/Pepe_Chedraui.jpg',
+  'Alejandro Armenta Mier': 'img/Alejandro_Armenta.jpg',
+  'Sergio Salomón Céspedes Peregrina': 'img/Sergio Salomon.jpg',
+  'Rafael Marín Mollinedo': 'img/Rafa_Marin.jpg',
+  'Carlos Ulloa Pérez': 'img/Carlos_Ulloa.jpg',
+  'Eugenio Segura Vázquez': 'img/Gino_Segura.jpg',
+  'Pablo Gutiérrez Lazarus': 'img/Pablo_gutierrez.jpg',
+  'Joaquín Díaz Mena': 'img/Joaquin_Diaz.jpg',
+  'Salomón Jara Cruz': 'img/Salomón_Jara.jpg',
+  'Javier May Rodríguez': 'img/Javier_May.jpg',
+  'Layda Sansores San Román': 'img/Layda_Sansores.jpg',
+  'Eduardo Ramírez Aguilar': 'img/Eduardo_Ramirez.jpg',
+  'Rocío Nahle García': 'img/Rocio_Nahle.jpg',
+  'Ignacio Mier Bañuelos': 'img/Ignacio_Mier.jpg',
+};
+// logos de partido -- para cuando el "actor" detectado es una institución/partido, no
+// una persona con nombre
+const LOGOS_PARTIDO_C3 = {
+  'Pvem': 'img/PVEM.png', 'Pt': 'img/PT.png', 'Mc': 'img/MC.png',
+  'Movimiento Ciudadano': 'img/MC.png', 'Morena': 'img/MORENA.png',
+  'Pan': 'img/PAN.png', 'Pri': 'img/PRI.png',
+};
+
+function avatarHTML(nombre, tamano, colorFondo, esInstitucion){
+  const foto = FOTOS_ACTORES_C3[nombre] || (esInstitucion ? LOGOS_PARTIDO_C3[nombre] : null);
+  if(foto){
+    return `<img src="${encodeURI(foto)}" alt="${nombre}" style="width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};object-fit:cover;flex-shrink:0;border:1.5px solid var(--line-strong);" onerror="this.outerHTML=\`<div style='width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};background:${colorFondo};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;flex-shrink:0;'>${esInstitucion?'🏛':inicialesDe(nombre)}</div>\`">`;
+  }
+  return `<div style="width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};background:${colorFondo};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;flex-shrink:0;">${esInstitucion?'🏛':inicialesDe(nombre)}</div>`;
 }
 
 function colorPorBalanceC3(actor){
@@ -266,14 +300,14 @@ function pintarDetalleC3(ent){
   const tableroActores = ent.actoresConMencion.length
     ? ent.actoresConMencion.map(a=>{
         const color = colorPorBalanceC3(a);
-        return `<div class="c3-actor-card" data-actor="${a.nombre}" data-es-institucion="${a.esInstitucion?'1':''}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px;cursor:pointer;display:flex;gap:8px;align-items:center;">
-          <div style="width:32px;height:32px;border-radius:${a.esInstitucion?'6px':'50%'};background:${color};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:11px;color:#0E1116;flex-shrink:0;">${a.esInstitucion?'🏛':inicialesDe(a.nombre)}</div>
+        return `<div class="c3-actor-card" data-actor="${a.nombre}" data-es-institucion="${a.esInstitucion?'1':''}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:3px solid ${color};border-radius:var(--radius-s);padding:10px 12px;cursor:pointer;display:flex;gap:10px;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.15);transition:transform .12s,box-shadow .12s;" onmouseenter="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 10px rgba(0,0,0,.25)';" onmouseleave="this.style.transform='none';this.style.boxShadow='0 1px 3px rgba(0,0,0,.15)';">
+          ${avatarHTML(a.nombre, 38, color, a.esInstitucion)}
           <div style="flex:1;min-width:0;">
             <div style="font-size:11.5px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.nombre}</div>
-            <div style="font-size:9px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.cargo}</div>
+            <div style="font-size:9px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;letter-spacing:.02em;">${a.cargo}</div>
           </div>
           <div style="text-align:right;flex-shrink:0;">
-            <div style="font-family:var(--f-mono);font-weight:700;font-size:13px;color:${color};">${a.total}</div>
+            <div style="font-family:var(--f-mono);font-weight:700;font-size:15px;color:${color};">${a.total}</div>
           </div>
         </div>`;
       }).join('')
@@ -356,6 +390,7 @@ function cargarHistorialC3(callback){
 }
 
 function abrirHistorialActorC3(nombreActor, notasDeHoy){
+  const esInstitucionModal = INSTITUCIONES_C3_JS.includes(nombreActor);
   cargarHistorialC3((historial)=>{
     const historicas = historial.filter(m=>m.actor===nombreActor).sort((a,b)=> (b.fecha||'').localeCompare(a.fecha||''));
     // se combina el historial guardado con las notas de HOY (que aún pueden no estar en
@@ -412,7 +447,7 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     modal.innerHTML = `
       <div class="ficha-modal-card">
         <button class="ficha-modal-close">✕</button>
-        <div style="width:44px;height:44px;border-radius:50%;background:${conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)'};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:14px;color:#0E1116;margin:0 auto 8px;">${inicialesDe(nombreActor)}</div>
+        <div style="display:flex;justify-content:center;margin-bottom:8px;">${avatarHTML(nombreActor, 56, conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)', esInstitucionModal)}</div>
         <h3 style="font-family:var(--f-display);text-align:center;margin:0 0 4px;">${nombreActor}</h3>
         <p style="text-align:center;font-size:11px;color:var(--ink-3);margin:0;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total</p>
         ${barraBalance}
