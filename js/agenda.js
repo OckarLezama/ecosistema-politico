@@ -217,6 +217,20 @@ function abrirTarjetaHoy(temaId){
   }
   if(!eventosHoy.length) return;
 
+  // criterio: si es 1 sola nota y no hay NADA real que resumir (ni actores detectados,
+  // ni alerta de presión), el popup no aporta nada -- mejor abrir la fuente directo, en
+  // vez de mostrar una ventana vacía con solo el titular repetido
+  if(eventosHoy.length===1){
+    const unicoEvento = eventosHoy[0];
+    const textoUnico = unicoEvento.descripcion.replace('[Mañanera] ','').replace('[Opinión] ','');
+    const tieneActoresDetectados = ECOSISTEMA.actores.some(a=> textoUnico.toLowerCase().includes(a.nombre.split(' ').slice(-1)[0].toLowerCase()) && a.nombre.split(' ').slice(-1)[0].length>4);
+    const tieneAlertaPresion = textoUnico.includes('⚡') || unicoEvento.descripcion.includes('🔔');
+    if(!tieneActoresDetectados && !tieneAlertaPresion){
+      if(unicoEvento.fuente_url) window.open(unicoEvento.fuente_url, '_blank', 'noopener');
+      return;
+    }
+  }
+
   const color = colorCategoria(tema.categoria);
   const nivelImp = nivelImpacto(tema.peso_politico);
   const colorImp = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[nivelImp];
