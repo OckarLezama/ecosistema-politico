@@ -63,9 +63,9 @@ def corregir():
             urls_vaciadas += 1
             fila['fuente_url'] = ''
 
-    campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url']
+    campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url', 'titular']
     with open(RUTA, 'w', newline='', encoding='utf-8') as f:
-        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, restval='')
         w.writeheader()
         for fila in filas:
             w.writerow(fila)
