@@ -68,7 +68,7 @@ FUENTES_RSS = [
     {'nombre': 'Diario del Sur (Chiapas)', 'url': 'https://www.diariodelsur.com.mx/rss', 'entidades_c3': ['Chiapas']},
     {'nombre': 'Tabasco Hoy', 'url': 'https://www.tabascohoy.com/feed', 'entidades_c3': ['Tabasco']},
     {'nombre': 'Presente (Tabasco)', 'url': 'https://presente.mx/feed', 'entidades_c3': ['Tabasco']},
-    {'nombre': 'Campeche Hoy', 'url': 'https://campechehoy.mx/feed/', 'entidades_c3': ['Campeche']},
+    {'nombre': 'Campeche Hoy', 'url': 'http://campechehoy.mx/feed/', 'entidades_c3': ['Campeche']},
     {'nombre': 'e-consulta (Puebla)', 'url': 'https://www.e-consulta.com/rss.xml', 'entidades_c3': ['Puebla']},
     {'nombre': 'Angulo 7 (Puebla)', 'url': 'https://www.angulo7.com.mx/feed/', 'entidades_c3': ['Puebla']},
     {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': None},
@@ -179,6 +179,7 @@ ACTORES_C3 = {
         ('Jorge Carlos Hurtado Montero', 'Referente opositor', None),
         ('Christian Castro Bello', 'PRI', None),
         ('Pablo Angulo Briceño', 'PRI', None),
+        ('Eliseo Fernández Montúfar', 'MC; exalcalde de Campeche', None),
     ],
     'Yucatán': [
         ('Joaquín Díaz Mena', 'Gobernador', 'Huacho'),
