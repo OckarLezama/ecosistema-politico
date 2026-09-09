@@ -264,7 +264,7 @@ function renderC3(){
   }
 }
 
-const ICONO_INSTITUCION_SVG = `<svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="#0E1116" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/><path d="M9 9h.01M12 9h.01M15 9h.01"/></svg>`;
+const ICONO_INSTITUCION_SVG = `<svg width='60%' height='60%' viewBox='0 0 24 24' fill='none' stroke='#0E1116' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 21h18'/><path d='M5 21V9l7-5 7 5v12'/><path d='M9 21v-6h6v6'/><path d='M9 9h.01M12 9h.01M15 9h.01'/></svg>`;
 
 function inicialesDe(nombre){
   return nombre.split(' ').filter(p=>p.length>2).slice(0,2).map(p=>p[0]).join('').toUpperCase();
@@ -397,12 +397,14 @@ function pintarDetalleC3(ent){
   // bloques separados -- personas primero, instituciones después, nunca mezclados, con
   // una línea delgada entre los 2 grupos cuando ambos existen
   const personasC3 = ent.actoresConMencion.filter(a=>!a.esInstitucion);
-  const institucionesC3 = ent.actoresConMencion.filter(a=>a.esInstitucion);
+  const partidosC3 = ent.actoresConMencion.filter(a=>a.esInstitucion && LOGOS_PARTIDO_C3.hasOwnProperty(a.nombre));
+  const institucionesC3 = ent.actoresConMencion.filter(a=>a.esInstitucion && !LOGOS_PARTIDO_C3.hasOwnProperty(a.nombre));
   const gridPersonas = personasC3.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${personasC3.map(tarjetaActorHTML).join('')}</div>` : '';
-  const separadorC3 = (personasC3.length && institucionesC3.length) ? `<div style="border-top:1px solid var(--line);margin:12px 0;"></div>` : '';
+  const gridPartidos = partidosC3.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${partidosC3.map(tarjetaActorHTML).join('')}</div>` : '';
   const gridInstituciones = institucionesC3.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${institucionesC3.map(tarjetaActorHTML).join('')}</div>` : '';
+  const separador = (a,b) => (a.length && b.length) ? `<div style="border-top:1px solid var(--line);margin:12px 0;"></div>` : '';
   const tableroActores = ent.actoresConMencion.length
-    ? `${gridPersonas}${separadorC3}${gridInstituciones}`
+    ? `${gridPersonas}${separador(personasC3, [...partidosC3,...institucionesC3])}${gridPartidos}${separador(partidosC3, institucionesC3)}${gridInstituciones}`
     : `<p style="font-size:11.5px;color:var(--ink-3);padding:16px 0;text-align:center;">Sin actores ni instituciones detectadas hoy en ${ent.nombre}.</p>`;
 
   const feedNotas = ent.notas.length
