@@ -44,40 +44,72 @@ const ACTORES_C3_JS = {
     ['Christian Castro Bello','PRI'], ['Pablo Angulo Briceño','PRI'],
   ],
   'Yucatán': [
-    ['Joaquín Díaz Mena','Gobernador'], ['Cecilia Patrón Laviada','Alcaldesa de Mérida'],
+    ['Joaquín Díaz Mena','Gobernador','Huacho'], ['Cecilia Patrón Laviada','Alcaldesa de Mérida'],
     ['Mauricio Vila Dosal','Senador (PAN)'], ['Renán Barrera Concha','Ex candidato a gobernador'],
     ['Rommel Pacheco Marrufo','Morena'], ['Verónica Camino Farjat','Senadora'],
     ['Jorge Carlos Ramírez Marín','Morena/PVEM'], ['Raúl Paz Alonzo','Morena'],
     ['Rolando Zapata Bello','PRI'], ['Vida Gómez Herrera','MC'],
   ],
   'Quintana Roo': [
-    ['Mara Lezama Espinosa','Gobernadora'], ['Eugenio Segura Vázquez','Senador'],
+    ['Mara Lezama Espinosa','Gobernadora'], ['Eugenio Segura Vázquez','Senador','Gino'],
     ['Ana Patricia Peralta de la Peña','Alcaldesa de Benito Juárez (Cancún)'], ['Marybel Villegas Canché','Senadora'],
     ['Rafael Marín Mollinedo','Vínculos nacionales'], ['Juan Carrillo Soberanis','Diputado federal (PVEM)'],
     ['Renán Sánchez Tajonar','PVEM'], ['Humberto Aldana Navarro','Diputado federal (Morena)'],
     ['Julián Ricalde Magaña','Estructura en Benito Juárez'], ['Carlos Ulloa Pérez','Conexión nacional'],
   ],
   'Puebla': [
-    ['Alejandro Armenta Mier','Gobernador'], ['José Luis García Parra','Coordinador de Gabinete'],
+    ['Alejandro Armenta Mier','Gobernador'], ['José Luis García Parra','Coordinador de Gabinete','El Choco'],
     ['José Chedraui Budib','Alcalde de Puebla'], ['Ignacio Mier Bañuelos','Diputado federal'],
     ['Rodrigo Abdala Dartigues','Morena'], ['Sergio Salomón Céspedes Peregrina','Exgobernador'],
     ['Mario Riestra Piña','PAN'],
   ],
 };
 
+// mismas instituciones que el robot -- si ningún actor con nombre aparece, esto es lo
+// que garantiza que casi siempre haya ALGO que mostrar (gobierno, partido, dependencia)
+const INSTITUCIONES_C3_JS = ['Gobierno del Estado', 'Congreso Local', 'Congreso del Estado',
+  'CNTE', 'SNTE', 'Sección 22', 'Sociedad Civil', 'Colectivo',
+  'Morena', 'PAN', 'PRI', 'Movimiento Ciudadano', 'PVEM', 'PT',
+  'CFE', 'Comisión Federal de Electricidad', 'IMSS', 'ISSSTE', 'Sedena', 'Guardia Nacional',
+  'Fiscalía General del Estado', 'Poder Judicial', 'Secretaría de Seguridad',
+  'Ayuntamiento', 'Cabildo', 'Universidad Autónoma'];
+
 const COLOR_CATEGORIA_C3 = {
   'Seguridad Nacional':'var(--riesgo-alto)', 'Relación Bilateral':'var(--familia-nucleo)',
   'Economía':'var(--arena)', 'Social':'var(--riesgo-medio)', 'Gobernabilidad':'var(--teal)',
 };
 
+// palabras que marcan una nota como de alerta real de gobernabilidad -- se resalta
+// visualmente distinto en el feed (ej. "Regidores y síndico renuncian...")
+const PALABRAS_ALERTA_C3 = ['renuncia','renuncian','renunció','destituye','destituyen',
+  'fractura','se fractura','comparecer','comparecencia','vinculación a proceso',
+  'orden de aprehensión','desaparece','desaparecen','ingobernabilidad'];
+
 let entidadActivaC3 = null;
 let mencionesHistorialC3 = null;
+
+function sinAcentos(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+function generarVariantesActorC3(nombre, apodo){
+  const partes = nombre.split(' ');
+  const variantes = new Set();
+  variantes.add(nombre);
+  if(partes.length>=2) variantes.add(partes[0]+' '+partes[1]);
+  if(partes.length>=3) variantes.add(partes[0]+' '+partes[partes.length-1]);
+  if(partes.length>=3) variantes.add(partes[0]+' '+partes[1]+' '+partes[2]);
+  if(apodo) variantes.add(apodo);
+  return [...variantes].map(v=>sinAcentos(v.toLowerCase()));
+}
 
 function clasificarImpacto(intensidad){
   const n = Number(intensidad);
   if(n>=8) return 'alto';
   if(n>=4) return 'mediano';
   return 'bajo';
+}
+
+function esNotaDeAlertaC3(texto){
+  return PALABRAS_ALERTA_C3.some(p=> texto.includes(sinAcentos(p)));
 }
 
 function calcularDatosC3(){
@@ -94,18 +126,24 @@ function calcularDatosC3(){
     const actoresDelEstado = ACTORES_C3_JS[nombre] || [];
     const conteoActores = {};
     notas.forEach(n=>{
-      const texto = n.descripcion.toLowerCase();
-      actoresDelEstado.forEach(([actorNombre, cargo])=>{
-        const partes = actorNombre.split(' ');
-        const variantes = [actorNombre.toLowerCase(), (partes[0]+' '+partes[1]).toLowerCase()];
+      const texto = sinAcentos(n.descripcion.toLowerCase());
+      let algoDetectado = false;
+      actoresDelEstado.forEach(([actorNombre, cargo, apodo])=>{
+        const variantes = generarVariantesActorC3(actorNombre, apodo);
         if(variantes.some(v=> texto.includes(v))){
-          if(!conteoActores[actorNombre]) conteoActores[actorNombre] = {cargo, positivo:0, negativo:0, neutro:0, total:0};
-          conteoActores[actorNombre].total++;
-          const pos = ['impulsa','impulsó','logra','logró','reconoce','avanza','consolida','inaugura','felicita','celebra','aprueba','firma acuerdo'].filter(p=>texto.includes(p)).length;
-          const neg = ['acusan','acusa','señalan','crítica','fractura','renuncia','escándalo','destituye','investigación','denuncia','protesta','bloqueo','rechazo','corrupción','fracasa','crisis'].filter(p=>texto.includes(p)).length;
-          if(pos===0 && neg===0) conteoActores[actorNombre].neutro++;
-          else if(pos>=neg) conteoActores[actorNombre].positivo++;
-          else conteoActores[actorNombre].negativo++;
+          algoDetectado = true;
+          if(!conteoActores[actorNombre]) conteoActores[actorNombre] = {cargo, positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false};
+          registrarSentimiento(conteoActores[actorNombre], texto);
+        }
+      });
+      // instituciones -- siempre se revisan, sean o no la única señal de la nota. Esto es
+      // lo que garantiza que casi siempre haya algo en el tablero, aunque ningún actor con
+      // nombre propio haya salido mencionado hoy
+      INSTITUCIONES_C3_JS.forEach(inst=>{
+        if(texto.includes(sinAcentos(inst.toLowerCase()))){
+          algoDetectado = true;
+          if(!conteoActores[inst]) conteoActores[inst] = {cargo:'Institución', positivo:0, negativo:0, neutro:0, total:0, esInstitucion:true};
+          registrarSentimiento(conteoActores[inst], texto);
         }
       });
     });
@@ -115,8 +153,22 @@ function calcularDatosC3(){
     const conteoCategoria = {};
     notas.forEach(n=>{ conteoCategoria[n.categoria] = (conteoCategoria[n.categoria]||0)+1; });
 
-    return { nombre, notas, desglose, pulso, actoresConMencion, conteoCategoria };
+    // temas relevantes del día -- las notas de mayor intensidad, como proxy de "lo que
+    // más está marcando la agenda estatal hoy" (sin agrupar por similitud todavía, eso
+    // necesitaría un análisis más fino)
+    const temasRelevantes = [...notas].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,4);
+
+    return { nombre, notas, desglose, pulso, actoresConMencion, conteoCategoria, temasRelevantes };
   });
+}
+
+function registrarSentimiento(entrada, texto){
+  entrada.total++;
+  const pos = ['impulsa','impulso','logra','logro','reconoce','avanza','consolida','inaugura','felicita','celebra','aprueba','firma acuerdo'].filter(p=>texto.includes(p)).length;
+  const neg = ['acusan','acusa','senalan','critica','fractura','renuncia','escandalo','destituye','investigacion','denuncia','protesta','bloqueo','rechazo','corrupcion','fracasa','crisis'].filter(p=>texto.includes(p)).length;
+  if(pos===0 && neg===0) entrada.neutro++;
+  else if(pos>=neg) entrada.positivo++;
+  else entrada.negativo++;
 }
 
 function renderC3(){
@@ -127,18 +179,20 @@ function renderC3(){
 
   const avisoSinDatos = totalNotasHoy===0 ? `<div style="background:var(--bg-2);border:1.5px solid var(--riesgo-medio);border-radius:var(--radius-s);padding:14px;margin-bottom:16px;font-size:12px;color:var(--ink-2);">Aún no hay notas locales registradas hoy.</div>` : '';
 
+  // cuadrícula fija de 4 columnas (2 filas de 4) -- cada tarjeta con el mismo resumen
+  // "notas · actores mencionados" que ya se usaba antes
   cont.innerHTML = `
     ${avisoSinDatos}
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
       ${datos.map(ent=>{
         const colorPulso = ent.pulso>=66 ? 'var(--riesgo-alto)' : ent.pulso>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
         const esPuebla = ent.nombre==='Puebla';
-        return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:1px solid ${esPuebla?'var(--arena)':'var(--line-strong)'};${esPuebla?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:10px;cursor:pointer;">
-          <div style="font-family:var(--f-display);font-size:12.5px;font-weight:700;">${ent.nombre}${esPuebla?' <span style="font-size:8.5px;color:var(--arena);font-family:var(--f-mono);">· seguimiento</span>':''}</div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:4px;">
-            <span style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</span>
-            <span style="font-size:9.5px;color:var(--ink-3);">${ent.notas.length} hoy</span>
+        return `<div data-entidad="${ent.nombre}" style="background:var(--bg-2);border:1px solid ${esPuebla?'var(--arena)':'var(--line-strong)'};${esPuebla?'border-width:1.5px;':''}border-radius:var(--radius-s);padding:14px;cursor:pointer;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+            <div style="font-family:var(--f-display);font-size:14px;font-weight:700;">${ent.nombre}</div>
+            <div style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
           </div>
+          <div style="font-size:10.5px;color:var(--ink-3);">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.actoresConMencion.length} actor${ent.actoresConMencion.length!==1?'es':''} mencionado${ent.actoresConMencion.length!==1?'s':''}</div>
         </div>`;
       }).join('')}
     </div>
@@ -163,21 +217,36 @@ function colorPorBalanceC3(actor){
   return 'var(--ink-3)';
 }
 
+// gráfica de categorías COMPACTA -- ya no ocupa todo el ancho (se veía como que rompía
+// el diseño tipo "una sola página"). Ahora es una columna angosta de barras chicas,
+// pensada para vivir al lado de otra información, no sola en una fila completa.
 function miniGraficaCategoriaC3(conteoCategoria){
-  const entradas = Object.entries(conteoCategoria);
-  if(!entradas.length) return '';
+  const entradas = Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]);
+  if(!entradas.length) return '<p style="font-size:10.5px;color:var(--ink-3);">Sin datos hoy.</p>';
   const total = entradas.reduce((s,[,n])=>s+n,0);
-  const barras = entradas.sort((a,b)=>b[1]-a[1]).map(([cat,n])=>{
+  return entradas.map(([cat,n])=>{
     const color = COLOR_CATEGORIA_C3[cat] || 'var(--ink-3)';
     const pct = Math.round(n/total*100);
-    return `<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
-      <span style="font-size:9.5px;color:var(--ink-3);width:110px;flex-shrink:0;">${cat}</span>
-      <div style="flex:1;background:var(--bg-1);border-radius:99px;height:6px;overflow:hidden;"><div style="width:${pct}%;background:${color};height:100%;"></div></div>
-      <span style="font-size:9px;color:var(--ink-3);width:18px;text-align:right;">${n}</span>
+    return `<div style="margin-bottom:5px;">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--ink-3);margin-bottom:1px;"><span>${cat}</span><span>${n}</span></div>
+      <div style="background:var(--bg-1);border-radius:99px;height:5px;overflow:hidden;"><div style="width:${pct}%;background:${color};height:100%;"></div></div>
     </div>`;
   }).join('');
-  return `<div style="margin-top:10px;">${barras}</div>`;
 }
+
+function temasRelevantesHTML(temasRelevantes){
+  if(!temasRelevantes.length) return '';
+  return temasRelevantes.map(n=>{
+    const imp = clasificarImpacto(n.intensidad);
+    const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='mediano' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+    const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
+    return `<div data-url="${n.fuente_url||''}" style="border-left:3px solid ${color};padding:4px 8px;margin-bottom:5px;${n.fuente_url?'cursor:pointer;':''}">
+      <p style="font-size:10.5px;color:var(--ink-1);line-height:1.35;margin:0;">${texto.length>90?texto.slice(0,88)+'…':texto}</p>
+    </div>`;
+  }).join('');
+}
+
+const ALTURA_PANEL_C3 = 609; // misma altura que .agenda-grid en Agenda/Actores/Timeline -- consistencia visual entre secciones
 
 function pintarDetalleC3(ent){
   const cont = document.getElementById('c3-detalle');
@@ -186,48 +255,53 @@ function pintarDetalleC3(ent){
   const tableroActores = ent.actoresConMencion.length
     ? ent.actoresConMencion.map(a=>{
         const color = colorPorBalanceC3(a);
-        return `<div class="c3-actor-card" data-actor="${a.nombre}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:10px;cursor:pointer;display:flex;gap:9px;align-items:center;">
-          <div style="width:36px;height:36px;border-radius:50%;background:${color};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:12px;color:#0E1116;flex-shrink:0;">${inicialesDe(a.nombre)}</div>
+        return `<div class="c3-actor-card" data-actor="${a.nombre}" data-es-institucion="${a.esInstitucion?'1':''}" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px;cursor:pointer;display:flex;gap:8px;align-items:center;">
+          <div style="width:32px;height:32px;border-radius:${a.esInstitucion?'6px':'50%'};background:${color};display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:700;font-size:11px;color:#0E1116;flex-shrink:0;">${a.esInstitucion?'🏛':inicialesDe(a.nombre)}</div>
           <div style="flex:1;min-width:0;">
-            <div style="font-size:12px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.nombre}</div>
-            <div style="font-size:9.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.cargo}</div>
+            <div style="font-size:11.5px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.nombre}</div>
+            <div style="font-size:9px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.cargo}</div>
           </div>
           <div style="text-align:right;flex-shrink:0;">
-            <div style="font-family:var(--f-mono);font-weight:700;font-size:14px;color:${color};">${a.total}</div>
-            <div style="font-size:8px;color:var(--ink-3);">${a.positivo>a.negativo?'+ pos':a.negativo>a.positivo?'- neg':'neutro'}</div>
+            <div style="font-family:var(--f-mono);font-weight:700;font-size:13px;color:${color};">${a.total}</div>
           </div>
         </div>`;
       }).join('')
-    : `<p style="font-size:12px;color:var(--ink-3);padding:20px 0;text-align:center;">Ningún actor de la lista de seguimiento tiene mención hoy en ${ent.nombre}.</p>`;
+    : `<p style="font-size:11.5px;color:var(--ink-3);padding:16px 0;text-align:center;">Sin actores ni instituciones detectadas hoy en ${ent.nombre}.</p>`;
 
   const feedNotas = ent.notas.length
     ? ent.notas.map(n=>{
         const imp = clasificarImpacto(n.intensidad);
         const color = imp==='alto' ? 'var(--riesgo-alto)' : imp==='mediano' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
-        const catColor = COLOR_CATEGORIA_C3[n.categoria] || 'var(--ink-3)';
-        return `<div data-url="${n.fuente_url||''}" style="padding:8px 0;border-bottom:1px solid var(--line);${n.fuente_url?'cursor:pointer;':''}">
-          <div style="display:flex;gap:5px;margin-bottom:3px;">
+        const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
+        const esAlerta = esNotaDeAlertaC3(sinAcentos(texto.toLowerCase()));
+        return `<div data-url="${n.fuente_url||''}" class="feed-item" style="border-left-color:${esAlerta?'var(--riesgo-alto)':color};${esAlerta?'background:rgba(244,104,131,.08);':''}${n.fuente_url?'cursor:pointer;':''}">
+          <div style="display:flex;gap:5px;align-items:center;">
+            ${esAlerta ? `<span style="font-size:9px;">🚨</span>` : ''}
             <span style="font-size:8px;font-family:var(--f-mono);color:${color};text-transform:uppercase;">${imp}</span>
-            <span style="font-size:8px;font-family:var(--f-mono);color:${catColor};">· ${n.categoria}</span>
             ${n.hora_registro?`<span style="font-size:8px;color:var(--ink-3);margin-left:auto;">${n.hora_registro}</span>`:''}
           </div>
-          <p style="font-size:11px;color:var(--ink-1);line-height:1.4;margin:0;">${n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'')}</p>
+          <p class="feed-desc" style="font-size:11px;">${texto}</p>
         </div>`;
       }).join('')
-    : '<p style="font-size:11.5px;color:var(--ink-3);padding:16px 0;text-align:center;">Sin notas registradas hoy.</p>';
+    : '<div style="padding:16px 0;text-align:center;color:var(--ink-3);font-size:11.5px;">Sin notas registradas hoy.</div>';
 
   cont.innerHTML = `
-    <div style="border-top:2px solid var(--line-strong);padding-top:16px;">
-      <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:4px;">${ent.nombre} — pulso de hoy</div>
-      ${miniGraficaCategoriaC3(ent.conteoCategoria)}
-      <div style="display:flex;gap:16px;margin-top:14px;align-items:flex-start;">
-        <div style="flex:0 0 68%;">
-          <div class="eyebrow" style="margin-bottom:8px;">Actores mencionados hoy — clic para ver su historial</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;">${tableroActores}</div>
+    <div style="border-top:2px solid var(--line-strong);padding-top:14px;">
+      <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre} — pulso de hoy</div>
+      <div style="display:flex;gap:14px;height:${ALTURA_PANEL_C3}px;">
+        <div style="flex:0 0 22%;background:var(--bg-1);border-radius:var(--radius-s);padding:10px;overflow-y:auto;">
+          <div class="eyebrow" style="margin-bottom:6px;">Categorías de hoy</div>
+          ${miniGraficaCategoriaC3(ent.conteoCategoria)}
+          <div class="eyebrow" style="margin:14px 0 6px;">Temas relevantes</div>
+          ${temasRelevantesHTML(ent.temasRelevantes) || '<p style="font-size:10.5px;color:var(--ink-3);">Sin notas hoy.</p>'}
         </div>
-        <div style="flex:0 0 30%;max-height:520px;overflow-y:auto;">
-          <div class="eyebrow" style="margin-bottom:8px;">Notas de hoy (${ent.notas.length})</div>
-          ${feedNotas}
+        <div style="flex:0 0 48%;overflow-y:auto;">
+          <div class="eyebrow" style="margin-bottom:8px;">Actores e instituciones mencionados hoy — clic para ver historial</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px;">${tableroActores}</div>
+        </div>
+        <div style="flex:0 0 26%;background:var(--bg-1);border-radius:var(--radius-s);padding:8px;">
+          <div class="eyebrow" style="margin-bottom:6px;padding:0 4px;">Notas de hoy (${ent.notas.length})</div>
+          <div id="c3-feed-notas" class="feed-lista" style="height:${ALTURA_PANEL_C3-40}px;overflow-y:auto;">${feedNotas}</div>
         </div>
       </div>
     </div>
@@ -238,11 +312,24 @@ function pintarDetalleC3(ent){
   cont.querySelectorAll('[data-actor]').forEach(el=>{
     el.addEventListener('click', ()=> abrirHistorialActorC3(el.dataset.actor));
   });
+  // mismo desplazamiento lento y continuo que el Feed general, con pausa al pasar el cursor
+  iniciarAutoScrollC3();
 }
 
-// el historial (todas las menciones históricas de un actor) vive aparte de la vista del
-// día -- se carga bajo demanda, solo cuando se pide por primera vez, desde el CSV que el
-// robot va llenando (data/menciones_actores_c3.csv)
+function iniciarAutoScrollC3(){
+  const cont = document.getElementById('c3-feed-notas');
+  if(!cont) return;
+  let pausado = false;
+  cont.addEventListener('mouseenter', ()=> pausado = true);
+  cont.addEventListener('mouseleave', ()=> pausado = false);
+  const intervalo = setInterval(()=>{
+    if(!document.body.contains(cont)){ clearInterval(intervalo); return; } // si se cambió de entidad y este feed ya no existe, para el intervalo
+    if(pausado) return;
+    cont.scrollTop += 0.5;
+    if(cont.scrollTop >= cont.scrollHeight - cont.clientHeight) cont.scrollTop = 0;
+  }, 40);
+}
+
 function cargarHistorialC3(callback){
   if(mencionesHistorialC3){ callback(mencionesHistorialC3); return; }
   fetch('data/menciones_actores_c3.csv?t='+Date.now())
