@@ -14,16 +14,7 @@ const INICIO_SEXENIO_TL = '2024-10';
 let tlXScaleBase, tlPuntos, tlSvg, tlContainer, tlYLinea, tlWidth, tlHeight;
 
 let anioFiltroTL = '';
-let mostrarTodosNivelesTL = false; // false = comportamiento actual (solo Nivel 1, sin cambios) -- true = vista detallada con Nivel 2/3, sin las notas que marcaron agenda
-function initTimeline(){
-  tlSvg = null;
-  poblarFiltroAnioTL();
-  const chk = document.getElementById('chk-timeline-todos-niveles');
-  if(chk && !chk.dataset.conectado){
-    chk.addEventListener('change', (e)=>{ mostrarTodosNivelesTL = e.target.checked; renderTimeline(); });
-    chk.dataset.conectado = '1';
-  }
-}
+function initTimeline(){ tlSvg = null; poblarFiltroAnioTL(); }
 
 function poblarFiltroAnioTL(){
   const sel = document.getElementById('timeline-anio');
@@ -87,19 +78,6 @@ function anioConMasTemasTL(){
 function renderKpisTL(){
   const cont = document.getElementById('timeline-kpis');
   if(!cont) return;
-  if(mostrarTodosNivelesTL){
-    // en vista detallada siguen siendo los mismos temas de Nivel 1 -- solo cambia que se
-    // ve cada día de actividad, no solo el pico. El desglose alto/medio/bajo por tema no
-    // aplica igual aquí (un mismo tema puede tener días de distinta intensidad), así que
-    // se muestra el total de puntos en su lugar.
-    cont.innerHTML = `<span style="color:var(--ink-2);">Vista detallada — cada día de actividad de los temas de Nivel 1, no solo su pico</span>`;
-    const anios = anioConMasTemasTL();
-    if(anios.length){
-      const [anioTop, conteoTop] = anios[0];
-      cont.innerHTML += `<span style="border-left:1px solid var(--line);padding-left:10px;color:var(--ink-2);">Año con más actividad: <strong style="color:var(--ink-1);">${anioTop}</strong> (${conteoTop} eventos)</span>`;
-    }
-    return;
-  }
   const nivel1 = ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1);
   const conteo = {alto:0,medio:0,bajo:0};
   nivel1.forEach(t=>{
@@ -232,36 +210,12 @@ function renderTimeline(){
   const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00'); fechaFin.setMonth(fechaFin.getMonth()+1);
   tlXScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padX, tlWidth-padX]);
 
-  const temasNivel1 = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1); // nunca "auto-", sin importar a qué nivel se hayan "graduado" por acumulación de duplicados
-  let puntosBase;
-  if(mostrarTodosNivelesTL){
-    // vista detallada = TODOS LOS DÍAS de cada tema de Nivel 1 (no solo su día pico) --
-    // esto es lo que de verdad revela la continuidad de una historia larga (ej. un tema
-    // con 74 notas en 3 semanas se ve como 74 puntos en el tiempo, no como 1 solo)
-    puntosBase = [];
-    temasNivel1.forEach(t=>{
-      const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
-      evs.forEach(e=>{
-        if(anioFiltroTL && !e.fecha.startsWith(anioFiltroTL)) return;
-        puntosBase.push({ tema:t, fecha:e.fecha, intensidad:e.intensidad, xBase: tlXScaleBase(new Date(e.fecha)) });
-      });
-    });
-  } else {
-    // comportamiento original, sin cambios: 1 punto por tema (su día de mayor intensidad)
-    puntosBase = temasNivel1.map(t=>{
-      const p = puntoPrincipalTL(t.id);
-      if(!p) return null;
-      if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return null;
-      return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: tlXScaleBase(new Date(p.fecha)) };
-    }).filter(Boolean);
-  }
-  // con muchos días por tema, la vista detallada puede acumular cientos de puntos --
-  // límite de seguridad mostrando los de mayor intensidad primero (mismo patrón que la
-  // Matriz de Agenda), para no saturar la línea de tiempo
-  const LIMITE_PUNTOS_TL_DETALLADO = 120;
-  if(mostrarTodosNivelesTL && puntosBase.length > LIMITE_PUNTOS_TL_DETALLADO){
-    puntosBase = puntosBase.slice().sort((a,b)=>b.intensidad-a.intensidad).slice(0,LIMITE_PUNTOS_TL_DETALLADO);
-  }
+  const puntosBase = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>{ // criterio real y definitivo: SOLO temas investigados a mano (nunca "auto-", sin importar a qué nivel se hayan "graduado" por acumulación de duplicados) Y Nivel 1 confirmado
+    const p = puntoPrincipalTL(t.id);
+    if(!p) return null;
+    if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return null;
+    return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: tlXScaleBase(new Date(p.fecha)) };
+  }).filter(Boolean);
   tlPuntos = empaquetarZigzagTL(puntosBase, 210);
 
   // alto DINÁMICO según cuántos niveles hagan falta de verdad — antes era fijo (470px) y con
