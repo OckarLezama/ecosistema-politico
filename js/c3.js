@@ -255,10 +255,10 @@ function renderC3(){
             <div style="font-family:var(--f-display);font-size:20px;font-weight:700;color:${colorPulso};">${ent.pulso}</div>
           </div>
           <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">${ent.notas.length} nota${ent.notas.length!==1?'s':''} · ${ent.actoresConMencion.filter(a=>a.total>0).length} actor${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'es':''} mencionado${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'s':''}</div>
-          <div style="display:flex;gap:3px;height:6px;border-radius:99px;overflow:hidden;">
-            <div style="width:${ent.notas.length?ent.desglose.alto/ent.notas.length*100:0}%;background:var(--riesgo-alto);" title="Alto: ${ent.desglose.alto}"></div>
-            <div style="width:${ent.notas.length?ent.desglose.mediano/ent.notas.length*100:0}%;background:var(--riesgo-medio);" title="Mediano: ${ent.desglose.mediano}"></div>
-            <div style="width:${ent.notas.length?ent.desglose.bajo/ent.notas.length*100:0}%;background:var(--riesgo-bajo);" title="Bajo: ${ent.desglose.bajo}"></div>
+          <div style="display:flex;gap:3px;height:6px;border-radius:99px;overflow:hidden;background:var(--bg-1);">
+            <div style="width:${ent.notas.length?ent.desglose.alto/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-alto);flex-shrink:0;" title="Alto: ${ent.desglose.alto}"></div>
+            <div style="width:${ent.notas.length?ent.desglose.mediano/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-medio);flex-shrink:0;" title="Mediano: ${ent.desglose.mediano}"></div>
+            <div style="width:${ent.notas.length?ent.desglose.bajo/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-bajo);flex-shrink:0;" title="Bajo: ${ent.desglose.bajo}"></div>
           </div>
         </div>`;
       }).join('')}
@@ -326,6 +326,10 @@ const FOTOS_ACTORES_C3 = {
   'Marcelo Ebrard': 'img/Marcelo Ebrard.jpg',
   'Omar García Harfuch': 'img/Omar_Garcia_Harfuch.jpg',
   'Andrés Manuel López Obrador': 'img/AMLO.jpg',
+  'Aníbal Ostoa Ortega': 'img/Anibal_Ostoa.jpg',
+  'Biby Rabelo de la Torre': 'img/Biby_Rabelo.jpg',
+  'Eliseo Fernández Montúfar': 'img/Eliseo_Fernandez.jpg',
+  'Ana Patricia Peralta de la Peña': 'img/Ana_Patricia_Peralta.jpg',
 };
 // logos de partido -- para cuando el "actor" detectado es una institución/partido, no
 // una persona con nombre
