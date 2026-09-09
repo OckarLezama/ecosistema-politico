@@ -640,8 +640,18 @@ def buscar_candidatos():
                 continue
             fecha_pub = entrada.get('published_parsed') or entrada.get('updated_parsed')
             if not fecha_pub:
-                continue
-            fecha_pub_dt = datetime(*fecha_pub[:6], tzinfo=timezone.utc).astimezone(ZONA_MX).date()
+                # las búsquedas de Google Noticias con "when:1d" a veces no traen el campo
+                # de fecha en el formato que feedparser espera -- pero como la búsqueda ya
+                # está filtrada por Google a las últimas 24h, no hace falta esa fecha para
+                # confiar en que es reciente. Antes esto descartaba el artículo por
+                # completo en silencio -- causa real confirmada de que gobernadores con
+                # notas recientes de verdad (confirmadas a mano en Google) nunca llegaban.
+                if 'news.google.com' in fuente['url']:
+                    fecha_pub_dt = hoy_mx
+                else:
+                    continue
+            else:
+                fecha_pub_dt = datetime(*fecha_pub[:6], tzinfo=timezone.utc).astimezone(ZONA_MX).date()
             if fecha_pub_dt != hoy_mx:
                 continue
 
