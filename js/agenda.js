@@ -182,7 +182,14 @@ function abrirFichaTema(temaId){
       ${bloquesActores}
       <div class="eyebrow" style="margin-top:10px;">Notas (${evs.length})</div>
       <div class="ficha-notas-scroll">
-        ${evs.map(e=>`<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--ink-3);">${e.fecha}</strong> — ${e.descripcion} ${e.fuente_url?`<a href="${e.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`).join('')}
+        ${evs.map(e=>{
+          // mismo patrón que en el Feed: "[Opinión]" se quita del texto y se muestra
+          // como etiqueta aparte, no crudo en la descripción
+          const esOpinion = e.descripcion.startsWith('[Opinión]');
+          const descLimpia = esOpinion ? e.descripcion.replace('[Opinión] ', '') : e.descripcion;
+          const etiqueta = esOpinion ? `<span style="font-size:8.5px;font-family:var(--f-mono);text-transform:uppercase;color:var(--arena);border:1px solid var(--arena);border-radius:99px;padding:0 5px;margin-right:4px;">Opinión</span>` : '';
+          return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--ink-3);">${e.fecha}</strong> — ${etiqueta}${descLimpia} ${e.fuente_url?`<a href="${e.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`;
+        }).join('')}
       </div>
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
