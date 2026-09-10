@@ -8,7 +8,7 @@
    mismo pida verlo ahí con el link de respaldo).
    ============================================================ */
 
-const CANAL_YOUTUBE_MANANERA = 'UCvzHrtf9by1-UY67SfZse8w'; // Gobierno de México, sexenio 2024-2030
+const CANAL_YOUTUBE_MANANERA = 'UClqo4ZAAZ01HQdCTlovCgkA'; // canal dedicado a los eventos de la presidenta -- su "respaldo" (cuando no hay transmisión activa) es casi siempre la mañanera más reciente, a diferencia del canal general de Gobierno de México que sube contenido variado
 let mananeraWidgetCerradoPorUsuario = false;
 
 function dentroDeVentanaMananera(){
