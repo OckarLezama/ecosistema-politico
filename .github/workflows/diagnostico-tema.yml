@@ -8,3 +8,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Correr diagnostico
         run: python3 limpiar_agenda_nacional.py
+      - name: Guardar cambios
+        run: |
+          git config user.name "limpieza-temas"
+          git config user.email "limpieza@ecosistema-politico.local"
+          git add data/temas.csv
+          git diff --staged --quiet || git commit -m "Limpieza: bajar temas que no cumplen criterio de agenda nacional"
+          git pull --rebase
+          git push
