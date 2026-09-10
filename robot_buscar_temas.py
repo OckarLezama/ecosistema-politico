@@ -617,11 +617,14 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes)
     if not tema or tema.get('tipo') != 'informativo':
         return
     dias_distintos = len(set(e['fecha'] for e in eventos_existentes if e['tema_id']==tema_id))
-    # umbral subido -- 3 menciones el mismo día o 2 días distintos era demasiado fácil de
-    # alcanzar para notas sueltas de mañanera o temas locales sin peso real, y eso fue lo
-    # que llenó la agenda nacional de temas genéricos. Ahora se pide cobertura sostenida
-    # de verdad: 6+ menciones el mismo día, o presencia en 4+ días distintos.
-    if conteo_hoy >= 6 or dias_distintos >= 4:
+    # CRITERIO CORREGIDO -- esta función tenía un criterio distinto (y más flojo) que la
+    # otra ruta de escalamiento (escalar_temas_informativos, más abajo): permitía escalar
+    # con SOLO 6+ menciones el MISMO día, sin exigir que se sostuviera en el tiempo. Eso
+    # es justo lo que dejaba pasar acusaciones/declaraciones que explotan un día y nunca
+    # vuelven a aparecer (ej. "García Parra acusa deslealtad") -- mucha cobertura de un
+    # solo momento no es lo mismo que agenda nacional sostenida. Ahora exige AMBAS cosas:
+    # volumen real Y que se sostenga en más de 1 día, igual que el otro criterio.
+    if conteo_hoy >= 6 and dias_distintos >= 2:
         campos = list(temas[0].keys())
         for t in temas:
             if t['id']==tema_id:
@@ -941,9 +944,14 @@ if __name__ == '__main__':
         if ev.get('entidad_c3'):
             texto_c3 = ev['descripcion'].lower()
             mencionados = actoresYEntidadesMencionadosC3(texto_c3, ev['entidad_c3'])
-            if mencionados:
+            # el historial persistente es SOLO para las personas de la lista curada -- las
+            # instituciones/partidos sí cuentan para el pulso del día (tablero en vivo),
+            # pero nunca deben acumular un "historial" propio, eso solo aplica a personas
+            nombres_de_personas_curadas = {nombre for nombre, cargo, apodo in ACTORES_C3.get(ev['entidad_c3'], [])}
+            solo_personas = [m for m in mencionados if m in nombres_de_personas_curadas]
+            if solo_personas:
                 sentimiento = clasificarSentimientoC3(texto_c3)
-                guardarMencionesC3(ev['fecha'], ev['entidad_c3'], mencionados, sentimiento, ev['id'], ev.get('fuente_url',''), ev.get('descripcion',''))
+                guardarMencionesC3(ev['fecha'], ev['entidad_c3'], solo_personas, sentimiento, ev['id'], ev.get('fuente_url',''), ev.get('descripcion',''))
 
     aplicar_incrementos_cobertura(incrementos_cobertura_existente)
 
