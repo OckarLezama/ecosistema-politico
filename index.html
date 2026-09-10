@@ -41,6 +41,7 @@
   <button data-module="actores">Red de Actores</button>
   <button data-module="timeline">Timeline</button>
   <button data-module="c3">C3</button>
+  <button data-module="legislativo">Legislativo</button>
 </nav>
 
 <main class="app-main">
@@ -217,6 +218,15 @@
       <div id="c3-detalle"></div>
     </div>
   </section>
+  <section class="module-panel" id="panel-legislativo">
+    <div class="module-head">
+      <h2>Legislativo</h2>
+      <p>Seguimiento de reformas y la Ley de Egresos, por etapa real.</p>
+    </div>
+    <div style="background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l); box-shadow:var(--shadow-card); padding:16px; max-height:calc(100vh - 160px); overflow-y:auto;">
+      <div id="legislativo-contenido"></div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -254,5 +264,6 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/analisis.js?v=100"></script>
 <script src="js/c3.js?v=100"></script>
 <script src="js/mananera-widget.js?v=100"></script>
+<script src="js/legislativo.js?v=100"></script>
 </body>
 </html>
