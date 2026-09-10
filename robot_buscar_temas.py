@@ -117,6 +117,10 @@ def variantes_actor_c3(nombre_completo, apodo=None):
         variantes.append(f'{partes[0]} {partes[1]}')
     if len(partes) >= 3:
         variantes.append(f'{partes[0]} {partes[-1]}')
+        # apellidos compuestos SOLOS (sin nombre de pila) -- seguro cuando son 2+
+        # apellidos juntos ("Díaz Mena"), esa combinación ya es específica por sí sola,
+        # a diferencia de un apellido suelto común. Cubre "el gobernador Díaz Mena..."
+        variantes.append(f'{partes[-2]} {partes[-1]}')
     if apodo:
         variantes.append(apodo)
     # sin acentos y en minúsculas -- una fuente puede escribir "Yanez" donde otra pone
@@ -198,7 +202,7 @@ ACTORES_C3 = {
     ],
     'Quintana Roo': [
         ('Mara Lezama Espinosa', 'Gobernadora', None),
-        ('Eugenio Segura Vázquez', 'Senador', 'Gino'),
+        ('Eugenio Segura Vázquez', 'Ex senador', 'Gino'),
         ('Ana Patricia Peralta de la Peña', 'Alcaldesa de Benito Juárez (Cancún)', None),
         ('Marybel Villegas Canché', 'Senadora', None),
         ('Rafael Marín Mollinedo', 'Vínculos nacionales', None),
