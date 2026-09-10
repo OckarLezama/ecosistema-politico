@@ -195,6 +195,14 @@ def variantes_actor_c3(nombre_completo, apodo=None):
         # apellidos juntos ("Díaz Mena"), esa combinación ya es específica por sí sola,
         # a diferencia de un apellido suelto común. Cubre "el gobernador Díaz Mena..."
         variantes.append(f'{partes[-2]} {partes[-1]}')
+    if len(partes) >= 2:
+        # cualquier apellido individual, si es único en toda la lista curada -- no solo
+        # el último (ver corrección arriba: "Chedraui" es el primer apellido de "José
+        # Chedraui Budib", y así es como se le nombra normalmente, no por "Budib")
+        for apellido in partes[1:]:
+            a = sin_acentos(apellido.lower())
+            if a in APELLIDOS_UNICOS_C3:
+                variantes.append(apellido)
     if apodo:
         variantes.append(apodo)
     # sin acentos y en minúsculas -- una fuente puede escribir "Yanez" donde otra pone
@@ -290,12 +298,34 @@ ACTORES_C3 = {
         ('Alejandro Armenta Mier', 'Gobernador', None),
         ('José Luis García Parra', 'Coordinador de Gabinete', 'El Choco'),
         ('José Chedraui Budib', 'Alcalde de Puebla', None),
+        ('Xitlalic Ceja', 'Diputada local', None),
         ('Ignacio Mier Bañuelos', 'Diputado federal', None),
         ('Rodrigo Abdala Dartigues', 'Morena', None),
         ('Sergio Salomón Céspedes Peregrina', 'Exgobernador', None),
         ('Mario Riestra Piña', 'PAN', None),
     ],
 }
+
+# apellidos que aparecen en UN SOLO actor curado, en toda la lista -- para esos, sí es
+# seguro usar el apellido suelto como variante (ej. "Chedraui" no lo comparte nadie más
+# en la lista, así que "Chedraui señala..." sin su nombre de pila SÍ debe detectarse).
+# Para apellidos compartidos (ej. "García" en García Parra Y García Harfuch), usarlo
+# suelto sería ambiguo -- esos se quedan excluidos, como ya era antes.
+def _calcular_apellidos_unicos():
+    conteo = {}
+    for actores in ACTORES_C3.values():
+        for nombre, cargo, apodo in actores:
+            partes = nombre.split()
+            # cualquier apellido individual cuenta -- en "José Chedraui Budib", el uso
+            # común es el PRIMER apellido ("Chedraui"), no necesariamente el último
+            # ("Budib"). Bug real encontrado: solo se revisaba partes[-1], y "Chedraui
+            # señala..." (su apellido de uso común) no se detectaba por eso.
+            for apellido in partes[1:]:
+                a = sin_acentos(apellido.lower())
+                conteo[a] = conteo.get(a, 0) + 1
+    return {apellido for apellido, n in conteo.items() if n == 1}
+
+APELLIDOS_UNICOS_C3 = _calcular_apellidos_unicos()
 
 # instituciones/organizaciones -- no son personas, pero son actores relevantes del
 # clima político estatal igual (gobierno, congreso, sindicatos, partidos, sociedad civil)
@@ -378,7 +408,13 @@ PALABRAS_POLITICA_LOCAL = ['gobernador', 'gobernadora', 'alcalde', 'alcaldesa', 
     'seguridad pública', 'seguridad publica', 'fiscalía', 'fiscalia', 'gobierno del estado',
     'gobierno estatal', 'morena', 'oposición', 'oposicion', 'coordinador estatal', 'candidato',
     'candidata', 'huachicol', 'cártel', 'cartel', 'narcotráfico', 'narcotrafico', 'homicidio',
-    'detención', 'detencion', 'protesta', 'bloqueo', 'presupuesto estatal', 'reforma']
+    'detención', 'detencion', 'presupuesto estatal', 'reforma',
+    # "protesta" y "bloqueo" solos eran demasiado genéricos -- una protesta escolar por un
+    # conserje despedido no es contenido político, pero contenía la palabra "protesta" y
+    # pasaba el filtro igual (bug real confirmado). Ahora se exige la frase compuesta,
+    # que sí es específica de un contexto político/social real.
+    'protesta social', 'protesta política', 'bloqueo carretero', 'bloquean carretera',
+    'bloqueo vial', 'marcha de protesta']
 
 def esContenidoPoliticoLocal(texto_completo):
     # coincidencia con límites de palabra real (\b), no subcadena simple -- una coincidencia
