@@ -802,12 +802,14 @@ def buscar_candidatos():
                         if ya_guardado_similar:
                             incrementos_cobertura_existente[ya_guardado_similar['id']] = incrementos_cobertura_existente.get(ya_guardado_similar['id'], 0) + 1
                         else:
-                            eventos_nuevos.append({
+                            evento_nuevo_c3 = {
                                 'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                                 'categoria': categoria_real, 'intensidad': intensidad_final,
                                 'descripcion': titulo_final, 'fuente_url': enlace, 'cobertura': 1,
                                 'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota, 'hora_registro': datetime.now(ZONA_MX).strftime('%H:%M'),
-                            })
+                            }
+                            print(f'  [diagnóstico hora_registro] {tema_auto}: {evento_nuevo_c3["hora_registro"]!r}')
+                            eventos_nuevos.append(evento_nuevo_c3)
                             conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
 
     fecha_pagina_manan, puntos_manan = obtener_mananera_hoy()
@@ -892,6 +894,7 @@ if __name__ == '__main__':
     for ev in eventos_nuevos:
         eventos_ya = cargar_eventos_existentes()
         ev['id'] = siguiente_id_evento(eventos_ya)
+        print(f'  [diagnóstico hora_registro antes de guardar] {ev["id"]}: {ev.get("hora_registro", "**NO EXISTE LA LLAVE**")!r}')
         guardar_evento_directo(ev)
         # C3 -- si esta nota es de una entidad de interés, revisa qué actores/instituciones
         # curadas se mencionan de verdad, clasifica el tono, y lo guarda en un historial
