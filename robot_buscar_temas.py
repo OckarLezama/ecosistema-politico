@@ -128,30 +128,30 @@ def noCuentaParaEscalar(descripcion):
 ACTOR_FUENTE_RUTINARIA_ID = 'sheinbaum'  # protagonista de la mañanera -- su sola mención
 # nunca cuenta como "señal real" para escalar, porque aparece en TODO lo que sale de ahí
 
-def calificaAgendaNacional(evs_del_tema, actores_altos):
-    """Criterio de 2 etapas, corregido tras probarlo contra casos reales -- la primera
-    versión exigía "actor distinto de Sheinbaum", pero eso fallaba: el Tren
-    México-Guadalajara (anuncio real, cubierto por 4 medios nacionales distintos) SOLO
-    menciona a Sheinbaum, igual que "Vamos a respetarnos" (momento rutinario de la
-    mañanera) -- contar actores no distingue estos 2 casos entre sí. Lo que sí los
-    distingue: cuántos MEDIOS REALES Y DISTINTOS decidieron cubrirlo por su cuenta. Eso
-    es la señal genuina de relevancia, no el actor mencionado.
+def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
+    """Criterio de 2 etapas -- ver historial de correcciones en los comentarios de cada
+    parte. Última corrección: los días distintos ya NO cuentan el día de hoy -- antes,
+    una historia que apenas alcanzaba 3 días CONTANDO hoy podía escalar el mismo día en
+    que apenas cruzó el umbral (caso real: "Trump lanza cacería contra fraude electoral"
+    escaló el mismo día que salió, sin historial real previo). Ahora se exige que la
+    persistencia ya exista ANTES de hoy -- hoy puede sumar cobertura, pero no puede ser
+    lo que complete el requisito.
 
     ETAPA 1 (obligatoria, sin excepción):
-    - 2+ días distintos con actividad real
-    - 2+ dominios de medios REALMENTE distintos cubriéndolo (no la misma fuente repetida)
+    - 3+ días distintos ANTES de hoy con actividad real (no cuenta el día de hoy)
+    - 3+ dominios de medios REALMENTE distintos cubriéndolo (no la misma fuente repetida)
 
     ETAPA 2 (puntaje, solo si pasó la etapa 1): 3+ puntos de:
-    - +1 por cada dominio adicional más allá de los 2 mínimos
+    - +1 por cada dominio adicional más allá de los 3 mínimos
     - +2 si la intensidad promedio es 7+
     - +2 si hay 2+ actores de alto perfil distintos mencionados
     """
     if not evs_del_tema:
         return False, 'sin notas'
 
-    dias_distintos = len({e['fecha'] for e in evs_del_tema})
+    dias_distintos = len({e['fecha'] for e in evs_del_tema if e['fecha'] != hoy_str})
     if dias_distintos < 3:
-        return False, f'{dias_distintos} día(s) (necesita 3+)'
+        return False, f'{dias_distintos} día(s) antes de hoy (necesita 3+, hoy no cuenta)'
 
     dominios = set()
     for e in evs_del_tema:
@@ -738,6 +738,7 @@ def escalar_temas_informativos():
     temas = cargar_temas_todos()
     eventos = cargar_eventos_existentes()
     actores_altos = cargar_actores_alta_influencia()
+    hoy_str = datetime.now(ZONA_MX).date().strftime('%Y-%m-%d')
     cambios = 0
     for t in temas:
         if t.get('tipo') != 'informativo':
@@ -749,7 +750,7 @@ def escalar_temas_informativos():
         evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not noCuentaParaEscalar(e['descripcion'])]
         if len(evs_del_tema) == 0:
             continue
-        cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos)
+        cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str)
         if cumple:
             t['tipo'] = 'completo'
             t['nivel_relevancia'] = '1'
@@ -770,7 +771,8 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes,
     if not tema or tema.get('tipo') != 'informativo':
         return
     evs_del_tema = [e for e in eventos_existentes if e['tema_id']==tema_id and not noCuentaParaEscalar(e['descripcion'])]
-    cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos)
+    hoy_str = datetime.now(ZONA_MX).date().strftime('%Y-%m-%d')
+    cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str)
     if cumple:
         campos = list(temas[0].keys())
         for t in temas:
