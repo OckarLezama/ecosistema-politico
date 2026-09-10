@@ -345,7 +345,7 @@ def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_
         return
     campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url', 'titular']
     try:
-        with open(RUTA_MENCIONES_C3, encoding='utf-8') as f:
+        with open(RUTA_MENCIONES_C3, encoding='utf-8-sig') as f:
             existe = True
             primera_linea = f.readline()
     except FileNotFoundError:
@@ -358,7 +358,7 @@ def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_
     # descartaba el título en silencio. Se detecta y se corrige solo, una vez, sin
     # depender de acordarse de correr el script de corrección en el orden correcto.
     if existe and 'titular' not in primera_linea:
-        with open(RUTA_MENCIONES_C3, encoding='utf-8') as f:
+        with open(RUTA_MENCIONES_C3, encoding='utf-8-sig') as f:
             filas_viejas = list(csv.DictReader(f))
         with open(RUTA_MENCIONES_C3, 'w', newline='', encoding='utf-8') as f:
             w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, restval='')
