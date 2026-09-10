@@ -29,27 +29,55 @@ function cargarReformas(callback){
 }
 
 function stepperEtapaHTML(etapaActual){
-  // si la etapa es un estado terminal fuera de la línea normal (Rechazada, o Aprobada
-  // con modificaciones), se muestra aparte con su propio color -- forzarla dentro del
-  // stepper lineal no representaría bien lo que pasó
-  if(COLOR_ETAPA_TERMINAL[etapaActual]){
-    return `<div style="display:flex;align-items:center;gap:6px;">
-      <span style="width:10px;height:10px;border-radius:50%;background:${COLOR_ETAPA_TERMINAL[etapaActual]};"></span>
-      <span style="font-family:var(--f-mono);font-size:10.5px;color:${COLOR_ETAPA_TERMINAL[etapaActual]};text-transform:uppercase;">${etapaActual}</span>
-    </div>`;
-  }
-  const idxActual = ETAPAS_LEGISLATIVO.indexOf(etapaActual);
-  return `<div style="display:flex;align-items:center;">
-    ${ETAPAS_LEGISLATIVO.map((etapa,i)=>{
-      const completada = i < idxActual, esActual = i === idxActual;
-      const color = esActual ? 'var(--teal)' : completada ? 'var(--riesgo-bajo)' : 'var(--line-strong)';
-      const conector = i>0 ? `<div style="width:20px;height:2px;background:${i<=idxActual?'var(--riesgo-bajo)':'var(--line-strong)'};"></div>` : '';
-      return `${conector}<div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
-        <span style="width:${esActual?12:9}px;height:${esActual?12:9}px;border-radius:50%;background:${color};${esActual?'box-shadow:0 0 0 3px rgba(76,193,186,.25);':''}"></span>
-        <span style="font-size:8px;font-family:var(--f-mono);color:${esActual?'var(--teal)':'var(--ink-3)'};white-space:nowrap;">${etapa}</span>
-      </div>`;
-    }).join('')}
-  </div>`;
+  // árbol real, no una sola línea -- después de "Pleno" el camino se bifurca de verdad
+  // (aprobar o rechazar), porque eso es lo que una reforma realmente hace. La rama que
+  // sí ocurrió se resalta con color; la otra se queda tenue, mostrando que existía como
+  // posibilidad aunque no haya sido el resultado. Aquí es donde después va a vivir el
+  // contenido de "qué pasa si" en cada rama, una vez que haya saldo de IA.
+  const PRE_FORK = ['Presentada', 'Comisión', 'Pleno'];
+  const esRechazada = etapaActual==='Rechazada';
+  const esAprobadaOPublicada = etapaActual==='Aprobada' || etapaActual==='Publicada';
+  const idxPreFork = PRE_FORK.indexOf(etapaActual);
+  const width = 300, height = 110;
+  const xNodo = i => 20 + i*70;
+  const yLinea = 30;
+
+  let svg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:${width}px;height:${height}px;display:block;">`;
+
+  // tramo recto (Presentada -> Comisión -> Pleno)
+  PRE_FORK.forEach((etapa,i)=>{
+    const completada = idxPreFork===-1 ? true : i < idxPreFork; // si ya se bifurcó, todo el tramo recto quedó atrás
+    const esActual = i === idxPreFork;
+    const color = esActual ? 'var(--teal)' : (completada ? 'var(--riesgo-bajo)' : 'var(--line-strong)');
+    if(i>0) svg += `<line x1="${xNodo(i-1)}" y1="${yLinea}" x2="${xNodo(i)}" y2="${yLinea}" stroke="${i<=idxPreFork || idxPreFork===-1 ? 'var(--riesgo-bajo)' : 'var(--line-strong)'}" stroke-width="2"/>`;
+    svg += `<circle cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?7:5}" fill="${color}" ${esActual?'stroke="var(--teal)" stroke-width="4" stroke-opacity="0.3"':''}/>`;
+    svg += `<text x="${xNodo(i)}" y="${yLinea+18}" text-anchor="middle" font-size="7.5" font-family="var(--f-mono)" fill="${esActual?'var(--teal)':'var(--ink-3)'}">${etapa}</text>`;
+  });
+
+  // el fork -- 2 ramas desde "Pleno"
+  const xFork = xNodo(2);
+  const xRamaFin = xFork + 75;
+  const yArriba = yLinea - 32, yAbajo = yLinea + 32;
+  const colorRamaArriba = esAprobadaOPublicada ? 'var(--riesgo-bajo)' : 'var(--line-strong)';
+  const colorRamaAbajo = esRechazada ? 'var(--riesgo-alto)' : 'var(--line-strong)';
+
+  // rama de aprobación (arriba)
+  svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+30} ${yLinea} ${xFork+45} ${yArriba}" fill="none" stroke="${colorRamaArriba}" stroke-width="2" stroke-dasharray="${esAprobadaOPublicada?'none':'3 3'}"/>`;
+  svg += `<circle cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?7:5}" fill="${etapaActual==='Aprobada'?'var(--teal)':(esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)')}"/>`;
+  svg += `<text x="${xRamaFin}" y="${yArriba-10}" text-anchor="middle" font-size="7.5" font-family="var(--f-mono)" fill="${esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--ink-3)'}">Aprobada</text>`;
+  // Publicada, un paso más allá de Aprobada
+  const xPublicada = xRamaFin + 55;
+  svg += `<line x1="${xRamaFin}" y1="${yArriba}" x2="${xPublicada}" y2="${yArriba}" stroke="${etapaActual==='Publicada'?'var(--riesgo-bajo)':'var(--line-strong)'}" stroke-width="2" stroke-dasharray="${etapaActual==='Publicada'?'none':'3 3'}"/>`;
+  svg += `<circle cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?7:5}" fill="${etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)'}"/>`;
+  svg += `<text x="${xPublicada}" y="${yArriba-10}" text-anchor="middle" font-size="7.5" font-family="var(--f-mono)" fill="${etapaActual==='Publicada'?'var(--teal)':'var(--ink-3)'}">Publicada</text>`;
+
+  // rama de rechazo (abajo) -- termina ahí, es un estado final sin continuación
+  svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+30} ${yLinea} ${xFork+45} ${yAbajo}" fill="none" stroke="${colorRamaAbajo}" stroke-width="2" stroke-dasharray="${esRechazada?'none':'3 3'}"/>`;
+  svg += `<circle cx="${xRamaFin}" cy="${yAbajo}" r="${esRechazada?7:5}" fill="${esRechazada?'var(--riesgo-alto)':'var(--line-strong)'}"/>`;
+  svg += `<text x="${xRamaFin}" y="${yAbajo+18}" text-anchor="middle" font-size="7.5" font-family="var(--f-mono)" fill="${esRechazada?'var(--riesgo-alto)':'var(--ink-3)'}">Rechazada</text>`;
+
+  svg += `</svg>`;
+  return svg;
 }
 
 function renderLegislativo(){
