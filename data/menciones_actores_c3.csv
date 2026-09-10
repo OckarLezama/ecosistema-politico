@@ -1,466 +1,471 @@
-﻿fecha,entidad,actor,sentimiento,evento_id,fuente_url
-15/08/2026,Yucatán,Joaquín Díaz Mena,positivo,manual-1,https://ejemplo.com/nota
-08/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-1,https://ejemplo.com/nota
-13/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-2,https://tribunacampeche.com/13/cuestiona-abogado-legalidad-del-procedimiento-contra-jose-a-audiencia-inicial-esta-programada-para-manana/733655/
-13/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-3,https://tribunacampeche.com/13/rapido-se-vendieron-ya-tienen-quien-se-preste-a-transas-y-autonomia-es-simulacion-escriben-cibernautas-por-felicitacion-a-rectora-fanny/733649/
-14/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-4,https://elpais.com/mexico/2026-01-14/la-detencion-del-rector-de-la-universidad-de-campeche-detona-la-ultima-polemica-de-layda-sansores.html?utm_source=chatgpt.com
-24/01/2026,Campeche,Layda Sansores,positivo,layda_sansores-5,https://cripeso.com/ranking-de-gobernadores-de-mexico-enero-2026/
-26/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-6,https://www.eluniversal.com.mx/nacion/campeche-silenciado-bajo-el-acoso-de-layda-sansores/?utm_source=chatgpt.com
-27/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-7,https://tribunacampeche.com/date/2026/01/27/?utm_source=chatgpt.com
-27/01/2026,Campeche,Layda Sansores,neutral,layda_sansores-8,https://tribunacampeche.com/date/2026/01/27/?utm_source=chatgpt.com
-28/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-9,https://tribunacampeche.com/date/2026/01/28/?utm_source=chatgpt.com
-29/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-10,https://www.reddit.com/r/Mexico_News/comments/1qpz4os/4t_ley_garrote_contra_reporteros_art%C3%ADculo_19/?utm_source=chatgpt.com
-02/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-11,https://www.reddit.com/r/POLACA/comments/1qtmc94/versi%C3%B3n_intentan_detener_al_presidente_del/?utm_source=chatgpt.com
-03/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-12,https://tribunacampeche.com/03/en-las-tripas-del-jaguar-3-de-febrero-de-2026/735266/?utm_source=chatgpt.com
-06/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-13,https://tribunacampeche.com/05/en-las-tripas-del-jaguar-05-de-febrero-de-2026/735444/?utm_source=chatgpt.com
-09/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-14,https://tribunacampeche.com/date/2026/02/09/?utm_source=chatgpt.com
-09/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-15,https://tribunacampeche.com/date/2026/02/09/?utm_source=chatgpt.com
-10/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-16,https://tribunacampeche.com/date/2026/02/10/?utm_source=chatgpt.com
-10/02/2026,Campeche,Layda Sansores,positivo,layda_sansores-17,https://tribunacampeche.com/date/2026/02/10/?utm_source=chatgpt.com
-12/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-18,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202602/PO2596SS12022026.pdf?utm_source=chatgpt.com
-14/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-19,https://tribunacampeche.com/05/en-las-tripas-del-jaguar-05-de-febrero-de-2026/735444/?utm_source=chatgpt.com
-18/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-20,https://tribunacampeche.com/05/en-las-tripas-del-jaguar-05-de-febrero-de-2026/735444/?utm_source=chatgpt.com
-21/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-21,https://tribunacampeche.com/04/en-las-tripas-del-jaguar-04-de-febrero-de-2026/735357/?utm_source=chatgpt.com
-24/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-22,https://tribunacampeche.com/05/en-las-tripas-del-jaguar-05-de-febrero-de-2026/735444/?utm_source=chatgpt.com
-27/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-23,https://tribunacampeche.com/03/en-las-tripas-del-jaguar-3-de-febrero-de-2026/735266/?utm_source=chatgpt.com
-08/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-24,https://www.reddit.com/r/mexico_politics/comments/1rpalfy/condenan_detenci%C3%B3n_arbitraria_de_mujeres_j%C3%B3venes/?utm_source=chatgpt.com
-09/03/2026,Campeche,Layda Sansores,neutral,layda_sansores-25,https://www.reddit.com/r/mexico_politics/comments/1rpalfy/condenan_detenci%C3%B3n_arbitraria_de_mujeres_j%C3%B3venes/?utm_source=chatgpt.com
-11/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-26,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com
-12/03/2026,Campeche,Layda Sansores,neutral,layda_sansores-27,https://www.lja.mx/2026/03/layda-sansores-advierte-sentencias-de-hasta-37-anos-de-prision-a-manifestantes-del-8m/?utm_source=chatgpt.com
-12/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-28,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com
-12/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-29,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com
-13/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-30,https://elpopular.mx/secciones/nacional/2026/03/13/sansores-traslada-detenidas-del-8m-a-penal-y-anuncia-prohibicion-de-encapuchadas-en-futuras-protestas?utm_source=chatgpt.com
-13/03/2026,Campeche,Layda Sansores,neutral,layda_sansores-31,https://www.am.com.mx/nacional/2026/03/12/layda-sansores-prohibira-rostros-cubiertos-en-marchas-de-campeche-1763701.html?utm_source=chatgpt.com
-17/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-32,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com
-20/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-33,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com
-23/03/2026,Campeche,Layda Sansores,neutral,layda_sansores-34,https://elpais.com/mexico/opinion/2026-01-28/morena-sera-devorado-por-sus-hijos.html?utm_source=chatgpt.com
-27/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-35,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com
-31/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-36,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com
-12/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-37,https://elpais.com/mexico/opinion/2026-01-28/morena-sera-devorado-por-sus-hijos.html?utm_source=chatgpt.com
-24/04/2026,Campeche,Layda Sansores,neutral,layda_sansores-38,https://latinus.us/deportes/beisbol/2026/4/24/abuchean-layda-sansores-inauguracion-liga-mexicana-beisbol-campeche-intentan-ocultar-videos-170660.html
-27/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-39,https://www.jornada.com.mx/noticia/2026/04/28/estados/layda-sansores-advierte-quiebra-de-campeche-recursos-no-alcanzan-ni-para-pagar-la-luz?utm_source=chatgpt.com
-29/04/2026,Campeche,Layda Sansores,neutral,layda_sansores-40,https://www.jornada.com.mx/noticia/2026/04/29/estados/gobierno-de-campeche-quebrado-no-hay-ni-para-pagar-la-luz-denuncia-sansores?utm_source=chatgpt.com
-30/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-41,https://www.razon.com.mx/estados/2026/04/30/layda-declara-a-campeche-sin-liquidez-y-en-rebeldia/?utm_source=chatgpt.com
-30/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-42,https://www.excelsior.com.mx/temas/layda-sansores?utm_source=chatgpt.com
-30/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-43,https://www.jornada.com.mx/noticia/2026/04/29/estados/gobierno-de-campeche-quebrado-no-hay-ni-para-pagar-la-luz-denuncia-sansores?utm_source=chatgpt.com
-01/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-44,https://tribunacampeche.com/01/crisis-financiera-en-campeche-empresarios-temen-paralizacion-de-servicios-y-despidos-masivos/742843/
-07/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-45,https://www.youtube.com/watch?v=tjFaDeVSnVU&utm_source=chatgpt.com
-09/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-46,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com
-14/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-47,https://www.infobae.com/mexico/2026/05/14/layda-sansores-responde-a-criticas-por-accesorios-de-lujo-valuados-en-1-mdp-son-pulseritas-de-plastico/?utm_source=chatgpt.com
-16/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-48,https://tribunacampeche.com/22/en-las-tripas-del-jaguar-22-de-mayo-de-2026/744617/?utm_source=chatgpt.com
-22/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-49,https://tribunacampeche.com/22/en-las-tripas-del-jaguar-22-de-mayo-de-2026/744617/?utm_source=chatgpt.com
-27/05/2026,Campeche,Layda Sansores,positivo,layda_sansores-50,https://elpais.com/mexico/opinion/2026-02-25/los-peores-gobernadores-de-morena.html?utm_source=chatgpt.com
-29/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-51,https://www.youtube.com/watch?v=tjFaDeVSnVU&utm_source=chatgpt.com
-02/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-52,https://ejemplo.com/nota
-05/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-53,https://ejemplo.com/nota
-08/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-54,https://ejemplo.com/nota
-09/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-55,https://ejemplo.com/nota
-13/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-56,https://ejemplo.com/nota
-15/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-57,https://ejemplo.com/nota
-17/06/2026,Campeche,Layda Sansores,positivo,layda_sansores-58,https://ejemplo.com/nota
-18/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-59,https://ejemplo.com/nota
-19/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-60,https://ejemplo.com/nota
-20/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-61,https://ejemplo.com/nota
-22/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-62,https://ejemplo.com/nota
-24/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-63,https://ejemplo.com/nota
-26/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-64,https://ejemplo.com/nota
-27/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-65,https://ejemplo.com/nota
-28/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-66,https://ejemplo.com/nota
-01/07/2026,Campeche,Layda Sansores,negativo,layda_sansores-67,https://ejemplo.com/nota
-02/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-68,https://ejemplo.com/nota
-05/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-69,https://ejemplo.com/nota
-07/07/2026,Campeche,Layda Sansores,negativo,layda_sansores-70,https://ejemplo.com/nota
-08/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-71,https://ejemplo.com/nota
-09/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-72,https://ejemplo.com/nota
-10/07/2026,Campeche,Layda Sansores,negativo,layda_sansores-73,https://ejemplo.com/nota
-19/07/2026,Campeche,Layda Sansores,positivo,layda_sansores-74,https://ejemplo.com/nota
-21/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-75,https://ejemplo.com/nota
-22/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-76,https://ejemplo.com/nota
-23/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-77,https://ejemplo.com/nota
-26/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-78,https://ejemplo.com/nota
-28/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-79,https://ejemplo.com/nota
-29/07/2026,Campeche,Layda Sansores,negativo,layda_sansores-80,https://ejemplo.com/nota
-30/07/2026,Campeche,Layda Sansores,positivo,layda_sansores-81,https://ejemplo.com/nota
-01/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-82,https://ejemplo.com/nota
-02/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-83,https://ejemplo.com/nota
-03/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-84,https://ejemplo.com/nota
-05/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-85,https://ejemplo.com/nota
-06/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-86,https://ejemplo.com/nota
-07/08/2026,Campeche,Layda Sansores,positivo,layda_sansores-87,https://ejemplo.com/nota
-10/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-88,https://ejemplo.com/nota
-11/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-89,https://ejemplo.com/nota
-11/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-90,https://ejemplo.com/nota
-12/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-91,https://ejemplo.com/nota
-13/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-92,https://tribunacampeche.com/date/2026/08/14/
-14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-93,https://tribunacampeche.com/date/2026/08/14/
-14/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-94,https://tribunacampeche.com/date/2026/08/14/
-14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-95,https://tribunacampeche.com/date/2026/08/14/
-14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-96,https://tribunacampeche.com/date/2026/08/14/
-14/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-97,https://tribunacampeche.com/date/2026/08/14/
-14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-98,https://www.proceso.com.mx/nacional/estados/2026/8/8/entre-el-discurso-de-austeridad-y-el-lujo-en-madrid-exhiben-a-layda-sansores-en-espana-en-plena-cris-377696.html
-14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-99,https://www.proceso.com.mx/nacional/estados/2026/8/8/entre-el-discurso-de-austeridad-y-el-lujo-en-madrid-exhiben-a-layda-sansores-en-espana-en-plena-cris-377696.html
-15/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-100,https://tribunacampeche.com/
-15/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-101,https://www.proceso.com.mx/nacional/estados/2026/8/8/entre-el-discurso-de-austeridad-y-el-lujo-en-madrid-exhiben-a-layda-sansores-en-espana-en-plena-cris-377696.html
-15/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-102,https://tribunacampeche.com/date/2026/08/14/
-15/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-103,https://tribunacampeche.com/date/2026/08/14/
-15/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-104,https://elpais.com/mexico/2026-08-14/morena-pone-contra-las-cuerdas-a-alito-moreno-al-revivir-su-proceso-de-desafuero.html
-17/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-105,https://solyucatan.mx/layda-sansores-acude-a-hospital-de-lujo/
-19/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-106,https://www.elbuentono.com.mx/layda-sansores-demanda-a-pedro-ferriz-hijar-por-expresiones-en-redes-sociales/
-19/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-107,https://xpectrofm.com/sansores-presume-como-logro-el-cambio-de-buzones-de-denuncia/
-19/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-108,https://tribunacampeche.com/19/accesorios-de-lujo-de-layda-superan-los-cientos-de-miles-de-pesos-y-la-austeridad/753202/
-19/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-109,https://www.infobae.com/mexico/2026/08/19/esto-no-es-persecucion-es-cuestion-de-delincuencia-layda-sansores-impulsa-parodia-musical-contra-alito-moreno-por-denuncias-en-eeuu/
-19/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-110,https://www.sdpnoticias.com/estados/quintana-roo/layda-sansores-se-burla-de-los-carteles-sobre-su-viaje-en-espana/
-19/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-111,https://tribunacampeche.com/19/layda-sansores-defiende-a-andy-y-lo-califica-como-sumamente-honesto/753125/
-20/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-112,https://www.elfinanciero.com.mx/estados/2026/08/20/adda-rubi-peniche-secretaria-de-turismo-de-campeche-llora-y-admite-que-no-tiene-experiencia-la-gobernadora-confio-en-mi/
-27/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-113,https://tribunacampeche.com/27/senadora-arremete-contra-layda-sansores-tras-asistir-a-toma-de-protesta-de-501/753817/
-27/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-114,https://www.excelsior.com.mx/nacional/sector-pesquero-campeche-escala-protestas-denuncian-desatencion-layda-sansores
-27/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-115,https://www.sinaloahoy.com.mx/portal/layda-sansores-enfrenta-polemica-por-gasto-de-1-6-millones-en-jaguar-de-bronce/
-04/09/2026,Campeche,Layda Sansores,neutral,layda_sansores-116,https://tribunacampeche.com/04/reclaman-a-layda-y-zoe-robledo-por-desabasto-de-medicamentos-en-el-imss-campeche/754632/
-02/01/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-117,https://www.eluniversal.com.mx/estados/ejecutan-a-aliada-politica-de-alcalde-de-ciudad-del-carmen-campeche-hace-unos-dias-intentaron-secuestrarla/
-14/01/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-118,https://elpais.com/mexico/2026-01-14/la-detencion-del-rector-de-la-universidad-de-campeche-detona-la-ultima-polemica-de-layda-sansores.html
-19/01/2026,Campeche,Pablo Gutiérrez Lazarus,positivo,pablo_gutierrez-119,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202606/PO2665PS03062026.pdf
-29/01/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-120,https://tribunacampeche.com/date/2026/01/29/
-29/01/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-121,https://tribunacampeche.com/date/2026/01/29/
-30/01/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-122,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202606/PO2665PS03062026.pdf
-01/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-123,https://tribunacampeche.com/tag/pablo-gutierrez/
-01/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-124,https://tribunacampeche.com/tag/pablo-gutierrez/
-05/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-125,https://campechehoy.com/2026/02/05/denuncian-presunto-desvio-de-recursos-por-parte-del-alcalde-pablo-gutierrez-lazarus/
-05/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-126,https://campechehoy.com/2026/02/05/denuncian-presunto-desvio-de-recursos-por-parte-del-alcalde-pablo-gutierrez-lazarus/
-06/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-127,https://campechehoy.com/2026/02/05/denuncian-presunto-desvio-de-recursos-por-parte-del-alcalde-pablo-gutierrez-lazarus/
-10/02/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-128,https://tribunacampeche.com/tag/pablo-lazarus/?utm_source=chatgpt.com
-14/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-129,https://revista32.mx/wp-content/uploads/2026/02/AC-17-Gubernaturas-CAM-2026-Feb.pdf
-14/02/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-130,https://revista32.mx/wp-content/uploads/2026/02/AC-17-Gubernaturas-CAM-2026-Feb.pdf
-25/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-131,https://revista32.mx/wp-content/uploads/2026/02/AC-17-Gubernaturas-CAM-2026-Feb.pdf?utm_source=chatgpt.com
-28/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-132,https://campechehoy.com/2026/02/05/denuncian-presunto-desvio-de-recursos-por-parte-del-alcalde-pablo-gutierrez-lazarus/?utm_source=chatgpt.com
-03/03/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-133,https://ejemplo.com/nota
-12/03/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-134,https://tribunacampeche.com/tag/pablo-g-lazarus/
-12/03/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-135,https://tribunacampeche.com/tag/pablo-g-lazarus/
-20/03/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-136,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf?utm_source=chatgpt.com
-22/03/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-137,https://ejemplo.com/nota
-25/03/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-138,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202604/PO2629PS09042026.pdf?utm_source=chatgpt.com
-27/03/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-139,https://tribunacampeche.com/tag/pablo-g-lazarus/
-01/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-140,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf
-01/04/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-141,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf
-08/04/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-142,https://www.publimetro.com.mx/puebla/2026/04/08/pan-lanza-campana-para-cazar-mapaches-electorales-y-denunciar-promocion-anticipada/
-09/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-143,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202604/PO2629PS09042026.pdf
-15/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-144,https://ejemplo.com/nota
-22/04/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-145,https://www.jornada.com.mx/noticia/2026/04/22/estados/morena-perfila-a-pablo-gutierrez-como-virtual-candidato-a-gubernatura-de-campeche
-23/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-146,https://www.jornada.com.mx/2026/04/23/estados/025n2est
-23/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-147,https://www.jornada.com.mx/2026/04/23/estados/025n2est
-24/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-148,https://www.jornada.com.mx/2026/04/23/estados/025n2est
-29/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-149,https://www.poresto.com/campeche/ciudad-carmen/2026/4/29/reprueban-aspiraciones-del-alcalde-de-carmen-8-de-cada-10-campechanos-desconocen-a-pablo-gutierrez-lazarus.amp.html
-29/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-150,https://www.poresto.com/campeche/ciudad-carmen/2026/4/29/reprueban-aspiraciones-del-alcalde-de-carmen-8-de-cada-10-campechanos-desconocen-a-pablo-gutierrez-lazarus.amp.html
-30/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-151,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf
-13/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-152,https://elpais.com/mexico/2026-06-13/morena-en-ebullicion-mas-de-50-cuadros-apuntan-a-una-gubernatura-en-2027.html
-13/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-153,https://elpais.com/mexico/2026-06-13/morena-en-ebullicion-mas-de-50-cuadros-apuntan-a-una-gubernatura-en-2027.html
-19/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-154,https://www.poresto.com/campeche/ciudad-carmen/2026/6/19/pablo-gutierrez-lazarus-y-priscila-heredia-enfrentan-posible-destitucion.html
-19/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-155,https://www.poresto.com/campeche/ciudad-carmen/2026/6/19/pablo-gutierrez-lazarus-y-priscila-heredia-enfrentan-posible-destitucion.html
-25/06/2026,Campeche,Pablo Gutiérrez Lazarus,positivo,pablo_gutierrez-156,https://www.carmenhoy.mx/destacadas/pgl-pide-licencia-definitiva/
-25/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-157,https://diariocambio22.mx/el-edil-gutierrez-lazarus-pide-licencia-definitiva/
-25/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-158,https://www.globalmedia.mx/articles/nepotismo_en_morena_en_campeche_layda_tiene_la_respuesta
-27/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-159,https://estamosaqui.mx/pablo-gutierrez-informa-que-concluyo-su-registro-ante-morena-y-aliados/
-27/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-160,https://www.desdeelbalcon.com/balcon/pablo-gutierrez-deja-alcaldia-de-carmen/
-28/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-161,https://carmendigital.mx/2026/06/28/con-adeudos-millonarios-lazarus-deja-la-alcaldia-para-buscar-otro-cargo/
-28/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-162,https://carmendigital.mx/2026/06/28/con-adeudos-millonarios-lazarus-deja-la-alcaldia-para-buscar-otro-cargo/
-28/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-163,https://www.poresto.com/media/2026/6/28/impreso-campeche-28626_MASTER.pdf
-30/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-164,https://www.poresto.com/campeche/ciudad-carmen/2026/6/30/pablo-gutierrez-lazarus-podria-enfrentar-sanciones-por-adeudos-millonarios.html
-30/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-165,https://www.poresto.com/campeche/ciudad-carmen/2026/6/30/pablo-gutierrez-lazarus-podria-enfrentar-sanciones-por-adeudos-millonarios.html
-01/07/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-166,https://campechedigital.mx/con-adeudos-millonarios-lazarus-deja-la-alcaldia-para-buscar-otro-cargo/
-02/07/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-167,https://www.poresto.com/campeche/ciudad-carmen/2026/6/30/pablo-gutierrez-lazarus-podria-enfrentar-sanciones-por-adeudos-millonarios.html
-07/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-168,https://pdf.lajornadamaya.mx/LJM-QRoo-07072026.pdf
-08/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-169,https://estamosaqui.mx/excolaborador-de-pablo-gutierrez-lazarus-renuncia-a-morena/
-08/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-170,https://estamosaqui.mx/excolaborador-de-pablo-gutierrez-lazarus-renuncia-a-morena/
-10/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-171,https://www.poresto.com/media/2026/6/28/impreso-campeche-28626_MASTER.pdf
-12/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-172,https://diariocambio22.mx/deja-pablo-gutierrez-la-alcaldia-del-carmen/
-15/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-173,https://lajornadaestadodemexico.com/campeche-morena-consolida-ventaja-y-perfila-a-pablo-gutierrez-lazarus-como/
-18/07/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-174,https://www.poresto.com/media/2026/6/28/impreso-campeche-28626_MASTER.pdf
-20/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-175,https://www.jornada.com.mx/2026/04/23/estados/025n2est
-22/07/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-176,https://www.milenio.com/politica/morena-campeche-pablo-gutierrez-nombrado-coordinador-2027
-24/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-177,https://www.poresto.com/media/2026/6/21/impreso-campeche-21626_MASTER.pdf
-28/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-178,https://www.poresto.com/media/2026/6/30/impreso-campeche-30626_MASTER.pdf
-01/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-179,https://campechedigital.mx/con-adeudos-millonarios-lazarus-deja-la-alcaldia-para-buscar-otro-cargo/
-04/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-180,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf
-05/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-181,https://www.milenio.com/politica/morena-campeche-pablo-gutierrez-nombrado-coordinador-2027
-07/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-182,https://www.poresto.com/campeche/ciudad-carmen/2026/4/29/reprueban-aspiraciones-del-alcalde-de-carmen-8-de-cada-10-campechanos-desconocen-a-pablo-gutierrez-lazarus.amp.html
-08/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-183,https://elpais.com/mexico/2026-06-13/morena-en-ebullicion-mas-de-50-cuadros-apuntan-a-una-gubernatura-en-2027.html
-09/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-184,https://carmendigital.mx/2026/04/23/nombran-a-pablo-gutierrez-coordinador-de-morena-en-campeche/
-10/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-185,https://www.jornada.com.mx/noticia/2026/04/22/estados/morena-perfila-a-pablo-gutierrez-como-virtual-candidato-a-gubernatura-de-campeche
-11/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-186,https://elpais.com/mexico/2026-06-13/morena-en-ebullicion-mas-de-50-cuadros-apuntan-a-una-gubernatura-en-2027.html
-13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-187,https://tribunacampeche.com/13/pablo-g-lazarus-arremete-contra-marcela-munoz-por-responsabilizar-a-autoridades-municipales-de-carmen-por-la-inseguridad/752570/
-13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-188,https://diariocambio22.mx/precandidato-de-morena-pablo-gutierrez-arremete-contra-jefa-de-seguridad-publica-marcela-munoz/?utm_source=chatgpt.com
-13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-189,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com
-13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-190,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com
-13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-191,https://diariocambio22.mx/precandidato-de-morena-pablo-gutierrez-arremete-contra-jefa-de-seguridad-publica-marcela-munoz/?utm_source=chatgpt.com
-14/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-192,https://tribunacampeche.com/13/pablo-g-lazarus-arremete-contra-marcela-munoz-por-responsabilizar-a-autoridades-municipales-de-carmen-por-la-inseguridad/752570/?utm_source=chatgpt.com
-14/08/2026,Campeche,Pablo Gutiérrez Lazarus,positivo,pablo_gutierrez-193,https://diariocambio22.mx/precandidato-de-morena-pablo-gutierrez-arremete-contra-jefa-de-seguridad-publica-marcela-munoz/?utm_source=chatgpt.com
-14/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-194,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com
-14/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-195,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com
-14/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-196,https://diariocambio22.mx/precandidato-de-morena-pablo-gutierrez-arremete-contra-jefa-de-seguridad-publica-marcela-munoz/?utm_source=chatgpt.com
-15/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-197,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com
-15/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-198,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com
-15/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-199,https://www.poresto.com/campeche/ciudad-carmen/2026/6/20/alcalde-de-carmen-pablo-gutierrez-lazarus-podria-ir-a-prision-por-negarse-a-pagar-mas-de-46-mdp.html?utm_source=chatgpt.com
-15/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-200,https://www.notiver.com/nacionales/el-alcalde-de-campeche-pide-licencia-ya-que-buscara-la-gubernatura/?utm_source=chatgpt.com
-26/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-201,https://tribunacampeche.com/26/layda-utiliza-instituciones-para-ataques-politicos-acusa-medina-e-interpondria-denuncia/753783/
-26/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-202,https://www.jornada.com.mx/2026/08/26/politica/003n4pol
-26/08/2026,Campeche,Pablo Gutiérrez Lazarus,positivo,pablo_gutierrez-203,https://tribunacampeche.com/26/gobierno-estatal-licitara-teatro-por-600-millones-de-pesos-de-ahi-saldria-para-financiar-la-campana-de-pablo-gutierrez-lazarus/753742/
-27/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-204,https://grupoanimal.mx/estados/pablo-gutierrez-lazarus-aspirante-morena-campeche
-27/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-205,https://diariocambio22.mx/pedro-armentia-acusa-a-morena-de-violar-la-ley-electoral-por-imposicion-de-pablo-gutierrez/
-27/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-206,https://diariocambio22.mx/pedro-armentia-acusa-a-morena-de-violar-la-ley-electoral-por-imposicion-de-pablo-gutierrez/
-01/09/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-207,https://www.poresto.com/campeche/2026/9/1/campechanos-acusan-a-morena-de-hacer-precampana-adelantada-con-pablo-gutierrez-lazarus.html
-04/09/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-208,https://tribunacampeche.com/04/autoridades-del-quiroga-impiden-al-diputado-macdonald-tomar-fotos-pero-si-se-lo-permiten-a-la-mama-de-pablo-gutierrez-para-sus-redes/754606/
-02/01/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-209,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf
-18/01/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-210,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf
-20/01/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-211,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf
-22/01/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-212,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf
-25/01/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-213,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf
-28/01/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-214,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf
-31/01/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-215,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf
-05/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-216,https://revista32.mx/wp-content/uploads/2026/03/AC-17-Gubernaturas-QROO-Preferencia-Aspirantes-Febrero-2026.pdf
-08/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-217,https://revista32.mx/wp-content/uploads/2026/03/AC-17-Gubernaturas-QROO-Preferencia-Aspirantes-Febrero-2026.pdf
-12/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-218,https://comunicacion.diputados.gob.mx/sintesis/LINKSIN3/P12226_C_24H_0_TELEFONOROJO_CTM_3DIP_.pdf
-14/02/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-219,https://revista32.mx/wp-content/uploads/2026/03/AC-17-Gubernaturas-QROO-Preferencia-Aspirantes-Febrero-2026.pdf
-18/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-220,https://revista32.mx/wp-content/uploads/2026/03/AC-17-Gubernaturas-QROO-Preferencia-Aspirantes-Febrero-2026.pdf
-20/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-221,https://comunicacion.diputados.gob.mx/sintesis/LINKSIN3/P12226_C_24H_0_TELEFONOROJO_CTM_3DIP_.pdf
-24/02/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-222,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf
-27/02/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-223,https://politico.mx/2026/02/28/circula-supuesta-orden-de-veto-contra-marin-mollinedo-en-medios-de-quintana-roo/
-28/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-224,https://politico.mx/2026/02/28/circula-supuesta-orden-de-veto-contra-marin-mollinedo-en-medios-de-quintana-roo/
-04/03/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-225,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/
-05/03/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-226,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/
-05/03/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-227,https://www.nmas.com.mx/politica/asi-crecio-patrimonio-rafael-marin-nmas-focus/
-20/03/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-228,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/
-25/03/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-229,https://www.nmas.com.mx/politica/rafael-marin-mollinedo-renuncia-a-aduanas-entre-senalamientos-de-patrimonio-millonario/
-31/03/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-230,https://www.nmas.com.mx/politica/rafael-marin-mollinedo-renuncia-a-aduanas-entre-senalamientos-de-patrimonio-millonario/
-01/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-231,https://elpais.com/mexico/2026-04-01/rafael-marin-mollinedo-deja-aduanas-y-pone-la-mira-en-quintana-roo.html
-04/04/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-232,https://periodistasquintanaroo.com/editorial/por-lo-visto-rafael-marin-mollinedo-pasara-mas-tiempo-en-quintana-roo-y-menos-en-yucatan/
-04/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-233,https://periodistasquintanaroo.com/editorial/por-lo-visto-rafael-marin-mollinedo-pasara-mas-tiempo-en-quintana-roo-y-menos-en-yucatan/
-08/04/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-234,https://www.nmas.com.mx/politica/adelantan-campana-rafael-marin-reportaje-nmas-focus/
-10/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-235,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/
-12/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-236,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/
-12/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-237,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/
-15/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-238,https://periodistasquintanaroo.com/editorial/por-lo-visto-rafael-marin-mollinedo-pasara-mas-tiempo-en-quintana-roo-y-menos-en-yucatan/
-19/04/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-239,https://quintanarooahora.com.mx/2026/04/rafael-marin-dialoga-con-sectores-sociales-y-empresariales-en-cancun/
-20/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-240,https://24horasqroo.mx/2026/04/20/presencia-suma-resta/
-20/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-241,https://24horasqroo.mx/2026/04/20/presencia-suma-resta/
-25/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-242,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/
-02/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-243,https://elpais.com/mexico/2026-04-01/rafael-marin-mollinedo-deja-aduanas-y-pone-la-mira-en-quintana-roo.html
-05/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-244,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/
-08/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-245,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/
-10/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-246,https://www.nmas.com.mx/politica/asi-crecio-patrimonio-rafael-marin-nmas-focus/
-15/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-247,https://elpais.com/mexico/2026-04-01/rafael-marin-mollinedo-deja-aduanas-y-pone-la-mira-en-quintana-roo.html
-18/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-248,https://quintanaroo.quadratin.com.mx/rafael-marin-suelta-cargos-publicos/
-22/05/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-249,https://noticaribe.com.mx/2026/05/22/medidas-cautelares-contra-acelerados-ordena-ieqroo-frenar-actos-de-rafael-marin-por-presunta-promocion-anticipada-rumbo-a-2027/
-22/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-250,https://noticaribe.com.mx/2026/05/22/medidas-cautelares-contra-acelerados-ordena-ieqroo-frenar-actos-de-rafael-marin-por-presunta-promocion-anticipada-rumbo-a-2027/
-22/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-251,https://quintanaroo.quadratin.com.mx/rafael-marin-suelta-cargos-publicos/
-24/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-252,https://noticaribe.com.mx/2026/05/22/medidas-cautelares-contra-acelerados-ordena-ieqroo-frenar-actos-de-rafael-marin-por-presunta-promocion-anticipada-rumbo-a-2027/
-01/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-253,https://olanoticias.com/teqroo-confirma-medidas-rafael-marin/
-08/07/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-254,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/
-15/07/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-255,https://laopinionqr.com/prepara-inhabilitacion-el-teqroo-va-contra-rafa-marin/
-16/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-256,https://olanoticias.com/teqroo-confirma-medidas-rafael-marin/
-16/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-257,https://periodistasquintanaroo.com/principales/el-teqroo-confirma-medidas-cautelares-contra-rafael-marin-mollinedo/
-18/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-258,https://olanoticias.com/teqroo-confirma-medidas-rafael-marin/
-20/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-259,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/
-22/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-260,https://elpais.com/mexico/2026-08-12/morena-camina-en-la-cuerda-floja-para-definir-sus-candidaturas-a-gobernador-en-unidad-y-evadiendo-las-restricciones-legales.html
-22/07/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-261,https://www.noroeste.com.mx/nacional/chocan-versiones-de-ex-director-de-aduanas-y-fgr-por-caso-ruffo-LF24305824
-23/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-262,https://sintoniahoy.com/nota/dirigencia-de-morena-avala-a-rafael-marin-para-gubernatura-de-quintana
-25/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-263,https://fronterasurqroo.com.mx/rafael-marin-mollinedo-fortalece-la-unidad-de-morena-durante-asamblea-informativa-en-chetumal/
-28/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-264,https://periodistasquintanaroo.com/principales/el-teqroo-confirma-medidas-cautelares-contra-rafael-marin-mollinedo/
-01/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-265,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/
-04/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-266,https://elpais.com/mexico/2026-08-12/morena-camina-en-la-cuerda-floja-para-definir-sus-candidaturas-a-gobernador-en-unidad-y-evadiendo-las-restricciones-legales.html
-05/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-267,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/
-06/08/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-268,https://noticaribe.com.mx/2026/07/15/a-retirar-la-propaganda-ratifica-teqroo-acuerdo-del-ieqroo-que-determino-que-rafael-marin-incurrio-en-actos-anticipados-de-campana/
-07/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-269,https://elpais.com/mexico/2026-08-12/morena-camina-en-la-cuerda-floja-para-definir-sus-candidaturas-a-gobernador-en-unidad-y-evadiendo-las-restricciones-legales.html
-08/08/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-270,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/
-09/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-271,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/
-10/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-272,https://diario.mx/nacional/2026/aug/10/pasa-de-mafia-rumana-a-campana-de-morena-1132422.html
-12/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-273,https://elpais.com/mexico/2026-08-12/morena-camina-en-la-cuerda-floja-para-definir-sus-candidaturas-a-gobernador-en-unidad-y-evadiendo-las-restricciones-legales.html
-13/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-274,https://periodistasquintanaroo.com/principales/el-teqroo-confirma-medidas-cautelares-contra-rafael-marin-mollinedo/
-13/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-275,https://noticaribe.com.mx/2026/07/15/a-retirar-la-propaganda-ratifica-teqroo-acuerdo-del-ieqroo-que-determino-que-rafael-marin-incurrio-en-actos-anticipados-de-campana/
-13/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-276,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/
-13/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-277,https://grupopiramide.com.mx/noticias/politica/da-teqroo-doble-reves-rafael-marin/
-14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-278,https://subjetivo.mx/rafael-marin-peor-evaluado-morena-quintana-roo/
-14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-279,https://subjetivo.mx/rafael-marin-peor-evaluado-morena-quintana-roo/
-14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-280,https://laopinionqr.com/rafa-doblo-las-manos-participa-de-asamblea-del-partido-a-pesar-de-la-tendencia-a-favor-del-oficialismo-local/
-14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-281,https://diario.mx/nacional/2026/aug/10/pasa-de-mafia-rumana-a-campana-de-morena-1132422.html
-14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-282,https://olanoticias.com/teqroo-confirma-medidas-rafael-marin/
-15/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-283,https://periodistasquintanaroo.com/principales/el-teqroo-confirma-medidas-cautelares-contra-rafael-marin-mollinedo/
-15/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-284,https://laopinionqr.com/prepara-inhabilitacion-el-teqroo-va-contra-rafa-marin/
-15/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-285,https://www.nmas.com.mx/politica/rafael-marin-mollinedo-renuncia-a-aduanas-entre-senalamientos-de-patrimonio-millonario/
-15/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-286,https://elpais.com/mexico/2026-04-01/rafael-marin-mollinedo-deja-aduanas-y-pone-la-mira-en-quintana-roo.html
-15/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-287,https://laopinionqr.com/rafa-doblo-las-manos-participa-de-asamblea-del-partido-a-pesar-de-la-tendencia-a-favor-del-oficialismo-local/
-17/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-288,https://caribepeninsular.mx/morena-qr-simpatizantes-marin-voto-de-castigo/
-18/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-289,https://caribepeninsular.mx/zona-maya-llama-rafa-marin-a-saldar-deuda-historica-con-pueblos-originarios/
-20/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-290,https://noticaribe.com.mx/2026/08/20/hasta-que-no-tuvo-mas-remedio-rafael-marin-separa-de-su-equipo-a-morenista-senalado-por-vinculos-con-mafia-rumana/
-20/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-291,https://solquintanaroo.mx/golpe-a-las-aspiraciones-de-marin-mollinedo-fgr-asegura-bienes-de-su-operador-por-nexos-criminales/
-21/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-292,https://lachispa.mx/marin-defiende-combate-al-huachicol-fiscal/
-21/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-293,https://www.tiempo.com.mx/nacional/niega-rafael-marin-andy-lopez-pidiera-negocios-aduanas-21-agosto-2026/
-22/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-294,https://quinto-poder.mx/tendencias/2026/08/22/rafael-marin-mollinedo-se-reune-con-periodistas-que-paso-70413.html
-22/08/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-295,https://caribepeninsular.mx/agendas-divididas-marin-y-villegas-marcan-distancia-del-acto-de-morena/
-22/08/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-296,https://quintopoderqrp.com/2026/08/22/pt-y-rafa-marin-refuerzan-unidad-y-dialogo-en-quintana-roo/
-23/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-297,https://quinto-poder.mx/politicos/2026/08/23/por-que-rafael-marin-mollinedo-dejo-aduanas-esto-dijo-sheinbaum--70431.html
-27/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-298,https://quinto-poder.mx/politicos/2026/08/27/rafael-marin-refuerza-su-presencia-en-quintana-roo-rumbo-al-2027--70740.html
-04/09/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-299,https://diariocambio22.mx/desmiente-rafael-marin-rumores-de-declinacion/
-04/09/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-300,https://quinto-poder.mx/politicos/2026/09/04/rafael-marin-mollinedo-desmiente-declinacion-en-quintana-roo--70927.html
-05/09/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-301,https://www.quinto-poder.mx/politicos/2026/09/05/que-ha-dicho-rafael-marin-mollinedo-en-quintana-roo-70867.html
-03/01/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-302,https://www.poresto.net/quintana-roo
-05/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-303,https://www.lajornadamaya.mx/quintanaroo
-07/01/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-304,https://noticaribe.com.mx/
-16/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-305,https://www.lajornadamaya.mx/
-17/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-306,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html
-21/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-307,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html
-22/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-308,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html
-31/01/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-309,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html
-01/02/2026,Quintana Roo,Mara Lezama,positivo,mara_lezama-310,https://24horasqroo.mx/2026/02/23/mara-lezama-seguridad/
-05/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-311,https://quintanaroo.heraldodemexico.com.mx/local/2026/2/23/quintana-roo-opera-con-normalidad-mesa-de-seguridad-se-mantiene-en-sesion-permanente-mara-lezama-14636.html
-07/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-312,https://24horasqroo.mx/2026/02/23/mara-lezama-seguridad/
-09/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-313,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html
-11/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-314,https://24horasqroo.mx/2026/02/23/mara-lezama-seguridad/
-13/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-315,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html
-20/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-316,https://elpais.com/mexico/2026-03-30/el-sargazo-llego-para-quedarse-la-temporada-2026-se-adelanta-y-sera-mas-intensa.html
-23/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-317,https://24horasqroo.mx/2026/02/23/mara-lezama-seguridad/?utm_source=chatgpt.com
-23/02/2026,Quintana Roo,Mara Lezama,positivo,mara_lezama-318,https://elquintanarroense.com.mx/2026/02/23/servicios-actividades-y-operaciones-en-quintana-roo-continuan-con-normalidad-mara-lezama/?utm_source=chatgpt.com
-05/03/2026,Quintana Roo,Mara Lezama,positivo,mara_lezama-319,https://www.jornada.com.mx/noticia/2026/03/05/estados/quintana-roo-lanza-estrategia-escolar-de-vacunacion-ante-aumento-de-sarampion?utm_source=chatgpt.com
-06/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-320,https://www.jornada.com.mx/noticia/2026/03/05/estados/quintana-roo-lanza-estrategia-escolar-de-vacunacion-ante-aumento-de-sarampion?utm_source=chatgpt.com
-17/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-321,https://sesa.qroo.gob.mx/quintana-roo-fortalece-la-estrategia-contra-el-sarampion-en-la-primera-sesion-extraordinaria-del-coeva-2026/?utm_source=chatgpt.com
-18/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-322,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com
-22/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-323,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com
-24/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-324,https://elpais.com/mexico/2025-06-11/mexico-se-prepara-para-una-temporada-record-de-sargazo-en-el-caribe.html
-26/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-325,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com
-07/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-326,https://cgc.qroo.gob.mx/gobierno-de-quintana-roo-intensifica-acciones-para-contener-el-sargazo-en-los-litorales/?utm_source=chatgpt.com
-09/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-327,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com
-15/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-328,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com
-24/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-329,https://www.gob.mx/semarnat/documentos/mensaje-de-la-secretaria-alicia-barcena-en-reunion-con-la-gobernadora-del-estado-de-quintana-roo-mara-lezama-espinosa?utm_source=chatgpt.com
-24/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-330,https://www.gob.mx/semarnat/prensa/secretaria-barcena-y-la-gobernadora-mara-lezama-encabezan-reunion-de-la-anaae-para-impulsar-la-transicion-hacia-la-economia-circular?utm_source=chatgpt.com
-26/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-331,https://www.jornada.com.mx/noticia/2026/04/30/estados/la-marea-de-sargazo-escala-en-quintana-roo-la-mitad-de-las-playas-del-sur-ya-esta-en-alerta?utm_source=chatgpt.com
-30/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-332,https://www.jornada.com.mx/noticia/2026/04/30/estados/la-marea-de-sargazo-escala-en-quintana-roo-la-mitad-de-las-playas-del-sur-ya-esta-en-alerta?utm_source=chatgpt.com
-10/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-333,https://impreso.excelsior.com.mx/Periodico/flip-nacional/03-06-2026/portada.pdf?utm_source=chatgpt.com
-12/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-334,https://pdf.lajornadamaya.mx/LJM-QRoo-26062026.pdf?utm_source=chatgpt.com
-15/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-335,https://impreso.excelsior.com.mx/Periodico/flip-nacional/03-06-2026/portada.pdf?utm_source=chatgpt.com
-18/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-336,https://www.reddit.com/r/mexico/comments/1u9a067/se_me_arruin%C3%B3_medio_viaje_a_la_riviera_maya_por/?utm_source=chatgpt.com
-19/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-337,https://impreso.excelsior.com.mx/Periodico/flip-nacional/19-06-2026/portada.pdf?utm_source=chatgpt.com
-20/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-338,https://impreso.excelsior.com.mx/Periodico/flip-nacional/19-06-2026/portada.pdf?utm_source=chatgpt.com
-22/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-339,https://diredimoat.semar.gob.mx/OpSargazo/BoletinesDiarios/Junio/SARGAZO_1108_23_JUNIO_2025.pdf?utm_source=chatgpt.com
-25/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-340,https://pdf.lajornadamaya.mx/LJM-QRoo-26062026.pdf?utm_source=chatgpt.com
-26/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-341,https://pdf.lajornadamaya.mx/LJM-QRoo-26062026.pdf?utm_source=chatgpt.com
-28/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-342,https://www.poresto.com/media/2026/6/29/impreso-cancun-29626_MASTER.pdf?utm_source=chatgpt.com
-29/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-343,https://www.poresto.com/media/2026/6/29/impreso-cancun-29626_MASTER.pdf?utm_source=chatgpt.com
-05/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-344,https://quintanaroo.quadratin.com.mx/coordina-mara-lezama-plan-nacional-para-atender-el-sargazo-en-el-caribe/
-11/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-345,https://elquintanarroense.com.mx/2026/07/11/quintanarroenses-tomemos-precauciones-mara-lezama/
-19/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-346,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html
-22/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-347,https://www.reuters.com/business/environment/record-seaweed-blankets-mexicos-caribbean-coast-threatening-tourism-environment-2026-07-28/
-25/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-348,https://quintanaroo.quadratin.com.mx/coordina-mara-lezama-plan-nacional-para-atender-el-sargazo-en-el-caribe/?utm_source=chatgpt.com
-30/07/2026,Quintana Roo,Mara Lezama,positivo,mara_lezama-349,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html?utm_source=chatgpt.com
-01/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-350,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html?utm_source=chatgpt.com
-03/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-351,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html?utm_source=chatgpt.com
-06/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-352,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html
-10/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-353,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html
-13/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-354,https://www.reuters.com/business/environment/record-seaweed-blankets-mexicos-caribbean-coast-threatening-tourism-environment-2026-07-28/?utm_source=chatgpt.com
-13/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-355,https://elpais.com/mexico/2026-08-03/el-mapa-del-sargazo-en-mexico-las-playas-del-caribe-han-recibido-27-veces-mas-toneladas-de-lo-normal.html?utm_source=chatgpt.com
-13/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-356,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html?utm_source=chatgpt.com
-13/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-357,https://elpais.com/mexico/2026-06-01/mahahual-el-paraiso-olvidado-que-se-resiste-a-morir-entre-el-sargazo-y-los-cruceros.html?utm_source=chatgpt.com
-14/08/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-358,https://www.reuters.com/business/environment/mexico-races-clear-record-seaweed-surge-caribbean-beaches-2026-08-14/?utm_source=chatgpt.com
-14/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-359,https://quintanaroo.quadratin.com.mx/pone-mara-lezama-fecha-para-su-cuarto-informe-de-gobierno/?utm_source=chatgpt.com
-15/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-360,https://elpais.com/mexico/2026-08-15/la-suprema-corte-sienta-un-precedente-en-la-justicia-ambiental-al-atraer-el-caso-de-royal-caribbean.html?utm_source=chatgpt.com
-15/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-361,https://www.reuters.com/business/environment/record-seaweed-blankets-mexicos-caribbean-coast-threatening-tourism-environment-2026-07-28/?utm_source=chatgpt.com
-15/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-362,https://quintanaroo.quadratin.com.mx/pone-mara-lezama-fecha-para-su-cuarto-informe-de-gobierno/?utm_source=chatgpt.com
-20/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-363,https://www.elfinanciero.com.mx/estados/2026/08/20/adda-rubi-peniche-secretaria-de-turismo-de-campeche-llora-y-admite-que-no-tiene-experiencia-la-gobernadora-confio-en-mi/
-24/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-364,https://www.reforma.com/vuela-de-vail-a-cancun-para-saludar-a-amlo/ar3263058
-24/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-365,https://lasillarota.com/estados/2026/8/24/mara-lezama-suma-97-vuelos-privados-a-destinos-de-lujo-525651.html
-25/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-366,https://www.infobae.com/mexico/2026/08/25/vuelos-privados-de-mara-lezama-gobernadora-desmiente-senalamientos-por-97-vuelos-privados-con-el-senador-con-licencia/
-25/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-367,https://politica.expansion.mx/mexico/2026/08/25/mara-lezama-viajes-aviones-privados
-25/08/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-368,https://elceo.com/politica/vuelos-privados-la-conexion-entre-mara-lezama-de-morena-y-emilio-gonzalez-del-partido-verde/
-25/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-369,https://www.elimparcial.com/mexico/2026/08/25/mara-lezama-su-familia-y-el-precandidato-gino-segura-acumulan-283-movimientos-en-vuelos-privados-pan-exige-investigar-quien-pago-los-traslados-y-posibles-contratos/
-26/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-370,https://www.reforma.com/vuela-mara-lezama-en-aviones-de-proveedor/ar3264461
-26/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-371,"Grupo Animal retomó la polémica por los presuntos vuelos privados atribuidos a Mara Lezama y a integrantes de su círculo cercano. La gobernadora rechazó los señalamientos y negó haber realizado la cantidad de vuelos difundida en investigaciones periodísticas, manteniendo el debate sobre austeridad, transparencia y posible conflicto de interés. https://grupoanimal.mx/estados/vuelos-privados-mara-lezama-morena-deslinda "
-27/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-372,https://www.publimetro.com.mx/noticias/2026/08/27/costo-de-vuelos-de-mara-lezama-equivale-a-13-anos-de-su-sueldo-segun-reporte/
-02/09/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-373,https://www.nmas.com.mx/opinion/morena-debe-exigir-cuentas-a-mara-lezama-gobernadora-de-quintana-roo/
-03/09/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-374,https://grupoanimal.mx/quintana-roo/politica/empresarios-transparencia-vuelos-mara-lezama
-03/09/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-375,Empresarios de Quintana Roo solicitaron a Mara Lezama transparentar la información relacionada con la polémica por presuntos vuelos privados y aclarar el origen de los recursos utilizados. Integrantes del sector privado advirtieron que la falta de explicaciones puede generar dudas sobre posibles conflictos de interés y afectar la confianza ciudadana. (https://grupoanimal.mx/quintana-roo/politica/empresarios-transparencia-vuelos-mara-lezama
-05/09/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-376,https://contralacorrupcion.mx/mara-lezama-contrato-a-empresas-ligadas-a-red-de-huachicol-del-dueno-de-miss-universo/
-14/01/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-377,https://www.reportur.com/mexico/2026/01/14/fitur-gino-segura-roba-a-lezama-protagonismo-ante-hoteleros/
-07/01/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-378,https://politico.mx/2026/01/07/una-mas-de-morena-exhiben-al-senador-gino-segura-por-usar-tenis-de-mas-de-30-mil-pesos/?utm_source=chatgpt.com
-07/01/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-379,https://saganoticias.com/actual/senador-de-morena-en-polemica-por-depa-de-lujo-sin-declarar
-07/02/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-380,https://tribunademexico.com/odiado-temido-gino-segura-emerge-como-rostro-reemplazo-mara-lezama/
-08/02/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-381,https://laopinionqr.com/rafa-ya-es-el-cisne-negro-del-2027-pero-la-gubernatura-es-una-negociacion-diferente/?utm_source=chatgpt.com
-17/02/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-382,https://www.eluniversal.com.mx/opinion/mario-maldonado/quintana-roo-la-guerra-anunciada-entre-morena-y-el-verde/
-20/02/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-383,https://laopinionqr.com/con-el-licenciado-rafael-marin-tengo-una-gran-relacion-dijo-gino-segura-y-llama-a-la-unidad/
-30/03/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-384,https://caribepeninsular.mx/criterios-distintos-resuelve-ieqroo-retiro-de-bardas-de-marybel-y-gino-con-trato-desigual/
-30/03/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-385,https://laopinionqr.com/papelon-del-ieqroo-ordena-a-marybel-borrar-bardas-pero-las-de-gino-las-borraran-gobiernos-de-ana-paty-y-estefania-documentos/
-01/04/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-386,https://quintafuerza.mx/quintana-roo/se-fortalece-gino-segura-en-q-roo-tras-llegada-de-marin-mollinedo-a-yucatan/
-15/04/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-387,https://laopinionqr.com/gino-ya-actua-como-gobernador-y-diputados-de-la-4t-pan-y-pri-le-aprueban-sin-debate-una-iniciativa-ciudadana-documento/
-19/04/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-388,https://diariocambio22.mx/gino-segura-defiende-a-xcaret-afirma-que-ya-retribuye-economicamente-al-pueblo-maya/
-19/04/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-389,https://noticaribe.com.mx/2026/04/19/exhiben-amarres-politicos-se-reune-gino-segura-con-diez-de-los-once-alcaldes-morenistas-de-quintana-roo/
-19/04/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-390,https://caribepeninsular.mx/bardas-politicas-niega-gino-segura-autoria-de-pintas-con-su-nombre-y-puno-socialista/
-20/04/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-391,https://caribepeninsular.mx/alcalde-de-morena-el-puno-del-senador-gino-no-es-una-falta-de-respeto-es-un-tema-del-partido-video/
-21/04/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-392,https://laopinionqr.com/la-rebeldia-de-atenea-vuelve-a-incomodar-al-marismo-sus-condiciones-para-apoyar-el-proyecto-gino/
-10/05/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-393,https://laopinionqr.com/le-alcanza-a-gino-solo-con-el-oficialismo-local-para-ser-candidato-en-el-2027/
-24/05/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-394,https://laopinionqr.com/con-la-senal-de-gino-ahora-un-grupo-de-diputados-de-la-4t-da-su-apoyo-al-senador-de-cara-al-2027/
-19/06/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-395,https://www.poresto.com/quintana-roo/2026/6/19/gino-segura-y-su-camino-hacia-la-candidatura-cuestionamientos-y-polemicas-marcan-su-trayectoria.html
-23/06/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-396,https://noticaribe.com.mx/2026/06/23/determina-teqroo-que-aparicion-de-menores-de-edad-en-publicidad-de-gino-segura-chepe-contreras-y-jose-luis-chacon-no-vulnera-los-derechos-de-la-ninez-ni-pone-en-riesgo-su-integridad/
-24/06/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-397,https://politico.mx/2026/06/24/gino-segura-y-rafael-marin-chocan-por-la-candidatura-de-morena-en-quintana-roo/
-25/06/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-398,https://diariocambio22.mx/gino-segura-se-equivoca-y-marybel-se-posiciona/
-30/06/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-399,https://drvnoticias.com/gino-segura-mostro-su-peso-politico-cierre-de-campana-o-arranque-al-2027-editorial-david-romero-vara/
-26/08/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-400,https://potosinoticias.com/2026/08/25/vuelan-en-familia-y-con-su-precandidato/?wpappninja_v=6a8e747f84db5&utm_source=chatgpt.com
-07/09/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-401,https://noticias.canal10.tv/nota/politica/pide-calma-y-unidad-eugenio-segura-a-dias-de-salir-quien-sera-el-candidato-a-la-gubernatura-2026-09-07?utm_source=chatgpt.com
-07/09/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-402,https://laopinionqr.com/lo-que-viene-no-es-simplemente-una-continuacion-mara-manda-una-senal-de-que-la-sucesion-esta-definida-a-favor-de-gino/
-25/02/2026,Quintana Roo,Ana Patricia Peralta,positivo,ana_paty-403,https://24horasqroo.mx/2026/02/25/ana-paty-peralta-9/
-19/05/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-404,https://diariocambio22.mx/tesorero-de-ana-paty-peralta-habria-cobrado-dos-cargos-simultaneos-entre-cancun-y-chetumal-documentos-exhiben-ingresos-liquidacion-millonaria-y-crecimiento-patrimonial/
-30/05/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-405,https://laopinionqr.com/por-que-suman-a-vero-lezama-a-las-encuestas-por-la-gubernatura-la-colocan-en-un-empate-con-ana-paty/
-01/09/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-406,https://www.elfinanciero.com.mx/food-and-drink/2026/09/01/asi-la-taqueria-poc-chuc-el-local-favorito-de-de-la-alcaldesa-ana-paty-peralta-en-chetumal/?utm_source=chatgpt.com
-01/09/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-407,https://imagendeveracruz.mx/nacional/alcaldesa-en-quintana-roo-es-investigada-por-nexos-con-cartel-de-sinaloa-eu-le-retira-visa-20260901-0089.html?utm_source=chatgpt.com
-02/09/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-408,https://www.debate.com.mx/politica/ana-paty-peralta-niega-cancelacion-de-su-visa-acepta-que-su-esposo-es-empresario-de-tabasco-20260902-0175.html?utm_source=chatgpt.com
-11/03/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-409,https://www.jornada.com.mx/noticia/2026/03/11/sociedad/mexico-y-pfizer-acuerdan-produccion-de-vacunas-contra-el-covid19-para-el-2027
-01/04/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-410,https://www.eluniversal.com.mx/opinion/mario-maldonado/aduanas-se-va-marin-merino-toma-control-y-ulloa-prefiere-birmex/?utm_source=chatgpt.com
-22/05/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-411,https://www.yucatan.com.mx/mexico/2026/05/22/yerno-rocha-moya-enlace-claudia-sheinbaum-los-chapitos-cartel-de-sinaloa.html?utm_source=chatgpt.com
-29/05/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-412,https://grupoanimal.mx/sociedad/birmex-abasto-medicinas-pais?utm_source=chatgpt.com
-29/05/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-413,https://www.sdpnoticias.com/mexico/decreto-de-sheinbaum-otorga-a-birmex-control-de-la-compra-de-medicamentos-en-mexico/?utm_source=chatgpt.com
-10/07/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-414,https://www.proceso.com.mx/nacional/2026/7/10/exdirector-de-pemex-enfrenta-ahora-senalamientos-por-contrato-de-4-mil-838-mdp-375823.html?utm_source=chatgpt.com
-15/07/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-415,https://oem.com.mx/elsoldemexico/analisis/el-espectador-el-contrato-que-conecta-al-ex-director-de-pemex-con-poderosos-millonarios-31125835.html?app=true&utm_source=chatgpt.com
-01/08/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-416,https://laopinionqr.com/?utm_source=chatgpt.com
-03/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-417,https://www.elimparcial.com/mexico/2026/09/03/director-de-birmex-suma-al-menos-19-viajes-internacionales-y-reporta-la-compra-de-dos-departamentos-por-22-mdp-de-contado-segun-declaranet-y-migracion/?utm_source=chatgpt.com
-03/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-418,https://www.eluniversal.com.mx/?utm_source=chatgpt.com
-03/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-419,https://www.eluniversal.com.mx/nacion/pan-exige-investigacion-patrimonial-y-auditoria-a-carlos-ulloa-director-de-birmex-pri-pedira-su-comparecencia/?utm_source=chatgpt.com
-04/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-420,https://www.sdpnoticias.com/mexico/claudia-sheinbaum-defiende-patrimonio-de-carlos-ulloa-titular-de-birmex/?utm_source=chatgpt.com
-04/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-421,https://www.infobae.com/mexico/2026/09/04/carlos-ulloa-explica-que-pago-224-millones-de-pesos-en-departamentos-solo-con-ahorros-y-herencia/?utm_source=chatgpt.com
-2026-09-09,Yucatán,Pri,neutro,e3556,https://www.yucatan.com.mx/merida/2026/09/09/pareja-pasara-mas-de-56-anos-en-prision-por-agredir-a-una-menor-en-el-fracc-ciudad-caucel-de-merida.html
-2026-09-09,Veracruz,Pt,neutro,e3563,https://news.google.com/rss/articles/CBMizgFBVV95cUxNYjgzOVQ4N1k1b2xzZXA4YUd0dkVmdEtuWVloaHJvc3NOaWlUOFZnWjMtQk5iWE1RbjRfSGpyNzRjUWNwLU5MejJUSU4xNXVxQU44NWFLMmNrTGd3SHJTWDVmRlBTdHVyMzhWRXZ1aHdyY25ELVhPc1BGNzZuR3dXVTJVQy1yM1hQRzRmUy0tZDFubl9vUUVBcjRURnJhb3Znel9McEZOZHZPcDAySEZsTGY5QjBYTzhEakdBRGFndE0wekswUUxRQTBVSWJaZw?oc=5
-2026-09-09,Oaxaca,Pt,neutro,e3566,https://news.google.com/rss/articles/CBMi7gFBVV95cUxOdmJ5MEF0cmdKWkR6WlFVelJ6enRna0JJUGQteUtWalJuQnR4dkZsb0pDd05zRW5EQmpkRnZKNGU0anZoT2syV0RVYmR2TURfejR6Vm1jUlhsMXJqaFVKNDFsMWwyQ2poRzJqN3VVQ05NaFhCaXhnZWVtTEx2NVJMT1NmQnJjRnNYa2h0emhIZDV6MnM5TDludWUyNWNrZnFHRDkwS3F2SkxqLTc3MnB5ZU1Ld0w5VEJVMkZSMUN1SElWWjQzeFZ1LVVlSHlBZmRwS2RFTUhoWEZRWlBuZW05Umd3VVFfQlpmR05ObTRB?oc=5
-2026-09-09,Oaxaca,Congreso Local,positivo,e3567,https://news.google.com/rss/articles/CBMiyAFBVV95cUxOMWdEYUg1Mzl0Wm0tc2lFQWxQblZQNFhjbUxzeHQ4OXZqd21qaERlbjFDTDVHR3p3YmE3VW8ybTE5OUlBMHVvSUpOZzNWTng3Y1ZVVDhBR3otc3dKWE5oT3kwMEJyUGNnN0dEb2RzQ3B3SW1lRDFpek1neXhOT0V0YjFwYkNYMVZrTWFndndOWVI4YW5IQ1UwckZzcFZEWThoUVRUYUhLSDh5TXBxNnZxY2hNUDBIb2lDQnF3ZzJzOWZzXzZwRFJjTQ?oc=5
-2026-09-09,Oaxaca,Congreso Del Estado,positivo,e3568,https://news.google.com/rss/articles/CBMi9gFBVV95cUxPSHhBWnFQR0NNQlhTcmI4YnFUYm1KbmItb2dVczQxejNMZTNFZUR4QU9zSnBJaU9pLUFpYkFhaVk1NC1hakFuQVB2OTYwS0Z4OUl4Q1lFdTYxV2szdE81T2xoOTlzQlNnSkVFS3k1WGRVTEFlR0JTdHlDX09mME11Vm96Wk9RbE56RzllU05sb1RtaXZ2ZGMxZi05b09PSW01M3E2czNUUUxtamZVNDFVdURsQzJaLXl4b1ZhZzdLVElIWlVfOGcwejFMU0tLQXF4TElQUGxfV0EwY2dYa2ZGLVNmSGpfQ0N4T3ZFV2ZHTHNOSG9aMFE?oc=5
-2026-09-09,Oaxaca,Ayuntamiento,neutro,e3570,https://news.google.com/rss/articles/CBMi5gFBVV95cUxPX0dXR2txQXBTd0JZakQ5WTJxNXBqcXdEbXZGbEZFMUVQTHItcFdiVnNqekI4MkpQNzhYNlFieTRjZm0tSXdtaTMwc0NlaGJTeVpqX18ydVZURllUcEhVeFV1V0tRSzBERm90Y01CWTlWSUxYd0lYbG1jLVAyeWF1MENtR01xSXZWNzlIbXJZd09ESEJzN3VEeXp2X0xRZzBodWZZVDNYRW9vd1VMdFVlRDdWY3BkNTRZZWtYdFJFYmkxQU5sRFh1MlZSRHZjbllYR3gyVmJQNkZsSGFtS3E1LXhETm5kZ9IB5gFBVV95cUxPX0dXR2txQXBTd0JZakQ5WTJxNXBqcXdEbXZGbEZFMUVQTHItcFdiVnNqekI4MkpQNzhYNlFieTRjZm0tSXdtaTMwc0NlaGJTeVpqX18ydVZURllUcEhVeFV1V0tRSzBERm90Y01CWTlWSUxYd0lYbG1jLVAyeWF1MENtR01xSXZWNzlIbXJZd09ESEJzN3VEeXp2X0xRZzBodWZZVDNYRW9vd1VMdFVlRDdWY3BkNTRZZWtYdFJFYmkxQU5sRFh1MlZSRHZjbllYR3gyVmJQNkZsSGFtS3E1LXhETm5kZw?oc=5
-2026-09-09,Chiapas,Congreso Del Estado,neutro,e3572,https://news.google.com/rss/articles/CBMioAFBVV95cUxPdllISGlBWWV5Z1JuS2VNMHc3TlZ1cUxoMWNaQmdiUThnUDQzcmVGUXN0U2hCaDNLM2ktWDNWdWF5SUNDdEJzWGU4cDNZd1FhRkJlbVNyWm5TM0RMUGxENGNoTENZNC1hNk5tVXF5M3JxRnI2RmlTYXdxVWpyTkliRGlhajZzV2RuLTdEeG1PSHQ4ZnpNbVJIdFlubnA4ZTdN0gGmAUFVX3lxTE1XUzRLQlc3dGxGTGFueG9JcXktS1FOclRfYVZKQlFVeEU5S01HQWNRNGNyd2VBWV9ESW5FRmxpa0JaOGJCMlNhdzlYV2ZwTzNnVUR5S0JRQm5rTExWcGRkSFBIdEx4R01zWFdzT2xDQlYyYkJOMDlCdGNpbGVmeGN3Z3V1Y0FmZEpYdWtTc1Z4Z0lFUzBITXd3MjlyckJXMEZrUVFlNkE?oc=5
-2026-09-09,Chiapas,Gobierno Del Estado,neutro,e3573,https://news.google.com/rss/articles/CBMikgFBVV95cUxPeE5zMHFRallZMHJVR3N6ZVlCenlLV1RMRVVwTUo3SHdfbDhyNi1vT0V2NTBmTndzVUdVeUdLY21fQVBINF9oa2RKZWhuRVNmMThRTjZCbldKSUMyTTIybVBmbkNYaGp1ZGt3WlRmQ1V2dXFOckxrNE5MRWlmbXhHcmVjSE9iNzVPeWh2Um1USEM3QQ?oc=5
-2026-09-09,Yucatán,Gobierno Del Estado,neutro,e3580,https://news.google.com/rss/articles/CBMiYkFVX3lxTFBDMzc0YW5zU3h5bjQ5SHFNeDI5MWR5WTFYOEQ3QlQ5TTJwLVdmcmZUZnhtLUtVSGZQanlqaFlsOWFKWHQ5b0RjWjNMVHMxN3I3U2RUTWxfU1pPSEJYZXFkZDdB?oc=5
-2026-09-09,Yucatán,Pri,neutro,e3580,https://news.google.com/rss/articles/CBMiYkFVX3lxTFBDMzc0YW5zU3h5bjQ5SHFNeDI5MWR5WTFYOEQ3QlQ5TTJwLVdmcmZUZnhtLUtVSGZQanlqaFlsOWFKWHQ5b0RjWjNMVHMxN3I3U2RUTWxfU1pPSEJYZXFkZDdB?oc=5
-2026-09-09,Yucatán,Gobierno Del Estado,neutro,e3582,https://news.google.com/rss/articles/CBMibkFVX3lxTE1LQ0tPZms5Snpnb2N4TUVhSlZkUzZRTlp5a0JMTTZLSmtpTjl6S1BfYnJ4VDZ0cjMwc3h6Wm5mOEkzVy1hTk9LZ1IzSk9mZXFNTkZCb2Z3ZzVXWFlGRzJvaDU1X1UtZmhYN2s4Rjh3?oc=5
-2026-09-09,Yucatán,Morena,neutro,e3583,https://news.google.com/rss/articles/CBMiVkFVX3lxTE91d1l3MHBxS0JrMFdxN2kweUgwY1d5V29oVm5lMWpiTHhvTmtQdEJUU0VmNEZGTWxZNWVBOXNmdjBnZGpZUmpkSTUxWGtEc2J0UHFRNDhn?oc=5
-2026-09-09,Yucatán,Gobierno Del Estado,positivo,e3584,https://news.google.com/rss/articles/CBMibkFVX3lxTE1KT2V4WGwtbFc5ODc3bFBKeEJscGZaS2UwNW1oODJYZzgzUnlRdHI5ejFfMHI1Q2s4dndteEdfM2RVaGVKbFFXa1duX3FXVnZyYUZfZ0ZZVUNGRGZHNGlBSGJGSmFJQ1pCb25wT0Nn?oc=5
-2026-09-09,Quintana Roo,Morena,neutro,e3585,https://news.google.com/rss/articles/CBMiowFBVV95cUxPb3loVGpuUEF3Z1AzblVkc1A5b3lyMmRrdEEyd2ZJVVNhLVNUWS1RUDhKSDB2V1MwdzlhWkMzYWF5YkkyZklmRk10ZExFUGQ1TE5QbmVsQ1d6VVZnam1UTlZDQ1FBYkVhSjlFVzk0Z3pHSmlObjg4NE5aM1pmT3JjeXpraVptWVFUU2VxRVRJNVYwcmp2YThpZTJuTUpVaTdFS3Jj?oc=5
-2026-09-09,Puebla,Congreso Del Estado,neutro,e3587,https://news.google.com/rss/articles/CBMi2AFBVV95cUxNeS1CaHhSeUNhamJTXzZJUEJrSk9rc3lYNE5LbFdPcDBoN3hqTWNTdUhDZ3dvVm5KbXIzb1Z2LW9udlFlZzI2ZldNYzdndk5KWXUwUGttd05JNEVYYWpKTlFQSlN2cEtCMUs0a2lnQUFsVWtTLWhqY3RsQVpRUmFVRFR0aTlJTWhwblFJeGE1ME9HRndYWXltbUIzOEFPUExqRFVCQTgxOGpZX0doaFUxQVQwOGdoQTBxVTRzcnAtUXlhR3Z2di04UU5fZjBMdFhKOVJJdThSZjg?oc=5
-2026-09-09,Puebla,Pt,positivo,e3588,https://news.google.com/rss/articles/CBMiyAFBVV95cUxNRUZfYTdDX1pjR2JYS093Y1ptVm5IcG12dk51YzAwdVNtM0szb0ppb0ZBNFJnZEFqemFPQnFKaW5pel9uS2F1Y0M0Z3c1ZDFKald1bm9jUC1LUmptbWxfb3dXWFNkcjJEZ3JMdGlsOUl4ajZJeHVFYlBPakFZQUxOaGh0Z1JwRU1IQUhiekhmREFuYl9IYXgzUUI4TzEzeVl6aERFR190M25hRzVpLXhORU1aeU9ROExNZmhBNVphTTlzRnR0UklOMg?oc=5
-2026-09-09,Puebla,Gobierno Del Estado,neutro,e3591,https://news.google.com/rss/articles/CBMisgFBVV95cUxQenpyOVdBUGozbVFpcnhtc3IzTklVcFUtNWJNOWdHLVpWV2NDTkVlRnFnRG1hWHZSX2lLTDlwMjJnQjRINXlNTjRUdjFSUGlWN1pIM0NDRzQxZ0xaZFdyLUFqRzZQRjRSRWwxU2I4TUhHeFRJRGRyZHdZanFmcW9jUkJWS2hsS0J2elpmYm92dXRpOU5HdDVfTTRqS2JacWJZbkRXYTh3MmdvVURXMEc3dndB?oc=5
-2026-09-09,Veracruz,Esteban Bautista Hernández,neutro,e3618,https://oem.com.mx/diariodexalapa/local/comision-nacional-de-morena-definira-militancia-de-vicente-aguilar-senala-esteban-bautista-31987231
-2026-09-09,Veracruz,Morena,neutro,e3618,https://oem.com.mx/diariodexalapa/local/comision-nacional-de-morena-definira-militancia-de-vicente-aguilar-senala-esteban-bautista-31987231
-2026-09-09,Veracruz,Pt,neutro,e3619,https://oem.com.mx/diariodexalapa/local/congreso-de-veracruz-asegura-proceso-transparente-para-seleccion-del-titular-del-orfis-31986218
-2026-09-09,Puebla,Pvem,neutro,e3623,https://www.angulo7.com.mx/2026/noticias-puebla/miguel-marquez-diputado-local-del-pvem-se-deslinda-de-granja-de-criptomonedas-en-tlaola/721762/
-2026-09-09,Puebla,Pt,neutro,e3623,https://www.angulo7.com.mx/2026/noticias-puebla/miguel-marquez-diputado-local-del-pvem-se-deslinda-de-granja-de-criptomonedas-en-tlaola/721762/
-2026-09-09,Puebla,Morena,neutro,e3625,https://www.angulo7.com.mx/2026/noticias-puebla/morena-debe-evitar-nepotismo-en-cargos-de-puebla-rumbo-a-puebla-parra-tras-difusion-de-lista/721734/
-2026-09-09,Puebla,Pan,neutro,e3625,https://www.angulo7.com.mx/2026/noticias-puebla/morena-debe-evitar-nepotismo-en-cargos-de-puebla-rumbo-a-puebla-parra-tras-difusion-de-lista/721734/
-2026-09-09,Veracruz,Gobierno Del Estado,neutro,e3628,https://news.google.com/rss/articles/CBMi6wFBVV95cUxQaUMzekJHWGlIbTNGdVJ3YmNjSkNMT1htaW4tTjdtTFVyYmx4cjRvOGRYd1A3VkI3M0VFaFhQZ2p5REctRVVDMWM3WnlyWHJyZjdEYk5ITHcydzF6TXlfOF9DWlprdnlMT1U0TkhMZ2ZZUmRUM0oyenBzLXE4dDVXeC00RVI1UjFDZGVSMDRFWVgtQ3dNa0FfVjJNeGRPXzFDODl3anJCV2lZbV9VZkwyREZZWnhyTDdVU3dTMDNjdzhlSENGS0FrQXFtTTZOUTJqWktpMDI5eWtqa0ZrVU4zcmZ6dlE2WVZ0T3Rv?oc=5
-2026-09-09,Puebla,Alejandro Armenta Mier,neutro,e3634,https://news.google.com/rss/articles/CBMilwJBVV95cUxOSkRYYzN0Uzltb2JaRnYySnNfeHVrWEhPS25DMU8xdERteUxvbnZ0eF9HeU41VG8tNkwzNjJpTUlmSjdCQjBnRkVmcmhKNWpFa3FmNGRpUjJZdGM2cHRkOU9JTm1IQzBqZU4tQmpPOUhDcGhrdUVKY1BPQ2duRDJUWjh1dnJzcmhVUnhoWGF5dTBjVXNKUXZNZ3ppWTRiQkwzdFAxX09jU0QyUnFNX090aXhtODhmRlJzTmlCMEpkVWdPV3BvLXNlM2JpTXZzYWRTNEQ3UDc0T01CRFVLX3dRTGlwcUtnbzMxTGRRWVh1d09UYUdyV1ZOZ1UyR1ZxYmxhXzFmUUtwQkZpejJzbE1JSHhXTzlIM1E?oc=5
-2026-09-09,Veracruz,Rocío Nahle García,neutro,e3635,https://news.google.com/rss/articles/CBMizAFBVV95cUxQQjJrLXpURkxEUWgxRHh1R2s4QUppMjZTMFluX3lHeTFfTUJTMFlaRTBVLWkxVXY3aWNzTml6T281NlNDUHhmZW5fbGtEUnFhdGVET0YyZG1qck5NWEtQOWlURkpEU3FEck5ZbEJwamFNbmNSSW5YYm9GYXBuYmVveTdaQVI2LWxwLVQyYmk1VFA5eUlxVm9aN3FyeEtwR2hIb2hYaWktZWlkUENqS201SVZlV3RDNkxRckhyelRRSUZGaXZYU0Y4dDBCV0Y?oc=5
-2026-09-09,Veracruz,Morena,neutro,e3635,https://news.google.com/rss/articles/CBMizAFBVV95cUxQQjJrLXpURkxEUWgxRHh1R2s4QUppMjZTMFluX3lHeTFfTUJTMFlaRTBVLWkxVXY3aWNzTml6T281NlNDUHhmZW5fbGtEUnFhdGVET0YyZG1qck5NWEtQOWlURkpEU3FEck5ZbEJwamFNbmNSSW5YYm9GYXBuYmVveTdaQVI2LWxwLVQyYmk1VFA5eUlxVm9aN3FyeEtwR2hIb2hYaWktZWlkUENqS201SVZlV3RDNkxRckhyelRRSUZGaXZYU0Y4dDBCV0Y?oc=5
-2026-09-09,Veracruz,Rocío Nahle García,neutro,e3636,https://news.google.com/rss/articles/CBMiwAFBVV95cUxPSFc5SWh1WEx6alpLU05mVS1vV2tkcE5zb2RMVWI2YVpzaG1CVTh4UUM4MU13NVhwNXFSdlZsLWR3Y05aYTl4UkpOOHBfbTN3MkFnZ1lmYlBvYm1sUms0dUZNYnR6ZEg1c0pzWTNwRUNhOWRHRDJOT2F1OXg3UzZlLUgyc05lbzhqLUpBejRDc0l5WVdUUGs1eWdncFpZaVdZYUtMRmsxWlc1bncybGp6SlF3SVQ1a3U4NER1MEVmNXk?oc=5
-2026-09-09,Veracruz,Rocío Nahle García,negativo,e3641,https://news.google.com/rss/articles/CBMiUEFVX3lxTE1WN0ZycEZoZzlDQVZxV1VzUFgtbEhvT0RMQUlTemJVM28zS3ExTXFuM1pKTVlrZFJwSjI1OXAwSzBPUW5icnZ1Y0g1ZURaNkxD?oc=5
-2026-09-09,Oaxaca,Salomón Jara Cruz,neutro,e3642,https://news.google.com/rss/articles/CBMigwFBVV95cUxNRTRjYnJJNHVFYmFJczdReDFJQ1dhQzBYOE1UR296eFlqYzBMa3UxcWQtSHdRR0U1WVpfZmFFbzhIMFIzZ1k3WHNIdmNRYXN5VkhwbDk5UV95TFJmSFV6ZHFMQV9jUml5ckZTeDZPNnEtWk1rc29KMnJYTTVwb3lLTDEtQQ?oc=5
-2026-09-09,Puebla,Morena,neutro,e3644,https://news.google.com/rss/articles/CBMiwgFBVV95cUxPT0ZRSThiLWZYNm9rU2w1am5WMG5NbDlVanlpQ0NfeU5VaFpkUW1UNHFvcHdXcmd0eEpJRnBQS2R2WEtHbm1WTEU5bHN1cHRJY2hJLWFPYnlqUlY1Nkx1QWN6bHYwdlZVX0dXNFBiSUdxYkMzZk1nUG10R0FIMEFMNVJvOVJBeVg0Z1RTVGVFMWMzNWg1MXd4akswb0Zoa2JZQmNVNlBXQ1MzQXdFTE1wNmlxeWhhTTBQUWRiZU1RV0NSdw?oc=5
-2026-09-09,Veracruz,Esteban Bautista Hernández,neutro,e3661,https://news.google.com/rss/articles/CBMitgFBVV95cUxOWlpMMFJoREo1M19RcFJlWnYwb0JHQklYZC13YjI1NEZzRVNpbUV0QVJhU1hoVmllWm54WERqRm9RMUVuNkF4Y0xLQzdaOFBHdVBiRWtQS3BPdi00c0NZOFNoMlVCdGdDNkVzeFI3dV9rUmdkSXFyRVdxZFRzaHVjb3FRZTBHZHhQTTc3Rzd3bzlsM0lZSmZ4eTMtYVY1c1QtdGpJOWN0NzFVSi1BRmp1OEx1OWVsdw?oc=5,Fiscalía de Veracruz recibirá ampliación presupuestal de 100 mdp: Esteban Bautista. - Billie Parker Noticias
-2026-09-09,Campeche,Morena,neutro,e3678,http://campechehoy.mx/2026/09/09/morena-corre-a-inzunza/,MORENA corre a Inzunza
-2026-09-09,Yucatán,Gobierno Del Estado,neutro,e3683,https://news.google.com/rss/articles/CBMibkFVX3lxTE5YM3V1OUFheUpJb19DUWxtTUVjamNNR2RMWlJTUW1kV25BUWpCTWlFR0xhcnhva0RNbWRGWXJIQlY5SEhvVE00Z1JBNHFHZWU1eHBXZTZKVlVtVHNoUTZ3b1IxRW9rTHg0c25UQW1R?oc=5,Renacimiento Maya transforma los acuerdos internacionales en oportunidades de desarrollo regional y empleos bien pagados - Gobierno del Estado de Yuca
-2026-09-09,Veracruz,Fiscalía General Del Estado,neutro,e3697,https://news.google.com/rss/articles/CBMizwFBVV95cUxObFhoMERwa0tFLXQ1QTVoME1hUkdJYkY1OE1JcmRqY0NBX0ZNNkViekJIWV91alQ0T01FVks3Vk5BaG5ZOS0wVmpRQnNTVE9KOERqY3RUanEtSngxNnE5a1k5VHRqVUtoVEZramVMMnBnc3picXR3eWx5REhubmpIVlg4dV9MTi1uN1FPczIxVG1VYXdTTUlJUHRfUklsTzRXOWhBUE9JQnZUUlBCZGcyeXRYcnVCWFVUTlZ2SFY3alc3NGgyb0J0MkJweHE3djA?oc=5,Congreso de Veracruz autoriza 100 mdp adicionales para fortalecer la Fiscalía General del Estado - Golpe Político
-2026-09-09,Veracruz,Rocío Nahle García,neutro,e3698,https://news.google.com/rss/articles/CBMixAFBVV95cUxQcXBscmZicGMyYmZ4OHNSbnI3YS1xU2FZSDhFNkFWU0RUUFlwR1FvTlloWjhCZHVlRWlUejAtdTY5QlZZdGRZY05UTDBhNExNeF9jeFZxSVpDZ0cwMF9GNk5DYW5ZbDF0TTgxUHhxOEdOWG1ZczMyTnZKU0tNMUpMWU5WdGVOT2FwOENYTVE3SUZobFluZ0R0MHY3ZG9uRHFyOWxZRkttbjdrOG9fcXVGTDlSUW9NNzF2RHB0dUcwVEZRQU9s?oc=5,Rocío Nahle pide al Congreso 100 mdp más al presupuesto de la FGE - La Silla Rota
-2026-09-09,Veracruz,Rocío Nahle García,negativo,e3699,https://news.google.com/rss/articles/CBMi1AFBVV95cUxNSV9WVUtGVnZnbGtUbkU0RGJoM1hISXJRY2dqdjJwcVBlWHkyN19TZkd3dVpSWkVSczFzZDJkbWttR2pOcS16RmNwM1h2bUEtWk02VHh1VGFLMFNpd2c2bVR5dWdkUExOYlJ6cERVMWk0ZWl0dGJJYjFFd2E2UXZXeHJTbW1vTFpnb3UxOGV2NmtLOTM1SVJ4UWpNd3lLUXNNejdJZTF5eC1RUi1ZeUtGdmxNU3EteC1mUERnblBSOHVyNnhGOEFxbDN1ZmFvTFBWTEtJQtIB2gFBVV95cUxPUXhFQW83RUtUV0FnZDRWSVVtYlh1bHZNaTFHX0c1eWttamM4YVQ1SGktbENyaS0tekxrMV9xdm9kbnFJTGJ5RVBpMjMyZlhKeTg4QVhKR0NKODhIWkFvMUk3eFNEZ3A4NHBuVzhvV1V3NUp1bUoxWlIxeFdYV3FXYWpUZnZSejBxYUdOcmZQTVdHZGRRSHhOeEpsaVZfY3dTYWU0UzNja182aFYxai01YXhnQkoxdTREcDl5YVo5WEJHeWtkUzZHTmMwMEtnRVIzWnlOS2RUcHkxQQ?oc=5,“No tengo cuentas en el extrajero”: Rocío Nahle responde a señalamientos por presunto bloqueo de cuentas ba... - Imagen de Veracruz
-2026-09-09,Quintana Roo,Morena,neutro,e3700,https://news.google.com/rss/articles/CBMikgFBVV95cUxPZGZlYWk4Y09DdkVidlhKa2gyd016b0tFVzlEVnBsVHdkTHduY3dTX3pXUUd4YXJmZWtIMXpRcXdDZ2p3bm9jVVFscTFIY0pScTRWZGpYcmlZdWRNZ2IzUWhZMHlmWWdFcDZhdnQ2NmRPcURvbDVSR0syelBBUFhVbWdyVy1iZWxfM0pOODlIVUR2dw?oc=5,Morena deja en pausa sus encuestas en Quintana Roo - Quadratin Quintana Roo
-2026-09-09,Quintana Roo,Morena,neutro,e3701,https://news.google.com/rss/articles/CBMivgFBVV95cUxQYVFIQ3Q2SHN1WEpnUDQxMUtwSzhwSDBuTmVCd1RTSU9WcWR1dWxrdldfZmJYenVXaklOTXNsYzdQbWpjNHhfbXB1VVI4YkxGbVo0SFlzalNmR2dMVTc0dk5zVkFBR0l5MDJ4d3pxX0ZjS2kzaE5XbzhmcW1mdXdkb2kzMjMybHc5dFFEMVQ3RE5wVF85SXBnMFRScnRKN2Q1X1FNcXI5clNBTFlKVUtDS0RqOGdDcHlIcTFheExn?oc=5,A VELAR ARMAS: Morena aplaza definiciones y prolonga la disputa interna rumbo a 2027 - Noticaribe
-2026-09-09,Quintana Roo,Morena,neutro,e3702,https://news.google.com/rss/articles/CBMitgFBVV95cUxPQnJVRmVzcDBzbW1Ldkw4Z245SWhvT2xDWXV5X0FuYTBHV2xFbmJvODY1aW50dTBWT1BxQjFGTG9VclF1a3NXNThMTjdDZ0VBZjhkR2txbS0tR25VaU5GRU1UWmFjRnRVYUZCM0NVWE4tNlFWOU9OMHJhRUNaWmlKUHZtdWNvX3I2U3hpMDMtVmw3QnhPV2x1TjBUZ2pxYU9TUjZMQjAweG01aVdrTE0wTEFFSk85UQ?oc=5,Ariadna Montiel pone pausa a Morena; Quintana Roo deberá esperar hasta diciembre - La Palabra del Caribe
-2026-09-09,Quintana Roo,Morena,neutro,e3703,https://news.google.com/rss/articles/CBMihwFBVV95cUxQQXZHajJWZjJUSGNFRHd3VVRha1VuTlRYcjUtd3RjdmltNGNzdm1HSHJOWVVFSHpyVTAybDVwTnZzUGZ3Q0g2M2Y2NFlUNGNjVEEzWldhU0pCcXV1Xzd6b2t3TnZka0VqWTREOGNWWm0ycXBqcDBpLVlVQUlPY0dxSVYySUJiMFE?oc=5,"Con calma, no hay prisa, dice Morena a aspirantes - Meridiano.mx"
-2026-09-09,Quintana Roo,Pri,neutro,e3703,https://news.google.com/rss/articles/CBMihwFBVV95cUxQQXZHajJWZjJUSGNFRHd3VVRha1VuTlRYcjUtd3RjdmltNGNzdm1HSHJOWVVFSHpyVTAybDVwTnZzUGZ3Q0g2M2Y2NFlUNGNjVEEzWldhU0pCcXV1Xzd6b2t3TnZka0VqWTREOGNWWm0ycXBqcDBpLVlVQUlPY0dxSVYySUJiMFE?oc=5,"Con calma, no hay prisa, dice Morena a aspirantes - Meridiano.mx"
+fecha,entidad,actor,sentimiento,evento_id,fuente_url,titular
+15/08/2026,Yucatán,Joaquín Díaz Mena,positivo,manual-1,https://ejemplo.com/nota,
+08/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-1,https://ejemplo.com/nota,
+13/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-2,https://tribunacampeche.com/13/cuestiona-abogado-legalidad-del-procedimiento-contra-jose-a-audiencia-inicial-esta-programada-para-manana/733655/,
+13/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-3,https://tribunacampeche.com/13/rapido-se-vendieron-ya-tienen-quien-se-preste-a-transas-y-autonomia-es-simulacion-escriben-cibernautas-por-felicitacion-a-rectora-fanny/733649/,
+14/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-4,https://elpais.com/mexico/2026-01-14/la-detencion-del-rector-de-la-universidad-de-campeche-detona-la-ultima-polemica-de-layda-sansores.html?utm_source=chatgpt.com,
+24/01/2026,Campeche,Layda Sansores,positivo,layda_sansores-5,https://cripeso.com/ranking-de-gobernadores-de-mexico-enero-2026/,
+26/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-6,https://www.eluniversal.com.mx/nacion/campeche-silenciado-bajo-el-acoso-de-layda-sansores/?utm_source=chatgpt.com,
+27/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-7,https://tribunacampeche.com/date/2026/01/27/?utm_source=chatgpt.com,
+27/01/2026,Campeche,Layda Sansores,neutral,layda_sansores-8,https://tribunacampeche.com/date/2026/01/27/?utm_source=chatgpt.com,
+28/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-9,https://tribunacampeche.com/date/2026/01/28/?utm_source=chatgpt.com,
+29/01/2026,Campeche,Layda Sansores,negativo,layda_sansores-10,https://www.reddit.com/r/Mexico_News/comments/1qpz4os/4t_ley_garrote_contra_reporteros_art%C3%ADculo_19/?utm_source=chatgpt.com,
+02/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-11,https://www.reddit.com/r/POLACA/comments/1qtmc94/versi%C3%B3n_intentan_detener_al_presidente_del/?utm_source=chatgpt.com,
+03/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-12,https://tribunacampeche.com/03/en-las-tripas-del-jaguar-3-de-febrero-de-2026/735266/?utm_source=chatgpt.com,
+06/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-13,https://tribunacampeche.com/05/en-las-tripas-del-jaguar-05-de-febrero-de-2026/735444/?utm_source=chatgpt.com,
+09/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-14,https://tribunacampeche.com/date/2026/02/09/?utm_source=chatgpt.com,
+09/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-15,https://tribunacampeche.com/date/2026/02/09/?utm_source=chatgpt.com,
+10/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-16,https://tribunacampeche.com/date/2026/02/10/?utm_source=chatgpt.com,
+10/02/2026,Campeche,Layda Sansores,positivo,layda_sansores-17,https://tribunacampeche.com/date/2026/02/10/?utm_source=chatgpt.com,
+12/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-18,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202602/PO2596SS12022026.pdf?utm_source=chatgpt.com,
+14/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-19,https://tribunacampeche.com/05/en-las-tripas-del-jaguar-05-de-febrero-de-2026/735444/?utm_source=chatgpt.com,
+18/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-20,https://tribunacampeche.com/05/en-las-tripas-del-jaguar-05-de-febrero-de-2026/735444/?utm_source=chatgpt.com,
+21/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-21,https://tribunacampeche.com/04/en-las-tripas-del-jaguar-04-de-febrero-de-2026/735357/?utm_source=chatgpt.com,
+24/02/2026,Campeche,Layda Sansores,negativo,layda_sansores-22,https://tribunacampeche.com/05/en-las-tripas-del-jaguar-05-de-febrero-de-2026/735444/?utm_source=chatgpt.com,
+27/02/2026,Campeche,Layda Sansores,neutral,layda_sansores-23,https://tribunacampeche.com/03/en-las-tripas-del-jaguar-3-de-febrero-de-2026/735266/?utm_source=chatgpt.com,
+08/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-24,https://www.reddit.com/r/mexico_politics/comments/1rpalfy/condenan_detenci%C3%B3n_arbitraria_de_mujeres_j%C3%B3venes/?utm_source=chatgpt.com,
+09/03/2026,Campeche,Layda Sansores,neutral,layda_sansores-25,https://www.reddit.com/r/mexico_politics/comments/1rpalfy/condenan_detenci%C3%B3n_arbitraria_de_mujeres_j%C3%B3venes/?utm_source=chatgpt.com,
+11/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-26,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com,
+12/03/2026,Campeche,Layda Sansores,neutral,layda_sansores-27,https://www.lja.mx/2026/03/layda-sansores-advierte-sentencias-de-hasta-37-anos-de-prision-a-manifestantes-del-8m/?utm_source=chatgpt.com,
+12/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-28,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com,
+12/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-29,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com,
+13/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-30,https://elpopular.mx/secciones/nacional/2026/03/13/sansores-traslada-detenidas-del-8m-a-penal-y-anuncia-prohibicion-de-encapuchadas-en-futuras-protestas?utm_source=chatgpt.com,
+13/03/2026,Campeche,Layda Sansores,neutral,layda_sansores-31,https://www.am.com.mx/nacional/2026/03/12/layda-sansores-prohibira-rostros-cubiertos-en-marchas-de-campeche-1763701.html?utm_source=chatgpt.com,
+17/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-32,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com,
+20/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-33,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com,
+23/03/2026,Campeche,Layda Sansores,neutral,layda_sansores-34,https://elpais.com/mexico/opinion/2026-01-28/morena-sera-devorado-por-sus-hijos.html?utm_source=chatgpt.com,
+27/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-35,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com,
+31/03/2026,Campeche,Layda Sansores,negativo,layda_sansores-36,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com,
+12/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-37,https://elpais.com/mexico/opinion/2026-01-28/morena-sera-devorado-por-sus-hijos.html?utm_source=chatgpt.com,
+24/04/2026,Campeche,Layda Sansores,neutral,layda_sansores-38,https://latinus.us/deportes/beisbol/2026/4/24/abuchean-layda-sansores-inauguracion-liga-mexicana-beisbol-campeche-intentan-ocultar-videos-170660.html,
+27/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-39,https://www.jornada.com.mx/noticia/2026/04/28/estados/layda-sansores-advierte-quiebra-de-campeche-recursos-no-alcanzan-ni-para-pagar-la-luz?utm_source=chatgpt.com,
+29/04/2026,Campeche,Layda Sansores,neutral,layda_sansores-40,https://www.jornada.com.mx/noticia/2026/04/29/estados/gobierno-de-campeche-quebrado-no-hay-ni-para-pagar-la-luz-denuncia-sansores?utm_source=chatgpt.com,
+30/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-41,https://www.razon.com.mx/estados/2026/04/30/layda-declara-a-campeche-sin-liquidez-y-en-rebeldia/?utm_source=chatgpt.com,
+30/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-42,https://www.excelsior.com.mx/temas/layda-sansores?utm_source=chatgpt.com,
+30/04/2026,Campeche,Layda Sansores,negativo,layda_sansores-43,https://www.jornada.com.mx/noticia/2026/04/29/estados/gobierno-de-campeche-quebrado-no-hay-ni-para-pagar-la-luz-denuncia-sansores?utm_source=chatgpt.com,
+01/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-44,https://tribunacampeche.com/01/crisis-financiera-en-campeche-empresarios-temen-paralizacion-de-servicios-y-despidos-masivos/742843/,
+07/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-45,https://www.youtube.com/watch?v=tjFaDeVSnVU&utm_source=chatgpt.com,
+09/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-46,https://www.eluniversal.com.mx/estados/censura-arrestos-y-crisis-politica-estas-son-algunas-de-las-polemicas-que-rodean-al-gobierno-de-layda-sansores-en-campeche/?utm_source=chatgpt.com,
+14/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-47,https://www.infobae.com/mexico/2026/05/14/layda-sansores-responde-a-criticas-por-accesorios-de-lujo-valuados-en-1-mdp-son-pulseritas-de-plastico/?utm_source=chatgpt.com,
+16/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-48,https://tribunacampeche.com/22/en-las-tripas-del-jaguar-22-de-mayo-de-2026/744617/?utm_source=chatgpt.com,
+22/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-49,https://tribunacampeche.com/22/en-las-tripas-del-jaguar-22-de-mayo-de-2026/744617/?utm_source=chatgpt.com,
+27/05/2026,Campeche,Layda Sansores,positivo,layda_sansores-50,https://elpais.com/mexico/opinion/2026-02-25/los-peores-gobernadores-de-morena.html?utm_source=chatgpt.com,
+29/05/2026,Campeche,Layda Sansores,negativo,layda_sansores-51,https://www.youtube.com/watch?v=tjFaDeVSnVU&utm_source=chatgpt.com,
+02/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-52,https://ejemplo.com/nota,
+05/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-53,https://ejemplo.com/nota,
+08/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-54,https://ejemplo.com/nota,
+09/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-55,https://ejemplo.com/nota,
+13/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-56,https://ejemplo.com/nota,
+15/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-57,https://ejemplo.com/nota,
+17/06/2026,Campeche,Layda Sansores,positivo,layda_sansores-58,https://ejemplo.com/nota,
+18/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-59,https://ejemplo.com/nota,
+19/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-60,https://ejemplo.com/nota,
+20/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-61,https://ejemplo.com/nota,
+22/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-62,https://ejemplo.com/nota,
+24/06/2026,Campeche,Layda Sansores,neutral,layda_sansores-63,https://ejemplo.com/nota,
+26/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-64,https://ejemplo.com/nota,
+27/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-65,https://ejemplo.com/nota,
+28/06/2026,Campeche,Layda Sansores,negativo,layda_sansores-66,https://ejemplo.com/nota,
+01/07/2026,Campeche,Layda Sansores,negativo,layda_sansores-67,https://ejemplo.com/nota,
+02/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-68,https://ejemplo.com/nota,
+05/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-69,https://ejemplo.com/nota,
+07/07/2026,Campeche,Layda Sansores,negativo,layda_sansores-70,https://ejemplo.com/nota,
+08/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-71,https://ejemplo.com/nota,
+09/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-72,https://ejemplo.com/nota,
+10/07/2026,Campeche,Layda Sansores,negativo,layda_sansores-73,https://ejemplo.com/nota,
+19/07/2026,Campeche,Layda Sansores,positivo,layda_sansores-74,https://ejemplo.com/nota,
+21/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-75,https://ejemplo.com/nota,
+22/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-76,https://ejemplo.com/nota,
+23/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-77,https://ejemplo.com/nota,
+26/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-78,https://ejemplo.com/nota,
+28/07/2026,Campeche,Layda Sansores,neutral,layda_sansores-79,https://ejemplo.com/nota,
+29/07/2026,Campeche,Layda Sansores,negativo,layda_sansores-80,https://ejemplo.com/nota,
+30/07/2026,Campeche,Layda Sansores,positivo,layda_sansores-81,https://ejemplo.com/nota,
+01/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-82,https://ejemplo.com/nota,
+02/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-83,https://ejemplo.com/nota,
+03/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-84,https://ejemplo.com/nota,
+05/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-85,https://ejemplo.com/nota,
+06/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-86,https://ejemplo.com/nota,
+07/08/2026,Campeche,Layda Sansores,positivo,layda_sansores-87,https://ejemplo.com/nota,
+10/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-88,https://ejemplo.com/nota,
+11/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-89,https://ejemplo.com/nota,
+11/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-90,https://ejemplo.com/nota,
+12/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-91,https://ejemplo.com/nota,
+13/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-92,https://tribunacampeche.com/date/2026/08/14/,
+14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-93,https://tribunacampeche.com/date/2026/08/14/,
+14/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-94,https://tribunacampeche.com/date/2026/08/14/,
+14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-95,https://tribunacampeche.com/date/2026/08/14/,
+14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-96,https://tribunacampeche.com/date/2026/08/14/,
+14/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-97,https://tribunacampeche.com/date/2026/08/14/,
+14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-98,https://www.proceso.com.mx/nacional/estados/2026/8/8/entre-el-discurso-de-austeridad-y-el-lujo-en-madrid-exhiben-a-layda-sansores-en-espana-en-plena-cris-377696.html,
+14/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-99,https://www.proceso.com.mx/nacional/estados/2026/8/8/entre-el-discurso-de-austeridad-y-el-lujo-en-madrid-exhiben-a-layda-sansores-en-espana-en-plena-cris-377696.html,
+15/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-100,https://tribunacampeche.com/,
+15/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-101,https://www.proceso.com.mx/nacional/estados/2026/8/8/entre-el-discurso-de-austeridad-y-el-lujo-en-madrid-exhiben-a-layda-sansores-en-espana-en-plena-cris-377696.html,
+15/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-102,https://tribunacampeche.com/date/2026/08/14/,
+15/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-103,https://tribunacampeche.com/date/2026/08/14/,
+15/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-104,https://elpais.com/mexico/2026-08-14/morena-pone-contra-las-cuerdas-a-alito-moreno-al-revivir-su-proceso-de-desafuero.html,
+17/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-105,https://solyucatan.mx/layda-sansores-acude-a-hospital-de-lujo/,
+19/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-106,https://www.elbuentono.com.mx/layda-sansores-demanda-a-pedro-ferriz-hijar-por-expresiones-en-redes-sociales/,
+19/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-107,https://xpectrofm.com/sansores-presume-como-logro-el-cambio-de-buzones-de-denuncia/,
+19/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-108,https://tribunacampeche.com/19/accesorios-de-lujo-de-layda-superan-los-cientos-de-miles-de-pesos-y-la-austeridad/753202/,
+19/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-109,https://www.infobae.com/mexico/2026/08/19/esto-no-es-persecucion-es-cuestion-de-delincuencia-layda-sansores-impulsa-parodia-musical-contra-alito-moreno-por-denuncias-en-eeuu/,
+19/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-110,https://www.sdpnoticias.com/estados/quintana-roo/layda-sansores-se-burla-de-los-carteles-sobre-su-viaje-en-espana/,
+19/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-111,https://tribunacampeche.com/19/layda-sansores-defiende-a-andy-y-lo-califica-como-sumamente-honesto/753125/,
+20/08/2026,Campeche,Layda Sansores,neutral,layda_sansores-112,https://www.elfinanciero.com.mx/estados/2026/08/20/adda-rubi-peniche-secretaria-de-turismo-de-campeche-llora-y-admite-que-no-tiene-experiencia-la-gobernadora-confio-en-mi/,
+27/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-113,https://tribunacampeche.com/27/senadora-arremete-contra-layda-sansores-tras-asistir-a-toma-de-protesta-de-501/753817/,
+27/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-114,https://www.excelsior.com.mx/nacional/sector-pesquero-campeche-escala-protestas-denuncian-desatencion-layda-sansores,
+27/08/2026,Campeche,Layda Sansores,negativo,layda_sansores-115,https://www.sinaloahoy.com.mx/portal/layda-sansores-enfrenta-polemica-por-gasto-de-1-6-millones-en-jaguar-de-bronce/,
+04/09/2026,Campeche,Layda Sansores,neutral,layda_sansores-116,https://tribunacampeche.com/04/reclaman-a-layda-y-zoe-robledo-por-desabasto-de-medicamentos-en-el-imss-campeche/754632/,
+02/01/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-117,https://www.eluniversal.com.mx/estados/ejecutan-a-aliada-politica-de-alcalde-de-ciudad-del-carmen-campeche-hace-unos-dias-intentaron-secuestrarla/,
+14/01/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-118,https://elpais.com/mexico/2026-01-14/la-detencion-del-rector-de-la-universidad-de-campeche-detona-la-ultima-polemica-de-layda-sansores.html,
+19/01/2026,Campeche,Pablo Gutiérrez Lazarus,positivo,pablo_gutierrez-119,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202606/PO2665PS03062026.pdf,
+29/01/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-120,https://tribunacampeche.com/date/2026/01/29/,
+29/01/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-121,https://tribunacampeche.com/date/2026/01/29/,
+30/01/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-122,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202606/PO2665PS03062026.pdf,
+01/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-123,https://tribunacampeche.com/tag/pablo-gutierrez/,
+01/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-124,https://tribunacampeche.com/tag/pablo-gutierrez/,
+05/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-125,https://campechehoy.com/2026/02/05/denuncian-presunto-desvio-de-recursos-por-parte-del-alcalde-pablo-gutierrez-lazarus/,
+05/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-126,https://campechehoy.com/2026/02/05/denuncian-presunto-desvio-de-recursos-por-parte-del-alcalde-pablo-gutierrez-lazarus/,
+06/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-127,https://campechehoy.com/2026/02/05/denuncian-presunto-desvio-de-recursos-por-parte-del-alcalde-pablo-gutierrez-lazarus/,
+10/02/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-128,https://tribunacampeche.com/tag/pablo-lazarus/?utm_source=chatgpt.com,
+14/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-129,https://revista32.mx/wp-content/uploads/2026/02/AC-17-Gubernaturas-CAM-2026-Feb.pdf,
+14/02/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-130,https://revista32.mx/wp-content/uploads/2026/02/AC-17-Gubernaturas-CAM-2026-Feb.pdf,
+25/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-131,https://revista32.mx/wp-content/uploads/2026/02/AC-17-Gubernaturas-CAM-2026-Feb.pdf?utm_source=chatgpt.com,
+28/02/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-132,https://campechehoy.com/2026/02/05/denuncian-presunto-desvio-de-recursos-por-parte-del-alcalde-pablo-gutierrez-lazarus/?utm_source=chatgpt.com,
+03/03/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-133,https://ejemplo.com/nota,
+12/03/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-134,https://tribunacampeche.com/tag/pablo-g-lazarus/,
+12/03/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-135,https://tribunacampeche.com/tag/pablo-g-lazarus/,
+20/03/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-136,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf?utm_source=chatgpt.com,
+22/03/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-137,https://ejemplo.com/nota,
+25/03/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-138,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202604/PO2629PS09042026.pdf?utm_source=chatgpt.com,
+27/03/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-139,https://tribunacampeche.com/tag/pablo-g-lazarus/,
+01/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-140,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf,
+01/04/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-141,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf,
+08/04/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-142,https://www.publimetro.com.mx/puebla/2026/04/08/pan-lanza-campana-para-cazar-mapaches-electorales-y-denunciar-promocion-anticipada/,
+09/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-143,https://periodicooficial.campeche.gob.mx/sipoec/public/periodicos/202604/PO2629PS09042026.pdf,
+15/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-144,https://ejemplo.com/nota,
+22/04/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-145,https://www.jornada.com.mx/noticia/2026/04/22/estados/morena-perfila-a-pablo-gutierrez-como-virtual-candidato-a-gubernatura-de-campeche,
+23/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-146,https://www.jornada.com.mx/2026/04/23/estados/025n2est,
+23/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-147,https://www.jornada.com.mx/2026/04/23/estados/025n2est,
+24/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-148,https://www.jornada.com.mx/2026/04/23/estados/025n2est,
+29/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-149,https://www.poresto.com/campeche/ciudad-carmen/2026/4/29/reprueban-aspiraciones-del-alcalde-de-carmen-8-de-cada-10-campechanos-desconocen-a-pablo-gutierrez-lazarus.amp.html,
+29/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-150,https://www.poresto.com/campeche/ciudad-carmen/2026/4/29/reprueban-aspiraciones-del-alcalde-de-carmen-8-de-cada-10-campechanos-desconocen-a-pablo-gutierrez-lazarus.amp.html,
+30/04/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-151,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf,
+13/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-152,https://elpais.com/mexico/2026-06-13/morena-en-ebullicion-mas-de-50-cuadros-apuntan-a-una-gubernatura-en-2027.html,
+13/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-153,https://elpais.com/mexico/2026-06-13/morena-en-ebullicion-mas-de-50-cuadros-apuntan-a-una-gubernatura-en-2027.html,
+19/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-154,https://www.poresto.com/campeche/ciudad-carmen/2026/6/19/pablo-gutierrez-lazarus-y-priscila-heredia-enfrentan-posible-destitucion.html,
+19/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-155,https://www.poresto.com/campeche/ciudad-carmen/2026/6/19/pablo-gutierrez-lazarus-y-priscila-heredia-enfrentan-posible-destitucion.html,
+25/06/2026,Campeche,Pablo Gutiérrez Lazarus,positivo,pablo_gutierrez-156,https://www.carmenhoy.mx/destacadas/pgl-pide-licencia-definitiva/,
+25/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-157,https://diariocambio22.mx/el-edil-gutierrez-lazarus-pide-licencia-definitiva/,
+25/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-158,https://www.globalmedia.mx/articles/nepotismo_en_morena_en_campeche_layda_tiene_la_respuesta,
+27/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-159,https://estamosaqui.mx/pablo-gutierrez-informa-que-concluyo-su-registro-ante-morena-y-aliados/,
+27/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-160,https://www.desdeelbalcon.com/balcon/pablo-gutierrez-deja-alcaldia-de-carmen/,
+28/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-161,https://carmendigital.mx/2026/06/28/con-adeudos-millonarios-lazarus-deja-la-alcaldia-para-buscar-otro-cargo/,
+28/06/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-162,https://carmendigital.mx/2026/06/28/con-adeudos-millonarios-lazarus-deja-la-alcaldia-para-buscar-otro-cargo/,
+28/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-163,https://www.poresto.com/media/2026/6/28/impreso-campeche-28626_MASTER.pdf,
+30/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-164,https://www.poresto.com/campeche/ciudad-carmen/2026/6/30/pablo-gutierrez-lazarus-podria-enfrentar-sanciones-por-adeudos-millonarios.html,
+30/06/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-165,https://www.poresto.com/campeche/ciudad-carmen/2026/6/30/pablo-gutierrez-lazarus-podria-enfrentar-sanciones-por-adeudos-millonarios.html,
+01/07/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-166,https://campechedigital.mx/con-adeudos-millonarios-lazarus-deja-la-alcaldia-para-buscar-otro-cargo/,
+02/07/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-167,https://www.poresto.com/campeche/ciudad-carmen/2026/6/30/pablo-gutierrez-lazarus-podria-enfrentar-sanciones-por-adeudos-millonarios.html,
+07/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-168,https://pdf.lajornadamaya.mx/LJM-QRoo-07072026.pdf,
+08/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-169,https://estamosaqui.mx/excolaborador-de-pablo-gutierrez-lazarus-renuncia-a-morena/,
+08/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-170,https://estamosaqui.mx/excolaborador-de-pablo-gutierrez-lazarus-renuncia-a-morena/,
+10/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-171,https://www.poresto.com/media/2026/6/28/impreso-campeche-28626_MASTER.pdf,
+12/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-172,https://diariocambio22.mx/deja-pablo-gutierrez-la-alcaldia-del-carmen/,
+15/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-173,https://lajornadaestadodemexico.com/campeche-morena-consolida-ventaja-y-perfila-a-pablo-gutierrez-lazarus-como/,
+18/07/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-174,https://www.poresto.com/media/2026/6/28/impreso-campeche-28626_MASTER.pdf,
+20/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-175,https://www.jornada.com.mx/2026/04/23/estados/025n2est,
+22/07/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-176,https://www.milenio.com/politica/morena-campeche-pablo-gutierrez-nombrado-coordinador-2027,
+24/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-177,https://www.poresto.com/media/2026/6/21/impreso-campeche-21626_MASTER.pdf,
+28/07/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-178,https://www.poresto.com/media/2026/6/30/impreso-campeche-30626_MASTER.pdf,
+01/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-179,https://campechedigital.mx/con-adeudos-millonarios-lazarus-deja-la-alcaldia-para-buscar-otro-cargo/,
+04/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-180,https://www.ieec.org.mx/Documentacion/AcuerdosActas/2026/abril/jge/Acuerdo%20JGE_A030_2026.pdf,
+05/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-181,https://www.milenio.com/politica/morena-campeche-pablo-gutierrez-nombrado-coordinador-2027,
+07/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-182,https://www.poresto.com/campeche/ciudad-carmen/2026/4/29/reprueban-aspiraciones-del-alcalde-de-carmen-8-de-cada-10-campechanos-desconocen-a-pablo-gutierrez-lazarus.amp.html,
+08/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-183,https://elpais.com/mexico/2026-06-13/morena-en-ebullicion-mas-de-50-cuadros-apuntan-a-una-gubernatura-en-2027.html,
+09/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-184,https://carmendigital.mx/2026/04/23/nombran-a-pablo-gutierrez-coordinador-de-morena-en-campeche/,
+10/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-185,https://www.jornada.com.mx/noticia/2026/04/22/estados/morena-perfila-a-pablo-gutierrez-como-virtual-candidato-a-gubernatura-de-campeche,
+11/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-186,https://elpais.com/mexico/2026-06-13/morena-en-ebullicion-mas-de-50-cuadros-apuntan-a-una-gubernatura-en-2027.html,
+13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-187,https://tribunacampeche.com/13/pablo-g-lazarus-arremete-contra-marcela-munoz-por-responsabilizar-a-autoridades-municipales-de-carmen-por-la-inseguridad/752570/,
+13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-188,https://diariocambio22.mx/precandidato-de-morena-pablo-gutierrez-arremete-contra-jefa-de-seguridad-publica-marcela-munoz/?utm_source=chatgpt.com,
+13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-189,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com,
+13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-190,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com,
+13/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-191,https://diariocambio22.mx/precandidato-de-morena-pablo-gutierrez-arremete-contra-jefa-de-seguridad-publica-marcela-munoz/?utm_source=chatgpt.com,
+14/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-192,https://tribunacampeche.com/13/pablo-g-lazarus-arremete-contra-marcela-munoz-por-responsabilizar-a-autoridades-municipales-de-carmen-por-la-inseguridad/752570/?utm_source=chatgpt.com,
+14/08/2026,Campeche,Pablo Gutiérrez Lazarus,positivo,pablo_gutierrez-193,https://diariocambio22.mx/precandidato-de-morena-pablo-gutierrez-arremete-contra-jefa-de-seguridad-publica-marcela-munoz/?utm_source=chatgpt.com,
+14/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-194,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com,
+14/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-195,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com,
+14/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-196,https://diariocambio22.mx/precandidato-de-morena-pablo-gutierrez-arremete-contra-jefa-de-seguridad-publica-marcela-munoz/?utm_source=chatgpt.com,
+15/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-197,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com,
+15/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-198,https://www.lajornadamaya.mx/campeche/266989/gutierrez-lazarus-debe-asumir-su-responsabilidad-en-seguridad-por-falta-de-mando-unico-en-carmen-diputado-de-mc-pedro-armentia?utm_source=chatgpt.com,
+15/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-199,https://www.poresto.com/campeche/ciudad-carmen/2026/6/20/alcalde-de-carmen-pablo-gutierrez-lazarus-podria-ir-a-prision-por-negarse-a-pagar-mas-de-46-mdp.html?utm_source=chatgpt.com,
+15/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-200,https://www.notiver.com/nacionales/el-alcalde-de-campeche-pide-licencia-ya-que-buscara-la-gubernatura/?utm_source=chatgpt.com,
+26/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-201,https://tribunacampeche.com/26/layda-utiliza-instituciones-para-ataques-politicos-acusa-medina-e-interpondria-denuncia/753783/,
+26/08/2026,Campeche,Pablo Gutiérrez Lazarus,negativo,pablo_gutierrez-202,https://www.jornada.com.mx/2026/08/26/politica/003n4pol,
+26/08/2026,Campeche,Pablo Gutiérrez Lazarus,positivo,pablo_gutierrez-203,https://tribunacampeche.com/26/gobierno-estatal-licitara-teatro-por-600-millones-de-pesos-de-ahi-saldria-para-financiar-la-campana-de-pablo-gutierrez-lazarus/753742/,
+27/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-204,https://grupoanimal.mx/estados/pablo-gutierrez-lazarus-aspirante-morena-campeche,
+27/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-205,https://diariocambio22.mx/pedro-armentia-acusa-a-morena-de-violar-la-ley-electoral-por-imposicion-de-pablo-gutierrez/,
+27/08/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-206,https://diariocambio22.mx/pedro-armentia-acusa-a-morena-de-violar-la-ley-electoral-por-imposicion-de-pablo-gutierrez/,
+01/09/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-207,https://www.poresto.com/campeche/2026/9/1/campechanos-acusan-a-morena-de-hacer-precampana-adelantada-con-pablo-gutierrez-lazarus.html,
+04/09/2026,Campeche,Pablo Gutiérrez Lazarus,neutral,pablo_gutierrez-208,https://tribunacampeche.com/04/autoridades-del-quiroga-impiden-al-diputado-macdonald-tomar-fotos-pero-si-se-lo-permiten-a-la-mama-de-pablo-gutierrez-para-sus-redes/754606/,
+02/01/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-209,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf,
+18/01/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-210,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf,
+20/01/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-211,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf,
+22/01/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-212,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf,
+25/01/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-213,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf,
+28/01/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-214,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf,
+31/01/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-215,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf,
+05/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-216,https://revista32.mx/wp-content/uploads/2026/03/AC-17-Gubernaturas-QROO-Preferencia-Aspirantes-Febrero-2026.pdf,
+08/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-217,https://revista32.mx/wp-content/uploads/2026/03/AC-17-Gubernaturas-QROO-Preferencia-Aspirantes-Febrero-2026.pdf,
+12/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-218,https://comunicacion.diputados.gob.mx/sintesis/LINKSIN3/P12226_C_24H_0_TELEFONOROJO_CTM_3DIP_.pdf,
+14/02/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-219,https://revista32.mx/wp-content/uploads/2026/03/AC-17-Gubernaturas-QROO-Preferencia-Aspirantes-Febrero-2026.pdf,
+18/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-220,https://revista32.mx/wp-content/uploads/2026/03/AC-17-Gubernaturas-QROO-Preferencia-Aspirantes-Febrero-2026.pdf,
+20/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-221,https://comunicacion.diputados.gob.mx/sintesis/LINKSIN3/P12226_C_24H_0_TELEFONOROJO_CTM_3DIP_.pdf,
+24/02/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-222,https://www.poderycritica.com/wp-content/uploads/2026/01/PCQROO_ENERO-02.pdf,
+27/02/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-223,https://politico.mx/2026/02/28/circula-supuesta-orden-de-veto-contra-marin-mollinedo-en-medios-de-quintana-roo/,
+28/02/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-224,https://politico.mx/2026/02/28/circula-supuesta-orden-de-veto-contra-marin-mollinedo-en-medios-de-quintana-roo/,
+04/03/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-225,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/,
+05/03/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-226,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/,
+05/03/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-227,https://www.nmas.com.mx/politica/asi-crecio-patrimonio-rafael-marin-nmas-focus/,
+20/03/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-228,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/,
+25/03/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-229,https://www.nmas.com.mx/politica/rafael-marin-mollinedo-renuncia-a-aduanas-entre-senalamientos-de-patrimonio-millonario/,
+31/03/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-230,https://www.nmas.com.mx/politica/rafael-marin-mollinedo-renuncia-a-aduanas-entre-senalamientos-de-patrimonio-millonario/,
+01/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-231,https://elpais.com/mexico/2026-04-01/rafael-marin-mollinedo-deja-aduanas-y-pone-la-mira-en-quintana-roo.html,
+04/04/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-232,https://periodistasquintanaroo.com/editorial/por-lo-visto-rafael-marin-mollinedo-pasara-mas-tiempo-en-quintana-roo-y-menos-en-yucatan/,
+04/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-233,https://periodistasquintanaroo.com/editorial/por-lo-visto-rafael-marin-mollinedo-pasara-mas-tiempo-en-quintana-roo-y-menos-en-yucatan/,
+08/04/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-234,https://www.nmas.com.mx/politica/adelantan-campana-rafael-marin-reportaje-nmas-focus/,
+10/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-235,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/,
+12/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-236,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/,
+12/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-237,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/,
+15/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-238,https://periodistasquintanaroo.com/editorial/por-lo-visto-rafael-marin-mollinedo-pasara-mas-tiempo-en-quintana-roo-y-menos-en-yucatan/,
+19/04/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-239,https://quintanarooahora.com.mx/2026/04/rafael-marin-dialoga-con-sectores-sociales-y-empresariales-en-cancun/,
+20/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-240,https://24horasqroo.mx/2026/04/20/presencia-suma-resta/,
+20/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-241,https://24horasqroo.mx/2026/04/20/presencia-suma-resta/,
+25/04/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-242,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/,
+02/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-243,https://elpais.com/mexico/2026-04-01/rafael-marin-mollinedo-deja-aduanas-y-pone-la-mira-en-quintana-roo.html,
+05/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-244,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/,
+08/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-245,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/,
+10/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-246,https://www.nmas.com.mx/politica/asi-crecio-patrimonio-rafael-marin-nmas-focus/,
+15/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-247,https://elpais.com/mexico/2026-04-01/rafael-marin-mollinedo-deja-aduanas-y-pone-la-mira-en-quintana-roo.html,
+18/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-248,https://quintanaroo.quadratin.com.mx/rafael-marin-suelta-cargos-publicos/,
+22/05/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-249,https://noticaribe.com.mx/2026/05/22/medidas-cautelares-contra-acelerados-ordena-ieqroo-frenar-actos-de-rafael-marin-por-presunta-promocion-anticipada-rumbo-a-2027/,
+22/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-250,https://noticaribe.com.mx/2026/05/22/medidas-cautelares-contra-acelerados-ordena-ieqroo-frenar-actos-de-rafael-marin-por-presunta-promocion-anticipada-rumbo-a-2027/,
+22/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-251,https://quintanaroo.quadratin.com.mx/rafael-marin-suelta-cargos-publicos/,
+24/05/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-252,https://noticaribe.com.mx/2026/05/22/medidas-cautelares-contra-acelerados-ordena-ieqroo-frenar-actos-de-rafael-marin-por-presunta-promocion-anticipada-rumbo-a-2027/,
+01/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-253,https://olanoticias.com/teqroo-confirma-medidas-rafael-marin/,
+08/07/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-254,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/,
+15/07/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-255,https://laopinionqr.com/prepara-inhabilitacion-el-teqroo-va-contra-rafa-marin/,
+16/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-256,https://olanoticias.com/teqroo-confirma-medidas-rafael-marin/,
+16/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-257,https://periodistasquintanaroo.com/principales/el-teqroo-confirma-medidas-cautelares-contra-rafael-marin-mollinedo/,
+18/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-258,https://olanoticias.com/teqroo-confirma-medidas-rafael-marin/,
+20/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-259,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/,
+22/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-260,https://elpais.com/mexico/2026-08-12/morena-camina-en-la-cuerda-floja-para-definir-sus-candidaturas-a-gobernador-en-unidad-y-evadiendo-las-restricciones-legales.html,
+22/07/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-261,https://www.noroeste.com.mx/nacional/chocan-versiones-de-ex-director-de-aduanas-y-fgr-por-caso-ruffo-LF24305824,
+23/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-262,https://sintoniahoy.com/nota/dirigencia-de-morena-avala-a-rafael-marin-para-gubernatura-de-quintana,
+25/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-263,https://fronterasurqroo.com.mx/rafael-marin-mollinedo-fortalece-la-unidad-de-morena-durante-asamblea-informativa-en-chetumal/,
+28/07/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-264,https://periodistasquintanaroo.com/principales/el-teqroo-confirma-medidas-cautelares-contra-rafael-marin-mollinedo/,
+01/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-265,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/,
+04/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-266,https://elpais.com/mexico/2026-08-12/morena-camina-en-la-cuerda-floja-para-definir-sus-candidaturas-a-gobernador-en-unidad-y-evadiendo-las-restricciones-legales.html,
+05/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-267,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/,
+06/08/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-268,https://noticaribe.com.mx/2026/07/15/a-retirar-la-propaganda-ratifica-teqroo-acuerdo-del-ieqroo-que-determino-que-rafael-marin-incurrio-en-actos-anticipados-de-campana/,
+07/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-269,https://elpais.com/mexico/2026-08-12/morena-camina-en-la-cuerda-floja-para-definir-sus-candidaturas-a-gobernador-en-unidad-y-evadiendo-las-restricciones-legales.html,
+08/08/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-270,https://www.nmas.com.mx/politica/campana-encubierta-de-rafael-marin-en-quintana-roo-busca-gubernatura-regala-desde-tamales-hasta-motos/,
+09/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-271,https://www.nmas.com.mx/politica/n-focus-el-patrimonio-millonario-de-rafael-marin-mollinedo-quien-aspira-a-gobernar-quintana-roo/,
+10/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-272,https://diario.mx/nacional/2026/aug/10/pasa-de-mafia-rumana-a-campana-de-morena-1132422.html,
+12/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-273,https://elpais.com/mexico/2026-08-12/morena-camina-en-la-cuerda-floja-para-definir-sus-candidaturas-a-gobernador-en-unidad-y-evadiendo-las-restricciones-legales.html,
+13/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-274,https://periodistasquintanaroo.com/principales/el-teqroo-confirma-medidas-cautelares-contra-rafael-marin-mollinedo/,
+13/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-275,https://noticaribe.com.mx/2026/07/15/a-retirar-la-propaganda-ratifica-teqroo-acuerdo-del-ieqroo-que-determino-que-rafael-marin-incurrio-en-actos-anticipados-de-campana/,
+13/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-276,https://quintanaroohoy.com/quintanaroo/teqroo-medidas-rafael-marin-actos-anticipados/,
+13/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-277,https://grupopiramide.com.mx/noticias/politica/da-teqroo-doble-reves-rafael-marin/,
+14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-278,https://subjetivo.mx/rafael-marin-peor-evaluado-morena-quintana-roo/,
+14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-279,https://subjetivo.mx/rafael-marin-peor-evaluado-morena-quintana-roo/,
+14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-280,https://laopinionqr.com/rafa-doblo-las-manos-participa-de-asamblea-del-partido-a-pesar-de-la-tendencia-a-favor-del-oficialismo-local/,
+14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-281,https://diario.mx/nacional/2026/aug/10/pasa-de-mafia-rumana-a-campana-de-morena-1132422.html,
+14/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-282,https://olanoticias.com/teqroo-confirma-medidas-rafael-marin/,
+15/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-283,https://periodistasquintanaroo.com/principales/el-teqroo-confirma-medidas-cautelares-contra-rafael-marin-mollinedo/,
+15/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-284,https://laopinionqr.com/prepara-inhabilitacion-el-teqroo-va-contra-rafa-marin/,
+15/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-285,https://www.nmas.com.mx/politica/rafael-marin-mollinedo-renuncia-a-aduanas-entre-senalamientos-de-patrimonio-millonario/,
+15/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-286,https://elpais.com/mexico/2026-04-01/rafael-marin-mollinedo-deja-aduanas-y-pone-la-mira-en-quintana-roo.html,
+15/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-287,https://laopinionqr.com/rafa-doblo-las-manos-participa-de-asamblea-del-partido-a-pesar-de-la-tendencia-a-favor-del-oficialismo-local/,
+17/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-288,https://caribepeninsular.mx/morena-qr-simpatizantes-marin-voto-de-castigo/,
+18/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-289,https://caribepeninsular.mx/zona-maya-llama-rafa-marin-a-saldar-deuda-historica-con-pueblos-originarios/,
+20/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-290,https://noticaribe.com.mx/2026/08/20/hasta-que-no-tuvo-mas-remedio-rafael-marin-separa-de-su-equipo-a-morenista-senalado-por-vinculos-con-mafia-rumana/,
+20/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-291,https://solquintanaroo.mx/golpe-a-las-aspiraciones-de-marin-mollinedo-fgr-asegura-bienes-de-su-operador-por-nexos-criminales/,
+21/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-292,https://lachispa.mx/marin-defiende-combate-al-huachicol-fiscal/,
+21/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-293,https://www.tiempo.com.mx/nacional/niega-rafael-marin-andy-lopez-pidiera-negocios-aduanas-21-agosto-2026/,
+22/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-294,https://quinto-poder.mx/tendencias/2026/08/22/rafael-marin-mollinedo-se-reune-con-periodistas-que-paso-70413.html,
+22/08/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-295,https://caribepeninsular.mx/agendas-divididas-marin-y-villegas-marcan-distancia-del-acto-de-morena/,
+22/08/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-296,https://quintopoderqrp.com/2026/08/22/pt-y-rafa-marin-refuerzan-unidad-y-dialogo-en-quintana-roo/,
+23/08/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-297,https://quinto-poder.mx/politicos/2026/08/23/por-que-rafael-marin-mollinedo-dejo-aduanas-esto-dijo-sheinbaum--70431.html,
+27/08/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-298,https://quinto-poder.mx/politicos/2026/08/27/rafael-marin-refuerza-su-presencia-en-quintana-roo-rumbo-al-2027--70740.html,
+04/09/2026,Quintana Roo,Rafael Marín Mollinedo,neutral,rafael_marin-299,https://diariocambio22.mx/desmiente-rafael-marin-rumores-de-declinacion/,
+04/09/2026,Quintana Roo,Rafael Marín Mollinedo,negativo,rafael_marin-300,https://quinto-poder.mx/politicos/2026/09/04/rafael-marin-mollinedo-desmiente-declinacion-en-quintana-roo--70927.html,
+05/09/2026,Quintana Roo,Rafael Marín Mollinedo,positivo,rafael_marin-301,https://www.quinto-poder.mx/politicos/2026/09/05/que-ha-dicho-rafael-marin-mollinedo-en-quintana-roo-70867.html,
+03/01/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-302,https://www.poresto.net/quintana-roo,
+05/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-303,https://www.lajornadamaya.mx/quintanaroo,
+07/01/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-304,https://noticaribe.com.mx/,
+16/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-305,https://www.lajornadamaya.mx/,
+17/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-306,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html,
+21/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-307,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html,
+22/01/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-308,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html,
+31/01/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-309,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html,
+01/02/2026,Quintana Roo,Mara Lezama,positivo,mara_lezama-310,https://24horasqroo.mx/2026/02/23/mara-lezama-seguridad/,
+05/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-311,https://quintanaroo.heraldodemexico.com.mx/local/2026/2/23/quintana-roo-opera-con-normalidad-mesa-de-seguridad-se-mantiene-en-sesion-permanente-mara-lezama-14636.html,
+07/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-312,https://24horasqroo.mx/2026/02/23/mara-lezama-seguridad/,
+09/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-313,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html,
+11/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-314,https://24horasqroo.mx/2026/02/23/mara-lezama-seguridad/,
+13/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-315,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html,
+20/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-316,https://elpais.com/mexico/2026-03-30/el-sargazo-llego-para-quedarse-la-temporada-2026-se-adelanta-y-sera-mas-intensa.html,
+23/02/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-317,https://24horasqroo.mx/2026/02/23/mara-lezama-seguridad/?utm_source=chatgpt.com,
+23/02/2026,Quintana Roo,Mara Lezama,positivo,mara_lezama-318,https://elquintanarroense.com.mx/2026/02/23/servicios-actividades-y-operaciones-en-quintana-roo-continuan-con-normalidad-mara-lezama/?utm_source=chatgpt.com,
+05/03/2026,Quintana Roo,Mara Lezama,positivo,mara_lezama-319,https://www.jornada.com.mx/noticia/2026/03/05/estados/quintana-roo-lanza-estrategia-escolar-de-vacunacion-ante-aumento-de-sarampion?utm_source=chatgpt.com,
+06/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-320,https://www.jornada.com.mx/noticia/2026/03/05/estados/quintana-roo-lanza-estrategia-escolar-de-vacunacion-ante-aumento-de-sarampion?utm_source=chatgpt.com,
+17/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-321,https://sesa.qroo.gob.mx/quintana-roo-fortalece-la-estrategia-contra-el-sarampion-en-la-primera-sesion-extraordinaria-del-coeva-2026/?utm_source=chatgpt.com,
+18/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-322,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com,
+22/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-323,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com,
+24/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-324,https://elpais.com/mexico/2025-06-11/mexico-se-prepara-para-una-temporada-record-de-sargazo-en-el-caribe.html,
+26/03/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-325,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com,
+07/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-326,https://cgc.qroo.gob.mx/gobierno-de-quintana-roo-intensifica-acciones-para-contener-el-sargazo-en-los-litorales/?utm_source=chatgpt.com,
+09/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-327,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com,
+15/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-328,https://elpais.com/mexico/2026-01-21/mara-lezama-el-caribe-mexicano-aun-puede-crecer-pero-de-forma-sostenible-apegado-al-medioambiente.html?utm_source=chatgpt.com,
+24/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-329,https://www.gob.mx/semarnat/documentos/mensaje-de-la-secretaria-alicia-barcena-en-reunion-con-la-gobernadora-del-estado-de-quintana-roo-mara-lezama-espinosa?utm_source=chatgpt.com,
+24/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-330,https://www.gob.mx/semarnat/prensa/secretaria-barcena-y-la-gobernadora-mara-lezama-encabezan-reunion-de-la-anaae-para-impulsar-la-transicion-hacia-la-economia-circular?utm_source=chatgpt.com,
+26/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-331,https://www.jornada.com.mx/noticia/2026/04/30/estados/la-marea-de-sargazo-escala-en-quintana-roo-la-mitad-de-las-playas-del-sur-ya-esta-en-alerta?utm_source=chatgpt.com,
+30/04/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-332,https://www.jornada.com.mx/noticia/2026/04/30/estados/la-marea-de-sargazo-escala-en-quintana-roo-la-mitad-de-las-playas-del-sur-ya-esta-en-alerta?utm_source=chatgpt.com,
+10/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-333,https://impreso.excelsior.com.mx/Periodico/flip-nacional/03-06-2026/portada.pdf?utm_source=chatgpt.com,
+12/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-334,https://pdf.lajornadamaya.mx/LJM-QRoo-26062026.pdf?utm_source=chatgpt.com,
+15/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-335,https://impreso.excelsior.com.mx/Periodico/flip-nacional/03-06-2026/portada.pdf?utm_source=chatgpt.com,
+18/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-336,https://www.reddit.com/r/mexico/comments/1u9a067/se_me_arruin%C3%B3_medio_viaje_a_la_riviera_maya_por/?utm_source=chatgpt.com,
+19/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-337,https://impreso.excelsior.com.mx/Periodico/flip-nacional/19-06-2026/portada.pdf?utm_source=chatgpt.com,
+20/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-338,https://impreso.excelsior.com.mx/Periodico/flip-nacional/19-06-2026/portada.pdf?utm_source=chatgpt.com,
+22/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-339,https://diredimoat.semar.gob.mx/OpSargazo/BoletinesDiarios/Junio/SARGAZO_1108_23_JUNIO_2025.pdf?utm_source=chatgpt.com,
+25/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-340,https://pdf.lajornadamaya.mx/LJM-QRoo-26062026.pdf?utm_source=chatgpt.com,
+26/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-341,https://pdf.lajornadamaya.mx/LJM-QRoo-26062026.pdf?utm_source=chatgpt.com,
+28/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-342,https://www.poresto.com/media/2026/6/29/impreso-cancun-29626_MASTER.pdf?utm_source=chatgpt.com,
+29/06/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-343,https://www.poresto.com/media/2026/6/29/impreso-cancun-29626_MASTER.pdf?utm_source=chatgpt.com,
+05/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-344,https://quintanaroo.quadratin.com.mx/coordina-mara-lezama-plan-nacional-para-atender-el-sargazo-en-el-caribe/,
+11/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-345,https://elquintanarroense.com.mx/2026/07/11/quintanarroenses-tomemos-precauciones-mara-lezama/,
+19/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-346,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html,
+22/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-347,https://www.reuters.com/business/environment/record-seaweed-blankets-mexicos-caribbean-coast-threatening-tourism-environment-2026-07-28/,
+25/07/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-348,https://quintanaroo.quadratin.com.mx/coordina-mara-lezama-plan-nacional-para-atender-el-sargazo-en-el-caribe/?utm_source=chatgpt.com,
+30/07/2026,Quintana Roo,Mara Lezama,positivo,mara_lezama-349,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html?utm_source=chatgpt.com,
+01/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-350,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html?utm_source=chatgpt.com,
+03/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-351,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html?utm_source=chatgpt.com,
+06/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-352,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html,
+10/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-353,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html,
+13/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-354,https://www.reuters.com/business/environment/record-seaweed-blankets-mexicos-caribbean-coast-threatening-tourism-environment-2026-07-28/?utm_source=chatgpt.com,
+13/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-355,https://elpais.com/mexico/2026-08-03/el-mapa-del-sargazo-en-mexico-las-playas-del-caribe-han-recibido-27-veces-mas-toneladas-de-lo-normal.html?utm_source=chatgpt.com,
+13/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-356,https://elpais.com/mexico/2026-07-30/el-plan-contra-el-sargazo-para-salvar-las-playas-de-quintana-roo.html?utm_source=chatgpt.com,
+13/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-357,https://elpais.com/mexico/2026-06-01/mahahual-el-paraiso-olvidado-que-se-resiste-a-morir-entre-el-sargazo-y-los-cruceros.html?utm_source=chatgpt.com,
+14/08/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-358,https://www.reuters.com/business/environment/mexico-races-clear-record-seaweed-surge-caribbean-beaches-2026-08-14/?utm_source=chatgpt.com,
+14/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-359,https://quintanaroo.quadratin.com.mx/pone-mara-lezama-fecha-para-su-cuarto-informe-de-gobierno/?utm_source=chatgpt.com,
+15/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-360,https://elpais.com/mexico/2026-08-15/la-suprema-corte-sienta-un-precedente-en-la-justicia-ambiental-al-atraer-el-caso-de-royal-caribbean.html?utm_source=chatgpt.com,
+15/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-361,https://www.reuters.com/business/environment/record-seaweed-blankets-mexicos-caribbean-coast-threatening-tourism-environment-2026-07-28/?utm_source=chatgpt.com,
+15/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-362,https://quintanaroo.quadratin.com.mx/pone-mara-lezama-fecha-para-su-cuarto-informe-de-gobierno/?utm_source=chatgpt.com,
+20/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-363,https://www.elfinanciero.com.mx/estados/2026/08/20/adda-rubi-peniche-secretaria-de-turismo-de-campeche-llora-y-admite-que-no-tiene-experiencia-la-gobernadora-confio-en-mi/,
+24/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-364,https://www.reforma.com/vuela-de-vail-a-cancun-para-saludar-a-amlo/ar3263058,
+24/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-365,https://lasillarota.com/estados/2026/8/24/mara-lezama-suma-97-vuelos-privados-a-destinos-de-lujo-525651.html,
+25/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-366,https://www.infobae.com/mexico/2026/08/25/vuelos-privados-de-mara-lezama-gobernadora-desmiente-senalamientos-por-97-vuelos-privados-con-el-senador-con-licencia/,
+25/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-367,https://politica.expansion.mx/mexico/2026/08/25/mara-lezama-viajes-aviones-privados,
+25/08/2026,Quintana Roo,Mara Lezama,negativo,mara_lezama-368,https://elceo.com/politica/vuelos-privados-la-conexion-entre-mara-lezama-de-morena-y-emilio-gonzalez-del-partido-verde/,
+25/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-369,https://www.elimparcial.com/mexico/2026/08/25/mara-lezama-su-familia-y-el-precandidato-gino-segura-acumulan-283-movimientos-en-vuelos-privados-pan-exige-investigar-quien-pago-los-traslados-y-posibles-contratos/,
+26/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-370,https://www.reforma.com/vuela-mara-lezama-en-aviones-de-proveedor/ar3264461,
+26/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-371,"Grupo Animal retomó la polémica por los presuntos vuelos privados atribuidos a Mara Lezama y a integrantes de su círculo cercano. La gobernadora rechazó los señalamientos y negó haber realizado la cantidad de vuelos difundida en investigaciones periodísticas, manteniendo el debate sobre austeridad, transparencia y posible conflicto de interés. https://grupoanimal.mx/estados/vuelos-privados-mara-lezama-morena-deslinda ",
+27/08/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-372,https://www.publimetro.com.mx/noticias/2026/08/27/costo-de-vuelos-de-mara-lezama-equivale-a-13-anos-de-su-sueldo-segun-reporte/,
+02/09/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-373,https://www.nmas.com.mx/opinion/morena-debe-exigir-cuentas-a-mara-lezama-gobernadora-de-quintana-roo/,
+03/09/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-374,https://grupoanimal.mx/quintana-roo/politica/empresarios-transparencia-vuelos-mara-lezama,
+03/09/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-375,Empresarios de Quintana Roo solicitaron a Mara Lezama transparentar la información relacionada con la polémica por presuntos vuelos privados y aclarar el origen de los recursos utilizados. Integrantes del sector privado advirtieron que la falta de explicaciones puede generar dudas sobre posibles conflictos de interés y afectar la confianza ciudadana. (https://grupoanimal.mx/quintana-roo/politica/empresarios-transparencia-vuelos-mara-lezama,
+05/09/2026,Quintana Roo,Mara Lezama,neutral,mara_lezama-376,https://contralacorrupcion.mx/mara-lezama-contrato-a-empresas-ligadas-a-red-de-huachicol-del-dueno-de-miss-universo/,
+14/01/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-377,https://www.reportur.com/mexico/2026/01/14/fitur-gino-segura-roba-a-lezama-protagonismo-ante-hoteleros/,
+07/01/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-378,https://politico.mx/2026/01/07/una-mas-de-morena-exhiben-al-senador-gino-segura-por-usar-tenis-de-mas-de-30-mil-pesos/?utm_source=chatgpt.com,
+07/01/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-379,https://saganoticias.com/actual/senador-de-morena-en-polemica-por-depa-de-lujo-sin-declarar,
+07/02/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-380,https://tribunademexico.com/odiado-temido-gino-segura-emerge-como-rostro-reemplazo-mara-lezama/,
+08/02/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-381,https://laopinionqr.com/rafa-ya-es-el-cisne-negro-del-2027-pero-la-gubernatura-es-una-negociacion-diferente/?utm_source=chatgpt.com,
+17/02/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-382,https://www.eluniversal.com.mx/opinion/mario-maldonado/quintana-roo-la-guerra-anunciada-entre-morena-y-el-verde/,
+20/02/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-383,https://laopinionqr.com/con-el-licenciado-rafael-marin-tengo-una-gran-relacion-dijo-gino-segura-y-llama-a-la-unidad/,
+30/03/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-384,https://caribepeninsular.mx/criterios-distintos-resuelve-ieqroo-retiro-de-bardas-de-marybel-y-gino-con-trato-desigual/,
+30/03/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-385,https://laopinionqr.com/papelon-del-ieqroo-ordena-a-marybel-borrar-bardas-pero-las-de-gino-las-borraran-gobiernos-de-ana-paty-y-estefania-documentos/,
+01/04/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-386,https://quintafuerza.mx/quintana-roo/se-fortalece-gino-segura-en-q-roo-tras-llegada-de-marin-mollinedo-a-yucatan/,
+15/04/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-387,https://laopinionqr.com/gino-ya-actua-como-gobernador-y-diputados-de-la-4t-pan-y-pri-le-aprueban-sin-debate-una-iniciativa-ciudadana-documento/,
+19/04/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-388,https://diariocambio22.mx/gino-segura-defiende-a-xcaret-afirma-que-ya-retribuye-economicamente-al-pueblo-maya/,
+19/04/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-389,https://noticaribe.com.mx/2026/04/19/exhiben-amarres-politicos-se-reune-gino-segura-con-diez-de-los-once-alcaldes-morenistas-de-quintana-roo/,
+19/04/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-390,https://caribepeninsular.mx/bardas-politicas-niega-gino-segura-autoria-de-pintas-con-su-nombre-y-puno-socialista/,
+20/04/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-391,https://caribepeninsular.mx/alcalde-de-morena-el-puno-del-senador-gino-no-es-una-falta-de-respeto-es-un-tema-del-partido-video/,
+21/04/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-392,https://laopinionqr.com/la-rebeldia-de-atenea-vuelve-a-incomodar-al-marismo-sus-condiciones-para-apoyar-el-proyecto-gino/,
+10/05/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-393,https://laopinionqr.com/le-alcanza-a-gino-solo-con-el-oficialismo-local-para-ser-candidato-en-el-2027/,
+24/05/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-394,https://laopinionqr.com/con-la-senal-de-gino-ahora-un-grupo-de-diputados-de-la-4t-da-su-apoyo-al-senador-de-cara-al-2027/,
+19/06/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-395,https://www.poresto.com/quintana-roo/2026/6/19/gino-segura-y-su-camino-hacia-la-candidatura-cuestionamientos-y-polemicas-marcan-su-trayectoria.html,
+23/06/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-396,https://noticaribe.com.mx/2026/06/23/determina-teqroo-que-aparicion-de-menores-de-edad-en-publicidad-de-gino-segura-chepe-contreras-y-jose-luis-chacon-no-vulnera-los-derechos-de-la-ninez-ni-pone-en-riesgo-su-integridad/,
+24/06/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-397,https://politico.mx/2026/06/24/gino-segura-y-rafael-marin-chocan-por-la-candidatura-de-morena-en-quintana-roo/,
+25/06/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-398,https://diariocambio22.mx/gino-segura-se-equivoca-y-marybel-se-posiciona/,
+30/06/2026,Quintana Roo,Eugenio Segura Vázquez,neutral,gino_segura-399,https://drvnoticias.com/gino-segura-mostro-su-peso-politico-cierre-de-campana-o-arranque-al-2027-editorial-david-romero-vara/,
+26/08/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-400,https://potosinoticias.com/2026/08/25/vuelan-en-familia-y-con-su-precandidato/?wpappninja_v=6a8e747f84db5&utm_source=chatgpt.com,
+07/09/2026,Quintana Roo,Eugenio Segura Vázquez,negativo,gino_segura-401,https://noticias.canal10.tv/nota/politica/pide-calma-y-unidad-eugenio-segura-a-dias-de-salir-quien-sera-el-candidato-a-la-gubernatura-2026-09-07?utm_source=chatgpt.com,
+07/09/2026,Quintana Roo,Eugenio Segura Vázquez,positivo,gino_segura-402,https://laopinionqr.com/lo-que-viene-no-es-simplemente-una-continuacion-mara-manda-una-senal-de-que-la-sucesion-esta-definida-a-favor-de-gino/,
+25/02/2026,Quintana Roo,Ana Patricia Peralta,positivo,ana_paty-403,https://24horasqroo.mx/2026/02/25/ana-paty-peralta-9/,
+19/05/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-404,https://diariocambio22.mx/tesorero-de-ana-paty-peralta-habria-cobrado-dos-cargos-simultaneos-entre-cancun-y-chetumal-documentos-exhiben-ingresos-liquidacion-millonaria-y-crecimiento-patrimonial/,
+30/05/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-405,https://laopinionqr.com/por-que-suman-a-vero-lezama-a-las-encuestas-por-la-gubernatura-la-colocan-en-un-empate-con-ana-paty/,
+01/09/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-406,https://www.elfinanciero.com.mx/food-and-drink/2026/09/01/asi-la-taqueria-poc-chuc-el-local-favorito-de-de-la-alcaldesa-ana-paty-peralta-en-chetumal/?utm_source=chatgpt.com,
+01/09/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-407,https://imagendeveracruz.mx/nacional/alcaldesa-en-quintana-roo-es-investigada-por-nexos-con-cartel-de-sinaloa-eu-le-retira-visa-20260901-0089.html?utm_source=chatgpt.com,
+02/09/2026,Quintana Roo,Ana Patricia Peralta,negativo,ana_paty-408,https://www.debate.com.mx/politica/ana-paty-peralta-niega-cancelacion-de-su-visa-acepta-que-su-esposo-es-empresario-de-tabasco-20260902-0175.html?utm_source=chatgpt.com,
+11/03/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-409,https://www.jornada.com.mx/noticia/2026/03/11/sociedad/mexico-y-pfizer-acuerdan-produccion-de-vacunas-contra-el-covid19-para-el-2027,
+01/04/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-410,https://www.eluniversal.com.mx/opinion/mario-maldonado/aduanas-se-va-marin-merino-toma-control-y-ulloa-prefiere-birmex/?utm_source=chatgpt.com,
+22/05/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-411,https://www.yucatan.com.mx/mexico/2026/05/22/yerno-rocha-moya-enlace-claudia-sheinbaum-los-chapitos-cartel-de-sinaloa.html?utm_source=chatgpt.com,
+29/05/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-412,https://grupoanimal.mx/sociedad/birmex-abasto-medicinas-pais?utm_source=chatgpt.com,
+29/05/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-413,https://www.sdpnoticias.com/mexico/decreto-de-sheinbaum-otorga-a-birmex-control-de-la-compra-de-medicamentos-en-mexico/?utm_source=chatgpt.com,
+10/07/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-414,https://www.proceso.com.mx/nacional/2026/7/10/exdirector-de-pemex-enfrenta-ahora-senalamientos-por-contrato-de-4-mil-838-mdp-375823.html?utm_source=chatgpt.com,
+15/07/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-415,https://oem.com.mx/elsoldemexico/analisis/el-espectador-el-contrato-que-conecta-al-ex-director-de-pemex-con-poderosos-millonarios-31125835.html?app=true&utm_source=chatgpt.com,
+01/08/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-416,https://laopinionqr.com/?utm_source=chatgpt.com,
+03/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-417,https://www.elimparcial.com/mexico/2026/09/03/director-de-birmex-suma-al-menos-19-viajes-internacionales-y-reporta-la-compra-de-dos-departamentos-por-22-mdp-de-contado-segun-declaranet-y-migracion/?utm_source=chatgpt.com,
+03/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-418,https://www.eluniversal.com.mx/?utm_source=chatgpt.com,
+03/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-419,https://www.eluniversal.com.mx/nacion/pan-exige-investigacion-patrimonial-y-auditoria-a-carlos-ulloa-director-de-birmex-pri-pedira-su-comparecencia/?utm_source=chatgpt.com,
+04/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-420,https://www.sdpnoticias.com/mexico/claudia-sheinbaum-defiende-patrimonio-de-carlos-ulloa-titular-de-birmex/?utm_source=chatgpt.com,
+04/09/2026,Nacional,Carlos Ulloa Pérez,neutral,carlos_ulloa-421,https://www.infobae.com/mexico/2026/09/04/carlos-ulloa-explica-que-pago-224-millones-de-pesos-en-departamentos-solo-con-ahorros-y-herencia/?utm_source=chatgpt.com,
+2026-09-09,Yucatán,Pri,neutro,e3556,https://www.yucatan.com.mx/merida/2026/09/09/pareja-pasara-mas-de-56-anos-en-prision-por-agredir-a-una-menor-en-el-fracc-ciudad-caucel-de-merida.html,
+2026-09-09,Veracruz,Pt,neutro,e3563,https://news.google.com/rss/articles/CBMizgFBVV95cUxNYjgzOVQ4N1k1b2xzZXA4YUd0dkVmdEtuWVloaHJvc3NOaWlUOFZnWjMtQk5iWE1RbjRfSGpyNzRjUWNwLU5MejJUSU4xNXVxQU44NWFLMmNrTGd3SHJTWDVmRlBTdHVyMzhWRXZ1aHdyY25ELVhPc1BGNzZuR3dXVTJVQy1yM1hQRzRmUy0tZDFubl9vUUVBcjRURnJhb3Znel9McEZOZHZPcDAySEZsTGY5QjBYTzhEakdBRGFndE0wekswUUxRQTBVSWJaZw?oc=5,
+2026-09-09,Oaxaca,Pt,neutro,e3566,https://news.google.com/rss/articles/CBMi7gFBVV95cUxOdmJ5MEF0cmdKWkR6WlFVelJ6enRna0JJUGQteUtWalJuQnR4dkZsb0pDd05zRW5EQmpkRnZKNGU0anZoT2syV0RVYmR2TURfejR6Vm1jUlhsMXJqaFVKNDFsMWwyQ2poRzJqN3VVQ05NaFhCaXhnZWVtTEx2NVJMT1NmQnJjRnNYa2h0emhIZDV6MnM5TDludWUyNWNrZnFHRDkwS3F2SkxqLTc3MnB5ZU1Ld0w5VEJVMkZSMUN1SElWWjQzeFZ1LVVlSHlBZmRwS2RFTUhoWEZRWlBuZW05Umd3VVFfQlpmR05ObTRB?oc=5,
+2026-09-09,Oaxaca,Congreso Local,positivo,e3567,https://news.google.com/rss/articles/CBMiyAFBVV95cUxOMWdEYUg1Mzl0Wm0tc2lFQWxQblZQNFhjbUxzeHQ4OXZqd21qaERlbjFDTDVHR3p3YmE3VW8ybTE5OUlBMHVvSUpOZzNWTng3Y1ZVVDhBR3otc3dKWE5oT3kwMEJyUGNnN0dEb2RzQ3B3SW1lRDFpek1neXhOT0V0YjFwYkNYMVZrTWFndndOWVI4YW5IQ1UwckZzcFZEWThoUVRUYUhLSDh5TXBxNnZxY2hNUDBIb2lDQnF3ZzJzOWZzXzZwRFJjTQ?oc=5,
+2026-09-09,Oaxaca,Congreso Del Estado,positivo,e3568,https://news.google.com/rss/articles/CBMi9gFBVV95cUxPSHhBWnFQR0NNQlhTcmI4YnFUYm1KbmItb2dVczQxejNMZTNFZUR4QU9zSnBJaU9pLUFpYkFhaVk1NC1hakFuQVB2OTYwS0Z4OUl4Q1lFdTYxV2szdE81T2xoOTlzQlNnSkVFS3k1WGRVTEFlR0JTdHlDX09mME11Vm96Wk9RbE56RzllU05sb1RtaXZ2ZGMxZi05b09PSW01M3E2czNUUUxtamZVNDFVdURsQzJaLXl4b1ZhZzdLVElIWlVfOGcwejFMU0tLQXF4TElQUGxfV0EwY2dYa2ZGLVNmSGpfQ0N4T3ZFV2ZHTHNOSG9aMFE?oc=5,
+2026-09-09,Oaxaca,Ayuntamiento,neutro,e3570,https://news.google.com/rss/articles/CBMi5gFBVV95cUxPX0dXR2txQXBTd0JZakQ5WTJxNXBqcXdEbXZGbEZFMUVQTHItcFdiVnNqekI4MkpQNzhYNlFieTRjZm0tSXdtaTMwc0NlaGJTeVpqX18ydVZURllUcEhVeFV1V0tRSzBERm90Y01CWTlWSUxYd0lYbG1jLVAyeWF1MENtR01xSXZWNzlIbXJZd09ESEJzN3VEeXp2X0xRZzBodWZZVDNYRW9vd1VMdFVlRDdWY3BkNTRZZWtYdFJFYmkxQU5sRFh1MlZSRHZjbllYR3gyVmJQNkZsSGFtS3E1LXhETm5kZ9IB5gFBVV95cUxPX0dXR2txQXBTd0JZakQ5WTJxNXBqcXdEbXZGbEZFMUVQTHItcFdiVnNqekI4MkpQNzhYNlFieTRjZm0tSXdtaTMwc0NlaGJTeVpqX18ydVZURllUcEhVeFV1V0tRSzBERm90Y01CWTlWSUxYd0lYbG1jLVAyeWF1MENtR01xSXZWNzlIbXJZd09ESEJzN3VEeXp2X0xRZzBodWZZVDNYRW9vd1VMdFVlRDdWY3BkNTRZZWtYdFJFYmkxQU5sRFh1MlZSRHZjbllYR3gyVmJQNkZsSGFtS3E1LXhETm5kZw?oc=5,
+2026-09-09,Chiapas,Congreso Del Estado,neutro,e3572,https://news.google.com/rss/articles/CBMioAFBVV95cUxPdllISGlBWWV5Z1JuS2VNMHc3TlZ1cUxoMWNaQmdiUThnUDQzcmVGUXN0U2hCaDNLM2ktWDNWdWF5SUNDdEJzWGU4cDNZd1FhRkJlbVNyWm5TM0RMUGxENGNoTENZNC1hNk5tVXF5M3JxRnI2RmlTYXdxVWpyTkliRGlhajZzV2RuLTdEeG1PSHQ4ZnpNbVJIdFlubnA4ZTdN0gGmAUFVX3lxTE1XUzRLQlc3dGxGTGFueG9JcXktS1FOclRfYVZKQlFVeEU5S01HQWNRNGNyd2VBWV9ESW5FRmxpa0JaOGJCMlNhdzlYV2ZwTzNnVUR5S0JRQm5rTExWcGRkSFBIdEx4R01zWFdzT2xDQlYyYkJOMDlCdGNpbGVmeGN3Z3V1Y0FmZEpYdWtTc1Z4Z0lFUzBITXd3MjlyckJXMEZrUVFlNkE?oc=5,
+2026-09-09,Chiapas,Gobierno Del Estado,neutro,e3573,https://news.google.com/rss/articles/CBMikgFBVV95cUxPeE5zMHFRallZMHJVR3N6ZVlCenlLV1RMRVVwTUo3SHdfbDhyNi1vT0V2NTBmTndzVUdVeUdLY21fQVBINF9oa2RKZWhuRVNmMThRTjZCbldKSUMyTTIybVBmbkNYaGp1ZGt3WlRmQ1V2dXFOckxrNE5MRWlmbXhHcmVjSE9iNzVPeWh2Um1USEM3QQ?oc=5,
+2026-09-09,Yucatán,Gobierno Del Estado,neutro,e3580,https://news.google.com/rss/articles/CBMiYkFVX3lxTFBDMzc0YW5zU3h5bjQ5SHFNeDI5MWR5WTFYOEQ3QlQ5TTJwLVdmcmZUZnhtLUtVSGZQanlqaFlsOWFKWHQ5b0RjWjNMVHMxN3I3U2RUTWxfU1pPSEJYZXFkZDdB?oc=5,
+2026-09-09,Yucatán,Pri,neutro,e3580,https://news.google.com/rss/articles/CBMiYkFVX3lxTFBDMzc0YW5zU3h5bjQ5SHFNeDI5MWR5WTFYOEQ3QlQ5TTJwLVdmcmZUZnhtLUtVSGZQanlqaFlsOWFKWHQ5b0RjWjNMVHMxN3I3U2RUTWxfU1pPSEJYZXFkZDdB?oc=5,
+2026-09-09,Yucatán,Gobierno Del Estado,neutro,e3582,https://news.google.com/rss/articles/CBMibkFVX3lxTE1LQ0tPZms5Snpnb2N4TUVhSlZkUzZRTlp5a0JMTTZLSmtpTjl6S1BfYnJ4VDZ0cjMwc3h6Wm5mOEkzVy1hTk9LZ1IzSk9mZXFNTkZCb2Z3ZzVXWFlGRzJvaDU1X1UtZmhYN2s4Rjh3?oc=5,
+2026-09-09,Yucatán,Morena,neutro,e3583,https://news.google.com/rss/articles/CBMiVkFVX3lxTE91d1l3MHBxS0JrMFdxN2kweUgwY1d5V29oVm5lMWpiTHhvTmtQdEJUU0VmNEZGTWxZNWVBOXNmdjBnZGpZUmpkSTUxWGtEc2J0UHFRNDhn?oc=5,
+2026-09-09,Yucatán,Gobierno Del Estado,positivo,e3584,https://news.google.com/rss/articles/CBMibkFVX3lxTE1KT2V4WGwtbFc5ODc3bFBKeEJscGZaS2UwNW1oODJYZzgzUnlRdHI5ejFfMHI1Q2s4dndteEdfM2RVaGVKbFFXa1duX3FXVnZyYUZfZ0ZZVUNGRGZHNGlBSGJGSmFJQ1pCb25wT0Nn?oc=5,
+2026-09-09,Quintana Roo,Morena,neutro,e3585,https://news.google.com/rss/articles/CBMiowFBVV95cUxPb3loVGpuUEF3Z1AzblVkc1A5b3lyMmRrdEEyd2ZJVVNhLVNUWS1RUDhKSDB2V1MwdzlhWkMzYWF5YkkyZklmRk10ZExFUGQ1TE5QbmVsQ1d6VVZnam1UTlZDQ1FBYkVhSjlFVzk0Z3pHSmlObjg4NE5aM1pmT3JjeXpraVptWVFUU2VxRVRJNVYwcmp2YThpZTJuTUpVaTdFS3Jj?oc=5,
+2026-09-09,Puebla,Congreso Del Estado,neutro,e3587,https://news.google.com/rss/articles/CBMi2AFBVV95cUxNeS1CaHhSeUNhamJTXzZJUEJrSk9rc3lYNE5LbFdPcDBoN3hqTWNTdUhDZ3dvVm5KbXIzb1Z2LW9udlFlZzI2ZldNYzdndk5KWXUwUGttd05JNEVYYWpKTlFQSlN2cEtCMUs0a2lnQUFsVWtTLWhqY3RsQVpRUmFVRFR0aTlJTWhwblFJeGE1ME9HRndYWXltbUIzOEFPUExqRFVCQTgxOGpZX0doaFUxQVQwOGdoQTBxVTRzcnAtUXlhR3Z2di04UU5fZjBMdFhKOVJJdThSZjg?oc=5,
+2026-09-09,Puebla,Pt,positivo,e3588,https://news.google.com/rss/articles/CBMiyAFBVV95cUxNRUZfYTdDX1pjR2JYS093Y1ptVm5IcG12dk51YzAwdVNtM0szb0ppb0ZBNFJnZEFqemFPQnFKaW5pel9uS2F1Y0M0Z3c1ZDFKald1bm9jUC1LUmptbWxfb3dXWFNkcjJEZ3JMdGlsOUl4ajZJeHVFYlBPakFZQUxOaGh0Z1JwRU1IQUhiekhmREFuYl9IYXgzUUI4TzEzeVl6aERFR190M25hRzVpLXhORU1aeU9ROExNZmhBNVphTTlzRnR0UklOMg?oc=5,
+2026-09-09,Puebla,Gobierno Del Estado,neutro,e3591,https://news.google.com/rss/articles/CBMisgFBVV95cUxQenpyOVdBUGozbVFpcnhtc3IzTklVcFUtNWJNOWdHLVpWV2NDTkVlRnFnRG1hWHZSX2lLTDlwMjJnQjRINXlNTjRUdjFSUGlWN1pIM0NDRzQxZ0xaZFdyLUFqRzZQRjRSRWwxU2I4TUhHeFRJRGRyZHdZanFmcW9jUkJWS2hsS0J2elpmYm92dXRpOU5HdDVfTTRqS2JacWJZbkRXYTh3MmdvVURXMEc3dndB?oc=5,
+2026-09-09,Veracruz,Esteban Bautista Hernández,neutro,e3618,https://oem.com.mx/diariodexalapa/local/comision-nacional-de-morena-definira-militancia-de-vicente-aguilar-senala-esteban-bautista-31987231,
+2026-09-09,Veracruz,Morena,neutro,e3618,https://oem.com.mx/diariodexalapa/local/comision-nacional-de-morena-definira-militancia-de-vicente-aguilar-senala-esteban-bautista-31987231,
+2026-09-09,Veracruz,Pt,neutro,e3619,https://oem.com.mx/diariodexalapa/local/congreso-de-veracruz-asegura-proceso-transparente-para-seleccion-del-titular-del-orfis-31986218,
+2026-09-09,Puebla,Pvem,neutro,e3623,https://www.angulo7.com.mx/2026/noticias-puebla/miguel-marquez-diputado-local-del-pvem-se-deslinda-de-granja-de-criptomonedas-en-tlaola/721762/,
+2026-09-09,Puebla,Pt,neutro,e3623,https://www.angulo7.com.mx/2026/noticias-puebla/miguel-marquez-diputado-local-del-pvem-se-deslinda-de-granja-de-criptomonedas-en-tlaola/721762/,
+2026-09-09,Puebla,Morena,neutro,e3625,https://www.angulo7.com.mx/2026/noticias-puebla/morena-debe-evitar-nepotismo-en-cargos-de-puebla-rumbo-a-puebla-parra-tras-difusion-de-lista/721734/,
+2026-09-09,Puebla,Pan,neutro,e3625,https://www.angulo7.com.mx/2026/noticias-puebla/morena-debe-evitar-nepotismo-en-cargos-de-puebla-rumbo-a-puebla-parra-tras-difusion-de-lista/721734/,
+2026-09-09,Veracruz,Gobierno Del Estado,neutro,e3628,https://news.google.com/rss/articles/CBMi6wFBVV95cUxQaUMzekJHWGlIbTNGdVJ3YmNjSkNMT1htaW4tTjdtTFVyYmx4cjRvOGRYd1A3VkI3M0VFaFhQZ2p5REctRVVDMWM3WnlyWHJyZjdEYk5ITHcydzF6TXlfOF9DWlprdnlMT1U0TkhMZ2ZZUmRUM0oyenBzLXE4dDVXeC00RVI1UjFDZGVSMDRFWVgtQ3dNa0FfVjJNeGRPXzFDODl3anJCV2lZbV9VZkwyREZZWnhyTDdVU3dTMDNjdzhlSENGS0FrQXFtTTZOUTJqWktpMDI5eWtqa0ZrVU4zcmZ6dlE2WVZ0T3Rv?oc=5,
+2026-09-09,Puebla,Alejandro Armenta Mier,neutro,e3634,https://news.google.com/rss/articles/CBMilwJBVV95cUxOSkRYYzN0Uzltb2JaRnYySnNfeHVrWEhPS25DMU8xdERteUxvbnZ0eF9HeU41VG8tNkwzNjJpTUlmSjdCQjBnRkVmcmhKNWpFa3FmNGRpUjJZdGM2cHRkOU9JTm1IQzBqZU4tQmpPOUhDcGhrdUVKY1BPQ2duRDJUWjh1dnJzcmhVUnhoWGF5dTBjVXNKUXZNZ3ppWTRiQkwzdFAxX09jU0QyUnFNX090aXhtODhmRlJzTmlCMEpkVWdPV3BvLXNlM2JpTXZzYWRTNEQ3UDc0T01CRFVLX3dRTGlwcUtnbzMxTGRRWVh1d09UYUdyV1ZOZ1UyR1ZxYmxhXzFmUUtwQkZpejJzbE1JSHhXTzlIM1E?oc=5,
+2026-09-09,Veracruz,Rocío Nahle García,neutro,e3635,https://news.google.com/rss/articles/CBMizAFBVV95cUxQQjJrLXpURkxEUWgxRHh1R2s4QUppMjZTMFluX3lHeTFfTUJTMFlaRTBVLWkxVXY3aWNzTml6T281NlNDUHhmZW5fbGtEUnFhdGVET0YyZG1qck5NWEtQOWlURkpEU3FEck5ZbEJwamFNbmNSSW5YYm9GYXBuYmVveTdaQVI2LWxwLVQyYmk1VFA5eUlxVm9aN3FyeEtwR2hIb2hYaWktZWlkUENqS201SVZlV3RDNkxRckhyelRRSUZGaXZYU0Y4dDBCV0Y?oc=5,
+2026-09-09,Veracruz,Morena,neutro,e3635,https://news.google.com/rss/articles/CBMizAFBVV95cUxQQjJrLXpURkxEUWgxRHh1R2s4QUppMjZTMFluX3lHeTFfTUJTMFlaRTBVLWkxVXY3aWNzTml6T281NlNDUHhmZW5fbGtEUnFhdGVET0YyZG1qck5NWEtQOWlURkpEU3FEck5ZbEJwamFNbmNSSW5YYm9GYXBuYmVveTdaQVI2LWxwLVQyYmk1VFA5eUlxVm9aN3FyeEtwR2hIb2hYaWktZWlkUENqS201SVZlV3RDNkxRckhyelRRSUZGaXZYU0Y4dDBCV0Y?oc=5,
+2026-09-09,Veracruz,Rocío Nahle García,neutro,e3636,https://news.google.com/rss/articles/CBMiwAFBVV95cUxPSFc5SWh1WEx6alpLU05mVS1vV2tkcE5zb2RMVWI2YVpzaG1CVTh4UUM4MU13NVhwNXFSdlZsLWR3Y05aYTl4UkpOOHBfbTN3MkFnZ1lmYlBvYm1sUms0dUZNYnR6ZEg1c0pzWTNwRUNhOWRHRDJOT2F1OXg3UzZlLUgyc05lbzhqLUpBejRDc0l5WVdUUGs1eWdncFpZaVdZYUtMRmsxWlc1bncybGp6SlF3SVQ1a3U4NER1MEVmNXk?oc=5,
+2026-09-09,Veracruz,Rocío Nahle García,negativo,e3641,https://news.google.com/rss/articles/CBMiUEFVX3lxTE1WN0ZycEZoZzlDQVZxV1VzUFgtbEhvT0RMQUlTemJVM28zS3ExTXFuM1pKTVlrZFJwSjI1OXAwSzBPUW5icnZ1Y0g1ZURaNkxD?oc=5,
+2026-09-09,Oaxaca,Salomón Jara Cruz,neutro,e3642,https://news.google.com/rss/articles/CBMigwFBVV95cUxNRTRjYnJJNHVFYmFJczdReDFJQ1dhQzBYOE1UR296eFlqYzBMa3UxcWQtSHdRR0U1WVpfZmFFbzhIMFIzZ1k3WHNIdmNRYXN5VkhwbDk5UV95TFJmSFV6ZHFMQV9jUml5ckZTeDZPNnEtWk1rc29KMnJYTTVwb3lLTDEtQQ?oc=5,
+2026-09-09,Puebla,Morena,neutro,e3644,https://news.google.com/rss/articles/CBMiwgFBVV95cUxPT0ZRSThiLWZYNm9rU2w1am5WMG5NbDlVanlpQ0NfeU5VaFpkUW1UNHFvcHdXcmd0eEpJRnBQS2R2WEtHbm1WTEU5bHN1cHRJY2hJLWFPYnlqUlY1Nkx1QWN6bHYwdlZVX0dXNFBiSUdxYkMzZk1nUG10R0FIMEFMNVJvOVJBeVg0Z1RTVGVFMWMzNWg1MXd4akswb0Zoa2JZQmNVNlBXQ1MzQXdFTE1wNmlxeWhhTTBQUWRiZU1RV0NSdw?oc=5,
+2026-09-09,Veracruz,Esteban Bautista Hernández,neutro,e3661,https://news.google.com/rss/articles/CBMitgFBVV95cUxOWlpMMFJoREo1M19RcFJlWnYwb0JHQklYZC13YjI1NEZzRVNpbUV0QVJhU1hoVmllWm54WERqRm9RMUVuNkF4Y0xLQzdaOFBHdVBiRWtQS3BPdi00c0NZOFNoMlVCdGdDNkVzeFI3dV9rUmdkSXFyRVdxZFRzaHVjb3FRZTBHZHhQTTc3Rzd3bzlsM0lZSmZ4eTMtYVY1c1QtdGpJOWN0NzFVSi1BRmp1OEx1OWVsdw?oc=5,
+2026-09-09,Campeche,Morena,neutro,e3678,http://campechehoy.mx/2026/09/09/morena-corre-a-inzunza/,
+2026-09-09,Yucatán,Gobierno Del Estado,neutro,e3683,https://news.google.com/rss/articles/CBMibkFVX3lxTE5YM3V1OUFheUpJb19DUWxtTUVjamNNR2RMWlJTUW1kV25BUWpCTWlFR0xhcnhva0RNbWRGWXJIQlY5SEhvVE00Z1JBNHFHZWU1eHBXZTZKVlVtVHNoUTZ3b1IxRW9rTHg0c25UQW1R?oc=5,
+2026-09-09,Veracruz,Fiscalía General Del Estado,neutro,e3697,https://news.google.com/rss/articles/CBMizwFBVV95cUxObFhoMERwa0tFLXQ1QTVoME1hUkdJYkY1OE1JcmRqY0NBX0ZNNkViekJIWV91alQ0T01FVks3Vk5BaG5ZOS0wVmpRQnNTVE9KOERqY3RUanEtSngxNnE5a1k5VHRqVUtoVEZramVMMnBnc3picXR3eWx5REhubmpIVlg4dV9MTi1uN1FPczIxVG1VYXdTTUlJUHRfUklsTzRXOWhBUE9JQnZUUlBCZGcyeXRYcnVCWFVUTlZ2SFY3alc3NGgyb0J0MkJweHE3djA?oc=5,
+2026-09-09,Veracruz,Rocío Nahle García,neutro,e3698,https://news.google.com/rss/articles/CBMixAFBVV95cUxQcXBscmZicGMyYmZ4OHNSbnI3YS1xU2FZSDhFNkFWU0RUUFlwR1FvTlloWjhCZHVlRWlUejAtdTY5QlZZdGRZY05UTDBhNExNeF9jeFZxSVpDZ0cwMF9GNk5DYW5ZbDF0TTgxUHhxOEdOWG1ZczMyTnZKU0tNMUpMWU5WdGVOT2FwOENYTVE3SUZobFluZ0R0MHY3ZG9uRHFyOWxZRkttbjdrOG9fcXVGTDlSUW9NNzF2RHB0dUcwVEZRQU9s?oc=5,
+2026-09-09,Veracruz,Rocío Nahle García,negativo,e3699,https://news.google.com/rss/articles/CBMi1AFBVV95cUxNSV9WVUtGVnZnbGtUbkU0RGJoM1hISXJRY2dqdjJwcVBlWHkyN19TZkd3dVpSWkVSczFzZDJkbWttR2pOcS16RmNwM1h2bUEtWk02VHh1VGFLMFNpd2c2bVR5dWdkUExOYlJ6cERVMWk0ZWl0dGJJYjFFd2E2UXZXeHJTbW1vTFpnb3UxOGV2NmtLOTM1SVJ4UWpNd3lLUXNNejdJZTF5eC1RUi1ZeUtGdmxNU3EteC1mUERnblBSOHVyNnhGOEFxbDN1ZmFvTFBWTEtJQtIB2gFBVV95cUxPUXhFQW83RUtUV0FnZDRWSVVtYlh1bHZNaTFHX0c1eWttamM4YVQ1SGktbENyaS0tekxrMV9xdm9kbnFJTGJ5RVBpMjMyZlhKeTg4QVhKR0NKODhIWkFvMUk3eFNEZ3A4NHBuVzhvV1V3NUp1bUoxWlIxeFdYV3FXYWpUZnZSejBxYUdOcmZQTVdHZGRRSHhOeEpsaVZfY3dTYWU0UzNja182aFYxai01YXhnQkoxdTREcDl5YVo5WEJHeWtkUzZHTmMwMEtnRVIzWnlOS2RUcHkxQQ?oc=5,
+2026-09-09,Quintana Roo,Morena,neutro,e3700,https://news.google.com/rss/articles/CBMikgFBVV95cUxPZGZlYWk4Y09DdkVidlhKa2gyd016b0tFVzlEVnBsVHdkTHduY3dTX3pXUUd4YXJmZWtIMXpRcXdDZ2p3bm9jVVFscTFIY0pScTRWZGpYcmlZdWRNZ2IzUWhZMHlmWWdFcDZhdnQ2NmRPcURvbDVSR0syelBBUFhVbWdyVy1iZWxfM0pOODlIVUR2dw?oc=5,
+2026-09-09,Quintana Roo,Morena,neutro,e3701,https://news.google.com/rss/articles/CBMivgFBVV95cUxQYVFIQ3Q2SHN1WEpnUDQxMUtwSzhwSDBuTmVCd1RTSU9WcWR1dWxrdldfZmJYenVXaklOTXNsYzdQbWpjNHhfbXB1VVI4YkxGbVo0SFlzalNmR2dMVTc0dk5zVkFBR0l5MDJ4d3pxX0ZjS2kzaE5XbzhmcW1mdXdkb2kzMjMybHc5dFFEMVQ3RE5wVF85SXBnMFRScnRKN2Q1X1FNcXI5clNBTFlKVUtDS0RqOGdDcHlIcTFheExn?oc=5,
+2026-09-09,Quintana Roo,Morena,neutro,e3702,https://news.google.com/rss/articles/CBMitgFBVV95cUxPQnJVRmVzcDBzbW1Ldkw4Z245SWhvT2xDWXV5X0FuYTBHV2xFbmJvODY1aW50dTBWT1BxQjFGTG9VclF1a3NXNThMTjdDZ0VBZjhkR2txbS0tR25VaU5GRU1UWmFjRnRVYUZCM0NVWE4tNlFWOU9OMHJhRUNaWmlKUHZtdWNvX3I2U3hpMDMtVmw3QnhPV2x1TjBUZ2pxYU9TUjZMQjAweG01aVdrTE0wTEFFSk85UQ?oc=5,
+2026-09-09,Quintana Roo,Morena,neutro,e3703,https://news.google.com/rss/articles/CBMihwFBVV95cUxQQXZHajJWZjJUSGNFRHd3VVRha1VuTlRYcjUtd3RjdmltNGNzdm1HSHJOWVVFSHpyVTAybDVwTnZzUGZ3Q0g2M2Y2NFlUNGNjVEEzWldhU0pCcXV1Xzd6b2t3TnZka0VqWTREOGNWWm0ycXBqcDBpLVlVQUlPY0dxSVYySUJiMFE?oc=5,
+2026-09-09,Quintana Roo,Pri,neutro,e3703,https://news.google.com/rss/articles/CBMihwFBVV95cUxQQXZHajJWZjJUSGNFRHd3VVRha1VuTlRYcjUtd3RjdmltNGNzdm1HSHJOWVVFSHpyVTAybDVwTnZzUGZ3Q0g2M2Y2NFlUNGNjVEEzWldhU0pCcXV1Xzd6b2t3TnZka0VqWTREOGNWWm0ycXBqcDBpLVlVQUlPY0dxSVYySUJiMFE?oc=5,
+2026-09-09,Tabasco,Ayuntamiento,neutro,e3724,https://news.google.com/rss/articles/CBMi1AFBVV95cUxOMDE3YVJBVVNfZHFyNzNNUmpaamg0UGZPbmhDZ244T2dLcXh3TlJZLW1FaEdwN1hGSjUzTWt3cEhPNjBYSXM1b3RWdDJyNkdXRzZEZlJjaU92bmpIcDBiUXJmVXRDRGVuNEhGVldlaDZ5aFhFSFg2aExvTnJRczVPb3U4eW51bUhXbmkxY1l4YV91dUg1cVhyZGxQaFJtcVRHTndWUzhnS1hmSnFuZktHeXU3SVVYbjIzdThtQ2cyM3pVcTVjandBNDZjZ2FRZ0RkNnNDZQ?oc=5,Una Ley de Ingresos 2027 cercana a los 800 mdp es la que enviará el Ayuntamiento de Centla al Congreso - XEVT
+2026-09-09,Quintana Roo,Renán Sánchez Tajonar,negativo,e3725,https://news.google.com/rss/articles/CBMi4AFBVV95cUxQMVNra1NwUmZNcUdqWGU1NXpZekVkOG5za0R6MmhRQTV1UkdreGluU2ltRjRmZ1dZTjFvQ2RyT1l1cHlqbUNVbXcyQlY4M3J1Ry1KUUNIMXNrbkxBT3N6M0RKbmp3VEthNlZoWU1vN2tFNDNNZEhBS0h3WjJTc2xfOGNFdkRka0xfR1NvRERYcUlhMWlnSG5sb3BPUTNDT2dnMzBYaDBOQXZlLTl5T3M3dWVwNHdWVzlXazRMc0JkSjUtRjRQTlp5SGVaMGliMTlFTlNlR1R6X1J5Zm43dlJhQg?oc=5,Renán Sánchez descarta fractura entre MORENA y PVEM y refrenda unidad de la 4T - El Heraldo de México
+2026-09-09,Quintana Roo,Morena,negativo,e3725,https://news.google.com/rss/articles/CBMi4AFBVV95cUxQMVNra1NwUmZNcUdqWGU1NXpZekVkOG5za0R6MmhRQTV1UkdreGluU2ltRjRmZ1dZTjFvQ2RyT1l1cHlqbUNVbXcyQlY4M3J1Ry1KUUNIMXNrbkxBT3N6M0RKbmp3VEthNlZoWU1vN2tFNDNNZEhBS0h3WjJTc2xfOGNFdkRka0xfR1NvRERYcUlhMWlnSG5sb3BPUTNDT2dnMzBYaDBOQXZlLTl5T3M3dWVwNHdWVzlXazRMc0JkSjUtRjRQTlp5SGVaMGliMTlFTlNlR1R6X1J5Zm43dlJhQg?oc=5,Renán Sánchez descarta fractura entre MORENA y PVEM y refrenda unidad de la 4T - El Heraldo de México
+2026-09-09,Quintana Roo,Pvem,negativo,e3725,https://news.google.com/rss/articles/CBMi4AFBVV95cUxQMVNra1NwUmZNcUdqWGU1NXpZekVkOG5za0R6MmhRQTV1UkdreGluU2ltRjRmZ1dZTjFvQ2RyT1l1cHlqbUNVbXcyQlY4M3J1Ry1KUUNIMXNrbkxBT3N6M0RKbmp3VEthNlZoWU1vN2tFNDNNZEhBS0h3WjJTc2xfOGNFdkRka0xfR1NvRERYcUlhMWlnSG5sb3BPUTNDT2dnMzBYaDBOQXZlLTl5T3M3dWVwNHdWVzlXazRMc0JkSjUtRjRQTlp5SGVaMGliMTlFTlNlR1R6X1J5Zm43dlJhQg?oc=5,Renán Sánchez descarta fractura entre MORENA y PVEM y refrenda unidad de la 4T - El Heraldo de México
+2026-09-09,Puebla,Alejandro Armenta Mier,neutro,e3728,https://news.google.com/rss/articles/CBMixAJBVV95cUxQbTlScDF5NGxidk96TUVtOHR3cjRaVUptaV9XRkRaRXJ0RUlnRU0wVDRjTHEzQmdIeWlldnRFZnMxa21Qay0wd3M2VXNCcHBMUVBfeUs1QTBKS1k3VUVpSTQ5UWVtenZLVVc5anFVZ1NMeVU1MFJ1SEFmRV9qcTI0SF82aUNZR1lhZUZJSE1na1ZMcEVSX1lLLTdJcENJMFA3M1FKV3g3U3lxNTV1aHhoX29KdkxYT3RmaHNMNmNrdjJjeGpVRDFHakx6cDlfWnQtOWRlMTZWeTFULUNBS0htMFlVM0FBVDhNM1JCbWVzbVB3cm1WeGJvaVVFSDhoNmhYNnNXTWJXR0NubEl1cDJ4dEU4V3hXSEprdkhDM0hWQzExUnZidWgycFhIeXJESW9lX0FKMDFFWWEwRlNIdThzMGp0NjQ?oc=5,"108 MILLONES Y UNA OBRA INCONCLUSA: Gobernador Alejandro Armenta y José Manuel Contreras de los Santos, titular de Infraestructura, dejan en el abando"
