@@ -139,14 +139,11 @@ function horaDeteccionDe(evento){
     const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
     return new Date(hoy+'T'+evento.hora_registro+':00');
   }
-  // sin registro por dispositivo -- eso hacía que cada navegador viera una hora distinta
-  // para la misma nota, según cuándo la haya cargado por primera vez (bug real
-  // confirmado: un dispositivo abierto desde la mañana mostraba horas distintas a uno
-  // abierto a las 4pm, para las mismas notas). Sin hora_registro real, se usa un valor
-  // fijo (mediodía) -- todos los dispositivos ven exactamente lo mismo, aunque sea menos
-  // preciso que la hora real.
-  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
-  return new Date(hoy+'T12:00:00');
+  // sin hora real -- ya NO se inventa una hora fija (eso amontonaba todo en un punto
+  // falso) ni se guarda por dispositivo (eso hacía que cada navegador viera algo
+  // distinto). Ahora simplemente se excluye del punto individual en la gráfica -- sigue
+  // contando en el total del día, solo no aparece como un punto de hora específica.
+  return null;
 }
 
 let categoriaFiltroDispersion = null;
@@ -180,6 +177,7 @@ function dibujarDispersionHoraria(eventos){
   const porBloque = Array.from({length:BLOQUES}, ()=>[]);
   eventosFiltrados.forEach(e=>{
     const hora = horaDeteccionDe(e);
+    if(!hora) return; // sin hora real -- no se dibuja como punto individual, pero ya se contó en el total del día aparte
     const horaDecimal = hora.getHours()+hora.getMinutes()/60;
     if(isNaN(horaDecimal)) return;
     const idx = Math.min(BLOQUES-1, Math.max(0, Math.floor(horaDecimal*2)));
@@ -296,10 +294,7 @@ function pintarTarjetasPortada(eventos){
   // (ver agruparPorHechoReal), así que cortar aquí sigue mostrando lo más vigente.
   const LIMITE_GRUPOS_PORTADA = 60;
   const gruposAMostrar = grupos.slice(0, LIMITE_GRUPOS_PORTADA);
-  const avisoLimitePortada = grupos.length > LIMITE_GRUPOS_PORTADA
-    ? `<p style="grid-column:1/-1;font-size:11px;color:var(--ink-3);text-align:center;padding:8px 0;">Mostrando los ${LIMITE_GRUPOS_PORTADA} temas más recientes de ${grupos.length} — el resto sigue contando para el total del día.</p>`
-    : '';
-  cont.innerHTML = avisoLimitePortada + gruposAMostrar.map((grupo,i)=>{
+  cont.innerHTML = gruposAMostrar.map((grupo,i)=>{
     // elegir por MÁS RECIENTE, no por intensidad -- antes, si la nota de la mañana tenía
     // más intensidad, su texto se quedaba fijo como titular todo el día aunque llegaran
     // notas nuevas del mismo tema (bug real reportado: "las notas de la mañana no se

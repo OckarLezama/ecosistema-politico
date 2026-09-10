@@ -52,7 +52,7 @@ const ACTORES_C3_JS = {
     ['Rolando Zapata Bello','PRI'], ['Vida Gómez Herrera','MC'],
   ],
   'Quintana Roo': [
-    ['Mara Lezama Espinosa','Gobernadora'], ['Eugenio Segura Vázquez','Senador','Gino'],
+    ['Mara Lezama Espinosa','Gobernadora'], ['Eugenio Segura Vázquez','Ex senador','Gino'],
     ['Ana Patricia Peralta de la Peña','Alcaldesa de Benito Juárez (Cancún)'], ['Marybel Villegas Canché','Senadora'],
     ['Rafael Marín Mollinedo','Vínculos nacionales'], ['Juan Carrillo Soberanis','Diputado federal (PVEM)'],
     ['Renán Sánchez Tajonar','PVEM'], ['Humberto Aldana Navarro','Diputado federal (Morena)'],
@@ -98,6 +98,11 @@ function generarVariantesActorC3(nombre, apodo){
   if(partes.length>=2) variantes.add(partes[0]+' '+partes[1]);
   if(partes.length>=3) variantes.add(partes[0]+' '+partes[partes.length-1]);
   if(partes.length>=3) variantes.add(partes[0]+' '+partes[1]+' '+partes[2]);
+  // apellidos compuestos SOLOS (sin nombre de pila) -- seguro cuando son 2+ apellidos
+  // juntos (ej. "Díaz Mena"), porque esa combinación ya es específica por sí sola, a
+  // diferencia de un apellido suelto común (eso sí seguiría siendo riesgoso, no se
+  // agrega). Cubre el caso real de "el gobernador Díaz Mena declaró..." sin su nombre.
+  if(partes.length>=3) variantes.add(partes[partes.length-2]+' '+partes[partes.length-1]);
   if(apodo) variantes.add(apodo);
   return [...variantes].map(v=>sinAcentos(v.toLowerCase()));
 }
