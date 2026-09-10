@@ -51,10 +51,10 @@ def limpiar():
         dias_distintos = len({e['fecha'] for e in evs_del_tema})
         tiene_actor_alto = any(mencionaActorAlto(e['descripcion'], actores_altos) for e in evs_del_tema)
 
-        cumple = len(evs_del_tema) >= 5 and dias_distintos >= 2 and tiene_actor_alto
+        cumple = len(evs_del_tema) >= 4 and dias_distintos >= 2 and tiene_actor_alto
         if not cumple:
             razon = []
-            if len(evs_del_tema) < 5: razon.append(f'{len(evs_del_tema)} notas (necesita 5+)')
+            if len(evs_del_tema) < 4: razon.append(f'{len(evs_del_tema)} notas (necesita 4+)')
             if dias_distintos < 2: razon.append(f'{dias_distintos} día(s) (necesita 2+)')
             if not tiene_actor_alto: razon.append('sin actor de alto perfil vinculado')
             t['nivel_relevancia'] = '3'
