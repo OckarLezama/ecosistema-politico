@@ -160,8 +160,8 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
         except Exception:
             pass
     dominios.discard('')
-    if len(dominios) < 3:
-        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 3+) -- probablemente la misma fuente repetida, no cobertura real'
+    if len(dominios) < 2:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+) -- probablemente la misma fuente repetida, no cobertura real'
 
     actores_mencionados = set()
     for e in evs_del_tema:
@@ -172,7 +172,7 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
 
     intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
 
-    puntos = len(dominios) - 3  # los primeros 2 ya se exigieron en la etapa 1, de ahí en adelante suman
+    puntos = len(dominios) - 2  # los primeros 2 ya se exigieron en la etapa 1, de ahí en adelante suman
     if intensidad_prom >= 7: puntos += 2
     if len(actores_mencionados) >= 2: puntos += 2
 
