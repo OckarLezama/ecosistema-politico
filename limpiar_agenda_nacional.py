@@ -47,8 +47,8 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
         except Exception:
             pass
     dominios.discard('')
-    if len(dominios) < 3:
-        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 3+) -- probablemente la misma fuente repetida'
+    if len(dominios) < 2:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+) -- probablemente la misma fuente repetida'
 
     actores_mencionados = set()
     for e in evs_del_tema:
@@ -59,7 +59,7 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
 
     intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
 
-    puntos = len(dominios) - 3
+    puntos = len(dominios) - 2
     if intensidad_prom >= 7: puntos += 2
     if len(actores_mencionados) >= 2: puntos += 2
 
@@ -132,22 +132,33 @@ def limpiar():
 
     hoy_str = datetime.now(ZONA_MX).date().strftime('%Y-%m-%d')
     bajados = []
+    subidos = []
     filas_actores_nuevas = []
 
     for t in temas:
-        if t.get('nivel_relevancia') != '1':
-            continue
         if not t['id'].startswith('auto-'):
+            continue
+        if t.get('nivel_relevancia') not in ('1', '3'):
             continue
 
         evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not noCuentaParaEscalar(e['descripcion'])]
         cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str)
-        if not cumple:
+
+        if t.get('nivel_relevancia') == '1' and not cumple:
             t['nivel_relevancia'] = '3'
             bajados.append((t['id'], t.get('nombre', t['id']), razon))
-        else:
-            # sigue calificando -- si no tiene actores vinculados todavía (temas viejos,
-            # de antes del clasificador automático), se rellenan aquí
+            continue
+
+        if t.get('nivel_relevancia') == '3' and cumple:
+            # sube de vuelta -- esto es lo que faltaba: antes solo se podía bajar, nunca
+            # volver a calificar aunque el criterio se aflojara después (bug real: al
+            # subir el umbral y luego bajarlo de nuevo, lo ya bajado se quedaba atorado)
+            t['nivel_relevancia'] = '1'
+            subidos.append((t['id'], t.get('nombre', t['id']), razon))
+
+        if t.get('nivel_relevancia') == '1':
+            # sigue calificando (o acaba de subir) -- si no tiene actores vinculados
+            # todavía (temas viejos, de antes del clasificador automático), se rellenan
             tiene_actores = any(tid==t['id'] for tid,_ in ya_existentes)
             if not tiene_actores:
                 nuevas = actoresParaTema(t['id'], evs_del_tema, todos_los_actores, ya_existentes)
@@ -155,7 +166,7 @@ def limpiar():
                 for fila in nuevas:
                     ya_existentes.add((fila['tema_id'], fila['actor_id']))
 
-    if bajados:
+    if bajados or subidos:
         campos = list(temas[0].keys())
         with open(RUTA_TEMAS, 'w', newline='', encoding='utf-8') as f:
             w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
@@ -179,6 +190,9 @@ def limpiar():
 
     print(f'Temas bajados de Nivel 1 a Nivel 3 (no cumplían el criterio real): {len(bajados)}')
     for tid, nombre, razon in bajados:
+        print(f'  - {tid} ("{nombre[:60]}") -- {razon}')
+    print(f'\nTemas que vuelven a subir a Nivel 1 (ya califican con el criterio actual): {len(subidos)}')
+    for tid, nombre, razon in subidos:
         print(f'  - {tid} ("{nombre[:60]}") -- {razon}')
     print(f'\nActores rellenados en temas viejos que no tenían ninguno: {len(filas_actores_nuevas)}')
 
