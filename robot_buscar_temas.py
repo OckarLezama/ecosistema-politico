@@ -343,13 +343,31 @@ RUTA_MENCIONES_C3 = 'data/menciones_actores_c3.csv'
 def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_id, fuente_url, titular):
     if not actores_mencionados:
         return
+    campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url', 'titular']
     try:
-        with open(RUTA_MENCIONES_C3, encoding='utf-8'):
+        with open(RUTA_MENCIONES_C3, encoding='utf-8') as f:
             existe = True
+            primera_linea = f.readline()
     except FileNotFoundError:
         existe = False
+        primera_linea = ''
+
+    # auto-reparación: si el archivo ya existía de antes de que se agregara la columna
+    # "titular", su encabezado se quedó desactualizado (6 columnas) para siempre, aunque
+    # el código ya intentara escribir 7 -- esto desalineaba cada fila nueva y el navegador
+    # descartaba el título en silencio. Se detecta y se corrige solo, una vez, sin
+    # depender de acordarse de correr el script de corrección en el orden correcto.
+    if existe and 'titular' not in primera_linea:
+        with open(RUTA_MENCIONES_C3, encoding='utf-8') as f:
+            filas_viejas = list(csv.DictReader(f))
+        with open(RUTA_MENCIONES_C3, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, restval='')
+            w.writeheader()
+            for fila in filas_viejas:
+                fila.pop(None, None)
+                w.writerow(fila)
+
     with open(RUTA_MENCIONES_C3, 'a', newline='', encoding='utf-8') as f:
-        campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url', 'titular']
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         if not existe:
             w.writeheader()
