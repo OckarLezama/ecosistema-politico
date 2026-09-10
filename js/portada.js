@@ -5,11 +5,7 @@
    ============================================================ */
 
 let eventosHoyCache = [];
-let pulsoDelDiaCache = null;
 
-// agrupa notas que hablan del MISMO hecho real (aunque vengan de fuentes/titulares
-// distintos) -- Jaccard sobre palabras significativas, mismo principio que ya usa el robot
-// para no duplicar en un solo día/tema, aplicado aquí entre TODAS las notas del día
 const PALABRAS_VACIAS_AGRUPAR = new Set(['que','de','la','el','en','y','a','los','las','un','una','por','con','para','su','se','del','al','es','no','más','como','este','esta','o']);
 function palabrasSignificativasPortada(texto){
   return new Set(texto.toLowerCase().replace(/[^\wáéíóúñ\s]/g,' ').split(/\s+/).filter(p=>p.length>3 && !PALABRAS_VACIAS_AGRUPAR.has(p)));
@@ -30,25 +26,19 @@ function agruparPorHechoReal(eventos){
   return grupos;
 }
 
-// el "pulso del día" -- análisis real de IA sobre el ritmo y el TIPO de notas del momento,
-// generado por el mismo robot que ya corre cada rato -- se lee del mismo archivo que ya
-// usa Red de Actores para su análisis, en una clave nueva y separada
-function cargarPulsoDelDia(){
-  return fetch('data/analisis_ia.json?t='+Date.now())
-    .then(r=>r.ok?r.json():null)
-    .then(d=>{ pulsoDelDiaCache = (d && d.lectura && d.lectura.pulso_del_dia) ? d.lectura.pulso_del_dia : null; return pulsoDelDiaCache; })
-    .catch(()=>null);
-}
-
 function renderPortada(){
   const cont = document.getElementById('portada-contenido');
   const encabezado = document.getElementById('portada-encabezado-fijo');
   if(!cont || !encabezado) return;
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  // ORDEN CORREGIDO: antes ordenaba por intensidad, así que una nota fuerte de la mañana
+  // se quedaba arriba todo el día sin importar qué tan nuevo fuera lo demás. Ahora ordena
+  // por hora_registro real (más reciente primero) -- lo nuevo entra arriba, lo viejo se
+  // recorre hacia abajo, como en el Feed y Notas de Agenda.
   eventosHoyCache = ECOSISTEMA.eventos
-    .filter(e=>e.fecha===hoy && !e.entidad_c3) // Portada es cobertura NACIONAL -- las notas locales (con entidad_c3 puesta) se quedan solo en C3, aquí no se mezclan
+    .filter(e=>e.fecha===hoy && !e.entidad_c3)
     .slice()
-    .sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
+    .sort((a,b)=> (b.hora_registro||'').localeCompare(a.hora_registro||''));
 
   if(!eventosHoyCache.length){
     encabezado.innerHTML = '';
@@ -58,9 +48,6 @@ function renderPortada(){
 
   const fechaTexto = new Date().toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long', timeZone:'America/Mexico_City'});
 
-  // resumen: total por categoría + actores mencionados, contados por MENCIÓN REAL en el
-  // texto de cada nota (misma lógica que C3, compartida en data-loader.js) -- ya no por
-  // "el tema está conectado a este actor", que inflaba el conteo con notas que no lo mencionan
   const conteoCategoria = {};
   eventosHoyCache.forEach(e=> conteoCategoria[e.categoria]=(conteoCategoria[e.categoria]||0)+1);
   const conteoMencionesActor = {};
@@ -77,10 +64,9 @@ function renderPortada(){
     .sort((a,b)=>b[1]-a[1])
     .map(([nombre,n])=>({nombre, n}));
 
-  // encabezado va en un elemento DOM SEPARADO, físicamente fuera del área con scroll --
-  // así es imposible que las tarjetas se vean detrás, sin depender de position:sticky
   encabezado.innerHTML = `
       <div style="margin-bottom:10px;">
+        <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
         <div id="portada-dispersion" style="margin-bottom:10px;width:100%;"></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
           ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
@@ -96,8 +82,7 @@ function renderPortada(){
       </div>
       <input id="portada-buscador" type="text" placeholder="Buscar en las notas o actores de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);">
   `;
-  cargarPulsoDelDia().then(()=> dibujarDispersionHoraria(eventosHoyCache, fechaTexto));
-  dibujarDispersionHoraria(eventosHoyCache, fechaTexto); // primer dibujo inmediato (sin esperar el fetch), se vuelve a dibujar arriba en cuanto llega el pulso
+  dibujarDispersionHoraria(eventosHoyCache);
   cont.innerHTML = `
     <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding-top:14px;"></div>
   `;
@@ -115,13 +100,13 @@ function renderPortada(){
   let categoriaActiva = null;
   document.querySelectorAll('#portada-chips-categoria button').forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      categoriaActiva = (categoriaActiva===btn.dataset.cat) ? null : btn.dataset.cat; // clic de nuevo quita el filtro
+      categoriaActiva = (categoriaActiva===btn.dataset.cat) ? null : btn.dataset.cat;
       document.querySelectorAll('#portada-chips-categoria button').forEach(b=>{
         b.style.borderColor = (b.dataset.cat===categoriaActiva) ? 'var(--teal)' : 'var(--line-strong)';
         b.style.color = (b.dataset.cat===categoriaActiva) ? 'var(--ink-1)' : 'var(--ink-2)';
       });
-      categoriaFiltroDispersion = categoriaActiva; // misma categoría también filtra la gráfica de dispersión
-      dibujarDispersionHoraria(eventosHoyCache, fechaTexto);
+      categoriaFiltroDispersion = categoriaActiva;
+      dibujarDispersionHoraria(eventosHoyCache);
       const q = document.getElementById('portada-buscador').value.trim().toLowerCase();
       pintarTarjetasPortada(filtrarEventosPortada(q, categoriaActiva));
     });
@@ -139,8 +124,6 @@ function filtrarEventosPortada(q, categoria){
     if(categoria && ev.categoria!==categoria) return false;
     if(!q) return true;
     const coincideTexto = ev.descripcion.toLowerCase().includes(q) || (nombreTemaPorId[ev.tema_id]||'').toLowerCase().includes(q);
-    // coincidencia por actor: mención REAL en el texto (variantes de nombre, incluye apodos
-    // como "Alito", "Andy", "Gino", "AMLO"), nunca por tema conectado en general
     const coincideActor = (ECOSISTEMA.actores||[]).some(a=>{
       const variantes = variantesDeNombre(a.nombre);
       const coincideConBusqueda = variantes.some(v=>v.includes(q)) || a.nombre.toLowerCase().includes(q);
@@ -151,26 +134,22 @@ function filtrarEventosPortada(q, categoria){
   });
 }
 
-// "hora de aparición" real: la primera vez que el navegador ve una nota, se guarda la hora
-// exacta en localStorage bajo su id -- así se puede armar la dispersión de a qué hora del
-// día van saliendo las notas, sin que el robot tenga que guardar hora (solo guarda fecha)
 function horaDeteccionDe(evento){
-  // preferir la hora REAL que el robot guardó (consistente para todos los dispositivos) --
-  // el localStorage por dispositivo queda solo de respaldo para notas viejas sin ese campo
   if(evento.hora_registro){
     const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
     return new Date(hoy+'T'+evento.hora_registro+':00');
   }
-  const clave = 'hora-deteccion:'+evento.id;
-  let guardada = localStorage.getItem(clave);
-  if(!guardada){
-    guardada = new Date().toISOString();
-    try{ localStorage.setItem(clave, guardada); }catch(e){}
-  }
-  return new Date(guardada);
+  // sin registro por dispositivo -- eso hacía que cada navegador viera una hora distinta
+  // para la misma nota, según cuándo la haya cargado por primera vez (bug real
+  // confirmado: un dispositivo abierto desde la mañana mostraba horas distintas a uno
+  // abierto a las 4pm, para las mismas notas). Sin hora_registro real, se usa un valor
+  // fijo (mediodía) -- todos los dispositivos ven exactamente lo mismo, aunque sea menos
+  // preciso que la hora real.
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  return new Date(hoy+'T12:00:00');
 }
 
-let categoriaFiltroDispersion = null; // clic en una categoría filtra también la gráfica, no solo las tarjetas
+let categoriaFiltroDispersion = null;
 
 function colorPorImpactoDispersion(intensidad){
   const n = Number(intensidad);
@@ -180,56 +159,35 @@ function colorPorImpactoDispersion(intensidad){
 }
 
 function notasRelevantesDe(lista, maximo=5){
-  // "relevante de verdad" combina impacto (intensidad) y cobertura (cuántos medios la
-  // cubrieron) -- no solo tomar cualquiera con intensidad alta, ni listar todo lo que haya
   return [...lista]
     .map(e=>({ e, score: Number(e.intensidad||0)*2 + Number(e.cobertura||1) }))
     .sort((a,b)=>b.score-a.score)
-    .filter(x=>x.score>=8) // umbral mínimo real -- por debajo de esto no "destaca", aunque queden huecos en el top 5
+    .filter(x=>x.score>=8)
     .slice(0,maximo)
     .map(x=>x.e);
 }
 
-function dibujarDispersionHoraria(eventos, fechaTexto){
+function dibujarDispersionHoraria(eventos){
   const cont = document.getElementById('portada-dispersion');
   if(!cont) return;
   const eventosFiltrados = categoriaFiltroDispersion ? eventos.filter(e=>e.categoria===categoriaFiltroDispersion) : eventos;
-
-  // encabezado propio de la gráfica: fecha + conteo (antes vivía afuera, suelto) y el
-  // "pulso" del día (análisis real de IA sobre el ritmo y tipo de notas, no una plantilla)
-  // -- todo lo que describe "el momento actual" queda junto, dentro del mismo bloque
-  const encabezadoGrafica = `
-    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
-      <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto||''} · ${eventos.length} nota${eventos.length!==1?'s':''}</div>
-    </div>
-    ${pulsoDelDiaCache ? `<div style="background:var(--bg-2);border-left:2px solid var(--teal);border-radius:var(--radius-s);padding:7px 10px;margin:0 1.2% 8px 1.6%;box-sizing:border-box;">
-      <div style="font-size:9px;color:var(--teal);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px;">Pulso del día</div>
-      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.4;margin:0;">${pulsoDelDiaCache}</p>
-    </div>` : ''}`;
-
-  if(!eventosFiltrados.length){ cont.innerHTML = encabezadoGrafica + `<p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
-  const ancho = 1000, alto = 130, margenIzq = 16, margenDer = 12, margenAbajo = 20, margenArriba = 14;
+  if(!eventosFiltrados.length){ cont.innerHTML = `<div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div><p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
+  const ancho = 1000, alto = 130, margenIzq = 34, margenDer = 10, margenAbajo = 20, margenArriba = 14;
   const altoUtil = alto - margenArriba - margenAbajo;
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
 
-  // CURVA DE DENSIDAD SUAVE -- con 250+ notas, barras por hora ya se ven "en bloques" y
-  // pierden precisión. Una curva continua, con bloques de 30 min (el doble de fino que
-  // antes), se lee mejor a este volumen y no tiene el efecto de "cajones"
-  const BLOQUES = 96; // 15 min cada uno -- criterio correcto (no 30, no nota por nota)
+  const BLOQUES = 48;
   const porBloque = Array.from({length:BLOQUES}, ()=>[]);
   eventosFiltrados.forEach(e=>{
     const hora = horaDeteccionDe(e);
     const horaDecimal = hora.getHours()+hora.getMinutes()/60;
-    if(isNaN(horaDecimal)) return; // protección: nunca truena si algún dato de hora viene mal formado
-    const idx = Math.min(BLOQUES-1, Math.max(0, Math.floor(horaDecimal*4)));
+    if(isNaN(horaDecimal)) return;
+    const idx = Math.min(BLOQUES-1, Math.max(0, Math.floor(horaDecimal*2)));
     porBloque[idx].push(e);
   });
   const maxConteo = Math.max(...porBloque.map(l=>l.length), 1);
 
-  // cuadrícula real tipo papel cuadriculado -- cuadros finos parejos, no solo líneas sueltas.
-  // Va de margenIzq hasta ancho-margenDer, igual que el <rect> de fondo -- ambos ocupan el
-  // mismo ancho útil del viewBox, que a su vez se estira a 100% del contenedor real.
-  const PASO_H = 1; // una línea vertical cada 1h -- cuadros chicos de verdad
+  const PASO_H = 1;
   let grilla = '';
   for(let h=0; h<=24; h+=PASO_H){
     const x = xDeHora(h);
@@ -241,14 +199,12 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
     grilla += `<line x1="${margenIzq}" y1="${y}" x2="${ancho-margenDer}" y2="${y}" stroke="var(--line)" stroke-width="1" stroke-opacity="${i%2===0?0.22:0.12}"/>`;
   }
 
-  // puntos de la curva: 1 por bloque, x = centro del bloque, y = altura según conteo
   const puntos = porBloque.map((lista,i)=>{
-    const x = xDeHora((i+0.5)/4);
-    const y = margenArriba + altoUtil - (lista.length/maxConteo)*altoUtil*0.85; // el pico más alto llega a 85% de la altura, nunca toca el borde de arriba
+    const x = xDeHora((i+0.5)/2);
+    const y = margenArriba + altoUtil - (lista.length/maxConteo)*altoUtil*0.85;
     return {x, y, lista};
   });
 
-  // curva suave tipo Catmull-Rom -> Bézier, para que no se vea de "picos" angulosos
   function curvaSuave(pts){
     if(pts.length<2) return '';
     let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
@@ -263,23 +219,21 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
   const lineaD = curvaSuave(puntos);
   const areaD = lineaD + ` L ${puntos[puntos.length-1].x.toFixed(1)} ${margenArriba+altoUtil} L ${puntos[0].x.toFixed(1)} ${margenArriba+altoUtil} Z`;
 
-  // puntos visibles: uno por cada bloque de 15 min que SÍ tenga notas -- criterio correcto
-  // (no 30 min, y no un punto por cada nota individual). Como <div> HTML (no <circle> de
-  // SVG) porque el SVG usa preserveAspectRatio="none" para estirarse al ancho completo, y
-  // eso deformaría cualquier <circle> dibujado adentro.
   const puntosVisiblesHTML = puntos.map((p,i)=>{
     if(!p.lista.length) return '';
     const promedioImpacto = p.lista.reduce((s,e)=>s+Number(e.intensidad),0)/p.lista.length;
     const color = colorPorImpactoDispersion(promedioImpacto);
-    const h = Math.floor(i/4), m = (i%4)*15;
+    const h = Math.floor(i/2), m = (i%2)*30;
     const horaTxt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
     const relevantes = notasRelevantesDe(p.lista);
+    const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
     const xPct = (p.x/ancho*100).toFixed(2), yPct = (p.y/alto*100).toFixed(2);
-    return `<div class="punto-densidad" data-idx="${i}" data-hora="${horaTxt}" data-conteo="${p.lista.length}"
+    return `<div class="punto-densidad" data-hora="${horaTxt}" data-conteo="${p.lista.length}" data-relevantes="${relevantes.length}" data-desc="${titulares.replace(/"/g,'&quot;')}"
       style="position:absolute;left:${xPct}%;top:${yPct}%;width:5px;height:5px;margin:-2.5px;border-radius:50%;background:${color};border:1px solid var(--bg-1);cursor:pointer;"></div>`;
   }).join('');
 
-  cont.innerHTML = encabezadoGrafica + `
+  cont.innerHTML = `
+    <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div>
     <div style="position:relative;width:100%;">
       <svg id="portada-svg-dispersion" width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" preserveAspectRatio="none" style="display:block;cursor:crosshair;">
         <defs>
@@ -296,35 +250,27 @@ function dibujarDispersionHoraria(eventos, fechaTexto){
         <line id="portada-linea-guia" x1="0" y1="${margenArriba}" x2="0" y2="${alto-margenAbajo}" stroke="var(--ink-1)" stroke-width="1" stroke-opacity="0" stroke-dasharray="2 2"/>
       </svg>
       <div style="position:absolute;inset:0;pointer-events:none;">${puntosVisiblesHTML}</div>
-      <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:6px 10px;font-size:10.5px;color:var(--ink-1);line-height:1.5;pointer-events:none;max-width:280px;z-index:20;box-shadow:var(--shadow-card);"></div>
+      <div id="portada-dispersion-tooltip" style="position:absolute;display:none;background:var(--bg-0);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:5px 9px;font-size:10.5px;color:var(--ink-1);pointer-events:none;max-width:260px;z-index:20;box-shadow:var(--shadow-card);"></div>
     </div>`;
-  // el contenedor de puntos tiene pointer-events:none (para no tapar el mousemove del SVG de
-  // abajo), pero cada punto individual sí necesita recibir su propio hover
   cont.querySelectorAll('.punto-densidad').forEach(p=> p.style.pointerEvents='auto');
 
-  // línea guía tipo monitor de hospital -- sigue al mouse en vez de agrandar el punto
-  // (antes el punto crecía en cada hover, dando la sensación de una "bola" acumulándose)
   const svgEl = document.getElementById('portada-svg-dispersion');
   const lineaGuia = document.getElementById('portada-linea-guia');
   const tooltip = document.getElementById('portada-dispersion-tooltip');
   svgEl.addEventListener('mousemove', (ev)=>{
     const rect = svgEl.getBoundingClientRect();
     const xRel = ((ev.clientX-rect.left)/rect.width)*ancho;
-    // busca el BLOQUE de 15 min más cercano en X, y muestra el resumen de ese bloque
-    // (total de notas + las relevantes por impacto), no una sola nota suelta
     let cercano = puntos[0], distMin = Infinity;
     puntos.forEach(p=>{ const d = Math.abs(p.x-xRel); if(d<distMin){ distMin=d; cercano=p; } });
     lineaGuia.setAttribute('x1', cercano.x); lineaGuia.setAttribute('x2', cercano.x);
     lineaGuia.setAttribute('stroke-opacity', '0.5');
     if(cercano.lista.length){
       const idx = puntos.indexOf(cercano);
-      const h = Math.floor(idx/4), m = (idx%4)*15;
+      const h = Math.floor(idx/2), m = (idx%2)*30;
       const relevantes = notasRelevantesDe(cercano.lista);
-      const lineasNotas = relevantes.map(e=>{
-        const color = colorPorImpactoDispersion(e.intensidad);
-        return `<div style="display:flex;gap:5px;align-items:flex-start;margin-top:3px;"><span style="width:6px;height:6px;border-radius:50%;background:${color};flex-shrink:0;margin-top:4px;"></span><span>${e.descripcion.slice(0,80)}</span></div>`;
-      }).join('');
-      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` + lineasNotas;
+      const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
+      tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` +
+        (titulares ? `<br><span style="color:var(--ink-3);">${titulares}</span>` : '');
       tooltip.style.display = 'block';
       tooltip.style.left = Math.min(ev.clientX-rect.left+8, rect.width-270)+'px';
       tooltip.style.top = Math.max(0, ev.clientY-rect.top-50)+'px';
@@ -343,12 +289,22 @@ function pintarTarjetasPortada(eventos){
     cont.innerHTML = `<p style="font-size:12px;color:var(--ink-3);grid-column:1/-1;">Sin resultados para este filtro.</p>`;
     return;
   }
-  // GARANTÍA: toda tarjeta muestra una imagen -- la primera real que exista entre TODAS las
-  // fuentes agrupadas del mismo hecho, o un respaldo diseñado si de plano ninguna trae.
   const grupos = agruparPorHechoReal(eventos);
   const totalNotasDelDia = eventosHoyCache.length || 1;
-  cont.innerHTML = grupos.map((grupo,i)=>{
-    const principal = [...grupo].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad))[0];
+  // límite real -- con 261 notas en un solo día, mostrar cada grupo se vuelve
+  // inmanejable. Los grupos ya vienen ordenados por actividad más reciente primero
+  // (ver agruparPorHechoReal), así que cortar aquí sigue mostrando lo más vigente.
+  const LIMITE_GRUPOS_PORTADA = 60;
+  const gruposAMostrar = grupos.slice(0, LIMITE_GRUPOS_PORTADA);
+  const avisoLimitePortada = grupos.length > LIMITE_GRUPOS_PORTADA
+    ? `<p style="grid-column:1/-1;font-size:11px;color:var(--ink-3);text-align:center;padding:8px 0;">Mostrando los ${LIMITE_GRUPOS_PORTADA} temas más recientes de ${grupos.length} — el resto sigue contando para el total del día.</p>`
+    : '';
+  cont.innerHTML = avisoLimitePortada + gruposAMostrar.map((grupo,i)=>{
+    // elegir por MÁS RECIENTE, no por intensidad -- antes, si la nota de la mañana tenía
+    // más intensidad, su texto se quedaba fijo como titular todo el día aunque llegaran
+    // notas nuevas del mismo tema (bug real reportado: "las notas de la mañana no se
+    // mueven"). Ahora el texto mostrado siempre refleja lo último que se supo.
+    const principal = [...grupo].sort((a,b)=> (b.hora_registro||'').localeCompare(a.hora_registro||''))[0];
     const color = colorCategoria(principal.categoria);
     const temaNombre = nombreTemaPorId[principal.tema_id] || '';
     const textoLimpio = principal.descripcion.replace(/^\[Mañanera\]\s*/,'');
@@ -377,7 +333,6 @@ function pintarTarjetasPortada(eventos){
       const i = Number(el.dataset.grupo);
       const grupo = grupos[i];
       if(grupo.length===1){ if(el.dataset.url) window.open(el.dataset.url, '_blank', 'noopener'); return; }
-      // expande EN EL MISMO LUGAR de la tarjeta, no en ventana aparte
       const zonaExpandida = document.getElementById('portada-expandido-'+i);
       const yaAbierto = zonaExpandida.style.display==='block';
       zonaExpandida.style.display = yaAbierto ? 'none' : 'block';
