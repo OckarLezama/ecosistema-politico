@@ -456,9 +456,15 @@ function renderNotasAgenda(){
   // íconos), no suelto arriba del contenido -- mismo lugar para Notas y Genealogía
   const selectWrap = document.getElementById('agenda-tema-select-wrap');
   const select = document.getElementById('agenda-tema-select');
+  const datalist = document.getElementById('agenda-tema-lista-nombres');
   selectWrap.style.display = 'flex';
-  select.innerHTML = temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaNotasSeleccionado?'selected':''}>${t.nombre}</option>`).join('');
-  select.onchange = (e)=>{ temaNotasSeleccionado = e.target.value; dibujarNotasConGrafoReal(); };
+  datalist.innerHTML = temasDisponibles.map(t=>`<option value="${t.nombre}">`).join('');
+  const temaActualNotas = temasDisponibles.find(t=>t.id===temaNotasSeleccionado);
+  select.value = temaActualNotas ? temaActualNotas.nombre : '';
+  select.oninput = (e)=>{
+    const encontrado = temasDisponibles.find(t=>t.nombre===e.target.value);
+    if(encontrado){ temaNotasSeleccionado = encontrado.id; dibujarNotasConGrafoReal(); }
+  };
 
   if(!temaNotasSeleccionado){
     const leyendaNotas0 = document.getElementById('agenda-notas-leyenda');
@@ -565,6 +571,10 @@ function dibujarNotasAgenda(temaId){
 }
 
 let genealogiaRevelados = 1;
+let temaGenealogiaAnterior = null; // recuerda qué tema se dibujó la última vez -- así el
+// refresco automático de datos cada 3 minutos no reinicia el progreso si sigues viendo
+// el mismo tema (bug real: al dejar Genealogía abierta un rato, el recorrido revelado
+// desaparecía solo, porque cada redibujo -- incluso de fondo -- reiniciaba todo a 1)
 
 function renderGenealogiaAgenda(){
   const cont = document.getElementById('agenda-contenido');
@@ -587,8 +597,14 @@ function renderGenealogiaAgenda(){
 
   // mismo selector estático que Notas -- una sola fila junto a Categoría e íconos
   selectWrap.style.display = 'flex';
-  select.innerHTML = temasDisponibles.map(t=>`<option value="${t.id}" ${t.id===temaGenealogiaSeleccionado?'selected':''}>${t.nombre}</option>`).join('');
-  select.onchange = (e)=>{ temaGenealogiaSeleccionado = e.target.value; genealogiaRevelados = 1; renderGenealogiaAgenda(); };
+  select.innerHTML = '';
+  document.getElementById('agenda-tema-lista-nombres').innerHTML = temasDisponibles.map(t=>`<option value="${t.nombre}">`).join('');
+  const temaActualGeneal = temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado);
+  select.value = temaActualGeneal ? temaActualGeneal.nombre : '';
+  select.oninput = (e)=>{
+    const encontrado = temasDisponibles.find(t=>t.nombre===e.target.value);
+    if(encontrado){ temaGenealogiaSeleccionado = encontrado.id; genealogiaRevelados = 1; renderGenealogiaAgenda(); }
+  };
 
   cont.innerHTML = `
     ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
@@ -605,7 +621,13 @@ function dibujarGenealogia(temaId){
   // (de otro tema, o de antes de salir y volver a la vista) -- la variable de protección
   // existía pero nunca se incrementaba, así que nunca detenía nada
   generacionGenealogiaActual++;
-  genealogiaRevelados = 1;
+  // solo se reinicia el progreso revelado si el tema CAMBIÓ de verdad -- si sigue siendo
+  // el mismo (ej. el refresco automático de datos cada 3 minutos volvió a llamar a esta
+  // función con el mismo tema abierto), se conserva lo que ya se había revelado
+  if(temaId !== temaGenealogiaAnterior){
+    genealogiaRevelados = 1;
+    temaGenealogiaAnterior = temaId;
+  }
   const scrollEl = document.getElementById('geneal-scroll');
   const svgEl = document.getElementById('geneal-svg');
   const tema = getTema(temaId);
