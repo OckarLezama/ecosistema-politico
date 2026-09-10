@@ -25,6 +25,18 @@ def cargar_actores_alta_influencia():
     return [a for a in actores if a.get('nivel_influencia') and int(a['nivel_influencia']) >= 7]
 
 
+def noCuentaParaEscalar(descripcion):
+    """Mismo criterio que el robot -- columnas de opinión y declaraciones RUTINARIAS de
+    mañanera (sin el 🔔 de alerta) nunca cuentan para escalar, sin importar cuántas veces
+    se repitan. La presidenta siempre es la actora en su propia mañanera, así que el
+    filtro de actor de alto perfil no discrimina nada ahí sin esto."""
+    if descripcion.startswith('[Opinión]'):
+        return True
+    if descripcion.startswith('[Mañanera]') and '🔔' not in descripcion:
+        return True
+    return False
+
+
 def mencionaActorAlto(texto, actores_altos):
     texto = texto.lower()
     return any(
@@ -47,7 +59,7 @@ def limpiar():
         if not t['id'].startswith('auto-'):
             continue
 
-        evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not e['descripcion'].startswith('[Opinión]')]
+        evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not noCuentaParaEscalar(e['descripcion'])]
         dias_distintos = len({e['fecha'] for e in evs_del_tema})
         tiene_actor_alto = any(mencionaActorAlto(e['descripcion'], actores_altos) for e in evs_del_tema)
 

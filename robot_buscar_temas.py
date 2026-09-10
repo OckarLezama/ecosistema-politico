@@ -107,6 +107,23 @@ FUENTES_RSS = [
 # por default (mismo aprendizaje del bug de "Farías": un apellido común se cuela en
 # notas sin relación). Solo se agrega un apodo cuando fue dado explícitamente
 # ("Huacho", "Gino", "El Choco"), porque esos SÍ son lo bastante distintivos.
+def noCuentaParaEscalar(descripcion):
+    """Filtra 2 tipos de contenido que NUNCA deben contar para escalar a agenda
+    nacional, sin importar cuántas veces se repitan:
+    - Columnas de opinión (ya marcadas '[Opinión]')
+    - Declaraciones RUTINARIAS de mañanera (marcadas '[Mañanera]' sin el 🔔 de alerta) --
+      la presidenta habla de decenas de temas cada mañanera, y cada frase suya se estaba
+      creando como su propio tema "escalable"; como ella siempre es la actora mencionada,
+      el filtro de actor de alto perfil no discriminaba nada para este tipo de contenido.
+      Las declaraciones que SÍ ameritan alerta ya llevan el 🔔 explícito y esas sí cuentan.
+    """
+    if descripcion.startswith('[Opinión]'):
+        return True
+    if descripcion.startswith('[Mañanera]') and '🔔' not in descripcion:
+        return True
+    return False
+
+
 def sin_acentos(s):
     return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
 
@@ -586,7 +603,7 @@ def escalar_temas_informativos():
         # conteo -- una columna diaria real (ej. "Astillero" de Julio Hernández López)
         # siempre va a acumular "varias notas en varios días" solo por publicarse todos
         # los días, sin que eso sea una noticia real escalando
-        evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not e['descripcion'].startswith('[Opinión]')]
+        evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not noCuentaParaEscalar(e['descripcion'])]
         if len(evs_del_tema) == 0:
             continue
         menciona_altos = set()
@@ -620,7 +637,7 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes,
     tema = next((t for t in temas if t['id']==tema_id), None)
     if not tema or tema.get('tipo') != 'informativo':
         return
-    evs_del_tema = [e for e in eventos_existentes if e['tema_id']==tema_id and not e['descripcion'].startswith('[Opinión]')]
+    evs_del_tema = [e for e in eventos_existentes if e['tema_id']==tema_id and not noCuentaParaEscalar(e['descripcion'])]
     dias_distintos = len({e['fecha'] for e in evs_del_tema})
     menciona_altos = any(
         any(p.lower() in e['descripcion'].lower() for p in a['nombre'].split() if len(p) > 3)
