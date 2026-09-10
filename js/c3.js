@@ -97,8 +97,8 @@ function calcularApellidosUnicosC3(){
   Object.values(ACTORES_C3_JS).forEach(actores=>{
     actores.forEach(([nombre])=>{
       const partes = nombre.split(' ');
-      partes.slice(1).forEach(apellido=>{
-        const a = sinAcentos(apellido.toLowerCase());
+      partes.forEach(parte=>{
+        const a = sinAcentos(parte.toLowerCase());
         conteo[a] = (conteo[a]||0)+1;
       });
     });
@@ -106,6 +106,10 @@ function calcularApellidosUnicosC3(){
   return new Set(Object.entries(conteo).filter(([a,n])=>n===1).map(([a])=>a));
 }
 const APELLIDOS_UNICOS_C3_JS = calcularApellidosUnicosC3();
+const NOMBRES_PILA_DEMASIADO_COMUNES_JS = new Set(['jose','juan','carlos','luis','maria',
+  'ana','rafael','miguel','antonio','francisco','jorge','manuel','roberto','ricardo',
+  'eduardo','fernando','alejandro','javier','raul','oscar','sergio','pedro','rene',
+  'mario','victor','daniel','alberto','martin','ruben','ramon']);
 
 function generarVariantesActorC3(nombre, apodo){
   const partes = nombre.split(' ');
@@ -115,15 +119,14 @@ function generarVariantesActorC3(nombre, apodo){
   if(partes.length>=3) variantes.add(partes[0]+' '+partes[partes.length-1]);
   if(partes.length>=3) variantes.add(partes[0]+' '+partes[1]+' '+partes[2]);
   if(partes.length>=3) variantes.add(partes[partes.length-2]+' '+partes[partes.length-1]);
-  // cualquier apellido individual, si es único en toda la lista curada -- mismo arreglo
-  // que en el robot: "Chedraui" es el primer apellido y así se le nombra normalmente,
-  // no solo el último ("Budib")
-  if(partes.length>=2){
-    partes.slice(1).forEach(apellido=>{
-      const a = sinAcentos(apellido.toLowerCase());
-      if(APELLIDOS_UNICOS_C3_JS.has(a)) variantes.add(apellido);
-    });
-  }
+  // cualquier PARTE del nombre (de pila o apellido), única en la lista curada Y que no
+  // sea un nombre de pila demasiado común en español (aunque sea único entre estos 75
+  // actores, "José" sigue siendo genérico en el mundo real)
+  partes.forEach(parte=>{
+    const p = sinAcentos(parte.toLowerCase());
+    if(NOMBRES_PILA_DEMASIADO_COMUNES_JS.has(p)) return;
+    if(APELLIDOS_UNICOS_C3_JS.has(p)) variantes.add(parte);
+  });
   if(apodo) variantes.add(apodo);
   return [...variantes].map(v=>sinAcentos(v.toLowerCase()));
 }
