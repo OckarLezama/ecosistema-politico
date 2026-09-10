@@ -276,7 +276,7 @@ def cargar_candidatos_existentes():
 
 
 def cargar_eventos_existentes():
-    with open(RUTA_EVENTOS, encoding='utf-8') as f:
+    with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
         return list(csv.DictReader(f))
 
 
@@ -641,6 +641,34 @@ def guardar_evento_directo(evento):
         w.writerow(evento)
 
 
+def reparar_encabezado_eventos():
+    """eventos.csv se creó desde antes de que existieran las columnas 'entidad_c3' y
+    'hora_registro' -- el encabezado se quedó viejo (7-9 columnas) para siempre, aunque
+    el código ya llevaba tiempo escribiendo 12 valores por fila. Esto desalineaba TODO el
+    archivo en silencio: el sitio (PapaParse) descarta cualquier columna sin nombre en el
+    encabezado, así que 'hora_registro' nunca llegaba al navegador aunque Python sí lo
+    escribiera bien (confirmado con el diagnóstico -- Python arma la hora correcta, el
+    archivo la pierde). Se corre UNA vez por corrida, antes de escribir nada nuevo."""
+    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url', 'entidad_c3', 'hora_registro']
+    try:
+        with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
+            primera_linea = f.readline()
+    except FileNotFoundError:
+        return
+    if 'hora_registro' in primera_linea and 'entidad_c3' in primera_linea:
+        return  # ya está bien, nada que hacer
+    print('  [reparación] eventos.csv tenía encabezado desactualizado -- corrigiendo una sola vez...')
+    with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
+        filas_viejas = list(csv.DictReader(f))
+    with open(RUTA_EVENTOS, 'w', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, restval='')
+        w.writeheader()
+        for fila in filas_viejas:
+            fila.pop(None, None)
+            w.writerow(fila)
+    print(f'  [reparación] {len(filas_viejas)} fila(s) reescritas con encabezado correcto.')
+
+
 def buscar_candidatos():
     temas = cargar_temas_nivel1()
     temas_ids_validos = {t['id'] for t in temas}
@@ -802,14 +830,12 @@ def buscar_candidatos():
                         if ya_guardado_similar:
                             incrementos_cobertura_existente[ya_guardado_similar['id']] = incrementos_cobertura_existente.get(ya_guardado_similar['id'], 0) + 1
                         else:
-                            evento_nuevo_c3 = {
+                            eventos_nuevos.append({
                                 'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                                 'categoria': categoria_real, 'intensidad': intensidad_final,
                                 'descripcion': titulo_final, 'fuente_url': enlace, 'cobertura': 1,
                                 'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota, 'hora_registro': datetime.now(ZONA_MX).strftime('%H:%M'),
-                            }
-                            print(f'  [diagnóstico hora_registro] {tema_auto}: {evento_nuevo_c3["hora_registro"]!r}')
-                            eventos_nuevos.append(evento_nuevo_c3)
+                            })
                             conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
 
     fecha_pagina_manan, puntos_manan = obtener_mananera_hoy()
@@ -889,12 +915,12 @@ def guardar_candidatos(nuevos):
 
 
 if __name__ == '__main__':
+    reparar_encabezado_eventos()
     eventos_nuevos, candidatos_sin_tema, incrementos_cobertura_existente = buscar_candidatos()
 
     for ev in eventos_nuevos:
         eventos_ya = cargar_eventos_existentes()
         ev['id'] = siguiente_id_evento(eventos_ya)
-        print(f'  [diagnóstico hora_registro antes de guardar] {ev["id"]}: {ev.get("hora_registro", "**NO EXISTE LA LLAVE**")!r}')
         guardar_evento_directo(ev)
         # C3 -- si esta nota es de una entidad de interés, revisa qué actores/instituciones
         # curadas se mencionan de verdad, clasifica el tono, y lo guarda en un historial
