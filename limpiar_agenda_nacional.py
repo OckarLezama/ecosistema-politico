@@ -45,8 +45,8 @@ def calificaAgendaNacional(evs_del_tema, actores_altos):
         return False, 'sin notas'
 
     dias_distintos = len({e['fecha'] for e in evs_del_tema})
-    if dias_distintos < 2:
-        return False, f'{dias_distintos} día(s) (necesita 2+)'
+    if dias_distintos < 3:
+        return False, f'{dias_distintos} día(s) (necesita 3+)'
 
     dominios = set()
     for e in evs_del_tema:
@@ -55,8 +55,8 @@ def calificaAgendaNacional(evs_del_tema, actores_altos):
         except Exception:
             pass
     dominios.discard('')
-    if len(dominios) < 2:
-        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+) -- probablemente la misma fuente repetida'
+    if len(dominios) < 3:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 3+) -- probablemente la misma fuente repetida'
 
     actores_mencionados = set()
     for e in evs_del_tema:
@@ -67,7 +67,7 @@ def calificaAgendaNacional(evs_del_tema, actores_altos):
 
     intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
 
-    puntos = len(dominios) - 2
+    puntos = len(dominios) - 3
     if intensidad_prom >= 7: puntos += 2
     if len(actores_mencionados) >= 2: puntos += 2
 
