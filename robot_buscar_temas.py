@@ -124,6 +124,62 @@ def noCuentaParaEscalar(descripcion):
     return False
 
 
+ACTOR_FUENTE_RUTINARIA_ID = 'sheinbaum'  # protagonista de la mañanera -- su sola mención
+# nunca cuenta como "señal real" para escalar, porque aparece en TODO lo que sale de ahí
+
+def calificaAgendaNacional(evs_del_tema, actores_altos):
+    """Criterio de 2 etapas, corregido tras probarlo contra casos reales -- la primera
+    versión exigía "actor distinto de Sheinbaum", pero eso fallaba: el Tren
+    México-Guadalajara (anuncio real, cubierto por 4 medios nacionales distintos) SOLO
+    menciona a Sheinbaum, igual que "Vamos a respetarnos" (momento rutinario de la
+    mañanera) -- contar actores no distingue estos 2 casos entre sí. Lo que sí los
+    distingue: cuántos MEDIOS REALES Y DISTINTOS decidieron cubrirlo por su cuenta. Eso
+    es la señal genuina de relevancia, no el actor mencionado.
+
+    ETAPA 1 (obligatoria, sin excepción):
+    - 2+ días distintos con actividad real
+    - 2+ dominios de medios REALMENTE distintos cubriéndolo (no la misma fuente repetida)
+
+    ETAPA 2 (puntaje, solo si pasó la etapa 1): 3+ puntos de:
+    - +1 por cada dominio adicional más allá de los 2 mínimos
+    - +2 si la intensidad promedio es 7+
+    - +2 si hay 2+ actores de alto perfil distintos mencionados
+    """
+    if not evs_del_tema:
+        return False, 'sin notas'
+
+    dias_distintos = len({e['fecha'] for e in evs_del_tema})
+    if dias_distintos < 2:
+        return False, f'{dias_distintos} día(s) (necesita 2+)'
+
+    dominios = set()
+    for e in evs_del_tema:
+        try:
+            dominios.add(urllib.parse.urlparse(e.get('fuente_url','')).netloc)
+        except Exception:
+            pass
+    dominios.discard('')
+    if len(dominios) < 2:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+) -- probablemente la misma fuente repetida, no cobertura real'
+
+    actores_mencionados = set()
+    for e in evs_del_tema:
+        texto = e['descripcion'].lower()
+        for a in actores_altos:
+            if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
+                actores_mencionados.add(a['id'])
+
+    intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
+
+    puntos = len(dominios) - 2  # los primeros 2 ya se exigieron en la etapa 1, de ahí en adelante suman
+    if intensidad_prom >= 7: puntos += 2
+    if len(actores_mencionados) >= 2: puntos += 2
+
+    if puntos >= 3:
+        return True, f'{puntos} puntos ({len(dominios)} medios, intensidad {intensidad_prom:.1f}, {len(actores_mencionados)} actor(es))'
+    return False, f'solo {puntos} puntos (necesita 3+) -- {len(dominios)} medios, intensidad {intensidad_prom:.1f}, {len(actores_mencionados)} actor(es)'
+
+
 def sin_acentos(s):
     return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
 
@@ -606,20 +662,8 @@ def escalar_temas_informativos():
         evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not noCuentaParaEscalar(e['descripcion'])]
         if len(evs_del_tema) == 0:
             continue
-        menciona_altos = set()
-        for e in evs_del_tema:
-            texto = e['descripcion'].lower()
-            for a in actores_altos:
-                if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
-                    menciona_altos.add(a['id'])
-        # CRITERIO CORREGIDO -- volumen y persistencia por sí solos no bastan: cosas como
-        # resultados de lotería o participaciones institucionales genéricas también se
-        # repiten varios días sin ser agenda nacional real. Ahora, además de la cobertura
-        # sostenida, se exige que al menos UN actor de alto perfil real esté vinculado --
-        # eso es lo que de verdad distingue una historia política de contenido rutinario
-        # que simplemente se publica seguido.
-        dias_distintos_del_tema = len({e['fecha'] for e in evs_del_tema})
-        if len(evs_del_tema) >= 4 and dias_distintos_del_tema >= 2 and menciona_altos:
+        cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos)
+        if cumple:
             t['tipo'] = 'completo'
             t['nivel_relevancia'] = '1'
             cambios += 1
@@ -638,15 +682,8 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes,
     if not tema or tema.get('tipo') != 'informativo':
         return
     evs_del_tema = [e for e in eventos_existentes if e['tema_id']==tema_id and not noCuentaParaEscalar(e['descripcion'])]
-    dias_distintos = len({e['fecha'] for e in evs_del_tema})
-    menciona_altos = any(
-        any(p.lower() in e['descripcion'].lower() for p in a['nombre'].split() if len(p) > 3)
-        for e in evs_del_tema for a in actores_altos
-    )
-    # mismo criterio que escalar_temas_informativos -- volumen + persistencia + al menos
-    # un actor de alto perfil real vinculado, para que no escale contenido rutinario que
-    # simplemente se repite (lotería, participaciones institucionales genéricas, etc.)
-    if conteo_hoy >= 6 and dias_distintos >= 2 and menciona_altos:
+    cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos)
+    if cumple:
         campos = list(temas[0].keys())
         for t in temas:
             if t['id']==tema_id:
