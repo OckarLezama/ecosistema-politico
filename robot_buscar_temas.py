@@ -24,6 +24,7 @@ from datetime import datetime, timezone, timedelta
 RUTA_TEMAS = 'data/temas.csv'
 RUTA_EVENTOS = 'data/eventos.csv'
 RUTA_ACTORES = 'data/actores.csv'
+RUTA_TEMA_ACTORES = 'data/tema_actores.csv'
 RUTA_CANDIDATOS = 'data/candidatos_revision.csv'
 ZONA_MX = timezone(timedelta(hours=-6))
 
@@ -149,8 +150,8 @@ def calificaAgendaNacional(evs_del_tema, actores_altos):
         return False, 'sin notas'
 
     dias_distintos = len({e['fecha'] for e in evs_del_tema})
-    if dias_distintos < 2:
-        return False, f'{dias_distintos} día(s) (necesita 2+)'
+    if dias_distintos < 3:
+        return False, f'{dias_distintos} día(s) (necesita 3+)'
 
     dominios = set()
     for e in evs_del_tema:
@@ -159,8 +160,8 @@ def calificaAgendaNacional(evs_del_tema, actores_altos):
         except Exception:
             pass
     dominios.discard('')
-    if len(dominios) < 2:
-        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+) -- probablemente la misma fuente repetida, no cobertura real'
+    if len(dominios) < 3:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 3+) -- probablemente la misma fuente repetida, no cobertura real'
 
     actores_mencionados = set()
     for e in evs_del_tema:
@@ -171,7 +172,7 @@ def calificaAgendaNacional(evs_del_tema, actores_altos):
 
     intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
 
-    puntos = len(dominios) - 2  # los primeros 2 ya se exigieron en la etapa 1, de ahí en adelante suman
+    puntos = len(dominios) - 3  # los primeros 2 ya se exigieron en la etapa 1, de ahí en adelante suman
     if intensidad_prom >= 7: puntos += 2
     if len(actores_mencionados) >= 2: puntos += 2
 
@@ -647,6 +648,92 @@ def crear_tema_informativo(titulo, fecha, categoria='Gobernabilidad'):
     return nuevo_id
 
 
+PALABRAS_SENALADO = ['acusa', 'acusan', 'acusado', 'investigación', 'investigado',
+    'denuncia', 'implicado', 'señalado', 'sospecha', 'presunto', 'vinculado al caso',
+    'carpeta de investigación', 'orden de aprehensión']
+PALABRAS_REACCION = ['critica', 'critican', 'rechaza', 'rechazan', 'cuestiona',
+    'cuestionan', 'responde', 'reacciona', 'exige', 'condena', 'pide investigación',
+    'exigen', 'demandan']
+PALABRAS_RED_EMPRESARIAL = ['empresa', 'empresario', 'contrato', 'licitación', 'negocio']
+PALABRAS_CARGO_INSTITUCIONAL = ['secretario', 'secretaria', 'titular', 'director',
+    'gobernador', 'gobernadora', 'presidenta', 'presidente', 'fiscal', 'alcalde',
+    'alcaldesa', 'ministro', 'ministra']
+
+def clasificarRolActorEnTema(texto_completo, actor):
+    """Clasifica el rol de un actor YA detectado como mencionado, según el contexto de
+    las palabras a su alrededor -- mismas categorías que ya usa el sitio en las fichas
+    de tema (Investigado, Responsable institucional, Reacción de oposición/gobierno/
+    social, Red empresarial, o Mencionado si no hay señal clara de ninguna otra cosa)."""
+    if any(p in texto_completo for p in PALABRAS_SENALADO):
+        return 'Investigado'
+    if any(p in texto_completo for p in PALABRAS_REACCION):
+        grupo = (actor.get('grupo') or '').lower()
+        if any(p in grupo for p in ['pan', 'pri', 'mc', 'movimiento ciudadano', 'oposición']):
+            return 'Reacción de oposición'
+        if 'morena' in grupo:
+            return 'Reacción del gobierno'
+        return 'Reacción social/mediática'
+    if any(p in texto_completo for p in PALABRAS_RED_EMPRESARIAL):
+        return 'Red empresarial'
+    cargo = (actor.get('cargo') or '').lower()
+    if any(p in cargo for p in PALABRAS_CARGO_INSTITUCIONAL) or any(p in texto_completo for p in PALABRAS_CARGO_INSTITUCIONAL):
+        return 'Responsable institucional'
+    return 'Mencionado'
+
+
+def actualizarTemaActoresAutomatico(tema_id, evs_del_tema):
+    """Al escalar un tema a Nivel 1, detecta qué actores conocidos aparecen en sus notas
+    y les asigna un rol automático, guardándolo en tema_actores.csv -- esto es lo que
+    hace que la ficha de un tema recién escalado ya muestre actores clasificados, sin
+    esperar a que alguien lo cure a mano."""
+    try:
+        with open(RUTA_ACTORES, encoding='utf-8-sig') as f:
+            actores = list(csv.DictReader(f))
+    except FileNotFoundError:
+        return
+
+    try:
+        with open(RUTA_TEMA_ACTORES, encoding='utf-8-sig') as f:
+            ya_existentes = {(r['tema_id'], r['actor_id']) for r in csv.DictReader(f)}
+    except FileNotFoundError:
+        ya_existentes = set()
+
+    nuevas_filas = []
+    for actor in actores:
+        if (tema_id, actor['id']) in ya_existentes:
+            continue
+        # divide cada nota en CLÁUSULAS (por punto y coma, punto, o " pero ") -- más
+        # preciso que una ventana de caracteres fija, porque respeta dónde termina una
+        # idea y empieza otra. "El secretario X presentó el informe; el diputado Y
+        # critica la decisión" son 2 ideas distintas -- cada actor solo debe leerse en SU
+        # propia cláusula, no en la del otro.
+        fragmentos_de_este_actor = []
+        for e in evs_del_tema:
+            clausulas = re.split(r'[;.]| pero | mientras ', e['descripcion'])
+            for clausula in clausulas:
+                clausula_lower = clausula.lower()
+                if any(p.lower() in clausula_lower for p in actor['nombre'].split() if len(p) > 3):
+                    fragmentos_de_este_actor.append(clausula_lower)
+        if not fragmentos_de_este_actor:
+            continue
+        rol = clasificarRolActorEnTema(' '.join(fragmentos_de_este_actor), actor)
+        nuevas_filas.append({'tema_id': tema_id, 'actor_id': actor['id'], 'rol': rol, 'detalle': ''})
+
+    if nuevas_filas:
+        campos = ['tema_id', 'actor_id', 'rol', 'detalle']
+        try:
+            with open(RUTA_TEMA_ACTORES, encoding='utf-8-sig') as f:
+                existe = True
+        except FileNotFoundError:
+            existe = False
+        with open(RUTA_TEMA_ACTORES, 'a', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+            if not existe:
+                w.writeheader()
+            for fila in nuevas_filas:
+                w.writerow(fila)
+
+
 def escalar_temas_informativos():
     temas = cargar_temas_todos()
     eventos = cargar_eventos_existentes()
@@ -667,6 +754,7 @@ def escalar_temas_informativos():
             t['tipo'] = 'completo'
             t['nivel_relevancia'] = '1'
             cambios += 1
+            actualizarTemaActoresAutomatico(t['id'], evs_del_tema)
     if cambios:
         campos = list(temas[0].keys())
         with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
@@ -689,6 +777,7 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes,
             if t['id']==tema_id:
                 t['nivel_relevancia'] = '1'
                 t['tipo'] = 'completo'
+        actualizarTemaActoresAutomatico(tema_id, evs_del_tema)
         with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
             w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
             w.writeheader()
