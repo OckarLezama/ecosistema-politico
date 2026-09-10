@@ -461,10 +461,19 @@ function renderNotasAgenda(){
   datalist.innerHTML = temasDisponibles.map(t=>`<option value="${t.nombre}">`).join('');
   const temaActualNotas = temasDisponibles.find(t=>t.id===temaNotasSeleccionado);
   select.value = temaActualNotas ? temaActualNotas.nombre : '';
-  select.oninput = (e)=>{
-    const encontrado = temasDisponibles.find(t=>t.nombre===e.target.value);
-    if(encontrado){ temaNotasSeleccionado = encontrado.id; dibujarNotasConGrafoReal(); }
-  };
+  if(!select.dataset.conectadoNotas){
+    // mismo comportamiento que el buscador de ficha de actor en Red de Actores -- se
+    // activa con Enter (no en cada letra), busca coincidencia exacta primero, si no
+    // encuentra cae a coincidencia parcial
+    select.addEventListener('keydown', (e)=>{
+      if(e.key !== 'Enter') return;
+      const q = select.value.trim().toLowerCase();
+      if(q.length<2) return;
+      const encontrado = temasDisponibles.find(t=>t.nombre.toLowerCase()===q) || temasDisponibles.find(t=>t.nombre.toLowerCase().includes(q));
+      if(encontrado){ temaNotasSeleccionado = encontrado.id; dibujarNotasConGrafoReal(); }
+    });
+    select.dataset.conectadoNotas = '1';
+  }
 
   if(!temaNotasSeleccionado){
     const leyendaNotas0 = document.getElementById('agenda-notas-leyenda');
@@ -597,14 +606,19 @@ function renderGenealogiaAgenda(){
 
   // mismo selector estático que Notas -- una sola fila junto a Categoría e íconos
   selectWrap.style.display = 'flex';
-  select.innerHTML = '';
   document.getElementById('agenda-tema-lista-nombres').innerHTML = temasDisponibles.map(t=>`<option value="${t.nombre}">`).join('');
   const temaActualGeneal = temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado);
   select.value = temaActualGeneal ? temaActualGeneal.nombre : '';
-  select.oninput = (e)=>{
-    const encontrado = temasDisponibles.find(t=>t.nombre===e.target.value);
-    if(encontrado){ temaGenealogiaSeleccionado = encontrado.id; genealogiaRevelados = 1; renderGenealogiaAgenda(); }
-  };
+  if(!select.dataset.conectadoGenealogia){
+    select.addEventListener('keydown', (e)=>{
+      if(e.key !== 'Enter') return;
+      const q = select.value.trim().toLowerCase();
+      if(q.length<2) return;
+      const encontrado = temasDisponibles.find(t=>t.nombre.toLowerCase()===q) || temasDisponibles.find(t=>t.nombre.toLowerCase().includes(q));
+      if(encontrado){ temaGenealogiaSeleccionado = encontrado.id; genealogiaRevelados = 1; renderGenealogiaAgenda(); }
+    });
+    select.dataset.conectadoGenealogia = '1';
+  }
 
   cont.innerHTML = `
     ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
