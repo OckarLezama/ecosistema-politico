@@ -309,12 +309,16 @@ INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estad
 
 def buscarEntidadC3PorActorMencionado(texto_completo):
     """Para fuentes NACIONALES (sin entidades_c3 propia) -- si el texto menciona a algún
-    actor de la lista curada de C3 por su nombre, se asigna esa entidad igual. Esto es lo
-    que permite capturar, por ejemplo, una nota nacional sobre un gobernador de la C3 que
-    nunca habría llegado por un medio local. Se exige contenido político real también
-    aquí, mismo filtro que las fuentes locales."""
-    if not esContenidoPoliticoLocal(texto_completo):
-        return ''
+    actor de la lista curada de C3 por su nombre, se asigna esa entidad igual.
+
+    ORDEN CORREGIDO -- antes se exigía pasar el filtro de palabras políticas genéricas
+    ANTES de buscar el nombre del actor. Eso era circular: una nota real como "Gobierno
+    de Alejandro Armenta Mier mantiene en el abandono..." se descartaba porque decía
+    "Gobierno de [nombre]" en vez de la frase exacta "gobierno estatal" -- aunque YA
+    mencionaba al gobernador de Puebla por su nombre completo, evidencia política de
+    sobra por sí sola. Ahora: mencionar a un actor curado por su nombre ya es
+    suficiente, sin necesitar además una palabra clave genérica.
+    """
     texto_sin_acentos = sin_acentos(texto_completo)
     for entidad, actores in ACTORES_C3.items():
         for nombre, cargo, apodo in actores:
