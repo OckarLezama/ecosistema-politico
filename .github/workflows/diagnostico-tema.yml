@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Correr diagnostico
-        run: python3 diagnostico_tema.py auto-e7523a343a
+       run: python3 limpiar_agenda_nacional.py
