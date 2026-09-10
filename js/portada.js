@@ -16,9 +16,22 @@ function similitudTitularesPortada(t1, t2){
   let comunes = 0; p1.forEach(p=>{ if(p2.has(p)) comunes++; });
   return comunes / (p1.size + p2.size - comunes);
 }
+function esRuidoDeBajoValorPortada(descripcion){
+  // mismo espíritu que el filtro de Agenda nacional -- columnas de opinión y momentos
+  // rutinarios de mañanera (sin alerta real) no aportan a un producto de inteligencia,
+  // sin importar cuántas veces se repitan en el día
+  if(descripcion.startsWith('[Opinión]')) return true;
+  if(descripcion.startsWith('[Mañanera]') && !descripcion.includes('🔔')) return true;
+  return false;
+}
 function agruparPorHechoReal(eventos){
+  // filtro real de volumen -- 249 notas en un solo día no es un producto de
+  // inteligencia, es ruido. Se excluye contenido rutinario, y se exige una intensidad
+  // mínima real (5+) para que algo cuente como "nota del día" -- lo de baja intensidad
+  // sigue contando en el total agregado, pero no ocupa un lugar en el listado principal.
+  const eventosFiltrados = eventos.filter(e => !esRuidoDeBajoValorPortada(e.descripcion) && Number(e.intensidad) >= 5);
   const grupos = [];
-  eventos.forEach(ev=>{
+  eventosFiltrados.forEach(ev=>{
     const grupoExistente = grupos.find(g => similitudTitularesPortada(ev.descripcion, g[0].descripcion) >= 0.32);
     if(grupoExistente) grupoExistente.push(ev);
     else grupos.push([ev]);
