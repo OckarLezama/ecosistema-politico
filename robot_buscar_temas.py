@@ -582,7 +582,11 @@ def escalar_temas_informativos():
     for t in temas:
         if t.get('tipo') != 'informativo':
             continue
-        evs_del_tema = [e for e in eventos if e['tema_id'] == t['id']]
+        # las columnas de opinión (ya marcadas "[Opinión]" por el robot) se excluyen del
+        # conteo -- una columna diaria real (ej. "Astillero" de Julio Hernández López)
+        # siempre va a acumular "varias notas en varios días" solo por publicarse todos
+        # los días, sin que eso sea una noticia real escalando
+        evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not e['descripcion'].startswith('[Opinión]')]
         if len(evs_del_tema) == 0:
             continue
         menciona_altos = set()
@@ -591,14 +595,14 @@ def escalar_temas_informativos():
             for a in actores_altos:
                 if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
                     menciona_altos.add(a['id'])
-        # CRITERIO DEFINITIVO -- se quita por completo el atajo de "2+ actores de alta
-        # influencia" -- ese atajo era el verdadero hueco: bastaba con que UN SOLO
-        # titular mencionara a 2 funcionarios (ej. "Harfuch" y "Rosa Icela" juntos en la
-        # misma nota) para escalar a agenda nacional, sin necesitar más cobertura real
-        # ni más tiempo. Ahora el ÚNICO criterio es cobertura sostenida de verdad:
-        # 5+ notas repartidas en 2+ días distintos. Sin atajos.
+        # CRITERIO CORREGIDO -- volumen y persistencia por sí solos no bastan: cosas como
+        # resultados de lotería o participaciones institucionales genéricas también se
+        # repiten varios días sin ser agenda nacional real. Ahora, además de la cobertura
+        # sostenida, se exige que al menos UN actor de alto perfil real esté vinculado --
+        # eso es lo que de verdad distingue una historia política de contenido rutinario
+        # que simplemente se publica seguido.
         dias_distintos_del_tema = len({e['fecha'] for e in evs_del_tema})
-        if len(evs_del_tema) >= 5 and dias_distintos_del_tema >= 2:
+        if len(evs_del_tema) >= 4 and dias_distintos_del_tema >= 2 and menciona_altos:
             t['tipo'] = 'completo'
             t['nivel_relevancia'] = '1'
             cambios += 1
@@ -611,20 +615,21 @@ def escalar_temas_informativos():
         print(f'{cambios} tema(s) escalado(s) automáticamente a agenda nacional (Nivel 1).')
 
 
-def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes):
+def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes, actores_altos):
     temas = cargar_temas_todos()
     tema = next((t for t in temas if t['id']==tema_id), None)
     if not tema or tema.get('tipo') != 'informativo':
         return
-    dias_distintos = len(set(e['fecha'] for e in eventos_existentes if e['tema_id']==tema_id))
-    # CRITERIO CORREGIDO -- esta función tenía un criterio distinto (y más flojo) que la
-    # otra ruta de escalamiento (escalar_temas_informativos, más abajo): permitía escalar
-    # con SOLO 6+ menciones el MISMO día, sin exigir que se sostuviera en el tiempo. Eso
-    # es justo lo que dejaba pasar acusaciones/declaraciones que explotan un día y nunca
-    # vuelven a aparecer (ej. "García Parra acusa deslealtad") -- mucha cobertura de un
-    # solo momento no es lo mismo que agenda nacional sostenida. Ahora exige AMBAS cosas:
-    # volumen real Y que se sostenga en más de 1 día, igual que el otro criterio.
-    if conteo_hoy >= 6 and dias_distintos >= 2:
+    evs_del_tema = [e for e in eventos_existentes if e['tema_id']==tema_id and not e['descripcion'].startswith('[Opinión]')]
+    dias_distintos = len({e['fecha'] for e in evs_del_tema})
+    menciona_altos = any(
+        any(p.lower() in e['descripcion'].lower() for p in a['nombre'].split() if len(p) > 3)
+        for e in evs_del_tema for a in actores_altos
+    )
+    # mismo criterio que escalar_temas_informativos -- volumen + persistencia + al menos
+    # un actor de alto perfil real vinculado, para que no escale contenido rutinario que
+    # simplemente se repite (lotería, participaciones institucionales genéricas, etc.)
+    if conteo_hoy >= 6 and dias_distintos >= 2 and menciona_altos:
         campos = list(temas[0].keys())
         for t in temas:
             if t['id']==tema_id:
@@ -958,8 +963,9 @@ if __name__ == '__main__':
     conteo_final = {}
     for ev in eventos_nuevos:
         conteo_final[ev['tema_id']] = conteo_final.get(ev['tema_id'], 0) + 1
+    actores_altos_para_escalar = cargar_actores_alta_influencia()
     for tema_id, conteo in conteo_final.items():
-        escalar_a_agenda_nacional_si_aplica(tema_id, conteo, cargar_eventos_existentes())
+        escalar_a_agenda_nacional_si_aplica(tema_id, conteo, cargar_eventos_existentes(), actores_altos_para_escalar)
 
     if eventos_nuevos:
         print(f'{len(eventos_nuevos)} evento(s) NUEVO(S) escrito(s) directo a eventos.csv (tiempo real, tema ya conocido).')
