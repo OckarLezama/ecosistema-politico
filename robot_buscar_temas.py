@@ -659,7 +659,19 @@ def reparar_encabezado_eventos():
         return  # ya está bien, nada que hacer
     print('  [reparación] eventos.csv tenía encabezado desactualizado -- corrigiendo una sola vez...')
     with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
-        filas_viejas = list(csv.DictReader(f))
+        primera_linea_campos = [c.strip() for c in f.readline().strip().split(',')]
+        filas_viejas = list(csv.DictReader(f, fieldnames=primera_linea_campos))
+    # las columnas que el encabezado viejo NO nombraba (entidad_c3, hora_registro, o
+    # ambas) igual estaban ahí como valores -- csv.DictReader las mete en la llave
+    # especial None, en el mismo orden en que se escribieron. Recuperarlas aquí es lo que
+    # evita perder toda la hora ya guardada (bug real: mi primera versión de esta función
+    # las descartaba con fila.pop(None, None), perdiendo el dato en el momento mismo de
+    # "repararlo").
+    columnas_faltantes = [c for c in ['entidad_c3', 'hora_registro'] if c not in primera_linea_campos]
+    for fila in filas_viejas:
+        extra = fila.pop(None, None) or []
+        for nombre_col, valor in zip(columnas_faltantes, extra):
+            fila[nombre_col] = valor
     with open(RUTA_EVENTOS, 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, restval='')
         w.writeheader()
