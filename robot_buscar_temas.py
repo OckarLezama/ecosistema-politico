@@ -195,14 +195,21 @@ def variantes_actor_c3(nombre_completo, apodo=None):
         # apellidos juntos ("Díaz Mena"), esa combinación ya es específica por sí sola,
         # a diferencia de un apellido suelto común. Cubre "el gobernador Díaz Mena..."
         variantes.append(f'{partes[-2]} {partes[-1]}')
-    if len(partes) >= 2:
-        # cualquier apellido individual, si es único en toda la lista curada -- no solo
-        # el último (ver corrección arriba: "Chedraui" es el primer apellido de "José
-        # Chedraui Budib", y así es como se le nombra normalmente, no por "Budib")
-        for apellido in partes[1:]:
-            a = sin_acentos(apellido.lower())
-            if a in APELLIDOS_UNICOS_C3:
-                variantes.append(apellido)
+    # cualquier PARTE del nombre (nombre de pila o cualquier apellido), si es única en
+    # toda la lista curada -- no solo apellidos (ver corrección arriba: "LAYDA" sola,
+    # su nombre de pila, también debe detectarse si nadie más en la lista se llama así)
+    for parte in partes:
+        p = sin_acentos(parte.lower())
+        # aunque sea único DENTRO de la lista curada, un nombre de pila común (José,
+        # Carlos, Juan...) sigue siendo demasiado genérico en el mundo real -- "único
+        # entre tus 75 actores" no es lo mismo que "seguro para usar solo". Por eso se
+        # excluyen los nombres de pila más comunes en español, incluso si son únicos
+        # aquí (los apellidos raros como "Chedraui" o nombres poco comunes como "Layda"
+        # sí pasan, porque esos de verdad no generan falsos positivos).
+        if p in NOMBRES_PILA_DEMASIADO_COMUNES:
+            continue
+        if p in APELLIDOS_UNICOS_C3:
+            variantes.append(parte)
     if apodo:
         variantes.append(apodo)
     # sin acentos y en minúsculas -- una fuente puede escribir "Yanez" donde otra pone
@@ -316,16 +323,26 @@ def _calcular_apellidos_unicos():
     for actores in ACTORES_C3.values():
         for nombre, cargo, apodo in actores:
             partes = nombre.split()
-            # cualquier apellido individual cuenta -- en "José Chedraui Budib", el uso
-            # común es el PRIMER apellido ("Chedraui"), no necesariamente el último
-            # ("Budib"). Bug real encontrado: solo se revisaba partes[-1], y "Chedraui
-            # señala..." (su apellido de uso común) no se detectaba por eso.
-            for apellido in partes[1:]:
-                a = sin_acentos(apellido.lower())
-                conteo[a] = conteo.get(a, 0) + 1
-    return {apellido for apellido, n in conteo.items() if n == 1}
+            # TODAS las partes del nombre cuentan -- no solo apellidos. Bug real
+            # encontrado: "LAYDA" (su nombre de pila solo, sin apellido) tampoco se
+            # detectaba, porque antes solo se revisaban partes[1:] (excluyendo el
+            # nombre de pila). Para una gobernadora conocida así en la prensa local,
+            # el nombre de pila es tan válido como el apellido si es único.
+            for parte in partes:
+                p = sin_acentos(parte.lower())
+                conteo[p] = conteo.get(p, 0) + 1
+    return {parte for parte, n in conteo.items() if n == 1}
 
 APELLIDOS_UNICOS_C3 = _calcular_apellidos_unicos()
+
+# nombres de pila demasiado comunes en español -- aunque sean únicos dentro de la lista
+# curada de C3, siguen siendo palabras/nombres genéricos en el mundo real. "Layda" o
+# "Xitlalic" son poco comunes y sí se permiten solos; "José" o "Carlos" no, sin importar
+# que dentro de estos 75 actores solo haya uno con ese nombre.
+NOMBRES_PILA_DEMASIADO_COMUNES = {'jose', 'juan', 'carlos', 'luis', 'maria', 'ana',
+    'rafael', 'miguel', 'antonio', 'francisco', 'jorge', 'manuel', 'roberto', 'ricardo',
+    'eduardo', 'fernando', 'alejandro', 'javier', 'raul', 'oscar', 'sergio', 'pedro',
+    'rene', 'mario', 'victor', 'daniel', 'alberto', 'martin', 'ruben', 'ramon'}
 
 # instituciones/organizaciones -- no son personas, pero son actores relevantes del
 # clima político estatal igual (gobierno, congreso, sindicatos, partidos, sociedad civil)
