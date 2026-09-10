@@ -2,6 +2,40 @@
    V2 — AGENDA & COYUNTURA
    ============================================================ */
 
+// consolidación por similitud -- si varias notas del MISMO tema y MISMO día se parecen
+// mucho (mismo hecho real, cubierto por medios distintos con encabezados distintos), se
+// muestran como UNA sola tarjeta con contador de cobertura, no repetidas. Aplica tanto a
+// la ficha de tema como a Genealogía -- ya no depende de que el robot las haya
+// consolidado de origen, esto es una salvaguarda visual directa.
+const PALABRAS_VACIAS_CONSOLIDAR = new Set(['que','de','la','el','en','y','a','los','las','un','una','por','con','para','su','se','del','al','es','no','más','como','este','esta','o']);
+function palabrasSignificativasConsolidar(texto){
+  return new Set(texto.toLowerCase().replace(/[^\wáéíóúñ\s]/g,' ').split(/\s+/).filter(p=>p.length>3 && !PALABRAS_VACIAS_CONSOLIDAR.has(p)));
+}
+function similitudConsolidar(t1, t2){
+  const p1 = palabrasSignificativasConsolidar(t1), p2 = palabrasSignificativasConsolidar(t2);
+  if(!p1.size || !p2.size) return 0;
+  let comunes = 0; p1.forEach(p=>{ if(p2.has(p)) comunes++; });
+  return comunes / (p1.size + p2.size - comunes);
+}
+function consolidarNotasPorSimilitud(eventos){
+  const grupos = [];
+  eventos.forEach(ev=>{
+    const grupoExistente = grupos.find(g=>
+      g[0].fecha===ev.fecha && similitudConsolidar(ev.descripcion, g[0].descripcion) >= 0.15
+    );
+    if(grupoExistente) grupoExistente.push(ev);
+    else grupos.push([ev]);
+  });
+  // representante de cada grupo: la de mayor intensidad, con la cobertura sumada de
+  // todas las que se consolidaron ahí (para que el contador siga siendo honesto)
+  return grupos.map(g=>{
+    const principal = {...[...g].sort((a,b)=>Number(b.intensidad)-Number(a.intensidad))[0]};
+    const coberturaTotal = g.reduce((s,e)=>s+(Number(e.cobertura)||1), 0);
+    principal.cobertura = Math.max(coberturaTotal, g.length);
+    return principal;
+  });
+}
+
 function diasSinActividad(temaId){
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).map(e=>e.fecha).sort();
   if(!evs.length) return null;
@@ -131,7 +165,7 @@ function renderProbabilisticoTema(tema){
 function abrirFichaTema(temaId){
   const tema = getTema(temaId);
   if(!tema) return;
-  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  const evs = consolidarNotasPorSimilitud(ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId)).sort((a,b)=>b.fecha.localeCompare(a.fecha));
   const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===temaId);
   const dias = diasSinActividad(temaId);
   const color = colorCategoria(tema.categoria);
@@ -575,7 +609,7 @@ function dibujarGenealogia(temaId){
   const scrollEl = document.getElementById('geneal-scroll');
   const svgEl = document.getElementById('geneal-svg');
   const tema = getTema(temaId);
-  const eventos = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const eventos = consolidarNotasPorSimilitud(ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId)).sort((a,b)=>a.fecha.localeCompare(b.fecha));
   const colorTema = colorCategoria(tema.categoria);
 
   const espacio = 170;
