@@ -5,11 +5,11 @@
 const UMBRAL_ALERTA_7D = 15;
 const CATEGORIAS_ANALISIS = ['Seguridad Nacional','Gobernabilidad','Economía','Relación Bilateral','Social'];
 const TIPO_ATENCION = {
-  'Seguridad Nacional': {icono:'🛡️', texto:'Atención de seguridad'},
-  'Relación Bilateral': {icono:'🤝', texto:'Atención diplomática'},
-  'Economía': {icono:'💰', texto:'Atención económica'},
-  'Gobernabilidad': {icono:'🏛️', texto:'Atención institucional'},
-  'Social': {icono:'📢', texto:'Atención social'}
+  'Seguridad Nacional': {icono:'🛡️', texto:'Atención de seguridad', accion:'Coordinar con el área de comunicación de seguridad antes de que medios nacionales fijen el marco de la historia.'},
+  'Relación Bilateral': {icono:'🤝', texto:'Atención diplomática', accion:'Preparar postura oficial coordinada con Relaciones Exteriores ante posible seguimiento internacional.'},
+  'Economía': {icono:'💰', texto:'Atención económica', accion:'Anticipar reacción de mercados/calificadoras y preparar vocería técnica (Hacienda/Banxico) si escala.'},
+  'Gobernabilidad': {icono:'🏛️', texto:'Atención institucional', accion:'Evaluar si amerita postura desde Segob o vocería presidencial antes de que la oposición capitalice el tema.'},
+  'Social': {icono:'📢', texto:'Atención social', accion:'Monitorear si el tema migra a redes/protesta organizada; preparar mensaje de contención si crece.'}
 };
 
 function colorCategoriaFijo(cat){
@@ -289,6 +289,41 @@ function lecturaTendenciaGeneral(serie){
   return f;
 }
 
+// --- RESUMEN EJECUTIVO -- lo primero que debe leerse en un producto de inteligencia
+// real: qué hay que saber, quién importa, qué tan grave es y qué hacer. Los números y
+// gráficas de abajo son evidencia de soporte para esto, no el protagonista.
+function resumenEjecutivoBullets(temas, alertas, tensionGeneral, pctAlza, rankingOposicion){
+  const bullets = [];
+
+  // 1. la amenaza de mayor prioridad ahora mismo, con su acción sugerida ya incluida
+  if(alertas.length){
+    const top = alertas[0];
+    const at = TIPO_ATENCION[top.tema.categoria] || {texto:'atención general', accion:'Dar seguimiento cercano.'};
+    bullets.push({
+      tipo:'riesgo', icono:'🔴',
+      texto:`<strong>${top.tema.nombre}</strong> es la prioridad de hoy — ${top.notas} nota${top.notas!==1?'s':''} en 7 días, intensidad ${top.suma}. ${at.accion}`
+    });
+  } else {
+    bullets.push({tipo:'ok', icono:'🟢', texto:'Ningún tema cruzó el umbral de alerta esta semana — sin amenazas activas que exijan atención inmediata.'});
+  }
+
+  // 2. hacia dónde se mueve el ambiente general (calentando/enfriando)
+  if(pctAlza>=60) bullets.push({tipo:'alerta', icono:'🟠', texto:`El ambiente se está <strong>calentando</strong>: ${pctAlza}% de los temas con tendencia definida está en escalamiento. Vale la pena revisar de cerca los próximos 2-3 días.`});
+  else if(pctAlza<=40) bullets.push({tipo:'ok', icono:'🟢', texto:`El ambiente se está <strong>enfriando</strong>: solo ${pctAlza}% de los temas activos escala — la mayoría de los frentes pierde tracción.`});
+
+  // 3. quién concentra más reacción de oposición -- útil para saber a quién vigilar
+  if(rankingOposicion.length){
+    const top = rankingOposicion[0];
+    bullets.push({tipo:'actor', icono:'👤', texto:`<strong>${top.actor.nombre}</strong> concentra la mayor reacción de oposición esta racha (${top.count} ${top.count!==1?'menciones':'mención'}) — es quien más está capitalizando el desgaste ajeno.`});
+  }
+
+  // 4. tensión general, en una frase de cierre
+  const bandaTension = tensionGeneral>=66 ? 'ALTA' : tensionGeneral>=33 ? 'MODERADA' : 'BAJA';
+  bullets.push({tipo:'cierre', icono:'📌', texto:`Tensión política general: <strong>${bandaTension}</strong> (${tensionGeneral}/100).`});
+
+  return bullets;
+}
+
 function renderAnalisis(){
   const cont = document.getElementById('analisis-contenido');
   if(!cont) return;
@@ -330,6 +365,15 @@ function renderAnalisis(){
       </div>
     </div>
 
+    <div id="resumen-ejecutivo-analisis" style="background:var(--bg-2);border:1.5px solid var(--line-strong);border-radius:var(--radius-l);padding:16px 20px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
+      <div class="eyebrow" style="font-size:11px;margin-bottom:10px;">RESUMEN EJECUTIVO</div>
+      ${resumenEjecutivoBullets(temas, alertas, tensionGeneral, pctAlza, rankingOposicion).map(b=>`
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line);">
+          <span style="font-size:14px;flex-shrink:0;">${b.icono}</span>
+          <p style="font-size:12.5px;line-height:1.55;margin:0;">${b.texto}</p>
+        </div>`).join('')}
+    </div>
+
     <div class="zona-analisis" id="zona-lectura-ia" style="background:var(--bg-2);border:1.5px solid var(--teal);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
       <div class="eyebrow" style="font-size:11px;color:var(--teal);">🧠 LECTURA DE INTELIGENCIA</div>
       <p style="font-size:11px;color:var(--ink-3);margin:4px 0 0;">Cargando...</p>
@@ -368,7 +412,8 @@ function renderAnalisis(){
           <span style="font-size:18px;">${at.icono}</span>
           <div style="flex:1;">
             <div style="font-size:13px;font-weight:700;">${a.tema.nombre}</div>
-            <p style="font-size:11px;line-height:1.5;color:var(--ink-2);margin:3px 0 0;">${lecturaAtencion(a, at)}</p>
+            <p style="font-size:11px;line-height:1.5;color:var(--ink-2);margin:3px 0 6px;">${lecturaAtencion(a, at)}</p>
+            <p style="font-size:11px;line-height:1.5;color:var(--teal);margin:0;background:rgba(76,193,186,.08);border-radius:6px;padding:6px 10px;">→ <strong>Acción sugerida:</strong> ${at.accion}</p>
           </div>
         </div>`;}).join('')
       : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}

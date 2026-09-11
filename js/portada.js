@@ -29,7 +29,7 @@ function agruparPorHechoReal(eventos){
   // inteligencia, es ruido. Se excluye contenido rutinario, y se exige una intensidad
   // mínima real (5+) para que algo cuente como "nota del día" -- lo de baja intensidad
   // sigue contando en el total agregado, pero no ocupa un lugar en el listado principal.
-  const eventosFiltrados = eventos.filter(e => !esRuidoDeBajoValorPortada(e.descripcion) && Number(e.intensidad) >= 5);
+  const eventosFiltrados = eventos.filter(e => !esRuidoDeBajoValorPortada(e.descripcion) && Number(e.intensidad) >= 6);
   const grupos = [];
   eventosFiltrados.forEach(ev=>{
     const grupoExistente = grupos.find(g => similitudTitularesPortada(ev.descripcion, g[0].descripcion) >= 0.32);
