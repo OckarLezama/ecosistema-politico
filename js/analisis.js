@@ -3,17 +3,18 @@
    ============================================================ */
 
 const UMBRAL_ALERTA_7D = 15;
-const CATEGORIAS_ANALISIS = ['Seguridad Nacional','Gobernabilidad','Economía','Relación Bilateral','Social'];
+const CATEGORIAS_ANALISIS = ['Seguridad Nacional','Gobernabilidad','Economía','Relación Bilateral','Social','Legislativo'];
 const TIPO_ATENCION = {
   'Seguridad Nacional': {texto:'Atención de seguridad', accion:'Coordinar vocería de seguridad antes de que medios nacionales fijen el marco.'},
   'Relación Bilateral': {texto:'Atención diplomática', accion:'Preparar postura con Relaciones Exteriores ante posible seguimiento internacional.'},
   'Economía': {texto:'Atención económica', accion:'Anticipar reacción de mercados; preparar vocería técnica si escala.'},
   'Gobernabilidad': {texto:'Atención institucional', accion:'Definir vocería antes de que la oposición capitalice el tema.'},
-  'Social': {texto:'Atención social', accion:'Monitorear si migra a redes/protesta organizada.'}
+  'Social': {texto:'Atención social', accion:'Monitorear si migra a redes/protesta organizada.'},
+  'Legislativo': {texto:'Atención legislativa', accion:'Dar seguimiento a votos y posicionamiento de bancadas antes de la siguiente lectura.'}
 };
 
 function colorCategoriaFijo(cat){
-  const map = { 'Seguridad Nacional':'#F46883', 'Gobernabilidad':'#BDB58D', 'Economía':'#4CC1BA', 'Relación Bilateral':'#5B7FDB', 'Social':'#B15FBD' };
+  const map = { 'Seguridad Nacional':'#F46883', 'Gobernabilidad':'#BDB58D', 'Economía':'#4CC1BA', 'Relación Bilateral':'#5B7FDB', 'Social':'#B15FBD', 'Legislativo':'#7FA8D9' };
   return map[cat] || '#8A8F98';
 }
 
@@ -277,6 +278,7 @@ const MAPEO_DIMENSION_RIESGO = {
   'Gobernabilidad': ['Riesgo Legal', 'Riesgo Reputacional'],
   'Relación Bilateral': ['Riesgo Reputacional', 'Riesgo General'],
   'Social': ['Riesgo Reputacional'],
+  'Legislativo': ['Riesgo Legal', 'Riesgo Operacional'],
 };
 const DIMENSIONES_RIESGO = ['Riesgo General','Riesgo Financiero','Riesgo Reputacional','Seguridad Física','Riesgo Legal','Riesgo Operacional','Riesgo Cibernético'];
 
@@ -296,6 +298,13 @@ function calcularMatrizRiesgo(alertas){
 
 function bloquesHTML(n, total=5, color){
   return '█'.repeat(n) + '░'.repeat(total-n);
+}
+
+function interpretarConfianzaOTAN(fiabilidad, certeza){
+  const puntaje = ({A:4,B:3,C:2,D:1}[fiabilidad]||1) + ({'1':4,'2':3,'3':2,'4':1}[certeza]||1);
+  if(puntaje>=7) return {texto:'CONFIABLE — puede citarse tal cual', color:'var(--riesgo-bajo)'};
+  if(puntaje>=5) return {texto:'RAZONABLE — verificar antes de citar', color:'var(--riesgo-medio)'};
+  return {texto:'NO CONFIRMADO — no usar sin corroborar', color:'var(--riesgo-alto)'};
 }
 
 function generarBLUF(temas, alertas, tensionGeneral, pctAlza){
@@ -514,20 +523,22 @@ function renderAnalisis(){
     <div id="tab-contenido-otan" class="tab-contenido-analisis" style="display:none;">
       <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-l);padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
         <div class="eyebrow" style="font-size:11px;">MATRIZ DE EVALUACIÓN DE LA INFORMACIÓN — sistema OTAN</div>
-        <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 12px;">Fiabilidad de la fuente (A-D) según cuántos medios independientes lo cubren; certeza del dato (1-4) según si hay corroboración cruzada.</p>
+        <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 12px;">Fiabilidad de la fuente (A-D) y certeza del dato (1-4), traducido a una lectura directa en la última columna.</p>
         ${matrizOTAN.length ? `<table style="width:100%;border-collapse:collapse;font-size:11.5px;">
           <thead><tr style="border-bottom:1.5px solid var(--line-strong);">
             <th style="text-align:left;padding:6px 4px;color:var(--ink-3);font-size:9.5px;">TEMA</th>
             <th style="text-align:center;padding:6px 4px;color:var(--ink-3);font-size:9.5px;">FIABILIDAD</th>
             <th style="text-align:center;padding:6px 4px;color:var(--ink-3);font-size:9.5px;">CERTEZA</th>
-            <th style="text-align:left;padding:6px 4px;color:var(--ink-3);font-size:9.5px;">MEDIOS</th>
+            <th style="text-align:left;padding:6px 4px;color:var(--ink-3);font-size:9.5px;">INTERPRETACIÓN</th>
           </tr></thead>
-          <tbody>${matrizOTAN.map(m=>`<tr style="border-bottom:1px solid var(--line);">
+          <tbody>${matrizOTAN.map(m=>{
+            const interp = interpretarConfianzaOTAN(m.fiabilidad, m.certeza);
+            return `<tr style="border-bottom:1px solid var(--line);">
             <td style="padding:8px 4px;cursor:pointer;" data-tema="${m.tema.id}">${m.tema.nombre}</td>
             <td style="padding:8px 4px;text-align:center;"><span style="font-family:var(--f-mono);font-weight:700;">${m.fiabilidad}</span><br><span style="font-size:9px;color:var(--ink-3);">${TEXTO_FIABILIDAD[m.fiabilidad]}</span></td>
             <td style="padding:8px 4px;text-align:center;"><span style="font-family:var(--f-mono);font-weight:700;">${m.certeza}</span><br><span style="font-size:9px;color:var(--ink-3);">${TEXTO_CERTEZA[m.certeza]}</span></td>
-            <td style="padding:8px 4px;font-family:var(--f-mono);">${m.nDominios}</td>
-          </tr>`).join('')}</tbody>
+            <td style="padding:8px 4px;"><span style="font-size:10.5px;font-weight:700;color:${interp.color};">${interp.texto}</span><br><span style="font-size:9px;color:var(--ink-3);font-family:var(--f-mono);">${m.nDominios} medio${m.nDominios!==1?'s':''} independiente${m.nDominios!==1?'s':''}</span></td>
+          </tr>`;}).join('')}</tbody>
         </table>` : '<p style="font-size:11px;color:var(--ink-3);">Sin alertas activas para evaluar.</p>'}
       </div>
     </div>
@@ -569,16 +580,16 @@ function renderAnalisis(){
           <div><div style="font-size:10.5px;color:var(--riesgo-alto);margin-bottom:6px;">Más reacción de oposición</div><div id="analisis-ranking-oposicion"></div></div>
         </div>
       </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        ${tarjetaKpi('activos', temas.length, 'Temas de agenda activos', null, desgloseCategoria(temas))}
-        ${tarjetaKpi('alertas', alertas.length, 'Alertas esta semana', alertas.length?'var(--riesgo-alto)':'var(--ink-1)', desgloseCategoria(alertas.map(a=>a.tema)))}
-        ${tarjetaKpi('alza', enAlza.length, 'Temas en alza', 'var(--riesgo-alto)', desgloseCategoria(enAlza.map(t=>t.tema)))}
-        ${tarjetaKpi('baja', enBaja.length, 'Temas en baja', 'var(--riesgo-bajo)', desgloseCategoria(enBaja.map(t=>t.tema)))}
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        ${tarjetaKpi('activos', temas.length, 'Temas activos', null, desgloseCategoria(temas))}
+        ${tarjetaKpi('alertas', alertas.length, 'Alertas', alertas.length?'var(--riesgo-alto)':'var(--ink-1)', desgloseCategoria(alertas.map(a=>a.tema)))}
+        ${tarjetaKpi('alza', enAlza.length, 'En alza', 'var(--riesgo-alto)', desgloseCategoria(enAlza.map(t=>t.tema)))}
+        ${tarjetaKpi('baja', enBaja.length, 'En baja', 'var(--riesgo-bajo)', desgloseCategoria(enBaja.map(t=>t.tema)))}
       </div>
     </div>
 
     <div id="pie-membrete-analisis" style="text-align:center;padding:10px 0 4px;border-top:1px solid var(--line);margin-top:14px;">
-      <p style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);margin:0 0 12px;">Documento generado automáticamente · Ecosistema de Inteligencia Política · Circunscripción 3</p>
+      <p style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);margin:0 0 12px;">Documento generado automáticamente · Ecosistema de Inteligencia Política</p>
       <button class="chip-btn" id="btn-exportar-pdf-analisis">⬇ Descargar brief ejecutivo (PDF)</button>
     </div>
   `;
