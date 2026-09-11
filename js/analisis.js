@@ -290,8 +290,8 @@ function calcularMatrizRiesgo(alertas){
   });
   return DIMENSIONES_RIESGO.map(d=>{
     const valor = nivel[d];
-    const banda = valor>=30 ? 'GRAVE' : valor>=20 ? 'ALTO' : valor>=10 ? 'MEDIO' : valor>0 ? 'BAJO' : 'SIN SEÑAL';
-    const bloques = valor>=30?5 : valor>=20?4 : valor>=10?3 : valor>0?1 : 0;
+    const banda = valor>=150 ? 'GRAVE' : valor>=75 ? 'ALTO' : valor>=30 ? 'MEDIO' : valor>0 ? 'BAJO' : 'SIN SEÑAL';
+    const bloques = valor>=150?5 : valor>=75?4 : valor>=30?3 : valor>0?1 : 0;
     return {dimension:d, banda, bloques};
   });
 }
