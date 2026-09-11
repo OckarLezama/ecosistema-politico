@@ -5,11 +5,11 @@
 const UMBRAL_ALERTA_7D = 15;
 const CATEGORIAS_ANALISIS = ['Seguridad Nacional','Gobernabilidad','Economía','Relación Bilateral','Social'];
 const TIPO_ATENCION = {
-  'Seguridad Nacional': {icono:'🛡️', texto:'Atención de seguridad', accion:'Coordinar con el área de comunicación de seguridad antes de que medios nacionales fijen el marco de la historia.'},
-  'Relación Bilateral': {icono:'🤝', texto:'Atención diplomática', accion:'Preparar postura oficial coordinada con Relaciones Exteriores ante posible seguimiento internacional.'},
-  'Economía': {icono:'💰', texto:'Atención económica', accion:'Anticipar reacción de mercados/calificadoras y preparar vocería técnica (Hacienda/Banxico) si escala.'},
-  'Gobernabilidad': {icono:'🏛️', texto:'Atención institucional', accion:'Evaluar si amerita postura desde Segob o vocería presidencial antes de que la oposición capitalice el tema.'},
-  'Social': {icono:'📢', texto:'Atención social', accion:'Monitorear si el tema migra a redes/protesta organizada; preparar mensaje de contención si crece.'}
+  'Seguridad Nacional': {icono:'🛡️', texto:'Atención de seguridad', accion:'Coordinar vocería de seguridad antes de que medios nacionales fijen el marco.'},
+  'Relación Bilateral': {icono:'🤝', texto:'Atención diplomática', accion:'Preparar postura con Relaciones Exteriores ante posible seguimiento internacional.'},
+  'Economía': {icono:'💰', texto:'Atención económica', accion:'Anticipar reacción de mercados; preparar vocería técnica si escala.'},
+  'Gobernabilidad': {icono:'🏛️', texto:'Atención institucional', accion:'Definir vocería antes de que la oposición capitalice el tema.'},
+  'Social': {icono:'📢', texto:'Atención social', accion:'Monitorear si migra a redes/protesta organizada.'}
 };
 
 function colorCategoriaFijo(cat){
@@ -263,12 +263,31 @@ function lecturaEstadoGeneral(temas, tensionGeneral, pctAlza){
   return f1+' '+f2;
 }
 
-function lecturaAtencion(a, at){
-  const urgencia = a.z!==null && a.z>=2
-    ? `con un comportamiento estadísticamente atípico frente a su propio historial (z=${a.z})`
-    : a.notas>=5 ? `con cobertura mediática sostenida esta semana (${a.notas} notas)`
-    : `con actividad reciente por encima del umbral de seguimiento`;
-  return `Acumuló ${a.notas} nota${a.notas!==1?'s':''} en 7 días e intensidad ${a.suma}, ${urgencia}. Por su categoría, correspondería típicamente a ${at.texto.charAt(0).toLowerCase()+at.texto.slice(1)}.`;
+function calcularSeveridad(a){
+  if((a.z!==null && a.z>=3) || a.suma>=30) return {nivel:'CRÍTICO', color:'var(--riesgo-alto)'};
+  if((a.z!==null && a.z>=2) || a.suma>=20) return {nivel:'ALTO', color:'var(--riesgo-medio)'};
+  return {nivel:'MEDIO', color:'var(--ink-3)'};
+}
+
+function tarjetaAmenaza(a, at){
+  const sev = calcularSeveridad(a);
+  return `
+    <div class="tarjeta-amenaza-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:4px solid ${sev.color};border-radius:8px;padding:12px 14px;margin-bottom:8px;cursor:pointer;" data-tema="${a.tema.id}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:16px;">${at.icono}</span>
+          <span style="font-family:var(--f-display);font-size:14px;font-weight:700;">${a.tema.nombre}</span>
+        </div>
+        <span style="font-family:var(--f-mono);font-size:10px;font-weight:700;color:${sev.color};border:1px solid ${sev.color};border-radius:99px;padding:2px 9px;white-space:nowrap;">${sev.nivel}</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+        <span style="font-family:var(--f-mono);font-size:10px;background:var(--bg-1);border-radius:99px;padding:3px 9px;color:var(--ink-2);">${a.notas} nota${a.notas!==1?'s':''}</span>
+        <span style="font-family:var(--f-mono);font-size:10px;background:var(--bg-1);border-radius:99px;padding:3px 9px;color:var(--ink-2);">7 días</span>
+        <span style="font-family:var(--f-mono);font-size:10px;background:var(--bg-1);border-radius:99px;padding:3px 9px;color:${sev.color};">↑${a.suma} intensidad</span>
+        ${a.z!==null && a.z>=2 ? `<span style="font-family:var(--f-mono);font-size:10px;background:var(--bg-1);border-radius:99px;padding:3px 9px;color:var(--riesgo-alto);">z=${a.z} atípico</span>` : ''}
+      </div>
+      <div style="font-size:11.5px;font-weight:700;color:${sev.color};">→ ${at.accion}</div>
+    </div>`;
 }
 
 function lecturaTendenciaGeneral(serie){
@@ -289,39 +308,34 @@ function lecturaTendenciaGeneral(serie){
   return f;
 }
 
-// --- RESUMEN EJECUTIVO -- lo primero que debe leerse en un producto de inteligencia
-// real: qué hay que saber, quién importa, qué tan grave es y qué hacer. Los números y
-// gráficas de abajo son evidencia de soporte para esto, no el protagonista.
-function resumenEjecutivoBullets(temas, alertas, tensionGeneral, pctAlza, rankingOposicion){
-  const bullets = [];
+function resumenEjecutivoHTML(temas, alertas, tensionGeneral, pctAlza, rankingOposicion){
+  const bandaTension = tensionGeneral>=66 ? {t:'ALTA', c:'var(--riesgo-alto)'} : tensionGeneral>=33 ? {t:'MODERADA', c:'var(--riesgo-medio)'} : {t:'BAJA', c:'var(--riesgo-bajo)'};
+  const bandaAmbiente = pctAlza>=60 ? {t:'CALENTANDO', c:'var(--riesgo-alto)', icono:'🟠'} : pctAlza<=40 ? {t:'ENFRIANDO', c:'var(--riesgo-bajo)', icono:'🟢'} : {t:'ESTABLE', c:'var(--riesgo-medio)', icono:'⚪'};
+  const topOposicion = rankingOposicion[0];
 
-  // 1. la amenaza de mayor prioridad ahora mismo, con su acción sugerida ya incluida
-  if(alertas.length){
-    const top = alertas[0];
-    const at = TIPO_ATENCION[top.tema.categoria] || {texto:'atención general', accion:'Dar seguimiento cercano.'};
-    bullets.push({
-      tipo:'riesgo', icono:'🔴',
-      texto:`<strong>${top.tema.nombre}</strong> es la prioridad de hoy — ${top.notas} nota${top.notas!==1?'s':''} en 7 días, intensidad ${top.suma}. ${at.accion}`
-    });
-  } else {
-    bullets.push({tipo:'ok', icono:'🟢', texto:'Ningún tema cruzó el umbral de alerta esta semana — sin amenazas activas que exijan atención inmediata.'});
-  }
+  const tarjetaPrioridad = alertas.length
+    ? tarjetaAmenaza(alertas[0], TIPO_ATENCION[alertas[0].tema.categoria] || {icono:'•',texto:'Atención general', accion:'Dar seguimiento cercano.'})
+    : `<div style="background:var(--bg-1);border-left:4px solid var(--riesgo-bajo);border-radius:8px;padding:12px 14px;"><span style="font-size:16px;">🟢</span> <strong style="font-size:12.5px;">Sin amenazas activas</strong> — ningún tema cruzó el umbral de alerta esta semana.</div>`;
 
-  // 2. hacia dónde se mueve el ambiente general (calentando/enfriando)
-  if(pctAlza>=60) bullets.push({tipo:'alerta', icono:'🟠', texto:`El ambiente se está <strong>calentando</strong>: ${pctAlza}% de los temas con tendencia definida está en escalamiento. Vale la pena revisar de cerca los próximos 2-3 días.`});
-  else if(pctAlza<=40) bullets.push({tipo:'ok', icono:'🟢', texto:`El ambiente se está <strong>enfriando</strong>: solo ${pctAlza}% de los temas activos escala — la mayoría de los frentes pierde tracción.`});
-
-  // 3. quién concentra más reacción de oposición -- útil para saber a quién vigilar
-  if(rankingOposicion.length){
-    const top = rankingOposicion[0];
-    bullets.push({tipo:'actor', icono:'👤', texto:`<strong>${top.actor.nombre}</strong> concentra la mayor reacción de oposición esta racha (${top.count} ${top.count!==1?'menciones':'mención'}) — es quien más está capitalizando el desgaste ajeno.`});
-  }
-
-  // 4. tensión general, en una frase de cierre
-  const bandaTension = tensionGeneral>=66 ? 'ALTA' : tensionGeneral>=33 ? 'MODERADA' : 'BAJA';
-  bullets.push({tipo:'cierre', icono:'📌', texto:`Tensión política general: <strong>${bandaTension}</strong> (${tensionGeneral}/100).`});
-
-  return bullets;
+  return `
+    <div style="margin-bottom:10px;">${tarjetaPrioridad}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;">
+      <div style="background:var(--bg-1);border-radius:8px;padding:10px 12px;text-align:center;">
+        <div style="font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Ambiente</div>
+        <div style="font-family:var(--f-display);font-weight:700;font-size:15px;color:${bandaAmbiente.c};">${bandaAmbiente.icono} ${bandaAmbiente.t}</div>
+        <div style="font-family:var(--f-mono);font-size:10px;color:var(--ink-3);margin-top:2px;">${pctAlza}% en alza</div>
+      </div>
+      <div style="background:var(--bg-1);border-radius:8px;padding:10px 12px;text-align:center;">
+        <div style="font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Tensión general</div>
+        <div style="font-family:var(--f-display);font-weight:700;font-size:15px;color:${bandaTension.c};">${bandaTension.t}</div>
+        <div style="font-family:var(--f-mono);font-size:10px;color:var(--ink-3);margin-top:2px;">${tensionGeneral}/100</div>
+      </div>
+      ${topOposicion ? `<div style="background:var(--bg-1);border-radius:8px;padding:10px 12px;text-align:center;">
+        <div style="font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Más oposición</div>
+        <div style="font-family:var(--f-display);font-weight:700;font-size:13px;">👤 ${topOposicion.actor.nombre}</div>
+        <div style="font-family:var(--f-mono);font-size:10px;color:var(--ink-3);margin-top:2px;">${topOposicion.count} mención${topOposicion.count!==1?'es':''}</div>
+      </div>` : ''}
+    </div>`;
 }
 
 function renderAnalisis(){
@@ -367,11 +381,7 @@ function renderAnalisis(){
 
     <div id="resumen-ejecutivo-analisis" style="background:var(--bg-2);border:1.5px solid var(--line-strong);border-radius:var(--radius-l);padding:16px 20px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
       <div class="eyebrow" style="font-size:11px;margin-bottom:10px;">RESUMEN EJECUTIVO</div>
-      ${resumenEjecutivoBullets(temas, alertas, tensionGeneral, pctAlza, rankingOposicion).map(b=>`
-        <div style="display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line);">
-          <span style="font-size:14px;flex-shrink:0;">${b.icono}</span>
-          <p style="font-size:12.5px;line-height:1.55;margin:0;">${b.texto}</p>
-        </div>`).join('')}
+      ${resumenEjecutivoHTML(temas, alertas, tensionGeneral, pctAlza, rankingOposicion)}
     </div>
 
     <div class="zona-analisis" id="zona-lectura-ia" style="background:var(--bg-2);border:1.5px solid var(--teal);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
@@ -404,18 +414,10 @@ function renderAnalisis(){
 
     <div class="zona-analisis" style="background:var(--bg-1);border:1.5px solid var(--riesgo-alto);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(244,104,131,.12);">
       <div class="eyebrow" style="color:var(--riesgo-alto);font-size:11px;">⚠ REQUIERE ATENCIÓN — ${alertas.length} tema${alertas.length!==1?'s':''}</div>
-      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Intensidad acumulada de 7 días sobre ${UMBRAL_ALERTA_7D} puntos, con el z-score de anomalía frente a su propia historia — no una predicción.</p>
+      <p style="font-size:10.5px;color:var(--ink-3);margin:4px 0 10px;">Intensidad acumulada de 7 días sobre ${UMBRAL_ALERTA_7D} puntos.</p>
       ${alertas.length ? alertas.map(a=>{
-        const at = TIPO_ATENCION[a.tema.categoria] || {icono:'•',texto:'Atención general'};
-        return `
-        <div class="fila-atencion-analisis" style="display:flex;align-items:center;gap:10px;padding:10px 8px;border-radius:8px;border-top:1px solid var(--line);cursor:pointer;transition:background .12s;" data-tema="${a.tema.id}">
-          <span style="font-size:18px;">${at.icono}</span>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:700;">${a.tema.nombre}</div>
-            <p style="font-size:11px;line-height:1.5;color:var(--ink-2);margin:3px 0 6px;">${lecturaAtencion(a, at)}</p>
-            <p style="font-size:11px;line-height:1.5;color:var(--teal);margin:0;background:rgba(76,193,186,.08);border-radius:6px;padding:6px 10px;">→ <strong>Acción sugerida:</strong> ${at.accion}</p>
-          </div>
-        </div>`;}).join('')
+        const at = TIPO_ATENCION[a.tema.categoria] || {icono:'•',texto:'Atención general', accion:'Dar seguimiento cercano.'};
+        return tarjetaAmenaza(a, at);}).join('')
       : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
     </div>
 
