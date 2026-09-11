@@ -20,7 +20,7 @@ jobs:
         run: |
           git config user.name "robot-temas"
           git config user.email "robot@ecosistema-politico.local"
-          git add data/eventos.csv data/candidatos_revision.csv data/temas.csv data/menciones_actores_c3.csv
+          git add data/eventos.csv data/candidatos_revision.csv data/temas.csv data/menciones_actores_c3.csv data/tema_actores.csv
           git diff --staged --quiet || git commit -m "Robot: actualizacion automatica $(date -u +%Y-%m-%d)"
           git pull --rebase
           git push
