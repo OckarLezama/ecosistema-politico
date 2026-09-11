@@ -5,11 +5,11 @@
 const UMBRAL_ALERTA_7D = 15;
 const CATEGORIAS_ANALISIS = ['Seguridad Nacional','Gobernabilidad','Economía','Relación Bilateral','Social'];
 const TIPO_ATENCION = {
-  'Seguridad Nacional': {icono:'🛡️', texto:'Atención de seguridad', accion:'Coordinar vocería de seguridad antes de que medios nacionales fijen el marco.'},
-  'Relación Bilateral': {icono:'🤝', texto:'Atención diplomática', accion:'Preparar postura con Relaciones Exteriores ante posible seguimiento internacional.'},
-  'Economía': {icono:'💰', texto:'Atención económica', accion:'Anticipar reacción de mercados; preparar vocería técnica si escala.'},
-  'Gobernabilidad': {icono:'🏛️', texto:'Atención institucional', accion:'Definir vocería antes de que la oposición capitalice el tema.'},
-  'Social': {icono:'📢', texto:'Atención social', accion:'Monitorear si migra a redes/protesta organizada.'}
+  'Seguridad Nacional': {texto:'Atención de seguridad', accion:'Coordinar vocería de seguridad antes de que medios nacionales fijen el marco.'},
+  'Relación Bilateral': {texto:'Atención diplomática', accion:'Preparar postura con Relaciones Exteriores ante posible seguimiento internacional.'},
+  'Economía': {texto:'Atención económica', accion:'Anticipar reacción de mercados; preparar vocería técnica si escala.'},
+  'Gobernabilidad': {texto:'Atención institucional', accion:'Definir vocería antes de que la oposición capitalice el tema.'},
+  'Social': {texto:'Atención social', accion:'Monitorear si migra a redes/protesta organizada.'}
 };
 
 function colorCategoriaFijo(cat){
@@ -346,7 +346,6 @@ function tarjetaAmenaza(a, at){
     <div class="tarjeta-amenaza-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:4px solid ${sev.color};border-radius:8px;padding:12px 14px;margin-bottom:8px;cursor:pointer;" data-tema="${a.tema.id}">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;">
         <div style="display:flex;align-items:center;gap:8px;">
-          <span style="font-size:16px;">${at.icono}</span>
           <span style="font-family:var(--f-display);font-size:14px;font-weight:700;">${a.tema.nombre}</span>
         </div>
         <span style="font-family:var(--f-mono);font-size:10px;font-weight:700;color:${sev.color};border:1px solid ${sev.color};border-radius:99px;padding:2px 9px;white-space:nowrap;">${sev.nivel}</span>
@@ -381,12 +380,12 @@ function lecturaTendenciaGeneral(serie){
 
 function resumenEjecutivoHTML(temas, alertas, tensionGeneral, pctAlza, rankingOposicion){
   const bandaTension = tensionGeneral>=66 ? {t:'ALTA', c:'var(--riesgo-alto)'} : tensionGeneral>=33 ? {t:'MODERADA', c:'var(--riesgo-medio)'} : {t:'BAJA', c:'var(--riesgo-bajo)'};
-  const bandaAmbiente = pctAlza>=60 ? {t:'CALENTANDO', c:'var(--riesgo-alto)', icono:'🟠'} : pctAlza<=40 ? {t:'ENFRIANDO', c:'var(--riesgo-bajo)', icono:'🟢'} : {t:'ESTABLE', c:'var(--riesgo-medio)', icono:'⚪'};
+  const bandaAmbiente = pctAlza>=60 ? {t:'CALENTANDO', c:'var(--riesgo-alto)'} : pctAlza<=40 ? {t:'ENFRIANDO', c:'var(--riesgo-bajo)'} : {t:'ESTABLE', c:'var(--riesgo-medio)'};
   const topOposicion = rankingOposicion[0];
 
   const tarjetaPrioridad = alertas.length
     ? tarjetaAmenaza(alertas[0], TIPO_ATENCION[alertas[0].tema.categoria] || {icono:'•',texto:'Atención general', accion:'Dar seguimiento cercano.'})
-    : `<div style="background:var(--bg-1);border-left:4px solid var(--riesgo-bajo);border-radius:8px;padding:12px 14px;"><span style="font-size:16px;">🟢</span> <strong style="font-size:12.5px;">Sin amenazas activas</strong> — ningún tema cruzó el umbral de alerta esta semana.</div>`;
+    : `<div style="background:var(--bg-1);border-left:4px solid var(--riesgo-bajo);border-radius:8px;padding:12px 14px;"><strong style="font-size:12.5px;">Sin amenazas activas</strong> — ningún tema cruzó el umbral de alerta esta semana.</div>`;
 
   return `
     <div style="margin-bottom:10px;">${tarjetaPrioridad}</div>
@@ -403,7 +402,7 @@ function resumenEjecutivoHTML(temas, alertas, tensionGeneral, pctAlza, rankingOp
       </div>
       ${topOposicion ? `<div style="background:var(--bg-1);border-radius:8px;padding:10px 12px;text-align:center;">
         <div style="font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Más oposición</div>
-        <div style="font-family:var(--f-display);font-weight:700;font-size:13px;">👤 ${topOposicion.actor.nombre}</div>
+        <div style="font-family:var(--f-display);font-weight:700;font-size:13px;">${topOposicion.actor.nombre}</div>
         <div style="font-family:var(--f-mono);font-size:10px;color:var(--ink-3);margin-top:2px;">${topOposicion.count} mención${topOposicion.count!==1?'es':''}</div>
       </div>` : ''}
     </div>`;
@@ -479,9 +478,9 @@ function renderAnalisis(){
           <div style="font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;">Indicadores de señal</div>
           <div style="font-size:10.5px;line-height:1.7;">
             ${temaMasIncremento ? `<div><strong style="color:var(--riesgo-alto);">↑ Incremento:</strong> ${temaMasIncremento.tema.nombre} (+${temaMasIncremento.cambioPct}%)</div>` : ''}
-            ${temaMasAtipico && temaMasAtipico.z!==null ? `<div><strong style="color:var(--riesgo-medio);">⚡ Señal de alerta:</strong> ${temaMasAtipico.tema.nombre} (z=${temaMasAtipico.z})</div>` : ''}
-            ${temaSinActor ? `<div><strong style="color:var(--ink-3);">❓ Dato faltante:</strong> ${temaSinActor.nombre} sin actor vinculado</div>` : ''}
-            ${temaAVigilar ? `<div><strong style="color:var(--teal);">👁 Monitorear:</strong> ${(temaAVigilar.tema||temaAVigilar).nombre}</div>` : ''}
+            ${temaMasAtipico && temaMasAtipico.z!==null ? `<div><strong style="color:var(--riesgo-medio);">SEÑAL DE ALERTA:</strong> ${temaMasAtipico.tema.nombre} (z=${temaMasAtipico.z})</div>` : ''}
+            ${temaSinActor ? `<div><strong style="color:var(--ink-3);">DATO FALTANTE:</strong> ${temaSinActor.nombre} sin actor vinculado</div>` : ''}
+            ${temaAVigilar ? `<div><strong style="color:var(--teal);">MONITOREAR:</strong> ${(temaAVigilar.tema||temaAVigilar).nombre}</div>` : ''}
           </div>
         </div>
       </div>
@@ -489,22 +488,26 @@ function renderAnalisis(){
 
     <div id="tabs-analisis" style="display:flex;gap:4px;margin-bottom:12px;border-bottom:1px solid var(--line-strong);">
       <button class="tab-analisis activa" data-tab="resumen" style="background:none;border:none;border-bottom:2px solid var(--teal);color:var(--ink-1);font-size:11.5px;padding:8px 14px;cursor:pointer;">Resumen</button>
+      <button class="tab-analisis" data-tab="lectura" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--ink-3);font-size:11.5px;padding:8px 14px;cursor:pointer;">Lectura IA</button>
       <button class="tab-analisis" data-tab="otan" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--ink-3);font-size:11.5px;padding:8px 14px;cursor:pointer;">Matriz OTAN</button>
       <button class="tab-analisis" data-tab="coa" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--ink-3);font-size:11.5px;padding:8px 14px;cursor:pointer;">Cursos de Acción</button>
       <button class="tab-analisis" data-tab="graficas" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--ink-3);font-size:11.5px;padding:8px 14px;cursor:pointer;">Gráficas y Tendencias</button>
     </div>
 
     <div id="tab-contenido-resumen" class="tab-contenido-analisis">
-      <div class="zona-analisis" id="zona-lectura-ia" style="background:var(--bg-2);border:1.5px solid var(--teal);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
-        <div class="eyebrow" style="font-size:11px;color:var(--teal);">🧠 LECTURA DE INTELIGENCIA</div>
-        <p style="font-size:11px;color:var(--ink-3);margin:4px 0 0;">Cargando...</p>
-      </div>
-      <div class="zona-analisis" style="background:var(--bg-1);border:1.5px solid var(--riesgo-alto);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(244,104,131,.12);">
-        <div class="eyebrow" style="color:var(--riesgo-alto);font-size:11px;">⚠ REQUIERE ATENCIÓN — ${alertas.length} tema${alertas.length!==1?'s':''}</div>
+      <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--riesgo-alto);border-radius:8px;padding:12px 14px;">
+        <div class="eyebrow" style="color:var(--riesgo-alto);font-size:10px;margin-bottom:8px;">REQUIERE ATENCIÓN — ${alertas.length} tema${alertas.length!==1?'s':''}</div>
         ${alertas.length ? alertas.map(a=>{
-          const at = TIPO_ATENCION[a.tema.categoria] || {icono:'•',texto:'Atención general', accion:'Dar seguimiento cercano.'};
+          const at = TIPO_ATENCION[a.tema.categoria] || {texto:'Atención general', accion:'Dar seguimiento cercano.'};
           return tarjetaAmenaza(a, at);}).join('')
         : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
+      </div>
+    </div>
+
+    <div id="tab-contenido-lectura" class="tab-contenido-analisis" style="display:none;">
+      <div class="zona-analisis" id="zona-lectura-ia" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-l);padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
+        <div class="eyebrow" style="font-size:11px;">LECTURA DE INTELIGENCIA</div>
+        <p style="font-size:11px;color:var(--ink-3);margin:4px 0 0;">Cargando...</p>
       </div>
     </div>
 
@@ -547,20 +550,20 @@ function renderAnalisis(){
 
     <div id="tab-contenido-graficas" class="tab-contenido-analisis" style="display:none;">
       <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
-        <div class="eyebrow" style="font-size:11px;">📈 TENDENCIA GENERAL</div>
+        <div class="eyebrow" style="font-size:11px;">TENDENCIA GENERAL</div>
         <p style="font-size:12.5px;line-height:1.65;background:var(--bg-1);border-left:3px solid var(--teal);border-radius:0 6px 6px 0;padding:10px 14px;margin:10px 0;">${lecturaTendenciaGeneral(construirSerieArea(temas))}</p>
         <svg id="analisis-area-svg" style="width:100%;height:200px;display:block;"></svg>
       </div>
       <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
-        <div class="eyebrow" style="font-size:11px;">🔗 PATRONES DETECTADOS — correlación de Pearson</div>
+        <div class="eyebrow" style="font-size:11px;">PATRONES DETECTADOS — correlación de Pearson</div>
         <div id="analisis-patrones"></div>
       </div>
       <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
-        <div class="eyebrow" style="font-size:11px;">📉 TRAYECTORIAS INDIVIDUALES</div>
+        <div class="eyebrow" style="font-size:11px;">TRAYECTORIAS INDIVIDUALES</div>
         <div id="analisis-graficas" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;"></div>
       </div>
       <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
-        <div class="eyebrow" style="font-size:11px;">👤 ACTORES RELEVANTES</div>
+        <div class="eyebrow" style="font-size:11px;">ACTORES RELEVANTES</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:10px;">
           <div><div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;">Más presentes en temas en alza</div><div id="analisis-ranking"></div></div>
           <div><div style="font-size:10.5px;color:var(--riesgo-alto);margin-bottom:6px;">Más reacción de oposición</div><div id="analisis-ranking-oposicion"></div></div>
@@ -684,7 +687,7 @@ function cargarLecturaIA(){
       const l = datos.lectura;
       const fecha = new Date(datos.generado_en).toLocaleString('es-MX', {dateStyle:'medium', timeStyle:'short'});
       zona.innerHTML = `
-        <div class="eyebrow" style="font-size:11px;color:var(--teal);">🧠 LECTURA DE INTELIGENCIA</div>
+        <div class="eyebrow" style="font-size:11px;color:var(--teal);">LECTURA DE INTELIGENCIA</div>
         <p style="font-size:9.5px;color:var(--ink-3);margin:2px 0 8px;font-family:var(--f-mono);">Generada ${fecha}</p>
         <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Estado general:</strong> ${l.estado_general}</p>
         <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Pulso político:</strong> ${l.pulso_politico}</p>
@@ -695,7 +698,7 @@ function cargarLecturaIA(){
     })
     .catch(()=>{
       zona.innerHTML = `
-        <div class="eyebrow" style="font-size:11px;color:var(--teal);">🧠 LECTURA DE INTELIGENCIA</div>
+        <div class="eyebrow" style="font-size:11px;color:var(--teal);">LECTURA DE INTELIGENCIA</div>
         <p style="font-size:11px;color:var(--ink-3);margin:4px 0 0;">Aún no se ha generado la primera lectura — corre cada día a las 8:00 y 14:00 (hora CDMX). Mientras tanto, las secciones de abajo siguen funcionando con el cálculo automático de siempre.</p>`;
     });
 }
