@@ -191,25 +191,14 @@ def variantes_actor_c3(nombre_completo, apodo=None):
         variantes.append(f'{partes[0]} {partes[1]}')
     if len(partes) >= 3:
         variantes.append(f'{partes[0]} {partes[-1]}')
-        # apellidos compuestos SOLOS (sin nombre de pila) -- seguro cuando son 2+
-        # apellidos juntos ("Díaz Mena"), esa combinación ya es específica por sí sola,
-        # a diferencia de un apellido suelto común. Cubre "el gobernador Díaz Mena..."
         variantes.append(f'{partes[-2]} {partes[-1]}')
-    # cualquier PARTE del nombre (nombre de pila o cualquier apellido), si es única en
-    # toda la lista curada -- no solo apellidos (ver corrección arriba: "LAYDA" sola,
-    # su nombre de pila, también debe detectarse si nadie más en la lista se llama así)
-    for parte in partes:
-        p = sin_acentos(parte.lower())
-        # aunque sea único DENTRO de la lista curada, un nombre de pila común (José,
-        # Carlos, Juan...) sigue siendo demasiado genérico en el mundo real -- "único
-        # entre tus 75 actores" no es lo mismo que "seguro para usar solo". Por eso se
-        # excluyen los nombres de pila más comunes en español, incluso si son únicos
-        # aquí (los apellidos raros como "Chedraui" o nombres poco comunes como "Layda"
-        # sí pasan, porque esos de verdad no generan falsos positivos).
-        if p in NOMBRES_PILA_DEMASIADO_COMUNES:
-            continue
-        if p in APELLIDOS_UNICOS_C3:
-            variantes.append(parte)
+    # SIN mecanismo automático de "nombre suelto" -- se intentó 2 veces (por unicidad en
+    # la lista curada, luego con lista de bloqueo de nombres comunes) y ambas veces
+    # aparecieron casos reales rotos (Briceño confundiendo Yucatán con Campeche; luego
+    # "vida", "cruz", "luna", "niño" -- palabras comunes del español, no solo nombres).
+    # La única vía seguirá siendo segura de verdad: agregar el apodo A MANO, uno por
+    # uno, cuando el usuario confirme que es un caso genuinamente seguro (ver Layda,
+    # Chedraui, Huacho, Gino como apodos abajo en ACTORES_C3).
     if apodo:
         variantes.append(apodo)
     # sin acentos y en minúsculas -- una fuente puede escribir "Yanez" donde otra pone
@@ -266,7 +255,7 @@ ACTORES_C3 = {
     ],
     'Campeche': [
         ('Pablo Gutiérrez Lazarus', 'Coordinador estatal de Morena 2027', None),
-        ('Layda Sansores San Román', 'Gobernadora', None),
+        ('Layda Sansores San Román', 'Gobernadora', 'Layda'),
         ('Rocío Abreu Artiñano', 'Senadora', None),
         ('Aníbal Ostoa Ortega', 'Senador', None),
         ('Liz Hernández Romero', 'Operación política del Ejecutivo', None),
@@ -304,7 +293,7 @@ ACTORES_C3 = {
     'Puebla': [
         ('Alejandro Armenta Mier', 'Gobernador', None),
         ('José Luis García Parra', 'Coordinador de Gabinete', 'El Choco'),
-        ('José Chedraui Budib', 'Alcalde de Puebla', None),
+        ('José Chedraui Budib', 'Alcalde de Puebla', 'Chedraui'),
         ('Xitlalic Ceja', 'Diputada local', None),
         ('Ignacio Mier Bañuelos', 'Diputado federal', None),
         ('Rodrigo Abdala Dartigues', 'Morena', None),
