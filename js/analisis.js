@@ -352,7 +352,7 @@ function calcularSeveridad(a){
 function tarjetaAmenaza(a, at){
   const sev = calcularSeveridad(a);
   return `
-    <div class="tarjeta-amenaza-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-left:4px solid ${sev.color};border-radius:8px;padding:12px 14px;margin-bottom:8px;cursor:pointer;" data-tema="${a.tema.id}">
+    <div class="tarjeta-amenaza-analisis" style="display:block;width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-left:4px solid ${sev.color};border-radius:8px;padding:12px 14px;cursor:pointer;" data-tema="${a.tema.id}">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;">
         <div style="display:flex;align-items:center;gap:8px;">
           <span style="font-family:var(--f-display);font-size:14px;font-weight:700;">${a.tema.nombre}</span>
@@ -504,12 +504,14 @@ function renderAnalisis(){
     </div>
 
     <div id="tab-contenido-resumen" class="tab-contenido-analisis">
-      <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--riesgo-alto);border-radius:8px;padding:12px 14px;">
+      <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--riesgo-alto);border-radius:8px;padding:12px 14px;display:block;">
         <div class="eyebrow" style="color:var(--riesgo-alto);font-size:10px;margin-bottom:8px;">REQUIERE ATENCIÓN — ${alertas.length} tema${alertas.length!==1?'s':''}</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
         ${alertas.length ? alertas.map(a=>{
           const at = TIPO_ATENCION[a.tema.categoria] || {texto:'Atención general', accion:'Dar seguimiento cercano.'};
           return tarjetaAmenaza(a, at);}).join('')
         : '<p style="font-size:11px;color:var(--ink-3);">Ningún tema cruzó el umbral esta semana.</p>'}
+        </div>
       </div>
     </div>
 
