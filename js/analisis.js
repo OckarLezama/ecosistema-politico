@@ -271,28 +271,19 @@ function lecturaEstadoGeneral(temas, tensionGeneral, pctAlza){
 // lo que YA calculamos en el formato correcto, no inventa profundidad que no existe.
 // ============================================================
 
-// mapeo de categorías del sitio a las 6 dimensiones de riesgo del formato NATO/COA
-const MAPEO_DIMENSION_RIESGO = {
-  'Seguridad Nacional': ['Seguridad Física', 'Riesgo General'],
-  'Economía': ['Riesgo Financiero'],
-  'Gobernabilidad': ['Riesgo Legal', 'Riesgo Reputacional'],
-  'Relación Bilateral': ['Riesgo Reputacional', 'Riesgo General'],
-  'Social': ['Riesgo Reputacional'],
-  'Legislativo': ['Riesgo Legal', 'Riesgo Operacional'],
-};
-const DIMENSIONES_RIESGO = ['Riesgo General','Riesgo Financiero','Riesgo Reputacional','Seguridad Física','Riesgo Legal','Riesgo Operacional','Riesgo Cibernético'];
-
+// la matriz usa DIRECTAMENTE las categorías reales del sitio -- las mismas de siempre
+// (Seguridad Nacional, Gobernabilidad, Economía, Relación Bilateral, Social,
+// Legislativo), sin inventar una taxonomía de riesgo distinta que no coincide con nada
+// más en la plataforma. Antes mapeaba a "Riesgo Financiero/Reputacional/etc." -- eso
+// era inconsistente con la clasificación que ya se usa en todo el resto del sitio.
 function calcularMatrizRiesgo(alertas){
-  const nivel = {}; DIMENSIONES_RIESGO.forEach(d=> nivel[d]=0);
-  alertas.forEach(a=>{
-    const dims = MAPEO_DIMENSION_RIESGO[a.tema.categoria] || [];
-    dims.forEach(d=>{ nivel[d] = Math.max(nivel[d], a.suma); });
-  });
-  return DIMENSIONES_RIESGO.map(d=>{
-    const valor = nivel[d];
+  const nivel = {}; CATEGORIAS_ANALISIS.forEach(c=> nivel[c]=0);
+  alertas.forEach(a=>{ nivel[a.tema.categoria] = Math.max(nivel[a.tema.categoria]||0, a.suma); });
+  return CATEGORIAS_ANALISIS.map(c=>{
+    const valor = nivel[c];
     const banda = valor>=150 ? 'GRAVE' : valor>=75 ? 'ALTO' : valor>=30 ? 'MEDIO' : valor>0 ? 'BAJO' : 'SIN SEÑAL';
     const bloques = valor>=150?5 : valor>=75?4 : valor>=30?3 : valor>0?1 : 0;
-    return {dimension:d, banda, bloques};
+    return {dimension:c, banda, bloques};
   });
 }
 
@@ -337,6 +328,7 @@ function generarCOAs(alertas, at){
   if(!alertas.length) return null;
   const top = alertas[0];
   return {
+    temaNombre: top.tema.nombre,
     mlcoa: `${top.tema.nombre} mantiene su nivel de cobertura actual (${top.notas} notas/semana) sin escalar más allá de ${top.tema.categoria}, salvo que aparezca un actor de mayor perfil o un hecho nuevo que reactive el interés mediático.`,
     mdcoa: `${top.tema.nombre} escala a agenda nacional sostenida, atrae actores de oposición adicionales, y se politiza más allá de su categoría original antes de que exista una respuesta institucional clara.`,
     mitigacion: at ? at.accion : 'Dar seguimiento cercano y definir vocería antes de que el tema escale más.'
@@ -547,17 +539,33 @@ function renderAnalisis(){
 
     <div id="tab-contenido-coa" class="tab-contenido-analisis" style="display:none;">
       ${coas ? `
-      <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--riesgo-medio);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
-        <div class="eyebrow" style="color:var(--riesgo-medio);font-size:11px;">ESCENARIO MÁS PROBABLE (MLCOA)</div>
-        <p style="font-size:12px;line-height:1.6;margin:6px 0 0;">${coas.mlcoa}</p>
-      </div>
-      <div class="zona-analisis" style="background:var(--bg-1);border:1px solid var(--riesgo-alto);border-radius:var(--radius-l);padding:16px 18px;margin-bottom:12px;box-shadow:0 1px 6px rgba(244,104,131,.12);">
-        <div class="eyebrow" style="color:var(--riesgo-alto);font-size:11px;">ESCENARIO MÁS PELIGROSO (MDCOA)</div>
-        <p style="font-size:12px;line-height:1.6;margin:6px 0 0;">${coas.mdcoa}</p>
-      </div>
-      <div class="zona-analisis" style="background:var(--bg-2);border:1.5px solid var(--teal);border-radius:var(--radius-l);padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
-        <div class="eyebrow" style="color:var(--teal);font-size:11px;">MEDIDAS DE MITIGACIÓN</div>
-        <p style="font-size:12px;line-height:1.6;margin:6px 0 0;font-weight:700;">${coas.mitigacion}</p>
+      <div class="zona-analisis" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-l);padding:20px 18px;box-shadow:0 1px 6px rgba(0,0,0,.18);">
+        <div class="eyebrow" style="font-size:11px;margin-bottom:14px;">ESQUEMA DE ESCENARIOS — ${coas.temaNombre}</div>
+        <svg viewBox="0 0 600 100" style="width:100%;height:80px;display:block;">
+          <text x="300" y="20" text-anchor="middle" font-size="9" fill="var(--ink-3)" style="text-transform:uppercase;letter-spacing:.04em;">Situación actual</text>
+          <line x1="300" y1="26" x2="150" y2="65" stroke="var(--riesgo-medio)" stroke-width="2"/>
+          <line x1="300" y1="26" x2="450" y2="65" stroke="var(--riesgo-alto)" stroke-width="2"/>
+          <line x1="150" y1="65" x2="300" y2="92" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="3 3"/>
+          <line x1="450" y1="65" x2="300" y2="92" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="3 3"/>
+          <circle cx="300" cy="26" r="6" fill="var(--ink-1)"/>
+          <circle cx="150" cy="65" r="6" fill="var(--riesgo-medio)"/>
+          <circle cx="450" cy="65" r="6" fill="var(--riesgo-alto)"/>
+          <circle cx="300" cy="92" r="6" fill="var(--teal)"/>
+        </svg>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;">
+          <div style="background:var(--bg-1);border-top:3px solid var(--riesgo-medio);border-radius:0 0 8px 8px;padding:12px 14px;">
+            <div style="font-size:10px;font-weight:700;color:var(--riesgo-medio);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;">Más probable (MLCOA)</div>
+            <p style="font-size:11.5px;line-height:1.55;margin:0;">${coas.mlcoa}</p>
+          </div>
+          <div style="background:var(--bg-1);border-top:3px solid var(--riesgo-alto);border-radius:0 0 8px 8px;padding:12px 14px;">
+            <div style="font-size:10px;font-weight:700;color:var(--riesgo-alto);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;">Más peligroso (MDCOA)</div>
+            <p style="font-size:11.5px;line-height:1.55;margin:0;">${coas.mdcoa}</p>
+          </div>
+        </div>
+        <div style="background:var(--bg-2);border:1.5px solid var(--teal);border-radius:8px;padding:12px 14px;margin-top:14px;">
+          <div style="font-size:10px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;text-align:center;">Medidas de mitigación</div>
+          <p style="font-size:12px;line-height:1.55;margin:0;font-weight:700;text-align:center;">${coas.mitigacion}</p>
+        </div>
       </div>` : '<p style="font-size:11px;color:var(--ink-3);">Sin amenazas activas para generar cursos de acción.</p>'}
     </div>
 
@@ -699,15 +707,25 @@ function cargarLecturaIA(){
     .then(datos=>{
       const l = datos.lectura;
       const fecha = new Date(datos.generado_en).toLocaleString('es-MX', {dateStyle:'medium', timeStyle:'short'});
+      const bloques = [
+        {titulo:'Estado general', texto:l.estado_general, color:'var(--teal)'},
+        {titulo:'Pulso político', texto:l.pulso_politico, color:'var(--riesgo-medio)'},
+        {titulo:'Patrones', texto:l.patrones_detectados, color:'var(--familia-nucleo)'},
+        {titulo:'Alertas', texto:l.alertas_tempranas, color:'var(--riesgo-alto)'},
+        {titulo:'Tendencia por categoría', texto:l.tendencia_por_categoria, color:'var(--arena)'},
+        {titulo:'Actores centrales', texto:l.actores_centrales, color:'var(--riesgo-bajo)'},
+      ];
       zona.innerHTML = `
-        <div class="eyebrow" style="font-size:11px;color:var(--teal);">LECTURA DE INTELIGENCIA</div>
-        <p style="font-size:9.5px;color:var(--ink-3);margin:2px 0 8px;font-family:var(--f-mono);">Generada ${fecha}</p>
-        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Estado general:</strong> ${l.estado_general}</p>
-        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Pulso político:</strong> ${l.pulso_politico}</p>
-        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Patrones:</strong> ${l.patrones_detectados}</p>
-        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Alertas:</strong> ${l.alertas_tempranas}</p>
-        <p style="font-size:12px;line-height:1.6;margin:0 0 8px;"><strong>Tendencia por categoría:</strong> ${l.tendencia_por_categoria}</p>
-        <p style="font-size:12px;line-height:1.6;margin:0;"><strong>Actores centrales:</strong> ${l.actores_centrales}</p>`;
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;">
+          <div class="eyebrow" style="font-size:11px;margin:0;">LECTURA DE INTELIGENCIA</div>
+          <span style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);">Generada ${fecha}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          ${bloques.map(b=>`<div style="background:var(--bg-1);border-left:3px solid ${b.color};border-radius:0 6px 6px 0;padding:10px 12px;">
+            <div style="font-size:10px;font-weight:700;color:${b.color};text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px;">${b.titulo}</div>
+            <p style="font-size:11.5px;line-height:1.55;margin:0;">${b.texto}</p>
+          </div>`).join('')}
+        </div>`;
     })
     .catch(()=>{
       zona.innerHTML = `
