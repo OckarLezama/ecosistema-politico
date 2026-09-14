@@ -8,6 +8,10 @@
    ============================================================ */
 
 let seleccion = { nucleo:null, cruce1:null, cruce2:null };
+let actorFichaAbiertaId = null; // recuerda qué ficha de actor está abierta -- necesario
+// para poder redibujar SU red individual (distinta a la red principal) al regresar al
+// módulo desde otra pestaña (bug real: la red de la ficha desaparecía porque nada
+// volvía a llamarla, solo se redibujaba la red principal)
 let analisisRedesIA = {};
 let escenarioProspectivoIA = {};
 let escenarioPorNotasIA = {};
@@ -719,6 +723,7 @@ function renderGrafoTemasActorV2(actorId){
 }
 
 function abrirFichaActorCompleta(id){
+  actorFichaAbiertaId = id;
   const actor = getActor(id);
   if(!actor) return;
   const color = colorRiesgo(actor.nivel_riesgo);
