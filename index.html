@@ -244,8 +244,8 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
   if(btn.dataset.module==='portada' && typeof renderPortada==='function') renderPortada();
   if(btn.dataset.module==='actores' && typeof renderGrafo==='function'){
     modoRed = document.querySelector('#modo-red-toggle .chip-btn.active')?.dataset.modo || 'grupo'; // nunca hereda modo "agenda" de Notas
-    if(seleccion.nucleo||seleccion.cruce1||seleccion.cruce2||actorUnicoSeleccionado) renderGrafo();
-    if(actorFichaAbiertaId && typeof renderGrafoTemasActorV2==='function') renderGrafoTemasActorV2(actorFichaAbiertaId);
+    if(seleccion.nucleo||seleccion.cruce1||seleccion.cruce2||actorUnicoSeleccionado) setTimeout(renderGrafo, 30);
+    if(actorFichaAbiertaId && typeof renderGrafoTemasActorV2==='function') setTimeout(()=>renderGrafoTemasActorV2(actorFichaAbiertaId), 30);
     if(typeof posicionarPanelDetalle==='function') setTimeout(posicionarPanelDetalle, 30);
     // el buscador de ficha completa siempre arranca vacío al entrar al módulo -- una
     // consulta anterior no debe quedarse ahí cuando el usuario se fue y volvió
@@ -260,7 +260,7 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/portada.js?v=100"></script>
 <script src="js/actores.js?v=101"></script>
 <script src="js/feed.js?v=100"></script>
-<script src="js/agenda.js?v=100"></script>
+<script src="js/agenda.js?v=101"></script>
 <script src="js/timeline.js?v=100"></script>
 <script src="js/notificaciones.js?v=100"></script>
 <script src="js/analisis.js?v=108"></script>
