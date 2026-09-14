@@ -235,6 +235,32 @@ let impactoFiltroAgenda = '';
 let soloAgendaNacional = true;
 
 let vistaAgenda = 'matriz';
+let temasDisponiblesActuales = [];
+
+function conectarBuscadorTemaAgenda(select){
+  // UN SOLO escuchador para todo el ciclo de vida del campo -- antes Notas y Genealogía
+  // agregaban cada uno el suyo por separado (con dataset.conectadoNotas /
+  // dataset.conectadoGenealogia), y como comparten el MISMO campo de búsqueda, quien
+  // visitara ambas vistas en la misma sesión terminaba con los 2 escuchadores activos a
+  // la vez -- Enter disparaba ambos, y el que corría al final "ganaba" la pantalla (bug
+  // real: buscar en Notas y terminar viendo Genealogía). Ahora se revisa
+  // `vistaAgenda` en el momento del Enter, no se fija de antemano.
+  if(select.dataset.buscadorConectado) return;
+  select.addEventListener('keydown', (e)=>{
+    if(e.key !== 'Enter') return;
+    const q = select.value.trim().toLowerCase();
+    if(q.length<2) return;
+    const encontrado = temasDisponiblesActuales.find(t=>t.nombre.toLowerCase()===q) || temasDisponiblesActuales.find(t=>t.nombre.toLowerCase().includes(q));
+    if(!encontrado) return;
+    if(vistaAgenda==='genealogia'){
+      temaGenealogiaSeleccionado = encontrado.id; genealogiaRevelados = 1; renderGenealogiaAgenda();
+    } else {
+      temaNotasSeleccionado = encontrado.id; dibujarNotasConGrafoReal();
+    }
+  });
+  select.dataset.buscadorConectado = '1';
+}
+
 
 function abrirTarjetaHoy(temaId){
   const tema = getTema(temaId);
@@ -461,19 +487,8 @@ function renderNotasAgenda(){
   datalist.innerHTML = temasDisponibles.map(t=>`<option value="${t.nombre}">`).join('');
   const temaActualNotas = temasDisponibles.find(t=>t.id===temaNotasSeleccionado);
   select.value = temaActualNotas ? temaActualNotas.nombre : '';
-  if(!select.dataset.conectadoNotas){
-    // mismo comportamiento que el buscador de ficha de actor en Red de Actores -- se
-    // activa con Enter (no en cada letra), busca coincidencia exacta primero, si no
-    // encuentra cae a coincidencia parcial
-    select.addEventListener('keydown', (e)=>{
-      if(e.key !== 'Enter') return;
-      const q = select.value.trim().toLowerCase();
-      if(q.length<2) return;
-      const encontrado = temasDisponibles.find(t=>t.nombre.toLowerCase()===q) || temasDisponibles.find(t=>t.nombre.toLowerCase().includes(q));
-      if(encontrado){ temaNotasSeleccionado = encontrado.id; dibujarNotasConGrafoReal(); }
-    });
-    select.dataset.conectadoNotas = '1';
-  }
+  temasDisponiblesActuales = temasDisponibles; // el escuchador único de abajo siempre lee esta variable, según qué vista esté activa
+  conectarBuscadorTemaAgenda(select);
 
   if(!temaNotasSeleccionado){
     const leyendaNotas0 = document.getElementById('agenda-notas-leyenda');
@@ -609,16 +624,8 @@ function renderGenealogiaAgenda(){
   document.getElementById('agenda-tema-lista-nombres').innerHTML = temasDisponibles.map(t=>`<option value="${t.nombre}">`).join('');
   const temaActualGeneal = temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado);
   select.value = temaActualGeneal ? temaActualGeneal.nombre : '';
-  if(!select.dataset.conectadoGenealogia){
-    select.addEventListener('keydown', (e)=>{
-      if(e.key !== 'Enter') return;
-      const q = select.value.trim().toLowerCase();
-      if(q.length<2) return;
-      const encontrado = temasDisponibles.find(t=>t.nombre.toLowerCase()===q) || temasDisponibles.find(t=>t.nombre.toLowerCase().includes(q));
-      if(encontrado){ temaGenealogiaSeleccionado = encontrado.id; genealogiaRevelados = 1; renderGenealogiaAgenda(); }
-    });
-    select.dataset.conectadoGenealogia = '1';
-  }
+  temasDisponiblesActuales = temasDisponibles;
+  conectarBuscadorTemaAgenda(select);
 
   cont.innerHTML = `
     ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
