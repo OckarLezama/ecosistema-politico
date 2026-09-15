@@ -4,13 +4,23 @@
    UNA sola vez por nota (se guarda en localStorage del
    navegador), nunca se vuelve a mostrar después de cerrarla.
 
-   Criterio de "relevante" (ajustable si hace falta):
+   Criterio de "relevante" (CORREGIDO):
    - Cualquier nota de un tema donde Sergio Salomón esté
      conectado como actor
    - Cualquier nota de un tema que mencione "migración" o
      "migrante" en su nombre o categoría
    - Cualquier nota con intensidad 8 o más (mismo umbral alto
      que ya usamos para alertas)
+   - El tema YA es agenda nacional (nivel_relevancia===1) --
+     esto reemplaza al criterio anterior de "categoría sensible +
+     3 medios", que dejaba pasar cosas como una mención ligera de
+     "Los Tigres del Norte y la presidenta" en la mañanera, porque
+     caía en "Gobernabilidad" (la categoría por DEFAULT de
+     cualquier cosa sin match más específico) con cobertura de 3
+     medios -- sin ser agenda nacional real. Nivel 1 ya pasó por
+     el criterio estricto de días+medios+actores que sí filtra
+     esto correctamente; reusarlo aquí evita reinventar un
+     criterio paralelo más flojo.
    ============================================================ */
 
 const CLAVE_NOTIFICADOS = 'ecosistema_notas_notificadas';
@@ -47,29 +57,24 @@ function revisarNotificacionesPendientes(){
   const minutosAhora = horaAhora*60 + minAhora;
 
   const relevantes = ECOSISTEMA.eventos.filter(e=>{
-    if(e.fecha!==hoy) return false; // SOLO hoy -- antes revisaba todo el historial por error
+    if(e.fecha!==hoy) return false;
     if(yaVistos.has(e.id)) return false;
-    // RECIENTE DE VERDAD -- usa la hora real que el robot guardó (hora_registro), no solo
-    // "primera vez que ESTE dispositivo lo ve". CORRECCIÓN: este chequeo antes solo corría
-    // "si e.hora_registro existe" -- si ese campo venía vacío en algún evento (por la razón
-    // que sea), el filtro se saltaba POR COMPLETO y la nota pasaba sin importar qué tan
-    // vieja fuera. Ese fue el bug real reportado (una nota de las 00:09 apareciendo horas
-    // después). Ahora, sin hora_registro válida, la nota NUNCA se considera "reciente" --
-    // se descarta de notificaciones en vez de dejarla pasar por defecto.
     if(!e.hora_registro) return false;
     const [h,m] = e.hora_registro.split(':').map(Number);
     if(isNaN(h) || isNaN(m)) return false;
     const minutosEvento = h*60+m;
-    if(minutosAhora - minutosEvento > 15) return false; // más de 15 min, ya no es "reciente" -- son alertas, no recordatorios
+    if(minutosAhora - minutosEvento > 15) return false;
     const tema = nombreTemaPorId[e.tema_id];
     if(!tema) return false;
-    // alto impacto real = categoría sensible (Gobernabilidad/Seguridad/Relación Bilateral) +
-    // alcance mediático genuino (varios medios cubriendo el mismo hecho) -- no depende de que
-    // mencione a un actor "top" trackeado, así se detectan casos como la muerte de un
-    // funcionario que no está en la lista de actores de alto perfil, pero sí es relevante real
-    const categoriasSensibles = ['Gobernabilidad', 'Seguridad Nacional', 'Relación Bilateral'];
-    const altoImpactoReal = categoriasSensibles.includes(e.categoria) && Number(e.cobertura||1)>=3;
-    const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8 || altoImpactoReal;
+    // CORREGIDO -- se quitó "altoImpactoReal" (categoría sensible + 3 medios), que
+    // usaba "Gobernabilidad" como si fuera sensible, cuando en realidad es la categoría
+    // por default de todo lo que no matchea nada más específico. Ahora, en su lugar, se
+    // usa directamente si el tema YA es agenda nacional (nivel_relevancia===1) -- ese
+    // criterio sí exige días+medios+actores reales, y es el mismo que ya se muestra en
+    // Agenda/Notas/Genealogía, así que las notificaciones quedan consistentes con lo
+    // que el resto del sitio considera "relevante".
+    const esAgendaNacional = Number(tema.nivel_relevancia) === 1;
+    const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8 || esAgendaNacional;
     return esRelevante;
   }).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
 
@@ -94,7 +99,7 @@ function procesarSiguienteNotificacion(){
   if(mostrandoNotificacion || !colaNotificaciones.length) return;
   const evento = colaNotificaciones.shift();
   mostrandoNotificacion = true;
-  marcarComoNotificado(evento.id); // se marca al mostrarla, así nunca vuelve a salir aunque no se cierre bien
+  marcarComoNotificado(evento.id);
 
   const tema = ECOSISTEMA.temas.find(t=>t.id===evento.tema_id);
   const color = colorCategoria(evento.categoria);
@@ -121,10 +126,10 @@ function procesarSiguienteNotificacion(){
   const cerrar = ()=>{
     modal.style.display = 'none';
     mostrandoNotificacion = false;
-    procesarSiguienteNotificacion(); // si hay más en la cola, muestra la siguiente
+    procesarSiguienteNotificacion();
   };
   document.getElementById('cerrar-notificacion').addEventListener('click', cerrar);
-  setTimeout(cerrar, 12000); // se cierra sola a los 12s si nadie la cierra, para no trabar la cola
+  setTimeout(cerrar, 12000);
 }
 
 document.addEventListener('ecosistema:datos-listos', ()=> setTimeout(revisarNotificacionesPendientes, 500));
