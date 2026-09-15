@@ -111,8 +111,13 @@ function generarVariantesActorC3(nombre, apodo){
 
 function clasificarImpacto(intensidad){
   const n = Number(intensidad);
+  // recalibrado -- el robot NUNCA genera menos de 4 (ese es su valor base mínimo), así
+  // que con el umbral viejo (bajo = menos de 4) era matemáticamente imposible que una
+  // nota real cayera en "bajo": todo caía en "medio" como piso, sin importar qué tan
+  // rutinaria fuera. Ahora los 3 tercios corresponden al rango REAL que el robot puede
+  // producir (4 a 10), no a una escala 1-10 asumida que nunca se usaba completa.
   if(n>=8) return 'alto';
-  if(n>=4) return 'medio';
+  if(n>=6) return 'medio';
   return 'bajo';
 }
 
