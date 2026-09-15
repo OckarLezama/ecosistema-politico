@@ -30,26 +30,23 @@ ZONA_MX = timezone(timedelta(hours=-6))
 
 
 def cargar_actores_alta_influencia():
-    """Lee actores.csv EN VIVO cada corrida — si mañana agregas más actores con
-    nivel_influencia alto, el robot los usa solos, sin tocar este script de nuevo."""
     with open(RUTA_ACTORES, encoding='utf-8') as f:
         actores = list(csv.DictReader(f))
     return [a for a in actores if a.get('nivel_influencia') and int(a['nivel_influencia']) >= 7]
 
 
 def calcular_intensidad(texto_completo, tema_id, eventos_existentes, actores_altos, apariciones_hoy):
-    """Intensidad real (4-10), no fija — basada en señales objetivas, misma escala 1-10 ya definida."""
-    intensidad = 4  # base: cobertura real confirmada (ya pasó el filtro de coincidencia)
+    intensidad = 4
     if apariciones_hoy >= 2:
-        intensidad += 2  # cobertura cruzada: más de una nota del mismo tema hoy
+        intensidad += 2
     hace_3_dias = (datetime.now(ZONA_MX) - timedelta(days=3)).date()
     activo_reciente = any(datetime.strptime(e['fecha'], '%Y-%m-%d').date() >= hace_3_dias
                            for e in eventos_existentes if e['tema_id'] == tema_id)
     if activo_reciente:
-        intensidad += 2  # ya lleva días en agenda, no es mención aislada
+        intensidad += 2
     if any(any(palabra.lower() in texto_completo for palabra in a['nombre'].split() if len(palabra) > 3)
            for a in actores_altos):
-        intensidad += 1  # menciona a un actor de alta influencia
+        intensidad += 1
     return min(intensidad, 10)
 
 
@@ -73,9 +70,6 @@ FUENTES_RSS = [
     {'nombre': 'e-consulta (Puebla)', 'url': 'https://www.e-consulta.com/rss.xml', 'entidades_c3': ['Puebla']},
     {'nombre': 'Angulo 7 (Puebla)', 'url': 'https://www.angulo7.com.mx/feed/', 'entidades_c3': ['Puebla']},
     {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': None},
-    # búsqueda dedicada por estado -- además de los medios locales fijos de arriba, esto
-    # amplía cobertura real (incluye medios nacionales que sí cubren al estado cuando
-    # trasciende, no solo prensa local) -- mismo patrón de Google Noticias ya usado
     {'nombre': 'Google Noticias Veracruz', 'url': 'https://news.google.com/rss/search?q=Veracruz+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Veracruz']},
     {'nombre': 'Google Noticias Oaxaca', 'url': 'https://news.google.com/rss/search?q=Oaxaca+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Oaxaca']},
     {'nombre': 'Google Noticias Chiapas', 'url': 'https://news.google.com/rss/search?q=Chiapas+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Chiapas']},
@@ -84,9 +78,6 @@ FUENTES_RSS = [
     {'nombre': 'Google Noticias Yucatán', 'url': 'https://news.google.com/rss/search?q=Yucat%C3%A1n+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Yucatán']},
     {'nombre': 'Google Noticias Quintana Roo', 'url': 'https://news.google.com/rss/search?q=%22Quintana+Roo%22+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
     {'nombre': 'Google Noticias Puebla', 'url': 'https://news.google.com/rss/search?q=Puebla+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
-    # búsqueda DIRECTA por nombre del gobernador -- más confiable que depender de que el
-    # artículo también diga "gobernador" o "Puebla" en el mismo titular; una nota puede
-    # mencionar solo su nombre y aun así ser relevante
     {'nombre': 'Google Noticias Rocío Nahle', 'url': 'https://news.google.com/rss/search?q=%22Roc%C3%ADo+Nahle%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Veracruz']},
     {'nombre': 'Google Noticias Salomón Jara', 'url': 'https://news.google.com/rss/search?q=%22Salom%C3%B3n+Jara%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Oaxaca']},
     {'nombre': 'Google Noticias Eduardo Ramírez', 'url': 'https://news.google.com/rss/search?q=%22Eduardo+Ram%C3%ADrez%22+Chiapas+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Chiapas']},
@@ -100,24 +91,7 @@ FUENTES_RSS = [
     {'nombre': 'Google Noticias Alejandro Armenta', 'url': 'https://news.google.com/rss/search?q=%22Alejandro+Armenta%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
 ]
 
-# ============================================================
-# C3 -- actores locales de interés por entidad (Circunscripción 3 + Puebla)
-# ============================================================
-# Variantes de detección: SIEMPRE nombre completo y "nombre + primer apellido"
-# (2+ palabras, seguro contra falsos positivos) -- el apellido solo NUNCA se agrega
-# por default (mismo aprendizaje del bug de "Farías": un apellido común se cuela en
-# notas sin relación). Solo se agrega un apodo cuando fue dado explícitamente
-# ("Huacho", "Gino", "El Choco"), porque esos SÍ son lo bastante distintivos.
 def noCuentaParaEscalar(descripcion):
-    """Filtra 2 tipos de contenido que NUNCA deben contar para escalar a agenda
-    nacional, sin importar cuántas veces se repitan:
-    - Columnas de opinión (ya marcadas '[Opinión]')
-    - Declaraciones RUTINARIAS de mañanera (marcadas '[Mañanera]' sin el 🔔 de alerta) --
-      la presidenta habla de decenas de temas cada mañanera, y cada frase suya se estaba
-      creando como su propio tema "escalable"; como ella siempre es la actora mencionada,
-      el filtro de actor de alto perfil no discriminaba nada para este tipo de contenido.
-      Las declaraciones que SÍ ameritan alerta ya llevan el 🔔 explícito y esas sí cuentan.
-    """
     if descripcion.startswith('[Opinión]'):
         return True
     if descripcion.startswith('[Mañanera]') and '🔔' not in descripcion:
@@ -125,34 +99,14 @@ def noCuentaParaEscalar(descripcion):
     return False
 
 
-ACTOR_FUENTE_RUTINARIA_ID = 'sheinbaum'  # protagonista de la mañanera -- su sola mención
-# nunca cuenta como "señal real" para escalar, porque aparece en TODO lo que sale de ahí
+ACTOR_FUENTE_RUTINARIA_ID = 'sheinbaum'
 
 def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
-    """Criterio de 2 etapas -- ver historial de correcciones en los comentarios de cada
-    parte. Última corrección: los días distintos ya NO cuentan el día de hoy -- antes,
-    una historia que apenas alcanzaba 3 días CONTANDO hoy podía escalar el mismo día en
-    que apenas cruzó el umbral (caso real: "Trump lanza cacería contra fraude electoral"
-    escaló el mismo día que salió, sin historial real previo). Ahora se exige que la
-    persistencia ya exista ANTES de hoy -- hoy puede sumar cobertura, pero no puede ser
-    lo que complete el requisito.
-
-    ETAPA 1 (obligatoria, sin excepción):
-    - 3+ días distintos ANTES de hoy con actividad real (no cuenta el día de hoy)
-    - 3+ dominios de medios REALMENTE distintos cubriéndolo (no la misma fuente repetida)
-
-    ETAPA 2 (puntaje, solo si pasó la etapa 1): 3+ puntos de:
-    - +1 por cada dominio adicional más allá de los 3 mínimos
-    - +2 si la intensidad promedio es 7+
-    - +2 si hay 2+ actores de alto perfil distintos mencionados
-    """
     if not evs_del_tema:
         return False, 'sin notas'
-
     dias_distintos = len({e['fecha'] for e in evs_del_tema if e['fecha'] != hoy_str})
     if dias_distintos < 3:
         return False, f'{dias_distintos} día(s) antes de hoy (necesita 3+, hoy no cuenta)'
-
     dominios = set()
     for e in evs_del_tema:
         try:
@@ -161,24 +115,20 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
             pass
     dominios.discard('')
     if len(dominios) < 2:
-        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+) -- probablemente la misma fuente repetida, no cobertura real'
-
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+)'
     actores_mencionados = set()
     for e in evs_del_tema:
         texto = e['descripcion'].lower()
         for a in actores_altos:
             if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
                 actores_mencionados.add(a['id'])
-
     intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
-
-    puntos = len(dominios) - 2  # los primeros 2 ya se exigieron en la etapa 1, de ahí en adelante suman
+    puntos = len(dominios) - 2
     if intensidad_prom >= 7: puntos += 2
     if len(actores_mencionados) >= 2: puntos += 2
-
     if puntos >= 3:
         return True, f'{puntos} puntos ({len(dominios)} medios, intensidad {intensidad_prom:.1f}, {len(actores_mencionados)} actor(es))'
-    return False, f'solo {puntos} puntos (necesita 3+) -- {len(dominios)} medios, intensidad {intensidad_prom:.1f}, {len(actores_mencionados)} actor(es)'
+    return False, f'solo {puntos} puntos (necesita 3+)'
 
 
 def sin_acentos(s):
@@ -192,23 +142,13 @@ def variantes_actor_c3(nombre_completo, apodo=None):
     if len(partes) >= 3:
         variantes.append(f'{partes[0]} {partes[-1]}')
         variantes.append(f'{partes[-2]} {partes[-1]}')
-    # SIN mecanismo automático de "nombre suelto" -- se intentó 2 veces (por unicidad en
-    # la lista curada, luego con lista de bloqueo de nombres comunes) y ambas veces
-    # aparecieron casos reales rotos (Briceño confundiendo Yucatán con Campeche; luego
-    # "vida", "cruz", "luna", "niño" -- palabras comunes del español, no solo nombres).
-    # La única vía seguirá siendo segura de verdad: agregar el apodo A MANO, uno por
-    # uno, cuando el usuario confirme que es un caso genuinamente seguro (ver Layda,
-    # Chedraui, Huacho, Gino como apodos abajo en ACTORES_C3).
     if apodo:
         variantes.append(apodo)
-    # sin acentos y en minúsculas -- una fuente puede escribir "Yanez" donde otra pone
-    # "Yáñez"; sin esto, la variante fallaba por ese detalle (bug real encontrado al
-    # probar detección en fuentes nacionales)
     return [sin_acentos(v.lower()) for v in variantes]
 
 ACTORES_C3 = {
     'Veracruz': [
-        ('Rocío Nahle García', 'Gobernadora', None),
+        ('Rocío Nahle García', 'Gobernadora', 'Nahle'),
         ('Ricardo Ahued Bardahuil', 'Secretario de Gobierno', None),
         ('Manuel Huerta Ladrón de Guevara', 'Senador', None),
         ('Sergio Gutiérrez Luna', 'Diputado federal', None),
@@ -279,7 +219,7 @@ ACTORES_C3 = {
         ('Vida Gómez Herrera', 'MC', None),
     ],
     'Quintana Roo': [
-        ('Mara Lezama Espinosa', 'Gobernadora', None),
+        ('Mara Lezama Espinosa', 'Gobernadora', 'Lezama'),
         ('Eugenio Segura Vázquez', 'Ex senador', 'Gino'),
         ('Ana Patricia Peralta de la Peña', 'Alcaldesa de Benito Juárez (Cancún)', None),
         ('Marybel Villegas Canché', 'Senadora', None),
@@ -291,7 +231,7 @@ ACTORES_C3 = {
         ('Carlos Ulloa Pérez', 'Conexión nacional (entorno Sheinbaum)', None),
     ],
     'Puebla': [
-        ('Alejandro Armenta Mier', 'Gobernador', None),
+        ('Alejandro Armenta Mier', 'Gobernador', 'Armenta'),
         ('José Luis García Parra', 'Coordinador de Gabinete', 'El Choco'),
         ('José Chedraui Budib', 'Alcalde de Puebla', 'Chedraui'),
         ('Xitlalic Ceja', 'Diputada local', None),
@@ -302,39 +242,6 @@ ACTORES_C3 = {
     ],
 }
 
-# apellidos que aparecen en UN SOLO actor curado, en toda la lista -- para esos, sí es
-# seguro usar el apellido suelto como variante (ej. "Chedraui" no lo comparte nadie más
-# en la lista, así que "Chedraui señala..." sin su nombre de pila SÍ debe detectarse).
-# Para apellidos compartidos (ej. "García" en García Parra Y García Harfuch), usarlo
-# suelto sería ambiguo -- esos se quedan excluidos, como ya era antes.
-def _calcular_apellidos_unicos():
-    conteo = {}
-    for actores in ACTORES_C3.values():
-        for nombre, cargo, apodo in actores:
-            partes = nombre.split()
-            # TODAS las partes del nombre cuentan -- no solo apellidos. Bug real
-            # encontrado: "LAYDA" (su nombre de pila solo, sin apellido) tampoco se
-            # detectaba, porque antes solo se revisaban partes[1:] (excluyendo el
-            # nombre de pila). Para una gobernadora conocida así en la prensa local,
-            # el nombre de pila es tan válido como el apellido si es único.
-            for parte in partes:
-                p = sin_acentos(parte.lower())
-                conteo[p] = conteo.get(p, 0) + 1
-    return {parte for parte, n in conteo.items() if n == 1}
-
-APELLIDOS_UNICOS_C3 = _calcular_apellidos_unicos()
-
-# nombres de pila demasiado comunes en español -- aunque sean únicos dentro de la lista
-# curada de C3, siguen siendo palabras/nombres genéricos en el mundo real. "Layda" o
-# "Xitlalic" son poco comunes y sí se permiten solos; "José" o "Carlos" no, sin importar
-# que dentro de estos 75 actores solo haya uno con ese nombre.
-NOMBRES_PILA_DEMASIADO_COMUNES = {'jose', 'juan', 'carlos', 'luis', 'maria', 'ana',
-    'rafael', 'miguel', 'antonio', 'francisco', 'jorge', 'manuel', 'roberto', 'ricardo',
-    'eduardo', 'fernando', 'alejandro', 'javier', 'raul', 'oscar', 'sergio', 'pedro',
-    'rene', 'mario', 'victor', 'daniel', 'alberto', 'martin', 'ruben', 'ramon'}
-
-# instituciones/organizaciones -- no son personas, pero son actores relevantes del
-# clima político estatal igual (gobierno, congreso, sindicatos, partidos, sociedad civil)
 INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estado',
     'cnte', 'snte', 'sección 22', 'seccion 22', 'sociedad civil', 'colectivo',
     'morena', 'pan', 'pri', 'movimiento ciudadano', 'pvem', 'pt',
@@ -344,17 +251,6 @@ INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estad
     'universidad autónoma', 'universidad autonoma']
 
 def buscarEntidadC3PorActorMencionado(texto_completo):
-    """Para fuentes NACIONALES (sin entidades_c3 propia) -- si el texto menciona a algún
-    actor de la lista curada de C3 por su nombre, se asigna esa entidad igual.
-
-    ORDEN CORREGIDO -- antes se exigía pasar el filtro de palabras políticas genéricas
-    ANTES de buscar el nombre del actor. Eso era circular: una nota real como "Gobierno
-    de Alejandro Armenta Mier mantiene en el abandono..." se descartaba porque decía
-    "Gobierno de [nombre]" en vez de la frase exacta "gobierno estatal" -- aunque YA
-    mencionaba al gobernador de Puebla por su nombre completo, evidencia política de
-    sobra por sí sola. Ahora: mencionar a un actor curado por su nombre ya es
-    suficiente, sin necesitar además una palabra clave genérica.
-    """
     texto_sin_acentos = sin_acentos(texto_completo)
     for entidad, actores in ACTORES_C3.items():
         for nombre, cargo, apodo in actores:
@@ -415,22 +311,13 @@ PALABRAS_POLITICA_LOCAL = ['gobernador', 'gobernadora', 'alcalde', 'alcaldesa', 
     'gobierno estatal', 'morena', 'oposición', 'oposicion', 'coordinador estatal', 'candidato',
     'candidata', 'huachicol', 'cártel', 'cartel', 'narcotráfico', 'narcotrafico', 'homicidio',
     'detención', 'detencion', 'presupuesto estatal', 'reforma',
-    # "protesta" y "bloqueo" solos eran demasiado genéricos -- una protesta escolar por un
-    # conserje despedido no es contenido político, pero contenía la palabra "protesta" y
-    # pasaba el filtro igual (bug real confirmado). Ahora se exige la frase compuesta,
-    # que sí es específica de un contexto político/social real.
     'protesta social', 'protesta política', 'bloqueo carretero', 'bloquean carretera',
     'bloqueo vial', 'marcha de protesta']
 
 def esContenidoPoliticoLocal(texto_completo):
-    # coincidencia con límites de palabra real (\b), no subcadena simple -- una coincidencia
-    # de texto plano dejaba pasar falsos positivos como "cartel" (cárteles) encontrado
-    # dentro de "cartelera" (anuncio de evento de lucha libre, sin relación alguna)
     return any(re.search(r'\b' + re.escape(p) + r'\b', texto_completo) for p in PALABRAS_POLITICA_LOCAL)
 
 
-# clasificación positivo/negativo por palabras clave -- funcional pero limitado (falla
-# con sarcasmo o ironía); primera versión sin IA, se puede mejorar más adelante
 PALABRAS_POSITIVAS_C3 = ['impulsa', 'impulsó', 'logra', 'logró', 'reconoce', 'reconoció',
     'avanza', 'avanzó', 'consolida', 'consolidó', 'inaugura', 'inauguró', 'anuncia inversión',
     'felicita', 'celebra', 'aprueba', 'aprobó', 'firma acuerdo', 'entrega']
@@ -448,9 +335,6 @@ def clasificarSentimientoC3(texto_completo):
 
 
 def actoresYEntidadesMencionadosC3(texto_completo, entidad):
-    """Revisa el texto contra los actores curados de ESA entidad específica (no de todas),
-    y contra la lista de instituciones (que aplica igual en cualquier entidad). Devuelve
-    la lista de nombres que sí aparecen mencionados de verdad."""
     encontrados = []
     texto_sin_acentos = sin_acentos(texto_completo)
     for nombre, cargo, apodo in ACTORES_C3.get(entidad, []):
@@ -475,12 +359,6 @@ def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_
     except FileNotFoundError:
         existe = False
         primera_linea = ''
-
-    # auto-reparación: si el archivo ya existía de antes de que se agregara la columna
-    # "titular", su encabezado se quedó desactualizado (6 columnas) para siempre, aunque
-    # el código ya intentara escribir 7 -- esto desalineaba cada fila nueva y el navegador
-    # descartaba el título en silencio. Se detecta y se corrige solo, una vez, sin
-    # depender de acordarse de correr el script de corrección en el orden correcto.
     if existe and 'titular' not in primera_linea:
         with open(RUTA_MENCIONES_C3, encoding='utf-8-sig') as f:
             filas_viejas = list(csv.DictReader(f))
@@ -490,7 +368,6 @@ def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_
             for fila in filas_viejas:
                 fila.pop(None, None)
                 w.writerow(fila)
-
     with open(RUTA_MENCIONES_C3, 'a', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         if not existe:
@@ -500,10 +377,6 @@ def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_
                         'evento_id':evento_id, 'fuente_url':fuente_url, 'titular':titular[:150]})
 
 
-# secciones típicas de opinión/columnas en medios mexicanos -- si la URL del artículo
-# pasa por alguna de estas rutas, casi con certeza es una columna de opinión, no una
-# nota informativa. Se revisa la URL (no el texto) porque es la señal más confiable y
-# barata -- no necesita IA ni depender de reconocer nombres de columnistas específicos.
 SEGMENTOS_URL_OPINION = ['/opinion/', '/columna/', '/columnas/', '/columnistas/',
     '/blogs/', '/editorial/', '/analisis-y-opinion/']
 
@@ -525,7 +398,6 @@ def extraer_imagen_entrada(entrada, enlace_articulo=None):
                     return enc.get('href', '')
     except Exception:
         pass
-
     if enlace_articulo:
         try:
             req = urllib.request.Request(enlace_articulo, headers={'User-Agent': 'Mozilla/5.0'})
@@ -551,10 +423,6 @@ def extraer_imagen_entrada(entrada, enlace_articulo=None):
 
 
 def similitud_titulares(t1, t2):
-    """Jaccard sobre palabras significativas -- 0 (nada en común) a 1 (idénticos). Compara
-    por RAÍZ de palabra (primeros 6 caracteres), no la palabra exacta -- sin esto,
-    "migrantes" y "migración", o "frontera" y "fronterizo", cuentan como palabras
-    distintas y notas que hablan de lo mismo salen con similitud artificialmente baja."""
     p1, p2 = palabras_significativas(t1), palabras_significativas(t2)
     if not p1 or not p2: return 0
     raiz = lambda palabras: set(p[:6] for p in palabras)
@@ -575,6 +443,10 @@ PALABRAS_ESCANDALO_PERSONAL = ['señalado', 'señalada', 'acusado', 'acusada', '
     'denunciada', 'corrupción', 'corrupcion', 'usar influencias', 'tráfico de influencias',
     'trafico de influencias', 'despojar', 'despojo', 'nepotismo', 'conflicto de interés',
     'conflicto de interes', 'enriquecimiento', 'investigado', 'investigada']
+
+def actorMencionadoEn(nombre_actor, texto):
+    palabras = [p.lower() for p in nombre_actor.split()[1:] if len(p)>3]
+    return any(p in texto for p in palabras)
 
 def esEscandaloPersonalDeActor(texto_completo, actores_altos):
     tiene_escandalo = any(p in texto_completo for p in PALABRAS_ESCANDALO_PERSONAL)
@@ -627,7 +499,6 @@ def obtener_mananera_hoy():
     except Exception as e:
         print(f'  Mañanera de Hoy: error de conexión: {e}')
         return None, []
-
     hoy_mx = datetime.now(ZONA_MX).date()
     fecha_pagina_match = re.search(r'Conferencia matutina · (\d{1,2}) de (\w+) de (\d{4})', html)
     MESES = {'enero':1,'febrero':2,'marzo':3,'abril':4,'mayo':5,'junio':6,'julio':7,'agosto':8,'septiembre':9,'octubre':10,'noviembre':11,'diciembre':12}
@@ -640,7 +511,6 @@ def obtener_mananera_hoy():
     fecha_pagina = f'{anio}-{mes:02d}-{int(dia):02d}'
     if fecha_pagina != hoy_mx.strftime('%Y-%m-%d'):
         return fecha_pagina, []
-
     bloques = re.findall(r'<li[^>]*>(.*?)</li>', html, re.DOTALL)
     puntos = []
     for b in bloques:
@@ -655,10 +525,6 @@ def cargar_temas_todos():
     with open(RUTA_TEMAS, encoding='utf-8') as f:
         return list(csv.DictReader(f))
 
-
-def actorMencionadoEn(nombre_actor, texto):
-    palabras = [p.lower() for p in nombre_actor.split()[1:] if len(p)>3]
-    return any(p in texto for p in palabras)
 
 def buscar_tema_informativo_similar(titulo, actores_altos, umbral=0.15):
     temas_todos = cargar_temas_todos()
@@ -706,10 +572,6 @@ PALABRAS_CARGO_INSTITUCIONAL = ['secretario', 'secretaria', 'titular', 'director
     'alcaldesa', 'ministro', 'ministra']
 
 def clasificarRolActorEnTema(texto_completo, actor):
-    """Clasifica el rol de un actor YA detectado como mencionado, según el contexto de
-    las palabras a su alrededor -- mismas categorías que ya usa el sitio en las fichas
-    de tema (Investigado, Responsable institucional, Reacción de oposición/gobierno/
-    social, Red empresarial, o Mencionado si no hay señal clara de ninguna otra cosa)."""
     if any(p in texto_completo for p in PALABRAS_SENALADO):
         return 'Investigado'
     if any(p in texto_completo for p in PALABRAS_REACCION):
@@ -728,31 +590,20 @@ def clasificarRolActorEnTema(texto_completo, actor):
 
 
 def actualizarTemaActoresAutomatico(tema_id, evs_del_tema):
-    """Al escalar un tema a Nivel 1, detecta qué actores conocidos aparecen en sus notas
-    y les asigna un rol automático, guardándolo en tema_actores.csv -- esto es lo que
-    hace que la ficha de un tema recién escalado ya muestre actores clasificados, sin
-    esperar a que alguien lo cure a mano."""
     try:
         with open(RUTA_ACTORES, encoding='utf-8-sig') as f:
             actores = list(csv.DictReader(f))
     except FileNotFoundError:
         return
-
     try:
         with open(RUTA_TEMA_ACTORES, encoding='utf-8-sig') as f:
             ya_existentes = {(r['tema_id'], r['actor_id']) for r in csv.DictReader(f)}
     except FileNotFoundError:
         ya_existentes = set()
-
     nuevas_filas = []
     for actor in actores:
         if (tema_id, actor['id']) in ya_existentes:
             continue
-        # divide cada nota en CLÁUSULAS (por punto y coma, punto, o " pero ") -- más
-        # preciso que una ventana de caracteres fija, porque respeta dónde termina una
-        # idea y empieza otra. "El secretario X presentó el informe; el diputado Y
-        # critica la decisión" son 2 ideas distintas -- cada actor solo debe leerse en SU
-        # propia cláusula, no en la del otro.
         fragmentos_de_este_actor = []
         for e in evs_del_tema:
             clausulas = re.split(r'[;.]| pero | mientras ', e['descripcion'])
@@ -764,7 +615,6 @@ def actualizarTemaActoresAutomatico(tema_id, evs_del_tema):
             continue
         rol = clasificarRolActorEnTema(' '.join(fragmentos_de_este_actor), actor)
         nuevas_filas.append({'tema_id': tema_id, 'actor_id': actor['id'], 'rol': rol, 'detalle': ''})
-
     if nuevas_filas:
         campos = ['tema_id', 'actor_id', 'rol', 'detalle']
         try:
@@ -789,10 +639,6 @@ def escalar_temas_informativos():
     for t in temas:
         if t.get('tipo') != 'informativo':
             continue
-        # las columnas de opinión (ya marcadas "[Opinión]" por el robot) se excluyen del
-        # conteo -- una columna diaria real (ej. "Astillero" de Julio Hernández López)
-        # siempre va a acumular "varias notas en varios días" solo por publicarse todos
-        # los días, sin que eso sea una noticia real escalando
         evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not noCuentaParaEscalar(e['descripcion'])]
         if len(evs_del_tema) == 0:
             continue
@@ -841,13 +687,6 @@ def guardar_evento_directo(evento):
 
 
 def reparar_encabezado_eventos():
-    """eventos.csv se creó desde antes de que existieran las columnas 'entidad_c3' y
-    'hora_registro' -- el encabezado se quedó viejo (7-9 columnas) para siempre, aunque
-    el código ya llevaba tiempo escribiendo 12 valores por fila. Esto desalineaba TODO el
-    archivo en silencio: el sitio (PapaParse) descarta cualquier columna sin nombre en el
-    encabezado, así que 'hora_registro' nunca llegaba al navegador aunque Python sí lo
-    escribiera bien (confirmado con el diagnóstico -- Python arma la hora correcta, el
-    archivo la pierde). Se corre UNA vez por corrida, antes de escribir nada nuevo."""
     campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url', 'entidad_c3', 'hora_registro']
     try:
         with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
@@ -855,17 +694,11 @@ def reparar_encabezado_eventos():
     except FileNotFoundError:
         return
     if 'hora_registro' in primera_linea and 'entidad_c3' in primera_linea:
-        return  # ya está bien, nada que hacer
+        return
     print('  [reparación] eventos.csv tenía encabezado desactualizado -- corrigiendo una sola vez...')
     with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
         primera_linea_campos = [c.strip() for c in f.readline().strip().split(',')]
         filas_viejas = list(csv.DictReader(f, fieldnames=primera_linea_campos))
-    # las columnas que el encabezado viejo NO nombraba (entidad_c3, hora_registro, o
-    # ambas) igual estaban ahí como valores -- csv.DictReader las mete en la llave
-    # especial None, en el mismo orden en que se escribieron. Recuperarlas aquí es lo que
-    # evita perder toda la hora ya guardada (bug real: mi primera versión de esta función
-    # las descartaba con fila.pop(None, None), perdiendo el dato en el momento mismo de
-    # "repararlo").
     columnas_faltantes = [c for c in ['entidad_c3', 'hora_registro'] if c not in primera_linea_campos]
     for fila in filas_viejas:
         extra = fila.pop(None, None) or []
@@ -894,7 +727,7 @@ def buscar_candidatos():
     eventos_nuevos = []
     conteo_hoy_por_tema = {}
     conteo_hoy_por_fuente = {}
-    incrementos_cobertura_existente = {} # id de evento YA guardado -> cuánto sumarle a su cobertura
+    incrementos_cobertura_existente = {}
     LIMITE_POR_FUENTE = 20
 
     for fuente in FUENTES_RSS:
@@ -904,12 +737,6 @@ def buscar_candidatos():
                 continue
             fecha_pub = entrada.get('published_parsed') or entrada.get('updated_parsed')
             if not fecha_pub:
-                # las búsquedas de Google Noticias con "when:1d" a veces no traen el campo
-                # de fecha en el formato que feedparser espera -- pero como la búsqueda ya
-                # está filtrada por Google a las últimas 24h, no hace falta esa fecha para
-                # confiar en que es reciente. Antes esto descartaba el artículo por
-                # completo en silencio -- causa real confirmada de que gobernadores con
-                # notas recientes de verdad (confirmadas a mano en Google) nunca llegaban.
                 if 'news.google.com' in fuente['url']:
                     fecha_pub_dt = hoy_mx
                 else:
@@ -935,17 +762,9 @@ def buscar_candidatos():
                         if ent.lower() in texto_para_entidad:
                             entidad_c3_nota = ent
                             break
-                # filtro estricto para C3 -- una fuente local también publica cosas sin
-                # ningún valor de análisis político (nota roja, espectáculos, deportes
-                # genéricos). Si no pasa el filtro de contenido político real, se le quita
-                # la etiqueta de entidad -- nunca debe verse en C3 (ej. "CMLL llega a
-                # Villahermosa" nunca debe contar como pulso político de Tabasco)
                 if entidad_c3_nota and not esContenidoPoliticoLocal(texto_completo):
                     entidad_c3_nota = ''
             else:
-                # fuente NACIONAL (sin etiqueta propia de C3) -- igual se revisa si
-                # menciona a algún actor curado de la C3 por nombre (ej. una nota nacional
-                # sobre un gobernador). Así no depende solo de que el medio sea local.
                 entidad_c3_nota = buscarEntidadC3PorActorMencionado(texto_completo)
             if enlace in ya_procesados_eventos:
                 continue
@@ -975,12 +794,6 @@ def buscar_candidatos():
                     similar_existente['cobertura'] = int(similar_existente.get('cobertura', 1)) + 1
                     titulos_ya_agregados_hoy.add(titulo_normalizado)
                     continue
-                # NUEVO: además de comparar contra lo agregado EN ESTA MISMA corrida, también
-                # se compara contra lo que YA está guardado en eventos.csv de corridas
-                # anteriores del mismo día -- sin esto, la misma noticia real, cubierta por
-                # varios medios a distintas horas, se colaba como tarjeta separada cada vez
-                # que el robot corría de nuevo (el caso real: "Fobaproa es una deuda
-                # impagable" apareciendo 3 veces con títulos parecidos de fuentes distintas)
                 ya_guardado_similar = next((e for e in eventos_existentes
                     if e['tema_id']==tema_encontrado and e['fecha']==hoy_mx.strftime('%Y-%m-%d')
                     and similitud_titulares(e['descripcion'], titulo_original) >= 0.15), None)
@@ -1024,7 +837,6 @@ def buscar_candidatos():
                         titulo_final = f'[Opinión] {titulo_final}'
                     tema_auto = buscar_tema_informativo_similar(titulo_original, actores_altos) or crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
                     intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5)
-
                     similar_existente = None
                     for ev_prev in eventos_nuevos:
                         if ev_prev['tema_id']==tema_auto and ev_prev['fecha']==hoy_mx.strftime('%Y-%m-%d'):
@@ -1033,8 +845,6 @@ def buscar_candidatos():
                     if similar_existente:
                         similar_existente['cobertura'] = int(similar_existente.get('cobertura', 1)) + 1
                     else:
-                        # mismo arreglo que arriba: revisar también contra lo YA guardado
-                        # de corridas anteriores del mismo día, no solo lo de esta corrida
                         ya_guardado_similar = next((e for e in eventos_existentes
                             if e['tema_id']==tema_auto and e['fecha']==hoy_mx.strftime('%Y-%m-%d')
                             and similitud_titulares(e['descripcion'], titulo_original) >= 0.15), None)
@@ -1079,24 +889,14 @@ def buscar_candidatos():
     return eventos_nuevos, candidatos_sin_tema, incrementos_cobertura_existente
 
 
-
 def aplicar_incrementos_cobertura(incrementos):
-    """Suma cobertura a eventos que YA estaban guardados de corridas anteriores del mismo
-    día -- requiere reescribir eventos.csv (a diferencia de agregar uno nuevo, que solo
-    se anexa al final), pero solo toca el campo 'cobertura' de las filas que en verdad
-    coinciden, todo lo demás del archivo queda intacto."""
     if not incrementos:
         return
-    # los encabezados reales se leen del CSV directo (primera línea), NO de las llaves de
-    # una fila cualquiera vía DictReader -- si alguna fila vieja del archivo trae una coma
-    # de más (texto sin escapar de hace tiempo), DictReader mete esas columnas extra bajo
-    # una llave literal `None`, y usar esa fila como fuente de "campos" rompe el archivo
-    # completo al escribir de vuelta (eso fue el error real de esta corrida)
     with open(RUTA_EVENTOS, encoding='utf-8') as f:
         campos = next(csv.reader(f))
     eventos = cargar_eventos_existentes()
     for e in eventos:
-        e.pop(None, None)  # por si esta fila en particular traía la sobra de columnas -- se descarta, nunca se escribe
+        e.pop(None, None)
         if e['id'] in incrementos:
             e['cobertura'] = str(int(e.get('cobertura') or 1) + incrementos[e['id']])
     with open(RUTA_EVENTOS, 'w', encoding='utf-8', newline='') as f:
@@ -1133,16 +933,9 @@ if __name__ == '__main__':
         eventos_ya = cargar_eventos_existentes()
         ev['id'] = siguiente_id_evento(eventos_ya)
         guardar_evento_directo(ev)
-        # C3 -- si esta nota es de una entidad de interés, revisa qué actores/instituciones
-        # curadas se mencionan de verdad, clasifica el tono, y lo guarda en un historial
-        # aparte (nunca en eventos.csv) -- esto es lo que permite consultar después
-        # "todas las veces que se mencionó a X actor y si fue bueno o malo"
         if ev.get('entidad_c3'):
             texto_c3 = ev['descripcion'].lower()
             mencionados = actoresYEntidadesMencionadosC3(texto_c3, ev['entidad_c3'])
-            # el historial persistente es SOLO para las personas de la lista curada -- las
-            # instituciones/partidos sí cuentan para el pulso del día (tablero en vivo),
-            # pero nunca deben acumular un "historial" propio, eso solo aplica a personas
             nombres_de_personas_curadas = {nombre for nombre, cargo, apodo in ACTORES_C3.get(ev['entidad_c3'], [])}
             solo_personas = [m for m in mencionados if m in nombres_de_personas_curadas]
             if solo_personas:
