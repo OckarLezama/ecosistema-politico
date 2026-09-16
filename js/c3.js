@@ -587,15 +587,16 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     }).join('');
     const filasHistorial = historicas.map(m=>{
       const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--riesgo-medio)';
-      // el titular real (guardado por el robot desde ahora) se usa primero -- el
-      // extraído de la URL solo es respaldo para registros de antes de este cambio
       const titulo = (m.titular && m.titular.trim()) || tituloDesdeURL(m.fuente_url);
+      return {m, color, titulo};
+    }).filter(({titulo}) => titulo) // sin título real ni extraíble de la URL -- fuera, no aporta nada, solo ruido
+      .map(({m, color, titulo})=>{
       return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);">
         <div style="display:flex;gap:8px;align-items:baseline;">
           <span style="font-family:var(--f-mono);color:var(--ink-3);white-space:nowrap;">${m.fecha}</span>
           <span style="font-size:9px;font-family:var(--f-mono);color:${color};text-transform:uppercase;">${m.sentimiento}</span>
         </div>
-        ${titulo ? `<p style="margin:3px 0 2px;color:var(--ink-1);line-height:1.35;">${titulo}</p>` : ''}
+        <p style="margin:3px 0 2px;color:var(--ink-1);line-height:1.35;">${titulo}</p>
         ${m.fuente_url ? `<a href="${m.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver nota ↗</a>` : ''}
       </div>`;
     }).join('');
