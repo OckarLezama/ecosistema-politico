@@ -258,6 +258,11 @@ function renderC3(){
             <div style="width:${ent.notas.length?ent.desglose.medio/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-medio);flex-shrink:0;" title="Medio: ${ent.desglose.medio}"></div>
             <div style="width:${ent.notas.length?ent.desglose.bajo/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-bajo);flex-shrink:0;" title="Bajo: ${ent.desglose.bajo}"></div>
           </div>
+          <div style="display:flex;gap:10px;font-size:9px;font-family:var(--f-mono);margin-top:3px;">
+            <span style="color:var(--riesgo-alto);">Alta: ${ent.desglose.alto}</span>
+            <span style="color:var(--riesgo-medio);">Media: ${ent.desglose.medio}</span>
+            <span style="color:var(--riesgo-bajo);">Baja: ${ent.desglose.bajo}</span>
+          </div>
         </div>`;
       }).join('')}
     </div>
