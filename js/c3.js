@@ -148,7 +148,11 @@ function calcularDatosC3(){
     const desglose = {alto:0, medio:0, bajo:0};
     notas.forEach(n=> desglose[clasificarImpacto(n.intensidad)]++);
     const promedioIntensidad = notas.length ? notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length : 0;
-    const factorConfianza = Math.min(1, notas.length/4);
+    // factorConfianza recalibrado -- antes exigía 4 notas para confianza plena, lo que
+    // producía incoherencia real: 2 notas "medio" (intensidad 5) daban un pulso de solo
+    // 25 (BAJO), contradiciendo la propia clasificación de esas notas. Con 2 como piso
+    // de confianza plena, 2 notas "medio" ahora sí dan un pulso "medio" real y coherente.
+    const factorConfianza = Math.min(1, notas.length/2);
     const pulso = Math.round(promedioIntensidad*10*factorConfianza);
 
     const actoresDelEstado = ACTORES_C3_JS[nombre] || [];
@@ -577,7 +581,7 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
       return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--teal);">${n.fecha} (hoy)</strong> — ${texto} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`;
     }).join('');
     const filasHistorial = historicas.map(m=>{
-      const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--ink-3)';
+      const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--riesgo-medio)';
       // el titular real (guardado por el robot desde ahora) se usa primero -- el
       // extraído de la URL solo es respaldo para registros de antes de este cambio
       const titulo = (m.titular && m.titular.trim()) || tituloDesdeURL(m.fuente_url);
