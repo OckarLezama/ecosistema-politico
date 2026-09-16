@@ -111,13 +111,14 @@ function generarVariantesActorC3(nombre, apodo){
 
 function clasificarImpacto(intensidad){
   const n = Number(intensidad);
-  // recalibrado -- el robot NUNCA genera menos de 4 (ese es su valor base mínimo), así
-  // que con el umbral viejo (bajo = menos de 4) era matemáticamente imposible que una
-  // nota real cayera en "bajo": todo caía en "medio" como piso, sin importar qué tan
-  // rutinaria fuera. Ahora los 3 tercios corresponden al rango REAL que el robot puede
-  // producir (4 a 10), no a una escala 1-10 asumida que nunca se usaba completa.
-  if(n>=8) return 'alto';
-  if(n>=6) return 'medio';
+  // segunda recalibración -- la primera (bajo:4-5, medio:6-7, alto:8-10) seguía mal:
+  // resultó que casi ninguna nota de C3 recibe algún bono más allá del valor base (4),
+  // así que TODO caía en "bajo" sin excepción (confirmado con datos reales: la barra
+  // mostraba "Bajo: 11" cuando el estado tenía exactamente 11 notas -- el 100%). La
+  // escala real de C3 es mucho más angosta de lo asumido: la mayoría de las notas están
+  // en 4 (base) o 5 (un bono), muy pocas llegan a 6+. Se ajusta a esa escala real.
+  if(n>=7) return 'alto';
+  if(n>=5) return 'medio';
   return 'bajo';
 }
 
