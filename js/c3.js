@@ -353,12 +353,16 @@ const LOGOS_PARTIDO_C3 = {
   'Morena': 'img/MORENA.png', 'PAN': 'img/PAN.png', 'PRI': 'img/PRI.png',
 };
 
-function avatarHTML(nombre, tamano, colorFondo, esInstitucion){
+function avatarHTML(nombre, tamano, colorFondo, esInstitucion, forzarRectangular){
+  // forzarRectangular -- para la ficha del modal de historial, donde se pidió una foto
+  // más grande con bordes redondeados tipo "ficha institucional", no el círculo tipo
+  // red social que se usa en el resto del sitio (tarjetas, listas)
+  const radio = forzarRectangular ? '10px' : (esInstitucion?'6px':'50%');
   const foto = FOTOS_ACTORES_C3[nombre] || (esInstitucion ? LOGOS_PARTIDO_C3[nombre] : null);
   if(foto){
-    return `<img src="${encodeURI(foto)}" alt="${nombre}" style="width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};object-fit:cover;flex-shrink:0;border:1.5px solid var(--line-strong);" onerror="this.outerHTML=\`<div style='width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};background:${colorFondo};display:flex;align-items:center;justify-content:center;flex-shrink:0;'>${esInstitucion?ICONO_INSTITUCION_SVG:`<span style='font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;'>${inicialesDe(nombre)}</span>`}</div>\`">`;
+    return `<img src="${encodeURI(foto)}" alt="${nombre}" style="width:${tamano}px;height:${tamano}px;border-radius:${radio};object-fit:cover;flex-shrink:0;border:1.5px solid var(--line-strong);" onerror="this.outerHTML=\`<div style='width:${tamano}px;height:${tamano}px;border-radius:${radio};background:${colorFondo};display:flex;align-items:center;justify-content:center;flex-shrink:0;'>${esInstitucion?ICONO_INSTITUCION_SVG:`<span style='font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;'>${inicialesDe(nombre)}</span>`}</div>\`">`;
   }
-  return `<div style="width:${tamano}px;height:${tamano}px;border-radius:${esInstitucion?'6px':'50%'};background:${colorFondo};display:flex;align-items:center;justify-content:center;flex-shrink:0;">${esInstitucion?ICONO_INSTITUCION_SVG:`<span style="font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;">${inicialesDe(nombre)}</span>`}</div>`;
+  return `<div style="width:${tamano}px;height:${tamano}px;border-radius:${radio};background:${colorFondo};display:flex;align-items:center;justify-content:center;flex-shrink:0;">${esInstitucion?ICONO_INSTITUCION_SVG:`<span style="font-family:var(--f-display);font-weight:700;font-size:${Math.round(tamano*0.34)}px;color:#0E1116;">${inicialesDe(nombre)}</span>`}</div>`;
 }
 
 function colorPorBalanceC3(actor){
@@ -585,12 +589,12 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
       const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
       return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--teal);">${n.fecha} (hoy)</strong> — ${texto} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`;
     }).join('');
-    const filasHistorial = historicas.map(m=>{
+    const historicasConTitulo = historicas.map(m=>{
       const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--riesgo-medio)';
       const titulo = (m.titular && m.titular.trim()) || tituloDesdeURL(m.fuente_url);
       return {m, color, titulo};
-    }).filter(({titulo}) => titulo) // sin título real ni extraíble de la URL -- fuera, no aporta nada, solo ruido
-      .map(({m, color, titulo})=>{
+    }).filter(({titulo}) => titulo); // sin título real ni extraíble de la URL -- fuera, no aporta nada, solo ruido
+    const filasHistorial = historicasConTitulo.map(({m, color, titulo})=>{
       return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);">
         <div style="display:flex;gap:8px;align-items:baseline;">
           <span style="font-family:var(--f-mono);color:var(--ink-3);white-space:nowrap;">${m.fecha}</span>
@@ -604,14 +608,24 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     modal.innerHTML = `
       <div class="ficha-modal-card" style="max-width:560px;width:92vw;">
         <button class="ficha-modal-close">✕</button>
-        <div style="display:flex;justify-content:center;margin-bottom:8px;">${avatarHTML(nombreActor, 56, conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)', esInstitucionModal)}</div>
-        <h3 style="font-family:var(--f-display);text-align:center;margin:0 0 4px;">${nombreActor}</h3>
-        <p style="text-align:center;font-size:11px;color:var(--ink-3);margin:0;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total</p>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;">
+          ${avatarHTML(nombreActor, 72, conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)', esInstitucionModal, true)}
+          <div>
+            <h3 style="font-family:var(--f-display);margin:0 0 3px;">${nombreActor}</h3>
+            <p style="font-size:11px;color:var(--ink-3);margin:0;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total</p>
+          </div>
+        </div>
         ${barraBalance}
-        <p style="text-align:center;font-size:10px;color:var(--ink-3);margin:0 0 10px;">${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeu} neutra${conteoNeu!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
-        <div class="ficha-notas-scroll">
-          ${filasHoy}${filasHistorial}
-          ${!totalMenciones ? '<p style="font-size:12px;color:var(--ink-3);text-align:center;padding:10px 0;">Sin menciones registradas todavía.</p>' : ''}
+        <p style="font-size:10px;color:var(--ink-3);margin:0 0 14px;">${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeu} neutra${conteoNeu!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
+
+        <div class="eyebrow" style="color:var(--teal);font-size:10.5px;margin-bottom:6px;">HOY — ${notasDeHoySinDuplicar.length} nota${notasDeHoySinDuplicar.length!==1?'s':''}</div>
+        <div style="margin-bottom:14px;">
+          ${filasHoy || '<p style="font-size:11px;color:var(--ink-3);padding:4px 0;">Sin menciones hoy.</p>'}
+        </div>
+
+        <div class="eyebrow" style="font-size:10.5px;margin-bottom:6px;">HISTÓRICO — ${historicasConTitulo.length} nota${historicasConTitulo.length!==1?'s':''}</div>
+        <div class="ficha-notas-scroll" style="max-height:220px;">
+          ${filasHistorial || '<p style="font-size:11px;color:var(--ink-3);padding:4px 0;">Sin historial registrado todavía.</p>'}
         </div>
       </div>`;
     modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
