@@ -446,8 +446,15 @@ PALABRAS_ESCANDALO_PERSONAL = ['señalado', 'señalada', 'acusado', 'acusada', '
     'conflicto de interes', 'enriquecimiento', 'investigado', 'investigada']
 
 def actorMencionadoEn(nombre_actor, texto):
-    palabras = [p.lower() for p in nombre_actor.split()[1:] if len(p)>3]
-    return any(p in texto for p in palabras)
+    # mismo aprendizaje ya aplicado en variantes_actor_c3 y _mencionadoDeFormaSegura --
+    # esta función se usaba en 7 lugares distintos (incluida buscar_tema_informativo_similar,
+    # que decide si una nota nueva se fusiona con un tema existente por actores
+    # compartidos) con la versión insegura: cualquier palabra suelta de 4+ letras del
+    # nombre completo. Un apellido común (ej. "Ávila") bastaba para fusionar notas de
+    # personas totalmente distintas en el mismo tema -- causa real y recurrente del
+    # problema de Giselle Arellano apareciendo con notas de Mara Lezama, que sobrevivía
+    # a la limpieza porque esta función seguía creando el vínculo malo en cada corrida.
+    return _mencionadoDeFormaSegura(nombre_actor, texto)
 
 def esEscandaloPersonalDeActor(texto_completo, actores_altos):
     tiene_escandalo = any(p in texto_completo for p in PALABRAS_ESCANDALO_PERSONAL)
