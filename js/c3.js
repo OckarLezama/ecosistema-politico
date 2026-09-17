@@ -445,6 +445,39 @@ function termometroC3(pulso, colorPulso, etiquetaPulso){
   </div>`;
 }
 
+function construirTendenciaEstadoC3(nombreEstado){
+  const dias = [];
+  const hoy = new Date();
+  for(let i=13;i>=0;i--){
+    const d = new Date(hoy); d.setDate(hoy.getDate()-i);
+    dias.push(d.toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'}));
+  }
+  return dias.map(fecha=>({
+    fecha,
+    total: ECOSISTEMA.eventos.filter(e=> e.entidad_c3===nombreEstado && e.fecha===fecha).length,
+  }));
+}
+
+function dibujarTendenciaEstadoC3(nombreEstado){
+  const svgEl = document.getElementById('c3-tendencia-svg');
+  if(!svgEl) return;
+  const serie = construirTendenciaEstadoC3(nombreEstado);
+  const max = Math.max(...serie.map(d=>d.total), 1);
+  const w=700, h=110, padB=18, padL=4, padR=4;
+  const anchoBarra = (w-padL-padR)/serie.length*0.7;
+  const paso = (w-padL-padR)/serie.length;
+  const barras = serie.map((d,i)=>{
+    const alto = (d.total/max)*(h-padB-8);
+    const x = padL + i*paso + (paso-anchoBarra)/2;
+    const y = h-padB-alto;
+    const diaCorto = d.fecha.slice(8,10);
+    return `<rect x="${x}" y="${y}" width="${anchoBarra}" height="${Math.max(alto,1)}" rx="2" fill="${d.total>0?'var(--teal)':'var(--line)'}" opacity="${d.total>0?0.85:0.3}"><title>${d.fecha}: ${d.total} nota${d.total!==1?'s':''}</title></rect>
+      <text x="${x+anchoBarra/2}" y="${h-4}" text-anchor="middle" font-size="7" fill="var(--ink-3)">${diaCorto}</text>`;
+  }).join('');
+  svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  svgEl.innerHTML = barras;
+}
+
 function pintarDetalleC3(ent){
   const cont = document.getElementById('c3-detalle');
   if(!cont || !ent) return;
@@ -514,8 +547,13 @@ function pintarDetalleC3(ent){
           <div id="c3-feed-notas" class="feed-lista" style="flex:1;min-height:0;overflow-y:auto !important;box-sizing:border-box;">${feedNotas}</div>
         </div>
       </div>
+      <div style="margin-top:14px;background:var(--bg-1);border-radius:var(--radius-s);padding:12px 14px;">
+        <div class="eyebrow" style="margin-bottom:8px;">Tendencia de notas — últimos 14 días</div>
+        <svg id="c3-tendencia-svg" style="width:100%;height:120px;display:block;"></svg>
+      </div>
     </div>
   `;
+  dibujarTendenciaEstadoC3(ent.nombre);
   cont.querySelectorAll('[data-url]').forEach(el=>{
     if(el.dataset.url) el.addEventListener('click', ()=> window.open(el.dataset.url, '_blank', 'noopener'));
   });
