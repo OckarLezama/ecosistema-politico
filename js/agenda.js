@@ -923,7 +923,7 @@ function sintesisMatrizAgenda(crudos){
     return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${c.tema.id}">
       <span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${colorR};border:1px solid ${colorR};border-radius:99px;padding:1px 7px;white-space:nowrap;">${nivelR}</span>
       <span style="font-size:11.5px;flex:1;">${c.tema.nombre}</span>
-      <span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);">${c.veces} nota${c.veces!==1?'s':''}</span>
+      <span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);">${c.veces} nota${c.veces!==1?'s':''} · 14d</span>
     </div>`;
   }).join('');
 
@@ -949,24 +949,52 @@ function renderMatrizYLista(){
         <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${analisisGlobalAgendaIA}</p>
       </div>` : '';
 
-  // síntesis con reglas (sin IA) -- mismos datos que ya usa la matriz, calculados una
-  // vez más aquí (ligero, sin las posiciones x/y que solo hacen falta para dibujar)
-  let temasBaseSintesis = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  if(impactoFiltroAgenda) temasBaseSintesis = temasBaseSintesis.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
-  if(soloAgendaNacional) temasBaseSintesis = temasBaseSintesis.filter(t=>Number(t.nivel_relevancia)===1);
-  const crudosSintesis = temasBaseSintesis.map(t=>{
-    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
-    const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
-    return { tema:t, impactoReal:Number(t.peso_politico), riesgoReal:riesgoMax, veces:evs.length };
-  }).sort((a,b)=>(b.impactoReal+b.riesgoReal)-(a.impactoReal+a.riesgoReal));
-
-  cont.innerHTML = bloqueGlobal + sintesisMatrizAgenda(crudosSintesis) + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;"></div>`;
-  cont.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
+  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;"></div>`;
+  const btnAnalisis = document.getElementById('agenda-btn-analisis');
+  if(btnAnalisis && !btnAnalisis.dataset.conectado){ btnAnalisis.addEventListener('click', abrirModalAnalisisMatriz); btnAnalisis.dataset.conectado='1'; }
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
     document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
     dibujarMatrizRiesgo();
   }
+}
+
+function calcularCrudosSintesisMatriz(){
+  // CORREGIDO -- antes usaba TODO el historial del tema (todas sus notas de siempre),
+  // así que un tema que tuvo su pico hace meses seguía saliendo "CRÍTICO" hoy solo por
+  // volumen acumulado, aunque ya no tuviera ninguna actividad reciente real. Caso real
+  // confirmado: "Huachicol Fiscal" con 184 notas históricas apareciendo como urgencia
+  // de HOY. Ahora solo considera los últimos 14 días -- sin actividad reciente, no
+  // aparece aquí, sin importar cuánta historia acumulada tenga.
+  let temasBaseSintesis = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
+  if(impactoFiltroAgenda) temasBaseSintesis = temasBaseSintesis.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
+  if(soloAgendaNacional) temasBaseSintesis = temasBaseSintesis.filter(t=>Number(t.nivel_relevancia)===1);
+  const hace14dias = new Date(); hace14dias.setDate(hace14dias.getDate()-14);
+  const fechaCorte = hace14dias.toISOString().slice(0,10);
+  return temasBaseSintesis.map(t=>{
+    const evsRecientes = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && e.fecha>=fechaCorte);
+    const riesgoMax = evsRecientes.length ? Math.max(...evsRecientes.map(e=>e.intensidad)) : 0;
+    return { tema:t, impactoReal:Number(t.peso_politico), riesgoReal:riesgoMax, veces:evsRecientes.length };
+  }).filter(c=>c.veces>0)
+    .sort((a,b)=>(b.impactoReal+b.riesgoReal)-(a.impactoReal+a.riesgoReal));
+}
+
+function abrirModalAnalisisMatriz(){
+  let modal = document.getElementById('matriz-analisis-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'matriz-analisis-modal'; modal.className = 'ficha-modal-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+  const crudos = calcularCrudosSintesisMatriz();
+  modal.innerHTML = `<div class="ficha-modal-card" style="max-width:520px;">
+    <button class="ficha-modal-close">✕</button>
+    ${sintesisMatrizAgenda(crudos)}
+  </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=>{ modal.classList.remove('open'); abrirFichaTema(el.dataset.tema); }));
+  modal.classList.add('open');
 }
 
 function crearTooltipAgenda(){
