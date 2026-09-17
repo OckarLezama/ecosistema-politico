@@ -643,6 +643,26 @@ function renderGenealogiaAgenda(){
   dibujarGenealogia(temaGenealogiaSeleccionado);
 }
 
+function agruparEventosPorDia(notas){
+  const porFecha = {};
+  const orden = [];
+  notas.forEach(n=>{
+    if(!porFecha[n.fecha]){ porFecha[n.fecha] = []; orden.push(n.fecha); }
+    porFecha[n.fecha].push(n);
+  });
+  return orden.map(fecha=>{
+    const grupo = porFecha[fecha];
+    const principal = grupo[0]; // la primera del día se usa como representante para fecha/etc
+    return {
+      fecha,
+      descripcion: principal.descripcion,
+      fuente_url: principal.fuente_url,
+      intensidad: Math.max(...grupo.map(n=>Number(n.intensidad)||0)),
+      notas: grupo, // TODAS las notas reales de ese día, sin perder ninguna
+    };
+  });
+}
+
 function dibujarGenealogia(temaId){
   if(reproduciendoGenealogia) return; // hay una reproducción en curso -- no interrumpirla; se dejará sola cuando termine
   // cada dibujo fresco invalida cualquier reproducción que estuviera corriendo de fondo
@@ -659,7 +679,12 @@ function dibujarGenealogia(temaId){
   const scrollEl = document.getElementById('geneal-scroll');
   const svgEl = document.getElementById('geneal-svg');
   const tema = getTema(temaId);
-  const eventos = consolidarNotasPorSimilitud(ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId)).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const notasConsolidadas = consolidarNotasPorSimilitud(ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId)).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  // agrupación por día -- varias notas reales del MISMO día (no necesariamente
+  // similares entre sí, por eso no las juntó consolidarNotasPorSimilitud) se muestran
+  // como UN SOLO nodo en la línea de tiempo, con todas apiladas dentro de su tarjeta --
+  // así 102 notas de "Huachicol Fiscal" no significan 102 nodos separados en la línea.
+  const eventos = agruparEventosPorDia(notasConsolidadas);
   const colorTema = colorCategoria(tema.categoria);
 
   const espacio = 170;
@@ -750,6 +775,13 @@ function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, heigh
   if(animado) g.transition().duration(200).style('opacity',1);
   g.append('circle').attr('r',16).attr('fill','var(--bg-2)').attr('stroke',colorTema).attr('stroke-width',1.8);
   g.append('text').attr('text-anchor','middle').attr('dy','0.35em').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-2)').text(e.fecha.slice(5));
+  // insignia de cantidad -- un día con varias notas reales (no similares entre sí, por
+  // eso no se fusionaron antes) se ve como un solo nodo con un "+N", no como N nodos
+  // separados en la línea de tiempo
+  if(e.notas && e.notas.length>1){
+    g.append('circle').attr('cx',12).attr('cy',-12).attr('r',8).attr('fill','var(--riesgo-medio)').attr('stroke','var(--bg-1)').attr('stroke-width',1.5);
+    g.append('text').attr('x',12).attr('y',-12).attr('text-anchor','middle').attr('dy','0.32em').attr('font-size','8px').attr('font-weight','700').attr('fill','#0E1116').text(e.notas.length);
+  }
   mostrarResumenGenealogiaFijo(e, pos, i%2===0, width, height, i);
 }
 
@@ -768,7 +800,10 @@ function partirEnLineas(texto, maxPorLinea, maxLineas){
 
 function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
   const svg = d3.select('#geneal-svg');
-  const anchoCaja = 235, altoCaja = 90;
+  const notasDelDia = evento.notas && evento.notas.length ? evento.notas : [evento];
+  const anchoCaja = 235;
+  const altoUnaNota = 34;
+  const altoCaja = Math.min(24 + notasDelDia.length*altoUnaNota, 280); // tope de alto -- si hay muchísimas ese día, se corta con scroll interno, no crece sin límite
   const distancia = 26 + (i%3)*24;
   const y = arriba ? pos.y-distancia-altoCaja : pos.y+distancia;
   const x = Math.max(6, Math.min(width-anchoCaja-6, pos.x-anchoCaja/2));
@@ -776,14 +811,39 @@ function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
 
   g.append('line').attr('x1',pos.x).attr('y1',pos.y).attr('x2',pos.x).attr('y2', arriba?y+altoCaja:y)
     .attr('stroke','var(--line-strong)').attr('stroke-width',1).attr('stroke-dasharray','2 3');
-
   g.append('rect').attr('x',x).attr('y',y).attr('width',anchoCaja).attr('height',altoCaja).attr('rx',5)
     .attr('fill','var(--bg-2)').attr('stroke','var(--line-strong)').attr('stroke-width',1);
-  g.append('text').attr('x',x+9).attr('y',y+15).attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(evento.fecha);
+  g.append('text').attr('x',x+9).attr('y',y+13).attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
+    .text(notasDelDia.length>1 ? `${evento.fecha} — ${notasDelDia.length} notas` : evento.fecha);
 
-  const lineas = partirEnLineas(evento.descripcion, 40, 4);
-  lineas.forEach((linea,li)=>{
-    g.append('text').attr('x',x+9).attr('y',y+29+li*13).attr('font-size','9.5px').attr('font-weight','600').attr('fill','var(--ink-1)').text(linea);
+  // clip -- si el día tiene muchas notas y se llegó al tope de alto, el resto se ve con
+  // scroll interno de la caja en vez de desbordarse sobre el resto del dibujo
+  const idClip = `clip-geneal-${x}-${y}`.replace(/\./g,'');
+  svg.select('defs').append('clipPath').attr('id',idClip).append('rect').attr('x',x).attr('y',y+18).attr('width',anchoCaja).attr('height',altoCaja-20);
+  const contenido = g.append('g').attr('clip-path',`url(#${idClip})`);
+
+  notasDelDia.forEach((n, ni)=>{
+    const yBase = y+22+ni*altoUnaNota;
+    const n_intensidad = Number(n.intensidad);
+    const colorSemaforo = n_intensidad>=8 ? 'var(--riesgo-alto)' : n_intensidad>=6 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+    contenido.append('circle').attr('cx',x+anchoCaja-12).attr('cy',yBase+4).attr('r',3.5).attr('fill',colorSemaforo);
+
+    const match = n.descripcion.match(/^(.*?)\s*-\s*([^-]+)$/);
+    const textoNota = match ? match[1] : n.descripcion;
+    const fuente = match ? match[2] : '';
+    const lineas = partirEnLineas(textoNota, 40, 2);
+    lineas.forEach((linea,li)=>{
+      contenido.append('text').attr('x',x+9).attr('y',yBase+li*11).attr('font-size','8.5px').attr('font-weight','600').attr('fill','var(--ink-1)').text(linea);
+    });
+    if(fuente){
+      contenido.append('text').attr('x',x+9).attr('y',yBase+lineas.length*11).attr('font-size','7.5px').attr('font-style','italic').attr('fill','var(--teal)').text(fuente.length>26?fuente.slice(0,24)+'…':fuente);
+    }
+    if(n.fuente_url){
+      contenido.append('rect').attr('x',x).attr('y',yBase-9).attr('width',anchoCaja).attr('height',altoUnaNota-2).attr('fill','transparent').style('cursor','pointer')
+        .on('click', ()=> window.open(n.fuente_url, '_blank', 'noopener'))
+        .on('mouseenter', function(){ d3.select(this).attr('fill','rgba(76,193,186,.08)'); })
+        .on('mouseleave', function(){ d3.select(this).attr('fill','transparent'); });
+    }
   });
 }
 
