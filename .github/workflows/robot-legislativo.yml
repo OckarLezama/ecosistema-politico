@@ -1,0 +1,22 @@
+name: Robot Legislativo
+"on":
+  workflow_dispatch: {}
+  schedule:
+    - cron: "0 14 * * *"
+jobs:
+  legislativo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar dependencias
+        run: pip install feedparser --break-system-packages
+      - name: Ejecutar robot legislativo
+        run: python3 robot_legislativo.py
+      - name: Guardar resultado
+        run: |
+          git config user.name "robot-legislativo"
+          git config user.email "robot@ecosistema-politico.local"
+          git add data/reformas.csv data/candidatos_legislativos.csv
+          git diff --staged --quiet || git commit -m "Robot Legislativo: actualizacion automatica"
+          git pull --rebase
+          git push
