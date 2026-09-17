@@ -452,10 +452,11 @@ function construirTendenciaEstadoC3(nombreEstado){
     const d = new Date(hoy); d.setDate(hoy.getDate()-i);
     dias.push(d.toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'}));
   }
-  return dias.map(fecha=>({
-    fecha,
-    total: ECOSISTEMA.eventos.filter(e=> e.entidad_c3===nombreEstado && e.fecha===fecha).length,
-  }));
+  return dias.map(fecha=>{
+    const notasDelDia = ECOSISTEMA.eventos.filter(e=> e.entidad_c3===nombreEstado && e.fecha===fecha);
+    const intensidadProm = notasDelDia.length ? notasDelDia.reduce((s,e)=>s+Number(e.intensidad),0)/notasDelDia.length : 0;
+    return { fecha, total: notasDelDia.length, intensidadProm };
+  });
 }
 
 function dibujarTendenciaEstadoC3(nombreEstado){
@@ -463,26 +464,40 @@ function dibujarTendenciaEstadoC3(nombreEstado){
   if(!svgEl) return;
   const serie = construirTendenciaEstadoC3(nombreEstado);
   const max = Math.max(...serie.map(d=>d.total), 1);
-  const w=200, h=60, padB=4, padL=2, padR=2;
-  const anchoBarra = (w-padL-padR)/serie.length*0.7;
+  const w=200, h=64, padB=4, padL=2, padR=2;
+  const anchoBarra = (w-padL-padR)/serie.length*0.68;
   const paso = (w-padL-padR)/serie.length;
+  // color por INTENSIDAD promedio del día (mismos umbrales que clasificarImpacto en
+  // toda la plataforma), no solo "hubo o no hubo actividad" -- así un día con pocas
+  // notas graves se distingue de un día con muchas notas rutinarias, que es la señal
+  // que de verdad aporta a inteligencia
+  const colorPorIntensidad = (intensidad, total) => {
+    if(total===0) return 'var(--line)';
+    if(intensidad>=7) return 'var(--riesgo-alto)';
+    if(intensidad>=5) return 'var(--riesgo-medio)';
+    return 'var(--riesgo-bajo)';
+  };
   svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
-  svgEl.innerHTML = serie.map((d,i)=>{
-    const alto = Math.max((d.total/max)*(h-padB-4), 1.5);
+  const defs = `<defs><linearGradient id="grad-tendencia-c3" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-opacity="0.95"/><stop offset="100%" stop-opacity="0.55"/>
+  </linearGradient></defs>`;
+  const linea_base = `<line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.5"/>`;
+  const barras = serie.map((d,i)=>{
+    const alto = Math.max((d.total/max)*(h-padB-6), d.total>0?4:1.5);
     const x = padL + i*paso + (paso-anchoBarra)/2;
     const y = h-padB-alto;
-    return `<rect class="barra-tendencia-c3" data-fecha="${d.fecha}" data-total="${d.total}" x="${x}" y="${y}" width="${anchoBarra}" height="${alto}" rx="1.5" fill="${d.total>0?'var(--teal)':'var(--line)'}" opacity="${d.total>0?0.85:0.3}" style="cursor:pointer;"/>`;
+    const color = colorPorIntensidad(d.intensidadProm, d.total);
+    return `<rect class="barra-tendencia-c3" data-fecha="${d.fecha}" data-total="${d.total}" data-intensidad="${d.intensidadProm.toFixed(1)}" x="${x}" y="${y}" width="${anchoBarra}" height="${alto}" rx="1.5" fill="${color}" opacity="${d.total>0?0.9:0.35}" style="cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='${d.total>0?0.9:0.35}'"/>`;
   }).join('');
+  svgEl.innerHTML = defs + linea_base + barras;
   svgEl.querySelectorAll('.barra-tendencia-c3').forEach(rect=>{
-    // mismo tooltip elegante que ya usa el resto del sitio (Agenda/Análisis), en vez del
-    // tooltip nativo del navegador (plano y lento) -- así se ve algo real con el hover,
-    // aunque la columna sea angosta y no quepan etiquetas de texto permanentes
-    rect.addEventListener('mouseenter', function(ev){
-      mostrarTooltipAgenda(`<strong>${this.dataset.fecha}</strong><br>${this.dataset.total} nota${this.dataset.total!=='1'?'s':''}`, ev);
-    });
-    rect.addEventListener('mousemove', function(ev){
-      mostrarTooltipAgenda(`<strong>${this.dataset.fecha}</strong><br>${this.dataset.total} nota${this.dataset.total!=='1'?'s':''}`, ev);
-    });
+    const mostrar = (ev)=>{
+      const {fecha, total, intensidad} = rect.dataset;
+      const texto = total==='0' ? `<strong>${fecha}</strong><br>Sin actividad` : `<strong>${fecha}</strong><br>${total} nota${total!=='1'?'s':''} · intensidad prom. ${intensidad}`;
+      mostrarTooltipAgenda(texto, ev);
+    };
+    rect.addEventListener('mouseenter', mostrar);
+    rect.addEventListener('mousemove', mostrar);
     rect.addEventListener('mouseleave', ocultarTooltipAgenda);
   });
 }
