@@ -754,7 +754,7 @@ function abrirFichaActorCompleta(id){
   modal.innerHTML = `
     <div class="ficha-modal-card">
       <button class="ficha-modal-close">✕</button>
-      <div class="detail-avatar" style="background:${color};margin:0 auto 8px;">${actor.iniciales||'?'}</div>
+      <div class="detail-avatar" style="background:${color};margin:0 auto 8px;">${actor.iniciales||(typeof inicialesDe==='function'?inicialesDe(actor.nombre):'?')}</div>
       <h3 style="font-family:var(--f-display);text-align:center;margin:0 0 2px;">${actor.nombre}</h3>
       <p style="text-align:center;font-size:11.5px;color:var(--ink-3);margin:0 0 10px;">${actor.cargo}</p>
       ${barra('Influencia', actor.nivel_influencia)}
@@ -955,7 +955,7 @@ function mostrarFicha(id, nodoClicado, nodesEnGrafo){
   }
 
   panel.innerHTML = `
-    <div class="detail-avatar" style="background:${color}">${actor.iniciales||'?'}</div>
+    <div class="detail-avatar" style="background:${color}">${actor.iniciales||(typeof inicialesDe==='function'?inicialesDe(actor.nombre):'?')}</div>
     <div class="detail-name">${actor.nombre}</div>
     <div class="detail-cargo">${actor.cargo}</div>
     ${actor.descripcion ? `<p style="font-size:11.5px;color:var(--ink-2);line-height:1.5;margin:4px 0 8px;">${actor.descripcion}</p>` : ''}
