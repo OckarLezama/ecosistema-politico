@@ -175,7 +175,20 @@ function calcularDatosC3(){
         }
       });
     });
-    let actoresConMencion = Object.entries(conteoActores).map(([nombre,d])=>({nombre, ...d}))
+    let actoresConMencion = Object.entries(conteoActores).map(([nombre,d])=>({nombre, ...d}));
+    // reconciliación con el historial ya confirmado por el robot (si ya se cargó en esta
+    // sesión) -- bug real encontrado: la tarjeta contaba en vivo con JS (ej. "2"), pero el
+    // historial que el robot ya guardó con su propio detector en Python tenía más
+    // coincidencias reales para el mismo día (ej. "6"), y el modal terminaba mostrando más
+    // que la tarjeta. Se usa el número mayor de las 2 fuentes, nunca al revés.
+    if(mencionesHistorialC3){
+      const hoyMismo = hoy;
+      actoresConMencion.forEach(a=>{
+        const enHistorialHoy = mencionesHistorialC3.filter(m=> m.actor===a.nombre && m.fecha===hoyMismo);
+        if(enHistorialHoy.length > a.total) a.total = enHistorialHoy.length;
+      });
+    }
+    actoresConMencion = actoresConMencion
       .sort((a,b)=>b.total-a.total);
 
     // los actores marcados como "siempre visibles" para este estado aparecen aunque hoy
@@ -233,6 +246,10 @@ function renderC3(){
   // la cuadrícula nunca se mueve ni desaparece al consultar un estado
   const contFijo = document.getElementById('c3-grid-entidades');
   if(!contFijo) return;
+  // carga temprana del historial (antes solo se cargaba al abrir el primer modal) -- sin
+  // esto, la tarjeta contaba solo en vivo con JS y podía mostrar menos que el historial
+  // real ya confirmado por el robot; al llegar el historial, se vuelve a dibujar una vez
+  if(!mencionesHistorialC3) cargarHistorialC3(()=> renderC3());
   const datos = calcularDatosC3();
   const totalNotasHoy = datos.reduce((s,e)=>s+e.notas.length, 0);
 
