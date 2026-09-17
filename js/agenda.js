@@ -595,6 +595,12 @@ function dibujarNotasAgenda(temaId){
 }
 
 let genealogiaRevelados = 1;
+let reproduciendoGenealogia = false; // true mientras el botón "reproducir" está animando el
+// recorrido -- necesario para que el auto-refresco de datos (cada 3 minutos) NUNCA
+// interrumpa una reproducción en curso. Bug real: dibujarGenealogia() se llamaba de nuevo
+// por el refresco automático, incrementando la "generación" y cortando la animación a la
+// mitad -- por eso no se terminaban de poner todas las notas si el usuario tardaba en
+// verla completa.
 let temaGenealogiaAnterior = null; // recuerda qué tema se dibujó la última vez -- así el
 // refresco automático de datos cada 3 minutos no reinicia el progreso si sigues viendo
 // el mismo tema (bug real: al dejar Genealogía abierta un rato, el recorrido revelado
@@ -638,6 +644,7 @@ function renderGenealogiaAgenda(){
 }
 
 function dibujarGenealogia(temaId){
+  if(reproduciendoGenealogia) return; // hay una reproducción en curso -- no interrumpirla; se dejará sola cuando termine
   // cada dibujo fresco invalida cualquier reproducción que estuviera corriendo de fondo
   // (de otro tema, o de antes de salir y volver a la vista) -- la variable de protección
   // existía pero nunca se incrementaba, así que nunca detenía nada
@@ -715,11 +722,12 @@ let generacionGenealogiaActual = 0; // se incrementa en cada render fresco -- as
 
 function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height){
   const miGeneracion = generacionGenealogiaActual;
+  reproduciendoGenealogia = true;
   const scrollEl = document.getElementById('geneal-scroll');
   d3.select('#geneal-svg .geneal-contador').text(`Reproduciendo — 1 de ${eventos.length}`);
   function siguienteTramo(i){
-    if(generacionGenealogiaActual !== miGeneracion) return; // se cambió de tema o se salió de la vista -- detener aquí, no seguir de fondo
-    if(i>=eventos.length){ genealogiaRevelados = eventos.length; return; }
+    if(generacionGenealogiaActual !== miGeneracion){ reproduciendoGenealogia = false; return; }
+    if(i>=eventos.length){ genealogiaRevelados = eventos.length; reproduciendoGenealogia = false; return; }
     scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
       .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y).attr('x2',posiciones[i-1].x).attr('y2',posiciones[i-1].y)
@@ -727,7 +735,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
     linea.transition().duration(600).ease(d3.easeLinear)
       .attr('x2',posiciones[i].x).attr('y2',posiciones[i].y)
       .on('end', ()=>{
-        if(generacionGenealogiaActual !== miGeneracion) return; // revisar de nuevo -- pudo cambiar mientras corría la transición
+        if(generacionGenealogiaActual !== miGeneracion){ reproduciendoGenealogia = false; return; } // revisar de nuevo -- pudo cambiar mientras corría la transición
         dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, true, width, height);
         genealogiaRevelados = i+1;
         d3.select('#geneal-svg .geneal-contador').text(i+1<eventos.length ? `Reproduciendo — ${i+1} de ${eventos.length}` : `${eventos.length} de ${eventos.length} notas — recorrido completo`);
