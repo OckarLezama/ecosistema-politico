@@ -14,6 +14,20 @@ RUTA_ACTORES = 'data/actores.csv'
 RUTA_TEMAS = 'data/temas.csv'
 
 
+def _mencionadoDeFormaSegura(nombre_actor, clausula_lower):
+    # misma corrección aplicada en robot_buscar_temas.py -- antes bastaba CUALQUIER
+    # palabra suelta de 4+ letras del nombre completo, así que un apellido común (ej.
+    # "Ávila") vinculaba al actor equivocado. Ahora se exige nombre completo, o al menos
+    # 2 palabras consecutivas del nombre juntas.
+    partes = [p for p in nombre_actor.split() if len(p) > 2]
+    if len(partes) < 2:
+        return partes and partes[0].lower() in clausula_lower
+    combinaciones = [nombre_actor.lower(), f'{partes[0]} {partes[1]}'.lower()]
+    if len(partes) >= 3:
+        combinaciones.append(f'{partes[-2]} {partes[-1]}'.lower())
+    return any(c in clausula_lower for c in combinaciones)
+
+
 def tiene_evidencia_real(actor_nombre, evs_del_tema, resumen_tema):
     # revisa las notas Y el resumen curado del tema -- un actor puede estar conectado
     # legítimamente por el resumen (ej. "el gobierno de Trump revocó...") sin que su
@@ -24,9 +38,10 @@ def tiene_evidencia_real(actor_nombre, evs_del_tema, resumen_tema):
     for texto in textos:
         clausulas = re.split(r'[;.]| pero | mientras ', texto)
         for clausula in clausulas:
-            if any(p.lower() in clausula.lower() for p in actor_nombre.split() if len(p) > 3):
+            if _mencionadoDeFormaSegura(actor_nombre, clausula.lower()):
                 return True
     return False
+
 
 
 def limpiar():
