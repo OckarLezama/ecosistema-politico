@@ -590,6 +590,25 @@ def clasificarRolActorEnTema(texto_completo, actor):
     return 'Mencionado'
 
 
+def _mencionadoDeFormaSegura(nombre_actor, clausula_lower):
+    """Mismo aprendizaje que ya tuvimos con C3 (caso real: 'Briceño' de un actor se
+    confundía con otra persona de apellido compartido) -- aquí el riesgo era todavía
+    mayor: se comparaba CUALQUIER palabra suelta de 4+ letras del nombre completo, así
+    que un apellido común como 'Ávila' bastaba para vincular al actor equivocado con
+    notas que ni lo mencionan. Ahora se exige nombre completo, o al menos 2 palabras
+    consecutivas del nombre juntas (nombre+apellido, o los 2 apellidos) -- nunca una
+    palabra sola, sin importar su longitud.
+    """
+    partes = [p for p in nombre_actor.split() if len(p) > 2]
+    if len(partes) < 2:
+        return partes and partes[0].lower() in clausula_lower
+    combinaciones = [nombre_actor.lower()]
+    combinaciones.append(f'{partes[0]} {partes[1]}'.lower())
+    if len(partes) >= 3:
+        combinaciones.append(f'{partes[-2]} {partes[-1]}'.lower())
+    return any(c in clausula_lower for c in combinaciones)
+
+
 def actualizarTemaActoresAutomatico(tema_id, evs_del_tema):
     try:
         with open(RUTA_ACTORES, encoding='utf-8-sig') as f:
@@ -610,7 +629,7 @@ def actualizarTemaActoresAutomatico(tema_id, evs_del_tema):
             clausulas = re.split(r'[;.]| pero | mientras ', e['descripcion'])
             for clausula in clausulas:
                 clausula_lower = clausula.lower()
-                if any(p.lower() in clausula_lower for p in actor['nombre'].split() if len(p) > 3):
+                if _mencionadoDeFormaSegura(actor['nombre'], clausula_lower):
                     fragmentos_de_este_actor.append(clausula_lower)
         if not fragmentos_de_este_actor:
             continue
