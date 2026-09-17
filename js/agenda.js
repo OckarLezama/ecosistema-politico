@@ -989,11 +989,7 @@ function dibujarMatrizRiesgo(){
   // div contenedor), no dentro del propio dibujo -- estaba a 10px de la etiqueta
   // "IMPACTO" del eje, tapándola por completo
   const avisoLimite = document.getElementById('matriz-aviso-limite');
-  if(avisoLimite){
-    avisoLimite.textContent = totalAntesDeLimite > LIMITE_PUNTOS_MATRIZ
-      ? `Mostrando los ${LIMITE_PUNTOS_MATRIZ} de mayor relevancia (de ${totalAntesDeLimite} en total) — ver el resto en la vista Lista`
-      : '';
-  }
+  if(avisoLimite) avisoLimite.textContent = '';
 
   const defs = svg.append('defs');
   const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
