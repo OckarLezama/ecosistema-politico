@@ -31,7 +31,7 @@ const ACTORES_C3_JS = {
   ],
   'Tabasco': [
     ['Javier May Rodríguez','Gobernador'], ['Adán Augusto López Hernández','Senador'],
-    ['José Ramiro López Obrador','Secretario de Gobierno'], ['Andrés Manuel López Beltrán','Proyecto electoral en Tabasco'],
+    ['José Ramiro López Obrador','Secretario de Gobierno'], ['Andrés Manuel López Beltrán','Proyecto electoral en Tabasco','Andy'],
     ['Yolanda Osuna Huerta','Alcaldesa de Centro (Villahermosa)'], ['Octavio Romero Oropeza','Figura histórica tabasqueña'],
     ['Rafael Marín Mollinedo','Vínculos nacionales'], ['Marcos Rosendo Medina Filigrana','Legislativo'],
     ['Óscar Cantón Zetina','Diputado federal'], ['Jorge Orlando Bracamonte Hernández','Congreso local'],
@@ -52,7 +52,7 @@ const ACTORES_C3_JS = {
     ['Rolando Zapata Bello','PRI'], ['Vida Gómez Herrera','MC'],
   ],
   'Quintana Roo': [
-    ['Mara Lezama Espinosa','Gobernadora','Lezama'], ['Eugenio Segura Vázquez','Ex senador','Gino'],
+    ['Mara Lezama Espinosa','Gobernadora','Lezama'], ['Eugenio Segura Vázquez','Ex senador',['Gino','Gino Segura']],
     ['Ana Patricia Peralta de la Peña','Alcaldesa de Benito Juárez (Cancún)'], ['Marybel Villegas Canché','Senadora'],
     ['Rafael Marín Mollinedo','Vínculos nacionales'], ['Juan Carrillo Soberanis','Diputado federal (PVEM)'],
     ['Renán Sánchez Tajonar','PVEM'], ['Humberto Aldana Navarro','Diputado federal (Morena)'],
@@ -60,7 +60,7 @@ const ACTORES_C3_JS = {
   ],
   'Puebla': [
     ['Alejandro Armenta Mier','Gobernador','Armenta'], ['José Luis García Parra','Coordinador de Gabinete','El Choco'],
-    ['José Chedraui Budib','Alcalde de Puebla','Chedraui'], ['Ignacio Mier Bañuelos','Diputado federal'],
+    ['José Chedraui Budib','Alcalde de Puebla',['Chedraui','Pepe Chedraui']], ['Ignacio Mier Bañuelos','Diputado federal','Nacho Mier'],
     ['Xitlalic Ceja','Diputada local'],
     ['Rodrigo Abdala Dartigues','Morena'], ['Sergio Salomón Céspedes Peregrina','Exgobernador'],
     ['Mario Riestra Piña','PAN'],
@@ -100,12 +100,19 @@ function generarVariantesActorC3(nombre, apodo){
   if(partes.length>=3) variantes.add(partes[0]+' '+partes[partes.length-1]);
   if(partes.length>=3) variantes.add(partes[0]+' '+partes[1]+' '+partes[2]);
   if(partes.length>=3) variantes.add(partes[partes.length-2]+' '+partes[partes.length-1]);
+  if(partes.length>=4) variantes.add(partes[1]+' '+partes[2]); // mismo arreglo que en el robot -- ej. "Salomón Céspedes" en nombres de 4 palabras
+  if(partes.length>=4) variantes.add(partes[0]+' '+partes[1]+' '+partes[2]); // ej. "Adán Augusto López"
   // REVERTIDO -- permitir un nombre/apellido solo, aunque fuera "único" dentro de la
   // lista curada, resultó inseguro: no es lo mismo que sea único en el mundo real. Bug
   // real confirmado: "Alaine López Briceño" (persona distinta) se confundía con "Pablo
   // Angulo Briceño" de Campeche. Un nombre o apellido individual nunca es variante
   // segura, sin importar cuántas veces aparezca en una lista chica de 75 personas.
-  if(apodo) variantes.add(apodo);
+  if(apodo){
+    // apodo ahora acepta uno o varios (arreglo o string suelto) -- mismo cambio que en
+    // el robot, necesario para "Pepe Chedraui" (apodo de José, no derivable del nombre)
+    const apodos = Array.isArray(apodo) ? apodo : [apodo];
+    apodos.forEach(a=>variantes.add(a));
+  }
   return [...variantes].map(v=>sinAcentos(v.toLowerCase()));
 }
 
