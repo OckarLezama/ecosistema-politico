@@ -911,6 +911,30 @@ function renderAgendaGrid(){
   if(vistaAgenda==='genealogia'){ renderGenealogiaAgenda(); return; }
 }
 
+function sintesisMatrizAgenda(crudos){
+  if(!crudos.length) return '';
+  const top = crudos.slice(0,4);
+  const enAltoAlto = crudos.filter(c=>c.impactoReal>=6 && c.riesgoReal>=6).length;
+  const enBajoBajo = crudos.filter(c=>c.impactoReal<4 && c.riesgoReal<4).length;
+
+  const listaTop = top.map(c=>{
+    const nivelR = c.riesgoReal>=8?'CRÍTICO':c.riesgoReal>=6?'ALTO':c.riesgoReal>=4?'MEDIO':'BAJO';
+    const colorR = c.riesgoReal>=8?'var(--riesgo-alto)':c.riesgoReal>=6?'var(--riesgo-medio)':'var(--riesgo-bajo)';
+    return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${c.tema.id}">
+      <span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${colorR};border:1px solid ${colorR};border-radius:99px;padding:1px 7px;white-space:nowrap;">${nivelR}</span>
+      <span style="font-size:11.5px;flex:1;">${c.tema.nombre}</span>
+      <span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);">${c.veces} nota${c.veces!==1?'s':''}</span>
+    </div>`;
+  }).join('');
+
+  return `
+    <div class="contexto-tema-box" style="border-left-color:var(--riesgo-alto);margin:10px 14px 0;">
+      <div class="eyebrow" style="color:var(--riesgo-alto);">Lo que exige atención ahora mismo</div>
+      <p style="font-size:11px;color:var(--ink-3);margin:4px 0 8px;">${enAltoAlto} tema${enAltoAlto!==1?'s':''} en el cuadrante de mayor exposición (impacto y riesgo altos a la vez)${enBajoBajo?`; ${enBajoBajo} en el de menor exposición` : ''}.</p>
+      ${listaTop}
+    </div>`;
+}
+
 function renderMatrizYLista(){
   const cont = document.getElementById('agenda-contenido');
   const selectWrap = document.getElementById('agenda-tema-select-wrap');
@@ -924,7 +948,20 @@ function renderMatrizYLista(){
         <div class="eyebrow" style="color:var(--teal);">Panorama de la agenda (IA)</div>
         <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${analisisGlobalAgendaIA}</p>
       </div>` : '';
-  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;"></div>`;
+
+  // síntesis con reglas (sin IA) -- mismos datos que ya usa la matriz, calculados una
+  // vez más aquí (ligero, sin las posiciones x/y que solo hacen falta para dibujar)
+  let temasBaseSintesis = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
+  if(impactoFiltroAgenda) temasBaseSintesis = temasBaseSintesis.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
+  if(soloAgendaNacional) temasBaseSintesis = temasBaseSintesis.filter(t=>Number(t.nivel_relevancia)===1);
+  const crudosSintesis = temasBaseSintesis.map(t=>{
+    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
+    const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
+    return { tema:t, impactoReal:Number(t.peso_politico), riesgoReal:riesgoMax, veces:evs.length };
+  }).sort((a,b)=>(b.impactoReal+b.riesgoReal)-(a.impactoReal+a.riesgoReal));
+
+  cont.innerHTML = bloqueGlobal + sintesisMatrizAgenda(crudosSintesis) + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;"></div>`;
+  cont.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
     document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
