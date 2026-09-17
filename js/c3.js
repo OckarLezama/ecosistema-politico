@@ -175,20 +175,7 @@ function calcularDatosC3(){
         }
       });
     });
-    let actoresConMencion = Object.entries(conteoActores).map(([nombre,d])=>({nombre, ...d}));
-    // reconciliación con el historial ya confirmado por el robot (si ya se cargó en esta
-    // sesión) -- bug real encontrado: la tarjeta contaba en vivo con JS (ej. "2"), pero el
-    // historial que el robot ya guardó con su propio detector en Python tenía más
-    // coincidencias reales para el mismo día (ej. "6"), y el modal terminaba mostrando más
-    // que la tarjeta. Se usa el número mayor de las 2 fuentes, nunca al revés.
-    if(mencionesHistorialC3){
-      const hoyMismo = hoy;
-      actoresConMencion.forEach(a=>{
-        const enHistorialHoy = mencionesHistorialC3.filter(m=> m.actor===a.nombre && m.fecha===hoyMismo);
-        if(enHistorialHoy.length > a.total) a.total = enHistorialHoy.length;
-      });
-    }
-    actoresConMencion = actoresConMencion
+    let actoresConMencion = Object.entries(conteoActores).map(([nombre,d])=>({nombre, ...d}))
       .sort((a,b)=>b.total-a.total);
 
     // los actores marcados como "siempre visibles" para este estado aparecen aunque hoy
@@ -201,6 +188,18 @@ function calcularDatosC3(){
         return datosActor ? {nombre:datosActor[0], cargo:datosActor[1], positivo:0, negativo:0, neutro:0, total:0, esInstitucion:false, notasDeHoy:[]} : null;
       }).filter(Boolean);
     actoresConMencion.unshift(...siempreVisiblesFaltantes);
+
+    // reconciliación con el historial ya confirmado por el robot -- DESPUÉS de agregar
+    // los "siempre visibles", no antes. Bug real encontrado: Armenta con 0 coincidencias
+    // en vivo (JS) solo entraba por la rama "siempre visible" con total:0 fijo, y como la
+    // reconciliación corría ANTES de esa rama, nunca lo tocaba -- seguía en 0 aunque el
+    // historial ya tuviera 6 notas reales de hoy. Ahora corre sobre la lista completa.
+    if(mencionesHistorialC3){
+      actoresConMencion.forEach(a=>{
+        const enHistorialHoy = mencionesHistorialC3.filter(m=> m.actor===a.nombre && m.fecha===hoy);
+        if(enHistorialHoy.length > a.total) a.total = enHistorialHoy.length;
+      });
+    }
 
     // el gobernador (primer nombre de la lista "siempre visibles" de este estado) SIEMPRE
     // va primero en la tarjeta, sin importar cuántas menciones tenga hoy -- bug real
