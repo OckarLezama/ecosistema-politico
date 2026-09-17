@@ -546,12 +546,17 @@ function cargarHistorialC3(callback){
 function abrirHistorialActorC3(nombreActor, notasDeHoy){
   const esInstitucionModal = INSTITUCIONES_C3_JS.includes(nombreActor);
   cargarHistorialC3((historial)=>{
-    const historicas = historial.filter(m=>m.actor===nombreActor).sort((a,b)=> (b.fecha||'').localeCompare(a.fecha||''));
-    // se combina el historial guardado con las notas de HOY (que aún pueden no estar en
-    // el CSV si el robot no ha corrido desde que se detectaron) -- así el modal nunca se
-    // ve vacío para algo que se está viendo mencionado ahora mismo en el tablero
     const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
-    const idsYaEnHistorial = new Set(historicas.map(m=>String(m.evento_id)));
+    const todasLasMenciones = historial.filter(m=>m.actor===nombreActor).sort((a,b)=> (b.fecha||'').localeCompare(a.fecha||''));
+    // CORREGIDO -- antes "historicas" mezclaba TODO (incluyendo lo de hoy que el robot ya
+    // guardó en corridas anteriores del mismo día), y luego se descontaban de "HOY" por
+    // duplicado -- resultado real confirmado: "36 menciones en total" pero "HOY: 0" y
+    // "HISTÓRICO: 31" (no sumaban). Las de hoy sí estaban ahí, solo que contactadas como
+    // "histórico" en vez de "hoy". Ahora se separa por FECHA real, no por si ya está en
+    // el CSV o no -- lo de hoy es hoy, sin importar si el robot ya lo guardó.
+    const historicas = todasLasMenciones.filter(m=>m.fecha!==hoy);
+    const guardadasDeHoy = todasLasMenciones.filter(m=>m.fecha===hoy);
+    const idsYaEnHistorial = new Set(guardadasDeHoy.map(m=>String(m.evento_id)));
     const notasDeHoySinDuplicar = (notasDeHoy||[]).filter(n=> !idsYaEnHistorial.has(String(n.id)));
 
     let modal = document.getElementById('c3-historial-modal');
@@ -561,7 +566,7 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
       modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
       document.body.appendChild(modal);
     }
-    const totalMenciones = historicas.length + notasDeHoySinDuplicar.length;
+    const totalMenciones = historicas.length + guardadasDeHoy.length + notasDeHoySinDuplicar.length;
     // clasificar el sentimiento real de las notas de hoy (mismas palabras clave que ya
     // usa el resto de C3), no asumir que todas son positivas
     const PALABRAS_POS = ['impulsa','impulso','logra','logro','reconoce','avanza','consolida','inaugura','felicita','celebra','aprueba','firma acuerdo'];
@@ -588,7 +593,15 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     const filasHoy = notasDeHoySinDuplicar.map(n=>{
       const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
       return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--teal);">${n.fecha} (hoy)</strong> — ${texto} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`;
+    }).join('') + guardadasDeHoy.map(m=>{
+      // notas de hoy que el robot ya guardó en el CSV en una corrida anterior -- mismo
+      // filtro de título real que el histórico, para no mostrar filas vacías
+      const titulo = (m.titular && m.titular.trim()) || tituloDesdeURL(m.fuente_url);
+      if(!titulo) return '';
+      return `<div style="font-size:11.5px;padding:6px 0;border-top:1px solid var(--line);"><strong style="font-family:var(--f-mono);color:var(--teal);">${m.fecha} (hoy)</strong> — ${titulo} ${m.fuente_url?`<a href="${m.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}</div>`;
     }).join('');
+    const guardadasDeHoyConTitulo = guardadasDeHoy.filter(m=> (m.titular && m.titular.trim()) || tituloDesdeURL(m.fuente_url)).length;
+    const totalNotasHoyMostradas = notasDeHoySinDuplicar.length + guardadasDeHoyConTitulo;
     const historicasConTitulo = historicas.map(m=>{
       const color = m.sentimiento==='positivo' ? 'var(--riesgo-bajo)' : m.sentimiento==='negativo' ? 'var(--riesgo-alto)' : 'var(--riesgo-medio)';
       const titulo = (m.titular && m.titular.trim()) || tituloDesdeURL(m.fuente_url);
@@ -616,7 +629,7 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
         ${barraBalance}
         <p style="font-size:10px;color:var(--ink-3);margin:0 0 14px;">${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeu} neutra${conteoNeu!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
 
-        <div class="eyebrow" style="color:var(--teal);font-size:10.5px;margin-bottom:6px;">HOY — ${notasDeHoySinDuplicar.length} nota${notasDeHoySinDuplicar.length!==1?'s':''}</div>
+        <div class="eyebrow" style="color:var(--teal);font-size:10.5px;margin-bottom:6px;">HOY — ${totalNotasHoyMostradas} nota${totalNotasHoyMostradas!==1?'s':''}</div>
         <div style="margin-bottom:14px;">
           ${filasHoy || '<p style="font-size:11px;color:var(--ink-3);padding:4px 0;">Sin menciones hoy.</p>'}
         </div>
