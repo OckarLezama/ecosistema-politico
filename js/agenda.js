@@ -917,13 +917,25 @@ function sintesisMatrizAgenda(crudos){
   const enAltoAlto = crudos.filter(c=>c.impactoReal>=6 && c.riesgoReal>=6).length;
   const enBajoBajo = crudos.filter(c=>c.impactoReal<4 && c.riesgoReal<4).length;
 
+  const maxVeces = Math.max(...top.map(c=>c.veces), 1);
+  const iconoTendencia = {subiendo:'↑', bajando:'↓', estable:'→'};
+  const colorTendencia = {subiendo:'var(--riesgo-alto)', bajando:'var(--riesgo-bajo)', estable:'var(--ink-3)'};
+
   const listaTop = top.map(c=>{
     const nivelR = c.riesgoReal>=8?'CRÍTICO':c.riesgoReal>=6?'ALTO':c.riesgoReal>=4?'MEDIO':'BAJO';
     const colorR = c.riesgoReal>=8?'var(--riesgo-alto)':c.riesgoReal>=6?'var(--riesgo-medio)':'var(--riesgo-bajo)';
-    return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${c.tema.id}">
-      <span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${colorR};border:1px solid ${colorR};border-radius:99px;padding:1px 7px;white-space:nowrap;">${nivelR}</span>
-      <span style="font-size:11.5px;flex:1;">${c.tema.nombre}</span>
-      <span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);">${c.veces} nota${c.veces!==1?'s':''} · 14d</span>
+    return `<div style="padding:6px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${c.tema.id}">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${colorR};border:1px solid ${colorR};border-radius:99px;padding:1px 7px;white-space:nowrap;">${nivelR}</span>
+        <span style="font-size:11.5px;flex:1;">${c.tema.nombre}</span>
+        <span style="font-family:var(--f-mono);font-size:12px;font-weight:700;color:${colorTendencia[c.tendencia]};" title="${c.tendencia} en los últimos 14 días">${iconoTendencia[c.tendencia]}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="flex:1;height:5px;background:var(--bg-1);border-radius:99px;overflow:hidden;">
+          <div style="width:${(c.veces/maxVeces)*100}%;height:100%;background:${colorR};"></div>
+        </div>
+        <span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);white-space:nowrap;">${c.veces} · 14d</span>
+      </div>
     </div>`;
   }).join('');
 
@@ -974,7 +986,14 @@ function calcularCrudosSintesisMatriz(){
   return temasBaseSintesis.map(t=>{
     const evsRecientes = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && e.fecha>=fechaCorte);
     const riesgoMax = evsRecientes.length ? Math.max(...evsRecientes.map(e=>e.intensidad)) : 0;
-    return { tema:t, impactoReal:Number(t.peso_politico), riesgoReal:riesgoMax, veces:evsRecientes.length };
+    // tendencia -- compara la primera mitad de la ventana de 14 días contra la segunda,
+    // para saber si el tema está subiendo o bajando AHORA, no solo cuánto acumuló
+    const hace7dias = new Date(); hace7dias.setDate(hace7dias.getDate()-7);
+    const fechaMitad = hace7dias.toISOString().slice(0,10);
+    const mitadReciente = evsRecientes.filter(e=>e.fecha>=fechaMitad).length;
+    const mitadAnterior = evsRecientes.length - mitadReciente;
+    const tendencia = mitadReciente>mitadAnterior ? 'subiendo' : mitadReciente<mitadAnterior ? 'bajando' : 'estable';
+    return { tema:t, impactoReal:Number(t.peso_politico), riesgoReal:riesgoMax, veces:evsRecientes.length, tendencia };
   }).filter(c=>c.veces>0)
     .sort((a,b)=>(b.impactoReal+b.riesgoReal)-(a.impactoReal+a.riesgoReal));
 }
