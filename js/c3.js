@@ -463,19 +463,28 @@ function dibujarTendenciaEstadoC3(nombreEstado){
   if(!svgEl) return;
   const serie = construirTendenciaEstadoC3(nombreEstado);
   const max = Math.max(...serie.map(d=>d.total), 1);
-  const w=700, h=110, padB=18, padL=4, padR=4;
+  const w=200, h=60, padB=4, padL=2, padR=2;
   const anchoBarra = (w-padL-padR)/serie.length*0.7;
   const paso = (w-padL-padR)/serie.length;
-  const barras = serie.map((d,i)=>{
-    const alto = (d.total/max)*(h-padB-8);
+  svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  svgEl.innerHTML = serie.map((d,i)=>{
+    const alto = Math.max((d.total/max)*(h-padB-4), 1.5);
     const x = padL + i*paso + (paso-anchoBarra)/2;
     const y = h-padB-alto;
-    const diaCorto = d.fecha.slice(8,10);
-    return `<rect x="${x}" y="${y}" width="${anchoBarra}" height="${Math.max(alto,1)}" rx="2" fill="${d.total>0?'var(--teal)':'var(--line)'}" opacity="${d.total>0?0.85:0.3}"><title>${d.fecha}: ${d.total} nota${d.total!==1?'s':''}</title></rect>
-      <text x="${x+anchoBarra/2}" y="${h-4}" text-anchor="middle" font-size="7" fill="var(--ink-3)">${diaCorto}</text>`;
+    return `<rect class="barra-tendencia-c3" data-fecha="${d.fecha}" data-total="${d.total}" x="${x}" y="${y}" width="${anchoBarra}" height="${alto}" rx="1.5" fill="${d.total>0?'var(--teal)':'var(--line)'}" opacity="${d.total>0?0.85:0.3}" style="cursor:pointer;"/>`;
   }).join('');
-  svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
-  svgEl.innerHTML = barras;
+  svgEl.querySelectorAll('.barra-tendencia-c3').forEach(rect=>{
+    // mismo tooltip elegante que ya usa el resto del sitio (Agenda/Análisis), en vez del
+    // tooltip nativo del navegador (plano y lento) -- así se ve algo real con el hover,
+    // aunque la columna sea angosta y no quepan etiquetas de texto permanentes
+    rect.addEventListener('mouseenter', function(ev){
+      mostrarTooltipAgenda(`<strong>${this.dataset.fecha}</strong><br>${this.dataset.total} nota${this.dataset.total!=='1'?'s':''}`, ev);
+    });
+    rect.addEventListener('mousemove', function(ev){
+      mostrarTooltipAgenda(`<strong>${this.dataset.fecha}</strong><br>${this.dataset.total} nota${this.dataset.total!=='1'?'s':''}`, ev);
+    });
+    rect.addEventListener('mouseleave', ocultarTooltipAgenda);
+  });
 }
 
 function pintarDetalleC3(ent){
@@ -537,6 +546,8 @@ function pintarDetalleC3(ent){
           ${miniGraficaCategoriaC3(ent.conteoCategoria)}
           <div class="eyebrow" style="margin:14px 0 6px;">Temas relevantes</div>
           ${temasRelevantesHTML(ent.temasRelevantes) || '<p style="font-size:10.5px;color:var(--ink-3);">Nada de alta intensidad hoy todavía.</p>'}
+          <div class="eyebrow" style="margin:14px 0 6px;">Tendencia — 14 días</div>
+          <svg id="c3-tendencia-svg" style="width:100%;height:70px;display:block;"></svg>
         </div>
         <div style="flex:0 0 48%;overflow-y:auto;box-sizing:border-box;padding:0 14px;border-left:1px solid var(--line);border-right:1px solid var(--line);">
           <div class="eyebrow" style="margin-bottom:8px;">Actores e instituciones mencionados hoy — clic para ver historial</div>
@@ -546,10 +557,6 @@ function pintarDetalleC3(ent){
           <div class="eyebrow" style="margin-bottom:6px;padding:0 4px;flex-shrink:0;">Notas de hoy (${ent.notas.length})</div>
           <div id="c3-feed-notas" class="feed-lista" style="flex:1;min-height:0;overflow-y:auto !important;box-sizing:border-box;">${feedNotas}</div>
         </div>
-      </div>
-      <div style="margin-top:14px;background:var(--bg-1);border-radius:var(--radius-s);padding:12px 14px;">
-        <div class="eyebrow" style="margin-bottom:8px;">Tendencia de notas — últimos 14 días</div>
-        <svg id="c3-tendencia-svg" style="width:100%;height:120px;display:block;"></svg>
       </div>
     </div>
   `;
