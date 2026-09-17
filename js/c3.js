@@ -10,7 +10,7 @@ const ORDEN_ENTIDADES_C3 = ['Veracruz','Oaxaca','Chiapas','Tabasco','Campeche','
 
 const ACTORES_C3_JS = {
   'Veracruz': [
-    ['Rocío Nahle García','Gobernadora'], ['Ricardo Ahued Bardahuil','Secretario de Gobierno'],
+    ['Rocío Nahle García','Gobernadora','Nahle'], ['Ricardo Ahued Bardahuil','Secretario de Gobierno'],
     ['Manuel Huerta Ladrón de Guevara','Senador'], ['Sergio Gutiérrez Luna','Diputado federal'],
     ['Miguel Ángel Yunes Márquez','Senador'], ['Esteban Bautista Hernández','Diputado federal'],
     ['José Yunes Zorrilla','PRI'], ['Alberto Islas Reyes','Alcalde de Xalapa'],
@@ -52,14 +52,14 @@ const ACTORES_C3_JS = {
     ['Rolando Zapata Bello','PRI'], ['Vida Gómez Herrera','MC'],
   ],
   'Quintana Roo': [
-    ['Mara Lezama Espinosa','Gobernadora'], ['Eugenio Segura Vázquez','Ex senador','Gino'],
+    ['Mara Lezama Espinosa','Gobernadora','Lezama'], ['Eugenio Segura Vázquez','Ex senador','Gino'],
     ['Ana Patricia Peralta de la Peña','Alcaldesa de Benito Juárez (Cancún)'], ['Marybel Villegas Canché','Senadora'],
     ['Rafael Marín Mollinedo','Vínculos nacionales'], ['Juan Carrillo Soberanis','Diputado federal (PVEM)'],
     ['Renán Sánchez Tajonar','PVEM'], ['Humberto Aldana Navarro','Diputado federal (Morena)'],
     ['Julián Ricalde Magaña','Estructura en Benito Juárez'], ['Carlos Ulloa Pérez','Actor de relevancia federal, entorno de Sheinbaum'],
   ],
   'Puebla': [
-    ['Alejandro Armenta Mier','Gobernador'], ['José Luis García Parra','Coordinador de Gabinete','El Choco'],
+    ['Alejandro Armenta Mier','Gobernador','Armenta'], ['José Luis García Parra','Coordinador de Gabinete','El Choco'],
     ['José Chedraui Budib','Alcalde de Puebla','Chedraui'], ['Ignacio Mier Bañuelos','Diputado federal'],
     ['Xitlalic Ceja','Diputada local'],
     ['Rodrigo Abdala Dartigues','Morena'], ['Sergio Salomón Céspedes Peregrina','Exgobernador'],
@@ -455,7 +455,21 @@ function construirTendenciaEstadoC3(nombreEstado){
   return dias.map(fecha=>{
     const notasDelDia = ECOSISTEMA.eventos.filter(e=> e.entidad_c3===nombreEstado && e.fecha===fecha);
     const intensidadProm = notasDelDia.length ? notasDelDia.reduce((s,e)=>s+Number(e.intensidad),0)/notasDelDia.length : 0;
-    return { fecha, total: notasDelDia.length, intensidadProm };
+    // categoría dominante del día -- la que más notas tuvo
+    const conteoCat = {};
+    notasDelDia.forEach(e=> conteoCat[e.categoria] = (conteoCat[e.categoria]||0)+1);
+    const categoriaDominante = Object.entries(conteoCat).sort((a,b)=>b[1]-a[1])[0]?.[0] || null;
+    // actor/institución más mencionado del día -- mismo detector que ya usa el tablero
+    const actoresDelEstado = ACTORES_C3_JS[nombreEstado] || [];
+    const conteoActorDia = {};
+    notasDelDia.forEach(e=>{
+      const texto = sinAcentos(e.descripcion.toLowerCase());
+      actoresDelEstado.forEach(([nombre, cargo, apodo])=>{
+        if(generarVariantesActorC3(nombre, apodo).some(v=>texto.includes(v))) conteoActorDia[nombre] = (conteoActorDia[nombre]||0)+1;
+      });
+    });
+    const actorTop = Object.entries(conteoActorDia).sort((a,b)=>b[1]-a[1])[0]?.[0] || null;
+    return { fecha, total: notasDelDia.length, intensidadProm, categoriaDominante, actorTop };
   });
 }
 
@@ -467,33 +481,42 @@ function dibujarTendenciaEstadoC3(nombreEstado){
   const w=200, h=64, padB=4, padL=2, padR=2;
   const anchoBarra = (w-padL-padR)/serie.length*0.68;
   const paso = (w-padL-padR)/serie.length;
-  // color por INTENSIDAD promedio del día (mismos umbrales que clasificarImpacto en
-  // toda la plataforma), no solo "hubo o no hubo actividad" -- así un día con pocas
-  // notas graves se distingue de un día con muchas notas rutinarias, que es la señal
-  // que de verdad aporta a inteligencia
   const colorPorIntensidad = (intensidad, total) => {
     if(total===0) return 'var(--line)';
     if(intensidad>=7) return 'var(--riesgo-alto)';
     if(intensidad>=5) return 'var(--riesgo-medio)';
     return 'var(--riesgo-bajo)';
   };
+  // día de mayor y menor intensidad (solo entre los que sí tuvieron actividad) -- se
+  // marcan con un distintivo visual, no solo por color, para que salten a la vista de
+  // inmediato sin tener que pasar el cursor por las 14 barras una por una
+  const conActividad = serie.filter(d=>d.total>0);
+  const diaMasAlto = conActividad.length ? conActividad.reduce((a,b)=> b.intensidadProm>a.intensidadProm?b:a) : null;
+  const diaMasBajo = conActividad.length ? conActividad.reduce((a,b)=> b.intensidadProm<a.intensidadProm?b:a) : null;
+
   svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
-  const defs = `<defs><linearGradient id="grad-tendencia-c3" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-opacity="0.95"/><stop offset="100%" stop-opacity="0.55"/>
-  </linearGradient></defs>`;
   const linea_base = `<line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.5"/>`;
   const barras = serie.map((d,i)=>{
-    const alto = Math.max((d.total/max)*(h-padB-6), d.total>0?4:1.5);
+    const alto = Math.max((d.total/max)*(h-padB-10), d.total>0?4:1.5);
     const x = padL + i*paso + (paso-anchoBarra)/2;
     const y = h-padB-alto;
     const color = colorPorIntensidad(d.intensidadProm, d.total);
-    return `<rect class="barra-tendencia-c3" data-fecha="${d.fecha}" data-total="${d.total}" data-intensidad="${d.intensidadProm.toFixed(1)}" x="${x}" y="${y}" width="${anchoBarra}" height="${alto}" rx="1.5" fill="${color}" opacity="${d.total>0?0.9:0.35}" style="cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='${d.total>0?0.9:0.35}'"/>`;
+    const esMasAlto = diaMasAlto && d.fecha===diaMasAlto.fecha && d.intensidadProm>0;
+    const esMasBajo = diaMasBajo && d.fecha===diaMasBajo.fecha && diaMasAlto && diaMasBajo.fecha!==diaMasAlto.fecha;
+    // distintivo -- triángulo rojo arriba para el día más grave, punto verde para el más
+    // tranquilo, así se identifican sin depender solo del color de la barra
+    const marcador = esMasAlto
+      ? `<path d="M ${x+anchoBarra/2-3} ${y-6} L ${x+anchoBarra/2+3} ${y-6} L ${x+anchoBarra/2} ${y-1} Z" fill="var(--riesgo-alto)"/>`
+      : esMasBajo ? `<circle cx="${x+anchoBarra/2}" cy="${y-4}" r="2" fill="var(--riesgo-bajo)"/>` : '';
+    return `${marcador}<rect class="barra-tendencia-c3" data-fecha="${d.fecha}" data-total="${d.total}" data-intensidad="${d.intensidadProm.toFixed(1)}" data-categoria="${d.categoriaDominante||''}" data-actor="${d.actorTop||''}" x="${x}" y="${y}" width="${anchoBarra}" height="${alto}" rx="1.5" fill="${color}" opacity="${d.total>0?0.9:0.35}" style="cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='${d.total>0?0.9:0.35}'"/>`;
   }).join('');
-  svgEl.innerHTML = defs + linea_base + barras;
+  svgEl.innerHTML = linea_base + barras;
   svgEl.querySelectorAll('.barra-tendencia-c3').forEach(rect=>{
     const mostrar = (ev)=>{
-      const {fecha, total, intensidad} = rect.dataset;
-      const texto = total==='0' ? `<strong>${fecha}</strong><br>Sin actividad` : `<strong>${fecha}</strong><br>${total} nota${total!=='1'?'s':''} · intensidad prom. ${intensidad}`;
+      const {fecha, total, intensidad, categoria, actor} = rect.dataset;
+      let texto = total==='0' ? `<strong>${fecha}</strong><br>Sin actividad` : `<strong>${fecha}</strong><br>${total} nota${total!=='1'?'s':''} · intensidad prom. ${intensidad}`;
+      if(categoria) texto += `<br>Categoría: ${categoria}`;
+      if(actor) texto += `<br>Más mencionado: ${actor}`;
       mostrarTooltipAgenda(texto, ev);
     };
     rect.addEventListener('mouseenter', mostrar);
