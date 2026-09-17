@@ -478,50 +478,64 @@ function dibujarTendenciaEstadoC3(nombreEstado){
   if(!svgEl) return;
   const serie = construirTendenciaEstadoC3(nombreEstado);
   const max = Math.max(...serie.map(d=>d.total), 1);
-  const w=200, h=64, padB=4, padL=2, padR=2;
-  const anchoBarra = (w-padL-padR)/serie.length*0.68;
-  const paso = (w-padL-padR)/serie.length;
+  const w=200, h=64, padT=8, padB=6, padL=4, padR=4;
+  const paso = (w-padL-padR)/(serie.length-1);
   const colorPorIntensidad = (intensidad, total) => {
-    if(total===0) return 'var(--line)';
+    if(total===0) return 'var(--ink-3)';
     if(intensidad>=7) return 'var(--riesgo-alto)';
     if(intensidad>=5) return 'var(--riesgo-medio)';
     return 'var(--riesgo-bajo)';
   };
-  // día de mayor y menor intensidad (solo entre los que sí tuvieron actividad) -- se
-  // marcan con un distintivo visual, no solo por color, para que salten a la vista de
-  // inmediato sin tener que pasar el cursor por las 14 barras una por una
   const conActividad = serie.filter(d=>d.total>0);
   const diaMasAlto = conActividad.length ? conActividad.reduce((a,b)=> b.intensidadProm>a.intensidadProm?b:a) : null;
-  const diaMasBajo = conActividad.length ? conActividad.reduce((a,b)=> b.intensidadProm<a.intensidadProm?b:a) : null;
+  const diaMasBajo = conActividad.length>1 ? conActividad.reduce((a,b)=> b.intensidadProm<a.intensidadProm?b:a) : null;
 
+  // línea suave + área de degradado (mismo lenguaje visual que ya usamos en Análisis)
+  // en vez de barras planas -- se lee más como "tendencia" real, no como una cuadrícula
+  // de bloques. El día más grave y el más tranquilo se distinguen por TAMAÑO del punto y
+  // un halo alrededor, no por una forma aparte -- más visible en un espacio tan chico
+  // que un triángulo de 3px, que se perdía por completo.
+  const puntos = serie.map((d,i)=>{
+    const x = padL + i*paso;
+    const y = padT + (1-d.total/max)*(h-padT-padB);
+    return {x, y, d};
+  });
   svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
-  const linea_base = `<line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.5"/>`;
-  const barras = serie.map((d,i)=>{
-    const alto = Math.max((d.total/max)*(h-padB-10), d.total>0?4:1.5);
-    const x = padL + i*paso + (paso-anchoBarra)/2;
-    const y = h-padB-alto;
+
+  const lineaPath = 'M ' + puntos.map(p=>`${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' L ');
+  const areaPath = lineaPath + ` L ${puntos[puntos.length-1].x},${h-padB} L ${puntos[0].x},${h-padB} Z`;
+
+  const defs = `<defs><linearGradient id="grad-tend-c3-${nombreEstado.replace(/\s/g,'')}" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="var(--teal)" stop-opacity="0.35"/>
+    <stop offset="100%" stop-color="var(--teal)" stop-opacity="0"/>
+  </linearGradient></defs>`;
+  const lineaBase = `<line x1="${padL}" y1="${h-padB}" x2="${w-padR}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.5"/>`;
+  const area = `<path d="${areaPath}" fill="url(#grad-tend-c3-${nombreEstado.replace(/\s/g,'')})"/>`;
+  const linea = `<path d="${lineaPath}" fill="none" stroke="var(--teal)" stroke-width="1.3" stroke-opacity="0.55"/>`;
+
+  const puntosSvg = puntos.map(({x,y,d})=>{
     const color = colorPorIntensidad(d.intensidadProm, d.total);
-    const esMasAlto = diaMasAlto && d.fecha===diaMasAlto.fecha && d.intensidadProm>0;
-    const esMasBajo = diaMasBajo && d.fecha===diaMasBajo.fecha && diaMasAlto && diaMasBajo.fecha!==diaMasAlto.fecha;
-    // distintivo -- triángulo rojo arriba para el día más grave, punto verde para el más
-    // tranquilo, así se identifican sin depender solo del color de la barra
-    const marcador = esMasAlto
-      ? `<path d="M ${x+anchoBarra/2-3} ${y-6} L ${x+anchoBarra/2+3} ${y-6} L ${x+anchoBarra/2} ${y-1} Z" fill="var(--riesgo-alto)"/>`
-      : esMasBajo ? `<circle cx="${x+anchoBarra/2}" cy="${y-4}" r="2" fill="var(--riesgo-bajo)"/>` : '';
-    return `${marcador}<rect class="barra-tendencia-c3" data-fecha="${d.fecha}" data-total="${d.total}" data-intensidad="${d.intensidadProm.toFixed(1)}" data-categoria="${d.categoriaDominante||''}" data-actor="${d.actorTop||''}" x="${x}" y="${y}" width="${anchoBarra}" height="${alto}" rx="1.5" fill="${color}" opacity="${d.total>0?0.9:0.35}" style="cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='${d.total>0?0.9:0.35}'"/>`;
+    const esMasAlto = diaMasAlto && d.fecha===diaMasAlto.fecha;
+    const esMasBajo = diaMasBajo && d.fecha===diaMasBajo.fecha;
+    const radio = esMasAlto ? 4.5 : esMasBajo ? 3.2 : d.total>0 ? 2.2 : 1.4;
+    // halo -- círculo más grande y tenue detrás del punto principal, solo para el día
+    // más grave (destaca sin depender de una forma distinta a las demás)
+    const halo = esMasAlto ? `<circle cx="${x}" cy="${y}" r="7.5" fill="${color}" opacity="0.22"/>` : '';
+    return `${halo}<circle class="punto-tendencia-c3" data-fecha="${d.fecha}" data-total="${d.total}" data-intensidad="${d.intensidadProm.toFixed(1)}" data-categoria="${d.categoriaDominante||''}" data-actor="${d.actorTop||''}" cx="${x}" cy="${y}" r="${radio}" fill="${color}" stroke="var(--bg-2)" stroke-width="${esMasAlto?1:0.6}" style="cursor:pointer;"/>`;
   }).join('');
-  svgEl.innerHTML = linea_base + barras;
-  svgEl.querySelectorAll('.barra-tendencia-c3').forEach(rect=>{
+
+  svgEl.innerHTML = defs + lineaBase + area + linea + puntosSvg;
+  svgEl.querySelectorAll('.punto-tendencia-c3').forEach(punto=>{
     const mostrar = (ev)=>{
-      const {fecha, total, intensidad, categoria, actor} = rect.dataset;
+      const {fecha, total, intensidad, categoria, actor} = punto.dataset;
       let texto = total==='0' ? `<strong>${fecha}</strong><br>Sin actividad` : `<strong>${fecha}</strong><br>${total} nota${total!=='1'?'s':''} · intensidad prom. ${intensidad}`;
       if(categoria) texto += `<br>Categoría: ${categoria}`;
       if(actor) texto += `<br>Más mencionado: ${actor}`;
       mostrarTooltipAgenda(texto, ev);
     };
-    rect.addEventListener('mouseenter', mostrar);
-    rect.addEventListener('mousemove', mostrar);
-    rect.addEventListener('mouseleave', ocultarTooltipAgenda);
+    punto.addEventListener('mouseenter', function(ev){ this.setAttribute('r', Number(this.getAttribute('r'))+1.5); mostrar(ev); });
+    punto.addEventListener('mousemove', mostrar);
+    punto.addEventListener('mouseleave', function(){ this.setAttribute('r', this.dataset.total==='0'?1.4:2.2); ocultarTooltipAgenda(); });
   });
 }
 
