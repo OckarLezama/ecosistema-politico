@@ -142,8 +142,24 @@ def variantes_actor_c3(nombre_completo, apodo=None):
     if len(partes) >= 3:
         variantes.append(f'{partes[0]} {partes[-1]}')
         variantes.append(f'{partes[-2]} {partes[-1]}')
+    if len(partes) >= 4:
+        # nombres de 4 palabras (nombre + 2 apellidos + a veces un segundo nombre) --
+        # antes solo se cubrían las 2 primeras y las 2 últimas palabras juntas, nunca la
+        # combinación del medio. Caso real encontrado: "Sergio Salomón Céspedes
+        # Peregrina" no generaba "Salomón Céspedes" (nombre + primer apellido, sin el
+        # primer nombre de pila), una forma común de referirse a alguien con nombre
+        # compuesto o 2 apellidos.
+        variantes.append(f'{partes[1]} {partes[2]}')
+        # primeras 3 palabras juntas -- caso real: "Adán Augusto López Hernández" se
+        # suele nombrar como "Adán Augusto López" (nombre compuesto + primer apellido,
+        # sin el segundo apellido).
+        variantes.append(f'{partes[0]} {partes[1]} {partes[2]}')
     if apodo:
-        variantes.append(apodo)
+        # apodo ahora acepta uno o varios (lista o string suelto) -- necesario para
+        # casos como "Pepe Chedraui", donde "Pepe" es apodo de "José" y no se puede
+        # derivar de ninguna combinación de las palabras del nombre real
+        apodos = apodo if isinstance(apodo, list) else [apodo]
+        variantes.extend(apodos)
     return [sin_acentos(v.lower()) for v in variantes]
 
 ACTORES_C3 = {
@@ -185,7 +201,7 @@ ACTORES_C3 = {
         ('Javier May Rodríguez', 'Gobernador', None),
         ('Adán Augusto López Hernández', 'Senador', None),
         ('José Ramiro López Obrador', 'Secretario de Gobierno', None),
-        ('Andrés Manuel López Beltrán', 'Proyecto electoral en Tabasco', None),
+        ('Andrés Manuel López Beltrán', 'Proyecto electoral en Tabasco', 'Andy'),
         ('Yolanda Osuna Huerta', 'Alcaldesa de Centro (Villahermosa)', None),
         ('Octavio Romero Oropeza', 'Figura histórica tabasqueña', None),
         ('Rafael Marín Mollinedo', 'Vínculos nacionales', None),
@@ -221,7 +237,7 @@ ACTORES_C3 = {
     ],
     'Quintana Roo': [
         ('Mara Lezama Espinosa', 'Gobernadora', 'Lezama'),
-        ('Eugenio Segura Vázquez', 'Ex senador', 'Gino'),
+        ('Eugenio Segura Vázquez', 'Ex senador', ['Gino', 'Gino Segura']),
         ('Ana Patricia Peralta de la Peña', 'Alcaldesa de Benito Juárez (Cancún)', None),
         ('Marybel Villegas Canché', 'Senadora', None),
         ('Rafael Marín Mollinedo', 'Vínculos nacionales', None),
@@ -234,9 +250,9 @@ ACTORES_C3 = {
     'Puebla': [
         ('Alejandro Armenta Mier', 'Gobernador', 'Armenta'),
         ('José Luis García Parra', 'Coordinador de Gabinete', 'El Choco'),
-        ('José Chedraui Budib', 'Alcalde de Puebla', 'Chedraui'),
+        ('José Chedraui Budib', 'Alcalde de Puebla', ['Chedraui', 'Pepe Chedraui']),
         ('Xitlalic Ceja', 'Diputada local', None),
-        ('Ignacio Mier Bañuelos', 'Diputado federal', None),
+        ('Ignacio Mier Bañuelos', 'Diputado federal', 'Nacho Mier'),
         ('Rodrigo Abdala Dartigues', 'Morena', None),
         ('Sergio Salomón Céspedes Peregrina', 'Exgobernador', None),
         ('Mario Riestra Piña', 'PAN', None),
