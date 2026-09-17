@@ -638,13 +638,15 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     modal.innerHTML = `
       <div class="ficha-modal-card" style="max-width:560px;width:92vw;">
         <button class="ficha-modal-close">✕</button>
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;">
+        <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;">
           ${avatarHTML(nombreActor, 72, conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)', esInstitucionModal, true)}
-          <h3 style="font-family:var(--f-display);margin:0;">${nombreActor}</h3>
+          <div style="flex:1;">
+            <h3 style="font-family:var(--f-display);margin:0 0 4px;">${nombreActor}</h3>
+            <p style="font-size:11px;color:var(--ink-3);margin:0;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total</p>
+            ${barraBalance}
+            <p style="font-size:10px;color:var(--ink-3);margin:0;">${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeu} neutra${conteoNeu!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
+          </div>
         </div>
-        <p style="font-size:11px;color:var(--ink-3);margin:0;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total</p>
-        ${barraBalance}
-        <p style="font-size:10px;color:var(--ink-3);margin:0 0 14px;">${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeu} neutra${conteoNeu!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
 
         <div class="eyebrow" style="color:var(--teal);font-size:10.5px;margin-bottom:6px;">HOY — ${totalNotasHoyMostradas} nota${totalNotasHoyMostradas!==1?'s':''}</div>
         <div style="margin-bottom:14px;">
