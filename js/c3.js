@@ -579,7 +579,7 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
     // barra visual del balance -- en vez de solo texto plano "X positivas, Y negativas"
     const totalParaBarra = Math.max(1, totalMenciones);
     const barraBalance = totalMenciones ? `
-      <div style="display:flex;gap:2px;height:6px;border-radius:99px;overflow:hidden;margin:8px auto 4px;max-width:220px;">
+      <div style="display:flex;gap:2px;height:6px;border-radius:99px;overflow:hidden;margin:4px 0;max-width:220px;">
         <div style="width:${conteoPos/totalParaBarra*100}%;background:var(--riesgo-bajo);"></div>
         <div style="width:${conteoNeu/totalParaBarra*100}%;background:var(--ink-3);"></div>
         <div style="width:${conteoNeg/totalParaBarra*100}%;background:var(--riesgo-alto);"></div>
@@ -610,11 +610,9 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
         <button class="ficha-modal-close">✕</button>
         <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;">
           ${avatarHTML(nombreActor, 72, conteoPos>=conteoNeg?'var(--riesgo-bajo)':'var(--riesgo-alto)', esInstitucionModal, true)}
-          <div>
-            <h3 style="font-family:var(--f-display);margin:0 0 3px;">${nombreActor}</h3>
-            <p style="font-size:11px;color:var(--ink-3);margin:0;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total</p>
-          </div>
+          <h3 style="font-family:var(--f-display);margin:0;">${nombreActor}</h3>
         </div>
+        <p style="font-size:11px;color:var(--ink-3);margin:0;">${totalMenciones} ${totalMenciones!==1?'menciones':'mención'} en total</p>
         ${barraBalance}
         <p style="font-size:10px;color:var(--ink-3);margin:0 0 14px;">${conteoPos} positiva${conteoPos!==1?'s':''} · ${conteoNeu} neutra${conteoNeu!==1?'s':''} · ${conteoNeg} negativa${conteoNeg!==1?'s':''} (histórico)</p>
 
