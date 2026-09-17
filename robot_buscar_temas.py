@@ -879,7 +879,21 @@ def buscar_candidatos():
                     if esColumnaDeOpinion(enlace):
                         titulo_final = f'[Opinión] {titulo_final}'
                     tema_auto = buscar_tema_informativo_similar(titulo_original, actores_altos) or crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
-                    intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5)
+                    conteo_hoy_por_tema[tema_auto] = conteo_hoy_por_tema.get(tema_auto, 0) + 1
+                    if alerta_actor:
+                        intensidad_final = 8
+                    elif es_migracion:
+                        intensidad_final = 6
+                    else:
+                        # ANTES era un valor fijo de 5 para TODO lo que no fuera alerta o
+                        # migración -- eso aplanaba por completo la intensidad real de C3:
+                        # cada estado terminaba con pulso EXACTAMENTE 50/100, sin importar
+                        # cuántas notas tuviera ni qué tan relevantes fueran (bug real
+                        # confirmado: Veracruz, Oaxaca, Chiapas, Tabasco, Campeche,
+                        # Quintana Roo y Puebla, todos en 50/100 exacto, el mismo día).
+                        # Ahora se usa la misma fórmula real de intensidad que ya varía
+                        # según cobertura cruzada, persistencia y mención de actor.
+                        intensidad_final = calcular_intensidad(texto_completo, tema_auto, eventos_existentes, actores_altos, conteo_hoy_por_tema[tema_auto])
                     similar_existente = None
                     for ev_prev in eventos_nuevos:
                         if ev_prev['tema_id']==tema_auto and ev_prev['fecha']==hoy_mx.strftime('%Y-%m-%d'):
