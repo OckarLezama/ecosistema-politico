@@ -911,6 +911,25 @@ function renderAgendaGrid(){
   if(vistaAgenda==='genealogia'){ renderGenealogiaAgenda(); return; }
 }
 
+function narrativaMatrizAgenda(crudos){
+  if(!crudos.length) return 'Sin actividad relevante en los últimos 14 días.';
+  const top = crudos[0];
+  const subiendo = crudos.filter(c=>c.tendencia==='subiendo');
+  const bajando = crudos.filter(c=>c.tendencia==='bajando');
+  const conteoCategoria = {};
+  crudos.forEach(c=> conteoCategoria[c.tema.categoria] = (conteoCategoria[c.tema.categoria]||0)+1);
+  const [catDominante, nCat] = Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1])[0];
+
+  let f1 = `${crudos.length} tema${crudos.length!==1?'s':''} con actividad real en los últimos 14 días, concentrados en ${catDominante} (${nCat} de ${crudos.length}).`;
+  let f2 = `${top.tema.nombre} es el de mayor prioridad ahora mismo — ${top.veces} nota${top.veces!==1?'s':''} recientes y ${top.tendencia==='subiendo'?'sigue escalando':top.tendencia==='bajando'?'ya se está enfriando':'se mantiene estable'}.`;
+  let f3;
+  if(subiendo.length > bajando.length) f3 = `El ambiente general se está calentando: ${subiendo.length} tema${subiendo.length!==1?'s':''} escalando frente a solo ${bajando.length} enfriándose.`;
+  else if(bajando.length > subiendo.length) f3 = `El ambiente general se está enfriando: ${bajando.length} tema${bajando.length!==1?'s':''} a la baja frente a ${subiendo.length} escalando.`;
+  else f3 = `Sin una dirección clara predominante — escalamiento y enfriamiento están equilibrados.`;
+
+  return `${f1} ${f2} ${f3}`;
+}
+
 function sintesisMatrizAgenda(crudos){
   if(!crudos.length) return '';
   const top = crudos.slice(0,4);
@@ -942,7 +961,7 @@ function sintesisMatrizAgenda(crudos){
   return `
     <div class="contexto-tema-box" style="border-left-color:var(--riesgo-alto);margin:10px 14px 0;">
       <div class="eyebrow" style="color:var(--riesgo-alto);">Lo que exige atención ahora mismo</div>
-      <p style="font-size:11px;color:var(--ink-3);margin:4px 0 8px;">${enAltoAlto} tema${enAltoAlto!==1?'s':''} en el cuadrante de mayor exposición (impacto y riesgo altos a la vez)${enBajoBajo?`; ${enBajoBajo} en el de menor exposición` : ''}.</p>
+      <p style="font-size:12px;line-height:1.6;color:var(--ink-1);margin:6px 0 10px;background:var(--bg-1);border-left:3px solid var(--riesgo-alto);border-radius:0 6px 6px 0;padding:8px 12px;">${narrativaMatrizAgenda(crudos)}</p>
       ${listaTop}
     </div>`;
 }
