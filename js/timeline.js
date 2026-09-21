@@ -1,13 +1,31 @@
 /* ============================================================
-   V2 — TIMELINE
-   Línea única de tiempo completa, TODOS los niveles (1/2/3) desde
-   el inicio del sexenio. Nivel 1 (marca agenda nacional): color
-   real por riesgo del evento (alto/medio/bajo), tarjeta grande.
-   Nivel 2/3: gris, más chicas — presentes pero sin competir
-   visualmente con lo que sí marcó agenda. Sin franja de umbral —
-   se intentó dos veces (aquí y en V1) sin lograr que se viera bien;
-   en su lugar, línea limpia que cubre todo el ancho. Hover con
-   actores del tema. Zoom semántico ya validado.
+   V3 — TIMELINE
+   Línea única de tiempo completa, Nivel 1/2/3 reales (nunca "auto-")
+   desde el inicio del sexenio.
+
+   Cambios V2 -> V3 (auditoría de inteligencia, 2026-09-21):
+   1) Cada tema Nivel 1 ya NO es un solo punto en su fecha de mayor
+      intensidad -- ahora dibuja un TRAMO (primera a última nota),
+      así se distingue un pico aislado de una crisis sostenida.
+      La tarjeta muestra "Xd activo · Y notas" en vez de una fecha
+      suelta.
+   2) El umbral crítico/elevado (los círculos que pulsan) ahora usa
+      la MISMA base que las tarjetas visibles: solo eventos de temas
+      Nivel 1 reales. Antes sumaba TODOS los eventos del mes,
+      incluido el ruido de los cientos de auto-informativos locales
+      de C3 -- un mes podía marcarse "crítico" por volumen que ni
+      siquiera se veía como tarjeta en el timeline.
+   3) Nivel 2/3 real (no auto-) ya se dibuja de verdad, en gris y
+      más chico -- antes el comentario lo prometía pero el filtro
+      real (puntosBase) solo tomaba nivel_relevancia===1, así que
+      ese código nunca se ejecutaba.
+   4) Nueva narrativa de tendencia: compara los últimos 90 días
+      contra los 90 anteriores (temas activos, intensidad acumulada,
+      dirección) -- antes el módulo era 100% visual, sin una sola
+      oración de lectura.
+
+   Zoom semántico y empaquetado en zigzag (para evitar traslapes de
+   tarjetas) se conservan de V2, ya validados.
    ============================================================ */
 
 const INICIO_SEXENIO_TL = '2024-10';
@@ -41,6 +59,10 @@ function mesesSexenioTL(){
 
 function nivelImpactoTL(intensidad){ if(intensidad>=9) return 'alto'; if(intensidad>=7) return 'medio'; return 'bajo'; }
 
+function idsNivel1RealesTL(){
+  return new Set(ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>t.id));
+}
+
 // temas más persistentes (más días activos desde su primera mención) — para el panel de esquina
 function temasPersistentesTL(){
   // score combinado (menciones × impacto promedio), no solo días — un tema mencionado muchas
@@ -56,7 +78,7 @@ function temasPersistentesTL(){
 
 function mesConMasAgendaTL(){
   const meses = mesesSexenioTL();
-  const idsNivel1 = new Set(ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1).map(t=>t.id));
+  const idsNivel1 = idsNivel1RealesTL();
   const conteoPorMes = {};
   meses.forEach(m=>conteoPorMes[m]=0);
   ECOSISTEMA.eventos.forEach(e=>{
@@ -78,13 +100,13 @@ function anioConMasTemasTL(){
 function renderKpisTL(){
   const cont = document.getElementById('timeline-kpis');
   if(!cont) return;
-  const nivel1 = ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1);
+  const nivel1 = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1);
   const conteo = {alto:0,medio:0,bajo:0};
   nivel1.forEach(t=>{
-    const p = puntoPrincipalTL(t.id);
-    if(!p) return;
-    if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return; // respeta el año seleccionado
-    conteo[nivelImpactoTL(p.intensidad)]++;
+    const dur = duracionTemaTL(t.id);
+    if(!dur) return;
+    if(anioFiltroTL && !dur.fechaPico.startsWith(anioFiltroTL)) return; // respeta el año seleccionado
+    conteo[nivelImpactoTL(dur.intensidadPico)]++;
   });
   const COLOR = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
   cont.innerHTML = ['alto','medio','bajo'].map(niv=>
@@ -97,6 +119,18 @@ function renderKpisTL(){
     const [anioTop, conteoTop] = anios[0];
     cont.innerHTML += `<span style="border-left:1px solid var(--line);padding-left:10px;color:var(--ink-2);">Año con más actividad: <strong style="color:var(--ink-1);">${anioTop}</strong> (${conteoTop} eventos)</span>`;
   }
+}
+
+// NUEVO: duración real de un tema (no solo su evento de mayor intensidad) -- primera y última
+// nota, días activo, y cuál fue su pico dentro de ese rango. Esto es lo que permite distinguir
+// en el dibujo un pico aislado de una crisis sostenida durante meses.
+function duracionTemaTL(temaId){
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).slice().sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  if(!evs.length) return null;
+  const fechaInicio = evs[0].fecha, fechaFin = evs[evs.length-1].fecha;
+  const dias = Math.max(0, Math.round((new Date(fechaFin)-new Date(fechaInicio))/86400000));
+  const pico = evs.slice().sort((a,b)=>b.intensidad-a.intensidad)[0];
+  return { fechaInicio, fechaFin, dias, numEventos: evs.length, fechaPico: pico.fecha, intensidadPico: pico.intensidad };
 }
 
 function puntoPrincipalTL(temaId){
@@ -129,6 +163,9 @@ function mostrarTooltipTL(d, ev){
   const reacciones = actoresDeTemaTL(d.tema);
   const esNivel1 = Number(d.tema.nivel_relevancia)===1;
   let html = `<strong>${d.tema.nombre}</strong><br><span style="font-size:10px;opacity:.85;">${d.fecha} · Repercusión ${d.intensidad}/10</span>`;
+  if(d.duracion && d.duracion.dias>1){
+    html += `<br><span style="font-size:10px;opacity:.85;">Activo del ${d.duracion.fechaInicio} al ${d.duracion.fechaFin} (${d.duracion.dias} días, ${d.duracion.numEventos} notas)</span>`;
+  }
   if(esNivel1 && typeof calcularIndiceEscalamiento==='function'){
     const indice = calcularIndiceEscalamiento(d.tema);
     const colorIdx = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
@@ -138,6 +175,50 @@ function mostrarTooltipTL(d, ev){
     html += `<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.4;">${reacciones.join('<br>')}</span>`;
   }
   mostrarTooltipAgenda(html, ev);
+}
+
+// NUEVO: lectura de tendencia -- últimos 90 días vs los 90 anteriores, sobre la MISMA base que
+// alimenta el resto del módulo (solo temas Nivel 1 reales). Requiere un <div id="timeline-narrativa">
+// en el HTML del panel de Timeline (junto a #timeline-kpis).
+function narrativaTimelineTL(){
+  const cont = document.getElementById('timeline-narrativa');
+  if(!cont) return;
+
+  const idsNivel1 = idsNivel1RealesTL();
+  const hoy = new Date();
+  const hace90 = new Date(hoy); hace90.setDate(hace90.getDate()-90);
+  const hace180 = new Date(hoy); hace180.setDate(hace180.getDate()-180);
+  const fmt = d=>d.toISOString().slice(0,10);
+  const strHace90 = fmt(hace90), strHace180 = fmt(hace180);
+
+  const eventosNivel1 = ECOSISTEMA.eventos.filter(e=>idsNivel1.has(e.tema_id));
+  const actuales = eventosNivel1.filter(e=>e.fecha>=strHace90);
+  const previos = eventosNivel1.filter(e=>e.fecha>=strHace180 && e.fecha<strHace90);
+
+  if(!actuales.length && !previos.length){
+    cont.innerHTML = '<p style="font-size:12px;color:var(--ink-3);margin:0 0 10px;">Sin actividad de agenda nacional real en los últimos 6 meses.</p>';
+    return;
+  }
+
+  const temasActuales = new Set(actuales.map(e=>e.tema_id));
+  const temasPrevios = new Set(previos.map(e=>e.tema_id));
+  const intensidadActual = actuales.reduce((s,e)=>s+e.intensidad,0);
+  const intensidadPrevia = previos.reduce((s,e)=>s+e.intensidad,0);
+  const cambioPct = intensidadPrevia>0
+    ? Math.round(((intensidadActual-intensidadPrevia)/intensidadPrevia)*100)
+    : (intensidadActual>0 ? 100 : 0);
+  const direccion = cambioPct>10 ? 'al alza' : cambioPct<-10 ? 'a la baja' : 'estable';
+  const colorDireccion = {'al alza':'var(--riesgo-alto)','a la baja':'var(--riesgo-bajo)','estable':'var(--riesgo-medio)'}[direccion];
+
+  const porTemaActual = {};
+  actuales.forEach(e=>{ porTemaActual[e.tema_id] = (porTemaActual[e.tema_id]||0) + e.intensidad; });
+  const idTopActual = Object.entries(porTemaActual).sort((a,b)=>b[1]-a[1])[0];
+  const temaTop = idTopActual ? ECOSISTEMA.temas.find(t=>t.id===idTopActual[0]) : null;
+
+  const f1 = `Últimos 90 días: <strong>${temasActuales.size}</strong> tema${temasActuales.size!==1?'s':''} de agenda nacional con actividad real, frente a <strong>${temasPrevios.size}</strong> en el trimestre anterior — tensión <strong style="color:${colorDireccion}">${direccion}</strong>${intensidadPrevia>0?` (${cambioPct>0?'+':''}${cambioPct}%)`:''}.`;
+  const f2 = temaTop ? ` El de mayor peso reciente es <strong>${temaTop.nombre}</strong>.` : '';
+
+  cont.innerHTML = `<p style="font-size:12.5px;line-height:1.5;color:var(--ink-2);background:var(--bg-1);border-left:3px solid ${colorDireccion};padding:8px 12px;border-radius:4px;margin:0 0 10px;">${f1}${f2}</p>`;
 }
 
 function renderTimeline(){
@@ -156,13 +237,27 @@ function renderTimeline(){
   const fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00'); fechaFin.setMonth(fechaFin.getMonth()+1);
   tlXScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padX, tlWidth-padX]);
 
-  const puntosBase = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>{ // criterio real y definitivo: SOLO temas investigados a mano (nunca "auto-", sin importar a qué nivel se hayan "graduado" por acumulación de duplicados) Y Nivel 1 confirmado
+  // Nivel 1 real: ahora trae también la duración completa (fix #1), no solo la fecha pico
+  const puntosNivel1 = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1).map(t=>{
+    const dur = duracionTemaTL(t.id);
+    if(!dur) return null;
+    if(anioFiltroTL && !dur.fechaPico.startsWith(anioFiltroTL)) return null;
+    return {
+      tema:t, fecha:dur.fechaPico, intensidad:dur.intensidadPico, duracion:dur,
+      xBase: tlXScaleBase(new Date(dur.fechaPico)),
+    };
+  }).filter(Boolean);
+
+  // Nivel 2/3 real: ahora sí se dibuja (fix #3) -- antes el código de estilo ya existía pero
+  // nunca se alimentaba con datos
+  const puntosNivel23 = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && [2,3].includes(Number(t.nivel_relevancia))).map(t=>{
     const p = puntoPrincipalTL(t.id);
     if(!p) return null;
     if(anioFiltroTL && !p.fecha.startsWith(anioFiltroTL)) return null;
-    return { tema:t, fecha:p.fecha, intensidad:p.intensidad, xBase: tlXScaleBase(new Date(p.fecha)) };
+    return { tema:t, fecha:p.fecha, intensidad:p.intensidad, duracion:null, xBase: tlXScaleBase(new Date(p.fecha)) };
   }).filter(Boolean);
-  tlPuntos = empaquetarZigzagTL(puntosBase, 210);
+
+  tlPuntos = empaquetarZigzagTL([...puntosNivel1, ...puntosNivel23], 210);
 
   // alto DINÁMICO según cuántos niveles hagan falta de verdad — antes era fijo (470px) y con
   // muchos puntos cercanos en fecha, las tarjetas de los niveles más altos se salían del cuadro
@@ -186,6 +281,7 @@ function renderTimeline(){
   tlSvg.insert('rect','.tl-zoom-container').attr('x',0).attr('y',0).attr('width',tlWidth).attr('height',tlHeight).attr('fill','url(#tl-grid)');
 
   renderKpisTL();
+  narrativaTimelineTL();
 
   // el usuario puede alejar manualmente (rueda del mouse / gesto de pellizco) si hay mucha
   // densidad — el auto-alejado automático se intentó y rompió el zoom, se revirtió
@@ -223,16 +319,23 @@ function dibujarTL(xScaleActual){
     .attr('stroke','var(--ink-2)').attr('stroke-width',2);
 
   // puntos que SÍ parpadean en el mes exacto que cruzó umbral crítico/elevado — versión chica
-  // de la franja que falló, solo la señal puntual, no un bloque completo
+  // de la franja que falló, solo la señal puntual, no un bloque completo.
+  // FIX #2: la suma ahora es SOLO de eventos de temas Nivel 1 reales -- la misma base que
+  // alimenta las tarjetas visibles. Antes sumaba TODOS los eventos del mes (incluido el ruido
+  // de auto-informativos locales de C3), lo que podía marcar un mes como "crítico" por volumen
+  // que ni siquiera se veía representado como tarjeta en el timeline.
+  const idsNivel1 = idsNivel1RealesTL();
   const UMBRAL_EL=21, UMBRAL_CR=39;
-  const totalesPorMesUmbral = meses.map(m=> ECOSISTEMA.eventos.filter(e=>e.fecha.slice(0,7)===m).reduce((s,e)=>s+e.intensidad,0));
+  const totalesPorMesUmbral = meses.map(m=>
+    ECOSISTEMA.eventos.filter(e=>e.fecha.slice(0,7)===m && idsNivel1.has(e.tema_id)).reduce((s,e)=>s+e.intensidad,0)
+  );
   meses.forEach((m,i)=>{
     const total = totalesPorMesUmbral[i];
     if(total>=UMBRAL_EL){
       const color = total>=UMBRAL_CR ? 'var(--riesgo-alto)' : 'var(--riesgo-medio)';
       tlContainer.append('circle').attr('class','nodo-halo').attr('cx',xScaleActual(new Date(m+'-15'))).attr('cy',tlYLinea)
         .attr('r',7).attr('fill',color).attr('fill-opacity',0.5)
-        .append('title').text(`${m}: umbral ${total>=UMBRAL_CR?'crítico':'elevado'} (${total})`);
+        .append('title').text(`${m}: umbral ${total>=UMBRAL_CR?'crítico':'elevado'} (${total}, solo agenda nacional real)`);
     }
   });
 
@@ -267,6 +370,16 @@ function dibujarTL(xScaleActual){
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
     const gg = d3.select(this).attr('opacity', esNivel1?1:0.7);
 
+    // FIX #1: tramo de actividad real del tema (primera a última nota) -- se dibuja detrás de
+    // todo lo demás, como una barra semitransparente sobre la línea principal. Un tema activo
+    // 1 solo día no dibuja tramo (dias<=1); uno activo meses sí se distingue visualmente.
+    if(d.duracion && d.duracion.dias>1){
+      const xIni = xScaleActual(new Date(d.duracion.fechaInicio));
+      const xFin = xScaleActual(new Date(d.duracion.fechaFin));
+      gg.append('line').attr('x1',xIni).attr('y1',tlYLinea).attr('x2',xFin).attr('y2',tlYLinea)
+        .attr('stroke',color).attr('stroke-width',5).attr('stroke-opacity',0.32).attr('stroke-linecap','round');
+    }
+
     // el punto de nivel 1 pulsa suavemente (mismo patrón ya validado en la Matriz de Agenda)
     gg.append('circle').attr('cx',x).attr('cy',tlYLinea).attr('r', esNivel1?9:4)
       .attr('fill',color).attr('fill-opacity',0.3).attr('class', esNivel1?'nodo-halo':null);
@@ -289,14 +402,19 @@ function dibujarTL(xScaleActual){
       .attr('font-size', esNivel1?'9.5px':'8px').attr('font-weight',esNivel1?'700':'500').attr('fill', esNivel1?'var(--ink-1)':'var(--ink-3)')
       .text(d.tema.nombre.length>(esNivel1?24:22) ? d.tema.nombre.slice(0,(esNivel1?22:20))+'…' : d.tema.nombre);
     if(esNivel1){
-      gg.append('text').attr('x',x).attr('y',yTarjeta+27).attr('text-anchor','middle').attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(d.fecha);
-    if(esNivel1 && typeof calcularIndiceEscalamiento==='function'){
-      const indice = calcularIndiceEscalamiento(d.tema);
-      const colorIdx = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
-      const cxBadge = x+anchoTarjeta/2-9, cyBadge = yTarjeta+9;
-      gg.append('circle').attr('cx',cxBadge).attr('cy',cyBadge).attr('r',9).attr('fill',colorIdx).attr('stroke','var(--bg-1)').attr('stroke-width',1.5);
-      gg.append('text').attr('x',cxBadge).attr('y',cyBadge+3).attr('text-anchor','middle').attr('font-size','7px').attr('font-weight','700').attr('font-family','var(--f-mono)').attr('fill','#0E1116').text(indice.total);
-    }
+      // FIX #1: antes solo mostraba la fecha pico -- ahora, si el tema estuvo activo más de un
+      // día, muestra duración + total de notas (información de persistencia real)
+      const textoFecha = (d.duracion && d.duracion.dias>1)
+        ? `${d.duracion.dias}d activo · ${d.duracion.numEventos} notas`
+        : d.fecha;
+      gg.append('text').attr('x',x).attr('y',yTarjeta+27).attr('text-anchor','middle').attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(textoFecha);
+      if(typeof calcularIndiceEscalamiento==='function'){
+        const indice = calcularIndiceEscalamiento(d.tema);
+        const colorIdx = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
+        const cxBadge = x+anchoTarjeta/2-9, cyBadge = yTarjeta+9;
+        gg.append('circle').attr('cx',cxBadge).attr('cy',cyBadge).attr('r',9).attr('fill',colorIdx).attr('stroke','var(--bg-1)').attr('stroke-width',1.5);
+        gg.append('text').attr('x',cxBadge).attr('y',cyBadge+3).attr('text-anchor','middle').attr('font-size','7px').attr('font-weight','700').attr('font-family','var(--f-mono)').attr('fill','#0E1116').text(indice.total);
+      }
     }
   });
 }
