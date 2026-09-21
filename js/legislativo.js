@@ -78,26 +78,69 @@ function badgeEstancamientoHTML(dias){
   return `<span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);">${dias}d en esta etapa</span>`;
 }
 
-// -- ESTILOS INYECTADOS (transiciones, pulso, trazo animado) --
+// -- ESTILOS INYECTADOS (lienzo de cuadrícula, pulso, trazo animado, tramo vivo) --
 // se inyectan una sola vez desde JS para no depender de que Ockar edite css/styles.css a mano
 function inyectarEstilosLegV3(){
-  if(document.getElementById('legislativo-v3-estilos')) return;
+  const previo = document.getElementById('legislativo-v3-estilos');
+  if(previo) previo.remove(); // por si se recarga con una versión de estilos distinta en caliente
   const style = document.createElement('style');
   style.id = 'legislativo-v3-estilos';
   style.textContent = `
     @keyframes leg-pulso { 0%{ box-shadow:0 0 0 0 rgba(45,212,191,.55); } 70%{ box-shadow:0 0 0 9px rgba(45,212,191,0); } 100%{ box-shadow:0 0 0 0 rgba(45,212,191,0); } }
     @keyframes leg-trazo { to { stroke-dashoffset: 0; } }
-    .reforma-card { transition: border-color .18s ease, box-shadow .18s ease; }
+    @keyframes leg-fluye { to { stroke-dashoffset: -24; } }
+    .reforma-card { transition: border-color .18s ease, box-shadow .18s ease; background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--radius-s); padding: 0; margin-bottom: 14px; overflow: hidden; }
     .reforma-card:hover { border-color: var(--teal); }
-    .reforma-card-cabeza { cursor: pointer; }
+    .reforma-card-cabeza { cursor: pointer; padding: 16px 16px 0; }
+
+    /* el lienzo -- cuadrícula de puntos de fondo, como un espacio de diseño, donde
+       vive el diagrama de proceso y la línea de tiempo de reacciones */
+    .reforma-lienzo {
+      position: relative;
+      background-color: var(--bg-1);
+      background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
+      background-size: 14px 14px;
+      background-position: 6px 6px;
+      border-radius: var(--radius-s);
+      border: 1px solid var(--line);
+      padding: 10px 8px 4px;
+      margin: 10px 16px 0;
+    }
+
     .reforma-nodo-actual-wrap { display:inline-block; border-radius:50%; animation: leg-pulso 1.8s infinite; }
+    /* tramo ya recorrido -- se traza una sola vez al pintar, queda sólido */
     .reforma-rama-trazo { stroke-dasharray: 90; stroke-dashoffset: 90; animation: leg-trazo .7s ease-out forwards; }
+    /* tramo que lleva a la etapa VIGENTE -- sigue en curso, se ve fluyendo, nunca se detiene */
+    .reforma-segmento-vivo { stroke-dasharray: 6 6; animation: leg-fluye 1s linear infinite; }
+
     .reforma-reaccion-punto { cursor: pointer; transition: r .12s ease, opacity .12s ease; }
     .reforma-reaccion-punto:hover { opacity: .75; }
     .reforma-chevron { transition: transform .25s ease; display:inline-block; }
     .reforma-chevron.abierto { transform: rotate(90deg); }
-    .reforma-detalle { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .32s ease, opacity .25s ease; }
-    .reforma-detalle.abierto { max-height: 1200px; opacity: 1; }
+
+    /* conector -- pequeña flecha que ancla visualmente el panel de detalle al nodo
+       vigente del diagrama, para que se sienta parte del mismo proceso y no un
+       acordeón genérico pegado abajo */
+    .reforma-conector-flecha { text-align:center; font-size:13px; line-height:1; height:0; opacity:0; transition: opacity .2s ease .1s; margin:0 16px; }
+    .reforma-conector-flecha.abierto { opacity:1; height:14px; }
+
+    .reforma-detalle-panel {
+      transform-origin: top center;
+      transform: scaleY(.9) translateY(-4px);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), opacity .2s ease, max-height .32s ease, padding .25s ease;
+      border-top: 2px solid var(--line-strong);
+      margin: 0 16px;
+      padding: 0 0;
+    }
+    .reforma-detalle-panel.abierto {
+      transform: scaleY(1) translateY(0);
+      opacity: 1;
+      max-height: 1200px;
+      padding: 12px 0 16px;
+    }
   `;
   document.head.appendChild(style);
 }
@@ -166,8 +209,17 @@ function stepperEtapaHTML(etapaActual, idNodo){
     const esActual = i === idxPreFork;
     const color = esActual ? 'var(--teal)' : (completada ? 'var(--riesgo-bajo)' : 'var(--line-strong)');
     if(i>0){
-      const trazada = i<=idxPreFork || idxPreFork===-1;
-      svg += `<line x1="${xNodo(i-1)}" y1="${yLinea}" x2="${xNodo(i)}" y2="${yLinea}" stroke="${trazada?'var(--riesgo-bajo)':'var(--line-strong)'}" stroke-width="2" class="${trazada?'reforma-rama-trazo':''}"/>`;
+      // el movimiento de cada tramo refleja el proceso real: lo ya recorrido queda
+      // sólido (se trazó una vez y ahí se queda), el tramo que lleva a la etapa VIGENTE
+      // sigue fluyendo -- todavía no termina de recorrerse -- y lo que falta se queda
+      // tenue, como una posibilidad futura.
+      const completoDeTodo = idxPreFork===-1 || i < idxPreFork;
+      const esTramoVigente = i === idxPreFork;
+      let strokeColor, claseLinea, extra = '';
+      if(completoDeTodo){ strokeColor='var(--riesgo-bajo)'; claseLinea='reforma-rama-trazo'; }
+      else if(esTramoVigente){ strokeColor='var(--teal)'; claseLinea='reforma-segmento-vivo'; }
+      else { strokeColor='var(--line-strong)'; claseLinea=''; extra='stroke-dasharray="3 3"'; }
+      svg += `<line x1="${xNodo(i-1)}" y1="${yLinea}" x2="${xNodo(i)}" y2="${yLinea}" stroke="${strokeColor}" stroke-width="2.5" class="${claseLinea}" ${extra}/>`;
     }
     svg += `<circle cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?7:5}" fill="${color}" ${esActual?`id="${idNodo}-nodo-${i}"`:''}/>`;
     svg += `<text x="${xNodo(i)}" y="${yLinea+18}" text-anchor="middle" font-size="7.5" font-family="var(--f-mono)" fill="${esActual?'var(--teal)':'var(--ink-3)'}">${etapa}</text>`;
@@ -346,8 +398,8 @@ function tarjetaReformaHTML(r, todasLasReformas){
   const abierta = tarjetaAbiertaLeg === r.id;
   const idNodo = 'leg-'+r.id;
 
-  return `<div class="reforma-card" style="background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:16px;margin-bottom:12px;">
-    <div class="reforma-card-cabeza" data-id="${r.id}" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;">
+  return `<div class="reforma-card">
+    <div class="reforma-card-cabeza" data-id="${r.id}" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
       <div style="display:flex;gap:8px;align-items:flex-start;">
         <span class="reforma-chevron ${abierta?'abierto':''}" style="color:var(--ink-3);font-size:13px;margin-top:2px;">›</span>
         <div>
@@ -361,10 +413,15 @@ function tarjetaReformaHTML(r, todasLasReformas){
         ${r.impacto_c3==='1' || r.impacto_c3==='true' ? `<span style="font-family:var(--f-mono);font-size:8.5px;color:var(--riesgo-medio);">Impacto C3</span>` : ''}
       </div>
     </div>
-    ${dias!==null ? `<div style="margin-bottom:10px;">${badgeEstancamientoHTML(dias)}</div>` : ''}
-    ${stepperEtapaHTML(r.etapa_actual, idNodo)}
-    ${lineaTiempoReaccionesHTML(r, reacciones)}
-    <div class="reforma-detalle ${abierta?'abierto':''}" id="detalle-${r.id}">
+    ${dias!==null ? `<div style="padding:8px 16px 0;">${badgeEstancamientoHTML(dias)}</div>` : ''}
+
+    <div class="reforma-lienzo">
+      ${stepperEtapaHTML(r.etapa_actual, idNodo)}
+      ${lineaTiempoReaccionesHTML(r, reacciones)}
+    </div>
+
+    <div class="reforma-conector-flecha ${abierta?'abierto':''}" style="color:${colorEtapa};">▾</div>
+    <div class="reforma-detalle-panel ${abierta?'abierto':''}" id="detalle-${r.id}" style="border-top-color:${colorEtapa}55;">
       ${abierta ? detalleReformaHTML(r, todasLasReformas) : ''}
     </div>
   </div>`;
