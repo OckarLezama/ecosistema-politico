@@ -191,6 +191,7 @@
           </div>
           <div class="legend-inline" id="timeline-kpis"></div>
         </div>
+        <div id="timeline-narrativa" style="padding:0 14px 10px;font-size:12px;color:var(--ink-2);line-height:1.5;"></div>
         <div id="timeline-scroll"><svg id="timeline-svg"></svg></div>
       </div>
       <div class="feed-card">
@@ -227,8 +228,37 @@
       <h2>Legislativo</h2>
       <p>Seguimiento de reformas y la Ley de Egresos, por etapa real.</p>
     </div>
-    <div style="background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l); box-shadow:var(--shadow-card); padding:16px; max-height:calc(100vh - 160px); overflow-y:auto;">
+    <div style="background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l) var(--radius-l) 0 0; padding:16px 16px 12px 16px;">
+      <div class="graph-toolbar" style="padding:0;">
+        <div class="core-select">
+          <label for="legislativo-filtro-etapa">Etapa</label>
+          <select id="legislativo-filtro-etapa">
+            <option value="">Todas</option>
+            <option value="Presentada">Presentada</option>
+            <option value="Comisión">Comisión</option>
+            <option value="Pleno">Pleno</option>
+            <option value="Aprobada">Aprobada</option>
+            <option value="Publicada">Publicada</option>
+            <option value="Rechazada">Rechazada</option>
+          </select>
+        </div>
+        <div class="core-select">
+          <label for="legislativo-buscador">Buscar</label>
+          <input type="text" id="legislativo-buscador" placeholder="Nombre o resumen..." style="background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1); border-radius:var(--radius-s); padding:6px 10px; font-size:12px; width:200px;">
+        </div>
+        <div class="vista-toggle" id="legislativo-orden" style="border-radius:var(--radius-s);overflow:hidden;">
+          <button class="chip-btn active" data-orden="reciente" style="border-radius:0;">Más reciente</button>
+          <button class="chip-btn" data-orden="estancado" style="border-radius:0;">Más estancada</button>
+        </div>
+        <div class="legend-inline" id="legislativo-kpis" style="margin-left:auto;"></div>
+      </div>
+    </div>
+    <div style="background:var(--bg-1); border:1px solid var(--line); border-top:none; border-radius:0 0 var(--radius-l) var(--radius-l); box-shadow:var(--shadow-card); padding:16px; max-height:calc(100vh - 160px - 70px); overflow-y:auto;">
       <div id="legislativo-contenido"></div>
+      <div style="margin:18px 0 10px;text-align:center;">
+        <button class="chip-btn" id="legislativo-toggle-concluidas">Ver concluidas</button>
+      </div>
+      <div id="legislativo-concluidas" style="display:none;"></div>
     </div>
   </section>
 </main>
@@ -257,6 +287,7 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
   }
   if(btn.dataset.module==='timeline' && typeof renderTimeline==='function') renderTimeline();
   if(btn.dataset.module==='analisis' && typeof renderAnalisis==='function') renderAnalisis();
+  if(btn.dataset.module==='legislativo' && typeof renderLegislativo==='function') renderLegislativo();
 });
 </script>
 <script src="js/data-loader.js?v=101"></script>
@@ -264,11 +295,11 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/actores.js?v=101"></script>
 <script src="js/feed.js?v=100"></script>
 <script src="js/agenda.js?v=101"></script>
-<script src="js/timeline.js?v=100"></script>
+<script src="js/timeline.js?v=101"></script>
 <script src="js/notificaciones.js?v=100"></script>
 <script src="js/analisis.js?v=108"></script>
 <script src="js/c3.js?v=100"></script>
 <script src="js/mananera-widget.js?v=100"></script>
-<script src="js/legislativo.js?v=100"></script>
+<script src="js/legislativo.js?v=101"></script>
 </body>
 </html>
