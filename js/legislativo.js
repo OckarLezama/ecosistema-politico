@@ -207,24 +207,19 @@ function inyectarEstilosLegV3(){
     .leg-modal-card::-webkit-scrollbar-thumb:hover { background: var(--teal); }
     .leg-analisis-modal .leg-modal-card { max-width:560px; padding:24px 26px; }
 
-    /* tooltip propio (no el atributo title genérico del navegador) -- mismo
-       look que las tarjetas del panel: fondo bg-2, borde línea, texto ink-1. */
-    .leg-tt { position:relative; }
-    .leg-tt::after {
-      content: attr(data-tt);
-      position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%);
-      background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1);
+    /* tooltip propio, flotante (creado y posicionado por JS, ver
+       wireTooltipFlotanteLeg) -- no el atributo title genérico del navegador,
+       y no un ::after anclado al elemento: ese quedaba recortado por el
+       contenedor del toolbar, que tiene su propio overflow. Este vive suelto
+       en <body>, con position:fixed, así que nunca se corta. */
+    #leg-tooltip-flotante {
+      position:fixed; background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1);
       font-size:10.5px; font-weight:600; padding:5px 9px; border-radius:6px;
-      white-space:normal; max-width:220px; width:max-content; text-align:center; line-height:1.4;
+      max-width:220px; text-align:center; line-height:1.4;
       box-shadow:0 6px 18px rgba(0,0,0,.4); opacity:0; visibility:hidden; pointer-events:none;
-      transition:opacity .12s ease; z-index:60;
+      transition:opacity .12s ease; z-index:500;
     }
-    .leg-tt::before {
-      content:''; position:absolute; bottom:calc(100% + 2px); left:50%; transform:translateX(-50%);
-      border:5px solid transparent; border-top-color:var(--line-strong);
-      opacity:0; visibility:hidden; pointer-events:none; transition:opacity .12s ease; z-index:60;
-    }
-    .leg-tt:hover::after, .leg-tt:hover::before { opacity:1; visibility:visible; }
+    #leg-tooltip-flotante.visible { opacity:1; visibility:visible; }
     .leg-modal-cerrar { position:absolute; top:8px; right:10px; background:none; border:none; color:var(--ink-3); font-size:16px; line-height:1; cursor:pointer; padding:6px; }
     .leg-modal-cerrar:hover { color:var(--ink-1); }
   `;
@@ -676,7 +671,7 @@ function lineaTiempoReaccionesHTML(reforma){
 // mismos íconos que usa el panel de Análisis (ver más abajo) -- arriba de
 // módulo para que tanto los KPIs como el panel los tomen del mismo lugar.
 const ICONOS_KPI_LEG = {
-  trackeadas: '<path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1Z"/><rect x="5" y="5" width="14" height="16" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/>',
+  registradas: '<path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1Z"/><rect x="5" y="5" width="14" height="16" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/>',
   tramite: '<circle cx="12" cy="12" r="8"/><polyline points="12 8 12 12 15 14"/>',
   aprobadas: '<circle cx="12" cy="12" r="8"/><polyline points="8.5 12 11 14.5 15.5 9.5"/>',
   rechazadas: '<circle cx="12" cy="12" r="8"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/>',
@@ -703,7 +698,7 @@ function renderKpisLeg(todasLasReformas){
     </span>`;
 
   cont.innerHTML = [
-    pill('', 'trackeadas', total, 'var(--ink-3)', `${total} trackeada${total!==1?'s':''}`),
+    pill('', 'registradas', total, 'var(--ink-3)', `${total} registrada${total!==1?'s':''}`),
     pill('tramite', 'tramite', enTramite, 'var(--teal)', `${enTramite} en trámite`),
     pill('aprobadas', 'aprobadas', aprobadas, 'var(--riesgo-bajo)', `${aprobadas} aprobadas (histórico)`),
     pill('rechazadas', 'rechazadas', rechazadas, 'var(--riesgo-alto)', `${rechazadas} rechazadas (histórico)`),
@@ -748,7 +743,7 @@ function narrativaPartidosLeg(partidosOrdenados, total){
   const morena = partidosOrdenados.find(([p])=>p==='Morena');
 
   if(!conApariciones.length){
-    return `Ninguna bancada aparece todavía del lado de la oposición en las ${total} reformas trackeadas.`;
+    return `Ninguna bancada aparece todavía del lado de la oposición en las ${total} reformas registradas.`;
   }
 
   const [primero, ...resto] = conApariciones;
@@ -804,7 +799,7 @@ function narrativaTipoLeg(datosTipo){
   let frase = `<strong style="color:var(--ink-1);">${masFrecuente.tipo}</strong> es el tipo más frecuente, con ${masFrecuente.p.total} caso${masFrecuente.p.total!==1?'s':''} y ${masFrecuente.p.pctAprobacion}% de aprobación`;
   frase += conRechazos.length
     ? `. <strong style="color:var(--ink-1);">${conRechazos[0].tipo}</strong> es el tipo con más rechazos (${conRechazos[0].p.rechazadas})`
-    : '. Ningún tipo de reforma trackeado ha tenido rechazos hasta ahora';
+    : '. Ningún tipo de reforma registrado ha tenido rechazos hasta ahora';
   if(masLento && masLento.tipo!==masFrecuente.tipo){
     frase += `, y <strong style="color:var(--ink-1);">${masLento.tipo}</strong> es el que más tarda en promedio (${masLento.p.promedioDias}d)`;
   }
@@ -851,13 +846,14 @@ function panelAnalisisGlobalLeg(todasLasReformas){
   const rechazadas = concluidas.filter(r=> r.etapa_actual==='Rechazada');
   const publicadas = todasLasReformas.filter(r=> r.etapa_actual==='Publicada');
 
-  const diasPublicadas = publicadas.map(r=>diasTotalTramiteLeg(r)).filter(d=> d!==null && d!==undefined);
+  // FIX: diasTotalTramiteLeg regresa {dias, fechaPublicada} (o null), no un
+  // número -- promediar los objetos directamente daba NaN.
+  const diasPublicadas = publicadas.map(r=>diasTotalTramiteLeg(r)).filter(Boolean).map(d=>d.dias);
   const promedioGeneral = diasPublicadas.length ? Math.round(diasPublicadas.reduce((a,b)=>a+b,0)/diasPublicadas.length) : null;
 
-  const kpiCard = (valor, label, color, icono)=>`
-    <div style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:12px 8px;text-align:center;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${color||'var(--ink-3)'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONOS_KPI_LEG[icono]||''}</svg>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:${color||'var(--ink-1)'};margin-top:4px;">${valor}</div>
+  const kpiCard = (valor, label, color)=>`
+    <div style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:8px 6px;text-align:center;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:${color||'var(--ink-1)'};">${valor}</div>
       <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${label}</div>
     </div>`;
 
@@ -875,15 +871,49 @@ function panelAnalisisGlobalLeg(todasLasReformas){
   const graficaVotos = votaciones.map(r=>{
     const favor = Number(r.votos_favor)||0, contra = Number(r.votos_contra)||0, abst = Number(r.votos_abstencion)||0;
     const margen = favor - contra;
+    const pctFavor = Math.round((favor/((favor+contra+abst)||1))*100);
     return `
       <div style="margin-top:12px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;min-height:32px;font-size:11px;color:var(--ink-2);">
           <span style="flex:1;min-width:0;line-height:1.4;">${r.nombre}</span>
-          <span style="flex-shrink:0;white-space:nowrap;color:var(--ink-1);font-weight:600;">${favor}–${contra}${abst?`–${abst}`:''} <span style="color:${margen>=0?'var(--riesgo-bajo)':'var(--riesgo-alto)'};">(${margen>0?'+':''}${margen})</span></span>
+          <span style="flex-shrink:0;white-space:nowrap;color:var(--ink-1);font-weight:600;">${favor}–${contra}${abst?`–${abst}`:''} <span style="color:${margen>=0?'var(--riesgo-bajo)':'var(--riesgo-alto)'};">(${margen>0?'+':''}${margen} · ${pctFavor}%)</span></span>
         </div>
         ${barraApiladaHTML(favor, contra, abst)}
       </div>`;
   }).join('');
+
+  // línea de tiempo del sexenio: de cuándo se presentó cada reforma a cuándo
+  // concluyó, o hasta hoy si sigue corriendo -- usa solo fechas que ya
+  // existen en el CSV (fecha_presentacion / fecha_ultima_actualizacion), sin
+  // depender de datos nuevos.
+  const conFechaTendencia = todasLasReformas.filter(r=>r.fecha_presentacion);
+  const graficaTendencia = (()=>{
+    if(!conFechaTendencia.length) return '';
+    const hoy = Date.now();
+    const inicios = conFechaTendencia.map(r=> new Date(r.fecha_presentacion+'T00:00:00').getTime());
+    const minFecha = Math.min(...inicios);
+    const rango = (hoy - minFecha) || 1;
+    const filas = conFechaTendencia
+      .slice()
+      .sort((a,b)=> a.fecha_presentacion.localeCompare(b.fecha_presentacion))
+      .map(r=>{
+        const inicio = new Date(r.fecha_presentacion+'T00:00:00').getTime();
+        const enCurso = !ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
+        const fin = enCurso ? hoy : new Date((r.fecha_ultima_actualizacion||r.fecha_presentacion)+'T00:00:00').getTime();
+        const leftPct = ((inicio-minFecha)/rango)*100;
+        const widthPct = Math.max(((Math.max(fin,inicio)-inicio)/rango)*100, 0.8);
+        const color = r.etapa_actual==='Rechazada' ? 'var(--riesgo-alto)' : enCurso ? 'var(--teal)' : 'var(--riesgo-bajo)';
+        const rango_tt = `${r.nombre} · ${r.fecha_presentacion} → ${enCurso ? 'en curso' : (r.fecha_ultima_actualizacion||'')}`;
+        return `
+          <div class="leg-tt" data-tt="${rango_tt.replace(/"/g,'&quot;')}" style="display:flex;align-items:center;gap:8px;margin-top:5px;">
+            <div style="width:120px;flex-shrink:0;font-size:9px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.nombre}</div>
+            <div style="position:relative;flex:1;height:7px;background:var(--bg-1);border-radius:4px;">
+              <div style="position:absolute;left:${leftPct}%;width:${widthPct}%;height:100%;background:${color};border-radius:4px;${enCurso?'opacity:.8;':''}"></div>
+            </div>
+          </div>`;
+      }).join('');
+    return filas;
+  })();
 
   const partidos = conteoPartidosOposicionLeg(todasLasReformas);
   const partidosConApariciones = partidos.filter(([,v])=>v.veces>0);
@@ -903,18 +933,24 @@ function panelAnalisisGlobalLeg(todasLasReformas){
 
     <div class="eyebrow" style="color:var(--teal);margin-top:26px;">Resumen general</div>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px;">
-      ${kpiCard(total, 'Trackeadas', 'var(--ink-2)', 'trackeadas')}
-      ${kpiCard(enTramite, 'En trámite', 'var(--teal)', 'tramite')}
-      ${kpiCard(aprobadas.length, 'Aprobadas', 'var(--riesgo-bajo)', 'aprobadas')}
-      ${kpiCard(rechazadas.length, 'Rechazadas', 'var(--riesgo-alto)', 'rechazadas')}
-      ${kpiCard(publicadas.length, 'En el DOF', 'var(--ink-2)', 'dof')}
+      ${kpiCard(total, 'Registradas', 'var(--ink-2)')}
+      ${kpiCard(enTramite, 'En trámite', 'var(--teal)')}
+      ${kpiCard(aprobadas.length, 'Aprobadas', 'var(--riesgo-bajo)')}
+      ${kpiCard(rechazadas.length, 'Rechazadas', 'var(--riesgo-alto)')}
+      ${kpiCard(publicadas.length, 'En el DOF', 'var(--ink-2)')}
     </div>
-    ${promedioGeneral!==null ? `<p style="font-size:11px;color:var(--ink-2);margin-top:10px;">Tiempo promedio de trámite completo (Presentada → Publicada): <strong style="color:var(--ink-1);">${promedioGeneral}d</strong>.</p>` : ''}
-
     ${graficaTipo ? `
     <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Por tipo de reforma</div>
-    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">${narrativaTipoLeg(datosTipo)}</p>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">
+      ${narrativaTipoLeg(datosTipo)}
+      ${promedioGeneral!==null ? ` En conjunto, una reforma ya publicada tardó en promedio <strong style="color:var(--ink-1);">${promedioGeneral}d</strong> de Presentada a Publicada.` : ''}
+    </p>
     <div style="margin-top:10px;">${graficaTipo}</div>` : ''}
+
+    ${graficaTendencia ? `
+    <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Línea de tiempo del sexenio</div>
+    <p style="font-size:9.5px;color:var(--ink-3);margin-top:4px;">De cuándo se presentó cada reforma a cuándo concluyó (o hasta hoy, si sigue en trámite). <span style="color:var(--teal);">■</span> en trámite · <span style="color:var(--riesgo-bajo);">■</span> concluida · <span style="color:var(--riesgo-alto);">■</span> rechazada.</p>
+    <div style="margin-top:8px;">${graficaTendencia}</div>` : ''}
 
     ${graficaVotos ? `
     <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Votaciones (reformas concluidas)</div>
@@ -1239,7 +1275,46 @@ function renderLegislativo(){
   });
 }
 
+// tooltip flotante compartido por todos los elementos `.leg-tt` -- se crea
+// una sola vez y se reposiciona con getBoundingClientRect en cada hover, así
+// nunca queda recortado por el contenedor del toolbar ni por el modal.
+function wireTooltipFlotanteLeg(){
+  if(document.body.dataset.legTooltipWired) return;
+  document.body.dataset.legTooltipWired = '1';
+
+  const tt = document.createElement('div');
+  tt.id = 'leg-tooltip-flotante';
+  document.body.appendChild(tt);
+
+  const mostrar = (el)=>{
+    const texto = el.dataset.tt;
+    if(!texto) return;
+    tt.textContent = texto;
+    tt.classList.add('visible');
+    const rect = el.getBoundingClientRect();
+    const ttRect = tt.getBoundingClientRect();
+    let left = rect.left + rect.width/2 - ttRect.width/2;
+    left = Math.max(6, Math.min(left, window.innerWidth - ttRect.width - 6));
+    let top = rect.top - ttRect.height - 8;
+    if(top < 4) top = rect.bottom + 8; // sin espacio arriba -> se muestra debajo
+    tt.style.left = left + 'px';
+    tt.style.top = top + 'px';
+  };
+  const ocultar = ()=>{ tt.classList.remove('visible'); };
+
+  document.addEventListener('pointerover', e=>{
+    const el = e.target.closest && e.target.closest('.leg-tt');
+    if(el) mostrar(el);
+  });
+  document.addEventListener('pointerout', e=>{
+    const el = e.target.closest && e.target.closest('.leg-tt');
+    if(el) ocultar();
+  });
+  document.addEventListener('scroll', ocultar, true);
+}
+
 function initLegislativo(){
+  wireTooltipFlotanteLeg();
   const selector = document.getElementById('legislativo-selector-reforma');
   const inputBuscar = document.getElementById('legislativo-buscador');
   const kpisCont = document.getElementById('legislativo-kpis');
