@@ -139,6 +139,57 @@ def detectarEtapa(texto_completo):
     return None
 
 
+# NUEVO 2026-09-22 -- el robot nunca decide por sí solo si una reforma nueva
+# (una que NO reconoce en reformas.csv) merece trackearse: esa decisión sigue
+# siendo de Ockar (criterio 6, arriba). Lo que sí puede hacer es no depender de
+# que alguien se acuerde de revisar candidatos_legislativos.csv a mano: le pone
+# un puntaje objetivo a cada candidato no reconocido -- basado en señales
+# reales (palabras de controversia genuina en la cobertura, no en un juicio de
+# "esto es importante"), y si el puntaje es alto, abre un Issue en GitHub para
+# que llegue como notificación aunque nadie esté viendo el CSV. El puntaje NUNCA
+# agrega la reforma sola -- solo decide qué tan fuerte se le avisa a Ockar.
+PALABRAS_PRIORIDAD_LEG = [
+    'protesta', 'protestas', 'bloqueo', 'bloqueos', 'inconstitucional',
+    'censura', 'vigilancia', 'espionaje', 'derechos humanos', 'huelga',
+    'escándalo', 'corrupción', 'crisis', 'polémica', 'controversia',
+    'impugna', 'impugnación', 'amparo masivo', 'marcha', 'marchas',
+    'gobierno espía', 'inconstitucionalidad',
+]
+
+def calcularPuntajePrioridad(texto_completo, tipo_reforma=None):
+    puntaje = sum(1 for p in PALABRAS_PRIORIDAD_LEG if p in texto_completo)
+    if tipo_reforma and 'constitucional' in tipo_reforma.lower():
+        puntaje += 1
+    return puntaje
+
+UMBRAL_PRIORIDAD_LEG = 2  # a partir de 2 señales de controversia real, se avisa
+
+
+# Abre un Issue en GitHub con gh CLI -- disponible sin configuración extra
+# dentro de GitHub Actions (usa el GITHUB_TOKEN del propio workflow). Si se
+# corre fuera de Actions (una prueba local sin `gh` autenticado), falla en
+# silencio: nunca debe tronar la corrida completa del robot por esto.
+def avisarCandidatoPrioritarioGitHub(candidato):
+    import subprocess
+    titulo = f"[Legislativo] Candidato prioritario: {candidato['nombre_reforma_o_texto'][:80]}"
+    cuerpo = (
+        f"Puntaje de prioridad: {candidato.get('puntaje_prioridad', '?')}\n\n"
+        f"Fuente: {candidato['fuente_nombre']}\n"
+        f"URL: {candidato['fuente_url']}\n\n"
+        f"Motivo de revisión: {candidato['motivo_revision']}\n\n"
+        f"Esto NO agrega la reforma automáticamente -- es un aviso para que se revise "
+        f"y, si cumple el criterio (alto impacto nacional + coyuntura clara), se agregue a mano."
+    )
+    try:
+        subprocess.run(
+            ['gh', 'issue', 'create', '--title', titulo, '--body', cuerpo,
+             '--label', 'legislativo-candidato'],
+            check=True, capture_output=True, text=True, timeout=30,
+        )
+    except Exception as e:
+        print(f'  (no se pudo crear el Issue de GitHub, se continúa sin avisar: {e})')
+
+
 def cargar_reformas():
     try:
         with open(RUTA_REFORMAS, encoding='utf-8-sig') as f:
@@ -218,7 +269,7 @@ def buscarActoresEnMediosNacionales(nombre_reforma, actores_conocidos):
 
 def guardar_candidato_legislativo(candidato):
     campos = ['fecha_detectado', 'nombre_reforma_o_texto', 'etapa_sugerida', 'fuente_url',
-              'fuente_nombre', 'motivo_revision']
+              'fuente_nombre', 'motivo_revision', 'puntaje_prioridad']
     existe = True
     try:
         open(RUTA_CANDIDATOS_LEG, encoding='utf-8').close()
@@ -229,6 +280,8 @@ def guardar_candidato_legislativo(candidato):
         if not existe:
             w.writeheader()
         w.writerow(candidato)
+    if candidato.get('puntaje_prioridad', 0) >= UMBRAL_PRIORIDAD_LEG:
+        avisarCandidatoPrioritarioGitHub(candidato)
 
 
 def actualizar_reforma(reforma_id, nueva_etapa, actores_nuevos, campos):
@@ -308,10 +361,16 @@ def procesar():
             reforma = identificar_reforma(texto_completo, reformas)
 
             if not reforma:
+                # Solo este caso (no reconocemos a qué reforma corresponde) es
+                # candidato real a REFORMA NUEVA -- aquí sí tiene sentido el
+                # puntaje de prioridad y el aviso por Issue. Las otras dos
+                # ramas (etapa ambigua, avance inválido) son sobre reformas
+                # que YA existen en el CSV, no candidatas nuevas.
                 guardar_candidato_legislativo({
                     'fecha_detectado': hoy_mx.strftime('%Y-%m-%d'), 'nombre_reforma_o_texto': titulo[:150],
                     'etapa_sugerida': etapa_detectada or '', 'fuente_url': enlace, 'fuente_nombre': fuente['nombre'],
                     'motivo_revision': 'No se identificó a qué reforma existente corresponde',
+                    'puntaje_prioridad': calcularPuntajePrioridad(texto_completo),
                 })
                 ya_vistos.add(enlace)
                 candidatos_generados += 1
@@ -322,6 +381,7 @@ def procesar():
                     'fecha_detectado': hoy_mx.strftime('%Y-%m-%d'), 'nombre_reforma_o_texto': reforma['nombre'],
                     'etapa_sugerida': '', 'fuente_url': enlace, 'fuente_nombre': fuente['nombre'],
                     'motivo_revision': 'Texto ambiguo -- no calza claramente con ninguna etapa (o calza con varias a la vez)',
+                    'puntaje_prioridad': 0,
                 })
                 ya_vistos.add(enlace)
                 candidatos_generados += 1
