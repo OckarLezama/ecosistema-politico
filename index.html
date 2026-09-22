@@ -230,13 +230,15 @@
     </div>
     <div class="agenda-grid graph-card">
       <div class="graph-toolbar">
-        <div class="core-select" style="min-width:280px;flex:1;">
-          <label for="legislativo-selector-reforma">Reforma</label>
-          <select id="legislativo-selector-reforma" style="width:100%;"></select>
-        </div>
-        <div class="core-select">
-          <label for="legislativo-buscador">Buscar</label>
-          <input type="text" id="legislativo-buscador" placeholder="Nombre o resumen..." style="background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1); border-radius:var(--radius-s); padding:6px 10px; font-size:12px; width:180px;">
+        <div style="display:flex;gap:10px;flex:1;">
+          <div class="core-select" style="min-width:260px;flex:1;">
+            <label for="legislativo-selector-reforma">Reforma</label>
+            <select id="legislativo-selector-reforma" style="width:100%;"></select>
+          </div>
+          <div class="core-select">
+            <label for="legislativo-buscador">Buscar</label>
+            <input type="text" id="legislativo-buscador" placeholder="Nombre o resumen..." style="background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1); border-radius:var(--radius-s); padding:6px 10px; font-size:12px; width:160px;">
+          </div>
         </div>
         <div class="legend-inline" id="legislativo-kpis" style="margin-left:auto;"></div>
       </div>
@@ -282,6 +284,6 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/analisis.js?v=108"></script>
 <script src="js/c3.js?v=100"></script>
 <script src="js/mananera-widget.js?v=100"></script>
-<script src="js/legislativo.js?v=107"></script>
+<script src="js/legislativo.js?v=108"></script>
 </body>
 </html>
