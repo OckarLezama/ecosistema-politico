@@ -741,8 +741,6 @@ function renderKpisLeg(todasLasReformas){
     pill('publicada', 'dof', publicadas, 'var(--ink-3)', `${publicadas} ya en el DOF`),
   ].join('');
 
-  const btnAnalisis = document.getElementById('legislativo-btn-analisis');
-  if(btnAnalisis) btnAnalisis.title = 'Análisis general';
 }
 
 // -- Panel de análisis global (botón con ícono junto a los KPIs) --------
