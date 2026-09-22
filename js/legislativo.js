@@ -1,43 +1,41 @@
 /* ============================================================
-   LEGISLATIVO V7 -- una reforma a la vez, en un lienzo de diseño
+   LEGISLATIVO V8 -- una reforma a la vez, en un lienzo de diseño
    real, pensado como lectura de "hacia dónde va" un tema.
 
-   Sexta vuelta de rediseño 2026-09-21 (con Ockar), correcciones:
-   - El scroll interno de "Posturas documentadas" no se podía
-     verificar de forma confiable sin ver el CSS real del contenedor
-     padre (.graph-card), así que se optó por lo más seguro: ya NO
-     hay scroll interno. La tarjeta crece de forma natural y el
-     scroll lo maneja la página, como en el resto de los módulos.
-     Menos elegante, pero garantiza que nada se quede oculto.
-   - Los KPIs regresan al formato de texto simple (como antes de la
-     versión de tarjetas), que sí se veía bien -- las tarjetas
-     quedaron con tamaños inconsistentes y no aportaron.
-   - Ya no hay tooltip nativo del navegador (hover). Cada nodo de
-     etapa YA ALCANZADA es clicable y abre una caja de información
-     con el mismo estilo que usa el resto de la app
-     (contexto-tema-box). Un nodo de una etapa que la reforma
-     todavía no alcanza no reacciona a nada -- no hay nada real que
-     mostrar ahí.
-   - La explicación de cada etapa ahora dice ante qué cámara y,
-     cuando se conoce, ante qué comisión específica (columna nueva
-     `comision_nombre`) -- no se queda en "la cámara de origen" a
-     secas.
-   - Las reacciones de oposición vuelven a aparecer en la línea de
-     tiempo: cuando existe la columna `pronunciamientos`, cada
-     persona que intervino (a favor, en contra o retirada) se
-     convierte en un punto propio, con la fecha de esa sesión --
-     antes se perdían porque solo se leía la lista plana de
-     actor_opone, que dejó de usarse al haber pronunciamientos.
-   - Se agrega la fecha de presentación en el encabezado, y el
-     encabezado en general se hizo más compacto (menos alto).
-   - Una etapa recorrida en un solo día (0d) ya no muestra "0d" --
-     no aporta nada ver un cero; solo se muestra el número cuando
-     hay algo que contar o cuando la etapa vigente sigue corriendo.
-   - Selector de reforma y buscador ahora comparten un solo bloque
-     con espaciado propio, para que no se vean separados por el
-     espacio vacío que dejaron los controles que ya se quitaron.
-   - Sin combo de etapa ni botones de orden: los KPIs de arriba son
-     el filtro.
+   Séptima vuelta de rediseño 2026-09-21 (con Ockar), correcciones:
+   - Se quitó la fila horizontal de "chips" de actores debajo del
+     lienzo (línea de tiempo de reacciones). Con pocos actores se
+     veía bien, pero crece sin límite conforme una reforma acumula
+     más pronunciamientos y se satura. En su lugar, la votación y
+     quién se pronunció (con partido, postura y cita) ahora viven
+     DENTRO del detalle que se abre al hacer click sobre el punto
+     de la etapa VIGENTE -- es la etapa a la que ese detalle
+     corresponde de forma natural, y solo aparece cuando hace
+     sentido verlo (no siempre visible, no siempre oculto).
+     Limitación conocida: el CSV solo guarda una votación y una
+     lista de pronunciamientos por reforma (no una por etapa
+     histórica), así que hoy ese detalle solo se asocia con la
+     etapa vigente. Si más adelante una reforma pasa de Comisión a
+     Pleno y hay una nueva votación en Pleno, hará falta una
+     columna de votación/pronunciamientos por etapa para no perder
+     el detalle de lo que pasó en Comisión.
+   - El cuadro que se abre al hacer click en un nodo vuelve al
+     formato de solo texto (sin la caja con borde de color
+     `contexto-tema-box`, que se veía encimada/sobrepuesta sobre el
+     lienzo). Además ese cuadro ahora vive FUERA de `.reforma-lienzo`
+     (que tiene overflow:hidden por el fondo de cuadrícula), para
+     que nunca se recorte visualmente.
+   - Scroll: se intenta de nuevo, esta vez replicando el patrón que
+     ya funciona en Portada/Análisis/Circunscripción 3 en este mismo
+     archivo (`max-height` explícito + `overflow-y:auto` puesto
+     directamente en el contenedor de contenido, en index.html) en
+     vez de depender de una suposición sobre el CSS de `.graph-card`
+     que no se puede verificar desde aquí.
+   - Los KPIs se mantienen en el formato de texto simple (como antes
+     de la versión de tarjetas), que sí se veía bien.
+   - La explicación de cada etapa dice ante qué cámara y, cuando se
+     conoce, ante qué comisión específica (columna `comision_nombre`).
+   - Una etapa recorrida en un solo día (0d) ya no muestra "0d".
    - El robot (robot_legislativo.py) solo avanza la etapa de lo que
      ya existe aquí -- nunca da de alta una reforma nueva por sí solo.
 
@@ -332,7 +330,6 @@ function stepperEtapaHTML(reforma, idNodo){
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yAbajo+22}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esRechazada?'var(--riesgo-alto)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Rechazada</text>`;
 
   svg += `</svg>`;
-  svg += `<div id="${idNodo}-info-click" style="display:none;"></div>`;
   return svg;
 }
 
@@ -355,59 +352,6 @@ function parsePronunciamientosLeg(r){
     if(!m) return null;
     return { nombre: m[1].trim(), partido: m[2].trim(), postura: m[3].trim(), cita: m[4].trim() };
   }).filter(Boolean);
-}
-
-// eventos reales para la línea de tiempo: quién presentó, más -- si existen -- cada
-// pronunciamiento individual de la sesión donde se movió de etapa, o si no hay
-// pronunciamientos detallados, la lista plana de actor_opone como respaldo
-function eventosLineaTiempoLeg(reforma){
-  const eventos = [];
-  if(reforma.fecha_presentacion){
-    const impulsor = (reforma.actor_impulsa||'Se presentó').split(';')[0]?.trim();
-    eventos.push({ fecha: reforma.fecha_presentacion, nombre: impulsor, rol: 'Presentó la iniciativa', color: 'var(--teal)', origen:true });
-  }
-  reaccionesDocumentadasLeg(reforma).forEach(rx=>{
-    if(!rx.fecha) return;
-    const color = rx.rol==='Reacción de oposición' ? 'var(--riesgo-alto)' : (rx.rol==='Reacción del gobierno' ? 'var(--riesgo-bajo)' : 'var(--ink-3)');
-    eventos.push({ fecha: rx.fecha, nombre: rx.nombre, rol: rx.rol, detalle: rx.detalle, color });
-  });
-
-  const pronunciamientos = parsePronunciamientosLeg(reforma);
-  const fechaSesion = reforma.fecha_ultima_actualizacion;
-  if(pronunciamientos && fechaSesion){
-    pronunciamientos.forEach(p=>{
-      const esRetiro = /retir/i.test(p.postura);
-      const esFavor = /favor/i.test(p.postura) && !esRetiro;
-      const color = esFavor ? 'var(--riesgo-bajo)' : (esRetiro ? 'var(--riesgo-medio)' : 'var(--riesgo-alto)');
-      eventos.push({ fecha: fechaSesion, nombre: `${p.nombre} (${p.partido})`, rol: p.postura, color });
-    });
-  } else if(fechaSesion && fechaSesion !== reforma.fecha_presentacion && reforma.actor_opone){
-    reforma.actor_opone.split(';').map(s=>s.trim()).filter(Boolean).forEach(nombre=>{
-      eventos.push({ fecha: fechaSesion, nombre, rol: `Oposición documentada al llegar a ${reforma.etapa_actual}`, color: 'var(--riesgo-alto)' });
-    });
-  }
-
-  return eventos.sort((a,b)=> a.fecha.localeCompare(b.fecha));
-}
-
-function lineaTiempoReaccionesHTML(reforma){
-  const eventos = eventosLineaTiempoLeg(reforma);
-  if(!eventos.length) return '';
-  return `
-    <div style="position:relative;padding:16px 6px 4px;">
-      <div style="position:absolute;left:16px;right:16px;top:33px;height:2px;background:var(--line-strong);"></div>
-      <div style="display:flex;gap:4px;overflow-x:auto;position:relative;">
-        ${eventos.map(e=>`
-          <div style="flex:0 0 auto;width:132px;text-align:center;padding:0 4px;">
-            <div style="width:${e.origen?15:10}px;height:${e.origen?15:10}px;border-radius:50%;background:${e.color};margin:0 auto 8px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
-            <div style="font-size:${e.origen?11.5:10}px;font-weight:${e.origen?700:600};color:${e.color};line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
-            <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${e.rol}</div>
-            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:3px;">${e.fecha}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `;
 }
 
 function botonProcedimientoHTML(r){
@@ -541,7 +485,6 @@ function vistaReformaHTML(r, todasLasReformas){
   const dias = ETAPAS_TRAMITE_LEG.includes(r.etapa_actual) ? diasEnEtapaActualLeg(r) : null;
   const idNodo = 'leg-'+r.id;
   const precedente = calcularPrecedenteTipoLeg(todasLasReformas, r.tipo, r.id);
-  const reaccionesConDetalle = reaccionesDocumentadasLeg(r).filter(rx=>rx.detalle);
   const esConcluida = ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
 
   const proyeccionHTML = !esConcluida ? `
@@ -568,20 +511,18 @@ function vistaReformaHTML(r, todasLasReformas){
 
     <div class="reforma-lienzo">
       ${stepperEtapaHTML(r, idNodo)}
-      ${lineaTiempoReaccionesHTML(r)}
     </div>
+    <p style="font-size:10px;color:var(--ink-3);margin:2px 0 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa (quién se pronunció, votación, etc.)</p>
+    <div id="${idNodo}-info-click" style="display:none;"></div>
 
-    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:4px;">
+    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:4px;margin-top:12px;">
       <div class="eyebrow" style="margin:0 0 4px;">Qué establece</div>
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:0;">${r.resumen}</p>
     </div>` : ''}
     ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
-    ${votacionHTML(r)}
     ${precedenteHTML(precedente, r.tipo)}
 
     <div style="margin-top:14px;">
-      ${posturasColumnasHTML(r)}
-      ${reaccionesConDetalle.length ? `<div class="eyebrow" style="margin-top:12px;">Reacciones con detalle</div>${reaccionesConDetalle.map(rx=>`<div class="contexto-tema-box" style="margin-bottom:6px;"><div style="font-weight:700;font-size:12px;">${rx.nombre} <span style="font-weight:400;color:var(--ink-3);font-size:10.5px;">· ${rx.rol}${rx.fecha?' · '+rx.fecha:''}</span></div><p style="font-size:11.5px;color:var(--ink-2);margin-top:2px;">${rx.detalle}</p></div>`).join('')}` : ''}
       ${botonProcedimientoHTML(r)}
       ${proyeccionHTML}
     </div>
@@ -632,9 +573,11 @@ function renderLegislativo(){
       });
     }
 
-    // clic en un nodo YA ALCANZADO -> caja de información con el mismo estilo que
-    // usa el resto de la app (contexto-tema-box). Un nodo futuro no tiene este
-    // atributo, así que no reacciona a nada.
+    // clic en un nodo YA ALCANZADO -> texto simple debajo del lienzo (sin caja ni
+    // borde de color -- formato anterior, que era más limpio). Un nodo futuro no
+    // tiene este atributo, así que no reacciona a nada. Cuando la etapa clicada es
+    // la etapa VIGENTE de la reforma, se agrega ahí mismo la votación y quién se
+    // pronunció -- es la única etapa para la que hoy el CSV guarda ese detalle.
     const idNodo = 'leg-'+actual.id;
     const cajaInfo = document.getElementById(idNodo+'-info-click');
     cont.querySelectorAll('[data-etapa-click]').forEach(nodo=>{
@@ -647,13 +590,33 @@ function renderLegislativo(){
         if(mismoAbierto){ cajaInfo.style.display = 'none'; cajaInfo.dataset.etapaAbierta=''; return; }
         cajaInfo.dataset.etapaAbierta = etapa;
         cajaInfo.style.display = 'block';
-        cajaInfo.className = 'contexto-tema-box';
+        cajaInfo.className = '';
         cajaInfo.style.marginTop = '10px';
-        cajaInfo.style.borderLeftColor = COLOR_ETAPA_LEG[etapa] || 'var(--teal)';
+        cajaInfo.style.borderLeft = 'none';
+        cajaInfo.style.padding = '0';
+        cajaInfo.style.background = 'none';
+
+        let extra = '';
+        if(etapa === actual.etapa_actual){
+          const votos = votacionHTML(actual);
+          const posturas = posturasColumnasHTML(actual);
+          const reaccionesConDetalle = reaccionesDocumentadasLeg(actual).filter(rx=>rx.detalle);
+          extra = `
+            ${votos}
+            ${posturas}
+            ${reaccionesConDetalle.length ? reaccionesConDetalle.map(rx=>`
+              <div style="margin-top:8px;">
+                <div style="font-size:11.5px;font-weight:700;color:var(--ink-1);">${rx.nombre} <span style="font-weight:400;color:var(--ink-3);font-size:10px;">· ${rx.rol}${rx.fecha?' · '+rx.fecha:''}</span></div>
+                <p style="font-size:11px;color:var(--ink-2);margin-top:2px;line-height:1.5;">${rx.detalle}</p>
+              </div>`).join('') : ''}
+          `;
+        }
+
         cajaInfo.innerHTML = `
           <div style="font-weight:700;font-size:12px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
           <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual)}</p>
           <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
+          ${extra}
         `;
       });
     });
