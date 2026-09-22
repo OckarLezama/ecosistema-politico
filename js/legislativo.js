@@ -133,7 +133,11 @@ function inyectarEstilosLegV3(){
       transform-box: fill-box; transform-origin: center;
     }
 
-    .reforma-vista { background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--radius-s); padding: 16px; }
+    /* antes tenía su propia tarjeta (fondo, borde, padding) encimada DENTRO de
+       la tarjeta que ya pone index.html (.agenda-grid.graph-card) -- se veía
+       como una caja dentro de otra caja, distinto a Agenda/Red de actores/
+       Timeline, que viven directo dentro de esa tarjeta exterior. Se quita. */
+    .reforma-vista { }
 
     .reforma-lienzo {
       position: relative;
@@ -304,27 +308,37 @@ function explicacionEtapaLeg(etapa, reforma, precedente){
   const revisora = camaraRevisoraDeLeg(reforma.camara_origen);
   const esConstitucional = reforma.tipo === 'Reforma constitucional';
   const mayoria = esConstitucional ? 'el voto de dos terceras partes de los presentes' : 'mayoría simple';
+  // el nombre completo del impulsor ya aparece arriba, en el encabezado
+  // ("Impulsa: ..."), así que aquí -- para no repetirlo -- si quien impulsa es
+  // el Ejecutivo Federal se dice solo "del Ejecutivo Federal"; si es otro actor
+  // (un legislador, una bancada) sí se nombra, porque ahí no hay redundancia.
+  const impulsorCuerpo = /Ejecutivo Federal/i.test(reforma.actor_impulsa||'')
+    ? 'del Ejecutivo Federal'
+    : `de ${reforma.actor_impulsa || 'quien la promueve'}`;
+  // Fix: el sufijo de plural no era "verbo + n" (eso da "rechazón", "aprobón");
+  // son formas distintas completas.
   const notaHistorica = precedente
-    ? ` De ${precedente.total} reforma${precedente.total!==1?'s':''} de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, ${precedente.aprobadas} se aprobó${precedente.aprobadas!==1?'n':''} (${precedente.pctAprobacion}%) y ${precedente.rechazadas} se rechazó${precedente.rechazadas!==1?'n':''} -- es precedente, no un pronóstico de esta reforma.`
+    ? ` <span style="color:var(--ink-3);font-style:italic;">De ${precedente.total} reforma${precedente.total!==1?'s':''} de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, ${precedente.aprobadas} ${precedente.aprobadas===1?'se aprobó':'se aprobaron'} (${precedente.pctAprobacion}%) y ${precedente.rechazadas} ${precedente.rechazadas===1?'se rechazó':'se rechazaron'} -- es precedente, no un pronóstico de esta reforma.</span>`
     : '';
   const notaRitmo = (precedente && precedente.promedioDias!==null)
-    ? ` En reformas de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, el trámite completo tomó en promedio ${precedente.promedioDias}d -- no es una predicción de esta reforma, es el ritmo con el que se han movido las anteriores.`
+    ? ` <span style="color:var(--ink-3);font-style:italic;">En reformas de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, el trámite completo tomó en promedio ${precedente.promedioDias}d -- no es una predicción de esta reforma, es el ritmo con el que se han movido las anteriores.</span>`
     : '';
+  const pregunta = `<strong style="color:var(--riesgo-medio);">¿Qué la puede detener?</strong>`;
 
   switch(etapa){
     case 'Presentada': {
       const fecha = reforma.fecha_presentacion ? ` el ${reforma.fecha_presentacion}` : '';
       const porque = reforma.razon_impulsa ? ` ${reforma.razon_impulsa}` : '';
-      return `Se presentó formalmente ante ${camara}${fecha}, a nombre de ${reforma.actor_impulsa || 'quien la promueve'}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen. ¿Qué la puede detener? Si la comisión a la que se turna nunca la dictamina antes de que termine la legislatura, la iniciativa precluye (caduca) sin que nadie la rechace formalmente -- simplemente deja de existir.${notaHistorica}`;
+      return `Se presentó formalmente ante ${camara}${fecha}, a nombre ${impulsorCuerpo}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen. ${pregunta} Si la comisión a la que se turna nunca la dictamina antes de que termine la legislatura, la iniciativa precluye (caduca) sin que nadie la rechace formalmente -- simplemente deja de existir.${notaHistorica}`;
     }
     case 'Comisión': {
       const donde = reforma.comision_nombre ? `la ${reforma.comision_nombre}` : 'la comisión correspondiente';
-      return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido. ¿Qué la puede detener? Que la comisión no logre esa mayoría (dictamen en sentido negativo, o que nunca se vote), o que la legislatura termine sin que se haya dictaminado -- en ese caso también precluye.${notaRitmo}`;
+      return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido. ${pregunta} Que la comisión no logre esa mayoría (dictamen en sentido negativo, o que nunca se vote), o que la legislatura termine sin que se haya dictaminado -- en ese caso también precluye.${notaRitmo}`;
     }
     case 'Pleno':
-      return `Se discute y vota ante el Pleno de ${camara}. Necesita ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}. ¿Qué la puede detener? Que no reúna esa mayoría en la votación -- ahí se rechaza y, por regla general, no puede reintroducirse en el mismo periodo de sesiones.${notaRitmo}`;
+      return `Se discute y vota ante el Pleno de ${camara}. Necesita ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}. ${pregunta} Que no reúna esa mayoría en la votación -- ahí se rechaza y, por regla general, no puede reintroducirse en el mismo periodo de sesiones.${notaRitmo}`;
     case 'Aprobada':
-      return `Ya la aprobó ${camara}. ${revisora ? `Falta que la Cámara de ${revisora} la discuta y apruebe en los mismos términos` : 'Falta completar el trámite'}${esConstitucional ? ', y que la avale la mayoría de los congresos estatales (Artículo 135 constitucional)' : ''}, antes de publicarse en el Diario Oficial de la Federación. ¿Qué la puede detener? Si la cámara revisora la modifica, la minuta regresa a ${camara} para que avale esos cambios antes de seguir; y si la cámara revisora la rechaza de plano, el proceso se detiene ahí${esConstitucional ? ' -- o, siendo constitucional, si no la avala la mayoría de los congresos estatales' : ''}.`;
+      return `Ya la aprobó ${camara}. ${revisora ? `Falta que la Cámara de ${revisora} la discuta y apruebe en los mismos términos` : 'Falta completar el trámite'}${esConstitucional ? ', y que la avale la mayoría de los congresos estatales (Artículo 135 constitucional)' : ''}, antes de publicarse en el Diario Oficial de la Federación. ${pregunta} Si la cámara revisora la modifica, la minuta regresa a ${camara} para que avale esos cambios antes de seguir; y si la cámara revisora la rechaza de plano, el proceso se detiene ahí${esConstitucional ? ' -- o, siendo constitucional, si no la avala la mayoría de los congresos estatales' : ''}.`;
     case 'Publicada':
       return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente. No hay nada que la detenga desde aquí; el único camino para revertirla es otra reforma que la modifique o abrogue, o una controversia constitucional que la invalide.';
     case 'Rechazada':
@@ -556,12 +570,11 @@ function lineaTiempoReaccionesHTML(reforma){
         Línea de tiempo del proceso
       </div>
       <div style="position:relative;padding-top:6px;">
-        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2}px;height:2px;background:var(--line-strong);opacity:.35;"></div>
-        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2}px;height:2px;background:var(--teal);
+        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2}px;height:1px;background:var(--line-strong);opacity:.35;"></div>
+        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2}px;height:1px;background:var(--teal);
           transform-origin:left center; animation:leg-linea-traza ${DURACION_TRAZO}s ease-out both;"></div>
-        <svg width="10" height="10" viewBox="0 0 10 10" style="position:absolute;right:14px;top:${6+ALTO_PUNTO/2-5}px;opacity:0;animation:leg-etiqueta-aparece .3s ease ${DURACION_TRAZO}s both;">
-          <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <div style="position:absolute;right:13px;top:${6+ALTO_PUNTO/2-7}px;font-family:var(--f-mono);font-size:13px;line-height:1;color:var(--teal);
+          opacity:0; animation:leg-etiqueta-aparece .3s ease ${DURACION_TRAZO}s both;">›</div>
         <div style="display:flex;gap:4px;overflow-x:auto;position:relative;padding-right:20px;">
           ${eventos.map((e,i)=>`
             <div style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
