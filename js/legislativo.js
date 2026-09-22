@@ -205,7 +205,7 @@ function inyectarEstilosLegV3(){
     .leg-modal-card::-webkit-scrollbar-track { background: transparent; }
     .leg-modal-card::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
     .leg-modal-card::-webkit-scrollbar-thumb:hover { background: var(--teal); }
-    .leg-analisis-modal .leg-modal-card { max-width:560px; }
+    .leg-analisis-modal .leg-modal-card { max-width:560px; padding:24px 26px; }
     .leg-modal-cerrar { position:absolute; top:8px; right:10px; background:none; border:none; color:var(--ink-3); font-size:16px; line-height:1; cursor:pointer; padding:6px; }
     .leg-modal-cerrar:hover { color:var(--ink-1); }
   `;
@@ -782,9 +782,17 @@ function panelAnalisisGlobalLeg(todasLasReformas){
   const diasPublicadas = publicadas.map(r=>diasTotalTramiteLeg(r)).filter(d=> d!==null && d!==undefined);
   const promedioGeneral = diasPublicadas.length ? Math.round(diasPublicadas.reduce((a,b)=>a+b,0)/diasPublicadas.length) : null;
 
-  const kpiCard = (valor, label, color)=>`
-    <div style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:10px 8px;text-align:center;">
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:${color||'var(--ink-1)'};">${valor}</div>
+  const ICONOS_KPI_LEG = {
+    trackeadas: '<path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1Z"/><rect x="5" y="5" width="14" height="16" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/>',
+    tramite: '<circle cx="12" cy="12" r="8"/><polyline points="12 8 12 12 15 14"/>',
+    aprobadas: '<circle cx="12" cy="12" r="8"/><polyline points="8.5 12 11 14.5 15.5 9.5"/>',
+    rechazadas: '<circle cx="12" cy="12" r="8"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/>',
+    dof: '<path d="M7 3h8l3 3v15H7z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/>',
+  };
+  const kpiCard = (valor, label, color, icono)=>`
+    <div style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:12px 8px;text-align:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${color||'var(--ink-3)'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONOS_KPI_LEG[icono]||''}</svg>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:${color||'var(--ink-1)'};margin-top:4px;">${valor}</div>
       <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${label}</div>
     </div>`;
 
@@ -803,10 +811,10 @@ function panelAnalisisGlobalLeg(todasLasReformas){
     const favor = Number(r.votos_favor)||0, contra = Number(r.votos_contra)||0, abst = Number(r.votos_abstencion)||0;
     const margen = favor - contra;
     return `
-      <div style="margin-top:10px;">
-        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-2);">
-          <span>${r.nombre}</span>
-          <span style="color:var(--ink-1);font-weight:600;">${favor}–${contra}${abst?`–${abst}`:''} <span style="color:${margen>=0?'var(--riesgo-bajo)':'var(--riesgo-alto)'};">(${margen>0?'+':''}${margen})</span></span>
+      <div style="margin-top:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;min-height:32px;font-size:11px;color:var(--ink-2);">
+          <span style="flex:1;min-width:0;line-height:1.4;">${r.nombre}</span>
+          <span style="flex-shrink:0;white-space:nowrap;color:var(--ink-1);font-weight:600;">${favor}–${contra}${abst?`–${abst}`:''} <span style="color:${margen>=0?'var(--riesgo-bajo)':'var(--riesgo-alto)'};">(${margen>0?'+':''}${margen})</span></span>
         </div>
         ${barraApiladaHTML(favor, contra, abst)}
       </div>`;
@@ -823,32 +831,32 @@ function panelAnalisisGlobalLeg(todasLasReformas){
   })));
 
   return `
-    <div style="font-weight:700;font-size:13px;color:var(--teal);padding-right:18px;">Análisis general · Legislativo</div>
-    <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">
+    <div style="font-weight:700;font-size:14px;color:var(--teal);padding-right:18px;">Análisis general · Legislativo</div>
+    <p style="font-size:11px;color:var(--ink-3);margin-top:6px;line-height:1.5;">
       Es un seguimiento de lo que ya pasó con las ${total} reformas trackeadas. Crece solo conforme vayan saliendo más reformas.
     </p>
 
-    <div class="eyebrow" style="color:var(--teal);margin-top:16px;">Resumen general</div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px;">
-      ${kpiCard(total, 'Trackeadas')}
-      ${kpiCard(enTramite, 'En trámite', 'var(--teal)')}
-      ${kpiCard(aprobadas.length, 'Aprobadas', 'var(--riesgo-bajo)')}
-      ${kpiCard(rechazadas.length, 'Rechazadas', 'var(--riesgo-alto)')}
-      ${kpiCard(publicadas.length, 'En el DOF')}
+    <div class="eyebrow" style="color:var(--teal);margin-top:26px;">Resumen general</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px;">
+      ${kpiCard(total, 'Trackeadas', 'var(--ink-2)', 'trackeadas')}
+      ${kpiCard(enTramite, 'En trámite', 'var(--teal)', 'tramite')}
+      ${kpiCard(aprobadas.length, 'Aprobadas', 'var(--riesgo-bajo)', 'aprobadas')}
+      ${kpiCard(rechazadas.length, 'Rechazadas', 'var(--riesgo-alto)', 'rechazadas')}
+      ${kpiCard(publicadas.length, 'En el DOF', 'var(--ink-2)', 'dof')}
     </div>
-    ${promedioGeneral!==null ? `<p style="font-size:11px;color:var(--ink-2);margin-top:8px;">Tiempo promedio de trámite completo (Presentada → Publicada): <strong style="color:var(--ink-1);">${promedioGeneral}d</strong>.</p>` : ''}
+    ${promedioGeneral!==null ? `<p style="font-size:11px;color:var(--ink-2);margin-top:10px;">Tiempo promedio de trámite completo (Presentada → Publicada): <strong style="color:var(--ink-1);">${promedioGeneral}d</strong>.</p>` : ''}
 
     ${graficaTipo ? `
-    <div class="eyebrow" style="color:var(--teal);margin-top:18px;">Por tipo de reforma</div>
-    ${graficaTipo}` : ''}
+    <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Por tipo de reforma</div>
+    <div style="margin-top:10px;">${graficaTipo}</div>` : ''}
 
     ${graficaVotos ? `
-    <div class="eyebrow" style="color:var(--teal);margin-top:18px;">Votaciones (reformas concluidas)</div>
+    <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Votaciones (reformas concluidas)</div>
     ${graficaVotos}` : ''}
 
     ${partidosConApariciones.length ? `
-    <div class="eyebrow" style="color:var(--teal);margin-top:18px;">Bancadas del lado de la oposición</div>
-    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:4px;">${narrativaPartidosLeg(partidos, total)}</p>
+    <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Bancadas del lado de la oposición</div>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">${narrativaPartidosLeg(partidos, total)}</p>
     ${graficaPartidos}
     <p style="font-size:9.5px;color:var(--ink-3);margin-top:8px;">Conteo de menciones en el campo de oposición de cada reforma -- no es disciplina de partido comprobada. Pasa el cursor sobre cada barra para ver en qué reformas.</p>` : ''}
   `;
