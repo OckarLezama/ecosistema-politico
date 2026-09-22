@@ -233,6 +233,17 @@ function calcularDuracionesEtapasLeg(reforma){
     const dias = Math.max(0, Math.round((fin-inicio)/86400000));
     resultado[e.etapa] = { dias, corriendo: !siguiente, fechaInicio: e.fecha };
   });
+
+  // Defensivo: si a `etapa_actual` se le adelantó la columna pero a
+  // `historial_etapas` se le olvidó agregar la fecha de esa etapa (desajuste
+  // manual o del robot), el nodo vigente se queda sin datos y el click no
+  // reacciona a nada -- aquí se rellena con `fecha_ultima_actualizacion` como
+  // respaldo, para que el nodo vigente siempre tenga algo que mostrar.
+  if(!resultado[reforma.etapa_actual] && reforma.fecha_ultima_actualizacion){
+    const inicio = new Date(reforma.fecha_ultima_actualizacion+'T00:00:00').getTime();
+    const dias = Math.max(0, Math.round((Date.now()-inicio)/86400000));
+    resultado[reforma.etapa_actual] = { dias, corriendo: true, fechaInicio: reforma.fecha_ultima_actualizacion };
+  }
   return resultado;
 }
 
@@ -803,21 +814,6 @@ function posturasColumnasHTML(r){
   `;
 }
 
-// Botón "¿qué pasa si se aprueba o se rechaza?" -- de vuelta a petición del
-// usuario. Son hechos del Reglamento (a qué instancia pasa, qué se necesita),
-// nunca una predicción de qué va a pasar con esta reforma en particular -- eso
-// se aclara en el propio texto.
-function botonProcedimientoHTML(r){
-  return `
-    <button class="chip-btn" data-toggle-procedimiento="${r.id}" style="font-size:10.5px;padding:4px 10px;margin-top:4px;">¿Qué pasa si se aprueba o se rechaza?</button>
-    <div id="leg-procedimiento-${r.id}" style="display:none;margin-top:8px;padding:10px;background:var(--bg-1);border-radius:var(--radius-s);border-left:3px solid var(--line-strong);">
-      <p style="font-size:11px;color:var(--ink-2);margin:0 0 6px;line-height:1.5;"><strong style="color:var(--riesgo-bajo);">Si se aprueba en Pleno:</strong> pasa a la cámara revisora del Congreso -- o, si ambas cámaras ya la aprobaron, al Ejecutivo para su publicación en el Diario Oficial de la Federación.</p>
-      <p style="font-size:11px;color:var(--ink-2);margin:0;line-height:1.5;"><strong style="color:var(--riesgo-alto);">Si se rechaza:</strong> conforme al Reglamento, la iniciativa se tiene por desechada; por regla general no puede volver a presentarse en el mismo periodo de sesiones.</p>
-      <p style="font-size:9.5px;color:var(--ink-3);margin:6px 0 0;">Procedimiento general del Congreso -- no es una predicción de qué va a pasar con esta reforma en particular.</p>
-    </div>
-  `;
-}
-
 function vistaReformaHTML(r, todasLasReformas){
   const colorEtapa = COLOR_ETAPA_LEG[r.etapa_actual] || 'var(--ink-3)';
   const dias = ETAPAS_TRAMITE_LEG.includes(r.etapa_actual) ? diasEnEtapaActualLeg(r) : null;
@@ -868,7 +864,6 @@ function vistaReformaHTML(r, todasLasReformas){
 
     <div style="margin-top:16px;">
       ${posturasColumnasHTML(r)}
-      ${botonProcedimientoHTML(r)}
       ${proyeccionHTML}
     </div>
   </div>`;
@@ -988,17 +983,6 @@ function renderLegislativo(){
       });
     }
 
-    // botón "¿qué pasa si se aprueba o se rechaza?"
-    const btnProc = cont.querySelector('[data-toggle-procedimiento]');
-    if(btnProc){
-      btnProc.addEventListener('click', ()=>{
-        const panel = document.getElementById('leg-procedimiento-'+btnProc.dataset.toggleProcedimiento);
-        if(!panel) return;
-        const abierto = panel.style.display==='block';
-        panel.style.display = abierto ? 'none' : 'block';
-        btnProc.textContent = abierto ? '¿Qué pasa si se aprueba o se rechaza?' : 'Ocultar procedimiento';
-      });
-    }
   });
 }
 
