@@ -634,7 +634,8 @@ function vistaReformaHTML(r, todasLasReformas){
     <div class="reforma-lienzo">
       ${stepperEtapaHTML(r, idNodo)}
       ${lineaTiempoReaccionesHTML(r)}
-      <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa ↗</p>
+      <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa.</p>
+      <div id="${idNodo}-info-click" style="display:none;margin:10px 6px 2px;padding-top:10px;border-top:1px dashed var(--line-strong);"></div>
     </div>
 
     ${r.resumen ? `<div style="margin-top:14px;">
@@ -714,32 +715,49 @@ function renderLegislativo(){
 
     if(!actual) return;
 
-    // clic en un nodo YA ALCANZADO -> abre una VENTANA (modal) con el detalle de
-    // esa etapa, en vez de un panel dentro del lienzo -- el panel inline movía
-    // todo el diseño de la ramificación cada vez que se abría o cerraba; la
-    // ventana flotante lo deja quieto siempre. Solo texto y, cuando la etapa
-    // clicada es la etapa VIGENTE, también la votación (donut + % de los votos
-    // emitidos) y quién se pronunció -- es la única etapa para la que hoy el CSV
-    // guarda ese dato. Un nodo futuro no tiene este atributo, no reacciona a nada.
+    // clic en un nodo YA ALCANZADO -> texto simple debajo del lienzo (como
+    // estaba), sin caja ni layout que se mueva. Lo ÚNICO que se abre en una
+    // VENTANA aparte es el detalle de votación (nombres, voto y posicionamiento
+    // de cada quien) -- eso sí puede ser largo y no tiene sentido empujar el
+    // lienzo por verlo; el resto (qué es la etapa, qué hace falta, cuándo entró)
+    // se queda igual que siempre, inline. Un nodo futuro no reacciona a nada.
+    const idNodo = 'leg-'+actual.id;
+    const cajaInfo = document.getElementById(idNodo+'-info-click');
     const precedenteClick = calcularPrecedenteTipoLeg(reformas, actual.tipo, actual.id);
     cont.querySelectorAll('[data-etapa-click]').forEach(nodo=>{
       nodo.addEventListener('click', ()=>{
         const etapa = nodo.dataset.etapaClick;
         const duraciones = calcularDuracionesEtapasLeg(actual);
         const dur = duraciones[etapa];
-        if(!dur) return;
+        if(!cajaInfo || !dur) return;
+        const mismoAbierto = cajaInfo.dataset.etapaAbierta === etapa && cajaInfo.style.display==='block';
+        if(mismoAbierto){ cajaInfo.style.display = 'none'; cajaInfo.dataset.etapaAbierta=''; return; }
+        cajaInfo.dataset.etapaAbierta = etapa;
+        cajaInfo.style.display = 'block';
 
         const esVigente = etapa === actual.etapa_actual;
-        const votos = esVigente ? votacionPieHTML(actual, etapa) : '';
-        const pronunciamientos = esVigente ? pronunciamientosDetalleHTML(actual) : '';
+        const tieneVotos = esVigente && (Number(actual.votos_favor)||Number(actual.votos_contra)||Number(actual.votos_abstencion));
+        const enlaceVotacion = tieneVotos
+          ? `<button type="button" class="chip-btn" data-ver-votacion="1" style="font-size:10.5px;padding:4px 10px;margin-top:8px;">Ver nombres, voto y posicionamiento ↗</button>`
+          : '';
 
-        abrirModalLeg(`
-          <div style="font-weight:700;font-size:13px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};padding-right:18px;">${etapa}</div>
-          <p style="font-size:12px;color:var(--ink-2);margin-top:5px;line-height:1.55;">${explicacionEtapaLeg(etapa, actual, precedenteClick)}</p>
-          <p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
-          ${votos}
-          ${pronunciamientos}
-        `);
+        cajaInfo.innerHTML = `
+          <div style="font-weight:700;font-size:12px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
+          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual, precedenteClick)}</p>
+          <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
+          ${enlaceVotacion}
+        `;
+
+        const btnVotacion = cajaInfo.querySelector('[data-ver-votacion]');
+        if(btnVotacion){
+          btnVotacion.addEventListener('click', ()=>{
+            abrirModalLeg(`
+              <div style="font-weight:700;font-size:13px;color:var(--teal);padding-right:18px;">Votación · ${etapa}</div>
+              ${votacionPieHTML(actual, etapa)}
+              ${pronunciamientosDetalleHTML(actual)}
+            `);
+          });
+        }
       });
     });
   });
