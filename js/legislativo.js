@@ -165,6 +165,16 @@ function inyectarEstilosLegV3(){
     }
     .reforma-lienzo > * { position: relative; }
 
+    /* Scroll delgado y del color del tema, en vez del scrollbar genérico del
+       navegador -- ojo: esto asume que el "feed" usa el mismo patrón de thumb
+       delgado + pista casi invisible; si el feed tiene un estilo distinto,
+       hace falta ver su CSS para igualarlo exactamente. */
+    #legislativo-contenido { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+    #legislativo-contenido::-webkit-scrollbar { width: 6px; }
+    #legislativo-contenido::-webkit-scrollbar-track { background: transparent; }
+    #legislativo-contenido::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+    #legislativo-contenido::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+
     .reforma-nodo-umbral { fill: none; stroke: var(--teal); stroke-width: 1.2; stroke-dasharray: 2.5 3; opacity: .6; }
     .reforma-nodo-halo { fill: none; stroke: var(--teal); stroke-width: 1.6; animation: leg-pulso 2s ease-out infinite; }
     .reforma-triangulo { animation: leg-triangulo-cae .3s ease-out .5s both; }
@@ -262,11 +272,15 @@ function calcularPrecedenteTipoLeg(todasLasReformas, tipo, idExcluir){
   return { total: previas.length, aprobadas, rechazadas, pctAprobacion: Math.round((aprobadas/previas.length)*100), promedioDias };
 }
 
+// Rediseño: ya no es una caja con fondo y borde de color (compitiendo visualmente
+// con "Qué establece", que tenía la misma caja justo arriba -- se veía como dos
+// recuadros pegados, "encimados"). Ahora es texto que fluye igual que el resto de
+// la ficha, con un eyebrow propio para no perder de dónde sale el dato.
 function precedenteHTML(precedente, tipo){
   if(!precedente) return '';
-  return `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:12px 14px;margin-top:12px;">
-    <div class="eyebrow" style="margin:0 0 6px;color:var(--teal);">Precedente · ${tipo}</div>
-    <p style="font-size:12px;color:var(--ink-2);line-height:1.65;margin:0;">
+  return `<div style="margin-top:16px;">
+    <div class="eyebrow" style="color:var(--teal);">Precedente · ${tipo}</div>
+    <p style="font-size:12px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">
       De <strong style="color:var(--ink-1);">${precedente.total}</strong> reforma${precedente.total!==1?'s':''} de este tipo en el sexenio,
       <strong style="color:var(--riesgo-bajo);">${precedente.aprobadas}</strong> ${precedente.aprobadas===1?'se aprobó':'se aprobaron'} (${precedente.pctAprobacion}%)
       y <strong style="color:var(--riesgo-alto);">${precedente.rechazadas}</strong> ${precedente.rechazadas===1?'se rechazó':'se rechazaron'}.
@@ -823,14 +837,16 @@ function vistaReformaHTML(r, todasLasReformas){
       <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa.</p>
     </div>
 
-    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:13px 15px;margin-top:14px;margin-bottom:4px;">
-      <div class="eyebrow" style="margin:0 0 7px;">Qué establece</div>
-      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:0;">${r.resumen}</p>
-      ${r.fuente_url ? `<p style="font-size:11px;margin:9px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
-    </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : '')}
+    ${r.resumen ? `<div style="margin-top:16px;">
+      <div class="eyebrow">Qué establece</div>
+      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.resumen}</p>
+      ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
+    </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:16px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : '')}
     ${precedenteHTML(precedente, r.tipo)}
 
-    <div style="margin-top:14px;">
+    <div style="height:1px;background:var(--line);margin:18px 0 0;"></div>
+
+    <div style="margin-top:16px;">
       ${posturasColumnasHTML(r)}
       ${botonProcedimientoHTML(r)}
       ${proyeccionHTML}
