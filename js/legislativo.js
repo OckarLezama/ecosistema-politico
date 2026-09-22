@@ -84,6 +84,9 @@
 
 const ETAPAS_TRAMITE_LEG = ['Presentada', 'Comisión', 'Pleno'];
 const ETAPAS_CONCLUIDAS_LEG = ['Aprobada', 'Publicada', 'Rechazada'];
+// El recorrido normal es UNA sola línea, sin bifurcación -- "Rechazada" no es un
+// camino paralelo, es cómo termina la línea cuando no logra avanzar más.
+const ETAPAS_LINEA_LEG = ['Presentada', 'Comisión', 'Pleno', 'Aprobada', 'Publicada'];
 const COLOR_ETAPA_LEG = {
   'Presentada': 'var(--ink-3)',
   'Comisión': 'var(--riesgo-medio)',
@@ -364,128 +367,101 @@ function explicacionEtapaLeg(etapa, reforma, precedente){
   }
 }
 
+// NUEVO diseño (sin bifurcación): una sola línea Presentada -> Comisión ->
+// Pleno -> Aprobada -> Publicada. "Rechazada" no es un camino paralelo que hay
+// que dibujar aparte -- es cómo TERMINA la línea cuando no logra avanzar más:
+// el último tramo recorrido y su nodo se pintan del color de rechazo, y ahí se
+// corta. Como nunca hay una curva que bifurcar, no hay geometría que se pueda
+// ver "encimada". Toda la lógica de datos (qué etapas están disponibles para
+// click, duraciones, etc.) es la misma de antes.
+function encontrarUltimaEtapaAntesDeRechazoLeg(reforma){
+  if(reforma.historial_etapas){
+    const entradas = reforma.historial_etapas.split('|')
+      .map(par => par.split(':')[0]?.trim())
+      .filter(etapa => ETAPAS_LINEA_LEG.includes(etapa));
+    if(entradas.length) return entradas[entradas.length-1];
+  }
+  return 'Pleno'; // respaldo razonable: la mayoría de los rechazos ocurren en la votación de Pleno
+}
+
 function stepperEtapaHTML(reforma, idNodo){
   const etapaActual = reforma.etapa_actual;
   const duraciones = calcularDuracionesEtapasLeg(reforma);
-  const PRE_FORK = ['Presentada', 'Comisión', 'Pleno'];
   const esRechazada = etapaActual==='Rechazada';
-  const esAprobadaOPublicada = etapaActual==='Aprobada' || etapaActual==='Publicada';
-  const idxPreFork = PRE_FORK.indexOf(etapaActual);
-  const width = 600, height = 230;
-  const xNodo = i => 70 + i*160;
-  const yLinea = 120;
-  const R = 10;
-  const PASO = 0.13;
-  const retardo = gen => `animation-delay:${(gen*PASO).toFixed(2)}s;`;
+  const etapaParaPosicion = esRechazada ? encontrarUltimaEtapaAntesDeRechazoLeg(reforma) : etapaActual;
+  const idxActual = ETAPAS_LINEA_LEG.indexOf(etapaParaPosicion);
 
-  // solo las etapas ya alcanzadas (con duración calculada) tienen algo real que
-  // mostrar -- una etapa futura no reacciona a nada
+  const width = 600, height = 150;
+  const n = ETAPAS_LINEA_LEG.length;
+  const margen = 55;
+  const xNodo = i => margen + i*((width-margen*2)/(n-1));
+  const yLinea = 66;
+  const R = 10;
+  const PASO = 0.12;
+  const retardo = gen => `animation-delay:${(gen*PASO).toFixed(2)}s;`;
+  const COLOR_RECHAZO = 'var(--riesgo-alto)';
+
   const nodoClicable = (etapa, cx, cy) => {
     const dur = duraciones[etapa];
     if(!dur) return '';
     return `data-etapa-click="${etapa}" data-cx="${cx}" data-cy="${cy}" class="reforma-nodo clicable"`;
   };
-
-  // relleno del color de la etapa cuando ya se alcanzó/concluyó -- bien marcado
-  // (no un tinte casi imperceptible) para que se note de un vistazo qué tanto
-  // del recorrido ya quedó atrás; futuro se queda vacío.
-  const tinte = c => c==='var(--line-strong)' ? 'var(--bg-1)' : `${c}4D`;
-  const brillo = (c, esActual) => esActual ? `filter:drop-shadow(0 0 5px ${c}99);` : '';
-  // respaldo opaco DETRÁS de cada nodo, del mismo color que el fondo del
-  // lienzo -- así el tramo de línea que llega hasta el centro del nodo queda
-  // completamente tapado y no se ve "encimado" dentro del círculo.
   const respaldo = (cx, cy, r) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="var(--bg-1)"/>`;
 
   let svg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:${width}px;height:${height}px;display:block;margin:0 auto;">`;
 
-  PRE_FORK.forEach((etapa,i)=>{
-    const completada = idxPreFork===-1 ? true : i < idxPreFork;
-    const esActual = i === idxPreFork;
-    const color = esActual ? 'var(--teal)' : (completada ? 'var(--riesgo-bajo)' : 'var(--line-strong)');
+  // pista de fondo completa, tenue -- el "riel" sobre el que corre el progreso
+  svg += `<rect x="${xNodo(0)}" y="${yLinea-3}" width="${xNodo(n-1)-xNodo(0)}" height="6" rx="3" fill="var(--line-strong)" opacity=".3"/>`;
+
+  // barra de progreso: verde hasta donde llegó bien, y si se rechazó, el
+  // ÚLTIMO tramo (el que la trajo hasta el punto de rechazo) se pinta del color
+  // de rechazo en vez de verde -- para que se note a simple vista que ahí se
+  // truncó, y del mismo color que el nodo donde ocurrió.
+  if(idxActual > 0){
+    const tramoPrevioColor = esRechazada ? 'var(--riesgo-bajo)' : 'var(--riesgo-bajo)';
+    if(idxActual > 1){
+      svg += `<rect x="${xNodo(0)}" y="${yLinea-3}" width="${xNodo(idxActual-1)-xNodo(0)}" height="6" rx="3" fill="${tramoPrevioColor}" style="filter:drop-shadow(0 0 4px ${tramoPrevioColor}66);"/>`;
+    }
+    const colorTramoFinal = esRechazada ? COLOR_RECHAZO : 'var(--riesgo-bajo)';
+    const claseTramoFinal = (!esRechazada && idxActual===n-1) ? '' : (esRechazada ? '' : 'reforma-segmento-vivo');
+    svg += `<rect x="${xNodo(idxActual-1)}" y="${yLinea-3}" width="${xNodo(idxActual)-xNodo(idxActual-1)}" height="6" rx="3" class="${claseTramoFinal}" fill="${colorTramoFinal}" style="filter:drop-shadow(0 0 5px ${colorTramoFinal}99);"/>`;
+  }
+
+  ETAPAS_LINEA_LEG.forEach((etapa, i) => {
+    if(esRechazada && i > idxActual) return; // nada después del punto de rechazo -- la línea simplemente no sigue
+    const completada = i < idxActual;
+    const esNodoActual = i === idxActual;
+    const esNodoRechazo = esRechazada && esNodoActual;
+    const color = esNodoRechazo ? COLOR_RECHAZO : (esNodoActual ? 'var(--teal)' : (completada ? 'var(--riesgo-bajo)' : 'var(--line-strong)'));
     const gen = i;
-    if(i>0){
-      const completoDeTodo = idxPreFork===-1 || i < idxPreFork;
-      const esTramoVigente = i === idxPreFork;
-      let strokeColor, claseLinea, extra = '';
-      if(completoDeTodo){ strokeColor='var(--riesgo-bajo)'; claseLinea='reforma-rama-trazo'; }
-      else if(esTramoVigente){ strokeColor='var(--teal)'; claseLinea='reforma-segmento-vivo'; }
-      else { strokeColor='var(--line-strong)'; claseLinea=''; extra='stroke-dasharray="3 3"'; }
-      svg += `<line x1="${xNodo(i-1)}" y1="${yLinea}" x2="${xNodo(i)}" y2="${yLinea}" stroke="${strokeColor}" stroke-width="2.5" class="${claseLinea}" style="${retardo(gen-0.4)}" ${extra}/>`;
+    const r = esNodoActual ? R+2 : R;
+
+    if(esNodoActual){
+      svg += `<polygon class="reforma-triangulo-viva" points="${xNodo(i)-5},${yLinea-26} ${xNodo(i)+5},${yLinea-26} ${xNodo(i)},${yLinea-18}" fill="${color}"/>`;
+      svg += `<circle class="reforma-nodo-umbral" cx="${xNodo(i)}" cy="${yLinea}" r="18" style="stroke:${color};"/>`;
+      svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="12" style="stroke:${color};"/>`;
+      svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="12" style="stroke:${color};animation-delay:1s;"/>`;
     }
-    if(esActual){
-      svg += `<polygon class="reforma-triangulo-viva" points="${xNodo(i)-5},${yLinea-24} ${xNodo(i)+5},${yLinea-24} ${xNodo(i)},${yLinea-16}" fill="${color}"/>`;
-      svg += `<circle class="reforma-nodo-umbral" cx="${xNodo(i)}" cy="${yLinea}" r="17" style="stroke:${color};"/>`;
-      svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="stroke:${color};"/>`;
-      svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="stroke:${color};animation-delay:1s;"/>`;
-    }
-    svg += respaldo(xNodo(i), yLinea, esActual?R+1:R);
-    svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?R+1:R}" fill="${tinte(color)}" stroke="${color}" stroke-width="${completada?2.6:2.2}" style="${retardo(gen)}${brillo(color,esActual)}"/>`;
+    svg += respaldo(xNodo(i), yLinea, r);
+    const fillNodo = (completada || esNodoActual) ? `${color}55` : 'var(--bg-1)';
+    svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${r}" fill="${fillNodo}" stroke="${color}" stroke-width="${completada||esNodoActual?2.8:2.2}" style="${retardo(gen)}${esNodoActual?`filter:drop-shadow(0 0 6px ${color}bb);`:''}"/>`;
     svg += iconoEtapaSVG(etapa, xNodo(i), yLinea, color);
-    svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+30}" text-anchor="middle" font-size="9.5" font-weight="${esActual?700:400}" font-family="var(--f-mono)" fill="${esActual?'var(--teal)':'var(--ink-3)'}" style="${retardo(gen+0.3)}">${etapa}</text>`;
+    svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+32}" text-anchor="middle" font-size="9.5" font-weight="${esNodoActual?700:400}" font-family="var(--f-mono)" fill="${color==='var(--line-strong)'?'var(--ink-3)':color}" style="${retardo(gen+0.3)}">${etapa}</text>`;
     const dur = duraciones[etapa];
-    // un cero no aporta nada (una etapa que se recorrió el mismo día) -- solo se
-    // muestra el número si hay algo que contar, o si es la etapa vigente y sigue corriendo
     if(dur && (dur.dias>0 || dur.corriendo)){
       const texto = dur.corriendo ? `${dur.dias}d y contando` : `${dur.dias}d`;
-      const colorDur = dur.corriendo ? 'var(--teal)' : 'var(--riesgo-bajo)';
-      svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+42}" text-anchor="middle" font-size="8" font-family="var(--f-mono)" fill="${colorDur}" style="${retardo(gen+0.4)}">${texto}</text>`;
+      svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+44}" text-anchor="middle" font-size="8" font-family="var(--f-mono)" fill="${dur.corriendo?'var(--teal)':'var(--ink-3)'}" style="${retardo(gen+0.4)}">${texto}</text>`;
     }
   });
 
-  // Punto de bifurcación SEPARADO del nodo de Pleno (no encima de él): antes las
-  // dos curvas arrancaban justo del centro del círculo de Pleno y se veían
-  // encimadas sobre el propio nodo. Ahora hay un pequeño tramo recto que sale del
-  // borde del nodo hasta un rombo -- el rombo es el punto real donde se bifurca.
-  const xNodoPleno = xNodo(2);
-  const xFork = xNodoPleno + R + 16;
-  const xRamaFin = xFork + 90;
-  const yArriba = yLinea - 60, yAbajo = yLinea + 60;
-  const colorRamaArriba = esAprobadaOPublicada ? 'var(--riesgo-bajo)' : 'var(--line-strong)';
-  const colorRamaAbajo = esRechazada ? 'var(--riesgo-alto)' : 'var(--line-strong)';
-  const genFork = 3;
-
-  const completoDeTodoFork = idxPreFork === -1;
-  const esTramoVigenteFork = idxPreFork === 2;
-  let stubColor, stubClase, stubExtra = '';
-  if(completoDeTodoFork){ stubColor='var(--riesgo-bajo)'; stubClase='reforma-rama-trazo'; }
-  else if(esTramoVigenteFork){ stubColor='var(--teal)'; stubClase='reforma-segmento-vivo'; }
-  else { stubColor='var(--line-strong)'; stubClase=''; stubExtra='stroke-dasharray="3 3"'; }
-  svg += `<line x1="${xNodoPleno+R}" y1="${yLinea}" x2="${xFork}" y2="${yLinea}" stroke="${stubColor}" stroke-width="2.5" class="${stubClase}" style="${retardo(2.6)}" ${stubExtra}/>`;
-  svg += `<rect x="${xFork-4}" y="${yLinea-4}" width="8" height="8" fill="${stubColor}" transform="rotate(45 ${xFork} ${yLinea})" style="${retardo(2.8)}"/>`;
-
-  const colorNodoAprobada = etapaActual==='Aprobada' ? 'var(--teal)' : (esAprobadaOPublicada ? 'var(--riesgo-bajo)' : 'var(--line-strong)');
-  const colorNodoPublicada = etapaActual==='Publicada' ? 'var(--teal)' : 'var(--line-strong)';
-  const colorNodoRechazada = esRechazada ? 'var(--riesgo-alto)' : 'var(--line-strong)';
-
-  svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+38} ${yLinea} ${xFork+58} ${yArriba}" fill="none" stroke="${colorRamaArriba}" stroke-width="2" style="${retardo(genFork)}" ${esAprobadaOPublicada?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
-  if(etapaActual==='Aprobada'){
-    svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yArriba}" r="12" style="stroke:${colorNodoAprobada};"/>`;
-    svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yArriba}" r="12" style="stroke:${colorNodoAprobada};animation-delay:1s;"/>`;
-  }
-  svg += respaldo(xRamaFin, yArriba, etapaActual==='Aprobada'?11:9);
-  svg += `<circle ${nodoClicable('Aprobada', xRamaFin, yArriba)} cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?11:9}" fill="${tinte(colorNodoAprobada)}" stroke="${colorNodoAprobada}" stroke-width="${esAprobadaOPublicada?2.6:2.2}" style="${retardo(genFork+0.4)}${brillo(colorNodoAprobada, etapaActual==='Aprobada')}"/>`;
-  svg += iconoEtapaSVG('Aprobada', xRamaFin, yArriba, esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)');
-  svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Aprobada</text>`;
-  const xPublicada = xRamaFin + 75;
-  svg += `<line x1="${xRamaFin}" y1="${yArriba}" x2="${xPublicada}" y2="${yArriba}" stroke="${etapaActual==='Publicada'?'var(--riesgo-bajo)':'var(--line-strong)'}" stroke-width="2" style="${retardo(genFork+0.8)}" ${etapaActual==='Publicada'?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
-  if(etapaActual==='Publicada'){
-    svg += `<circle class="reforma-nodo-halo" cx="${xPublicada}" cy="${yArriba}" r="12" style="stroke:${colorNodoPublicada};"/>`;
-    svg += `<circle class="reforma-nodo-halo" cx="${xPublicada}" cy="${yArriba}" r="12" style="stroke:${colorNodoPublicada};animation-delay:1s;"/>`;
-  }
-  svg += respaldo(xPublicada, yArriba, etapaActual==='Publicada'?11:9);
-  svg += `<circle ${nodoClicable('Publicada', xPublicada, yArriba)} cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?11:9}" fill="${tinte(colorNodoPublicada)}" stroke="${colorNodoPublicada}" stroke-width="${etapaActual==='Publicada'?2.6:2.2}" style="${retardo(genFork+1.1)}${brillo(colorNodoPublicada, etapaActual==='Publicada')}"/>`;
-  svg += iconoEtapaSVG('Publicada', xPublicada, yArriba, etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)');
-  svg += `<text class="reforma-etiqueta" x="${xPublicada}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${etapaActual==='Publicada'?'var(--teal)':'var(--ink-3)'}" style="${retardo(genFork+1.3)}">Publicada</text>`;
-
-  svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+38} ${yLinea} ${xFork+58} ${yAbajo}" fill="none" stroke="${colorRamaAbajo}" stroke-width="2" style="${retardo(genFork)}" ${esRechazada?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
   if(esRechazada){
-    svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yAbajo}" r="12" style="stroke:${colorNodoRechazada};"/>`;
-    svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yAbajo}" r="12" style="stroke:${colorNodoRechazada};animation-delay:1s;"/>`;
+    // remate visual del corte: una X pequeña justo después del último nodo,
+    // sobre la pista vacía que ya no se llena -- deja clarísimo que el
+    // recorrido murió ahí y no que falta cargar el resto.
+    const xX = Math.min(xNodo(idxActual) + 34, xNodo(n-1) - 8);
+    svg += `<g stroke="${COLOR_RECHAZO}" stroke-width="1.8" stroke-linecap="round" opacity=".85"><line x1="${xX-4}" y1="${yLinea-4}" x2="${xX+4}" y2="${yLinea+4}"/><line x1="${xX+4}" y1="${yLinea-4}" x2="${xX-4}" y2="${yLinea+4}"/></g>`;
+    svg += `<text x="${xNodo(idxActual)}" y="${yLinea+44}" text-anchor="middle" font-size="8" font-family="var(--f-mono)" fill="${COLOR_RECHAZO}" font-weight="700">Rechazada</text>`;
   }
-  svg += respaldo(xRamaFin, yAbajo, esRechazada?11:9);
-  svg += `<circle ${nodoClicable('Rechazada', xRamaFin, yAbajo)} cx="${xRamaFin}" cy="${yAbajo}" r="${esRechazada?11:9}" fill="${tinte(colorNodoRechazada)}" stroke="${colorNodoRechazada}" stroke-width="2.2" style="${retardo(genFork+0.4)}${brillo(colorNodoRechazada, esRechazada)}"/>`;
-  svg += iconoEtapaSVG('Rechazada', xRamaFin, yAbajo, esRechazada?'var(--riesgo-alto)':'var(--line-strong)');
-  svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yAbajo+22}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esRechazada?'var(--riesgo-alto)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Rechazada</text>`;
 
   svg += `</svg>`;
   return svg;
