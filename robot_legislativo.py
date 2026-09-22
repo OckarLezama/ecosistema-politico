@@ -233,10 +233,27 @@ def guardar_candidato_legislativo(candidato):
 
 def actualizar_reforma(reforma_id, nueva_etapa, actores_nuevos, campos):
     reformas = cargar_reformas()
+    hoy = datetime.now(ZONA_MX).strftime('%Y-%m-%d')
     for r in reformas:
         if r['id'] == reforma_id:
             r['etapa_actual'] = nueva_etapa
-            r['fecha_ultima_actualizacion'] = datetime.now(ZONA_MX).strftime('%Y-%m-%d')
+            r['fecha_ultima_actualizacion'] = hoy
+            # FIX 2026-09-22: antes solo se movía `etapa_actual`, nunca se
+            # agregaba la fecha al historial -- eso deja el stepper y el
+            # timeline del sitio con huecos (la etapa nueva no tiene fecha de
+            # inicio propia) y hace que el nodo vigente no reaccione al click
+            # en la web, porque ahí la duración de cada etapa se calcula
+            # exclusivamente a partir de `historial_etapas`, no de
+            # `etapa_actual`. Cada avance real del robot debe quedar
+            # registrado aquí también, no solo en la columna de etapa actual.
+            historial = (r.get('historial_etapas') or '').strip()
+            ya_tiene_esta_etapa = any(
+                par.split(':')[0].strip() == nueva_etapa
+                for par in historial.split('|') if par.strip()
+            )
+            if not ya_tiene_esta_etapa:
+                nueva_entrada = f'{nueva_etapa}:{hoy}'
+                r['historial_etapas'] = f'{historial}|{nueva_entrada}' if historial else nueva_entrada
             if actores_nuevos:
                 existentes = set(a.strip() for a in (r.get('actor_impulsa') or '').split(';') if a.strip())
                 existentes.update(actores_nuevos)
