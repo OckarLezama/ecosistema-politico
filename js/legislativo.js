@@ -716,6 +716,30 @@ function renderKpisLeg(todasLasReformas){
 // funciones lo recalculan solo -- no hay que tocar nada de esto después.
 const PARTIDOS_LEG = ['Morena','PAN','PRI','PRD','PVEM','PT','Movimiento Ciudadano','PES'];
 
+// nombre corto para gráficas y tooltips -- el `nombre` completo en el CSV es
+// el título formal ("Reforma constitucional de..."), útil en la ficha pero
+// ilegible en una fila angosta de gráfica. Con solo 16 reformas es más
+// confiable mapearlo a mano que tratar de recortarlo con una regla genérica.
+const NOMBRES_CORTOS_LEG = {
+  'ley-egresos-2027': 'Ley de Egresos 2027',
+  'reforma-doble-nacionalidad': 'Doble nacionalidad en candidaturas',
+  'reforma-ley-aduanera-2025': 'Ley Aduanera 2025 (modernización aduanera)',
+  'reforma-organismos-autonomos-2024': 'Simplificación Orgánica (extinción de siete organismos autónomos)',
+  'reforma-ley-aduanera-2026': 'Ley Aduanera 2026 (segunda fase, fiscalización)',
+  'ley-catastral-2026': 'Ley General Catastral y Registral',
+  'curp-biometrica-2025': 'CURP biométrica y Plataforma Única de Identidad',
+  'ley-telecomunicaciones-2025': 'Ley de Telecomunicaciones ("Ley Espía")',
+  'ley-general-aguas-2025': 'Ley General de Aguas',
+  'reforma-maiz-transgenico-2025': 'Maíces nativos (protección y conservación)',
+  'reforma-no-reeleccion-nepotismo-2025': 'No reelección y nepotismo electoral',
+  'reforma-empresas-publicas-2024': 'Pemex y CFE como empresas públicas',
+  'reforma-trenes-pasajeros-2024': 'Trenes de pasajeros',
+  'reforma-poder-judicial-2024': 'Poder Judicial (elección de jueces por voto popular)',
+  'reforma-guardia-nacional-sedena-2024': 'Guardia Nacional a la Sedena',
+  'reforma-ley-amparo-2025': 'Ley de Amparo',
+};
+function nombreCortoLeg(r){ return NOMBRES_CORTOS_LEG[r.id] || r.nombre; }
+
 function conteoPartidosOposicionLeg(todasLasReformas){
   const conteo = {};
   PARTIDOS_LEG.forEach(p=> conteo[p] = { veces:0, reformas:[] });
@@ -882,10 +906,13 @@ function panelAnalisisGlobalLeg(todasLasReformas){
       </div>`;
   }).join('');
 
-  // línea de tiempo del sexenio: de cuándo se presentó cada reforma a cuándo
-  // concluyó, o hasta hoy si sigue corriendo -- usa solo fechas que ya
-  // existen en el CSV (fecha_presentacion / fecha_ultima_actualizacion), sin
-  // depender de datos nuevos.
+  // Línea de tiempo del sexenio -- rediseñada como línea + punto (no barra
+  // sólida): mientras la reforma sigue en trámite, el tramo real (Presentada
+  // -> última actualización conocida) va grueso y sólido, y de ahí a hoy
+  // sigue un tramo delgado y tenue -- ese tramo es solo "ha pasado tiempo sin
+  // noticias nuevas", no información real. Solo cuando la reforma concluye
+  // (Aprobada/Publicada/Rechazada) se dibuja el punto final y la línea
+  // completa se pone sólida de principio a fin.
   const conFechaTendencia = todasLasReformas.filter(r=>r.fecha_presentacion);
   const graficaTendencia = (()=>{
     if(!conFechaTendencia.length) return '';
@@ -893,22 +920,33 @@ function panelAnalisisGlobalLeg(todasLasReformas){
     const inicios = conFechaTendencia.map(r=> new Date(r.fecha_presentacion+'T00:00:00').getTime());
     const minFecha = Math.min(...inicios);
     const rango = (hoy - minFecha) || 1;
+    const pct = (t)=> ((t-minFecha)/rango)*100;
+
     const filas = conFechaTendencia
       .slice()
       .sort((a,b)=> a.fecha_presentacion.localeCompare(b.fecha_presentacion))
       .map(r=>{
         const inicio = new Date(r.fecha_presentacion+'T00:00:00').getTime();
+        const ultima = new Date((r.fecha_ultima_actualizacion||r.fecha_presentacion)+'T00:00:00').getTime();
         const enCurso = !ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
-        const fin = enCurso ? hoy : new Date((r.fecha_ultima_actualizacion||r.fecha_presentacion)+'T00:00:00').getTime();
-        const leftPct = ((inicio-minFecha)/rango)*100;
-        const widthPct = Math.max(((Math.max(fin,inicio)-inicio)/rango)*100, 0.8);
         const color = r.etapa_actual==='Rechazada' ? 'var(--riesgo-alto)' : enCurso ? 'var(--teal)' : 'var(--riesgo-bajo)';
-        const rango_tt = `${r.nombre} · ${r.fecha_presentacion} → ${enCurso ? 'en curso' : (r.fecha_ultima_actualizacion||'')}`;
+
+        const leftReal = pct(inicio);
+        const widthReal = Math.max(pct(Math.max(ultima,inicio)) - leftReal, 0.6);
+        const leftPendiente = leftReal + widthReal;
+        const widthPendiente = enCurso ? Math.max(pct(hoy) - leftPendiente, 0) : 0;
+
+        const nombreCorto = nombreCortoLeg(r);
+        const rango_tt = `${nombreCorto} · ${r.fecha_presentacion} → ${enCurso ? 'sigue en trámite' : (r.fecha_ultima_actualizacion||'')}`;
+
         return `
-          <div class="leg-tt" data-tt="${rango_tt.replace(/"/g,'&quot;')}" style="display:flex;align-items:center;gap:8px;margin-top:5px;">
-            <div style="width:120px;flex-shrink:0;font-size:9px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.nombre}</div>
-            <div style="position:relative;flex:1;height:7px;background:var(--bg-1);border-radius:4px;">
-              <div style="position:absolute;left:${leftPct}%;width:${widthPct}%;height:100%;background:${color};border-radius:4px;${enCurso?'opacity:.8;':''}"></div>
+          <div class="leg-tt" data-tt="${rango_tt.replace(/"/g,'&quot;')}" style="display:flex;align-items:center;gap:8px;margin-top:7px;">
+            <div style="width:130px;flex-shrink:0;font-size:9px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${nombreCorto}</div>
+            <div style="position:relative;flex:1;height:10px;">
+              <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--line-strong);"></div>
+              <div style="position:absolute;top:50%;transform:translateY(-50%);left:${leftReal}%;width:${widthReal}%;height:3px;background:${color};border-radius:2px;"></div>
+              ${widthPendiente>0 ? `<div style="position:absolute;top:50%;transform:translateY(-50%);left:${leftPendiente}%;width:${widthPendiente}%;height:1.5px;background:${color};opacity:.4;border-radius:2px;"></div>` : ''}
+              ${!enCurso ? `<div style="position:absolute;top:50%;left:${leftPendiente}%;width:7px;height:7px;border-radius:50%;background:${color};transform:translate(-50%,-50%);"></div>` : ''}
             </div>
           </div>`;
       }).join('');
@@ -1147,6 +1185,11 @@ function vistaReformaHTML(r, todasLasReformas){
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.resumen}</p>
       ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
     </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:16px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : '')}
+
+    ${r.contexto_origen ? `<div style="margin-top:16px;">
+      <div class="eyebrow" style="color:var(--riesgo-medio);">Qué la originó</div>
+      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.contexto_origen}</p>
+    </div>` : ''}
     ${precedenteHTML(precedente, r.tipo)}
 
     <div style="height:1px;background:var(--line);margin:18px 0 0;"></div>
