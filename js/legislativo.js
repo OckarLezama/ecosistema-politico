@@ -819,14 +819,7 @@ function vistaReformaHTML(r, todasLasReformas){
   const dias = ETAPAS_TRAMITE_LEG.includes(r.etapa_actual) ? diasEnEtapaActualLeg(r) : null;
   const idNodo = 'leg-'+r.id;
   const precedente = calcularPrecedenteTipoLeg(todasLasReformas, r.tipo, r.id);
-  const esConcluida = ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
   const totalTramite = diasTotalTramiteLeg(r);
-
-  const proyeccionHTML = !esConcluida ? `
-    <div style="margin-top:14px;padding:10px;background:var(--bg-1);border-radius:var(--radius-s);border-left:3px solid var(--riesgo-medio);">
-      <p style="font-size:10.5px;color:var(--ink-3);margin:0;">Proyección de escenarios políticos (qué tan probable es cada desenlace) sigue pendiente de análisis de IA -- requiere síntesis real sobre las posturas y el precedente, no una fórmula.</p>
-    </div>
-  ` : '';
 
   return `<div class="reforma-vista">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;">
@@ -864,7 +857,6 @@ function vistaReformaHTML(r, todasLasReformas){
 
     <div style="margin-top:16px;">
       ${posturasColumnasHTML(r)}
-      ${proyeccionHTML}
     </div>
   </div>`;
 }
