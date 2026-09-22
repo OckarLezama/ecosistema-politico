@@ -357,24 +357,55 @@ function explicacionEtapaLeg(etapa, reforma, precedente){
     : '';
   const pregunta = `<strong style="color:var(--riesgo-medio);">¿Qué la puede detener?</strong>`;
 
+  // Una etapa YA SUPERADA (no la vigente) no tiene nada que "detenerla" --
+  // eso ya se sabe, ya pasó. Ahí no tiene sentido el marco hipotético de
+  // "¿Qué la puede detener?"; lo que importa es contar qué fue lo que
+  // realmente ocurrió. Solo la etapa vigente (donde el desenlace todavía
+  // está en juego) conserva ese marco a futuro.
+  const terminalRechazoEn = reforma.etapa_actual === 'Rechazada' ? encontrarUltimaEtapaAntesDeRechazoLeg(reforma) : null;
+  const esRechazoAqui = terminalRechazoEn === etapa;
+  const esVigente = !esRechazoAqui && etapa === reforma.etapa_actual;
+  const votos = (reforma.votos_favor && reforma.votos_contra)
+    ? ` (${reforma.votos_favor} a favor, ${reforma.votos_contra} en contra${reforma.votos_abstencion ? `, ${reforma.votos_abstencion} abstenciones` : ''})`
+    : '';
+
   switch(etapa){
     case 'Presentada': {
       const fecha = reforma.fecha_presentacion ? ` el ${reforma.fecha_presentacion}` : '';
       const porque = reforma.razon_impulsa ? ` ${reforma.razon_impulsa}` : '';
-      return `Se presentó formalmente ante ${camara}${fecha}, a nombre ${impulsorCuerpo}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen. ${pregunta} Si la comisión a la que se turna nunca la dictamina antes de que termine la legislatura, la iniciativa precluye (caduca) sin que nadie la rechace formalmente -- simplemente deja de existir.${notaHistorica}`;
+      if(esVigente){
+        return `Se presentó formalmente ante ${camara}${fecha}, a nombre ${impulsorCuerpo}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen. ${pregunta} Si la comisión a la que se turna nunca la dictamina antes de que termine la legislatura, la iniciativa precluye (caduca) sin que nadie la rechace formalmente -- simplemente deja de existir.${notaHistorica}`;
+      }
+      return `Se presentó formalmente ante ${camara}${fecha}, a nombre ${impulsorCuerpo}.${porque} De ahí, la Mesa Directiva la turnó a comisión.${notaHistorica}`;
     }
     case 'Comisión': {
       const donde = reforma.comision_nombre ? `la ${reforma.comision_nombre}` : 'la comisión correspondiente';
-      return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido. ${pregunta} Que la comisión no logre esa mayoría (dictamen en sentido negativo, o que nunca se vote), o que la legislatura termine sin que se haya dictaminado -- en ese caso también precluye.${notaRitmo}`;
+      if(esRechazoAqui){
+        return `Se turnó a ${donde}, de ${camara}, pero ahí se quedó -- nunca logró la mayoría para un dictamen que la llevara al Pleno. Es una etapa terminal para esta iniciativa tal como está.`;
+      }
+      if(esVigente){
+        return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido. ${pregunta} Que la comisión no logre esa mayoría (dictamen en sentido negativo, o que nunca se vote), o que la legislatura termine sin que se haya dictaminado -- en ese caso también precluye.${notaRitmo}`;
+      }
+      return `Se analizó y dictaminó en ${donde}, de ${camara}, y de ahí avanzó al Pleno.${notaRitmo}`;
     }
-    case 'Pleno':
-      return `Se discute y vota ante el Pleno de ${camara}. Necesita ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}. ${pregunta} Que no reúna esa mayoría en la votación -- ahí se rechaza y, por regla general, no puede reintroducirse en el mismo periodo de sesiones.${notaRitmo}`;
+    case 'Pleno': {
+      if(esRechazoAqui){
+        return `Aquí, en el Pleno de ${camara}, se rechazó${votos} -- no reunió ${mayoria} para pasar. Por regla general no puede reintroducirse en el mismo periodo de sesiones. Es una etapa terminal para esta iniciativa tal como está.`;
+      }
+      if(esVigente){
+        return `Se discute y vota ante el Pleno de ${camara}. Necesita ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}. ${pregunta} Que no reúna esa mayoría en la votación -- ahí se rechaza y, por regla general, no puede reintroducirse en el mismo periodo de sesiones.${notaRitmo}`;
+      }
+      return `Se discutió y votó ante el Pleno de ${camara}${votos}, y reunió ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}.${notaRitmo}`;
+    }
     case 'Aprobada':
-      return `Ya la aprobó ${camara}. ${revisora ? `Falta que la Cámara de ${revisora} la discuta y apruebe en los mismos términos` : 'Falta completar el trámite'}${esConstitucional ? ', y que la avale la mayoría de los congresos estatales (Artículo 135 constitucional)' : ''}, antes de publicarse en el Diario Oficial de la Federación. ${pregunta} Si la cámara revisora la modifica, la minuta regresa a ${camara} para que avale esos cambios antes de seguir; y si la cámara revisora la rechaza de plano, el proceso se detiene ahí${esConstitucional ? ' -- o, siendo constitucional, si no la avala la mayoría de los congresos estatales' : ''}.`;
+      if(esVigente){
+        return `Ya la aprobó ${camara}. ${revisora ? `Falta que la Cámara de ${revisora} la discuta y apruebe en los mismos términos` : 'Falta completar el trámite'}${esConstitucional ? ', y que la avale la mayoría de los congresos estatales (Artículo 135 constitucional)' : ''}, antes de publicarse en el Diario Oficial de la Federación. ${pregunta} Si la cámara revisora la modifica, la minuta regresa a ${camara} para que avale esos cambios antes de seguir; y si la cámara revisora la rechaza de plano, el proceso se detiene ahí${esConstitucional ? ' -- o, siendo constitucional, si no la avala la mayoría de los congresos estatales' : ''}.`;
+      }
+      return `La aprobó ${camara}${revisora ? ` y también la Cámara de ${revisora}, en los mismos términos` : ''}${esConstitucional ? ', y la avaló la mayoría de los congresos estatales' : ''}. Con eso quedó lista para publicarse en el Diario Oficial de la Federación.`;
     case 'Publicada':
       return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente. No hay nada que la detenga desde aquí; el único camino para revertirla es otra reforma que la modifique o abrogue, o una controversia constitucional que la invalide.';
     case 'Rechazada':
-      return `${camara} la desechó; por regla general no puede reintroducirse en el mismo periodo de sesiones. Es una etapa terminal: no sigue nada más para esta iniciativa tal como está.`;
+      return `${camara} la desechó${votos}; por regla general no puede reintroducirse en el mismo periodo de sesiones. Es una etapa terminal: no sigue nada más para esta iniciativa tal como está.`;
     default: return '';
   }
 }
