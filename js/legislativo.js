@@ -136,14 +136,17 @@ function inyectarEstilosLegV3(){
     /* antes tenía su propia tarjeta (fondo, borde, padding) encimada DENTRO de
        la tarjeta que ya pone index.html (.agenda-grid.graph-card) -- se veía
        como una caja dentro de otra caja, distinto a Agenda/Red de actores/
-       Timeline, que viven directo dentro de esa tarjeta exterior. Se quita. */
-    .reforma-vista { }
+       Timeline, que viven directo dentro de esa tarjeta exterior. Se quita el
+       fondo/borde, pero SÍ necesita un margen superior propio -- la tarjeta
+       exterior no le da padding-top (solo laterales y abajo), así que sin esto
+       el contenido queda pegado a la línea de arriba. */
+    .reforma-vista { padding-top: 14px; }
 
     .reforma-lienzo {
       position: relative;
       background-color: var(--bg-1);
       border-radius: var(--radius-s);
-      border: 1px solid var(--line-strong);
+      border: 1px solid var(--line);
       padding: 6px 6px 10px;
       margin: 12px 0;
       overflow: hidden;
@@ -261,12 +264,12 @@ function calcularPrecedenteTipoLeg(todasLasReformas, tipo, idExcluir){
 
 function precedenteHTML(precedente, tipo){
   if(!precedente) return '';
-  return `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin-top:10px;">
-    <div style="font-weight:700;font-size:11.5px;color:var(--teal);">Precedente · ${tipo}</div>
-    <p style="font-size:11.5px;color:var(--ink-2);margin-top:2px;">
-      De ${precedente.total} reforma${precedente.total!==1?'s':''} de este tipo en el sexenio,
-      ${precedente.aprobadas} se aprobó${precedente.aprobadas!==1?'n':''} (${precedente.pctAprobacion}%)
-      y ${precedente.rechazadas} se rechazó${precedente.rechazadas!==1?'n':''}.
+  return `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:12px 14px;margin-top:12px;">
+    <div class="eyebrow" style="margin:0 0 6px;color:var(--teal);">Precedente · ${tipo}</div>
+    <p style="font-size:12px;color:var(--ink-2);line-height:1.65;margin:0;">
+      De <strong style="color:var(--ink-1);">${precedente.total}</strong> reforma${precedente.total!==1?'s':''} de este tipo en el sexenio,
+      <strong style="color:var(--riesgo-bajo);">${precedente.aprobadas}</strong> ${precedente.aprobadas===1?'se aprobó':'se aprobaron'} (${precedente.pctAprobacion}%)
+      y <strong style="color:var(--riesgo-alto);">${precedente.rechazadas}</strong> ${precedente.rechazadas===1?'se rechazó':'se rechazaron'}.
       ${precedente.promedioDias!==null ? ` Tiempo promedio en trámite: ${precedente.promedioDias}d.` : ''}
     </p>
   </div>`;
@@ -369,11 +372,15 @@ function stepperEtapaHTML(reforma, idNodo){
     return `data-etapa-click="${etapa}" data-cx="${cx}" data-cy="${cy}" class="reforma-nodo clicable"`;
   };
 
-  // relleno tenue del color de la etapa cuando ya se alcanzó/concluyó, en vez de
-  // dejar siempre el círculo vacío -- así se nota de un vistazo qué tanto del
-  // recorrido ya quedó atrás, sin perder el color de línea que ya existía
-  const tinte = c => c==='var(--line-strong)' ? 'var(--bg-1)' : `${c}26`;
+  // relleno del color de la etapa cuando ya se alcanzó/concluyó -- bien marcado
+  // (no un tinte casi imperceptible) para que se note de un vistazo qué tanto
+  // del recorrido ya quedó atrás; futuro se queda vacío.
+  const tinte = c => c==='var(--line-strong)' ? 'var(--bg-1)' : `${c}4D`;
   const brillo = (c, esActual) => esActual ? `filter:drop-shadow(0 0 5px ${c}99);` : '';
+  // respaldo opaco DETRÁS de cada nodo, del mismo color que el fondo del
+  // lienzo -- así el tramo de línea que llega hasta el centro del nodo queda
+  // completamente tapado y no se ve "encimado" dentro del círculo.
+  const respaldo = (cx, cy, r) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="var(--bg-1)"/>`;
 
   let svg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:${width}px;height:${height}px;display:block;margin:0 auto;">`;
 
@@ -397,7 +404,8 @@ function stepperEtapaHTML(reforma, idNodo){
       svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="stroke:${color};"/>`;
       svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="stroke:${color};animation-delay:1s;"/>`;
     }
-    svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?R+1:R}" fill="${tinte(color)}" stroke="${color}" stroke-width="2.2" style="${retardo(gen)}${brillo(color,esActual)}"/>`;
+    svg += respaldo(xNodo(i), yLinea, esActual?R+1:R);
+    svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?R+1:R}" fill="${tinte(color)}" stroke="${color}" stroke-width="${completada?2.6:2.2}" style="${retardo(gen)}${brillo(color,esActual)}"/>`;
     svg += iconoEtapaSVG(etapa, xNodo(i), yLinea, color);
     svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+30}" text-anchor="middle" font-size="9.5" font-weight="${esActual?700:400}" font-family="var(--f-mono)" fill="${esActual?'var(--teal)':'var(--ink-3)'}" style="${retardo(gen+0.3)}">${etapa}</text>`;
     const dur = duraciones[etapa];
@@ -440,7 +448,8 @@ function stepperEtapaHTML(reforma, idNodo){
     svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yArriba}" r="12" style="stroke:${colorNodoAprobada};"/>`;
     svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yArriba}" r="12" style="stroke:${colorNodoAprobada};animation-delay:1s;"/>`;
   }
-  svg += `<circle ${nodoClicable('Aprobada', xRamaFin, yArriba)} cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?11:9}" fill="${tinte(colorNodoAprobada)}" stroke="${colorNodoAprobada}" stroke-width="2.2" style="${retardo(genFork+0.4)}${brillo(colorNodoAprobada, etapaActual==='Aprobada')}"/>`;
+  svg += respaldo(xRamaFin, yArriba, etapaActual==='Aprobada'?11:9);
+  svg += `<circle ${nodoClicable('Aprobada', xRamaFin, yArriba)} cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?11:9}" fill="${tinte(colorNodoAprobada)}" stroke="${colorNodoAprobada}" stroke-width="${esAprobadaOPublicada?2.6:2.2}" style="${retardo(genFork+0.4)}${brillo(colorNodoAprobada, etapaActual==='Aprobada')}"/>`;
   svg += iconoEtapaSVG('Aprobada', xRamaFin, yArriba, esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Aprobada</text>`;
   const xPublicada = xRamaFin + 75;
@@ -449,7 +458,8 @@ function stepperEtapaHTML(reforma, idNodo){
     svg += `<circle class="reforma-nodo-halo" cx="${xPublicada}" cy="${yArriba}" r="12" style="stroke:${colorNodoPublicada};"/>`;
     svg += `<circle class="reforma-nodo-halo" cx="${xPublicada}" cy="${yArriba}" r="12" style="stroke:${colorNodoPublicada};animation-delay:1s;"/>`;
   }
-  svg += `<circle ${nodoClicable('Publicada', xPublicada, yArriba)} cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?11:9}" fill="${tinte(colorNodoPublicada)}" stroke="${colorNodoPublicada}" stroke-width="2.2" style="${retardo(genFork+1.1)}${brillo(colorNodoPublicada, etapaActual==='Publicada')}"/>`;
+  svg += respaldo(xPublicada, yArriba, etapaActual==='Publicada'?11:9);
+  svg += `<circle ${nodoClicable('Publicada', xPublicada, yArriba)} cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?11:9}" fill="${tinte(colorNodoPublicada)}" stroke="${colorNodoPublicada}" stroke-width="${etapaActual==='Publicada'?2.6:2.2}" style="${retardo(genFork+1.1)}${brillo(colorNodoPublicada, etapaActual==='Publicada')}"/>`;
   svg += iconoEtapaSVG('Publicada', xPublicada, yArriba, etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xPublicada}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${etapaActual==='Publicada'?'var(--teal)':'var(--ink-3)'}" style="${retardo(genFork+1.3)}">Publicada</text>`;
 
@@ -458,6 +468,7 @@ function stepperEtapaHTML(reforma, idNodo){
     svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yAbajo}" r="12" style="stroke:${colorNodoRechazada};"/>`;
     svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yAbajo}" r="12" style="stroke:${colorNodoRechazada};animation-delay:1s;"/>`;
   }
+  svg += respaldo(xRamaFin, yAbajo, esRechazada?11:9);
   svg += `<circle ${nodoClicable('Rechazada', xRamaFin, yAbajo)} cx="${xRamaFin}" cy="${yAbajo}" r="${esRechazada?11:9}" fill="${tinte(colorNodoRechazada)}" stroke="${colorNodoRechazada}" stroke-width="2.2" style="${retardo(genFork+0.4)}${brillo(colorNodoRechazada, esRechazada)}"/>`;
   svg += iconoEtapaSVG('Rechazada', xRamaFin, yAbajo, esRechazada?'var(--riesgo-alto)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yAbajo+22}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esRechazada?'var(--riesgo-alto)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Rechazada</text>`;
@@ -788,15 +799,15 @@ function vistaReformaHTML(r, todasLasReformas){
   ` : '';
 
   return `<div class="reforma-vista">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;">
       <div>
-        <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;">${r.tipo || ''} · ${r.camara_origen || ''}</div>
-        <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-top:2px;line-height:1.25;">${r.nombre}</div>
-        <div style="font-size:11px;color:var(--ink-3);margin-top:3px;">
+        <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;">${r.tipo || ''} · ${r.camara_origen || ''}</div>
+        <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-top:6px;line-height:1.35;">${r.nombre}</div>
+        <div style="font-size:11px;color:var(--ink-3);margin-top:7px;line-height:1.6;">
           ${r.actor_impulsa ? `Impulsa: ${r.actor_impulsa}` : ''}${r.fecha_presentacion ? ` · Presentada: ${r.fecha_presentacion}` : ''}
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0;margin-top:1px;">
         <span class="riesgo-badge" style="background:${colorEtapa}22;color:${colorEtapa};">${r.etapa_actual}</span>
         ${r.impacto_c3==='1' || r.impacto_c3==='true' ? `<span style="font-family:var(--f-mono);font-size:8.5px;color:var(--riesgo-medio);">Impacto C3</span>` : ''}
         ${dias!==null ? badgeEstancamientoHTML(dias) : ''}
@@ -812,11 +823,11 @@ function vistaReformaHTML(r, todasLasReformas){
       <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa.</p>
     </div>
 
-    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:4px;">
-      <div class="eyebrow" style="margin:0 0 4px;">Qué establece</div>
-      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:0;">${r.resumen}</p>
-    </div>` : ''}
-    ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
+    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:13px 15px;margin-top:14px;margin-bottom:4px;">
+      <div class="eyebrow" style="margin:0 0 7px;">Qué establece</div>
+      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:0;">${r.resumen}</p>
+      ${r.fuente_url ? `<p style="font-size:11px;margin:9px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
+    </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : '')}
     ${precedenteHTML(precedente, r.tipo)}
 
     <div style="margin-top:14px;">
