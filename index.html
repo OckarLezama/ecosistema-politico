@@ -228,7 +228,7 @@
       <h2>Legislativo</h2>
       <p>Seguimiento de reformas y la Ley de Egresos, por etapa real.</p>
     </div>
-    <div class="agenda-grid graph-card">
+    <div class="agenda-grid graph-card" style="height:auto;min-height:0;">
       <div class="graph-toolbar">
         <div style="display:flex;gap:10px;flex:1;">
           <div class="core-select" style="min-width:260px;flex:1;">
@@ -242,7 +242,7 @@
         </div>
         <div class="legend-inline" id="legislativo-kpis" style="margin-left:auto;"></div>
       </div>
-      <div id="legislativo-contenido" style="padding:0 14px 14px; max-height:calc(100vh - 160px - 140px); overflow-y:auto;"></div>
+      <div id="legislativo-contenido" style="padding:0 14px 14px; height:auto; max-height:calc(100vh - 100px); overflow-y:auto;"></div>
     </div>
   </section>
 </main>
@@ -284,6 +284,6 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/analisis.js?v=108"></script>
 <script src="js/c3.js?v=100"></script>
 <script src="js/mananera-widget.js?v=100"></script>
-<script src="js/legislativo.js?v=110"></script>
+<script src="js/legislativo.js?v=111"></script>
 </body>
 </html>
