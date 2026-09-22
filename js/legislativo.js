@@ -835,7 +835,7 @@ function barraComparativaHTML(items, opts){
 
 // misma lógica de redacción comparativa que narrativaPartidosLeg, aplicada a
 // tipo de reforma y a votaciones -- para que las tres secciones se lean igual.
-function narrativaTipoLeg(datosTipo){
+function narrativaTipoLeg(datosTipo, datosTipoChicos){
   if(!datosTipo.length) return '';
   const masFrecuente = datosTipo.slice().sort((a,b)=>b.p.total-a.p.total)[0];
   const conRechazos = datosTipo.filter(d=>d.p.rechazadas>0).sort((a,b)=>b.p.rechazadas-a.p.rechazadas);
@@ -850,6 +850,12 @@ function narrativaTipoLeg(datosTipo){
     frase += `, y <strong style="color:var(--ink-1);">${masLento.tipo}</strong> es el que más tarda en promedio (${masLento.p.promedioDias}d)`;
   }
   frase += '.';
+  // los tipos con un solo caso concluido no dan para una barra comparativa
+  // (no hay nada que comparar) -- se mencionan aparte, en texto, en vez de
+  // ocupar una barra que aparentaría ser una comparación real.
+  if(datosTipoChicos && datosTipoChicos.length){
+    frase += ` Además hay ${datosTipoChicos.length} tipo${datosTipoChicos.length!==1?'s':''} con un solo caso resuelto hasta ahora (${datosTipoChicos.map(d=>d.tipo).join(', ')}), sin base para comparar todavía.`;
+  }
   return frase;
 }
 
@@ -904,7 +910,12 @@ function panelAnalisisGlobalLeg(todasLasReformas){
     </div>`;
 
   const tipos = [...new Set(todasLasReformas.map(r=>r.tipo).filter(Boolean))];
-  const datosTipo = tipos.map(t=> ({tipo:t, p: calcularPrecedenteTipoLeg(todasLasReformas, t, null)})).filter(d=>d.p);
+  const datosTipoTodos = tipos.map(t=> ({tipo:t, p: calcularPrecedenteTipoLeg(todasLasReformas, t, null)})).filter(d=>d.p);
+  // igual que con Precedente: un tipo con un solo caso resuelto no da una
+  // barra que compare nada real, así que esos se sacan de la gráfica y se
+  // mencionan aparte, en la narrativa.
+  const datosTipo = datosTipoTodos.filter(d=>d.p.total>=2);
+  const datosTipoChicos = datosTipoTodos.filter(d=>d.p.total<2);
 
   const graficaTipo = barraComparativaHTML(datosTipo.map(d=>({
     label: `${d.tipo} · ${d.p.aprobadas} aprob. / ${d.p.rechazadas} rech.`,
@@ -964,6 +975,7 @@ function panelAnalisisGlobalLeg(todasLasReformas){
         const etiqueta = `<div class="leg-tt" data-tt="${rango_tt.replace(/"/g,'&quot;')}" style="height:17px;display:flex;align-items:center;font-size:9px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${nombreCorto}</div>`;
         const barra = `<div class="leg-tt" data-tt="${rango_tt.replace(/"/g,'&quot;')}" style="height:17px;position:relative;">
               <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--line-strong);"></div>
+              <div style="position:absolute;top:50%;left:${leftReal}%;width:5px;height:5px;border-radius:50%;background:var(--ink-3);transform:translate(-50%,-50%);"></div>
               <div style="position:absolute;top:50%;transform:translateY(-50%);left:${leftReal}%;width:${widthReal}%;height:3px;background:${color};border-radius:2px;"></div>
               ${widthPendiente>0 ? `<div style="position:absolute;top:50%;transform:translateY(-50%);left:${leftPendiente}%;width:${widthPendiente}%;height:1.5px;background:${color};opacity:.4;border-radius:2px;"></div>` : ''}
               ${!enCurso ? `<div style="position:absolute;top:50%;left:${leftPendiente}%;width:7px;height:7px;border-radius:50%;background:${color};transform:translate(-50%,-50%);"></div>` : ''}
@@ -1024,7 +1036,7 @@ function panelAnalisisGlobalLeg(todasLasReformas){
     ${graficaTipo ? `
     <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Por tipo de reforma</div>
     <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">
-      ${narrativaTipoLeg(datosTipo)}
+      ${narrativaTipoLeg(datosTipo, datosTipoChicos)}
       ${promedioGeneral!==null ? ` En conjunto, una reforma ya publicada tardó en promedio <strong style="color:var(--ink-1);">${promedioGeneral}d</strong> de Presentada a Publicada.` : ''}
     </p>
     <div style="margin-top:10px;">${graficaTipo}</div>` : ''}
@@ -1196,7 +1208,6 @@ function vistaReformaHTML(r, todasLasReformas){
   const colorEtapa = COLOR_ETAPA_LEG[r.etapa_actual] || 'var(--ink-3)';
   const dias = ETAPAS_TRAMITE_LEG.includes(r.etapa_actual) ? diasEnEtapaActualLeg(r) : null;
   const idNodo = 'leg-'+r.id;
-  const precedente = calcularPrecedenteTipoLeg(todasLasReformas, r.tipo, r.id);
   const totalTramite = diasTotalTramiteLeg(r);
 
   return `<div class="reforma-vista">
@@ -1234,7 +1245,6 @@ function vistaReformaHTML(r, todasLasReformas){
       <div class="eyebrow" style="color:var(--riesgo-medio);">Qué pudo originarlo</div>
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.contexto_origen}</p>
     </div>` : ''}
-    ${precedenteHTML(precedente, r.tipo)}
 
     <div style="height:1px;background:var(--line);margin:18px 0 0;"></div>
 
