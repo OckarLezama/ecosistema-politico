@@ -125,7 +125,8 @@ function inyectarEstilosLegV3(){
     @keyframes leg-etiqueta-aparece { from{ opacity:0; transform: translateY(-2px); } to{ opacity:1; transform: translateY(0); } }
     @keyframes leg-triangulo-cae { 0%{ opacity:0; transform: translateY(-8px); } 100%{ opacity:1; transform: translateY(0); } }
     @keyframes leg-triangulo-flota { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-3px); } }
-    @keyframes leg-linea-fluye { to { background-position: -28px 0; } }
+    @keyframes leg-linea-traza { from{ transform: scaleX(0); } to{ transform: scaleX(1); } }
+    @keyframes leg-punto-aparece { 0%{ opacity:0; transform: scale(.3); } 65%{ transform: scale(1.2); } 100%{ opacity:1; transform: scale(1); } }
 
     .reforma-triangulo-viva {
       animation: leg-triangulo-cae .3s ease-out .5s both, leg-triangulo-flota 1.6s ease-in-out .9s infinite;
@@ -314,20 +315,20 @@ function explicacionEtapaLeg(etapa, reforma, precedente){
     case 'Presentada': {
       const fecha = reforma.fecha_presentacion ? ` el ${reforma.fecha_presentacion}` : '';
       const porque = reforma.razon_impulsa ? ` ${reforma.razon_impulsa}` : '';
-      return `Se presentó formalmente ante ${camara}${fecha}, a nombre de ${reforma.actor_impulsa || 'quien la promueve'}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen.${notaHistorica}`;
+      return `Se presentó formalmente ante ${camara}${fecha}, a nombre de ${reforma.actor_impulsa || 'quien la promueve'}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen. ¿Qué la puede detener? Si la comisión a la que se turna nunca la dictamina antes de que termine la legislatura, la iniciativa precluye (caduca) sin que nadie la rechace formalmente -- simplemente deja de existir.${notaHistorica}`;
     }
     case 'Comisión': {
       const donde = reforma.comision_nombre ? `la ${reforma.comision_nombre}` : 'la comisión correspondiente';
-      return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido.${notaRitmo}`;
+      return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido. ¿Qué la puede detener? Que la comisión no logre esa mayoría (dictamen en sentido negativo, o que nunca se vote), o que la legislatura termine sin que se haya dictaminado -- en ese caso también precluye.${notaRitmo}`;
     }
     case 'Pleno':
-      return `Se discute y vota ante el Pleno de ${camara}. Necesita ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}.${notaRitmo}`;
+      return `Se discute y vota ante el Pleno de ${camara}. Necesita ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}. ¿Qué la puede detener? Que no reúna esa mayoría en la votación -- ahí se rechaza y, por regla general, no puede reintroducirse en el mismo periodo de sesiones.${notaRitmo}`;
     case 'Aprobada':
-      return `Ya la aprobó ${camara}. ${revisora ? `Falta que la Cámara de ${revisora} la discuta y apruebe en los mismos términos` : 'Falta completar el trámite'}${esConstitucional ? ', y que la avale la mayoría de los congresos estatales (Artículo 135 constitucional)' : ''}, antes de publicarse en el Diario Oficial de la Federación.`;
+      return `Ya la aprobó ${camara}. ${revisora ? `Falta que la Cámara de ${revisora} la discuta y apruebe en los mismos términos` : 'Falta completar el trámite'}${esConstitucional ? ', y que la avale la mayoría de los congresos estatales (Artículo 135 constitucional)' : ''}, antes de publicarse en el Diario Oficial de la Federación. ¿Qué la puede detener? Si la cámara revisora la modifica, la minuta regresa a ${camara} para que avale esos cambios antes de seguir; y si la cámara revisora la rechaza de plano, el proceso se detiene ahí${esConstitucional ? ' -- o, siendo constitucional, si no la avala la mayoría de los congresos estatales' : ''}.`;
     case 'Publicada':
-      return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente.';
+      return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente. No hay nada que la detenga desde aquí; el único camino para revertirla es otra reforma que la modifique o abrogue, o una controversia constitucional que la invalide.';
     case 'Rechazada':
-      return `${camara} la desechó; por regla general no puede reintroducirse en el mismo periodo de sesiones.`;
+      return `${camara} la desechó; por regla general no puede reintroducirse en el mismo periodo de sesiones. Es una etapa terminal: no sigue nada más para esta iniciativa tal como está.`;
     default: return '';
   }
 }
@@ -537,14 +538,17 @@ function eventosLineaTiempoLeg(reforma){
 
 // Rediseño del timeline: un eyebrow que lo identifica sin duda como línea de
 // tiempo, la línea base atravesando el centro real de los puntos (antes iba a
-// una altura fija que no calzaba con puntos de distinto tamaño), una segunda
-// línea encimada con un degradado punteado que fluye (misma idea que el tramo
-// vigente de la ramificación) para que se sienta viva, y una flecha al final
-// que marca el sentido del tiempo.
+// una altura fija que no calzaba con puntos de distinto tamaño), y una flecha
+// al final que marca el sentido del tiempo. Se quitó la animación de flujo
+// continuo (el degradado punteado en loop) -- ahora la línea se TRAZA una vez
+// de izquierda a derecha, y cada punto va apareciendo en el orden en que
+// ocurrió, como si el recorrido se fuera dibujando a medida que avanzó.
 function lineaTiempoReaccionesHTML(reforma){
   const eventos = eventosLineaTiempoLeg(reforma);
   if(!eventos.length) return '';
   const ALTO_PUNTO = 16; // caja fija donde centra el punto, sin importar si mide 9 o 13px
+  const DURACION_TRAZO = 0.9; // s -- tiempo total en que la línea "se dibuja"
+  const n = eventos.length;
   return `
     <div style="padding:4px 6px 4px;">
       <div class="eyebrow" style="display:flex;align-items:center;gap:5px;margin:0 0 2px;">
@@ -552,18 +556,18 @@ function lineaTiempoReaccionesHTML(reforma){
         Línea de tiempo del proceso
       </div>
       <div style="position:relative;padding-top:6px;">
-        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2}px;height:2px;background:var(--line-strong);"></div>
-        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2-1}px;height:2px;
-          background-image:repeating-linear-gradient(90deg, var(--teal) 0 6px, transparent 6px 14px);
-          background-size:28px 2px; opacity:.5; animation:leg-linea-fluye 1s linear infinite;"></div>
-        <svg width="10" height="10" viewBox="0 0 10 10" style="position:absolute;right:14px;top:${6+ALTO_PUNTO/2-5}px;">
-          <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="var(--ink-3)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2}px;height:2px;background:var(--line-strong);opacity:.35;"></div>
+        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2}px;height:2px;background:var(--teal);
+          transform-origin:left center; animation:leg-linea-traza ${DURACION_TRAZO}s ease-out both;"></div>
+        <svg width="10" height="10" viewBox="0 0 10 10" style="position:absolute;right:14px;top:${6+ALTO_PUNTO/2-5}px;opacity:0;animation:leg-etiqueta-aparece .3s ease ${DURACION_TRAZO}s both;">
+          <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div style="display:flex;gap:4px;overflow-x:auto;position:relative;padding-right:20px;">
-          ${eventos.map(e=>`
+          ${eventos.map((e,i)=>`
             <div style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
               <div style="height:${ALTO_PUNTO}px;display:flex;align-items:center;justify-content:center;">
-                <div style="width:${(e.origen||e.hito)?13:9}px;height:${(e.origen||e.hito)?13:9}px;border-radius:50%;background:${e.color};border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
+                <div style="width:${(e.origen||e.hito)?13:9}px;height:${(e.origen||e.hito)?13:9}px;border-radius:50%;background:${e.color};border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};
+                  opacity:0; animation:leg-punto-aparece .3s ease-out ${(DURACION_TRAZO*(n>1?i/(n-1):1)).toFixed(2)}s both;"></div>
               </div>
               <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:5px;">${e.fecha}</div>
               <div style="font-size:10px;font-weight:600;color:var(--ink-1);margin-top:3px;line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
