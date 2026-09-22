@@ -722,7 +722,7 @@ function renderKpisLeg(todasLasReformas){
   cont.innerHTML = [
     pill('', 'registradas', total, 'var(--ink-3)', `${total} registrada${total!==1?'s':''}`),
     pill('tramite', 'tramite', enTramite, 'var(--teal)', `${enTramite} en trámite`),
-    pill('aprobadas', 'aprobadas', aprobadas, 'var(--riesgo-bajo)', `${aprobadas} aprobadas (histórico)`),
+    pill('aprobadas', 'aprobadas', aprobadas, 'var(--riesgo-bajo)', `${aprobadas} aprobadas o publicadas`),
     pill('rechazadas', 'rechazadas', rechazadas, 'var(--riesgo-alto)', `${rechazadas} rechazadas (histórico)`),
     pill('publicada', 'dof', publicadas, 'var(--ink-3)', `${publicadas} ya en el DOF`),
   ].join('');
@@ -909,20 +909,10 @@ function panelAnalisisGlobalLeg(todasLasReformas){
       <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${label}</div>
     </div>`;
 
-  const tipos = [...new Set(todasLasReformas.map(r=>r.tipo).filter(Boolean))];
-  const datosTipoTodos = tipos.map(t=> ({tipo:t, p: calcularPrecedenteTipoLeg(todasLasReformas, t, null)})).filter(d=>d.p);
-  // igual que con Precedente: un tipo con un solo caso resuelto no da una
-  // barra que compare nada real, así que esos se sacan de la gráfica y se
-  // mencionan aparte, en la narrativa.
-  const datosTipo = datosTipoTodos.filter(d=>d.p.total>=2);
-  const datosTipoChicos = datosTipoTodos.filter(d=>d.p.total<2);
-
-  const graficaTipo = barraComparativaHTML(datosTipo.map(d=>({
-    label: `${d.tipo} · ${d.p.aprobadas} aprob. / ${d.p.rechazadas} rech.`,
-    valor: d.p.total,
-    sufijo: ` reforma${d.p.total!==1?'s':''} · ${d.p.pctAprobacion}% aprob. · ${d.p.promedioDias!==null?d.p.promedioDias+'d prom.':'—'}`,
-    color: d.p.rechazadas>0 ? 'var(--riesgo-medio)' : 'var(--teal)',
-  })));
+  // "Por tipo de reforma" se quitó: con tan pocos casos por tipo, las barras
+  // no comparaban nada real y los números no reconciliaban a simple vista
+  // con los KPIs de arriba (la suma por tipo excluye los tipos de 1 solo
+  // caso, que sí cuentan en el KPI general) -- más confusión que claridad.
 
   const votaciones = concluidas.filter(r=> r.votos_favor || r.votos_contra);
   const graficaVotos = votaciones.map(r=>{
@@ -1033,13 +1023,7 @@ function panelAnalisisGlobalLeg(todasLasReformas){
       ${kpiCard(rechazadas.length, 'Rechazadas', 'var(--riesgo-alto)')}
       ${kpiCard(publicadas.length, 'En el DOF', 'var(--ink-2)')}
     </div>
-    ${graficaTipo ? `
-    <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Por tipo de reforma</div>
-    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">
-      ${narrativaTipoLeg(datosTipo, datosTipoChicos)}
-      ${promedioGeneral!==null ? ` En conjunto, una reforma ya publicada tardó en promedio <strong style="color:var(--ink-1);">${promedioGeneral}d</strong> de Presentada a Publicada.` : ''}
-    </p>
-    <div style="margin-top:10px;">${graficaTipo}</div>` : ''}
+    ${promedioGeneral!==null ? `<p style="font-size:11px;color:var(--ink-2);margin-top:10px;">En promedio, una reforma ya publicada tardó <strong style="color:var(--ink-1);">${promedioGeneral}d</strong> de Presentada a Publicada.</p>` : ''}
 
     ${graficaTendencia ? `
     <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Línea de tiempo del sexenio</div>
@@ -1236,7 +1220,7 @@ function vistaReformaHTML(r, todasLasReformas){
     </div>
 
     ${r.resumen ? `<div style="margin-top:16px;">
-      <div class="eyebrow">Qué establece</div>
+      <div class="eyebrow" style="color:var(--teal);">Qué establece</div>
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.resumen}</p>
       ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
     </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:16px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : '')}
