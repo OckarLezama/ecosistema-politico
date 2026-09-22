@@ -132,28 +132,6 @@ function inyectarEstilosLegV3(){
 
     .postura-avatar { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8.5px; font-weight:700; font-family:var(--f-mono); flex-shrink:0; }
     .postura-tarjeta { display:flex; gap:8px; margin-bottom:9px; }
-
-    /* Scroll propio del contenedor -- mismo trato visual (delgado, discreto,
-       pista transparente) que se busca replicar del feed. Si el feed usa una
-       regla ::-webkit-scrollbar distinta en css/styles.css, esa es la que
-       manda: aquí solo se aproxima para no depender del scroll genérico del
-       navegador mientras no se pueda confirmar la regla exacta del feed. */
-    #legislativo-contenido { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
-    #legislativo-contenido::-webkit-scrollbar { width: 7px; }
-    #legislativo-contenido::-webkit-scrollbar-track { background: transparent; }
-    #legislativo-contenido::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 99px; }
-    #legislativo-contenido::-webkit-scrollbar-thumb:hover { background: var(--teal); }
-
-    /* Ventana modal para el detalle de una etapa -- se prefirió sobre el panel
-       inline porque, al abrirse dentro del lienzo, empujaba y movía todo el
-       diseño de la ramificación cada vez que se abría o cerraba. Como
-       ventana flotante, el lienzo se queda quieto siempre. */
-    .leg-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; opacity:0; pointer-events:none; transition:opacity .15s ease; }
-    .leg-modal-overlay.abierto { opacity:1; pointer-events:auto; }
-    .leg-modal-card { background:var(--bg-2); border:1px solid var(--line-strong); border-radius:var(--radius-s); padding:20px 22px; max-width:440px; width:100%; max-height:78vh; overflow-y:auto; position:relative; box-shadow:0 16px 48px rgba(0,0,0,.45); transform:translateY(6px); transition:transform .15s ease; }
-    .leg-modal-overlay.abierto .leg-modal-card { transform:translateY(0); }
-    .leg-modal-cerrar { position:absolute; top:8px; right:10px; background:none; border:none; color:var(--ink-3); font-size:16px; line-height:1; cursor:pointer; padding:6px; }
-    .leg-modal-cerrar:hover { color:var(--ink-1); }
   `;
   document.head.appendChild(style);
 }
@@ -227,6 +205,19 @@ function calcularPrecedenteTipoLeg(todasLasReformas, tipo, idExcluir){
   return { total: previas.length, aprobadas, rechazadas, pctAprobacion: Math.round((aprobadas/previas.length)*100), promedioDias };
 }
 
+function precedenteHTML(precedente, tipo){
+  if(!precedente) return '';
+  return `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin-top:10px;">
+    <div style="font-weight:700;font-size:11.5px;color:var(--teal);">Precedente · ${tipo}</div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-top:2px;">
+      De ${precedente.total} reforma${precedente.total!==1?'s':''} de este tipo en el sexenio,
+      ${precedente.aprobadas} se aprobó${precedente.aprobadas!==1?'n':''} (${precedente.pctAprobacion}%)
+      y ${precedente.rechazadas} se rechazó${precedente.rechazadas!==1?'n':''}.
+      ${precedente.promedioDias!==null ? ` Tiempo promedio en trámite: ${precedente.promedioDias}d.` : ''}
+    </p>
+  </div>`;
+}
+
 function iconoEtapaSVG(etapa, cx, cy, color){
   switch(etapa){
     case 'Presentada':
@@ -246,49 +237,18 @@ function iconoEtapaSVG(etapa, cx, cy, color){
 }
 
 // NUEVO -- explica CONTRA QUÉ instancia concreta está esa etapa (cámara y, si se
-// conoce, comisión específica) en vez de la genérica "cámara de origen". Además
-// dice qué hace falta para avanzar (o por qué sigue parada) y, cuando aplica,
-// menciona a la cámara revisora -- para que en un proceso de dos cámaras
-// (Senadores y Diputados) no se pierda que falta la otra mitad del trámite.
-// `precedente` (opcional, de calcularPrecedenteTipoLeg) agrega el ritmo
-// histórico real de reformas del mismo tipo, no una predicción de esta en
-// particular.
-function camaraRevisoraDeLeg(camaraOrigen){
-  if(camaraOrigen === 'Diputados') return 'Senadores';
-  if(camaraOrigen === 'Senado' || camaraOrigen === 'Senadores') return 'Diputados';
-  return null;
-}
-
-function explicacionEtapaLeg(etapa, reforma, precedente){
+// conoce, comisión específica) en vez de la genérica "cámara de origen".
+function explicacionEtapaLeg(etapa, reforma){
   const camara = reforma.camara_origen ? `la Cámara de ${reforma.camara_origen}` : 'la cámara de origen';
-  const revisora = camaraRevisoraDeLeg(reforma.camara_origen);
-  const esConstitucional = reforma.tipo === 'Reforma constitucional';
-  const mayoria = esConstitucional ? 'el voto de dos terceras partes de los presentes' : 'mayoría simple';
-  const notaRitmo = (precedente && precedente.promedioDias!==null)
-    ? ` En reformas de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, el trámite completo tomó en promedio ${precedente.promedioDias}d -- no es una predicción de esta reforma, es el ritmo con el que se han movido las anteriores.`
-    : '';
-  const notaHistorica = precedente
-    ? ` De ${precedente.total} reforma${precedente.total!==1?'s':''} de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, ${precedente.aprobadas} se aprobó${precedente.aprobadas!==1?'n':''} (${precedente.pctAprobacion}%) y ${precedente.rechazadas} se rechazó${precedente.rechazadas!==1?'n':''} -- es precedente, no un pronóstico de esta reforma.`
-    : '';
-
   switch(etapa){
-    case 'Presentada': {
-      const fecha = reforma.fecha_presentacion ? ` el ${reforma.fecha_presentacion}` : '';
-      const porque = reforma.razon_impulsa ? ` ${reforma.razon_impulsa}` : '';
-      return `Se presentó formalmente ante ${camara}${fecha}, a nombre de ${reforma.actor_impulsa || 'quien la promueve'}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen.${notaHistorica}`;
-    }
-    case 'Comisión': {
-      const donde = reforma.comision_nombre ? `la ${reforma.comision_nombre}` : 'la comisión correspondiente';
-      return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido.${notaRitmo}`;
-    }
-    case 'Pleno':
-      return `Se discute y vota ante el Pleno de ${camara}. Necesita ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}.${notaRitmo}`;
-    case 'Aprobada':
-      return `Ya la aprobó ${camara}. ${revisora ? `Falta que la Cámara de ${revisora} la discuta y apruebe en los mismos términos` : 'Falta completar el trámite'}${esConstitucional ? ', y que la avale la mayoría de los congresos estatales (Artículo 135 constitucional)' : ''}, antes de publicarse en el Diario Oficial de la Federación.`;
-    case 'Publicada':
-      return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente.';
-    case 'Rechazada':
-      return `${camara} la desechó; por regla general no puede reintroducirse en el mismo periodo de sesiones.`;
+    case 'Presentada': return `Se presentó formalmente ante ${camara}.`;
+    case 'Comisión': return reforma.comision_nombre
+      ? `Se analiza y dictamina en la ${reforma.comision_nombre}, de ${camara}, antes de pasar al Pleno.`
+      : `Se analiza y dictamina en comisión, en ${camara}, antes de pasar al Pleno.`;
+    case 'Pleno': return `Se discute y vota ante el Pleno de ${camara}.`;
+    case 'Aprobada': return `Ya la aprobó ${camara}; falta el trámite hacia la publicación.`;
+    case 'Publicada': return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente.';
+    case 'Rechazada': return `${camara} la desechó; por regla general no puede reintroducirse en el mismo periodo de sesiones.`;
     default: return '';
   }
 }
@@ -446,16 +406,15 @@ function lineaTiempoReaccionesHTML(reforma){
   const eventos = eventosLineaTiempoLeg(reforma);
   if(!eventos.length) return '';
   return `
-    <div style="position:relative;padding:14px 6px 4px;">
-      <div style="position:absolute;left:16px;right:16px;top:29px;height:2px;background:var(--line-strong);"></div>
+    <div style="position:relative;padding:16px 6px 4px;">
+      <div style="position:absolute;left:16px;right:16px;top:33px;height:2px;background:var(--line-strong);"></div>
       <div style="display:flex;gap:4px;overflow-x:auto;position:relative;">
         ${eventos.map(e=>`
-          <div style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
-            <div style="width:${e.origen?13:9}px;height:${e.origen?13:9}px;border-radius:50%;background:${e.color};margin:0 auto 7px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
-            <div style="font-family:var(--f-mono);font-size:7.5px;letter-spacing:.03em;text-transform:uppercase;font-weight:700;color:${e.color};">${e.origen?'Inicio':'Hito'}</div>
-            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:1px;">${e.fecha}</div>
-            <div style="font-size:10px;font-weight:600;color:var(--ink-1);margin-top:3px;line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
+          <div style="flex:0 0 auto;width:140px;text-align:center;padding:0 4px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
+            <div style="width:${e.origen?15:10}px;height:${e.origen?15:10}px;border-radius:50%;background:${e.color};margin:0 auto 8px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
+            <div style="font-size:${e.origen?11.5:10}px;font-weight:${e.origen?700:600};color:${e.color};line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
             <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${e.rol}</div>
+            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:3px;">${e.fecha}</div>
           </div>
         `).join('')}
       </div>
@@ -542,28 +501,6 @@ function votacionPieHTML(r, etapa){
   `;
 }
 
-// Quién votó, nombre por nombre -- solo tiene sentido listarlo así cuando son
-// pocos (una comisión, decenas de personas). En el Pleno (500 diputados o 128
-// senadores) un listado de nombres deja de ser información y se vuelve ruido;
-// ahí se queda en el agregado (donut + bancadas) que ya da votacionPieHTML.
-const UMBRAL_LISTADO_PRONUNCIAMIENTOS_LEG = 12;
-function pronunciamientosDetalleHTML(r){
-  const pronunciamientos = parsePronunciamientosLeg(r);
-  if(!pronunciamientos || !pronunciamientos.length) return '';
-  if(pronunciamientos.length > UMBRAL_LISTADO_PRONUNCIAMIENTOS_LEG){
-    return `<p style="font-size:10px;color:var(--ink-3);margin-top:8px;line-height:1.5;">${pronunciamientos.length} legisladores se pronunciaron -- con este volumen ya no se listan uno a uno aquí; el desglose por bancada está en "Posturas documentadas".</p>`;
-  }
-  return `
-    <div style="margin-top:8px;">
-      ${pronunciamientos.map(p=>{
-        const esRetiro = /retir/i.test(p.postura);
-        const color = esRetiro ? 'var(--riesgo-medio)' : (/favor/i.test(p.postura) ? 'var(--riesgo-bajo)' : 'var(--riesgo-alto)');
-        return `<p style="font-size:10.5px;color:var(--ink-2);margin-top:5px;line-height:1.5;"><strong style="color:${color};">${p.nombre}</strong> <span style="color:var(--ink-3);">(${p.partido})</span> · <span style="color:${color};">${p.postura}</span><br><span style="font-style:italic;color:var(--ink-3);">${p.cita}</span></p>`;
-      }).join('')}
-    </div>
-  `;
-}
-
 function inicialesDe(nombre){
   return (nombre||'').split(' ').filter(Boolean).slice(0,2).map(p=>p[0]).join('').toUpperCase();
 }
@@ -607,6 +544,7 @@ function vistaReformaHTML(r, todasLasReformas){
   const colorEtapa = COLOR_ETAPA_LEG[r.etapa_actual] || 'var(--ink-3)';
   const dias = ETAPAS_TRAMITE_LEG.includes(r.etapa_actual) ? diasEnEtapaActualLeg(r) : null;
   const idNodo = 'leg-'+r.id;
+  const precedente = calcularPrecedenteTipoLeg(todasLasReformas, r.tipo, r.id);
   const esConcluida = ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
 
   const proyeccionHTML = !esConcluida ? `
@@ -632,54 +570,26 @@ function vistaReformaHTML(r, todasLasReformas){
     </div>
 
     <div class="reforma-lienzo">
-      ${stepperEtapaHTML(r, idNodo)}
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+        <div style="flex:1 1 420px;min-width:260px;">${stepperEtapaHTML(r, idNodo)}</div>
+        <div id="${idNodo}-info-click" style="display:none;flex:1 1 220px;min-width:200px;padding:6px 8px;"></div>
+      </div>
       ${lineaTiempoReaccionesHTML(r)}
       <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa.</p>
-      <div id="${idNodo}-info-click" style="display:none;margin:10px 6px 2px;padding-top:10px;border-top:1px dashed var(--line-strong);"></div>
     </div>
 
-    ${r.resumen ? `<div style="margin-top:14px;">
-      <div class="eyebrow">Qué establece</div>
-      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:4px 0 0;">${r.resumen}</p>
-      ${r.fuente_url ? `<p style="font-size:11px;margin:6px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
-    </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:14px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : '')}
+    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:4px;">
+      <div class="eyebrow" style="margin:0 0 4px;">Qué establece</div>
+      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:0;">${r.resumen}</p>
+    </div>` : ''}
+    ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
+    ${precedenteHTML(precedente, r.tipo)}
 
-    <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line-strong);">
+    <div style="margin-top:14px;">
       ${posturasColumnasHTML(r)}
       ${proyeccionHTML}
     </div>
   </div>`;
-}
-
-// Ventana modal para el detalle de una etapa -- un único overlay reutilizado,
-// anclado a document.body (no a #legislativo-contenido, que se vuelve a pintar
-// en cada render y se llevaría el modal consigo).
-function asegurarModalLeg(){
-  let overlay = document.getElementById('leg-modal-overlay');
-  if(overlay) return overlay;
-  overlay = document.createElement('div');
-  overlay.id = 'leg-modal-overlay';
-  overlay.className = 'leg-modal-overlay';
-  overlay.innerHTML = `
-    <div class="leg-modal-card">
-      <button class="leg-modal-cerrar" type="button" aria-label="Cerrar">✕</button>
-      <div id="leg-modal-contenido"></div>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-  overlay.addEventListener('click', e=>{ if(e.target===overlay) cerrarModalLeg(); });
-  overlay.querySelector('.leg-modal-cerrar').addEventListener('click', cerrarModalLeg);
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') cerrarModalLeg(); });
-  return overlay;
-}
-function abrirModalLeg(html){
-  const overlay = asegurarModalLeg();
-  overlay.querySelector('#leg-modal-contenido').innerHTML = html;
-  overlay.classList.add('abierto');
-}
-function cerrarModalLeg(){
-  const overlay = document.getElementById('leg-modal-overlay');
-  if(overlay) overlay.classList.remove('abierto');
 }
 
 function renderLegislativo(){
@@ -715,15 +625,14 @@ function renderLegislativo(){
 
     if(!actual) return;
 
-    // clic en un nodo YA ALCANZADO -> texto simple debajo del lienzo (como
-    // estaba), sin caja ni layout que se mueva. Lo ÚNICO que se abre en una
-    // VENTANA aparte es el detalle de votación (nombres, voto y posicionamiento
-    // de cada quien) -- eso sí puede ser largo y no tiene sentido empujar el
-    // lienzo por verlo; el resto (qué es la etapa, qué hace falta, cuándo entró)
-    // se queda igual que siempre, inline. Un nodo futuro no reacciona a nada.
+    // clic en un nodo YA ALCANZADO -> el detalle se abre AL LADO de la
+    // ramificación (misma fila flex que el SVG, no debajo como listado) -- el
+    // lienzo tiene espacio de sobra para esto. Solo texto y, cuando la etapa
+    // clicada es la etapa VIGENTE, también la votación (donut + % de los votos
+    // emitidos) -- es la única etapa para la que hoy el CSV guarda ese dato. Un
+    // nodo futuro no tiene este atributo, no reacciona a nada.
     const idNodo = 'leg-'+actual.id;
     const cajaInfo = document.getElementById(idNodo+'-info-click');
-    const precedenteClick = calcularPrecedenteTipoLeg(reformas, actual.tipo, actual.id);
     cont.querySelectorAll('[data-etapa-click]').forEach(nodo=>{
       nodo.addEventListener('click', ()=>{
         const etapa = nodo.dataset.etapaClick;
@@ -735,29 +644,14 @@ function renderLegislativo(){
         cajaInfo.dataset.etapaAbierta = etapa;
         cajaInfo.style.display = 'block';
 
-        const esVigente = etapa === actual.etapa_actual;
-        const tieneVotos = esVigente && (Number(actual.votos_favor)||Number(actual.votos_contra)||Number(actual.votos_abstencion));
-        const enlaceVotacion = tieneVotos
-          ? `<button type="button" class="chip-btn" data-ver-votacion="1" style="font-size:10.5px;padding:4px 10px;margin-top:8px;">Ver nombres, voto y posicionamiento ↗</button>`
-          : '';
+        const votos = etapa === actual.etapa_actual ? votacionPieHTML(actual, etapa) : '';
 
         cajaInfo.innerHTML = `
           <div style="font-weight:700;font-size:12px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
-          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual, precedenteClick)}</p>
+          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual)}</p>
           <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
-          ${enlaceVotacion}
+          ${votos}
         `;
-
-        const btnVotacion = cajaInfo.querySelector('[data-ver-votacion]');
-        if(btnVotacion){
-          btnVotacion.addEventListener('click', ()=>{
-            abrirModalLeg(`
-              <div style="font-weight:700;font-size:13px;color:var(--teal);padding-right:18px;">Votación · ${etapa}</div>
-              ${votacionPieHTML(actual, etapa)}
-              ${pronunciamientosDetalleHTML(actual)}
-            `);
-          });
-        }
       });
     });
   });
