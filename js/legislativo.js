@@ -246,6 +246,18 @@ function diasEnEtapaActualLeg(r){
   return dias >= 0 ? dias : null;
 }
 
+// NUEVO -- días totales desde que se presentó hasta que se publicó (Diario
+// Oficial). Solo tiene sentido para una reforma ya Publicada; para las que
+// siguen en trámite no hay un "total" todavía, solo un parcial que sigue corriendo.
+function diasTotalTramiteLeg(r){
+  if(r.etapa_actual !== 'Publicada' || !r.fecha_presentacion) return null;
+  const duraciones = calcularDuracionesEtapasLeg(r);
+  const fechaPublicada = duraciones['Publicada']?.fechaInicio || r.fecha_ultima_actualizacion;
+  if(!fechaPublicada) return null;
+  const dias = Math.round((new Date(fechaPublicada+'T00:00:00') - new Date(r.fecha_presentacion+'T00:00:00')) / 86400000);
+  return dias >= 0 ? { dias, fechaPublicada } : null;
+}
+
 function badgeEstancamientoHTML(dias){
   if(dias===null) return '';
   if(dias>=60) return `<span class="riesgo-badge" style="background:var(--riesgo-alto)22;color:var(--riesgo-alto);">Estancada ${dias}d</span>`;
@@ -781,6 +793,7 @@ function vistaReformaHTML(r, todasLasReformas){
   const idNodo = 'leg-'+r.id;
   const precedente = calcularPrecedenteTipoLeg(todasLasReformas, r.tipo, r.id);
   const esConcluida = ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
+  const totalTramite = diasTotalTramiteLeg(r);
 
   const proyeccionHTML = !esConcluida ? `
     <div style="margin-top:14px;padding:10px;background:var(--bg-1);border-radius:var(--radius-s);border-left:3px solid var(--riesgo-medio);">
@@ -794,7 +807,7 @@ function vistaReformaHTML(r, todasLasReformas){
         <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;">${r.tipo || ''} · ${r.camara_origen || ''}</div>
         <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-top:6px;line-height:1.35;">${r.nombre}</div>
         <div style="font-size:11px;color:var(--ink-3);margin-top:7px;line-height:1.6;">
-          ${r.actor_impulsa ? `Impulsa: ${r.actor_impulsa}` : ''}${r.fecha_presentacion ? ` · Presentada: ${r.fecha_presentacion}` : ''}
+          ${r.actor_impulsa ? `Impulsa: ${r.actor_impulsa}` : ''}${r.fecha_presentacion ? ` · Presentada: ${r.fecha_presentacion}` : ''}${totalTramite ? ` · Publicada: ${totalTramite.fechaPublicada} <strong style="color:var(--riesgo-bajo);">(${totalTramite.dias}d de trámite total)</strong>` : ''}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0;margin-top:1px;">
