@@ -1097,11 +1097,20 @@ function panelAnalisisGlobalLeg(todasLasReformas){
     <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">${narrativaPartidosLeg(partidos, total)}</p>
     ${graficaPartidos}
     <p style="font-size:9.5px;color:var(--ink-3);margin-top:8px;">Conteo de menciones en el campo de oposición de cada reforma -- no es disciplina de partido comprobada. Pasa el cursor sobre cada barra para ver en qué reformas.</p>` : ''}
+  `;
+}
 
-    ${sintesisPatronesLeg(todasLasReformas) ? `
-    <div class="eyebrow" style="color:var(--riesgo-alto);margin-top:28px;">¿Y esto qué significa en conjunto?</div>
-    <p style="font-size:9.5px;color:var(--ink-3);margin-top:4px;">No son 16 casos sueltos -- agrupados, varios apuntan en la misma dirección. Esto es lectura editorial, no un cálculo automático.</p>
-    ${sintesisPatronesLeg(todasLasReformas)}` : ''}
+// Panel aparte (ícono propio, no cuelga del panel de Análisis general) --
+// para que ver "qué significa esto en conjunto" no obligue a bajar por todo
+// el otro panel primero.
+function panelLecturaLegislativaLeg(todasLasReformas){
+  const sintesis = sintesisPatronesLeg(todasLasReformas);
+  return `
+    <div style="font-weight:700;font-size:14px;color:var(--riesgo-alto);padding-right:18px;">Lectura legislativa · Patrones</div>
+    <p style="font-size:11px;color:var(--ink-3);margin-top:6px;line-height:1.5;">
+      No son ${todasLasReformas.length} casos sueltos -- agrupados, varios apuntan en la misma dirección. Esto es lectura editorial hecha a mano, no un cálculo automático: si aparece un patrón nuevo que no está aquí, hay que agregarlo a propósito, no aparece solo.
+    </p>
+    ${sintesis || `<p style="font-size:12px;color:var(--ink-2);margin-top:16px;">Todavía no hay suficientes reformas de los grupos definidos (mínimo 2 por grupo) para mostrar un patrón.</p>`}
   `;
 }
 
@@ -1296,7 +1305,8 @@ function vistaReformaHTML(r, todasLasReformas){
       const concluida = ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
       const periodo = estadoPeriodoOrdinarioLeg();
       return `<div style="margin-top:16px;">
-        <div class="eyebrow" style="color:var(--riesgo-alto);">${concluida ? 'Riesgo tras su aprobación' : '¿Qué la puede detener?'}</div>
+        <div class="eyebrow" style="color:var(--riesgo-alto);">${concluida ? 'Riesgo tras su aprobación' : 'Riesgo político específico'}</div>
+        ${!concluida ? `<p style="font-size:9px;color:var(--ink-3);margin-top:3px;">Distinto del "¿Qué la puede detener?" que sale al hacer clic en la etapa vigente -- ese es el trámite mecánico (qué hace que precluya en Comisión, etc.); esto es el riesgo político de fondo, propio de esta reforma.</p>` : ''}
         <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.analisis_riesgo}</p>
         ${(!concluida && r.probabilidad_avance) ? `<p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Probabilidad de avance en el corto plazo: <strong style="color:var(--ink-1);">${r.probabilidad_avance}</strong> · Congreso ${periodo.enSesion?'en sesión':'en receso'} (${periodo.periodo}) -- es una estimación con criterio, no un pronóstico exacto.</p>` : ''}
       </div>`;
@@ -1502,6 +1512,14 @@ function initLegislativo(){
     btnAnalisis.dataset.wired='1';
     btnAnalisis.addEventListener('click', ()=>{
       cargarReformas((reformas)=>{ abrirModalLeg(panelAnalisisGlobalLeg(reformas), {ancho:true}); });
+    });
+  }
+
+  const btnLectura = document.getElementById('legislativo-btn-lectura');
+  if(btnLectura && !btnLectura.dataset.wired){
+    btnLectura.dataset.wired='1';
+    btnLectura.addEventListener('click', ()=>{
+      cargarReformas((reformas)=>{ abrirModalLeg(panelLecturaLegislativaLeg(reformas), {ancho:true}); });
     });
   }
 
