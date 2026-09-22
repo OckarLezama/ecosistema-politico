@@ -1,43 +1,46 @@
 /* ============================================================
-   LEGISLATIVO V8 -- una reforma a la vez, en un lienzo de diseño
+   LEGISLATIVO V9 -- una reforma a la vez, en un lienzo de diseño
    real, pensado como lectura de "hacia dónde va" un tema.
 
-   Séptima vuelta de rediseño 2026-09-21 (con Ockar), correcciones:
-   - Se quitó la fila horizontal de "chips" de actores debajo del
-     lienzo (línea de tiempo de reacciones). Con pocos actores se
-     veía bien, pero crece sin límite conforme una reforma acumula
-     más pronunciamientos y se satura. En su lugar, la votación y
-     quién se pronunció (con partido, postura y cita) ahora viven
-     DENTRO del detalle que se abre al hacer click sobre el punto
-     de la etapa VIGENTE -- es la etapa a la que ese detalle
-     corresponde de forma natural, y solo aparece cuando hace
-     sentido verlo (no siempre visible, no siempre oculto).
-     Limitación conocida: el CSV solo guarda una votación y una
-     lista de pronunciamientos por reforma (no una por etapa
-     histórica), así que hoy ese detalle solo se asocia con la
-     etapa vigente. Si más adelante una reforma pasa de Comisión a
-     Pleno y hay una nueva votación en Pleno, hará falta una
-     columna de votación/pronunciamientos por etapa para no perder
-     el detalle de lo que pasó en Comisión.
-   - El cuadro que se abre al hacer click en un nodo vuelve al
-     formato de solo texto (sin la caja con borde de color
-     `contexto-tema-box`, que se veía encimada/sobrepuesta sobre el
-     lienzo). Además ese cuadro ahora vive FUERA de `.reforma-lienzo`
-     (que tiene overflow:hidden por el fondo de cuadrícula), para
-     que nunca se recorte visualmente.
-   - Scroll: se intenta de nuevo, esta vez replicando el patrón que
-     ya funciona en Portada/Análisis/Circunscripción 3 en este mismo
-     archivo (`max-height` explícito + `overflow-y:auto` puesto
-     directamente en el contenedor de contenido, en index.html) en
-     vez de depender de una suposición sobre el CSS de `.graph-card`
-     que no se puede verificar desde aquí.
-   - Los KPIs se mantienen en el formato de texto simple (como antes
-     de la versión de tarjetas), que sí se veía bien.
-   - La explicación de cada etapa dice ante qué cámara y, cuando se
-     conoce, ante qué comisión específica (columna `comision_nombre`).
-   - Una etapa recorrida en un solo día (0d) ya no muestra "0d".
-   - El robot (robot_legislativo.py) solo avanza la etapa de lo que
-     ya existe aquí -- nunca da de alta una reforma nueva por sí solo.
+   Octava vuelta de rediseño 2026-09-21 (con Ockar). Se separan tres
+   cosas que antes se mezclaban, cada una en su lugar:
+   - POSICIONAMIENTO (posturasColumnasHTML): quién impulsa la
+     reforma y quién se opone, y por qué -- siempre visible, debajo
+     del resumen. Es postura política, no un conteo de votos.
+   - VOTACIÓN (votacionPieHTML): cuántos votos, en qué sentido --
+     un donut (CSS puro) medido contra el TOTAL real de la cámara
+     (500 en Diputados, 128 en Senado), no solo contra los votos
+     emitidos, para que se note cuando una votación es de comisión
+     y no de todo el pleno. Vive dentro del lienzo, sin fondo ni
+     caja, y se muestra al hacer click en el punto de la etapa
+     VIGENTE -- es la única etapa para la que hoy el CSV guarda ese
+     dato (limitación conocida: si la reforma avanza de Comisión a
+     Pleno y hay una nueva votación ahí, hará falta una columna de
+     votación por etapa para no perder el detalle de lo que pasó
+     antes).
+   - REACCIONES (lineaTiempoReaccionesHTML / eventosLineaTiempoLeg):
+     quién opinó y qué dijo, con fecha -- la línea de tiempo
+     horizontal debajo del stepper, dentro del lienzo. Se restaura:
+     el usuario prefiere tenerla siempre visible en vez de ocultarla
+     detrás de un click.
+   El detalle que se abre al hacer click en un nodo ya alcanzado
+   vive DENTRO de `.reforma-lienzo` (no en una caja aparte ni en una
+   ventana/modal) -- el lienzo tiene espacio de sobra para esto, y
+   así no se ve sobrepuesto ni recortado. Es solo texto, sin fondo
+   ni borde de color.
+   Se quitó por completo el botón de "¿qué pasa si se aprueba o se
+   rechaza?": sin una simulación real (basada en análisis, no en una
+   fórmula genérica) detrás, no aporta -- mejor no tenerlo.
+   Scroll: `max-height` explícito + `overflow-y:auto` puesto
+   directamente en el contenedor de contenido, en index.html,
+   replicando el patrón que ya funciona en Portada/Análisis/C3 en
+   ese mismo archivo.
+   Los KPIs se mantienen en el formato de texto simple.
+   La explicación de cada etapa dice ante qué cámara y, cuando se
+   conoce, ante qué comisión específica (columna `comision_nombre`).
+   Una etapa recorrida en un solo día (0d) ya no muestra "0d".
+   El robot (robot_legislativo.py) solo avanza la etapa de lo que
+   ya existe aquí -- nunca da de alta una reforma nueva por sí solo.
 
    Columnas esperadas en data/reformas.csv:
    id,nombre,tipo,camara_origen,etapa_actual,fecha_presentacion,
@@ -354,13 +357,57 @@ function parsePronunciamientosLeg(r){
   }).filter(Boolean);
 }
 
-function botonProcedimientoHTML(r){
+// Reacciones: eventos reales de quién opinó y cuándo -- combina reacciones
+// ligadas a un tema (ECOSISTEMA.temaActores) con cada pronunciamiento individual
+// documentado en la columna pronunciamientos, o -- si no hay pronunciamientos --
+// la lista plana de actor_opone como respaldo. Esto es distinto de la votación
+// (cuántos votos) y del posicionamiento (quién impulsa/se opone y por qué).
+function eventosLineaTiempoLeg(reforma){
+  const eventos = [];
+  if(reforma.fecha_presentacion){
+    const impulsor = (reforma.actor_impulsa||'Se presentó').split(';')[0]?.trim();
+    eventos.push({ fecha: reforma.fecha_presentacion, nombre: impulsor, rol: 'Presentó la iniciativa', color: 'var(--teal)', origen:true });
+  }
+  reaccionesDocumentadasLeg(reforma).forEach(rx=>{
+    if(!rx.fecha) return;
+    const color = rx.rol==='Reacción de oposición' ? 'var(--riesgo-alto)' : (rx.rol==='Reacción del gobierno' ? 'var(--riesgo-bajo)' : 'var(--ink-3)');
+    eventos.push({ fecha: rx.fecha, nombre: rx.nombre, rol: rx.rol, detalle: rx.detalle, color });
+  });
+
+  const pronunciamientos = parsePronunciamientosLeg(reforma);
+  const fechaSesion = reforma.fecha_ultima_actualizacion;
+  if(pronunciamientos && fechaSesion){
+    pronunciamientos.forEach(p=>{
+      const esRetiro = /retir/i.test(p.postura);
+      const esFavor = /favor/i.test(p.postura) && !esRetiro;
+      const color = esFavor ? 'var(--riesgo-bajo)' : (esRetiro ? 'var(--riesgo-medio)' : 'var(--riesgo-alto)');
+      eventos.push({ fecha: fechaSesion, nombre: `${p.nombre} (${p.partido})`, rol: p.postura, detalle: p.cita, color });
+    });
+  } else if(fechaSesion && fechaSesion !== reforma.fecha_presentacion && reforma.actor_opone){
+    reforma.actor_opone.split(';').map(s=>s.trim()).filter(Boolean).forEach(nombre=>{
+      eventos.push({ fecha: fechaSesion, nombre, rol: `Oposición documentada al llegar a ${reforma.etapa_actual}`, color: 'var(--riesgo-alto)' });
+    });
+  }
+
+  return eventos.sort((a,b)=> a.fecha.localeCompare(b.fecha));
+}
+
+function lineaTiempoReaccionesHTML(reforma){
+  const eventos = eventosLineaTiempoLeg(reforma);
+  if(!eventos.length) return '';
   return `
-    <button class="chip-btn" data-toggle-procedimiento="${r.id}" style="font-size:10.5px;padding:4px 10px;margin-top:4px;">¿Qué pasa si se aprueba o se rechaza?</button>
-    <div id="leg-procedimiento-${r.id}" style="display:none;margin-top:8px;padding:10px;background:var(--bg-1);border-radius:var(--radius-s);border-left:3px solid var(--line-strong);">
-      <p style="font-size:11px;color:var(--ink-2);margin:0 0 6px;line-height:1.5;"><strong style="color:var(--riesgo-bajo);">Si se aprueba en Pleno:</strong> pasa a la cámara revisora del Congreso -- o, si ambas cámaras ya la aprobaron, al Ejecutivo para su publicación en el Diario Oficial de la Federación.</p>
-      <p style="font-size:11px;color:var(--ink-2);margin:0;line-height:1.5;"><strong style="color:var(--riesgo-alto);">Si se rechaza:</strong> conforme al Reglamento, la iniciativa se tiene por desechada; por regla general no puede volver a presentarse en el mismo periodo de sesiones.</p>
-      <p style="font-size:9.5px;color:var(--ink-3);margin:6px 0 0;">Procedimiento general del Congreso -- no es una predicción de qué va a pasar con esta reforma en particular.</p>
+    <div style="position:relative;padding:16px 6px 4px;">
+      <div style="position:absolute;left:16px;right:16px;top:33px;height:2px;background:var(--line-strong);"></div>
+      <div style="display:flex;gap:4px;overflow-x:auto;position:relative;">
+        ${eventos.map(e=>`
+          <div style="flex:0 0 auto;width:140px;text-align:center;padding:0 4px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
+            <div style="width:${e.origen?15:10}px;height:${e.origen?15:10}px;border-radius:50%;background:${e.color};margin:0 auto 8px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
+            <div style="font-size:${e.origen?11.5:10}px;font-weight:${e.origen?700:600};color:${e.color};line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
+            <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${e.rol}</div>
+            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:3px;">${e.fecha}</div>
+          </div>
+        `).join('')}
+      </div>
     </div>
   `;
 }
@@ -403,22 +450,39 @@ function ordenarReformasLeg(lista){
   return lista.slice().sort((a,b)=> (b.fecha_ultima_actualizacion||b.fecha_presentacion||'').localeCompare(a.fecha_ultima_actualizacion||a.fecha_presentacion||''));
 }
 
-function votacionHTML(r){
+// asientos totales por cámara, para medir la votación contra el total real -- no
+// solo contra los que sí votaron -- que es lo que pide ver el usuario
+const CURULES_TOTALES_LEG = { 'Diputados': 500, 'Senado': 128 };
+
+// votación como donut (CSS puro, sin librerías): favor / contra / abstención,
+// medidos contra el total real de la cámara, no solo contra los votos emitidos.
+// Sin fondo ni caja -- pensado para vivir dentro del lienzo, como parte de él.
+function votacionPieHTML(r, etapa){
   const favor = Number(r.votos_favor)||0, contra = Number(r.votos_contra)||0, abst = Number(r.votos_abstencion)||0;
-  if(!favor && !contra && !abst) return '';
-  const total = favor+contra+abst;
-  const pctFavor = total ? Math.round((favor/total)*100) : 0;
+  const emitidos = favor+contra+abst;
+  if(!emitidos) return '';
+  const totalCamara = CURULES_TOTALES_LEG[r.camara_origen] || emitidos;
+  const pF = favor/totalCamara*100;
+  const pC = contra/totalCamara*100;
+  const pA = abst/totalCamara*100;
+  const finC = pF+pC, finA = pF+pC+pA;
+  const esComision = etapa === 'Comisión';
   return `
-    <div class="eyebrow" style="margin-top:10px;">Votación</div>
-    <div style="display:flex;gap:10px;font-size:12px;margin:4px 0;">
-      <span style="color:var(--riesgo-bajo);"><strong>${favor}</strong> a favor</span>
-      <span style="color:var(--riesgo-alto);"><strong>${contra}</strong> en contra</span>
-      ${abst ? `<span style="color:var(--ink-3);"><strong>${abst}</strong> abstención</span>` : ''}
+    <div class="eyebrow" style="margin-top:2px;">Votación${etapa ? ` · ${etapa}` : ''}</div>
+    <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px;">
+      <div style="width:70px;height:70px;border-radius:50%;flex-shrink:0;
+        background:conic-gradient(var(--riesgo-bajo) 0 ${pF}%, var(--riesgo-alto) ${pF}% ${finC}%, var(--riesgo-medio) ${finC}% ${finA}%, var(--line-strong) ${finA}% 100%);
+        -webkit-mask:radial-gradient(circle, transparent 55%, #000 56%);
+        mask:radial-gradient(circle, transparent 55%, #000 56%);"
+        title="${favor} a favor, ${contra} en contra${abst?`, ${abst} abstención`:''}, de ${totalCamara} curules"></div>
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.85;">
+        <div><span class="legend-dot" style="background:var(--riesgo-bajo)"></span><strong style="color:var(--ink-1);">${favor}</strong> a favor</div>
+        <div><span class="legend-dot" style="background:var(--riesgo-alto)"></span><strong style="color:var(--ink-1);">${contra}</strong> en contra</div>
+        ${abst ? `<div><span class="legend-dot" style="background:var(--riesgo-medio)"></span><strong style="color:var(--ink-1);">${abst}</strong> abstención</div>` : ''}
+        <div style="color:var(--ink-3);margin-top:2px;">${emitidos} votos emitidos de ${totalCamara} curules${r.camara_origen?` en ${r.camara_origen}`:''}${esComision?' (votación en comisión, no en el Pleno)':''}</div>
+      </div>
     </div>
-    <div style="background:var(--bg-2);border-radius:99px;height:6px;overflow:hidden;">
-      <div style="background:var(--riesgo-bajo);width:${pctFavor}%;height:100%;display:inline-block;"></div><div style="background:var(--riesgo-alto);width:${100-pctFavor}%;height:100%;display:inline-block;"></div>
-    </div>
-    ${r.bancadas_en_contra ? `<p style="font-size:11px;color:var(--ink-3);margin-top:4px;">${r.bancadas_en_contra}</p>` : ''}
+    ${r.bancadas_en_contra ? `<p style="font-size:11px;color:var(--ink-3);margin-top:6px;line-height:1.5;">${r.bancadas_en_contra}</p>` : ''}
   `;
 }
 
@@ -426,42 +490,10 @@ function inicialesDe(nombre){
   return (nombre||'').split(' ').filter(Boolean).slice(0,2).map(p=>p[0]).join('').toUpperCase();
 }
 
-function tarjetaPersonaHTML(p, color){
-  const esRetiro = /retir/i.test(p.postura);
-  const etiqueta = esRetiro ? 'Se retiró, no votó' : (color==='var(--riesgo-bajo)' ? 'A favor' : 'Votó en contra');
-  const colorEtiqueta = esRetiro ? 'var(--riesgo-medio)' : color;
-  return `<div class="postura-tarjeta">
-    <span class="postura-avatar" style="background:${color}22;color:${color};">${inicialesDe(p.nombre)}</span>
-    <div>
-      <div style="font-size:11.5px;color:var(--ink-1);font-weight:600;">${p.nombre} <span style="font-weight:400;color:var(--ink-3);">(${p.partido})</span></div>
-      <div style="font-size:9px;color:${colorEtiqueta};font-weight:700;margin-top:1px;">${etiqueta}</div>
-      <p style="font-size:11px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${p.cita}</p>
-    </div>
-  </div>`;
-}
-
+// Posicionamiento (posturas documentadas): quién impulsa y quién se opone, y por
+// qué -- distinto de la votación (cuántos votos, en qué sentido) y de las
+// reacciones (qué dijo cada quien, con cita y fecha, en eventosLineaTiempoLeg).
 function posturasColumnasHTML(r){
-  const pronunciamientos = parsePronunciamientosLeg(r);
-
-  if(pronunciamientos && pronunciamientos.length){
-    const favor = pronunciamientos.filter(p=> /favor/i.test(p.postura) && !/retir/i.test(p.postura));
-    const contra = pronunciamientos.filter(p=> !( /favor/i.test(p.postura) && !/retir/i.test(p.postura) ));
-    return `
-      <div class="eyebrow" style="margin-top:2px;">Quién se pronunció y qué dijo</div>
-      <p style="font-size:11.5px;color:var(--ink-3);margin-bottom:10px;">${favor.length} a favor · ${contra.length} en contra o se retiraron</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-        <div>
-          <div style="font-weight:700;font-size:12px;color:var(--riesgo-bajo);margin-bottom:6px;">A favor</div>
-          ${favor.length ? favor.map(p=>tarjetaPersonaHTML(p,'var(--riesgo-bajo)')).join('') : `<div style="font-size:11px;color:var(--ink-3);">Sin pronunciamiento documentado</div>`}
-        </div>
-        <div>
-          <div style="font-weight:700;font-size:12px;color:var(--riesgo-alto);margin-bottom:6px;">En contra</div>
-          ${contra.length ? contra.map(p=>tarjetaPersonaHTML(p,'var(--riesgo-alto)')).join('') : `<div style="font-size:11px;color:var(--ink-3);">Sin pronunciamiento documentado</div>`}
-        </div>
-      </div>
-    `;
-  }
-
   const impulsan = (r.actor_impulsa||'').split(';').map(s=>s.trim()).filter(Boolean);
   const oponen = (r.actor_opone||'').split(';').map(s=>s.trim()).filter(Boolean);
   if(!impulsan.length && !oponen.length) return '';
@@ -511,11 +543,12 @@ function vistaReformaHTML(r, todasLasReformas){
 
     <div class="reforma-lienzo">
       ${stepperEtapaHTML(r, idNodo)}
+      ${lineaTiempoReaccionesHTML(r)}
+      <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa.</p>
+      <div id="${idNodo}-info-click" style="display:none;margin:10px 6px 2px;padding-top:10px;border-top:1px dashed var(--line-strong);"></div>
     </div>
-    <p style="font-size:10px;color:var(--ink-3);margin:2px 0 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa (quién se pronunció, votación, etc.)</p>
-    <div id="${idNodo}-info-click" style="display:none;"></div>
 
-    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:4px;margin-top:12px;">
+    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:4px;">
       <div class="eyebrow" style="margin:0 0 4px;">Qué establece</div>
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:0;">${r.resumen}</p>
     </div>` : ''}
@@ -523,7 +556,7 @@ function vistaReformaHTML(r, todasLasReformas){
     ${precedenteHTML(precedente, r.tipo)}
 
     <div style="margin-top:14px;">
-      ${botonProcedimientoHTML(r)}
+      ${posturasColumnasHTML(r)}
       ${proyeccionHTML}
     </div>
   </div>`;
@@ -562,22 +595,12 @@ function renderLegislativo(){
 
     if(!actual) return;
 
-    const btnProc = cont.querySelector('[data-toggle-procedimiento]');
-    if(btnProc){
-      btnProc.addEventListener('click', ()=>{
-        const panel = document.getElementById('leg-procedimiento-'+btnProc.dataset.toggleProcedimiento);
-        if(!panel) return;
-        const abierto = panel.style.display==='block';
-        panel.style.display = abierto ? 'none' : 'block';
-        btnProc.textContent = abierto ? '¿Qué pasa si se aprueba o se rechaza?' : 'Ocultar procedimiento';
-      });
-    }
-
-    // clic en un nodo YA ALCANZADO -> texto simple debajo del lienzo (sin caja ni
-    // borde de color -- formato anterior, que era más limpio). Un nodo futuro no
-    // tiene este atributo, así que no reacciona a nada. Cuando la etapa clicada es
-    // la etapa VIGENTE de la reforma, se agrega ahí mismo la votación y quién se
-    // pronunció -- es la única etapa para la que hoy el CSV guarda ese detalle.
+    // clic en un nodo YA ALCANZADO -> el detalle se abre DENTRO del lienzo, debajo
+    // de la línea de tiempo (no como caja sobrepuesta ni ventana aparte) -- el
+    // lienzo tiene espacio de sobra para esto. Solo texto y, cuando la etapa
+    // clicada es la etapa VIGENTE, también la votación (donut + conteo real
+    // contra el total de la cámara) -- es la única etapa para la que hoy el CSV
+    // guarda ese dato. Un nodo futuro no tiene este atributo, no reacciona a nada.
     const idNodo = 'leg-'+actual.id;
     const cajaInfo = document.getElementById(idNodo+'-info-click');
     cont.querySelectorAll('[data-etapa-click]').forEach(nodo=>{
@@ -590,33 +613,14 @@ function renderLegislativo(){
         if(mismoAbierto){ cajaInfo.style.display = 'none'; cajaInfo.dataset.etapaAbierta=''; return; }
         cajaInfo.dataset.etapaAbierta = etapa;
         cajaInfo.style.display = 'block';
-        cajaInfo.className = '';
-        cajaInfo.style.marginTop = '10px';
-        cajaInfo.style.borderLeft = 'none';
-        cajaInfo.style.padding = '0';
-        cajaInfo.style.background = 'none';
 
-        let extra = '';
-        if(etapa === actual.etapa_actual){
-          const votos = votacionHTML(actual);
-          const posturas = posturasColumnasHTML(actual);
-          const reaccionesConDetalle = reaccionesDocumentadasLeg(actual).filter(rx=>rx.detalle);
-          extra = `
-            ${votos}
-            ${posturas}
-            ${reaccionesConDetalle.length ? reaccionesConDetalle.map(rx=>`
-              <div style="margin-top:8px;">
-                <div style="font-size:11.5px;font-weight:700;color:var(--ink-1);">${rx.nombre} <span style="font-weight:400;color:var(--ink-3);font-size:10px;">· ${rx.rol}${rx.fecha?' · '+rx.fecha:''}</span></div>
-                <p style="font-size:11px;color:var(--ink-2);margin-top:2px;line-height:1.5;">${rx.detalle}</p>
-              </div>`).join('') : ''}
-          `;
-        }
+        const votos = etapa === actual.etapa_actual ? votacionPieHTML(actual, etapa) : '';
 
         cajaInfo.innerHTML = `
           <div style="font-weight:700;font-size:12px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
           <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual)}</p>
           <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
-          ${extra}
+          ${votos}
         `;
       });
     });
