@@ -461,15 +461,16 @@ function lineaTiempoReaccionesHTML(reforma){
   const eventos = eventosLineaTiempoLeg(reforma);
   if(!eventos.length) return '';
   return `
-    <div style="position:relative;padding:16px 6px 4px;">
-      <div style="position:absolute;left:16px;right:16px;top:33px;height:2px;background:var(--line-strong);"></div>
+    <div style="position:relative;padding:14px 6px 4px;">
+      <div style="position:absolute;left:16px;right:16px;top:29px;height:2px;background:var(--line-strong);"></div>
       <div style="display:flex;gap:4px;overflow-x:auto;position:relative;">
         ${eventos.map(e=>`
-          <div style="flex:0 0 auto;width:140px;text-align:center;padding:0 4px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
-            <div style="width:${e.origen?15:10}px;height:${e.origen?15:10}px;border-radius:50%;background:${e.color};margin:0 auto 8px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
-            <div style="font-size:${e.origen?11.5:10}px;font-weight:${e.origen?700:600};color:${e.color};line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
+          <div style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
+            <div style="width:${e.origen?13:9}px;height:${e.origen?13:9}px;border-radius:50%;background:${e.color};margin:0 auto 7px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
+            <div style="font-family:var(--f-mono);font-size:7.5px;letter-spacing:.03em;text-transform:uppercase;font-weight:700;color:${e.color};">${e.origen?'Inicio':'Hito'}</div>
+            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:1px;">${e.fecha}</div>
+            <div style="font-size:10px;font-weight:600;color:var(--ink-1);margin-top:3px;line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
             <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${e.rol}</div>
-            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:3px;">${e.fecha}</div>
           </div>
         `).join('')}
       </div>
@@ -643,6 +644,21 @@ function posturasColumnasHTML(r){
   `;
 }
 
+// Botón "¿qué pasa si se aprueba o se rechaza?" -- de vuelta a petición del
+// usuario. Son hechos del Reglamento (a qué instancia pasa, qué se necesita),
+// nunca una predicción de qué va a pasar con esta reforma en particular -- eso
+// se aclara en el propio texto.
+function botonProcedimientoHTML(r){
+  return `
+    <button class="chip-btn" data-toggle-procedimiento="${r.id}" style="font-size:10.5px;padding:4px 10px;margin-top:4px;">¿Qué pasa si se aprueba o se rechaza?</button>
+    <div id="leg-procedimiento-${r.id}" style="display:none;margin-top:8px;padding:10px;background:var(--bg-1);border-radius:var(--radius-s);border-left:3px solid var(--line-strong);">
+      <p style="font-size:11px;color:var(--ink-2);margin:0 0 6px;line-height:1.5;"><strong style="color:var(--riesgo-bajo);">Si se aprueba en Pleno:</strong> pasa a la cámara revisora del Congreso -- o, si ambas cámaras ya la aprobaron, al Ejecutivo para su publicación en el Diario Oficial de la Federación.</p>
+      <p style="font-size:11px;color:var(--ink-2);margin:0;line-height:1.5;"><strong style="color:var(--riesgo-alto);">Si se rechaza:</strong> conforme al Reglamento, la iniciativa se tiene por desechada; por regla general no puede volver a presentarse en el mismo periodo de sesiones.</p>
+      <p style="font-size:9.5px;color:var(--ink-3);margin:6px 0 0;">Procedimiento general del Congreso -- no es una predicción de qué va a pasar con esta reforma en particular.</p>
+    </div>
+  `;
+}
+
 function vistaReformaHTML(r, todasLasReformas){
   const colorEtapa = COLOR_ETAPA_LEG[r.etapa_actual] || 'var(--ink-3)';
   const dias = ETAPAS_TRAMITE_LEG.includes(r.etapa_actual) ? diasEnEtapaActualLeg(r) : null;
@@ -690,6 +706,7 @@ function vistaReformaHTML(r, todasLasReformas){
 
     <div style="margin-top:14px;">
       ${posturasColumnasHTML(r)}
+      ${botonProcedimientoHTML(r)}
       ${proyeccionHTML}
     </div>
   </div>`;
@@ -783,9 +800,9 @@ function renderLegislativo(){
         const votos = etapa === actual.etapa_actual ? votacionPieHTML(actual, etapa) : '';
 
         cajaInfo.innerHTML = `
-          <div style="font-weight:700;font-size:12px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
-          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual, precedenteClick)}</p>
-          <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
+          <div style="font-weight:700;font-size:11px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
+          <p style="font-size:10.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual, precedenteClick)}</p>
+          <p style="font-size:9.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
           ${votos}
         `;
       });
@@ -799,6 +816,18 @@ function renderLegislativo(){
           <div style="font-weight:700;font-size:13px;color:var(--riesgo-alto);padding-right:18px;">Quiénes se oponen y qué dijeron</div>
           ${oposicionDetalleHTML(actual)}
         `);
+      });
+    }
+
+    // botón "¿qué pasa si se aprueba o se rechaza?"
+    const btnProc = cont.querySelector('[data-toggle-procedimiento]');
+    if(btnProc){
+      btnProc.addEventListener('click', ()=>{
+        const panel = document.getElementById('leg-procedimiento-'+btnProc.dataset.toggleProcedimiento);
+        if(!panel) return;
+        const abierto = panel.style.display==='block';
+        panel.style.display = abierto ? 'none' : 'block';
+        btnProc.textContent = abierto ? '¿Qué pasa si se aprueba o se rechaza?' : 'Ocultar procedimiento';
       });
     }
   });
