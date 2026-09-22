@@ -183,9 +183,12 @@ function inyectarEstilosLegV3(){
     .reforma-triangulo { animation: leg-triangulo-cae .3s ease-out .5s both; }
 
     .reforma-rama-trazo { stroke-dasharray: 160; stroke-dashoffset: 160; animation: leg-trazo .6s ease-out both; }
-    .reforma-segmento-vivo { stroke-dasharray: 6 6; animation: leg-fluye 1s linear infinite; }
+    .reforma-segmento-vivo { animation: leg-fluye 1s linear infinite; }
     .reforma-nodo { animation: leg-nodo-crece .4s cubic-bezier(.34,1.56,.64,1) both; transform-box: fill-box; transform-origin: center; }
     .reforma-nodo.clicable { cursor: pointer; }
+    .reforma-nodo-anillo-seleccion { opacity: 0; pointer-events: none; transition: opacity .2s ease; animation: none; }
+    .reforma-nodo-anillo-seleccion.activo { opacity: .85; animation: leg-anillo-gira 6s linear infinite; }
+    @keyframes leg-anillo-gira { to { stroke-dashoffset: -12; } }
 
     .reforma-etiqueta { animation: leg-etiqueta-aparece .25s ease both; }
 
@@ -323,7 +326,10 @@ function calcularPrecedenteTipoLeg(todasLasReformas, tipo, idExcluir){
 // recuadros pegados, "encimados"). Ahora es texto que fluye igual que el resto de
 // la ficha, con un eyebrow propio para no perder de dónde sale el dato.
 function precedenteHTML(precedente, tipo){
-  if(!precedente) return '';
+  // con un solo caso previo no hay "precedente" real que comparar -- son dos
+  // reformas hablando de sí mismas ("1 de 1, 100%"), no aporta nada. Se pide
+  // un mínimo de 2 para que el dato compare algo de verdad.
+  if(!precedente || precedente.total < 2) return '';
   return `<div style="margin-top:16px;">
     <div class="eyebrow" style="color:var(--teal);">Precedente · ${tipo}</div>
     <p style="font-size:12px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">
@@ -380,10 +386,12 @@ function explicacionEtapaLeg(etapa, reforma, precedente){
     : `de ${reforma.actor_impulsa || 'quien la promueve'}`;
   // Fix: el sufijo de plural no era "verbo + n" (eso da "rechazón", "aprobón");
   // son formas distintas completas.
-  const notaHistorica = precedente
+  // igual que en precedenteHTML: con un solo caso previo no hay nada real
+  // que comparar, así que se pide un mínimo de 2 para mostrar la nota.
+  const notaHistorica = (precedente && precedente.total >= 2)
     ? ` <span style="color:var(--ink-3);font-style:italic;">De ${precedente.total} reforma${precedente.total!==1?'s':''} de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, ${precedente.aprobadas} ${precedente.aprobadas===1?'se aprobó':'se aprobaron'} (${precedente.pctAprobacion}%) y ${precedente.rechazadas} ${precedente.rechazadas===1?'se rechazó':'se rechazaron'} -- es precedente, no un pronóstico de esta reforma.</span>`
     : '';
-  const notaRitmo = (precedente && precedente.promedioDias!==null)
+  const notaRitmo = (precedente && precedente.total >= 2 && precedente.promedioDias!==null)
     ? ` <span style="color:var(--ink-3);font-style:italic;">En reformas de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, el trámite completo tomó en promedio ${precedente.promedioDias}d -- no es una predicción de esta reforma, es el ritmo con el que se han movido las anteriores.</span>`
     : '';
   const pregunta = `<strong style="color:var(--riesgo-medio);">¿Qué la puede detener?</strong>`;
@@ -497,8 +505,15 @@ function stepperEtapaHTML(reforma, idNodo){
       svg += `<rect x="${xNodo(0)}" y="${yLinea-3}" width="${xNodo(idxActual-1)-xNodo(0)}" height="6" rx="3" fill="${tramoPrevioColor}" style="filter:drop-shadow(0 0 4px ${tramoPrevioColor}66);"/>`;
     }
     const colorTramoFinal = esRechazada ? COLOR_RECHAZO : 'var(--riesgo-bajo)';
-    const claseTramoFinal = (!esRechazada && idxActual===n-1) ? '' : (esRechazada ? '' : 'reforma-segmento-vivo');
-    svg += `<rect x="${xNodo(idxActual-1)}" y="${yLinea-3}" width="${xNodo(idxActual)-xNodo(idxActual-1)}" height="6" rx="3" class="${claseTramoFinal}" fill="${colorTramoFinal}" style="filter:drop-shadow(0 0 5px ${colorTramoFinal}99);"/>`;
+    // FIX: la clase reforma-segmento-vivo anima stroke-dashoffset, pero se
+    // aplicaba a este <rect>, que solo tiene fill (sin stroke) -- así que la
+    // animación no se veía nunca. El destello ahora es una línea aparte, sin
+    // relleno, encimada sobre el tramo, para que sí se note el "vivo".
+    const enProgreso = !esRechazada && idxActual!==n-1;
+    svg += `<rect x="${xNodo(idxActual-1)}" y="${yLinea-3}" width="${xNodo(idxActual)-xNodo(idxActual-1)}" height="6" rx="3" fill="${colorTramoFinal}" style="filter:drop-shadow(0 0 5px ${colorTramoFinal}99);"/>`;
+    if(enProgreso){
+      svg += `<line class="reforma-segmento-vivo" x1="${xNodo(idxActual-1)}" y1="${yLinea}" x2="${xNodo(idxActual)}" y2="${yLinea}" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 12" opacity=".55"/>`;
+    }
   }
 
   ETAPAS_LINEA_LEG.forEach((etapa, i) => {
@@ -519,6 +534,13 @@ function stepperEtapaHTML(reforma, idNodo){
     svg += respaldo(xNodo(i), yLinea, r);
     const fillNodo = (completada || esNodoActual) ? `${color}55` : 'var(--bg-1)';
     svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${r}" fill="${fillNodo}" stroke="${color}" stroke-width="${completada||esNodoActual?2.8:2.2}" style="${retardo(gen)}${esNodoActual?`filter:drop-shadow(0 0 6px ${color}bb);`:''}"/>`;
+    // anillo de "este es el punto que estás viendo abajo" -- aparte del nodo
+    // vigente (que ya tiene su propio halo permanente), esto marca cuál nodo
+    // fue el último que se clicó, sin encimarse: vive apagado (opacity 0) y
+    // solo se enciende desde JS al hacer click, un poco más afuera del nodo.
+    if(duraciones[etapa]){
+      svg += `<circle data-anillo-etapa="${etapa}" class="reforma-nodo-anillo-seleccion" cx="${xNodo(i)}" cy="${yLinea}" r="${r+6}" fill="none" stroke="${color}" stroke-width="1.4" stroke-dasharray="3 3"/>`;
+    }
     svg += iconoEtapaSVG(etapa, xNodo(i), yLinea, color);
     svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+32}" text-anchor="middle" font-size="9.5" font-weight="${esNodoActual?700:400}" font-family="var(--f-mono)" fill="${color==='var(--line-strong)'?'var(--ink-3)':color}" style="${retardo(gen+0.3)}">${etapa}</text>`;
     const dur = duraciones[etapa];
@@ -939,18 +961,40 @@ function panelAnalisisGlobalLeg(todasLasReformas){
         const nombreCorto = nombreCortoLeg(r);
         const rango_tt = `${nombreCorto} · ${r.fecha_presentacion} → ${enCurso ? 'sigue en trámite' : (r.fecha_ultima_actualizacion||'')}`;
 
-        return `
-          <div class="leg-tt" data-tt="${rango_tt.replace(/"/g,'&quot;')}" style="display:flex;align-items:center;gap:8px;margin-top:7px;">
-            <div style="width:130px;flex-shrink:0;font-size:9px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${nombreCorto}</div>
-            <div style="position:relative;flex:1;height:10px;">
+        const etiqueta = `<div class="leg-tt" data-tt="${rango_tt.replace(/"/g,'&quot;')}" style="height:17px;display:flex;align-items:center;font-size:9px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${nombreCorto}</div>`;
+        const barra = `<div class="leg-tt" data-tt="${rango_tt.replace(/"/g,'&quot;')}" style="height:17px;position:relative;">
               <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--line-strong);"></div>
               <div style="position:absolute;top:50%;transform:translateY(-50%);left:${leftReal}%;width:${widthReal}%;height:3px;background:${color};border-radius:2px;"></div>
               ${widthPendiente>0 ? `<div style="position:absolute;top:50%;transform:translateY(-50%);left:${leftPendiente}%;width:${widthPendiente}%;height:1.5px;background:${color};opacity:.4;border-radius:2px;"></div>` : ''}
               ${!enCurso ? `<div style="position:absolute;top:50%;left:${leftPendiente}%;width:7px;height:7px;border-radius:50%;background:${color};transform:translate(-50%,-50%);"></div>` : ''}
-            </div>
-          </div>`;
-      }).join('');
-    return filas;
+            </div>`;
+        return { etiqueta, barra };
+      });
+
+    // marcas verticales por año, de enero del primer año con reformas a hoy
+    // -- da una referencia de tiempo a la línea, y como se calcula en vivo
+    // contra la fecha de hoy, se va corriendo sola con el calendario (seguirá
+    // agregando años mientras dure la administración, sin tocar el código).
+    const anioMin = new Date(minFecha).getFullYear();
+    const anioMax = new Date(hoy).getFullYear();
+    const marcasAnio = [];
+    for(let a=anioMin; a<=anioMax; a++){
+      const t = new Date(`${a}-01-01T00:00:00`).getTime();
+      const p = pct(t);
+      if(p>=0 && p<=100) marcasAnio.push({anio:a, pct:p});
+    }
+    const tickLabels = marcasAnio.map(m=> `<div style="position:absolute;left:${m.pct}%;transform:translateX(-50%);font-size:8px;color:var(--ink-3);">${m.anio}</div>`).join('');
+    const gridlines = marcasAnio.map(m=> `<div style="position:absolute;top:0;bottom:0;left:${m.pct}%;width:1px;background:var(--line-strong);opacity:.4;"></div>`).join('');
+
+    return `
+      <div style="display:flex;gap:8px;">
+        <div style="width:130px;flex-shrink:0;"></div>
+        <div style="position:relative;flex:1;height:12px;">${tickLabels}</div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <div style="width:130px;flex-shrink:0;">${filas.map(f=>f.etiqueta).join('')}</div>
+        <div style="position:relative;flex:1;">${gridlines}${filas.map(f=>f.barra).join('')}</div>
+      </div>`;
   })();
 
   const partidos = conteoPartidosOposicionLeg(todasLasReformas);
@@ -1187,7 +1231,7 @@ function vistaReformaHTML(r, todasLasReformas){
     </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:16px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : '')}
 
     ${r.contexto_origen ? `<div style="margin-top:16px;">
-      <div class="eyebrow" style="color:var(--riesgo-medio);">Qué la originó</div>
+      <div class="eyebrow" style="color:var(--riesgo-medio);">Qué pudo originarlo</div>
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.contexto_origen}</p>
     </div>` : ''}
     ${precedenteHTML(precedente, r.tipo)}
@@ -1282,9 +1326,15 @@ function renderLegislativo(){
         const dur = duraciones[etapa];
         if(!cajaInfo || !dur) return;
         const mismoAbierto = cajaInfo.dataset.etapaAbierta === etapa && cajaInfo.style.display==='block';
-        if(mismoAbierto){ cajaInfo.style.display = 'none'; cajaInfo.dataset.etapaAbierta=''; return; }
+        const anillos = cont.querySelectorAll('[data-anillo-etapa]');
+        if(mismoAbierto){
+          cajaInfo.style.display = 'none'; cajaInfo.dataset.etapaAbierta='';
+          anillos.forEach(a=>a.classList.remove('activo'));
+          return;
+        }
         cajaInfo.dataset.etapaAbierta = etapa;
         cajaInfo.style.display = 'block';
+        anillos.forEach(a=> a.classList.toggle('activo', a.dataset.anilloEtapa===etapa));
 
         // la votación se guarda una sola vez por reforma (el voto que la hizo
         // avanzar) -- se muestra al hacer click en la etapa vigente, y también en
