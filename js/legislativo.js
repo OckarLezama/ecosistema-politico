@@ -689,8 +689,10 @@ function vistaReformaHTML(r, todasLasReformas){
     </div>
 
     <div class="reforma-lienzo">
-      <div>${stepperEtapaHTML(r, idNodo)}</div>
-      <div id="${idNodo}-info-click" style="display:none;margin-top:10px;padding:10px 12px;background:var(--bg-1);border-radius:var(--radius-s);border-left:3px solid var(--line-strong);"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+        <div style="flex:1 1 420px;min-width:260px;">${stepperEtapaHTML(r, idNodo)}</div>
+        <div id="${idNodo}-info-click" style="display:none;flex:1 1 220px;min-width:200px;padding:6px 8px;"></div>
+      </div>
       ${lineaTiempoReaccionesHTML(r)}
       <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa.</p>
     </div>
