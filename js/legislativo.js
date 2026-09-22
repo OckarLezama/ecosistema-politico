@@ -200,6 +200,12 @@ function inyectarEstilosLegV3(){
     .leg-modal-overlay.abierto { opacity:1; pointer-events:auto; }
     .leg-modal-card { background:var(--bg-2); border:1px solid var(--line-strong); border-radius:var(--radius-s); padding:20px 22px; max-width:440px; width:100%; max-height:78vh; overflow-y:auto; position:relative; box-shadow:0 16px 48px rgba(0,0,0,.45); transform:translateY(6px); transition:transform .15s ease; }
     .leg-modal-overlay.abierto .leg-modal-card { transform:translateY(0); }
+    .leg-modal-card { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+    .leg-modal-card::-webkit-scrollbar { width: 6px; }
+    .leg-modal-card::-webkit-scrollbar-track { background: transparent; }
+    .leg-modal-card::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+    .leg-modal-card::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+    .leg-analisis-modal .leg-modal-card { max-width:560px; }
     .leg-modal-cerrar { position:absolute; top:8px; right:10px; background:none; border:none; color:var(--ink-3); font-size:16px; line-height:1; cursor:pointer; padding:6px; }
     .leg-modal-cerrar:hover { color:var(--ink-1); }
   `;
@@ -667,6 +673,11 @@ function renderKpisLeg(todasLasReformas){
     pill('rechazadas', `<span class="legend-dot" style="background:var(--riesgo-alto)"></span><strong style="color:var(--ink-1);">${rechazadas}</strong> rechazadas (histórico)`),
     pill('publicada', `<strong style="color:var(--ink-1);">${publicadas}</strong> ya en el DOF`),
   ].join('');
+
+  const btnAnalisis = document.getElementById('legislativo-btn-analisis');
+  if(btnAnalisis){
+    btnAnalisis.title = `${total} trackeada${total!==1?'s':''} · ${enTramite} en trámite · ${aprobadas} aprobadas (histórico) · ${rechazadas} rechazadas (histórico) · ${publicadas} ya en el DOF`;
+  }
 }
 
 // -- Panel de análisis global (botón con ícono junto a los KPIs) --------
@@ -690,13 +701,79 @@ function conteoPartidosOposicionLeg(todasLasReformas){
       }
     });
   });
-  return Object.entries(conteo)
-    .filter(([,v])=>v.veces>0)
-    .sort((a,b)=> b[1].veces - a[1].veces);
+  // orden completo (incluye los de 0, como Morena) -- la narrativa necesita
+  // poder decir explícitamente "Morena no aparece del lado de la oposición"
+  return Object.entries(conteo).sort((a,b)=> b[1].veces - a[1].veces);
+}
+
+// Convierte el conteo por partido en una frase, no en más tabla: el objetivo
+// es que se lea como un comparativo humano ("el PAN se ha opuesto el doble
+// de veces que el PRI"), no como una fila más de datos sueltos.
+function narrativaPartidosLeg(partidosOrdenados, total){
+  const conApariciones = partidosOrdenados.filter(([,v])=>v.veces>0);
+  const morena = partidosOrdenados.find(([p])=>p==='Morena');
+
+  if(!conApariciones.length){
+    return `Ninguna bancada aparece todavía del lado de la oposición en las ${total} reformas trackeadas.`;
+  }
+
+  const [primero, ...resto] = conApariciones;
+  let frase = `<strong style="color:var(--ink-1);">${primero[0]}</strong> es la bancada que más veces ha votado o se ha pronunciado en contra: <strong style="color:var(--ink-1);">${primero[1].veces} de ${total}</strong> reformas`;
+
+  if(resto.length){
+    const comparaciones = resto.slice(0,2).map(([p,v])=>{
+      const veces = primero[1].veces / (v.veces||1);
+      const multiplo = veces>=2 ? ` (${Math.round(veces)}x)` : '';
+      return `${p} con ${v.veces}${multiplo}`;
+    });
+    frase += `, por delante de ${comparaciones.join(' y de ')}`;
+  }
+  frase += '.';
+
+  if(morena){
+    frase += morena[1].veces>0
+      ? ` Morena aparece del lado de la oposición en ${morena[1].veces} de ${total} reformas.`
+      : ` Morena no aparece del lado de la oposición en ninguna de las ${total} -- consistente con ser, en la mayoría de estos casos, la bancada que impulsa la reforma más que la que se le opone.`;
+  }
+
+  return frase;
+}
+
+function barraComparativaHTML(items, opts){
+  // items: [{label, valor, color, sufijo, detalle}], barra horizontal simple
+  // (div con width%), sin librerías -- mismo criterio que el donut de votación.
+  const max = Math.max(...items.map(i=>i.valor), 1);
+  return items.map(it=>{
+    const pct = Math.round((it.valor/max)*100);
+    return `
+      <div style="margin-top:8px;" ${it.detalle?`title="${it.detalle.replace(/"/g,'&quot;')}"`:''}>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-2);margin-bottom:3px;">
+          <span>${it.label}</span>
+          <span style="color:var(--ink-1);font-weight:600;">${it.valor}${it.sufijo||''}</span>
+        </div>
+        <div style="height:7px;border-radius:4px;background:var(--bg-1);overflow:hidden;">
+          <div style="height:100%;width:${pct}%;background:${it.color};border-radius:4px;"></div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// barra apilada favor/contra/abstención en una sola línea, para las votaciones
+function barraApiladaHTML(favor, contra, abst){
+  const totalVotos = favor+contra+abst || 1;
+  const pF = Math.round((favor/totalVotos)*100);
+  const pC = Math.round((contra/totalVotos)*100);
+  const pA = 100 - pF - pC;
+  return `<div style="display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:4px;">
+    <div style="width:${pF}%;background:var(--riesgo-bajo);"></div>
+    <div style="width:${pC}%;background:var(--riesgo-alto);"></div>
+    ${pA>0?`<div style="width:${pA}%;background:var(--ink-3);"></div>`:''}
+  </div>`;
 }
 
 function panelAnalisisGlobalLeg(todasLasReformas){
   const total = todasLasReformas.length;
+  const enTramite = todasLasReformas.filter(r=>ETAPAS_TRAMITE_LEG.includes(r.etapa_actual)).length;
   const concluidas = todasLasReformas.filter(r=> ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual));
   const aprobadas = concluidas.filter(r=> r.etapa_actual==='Aprobada' || r.etapa_actual==='Publicada');
   const rechazadas = concluidas.filter(r=> r.etapa_actual==='Rechazada');
@@ -705,80 +782,75 @@ function panelAnalisisGlobalLeg(todasLasReformas){
   const diasPublicadas = publicadas.map(r=>diasTotalTramiteLeg(r)).filter(d=> d!==null && d!==undefined);
   const promedioGeneral = diasPublicadas.length ? Math.round(diasPublicadas.reduce((a,b)=>a+b,0)/diasPublicadas.length) : null;
 
-  const tipos = [...new Set(todasLasReformas.map(r=>r.tipo).filter(Boolean))];
-  const filasTipo = tipos.map(t=>{
-    const p = calcularPrecedenteTipoLeg(todasLasReformas, t, null);
-    if(!p) return null;
-    return `<tr>
-      <td style="padding:5px 8px;color:var(--ink-1);">${t}</td>
-      <td style="padding:5px 8px;text-align:center;">${p.total}</td>
-      <td style="padding:5px 8px;text-align:center;color:var(--riesgo-bajo);">${p.aprobadas}</td>
-      <td style="padding:5px 8px;text-align:center;color:var(--riesgo-alto);">${p.rechazadas}</td>
-      <td style="padding:5px 8px;text-align:center;">${p.pctAprobacion}%</td>
-      <td style="padding:5px 8px;text-align:center;">${p.promedioDias!==null?p.promedioDias+'d':'—'}</td>
-    </tr>`;
-  }).filter(Boolean).join('');
+  const kpiCard = (valor, label, color)=>`
+    <div style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:10px 8px;text-align:center;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:${color||'var(--ink-1)'};">${valor}</div>
+      <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${label}</div>
+    </div>`;
 
-  const filasVotos = concluidas
-    .filter(r=> r.votos_favor || r.votos_contra)
-    .map(r=>{
-      const favor = Number(r.votos_favor)||0, contra = Number(r.votos_contra)||0, abst = Number(r.votos_abstencion)||0;
-      const margen = favor - contra;
-      return `<tr>
-        <td style="padding:5px 8px;color:var(--ink-1);">${r.nombre}</td>
-        <td style="padding:5px 8px;text-align:center;color:var(--riesgo-bajo);">${favor}</td>
-        <td style="padding:5px 8px;text-align:center;color:var(--riesgo-alto);">${contra}</td>
-        <td style="padding:5px 8px;text-align:center;color:var(--ink-3);">${abst}</td>
-        <td style="padding:5px 8px;text-align:center;">${margen>0?'+':''}${margen}</td>
-      </tr>`;
-    }).join('');
+  const tipos = [...new Set(todasLasReformas.map(r=>r.tipo).filter(Boolean))];
+  const datosTipo = tipos.map(t=> ({tipo:t, p: calcularPrecedenteTipoLeg(todasLasReformas, t, null)})).filter(d=>d.p);
+
+  const graficaTipo = barraComparativaHTML(datosTipo.map(d=>({
+    label: `${d.tipo} · ${d.p.aprobadas} aprob. / ${d.p.rechazadas} rech.`,
+    valor: d.p.total,
+    sufijo: ` reforma${d.p.total!==1?'s':''} · ${d.p.pctAprobacion}% aprob. · ${d.p.promedioDias!==null?d.p.promedioDias+'d prom.':'—'}`,
+    color: d.p.rechazadas>0 ? 'var(--riesgo-medio)' : 'var(--teal)',
+  })));
+
+  const votaciones = concluidas.filter(r=> r.votos_favor || r.votos_contra);
+  const graficaVotos = votaciones.map(r=>{
+    const favor = Number(r.votos_favor)||0, contra = Number(r.votos_contra)||0, abst = Number(r.votos_abstencion)||0;
+    const margen = favor - contra;
+    return `
+      <div style="margin-top:10px;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-2);">
+          <span>${r.nombre}</span>
+          <span style="color:var(--ink-1);font-weight:600;">${favor}–${contra}${abst?`–${abst}`:''} <span style="color:${margen>=0?'var(--riesgo-bajo)':'var(--riesgo-alto)'};">(${margen>0?'+':''}${margen})</span></span>
+        </div>
+        ${barraApiladaHTML(favor, contra, abst)}
+      </div>`;
+  }).join('');
 
   const partidos = conteoPartidosOposicionLeg(todasLasReformas);
-  const filasPartidos = partidos.map(([p,v])=>`
-    <tr>
-      <td style="padding:5px 8px;color:var(--ink-1);">${p}</td>
-      <td style="padding:5px 8px;text-align:center;">${v.veces}</td>
-      <td style="padding:5px 8px;color:var(--ink-3);font-size:10.5px;">${v.reformas.join(', ')}</td>
-    </tr>`).join('');
-
-  const th = (txt)=>`<th style="padding:5px 8px;text-align:center;color:var(--ink-3);font-weight:600;font-size:10.5px;">${txt}</th>`;
+  const partidosConApariciones = partidos.filter(([,v])=>v.veces>0);
+  const graficaPartidos = barraComparativaHTML(partidosConApariciones.map(([p,v])=>({
+    label: p,
+    valor: v.veces,
+    sufijo: ` de ${total}`,
+    color: p==='PAN' ? 'var(--riesgo-alto)' : p==='PRI' ? 'var(--riesgo-medio)' : 'var(--teal)',
+    detalle: v.reformas.join(', '),
+  })));
 
   return `
     <div style="font-weight:700;font-size:13px;color:var(--teal);padding-right:18px;">Análisis general · Legislativo</div>
     <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">
-      Es un registro de lo que ya pasó con las ${total} reformas trackeadas -- no es un pronóstico. Crece solo conforme se agreguen más reformas al CSV.
+      Es un seguimiento de lo que ya pasó con las ${total} reformas trackeadas. Crece solo conforme vayan saliendo más reformas.
     </p>
 
     <div class="eyebrow" style="color:var(--teal);margin-top:16px;">Resumen general</div>
-    <p style="font-size:12px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">
-      <strong style="color:var(--ink-1);">${total}</strong> reformas trackeadas ·
-      <strong style="color:var(--riesgo-bajo);">${aprobadas.length}</strong> aprobadas ·
-      <strong style="color:var(--riesgo-alto);">${rechazadas.length}</strong> rechazadas ·
-      <strong style="color:var(--ink-1);">${publicadas.length}</strong> ya en el DOF.
-      ${promedioGeneral!==null ? ` Tiempo promedio de trámite completo (Presentada → Publicada): <strong style="color:var(--ink-1);">${promedioGeneral}d</strong>.` : ''}
-    </p>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px;">
+      ${kpiCard(total, 'Trackeadas')}
+      ${kpiCard(enTramite, 'En trámite', 'var(--teal)')}
+      ${kpiCard(aprobadas.length, 'Aprobadas', 'var(--riesgo-bajo)')}
+      ${kpiCard(rechazadas.length, 'Rechazadas', 'var(--riesgo-alto)')}
+      ${kpiCard(publicadas.length, 'En el DOF')}
+    </div>
+    ${promedioGeneral!==null ? `<p style="font-size:11px;color:var(--ink-2);margin-top:8px;">Tiempo promedio de trámite completo (Presentada → Publicada): <strong style="color:var(--ink-1);">${promedioGeneral}d</strong>.</p>` : ''}
 
-    ${filasTipo ? `
-    <div class="eyebrow" style="color:var(--teal);margin-top:16px;">Por tipo de reforma</div>
-    <table style="width:100%;border-collapse:collapse;margin-top:6px;font-size:11px;">
-      <thead><tr>${th('Tipo')}${th('Total')}${th('Aprob.')}${th('Rech.')}${th('% aprob.')}${th('Días prom.')}</tr></thead>
-      <tbody>${filasTipo}</tbody>
-    </table>` : ''}
+    ${graficaTipo ? `
+    <div class="eyebrow" style="color:var(--teal);margin-top:18px;">Por tipo de reforma</div>
+    ${graficaTipo}` : ''}
 
-    ${filasVotos ? `
-    <div class="eyebrow" style="color:var(--teal);margin-top:16px;">Votaciones (reformas concluidas)</div>
-    <table style="width:100%;border-collapse:collapse;margin-top:6px;font-size:11px;">
-      <thead><tr>${th('Reforma')}${th('Favor')}${th('Contra')}${th('Abst.')}${th('Margen')}</tr></thead>
-      <tbody>${filasVotos}</tbody>
-    </table>` : ''}
+    ${graficaVotos ? `
+    <div class="eyebrow" style="color:var(--teal);margin-top:18px;">Votaciones (reformas concluidas)</div>
+    ${graficaVotos}` : ''}
 
-    ${filasPartidos ? `
-    <div class="eyebrow" style="color:var(--teal);margin-top:16px;">Bancadas que más han votado o se han pronunciado en contra</div>
-    <p style="font-size:10px;color:var(--ink-3);margin-top:3px;">Conteo de menciones en el campo de oposición de cada reforma -- no es disciplina de partido comprobada, es cuántas veces aparece cada bancada del lado del "no".</p>
-    <table style="width:100%;border-collapse:collapse;margin-top:6px;font-size:11px;">
-      <thead><tr>${th('Partido')}${th('Veces')}${th('En qué reformas')}</tr></thead>
-      <tbody>${filasPartidos}</tbody>
-    </table>` : ''}
+    ${partidosConApariciones.length ? `
+    <div class="eyebrow" style="color:var(--teal);margin-top:18px;">Bancadas del lado de la oposición</div>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:4px;">${narrativaPartidosLeg(partidos, total)}</p>
+    ${graficaPartidos}
+    <p style="font-size:9.5px;color:var(--ink-3);margin-top:8px;">Conteo de menciones en el campo de oposición de cada reforma -- no es disciplina de partido comprobada. Pasa el cursor sobre cada barra para ver en qué reformas.</p>` : ''}
   `;
 }
 
@@ -995,8 +1067,9 @@ function asegurarModalLeg(){
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') cerrarModalLeg(); });
   return overlay;
 }
-function abrirModalLeg(html){
+function abrirModalLeg(html, opts){
   const overlay = asegurarModalLeg();
+  overlay.classList.toggle('leg-analisis-modal', !!(opts && opts.ancho));
   overlay.querySelector('#leg-modal-contenido').innerHTML = html;
   overlay.classList.add('abierto');
 }
@@ -1119,7 +1192,7 @@ function initLegislativo(){
   if(btnAnalisis && !btnAnalisis.dataset.wired){
     btnAnalisis.dataset.wired='1';
     btnAnalisis.addEventListener('click', ()=>{
-      cargarReformas((reformas)=>{ abrirModalLeg(panelAnalisisGlobalLeg(reformas)); });
+      cargarReformas((reformas)=>{ abrirModalLeg(panelAnalisisGlobalLeg(reformas), {ancho:true}); });
     });
   }
 
