@@ -913,15 +913,9 @@ function renderLegislativo(){
       if(!reformaSeleccionadaLeg || !idsFiltrados.includes(reformaSeleccionadaLeg)){
         reformaSeleccionadaLeg = filtradas[0] ? filtradas[0].id : null;
       }
-      // Antes decía "Nombre — Presentada/Comisión/Publicada" como texto -- a
-      // petición del usuario, se quita esa etiqueta repetida y en su lugar un
-      // punto de color (mismo COLOR_ETAPA_LEG que usa el resto de la ficha)
-      // indica de un vistazo si ya concluyó, está en trámite o recién se
-      // presentó, sin duplicar la palabra.
-      selector.innerHTML = filtradas.map(r=>{
-        const color = COLOR_ETAPA_LEG[r.etapa_actual] || 'var(--ink-3)';
-        return `<option value="${r.id}" ${r.id===reformaSeleccionadaLeg?'selected':''} style="color:${color};">● ${r.nombre}</option>`;
-      }).join('');
+      selector.innerHTML = filtradas.map(r=>
+        `<option value="${r.id}" ${r.id===reformaSeleccionadaLeg?'selected':''}>${r.nombre} — ${r.etapa_actual}</option>`
+      ).join('');
     }
 
     const actual = reformas.find(r=>r.id===reformaSeleccionadaLeg);
