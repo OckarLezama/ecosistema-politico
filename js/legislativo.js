@@ -372,6 +372,20 @@ function camaraRevisoraDeLeg(camaraOrigen){
   return null;
 }
 
+// Calendario de periodos ordinarios del Congreso (Art. 65 constitucional):
+// 1er periodo 1 sep - 15 dic (31 dic en año de cambio de gobierno/informe),
+// 2do periodo 1 feb - 30 abr. Fuera de eso, el Congreso está en receso (la
+// Comisión Permanente puede trabajar, pero no hay votaciones de Pleno) --
+// esto es dato público fijo, no depende de ninguna fuente por reforma.
+function estadoPeriodoOrdinarioLeg(fecha = new Date()){
+  const mes = fecha.getMonth()+1, dia = fecha.getDate();
+  const enPeriodo1 = (mes===9 || mes===10 || mes===11) || (mes===12 && dia<=15);
+  const enPeriodo2 = (mes===2 || mes===3) || (mes===4 && dia<=30);
+  if(enPeriodo1) return { enSesion:true, periodo:'Primer periodo ordinario (1 sep - 15 dic)' };
+  if(enPeriodo2) return { enSesion:true, periodo:'Segundo periodo ordinario (1 feb - 30 abr)' };
+  return { enSesion:false, periodo:'Receso -- solo trabaja la Comisión Permanente' };
+}
+
 function explicacionEtapaLeg(etapa, reforma, precedente){
   const camara = reforma.camara_origen ? `la Cámara de ${reforma.camara_origen}` : 'la cámara de origen';
   const revisora = camaraRevisoraDeLeg(reforma.camara_origen);
@@ -784,6 +798,49 @@ function conteoPartidosOposicionLeg(todasLasReformas){
 // Convierte el conteo por partido en una frase, no en más tabla: el objetivo
 // es que se lea como un comparativo humano ("el PAN se ha opuesto el doble
 // de veces que el PRI"), no como una fila más de datos sueltos.
+// Síntesis entre reformas -- el único lugar del módulo que responde "¿y esto
+// qué significa en conjunto?" en vez de tratar cada reforma como un caso
+// aislado. Los grupos están armados a mano (con solo 16 casos, un criterio
+// editorial es más confiable que un agrupamiento automático) y cada uno se
+// menciona solo si al menos 2 de sus reformas existen en el CSV, para que no
+// se rompa si alguna todavía no se ha agregado.
+const PATRONES_LEG = [
+  {
+    nombre: 'Acumulación de capacidad de vigilancia y control del Estado',
+    ids: ['curp-biometrica-2025', 'ley-telecomunicaciones-2025', 'reforma-guardia-nacional-sedena-2024'],
+    lectura: 'la CURP biométrica cruza bases de datos entre autoridades, la Ley de Telecomunicaciones permite geolocalizar celulares sin orden judicial, y la Guardia Nacional pasó a mando militar -- vistas juntas, son piezas de una misma tendencia hacia más capacidad de vigilancia y menos control civil sobre ella, no episodios sueltos.',
+  },
+  {
+    nombre: 'Reversión de la apertura económica del sexenio anterior',
+    ids: ['reforma-empresas-publicas-2024', 'reforma-organismos-autonomos-2024'],
+    lectura: 'blindar a Pemex/CFE como empresas públicas y eliminar organismos autónomos (varios creados o fortalecidos para vigilar precisamente al mercado y al propio gobierno) apuntan en la misma dirección: menos espacio para el modelo de apertura y contrapesos de 2013-2018.',
+  },
+  {
+    nombre: 'Choque Ejecutivo-Judicial resuelto por vía constitucional',
+    ids: ['reforma-poder-judicial-2024', 'reforma-ley-amparo-2025', 'reforma-guardia-nacional-sedena-2024'],
+    lectura: 'la elección de jueces por voto popular, el acotamiento de los efectos generales del amparo, y el haber usado una reforma constitucional para lograr lo que la Corte había bloqueado por decreto (Guardia Nacional) comparten un mismo patrón: cuando el Poder Judicial frenó al Ejecutivo, la respuesta fue cambiar la regla desde el Congreso, no negociar con la Corte.',
+  },
+];
+
+function sintesisPatronesLeg(todasLasReformas){
+  const idsPresentes = new Set(todasLasReformas.map(r=>r.id));
+  const porId = new Map(todasLasReformas.map(r=>[r.id, r]));
+  const patronesActivos = PATRONES_LEG
+    .map(p=> ({...p, presentes: p.ids.filter(id=>idsPresentes.has(id))}))
+    .filter(p=> p.presentes.length >= 2);
+  if(!patronesActivos.length) return '';
+
+  return patronesActivos.map(p=>{
+    const nombres = p.presentes.map(id=> nombreCortoLeg(porId.get(id))).join(' · ');
+    return `
+      <div style="margin-top:12px;">
+        <div style="font-size:12px;font-weight:700;color:var(--ink-1);">${p.nombre}</div>
+        <p style="font-size:11px;color:var(--ink-3);margin-top:2px;">${nombres}</p>
+        <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:4px;">${p.lectura}</p>
+      </div>`;
+  }).join('');
+}
+
 function narrativaPartidosLeg(partidosOrdenados, total){
   const conApariciones = partidosOrdenados.filter(([,v])=>v.veces>0);
   const morena = partidosOrdenados.find(([p])=>p==='Morena');
@@ -1040,6 +1097,11 @@ function panelAnalisisGlobalLeg(todasLasReformas){
     <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">${narrativaPartidosLeg(partidos, total)}</p>
     ${graficaPartidos}
     <p style="font-size:9.5px;color:var(--ink-3);margin-top:8px;">Conteo de menciones en el campo de oposición de cada reforma -- no es disciplina de partido comprobada. Pasa el cursor sobre cada barra para ver en qué reformas.</p>` : ''}
+
+    ${sintesisPatronesLeg(todasLasReformas) ? `
+    <div class="eyebrow" style="color:var(--riesgo-alto);margin-top:28px;">¿Y esto qué significa en conjunto?</div>
+    <p style="font-size:9.5px;color:var(--ink-3);margin-top:4px;">No son 16 casos sueltos -- agrupados, varios apuntan en la misma dirección. Esto es lectura editorial, no un cálculo automático.</p>
+    ${sintesisPatronesLeg(todasLasReformas)}` : ''}
   `;
 }
 
@@ -1229,6 +1291,16 @@ function vistaReformaHTML(r, todasLasReformas){
       <div class="eyebrow" style="color:var(--riesgo-medio);">Qué pudo originarlo</div>
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.contexto_origen}</p>
     </div>` : ''}
+
+    ${r.analisis_riesgo ? (()=>{
+      const concluida = ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
+      const periodo = estadoPeriodoOrdinarioLeg();
+      return `<div style="margin-top:16px;">
+        <div class="eyebrow" style="color:var(--riesgo-alto);">${concluida ? 'Riesgo tras su aprobación' : '¿Qué la puede detener?'}</div>
+        <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.analisis_riesgo}</p>
+        ${(!concluida && r.probabilidad_avance) ? `<p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Probabilidad de avance en el corto plazo: <strong style="color:var(--ink-1);">${r.probabilidad_avance}</strong> · Congreso ${periodo.enSesion?'en sesión':'en receso'} (${periodo.periodo}) -- es una estimación con criterio, no un pronóstico exacto.</p>` : ''}
+      </div>`;
+    })() : ''}
 
     <div style="height:1px;background:var(--line);margin:18px 0 0;"></div>
 
