@@ -56,6 +56,23 @@
      que falta la otra mitad del trámite -- incluye el requisito del
      Artículo 135 para reformas constitucionales.
 
+   Décima vuelta 2026-09-21 -- el layout lado a lado del lienzo (SVG +
+   caja de detalle) se queda EXACTAMENTE como estaba, sin tocar. Solo:
+   - La votación (donut) ahora también se muestra al hacer click en
+     Pleno/Aprobada/Publicada de una reforma ya concluida, no solo en
+     la etapa vigente exacta -- es la misma votación histórica vista
+     desde cualquier punto de ese tramo, no una votación nueva.
+   - Se quitó la etiqueta "Inicio/Hito" del timeline (no estaba antes).
+   - El timeline ahora también dibuja los hitos reales del trámite
+     (Comisión, Pleno, Aprobada, Publicada...) a partir de
+     historial_etapas, no solo reacciones de terceros -- para una
+     reforma publicada esto muestra todo el recorrido, no solo quién
+     opinó.
+   - Los nodos del stepper y de la ramificación ahora tienen un
+     relleno tenue del color de su etapa cuando ya se alcanzó/concluyó
+     (antes siempre quedaban vacíos), y la etapa vigente tiene un
+     brillo (drop-shadow) para que resalte más.
+
    Columnas esperadas en data/reformas.csv:
    id,nombre,tipo,camara_origen,etapa_actual,fecha_presentacion,
    fecha_ultima_actualizacion,resumen,actor_impulsa,actor_opone,
@@ -330,6 +347,12 @@ function stepperEtapaHTML(reforma, idNodo){
     return `data-etapa-click="${etapa}" data-cx="${cx}" data-cy="${cy}" class="reforma-nodo clicable"`;
   };
 
+  // relleno tenue del color de la etapa cuando ya se alcanzó/concluyó, en vez de
+  // dejar siempre el círculo vacío -- así se nota de un vistazo qué tanto del
+  // recorrido ya quedó atrás, sin perder el color de línea que ya existía
+  const tinte = c => c==='var(--line-strong)' ? 'var(--bg-1)' : `${c}26`;
+  const brillo = (c, esActual) => esActual ? `filter:drop-shadow(0 0 5px ${c}99);` : '';
+
   let svg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:${width}px;height:${height}px;display:block;margin:0 auto;">`;
 
   PRE_FORK.forEach((etapa,i)=>{
@@ -352,7 +375,7 @@ function stepperEtapaHTML(reforma, idNodo){
       svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11"/>`;
       svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="animation-delay:1s;"/>`;
     }
-    svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?R+1:R}" fill="var(--bg-1)" stroke="${color}" stroke-width="2.2" style="${retardo(gen)}"/>`;
+    svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?R+1:R}" fill="${tinte(color)}" stroke="${color}" stroke-width="2.2" style="${retardo(gen)}${brillo(color,esActual)}"/>`;
     svg += iconoEtapaSVG(etapa, xNodo(i), yLinea, color);
     svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+30}" text-anchor="middle" font-size="9.5" font-weight="${esActual?700:400}" font-family="var(--f-mono)" fill="${esActual?'var(--teal)':'var(--ink-3)'}" style="${retardo(gen+0.3)}">${etapa}</text>`;
     const dur = duraciones[etapa];
@@ -372,18 +395,22 @@ function stepperEtapaHTML(reforma, idNodo){
   const colorRamaAbajo = esRechazada ? 'var(--riesgo-alto)' : 'var(--line-strong)';
   const genFork = 3;
 
+  const colorNodoAprobada = etapaActual==='Aprobada' ? 'var(--teal)' : (esAprobadaOPublicada ? 'var(--riesgo-bajo)' : 'var(--line-strong)');
+  const colorNodoPublicada = etapaActual==='Publicada' ? 'var(--teal)' : 'var(--line-strong)';
+  const colorNodoRechazada = esRechazada ? 'var(--riesgo-alto)' : 'var(--line-strong)';
+
   svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+38} ${yLinea} ${xFork+58} ${yArriba}" fill="none" stroke="${colorRamaArriba}" stroke-width="2" style="${retardo(genFork)}" ${esAprobadaOPublicada?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
-  svg += `<circle ${nodoClicable('Aprobada', xRamaFin, yArriba)} cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?11:9}" fill="var(--bg-1)" stroke="${etapaActual==='Aprobada'?'var(--teal)':(esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)')}" stroke-width="2.2" style="${retardo(genFork+0.4)}"/>`;
+  svg += `<circle ${nodoClicable('Aprobada', xRamaFin, yArriba)} cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?11:9}" fill="${tinte(colorNodoAprobada)}" stroke="${colorNodoAprobada}" stroke-width="2.2" style="${retardo(genFork+0.4)}${brillo(colorNodoAprobada, etapaActual==='Aprobada')}"/>`;
   svg += iconoEtapaSVG('Aprobada', xRamaFin, yArriba, esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Aprobada</text>`;
   const xPublicada = xRamaFin + 80;
   svg += `<line x1="${xRamaFin}" y1="${yArriba}" x2="${xPublicada}" y2="${yArriba}" stroke="${etapaActual==='Publicada'?'var(--riesgo-bajo)':'var(--line-strong)'}" stroke-width="2" style="${retardo(genFork+0.8)}" ${etapaActual==='Publicada'?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
-  svg += `<circle ${nodoClicable('Publicada', xPublicada, yArriba)} cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?11:9}" fill="var(--bg-1)" stroke="${etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)'}" stroke-width="2.2" style="${retardo(genFork+1.1)}"/>`;
+  svg += `<circle ${nodoClicable('Publicada', xPublicada, yArriba)} cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?11:9}" fill="${tinte(colorNodoPublicada)}" stroke="${colorNodoPublicada}" stroke-width="2.2" style="${retardo(genFork+1.1)}${brillo(colorNodoPublicada, etapaActual==='Publicada')}"/>`;
   svg += iconoEtapaSVG('Publicada', xPublicada, yArriba, etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xPublicada}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${etapaActual==='Publicada'?'var(--teal)':'var(--ink-3)'}" style="${retardo(genFork+1.3)}">Publicada</text>`;
 
   svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+38} ${yLinea} ${xFork+58} ${yAbajo}" fill="none" stroke="${colorRamaAbajo}" stroke-width="2" style="${retardo(genFork)}" ${esRechazada?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
-  svg += `<circle ${nodoClicable('Rechazada', xRamaFin, yAbajo)} cx="${xRamaFin}" cy="${yAbajo}" r="${esRechazada?11:9}" fill="var(--bg-1)" stroke="${esRechazada?'var(--riesgo-alto)':'var(--line-strong)'}" stroke-width="2.2" style="${retardo(genFork+0.4)}"/>`;
+  svg += `<circle ${nodoClicable('Rechazada', xRamaFin, yAbajo)} cx="${xRamaFin}" cy="${yAbajo}" r="${esRechazada?11:9}" fill="${tinte(colorNodoRechazada)}" stroke="${colorNodoRechazada}" stroke-width="2.2" style="${retardo(genFork+0.4)}${brillo(colorNodoRechazada, esRechazada)}"/>`;
   svg += iconoEtapaSVG('Rechazada', xRamaFin, yAbajo, esRechazada?'var(--riesgo-alto)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yAbajo+22}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esRechazada?'var(--riesgo-alto)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Rechazada</text>`;
 
@@ -426,6 +453,24 @@ function eventosLineaTiempoLeg(reforma){
     const impulsor = (reforma.actor_impulsa||'Se presentó').split(';')[0]?.trim();
     eventos.push({ fecha: reforma.fecha_presentacion, nombre: impulsor, rol: 'Presentó la iniciativa', color: 'var(--teal)', origen:true });
   }
+  // NUEVO -- hitos reales del propio trámite (Comisión, Pleno, Aprobada,
+  // Publicada...), a partir de historial_etapas. "Presentada" no se repite aquí
+  // porque ya quedó arriba con el nombre de quien impulsa. Para una reforma
+  // concluida (publicada o rechazada) esto es lo que llena el timeline con todo
+  // el recorrido real, no solo reacciones de terceros.
+  if(reforma.historial_etapas){
+    reforma.historial_etapas.split('|').forEach(par=>{
+      const [etapa, fecha] = par.split(':').map(s=>s?.trim());
+      if(!etapa || !fecha || etapa==='Presentada') return;
+      eventos.push({
+        fecha,
+        nombre: etapa,
+        rol: etapa==='Publicada' ? 'Se publicó en el DOF -- ya es ley vigente' : `Alcanzó la etapa de ${etapa}`,
+        color: COLOR_ETAPA_LEG[etapa] || 'var(--ink-3)',
+        hito: true,
+      });
+    });
+  }
   // reacciones ligadas a un tema (ECOSISTEMA.temaActores) sí pueden caer en
   // fechas distintas entre sí -- esas sí son hitos propios
   reaccionesDocumentadasLeg(reforma).forEach(rx=>{
@@ -466,9 +511,8 @@ function lineaTiempoReaccionesHTML(reforma){
       <div style="display:flex;gap:4px;overflow-x:auto;position:relative;">
         ${eventos.map(e=>`
           <div style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
-            <div style="width:${e.origen?13:9}px;height:${e.origen?13:9}px;border-radius:50%;background:${e.color};margin:0 auto 7px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
-            <div style="font-family:var(--f-mono);font-size:7.5px;letter-spacing:.03em;text-transform:uppercase;font-weight:700;color:${e.color};">${e.origen?'Inicio':'Hito'}</div>
-            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:1px;">${e.fecha}</div>
+            <div style="width:${(e.origen||e.hito)?13:9}px;height:${(e.origen||e.hito)?13:9}px;border-radius:50%;background:${e.color};margin:0 auto 7px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
+            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);">${e.fecha}</div>
             <div style="font-size:10px;font-weight:600;color:var(--ink-1);margin-top:3px;line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
             <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${e.rol}</div>
           </div>
@@ -797,7 +841,14 @@ function renderLegislativo(){
         cajaInfo.dataset.etapaAbierta = etapa;
         cajaInfo.style.display = 'block';
 
-        const votos = etapa === actual.etapa_actual ? votacionPieHTML(actual, etapa) : '';
+        // la votación se guarda una sola vez por reforma (el voto que la hizo
+        // avanzar) -- se muestra al hacer click en la etapa vigente, y también en
+        // Pleno/Aprobada/Publicada de una reforma ya concluida, porque las tres
+        // son la misma votación histórica vista desde distintos puntos del
+        // recorrido, no votaciones separadas.
+        const mostrarVotos = etapa === actual.etapa_actual
+          || (ETAPAS_CONCLUIDAS_LEG.includes(actual.etapa_actual) && ['Pleno','Aprobada','Publicada'].includes(etapa));
+        const votos = mostrarVotos ? votacionPieHTML(actual, etapa) : '';
 
         cajaInfo.innerHTML = `
           <div style="font-weight:700;font-size:11px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
