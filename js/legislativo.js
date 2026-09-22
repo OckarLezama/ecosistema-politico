@@ -1,41 +1,43 @@
 /* ============================================================
-   LEGISLATIVO V6 -- una reforma a la vez, en un lienzo de diseño
+   LEGISLATIVO V7 -- una reforma a la vez, en un lienzo de diseño
    real, pensado como lectura de "hacia dónde va" un tema.
 
-   Quinta vuelta de rediseño 2026-09-21 (con Ockar), correcciones:
-   - BUG: "Posturas documentadas" no se veía -- el scroll interno
-     dependía del alto del contenedor padre (.graph-card), que no
-     controlamos. Se resolvió dándole a la tarjeta un alto propio
-     explícito (flex column con altura fija) para que el scroll
-     interno SIEMPRE tenga espacio real donde funcionar, sin
-     depender de CSS que no vemos.
-   - BUG: el nombre del impulsor se cortaba en la línea de tiempo
-     (texto SVG centrado saliéndose del viewBox). Se cambió esa
-     línea de SVG a tarjetas HTML (permiten texto completo y salto
-     de línea real) -- también se ve mejor.
-   - BUG: "14d en esta etapa" (arriba) vs "23d y contando" (en la
-     ramificación) para la MISMA reforma -- eran dos cálculos
-     distintos. Ahora los dos números salen de la misma función
-     (calcularDuracionesEtapasLeg), así siempre coinciden.
-   - Las etapas ya recorridas ahora se ven en verde de punta a
-     punta: nodo, línea Y el número de días congelado (antes el
-     número se quedaba gris).
-   - Los contadores de arriba pasan de texto corrido a tarjetas
-     tipo KPI, con su propio espaciado explícito -- no dependen del
-     gap de un contenedor que no controlamos.
-   - El botón de procedimiento cambia de texto al abrir/cerrar, para
-     que quede claro que el mismo botón lo quita.
-   - Nueva columna `pronunciamientos`: nombre, partido, postura
-     (a favor / votó en contra / se retiró sin votar) y qué dijo
-     cada quien -- capturado tal cual lo reportó la prensa, nunca
-     resumido a "PAN" o "PRI" en general cuando se puede nombrar a
-     la persona.
-   - Cada nodo de etapa ahora es clicable (y con tooltip nativo al
-     pasar el mouse): muestra qué es esa etapa y, si ya se alcanzó,
-     cuándo y cuántos días -- útil para quien no tiene fresco el
-     proceso legislativo. Aporta contexto real, así que se dejó.
-   - Sin combo de etapa ni botones de orden (ya quitados antes): los
-     KPIs de arriba son el filtro.
+   Sexta vuelta de rediseño 2026-09-21 (con Ockar), correcciones:
+   - El scroll interno de "Posturas documentadas" no se podía
+     verificar de forma confiable sin ver el CSS real del contenedor
+     padre (.graph-card), así que se optó por lo más seguro: ya NO
+     hay scroll interno. La tarjeta crece de forma natural y el
+     scroll lo maneja la página, como en el resto de los módulos.
+     Menos elegante, pero garantiza que nada se quede oculto.
+   - Los KPIs regresan al formato de texto simple (como antes de la
+     versión de tarjetas), que sí se veía bien -- las tarjetas
+     quedaron con tamaños inconsistentes y no aportaron.
+   - Ya no hay tooltip nativo del navegador (hover). Cada nodo de
+     etapa YA ALCANZADA es clicable y abre una caja de información
+     con el mismo estilo que usa el resto de la app
+     (contexto-tema-box). Un nodo de una etapa que la reforma
+     todavía no alcanza no reacciona a nada -- no hay nada real que
+     mostrar ahí.
+   - La explicación de cada etapa ahora dice ante qué cámara y,
+     cuando se conoce, ante qué comisión específica (columna nueva
+     `comision_nombre`) -- no se queda en "la cámara de origen" a
+     secas.
+   - Las reacciones de oposición vuelven a aparecer en la línea de
+     tiempo: cuando existe la columna `pronunciamientos`, cada
+     persona que intervino (a favor, en contra o retirada) se
+     convierte en un punto propio, con la fecha de esa sesión --
+     antes se perdían porque solo se leía la lista plana de
+     actor_opone, que dejó de usarse al haber pronunciamientos.
+   - Se agrega la fecha de presentación en el encabezado, y el
+     encabezado en general se hizo más compacto (menos alto).
+   - Una etapa recorrida en un solo día (0d) ya no muestra "0d" --
+     no aporta nada ver un cero; solo se muestra el número cuando
+     hay algo que contar o cuando la etapa vigente sigue corriendo.
+   - Selector de reforma y buscador ahora comparten un solo bloque
+     con espaciado propio, para que no se vean separados por el
+     espacio vacío que dejaron los controles que ya se quitaron.
+   - Sin combo de etapa ni botones de orden: los KPIs de arriba son
+     el filtro.
    - El robot (robot_legislativo.py) solo avanza la etapa de lo que
      ya existe aquí -- nunca da de alta una reforma nueva por sí solo.
 
@@ -44,7 +46,8 @@
    fecha_ultima_actualizacion,resumen,actor_impulsa,actor_opone,
    fuente_url,votos_favor,votos_contra,votos_abstencion,
    bancadas_en_contra,tema_id_relacionado,impacto_c3,
-   razon_impulsa,razon_opone,historial_etapas,pronunciamientos
+   razon_impulsa,razon_opone,historial_etapas,pronunciamientos,
+   comision_nombre
    ============================================================ */
 
 const ETAPAS_TRAMITE_LEG = ['Presentada', 'Comisión', 'Pleno'];
@@ -57,20 +60,11 @@ const COLOR_ETAPA_LEG = {
   'Publicada': 'var(--riesgo-bajo)',
   'Rechazada': 'var(--riesgo-alto)',
 };
-const EXPLICACION_ETAPA_LEG = {
-  'Presentada': 'Se registró formalmente ante la cámara de origen y espera turno a comisión.',
-  'Comisión': 'Se analiza y dictamina en comisión antes de poder discutirse en el Pleno.',
-  'Pleno': 'Se discute y vota ante el conjunto de la cámara de origen.',
-  'Aprobada': 'Ya la aprobó la cámara de origen; falta el trámite hacia la publicación.',
-  'Publicada': 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente.',
-  'Rechazada': 'La cámara la desechó; por regla general no puede reintroducirse en el mismo periodo.',
-};
 
 let reformasCache = null;
 let filtroTextoLeg = '';
 let filtroActivoLeg = ''; // '' | 'tramite' | 'aprobadas' | 'rechazadas' | 'publicada'
 let reformaSeleccionadaLeg = null;
-let etapaInfoAbiertaLeg = null;
 
 function cargarReformas(callback){
   if(reformasCache){ callback(reformasCache); return; }
@@ -99,10 +93,7 @@ function inyectarEstilosLegV3(){
     @keyframes leg-etiqueta-aparece { from{ opacity:0; transform: translateY(-2px); } to{ opacity:1; transform: translateY(0); } }
     @keyframes leg-triangulo-cae { 0%{ opacity:0; transform: translateY(-8px); } 100%{ opacity:1; transform: translateY(0); } }
 
-    /* alto propio y explícito -- así el scroll interno siempre tiene un límite real
-       para activarse, sin depender del contenedor padre */
-    .reforma-vista { background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--radius-s); padding: 18px; display: flex; flex-direction: column; height: calc(100vh - 250px); min-height: 420px; }
-    .reforma-vista-fija { flex: 0 0 auto; }
+    .reforma-vista { background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--radius-s); padding: 16px; }
 
     .reforma-lienzo {
       position: relative;
@@ -110,7 +101,7 @@ function inyectarEstilosLegV3(){
       border-radius: var(--radius-s);
       border: 1px solid var(--line-strong);
       padding: 6px 6px 10px;
-      margin: 14px 0;
+      margin: 12px 0;
       overflow: hidden;
     }
     .reforma-lienzo::before {
@@ -133,22 +124,10 @@ function inyectarEstilosLegV3(){
 
     .reforma-rama-trazo { stroke-dasharray: 160; stroke-dashoffset: 160; animation: leg-trazo .6s ease-out both; }
     .reforma-segmento-vivo { stroke-dasharray: 6 6; animation: leg-fluye 1s linear infinite; }
-    .reforma-nodo { animation: leg-nodo-crece .4s cubic-bezier(.34,1.56,.64,1) both; transform-box: fill-box; transform-origin: center; cursor: pointer; }
+    .reforma-nodo { animation: leg-nodo-crece .4s cubic-bezier(.34,1.56,.64,1) both; transform-box: fill-box; transform-origin: center; }
+    .reforma-nodo.clicable { cursor: pointer; }
+
     .reforma-etiqueta { animation: leg-etiqueta-aparece .25s ease both; }
-
-    /* KPIs -- tarjetas, con su propio espaciado explícito */
-    .leg-kpi-fila { display:flex; gap:8px; flex-wrap:wrap; }
-    .leg-kpi-tile { cursor:pointer; text-align:center; padding:5px 12px; border-radius:var(--radius-s); border:1px solid var(--line-strong); background:var(--bg-1); min-width:66px; transition: border-color .15s ease, background-color .15s ease; }
-    .leg-kpi-tile:hover { border-color: var(--teal); }
-    .leg-kpi-tile .leg-kpi-valor { font-family:var(--f-display); font-size:16px; font-weight:700; line-height:1; }
-    .leg-kpi-tile .leg-kpi-etiqueta { font-size:8px; color:var(--ink-3); margin-top:3px; line-height:1.25; }
-
-    /* scroll delgado, solo para la parte de abajo (posturas en adelante) */
-    .reforma-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 6px; margin-right: -6px; margin-top: 14px; }
-    .reforma-scroll::-webkit-scrollbar { width: 5px; }
-    .reforma-scroll::-webkit-scrollbar-track { background: transparent; }
-    .reforma-scroll::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 99px; }
-    .reforma-scroll::-webkit-scrollbar-thumb:hover { background: var(--teal); }
 
     .postura-avatar { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8.5px; font-weight:700; font-family:var(--f-mono); flex-shrink:0; }
     .postura-tarjeta { display:flex; gap:8px; margin-bottom:9px; }
@@ -186,8 +165,6 @@ function calcularDuracionesEtapasLeg(reforma){
   return resultado;
 }
 
-// el mismo cálculo que usa la ramificación -- para que el badge de arriba y el
-// número dentro del lienzo SIEMPRE coincidan
 function diasEnEtapaActualLeg(r){
   const duraciones = calcularDuracionesEtapasLeg(r);
   const dur = duraciones[r.etapa_actual];
@@ -258,6 +235,23 @@ function iconoEtapaSVG(etapa, cx, cy, color){
   }
 }
 
+// NUEVO -- explica CONTRA QUÉ instancia concreta está esa etapa (cámara y, si se
+// conoce, comisión específica) en vez de la genérica "cámara de origen".
+function explicacionEtapaLeg(etapa, reforma){
+  const camara = reforma.camara_origen ? `la Cámara de ${reforma.camara_origen}` : 'la cámara de origen';
+  switch(etapa){
+    case 'Presentada': return `Se presentó formalmente ante ${camara}.`;
+    case 'Comisión': return reforma.comision_nombre
+      ? `Se analiza y dictamina en la ${reforma.comision_nombre}, de ${camara}, antes de pasar al Pleno.`
+      : `Se analiza y dictamina en comisión, en ${camara}, antes de pasar al Pleno.`;
+    case 'Pleno': return `Se discute y vota ante el Pleno de ${camara}.`;
+    case 'Aprobada': return `Ya la aprobó ${camara}; falta el trámite hacia la publicación.`;
+    case 'Publicada': return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente.';
+    case 'Rechazada': return `${camara} la desechó; por regla general no puede reintroducirse en el mismo periodo de sesiones.`;
+    default: return '';
+  }
+}
+
 function stepperEtapaHTML(reforma, idNodo){
   const etapaActual = reforma.etapa_actual;
   const duraciones = calcularDuracionesEtapasLeg(reforma);
@@ -272,10 +266,12 @@ function stepperEtapaHTML(reforma, idNodo){
   const PASO = 0.13;
   const retardo = gen => `animation-delay:${(gen*PASO).toFixed(2)}s;`;
 
-  const infoNodo = (etapa, x, y) => {
+  // solo las etapas ya alcanzadas (con duración calculada) tienen algo real que
+  // mostrar -- una etapa futura no reacciona a nada
+  const nodoClicable = (etapa, cx, cy) => {
     const dur = duraciones[etapa];
-    const titulo = dur ? `${etapa}: ${EXPLICACION_ETAPA_LEG[etapa]||''} Entró el ${dur.fechaInicio} (${dur.dias}d${dur.corriendo?' y contando':''}).` : `${etapa}: ${EXPLICACION_ETAPA_LEG[etapa]||''} (aún no se alcanza)`;
-    return `<title>${titulo}</title>`;
+    if(!dur) return '';
+    return `data-etapa-click="${etapa}" data-cx="${cx}" data-cy="${cy}" class="reforma-nodo clicable"`;
   };
 
   let svg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:${width}px;height:${height}px;display:block;margin:0 auto;">`;
@@ -300,13 +296,14 @@ function stepperEtapaHTML(reforma, idNodo){
       svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11"/>`;
       svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="animation-delay:1s;"/>`;
     }
-    svg += `<circle class="reforma-nodo" data-etapa-info="${idNodo}-${etapa}" cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?R+1:R}" fill="var(--bg-1)" stroke="${color}" stroke-width="2.2" style="${retardo(gen)}">${infoNodo(etapa, xNodo(i), yLinea)}</circle>`;
+    svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?R+1:R}" fill="var(--bg-1)" stroke="${color}" stroke-width="2.2" style="${retardo(gen)}"/>`;
     svg += iconoEtapaSVG(etapa, xNodo(i), yLinea, color);
     svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+30}" text-anchor="middle" font-size="9.5" font-weight="${esActual?700:400}" font-family="var(--f-mono)" fill="${esActual?'var(--teal)':'var(--ink-3)'}" style="${retardo(gen+0.3)}">${etapa}</text>`;
     const dur = duraciones[etapa];
-    if(dur){
+    // un cero no aporta nada (una etapa que se recorrió el mismo día) -- solo se
+    // muestra el número si hay algo que contar, o si es la etapa vigente y sigue corriendo
+    if(dur && (dur.dias>0 || dur.corriendo)){
       const texto = dur.corriendo ? `${dur.dias}d y contando` : `${dur.dias}d`;
-      // etapa ya pasada -> número en verde, igual que el nodo y la línea; la vigente en teal
       const colorDur = dur.corriendo ? 'var(--teal)' : 'var(--riesgo-bajo)';
       svg += `<text class="reforma-etiqueta" x="${xNodo(i)}" y="${yLinea+42}" text-anchor="middle" font-size="8" font-family="var(--f-mono)" fill="${colorDur}" style="${retardo(gen+0.4)}">${texto}</text>`;
     }
@@ -320,22 +317,22 @@ function stepperEtapaHTML(reforma, idNodo){
   const genFork = 3;
 
   svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+38} ${yLinea} ${xFork+58} ${yArriba}" fill="none" stroke="${colorRamaArriba}" stroke-width="2" style="${retardo(genFork)}" ${esAprobadaOPublicada?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
-  svg += `<circle class="reforma-nodo" data-etapa-info="${idNodo}-Aprobada" cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?11:9}" fill="var(--bg-1)" stroke="${etapaActual==='Aprobada'?'var(--teal)':(esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)')}" stroke-width="2.2" style="${retardo(genFork+0.4)}">${infoNodo('Aprobada', xRamaFin, yArriba)}</circle>`;
+  svg += `<circle ${nodoClicable('Aprobada', xRamaFin, yArriba)} cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?11:9}" fill="var(--bg-1)" stroke="${etapaActual==='Aprobada'?'var(--teal)':(esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)')}" stroke-width="2.2" style="${retardo(genFork+0.4)}"/>`;
   svg += iconoEtapaSVG('Aprobada', xRamaFin, yArriba, esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Aprobada</text>`;
   const xPublicada = xRamaFin + 80;
   svg += `<line x1="${xRamaFin}" y1="${yArriba}" x2="${xPublicada}" y2="${yArriba}" stroke="${etapaActual==='Publicada'?'var(--riesgo-bajo)':'var(--line-strong)'}" stroke-width="2" style="${retardo(genFork+0.8)}" ${etapaActual==='Publicada'?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
-  svg += `<circle class="reforma-nodo" data-etapa-info="${idNodo}-Publicada" cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?11:9}" fill="var(--bg-1)" stroke="${etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)'}" stroke-width="2.2" style="${retardo(genFork+1.1)}">${infoNodo('Publicada', xPublicada, yArriba)}</circle>`;
+  svg += `<circle ${nodoClicable('Publicada', xPublicada, yArriba)} cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?11:9}" fill="var(--bg-1)" stroke="${etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)'}" stroke-width="2.2" style="${retardo(genFork+1.1)}"/>`;
   svg += iconoEtapaSVG('Publicada', xPublicada, yArriba, etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xPublicada}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${etapaActual==='Publicada'?'var(--teal)':'var(--ink-3)'}" style="${retardo(genFork+1.3)}">Publicada</text>`;
 
   svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+38} ${yLinea} ${xFork+58} ${yAbajo}" fill="none" stroke="${colorRamaAbajo}" stroke-width="2" style="${retardo(genFork)}" ${esRechazada?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
-  svg += `<circle class="reforma-nodo" data-etapa-info="${idNodo}-Rechazada" cx="${xRamaFin}" cy="${yAbajo}" r="${esRechazada?11:9}" fill="var(--bg-1)" stroke="${esRechazada?'var(--riesgo-alto)':'var(--line-strong)'}" stroke-width="2.2" style="${retardo(genFork+0.4)}">${infoNodo('Rechazada', xRamaFin, yAbajo)}</circle>`;
+  svg += `<circle ${nodoClicable('Rechazada', xRamaFin, yAbajo)} cx="${xRamaFin}" cy="${yAbajo}" r="${esRechazada?11:9}" fill="var(--bg-1)" stroke="${esRechazada?'var(--riesgo-alto)':'var(--line-strong)'}" stroke-width="2.2" style="${retardo(genFork+0.4)}"/>`;
   svg += iconoEtapaSVG('Rechazada', xRamaFin, yAbajo, esRechazada?'var(--riesgo-alto)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yAbajo+22}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esRechazada?'var(--riesgo-alto)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Rechazada</text>`;
 
   svg += `</svg>`;
-  svg += `<div id="${idNodo}-info-click" style="min-height:16px;text-align:center;font-size:10.5px;color:var(--ink-3);padding:0 10px;">Toca o pasa el mouse sobre un punto para ver de qué se trata esa etapa.</div>`;
+  svg += `<div id="${idNodo}-info-click" style="display:none;"></div>`;
   return svg;
 }
 
@@ -350,6 +347,19 @@ function reaccionesDocumentadasLeg(reforma){
     });
 }
 
+// NUEVO -- parsea la columna pronunciamientos: "Nombre (Partido) — Postura: cita|..."
+function parsePronunciamientosLeg(r){
+  if(!r.pronunciamientos) return null;
+  return r.pronunciamientos.split('|').map(entry=>{
+    const m = entry.match(/^(.*?)\s*\(([^)]+)\)\s*—\s*([^:]+):\s*(.*)$/);
+    if(!m) return null;
+    return { nombre: m[1].trim(), partido: m[2].trim(), postura: m[3].trim(), cita: m[4].trim() };
+  }).filter(Boolean);
+}
+
+// eventos reales para la línea de tiempo: quién presentó, más -- si existen -- cada
+// pronunciamiento individual de la sesión donde se movió de etapa, o si no hay
+// pronunciamientos detallados, la lista plana de actor_opone como respaldo
 function eventosLineaTiempoLeg(reforma){
   const eventos = [];
   if(reforma.fecha_presentacion){
@@ -361,16 +371,25 @@ function eventosLineaTiempoLeg(reforma){
     const color = rx.rol==='Reacción de oposición' ? 'var(--riesgo-alto)' : (rx.rol==='Reacción del gobierno' ? 'var(--riesgo-bajo)' : 'var(--ink-3)');
     eventos.push({ fecha: rx.fecha, nombre: rx.nombre, rol: rx.rol, detalle: rx.detalle, color });
   });
-  if(reforma.fecha_ultima_actualizacion && reforma.fecha_ultima_actualizacion !== reforma.fecha_presentacion && !reforma.pronunciamientos && reforma.actor_opone){
+
+  const pronunciamientos = parsePronunciamientosLeg(reforma);
+  const fechaSesion = reforma.fecha_ultima_actualizacion;
+  if(pronunciamientos && fechaSesion){
+    pronunciamientos.forEach(p=>{
+      const esRetiro = /retir/i.test(p.postura);
+      const esFavor = /favor/i.test(p.postura) && !esRetiro;
+      const color = esFavor ? 'var(--riesgo-bajo)' : (esRetiro ? 'var(--riesgo-medio)' : 'var(--riesgo-alto)');
+      eventos.push({ fecha: fechaSesion, nombre: `${p.nombre} (${p.partido})`, rol: p.postura, color });
+    });
+  } else if(fechaSesion && fechaSesion !== reforma.fecha_presentacion && reforma.actor_opone){
     reforma.actor_opone.split(';').map(s=>s.trim()).filter(Boolean).forEach(nombre=>{
-      eventos.push({ fecha: reforma.fecha_ultima_actualizacion, nombre, rol: `Oposición documentada al llegar a ${reforma.etapa_actual}`, color: 'var(--riesgo-alto)' });
+      eventos.push({ fecha: fechaSesion, nombre, rol: `Oposición documentada al llegar a ${reforma.etapa_actual}`, color: 'var(--riesgo-alto)' });
     });
   }
+
   return eventos.sort((a,b)=> a.fecha.localeCompare(b.fecha));
 }
 
-// NUEVO -- tarjetas HTML en vez de texto SVG: el nombre del impulsor (y de
-// cualquiera) siempre sale completo, con salto de línea real si hace falta.
 function lineaTiempoReaccionesHTML(reforma){
   const eventos = eventosLineaTiempoLeg(reforma);
   if(!eventos.length) return '';
@@ -402,6 +421,7 @@ function botonProcedimientoHTML(r){
   `;
 }
 
+// KPIs -- de vuelta al formato de texto simple, que sí se veía bien
 function renderKpisLeg(todasLasReformas){
   const cont = document.getElementById('legislativo-kpis');
   if(!cont) return;
@@ -411,19 +431,15 @@ function renderKpisLeg(todasLasReformas){
   const publicadas = todasLasReformas.filter(r=>r.etapa_actual==='Publicada').length;
   const rechazadas = todasLasReformas.filter(r=>r.etapa_actual==='Rechazada').length;
 
-  const tile = (filtro, valor, etiqueta, color) => `
-    <div class="leg-kpi-tile ${filtroActivoLeg===filtro?'activo':''}" data-filtro-leg="${filtro}" style="${filtroActivoLeg===filtro?`border-color:${color};background:${color}1a;`:''}">
-      <div class="leg-kpi-valor" style="color:${color};">${valor}</div>
-      <div class="leg-kpi-etiqueta">${etiqueta}</div>
-    </div>`;
+  const pill = (filtro, html) => `<span class="leg-kpi-pill" data-filtro-leg="${filtro}" style="cursor:pointer;${filtroActivoLeg===filtro?'color:var(--teal);':''}">${html}</span>`;
 
-  cont.innerHTML = `<div class="leg-kpi-fila">
-    ${tile('', total, 'trackeadas', 'var(--ink-1)')}
-    ${tile('tramite', enTramite, 'en trámite', 'var(--teal)')}
-    ${tile('aprobadas', aprobadas, 'aprobadas (histórico)', 'var(--riesgo-bajo)')}
-    ${tile('rechazadas', rechazadas, 'rechazadas (histórico)', 'var(--riesgo-alto)')}
-    ${tile('publicada', publicadas, 'en el DOF', 'var(--ink-3)')}
-  </div>`;
+  cont.innerHTML = [
+    pill('', `<strong style="color:var(--ink-1);">${total}</strong> trackeada${total!==1?'s':''}`),
+    pill('tramite', `<span class="legend-dot" style="background:var(--teal)"></span><strong style="color:var(--ink-1);">${enTramite}</strong> en trámite`),
+    pill('aprobadas', `<span class="legend-dot" style="background:var(--riesgo-bajo)"></span><strong style="color:var(--ink-1);">${aprobadas}</strong> aprobadas (histórico)`),
+    pill('rechazadas', `<span class="legend-dot" style="background:var(--riesgo-alto)"></span><strong style="color:var(--ink-1);">${rechazadas}</strong> rechazadas (histórico)`),
+    pill('publicada', `<strong style="color:var(--ink-1);">${publicadas}</strong> ya en el DOF`),
+  ].join('');
 }
 
 function filtrosPasanLeg(r){
@@ -466,16 +482,6 @@ function inicialesDe(nombre){
   return (nombre||'').split(' ').filter(Boolean).slice(0,2).map(p=>p[0]).join('').toUpperCase();
 }
 
-// NUEVO -- parsea la columna pronunciamientos: "Nombre (Partido) — Postura: cita|..."
-function parsePronunciamientosLeg(r){
-  if(!r.pronunciamientos) return null;
-  return r.pronunciamientos.split('|').map(entry=>{
-    const m = entry.match(/^(.*?)\s*\(([^)]+)\)\s*—\s*([^:]+):\s*(.*)$/);
-    if(!m) return null;
-    return { nombre: m[1].trim(), partido: m[2].trim(), postura: m[3].trim(), cita: m[4].trim() };
-  }).filter(Boolean);
-}
-
 function tarjetaPersonaHTML(p, color){
   const esRetiro = /retir/i.test(p.postura);
   const etiqueta = esRetiro ? 'Se retiró, no votó' : (color==='var(--riesgo-bajo)' ? 'A favor' : 'Votó en contra');
@@ -490,9 +496,6 @@ function tarjetaPersonaHTML(p, color){
   </div>`;
 }
 
-// NUEVO -- posturas en dos columnas. Si hay pronunciamientos individuales
-// (columna nueva del CSV), se muestra a cada persona con su cita real; si no,
-// cae de vuelta a la lista simple de actor_impulsa/actor_opone.
 function posturasColumnasHTML(r){
   const pronunciamientos = parsePronunciamientosLeg(r);
 
@@ -548,35 +551,35 @@ function vistaReformaHTML(r, todasLasReformas){
   ` : '';
 
   return `<div class="reforma-vista">
-    <div class="reforma-vista-fija">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-        <div>
-          <div style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);text-transform:uppercase;">${r.tipo || ''} · ${r.camara_origen || ''}</div>
-          <div style="font-family:var(--f-display);font-size:18px;font-weight:700;margin-top:3px;">${r.nombre}</div>
-          ${r.actor_impulsa ? `<div style="font-size:11.5px;color:var(--ink-3);margin-top:4px;">Impulsa: ${r.actor_impulsa}</div>` : ''}
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;">
-          <span class="riesgo-badge" style="background:${colorEtapa}22;color:${colorEtapa};">${r.etapa_actual}</span>
-          ${r.impacto_c3==='1' || r.impacto_c3==='true' ? `<span style="font-family:var(--f-mono);font-size:8.5px;color:var(--riesgo-medio);">Impacto C3</span>` : ''}
-          ${dias!==null ? badgeEstancamientoHTML(dias) : ''}
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+      <div>
+        <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;">${r.tipo || ''} · ${r.camara_origen || ''}</div>
+        <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-top:2px;line-height:1.25;">${r.nombre}</div>
+        <div style="font-size:11px;color:var(--ink-3);margin-top:3px;">
+          ${r.actor_impulsa ? `Impulsa: ${r.actor_impulsa}` : ''}${r.fecha_presentacion ? ` · Presentada: ${r.fecha_presentacion}` : ''}
         </div>
       </div>
-
-      <div class="reforma-lienzo">
-        ${stepperEtapaHTML(r, idNodo)}
-        ${lineaTiempoReaccionesHTML(r)}
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;">
+        <span class="riesgo-badge" style="background:${colorEtapa}22;color:${colorEtapa};">${r.etapa_actual}</span>
+        ${r.impacto_c3==='1' || r.impacto_c3==='true' ? `<span style="font-family:var(--f-mono);font-size:8.5px;color:var(--riesgo-medio);">Impacto C3</span>` : ''}
+        ${dias!==null ? badgeEstancamientoHTML(dias) : ''}
       </div>
-
-      ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:4px;">
-        <div class="eyebrow" style="margin:0 0 4px;">Qué establece</div>
-        <p style="font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:0;">${r.resumen}</p>
-      </div>` : ''}
-      ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
-      ${votacionHTML(r)}
-      ${precedenteHTML(precedente, r.tipo)}
     </div>
 
-    <div class="reforma-scroll">
+    <div class="reforma-lienzo">
+      ${stepperEtapaHTML(r, idNodo)}
+      ${lineaTiempoReaccionesHTML(r)}
+    </div>
+
+    ${r.resumen ? `<div style="background:var(--bg-1);border-left:3px solid var(--teal);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:4px;">
+      <div class="eyebrow" style="margin:0 0 4px;">Qué establece</div>
+      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:0;">${r.resumen}</p>
+    </div>` : ''}
+    ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
+    ${votacionHTML(r)}
+    ${precedenteHTML(precedente, r.tipo)}
+
+    <div style="margin-top:14px;">
       ${posturasColumnasHTML(r)}
       ${reaccionesConDetalle.length ? `<div class="eyebrow" style="margin-top:12px;">Reacciones con detalle</div>${reaccionesConDetalle.map(rx=>`<div class="contexto-tema-box" style="margin-bottom:6px;"><div style="font-weight:700;font-size:12px;">${rx.nombre} <span style="font-weight:400;color:var(--ink-3);font-size:10.5px;">· ${rx.rol}${rx.fecha?' · '+rx.fecha:''}</span></div><p style="font-size:11.5px;color:var(--ink-2);margin-top:2px;">${rx.detalle}</p></div>`).join('')}` : ''}
       ${botonProcedimientoHTML(r)}
@@ -629,14 +632,29 @@ function renderLegislativo(){
       });
     }
 
-    // click en un nodo de etapa -> muestra la info en el pie del lienzo (además
-    // del tooltip nativo al pasar el mouse, para que funcione igual en touch)
-    cont.querySelectorAll('[data-etapa-info]').forEach(nodo=>{
+    // clic en un nodo YA ALCANZADO -> caja de información con el mismo estilo que
+    // usa el resto de la app (contexto-tema-box). Un nodo futuro no tiene este
+    // atributo, así que no reacciona a nada.
+    const idNodo = 'leg-'+actual.id;
+    const cajaInfo = document.getElementById(idNodo+'-info-click');
+    cont.querySelectorAll('[data-etapa-click]').forEach(nodo=>{
       nodo.addEventListener('click', ()=>{
-        const idInfo = nodo.dataset.etapaInfo.split('-').slice(0,-1).join('-') + '-info-click';
-        const cajaInfo = document.getElementById(idInfo);
-        const titulo = nodo.querySelector('title');
-        if(cajaInfo && titulo) cajaInfo.textContent = titulo.textContent;
+        const etapa = nodo.dataset.etapaClick;
+        const duraciones = calcularDuracionesEtapasLeg(actual);
+        const dur = duraciones[etapa];
+        if(!cajaInfo || !dur) return;
+        const mismoAbierto = cajaInfo.dataset.etapaAbierta === etapa && cajaInfo.style.display==='block';
+        if(mismoAbierto){ cajaInfo.style.display = 'none'; cajaInfo.dataset.etapaAbierta=''; return; }
+        cajaInfo.dataset.etapaAbierta = etapa;
+        cajaInfo.style.display = 'block';
+        cajaInfo.className = 'contexto-tema-box';
+        cajaInfo.style.marginTop = '10px';
+        cajaInfo.style.borderLeftColor = COLOR_ETAPA_LEG[etapa] || 'var(--teal)';
+        cajaInfo.innerHTML = `
+          <div style="font-weight:700;font-size:12px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
+          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual)}</p>
+          <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
+        `;
       });
     });
   });
@@ -658,9 +676,9 @@ function initLegislativo(){
   if(kpisCont && !kpisCont.dataset.wired){
     kpisCont.dataset.wired='1';
     kpisCont.addEventListener('click', e=>{
-      const tile = e.target.closest('.leg-kpi-tile');
-      if(!tile) return;
-      const filtro = tile.dataset.filtroLeg;
+      const pill = e.target.closest('.leg-kpi-pill');
+      if(!pill) return;
+      const filtro = pill.dataset.filtroLeg;
       filtroActivoLeg = (filtroActivoLeg===filtro) ? '' : filtro;
       renderLegislativo();
     });
