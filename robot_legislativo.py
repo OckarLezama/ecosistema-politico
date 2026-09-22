@@ -247,11 +247,42 @@ FUENTES_NACIONALES_CONTRASTE = [
     'https://heraldodemexico.com.mx/rss/feed.html?r=4',
 ]
 
+# FIX 2026-09-22: antes, cualquier actor ya conocido que apareciera mencionado
+# cerca del nombre de la reforma se metía siempre a `actor_impulsa`, sin
+# revisar si la nota en realidad lo mostraba oponiéndose. Ahora se lee el
+# propio texto de la nota para decidir de qué lado quedó -- y si no hay señal
+# clara (ninguna palabra de las dos listas, o las dos aparecen a la vez), el
+# actor se ignora en vez de forzarlo a "impulsa": es preferible no capturar
+# el posicionamiento a capturarlo mal.
+PALABRAS_POSICION_LEG = {
+    'opone': [
+        'rechaza', 'se opone', 'se oponen', 'votó en contra', 'vota en contra',
+        'votaron en contra', 'califica de', 'califican de', 'inconstitucional',
+        'exige eliminar', 'exigen eliminar', 'protesta contra', 'protestan contra',
+        'impugna', 'impugnan', 'critica', 'critican', 'condena', 'condenan',
+        'advierte riesgo', 'advierten riesgo', 'alerta por', 'alertan por', 'acusa',
+    ],
+    'impulsa': [
+        'respalda', 'respaldan', 'a favor de', 'aplaude', 'aplauden', 'impulsa',
+        'impulsan', 'celebra', 'celebran', 'defiende', 'defienden', 'apoya',
+        'apoyan', 'votó a favor', 'vota a favor', 'votaron a favor',
+    ],
+}
+
+def _clasificarPosicionTexto(texto_lower):
+    tiene_opone = any(p in texto_lower for p in PALABRAS_POSICION_LEG['opone'])
+    tiene_impulsa = any(p in texto_lower for p in PALABRAS_POSICION_LEG['impulsa'])
+    if tiene_opone and not tiene_impulsa:
+        return 'opone'
+    if tiene_impulsa and not tiene_opone:
+        return 'impulsa'
+    return None  # ambiguo o sin señal -- no se clasifica
+
 def buscarActoresEnMediosNacionales(nombre_reforma, actores_conocidos):
-    encontrados = set()
+    encontrados = {}  # {nombre_actor: 'impulsa'|'opone'}
     palabras_clave_reforma = [p.lower() for p in nombre_reforma.split() if len(p) > 5][:3]
     if not palabras_clave_reforma:
-        return []
+        return encontrados
     for url_fuente in FUENTES_NACIONALES_CONTRASTE:
         try:
             feed = feedparser.parse(url_fuente)
@@ -261,10 +292,13 @@ def buscarActoresEnMediosNacionales(nombre_reforma, actores_conocidos):
             texto = (entrada.get('title', '') + ' ' + (entrada.get('description') or '')).lower()
             if not any(p in texto for p in palabras_clave_reforma):
                 continue
+            posicion = _clasificarPosicionTexto(texto)
+            if not posicion:
+                continue
             for nombre_actor in actores_conocidos:
                 if _mencionadoDeFormaSegura(nombre_actor, texto):
-                    encontrados.add(nombre_actor)
-    return list(encontrados)
+                    encontrados[nombre_actor] = posicion
+    return encontrados
 
 
 def guardar_candidato_legislativo(candidato):
@@ -284,7 +318,7 @@ def guardar_candidato_legislativo(candidato):
         avisarCandidatoPrioritarioGitHub(candidato)
 
 
-def actualizar_reforma(reforma_id, nueva_etapa, actores_nuevos, campos):
+def actualizar_reforma(reforma_id, nueva_etapa, actores_clasificados, campos):
     reformas = cargar_reformas()
     hoy = datetime.now(ZONA_MX).strftime('%Y-%m-%d')
     for r in reformas:
@@ -307,10 +341,17 @@ def actualizar_reforma(reforma_id, nueva_etapa, actores_nuevos, campos):
             if not ya_tiene_esta_etapa:
                 nueva_entrada = f'{nueva_etapa}:{hoy}'
                 r['historial_etapas'] = f'{historial}|{nueva_entrada}' if historial else nueva_entrada
-            if actores_nuevos:
-                existentes = set(a.strip() for a in (r.get('actor_impulsa') or '').split(';') if a.strip())
-                existentes.update(actores_nuevos)
-                r['actor_impulsa'] = '; '.join(sorted(existentes))
+            if actores_clasificados:
+                nuevos_impulsa = [a for a, pos in actores_clasificados.items() if pos == 'impulsa']
+                nuevos_opone = [a for a, pos in actores_clasificados.items() if pos == 'opone']
+                if nuevos_impulsa:
+                    existentes = set(a.strip() for a in (r.get('actor_impulsa') or '').split(';') if a.strip())
+                    existentes.update(nuevos_impulsa)
+                    r['actor_impulsa'] = '; '.join(sorted(existentes))
+                if nuevos_opone:
+                    existentes_opone = set(a.strip() for a in (r.get('actor_opone') or '').split(';') if a.strip())
+                    existentes_opone.update(nuevos_opone)
+                    r['actor_opone'] = '; '.join(sorted(existentes_opone))
     with open(RUTA_REFORMAS, 'w', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
         w.writeheader()
