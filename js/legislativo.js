@@ -206,6 +206,25 @@ function inyectarEstilosLegV3(){
     .leg-modal-card::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
     .leg-modal-card::-webkit-scrollbar-thumb:hover { background: var(--teal); }
     .leg-analisis-modal .leg-modal-card { max-width:560px; padding:24px 26px; }
+
+    /* tooltip propio (no el atributo title genérico del navegador) -- mismo
+       look que las tarjetas del panel: fondo bg-2, borde línea, texto ink-1. */
+    .leg-tt { position:relative; }
+    .leg-tt::after {
+      content: attr(data-tt);
+      position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%);
+      background:var(--bg-2); border:1px solid var(--line-strong); color:var(--ink-1);
+      font-size:10.5px; font-weight:600; padding:5px 9px; border-radius:6px;
+      white-space:normal; max-width:220px; width:max-content; text-align:center; line-height:1.4;
+      box-shadow:0 6px 18px rgba(0,0,0,.4); opacity:0; visibility:hidden; pointer-events:none;
+      transition:opacity .12s ease; z-index:60;
+    }
+    .leg-tt::before {
+      content:''; position:absolute; bottom:calc(100% + 2px); left:50%; transform:translateX(-50%);
+      border:5px solid transparent; border-top-color:var(--line-strong);
+      opacity:0; visibility:hidden; pointer-events:none; transition:opacity .12s ease; z-index:60;
+    }
+    .leg-tt:hover::after, .leg-tt:hover::before { opacity:1; visibility:visible; }
     .leg-modal-cerrar { position:absolute; top:8px; right:10px; background:none; border:none; color:var(--ink-3); font-size:16px; line-height:1; cursor:pointer; padding:6px; }
     .leg-modal-cerrar:hover { color:var(--ink-1); }
   `;
@@ -654,7 +673,19 @@ function lineaTiempoReaccionesHTML(reforma){
   `;
 }
 
-// KPIs -- de vuelta al formato de texto simple, que sí se veía bien
+// mismos íconos que usa el panel de Análisis (ver más abajo) -- arriba de
+// módulo para que tanto los KPIs como el panel los tomen del mismo lugar.
+const ICONOS_KPI_LEG = {
+  trackeadas: '<path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1Z"/><rect x="5" y="5" width="14" height="16" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/>',
+  tramite: '<circle cx="12" cy="12" r="8"/><polyline points="12 8 12 12 15 14"/>',
+  aprobadas: '<circle cx="12" cy="12" r="8"/><polyline points="8.5 12 11 14.5 15.5 9.5"/>',
+  rechazadas: '<circle cx="12" cy="12" r="8"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/>',
+  dof: '<path d="M7 3h8l3 3v15H7z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/>',
+};
+
+// KPIs -- ícono + número, con el nombre completo solo al pasar el cursor
+// (tooltip propio, con el estilo definido en inyectarEstilosLegV3, no el
+// tooltip genérico del navegador que da el atributo `title`).
 function renderKpisLeg(todasLasReformas){
   const cont = document.getElementById('legislativo-kpis');
   if(!cont) return;
@@ -664,20 +695,23 @@ function renderKpisLeg(todasLasReformas){
   const publicadas = todasLasReformas.filter(r=>r.etapa_actual==='Publicada').length;
   const rechazadas = todasLasReformas.filter(r=>r.etapa_actual==='Rechazada').length;
 
-  const pill = (filtro, html) => `<span class="leg-kpi-pill" data-filtro-leg="${filtro}" style="cursor:pointer;${filtroActivoLeg===filtro?'color:var(--teal);':''}">${html}</span>`;
+  const pill = (filtro, icono, valor, color, etiqueta) => `
+    <span class="leg-kpi-pill leg-tt" data-filtro-leg="${filtro}" data-tt="${etiqueta}"
+      style="cursor:pointer;display:inline-flex;align-items:center;gap:4px;${filtroActivoLeg===filtro?'color:var(--teal);':''}">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${ICONOS_KPI_LEG[icono]}</svg>
+      <strong style="color:var(--ink-1);">${valor}</strong>
+    </span>`;
 
   cont.innerHTML = [
-    pill('', `<strong style="color:var(--ink-1);">${total}</strong> trackeada${total!==1?'s':''}`),
-    pill('tramite', `<span class="legend-dot" style="background:var(--teal)"></span><strong style="color:var(--ink-1);">${enTramite}</strong> en trámite`),
-    pill('aprobadas', `<span class="legend-dot" style="background:var(--riesgo-bajo)"></span><strong style="color:var(--ink-1);">${aprobadas}</strong> aprobadas (histórico)`),
-    pill('rechazadas', `<span class="legend-dot" style="background:var(--riesgo-alto)"></span><strong style="color:var(--ink-1);">${rechazadas}</strong> rechazadas (histórico)`),
-    pill('publicada', `<strong style="color:var(--ink-1);">${publicadas}</strong> ya en el DOF`),
+    pill('', 'trackeadas', total, 'var(--ink-3)', `${total} trackeada${total!==1?'s':''}`),
+    pill('tramite', 'tramite', enTramite, 'var(--teal)', `${enTramite} en trámite`),
+    pill('aprobadas', 'aprobadas', aprobadas, 'var(--riesgo-bajo)', `${aprobadas} aprobadas (histórico)`),
+    pill('rechazadas', 'rechazadas', rechazadas, 'var(--riesgo-alto)', `${rechazadas} rechazadas (histórico)`),
+    pill('publicada', 'dof', publicadas, 'var(--ink-3)', `${publicadas} ya en el DOF`),
   ].join('');
 
   const btnAnalisis = document.getElementById('legislativo-btn-analisis');
-  if(btnAnalisis){
-    btnAnalisis.title = `${total} trackeada${total!==1?'s':''} · ${enTramite} en trámite · ${aprobadas} aprobadas (histórico) · ${rechazadas} rechazadas (histórico) · ${publicadas} ya en el DOF`;
-  }
+  if(btnAnalisis) btnAnalisis.title = 'Análisis general';
 }
 
 // -- Panel de análisis global (botón con ícono junto a los KPIs) --------
@@ -746,7 +780,7 @@ function barraComparativaHTML(items, opts){
   return items.map(it=>{
     const pct = Math.round((it.valor/max)*100);
     return `
-      <div style="margin-top:8px;" ${it.detalle?`title="${it.detalle.replace(/"/g,'&quot;')}"`:''}>
+      <div style="margin-top:8px;${it.detalle?'position:relative;':''}" class="${it.detalle?'leg-tt':''}" ${it.detalle?`data-tt="${it.detalle.replace(/"/g,'&quot;')}"`:''}>
         <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-2);margin-bottom:3px;">
           <span>${it.label}</span>
           <span style="color:var(--ink-1);font-weight:600;">${it.valor}${it.sufijo||''}</span>
@@ -756,6 +790,44 @@ function barraComparativaHTML(items, opts){
         </div>
       </div>`;
   }).join('');
+}
+
+// misma lógica de redacción comparativa que narrativaPartidosLeg, aplicada a
+// tipo de reforma y a votaciones -- para que las tres secciones se lean igual.
+function narrativaTipoLeg(datosTipo){
+  if(!datosTipo.length) return '';
+  const masFrecuente = datosTipo.slice().sort((a,b)=>b.p.total-a.p.total)[0];
+  const conRechazos = datosTipo.filter(d=>d.p.rechazadas>0).sort((a,b)=>b.p.rechazadas-a.p.rechazadas);
+  const diasProm = datosTipo.filter(d=>d.p.promedioDias!==null);
+  const masLento = diasProm.length ? diasProm.slice().sort((a,b)=>b.p.promedioDias-a.p.promedioDias)[0] : null;
+
+  let frase = `<strong style="color:var(--ink-1);">${masFrecuente.tipo}</strong> es el tipo más frecuente, con ${masFrecuente.p.total} caso${masFrecuente.p.total!==1?'s':''} y ${masFrecuente.p.pctAprobacion}% de aprobación`;
+  frase += conRechazos.length
+    ? `. <strong style="color:var(--ink-1);">${conRechazos[0].tipo}</strong> es el tipo con más rechazos (${conRechazos[0].p.rechazadas})`
+    : '. Ningún tipo de reforma trackeado ha tenido rechazos hasta ahora';
+  if(masLento && masLento.tipo!==masFrecuente.tipo){
+    frase += `, y <strong style="color:var(--ink-1);">${masLento.tipo}</strong> es el que más tarda en promedio (${masLento.p.promedioDias}d)`;
+  }
+  frase += '.';
+  return frase;
+}
+
+function narrativaVotosLeg(votaciones){
+  if(!votaciones.length) return '';
+  const conMargen = votaciones.map(r=>{
+    const favor = Number(r.votos_favor)||0, contra = Number(r.votos_contra)||0;
+    return { nombre:r.nombre, margen: favor-contra };
+  });
+  const masAmplio = conMargen.slice().sort((a,b)=>b.margen-a.margen)[0];
+  const masCerrado = conMargen.slice().sort((a,b)=>a.margen-b.margen)[0];
+  const promedioMargen = Math.round(conMargen.reduce((a,b)=>a+b.margen,0)/conMargen.length);
+
+  let frase = `<strong style="color:var(--ink-1);">${masAmplio.nombre}</strong> tuvo el margen más amplio (+${masAmplio.margen})`;
+  if(masCerrado.nombre!==masAmplio.nombre){
+    frase += `, mientras que <strong style="color:var(--ink-1);">${masCerrado.nombre}</strong> fue la votación más cerrada (${masCerrado.margen>0?'+':''}${masCerrado.margen})`;
+  }
+  frase += `. En promedio, las reformas concluidas se han aprobado con un margen de ${promedioMargen>0?'+':''}${promedioMargen} votos.`;
+  return frase;
 }
 
 // barra apilada favor/contra/abstención en una sola línea, para las votaciones
@@ -782,13 +854,6 @@ function panelAnalisisGlobalLeg(todasLasReformas){
   const diasPublicadas = publicadas.map(r=>diasTotalTramiteLeg(r)).filter(d=> d!==null && d!==undefined);
   const promedioGeneral = diasPublicadas.length ? Math.round(diasPublicadas.reduce((a,b)=>a+b,0)/diasPublicadas.length) : null;
 
-  const ICONOS_KPI_LEG = {
-    trackeadas: '<path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1Z"/><rect x="5" y="5" width="14" height="16" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/>',
-    tramite: '<circle cx="12" cy="12" r="8"/><polyline points="12 8 12 12 15 14"/>',
-    aprobadas: '<circle cx="12" cy="12" r="8"/><polyline points="8.5 12 11 14.5 15.5 9.5"/>',
-    rechazadas: '<circle cx="12" cy="12" r="8"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/>',
-    dof: '<path d="M7 3h8l3 3v15H7z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/>',
-  };
   const kpiCard = (valor, label, color, icono)=>`
     <div style="background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:12px 8px;text-align:center;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${color||'var(--ink-3)'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONOS_KPI_LEG[icono]||''}</svg>
@@ -833,7 +898,7 @@ function panelAnalisisGlobalLeg(todasLasReformas){
   return `
     <div style="font-weight:700;font-size:14px;color:var(--teal);padding-right:18px;">Análisis general · Legislativo</div>
     <p style="font-size:11px;color:var(--ink-3);margin-top:6px;line-height:1.5;">
-      Es un seguimiento de lo que ya pasó con las ${total} reformas trackeadas. Crece solo conforme vayan saliendo más reformas.
+      Seguimiento de las reformas y leyes de mayor impacto y coyuntura -- las que mueven la agenda nacional. Van ${total} registradas hasta ahora; crece solo conforme vayan saliendo nuevas.
     </p>
 
     <div class="eyebrow" style="color:var(--teal);margin-top:26px;">Resumen general</div>
@@ -848,10 +913,12 @@ function panelAnalisisGlobalLeg(todasLasReformas){
 
     ${graficaTipo ? `
     <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Por tipo de reforma</div>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">${narrativaTipoLeg(datosTipo)}</p>
     <div style="margin-top:10px;">${graficaTipo}</div>` : ''}
 
     ${graficaVotos ? `
     <div class="eyebrow" style="color:var(--teal);margin-top:28px;">Votaciones (reformas concluidas)</div>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:6px;">${narrativaVotosLeg(votaciones)}</p>
     ${graficaVotos}` : ''}
 
     ${partidosConApariciones.length ? `
