@@ -124,6 +124,13 @@ function inyectarEstilosLegV3(){
     @keyframes leg-nodo-crece { 0%{ opacity:0; transform: scale(.15); } 65%{ transform: scale(1.15); } 100%{ opacity:1; transform: scale(1); } }
     @keyframes leg-etiqueta-aparece { from{ opacity:0; transform: translateY(-2px); } to{ opacity:1; transform: translateY(0); } }
     @keyframes leg-triangulo-cae { 0%{ opacity:0; transform: translateY(-8px); } 100%{ opacity:1; transform: translateY(0); } }
+    @keyframes leg-triangulo-flota { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-3px); } }
+    @keyframes leg-linea-fluye { to { background-position: -28px 0; } }
+
+    .reforma-triangulo-viva {
+      animation: leg-triangulo-cae .3s ease-out .5s both, leg-triangulo-flota 1.6s ease-in-out .9s infinite;
+      transform-box: fill-box; transform-origin: center;
+    }
 
     .reforma-vista { background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--radius-s); padding: 16px; }
 
@@ -370,10 +377,10 @@ function stepperEtapaHTML(reforma, idNodo){
       svg += `<line x1="${xNodo(i-1)}" y1="${yLinea}" x2="${xNodo(i)}" y2="${yLinea}" stroke="${strokeColor}" stroke-width="2.5" class="${claseLinea}" style="${retardo(gen-0.4)}" ${extra}/>`;
     }
     if(esActual){
-      svg += `<polygon class="reforma-triangulo" points="${xNodo(i)-5},${yLinea-24} ${xNodo(i)+5},${yLinea-24} ${xNodo(i)},${yLinea-16}" fill="var(--teal)"/>`;
-      svg += `<circle class="reforma-nodo-umbral" cx="${xNodo(i)}" cy="${yLinea}" r="17"/>`;
-      svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11"/>`;
-      svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="animation-delay:1s;"/>`;
+      svg += `<polygon class="reforma-triangulo-viva" points="${xNodo(i)-5},${yLinea-24} ${xNodo(i)+5},${yLinea-24} ${xNodo(i)},${yLinea-16}" fill="${color}"/>`;
+      svg += `<circle class="reforma-nodo-umbral" cx="${xNodo(i)}" cy="${yLinea}" r="17" style="stroke:${color};"/>`;
+      svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="stroke:${color};"/>`;
+      svg += `<circle class="reforma-nodo-halo" cx="${xNodo(i)}" cy="${yLinea}" r="11" style="stroke:${color};animation-delay:1s;"/>`;
     }
     svg += `<circle ${nodoClicable(etapa, xNodo(i), yLinea)} cx="${xNodo(i)}" cy="${yLinea}" r="${esActual?R+1:R}" fill="${tinte(color)}" stroke="${color}" stroke-width="2.2" style="${retardo(gen)}${brillo(color,esActual)}"/>`;
     svg += iconoEtapaSVG(etapa, xNodo(i), yLinea, color);
@@ -388,28 +395,54 @@ function stepperEtapaHTML(reforma, idNodo){
     }
   });
 
-  const xFork = xNodo(2);
-  const xRamaFin = xFork + 100;
+  // Punto de bifurcación SEPARADO del nodo de Pleno (no encima de él): antes las
+  // dos curvas arrancaban justo del centro del círculo de Pleno y se veían
+  // encimadas sobre el propio nodo. Ahora hay un pequeño tramo recto que sale del
+  // borde del nodo hasta un rombo -- el rombo es el punto real donde se bifurca.
+  const xNodoPleno = xNodo(2);
+  const xFork = xNodoPleno + R + 16;
+  const xRamaFin = xFork + 90;
   const yArriba = yLinea - 60, yAbajo = yLinea + 60;
   const colorRamaArriba = esAprobadaOPublicada ? 'var(--riesgo-bajo)' : 'var(--line-strong)';
   const colorRamaAbajo = esRechazada ? 'var(--riesgo-alto)' : 'var(--line-strong)';
   const genFork = 3;
+
+  const completoDeTodoFork = idxPreFork === -1;
+  const esTramoVigenteFork = idxPreFork === 2;
+  let stubColor, stubClase, stubExtra = '';
+  if(completoDeTodoFork){ stubColor='var(--riesgo-bajo)'; stubClase='reforma-rama-trazo'; }
+  else if(esTramoVigenteFork){ stubColor='var(--teal)'; stubClase='reforma-segmento-vivo'; }
+  else { stubColor='var(--line-strong)'; stubClase=''; stubExtra='stroke-dasharray="3 3"'; }
+  svg += `<line x1="${xNodoPleno+R}" y1="${yLinea}" x2="${xFork}" y2="${yLinea}" stroke="${stubColor}" stroke-width="2.5" class="${stubClase}" style="${retardo(2.6)}" ${stubExtra}/>`;
+  svg += `<rect x="${xFork-4}" y="${yLinea-4}" width="8" height="8" fill="${stubColor}" transform="rotate(45 ${xFork} ${yLinea})" style="${retardo(2.8)}"/>`;
 
   const colorNodoAprobada = etapaActual==='Aprobada' ? 'var(--teal)' : (esAprobadaOPublicada ? 'var(--riesgo-bajo)' : 'var(--line-strong)');
   const colorNodoPublicada = etapaActual==='Publicada' ? 'var(--teal)' : 'var(--line-strong)';
   const colorNodoRechazada = esRechazada ? 'var(--riesgo-alto)' : 'var(--line-strong)';
 
   svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+38} ${yLinea} ${xFork+58} ${yArriba}" fill="none" stroke="${colorRamaArriba}" stroke-width="2" style="${retardo(genFork)}" ${esAprobadaOPublicada?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
+  if(etapaActual==='Aprobada'){
+    svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yArriba}" r="12" style="stroke:${colorNodoAprobada};"/>`;
+    svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yArriba}" r="12" style="stroke:${colorNodoAprobada};animation-delay:1s;"/>`;
+  }
   svg += `<circle ${nodoClicable('Aprobada', xRamaFin, yArriba)} cx="${xRamaFin}" cy="${yArriba}" r="${etapaActual==='Aprobada'?11:9}" fill="${tinte(colorNodoAprobada)}" stroke="${colorNodoAprobada}" stroke-width="2.2" style="${retardo(genFork+0.4)}${brillo(colorNodoAprobada, etapaActual==='Aprobada')}"/>`;
   svg += iconoEtapaSVG('Aprobada', xRamaFin, yArriba, esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esAprobadaOPublicada?'var(--riesgo-bajo)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Aprobada</text>`;
-  const xPublicada = xRamaFin + 80;
+  const xPublicada = xRamaFin + 75;
   svg += `<line x1="${xRamaFin}" y1="${yArriba}" x2="${xPublicada}" y2="${yArriba}" stroke="${etapaActual==='Publicada'?'var(--riesgo-bajo)':'var(--line-strong)'}" stroke-width="2" style="${retardo(genFork+0.8)}" ${etapaActual==='Publicada'?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
+  if(etapaActual==='Publicada'){
+    svg += `<circle class="reforma-nodo-halo" cx="${xPublicada}" cy="${yArriba}" r="12" style="stroke:${colorNodoPublicada};"/>`;
+    svg += `<circle class="reforma-nodo-halo" cx="${xPublicada}" cy="${yArriba}" r="12" style="stroke:${colorNodoPublicada};animation-delay:1s;"/>`;
+  }
   svg += `<circle ${nodoClicable('Publicada', xPublicada, yArriba)} cx="${xPublicada}" cy="${yArriba}" r="${etapaActual==='Publicada'?11:9}" fill="${tinte(colorNodoPublicada)}" stroke="${colorNodoPublicada}" stroke-width="2.2" style="${retardo(genFork+1.1)}${brillo(colorNodoPublicada, etapaActual==='Publicada')}"/>`;
   svg += iconoEtapaSVG('Publicada', xPublicada, yArriba, etapaActual==='Publicada'?'var(--teal)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xPublicada}" y="${yArriba-16}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${etapaActual==='Publicada'?'var(--teal)':'var(--ink-3)'}" style="${retardo(genFork+1.3)}">Publicada</text>`;
 
   svg += `<path d="M ${xFork} ${yLinea} Q ${xFork+38} ${yLinea} ${xFork+58} ${yAbajo}" fill="none" stroke="${colorRamaAbajo}" stroke-width="2" style="${retardo(genFork)}" ${esRechazada?'class="reforma-rama-trazo"':'stroke-dasharray="3 3"'}/>`;
+  if(esRechazada){
+    svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yAbajo}" r="12" style="stroke:${colorNodoRechazada};"/>`;
+    svg += `<circle class="reforma-nodo-halo" cx="${xRamaFin}" cy="${yAbajo}" r="12" style="stroke:${colorNodoRechazada};animation-delay:1s;"/>`;
+  }
   svg += `<circle ${nodoClicable('Rechazada', xRamaFin, yAbajo)} cx="${xRamaFin}" cy="${yAbajo}" r="${esRechazada?11:9}" fill="${tinte(colorNodoRechazada)}" stroke="${colorNodoRechazada}" stroke-width="2.2" style="${retardo(genFork+0.4)}${brillo(colorNodoRechazada, esRechazada)}"/>`;
   svg += iconoEtapaSVG('Rechazada', xRamaFin, yAbajo, esRechazada?'var(--riesgo-alto)':'var(--line-strong)');
   svg += `<text class="reforma-etiqueta" x="${xRamaFin}" y="${yAbajo+22}" text-anchor="middle" font-size="9.5" font-family="var(--f-mono)" fill="${esRechazada?'var(--riesgo-alto)':'var(--ink-3)'}" style="${retardo(genFork+0.6)}">Rechazada</text>`;
@@ -502,21 +535,42 @@ function eventosLineaTiempoLeg(reforma){
   return eventos.sort((a,b)=> a.fecha.localeCompare(b.fecha));
 }
 
+// Rediseño del timeline: un eyebrow que lo identifica sin duda como línea de
+// tiempo, la línea base atravesando el centro real de los puntos (antes iba a
+// una altura fija que no calzaba con puntos de distinto tamaño), una segunda
+// línea encimada con un degradado punteado que fluye (misma idea que el tramo
+// vigente de la ramificación) para que se sienta viva, y una flecha al final
+// que marca el sentido del tiempo.
 function lineaTiempoReaccionesHTML(reforma){
   const eventos = eventosLineaTiempoLeg(reforma);
   if(!eventos.length) return '';
+  const ALTO_PUNTO = 16; // caja fija donde centra el punto, sin importar si mide 9 o 13px
   return `
-    <div style="position:relative;padding:14px 6px 4px;">
-      <div style="position:absolute;left:16px;right:16px;top:29px;height:2px;background:var(--line-strong);"></div>
-      <div style="display:flex;gap:4px;overflow-x:auto;position:relative;">
-        ${eventos.map(e=>`
-          <div style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
-            <div style="width:${(e.origen||e.hito)?13:9}px;height:${(e.origen||e.hito)?13:9}px;border-radius:50%;background:${e.color};margin:0 auto 7px;border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
-            <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);">${e.fecha}</div>
-            <div style="font-size:10px;font-weight:600;color:var(--ink-1);margin-top:3px;line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
-            <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${e.rol}</div>
-          </div>
-        `).join('')}
+    <div style="padding:4px 6px 4px;">
+      <div class="eyebrow" style="display:flex;align-items:center;gap:5px;margin:0 0 2px;">
+        <svg width="11" height="11" viewBox="0 0 11 11" style="opacity:.7;"><circle cx="5.5" cy="5.5" r="4.3" fill="none" stroke="var(--ink-3)" stroke-width="1.2"/><line x1="5.5" y1="3" x2="5.5" y2="5.5" stroke="var(--ink-3)" stroke-width="1.2"/><line x1="5.5" y1="5.5" x2="7.2" y2="6.5" stroke="var(--ink-3)" stroke-width="1.2"/></svg>
+        Línea de tiempo del proceso
+      </div>
+      <div style="position:relative;padding-top:6px;">
+        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2}px;height:2px;background:var(--line-strong);"></div>
+        <div style="position:absolute;left:14px;right:26px;top:${6+ALTO_PUNTO/2-1}px;height:2px;
+          background-image:repeating-linear-gradient(90deg, var(--teal) 0 6px, transparent 6px 14px);
+          background-size:28px 2px; opacity:.5; animation:leg-linea-fluye 1s linear infinite;"></div>
+        <svg width="10" height="10" viewBox="0 0 10 10" style="position:absolute;right:14px;top:${6+ALTO_PUNTO/2-5}px;">
+          <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="var(--ink-3)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="display:flex;gap:4px;overflow-x:auto;position:relative;padding-right:20px;">
+          ${eventos.map(e=>`
+            <div style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
+              <div style="height:${ALTO_PUNTO}px;display:flex;align-items:center;justify-content:center;">
+                <div style="width:${(e.origen||e.hito)?13:9}px;height:${(e.origen||e.hito)?13:9}px;border-radius:50%;background:${e.color};border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};"></div>
+              </div>
+              <div style="font-family:var(--f-mono);font-size:8px;color:var(--ink-3);margin-top:5px;">${e.fecha}</div>
+              <div style="font-size:10px;font-weight:600;color:var(--ink-1);margin-top:3px;line-height:1.3;word-wrap:break-word;">${e.nombre}</div>
+              <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;line-height:1.3;">${e.rol}</div>
+            </div>
+          `).join('')}
+        </div>
       </div>
     </div>
   `;
