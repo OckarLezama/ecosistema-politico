@@ -143,6 +143,17 @@ function inyectarEstilosLegV3(){
     #legislativo-contenido::-webkit-scrollbar-track { background: transparent; }
     #legislativo-contenido::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 99px; }
     #legislativo-contenido::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+
+    /* Ventana modal para el detalle de una etapa -- se prefirió sobre el panel
+       inline porque, al abrirse dentro del lienzo, empujaba y movía todo el
+       diseño de la ramificación cada vez que se abría o cerraba. Como
+       ventana flotante, el lienzo se queda quieto siempre. */
+    .leg-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; opacity:0; pointer-events:none; transition:opacity .15s ease; }
+    .leg-modal-overlay.abierto { opacity:1; pointer-events:auto; }
+    .leg-modal-card { background:var(--bg-2); border:1px solid var(--line-strong); border-radius:var(--radius-s); padding:20px 22px; max-width:440px; width:100%; max-height:78vh; overflow-y:auto; position:relative; box-shadow:0 16px 48px rgba(0,0,0,.45); transform:translateY(6px); transition:transform .15s ease; }
+    .leg-modal-overlay.abierto .leg-modal-card { transform:translateY(0); }
+    .leg-modal-cerrar { position:absolute; top:8px; right:10px; background:none; border:none; color:var(--ink-3); font-size:16px; line-height:1; cursor:pointer; padding:6px; }
+    .leg-modal-cerrar:hover { color:var(--ink-1); }
   `;
   document.head.appendChild(style);
 }
@@ -261,8 +272,11 @@ function explicacionEtapaLeg(etapa, reforma, precedente){
     : '';
 
   switch(etapa){
-    case 'Presentada':
-      return `Se presentó formalmente ante ${camara}${reforma.actor_impulsa ? `, a nombre de ${reforma.actor_impulsa}` : ''}. Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen.${notaHistorica}`;
+    case 'Presentada': {
+      const fecha = reforma.fecha_presentacion ? ` el ${reforma.fecha_presentacion}` : '';
+      const porque = reforma.razon_impulsa ? ` ${reforma.razon_impulsa}` : '';
+      return `Se presentó formalmente ante ${camara}${fecha}, a nombre de ${reforma.actor_impulsa || 'quien la promueve'}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen.${notaHistorica}`;
+    }
     case 'Comisión': {
       const donde = reforma.comision_nombre ? `la ${reforma.comision_nombre}` : 'la comisión correspondiente';
       return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido.${notaRitmo}`;
@@ -618,12 +632,9 @@ function vistaReformaHTML(r, todasLasReformas){
     </div>
 
     <div class="reforma-lienzo">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-        <div style="flex:1 1 420px;min-width:260px;">${stepperEtapaHTML(r, idNodo)}</div>
-        <div id="${idNodo}-info-click" style="display:none;flex:1 1 220px;min-width:200px;padding:6px 8px;"></div>
-      </div>
+      ${stepperEtapaHTML(r, idNodo)}
       ${lineaTiempoReaccionesHTML(r)}
-      <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa.</p>
+      <p style="font-size:9.5px;color:var(--ink-3);margin:2px 6px 0;">Toca un punto ya alcanzado del recorrido para ver el detalle de esa etapa ↗</p>
     </div>
 
     ${r.resumen ? `<div style="margin-top:14px;">
@@ -637,6 +648,37 @@ function vistaReformaHTML(r, todasLasReformas){
       ${proyeccionHTML}
     </div>
   </div>`;
+}
+
+// Ventana modal para el detalle de una etapa -- un único overlay reutilizado,
+// anclado a document.body (no a #legislativo-contenido, que se vuelve a pintar
+// en cada render y se llevaría el modal consigo).
+function asegurarModalLeg(){
+  let overlay = document.getElementById('leg-modal-overlay');
+  if(overlay) return overlay;
+  overlay = document.createElement('div');
+  overlay.id = 'leg-modal-overlay';
+  overlay.className = 'leg-modal-overlay';
+  overlay.innerHTML = `
+    <div class="leg-modal-card">
+      <button class="leg-modal-cerrar" type="button" aria-label="Cerrar">✕</button>
+      <div id="leg-modal-contenido"></div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) cerrarModalLeg(); });
+  overlay.querySelector('.leg-modal-cerrar').addEventListener('click', cerrarModalLeg);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') cerrarModalLeg(); });
+  return overlay;
+}
+function abrirModalLeg(html){
+  const overlay = asegurarModalLeg();
+  overlay.querySelector('#leg-modal-contenido').innerHTML = html;
+  overlay.classList.add('abierto');
+}
+function cerrarModalLeg(){
+  const overlay = document.getElementById('leg-modal-overlay');
+  if(overlay) overlay.classList.remove('abierto');
 }
 
 function renderLegislativo(){
@@ -672,39 +714,32 @@ function renderLegislativo(){
 
     if(!actual) return;
 
-    // clic en un nodo YA ALCANZADO -> el detalle se abre AL LADO de la
-    // ramificación (misma fila flex que el SVG, no debajo como listado) -- el
-    // lienzo tiene espacio de sobra para esto. Solo texto y, cuando la etapa
+    // clic en un nodo YA ALCANZADO -> abre una VENTANA (modal) con el detalle de
+    // esa etapa, en vez de un panel dentro del lienzo -- el panel inline movía
+    // todo el diseño de la ramificación cada vez que se abría o cerraba; la
+    // ventana flotante lo deja quieto siempre. Solo texto y, cuando la etapa
     // clicada es la etapa VIGENTE, también la votación (donut + % de los votos
-    // emitidos) -- es la única etapa para la que hoy el CSV guarda ese dato. Un
-    // nodo futuro no tiene este atributo, no reacciona a nada.
-    const idNodo = 'leg-'+actual.id;
-    const cajaInfo = document.getElementById(idNodo+'-info-click');
+    // emitidos) y quién se pronunció -- es la única etapa para la que hoy el CSV
+    // guarda ese dato. Un nodo futuro no tiene este atributo, no reacciona a nada.
     const precedenteClick = calcularPrecedenteTipoLeg(reformas, actual.tipo, actual.id);
     cont.querySelectorAll('[data-etapa-click]').forEach(nodo=>{
       nodo.addEventListener('click', ()=>{
         const etapa = nodo.dataset.etapaClick;
         const duraciones = calcularDuracionesEtapasLeg(actual);
         const dur = duraciones[etapa];
-        if(!cajaInfo || !dur) return;
-        const mismoAbierto = cajaInfo.dataset.etapaAbierta === etapa && cajaInfo.style.display==='block';
-        if(mismoAbierto){ cajaInfo.style.display = 'none'; cajaInfo.dataset.etapaAbierta=''; return; }
-        cajaInfo.dataset.etapaAbierta = etapa;
-        cajaInfo.style.display = 'block';
+        if(!dur) return;
 
-        // votación + quién se pronunció solo tienen sentido en la etapa VIGENTE
-        // (es la única para la que el CSV guarda ese dato hoy)
         const esVigente = etapa === actual.etapa_actual;
         const votos = esVigente ? votacionPieHTML(actual, etapa) : '';
         const pronunciamientos = esVigente ? pronunciamientosDetalleHTML(actual) : '';
 
-        cajaInfo.innerHTML = `
-          <div style="font-weight:700;font-size:12px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
-          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual, precedenteClick)}</p>
-          <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
+        abrirModalLeg(`
+          <div style="font-weight:700;font-size:13px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};padding-right:18px;">${etapa}</div>
+          <p style="font-size:12px;color:var(--ink-2);margin-top:5px;line-height:1.55;">${explicacionEtapaLeg(etapa, actual, precedenteClick)}</p>
+          <p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
           ${votos}
           ${pronunciamientos}
-        `;
+        `);
       });
     });
   });
