@@ -42,6 +42,20 @@
    El robot (robot_legislativo.py) solo avanza la etapa de lo que
    ya existe aquí -- nunca da de alta una reforma nueva por sí solo.
 
+   Novena vuelta 2026-09-21 -- solo dos cambios sobre esta base (todo
+   lo demás se deja exactamente igual, tal como se pidió):
+   - "Se oponen" ahora tiene un enlace que abre una VENTANA (modal)
+     con cada diputado/senador y su posicionamiento (nombre, partido,
+     postura y cita) -- igual que ya existía para "quién votó" pero
+     aplicado también a la oposición documentada.
+   - explicacionEtapaLeg() se enriquece: Presentada incorpora el
+     motivo real (razon_impulsa), Comisión explica qué hace falta
+     para pasar a Pleno (mayoría del dictamen, sin plazo fijo en el
+     Reglamento), y se menciona la cámara revisora (Senadores <->
+     Diputados) para que en un proceso de dos cámaras no se pierda
+     que falta la otra mitad del trámite -- incluye el requisito del
+     Artículo 135 para reformas constitucionales.
+
    Columnas esperadas en data/reformas.csv:
    id,nombre,tipo,camara_origen,etapa_actual,fecha_presentacion,
    fecha_ultima_actualizacion,resumen,actor_impulsa,actor_opone,
@@ -132,6 +146,17 @@ function inyectarEstilosLegV3(){
 
     .postura-avatar { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8.5px; font-weight:700; font-family:var(--f-mono); flex-shrink:0; }
     .postura-tarjeta { display:flex; gap:8px; margin-bottom:9px; }
+
+    /* Ventana modal -- solo se usa para el detalle de "quién votó" y "quién se
+       opone", que puede ser largo (muchos nombres) y no tiene sentido empujar el
+       lienzo o el layout de la ficha por mostrarlo. Todo lo demás de la ficha se
+       queda exactamente como estaba, sin modal. */
+    .leg-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; opacity:0; pointer-events:none; transition:opacity .15s ease; }
+    .leg-modal-overlay.abierto { opacity:1; pointer-events:auto; }
+    .leg-modal-card { background:var(--bg-2); border:1px solid var(--line-strong); border-radius:var(--radius-s); padding:20px 22px; max-width:440px; width:100%; max-height:78vh; overflow-y:auto; position:relative; box-shadow:0 16px 48px rgba(0,0,0,.45); transform:translateY(6px); transition:transform .15s ease; }
+    .leg-modal-overlay.abierto .leg-modal-card { transform:translateY(0); }
+    .leg-modal-cerrar { position:absolute; top:8px; right:10px; background:none; border:none; color:var(--ink-3); font-size:16px; line-height:1; cursor:pointer; padding:6px; }
+    .leg-modal-cerrar:hover { color:var(--ink-1); }
   `;
   document.head.appendChild(style);
 }
@@ -236,19 +261,49 @@ function iconoEtapaSVG(etapa, cx, cy, color){
   }
 }
 
-// NUEVO -- explica CONTRA QUÉ instancia concreta está esa etapa (cámara y, si se
-// conoce, comisión específica) en vez de la genérica "cámara de origen".
-function explicacionEtapaLeg(etapa, reforma){
+// conoce, comisión específica) en vez de la genérica "cámara de origen". Además
+// dice qué hace falta para avanzar (o por qué sigue parada) y, cuando aplica,
+// menciona a la cámara revisora -- para que en un proceso de dos cámaras
+// (Senadores y Diputados) no se pierda que falta la otra mitad del trámite.
+// `precedente` (opcional, de calcularPrecedenteTipoLeg) agrega el ritmo
+// histórico real de reformas del mismo tipo, no una predicción de esta en
+// particular.
+function camaraRevisoraDeLeg(camaraOrigen){
+  if(camaraOrigen === 'Diputados') return 'Senadores';
+  if(camaraOrigen === 'Senado' || camaraOrigen === 'Senadores') return 'Diputados';
+  return null;
+}
+
+function explicacionEtapaLeg(etapa, reforma, precedente){
   const camara = reforma.camara_origen ? `la Cámara de ${reforma.camara_origen}` : 'la cámara de origen';
+  const revisora = camaraRevisoraDeLeg(reforma.camara_origen);
+  const esConstitucional = reforma.tipo === 'Reforma constitucional';
+  const mayoria = esConstitucional ? 'el voto de dos terceras partes de los presentes' : 'mayoría simple';
+  const notaHistorica = precedente
+    ? ` De ${precedente.total} reforma${precedente.total!==1?'s':''} de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, ${precedente.aprobadas} se aprobó${precedente.aprobadas!==1?'n':''} (${precedente.pctAprobacion}%) y ${precedente.rechazadas} se rechazó${precedente.rechazadas!==1?'n':''} -- es precedente, no un pronóstico de esta reforma.`
+    : '';
+  const notaRitmo = (precedente && precedente.promedioDias!==null)
+    ? ` En reformas de ${reforma.tipo?.toLowerCase()||'este tipo'} resueltas en el sexenio, el trámite completo tomó en promedio ${precedente.promedioDias}d -- no es una predicción de esta reforma, es el ritmo con el que se han movido las anteriores.`
+    : '';
+
   switch(etapa){
-    case 'Presentada': return `Se presentó formalmente ante ${camara}.`;
-    case 'Comisión': return reforma.comision_nombre
-      ? `Se analiza y dictamina en la ${reforma.comision_nombre}, de ${camara}, antes de pasar al Pleno.`
-      : `Se analiza y dictamina en comisión, en ${camara}, antes de pasar al Pleno.`;
-    case 'Pleno': return `Se discute y vota ante el Pleno de ${camara}.`;
-    case 'Aprobada': return `Ya la aprobó ${camara}; falta el trámite hacia la publicación.`;
-    case 'Publicada': return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente.';
-    case 'Rechazada': return `${camara} la desechó; por regla general no puede reintroducirse en el mismo periodo de sesiones.`;
+    case 'Presentada': {
+      const fecha = reforma.fecha_presentacion ? ` el ${reforma.fecha_presentacion}` : '';
+      const porque = reforma.razon_impulsa ? ` ${reforma.razon_impulsa}` : '';
+      return `Se presentó formalmente ante ${camara}${fecha}, a nombre de ${reforma.actor_impulsa || 'quien la promueve'}.${porque} Lo que sigue: la Mesa Directiva la turna a comisión para su análisis y dictamen.${notaHistorica}`;
+    }
+    case 'Comisión': {
+      const donde = reforma.comision_nombre ? `la ${reforma.comision_nombre}` : 'la comisión correspondiente';
+      return `Se analiza y dictamina en ${donde}, de ${camara}. Para avanzar al Pleno hace falta que la mayoría de quienes integran la comisión aprueben un dictamen -- el Reglamento no fija un plazo obligatorio para esto, así que lo que tarde depende de la agenda de la comisión, no de un plazo vencido.${notaRitmo}`;
+    }
+    case 'Pleno':
+      return `Se discute y vota ante el Pleno de ${camara}. Necesita ${mayoria} para pasar${revisora ? `, después, a la Cámara de ${revisora} como cámara revisora` : ''}.${notaRitmo}`;
+    case 'Aprobada':
+      return `Ya la aprobó ${camara}. ${revisora ? `Falta que la Cámara de ${revisora} la discuta y apruebe en los mismos términos` : 'Falta completar el trámite'}${esConstitucional ? ', y que la avale la mayoría de los congresos estatales (Artículo 135 constitucional)' : ''}, antes de publicarse en el Diario Oficial de la Federación.`;
+    case 'Publicada':
+      return 'Ya se publicó en el Diario Oficial de la Federación -- es ley vigente.';
+    case 'Rechazada':
+      return `${camara} la desechó; por regla general no puede reintroducirse en el mismo periodo de sesiones.`;
     default: return '';
   }
 }
@@ -501,6 +556,53 @@ function votacionPieHTML(r, etapa){
   `;
 }
 
+// Quién votó/se pronunció, nombre por nombre -- con umbral: cuando son pocos
+// (una comisión) se listan uno a uno; cuando son muchos (Pleno con cientos), un
+// listado de nombres deja de ser información y se vuelve ruido, así que se queda
+// en el agregado.
+const UMBRAL_LISTADO_PRONUNCIAMIENTOS_LEG = 12;
+function pronunciamientosDetalleHTML(r){
+  const pronunciamientos = parsePronunciamientosLeg(r);
+  if(!pronunciamientos || !pronunciamientos.length) return '';
+  if(pronunciamientos.length > UMBRAL_LISTADO_PRONUNCIAMIENTOS_LEG){
+    return `<p style="font-size:10px;color:var(--ink-3);margin-top:8px;line-height:1.5;">${pronunciamientos.length} legisladores se pronunciaron -- con este volumen ya no se listan uno a uno aquí; el desglose por bancada está en "Posturas documentadas".</p>`;
+  }
+  return `
+    <div style="margin-top:8px;">
+      ${pronunciamientos.map(p=>{
+        const esRetiro = /retir/i.test(p.postura);
+        const color = esRetiro ? 'var(--riesgo-medio)' : (/favor/i.test(p.postura) ? 'var(--riesgo-bajo)' : 'var(--riesgo-alto)');
+        return `<p style="font-size:10.5px;color:var(--ink-2);margin-top:5px;line-height:1.5;"><strong style="color:${color};">${p.nombre}</strong> <span style="color:var(--ink-3);">(${p.partido})</span> · <span style="color:${color};">${p.postura}</span><br><span style="font-style:italic;color:var(--ink-3);">${p.cita}</span></p>`;
+      }).join('')}
+    </div>
+  `;
+}
+
+// Quién se OPONE, nombre por nombre y su posicionamiento -- esto es lo nuevo que
+// se abre en ventana desde "Se oponen". Reusa pronunciamientos cuando existen
+// (nombre, partido, postura y cita); si no hay pronunciamientos, cae de respaldo
+// a la lista plana de actor_opone (solo nombres, sin cita, porque es lo único
+// que hay documentado en ese caso).
+function oposicionDetalleHTML(r){
+  const pronunciamientos = parsePronunciamientosLeg(r);
+  if(pronunciamientos && pronunciamientos.length){
+    const opositores = pronunciamientos.filter(p=> !(/favor/i.test(p.postura) && !/retir/i.test(p.postura)));
+    if(!opositores.length) return `<p style="font-size:11px;color:var(--ink-3);margin-top:8px;">Sin oposición individual documentada -- ver el resumen por bancada en "Posturas documentadas".</p>`;
+    return `
+      <div style="margin-top:8px;">
+        ${opositores.map(p=>{
+          const esRetiro = /retir/i.test(p.postura);
+          const color = esRetiro ? 'var(--riesgo-medio)' : 'var(--riesgo-alto)';
+          return `<p style="font-size:10.5px;color:var(--ink-2);margin-top:6px;line-height:1.5;"><strong style="color:${color};">${p.nombre}</strong> <span style="color:var(--ink-3);">(${p.partido})</span> · <span style="color:${color};">${p.postura}</span><br><span style="font-style:italic;color:var(--ink-3);">${p.cita}</span></p>`;
+        }).join('')}
+      </div>
+    `;
+  }
+  const oponen = (r.actor_opone||'').split(';').map(s=>s.trim()).filter(Boolean);
+  if(!oponen.length) return `<p style="font-size:11px;color:var(--ink-3);margin-top:8px;">Sin oposición individual documentada.</p>`;
+  return `<p style="font-size:11px;color:var(--ink-2);margin-top:8px;line-height:1.7;">${oponen.join(', ')}</p>`;
+}
+
 function inicialesDe(nombre){
   return (nombre||'').split(' ').filter(Boolean).slice(0,2).map(p=>p[0]).join('').toUpperCase();
 }
@@ -509,10 +611,9 @@ function inicialesDe(nombre){
 // qué -- distinto de la votación (cuántos votos, en qué sentido) y de las
 // reacciones (qué dijo cada quien, con cita y fecha, en eventosLineaTiempoLeg).
 // "Impulsan" sí se muestra por actor (aquí suele ser una sola figura clara, el
-// Ejecutivo). "Se oponen" NO se muestra como listado de nombres sueltos -- una
-// fila de 5 avatares sin agrupar no comunica nada político; se muestra por
-// postura/bancada (bancadas_en_contra + razon_opone), que es lo que sí explica
-// el mapa real de la oposición.
+// Ejecutivo). "Se oponen" se muestra por postura/bancada (bancadas_en_contra +
+// razon_opone) -- y, si hay nombres documentados (pronunciamientos o
+// actor_opone), un enlace abre una VENTANA con cada diputado y su posicionamiento.
 function posturasColumnasHTML(r){
   const impulsan = (r.actor_impulsa||'').split(';').map(s=>s.trim()).filter(Boolean);
   const nOponen = (r.actor_opone||'').split(';').map(s=>s.trim()).filter(Boolean).length;
@@ -524,10 +625,12 @@ function posturasColumnasHTML(r){
       ${r.razon_impulsa ? `<p style="font-size:11px;color:var(--ink-3);margin-top:5px;font-style:italic;line-height:1.5;">${r.razon_impulsa}</p>` : ''}
     </div>`;
 
+  const hayNombresOponen = nOponen>0 || (parsePronunciamientosLeg(r)||[]).length>0;
   const colOponen = (r.bancadas_en_contra || r.razon_opone) ? `
     <div>
       ${r.bancadas_en_contra ? `<p style="font-size:11.5px;color:var(--ink-2);margin:0 0 6px;line-height:1.5;">${r.bancadas_en_contra}</p>` : ''}
       ${r.razon_opone ? `<p style="font-size:11px;color:var(--ink-3);font-style:italic;line-height:1.5;">${r.razon_opone}</p>` : ''}
+      ${hayNombresOponen ? `<button type="button" class="chip-btn" data-ver-oposicion="1" style="font-size:10px;padding:3px 9px;margin-top:8px;">Ver diputados y su posicionamiento ↗</button>` : ''}
     </div>` : `<div style="font-size:11px;color:var(--ink-3);">Sin oposición documentada</div>`;
 
   return `
@@ -592,6 +695,37 @@ function vistaReformaHTML(r, todasLasReformas){
   </div>`;
 }
 
+// Ventana modal -- un único overlay reutilizado, anclado a document.body (no a
+// #legislativo-contenido, que se vuelve a pintar en cada render y se llevaría el
+// modal consigo). Solo se usa para "quién votó" y "quién se opone".
+function asegurarModalLeg(){
+  let overlay = document.getElementById('leg-modal-overlay');
+  if(overlay) return overlay;
+  overlay = document.createElement('div');
+  overlay.id = 'leg-modal-overlay';
+  overlay.className = 'leg-modal-overlay';
+  overlay.innerHTML = `
+    <div class="leg-modal-card">
+      <button class="leg-modal-cerrar" type="button" aria-label="Cerrar">✕</button>
+      <div id="leg-modal-contenido"></div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) cerrarModalLeg(); });
+  overlay.querySelector('.leg-modal-cerrar').addEventListener('click', cerrarModalLeg);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') cerrarModalLeg(); });
+  return overlay;
+}
+function abrirModalLeg(html){
+  const overlay = asegurarModalLeg();
+  overlay.querySelector('#leg-modal-contenido').innerHTML = html;
+  overlay.classList.add('abierto');
+}
+function cerrarModalLeg(){
+  const overlay = document.getElementById('leg-modal-overlay');
+  if(overlay) overlay.classList.remove('abierto');
+}
+
 function renderLegislativo(){
   const cont = document.getElementById('legislativo-contenido');
   const selector = document.getElementById('legislativo-selector-reforma');
@@ -625,6 +759,8 @@ function renderLegislativo(){
 
     if(!actual) return;
 
+    const precedenteClick = calcularPrecedenteTipoLeg(reformas, actual.tipo, actual.id);
+
     // clic en un nodo YA ALCANZADO -> el detalle se abre AL LADO de la
     // ramificación (misma fila flex que el SVG, no debajo como listado) -- el
     // lienzo tiene espacio de sobra para esto. Solo texto y, cuando la etapa
@@ -648,12 +784,23 @@ function renderLegislativo(){
 
         cajaInfo.innerHTML = `
           <div style="font-weight:700;font-size:12px;color:${COLOR_ETAPA_LEG[etapa]||'var(--teal)'};">${etapa}</div>
-          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual)}</p>
+          <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;line-height:1.5;">${explicacionEtapaLeg(etapa, actual, precedenteClick)}</p>
           <p style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Entró el ${dur.fechaInicio} · ${dur.dias}d${dur.corriendo?' y contando':''}</p>
           ${votos}
         `;
       });
     });
+
+    // "Ver diputados y su posicionamiento" en Se oponen -> abre la ventana modal
+    const btnOposicion = cont.querySelector('[data-ver-oposicion]');
+    if(btnOposicion){
+      btnOposicion.addEventListener('click', ()=>{
+        abrirModalLeg(`
+          <div style="font-weight:700;font-size:13px;color:var(--riesgo-alto);padding-right:18px;">Quiénes se oponen y qué dijeron</div>
+          ${oposicionDetalleHTML(actual)}
+        `);
+      });
+    }
   });
 }
 
