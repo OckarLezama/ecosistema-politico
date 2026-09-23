@@ -207,6 +207,7 @@ function abrirFichaTema(temaId){
       <h3 style="font-family:var(--f-display);margin:4px 0 10px;">${tema.nombre}</h3>
       <div class="detail-row"><span class="k">Impacto político</span><span class="v">${tema.peso_politico}/10</span></div>
       <div class="detail-row"><span class="k">Prioridad</span><span class="v">${{1:'Máxima (Nivel 1 — marca agenda nacional)',2:'Alta (Nivel 2)',3:'Media (Nivel 3)'}[Number(tema.nivel_relevancia)] || tema.nivel_relevancia}</span></div>
+      ${Number(tema.nivel_relevancia)!==1 && Number(tema.alerta_temprana)===1 ? `<div class="detail-row"><span class="k" style="color:var(--arena);">⚠ Alerta temprana</span><span class="v" style="font-size:11px;text-align:right;max-width:60%;color:var(--arena);">Ya cumple medios, calidad de fuente y puntaje — le falta 1 día de cobertura para calificar como agenda nacional</span></div>` : ''}
       <div class="detail-row"><span class="k">Estado</span><span class="v" style="font-size:11px;text-align:right;max-width:60%;">${estadoTexto}</span></div>
       ${tema.resumen ? `<p style="font-size:12.5px;margin-top:10px;color:var(--ink-1);line-height:1.55;">${tema.resumen}</p>` : ''}
       ${interpretacionMatrizIA[temaId] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin-top:8px;">

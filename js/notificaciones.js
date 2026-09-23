@@ -21,6 +21,13 @@
      el criterio estricto de días+medios+actores que sí filtra
      esto correctamente; reusarlo aquí evita reinventar un
      criterio paralelo más flojo.
+   - NUEVO -- el tema tiene alerta_temprana==1 (ver evaluaAlertaTemprana()
+     en robot_buscar_temas.py / limpiar_agenda_nacional.py): ya cumple
+     medios+calidad+puntos y solo le falta 1 día de cobertura para
+     convertirse en agenda nacional. Se avisa ANTES, no después --
+     warning intelligence real, no una notificación extra decorativa.
+     Se muestra con etiqueta y color distintos a "Nota relevante", para
+     no aparentar una certeza que todavía no tiene.
    ============================================================ */
 
 const CLAVE_NOTIFICADOS = 'ecosistema_notas_notificadas';
@@ -74,7 +81,10 @@ function revisarNotificacionesPendientes(){
     // Agenda/Notas/Genealogía, así que las notificaciones quedan consistentes con lo
     // que el resto del sitio considera "relevante".
     const esAgendaNacional = Number(tema.nivel_relevancia) === 1;
-    const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8 || esAgendaNacional;
+    // NUEVO -- alerta temprana: el tema aún no es agenda nacional, pero ya cumple
+    // todo lo demás y le falta 1 día de cobertura (ver comentario arriba)
+    const esAlertaTemprana = Number(tema.alerta_temprana) === 1;
+    const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8 || esAgendaNacional || esAlertaTemprana;
     return esRelevante;
   }).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
 
@@ -114,7 +124,13 @@ function procesarSiguienteNotificacion(){
   marcarComoNotificado(evento.id);
 
   const tema = ECOSISTEMA.temas.find(t=>t.id===evento.tema_id);
-  const color = colorCategoria(evento.categoria);
+  // NUEVO -- si NO es agenda nacional todavía pero sí tiene alerta_temprana==1, esta
+  // notificación se disparó por ese motivo (ver revisarNotificacionesPendientes arriba)
+  // -- se distingue con etiqueta y color propios, para no aparentar la misma certeza
+  // que una nota que ya es agenda nacional confirmada.
+  const esAlertaTemprana = tema && Number(tema.nivel_relevancia)!==1 && Number(tema.alerta_temprana)===1;
+  const color = esAlertaTemprana ? 'var(--arena)' : colorCategoria(evento.categoria);
+  const etiquetaNotif = esAlertaTemprana ? 'Alerta temprana · posible agenda nacional' : 'Nota relevante';
 
   let modal = document.getElementById('notificacion-popup');
   if(!modal){
@@ -126,7 +142,7 @@ function procesarSiguienteNotificacion(){
   modal.innerHTML = `
     <div style="background:var(--bg-2);border:1.5px solid ${color};border-radius:var(--radius-l);box-shadow:0 8px 30px rgba(0,0,0,.4);padding:14px 16px;animation:entrada-notificacion .25s ease;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
-        <div style="font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;color:${color};letter-spacing:.03em;">Nota relevante · ${tema ? tema.nombre : ''}</div>
+        <div style="font-size:9.5px;font-family:var(--f-mono);text-transform:uppercase;color:${color};letter-spacing:.03em;">${etiquetaNotif} · ${tema ? tema.nombre : ''}</div>
         <button id="cerrar-notificacion" style="background:none;border:none;color:var(--ink-3);cursor:pointer;font-size:14px;line-height:1;">✕</button>
       </div>
       <p style="font-size:12.5px;line-height:1.5;margin:6px 0 8px;color:var(--ink-1);">${evento.descripcion.replace(/^\[Mañanera\]\s*/,'')}</p>
