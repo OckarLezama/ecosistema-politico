@@ -369,13 +369,23 @@ def calcular():
         del tema. Busca en TODO el historial del tema (no solo la ventana de 24h, porque
         el vínculo actor-tema puede venir de una nota más vieja) con el mismo matcher
         validado que ya decide el vínculo actor-tema. Si genuinamente ninguna nota lo
-        menciona por su nombre, regresa None -- sin nota real, el actor no se muestra."""
+        menciona por su nombre, regresa None -- sin nota real, el actor no se muestra.
+
+        Exige, además, que esa nota sea de un medio de primer nivel (ALTA/OFICIAL) --
+        mismo criterio que ya aplica el Top 5 y la declaración relevante. Antes de esta
+        revisión un actor podía "justificarse" con la única nota que lo menciona aunque
+        viniera de un medio sin clasificar -- se detectó justo ese caso (Sheinbaum/Trump
+        justificados solo por una nota de un medio no reconocido). Si un actor de verdad
+        relevante solo tiene mención en fuentes de menor nivel, se excluye -- no se
+        muestra con una fuente floja solo para no dejar el espacio vacío."""
         evs = eventos_por_tema.get(tema_id, [])
         partes = [x for x in nombre_actor.split() if len(x) > 2]
         clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
         hay_homonimo = clave_apellidos and len(apellidos_compartidos.get(clave_apellidos, ())) > 1
         con_mencion = []
         for e in evs:
+            if nivel_evento(e) not in NIVELES_PRIMER_NIVEL:
+                continue
             texto = e['descripcion'].lower()
             if not _mencionadoDeFormaSegura(nombre_actor, texto):
                 continue
@@ -454,19 +464,23 @@ def calcular():
 
     # ================================================================
     # PATRÓN HISTÓRICO -- 4 semanas, mismo cálculo de tensión (promedio de intensidad
-    # real de notas de agenda nacional), por semana, no por día -- para no confundir un
-    # pico de un solo día con un patrón real.
+    # real de notas de agenda nacional), pero por DÍA, no por semana. Con solo 4 puntos
+    # (uno por semana) cualquier gráfica se ve escueta sin importar el estilo -- esta
+    # revisión cambia la granularidad a diaria (28 puntos reales) para que sí haya
+    # suficiente densidad para una línea con lectura real, sin inventar ningún dato:
+    # sigue siendo el mismo promedio real de intensidad, solo con una ventana más chica.
     # ================================================================
     historico = []
-    for semanas_atras in range(3, -1, -1):
-        fin = ahora - timedelta(days=7 * semanas_atras)
-        inicio = fin - timedelta(days=7)
-        evs_sem = [e for e in eventos_validos if inicio <= e['_ts'] < fin and e['tema_id'] in temas_1]
-        if evs_sem:
-            t_sem = round(sum(float(e['intensidad']) for e in evs_sem) / len(evs_sem) * 10)
+    for dias_atras in range(27, -1, -1):
+        dia = (ahora - timedelta(days=dias_atras)).date()
+        inicio_dt = datetime.combine(dia, datetime.min.time()).replace(tzinfo=ZONA_MX)
+        fin_dt = inicio_dt + timedelta(days=1)
+        evs_dia = [e for e in eventos_validos if inicio_dt <= e['_ts'] < fin_dt and e['tema_id'] in temas_1]
+        if evs_dia:
+            t_dia = round(sum(float(e['intensidad']) for e in evs_dia) / len(evs_dia) * 10)
         else:
-            t_sem = None
-        historico.append({'semana_fin': fin.date().isoformat(), 'tension': t_sem, 'n_notas': len(evs_sem)})
+            t_dia = None
+        historico.append({'fecha': dia.isoformat(), 'tension': t_dia, 'n_notas': len(evs_dia)})
 
     # ================================================================
     # KPIs -- "alertas políticas" reutiliza nuevos+retomados ya calculados (nada nuevo).
@@ -509,17 +523,9 @@ def calcular():
     # (se evaluó una nube de palabras aquí y se decidió no incluirla -- no aportaba
     # lectura de inteligencia real y competía por espacio visual sin ganárselo)
 
-    # ================================================================
-    # CRONOLOGÍA DEL DÍA -- versión condensada (máx. 7 hitos reales, por intensidad,
-    # solo del día calendario actual en CDMX). No sustituye al módulo Timeline completo;
-    # aquí solo va lo que explica cómo se llegó al pulso de este corte.
-    # ================================================================
-    hoy_mx = ahora.date()
-    evs_hoy = [e for e in eventos_validos if e['_ts'].date() == hoy_mx and e['tema_id'] in temas_1]
-    hitos = sorted(evs_hoy, key=lambda e: float(e['intensidad']), reverse=True)[:7]
-    hitos = sorted(hitos, key=lambda e: e['_ts'])
-    cronologia_dia = [{'hora': e['_ts'].strftime('%H:%M'), 'categoria': e['categoria'],
-                        'descripcion': e['descripcion'][:140]} for e in hitos]
+    # (se quitó "Cronología del día": solo reordenaba por hora las notas de mayor peso,
+    # sin ninguna lectura de secuencia real que Top 5 y Nuevos/Continuidad/Retomados no
+    # dieran ya -- no aportaba nada distinto, solo el mismo contenido en otro orden)
 
     salida = {
         'generado_en': ahora.isoformat(),
@@ -531,7 +537,6 @@ def calcular():
         'categorias_dia': categorias_dia,
         'categorias_semana': categorias_semana,
         'top5_temas': top5,
-        'cronologia_dia': cronologia_dia,
         'temas_nuevos': nuevos,
         'temas_continuidad': continuidad,
         'temas_retomados': retomados,
