@@ -1,5 +1,5 @@
 {
-  "generado_en": "2026-09-23T13:10:47.164216-06:00",
+  "generado_en": "2026-09-23T14:07:41.465895-06:00",
   "ventana_horas": 24,
   "n_notas_ventana": 16,
   "baja_confianza": false,
@@ -53,20 +53,20 @@
     {
       "categoria": "Relación Bilateral",
       "peso_pct": 25,
-      "tema_principal": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
-      "tema_principal_id": "auto-d2ae07bb0d"
+      "tema_principal": null,
+      "tema_principal_id": null
     },
     {
       "categoria": "Seguridad Nacional",
       "peso_pct": 23,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal"
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis"
     },
     {
       "categoria": "Economía",
       "peso_pct": 19,
-      "tema_principal": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
-      "tema_principal_id": "auto-08b061e1fe"
+      "tema_principal": null,
+      "tema_principal_id": null
     },
     {
       "categoria": "Social",
@@ -84,7 +84,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 34,
+      "peso_pct": 33,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal"
     },
@@ -103,94 +103,30 @@
     {
       "categoria": "Social",
       "peso_pct": 3,
-      "tema_principal": "Oficial | Claudia Sheinbaum abre las convocatorias para otorgar becas de 9,500 p",
-      "tema_principal_id": "auto-d668b6a45e"
+      "tema_principal": null,
+      "tema_principal_id": null
     }
   ],
   "top5_temas": [
+    {
+      "id": "sinaloa-crisis",
+      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
+      "peso": 7.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/013n2pol?partner=rss"
+    },
     {
       "id": "auto-28603c7610",
       "nombre": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "categoria": "Gobernabilidad",
       "resumen": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
-      "peso": 31.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/005n1pol?partner=rss"
-    },
-    {
-      "id": "auto-d2ae07bb0d",
-      "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
-      "categoria": "Relación Bilateral",
-      "resumen": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercial, destapa prensa de EEUU - infobae.com",
-      "peso": 28.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONWdPVlVRdVpnX3dzUDZJenVEbWRyeDhyTENHX1BWbDMyQzFXQ2dIa0R3UTVuanlwOFpGY1hVVmQ2ckNaX0ZhenMwNWNXVWRJUUJrbDZMM0c3X3JEZlZldUxMcXVjTExwN0JDNU13MG0yS2lFQUQxMUZrRXNkNEdHMHowbUtwS29CclB2Smx3MXFqMGsyVS1VTmJqRnZtT3RhMU9JREJqYU01ZzIxRDVXN2FR?oc=5"
-    },
-    {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "peso": 26.0,
-      "n_temas_agrupados": 3,
-      "escalando": false,
-      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5"
-    },
-    {
-      "id": "auto-08b061e1fe",
-      "nombre": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
-      "categoria": "Gobernabilidad",
-      "resumen": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baja California Sur - LatinUS",
-      "peso": 14.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQTlAxQ2UzdllHamZnMm9FVW9ZR0xiTldPOGRUdkd0emdZYTFXVzZfY2wtT1hITktOcnpPVXdUUm9nVzJqTmJHZEhNZlVnVURFS1pQcEhHZWtTMGpaVTZVdlViZEIyZnRSZEJhWTZTUXZrel8wSGoyT2RsazNwbFF2SHFYX2dad0NxcXpibFNzSEtKd3d0TlJ3bV90QVJDWFIzV2hhREpMVQ?oc=5"
-    },
-    {
-      "id": "auto-e1e0f1db38",
-      "nombre": "Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo cont",
-      "categoria": "Social",
-      "resumen": "Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo contra ‘hordas’ de migrantes",
       "peso": 7.0,
       "n_temas_agrupados": 1,
       "escalando": false,
-      "fuente_url": "http://campechehoy.mx/2026/09/23/donald-trump-el-chimoltrufia-de-la-casa-blanca/"
-    }
-  ],
-  "cambios_60min": [
-    {
-      "categoria": "Relación Bilateral",
-      "direccion": "down",
-      "actual": 1,
-      "previo": 6,
-      "etiqueta": "-83%",
-      "hora": "13:10"
-    },
-    {
-      "categoria": "Gobernabilidad",
-      "direccion": "down",
-      "actual": 20,
-      "previo": 24,
-      "etiqueta": "-17%",
-      "hora": "13:10"
-    },
-    {
-      "categoria": "Economía",
-      "direccion": "down",
-      "actual": 1,
-      "previo": 3,
-      "etiqueta": "-67%",
-      "hora": "13:10"
-    },
-    {
-      "categoria": "Social",
-      "direccion": "up",
-      "actual": 1,
-      "previo": 0,
-      "etiqueta": "1 nota nueva",
-      "hora": "13:10"
+      "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/005n1pol?partner=rss"
     }
   ],
   "cronologia_dia": [
@@ -242,11 +178,11 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5"
     },
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
+      "id": "rocha-moya-acusacion",
+      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
+      "categoria": "Seguridad Nacional",
       "peso": 7.0,
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPWnV6QmhFaWhHYUlZM2ljM25pTUN5MWZFdV9pXzgydERCazB3REUtMUctSnY5LS1jMzc0bjFDUkEzMC1wMnFTcDZiWlNpcFFscWFxRk9QX2YtMEc5Mll6dWpwTVhmaldWcEw0Wl9VRGdwN1VaV0lfdzM0ME9PbF85b01JeUFqMWJKQVdtd09PTmc0T1NvS3QxcGN0MUJIOXVRZmdMTmVveWFYTmRYbnhtUUZEYWZVYkhLOEhkQ3BVV1JqVHFZZ2NBeDR1V29td2ZBMzRGRS01ZG83X1hiU2lsdlRlNjF5R0J40gHuAUFVX3lxTE1iRUZMUmFkc1BJcEhKMmx3MllQaUVuUUZlZ19sdFRITmxLbkZPQXppdGhaMGd6LW9KQy1DTVZuVzJaYUtydHhzOHJHbWlLUkllN3FLYktoQVRnSDdHYXQ3WlFwY1czWDB2UHVITVhPYVpvWEl2bTZpMUlTYWJqeU1WOVN6MnFTbE1hb282eVdXNGRUREVFV21XelAwN2RRYlNpb1dHRGpPRzZvMHVKeXVIWVI0dlk4V29HZ0dsemkwVEZQbHc0VUFXcVliNnB3enY1amZEckpqcUJVcTNWWE15UTBiOEl1Z1g3YU9XU0E?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPMktJdVlNRUlYbUZ1ZTRuYUFzMzljRm11bHdINUdxTmJUZjd0RFB2Vjl4T1NhaldKeGp2UU9uX0tHc3VmOFgzNnpOdnRDdDhkcFA3eE1zY3pOMUFKLXpsczVPS1U2YjJOX1VYeGxROXV3RHQxUk51akYwZmVabTExSTFIekxUZFVvRDJoQzVrRmczN19nVVZJ?oc=5"
     }
   ],
   "temas_retomados": [],
@@ -254,16 +190,6 @@
     {
       "id": "javier_may",
       "nombre": "Javier May Rodríguez",
-      "rol": "Responsable institucional",
-      "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
-      "nota": "Morena defiende metodología de encuesta que da aprobación del 68% a Javier May - XEVT",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcy0zeVhEekVRZTg2N0MwQmE1aXZlM3pVMFF3MGd6YlR0RVVaT1JqVGt4OF81WmxfalZ4ZWd0Qk5tUkxETnd5TTlEV01zajFmOC1qaklvSXVBbUlETnQtNFJIaVFBUldSeTlqMlRQVW8wTkxRajhWNDR5bFFRWEJ5eURTRGtmVV85aTI0amlPQnQ1MTBYMndUVFVJazgtaU5leTRNdDQ3anpEQTNhbGd4Szd4Tmc?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "romero_herrera",
-      "nombre": "Jorge Romero Herrera",
       "rol": "Responsable institucional",
       "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "nota": "Morena defiende metodología de encuesta que da aprobación del 68% a Javier May - XEVT",
@@ -292,12 +218,22 @@
       "tema_nuevo": false
     },
     {
-      "id": "jd_vance",
-      "nombre": "JD Vance",
-      "rol": "Responsable institucional",
+      "id": "jamieson_greer",
+      "nombre": "Jamieson Greer",
+      "rol": "Mencionado",
       "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
-      "nota": "Federico Döring recrimina a Claudia Sheinbaum la ausencia en la ONU tras señalamientos de Donald Trump - Xpectro",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNNUhhb3JnN29nQ080eG4wUDdNQmRJb3NNbVA2QTluOGFkNHBfVENUTER2NmhsSzdxTXg0eFFweXViZm9GNld6aHlmZmZ4Z2w4QWFJSF9KbkVBaXdKanhPeGVublB6U0pXNGpmMUVYbXk5Wks3YVpOeXVoRUFRY2xCSjJWSThZMlpRN0tvVUlwTEdIMVQ5aUlRZUlGcXNaaUx0bFBISTlkc1NHSUoySWVoaGhaTDF3eHhJam1hTU5ycERFMDQ?oc=5",
+      "nota": "¿Claudia Sheinbaum se alinea a Donald Trump? Jamieson Greer afirma que México está frenando al aluminio chino - EL CEO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQZjFicmtYVlA2SlpsaW5sTlRfWDdGR3FmODhhZEZERV8wLW4xQU41eW4xa3VIbEc3ckdFWmNaWU5xZC1vV0s2cFhEUmFoajFocGZsNmFob2ZEMlBMeFM1cUFxWHdrWllORXVLT0FUU296MWp5Y2F6aEFkRHRtMHJ5TkpqUnVfX2RLMVBLV3F5YTB1YnQxVVR3SFFYYVdUN0FxZzVKOWMwemVBaDk1bm1pRE1wSUktYWI5NDhuSE53aWVKTWdNbmNoRnljRVZfUjN5?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "ojeda",
+      "nombre": "Rafael Ojeda Durán",
+      "rol": "Mencionado",
+      "tema": "Huachicol Fiscal",
+      "nota": "FGR no localiza a Rafael Ojeda pese a citatorio por huachicol fiscal - sdpnoticias",
+      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOY1NpQmNBaGM0RWRvSTNsQktEYXJNaG05bGJoaU1yaTFPRDV3Z0VrdjFXYXBXTFJUc3JxM2tMS09FeWQ4TnRoVEh1WjVGNnU5dm9fdTdoYW5xbnN1MzJNX2xhVmtfQS1kMWY1YkR2eHlrX3Q4REhWR0hJaEx2RVI5MlBTY3JrdHFFQmZxMWhyM1pqcWhDN1dJN2k5akF4VkVQSnpsM241SQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -308,8 +244,8 @@
       "nombre": "Ariadna Montiel Reyes",
       "rol": "Responsable institucional",
       "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "146 días después, Marko Cortés insiste en el caso Rocha Moya - Maya Comunicación",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPMktJdVlNRUlYbUZ1ZTRuYUFzMzljRm11bHdINUdxTmJUZjd0RFB2Vjl4T1NhaldKeGp2UU9uX0tHc3VmOFgzNnpOdnRDdDhkcFA3eE1zY3pOMUFKLXpsczVPS1U2YjJOX1VYeGxROXV3RHQxUk51akYwZmVabTExSTFIekxUZFVvRDJoQzVrRmczN19nVVZJ?oc=5",
+      "nota": "Evita Ariadna Montiel fijar postura sobre permanencia o eventual expulsión de Rocha Moya de Morena - Ríodoce",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPa2tvNjg2LTR1Y0htWGMyakN3WmFuSnEyLWNVVmZ0a1NMS3U2TlJXbHhFS2ItdEtIVmM2VkF1a2JlbkZFaHc3M1pSRW1jMjdmUUhEN0kxdVJfR3ktc3Z6TTFrTllVVk5JdzVra00wVktOYl8tVFE0MnAzOVVrcEFLUk5TeVdFT05ScU9uUVlhSjgxRmlrRlBVcHU2Qm5MWDZjSFBtZGNadXpKMmFHcDgzYjctT2dseTBPZ0ZlMzViaEg4M2x6UGZqTA?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -320,8 +256,8 @@
       "nombre": "Jorge Romero Herrera",
       "rol": "Mencionado",
       "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
-      "nota": "Morena defiende metodología de encuesta que da aprobación del 68% a Javier May - XEVT",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcy0zeVhEekVRZTg2N0MwQmE1aXZlM3pVMFF3MGd6YlR0RVVaT1JqVGt4OF81WmxfalZ4ZWd0Qk5tUkxETnd5TTlEV01zajFmOC1qaklvSXVBbUlETnQtNFJIaVFBUldSeTlqMlRQVW8wTkxRajhWNDR5bFFRWEJ5eURTRGtmVV85aTI0amlPQnQ1MTBYMndUVFVJazgtaU5leTRNdDQ3anpEQTNhbGd4Szd4Tmc?oc=5",
+      "nota": "Mauricio Vila y Jorge Romero, ¿caballos de Troya de Morena en el PAN?",
+      "fuente_url": "https://www.yucatan.com.mx/merida/2026/09/19/mauricio-vila-y-jorge-romero-caballos-de-troya-de-morena-en-el-pan.html",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -330,8 +266,8 @@
       "nombre": "Fernando Farías Laguna",
       "rol": "Investigado",
       "tema": "Huachicol Fiscal",
-      "nota": "Prisión domiciliaria a exgobernador de Baja California acusado de huachicol fiscal - Diario Evolución",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5",
+      "nota": "Fernando Farías Laguna es detenido en Buenos Aires, Argentina, con pasaporte falso de Guatemala.",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/22/sobrinos-de-exsecretario-de-marina-asesinaron-a-testigos-de-huachicol-fiscal/",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -340,8 +276,8 @@
       "nombre": "Manuel Roberto Farías Laguna",
       "rol": "Investigado",
       "tema": "Huachicol Fiscal",
-      "nota": "Prisión domiciliaria a exgobernador de Baja California acusado de huachicol fiscal - Diario Evolución",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5",
+      "nota": "Detención de 14 personas señaladas de encabezar la red, incluido el vicealmirante Manuel Roberto Farías Laguna.",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/01/22/secretaria-de-marina-actualiza-el-caso-de-huachicol-que-paso-con-los-marinos-involucrados/",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -350,8 +286,8 @@
       "nombre": "Ernesto Ruffo Appel",
       "rol": "Mencionado",
       "tema": "Huachicol Fiscal",
-      "nota": "Prisión domiciliaria a exgobernador de Baja California acusado de huachicol fiscal - Diario Evolución",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5",
+      "nota": "Deer Park aparece en red de huachicol fiscal ligada a Ernesto Ruffo: El País - lasillarota.com",
+      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQU1pNUkJqbHhQQ2QzOUxiVExwNnpKYkhNSnRDOTFqYlI1eHo4eHB2UW1BY0dTMWtjaUFVMG1rZWNVR2VzaGhQM0ZfMV91dDJqSEhFMEhuZTR6VmtVYS04WEE2SE5iczZZOU1wODNWeVktM2g1N1c1ZHRtWDl5QlZ0NmFuLXprd3pHcTUyUEYyZVFtLV8wWEJQMW4ya1dmY3Y3S3pfOXhLcm8yMk9GZjNuVTE2U0VZZWtmLUZIT3ZnUVVkVEFYNk80?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -360,18 +296,13 @@
       "nombre": "Julio Hernández López",
       "rol": "Responsable institucional",
       "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "146 días después, Marko Cortés insiste en el caso Rocha Moya - Maya Comunicación",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPMktJdVlNRUlYbUZ1ZTRuYUFzMzljRm11bHdINUdxTmJUZjd0RFB2Vjl4T1NhaldKeGp2UU9uX0tHc3VmOFgzNnpOdnRDdDhkcFA3eE1zY3pOMUFKLXpsczVPS1U2YjJOX1VYeGxROXV3RHQxUk51akYwZmVabTExSTFIekxUZFVvRDJoQzVrRmczN19nVVZJ?oc=5",
+      "nota": "Julio Hernández López: Astillero",
+      "fuente_url": "https://www.jornada.com.mx/2026/09/01/opinion/008o1pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false
     }
   ],
-  "declaracion_relevante": {
-    "actor": "Claudia Sheinbaum Pardo",
-    "texto": "Carlos Slim Helú, el hombre más rico de México, se opone a cambio clave de Claudia Sheinbaum a la LFT: \"Que las personas trabajen 48 horas y ganen más\" - Ambito",
-    "fuente_url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxOYVNlUnFrZU9hd3k5V3pwVHp1TWlPUGt1YnpHMGE2RWUzMjFtWGZBTHBUTU9nNVZoa2ZIQmdfZkZnSWYwcWZNWEx6eUs0c0ZCTGo0Sl9xcVFnWUhKN0Rnd2pXX0lwZDA0d1lYVnZZUE5EOUI3UGhSV2NZdElTcUY5YWVRVHdoTDdQeEk1VU5La0JyR1Qxd29ROVhnVnZCZ082ejZ6YVBBU1VmQ01BQ0N0M0JRMU92c3U3Y0FzS0E2eHNNUHByMFZ6SmJna19fYkFDQTNhUnpKWWo3X0EtV2FZd051WThIcW9XNUVVTGFFRndfTDRCSWN4dE5HU0tfaGhzV2w1YUxxaVdxX3REcjFSVTZR0gGXAkFVX3lxTFBxSTlkTXFNMHRhYVFGdTUxUWhVRi1YM1NINi1fLWhSLTY1MlBod1VVSS1LRVAtOEtjNjdTRGRhWjRKcUd5QTAyMXZQN2Y5NURvajNkZkJvN3czS2lXMFYtYS1SVFliTFl1Zm9aZjQwZks0eGRUMW85by1MNnJiMVNCVkQtblV3cC1EcmVrRUppUmFMNFM3VzUwU1dFekI0VzRSZnpsSndCTld5YUlwOUpHdFlfd3Y0Z29DNExwUTNDbURscmZQRXNYaDVxbkNib0h6VDQzeGVSNDdSMDRyalZ4VDYwSU4xNFBCZzYtZ0RSa1ZrclJ3Nm5LYjNvUjZaeUxfYmFJV2NoVXR2S1p3Zjk3UkxsQlIwTQ?oc=5",
-    "intensidad": 7.0
-  },
+  "declaracion_relevante": null,
   "patron_historico_4sem": [
     {
       "semana_fin": "2026-09-02",
@@ -386,13 +317,13 @@
     {
       "semana_fin": "2026-09-16",
       "tension": 57,
-      "n_notas": 111
+      "n_notas": 114
     },
     {
       "semana_fin": "2026-09-23",
       "tension": 70,
-      "n_notas": 154
+      "n_notas": 151
     }
   ],
-  "hora_corte_publicada": "2026-09-23 13:10"
+  "hora_corte_publicada": "2026-09-23 14:07"
 }
