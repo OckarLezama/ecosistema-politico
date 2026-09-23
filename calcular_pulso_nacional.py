@@ -16,6 +16,7 @@ import json
 import re
 import urllib.parse
 from datetime import datetime, timedelta, timezone
+from fuentes_confiabilidad import clasificar_fuente, NIVELES_BAJA_O_SIN
 
 RUTA_DATOS = 'data'
 RUTA_SALIDA = 'data/pulso_nacional.json'
@@ -152,8 +153,30 @@ def calcular():
     # ambos "Seguridad Nacional").
     # ================================================================
     peso_tema = {}
+    eventos_agenda_por_tema = {}
     for e in ventana_agenda:
         peso_tema[e['tema_id']] = peso_tema.get(e['tema_id'], 0) + float(e['intensidad'])
+        eventos_agenda_por_tema.setdefault(e['tema_id'], []).append(e)
+
+    # filtro de calidad de fuente -- reutiliza el mismo clasificador que ya usa
+    # robot_buscar_temas.py para decidir si algo califica como agenda nacional. Aquí se
+    # usa para una segunda cosa: un tema puede calificar como agenda nacional (nivel_
+    # relevancia=1) con fuentes mixtas, pero para GANAR un lugar en el Top 5 exigimos que
+    # al menos una de sus notas en la ventana sea de un medio de primer nivel (ALTA/
+    # OFICIAL/MEDIA) -- si todas sus notas son de medios BAJA/SIN_CLASIFICAR, no compite
+    # por el Top 5 (sigue existiendo en el sistema, solo no se destaca aquí).
+    def tema_tiene_fuente_confiable(tid):
+        niveles = {clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', ''))
+                   for e in eventos_agenda_por_tema.get(tid, [])}
+        return bool(niveles - NIVELES_BAJA_O_SIN)
+
+    def mejor_evento(tid, requerir_fuente_confiable=False):
+        evs = eventos_agenda_por_tema.get(tid, [])
+        if requerir_fuente_confiable:
+            confiables = [e for e in evs if clasificar_fuente(e.get('fuente_url',''), e.get('descripcion','')) not in NIVELES_BAJA_O_SIN]
+            if confiables:
+                evs = confiables
+        return max(evs, key=lambda e: float(e['intensidad'])) if evs else None
 
     # comparación real de intensidad por tema, ventana actual vs. las 24h anteriores --
     # se calcula una sola vez aquí y se reutiliza para el badge de escalamiento del Top 5
@@ -208,16 +231,20 @@ def calcular():
 
     paraguas = []
     for miembros in grupos.values():
+        if not any(tema_tiene_fuente_confiable(m) for m in miembros):
+            continue  # ningún miembro del grupo tiene respaldo de medio de primer nivel -- no compite por el Top 5
         peso_grupo = sum(peso_tema[m] for m in miembros)
         tid_top = max(miembros, key=lambda m: peso_tema[m])
         t_top = temas_por_id.get(tid_top)
         if not t_top:
             continue
+        ev_top = mejor_evento(tid_top, requerir_fuente_confiable=True)
         paraguas.append({
             'id': tid_top, 'nombre': t_top['nombre'], 'categoria': t_top['categoria'],
             'resumen': t_top.get('resumen') or '', 'peso': round(peso_grupo, 1),
             'n_temas_agrupados': len(miembros),
             'escalando': any(tema_escalando(m) for m in miembros),
+            'fuente_url': (ev_top or {}).get('fuente_url') or t_top.get('fuente_url') or '',
         })
 
     top5 = sorted(paraguas, key=lambda x: x['peso'], reverse=True)[:5]
@@ -241,19 +268,23 @@ def calcular():
         primera = evs[0]['_ts']
         fechas_previas = sorted({e['_ts'].date() for e in evs if e['_ts'] < hace_24h})
 
+        top_ventana = max(evs_ventana, key=lambda e: float(e['intensidad']))
         if primera >= hace_24h:
             nuevos.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
-                            'peso': round(peso_tema.get(tid, 0), 1)})
+                            'peso': round(peso_tema.get(tid, 0), 1),
+                            'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
         elif fechas_previas and (hace_24h.date() - fechas_previas[-1]).days >= 7:
             # tenía actividad antes, luego 7+ días de silencio, y ahora reaparece --
             # el motivo es la nota más intensa de la ventana que lo reactivó
-            motivo = max(evs_ventana, key=lambda e: float(e['intensidad']))
+            motivo = top_ventana
             retomados.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
                                'dias_silencio': (hace_24h.date() - fechas_previas[-1]).days,
-                               'motivo': motivo['descripcion'][:220]})
+                               'motivo': motivo['descripcion'][:220],
+                               'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or ''})
         elif fechas_previas and (hace_24h.date() - fechas_previas[-1]).days <= 2:
             continuidad.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
-                                 'peso': round(peso_tema.get(tid, 0), 1)})
+                                 'peso': round(peso_tema.get(tid, 0), 1),
+                                 'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
 
     nuevos = sorted(nuevos, key=lambda x: x['peso'], reverse=True)[:3]
     continuidad = sorted(continuidad, key=lambda x: x['peso'], reverse=True)[:3]
@@ -296,6 +327,19 @@ def calcular():
     ranking_actores = sorted(conteo_actor.items(),
                               key=lambda kv: max(peso_tema.get(x['tema_id'], 0) for x in kv[1]),
                               reverse=True)
+    def nota_real_para_actor(nombre_actor, tema_id):
+        """La nota real donde ese actor es mencionado dentro del tema -- no el título del
+        tema. Mismo matcher validado que ya decide el vínculo actor-tema. Si por algún
+        motivo ninguna nota de la ventana lo menciona textualmente (el vínculo pudo venir
+        de una nota fuera de la ventana), se cae al evento de mayor intensidad del tema
+        como aproximación honesta, nunca al título solo."""
+        evs = eventos_agenda_por_tema.get(tema_id) or eventos_por_tema.get(tema_id, [])
+        con_mencion = [e for e in evs if _mencionadoDeFormaSegura(nombre_actor, e['descripcion'].lower())]
+        candidatos = con_mencion or evs
+        if not candidatos:
+            return None
+        return max(candidatos, key=lambda e: float(e['intensidad']))
+
     actores_federales, actores_partidos, actores_otros = [], [], []
     for actor_id, vinculos in ranking_actores:
         actor = next((a for a in actores if a['id'] == actor_id), None)
@@ -303,9 +347,12 @@ def calcular():
             continue
         v = max(vinculos, key=lambda x: peso_tema.get(x['tema_id'], 0))
         tema_v = temas_por_id.get(v['tema_id'])
+        nota = nota_real_para_actor(actor['nombre'], v['tema_id'])
         entrada = {
             'id': actor_id, 'nombre': actor['nombre'], 'rol': v.get('rol') or '',
             'tema': tema_v['nombre'] if tema_v else '',
+            'nota': (nota['descripcion'][:200] if nota else (tema_v['nombre'] if tema_v else '')),
+            'fuente_url': (nota.get('fuente_url') if nota else '') or (tema_v.get('fuente_url') if tema_v else '') or '',
             'reaparece': v['tema_id'] in ids_retomados,
             'tema_nuevo': v['tema_id'] in ids_nuevos,
         }
@@ -360,17 +407,28 @@ def calcular():
     # mítines" porque no existe ese campo en los datos -- no se inventa.
     # ================================================================
     escalando, estables = 0, 0
+    detalle_escalando, detalle_estables = [], []
     for tid in prom_actual:
         if tid not in prom_previo:
             continue  # sin punto de comparación real en la ventana anterior -- no se cuenta ni como escalando ni estable
+        t_kpi = temas_por_id.get(tid)
+        if not t_kpi:
+            continue
         if tema_escalando(tid):
             escalando += 1
+            detalle_escalando.append({'id': tid, 'nombre': t_kpi['nombre'], 'categoria': t_kpi['categoria']})
         else:
             estables += 1
+            detalle_estables.append({'id': tid, 'nombre': t_kpi['nombre'], 'categoria': t_kpi['categoria']})
+    detalle_alertas = [{'id': x['id'], 'nombre': x['nombre'], 'categoria': x['categoria'], 'tipo': 'nuevo'} for x in nuevos] + \
+                       [{'id': x['id'], 'nombre': x['nombre'], 'categoria': x['categoria'], 'tipo': 'retomado'} for x in retomados]
     kpis = {
         'alertas_politicas': len(nuevos) + len(retomados),
         'temas_en_escalamiento': escalando,
         'temas_estables': estables,
+        'detalle_alertas': detalle_alertas,
+        'detalle_escalando': detalle_escalando,
+        'detalle_estables': detalle_estables,
     }
 
     # ================================================================
@@ -404,26 +462,8 @@ def calcular():
         })
     cambios_60min = sorted(cambios_60min, key=lambda c: abs(c['actual'] - c['previo']), reverse=True)[:6]
 
-    # ================================================================
-    # NUBE DE PALABRAS -- frecuencia real de palabras en las notas de agenda nacional de
-    # la ventana de 24h (campo 'descripcion' real, sin resumir con IA). Se filtran
-    # conectores comunes; nada se pondera a mano.
-    # ================================================================
-    STOPWORDS_NUBE = {
-        'para','como','pero','este','esta','estos','estas','desde','hasta','sobre','tras',
-        'entre','dice','ante','contra','que','con','por','los','las','del','una','uno','más',
-        'sus','les','fue','ser','han','hay','muy','así','solo','sólo','tras','año','años',
-        'después','antes','durante','cuando','donde','también','todo','toda','todos','todas',
-        'nacional','méxico','mexico',
-    }
-    conteo_palabras = {}
-    for e in ventana_agenda:
-        for palabra in re.findall(r'\b[a-záéíóúñ]{4,}\b', e['descripcion'].lower()):
-            if palabra in STOPWORDS_NUBE:
-                continue
-            conteo_palabras[palabra] = conteo_palabras.get(palabra, 0) + 1
-    nube_palabras = [{'palabra': p, 'n': n} for p, n in
-                      sorted(conteo_palabras.items(), key=lambda kv: kv[1], reverse=True)[:25]]
+    # (se evaluó una nube de palabras aquí y se decidió no incluirla -- no aportaba
+    # lectura de inteligencia real y competía por espacio visual sin ganárselo)
 
     # ================================================================
     # CRONOLOGÍA DEL DÍA -- versión condensada (máx. 7 hitos reales, por intensidad,
@@ -448,7 +488,6 @@ def calcular():
         'categorias_semana': categorias_semana,
         'top5_temas': top5,
         'cambios_60min': cambios_60min,
-        'nube_palabras': nube_palabras,
         'cronologia_dia': cronologia_dia,
         'temas_nuevos': nuevos,
         'temas_continuidad': continuidad,
