@@ -1105,9 +1105,6 @@ function panelLecturaLegislativaLeg(todasLasReformas){
   const sintesis = sintesisPatronesLeg(todasLasReformas);
   return `
     <div style="font-weight:700;font-size:14px;color:var(--riesgo-alto);padding-right:18px;">Lectura legislativa · Patrones</div>
-    <p style="font-size:11px;color:var(--ink-3);margin-top:6px;line-height:1.5;">
-      No son ${todasLasReformas.length} casos sueltos -- agrupados, varios apuntan en la misma dirección. Esto es lectura editorial hecha a mano, no un cálculo automático: si aparece un patrón nuevo que no está aquí, hay que agregarlo a propósito, no aparece solo.
-    </p>
     ${sintesis || `<p style="font-size:12px;color:var(--ink-2);margin-top:16px;">Todavía no hay suficientes reformas de los grupos definidos (mínimo 2 por grupo) para mostrar un patrón.</p>`}
   `;
 }
@@ -1304,7 +1301,6 @@ function vistaReformaHTML(r, todasLasReformas){
       const periodo = estadoPeriodoOrdinarioLeg();
       return `<div style="margin-top:16px;">
         <div class="eyebrow" style="color:var(--riesgo-alto);">${concluida ? 'Riesgo tras su aprobación' : 'Riesgo político específico'}</div>
-        ${!concluida ? `<p style="font-size:9px;color:var(--ink-3);margin-top:3px;">Distinto del "¿Qué la puede detener?" que sale al hacer clic en la etapa vigente -- ese es el trámite mecánico (qué hace que precluya en Comisión, etc.); esto es el riesgo político de fondo, propio de esta reforma.</p>` : ''}
         <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.analisis_riesgo}</p>
         ${(!concluida && r.probabilidad_avance) ? `<p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Probabilidad de avance en el corto plazo: <strong style="color:var(--ink-1);">${r.probabilidad_avance}</strong> · Congreso ${periodo.enSesion?'en sesión':'en receso'} (${periodo.periodo}) -- es una estimación con criterio, no un pronóstico exacto.</p>` : ''}
       </div>`;
