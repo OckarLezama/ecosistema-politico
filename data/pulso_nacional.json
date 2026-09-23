@@ -1,36 +1,70 @@
 {
-  "generado_en": "2026-09-23T11:59:07.941415-06:00",
+  "generado_en": "2026-09-23T13:10:47.164216-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 22,
+  "n_notas_ventana": 16,
   "baja_confianza": false,
-  "tension_nacional": 70,
+  "tension_nacional": 71,
   "kpis": {
-    "alertas_politicas": 1,
+    "alertas_politicas": 0,
     "temas_en_escalamiento": 0,
-    "temas_estables": 7
+    "temas_estables": 6,
+    "detalle_alertas": [],
+    "detalle_escalando": [],
+    "detalle_estables": [
+      {
+        "id": "auto-08b061e1fe",
+        "nombre": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
+        "categoria": "Gobernabilidad"
+      },
+      {
+        "id": "auto-d2ae07bb0d",
+        "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+        "categoria": "Relación Bilateral"
+      },
+      {
+        "id": "huachicol-fiscal",
+        "nombre": "Huachicol Fiscal",
+        "categoria": "Seguridad Nacional"
+      },
+      {
+        "id": "rocha-moya-acusacion",
+        "nombre": "Acusación de Narcotráfico contra Rocha Moya",
+        "categoria": "Seguridad Nacional"
+      },
+      {
+        "id": "sinaloa-crisis",
+        "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+        "categoria": "Seguridad Nacional"
+      },
+      {
+        "id": "auto-e1e0f1db38",
+        "nombre": "Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo cont",
+        "categoria": "Social"
+      }
+    ]
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 38,
+      "peso_pct": 34,
       "tema_principal": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "tema_principal_id": "auto-28603c7610"
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 23,
+      "peso_pct": 25,
       "tema_principal": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
       "tema_principal_id": "auto-d2ae07bb0d"
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 21,
+      "peso_pct": 23,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal"
     },
     {
       "categoria": "Economía",
-      "peso_pct": 18,
+      "peso_pct": 19,
       "tema_principal": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
       "tema_principal_id": "auto-08b061e1fe"
     },
@@ -75,31 +109,14 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-8108d66665",
-      "nombre": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudad",
-      "categoria": "Gobernabilidad",
-      "resumen": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudadana, Omar García Harfuch, aseguraron que habrá detenidos por la red relacionada con los más de 59 millones de litros de combustible asegurados en Guanajuato. El jueves, - facebook.com",
-      "peso": 42.0,
-      "n_temas_agrupados": 4,
-      "escalando": false
-    },
-    {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "peso": 33.0,
-      "n_temas_agrupados": 3,
-      "escalando": false
-    },
-    {
       "id": "auto-28603c7610",
       "nombre": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "categoria": "Gobernabilidad",
       "resumen": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "peso": 31.0,
       "n_temas_agrupados": 1,
-      "escalando": false
+      "escalando": false,
+      "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/005n1pol?partner=rss"
     },
     {
       "id": "auto-d2ae07bb0d",
@@ -108,152 +125,72 @@
       "resumen": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercial, destapa prensa de EEUU - infobae.com",
       "peso": 28.0,
       "n_temas_agrupados": 2,
-      "escalando": false
+      "escalando": false,
+      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONWdPVlVRdVpnX3dzUDZJenVEbWRyeDhyTENHX1BWbDMyQzFXQ2dIa0R3UTVuanlwOFpGY1hVVmQ2ckNaX0ZhenMwNWNXVWRJUUJrbDZMM0c3X3JEZlZldUxMcXVjTExwN0JDNU13MG0yS2lFQUQxMUZrRXNkNEdHMHowbUtwS29CclB2Smx3MXFqMGsyVS1VTmJqRnZtT3RhMU9JREJqYU01ZzIxRDVXN2FR?oc=5"
+    },
+    {
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "peso": 26.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5"
+    },
+    {
+      "id": "auto-08b061e1fe",
+      "nombre": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
+      "categoria": "Gobernabilidad",
+      "resumen": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baja California Sur - LatinUS",
+      "peso": 14.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQTlAxQ2UzdllHamZnMm9FVW9ZR0xiTldPOGRUdkd0emdZYTFXVzZfY2wtT1hITktOcnpPVXdUUm9nVzJqTmJHZEhNZlVnVURFS1pQcEhHZWtTMGpaVTZVdlViZEIyZnRSZEJhWTZTUXZrel8wSGoyT2RsazNwbFF2SHFYX2dad0NxcXpibFNzSEtKd3d0TlJ3bV90QVJDWFIzV2hhREpMVQ?oc=5"
     },
     {
       "id": "auto-e1e0f1db38",
       "nombre": "Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo cont",
       "categoria": "Social",
       "resumen": "Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo contra ‘hordas’ de migrantes",
-      "peso": 14.0,
+      "peso": 7.0,
       "n_temas_agrupados": 1,
-      "escalando": false
+      "escalando": false,
+      "fuente_url": "http://campechehoy.mx/2026/09/23/donald-trump-el-chimoltrufia-de-la-casa-blanca/"
     }
   ],
   "cambios_60min": [
     {
-      "categoria": "Gobernabilidad",
-      "direccion": "up",
-      "actual": 24,
-      "previo": 0,
-      "etiqueta": "24 notas nuevas",
-      "hora": "11:59"
-    },
-    {
       "categoria": "Relación Bilateral",
-      "direccion": "up",
-      "actual": 6,
-      "previo": 0,
-      "etiqueta": "6 notas nuevas",
-      "hora": "11:59"
+      "direccion": "down",
+      "actual": 1,
+      "previo": 6,
+      "etiqueta": "-83%",
+      "hora": "13:10"
     },
     {
-      "categoria": "Seguridad Nacional",
-      "direccion": "up",
-      "actual": 4,
-      "previo": 0,
-      "etiqueta": "4 notas nuevas",
-      "hora": "11:59"
+      "categoria": "Gobernabilidad",
+      "direccion": "down",
+      "actual": 20,
+      "previo": 24,
+      "etiqueta": "-17%",
+      "hora": "13:10"
     },
     {
       "categoria": "Economía",
+      "direccion": "down",
+      "actual": 1,
+      "previo": 3,
+      "etiqueta": "-67%",
+      "hora": "13:10"
+    },
+    {
+      "categoria": "Social",
       "direccion": "up",
-      "actual": 3,
+      "actual": 1,
       "previo": 0,
-      "etiqueta": "3 notas nuevas",
-      "hora": "11:59"
-    }
-  ],
-  "nube_palabras": [
-    {
-      "palabra": "sheinbaum",
-      "n": 10
-    },
-    {
-      "palabra": "claudia",
-      "n": 7
-    },
-    {
-      "palabra": "trump",
-      "n": 4
-    },
-    {
-      "palabra": "tabasco",
-      "n": 4
-    },
-    {
-      "palabra": "morena",
-      "n": 3
-    },
-    {
-      "palabra": "presidenta",
-      "n": 2
-    },
-    {
-      "palabra": "aprobación",
-      "n": 2
-    },
-    {
-      "palabra": "evolución",
-      "n": 2
-    },
-    {
-      "palabra": "protección",
-      "n": 2
-    },
-    {
-      "palabra": "descarta",
-      "n": 2
-    },
-    {
-      "palabra": "casa",
-      "n": 2
-    },
-    {
-      "palabra": "blanca",
-      "n": 2
-    },
-    {
-      "palabra": "insiste",
-      "n": 2
-    },
-    {
-      "palabra": "llama",
-      "n": 2
-    },
-    {
-      "palabra": "xeva",
-      "n": 2
-    },
-    {
-      "palabra": "donald",
-      "n": 2
-    },
-    {
-      "palabra": "baja",
-      "n": 2
-    },
-    {
-      "palabra": "huachicol",
-      "n": 2
-    },
-    {
-      "palabra": "fiscal",
-      "n": 2
-    },
-    {
-      "palabra": "talla",
-      "n": 2
-    },
-    {
-      "palabra": "politica",
-      "n": 2
-    },
-    {
-      "palabra": "encuesta",
-      "n": 2
-    },
-    {
-      "palabra": "mayor",
-      "n": 1
-    },
-    {
-      "palabra": "américa",
-      "n": 1
-    },
-    {
-      "palabra": "latina",
-      "n": 1
+      "etiqueta": "1 nota nueva",
+      "hora": "13:10"
     }
   ],
   "cronologia_dia": [
@@ -294,36 +231,33 @@
       "id": "auto-d2ae07bb0d",
       "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
       "categoria": "Relación Bilateral",
-      "peso": 23.0
+      "peso": 23.0,
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNNUhhb3JnN29nQ080eG4wUDdNQmRJb3NNbVA2QTluOGFkNHBfVENUTER2NmhsSzdxTXg0eFFweXViZm9GNld6aHlmZmZ4Z2w4QWFJSF9KbkVBaXdKanhPeGVublB6U0pXNGpmMUVYbXk5Wks3YVpOeXVoRUFRY2xCSjJWSThZMlpRN0tvVUlwTEdIMVQ5aUlRZUlGcXNaaUx0bFBISTlkc1NHSUoySWVoaGhaTDF3eHhJam1hTU5ycERFMDQ?oc=5"
     },
     {
       "id": "huachicol-fiscal",
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
-      "peso": 19.0
+      "peso": 12.0,
+      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5"
     },
     {
-      "id": "auto-8108d66665",
-      "nombre": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudad",
-      "categoria": "Gobernabilidad",
-      "peso": 16.0
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "peso": 7.0,
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPWnV6QmhFaWhHYUlZM2ljM25pTUN5MWZFdV9pXzgydERCazB3REUtMUctSnY5LS1jMzc0bjFDUkEzMC1wMnFTcDZiWlNpcFFscWFxRk9QX2YtMEc5Mll6dWpwTVhmaldWcEw0Wl9VRGdwN1VaV0lfdzM0ME9PbF85b01JeUFqMWJKQVdtd09PTmc0T1NvS3QxcGN0MUJIOXVRZmdMTmVveWFYTmRYbnhtUUZEYWZVYkhLOEhkQ3BVV1JqVHFZZ2NBeDR1V29td2ZBMzRGRS01ZG83X1hiU2lsdlRlNjF5R0J40gHuAUFVX3lxTE1iRUZMUmFkc1BJcEhKMmx3MllQaUVuUUZlZ19sdFRITmxLbkZPQXppdGhaMGd6LW9KQy1DTVZuVzJaYUtydHhzOHJHbWlLUkllN3FLYktoQVRnSDdHYXQ3WlFwY1czWDB2UHVITVhPYVpvWEl2bTZpMUlTYWJqeU1WOVN6MnFTbE1hb282eVdXNGRUREVFV21XelAwN2RRYlNpb1dHRGpPRzZvMHVKeXVIWVI0dlk4V29HZ0dsemkwVEZQbHc0VUFXcVliNnB3enY1amZEckpqcUJVcTNWWE15UTBiOEl1Z1g3YU9XU0E?oc=5"
     }
   ],
-  "temas_retomados": [
-    {
-      "id": "reforma-doble-nacionalidad",
-      "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 13,
-      "motivo": "Sheinbaum insiste que gobernadores y presidentes no deben tener doble nacionalidad; diputados discuten iniciativa"
-    }
-  ],
+  "temas_retomados": [],
   "actores_federales": [
     {
       "id": "javier_may",
       "nombre": "Javier May Rodríguez",
       "rol": "Responsable institucional",
       "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "nota": "Morena defiende metodología de encuesta que da aprobación del 68% a Javier May - XEVT",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcy0zeVhEekVRZTg2N0MwQmE1aXZlM3pVMFF3MGd6YlR0RVVaT1JqVGt4OF81WmxfalZ4ZWd0Qk5tUkxETnd5TTlEV01zajFmOC1qaklvSXVBbUlETnQtNFJIaVFBUldSeTlqMlRQVW8wTkxRajhWNDR5bFFRWEJ5eURTRGtmVV85aTI0amlPQnQ1MTBYMndUVFVJazgtaU5leTRNdDQ3anpEQTNhbGd4Szd4Tmc?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -332,6 +266,8 @@
       "nombre": "Jorge Romero Herrera",
       "rol": "Responsable institucional",
       "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "nota": "Morena defiende metodología de encuesta que da aprobación del 68% a Javier May - XEVT",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcy0zeVhEekVRZTg2N0MwQmE1aXZlM3pVMFF3MGd6YlR0RVVaT1JqVGt4OF81WmxfalZ4ZWd0Qk5tUkxETnd5TTlEV01zajFmOC1qaklvSXVBbUlETnQtNFJIaVFBUldSeTlqMlRQVW8wTkxRajhWNDR5bFFRWEJ5eURTRGtmVV85aTI0amlPQnQ1MTBYMndUVFVJazgtaU5leTRNdDQ3anpEQTNhbGd4Szd4Tmc?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -340,6 +276,8 @@
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
       "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "nota": "Federico Döring recrimina a Claudia Sheinbaum la ausencia en la ONU tras señalamientos de Donald Trump - Xpectro",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNNUhhb3JnN29nQ080eG4wUDdNQmRJb3NNbVA2QTluOGFkNHBfVENUTER2NmhsSzdxTXg0eFFweXViZm9GNld6aHlmZmZ4Z2w4QWFJSF9KbkVBaXdKanhPeGVublB6U0pXNGpmMUVYbXk5Wks3YVpOeXVoRUFRY2xCSjJWSThZMlpRN0tvVUlwTEdIMVQ5aUlRZUlGcXNaaUx0bFBISTlkc1NHSUoySWVoaGhaTDF3eHhJam1hTU5ycERFMDQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -348,6 +286,8 @@
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
       "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "nota": "Federico Döring recrimina a Claudia Sheinbaum la ausencia en la ONU tras señalamientos de Donald Trump - Xpectro",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNNUhhb3JnN29nQ080eG4wUDdNQmRJb3NNbVA2QTluOGFkNHBfVENUTER2NmhsSzdxTXg0eFFweXViZm9GNld6aHlmZmZ4Z2w4QWFJSF9KbkVBaXdKanhPeGVublB6U0pXNGpmMUVYbXk5Wks3YVpOeXVoRUFRY2xCSjJWSThZMlpRN0tvVUlwTEdIMVQ5aUlRZUlGcXNaaUx0bFBISTlkc1NHSUoySWVoaGhaTDF3eHhJam1hTU5ycERFMDQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -356,6 +296,8 @@
       "nombre": "JD Vance",
       "rol": "Responsable institucional",
       "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "nota": "Federico Döring recrimina a Claudia Sheinbaum la ausencia en la ONU tras señalamientos de Donald Trump - Xpectro",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNNUhhb3JnN29nQ080eG4wUDdNQmRJb3NNbVA2QTluOGFkNHBfVENUTER2NmhsSzdxTXg0eFFweXViZm9GNld6aHlmZmZ4Z2w4QWFJSF9KbkVBaXdKanhPeGVublB6U0pXNGpmMUVYbXk5Wks3YVpOeXVoRUFRY2xCSjJWSThZMlpRN0tvVUlwTEdIMVQ5aUlRZUlGcXNaaUx0bFBISTlkc1NHSUoySWVoaGhaTDF3eHhJam1hTU5ycERFMDQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -366,6 +308,8 @@
       "nombre": "Ariadna Montiel Reyes",
       "rol": "Responsable institucional",
       "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "146 días después, Marko Cortés insiste en el caso Rocha Moya - Maya Comunicación",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPMktJdVlNRUlYbUZ1ZTRuYUFzMzljRm11bHdINUdxTmJUZjd0RFB2Vjl4T1NhaldKeGp2UU9uX0tHc3VmOFgzNnpOdnRDdDhkcFA3eE1zY3pOMUFKLXpsczVPS1U2YjJOX1VYeGxROXV3RHQxUk51akYwZmVabTExSTFIekxUZFVvRDJoQzVrRmczN19nVVZJ?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -376,6 +320,8 @@
       "nombre": "Jorge Romero Herrera",
       "rol": "Mencionado",
       "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "nota": "Morena defiende metodología de encuesta que da aprobación del 68% a Javier May - XEVT",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcy0zeVhEekVRZTg2N0MwQmE1aXZlM3pVMFF3MGd6YlR0RVVaT1JqVGt4OF81WmxfalZ4ZWd0Qk5tUkxETnd5TTlEV01zajFmOC1qaklvSXVBbUlETnQtNFJIaVFBUldSeTlqMlRQVW8wTkxRajhWNDR5bFFRWEJ5eURTRGtmVV85aTI0amlPQnQ1MTBYMndUVFVJazgtaU5leTRNdDQ3anpEQTNhbGd4Szd4Tmc?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -384,6 +330,8 @@
       "nombre": "Fernando Farías Laguna",
       "rol": "Investigado",
       "tema": "Huachicol Fiscal",
+      "nota": "Prisión domiciliaria a exgobernador de Baja California acusado de huachicol fiscal - Diario Evolución",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -392,6 +340,8 @@
       "nombre": "Manuel Roberto Farías Laguna",
       "rol": "Investigado",
       "tema": "Huachicol Fiscal",
+      "nota": "Prisión domiciliaria a exgobernador de Baja California acusado de huachicol fiscal - Diario Evolución",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -400,6 +350,8 @@
       "nombre": "Ernesto Ruffo Appel",
       "rol": "Mencionado",
       "tema": "Huachicol Fiscal",
+      "nota": "Prisión domiciliaria a exgobernador de Baja California acusado de huachicol fiscal - Diario Evolución",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -408,31 +360,33 @@
       "nombre": "Julio Hernández López",
       "rol": "Responsable institucional",
       "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "146 días después, Marko Cortés insiste en el caso Rocha Moya - Maya Comunicación",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPMktJdVlNRUlYbUZ1ZTRuYUFzMzljRm11bHdINUdxTmJUZjd0RFB2Vjl4T1NhaldKeGp2UU9uX0tHc3VmOFgzNnpOdnRDdDhkcFA3eE1zY3pOMUFKLXpsczVPS1U2YjJOX1VYeGxROXV3RHQxUk51akYwZmVabTExSTFIekxUZFVvRDJoQzVrRmczN19nVVZJ?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     }
   ],
   "declaracion_relevante": {
     "actor": "Claudia Sheinbaum Pardo",
-    "texto": "🌀 Claudia Sheinbaum pidió a la población de la costa del Pacífico, especialmente en Jalisco, Colima y Michoacán, mantenerse atenta a la evolución del huracán Polo y a los avisos de Protección Civil. La Presidenta señaló que, de acuerdo con el pronóstico - facebook.com",
-    "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOaHYzYVM4YlJMNzVVN1NxWk85Y2I3UHZGaEtkbDlSNU9KODN6bnBXWUtHajBUdWMtQTYtbVpYcFd2Zkp6YTd5ZW5KSHJUOEhiUkwzTGV6MUpCYjI3RkxPWXNpZWxZdXNUcVVna0RYQ2xZTWlQTWsydU5Obnp3ZFIwanRIUi1ta0huVHoyWTcyS01FajNlZk50d0FvQWFGQWUwMkQ3X3IySUQ1V1Vua0ZicmJ3REY0N19SQWJIUUVtc1EwSEx4VWRiWndZRndsWUtCTy16azZDQUY5dzBqMC05SU5OZTVmeEY1ajc3UnBXMHk?oc=5",
-    "intensidad": 9.0
+    "texto": "Carlos Slim Helú, el hombre más rico de México, se opone a cambio clave de Claudia Sheinbaum a la LFT: \"Que las personas trabajen 48 horas y ganen más\" - Ambito",
+    "fuente_url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxOYVNlUnFrZU9hd3k5V3pwVHp1TWlPUGt1YnpHMGE2RWUzMjFtWGZBTHBUTU9nNVZoa2ZIQmdfZkZnSWYwcWZNWEx6eUs0c0ZCTGo0Sl9xcVFnWUhKN0Rnd2pXX0lwZDA0d1lYVnZZUE5EOUI3UGhSV2NZdElTcUY5YWVRVHdoTDdQeEk1VU5La0JyR1Qxd29ROVhnVnZCZ082ejZ6YVBBU1VmQ01BQ0N0M0JRMU92c3U3Y0FzS0E2eHNNUHByMFZ6SmJna19fYkFDQTNhUnpKWWo3X0EtV2FZd051WThIcW9XNUVVTGFFRndfTDRCSWN4dE5HU0tfaGhzV2w1YUxxaVdxX3REcjFSVTZR0gGXAkFVX3lxTFBxSTlkTXFNMHRhYVFGdTUxUWhVRi1YM1NINi1fLWhSLTY1MlBod1VVSS1LRVAtOEtjNjdTRGRhWjRKcUd5QTAyMXZQN2Y5NURvajNkZkJvN3czS2lXMFYtYS1SVFliTFl1Zm9aZjQwZks0eGRUMW85by1MNnJiMVNCVkQtblV3cC1EcmVrRUppUmFMNFM3VzUwU1dFekI0VzRSZnpsSndCTld5YUlwOUpHdFlfd3Y0Z29DNExwUTNDbURscmZQRXNYaDVxbkNib0h6VDQzeGVSNDdSMDRyalZ4VDYwSU4xNFBCZzYtZ0RSa1ZrclJ3Nm5LYjNvUjZaeUxfYmFJV2NoVXR2S1p3Zjk3UkxsQlIwTQ?oc=5",
+    "intensidad": 7.0
   },
   "patron_historico_4sem": [
     {
       "semana_fin": "2026-09-02",
-      "tension": 71,
-      "n_notas": 69
+      "tension": 70,
+      "n_notas": 90
     },
     {
       "semana_fin": "2026-09-09",
       "tension": 65,
-      "n_notas": 115
+      "n_notas": 122
     },
     {
       "semana_fin": "2026-09-16",
-      "tension": 59,
-      "n_notas": 140
+      "tension": 57,
+      "n_notas": 111
     },
     {
       "semana_fin": "2026-09-23",
@@ -440,5 +394,5 @@
       "n_notas": 154
     }
   ],
-  "hora_corte_publicada": "2026-09-23 11:59"
+  "hora_corte_publicada": "2026-09-23 13:10"
 }
