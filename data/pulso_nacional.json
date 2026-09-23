@@ -1,0 +1,209 @@
+{
+  "generado_en": "2026-09-23T10:08:40.051042-06:00",
+  "ventana_horas": 24,
+  "n_notas_ventana": 21,
+  "baja_confianza": false,
+  "tension_nacional": 69,
+  "categorias_dia": [
+    {
+      "categoria": "Gobernabilidad",
+      "peso_pct": 41,
+      "tema_principal": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "tema_principal_id": "auto-28603c7610"
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 28,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal"
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 22,
+      "tema_principal": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "tema_principal_id": "auto-d2ae07bb0d"
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 10,
+      "tema_principal": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
+      "tema_principal_id": "auto-08b061e1fe"
+    },
+    {
+      "categoria": "Social",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null
+    }
+  ],
+  "categorias_semana": [
+    {
+      "categoria": "Gobernabilidad",
+      "peso_pct": 42,
+      "tema_principal": "Así fue el segundo Grito de Independencia de la presidenta Claudia Sheinbaum - I",
+      "tema_principal_id": "auto-b5ae2f507a"
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 35,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal"
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 11,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision"
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 9,
+      "tema_principal": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "tema_principal_id": "auto-d2ae07bb0d"
+    },
+    {
+      "categoria": "Social",
+      "peso_pct": 3,
+      "tema_principal": "Oficial | Claudia Sheinbaum abre las convocatorias para otorgar becas de 9,500 p",
+      "tema_principal_id": "auto-d668b6a45e"
+    }
+  ],
+  "top5_temas": [
+    {
+      "id": "auto-28603c7610",
+      "nombre": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "categoria": "Gobernabilidad",
+      "resumen": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "peso": 31.0
+    },
+    {
+      "id": "auto-d2ae07bb0d",
+      "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "categoria": "Relación Bilateral",
+      "resumen": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercial, destapa prensa de EEUU - infobae.com",
+      "peso": 30.0
+    },
+    {
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "peso": 19.0
+    },
+    {
+      "id": "auto-8108d66665",
+      "nombre": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudad",
+      "categoria": "Gobernabilidad",
+      "resumen": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudadana, Omar García Harfuch, aseguraron que habrá detenidos por la red relacionada con los más de 59 millones de litros de combustible asegurados en Guanajuato. El jueves, - facebook.com",
+      "peso": 16.0
+    },
+    {
+      "id": "auto-08b061e1fe",
+      "nombre": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
+      "categoria": "Gobernabilidad",
+      "resumen": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baja California Sur - LatinUS",
+      "peso": 14.0
+    }
+  ],
+  "temas_nuevos": [],
+  "temas_continuidad": [
+    {
+      "id": "auto-d2ae07bb0d",
+      "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "categoria": "Relación Bilateral",
+      "peso": 30.0
+    },
+    {
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "peso": 19.0
+    },
+    {
+      "id": "auto-8108d66665",
+      "nombre": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudad",
+      "categoria": "Gobernabilidad",
+      "peso": 16.0
+    }
+  ],
+  "temas_retomados": [
+    {
+      "id": "reforma-doble-nacionalidad",
+      "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 13,
+      "motivo": "Sheinbaum insiste que gobernadores y presidentes no deben tener doble nacionalidad; diputados discuten iniciativa"
+    }
+  ],
+  "actores_agenda_nacional": [
+    {
+      "id": "jorge_romero",
+      "nombre": "Jorge Romero Herrera",
+      "rol": "Mencionado",
+      "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "javier_may",
+      "nombre": "Javier May Rodríguez",
+      "rol": "Responsable institucional",
+      "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "romero_herrera",
+      "nombre": "Jorge Romero Herrera",
+      "rol": "Responsable institucional",
+      "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "rol": "Responsable institucional",
+      "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "reaparece": false,
+      "tema_nuevo": false
+    }
+  ],
+  "declaracion_relevante": {
+    "actor": "Claudia Sheinbaum Pardo",
+    "texto": "🌀 Claudia Sheinbaum pidió a la población de la costa del Pacífico, especialmente en Jalisco, Colima y Michoacán, mantenerse atenta a la evolución del huracán Polo y a los avisos de Protección Civil. La Presidenta señaló que, de acuerdo con el pronóstico - facebook.com",
+    "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOaHYzYVM4YlJMNzVVN1NxWk85Y2I3UHZGaEtkbDlSNU9KODN6bnBXWUtHajBUdWMtQTYtbVpYcFd2Zkp6YTd5ZW5KSHJUOEhiUkwzTGV6MUpCYjI3RkxPWXNpZWxZdXNUcVVna0RYQ2xZTWlQTWsydU5Obnp3ZFIwanRIUi1ta0huVHoyWTcyS01FajNlZk50d0FvQWFGQWUwMkQ3X3IySUQ1V1Vua0ZicmJ3REY0N19SQWJIUUVtc1EwSEx4VWRiWndZRndsWUtCTy16azZDQUY5dzBqMC05SU5OZTVmeEY1ajc3UnBXMHk?oc=5",
+    "intensidad": 9.0
+  },
+  "patron_historico_4sem": [
+    {
+      "semana_fin": "2026-09-02",
+      "tension": 71,
+      "n_notas": 69
+    },
+    {
+      "semana_fin": "2026-09-09",
+      "tension": 65,
+      "n_notas": 114
+    },
+    {
+      "semana_fin": "2026-09-16",
+      "tension": 59,
+      "n_notas": 133
+    },
+    {
+      "semana_fin": "2026-09-23",
+      "tension": 69,
+      "n_notas": 150
+    }
+  ],
+  "hora_corte_publicada": "2026-09-23 10:08"
+}
