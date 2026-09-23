@@ -16,7 +16,8 @@ import json
 import re
 import urllib.parse
 from datetime import datetime, timedelta, timezone
-from fuentes_confiabilidad import clasificar_fuente, NIVELES_BAJA_O_SIN
+from fuentes_confiabilidad import (clasificar_fuente, NIVELES_BAJA_O_SIN, dominio_de,
+                                    extraer_medio_de_descripcion, sin_acentos)
 
 RUTA_DATOS = 'data'
 RUTA_SALIDA = 'data/pulso_nacional.json'
@@ -154,6 +155,29 @@ def calcular():
     categorias_semana = peso_categorias(ventana_semana)
 
     # ================================================================
+    # PESO POR CATEGORÍA -- TENDENCIA 4 SEMANAS (5 líneas). Se calcula por semana, no por
+    # día: con el volumen actual de notas repartido entre 5 categorías, una serie diaria
+    # deja muchos días en cero para las categorías menos activas y se ve más como ruido
+    # que como tendencia -- una semana amortigua eso y sigue siendo 100% real (mismo
+    # cálculo de siempre: % del peso total que es de cada categoría).
+    # ================================================================
+    categorias_tendencia_4sem = []
+    for semanas_atras in range(3, -1, -1):
+        fin_sem = ahora - timedelta(days=7 * semanas_atras)
+        inicio_sem = fin_sem - timedelta(days=7)
+        evs_sem = [e for e in eventos_validos if inicio_sem <= e['_ts'] < fin_sem and e['tema_id'] in temas_1]
+        pesos_sem = {c: 0.0 for c in CATEGORIAS}
+        for e in evs_sem:
+            if e.get('categoria') in pesos_sem:
+                pesos_sem[e['categoria']] += float(e['intensidad'])
+        total_sem = sum(pesos_sem.values()) or 1
+        categorias_tendencia_4sem.append({
+            'semana_fin': fin_sem.date().isoformat(),
+            'categorias': [{'categoria': c, 'peso_pct': round(pesos_sem[c] / total_sem * 100) if total_sem else 0}
+                            for c in CATEGORIAS],
+        })
+
+    # ================================================================
     # TOP 5 -- agrupado en "temas paraguas" cuando hay señal real para agruparlos.
     # Regla fija, sin IA ni etiquetado manual: dos temas se agrupan si comparten
     # categoría + al menos un actor vinculado real (tema_actores.csv, hoy con más
@@ -164,9 +188,40 @@ def calcular():
     # no relacionadas, ej. huachicol fiscal con violencia de cártel, solo por ser
     # ambos "Seguridad Nacional").
     # ================================================================
+    # CARRIL DE ÚLTIMA HORA -- exclusivo de este módulo (no toca limpiar_agenda_nacional.py,
+    # que sigue rigiendo el resto de la plataforma). Se detectó que ese archivo exige 3
+    # días distintos de cobertura ANTES de hoy para calificar como agenda nacional -- una
+    # regla razonable contra ruido, pero que bloquea por diseño cualquier noticia grande
+    # que acaba de pasar (ej. un discurso en la ONU), justo lo que un pulso de 24h con
+    # cortes de minutos necesita poder capturar. Aquí se abre un segundo camino, propio de
+    # Pulso Nacional: un tema que AÚN no califica como agenda nacional puede competir de
+    # todos modos si hoy mismo junta 2+ notas de fuente ALTA/OFICIAL de dominios distintos
+    # (no la misma nota repetida) con intensidad promedio alta -- eso ya es, por sí solo,
+    # una corroboración real de peso, sin necesitar historial.
+    # OJO -- el robot crea un tema NUEVO por cada titular que no calza con uno existente,
+    # así que un solo evento real (ej. el discurso de Trump en la ONU) puede quedar
+    # fragmentado en varios auto-temas distintos, cada uno con 1 sola nota. Exigir "2+
+    # dominios" a un tema individual nunca se cumpliría por esa fragmentación -- por eso
+    # el candado de diversidad de medios se aplica DESPUÉS de agrupar por actor
+    # compartido (mismo mecanismo del Top 5), no antes: se admite a la mesa de clustering
+    # cualquier tema con al menos 1 nota ALTA/OFICIAL, y solo un grupo que junte 2+
+    # dominios distintos de primer nivel (sumando todos sus miembros) y no tenga ya
+    # respaldo de agenda nacional puede colarse como "última hora".
+    UMBRAL_BREAKING_MIN_DOMINIOS = 2
+    UMBRAL_BREAKING_INTENSIDAD = 7
+    candidatos_breaking = set()
+    for e in ventana:
+        if e['tema_id'] in temas_1:
+            continue  # ya entra por la vía normal de agenda nacional
+        if clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', '')) not in {'ALTA', 'OFICIAL'}:
+            continue
+        candidatos_breaking.add(e['tema_id'])
+
+    ventana_agenda_ext = ventana_agenda + [e for e in ventana if e['tema_id'] in candidatos_breaking]
+
     peso_tema = {}
     eventos_agenda_por_tema = {}
-    for e in ventana_agenda:
+    for e in ventana_agenda_ext:
         peso_tema[e['tema_id']] = peso_tema.get(e['tema_id'], 0) + float(e['intensidad'])
         eventos_agenda_por_tema.setdefault(e['tema_id'], []).append(e)
 
@@ -182,6 +237,21 @@ def calcular():
 
     def nivel_evento(e):
         return clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', ''))
+
+    def identidad_medio(e):
+        """Identidad real del medio para contar diversidad -- casi todo lo que no viene
+        de un feed RSS directo pasa envuelto en el redirector de Google Noticias, que
+        siempre resuelve al mismo dominio (news.google.com) sin importar cuál sea el
+        medio real detrás -- eso hacía que dos notas de medios distintos (ej. Sheinbaum
+        cubierta por dos diarios diferentes) contaran como "el mismo medio" para efectos
+        de corroboración y de la regla de no repetir fuente en el Top 5. Aquí, cuando el
+        dominio es ese wrapper, se usa el nombre real del medio (el mismo que ya extrae
+        clasificar_fuente del sufijo de la descripción) como identidad en su lugar."""
+        dom = dominio_de(e.get('fuente_url', ''))
+        if dom and dom != 'news.google.com':
+            return dom
+        medio_txt = extraer_medio_de_descripcion(e.get('descripcion', ''))
+        return sin_acentos(medio_txt) if medio_txt else (dom or '')
 
     def eventos_primer_nivel(tid):
         return [e for e in eventos_agenda_por_tema.get(tid, []) if nivel_evento(e) in NIVELES_PRIMER_NIVEL]
@@ -258,6 +328,15 @@ def calcular():
         peso_grupo_pn = sum(peso_tema_primer_nivel.get(m, 0) for m in miembros)
         if peso_grupo_pn <= 0:
             continue  # sin ninguna nota de medio de primer nivel en todo el grupo -- no compite por el Top 5
+        evs_pn_grupo = [e for m in miembros for e in eventos_primer_nivel(m)]
+        medios_corroborantes = len({identidad_medio(e) for e in evs_pn_grupo} - {None, ''})
+        es_grupo_agenda = any(m in temas_1 for m in miembros)
+        if not es_grupo_agenda:
+            # ningún miembro tiene ya el respaldo de 3+ días de agenda nacional -- entra
+            # por el carril de última hora, que exige su propia corroboración real
+            intensidad_prom_pn = sum(float(e['intensidad']) for e in evs_pn_grupo) / len(evs_pn_grupo)
+            if medios_corroborantes < UMBRAL_BREAKING_MIN_DOMINIOS or intensidad_prom_pn < UMBRAL_BREAKING_INTENSIDAD:
+                continue
         tid_top = max(miembros, key=lambda m: peso_tema_primer_nivel.get(m, 0))
         t_top = temas_por_id.get(tid_top)
         if not t_top:
@@ -268,10 +347,28 @@ def calcular():
             'resumen': t_top.get('resumen') or '', 'peso': round(peso_grupo_pn, 1),
             'n_temas_agrupados': len(miembros),
             'escalando': any(tema_escalando(m) for m in miembros),
+            'ultima_hora': not es_grupo_agenda,
+            'medios_corroborantes': medios_corroborantes,
             'fuente_url': (ev_top or {}).get('fuente_url') or t_top.get('fuente_url') or '',
+            '_dominio_top': identidad_medio(ev_top) if ev_top else '',
         })
 
-    top5 = sorted(paraguas, key=lambda x: x['peso'], reverse=True)[:5]
+    # no repetir el mismo medio como fuente principal de dos lugares del Top 5 -- si dos
+    # grupos comparten el dominio de su nota más fuerte, el de mayor peso se queda con el
+    # lugar y el otro se salta (el Top 5 puede quedar con menos de 5 antes que mostrar dos
+    # veces el mismo medio como si fuera cobertura diversa)
+    top5 = []
+    dominios_usados = set()
+    for cand in sorted(paraguas, key=lambda x: x['peso'], reverse=True):
+        dom = cand['_dominio_top']
+        if dom and dom in dominios_usados:
+            continue
+        if dom:
+            dominios_usados.add(dom)
+        del cand['_dominio_top']
+        top5.append(cand)
+        if len(top5) == 5:
+            break
 
     # ================================================================
     # NUEVOS / CONTINUIDAD / RETOMADOS -- con el motivo real (la nota) cuando aplica
@@ -280,7 +377,7 @@ def calcular():
     for e in eventos_validos:
         eventos_por_tema.setdefault(e['tema_id'], []).append(e)
 
-    nuevos, continuidad, retomados = [], [], []
+    nuevos, retomados = [], []
     for tid in temas_1:
         evs = sorted(eventos_por_tema.get(tid, []), key=lambda e: e['_ts'])
         if not evs:
@@ -314,49 +411,35 @@ def calcular():
                                'dias_silencio': (hace_24h.date() - fechas_previas[-1]).days,
                                'motivo': motivo['descripcion'][:220],
                                'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or ''})
-        elif fechas_previas:
-            # no es nuevo ni llevaba una semana en silencio -- sigue en curso, sin importar
-            # si la última nota previa fue ayer o hace 4 días
-            continuidad.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
-                                 'peso': round(peso_tema.get(tid, 0), 1),
-                                 'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
+        # (se quitó "Continuidad": era la categoría residual -- todo lo que no era nuevo
+        # ni llevaba una semana en silencio -- sin criterio de selección propio, y la
+        # mayor parte de su contenido ya aparecía en Top 5. Nuevos y Retomados sí detectan
+        # un cambio de estado real; Continuidad solo confirmaba que nada cambió.)
 
-    nuevos = sorted(nuevos, key=lambda x: x['peso'], reverse=True)[:3]
-    continuidad = sorted(continuidad, key=lambda x: x['peso'], reverse=True)[:3]
-    retomados = sorted(retomados, key=lambda x: x['dias_silencio'], reverse=True)[:2]
+    nuevos = sorted(nuevos, key=lambda x: x['peso'], reverse=True)[:5]
+    retomados = sorted(retomados, key=lambda x: x['dias_silencio'], reverse=True)[:5]
 
     # ================================================================
     # ACTORES CON TEMA EN AGENDA NACIONAL -- reaparición derivada de si su tema
     # vinculado es, a su vez, uno de los "retomados" (no se inventa un tracking nuevo de
-    # actores; se apoya en el mismo cálculo de temas, ya validado arriba). Se clasifican
-    # en 3 grupos con reglas fijas sobre campos reales (cargo/grupo de actores.csv):
-    # FEDERALES (cargo de legislador federal, gabinete, presidencia, o el grupo es la
-    # propia titular del Ejecutivo / jefes de Estado extranjeros con vínculo bilateral),
-    # PARTIDOS (el campo 'grupo' es directamente el nombre del partido), y OTROS (todo
-    # lo demás: gobernadores estatales, organizaciones, sector empresarial, medios, etc.)
+    # actores; se apoya en el mismo cálculo de temas, ya validado arriba).
+    #
+    # Sin cuotas por tipo de actor -- se quitó la separación en Federales/Partidos/Otros.
+    # El criterio ya no es de qué categoría burocrática viene alguien, es su relevancia
+    # real medida con los mismos datos de siempre: el peso (intensidad real acumulada) del
+    # tema de mayor peso al que está vinculado, exigiendo siempre una nota real de fuente
+    # de primer nivel que lo mencione por su nombre. Un alcalde municipal con una nota
+    # ALTA/OFICIAL de mucho peso le gana el lugar a un secretario federal con una mención
+    # floja -- eso es lo que pediste. Límite real e inevitable: solo puede aparecer un
+    # actor que ya exista como fila en actores.csv -- el sistema no puede inventar ni
+    # detectar actores nuevos que aún no están dados de alta ahí.
     # ================================================================
     ids_retomados = {r['id'] for r in retomados}
     ids_nuevos = {n['id'] for n in nuevos}
 
-    PARTIDOS_GRUPO = {'morena', 'pan', 'pri', 'mc', 'pt', 'pvem',
-                       'movimiento ciudadano', 'partido verde', 'partido del trabajo'}
-    CARGO_FEDERAL_KEYWORDS = ['diputad', 'senador', 'senadora', 'secretari', 'canciller',
-                               'fiscal general', 'presidenta de la república', 'presidente de la república',
-                               'consejera jurídica de la presidencia', 'coordinador de asesores de la presidencia']
-    GRUPO_FEDERAL = {'sheinbaum', 'amlo', 'trump (eeuu)'}
-
-    def clasificar_tipo_actor(actor):
-        grupo = (actor.get('grupo') or '').lower()
-        cargo = (actor.get('cargo') or '').lower()
-        if any(k in cargo for k in CARGO_FEDERAL_KEYWORDS) or grupo in GRUPO_FEDERAL:
-            return 'federal'
-        if grupo in PARTIDOS_GRUPO:
-            return 'partido'
-        return 'otro'
-
     conteo_actor = {}
     for ta in tema_actores:
-        if ta['tema_id'] not in temas_1 or ta['tema_id'] not in peso_tema:
+        if ta['tema_id'] not in peso_tema:
             continue
         conteo_actor.setdefault(ta['actor_id'], []).append(ta)
     ranking_actores = sorted(conteo_actor.items(),
@@ -410,10 +493,11 @@ def calcular():
         return max(con_mencion, key=lambda e: float(e['intensidad']))
 
     nombres_ya_usados = set()  # evita que la misma persona (con 2 registros distintos en
-                                # actores.csv, ej. ids duplicados del mismo actor) aparezca
-                                # dos veces entre las 3 columnas
-    actores_federales, actores_partidos, actores_otros = [], [], []
+                                # actores.csv, ej. ids duplicados del mismo actor) aparezca dos veces
+    actores_destacados = []
     for actor_id, vinculos in ranking_actores:
+        if len(actores_destacados) >= 5:
+            break
         actor = next((a for a in actores if a['id'] == actor_id), None)
         if not actor:
             continue
@@ -429,25 +513,29 @@ def calcular():
                 break
         if not v:
             continue  # ningún vínculo tiene una nota real que lo mencione -- no se muestra
-        entrada = {
+        actores_destacados.append({
             'id': actor_id, 'nombre': actor['nombre'], 'rol': v.get('rol') or '',
             'tema': tema_v['nombre'] if tema_v else '',
             'nota': nota['descripcion'][:200],
             'fuente_url': nota.get('fuente_url') or '',
             'reaparece': v['tema_id'] in ids_retomados,
             'tema_nuevo': v['tema_id'] in ids_nuevos,
-        }
-        tipo = clasificar_tipo_actor(actor)
-        destino = {'federal': actores_federales, 'partido': actores_partidos, 'otro': actores_otros}[tipo]
-        if len(destino) < 5:
-            destino.append(entrada)
-            nombres_ya_usados.add(clave_nombre)
+        })
+        nombres_ya_usados.add(clave_nombre)
 
     # ================================================================
     # DECLARACIÓN RELEVANTE -- automatizada, sin juicio editorial: cita textual (comillas
     # o verbo declarativo) + actor de alta influencia + intensidad alta. Mexicano o
     # extranjero, dentro de la ventana de 24h. Si no hay ninguna que cumpla las 3
     # condiciones, la sección se omite (null) -- no se rellena con algo débil.
+    #
+    # Se reemplazó el "resumen ejecutivo de la mañanera" en bullets que se había pedido --
+    # eso hubiera exigido decidir a mano qué es "lo más destacado", el mismo juicio
+    # editorial que este módulo evita en todo lo demás. En su lugar, dos espacios fijos
+    # con el mismo mecanismo ya validado: una declaración real de la Presidenta y otra de
+    # cualquier otro actor de alta influencia -- ambos, si califican, con cita textual
+    # verificada en la misma cláusula y fuente de primer nivel. Si ninguno califica hoy,
+    # el espacio se omite -- no se rellena con algo débil solo por llenar el bloque.
     # ================================================================
     # también se exige que el actor y la cita estén en la MISMA cláusula (no solo en la
     # misma nota completa) -- si no, un actor mencionado de pasada en una nota que cita a
@@ -455,8 +543,12 @@ def calcular():
     # sobre Carlos Slim se le atribuyó a Sheinbaum solo por aparecer ambos en el texto).
     # También se exige fuente de primer nivel, mismo criterio que el resto del módulo.
     VERBOS_DECLARATIVOS = ['dijo', 'afirmó', 'declaró', 'aseguró', 'advirtió', 'sostuvo', 'señaló']
-    declaracion = None
-    mejor_intensidad = 0
+
+    def es_presidenta(actor):
+        return 'presidenta de méxico' in (actor.get('cargo') or '').lower()
+
+    declaracion_presidenta, mejor_int_pres = None, 0
+    declaracion_otro, mejor_int_otro = None, 0
     for e in ventana:
         if nivel_evento(e) not in NIVELES_PRIMER_NIVEL or float(e['intensidad']) < 7:
             continue
@@ -468,10 +560,17 @@ def calcular():
             if not es_cita:
                 continue
             actor_citado = next((a for a in actores_altos if _mencionadoDeFormaSegura(a['nombre'], cl_lower)), None)
-            if actor_citado and float(e['intensidad']) > mejor_intensidad:
-                declaracion = {'actor': actor_citado['nombre'], 'texto': e['descripcion'][:280],
-                                'fuente_url': e.get('fuente_url', ''), 'intensidad': float(e['intensidad'])}
-                mejor_intensidad = float(e['intensidad'])
+            if not actor_citado:
+                continue
+            intensidad = float(e['intensidad'])
+            entrada = {'actor': actor_citado['nombre'], 'texto': e['descripcion'][:280],
+                       'fuente_url': e.get('fuente_url', ''), 'intensidad': intensidad}
+            if es_presidenta(actor_citado):
+                if intensidad > mejor_int_pres:
+                    declaracion_presidenta, mejor_int_pres = entrada, intensidad
+            else:
+                if intensidad > mejor_int_otro:
+                    declaracion_otro, mejor_int_otro = entrada, intensidad
 
     # ================================================================
     # PATRÓN HISTÓRICO -- 4 semanas, mismo cálculo de tensión (promedio de intensidad
@@ -493,38 +592,11 @@ def calcular():
             t_dia = None
         historico.append({'fecha': dia.isoformat(), 'tension': t_dia, 'n_notas': len(evs_dia)})
 
-    # ================================================================
-    # KPIs -- "alertas políticas" reutiliza nuevos+retomados ya calculados (nada nuevo).
-    # "escalamiento" / "estables" comparan, por tema, el promedio real de intensidad de
-    # sus notas en las últimas 24h contra las 24h anteriores (mismo tema, dos ventanas
-    # reales) -- si sube 1.5 puntos (de 10) o más, escala; si el tema tiene actividad en
-    # ambas ventanas y no escala, es estable. No se incluye un KPI de "movilizaciones/
-    # mítines" porque no existe ese campo en los datos -- no se inventa.
-    # ================================================================
-    escalando, estables = 0, 0
-    detalle_escalando, detalle_estables = [], []
-    for tid in prom_actual:
-        if tid not in prom_previo:
-            continue  # sin punto de comparación real en la ventana anterior -- no se cuenta ni como escalando ni estable
-        t_kpi = temas_por_id.get(tid)
-        if not t_kpi:
-            continue
-        if tema_escalando(tid):
-            escalando += 1
-            detalle_escalando.append({'id': tid, 'nombre': t_kpi['nombre'], 'categoria': t_kpi['categoria']})
-        else:
-            estables += 1
-            detalle_estables.append({'id': tid, 'nombre': t_kpi['nombre'], 'categoria': t_kpi['categoria']})
-    detalle_alertas = [{'id': x['id'], 'nombre': x['nombre'], 'categoria': x['categoria'], 'tipo': 'nuevo'} for x in nuevos] + \
-                       [{'id': x['id'], 'nombre': x['nombre'], 'categoria': x['categoria'], 'tipo': 'retomado'} for x in retomados]
-    kpis = {
-        'alertas_politicas': len(nuevos) + len(retomados),
-        'temas_en_escalamiento': escalando,
-        'temas_estables': estables,
-        'detalle_alertas': detalle_alertas,
-        'detalle_escalando': detalle_escalando,
-        'detalle_estables': detalle_estables,
-    }
+    # (se quitaron los KPIs "Alertas políticas" / "Temas en escalamiento" / "Temas
+    # estables": comparaban promedios de 1-2 notas con un umbral de 1.5 puntos sin
+    # justificar -- ruido estadístico disfrazado de métrica. La señal real de
+    # escalamiento sigue viva en el badge 🔥 ESCALANDO de cada tema en Top 5, con
+    # contexto real; aquí solo era un número suelto sin sustento.)
 
     # (se quitó "cambios últimos 60 minutos": el JSON solo se sobrescribe en los cortes
     # fijos 06/12/18 o por excepción de tensión, así que una métrica de "última hora"
@@ -544,17 +616,14 @@ def calcular():
         'n_notas_ventana': n_notas_agenda,
         'baja_confianza': baja_confianza,
         'tension_nacional': tension,
-        'kpis': kpis,
         'categorias_dia': categorias_dia,
-        'categorias_semana': categorias_semana,
+        'categorias_tendencia_4sem': categorias_tendencia_4sem,
         'top5_temas': top5,
         'temas_nuevos': nuevos,
-        'temas_continuidad': continuidad,
         'temas_retomados': retomados,
-        'actores_federales': actores_federales,
-        'actores_partidos': actores_partidos,
-        'actores_otros': actores_otros,
-        'declaracion_relevante': declaracion,
+        'actores_destacados': actores_destacados,
+        'declaracion_presidenta': declaracion_presidenta,
+        'declaracion_otro': declaracion_otro,
         'patron_historico_4sem': historico,
     }
     return salida
