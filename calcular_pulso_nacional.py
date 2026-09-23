@@ -293,19 +293,30 @@ def calcular():
         fechas_previas = sorted({e['_ts'].date() for e in evs if e['_ts'] < hace_24h})
 
         top_ventana = max(evs_ventana, key=lambda e: float(e['intensidad']))
+        # UMBRAL_RETOMA: 7 días -- se elige una semana completa de silencio porque es la
+        # unidad natural del ciclo noticioso (una semana sin ninguna nota real es un
+        # apagón genuino, no solo un día flojo de cobertura), no un número arbitrario sin
+        # razón. Con eso, "continuidad" ya no necesita un segundo umbral propio: es
+        # simplemente todo lo que no es nuevo ni llevaba una semana entera en silencio --
+        # antes existía un hueco de 3-6 días de silencio que no entraba a ninguna de las
+        # tres listas (se detectó en esta revisión, con un tema real -- y encima el más
+        # activo del día -- desapareciendo de las tres columnas sin explicación).
+        UMBRAL_RETOMA_DIAS = 7
         if primera >= hace_24h:
             nuevos.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
                             'peso': round(peso_tema.get(tid, 0), 1),
                             'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
-        elif fechas_previas and (hace_24h.date() - fechas_previas[-1]).days >= 7:
-            # tenía actividad antes, luego 7+ días de silencio, y ahora reaparece --
-            # el motivo es la nota más intensa de la ventana que lo reactivó
+        elif fechas_previas and (hace_24h.date() - fechas_previas[-1]).days >= UMBRAL_RETOMA_DIAS:
+            # tenía actividad antes, luego una semana entera o más de silencio, y ahora
+            # reaparece -- el motivo es la nota más intensa de la ventana que lo reactivó
             motivo = top_ventana
             retomados.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
                                'dias_silencio': (hace_24h.date() - fechas_previas[-1]).days,
                                'motivo': motivo['descripcion'][:220],
                                'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or ''})
-        elif fechas_previas and (hace_24h.date() - fechas_previas[-1]).days <= 2:
+        elif fechas_previas:
+            # no es nuevo ni llevaba una semana en silencio -- sigue en curso, sin importar
+            # si la última nota previa fue ayer o hace 4 días
             continuidad.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
                                  'peso': round(peso_tema.get(tid, 0), 1),
                                  'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
