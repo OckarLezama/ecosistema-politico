@@ -159,7 +159,7 @@ function pintarPulso(cont, d){
       </div>
 
       ${declaracion ? `
-      <div style="background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-m);padding:14px;box-shadow:0 4px 16px -6px rgba(0,0,0,.4);" style="border-left:3px solid var(--riesgo-medio);">
+      <div style="background:var(--bg-2);border:1px solid var(--line);border-left:3px solid var(--riesgo-medio);border-radius:var(--radius-m);padding:14px;box-shadow:0 4px 16px -6px rgba(0,0,0,.4);">
         <div class="eyebrow" style="color:var(--riesgo-medio);">DECLARACIÓN RELEVANTE · ${declaracion.actor}</div>
         <p style="font-size:12px;line-height:1.55;margin:6px 0;font-style:italic;">"${declaracion.texto}"</p>
         ${declaracion.fuente_url ? `<a href="${declaracion.fuente_url}" target="_blank" rel="noopener" style="font-size:10.5px;color:var(--teal);">Ver fuente ↗</a>` : ''}

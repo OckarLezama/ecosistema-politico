@@ -63,7 +63,7 @@ function iniciarActualizacionAutomatica(){
     if(panelActivo){
       if(panelActivo.id==='panel-agenda' && typeof renderAgendaGrid==='function') renderAgendaGrid();
       if(panelActivo.id==='panel-timeline' && typeof renderTimeline==='function') renderTimeline();
-      if(panelActivo.id==='panel-analisis' && typeof renderAnalisis==='function') renderAnalisis();
+      if(panelActivo.id==='panel-analisis' && typeof renderPulsoNacional==='function') renderPulsoNacional();
       if(panelActivo.id==='panel-portada' && typeof renderPortada==='function') renderPortada();
       if(panelActivo.id==='panel-c3' && typeof renderC3==='function') renderC3();
       if(panelActivo.id==='panel-legislativo' && typeof renderLegislativo==='function') renderLegislativo();
