@@ -1,0 +1,27 @@
+name: Pulso nacional - termometro politico
+
+"on":
+  schedule:
+    - cron: '*/30 * * * *'   # corre cada 30 min, pero el script decide si PUBLICA:
+                              # solo en los 3 cortes fijos (06/12/18 CDMX) o si la
+                              # tension se movio lo suficiente para ameritar excepcion
+  workflow_dispatch: {}
+
+concurrency:
+  group: pulso-nacional-unico
+  cancel-in-progress: false
+
+jobs:
+  calcular-pulso:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Calcular pulso nacional (y publicar solo si corresponde)
+        run: python3 calcular_pulso_nacional.py
+      - name: Guardar snapshot si se publico
+        run: |
+          git config user.name "robot-pulso"
+          git config user.email "robot@ecosistema-politico.local"
+          git add data/pulso_nacional.json
+          git diff --staged --quiet || git commit -m "Pulso nacional: corte $(date -u +%Y-%m-%d\ %H:%M) UTC"
+          git diff --staged --quiet || (git pull --rebase && git push)
