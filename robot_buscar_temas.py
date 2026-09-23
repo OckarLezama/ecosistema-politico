@@ -120,7 +120,12 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
     for e in evs_del_tema:
         texto = e['descripcion'].lower()
         for a in actores_altos:
-            if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
+            # CORREGIDO -- usaba una palabra suelta de 4+ letras del nombre (ej. "Rosa" o
+            # "Ávila"), el mismo bug ya identificado y corregido en _mencionadoDeFormaSegura()
+            # para otros usos, pero que aquí seguía inflando actores_mencionados con falsos
+            # positivos y empujando temas irrelevantes a Nivel 1 (agenda nacional). Ahora
+            # reusa la misma función ya validada (nombre completo, o 2 palabras consecutivas).
+            if _mencionadoDeFormaSegura(a['nombre'], texto):
                 actores_mencionados.add(a['id'])
     intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
     puntos = len(dominios) - 2

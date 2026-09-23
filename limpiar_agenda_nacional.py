@@ -32,6 +32,24 @@ def noCuentaParaEscalar(descripcion):
     return False
 
 
+def _mencionadoDeFormaSegura(nombre_actor, texto_lower):
+    """Mismo criterio ya usado en robot_buscar_temas.py -- nunca basta una sola palabra
+    del nombre, sin importar su longitud: un apellido común (ej. "Ávila", "López",
+    "Manuel") o una palabra que también es de uso corriente (ej. "Puente") producía
+    falsos positivos, inflando actores_mencionados y empujando temas irrelevantes a
+    Nivel 1 (agenda nacional) solo por una coincidencia de palabra suelta. Se exige el
+    nombre completo, o al menos 2 palabras consecutivas del nombre juntas (nombre+apellido,
+    o los 2 apellidos) -- ni una palabra sola (muy laxo) ni el nombre completo obligatorio
+    (perdería menciones reales por solo apellido distintivo, ej. actores de C3)."""
+    partes = [p for p in nombre_actor.split() if len(p) > 2]
+    if len(partes) < 2:
+        return bool(partes) and partes[0].lower() in texto_lower
+    combinaciones = [nombre_actor.lower(), f'{partes[0]} {partes[1]}'.lower()]
+    if len(partes) >= 3:
+        combinaciones.append(f'{partes[-2]} {partes[-1]}'.lower())
+    return any(c in texto_lower for c in combinaciones)
+
+
 def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
     if not evs_del_tema:
         return False, 'sin notas'
@@ -54,7 +72,9 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
     for e in evs_del_tema:
         texto = e['descripcion'].lower()
         for a in actores_altos:
-            if any(p.lower() in texto for p in a['nombre'].split() if len(p) > 3):
+            # CORREGIDO -- ver _mencionadoDeFormaSegura arriba: antes bastaba una palabra
+            # suelta de 4+ letras del nombre, lo que producía falsos positivos.
+            if _mencionadoDeFormaSegura(a['nombre'], texto):
                 actores_mencionados.add(a['id'])
 
     intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
