@@ -82,6 +82,18 @@ function revisarNotificacionesPendientes(){
   procesarSiguienteNotificacion();
 }
 
+// NUEVO -- si la única fuente detrás de la notificación es "Baja" o "Sin clasificar"
+// (ver js/fuentes.js), la notificación lo dice de forma explícita en vez de mostrarse
+// con la misma autoridad visual que una nota de un medio con editorial real. No bloquea
+// la notificación -- la nota puede seguir siendo relevante por intensidad/actor -- solo
+// evita que se lea como "confirmado" cuando en realidad no está verificado.
+function avisoFuenteSinVerificarNotif(evento){
+  if(typeof confiabilidadFuente !== 'function') return '';
+  const c = confiabilidadFuente({ fuenteUrl: evento.fuente_url, descripcion: evento.descripcion, cobertura: evento.cobertura });
+  if(c.nivel !== 'BAJA' && c.nivel !== 'SIN_CLASIFICAR') return '';
+  return `<div style="font-size:10.5px;color:var(--riesgo-alto);margin:2px 0 6px;">⚠ Fuente sin verificar</div>`;
+}
+
 function reproducirSonidoAlerta(){
   try{
     const ctx = new (window.AudioContext||window.webkitAudioContext)();
@@ -118,6 +130,7 @@ function procesarSiguienteNotificacion(){
         <button id="cerrar-notificacion" style="background:none;border:none;color:var(--ink-3);cursor:pointer;font-size:14px;line-height:1;">✕</button>
       </div>
       <p style="font-size:12.5px;line-height:1.5;margin:6px 0 8px;color:var(--ink-1);">${evento.descripcion.replace(/^\[Mañanera\]\s*/,'')}</p>
+      ${avisoFuenteSinVerificarNotif(evento)}
       ${evento.fuente_url ? `<a href="${evento.fuente_url}" target="_blank" rel="noopener" style="font-size:11px;color:var(--teal);">Ver nota completa →</a>` : ''}
     </div>`;
   modal.style.display = 'block';

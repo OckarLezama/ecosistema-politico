@@ -7,7 +7,36 @@
    ============================================================ */
 
 function initFeed(){
+  wireTooltipFuenteFeed();
   renderFeed();
+}
+
+// tooltip propio, NO el atributo title genérico del navegador -- mismo formato
+// ya definido para el resto del sitio (fuera de Legislativo, que tiene el suyo):
+// clase .heatmap-tooltip (css/styles.css), reusada también por Agenda y Heatmap,
+// posicionado junto al cursor con pageX/pageY. Delegado en document porque el
+// Feed se re-dibuja completo cada vez (no se puede enganchar por elemento).
+function wireTooltipFuenteFeed(){
+  if(document.getElementById('feed-fuente-tooltip')) return;
+  const tip = document.createElement('div');
+  tip.id = 'feed-fuente-tooltip';
+  tip.className = 'heatmap-tooltip';
+  document.body.appendChild(tip);
+  document.addEventListener('mouseover', e=>{
+    const el = e.target.closest && e.target.closest('.fuente-tt');
+    if(!el) return;
+    tip.innerHTML = el.dataset.tt;
+    tip.classList.add('visible');
+  });
+  document.addEventListener('mousemove', e=>{
+    if(!tip.classList.contains('visible')) return;
+    tip.style.left = (e.pageX+14)+'px';
+    tip.style.top = (e.pageY+14)+'px';
+  });
+  document.addEventListener('mouseout', e=>{
+    const el = e.target.closest && e.target.closest('.fuente-tt');
+    if(el) tip.classList.remove('visible');
+  });
 }
 
 // insignia de confiabilidad de fuente (piloto, ver js/fuentes.js) -- '' si esa
@@ -15,8 +44,8 @@ function initFeed(){
 function insigniaFuenteFeed(e){
   if(typeof confiabilidadFuente !== 'function') return '';
   const c = confiabilidadFuente({ fuenteUrl: e.fuente_url, descripcion: e.descripcion, cobertura: e.cobertura });
-  const titulo = c.medio ? `Medio: ${c.medio}` : 'Medio no identificado';
-  return `<span title="${titulo}" style="display:inline-flex;align-items:center;gap:3px;font-size:9px;font-family:var(--f-mono);text-transform:uppercase;color:${c.color};border:1px solid ${c.color};border-radius:99px;padding:1px 6px;margin-left:6px;">${c.etiqueta}</span>`;
+  const tt = c.medio ? `Medio: ${c.medio}` : 'Medio no identificado';
+  return `<span class="fuente-tt" data-tt="${tt.replace(/"/g,'&quot;')}" style="display:inline-flex;align-items:center;gap:3px;font-size:9px;font-family:var(--f-mono);text-transform:uppercase;color:${c.color};border:1px solid ${c.color};border-radius:99px;padding:1px 6px;margin-left:6px;">${c.etiqueta}</span>`;
 }
 
 function renderFeed(){
