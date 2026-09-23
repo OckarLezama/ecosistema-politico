@@ -1,21 +1,16 @@
 {
-  "generado_en": "2026-09-23T14:51:41.621319-06:00",
+  "generado_en": "2026-09-23T16:34:52.875464-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 16,
+  "n_notas_ventana": 15,
   "baja_confianza": false,
   "tension_nacional": 71,
   "kpis": {
     "alertas_politicas": 0,
     "temas_en_escalamiento": 0,
-    "temas_estables": 6,
+    "temas_estables": 5,
     "detalle_alertas": [],
     "detalle_escalando": [],
     "detalle_estables": [
-      {
-        "id": "auto-08b061e1fe",
-        "nombre": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
-        "categoria": "Gobernabilidad"
-      },
       {
         "id": "auto-d2ae07bb0d",
         "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
@@ -46,25 +41,25 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 34,
+      "peso_pct": 36,
       "tema_principal": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "tema_principal_id": "auto-28603c7610"
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 25,
+      "peso_pct": 26,
       "tema_principal": null,
       "tema_principal_id": null
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 23,
+      "peso_pct": 25,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis"
     },
     {
       "categoria": "Economía",
-      "peso_pct": 19,
+      "peso_pct": 13,
       "tema_principal": null,
       "tema_principal_id": null
     },
@@ -132,6 +127,13 @@
   "temas_nuevos": [],
   "temas_continuidad": [
     {
+      "id": "auto-28603c7610",
+      "nombre": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "categoria": "Gobernabilidad",
+      "peso": 31.0,
+      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcy0zeVhEekVRZTg2N0MwQmE1aXZlM3pVMFF3MGd6YlR0RVVaT1JqVGt4OF81WmxfalZ4ZWd0Qk5tUkxETnd5TTlEV01zajFmOC1qaklvSXVBbUlETnQtNFJIaVFBUldSeTlqMlRQVW8wTkxRajhWNDR5bFFRWEJ5eURTRGtmVV85aTI0amlPQnQ1MTBYMndUVFVJazgtaU5leTRNdDQ3anpEQTNhbGd4Szd4Tmc?oc=5"
+    },
+    {
       "id": "auto-d2ae07bb0d",
       "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
       "categoria": "Relación Bilateral",
@@ -144,13 +146,6 @@
       "categoria": "Seguridad Nacional",
       "peso": 12.0,
       "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQY29pQmxsUUJzSEdVYnhXYjFPcTd2WC1TOUdSWXMzQ1hhRWNwZVNFSUkxQnlXYmFYNHY3My1qYU1wdXdNMnkzMGxGWWxkYjE5NDFpUkZjelhmMVJ2bnk3Sk9kN2RKNUFha3c1czZXRU12eVA4b05ObjdwMU9pQnZ3Y3A2QUxmZ1EwSjV4Z0RCdGV5R3U1Z2RkaURld3g5eTJxeXNWdllMT00tT0lMeHdFdG41bFliejlYTXc?oc=5"
-    },
-    {
-      "id": "auto-e1e0f1db38",
-      "nombre": "Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo cont",
-      "categoria": "Social",
-      "peso": 7.0,
-      "fuente_url": "http://campechehoy.mx/2026/09/23/donald-trump-el-chimoltrufia-de-la-casa-blanca/"
     }
   ],
   "temas_retomados": [],
@@ -392,5 +387,5 @@
       "n_notas": 6
     }
   ],
-  "hora_corte_publicada": "2026-09-23 14:51"
+  "hora_corte_publicada": "2026-09-23 16:34"
 }
