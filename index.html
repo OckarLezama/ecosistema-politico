@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-<link rel="stylesheet" href="css/styles.css?v=100">
+<link rel="stylesheet" href="css/styles.css?v=101">
 <style>
   /* hover propio para los botones de ícono -- el hover genérico de .chip-btn cambia
      border-color a teal, lo que en un grupo segmentado (bordes internos entre botones)
@@ -276,11 +276,11 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
     if(inputFichaNav) inputFichaNav.value = '';
   }
   if(btn.dataset.module==='timeline' && typeof renderTimeline==='function') renderTimeline();
-  if(btn.dataset.module==='analisis' && typeof renderAnalisis==='function') renderAnalisis();
+  if(btn.dataset.module==='analisis' && typeof renderPulsoNacional==='function') renderPulsoNacional();
   if(btn.dataset.module==='legislativo' && typeof renderLegislativo==='function') renderLegislativo();
 });
 </script>
-<script src="js/data-loader.js?v=101"></script>
+<script src="js/data-loader.js?v=102"></script>
 <script src="js/fuentes.js?v=1"></script>
 <script src="js/portada.js?v=100"></script>
 <script src="js/actores.js?v=101"></script>
