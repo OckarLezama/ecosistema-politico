@@ -141,19 +141,86 @@ def calcular():
     categorias_semana = peso_categorias(ventana_semana)
 
     # ================================================================
-    # TOP 5 TEMAS DE MAYOR IMPACTO EN LA VENTANA
+    # TOP 5 -- agrupado en "temas paraguas" cuando hay señal real para agruparlos.
+    # Regla fija, sin IA ni etiquetado manual: dos temas se agrupan si comparten
+    # categoría + al menos un actor vinculado real (tema_actores.csv, hoy con más
+    # cobertura tras el backfill) + están en la misma ventana de 24h. El título del
+    # paraguas es el nombre del tema de mayor peso del grupo -- nunca se redacta un
+    # título nuevo. Un tema sin actor vinculado que lo conecte a otro se queda solo,
+    # nunca se fuerza a un grupo por solo compartir categoría (eso mezclaría cosas
+    # no relacionadas, ej. huachicol fiscal con violencia de cártel, solo por ser
+    # ambos "Seguridad Nacional").
     # ================================================================
     peso_tema = {}
     for e in ventana_agenda:
         peso_tema[e['tema_id']] = peso_tema.get(e['tema_id'], 0) + float(e['intensidad'])
-    top5_ids = sorted(peso_tema, key=peso_tema.get, reverse=True)[:5]
-    top5 = []
-    for tid in top5_ids:
-        t = temas_por_id.get(tid)
-        if not t:
+
+    # comparación real de intensidad por tema, ventana actual vs. las 24h anteriores --
+    # se calcula una sola vez aquí y se reutiliza para el badge de escalamiento del Top 5
+    # y para el KPI agregado más abajo (mismo criterio, sin duplicar lógica)
+    hace_48h = ahora - timedelta(hours=48)
+    ventana_previa_agenda = [e for e in eventos_validos if hace_48h <= e['_ts'] < hace_24h and e['tema_id'] in temas_1]
+    prom_actual, prom_previo = {}, {}
+    for e in ventana_agenda:
+        prom_actual.setdefault(e['tema_id'], []).append(float(e['intensidad']))
+    for e in ventana_previa_agenda:
+        prom_previo.setdefault(e['tema_id'], []).append(float(e['intensidad']))
+    UMBRAL_ESCALAMIENTO = 1.5
+
+    def tema_escalando(tid):
+        if tid not in prom_actual or tid not in prom_previo:
+            return False
+        media_actual = sum(prom_actual[tid]) / len(prom_actual[tid])
+        media_previa = sum(prom_previo[tid]) / len(prom_previo[tid])
+        return (media_actual - media_previa) >= UMBRAL_ESCALAMIENTO
+
+    actores_por_tema = {}
+    for ta in tema_actores:
+        actores_por_tema.setdefault(ta['tema_id'], set()).add(ta['actor_id'])
+
+    ids_con_peso = list(peso_tema.keys())
+    padre = {tid: tid for tid in ids_con_peso}
+
+    def encontrar(x):
+        while padre[x] != x:
+            x = padre[x]
+        return x
+
+    def unir(a, b):
+        ra, rb = encontrar(a), encontrar(b)
+        if ra != rb:
+            padre[ra] = rb
+
+    for i, tid_a in enumerate(ids_con_peso):
+        cat_a = temas_por_id.get(tid_a, {}).get('categoria')
+        act_a = actores_por_tema.get(tid_a, set())
+        if not act_a:
             continue
-        top5.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
-                      'resumen': t.get('resumen') or '', 'peso': round(peso_tema[tid], 1)})
+        for tid_b in ids_con_peso[i+1:]:
+            if temas_por_id.get(tid_b, {}).get('categoria') != cat_a:
+                continue
+            if act_a & actores_por_tema.get(tid_b, set()):
+                unir(tid_a, tid_b)
+
+    grupos = {}
+    for tid in ids_con_peso:
+        grupos.setdefault(encontrar(tid), []).append(tid)
+
+    paraguas = []
+    for miembros in grupos.values():
+        peso_grupo = sum(peso_tema[m] for m in miembros)
+        tid_top = max(miembros, key=lambda m: peso_tema[m])
+        t_top = temas_por_id.get(tid_top)
+        if not t_top:
+            continue
+        paraguas.append({
+            'id': tid_top, 'nombre': t_top['nombre'], 'categoria': t_top['categoria'],
+            'resumen': t_top.get('resumen') or '', 'peso': round(peso_grupo, 1),
+            'n_temas_agrupados': len(miembros),
+            'escalando': any(tema_escalando(m) for m in miembros),
+        })
+
+    top5 = sorted(paraguas, key=lambda x: x['peso'], reverse=True)[:5]
 
     # ================================================================
     # NUEVOS / CONTINUIDAD / RETOMADOS -- con el motivo real (la nota) cuando aplica
@@ -193,12 +260,34 @@ def calcular():
     retomados = sorted(retomados, key=lambda x: x['dias_silencio'], reverse=True)[:2]
 
     # ================================================================
-    # ACTORES CON TEMA EN AGENDA NACIONAL (max 5) -- reaparición derivada de si su tema
+    # ACTORES CON TEMA EN AGENDA NACIONAL -- reaparición derivada de si su tema
     # vinculado es, a su vez, uno de los "retomados" (no se inventa un tracking nuevo de
-    # actores; se apoya en el mismo cálculo de temas, ya validado arriba)
+    # actores; se apoya en el mismo cálculo de temas, ya validado arriba). Se clasifican
+    # en 3 grupos con reglas fijas sobre campos reales (cargo/grupo de actores.csv):
+    # FEDERALES (cargo de legislador federal, gabinete, presidencia, o el grupo es la
+    # propia titular del Ejecutivo / jefes de Estado extranjeros con vínculo bilateral),
+    # PARTIDOS (el campo 'grupo' es directamente el nombre del partido), y OTROS (todo
+    # lo demás: gobernadores estatales, organizaciones, sector empresarial, medios, etc.)
     # ================================================================
     ids_retomados = {r['id'] for r in retomados}
     ids_nuevos = {n['id'] for n in nuevos}
+
+    PARTIDOS_GRUPO = {'morena', 'pan', 'pri', 'mc', 'pt', 'pvem',
+                       'movimiento ciudadano', 'partido verde', 'partido del trabajo'}
+    CARGO_FEDERAL_KEYWORDS = ['diputad', 'senador', 'senadora', 'secretari', 'canciller',
+                               'fiscal general', 'presidenta de la república', 'presidente de la república',
+                               'consejera jurídica de la presidencia', 'coordinador de asesores de la presidencia']
+    GRUPO_FEDERAL = {'sheinbaum', 'amlo', 'trump (eeuu)'}
+
+    def clasificar_tipo_actor(actor):
+        grupo = (actor.get('grupo') or '').lower()
+        cargo = (actor.get('cargo') or '').lower()
+        if any(k in cargo for k in CARGO_FEDERAL_KEYWORDS) or grupo in GRUPO_FEDERAL:
+            return 'federal'
+        if grupo in PARTIDOS_GRUPO:
+            return 'partido'
+        return 'otro'
+
     conteo_actor = {}
     for ta in tema_actores:
         if ta['tema_id'] not in temas_1 or ta['tema_id'] not in peso_tema:
@@ -206,20 +295,24 @@ def calcular():
         conteo_actor.setdefault(ta['actor_id'], []).append(ta)
     ranking_actores = sorted(conteo_actor.items(),
                               key=lambda kv: max(peso_tema.get(x['tema_id'], 0) for x in kv[1]),
-                              reverse=True)[:5]
-    actores_agenda = []
+                              reverse=True)
+    actores_federales, actores_partidos, actores_otros = [], [], []
     for actor_id, vinculos in ranking_actores:
         actor = next((a for a in actores if a['id'] == actor_id), None)
         if not actor:
             continue
         v = max(vinculos, key=lambda x: peso_tema.get(x['tema_id'], 0))
         tema_v = temas_por_id.get(v['tema_id'])
-        actores_agenda.append({
+        entrada = {
             'id': actor_id, 'nombre': actor['nombre'], 'rol': v.get('rol') or '',
             'tema': tema_v['nombre'] if tema_v else '',
             'reaparece': v['tema_id'] in ids_retomados,
             'tema_nuevo': v['tema_id'] in ids_nuevos,
-        })
+        }
+        tipo = clasificar_tipo_actor(actor)
+        destino = {'federal': actores_federales, 'partido': actores_partidos, 'otro': actores_otros}[tipo]
+        if len(destino) < 5:
+            destino.append(entrada)
 
     # ================================================================
     # DECLARACIÓN RELEVANTE -- automatizada, sin juicio editorial: cita textual (comillas
@@ -258,19 +351,111 @@ def calcular():
             t_sem = None
         historico.append({'semana_fin': fin.date().isoformat(), 'tension': t_sem, 'n_notas': len(evs_sem)})
 
+    # ================================================================
+    # KPIs -- "alertas políticas" reutiliza nuevos+retomados ya calculados (nada nuevo).
+    # "escalamiento" / "estables" comparan, por tema, el promedio real de intensidad de
+    # sus notas en las últimas 24h contra las 24h anteriores (mismo tema, dos ventanas
+    # reales) -- si sube 1.5 puntos (de 10) o más, escala; si el tema tiene actividad en
+    # ambas ventanas y no escala, es estable. No se incluye un KPI de "movilizaciones/
+    # mítines" porque no existe ese campo en los datos -- no se inventa.
+    # ================================================================
+    escalando, estables = 0, 0
+    for tid in prom_actual:
+        if tid not in prom_previo:
+            continue  # sin punto de comparación real en la ventana anterior -- no se cuenta ni como escalando ni estable
+        if tema_escalando(tid):
+            escalando += 1
+        else:
+            estables += 1
+    kpis = {
+        'alertas_politicas': len(nuevos) + len(retomados),
+        'temas_en_escalamiento': escalando,
+        'temas_estables': estables,
+    }
+
+    # ================================================================
+    # CAMBIOS ÚLTIMOS 60 MINUTOS -- delta real de actividad por categoría, última hora
+    # vs. la hora inmediatamente anterior. hora_registro sí tiene granularidad de minuto
+    # (confirmado en los datos), así que esto es una comparación real, no simulada.
+    # ================================================================
+    hace_60m = ahora - timedelta(minutes=60)
+    hace_120m = ahora - timedelta(minutes=120)
+    ult_60 = [e for e in eventos_validos if hace_60m <= e['_ts'] <= ahora]
+    prev_60 = [e for e in eventos_validos if hace_120m <= e['_ts'] < hace_60m]
+    conteo_ult, conteo_prev = {}, {}
+    for e in ult_60:
+        conteo_ult[e['categoria']] = conteo_ult.get(e['categoria'], 0) + 1
+    for e in prev_60:
+        conteo_prev[e['categoria']] = conteo_prev.get(e['categoria'], 0) + 1
+    cambios_60min = []
+    for cat in set(conteo_ult) | set(conteo_prev):
+        actual, previo = conteo_ult.get(cat, 0), conteo_prev.get(cat, 0)
+        if actual == previo:
+            continue
+        if previo == 0:
+            etiqueta_cambio = f'{actual} nota{"s" if actual!=1 else ""} nueva{"s" if actual!=1 else ""}'
+        else:
+            pct = round((actual - previo) / previo * 100)
+            etiqueta_cambio = f'{"+" if pct>0 else ""}{pct}%'
+        cambios_60min.append({
+            'categoria': cat, 'direccion': 'up' if actual > previo else 'down',
+            'actual': actual, 'previo': previo, 'etiqueta': etiqueta_cambio,
+            'hora': ahora.strftime('%H:%M'),
+        })
+    cambios_60min = sorted(cambios_60min, key=lambda c: abs(c['actual'] - c['previo']), reverse=True)[:6]
+
+    # ================================================================
+    # NUBE DE PALABRAS -- frecuencia real de palabras en las notas de agenda nacional de
+    # la ventana de 24h (campo 'descripcion' real, sin resumir con IA). Se filtran
+    # conectores comunes; nada se pondera a mano.
+    # ================================================================
+    STOPWORDS_NUBE = {
+        'para','como','pero','este','esta','estos','estas','desde','hasta','sobre','tras',
+        'entre','dice','ante','contra','que','con','por','los','las','del','una','uno','más',
+        'sus','les','fue','ser','han','hay','muy','así','solo','sólo','tras','año','años',
+        'después','antes','durante','cuando','donde','también','todo','toda','todos','todas',
+        'nacional','méxico','mexico',
+    }
+    conteo_palabras = {}
+    for e in ventana_agenda:
+        for palabra in re.findall(r'\b[a-záéíóúñ]{4,}\b', e['descripcion'].lower()):
+            if palabra in STOPWORDS_NUBE:
+                continue
+            conteo_palabras[palabra] = conteo_palabras.get(palabra, 0) + 1
+    nube_palabras = [{'palabra': p, 'n': n} for p, n in
+                      sorted(conteo_palabras.items(), key=lambda kv: kv[1], reverse=True)[:25]]
+
+    # ================================================================
+    # CRONOLOGÍA DEL DÍA -- versión condensada (máx. 7 hitos reales, por intensidad,
+    # solo del día calendario actual en CDMX). No sustituye al módulo Timeline completo;
+    # aquí solo va lo que explica cómo se llegó al pulso de este corte.
+    # ================================================================
+    hoy_mx = ahora.date()
+    evs_hoy = [e for e in eventos_validos if e['_ts'].date() == hoy_mx and e['tema_id'] in temas_1]
+    hitos = sorted(evs_hoy, key=lambda e: float(e['intensidad']), reverse=True)[:7]
+    hitos = sorted(hitos, key=lambda e: e['_ts'])
+    cronologia_dia = [{'hora': e['_ts'].strftime('%H:%M'), 'categoria': e['categoria'],
+                        'descripcion': e['descripcion'][:140]} for e in hitos]
+
     salida = {
         'generado_en': ahora.isoformat(),
         'ventana_horas': VENTANA_HORAS,
         'n_notas_ventana': n_notas_agenda,
         'baja_confianza': baja_confianza,
         'tension_nacional': tension,
+        'kpis': kpis,
         'categorias_dia': categorias_dia,
         'categorias_semana': categorias_semana,
         'top5_temas': top5,
+        'cambios_60min': cambios_60min,
+        'nube_palabras': nube_palabras,
+        'cronologia_dia': cronologia_dia,
         'temas_nuevos': nuevos,
         'temas_continuidad': continuidad,
         'temas_retomados': retomados,
-        'actores_agenda_nacional': actores_agenda,
+        'actores_federales': actores_federales,
+        'actores_partidos': actores_partidos,
+        'actores_otros': actores_otros,
         'declaracion_relevante': declaracion,
         'patron_historico_4sem': historico,
     }
