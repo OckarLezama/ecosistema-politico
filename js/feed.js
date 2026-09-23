@@ -10,6 +10,15 @@ function initFeed(){
   renderFeed();
 }
 
+// insignia de confiabilidad de fuente (piloto, ver js/fuentes.js) -- '' si esa
+// pieza no está cargada en la página (para no romper nada si aún no se sube)
+function insigniaFuenteFeed(e){
+  if(typeof confiabilidadFuente !== 'function') return '';
+  const c = confiabilidadFuente({ fuenteUrl: e.fuente_url, descripcion: e.descripcion, cobertura: e.cobertura });
+  const titulo = c.medio ? `Medio: ${c.medio}` : 'Medio no identificado';
+  return `<span title="${titulo}" style="display:inline-flex;align-items:center;gap:3px;font-size:9px;font-family:var(--f-mono);text-transform:uppercase;color:${c.color};border:1px solid ${c.color};border-radius:99px;padding:1px 6px;margin-left:6px;">${c.etiqueta}</span>`;
+}
+
 function renderFeed(){
   // fecha de HOY en hora de México, no en UTC del navegador (evitar el desfase de husos horarios)
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'}); // 'en-CA' da formato YYYY-MM-DD directo
@@ -50,6 +59,7 @@ function renderFeed(){
           ${etiquetaOpinion}
           <p class="feed-desc">${descRecortada}</p>
           <a href="${e.fuente_url||'#'}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
+          ${insigniaFuenteFeed(e)}
           ${Number(e.cobertura)>1 ? `<span style="font-size:10px;color:var(--ink-3);margin-left:8px;">· cubierto por ${e.cobertura} medios</span>` : ''}
         </div>`;
     }catch(err){ return ''; } // se omite esa nota puntual, el resto del Feed sigue mostrándose

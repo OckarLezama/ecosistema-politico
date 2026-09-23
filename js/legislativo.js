@@ -1288,8 +1288,8 @@ function vistaReformaHTML(r, todasLasReformas){
     ${r.resumen ? `<div style="margin-top:16px;">
       <div class="eyebrow" style="color:var(--teal);">Qué establece</div>
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.resumen}</p>
-      ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : ''}
-    </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:16px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a></p>` : '')}
+      ${r.fuente_url ? `<p style="font-size:11px;margin:8px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a>${insigniaFuenteLeg(r.fuente_url)}</p>` : ''}
+    </div>` : (r.fuente_url ? `<p style="font-size:11px;margin:16px 0 0;"><a href="${r.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">Ver fuente ↗</a>${insigniaFuenteLeg(r.fuente_url)}</p>` : '')}
 
     ${r.contexto_origen ? `<div style="margin-top:16px;">
       <div class="eyebrow" style="color:var(--riesgo-medio);">Qué pudo originarlo</div>
@@ -1436,6 +1436,14 @@ function renderLegislativo(){
     }
 
   });
+}
+
+// insignia de confiabilidad de fuente (piloto, ver js/fuentes.js) -- '' si esa
+// pieza no está cargada en la página (para no romper nada si aún no se sube)
+function insigniaFuenteLeg(fuenteUrl){
+  if(typeof confiabilidadFuente !== 'function' || !fuenteUrl) return '';
+  const c = confiabilidadFuente({ fuenteUrl });
+  return `<span class="leg-tt" data-tt="${c.medio ? 'Medio: '+c.medio : 'Medio no identificado'}" style="display:inline-flex;align-items:center;gap:3px;font-size:9px;font-family:var(--f-mono);text-transform:uppercase;color:${c.color};border:1px solid ${c.color};border-radius:99px;padding:1px 6px;margin-left:6px;">${c.etiqueta}</span>`;
 }
 
 // tooltip flotante compartido por todos los elementos `.leg-tt` -- se crea
