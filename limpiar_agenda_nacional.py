@@ -127,7 +127,11 @@ def actoresParaTema(tema_id, evs_del_tema, actores, ya_existentes):
             clausulas = re.split(r'[;.]| pero | mientras ', e['descripcion'])
             for clausula in clausulas:
                 clausula_lower = clausula.lower()
-                if any(p.lower() in clausula_lower for p in actor['nombre'].split() if len(p) > 3):
+                # CORREGIDO -- mismo bug que en calificaAgendaNacional: bastaba una
+                # palabra suelta del nombre (ej. "Micha", "Cárdenas") para vincular al
+                # actor equivocado con notas que ni lo mencionan. Reusa la misma función
+                # ya validada arriba (nombre completo, o 2 palabras consecutivas).
+                if _mencionadoDeFormaSegura(actor['nombre'], clausula_lower):
                     fragmentos_de_este_actor.append(clausula_lower)
         if not fragmentos_de_este_actor:
             continue
