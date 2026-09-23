@@ -1,0 +1,23 @@
+name: Limpieza diaria - agenda nacional (Nivel 1)
+"on":
+  schedule:
+    - cron: '0 12 * * *'   # 06:00 hora CDMX todos los días (12:00 UTC)
+  workflow_dispatch: {}
+concurrency:
+  group: limpiar-agenda-nacional-unico
+  cancel-in-progress: false
+jobs:
+  reevaluar-nivel-1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reevaluar temas ya marcados como agenda nacional
+        run: python3 limpiar_agenda_nacional.py
+      - name: Guardar cambios
+        run: |
+          git config user.name "robot-temas"
+          git config user.email "robot@ecosistema-politico.local"
+          git add data/temas.csv data/tema_actores.csv
+          git diff --staged --quiet || git commit -m "Limpieza automatica: reevaluacion de agenda nacional $(date -u +%Y-%m-%d)"
+          git pull --rebase
+          git push
