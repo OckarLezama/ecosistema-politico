@@ -4,12 +4,21 @@
    (esa función NO se borró, sigue en analisis.js, solo deja de estar
    enganchada -- si algo aquí falla, es trivial volver a conectarla).
 
-   v3 -- reordenado por relevancia (BLUF primero: KPIs, pulso, declaración
-   relevante y nuevos/continuidad/retomados antes que material de apoyo),
-   sin nube de palabras (se evaluó y se decidió que no aportaba lectura de
-   inteligencia real), con enlaces reales a la nota de origen en todo lo
-   que se pueda, y con el "por qué" de la tensión explícito junto al
-   velocímetro.
+   v4 -- correcciones tras revisión crítica:
+   - se quitó "cambios últimos 60 minutos" (incompatible con el modelo de
+     publicación por cortes fijos, quedaba congelado horas).
+   - el driver del velocímetro ya no repite el título de la nota (ya está
+     en Top 5) -- solo categoría + %.
+   - treemap rediseñado (bloque principal + columna apilada) para llenar
+     el espacio en vez de quedar una tira delgada.
+   - histórico rediseñado con el mismo lenguaje visual que la gráfica de
+     tendencia de C3 (línea suave + halo en el pico, sin cuadrícula ni
+     líneas parpadeantes que se veían mal).
+   - nuevos/continuidad/retomados: la categoría va primero y en grande, el
+     título de la nota queda como complemento chico.
+   - se limpia el sufijo "- Fuente" de los títulos autogenerados al
+     mostrarlos (el dato real y el enlace real no cambian, solo la
+     presentación).
 
    Reutiliza deliberadamente piezas ya existentes en el sitio:
    - colorCategoriaFijo(), tarjetaKpi() y abrirModalKpi() de js/analisis.js.
@@ -21,6 +30,13 @@
 function colorTension(v){
   if(v===null || v===undefined) return 'var(--ink-3)';
   return v>=66 ? 'var(--riesgo-alto)' : v>=33 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+}
+
+/* ---------- limpieza de presentación: quita el "- Fuente" final del título autogenerado.
+   Es SOLO display -- el dato real (nombre completo) y el enlace real no se tocan. ---------- */
+function tituloLimpio(txt){
+  if(!txt) return txt;
+  return txt.replace(/\s+[-–—]\s*[A-Za-zÁÉÍÓÚÑáéíóúñ0-9][A-Za-zÁÉÍÓÚÑáéíóúñ0-9.\s]{0,28}$/, '').trim();
 }
 
 /* ---------- tooltip propio de este módulo, mismo estilo visual que el heatmap ---------- */
@@ -94,24 +110,29 @@ function animarVelocimetroPulso(valorFinal){
   requestAnimationFrame(frame);
 }
 
-/* ---------- peso por categoría · HOY -- treemap (bloques proporcionales al %), para que
-   se distinga a simple vista del listado de barras que ya se usa en "semana" ---------- */
+/* ---------- peso por categoría · HOY -- treemap: bloque principal + columna apilada,
+   para llenar el espacio de la tarjeta en vez de una tira delgada ---------- */
 function treemapCategoriasPulso(categorias){
-  const cats = categorias.filter(c=>c.peso_pct>0);
+  const cats = categorias.filter(c=>c.peso_pct>0).sort((a,b)=>b.peso_pct-a.peso_pct);
   if(!cats.length) return `<div style="font-size:10.5px;color:var(--ink-3);text-align:center;padding:20px 0;">Sin actividad suficiente hoy.</div>`;
-  const total = cats.reduce((s,c)=>s+c.peso_pct,0) || 1;
-  return `<div style="display:flex;height:150px;border-radius:8px;overflow:hidden;gap:2px;">
-    ${cats.map(c=>{
-      const anchoPct = (c.peso_pct/total)*100;
-      const color = colorCategoriaFijo(c.categoria);
-      return `<div class="pulso-treemap-seg" data-info="${c.categoria} · ${c.peso_pct}%${c.tema_principal ? ' — '+c.tema_principal.replace(/"/g,'&quot;') : ''}"
-        style="flex:${anchoPct};background:${color};display:flex;align-items:center;justify-content:center;text-align:center;padding:4px;cursor:pointer;min-width:0;opacity:0;transition:opacity .4s ease;">
-        <div style="color:#0E1116;">
-          <div style="font-family:var(--f-mono);font-weight:700;font-size:${anchoPct>16?'18px':'12px'};">${c.peso_pct}%</div>
-          ${anchoPct>16 ? `<div style="font-size:9.5px;font-weight:600;line-height:1.2;margin-top:2px;">${c.categoria}</div>` : ''}
-        </div>
-      </div>`;
-    }).join('')}
+  const principal = cats[0];
+  const resto = cats.slice(1);
+  const totalResto = resto.reduce((s,c)=>s+c.peso_pct,0) || 1;
+  const bloque = (c, alturaPct, esGrande) => {
+    const color = colorCategoriaFijo(c.categoria);
+    return `<div class="pulso-treemap-seg" data-info="${c.categoria} · ${c.peso_pct}%${c.tema_principal ? ' — '+tituloLimpio(c.tema_principal).replace(/"/g,'&quot;') : ''}"
+      style="flex:${alturaPct};background:${color};display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;cursor:pointer;min-height:0;opacity:0;transition:opacity .4s ease;">
+      <div style="color:#0E1116;">
+        <div style="font-family:var(--f-mono);font-weight:700;font-size:${esGrande?'24px':'14px'};">${c.peso_pct}%</div>
+        <div style="font-size:${esGrande?'10.5px':'9px'};font-weight:600;line-height:1.2;margin-top:2px;">${c.categoria}</div>
+      </div>
+    </div>`;
+  };
+  return `<div style="display:flex;height:230px;gap:3px;">
+    <div style="flex:${principal.peso_pct};display:flex;">${bloque(principal, 1, true)}</div>
+    ${resto.length ? `<div style="flex:${totalResto};display:flex;flex-direction:column;gap:3px;">
+      ${resto.map(c=>bloque(c, c.peso_pct, false)).join('')}
+    </div>` : ''}
   </div>`;
 }
 function activarTreemapCategorias(cont){
@@ -125,31 +146,36 @@ function activarTreemapCategorias(cont){
   });
 }
 
-/* ---------- patrón histórico · 4 semanas -- cuadrícula de fondo, relleno degradado,
-   y umbral parpadeante en 66 (el mismo corte de "tensión alta" que usa todo el sitio) ---------- */
+/* ---------- patrón histórico · 4 semanas -- mismo lenguaje visual que la tendencia de
+   C3: línea suave semitransparente + área degradada + halo en la semana más tensa ---------- */
 function svgHistoricoPulso(historico){
   const vals = historico.map(h=>h.tension).filter(v=>v!==null);
   if(!vals.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Aún sin suficientes cortes previos para mostrar patrón.</div>`;
-  const max = 100, w = 460, h = 130, paso = w/(historico.length-1 || 1);
-  const y = v => h - (v/max)*h;
-  const pts = historico.map((p,i)=> p.tension===null ? null : `${i*paso},${y(p.tension)}`).filter(Boolean).join(' ');
-  const areaPts = `0,${h} ${pts} ${w},${h}`;
-  const yUmbral = y(66);
-  const filasGrid = [0,25,50,75,100];
-  return `<svg viewBox="0 0 ${w} ${h+22}" style="width:100%;display:block;">
+  const max = 100, w = 460, h = 130, padB = 20;
+  const paso = w/(historico.length-1 || 1);
+  const y = v => padB + (1-(v/max))*(h-padB-10);
+  const conDato = historico.filter(p=>p.tension!==null);
+  const semanaTop = conDato.reduce((a,b)=> b.tension>a.tension ? b : a, conDato[0]);
+  const pts = historico.map((p,i)=> p.tension===null ? null : `${i*paso},${y(p.tension).toFixed(1)}`).filter(Boolean).join(' ');
+  const areaPts = `0,${h-padB} ${pts} ${w},${h-padB}`;
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
     <defs>
       <linearGradient id="pulso-hist-grad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="var(--riesgo-medio)" stop-opacity="0.35"/>
-        <stop offset="100%" stop-color="var(--riesgo-medio)" stop-opacity="0"/>
+        <stop offset="0%" stop-color="var(--teal)" stop-opacity="0.32"/>
+        <stop offset="100%" stop-color="var(--teal)" stop-opacity="0"/>
       </linearGradient>
     </defs>
-    ${filasGrid.map(f=>`<line x1="0" y1="${y(f)}" x2="${w}" y2="${y(f)}" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4"/>`).join('')}
-    <line x1="0" y1="${yUmbral}" x2="${w}" y2="${yUmbral}" stroke="var(--riesgo-alto)" stroke-width="1.5" stroke-dasharray="6 4" style="animation:pulse-cintillo 1.8s ease-in-out infinite;"/>
-    <text x="${w-2}" y="${yUmbral-5}" font-size="8.5" fill="var(--riesgo-alto)" font-family="var(--f-mono)" text-anchor="end">UMBRAL DE TENSIÓN ALTA · 66</text>
+    <line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.75"/>
     <polygon points="${areaPts}" fill="url(#pulso-hist-grad)"/>
-    <polyline points="${pts}" fill="none" stroke="var(--riesgo-medio)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    ${historico.map((p,i)=> p.tension===null ? '' : `<circle class="pulso-hist-pt" data-info="Semana del ${p.semana_fin} · tensión ${p.tension}/100 · ${p.n_notas} notas" cx="${i*paso}" cy="${y(p.tension)}" r="4.5" fill="var(--riesgo-medio)" style="cursor:pointer;"/>`).join('')}
-    ${historico.map((p,i)=>`<text x="${i*paso}" y="${h+16}" font-size="8.5" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${p.semana_fin.slice(5)}</text>`).join('')}
+    <polyline points="${pts}" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-opacity="0.65" stroke-linecap="round" stroke-linejoin="round"/>
+    ${historico.map((p,i)=>{
+      if(p.tension===null) return '';
+      const esTop = p.semana_fin===semanaTop.semana_fin;
+      const halo = esTop ? `<circle cx="${i*paso}" cy="${y(p.tension)}" r="9" fill="${colorTension(p.tension)}" opacity="0.22"/>` : '';
+      const r = esTop ? 5 : 3;
+      return `${halo}<circle class="pulso-hist-pt" data-info="Semana del ${p.semana_fin} · tensión ${p.tension}/100 · ${p.n_notas} notas" cx="${i*paso}" cy="${y(p.tension)}" r="${r}" fill="${colorTension(p.tension)}" stroke="var(--bg-2)" stroke-width="${esTop?1.2:0.6}" style="cursor:pointer;"/>`;
+    }).join('')}
+    ${historico.map((p,i)=>`<text x="${i*paso}" y="${h-4}" font-size="8.5" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${p.semana_fin.slice(5)}</text>`).join('')}
   </svg>`;
 }
 function activarHistoricoPulso(cont){
@@ -162,14 +188,13 @@ function activarHistoricoPulso(cont){
 
 function barraCategoriasPulso(categorias){
   return categorias.map(c=>`
-    <div class="pulso-barra-cat" data-info="${c.categoria} · ${c.peso_pct}%${c.tema_principal ? ' — '+c.tema_principal.replace(/"/g,'&quot;') : ''}" style="margin-bottom:8px;cursor:pointer;">
+    <div class="pulso-barra-cat" data-info="${c.categoria} · ${c.peso_pct}%${c.tema_principal ? ' — '+tituloLimpio(c.tema_principal).replace(/"/g,'&quot;') : ''}" style="margin-bottom:8px;cursor:pointer;">
       <div style="display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:2px;">
         <span>${c.categoria}</span><span style="font-family:var(--f-mono);color:var(--ink-2);">${c.peso_pct}%</span>
       </div>
       <div style="height:6px;background:var(--bg-1);border-radius:99px;overflow:hidden;">
         <div style="width:${c.peso_pct}%;height:100%;background:${colorCategoriaFijo(c.categoria)};"></div>
       </div>
-      ${c.tema_principal ? `<div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;">${c.tema_principal}</div>` : ''}
     </div>`).join('');
 }
 function activarBarraCategoriasPulso(cont){
@@ -202,13 +227,16 @@ function pintarPulso(cont, d){
 
   const tarjeta = (contenidoHTML) => `<div style="background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-m);padding:14px;box-shadow:0 4px 16px -6px rgba(0,0,0,.4);">${contenidoHTML}</div>`;
 
+  // nuevos/continuidad/retomados: la categoría va primero y en grande; el título de la
+  // nota es complemento chico -- así lo pidió el usuario, para no mostrar el titular
+  // autogenerado como si fuera el nombre editorial del tema.
   const listaTema = (items) => items.length ? items.map(t=>`
     <div style="padding:7px 9px;background:var(--bg-1);border-radius:7px;margin-bottom:6px;">
       <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline;">
-        <div style="font-size:11px;font-weight:600;line-height:1.4;">${t.nombre}</div>
+        <div style="font-size:12px;font-weight:700;">${t.categoria}</div>
         ${enlaceNota(t.fuente_url)}
       </div>
-      <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;">${t.categoria}${t.motivo ? ' · '+t.dias_silencio+'d de silencio' : ''}</div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:2px;">${tituloLimpio(t.nombre)}${t.motivo ? ' · '+t.dias_silencio+'d de silencio' : ''}</div>
       ${t.motivo ? `<div style="font-size:10px;color:var(--ink-2);margin-top:3px;border-left:2px solid var(--arena);padding-left:6px;">${t.motivo}</div>` : ''}
     </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Ninguno en este corte.</div>`;
 
@@ -223,10 +251,10 @@ function pintarPulso(cont, d){
       </div>
       <div style="font-size:9.5px;color:var(--ink-3);margin-top:1px;">${a.rol}</div>
       <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;margin-top:3px;">
-        <div style="font-size:10px;color:var(--ink-2);border-left:2px solid var(--line-strong);padding-left:6px;">${a.nota}</div>
+        <div style="font-size:10px;color:var(--ink-2);border-left:2px solid var(--line-strong);padding-left:6px;">${tituloLimpio(a.nota)}</div>
         ${enlaceNota(a.fuente_url)}
       </div>
-    </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin actores vinculados en este corte.</div>`;
+    </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin actores con mención real vinculada en este corte.</div>`;
 
   const etiquetaMovimiento = t => t.escalando
     ? `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--riesgo-alto);white-space:nowrap;">🔥 ESCALANDO</span>`
@@ -239,17 +267,10 @@ function pintarPulso(cont, d){
       ${tarjetaKpi('estables', d.kpis.temas_estables, 'Temas estables', 'var(--riesgo-bajo)')}
     </div>` : '';
 
-  const cambiosHTML = d.cambios_60min && d.cambios_60min.length ? d.cambios_60min.map(c=>`
-    <div style="padding:6px 0;border-top:1px solid var(--line);font-size:11px;">
-      <span style="font-family:var(--f-mono);color:var(--ink-3);">${c.hora}</span> —
-      <span style="color:${c.direccion==='up'?'var(--riesgo-alto)':'var(--riesgo-bajo)'};font-weight:700;">${c.direccion==='up'?'↑':'↓'} ${c.categoria}</span>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:1px;">${c.etiqueta} vs. la hora anterior</div>
-    </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin cambios de actividad relevantes en la última hora.</div>`;
-
   const cronologiaHTML = d.cronologia_dia && d.cronologia_dia.length ? d.cronologia_dia.map((h,i)=>`
     <div style="display:flex;gap:8px;padding:4px 0;">
       <span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-3);white-space:nowrap;">${h.hora}</span>
-      <span style="font-size:10.5px;line-height:1.4;">${h.descripcion}</span>
+      <span style="font-size:10.5px;line-height:1.4;">${tituloLimpio(h.descripcion)}</span>
     </div>${i<d.cronologia_dia.length-1?'<div style="height:1px;background:var(--line);margin-left:2px;"></div>':''}`).join('')
     : `<div style="font-size:10.5px;color:var(--ink-3);">Sin hitos suficientes registrados hoy.</div>`;
 
@@ -273,18 +294,18 @@ function pintarPulso(cont, d){
       <div style="display:grid;grid-template-columns:3fr 1fr 1fr;gap:14px;">
         ${tarjeta(`
           <div class="eyebrow">TEMAS EN MOVIMIENTO · QUÉ ESTÁ MOVIENDO AL PAÍS</div>
-          ${d.top5_temas.map((t,i)=>`
+          ${d.top5_temas.length ? d.top5_temas.map((t,i)=>`
             <div style="display:flex;gap:10px;padding:8px 0;border-top:${i?'1px solid var(--line)':'none'};">
               <span style="font-family:var(--f-mono);font-weight:700;color:var(--ink-3);width:16px;">${i+1}</span>
               <div style="flex:1;">
                 <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline;">
-                  <div style="font-size:11.5px;font-weight:600;line-height:1.4;">${t.nombre}</div>
+                  <div style="font-size:11.5px;font-weight:600;line-height:1.4;">${tituloLimpio(t.nombre)}</div>
                   ${etiquetaMovimiento(t)}
                 </div>
-                <div style="font-size:10px;color:var(--ink-3);margin-top:2px;">${t.categoria}${t.n_temas_agrupados>1 ? ` · agrupa ${t.n_temas_agrupados} notas relacionadas` : ''}${t.resumen ? ' — '+t.resumen.slice(0,110) : ''}</div>
+                <div style="font-size:10px;color:var(--ink-3);margin-top:2px;">${t.categoria}${t.n_temas_agrupados>1 ? ` · agrupa ${t.n_temas_agrupados} notas relacionadas` : ''}${t.resumen ? ' — '+tituloLimpio(t.resumen).slice(0,110) : ''}</div>
                 ${enlaceNota(t.fuente_url)}
               </div>
-            </div>`).join('') || `<div style="font-size:10.5px;color:var(--ink-3);">Sin temas de agenda nacional con actividad en las últimas 24h.</div>`}
+            </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin temas de agenda nacional con respaldo de medio de primer nivel en las últimas 24h.</div>`}
         `)}
         ${tarjeta(`
           <div class="eyebrow" style="margin-bottom:6px;text-align:center;">PESO POR CATEGORÍA · HOY</div>
@@ -296,7 +317,7 @@ function pintarPulso(cont, d){
             <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;">TENSIÓN NACIONAL / 100</div>
             <div style="font-size:9.5px;color:var(--ink-3);margin-top:4px;">${d.n_notas_ventana} nota${d.n_notas_ventana!==1?'s':''} de agenda nacional, últimas 24h</div>
             ${d.baja_confianza ? `<div style="font-size:9.5px;color:var(--riesgo-medio);margin-top:2px;">⚠ pocas notas — lectura de baja confianza</div>` : ''}
-            ${catDominante ? `<div style="font-size:9.5px;color:var(--ink-2);margin-top:6px;border-top:1px solid var(--line);padding-top:6px;">Impulsada por <strong>${catDominante.categoria}</strong> (${catDominante.peso_pct}%)${catDominante.tema_principal ? ' — '+catDominante.tema_principal.slice(0,70) : ''}</div>` : ''}
+            ${catDominante ? `<div style="font-size:9.5px;color:var(--ink-2);margin-top:6px;border-top:1px solid var(--line);padding-top:6px;">Impulsada por <strong>${catDominante.categoria}</strong> (${catDominante.peso_pct}%)</div>` : ''}
           </div>
         `)}
       </div>
@@ -323,11 +344,8 @@ function pintarPulso(cont, d){
         ${tarjeta(`<div class="eyebrow">OTROS ACTORES (máx. 5)</div>${listaActores(d.actores_otros)}`)}
       </div>
 
-      <!-- BLOQUE 5: cambios últimos 60 min · cronología del día (apoyo/detalle, ya no compite con lo esencial) -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        ${tarjeta(`<div class="eyebrow">CAMBIOS ÚLTIMOS 60 MINUTOS</div>${cambiosHTML}`)}
-        ${tarjeta(`<div class="eyebrow">⏱ CRONOLOGÍA DEL DÍA</div>${cronologiaHTML}`)}
-      </div>
+      <!-- BLOQUE 5: cronología del día -->
+      ${tarjeta(`<div class="eyebrow">⏱ CRONOLOGÍA DEL DÍA</div>${cronologiaHTML}`)}
 
       <!-- BLOQUE 6: peso por categoría · semana (40%) · patrón histórico 4 semanas (60%) -->
       <div style="display:grid;grid-template-columns:2fr 3fr;gap:14px;">
@@ -346,11 +364,11 @@ function pintarPulso(cont, d){
     el.addEventListener('click', ()=>{
       const tipo = el.dataset.kpi;
       if(tipo==='alertas') abrirModalKpi('Alertas políticas (nuevos + retomados)',
-        d.kpis.detalle_alertas.map(x=>({id:x.id, nombre:x.nombre, detalle:`${x.categoria} · ${x.tipo}`})));
+        d.kpis.detalle_alertas.map(x=>({id:x.id, nombre:tituloLimpio(x.nombre), detalle:`${x.categoria} · ${x.tipo}`})));
       if(tipo==='escalamiento') abrirModalKpi('Temas en escalamiento (intensidad subió vs. 24h previas)',
-        d.kpis.detalle_escalando.map(x=>({id:x.id, nombre:x.nombre, detalle:x.categoria})));
+        d.kpis.detalle_escalando.map(x=>({id:x.id, nombre:tituloLimpio(x.nombre), detalle:x.categoria})));
       if(tipo==='estables') abrirModalKpi('Temas estables (sin cambio significativo)',
-        d.kpis.detalle_estables.map(x=>({id:x.id, nombre:x.nombre, detalle:x.categoria})));
+        d.kpis.detalle_estables.map(x=>({id:x.id, nombre:tituloLimpio(x.nombre), detalle:x.categoria})));
     });
   });
 
