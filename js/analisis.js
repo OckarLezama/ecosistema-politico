@@ -734,4 +734,7 @@ function cargarLecturaIA(){
     });
 }
 
-document.addEventListener('ecosistema:datos-listos', renderAnalisis);
+// DESCONECTADO a propósito -- reemplazado por js/pulso.js (Pulso Nacional, one-page
+// horizontal). La función renderAnalisis() sigue completa arriba, sin borrar nada: si
+// hace falta volver a esta vista, basta con descomentar la línea de abajo.
+// document.addEventListener('ecosistema:datos-listos', renderAnalisis);
