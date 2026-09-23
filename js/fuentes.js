@@ -88,8 +88,12 @@ const MEDIOS_CONOCIDOS = {
   'yahoo': 'BAJA', 'ambito': 'BAJA', 'facebook.com': 'BAJA', 'instagram.com': 'BAJA',
   'gobierno del estado de quintana roo': 'OFICIAL', 'gob mx': 'OFICIAL',
   'cnn': 'ALTA', 'cnn en espanol': 'ALTA',
-  'latinus': 'MEDIA', 'sinembargo': 'ALTA', 'unotv': 'MEDIA', 'imagen radio': 'MEDIA',
+  'latinus': 'MEDIA', 'sin embargo': 'ALTA', 'unotv': 'MEDIA', 'imagen radio': 'MEDIA',
   'eje central': 'MEDIA', 'elimparcial.com': 'MEDIA', 'ecodiario': 'BAJA',
+  // agregados en esta revisión -- 'sinembargo' (sin espacio) nunca hacía match real porque
+  // el texto extraído de la descripción siempre trae el espacio ("Sin Embargo"); 'radio
+  // formula' y 'ap news' eran medios de cobertura real en los datos que faltaban aquí.
+  'radio formula': 'MEDIA', 'ap news': 'ALTA',
 };
 
 function _sinAcentos(s){

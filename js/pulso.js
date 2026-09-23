@@ -110,54 +110,23 @@ function animarVelocimetroPulso(valorFinal){
   requestAnimationFrame(frame);
 }
 
-/* ---------- peso por categoría · HOY -- treemap: bloque principal + columna apilada,
-   para llenar el espacio de la tarjeta en vez de una tira delgada ---------- */
-function treemapCategoriasPulso(categorias){
-  const cats = categorias.filter(c=>c.peso_pct>0).sort((a,b)=>b.peso_pct-a.peso_pct);
-  if(!cats.length) return `<div style="font-size:10.5px;color:var(--ink-3);text-align:center;padding:20px 0;">Sin actividad suficiente hoy.</div>`;
-  const principal = cats[0];
-  const resto = cats.slice(1);
-  const totalResto = resto.reduce((s,c)=>s+c.peso_pct,0) || 1;
-  const bloque = (c, alturaPct, esGrande) => {
-    const color = colorCategoriaFijo(c.categoria);
-    return `<div class="pulso-treemap-seg" data-info="${c.categoria} · ${c.peso_pct}%${c.tema_principal ? ' — '+tituloLimpio(c.tema_principal).replace(/"/g,'&quot;') : ''}"
-      style="flex:${alturaPct};background:${color};display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;cursor:pointer;min-height:0;opacity:0;transition:opacity .4s ease;">
-      <div style="color:#0E1116;">
-        <div style="font-family:var(--f-mono);font-weight:700;font-size:${esGrande?'24px':'14px'};">${c.peso_pct}%</div>
-        <div style="font-size:${esGrande?'10.5px':'9px'};font-weight:600;line-height:1.2;margin-top:2px;">${c.categoria}</div>
-      </div>
-    </div>`;
-  };
-  return `<div style="display:flex;height:230px;gap:3px;">
-    <div style="flex:${principal.peso_pct};display:flex;">${bloque(principal, 1, true)}</div>
-    ${resto.length ? `<div style="flex:${totalResto};display:flex;flex-direction:column;gap:3px;">
-      ${resto.map(c=>bloque(c, c.peso_pct, false)).join('')}
-    </div>` : ''}
-  </div>`;
-}
-function activarTreemapCategorias(cont){
-  if(!cont) return;
-  requestAnimationFrame(()=>{
-    cont.querySelectorAll('.pulso-treemap-seg').forEach(seg=>{ seg.style.opacity='1'; });
-  });
-  cont.querySelectorAll('.pulso-treemap-seg').forEach(seg=>{
-    seg.addEventListener('mousemove', ev=> mostrarTooltipPulso(seg.dataset.info, ev));
-    seg.addEventListener('mouseleave', ocultarTooltipPulso);
-  });
-}
-
-/* ---------- patrón histórico · 4 semanas -- mismo lenguaje visual que la tendencia de
-   C3: línea suave semitransparente + área degradada + halo en la semana más tensa ---------- */
+/* ---------- patrón histórico · 4 semanas -- ahora con granularidad DIARIA (28 puntos
+   reales, uno por día) en vez de 4 puntos semanales: con solo 4 puntos cualquier estilo
+   de gráfica se ve escueta, sin importar cómo se dibuje. Mismo lenguaje visual que la
+   tendencia de C3: línea suave semitransparente + área degradada + halo en el día más
+   tenso ---------- */
 function svgHistoricoPulso(historico){
   const vals = historico.map(h=>h.tension).filter(v=>v!==null);
-  if(!vals.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Aún sin suficientes cortes previos para mostrar patrón.</div>`;
+  if(!vals.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Aún sin suficientes días con actividad para mostrar patrón.</div>`;
   const max = 100, w = 460, h = 130, padB = 20;
   const paso = w/(historico.length-1 || 1);
   const y = v => padB + (1-(v/max))*(h-padB-10);
   const conDato = historico.filter(p=>p.tension!==null);
-  const semanaTop = conDato.reduce((a,b)=> b.tension>a.tension ? b : a, conDato[0]);
+  const diaTop = conDato.reduce((a,b)=> b.tension>a.tension ? b : a, conDato[0]);
   const pts = historico.map((p,i)=> p.tension===null ? null : `${i*paso},${y(p.tension).toFixed(1)}`).filter(Boolean).join(' ');
   const areaPts = `0,${h-padB} ${pts} ${w},${h-padB}`;
+  // etiqueta de fecha solo cada ~4 días (1 por semana aprox.) para no amontonar 28 textos
+  const mostrarEtiqueta = i => i % 4 === 0 || i === historico.length-1;
   return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
     <defs>
       <linearGradient id="pulso-hist-grad" x1="0" y1="0" x2="0" y2="1">
@@ -170,12 +139,12 @@ function svgHistoricoPulso(historico){
     <polyline points="${pts}" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-opacity="0.65" stroke-linecap="round" stroke-linejoin="round"/>
     ${historico.map((p,i)=>{
       if(p.tension===null) return '';
-      const esTop = p.semana_fin===semanaTop.semana_fin;
+      const esTop = p.fecha===diaTop.fecha;
       const halo = esTop ? `<circle cx="${i*paso}" cy="${y(p.tension)}" r="9" fill="${colorTension(p.tension)}" opacity="0.22"/>` : '';
-      const r = esTop ? 5 : 3;
-      return `${halo}<circle class="pulso-hist-pt" data-info="Semana del ${p.semana_fin} · tensión ${p.tension}/100 · ${p.n_notas} notas" cx="${i*paso}" cy="${y(p.tension)}" r="${r}" fill="${colorTension(p.tension)}" stroke="var(--bg-2)" stroke-width="${esTop?1.2:0.6}" style="cursor:pointer;"/>`;
+      const r = esTop ? 5 : 2.5;
+      return `${halo}<circle class="pulso-hist-pt" data-info="${p.fecha} · tensión ${p.tension}/100 · ${p.n_notas} nota${p.n_notas!==1?'s':''}" cx="${i*paso}" cy="${y(p.tension)}" r="${r}" fill="${colorTension(p.tension)}" stroke="var(--bg-2)" stroke-width="${esTop?1.2:0.6}" style="cursor:pointer;"/>`;
     }).join('')}
-    ${historico.map((p,i)=>`<text x="${i*paso}" y="${h-4}" font-size="8.5" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${p.semana_fin.slice(5)}</text>`).join('')}
+    ${historico.map((p,i)=> mostrarEtiqueta(i) ? `<text x="${i*paso}" y="${h-4}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${p.fecha.slice(5)}</text>` : '').join('')}
   </svg>`;
 }
 function activarHistoricoPulso(cont){
@@ -267,13 +236,6 @@ function pintarPulso(cont, d){
       ${tarjetaKpi('estables', d.kpis.temas_estables, 'Temas estables', 'var(--riesgo-bajo)')}
     </div>` : '';
 
-  const cronologiaHTML = d.cronologia_dia && d.cronologia_dia.length ? d.cronologia_dia.map((h,i)=>`
-    <div style="display:flex;gap:8px;padding:4px 0;">
-      <span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-3);white-space:nowrap;">${h.hora}</span>
-      <span style="font-size:10.5px;line-height:1.4;">${tituloLimpio(h.descripcion)}</span>
-    </div>${i<d.cronologia_dia.length-1?'<div style="height:1px;background:var(--line);margin-left:2px;"></div>':''}`).join('')
-    : `<div style="font-size:10.5px;color:var(--ink-3);">Sin hitos suficientes registrados hoy.</div>`;
-
   const catDominante = d.categorias_dia && d.categorias_dia[0] && d.categorias_dia[0].peso_pct > 0 ? d.categorias_dia[0] : null;
 
   cont.innerHTML = `
@@ -290,7 +252,7 @@ function pintarPulso(cont, d){
 
       ${kpisHTML}
 
-      <!-- BLOQUE 1: temas en movimiento (60%) · peso por categoría hoy, treemap (20%) · tensión nacional (20%) -->
+      <!-- BLOQUE 1: temas en movimiento (60%) · peso por categoría hoy, barras (20%) · tensión nacional (20%) -->
       <div style="display:grid;grid-template-columns:3fr 1fr 1fr;gap:14px;">
         ${tarjeta(`
           <div class="eyebrow">TEMAS EN MOVIMIENTO · QUÉ ESTÁ MOVIENDO AL PAÍS</div>
@@ -308,8 +270,8 @@ function pintarPulso(cont, d){
             </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin temas de agenda nacional con respaldo de medio de primer nivel en las últimas 24h.</div>`}
         `)}
         ${tarjeta(`
-          <div class="eyebrow" style="margin-bottom:6px;text-align:center;">PESO POR CATEGORÍA · HOY</div>
-          <div id="pulso-treemap-dia">${treemapCategoriasPulso(d.categorias_dia)}</div>
+          <div class="eyebrow" style="margin-bottom:6px;">PESO POR CATEGORÍA · HOY</div>
+          <div id="pulso-barras-dia">${barraCategoriasPulso(d.categorias_dia)}</div>
         `)}
         ${tarjeta(`
           <div style="text-align:center;">
@@ -344,10 +306,7 @@ function pintarPulso(cont, d){
         ${tarjeta(`<div class="eyebrow">OTROS ACTORES (máx. 5)</div>${listaActores(d.actores_otros)}`)}
       </div>
 
-      <!-- BLOQUE 5: cronología del día -->
-      ${tarjeta(`<div class="eyebrow">⏱ CRONOLOGÍA DEL DÍA</div>${cronologiaHTML}`)}
-
-      <!-- BLOQUE 6: peso por categoría · semana (40%) · patrón histórico 4 semanas (60%) -->
+      <!-- BLOQUE 5: peso por categoría · semana (40%) · patrón histórico 28 días (60%) -->
       <div style="display:grid;grid-template-columns:2fr 3fr;gap:14px;">
         ${tarjeta(`<div class="eyebrow">PESO POR CATEGORÍA · SEMANA</div><div id="pulso-barras-semana">${barraCategoriasPulso(d.categorias_semana)}</div>`)}
         ${tarjeta(`<div class="eyebrow">PATRÓN HISTÓRICO · 4 SEMANAS</div><div id="pulso-historico">${svgHistoricoPulso(d.patron_historico_4sem)}</div>`)}
@@ -356,7 +315,7 @@ function pintarPulso(cont, d){
     </div>`;
 
   animarVelocimetroPulso(d.tension_nacional);
-  activarTreemapCategorias(cont.querySelector('#pulso-treemap-dia'));
+  activarBarraCategoriasPulso(cont.querySelector('#pulso-barras-dia'));
   activarBarraCategoriasPulso(cont.querySelector('#pulso-barras-semana'));
   activarHistoricoPulso(cont.querySelector('#pulso-historico'));
 
