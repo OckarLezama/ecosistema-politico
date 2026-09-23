@@ -44,14 +44,21 @@ def noCuentaParaEscalar(descripcion):
 
 
 def _mencionadoDeFormaSegura(nombre_actor, texto_lower):
-    """Mismo criterio ya validado en robot_buscar_temas.py / limpiar_agenda_nacional.py."""
+    """Mismo criterio base ya validado en robot_buscar_temas.py / limpiar_agenda_nacional.py,
+    con una corrección real encontrada en esta revisión: el caso de un solo apellido corto
+    (p.ej. "Vance") comparaba con "in" (subcadena cruda), lo que hacía falso-positivo dentro
+    de palabras que simplemente contienen esas letras -- "Vance" quedaba "mencionado" en
+    "avances" porque "vance" es subcadena literal de "avances". Aquí se exige límite de
+    palabra real (\\b) en todos los casos, de un solo apellido o de nombre completo."""
     partes = [p for p in nombre_actor.split() if len(p) > 2]
     if len(partes) < 2:
-        return bool(partes) and partes[0].lower() in texto_lower
+        if not partes:
+            return False
+        return re.search(r'\b' + re.escape(partes[0].lower()) + r'\b', texto_lower) is not None
     combinaciones = [nombre_actor.lower(), f'{partes[0]} {partes[1]}'.lower()]
     if len(partes) >= 3:
         combinaciones.append(f'{partes[-2]} {partes[-1]}'.lower())
-    return any(c in texto_lower for c in combinaciones)
+    return any(re.search(r'\b' + re.escape(c) + r'\b', texto_lower) for c in combinaciones)
 
 
 def timestamp_evento(e):
@@ -118,9 +125,14 @@ def calcular():
             if cat not in peso:
                 continue
             peso[cat] += float(e['intensidad'])
-            tid = e['tema_id']
-            acc = tema_top_por_cat.setdefault(cat, {})
-            acc[tid] = acc.get(tid, 0) + float(e['intensidad'])
+            # el "tema principal" que se muestra (driver del velocímetro) solo se elige
+            # entre notas de medio de primer nivel (ALTA/OFICIAL) -- el % de la categoría
+            # sí suma toda nota real, pero el titular que se destaca tiene que venir de
+            # una fuente de primer nivel, mismo criterio que el Top 5.
+            if clasificar_fuente(e.get('fuente_url',''), e.get('descripcion','')) in {'ALTA','OFICIAL'}:
+                tid = e['tema_id']
+                acc = tema_top_por_cat.setdefault(cat, {})
+                acc[tid] = acc.get(tid, 0) + float(e['intensidad'])
         total = sum(peso.values()) or 1
         salida = []
         for c in CATEGORIAS:
@@ -158,25 +170,37 @@ def calcular():
         peso_tema[e['tema_id']] = peso_tema.get(e['tema_id'], 0) + float(e['intensidad'])
         eventos_agenda_por_tema.setdefault(e['tema_id'], []).append(e)
 
-    # filtro de calidad de fuente -- reutiliza el mismo clasificador que ya usa
-    # robot_buscar_temas.py para decidir si algo califica como agenda nacional. Aquí se
-    # usa para una segunda cosa: un tema puede calificar como agenda nacional (nivel_
-    # relevancia=1) con fuentes mixtas, pero para GANAR un lugar en el Top 5 exigimos que
-    # al menos una de sus notas en la ventana sea de un medio de primer nivel (ALTA/
-    # OFICIAL/MEDIA) -- si todas sus notas son de medios BAJA/SIN_CLASIFICAR, no compite
-    # por el Top 5 (sigue existiendo en el sistema, solo no se destaca aquí).
+    # filtro de calidad de fuente -- MÁS ESTRICTO que el que ya usa robot_buscar_temas.py
+    # para calificar agenda nacional. Aquí "medio de primer nivel" es ALTA u OFICIAL
+    # únicamente (no MEDIA, que en fuentes_confiabilidad.py mezcla diarios nacionales con
+    # medios regionales) -- para aparecer en el Top 5 / ser el tema principal de una
+    # categoría / ser el motivo de un actor, la nota tiene que venir de ahí. El peso que
+    # decide el ranking del Top 5 también se calcula SOLO con esas notas -- así un tema
+    # amplificado por muchas notas de medios locales/sin clasificar no puede ganar
+    # posición por volumen si no tiene respaldo real de primer nivel.
+    NIVELES_PRIMER_NIVEL = {'ALTA', 'OFICIAL'}
+
+    def nivel_evento(e):
+        return clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', ''))
+
+    def eventos_primer_nivel(tid):
+        return [e for e in eventos_agenda_por_tema.get(tid, []) if nivel_evento(e) in NIVELES_PRIMER_NIVEL]
+
     def tema_tiene_fuente_confiable(tid):
-        niveles = {clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', ''))
-                   for e in eventos_agenda_por_tema.get(tid, [])}
-        return bool(niveles - NIVELES_BAJA_O_SIN)
+        return bool(eventos_primer_nivel(tid))
 
     def mejor_evento(tid, requerir_fuente_confiable=False):
         evs = eventos_agenda_por_tema.get(tid, [])
         if requerir_fuente_confiable:
-            confiables = [e for e in evs if clasificar_fuente(e.get('fuente_url',''), e.get('descripcion','')) not in NIVELES_BAJA_O_SIN]
+            confiables = eventos_primer_nivel(tid)
             if confiables:
                 evs = confiables
         return max(evs, key=lambda e: float(e['intensidad'])) if evs else None
+
+    peso_tema_primer_nivel = {}
+    for tid in peso_tema:
+        evs_pn = eventos_primer_nivel(tid)
+        peso_tema_primer_nivel[tid] = sum(float(e['intensidad']) for e in evs_pn)
 
     # comparación real de intensidad por tema, ventana actual vs. las 24h anteriores --
     # se calcula una sola vez aquí y se reutiliza para el badge de escalamiento del Top 5
@@ -231,17 +255,17 @@ def calcular():
 
     paraguas = []
     for miembros in grupos.values():
-        if not any(tema_tiene_fuente_confiable(m) for m in miembros):
-            continue  # ningún miembro del grupo tiene respaldo de medio de primer nivel -- no compite por el Top 5
-        peso_grupo = sum(peso_tema[m] for m in miembros)
-        tid_top = max(miembros, key=lambda m: peso_tema[m])
+        peso_grupo_pn = sum(peso_tema_primer_nivel.get(m, 0) for m in miembros)
+        if peso_grupo_pn <= 0:
+            continue  # sin ninguna nota de medio de primer nivel en todo el grupo -- no compite por el Top 5
+        tid_top = max(miembros, key=lambda m: peso_tema_primer_nivel.get(m, 0))
         t_top = temas_por_id.get(tid_top)
         if not t_top:
             continue
         ev_top = mejor_evento(tid_top, requerir_fuente_confiable=True)
         paraguas.append({
             'id': tid_top, 'nombre': t_top['nombre'], 'categoria': t_top['categoria'],
-            'resumen': t_top.get('resumen') or '', 'peso': round(peso_grupo, 1),
+            'resumen': t_top.get('resumen') or '', 'peso': round(peso_grupo_pn, 1),
             'n_temas_agrupados': len(miembros),
             'escalando': any(tema_escalando(m) for m in miembros),
             'fuente_url': (ev_top or {}).get('fuente_url') or t_top.get('fuente_url') or '',
@@ -327,32 +351,68 @@ def calcular():
     ranking_actores = sorted(conteo_actor.items(),
                               key=lambda kv: max(peso_tema.get(x['tema_id'], 0) for x in kv[1]),
                               reverse=True)
-    def nota_real_para_actor(nombre_actor, tema_id):
-        """La nota real donde ese actor es mencionado dentro del tema -- no el título del
-        tema. Mismo matcher validado que ya decide el vínculo actor-tema. Si por algún
-        motivo ninguna nota de la ventana lo menciona textualmente (el vínculo pudo venir
-        de una nota fuera de la ventana), se cae al evento de mayor intensidad del tema
-        como aproximación honesta, nunca al título solo."""
-        evs = eventos_agenda_por_tema.get(tema_id) or eventos_por_tema.get(tema_id, [])
-        con_mencion = [e for e in evs if _mencionadoDeFormaSegura(nombre_actor, e['descripcion'].lower())]
-        candidatos = con_mencion or evs
-        if not candidatos:
-            return None
-        return max(candidatos, key=lambda e: float(e['intensidad']))
+    # actores.csv puede tener dos personas reales distintas que comparten los mismos dos
+    # apellidos (hermanos, p.ej. "Fernando Farías Laguna" / "Manuel Roberto Farías Laguna").
+    # _mencionadoDeFormaSegura() acepta esa pareja de apellidos como suficiente, así que sin
+    # este control una nota que solo nombra al hermano "gana" también para el otro -- se
+    # detectó exactamente ese caso en esta revisión. Aquí se detectan esos pares de
+    # apellidos compartidos por 2+ actores distintos, para exigirles nombre completo.
+    apellidos_compartidos = {}
+    for a in actores:
+        p = [x for x in a['nombre'].split() if len(x) > 2]
+        if len(p) >= 3:
+            clave = f'{p[-2]} {p[-1]}'.lower()
+            apellidos_compartidos.setdefault(clave, set()).add(a['nombre'].strip().lower())
 
+    def nota_real_para_actor(nombre_actor, tema_id):
+        """La nota real donde ese actor es mencionado dentro del tema -- nunca el título
+        del tema. Busca en TODO el historial del tema (no solo la ventana de 24h, porque
+        el vínculo actor-tema puede venir de una nota más vieja) con el mismo matcher
+        validado que ya decide el vínculo actor-tema. Si genuinamente ninguna nota lo
+        menciona por su nombre, regresa None -- sin nota real, el actor no se muestra."""
+        evs = eventos_por_tema.get(tema_id, [])
+        partes = [x for x in nombre_actor.split() if len(x) > 2]
+        clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
+        hay_homonimo = clave_apellidos and len(apellidos_compartidos.get(clave_apellidos, ())) > 1
+        con_mencion = []
+        for e in evs:
+            texto = e['descripcion'].lower()
+            if not _mencionadoDeFormaSegura(nombre_actor, texto):
+                continue
+            if hay_homonimo and nombre_actor.lower() not in texto:
+                # coincide solo por los apellidos compartidos con otra persona real distinta --
+                # sin el nombre completo no hay certeza de a cuál de los dos se refiere la nota.
+                continue
+            con_mencion.append(e)
+        if not con_mencion:
+            return None
+        return max(con_mencion, key=lambda e: float(e['intensidad']))
+
+    nombres_ya_usados = set()  # evita que la misma persona (con 2 registros distintos en
+                                # actores.csv, ej. ids duplicados del mismo actor) aparezca
+                                # dos veces entre las 3 columnas
     actores_federales, actores_partidos, actores_otros = [], [], []
     for actor_id, vinculos in ranking_actores:
         actor = next((a for a in actores if a['id'] == actor_id), None)
         if not actor:
             continue
-        v = max(vinculos, key=lambda x: peso_tema.get(x['tema_id'], 0))
-        tema_v = temas_por_id.get(v['tema_id'])
-        nota = nota_real_para_actor(actor['nombre'], v['tema_id'])
+        clave_nombre = actor['nombre'].strip().lower()
+        if clave_nombre in nombres_ya_usados:
+            continue
+        vinculos_ordenados = sorted(vinculos, key=lambda x: peso_tema.get(x['tema_id'], 0), reverse=True)
+        v, nota, tema_v = None, None, None
+        for candidato in vinculos_ordenados:
+            n = nota_real_para_actor(actor['nombre'], candidato['tema_id'])
+            if n:
+                v, nota, tema_v = candidato, n, temas_por_id.get(candidato['tema_id'])
+                break
+        if not v:
+            continue  # ningún vínculo tiene una nota real que lo mencione -- no se muestra
         entrada = {
             'id': actor_id, 'nombre': actor['nombre'], 'rol': v.get('rol') or '',
             'tema': tema_v['nombre'] if tema_v else '',
-            'nota': (nota['descripcion'][:200] if nota else (tema_v['nombre'] if tema_v else '')),
-            'fuente_url': (nota.get('fuente_url') if nota else '') or (tema_v.get('fuente_url') if tema_v else '') or '',
+            'nota': nota['descripcion'][:200],
+            'fuente_url': nota.get('fuente_url') or '',
             'reaparece': v['tema_id'] in ids_retomados,
             'tema_nuevo': v['tema_id'] in ids_nuevos,
         }
@@ -360,6 +420,7 @@ def calcular():
         destino = {'federal': actores_federales, 'partido': actores_partidos, 'otro': actores_otros}[tipo]
         if len(destino) < 5:
             destino.append(entrada)
+            nombres_ya_usados.add(clave_nombre)
 
     # ================================================================
     # DECLARACIÓN RELEVANTE -- automatizada, sin juicio editorial: cita textual (comillas
@@ -367,20 +428,29 @@ def calcular():
     # extranjero, dentro de la ventana de 24h. Si no hay ninguna que cumpla las 3
     # condiciones, la sección se omite (null) -- no se rellena con algo débil.
     # ================================================================
+    # también se exige que el actor y la cita estén en la MISMA cláusula (no solo en la
+    # misma nota completa) -- si no, un actor mencionado de pasada en una nota que cita a
+    # otra persona se llevaba el crédito de la declaración (caso real detectado: una nota
+    # sobre Carlos Slim se le atribuyó a Sheinbaum solo por aparecer ambos en el texto).
+    # También se exige fuente de primer nivel, mismo criterio que el resto del módulo.
     VERBOS_DECLARATIVOS = ['dijo', 'afirmó', 'declaró', 'aseguró', 'advirtió', 'sostuvo', 'señaló']
     declaracion = None
     mejor_intensidad = 0
     for e in ventana:
-        texto = e['descripcion']
-        es_cita = ('"' in texto or '"' in texto or '"' in texto or
-                   any(f' {v} ' in f' {texto.lower()} ' for v in VERBOS_DECLARATIVOS))
-        if not es_cita or float(e['intensidad']) < 7:
+        if nivel_evento(e) not in NIVELES_PRIMER_NIVEL or float(e['intensidad']) < 7:
             continue
-        actor_citado = next((a for a in actores_altos if _mencionadoDeFormaSegura(a['nombre'], texto.lower())), None)
-        if actor_citado and float(e['intensidad']) > mejor_intensidad:
-            declaracion = {'actor': actor_citado['nombre'], 'texto': texto[:280],
-                            'fuente_url': e.get('fuente_url', ''), 'intensidad': float(e['intensidad'])}
-            mejor_intensidad = float(e['intensidad'])
+        clausulas = re.split(r'[;.]| pero | mientras ', e['descripcion'])
+        for clausula in clausulas:
+            cl_lower = clausula.lower()
+            es_cita = ('"' in clausula or '"' in clausula or '"' in clausula or
+                       any(f' {v} ' in f' {cl_lower} ' for v in VERBOS_DECLARATIVOS))
+            if not es_cita:
+                continue
+            actor_citado = next((a for a in actores_altos if _mencionadoDeFormaSegura(a['nombre'], cl_lower)), None)
+            if actor_citado and float(e['intensidad']) > mejor_intensidad:
+                declaracion = {'actor': actor_citado['nombre'], 'texto': e['descripcion'][:280],
+                                'fuente_url': e.get('fuente_url', ''), 'intensidad': float(e['intensidad'])}
+                mejor_intensidad = float(e['intensidad'])
 
     # ================================================================
     # PATRÓN HISTÓRICO -- 4 semanas, mismo cálculo de tensión (promedio de intensidad
@@ -431,36 +501,10 @@ def calcular():
         'detalle_estables': detalle_estables,
     }
 
-    # ================================================================
-    # CAMBIOS ÚLTIMOS 60 MINUTOS -- delta real de actividad por categoría, última hora
-    # vs. la hora inmediatamente anterior. hora_registro sí tiene granularidad de minuto
-    # (confirmado en los datos), así que esto es una comparación real, no simulada.
-    # ================================================================
-    hace_60m = ahora - timedelta(minutes=60)
-    hace_120m = ahora - timedelta(minutes=120)
-    ult_60 = [e for e in eventos_validos if hace_60m <= e['_ts'] <= ahora]
-    prev_60 = [e for e in eventos_validos if hace_120m <= e['_ts'] < hace_60m]
-    conteo_ult, conteo_prev = {}, {}
-    for e in ult_60:
-        conteo_ult[e['categoria']] = conteo_ult.get(e['categoria'], 0) + 1
-    for e in prev_60:
-        conteo_prev[e['categoria']] = conteo_prev.get(e['categoria'], 0) + 1
-    cambios_60min = []
-    for cat in set(conteo_ult) | set(conteo_prev):
-        actual, previo = conteo_ult.get(cat, 0), conteo_prev.get(cat, 0)
-        if actual == previo:
-            continue
-        if previo == 0:
-            etiqueta_cambio = f'{actual} nota{"s" if actual!=1 else ""} nueva{"s" if actual!=1 else ""}'
-        else:
-            pct = round((actual - previo) / previo * 100)
-            etiqueta_cambio = f'{"+" if pct>0 else ""}{pct}%'
-        cambios_60min.append({
-            'categoria': cat, 'direccion': 'up' if actual > previo else 'down',
-            'actual': actual, 'previo': previo, 'etiqueta': etiqueta_cambio,
-            'hora': ahora.strftime('%H:%M'),
-        })
-    cambios_60min = sorted(cambios_60min, key=lambda c: abs(c['actual'] - c['previo']), reverse=True)[:6]
+    # (se quitó "cambios últimos 60 minutos": el JSON solo se sobrescribe en los cortes
+    # fijos 06/12/18 o por excepción de tensión, así que una métrica de "última hora"
+    # quedaba congelada horas entre corte y corte -- contradice el propio modelo de
+    # publicación del módulo, además de que el contenido no aportaba lectura clara)
 
     # (se evaluó una nube de palabras aquí y se decidió no incluirla -- no aportaba
     # lectura de inteligencia real y competía por espacio visual sin ganárselo)
@@ -487,7 +531,6 @@ def calcular():
         'categorias_dia': categorias_dia,
         'categorias_semana': categorias_semana,
         'top5_temas': top5,
-        'cambios_60min': cambios_60min,
         'cronologia_dia': cronologia_dia,
         'temas_nuevos': nuevos,
         'temas_continuidad': continuidad,
