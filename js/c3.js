@@ -38,7 +38,7 @@ const ACTORES_C3_JS = {
   ],
   'Campeche': [
     ['Layda Sansores San Román','Gobernadora','Layda'], ['Pablo Gutiérrez Lazarus','Coordinador estatal de Morena 2027'],
-    ['Rocío Abreu Artiñano','Senadora'], ['Liz Hernández Romero','Operación política del Ejecutivo'],
+    ['Rocío Abreu Artiñano','Senadora'], ['Liz Hernández Romero','Ex secretaria de Gobierno'],
     ['Aníbal Ostoa Ortega','Senador'], ['Raúl Ojeda Zubieta','Entorno de López Obrador'],
     ['Biby Rabelo de la Torre','Alcaldesa de Campeche (MC)'], ['Jorge Carlos Hurtado Montero','Referente opositor'],
     ['Christian Castro Bello','PRI'], ['Pablo Angulo Briceño','PRI'],
