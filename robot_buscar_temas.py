@@ -146,6 +146,47 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
     return False, f'solo {puntos} puntos (necesita 3+)'
 
 
+def evaluaAlertaTemprana(evs_del_tema, actores_altos, hoy_str):
+    """Alerta temprana (warning intelligence) -- mismo criterio de calificaAgendaNacional()
+    de arriba, evaluado un paso antes. De los 4 requisitos (3+ días, 2+ medios, al menos 1
+    de calidad verificable, puntos>=3), el único que solo puede subir con el tiempo --
+    nunca bajar -- es el conteo de días. Por eso la alerta se limita al caso más
+    defendible: el tema YA cumple los otros 3 requisitos y le falta EXACTAMENTE 1 día de
+    cobertura para calificar como agenda nacional. No se dispara por "casi" en intensidad
+    o actores -- esos sí pueden no repetirse -- solo por lo que ya es, en los hechos, un
+    día de distancia. Ver mismo criterio, mismo comentario, en limpiar_agenda_nacional.py."""
+    if not evs_del_tema:
+        return False, 'sin notas'
+    dias_distintos = len({e['fecha'] for e in evs_del_tema if e['fecha'] != hoy_str})
+    if dias_distintos != 2:
+        return False, f'{dias_distintos} día(s) antes de hoy (la alerta solo aplica con exactamente 2)'
+    dominios = set()
+    for e in evs_del_tema:
+        try:
+            dominios.add(urllib.parse.urlparse(e.get('fuente_url','')).netloc)
+        except Exception:
+            pass
+    dominios.discard('')
+    if len(dominios) < 2:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+)'
+    niveles = {clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', '')) for e in evs_del_tema}
+    if not (niveles - NIVELES_BAJA_O_SIN):
+        return False, 'ningún medio de calidad verificable todavía'
+    actores_mencionados = set()
+    for e in evs_del_tema:
+        texto = e['descripcion'].lower()
+        for a in actores_altos:
+            if _mencionadoDeFormaSegura(a['nombre'], texto):
+                actores_mencionados.add(a['id'])
+    intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
+    puntos = len(dominios) - 2
+    if intensidad_prom >= 7: puntos += 2
+    if len(actores_mencionados) >= 2: puntos += 2
+    if puntos >= 3:
+        return True, f'cumple medios+calidad+puntos ({puntos}) -- le falta exactamente 1 día de cobertura'
+    return False, f'2 días, pero solo {puntos} puntos (necesita 3+)'
+
+
 def sin_acentos(s):
     return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
 
@@ -694,6 +735,7 @@ def escalar_temas_informativos():
     actores_altos = cargar_actores_alta_influencia()
     hoy_str = datetime.now(ZONA_MX).date().strftime('%Y-%m-%d')
     cambios = 0
+    cambios_alerta = 0
     for t in temas:
         if t.get('tipo') != 'informativo':
             continue
@@ -706,13 +748,25 @@ def escalar_temas_informativos():
             t['nivel_relevancia'] = '1'
             cambios += 1
             actualizarTemaActoresAutomatico(t['id'], evs_del_tema)
-    if cambios:
+            alerta_nueva = ''
+        else:
+            # NUEVO -- alerta temprana (warning intelligence), ver evaluaAlertaTemprana()
+            # arriba: mismo criterio de calificaAgendaNacional, evaluado un paso antes.
+            alerta_ok, _ = evaluaAlertaTemprana(evs_del_tema, actores_altos, hoy_str)
+            alerta_nueva = '1' if alerta_ok else ''
+        if t.get('alerta_temprana', '') != alerta_nueva:
+            t['alerta_temprana'] = alerta_nueva
+            cambios_alerta += 1
+    if cambios or cambios_alerta:
         campos = list(temas[0].keys())
         with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
             w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
             w.writeheader()
             for t in temas: w.writerow(t)
-        print(f'{cambios} tema(s) escalado(s) automáticamente a agenda nacional (Nivel 1).')
+        if cambios:
+            print(f'{cambios} tema(s) escalado(s) automáticamente a agenda nacional (Nivel 1).')
+        if cambios_alerta:
+            print(f'{cambios_alerta} tema(s) con cambio de alerta temprana.')
 
 
 def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes, actores_altos):
@@ -729,12 +783,30 @@ def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes,
             if t['id']==tema_id:
                 t['nivel_relevancia'] = '1'
                 t['tipo'] = 'completo'
+                t['alerta_temprana'] = ''
         actualizarTemaActoresAutomatico(tema_id, evs_del_tema)
         with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
             w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
             w.writeheader()
             for t in temas: w.writerow(t)
         print(f'  -> Tema {tema_id} ESCALADO a agenda nacional (cobertura real confirmada).')
+        return
+
+    # NUEVO -- alerta temprana (warning intelligence): mismo criterio de
+    # calificaAgendaNacional, evaluado un paso antes (ver evaluaAlertaTemprana arriba).
+    alerta_ok, _ = evaluaAlertaTemprana(evs_del_tema, actores_altos, hoy_str)
+    alerta_nueva = '1' if alerta_ok else ''
+    if tema.get('alerta_temprana', '') != alerta_nueva:
+        campos = list(temas[0].keys())
+        for t in temas:
+            if t['id']==tema_id:
+                t['alerta_temprana'] = alerta_nueva
+        with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+            w.writeheader()
+            for t in temas: w.writerow(t)
+        if alerta_ok:
+            print(f'  -> Tema {tema_id}: ALERTA TEMPRANA activada -- a 1 día de calificar como agenda nacional.')
 
 
 def guardar_evento_directo(evento):

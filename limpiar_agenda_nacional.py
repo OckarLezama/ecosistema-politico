@@ -99,6 +99,54 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
     return False, f'solo {puntos} puntos (necesita 3+) -- {len(dominios)} medios, intensidad {intensidad_prom:.1f}, {len(actores_mencionados)} actor(es)'
 
 
+def evaluaAlertaTemprana(evs_del_tema, actores_altos, hoy_str):
+    """Alerta temprana (warning intelligence) -- NO es un score nuevo ni una predicción
+    inventada: es el MISMO criterio de calificaAgendaNacional() de arriba, evaluado un
+    paso antes. De los 4 requisitos (3+ días, 2+ medios, al menos 1 de calidad
+    verificable, puntos>=3), el único que solo puede subir con el tiempo -- nunca bajar
+    -- es el conteo de días. Por eso la alerta se limita al caso más defendible: el
+    tema YA cumple los otros 3 requisitos y le falta EXACTAMENTE 1 día de cobertura para
+    calificar como agenda nacional. No se dispara por "casi" en intensidad o actores,
+    porque esos sí pueden no repetirse -- solo por lo que ya es, en los hechos,
+    un día de distancia."""
+    if not evs_del_tema:
+        return False, 'sin notas'
+
+    dias_distintos = len({e['fecha'] for e in evs_del_tema if e['fecha'] != hoy_str})
+    if dias_distintos != 2:
+        return False, f'{dias_distintos} día(s) antes de hoy (la alerta solo aplica con exactamente 2 -- un día de faltar)'
+
+    dominios = set()
+    for e in evs_del_tema:
+        try:
+            dominios.add(urllib.parse.urlparse(e.get('fuente_url','')).netloc)
+        except Exception:
+            pass
+    dominios.discard('')
+    if len(dominios) < 2:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+)'
+
+    niveles = {clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', '')) for e in evs_del_tema}
+    if not (niveles - NIVELES_BAJA_O_SIN):
+        return False, 'ningún medio de calidad verificable todavía'
+
+    actores_mencionados = set()
+    for e in evs_del_tema:
+        texto = e['descripcion'].lower()
+        for a in actores_altos:
+            if _mencionadoDeFormaSegura(a['nombre'], texto):
+                actores_mencionados.add(a['id'])
+
+    intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
+    puntos = len(dominios) - 2
+    if intensidad_prom >= 7: puntos += 2
+    if len(actores_mencionados) >= 2: puntos += 2
+
+    if puntos >= 3:
+        return True, f'cumple medios+calidad+puntos ({puntos}) -- le falta exactamente 1 día de cobertura para calificar como agenda nacional'
+    return False, f'2 días, pero solo {puntos} puntos (necesita 3+)'
+
+
 PALABRAS_SENALADO = ['acusa', 'acusan', 'acusado', 'investigación', 'investigado',
     'denuncia', 'implicado', 'señalado', 'sospecha', 'presunto', 'vinculado al caso',
     'carpeta de investigación', 'orden de aprehensión']
@@ -168,7 +216,9 @@ def limpiar():
     hoy_str = datetime.now(ZONA_MX).date().strftime('%Y-%m-%d')
     bajados = []
     subidos = []
+    alertados = []
     filas_actores_nuevas = []
+    cambios_alerta = 0
 
     for t in temas:
         if not t['id'].startswith('auto-'):
@@ -182,7 +232,6 @@ def limpiar():
         if t.get('nivel_relevancia') == '1' and not cumple:
             t['nivel_relevancia'] = '3'
             bajados.append((t['id'], t.get('nombre', t['id']), razon))
-            continue
 
         if t.get('nivel_relevancia') == '3' and cumple:
             # sube de vuelta -- esto es lo que faltaba: antes solo se podía bajar, nunca
@@ -200,8 +249,23 @@ def limpiar():
                 filas_actores_nuevas.extend(nuevas)
                 for fila in nuevas:
                     ya_existentes.add((fila['tema_id'], fila['actor_id']))
+            # ya es agenda nacional -- la alerta temprana (aviso de "está a punto de
+            # calificar") ya no aplica ni tiene sentido, se limpia si la tenía puesta
+            alerta_nueva = ''
+        else:
+            # sigue en Nivel 3 (o recién bajó) -- NUEVO: warning intelligence, ver
+            # evaluaAlertaTemprana() arriba. Es el mismo criterio de siempre, evaluado
+            # un paso antes -- no un score ni una predicción aparte.
+            alerta_ok, alerta_razon = evaluaAlertaTemprana(evs_del_tema, actores_altos, hoy_str)
+            alerta_nueva = '1' if alerta_ok else ''
+            if alerta_ok:
+                alertados.append((t['id'], t.get('nombre', t['id']), alerta_razon))
 
-    if bajados or subidos:
+        if t.get('alerta_temprana', '') != alerta_nueva:
+            t['alerta_temprana'] = alerta_nueva
+            cambios_alerta += 1
+
+    if bajados or subidos or cambios_alerta:
         campos = list(temas[0].keys())
         with open(RUTA_TEMAS, 'w', newline='', encoding='utf-8') as f:
             w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
@@ -230,6 +294,9 @@ def limpiar():
     for tid, nombre, razon in subidos:
         print(f'  - {tid} ("{nombre[:60]}") -- {razon}')
     print(f'\nActores rellenados en temas viejos que no tenían ninguno: {len(filas_actores_nuevas)}')
+    print(f'\nTemas con alerta temprana activa (a 1 día de calificar como agenda nacional): {len(alertados)}')
+    for tid, nombre, razon in alertados:
+        print(f'  - {tid} ("{nombre[:60]}") -- {razon}')
 
 
 if __name__ == '__main__':
