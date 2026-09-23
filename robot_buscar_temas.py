@@ -20,6 +20,7 @@ import json
 import re
 import unicodedata
 from datetime import datetime, timezone, timedelta
+from fuentes_confiabilidad import clasificar_fuente, NIVELES_BAJA_O_SIN
 
 RUTA_TEMAS = 'data/temas.csv'
 RUTA_EVENTOS = 'data/eventos.csv'
@@ -116,6 +117,15 @@ def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
     dominios.discard('')
     if len(dominios) < 2:
         return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+)'
+    # NUEVO -- candado de calidad mínima: "2+ medios" no distingue calidad, así que una
+    # nota amplificada solo en Facebook/Instagram/sitios sin trayectoria (todos "Baja" o
+    # "Sin clasificar" en fuentes_confiabilidad.py) podía calificar como agenda nacional
+    # aunque ningún medio con editorial real la hubiera tocado. Se exige que AL MENOS UNA
+    # de las fuentes del tema sea de calidad verificable (Alta, Media u Oficial) -- no se
+    # exige en TODAS, solo que no sea puro volumen de fuentes flojas.
+    niveles = {clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', '')) for e in evs_del_tema}
+    if not (niveles - NIVELES_BAJA_O_SIN):
+        return False, f'{len(dominios)} medios, pero ninguno de calidad verificable (todos Baja o sin clasificar)'
     actores_mencionados = set()
     for e in evs_del_tema:
         texto = e['descripcion'].lower()
