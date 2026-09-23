@@ -45,7 +45,7 @@ function insigniaFuenteFeed(e){
   if(typeof confiabilidadFuente !== 'function') return '';
   const c = confiabilidadFuente({ fuenteUrl: e.fuente_url, descripcion: e.descripcion, cobertura: e.cobertura });
   const tt = c.medio ? `Medio: ${c.medio}` : 'Medio no identificado';
-  return `<span class="fuente-tt" data-tt="${tt.replace(/"/g,'&quot;')}" style="display:inline-flex;align-items:center;gap:3px;font-size:9px;font-family:var(--f-mono);text-transform:uppercase;color:${c.color};border:1px solid ${c.color};border-radius:99px;padding:1px 6px;margin-left:6px;">${c.etiqueta}</span>`;
+  return `<span class="fuente-tt" data-tt="${tt.replace(/"/g,'&quot;')}" style="display:inline-flex;align-items:center;gap:2px;font-size:7.5px;font-family:var(--f-mono);text-transform:uppercase;color:${c.color};border:1px solid ${c.color};border-radius:99px;padding:0.5px 5px;margin-left:6px;">${c.etiqueta}</span>`;
 }
 
 function renderFeed(){
