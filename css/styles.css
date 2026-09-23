@@ -317,6 +317,25 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   body.modo-impresion-analisis #btn-exportar-pdf-analisis{ display:none !important; }
   body.modo-impresion-analisis{ background:#fff; color:#000; }
   body.modo-impresion-analisis .eyebrow{ color:#000 !important; }
+  /* el tema oscuro usa var(--ink-1) (casi blanco) y var(--bg-2) (casi negro) por todo
+     el módulo -- en impresión, si el navegador no imprime fondos, ese texto casi blanco
+     queda sobre página blanca y la hoja se ve en blanco. Redefinimos aquí las mismas
+     variables a valores legibles en papel; como son custom properties, se heredan a
+     todo el contenido de #panel-analisis sin tocar el resto de la app. */
+  body.modo-impresion-analisis{
+    --bg-0:#fff; --bg-1:#f4f4f4; --bg-2:#ffffff;
+    --line:#c9c9c9; --line-strong:#999;
+    --ink-1:#111; --ink-2:#333; --ink-3:#555;
+  }
+  /* por defecto Chrome no imprime fondos/colores de fondo salvo que se fuerce esto --
+     lo forzamos aquí para que la barra de categorías, el punto de pulso y el semáforo
+     de riesgo (que sí usan colores planos con significado) se vean en el PDF. */
+  body.modo-impresion-analisis #panel-analisis, body.modo-impresion-analisis #panel-analisis *{
+    -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important;
+  }
+  body.modo-impresion-analisis #panel-analisis [style*="border"]{
+    border-color:#ccc !important;
+  }
 }
 
 #analisis-contenedor-scroll{ scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1); }
