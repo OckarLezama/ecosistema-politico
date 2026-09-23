@@ -1,31 +1,36 @@
 {
-  "generado_en": "2026-09-23T10:08:40.051042-06:00",
+  "generado_en": "2026-09-23T11:59:07.941415-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 21,
+  "n_notas_ventana": 22,
   "baja_confianza": false,
-  "tension_nacional": 69,
+  "tension_nacional": 70,
+  "kpis": {
+    "alertas_politicas": 1,
+    "temas_en_escalamiento": 0,
+    "temas_estables": 7
+  },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 41,
+      "peso_pct": 38,
       "tema_principal": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "tema_principal_id": "auto-28603c7610"
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 28,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal"
-    },
-    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 22,
+      "peso_pct": 23,
       "tema_principal": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
       "tema_principal_id": "auto-d2ae07bb0d"
     },
     {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 21,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal"
+    },
+    {
       "categoria": "Economía",
-      "peso_pct": 10,
+      "peso_pct": 18,
       "tema_principal": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
       "tema_principal_id": "auto-08b061e1fe"
     },
@@ -39,25 +44,25 @@
   "categorias_semana": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 42,
+      "peso_pct": 41,
       "tema_principal": "Así fue el segundo Grito de Independencia de la presidenta Claudia Sheinbaum - I",
       "tema_principal_id": "auto-b5ae2f507a"
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 35,
+      "peso_pct": 34,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal"
     },
     {
       "categoria": "Economía",
-      "peso_pct": 11,
+      "peso_pct": 12,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision"
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 9,
+      "peso_pct": 11,
       "tema_principal": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
       "tema_principal_id": "auto-d2ae07bb0d"
     },
@@ -70,39 +75,217 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-28603c7610",
-      "nombre": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "id": "auto-8108d66665",
+      "nombre": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudad",
       "categoria": "Gobernabilidad",
-      "resumen": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
-      "peso": 31.0
-    },
-    {
-      "id": "auto-d2ae07bb0d",
-      "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
-      "categoria": "Relación Bilateral",
-      "resumen": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercial, destapa prensa de EEUU - infobae.com",
-      "peso": 30.0
+      "resumen": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudadana, Omar García Harfuch, aseguraron que habrá detenidos por la red relacionada con los más de 59 millones de litros de combustible asegurados en Guanajuato. El jueves, - facebook.com",
+      "peso": 42.0,
+      "n_temas_agrupados": 4,
+      "escalando": false
     },
     {
       "id": "huachicol-fiscal",
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "peso": 19.0
+      "peso": 33.0,
+      "n_temas_agrupados": 3,
+      "escalando": false
     },
     {
-      "id": "auto-8108d66665",
-      "nombre": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudad",
+      "id": "auto-28603c7610",
+      "nombre": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "categoria": "Gobernabilidad",
-      "resumen": "La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudadana, Omar García Harfuch, aseguraron que habrá detenidos por la red relacionada con los más de 59 millones de litros de combustible asegurados en Guanajuato. El jueves, - facebook.com",
-      "peso": 16.0
+      "resumen": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "peso": 31.0,
+      "n_temas_agrupados": 1,
+      "escalando": false
     },
     {
-      "id": "auto-08b061e1fe",
-      "nombre": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",
+      "id": "auto-d2ae07bb0d",
+      "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "categoria": "Relación Bilateral",
+      "resumen": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercial, destapa prensa de EEUU - infobae.com",
+      "peso": 28.0,
+      "n_temas_agrupados": 2,
+      "escalando": false
+    },
+    {
+      "id": "auto-e1e0f1db38",
+      "nombre": "Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo cont",
+      "categoria": "Social",
+      "resumen": "Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo contra ‘hordas’ de migrantes",
+      "peso": 14.0,
+      "n_temas_agrupados": 1,
+      "escalando": false
+    }
+  ],
+  "cambios_60min": [
+    {
       "categoria": "Gobernabilidad",
-      "resumen": "\"Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baja California Sur - LatinUS",
-      "peso": 14.0
+      "direccion": "up",
+      "actual": 24,
+      "previo": 0,
+      "etiqueta": "24 notas nuevas",
+      "hora": "11:59"
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "direccion": "up",
+      "actual": 6,
+      "previo": 0,
+      "etiqueta": "6 notas nuevas",
+      "hora": "11:59"
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "direccion": "up",
+      "actual": 4,
+      "previo": 0,
+      "etiqueta": "4 notas nuevas",
+      "hora": "11:59"
+    },
+    {
+      "categoria": "Economía",
+      "direccion": "up",
+      "actual": 3,
+      "previo": 0,
+      "etiqueta": "3 notas nuevas",
+      "hora": "11:59"
+    }
+  ],
+  "nube_palabras": [
+    {
+      "palabra": "sheinbaum",
+      "n": 10
+    },
+    {
+      "palabra": "claudia",
+      "n": 7
+    },
+    {
+      "palabra": "trump",
+      "n": 4
+    },
+    {
+      "palabra": "tabasco",
+      "n": 4
+    },
+    {
+      "palabra": "morena",
+      "n": 3
+    },
+    {
+      "palabra": "presidenta",
+      "n": 2
+    },
+    {
+      "palabra": "aprobación",
+      "n": 2
+    },
+    {
+      "palabra": "evolución",
+      "n": 2
+    },
+    {
+      "palabra": "protección",
+      "n": 2
+    },
+    {
+      "palabra": "descarta",
+      "n": 2
+    },
+    {
+      "palabra": "casa",
+      "n": 2
+    },
+    {
+      "palabra": "blanca",
+      "n": 2
+    },
+    {
+      "palabra": "insiste",
+      "n": 2
+    },
+    {
+      "palabra": "llama",
+      "n": 2
+    },
+    {
+      "palabra": "xeva",
+      "n": 2
+    },
+    {
+      "palabra": "donald",
+      "n": 2
+    },
+    {
+      "palabra": "baja",
+      "n": 2
+    },
+    {
+      "palabra": "huachicol",
+      "n": 2
+    },
+    {
+      "palabra": "fiscal",
+      "n": 2
+    },
+    {
+      "palabra": "talla",
+      "n": 2
+    },
+    {
+      "palabra": "politica",
+      "n": 2
+    },
+    {
+      "palabra": "encuesta",
+      "n": 2
+    },
+    {
+      "palabra": "mayor",
+      "n": 1
+    },
+    {
+      "palabra": "américa",
+      "n": 1
+    },
+    {
+      "palabra": "latina",
+      "n": 1
+    }
+  ],
+  "cronologia_dia": [
+    {
+      "hora": "03:41",
+      "categoria": "Relación Bilateral",
+      "descripcion": "Trump recibe  a Xi: comercio e IA serán temas del encuentro"
+    },
+    {
+      "hora": "08:25",
+      "categoria": "Seguridad Nacional",
+      "descripcion": "Reporta SSPC  la detención de dos narcos en Sinaloa y CDMX"
+    },
+    {
+      "hora": "08:25",
+      "categoria": "Gobernabilidad",
+      "descripcion": "Descarta Montiel cambios en los ganadores de encuestas de Morena"
+    },
+    {
+      "hora": "11:44",
+      "categoria": "Economía",
+      "descripcion": "Claudia Sheinbaum habla sobre la baja de natalidad en México: \"Hay que entender qué está pasando en los jóvenes\" - Ambito"
+    },
+    {
+      "hora": "11:45",
+      "categoria": "Relación Bilateral",
+      "descripcion": "¡DONALD TRUMP, “EL CHIMOLTRUFIA” DE LA CASA BLANCA!"
+    },
+    {
+      "hora": "11:45",
+      "categoria": "Economía",
+      "descripcion": "CUESTIONA SHEINBAUM LA PENSIÓN DE ZEDILLO"
     }
   ],
   "temas_nuevos": [],
@@ -111,7 +294,7 @@
       "id": "auto-d2ae07bb0d",
       "nombre": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
       "categoria": "Relación Bilateral",
-      "peso": 30.0
+      "peso": 23.0
     },
     {
       "id": "huachicol-fiscal",
@@ -135,15 +318,7 @@
       "motivo": "Sheinbaum insiste que gobernadores y presidentes no deben tener doble nacionalidad; diputados discuten iniciativa"
     }
   ],
-  "actores_agenda_nacional": [
-    {
-      "id": "jorge_romero",
-      "nombre": "Jorge Romero Herrera",
-      "rol": "Mencionado",
-      "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
+  "actores_federales": [
     {
       "id": "javier_may",
       "nombre": "Javier May Rodríguez",
@@ -175,6 +350,66 @@
       "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
       "reaparece": false,
       "tema_nuevo": false
+    },
+    {
+      "id": "jd_vance",
+      "nombre": "JD Vance",
+      "rol": "Responsable institucional",
+      "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
+      "reaparece": false,
+      "tema_nuevo": false
+    }
+  ],
+  "actores_partidos": [
+    {
+      "id": "montiel_reyes",
+      "nombre": "Ariadna Montiel Reyes",
+      "rol": "Responsable institucional",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "reaparece": false,
+      "tema_nuevo": false
+    }
+  ],
+  "actores_otros": [
+    {
+      "id": "jorge_romero",
+      "nombre": "Jorge Romero Herrera",
+      "rol": "Mencionado",
+      "tema": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "farias_fernando",
+      "nombre": "Fernando Farías Laguna",
+      "rol": "Investigado",
+      "tema": "Huachicol Fiscal",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "farias_manuel",
+      "nombre": "Manuel Roberto Farías Laguna",
+      "rol": "Investigado",
+      "tema": "Huachicol Fiscal",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "ernesto_ruffo",
+      "nombre": "Ernesto Ruffo Appel",
+      "rol": "Mencionado",
+      "tema": "Huachicol Fiscal",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "julio_hernandez_lopez",
+      "nombre": "Julio Hernández López",
+      "rol": "Responsable institucional",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "reaparece": false,
+      "tema_nuevo": false
     }
   ],
   "declaracion_relevante": {
@@ -192,18 +427,18 @@
     {
       "semana_fin": "2026-09-09",
       "tension": 65,
-      "n_notas": 114
+      "n_notas": 115
     },
     {
       "semana_fin": "2026-09-16",
       "tension": 59,
-      "n_notas": 133
+      "n_notas": 140
     },
     {
       "semana_fin": "2026-09-23",
-      "tension": 69,
-      "n_notas": 150
+      "tension": 70,
+      "n_notas": 154
     }
   ],
-  "hora_corte_publicada": "2026-09-23 10:08"
+  "hora_corte_publicada": "2026-09-23 11:59"
 }
