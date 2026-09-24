@@ -170,9 +170,15 @@ function analizarTendenciaCategorias(serie){
   });
 }
 
-/* ---------- peso por categoría · tendencia 4 semanas -- 5 líneas, mismo lenguaje visual
-   (línea suave + degradado + halo, animada) que ya se usaba en Patrón Histórico, ahora con
-   fondo de cuadrícula, pulso en el punto que más se movió, y lectura numérica debajo. ---------- */
+/* ---------- peso por categoría · tendencia 4 semanas -- 5 líneas con relleno de área
+   translúcido, fondo de cuadrícula, guía vertical punteada en cada fecha, y el punto de
+   valor MÁS ALTO de cada categoría (su propio máximo en las 4 semanas, no solo el último)
+   marcado con un anillo que parpadea suave por opacidad (keyframe pulso-halo, ya existente
+   en el sitio para el mapa de calor -- sin el "encoger" que no gustó de pulse-cintillo).
+   La lectura numérica (flecha, % vs. semana previa, posición vs. su media) se deja DEBAJO
+   del lienzo: probé metiéndola encima de la cuadrícula y con 5 categorías se amontona sobre
+   las líneas y se vuelve ilegible, así que se queda donde ya estaba, tal como se pidió si
+   no lucía bien ahí dentro. ---------- */
 function svgTendenciaCategoriasPulso(serie){
   if(!serie || !serie.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Sin suficientes semanas para mostrar tendencia.</div>`;
   const categorias = serie[0].categorias.map(c=>c.categoria);
@@ -180,22 +186,30 @@ function svgTendenciaCategoriasPulso(serie){
   const paso = w/(serie.length-1 || 1);
   const y = v => padT + (1-(v/100))*(h-padB-padT);
   const analisis = analizarTendenciaCategorias(serie);
-  const catMayorMovimiento = analisis.length ? analisis.reduce((a,b)=> Math.abs(b.delta)>Math.abs(a.delta) ? b : a, analisis[0]).categoria : null;
 
-  let svgLineas = '';
+  // guías verticales punteadas, una por fecha, de la base hasta arriba del lienzo -- van
+  // primero para quedar detrás de áreas/líneas/puntos.
+  const guias = serie.map((s,i)=> `<line x1="${i*paso}" y1="${padT}" x2="${i*paso}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.6" stroke-dasharray="2,3" opacity="0.5"/>`).join('');
+
+  let svgAreas = '', svgLineasYPuntos = '';
   categorias.forEach(cat=>{
     const color = COLORES_TENDENCIA_CAT[cat] || '#8A8F98';
     const valores = serie.map(s => (s.categorias.find(c=>c.categoria===cat)||{}).peso_pct || 0);
-    const pts = valores.map((v,i)=> `${i*paso},${y(v).toFixed(1)}`).join(' ');
-    const ultimoIdx = valores.length-1;
-    svgLineas += `<polyline class="pulso-tend-linea" data-cat="${cat}" points="${pts}" fill="none" stroke="${color}" stroke-width="1.8" stroke-opacity="0.8" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.1s ease-out;"/>`;
+    const pts = valores.map((v,i)=> `${i*paso},${y(v).toFixed(1)}`);
+    const idxMax = valores.reduce((iMax,v,i)=> v>valores[iMax] ? i : iMax, 0);
+
+    // relleno de área translúcido bajo la línea, hasta la base
+    const areaPath = `M${pts[0]} L${pts.join(' L')} L${(valores.length-1)*paso},${(h-padB).toFixed(1)} L0,${(h-padB).toFixed(1)} Z`;
+    svgAreas += `<path d="${areaPath}" fill="${color}" opacity="0.09"/>`;
+
+    svgLineasYPuntos += `<polyline class="pulso-tend-linea" data-cat="${cat}" points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="1.8" stroke-opacity="0.85" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.1s ease-out;"/>`;
     valores.forEach((v,i)=>{
-      const esUltimo = i===ultimoIdx;
-      const destaca = esUltimo && cat===catMayorMovimiento;
-      const halo = esUltimo ? `<circle cx="${i*paso}" cy="${y(v)}" r="${destaca?10:8}" fill="${color}" opacity="0.22" ${destaca?'style="animation:pulse-cintillo 1.8s ease-in-out infinite;"':''}/>` : '';
-      svgLineas += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%" cx="${i*paso}" cy="${y(v)}" r="${esUltimo?4.5:2.5}" fill="${color}" stroke="var(--bg-2)" stroke-width="0.8" style="cursor:pointer;"/>`;
+      const esMax = i===idxMax;
+      const halo = esMax ? `<circle cx="${i*paso}" cy="${y(v)}" r="9" fill="none" stroke="${color}" stroke-width="1.4" style="animation:pulso-halo 1.8s ease-in-out infinite;"/>` : '';
+      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${i*paso}" cy="${y(v)}" r="${esMax?4:2.5}" fill="${color}" stroke="var(--bg-2)" stroke-width="0.8" style="cursor:pointer;"/>`;
     });
   });
+
   const leyenda = analisis.map(a=>`
     <div style="display:flex;align-items:center;gap:5px;font-size:9.5px;color:var(--ink-2);margin-right:12px;margin-bottom:4px;white-space:nowrap;">
       <span style="width:8px;height:8px;border-radius:50%;background:${a.color};display:inline-block;flex-shrink:0;"></span>
@@ -203,15 +217,17 @@ function svgTendenciaCategoriasPulso(serie){
       <span style="font-family:var(--f-mono);color:${a.f.color};font-weight:700;">${a.f.icono} ${a.pct>0?'+':''}${a.pct}%</span>
       <span style="font-family:var(--f-mono);color:var(--ink-3);font-size:8.5px;" title="vs. su media de 4 semanas (${a.media4}%)">${a.vsMedia>0?'sobre':a.vsMedia<-2?'bajo':'en'} su media</span>
     </div>`).join('');
-  return `<div style="display:flex;flex-wrap:wrap;margin-bottom:4px;">${leyenda}</div>
-  <svg id="pulso-tendencia-svg" viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
+  return `<svg id="pulso-tendencia-svg" viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
     ${defsGridPulso('pulso-grid-tend')}
     <rect x="0" y="0" width="${w}" height="${h-padB}" fill="url(#pulso-grid-tend)"/>
+    ${guias}
+    ${svgAreas}
     <line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.75"/>
-    ${svgLineas}
+    ${svgLineasYPuntos}
     ${serie.map((s,i)=>`<text x="${i*paso}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.semana_fin.slice(5)}</text>`).join('')}
   </svg>
-  <div style="font-size:9.5px;color:var(--ink-3);margin-top:4px;">% = variación de la semana en curso vs. la semana previa · comparación adicional contra la media de las 4 semanas mostradas.</div>`;
+  <div style="display:flex;flex-wrap:wrap;margin-top:6px;">${leyenda}</div>
+  <div style="font-size:9px;color:var(--ink-3);margin-top:2px;">% = variación de la semana en curso vs. la previa · el anillo marca el máximo real de cada categoría en las 4 semanas.</div>`;
 }
 function activarTendenciaCategorias(cont){
   if(!cont) return;
@@ -242,13 +258,36 @@ function analizarPatronHistorico(historico){
   const f = delta!==null ? _flechaTendencia(delta, 2) : null;
   const vsMedia = avgUlt!==null ? avgUlt - mediaGeneral : null;
   const datoLimitado = ultimos7.length < 4 || previos7.length < 4;
+
+  // semana con más notas -- 4 bloques de 7 días tal como vienen ordenados (más viejo primero),
+  // no son semanas de calendario exactas, pero sí ventanas comparables entre sí.
+  let semanaTop = null;
+  for(let b=0;b<4;b++){
+    const bloque = historico.slice(b*7, b*7+7);
+    if(!bloque.length) continue;
+    const total = bloque.reduce((a,p)=>a+(p.n_notas||0),0);
+    if(!semanaTop || total>semanaTop.total) semanaTop = { total, desde: bloque[0].fecha, hasta: bloque[bloque.length-1].fecha };
+  }
+
+  // nivel de fuente de las notas del periodo completo -- cuánto de lo que alimenta esta
+  // gráfica viene de fuente de alto nivel (ALTA/OFICIAL) vs. media vs. baja/sin clasificar.
+  const totNotas = historico.reduce((a,p)=>a+(p.n_notas||0),0);
+  const totAlto = historico.reduce((a,p)=>a+(p.n_alto||0),0);
+  const totMedio = historico.reduce((a,p)=>a+(p.n_medio||0),0);
+  const totBajo = historico.reduce((a,p)=>a+(p.n_bajo||0),0);
+  const nivelFuente = totNotas>0 ? { altoPct: Math.round(totAlto/totNotas*100), medioPct: Math.round(totMedio/totNotas*100), bajoPct: Math.round(totBajo/totNotas*100) } : null;
+
   return { avgUlt: avgUlt!==null?Math.round(avgUlt):null, avgPrev: avgPrev!==null?Math.round(avgPrev):null,
-    mediaGeneral: Math.round(mediaGeneral), delta, pct, f, vsMedia: vsMedia!==null?Math.round(vsMedia):null, datoLimitado };
+    mediaGeneral: Math.round(mediaGeneral), delta, pct, f, vsMedia: vsMedia!==null?Math.round(vsMedia):null, datoLimitado,
+    semanaTop, nivelFuente };
 }
 
 /* ---------- patrón histórico · 4 semanas -- BARRAS, granularidad diaria (28 barras reales),
-   con fondo de cuadrícula, línea de soporte en la media del periodo, y lectura numérica de
-   últimos 7 días vs. los 7 previos debajo. ---------- */
+   con fondo de cuadrícula y línea de soporte en la media del periodo. Sin animación en las
+   barras (se quitó por pedido): el día de tensión más alta y el más bajo se distinguen solo
+   por color/contorno, no por movimiento. Debajo, tres líneas de análisis numérico real:
+   últimos 7 días vs. previos, qué semana tuvo más notas, y de qué nivel de fuente vino el
+   volumen del periodo. ---------- */
 function barrasHistoricoPulso(historico){
   const vals = historico.map(h=>h.tension).filter(v=>v!==null);
   if(!vals.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Aún sin suficientes días con actividad para mostrar patrón.</div>`;
@@ -258,19 +297,25 @@ function barrasHistoricoPulso(historico){
   const y = v => padT + (1-(v/100))*(h-padB-padT);
   const conDato = historico.filter(p=>p.tension!==null);
   const diaTop = conDato.reduce((a,b)=> b.tension>a.tension ? b : a, conDato[0]);
+  const diaBottom = conDato.reduce((a,b)=> b.tension<a.tension ? b : a, conDato[0]);
   const mostrarEtiqueta = i => i % 4 === 0 || i === historico.length-1;
   const an = analizarPatronHistorico(historico);
   const yMedia = an ? y(an.mediaGeneral) : null;
 
+  const fmtFecha = f => new Date(f+'T00:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'short'});
+
   const franjaAnalisis = an ? `
-    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:9.5px;color:var(--ink-2);margin-bottom:6px;">
-      <span>Últimos 7 días: <strong style="font-family:var(--f-mono);color:${colorTension(an.avgUlt)};">${an.avgUlt}/100</strong></span>
-      ${an.f ? `<span style="font-family:var(--f-mono);font-weight:700;color:${an.f.color};">${an.f.icono} ${an.pct!==null ? (an.pct>0?'+':'')+an.pct+'%' : ''} vs. 7 días previos${an.avgPrev!==null?' ('+an.avgPrev+'/100)':''}</span>` : ''}
-      <span style="color:var(--ink-3);">Media del periodo: <strong style="font-family:var(--f-mono);">${an.mediaGeneral}/100</strong> ${an.vsMedia!==null ? '('+(an.vsMedia>0?'+':'')+an.vsMedia+' pts. actual)' : ''}</span>
-      ${an.datoLimitado ? `<span style="color:var(--riesgo-medio);">⚠ ventana con pocos días de dato real — lectura de baja confianza</span>` : ''}
+    <div style="font-size:9.5px;color:var(--ink-2);line-height:1.7;margin-top:6px;">
+      <div>Últimos 7 días: <strong style="font-family:var(--f-mono);color:${colorTension(an.avgUlt)};">${an.avgUlt}/100</strong>
+        ${an.f ? ` <span style="font-family:var(--f-mono);font-weight:700;color:${an.f.color};">${an.f.icono} ${an.pct!==null ? (an.pct>0?'+':'')+an.pct+'%' : ''}</span> vs. 7 días previos${an.avgPrev!==null?' ('+an.avgPrev+'/100)':''}` : ''}
+        · Media del periodo: <strong style="font-family:var(--f-mono);">${an.mediaGeneral}/100</strong> ${an.vsMedia!==null ? '('+(an.vsMedia>0?'+':'')+an.vsMedia+' pts. el actual)' : ''}
+        ${an.datoLimitado ? `<span style="color:var(--riesgo-medio);"> · ⚠ ventana con pocos días de dato real</span>` : ''}
+      </div>
+      ${an.semanaTop ? `<div>Semana con más volumen: <strong>${fmtFecha(an.semanaTop.desde)}–${fmtFecha(an.semanaTop.hasta)}</strong> (${an.semanaTop.total} notas)</div>` : ''}
+      ${an.nivelFuente ? `<div>Nivel de fuente del periodo: <strong style="color:var(--teal);">${an.nivelFuente.altoPct}% alto</strong> · <strong style="color:var(--riesgo-medio);">${an.nivelFuente.medioPct}% medio</strong> · <strong style="color:var(--riesgo-alto);">${an.nivelFuente.bajoPct}% bajo/sin clasificar</strong></div>` : ''}
     </div>` : '';
 
-  return `${franjaAnalisis}<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
     ${defsGridPulso('pulso-grid-hist')}
     <rect x="0" y="0" width="${w}" height="${h-padB}" fill="url(#pulso-grid-hist)"/>
     ${yMedia!==null ? `<line x1="0" y1="${yMedia.toFixed(1)}" x2="${w}" y2="${yMedia.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
@@ -279,17 +324,24 @@ function barrasHistoricoPulso(historico){
     ${historico.map((p,i)=>{
       if(p.tension===null) return '';
       const esTop = p.fecha===diaTop.fecha;
+      const esBottom = p.fecha===diaBottom.fecha && diaBottom.fecha!==diaTop.fecha;
       const x = i*paso + (paso-anchoBarra)/2;
       const yTope = y(p.tension);
       const alturaFinal = (h-padB) - yTope;
-      return `<rect class="pulso-hist-barra" data-info="${p.fecha} · tensión ${p.tension}/100 · ${p.n_notas} nota${p.n_notas!==1?'s':''}"
+      const relleno = esTop ? 'var(--riesgo-alto)' : esBottom ? 'var(--riesgo-bajo)' : colorTension(p.tension);
+      const contorno = esTop || esBottom ? `stroke="var(--ink-1)" stroke-width="1"` : '';
+      return `<rect class="pulso-hist-barra" data-info="${p.fecha} · tensión ${p.tension}/100 · ${p.n_notas} nota${p.n_notas!==1?'s':''}${esTop?' · día más alto del periodo':''}${esBottom?' · día más bajo del periodo':''} · fuente: ${p.n_alto||0} alta/oficial, ${p.n_medio||0} media, ${p.n_bajo||0} baja/sin clasificar"
         x="${x.toFixed(1)}" y="${(h-padB).toFixed(1)}" width="${anchoBarra.toFixed(1)}" height="0"
-        data-y-final="${yTope.toFixed(1)}" data-h-final="${alturaFinal.toFixed(1)}" data-es-top="${esTop?1:0}"
-        fill="${colorTension(p.tension)}" opacity="${esTop?1:0.72}" rx="2"
+        data-y-final="${yTope.toFixed(1)}" data-h-final="${alturaFinal.toFixed(1)}"
+        fill="${relleno}" opacity="${esTop||esBottom?1:0.68}" rx="2" ${contorno}
         style="cursor:pointer;transition:y 0.8s ease-out, height 0.8s ease-out;"/>`;
     }).join('')}
     ${historico.map((p,i)=> mostrarEtiqueta(i) ? `<text x="${(i*paso+paso/2).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${p.fecha.slice(5)}</text>` : '').join('')}
-  </svg>`;
+  </svg>
+  <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;">
+    <span style="color:var(--riesgo-alto);">■</span> día de mayor tensión &nbsp; <span style="color:var(--riesgo-bajo);">■</span> día de menor tensión
+  </div>
+  ${franjaAnalisis}`;
 }
 function activarHistoricoPulso(cont){
   if(!cont) return;
@@ -302,11 +354,6 @@ function activarHistoricoPulso(cont){
   cont.querySelectorAll('.pulso-hist-barra').forEach(b=>{
     b.addEventListener('mousemove', ev=> mostrarTooltipPulso(b.dataset.info, ev));
     b.addEventListener('mouseleave', ocultarTooltipPulso);
-    if(b.dataset.esTop==='1'){
-      b.style.animation = 'pulse-cintillo 2.4s ease-in-out infinite';
-      b.style.transformOrigin = 'center';
-      b.style.transformBox = 'fill-box';
-    }
   });
 }
 
