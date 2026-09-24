@@ -544,18 +544,15 @@ function pintarPulso(cont, d){
   const listaTema = (items) => items.length ? items.map(t=>{
     const titular = tituloLimpio(t.motivo || t.nombre);
     const nombreDistinto = t.motivo && tituloLimpio(t.nombre) !== titular;
-    // el badge de impacto va justo debajo del titular, en su propia línea -- es el dato
-    // que más rápido debe leerse (alto/medio/bajo), no algo que competir por espacio con
-    // la categoría y el enlace en la fila de metadatos.
     return `
     <div style="padding:6px 0;border-top:1px solid var(--line);">
       <div style="font-size:11.5px;font-weight:600;line-height:1.4;">${titular}</div>
       ${nombreDistinto ? `<div style="font-size:9px;color:var(--ink-3);margin-top:1px;">tema: ${tituloLimpio(t.nombre)}</div>` : ''}
-      ${t.impacto ? `<div style="margin-top:3px;">${badgeImpacto(t.impacto)}</div>` : ''}
       <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:4px;">
         <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;">
           <span style="font-size:9.5px;color:var(--ink-3);">${t.categoria}</span>
           ${t.dias_silencio ? `<span style="font-size:8px;font-family:var(--f-mono);color:var(--arena);border:1px solid var(--arena);border-radius:99px;padding:1px 5px;white-space:nowrap;">${t.dias_silencio}D DE SILENCIO</span>` : ''}
+          ${badgeImpacto(t.impacto)}
         </div>
         ${enlaceNota(t.fuente_url)}
       </div>
@@ -626,7 +623,7 @@ function pintarPulso(cont, d){
       <!-- BLOQUE 1: temas en movimiento (60%) · peso por categoría hoy (20%) · tensión nacional (20%) -->
       <div style="display:grid;grid-template-columns:3fr 1fr 1fr;gap:14px;">
         ${tarjeta(`
-          <div class="eyebrow">TEMAS EN MOVIMIENTO · QUÉ ESTÁ MOVIENDO AL PAÍS</div>
+          <div class="eyebrow">TEMAS EN MOVIMIENTO</div>
           ${d.top5_temas.length ? d.top5_temas.map((t,i)=>`
             <div style="display:flex;gap:10px;padding:8px 0;border-top:${i?'1px solid var(--line)':'none'};">
               <span style="font-family:var(--f-mono);font-weight:700;color:var(--ink-3);width:16px;">${i+1}</span>
