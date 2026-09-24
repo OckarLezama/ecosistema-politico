@@ -27,6 +27,16 @@ CORTES_FIJOS = [6, 12, 18]  # hora CDMX
 UMBRAL_CAMBIO_TENSION = 12  # puntos de 0-100 -- si la tensión se mueve esto o más desde
                              # el último corte publicado, se considera "amerita actualizar"
                              # aunque no sea la hora del corte fijo
+UMBRAL_HORAS_SIN_PUBLICAR = 13  # red de seguridad: GitHub Actions no garantiza que un cron
+                             # de menos de una hora corra exactamente a tiempo (lo confirmamos
+                             # el 2026-09-24 -- el corte de las 06:00 no se disparó y el dato
+                             # se quedó pegado en el corte de las 20:32 del día anterior). El
+                             # hueco más largo QUE SÍ es normal es el nocturno 18:00->06:00
+                             # (12h) -- por eso el umbral se pone en 13h: nunca se activa solo
+                             # por ese hueco normal, pero si un corte fijo se lo salta, esta
+                             # regla publica de todos modos en la siguiente corrida del cron
+                             # (máximo ~1h después de perdido el corte), en vez de esperar
+                             # hasta el siguiente corte fijo o un salto grande de tensión.
 
 CATEGORIAS = ['Seguridad Nacional', 'Gobernabilidad', 'Relación Bilateral', 'Economía', 'Social']
 
@@ -741,6 +751,17 @@ def decide_si_publicar(nuevo):
     t_ant, t_nuevo = anterior.get('tension_nacional'), nuevo.get('tension_nacional')
     if t_ant is not None and t_nuevo is not None and abs(t_nuevo - t_ant) >= UMBRAL_CAMBIO_TENSION:
         return True, f'tensión se movió {abs(t_nuevo-t_ant)} puntos desde el último corte ({t_ant}→{t_nuevo})'
+    generado_anterior = anterior.get('generado_en')
+    if generado_anterior:
+        try:
+            ts_anterior = datetime.fromisoformat(generado_anterior)
+            horas_transcurridas = (ahora - ts_anterior).total_seconds() / 3600
+        except (ValueError, TypeError):
+            horas_transcurridas = None
+        if horas_transcurridas is not None and horas_transcurridas >= UMBRAL_HORAS_SIN_PUBLICAR:
+            return True, (f'han pasado {horas_transcurridas:.1f}h sin publicar (>= '
+                          f'{UMBRAL_HORAS_SIN_PUBLICAR}h) -- probable corte fijo perdido, '
+                          f'se publica de todos modos')
     return False, 'sin cambio suficiente, se mantiene el corte anterior'
 
 
