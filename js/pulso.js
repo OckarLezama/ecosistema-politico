@@ -227,13 +227,14 @@ function svgTendenciaCategoriasPulso(serie){
   const y = v => padT + (1-(v/100))*(h-padB-padT);
   const analisis = analizarTendenciaCategorias(serie);
 
-  // guías verticales punteadas, una por fecha, de la base hasta arriba del lienzo -- van
-  // primero para quedar detrás de áreas/líneas/puntos.
-  const guias = serie.map((s,i)=> `<line x1="${xDe(i).toFixed(1)}" y1="${padT}" x2="${xDe(i).toFixed(1)}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.6" stroke-dasharray="2,3" opacity="0.5"/>`).join('');
-
-  // mismo lenguaje visual que la gráfica de tendencia de C3 (Legislativo): línea suave +
-  // área con degradado real (color→transparente, no una opacidad plana) + halo solo en el
-  // punto más alto -- aquí se repite 5 veces, una por categoría, sobre la misma cuadrícula.
+  // FORMATO C3 (js/c3.js, svg#c3-tendencia-svg) aplicado en serio, no solo un degradado
+  // de más: se quitan las guías verticales punteadas (C3 no las tiene, y con la
+  // cuadrícula de fondo sobran), el trazo baja a la misma opacidad tenue de C3 (0.55) y
+  // los puntos NO destacados se achican mucho (r=1.4, igual que un día sin nada de
+  // relieve en C3) para que el único punto grande + halo (el máximo real de cada
+  // categoría en sus 4 semanas) sea lo único que de verdad salta a la vista -- en C3 esa
+  // diferencia de tamaño es la que hace que la línea se lea como "sparkline viva" y no
+  // como una gráfica de líneas plana. Los cuadritos de fondo sí se conservan, por pedido.
   let svgDefs = '', svgAreas = '', svgLineasYPuntos = '';
   categorias.forEach((cat,ci)=>{
     const color = COLORES_TENDENCIA_CAT[cat] || '#8A8F98';
@@ -243,19 +244,20 @@ function svgTendenciaCategoriasPulso(serie){
     const idxMax = valores.reduce((iMax,v,i)=> v>valores[iMax] ? i : iMax, 0);
 
     svgDefs += `<linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="${color}" stop-opacity="0.32"/>
+      <stop offset="0%" stop-color="${color}" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
     </linearGradient>`;
 
-    // relleno de área con degradado real bajo la línea, hasta la base
+    // relleno de área con degradado real bajo la línea, hasta la base -- mismo id y
+    // misma fórmula de stops que grad-tend-c3 en js/c3.js
     const areaPath = `M${pts[0]} L${pts.join(' L')} L${xDe(valores.length-1).toFixed(1)},${(h-padB).toFixed(1)} L${padL},${(h-padB).toFixed(1)} Z`;
     svgAreas += `<path d="${areaPath}" fill="url(#${gradId})"/>`;
 
-    svgLineasYPuntos += `<polyline class="pulso-tend-linea" data-cat="${cat}" points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="1.5" stroke-opacity="0.75" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.1s ease-out;"/>`;
+    svgLineasYPuntos += `<polyline class="pulso-tend-linea" data-cat="${cat}" points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="1.3" stroke-opacity="0.55" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.1s ease-out;"/>`;
     valores.forEach((v,i)=>{
       const esMax = i===idxMax;
-      const halo = esMax ? `<circle cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="9" fill="none" stroke="${color}" stroke-width="1.4" style="animation:pulso-halo 1.8s ease-in-out infinite;"/>` : '';
-      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4.5:2}" fill="${color}" stroke="var(--bg-2)" stroke-width="${esMax?1:0.6}" style="cursor:pointer;"/>`;
+      const halo = esMax ? `<circle cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="7.5" fill="${color}" opacity="0.22" style="animation:pulso-halo 1.8s ease-in-out infinite;"/>` : '';
+      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4.5:1.4}" fill="${color}" stroke="var(--bg-2)" stroke-width="${esMax?1:0.6}" style="cursor:pointer;"/>`;
     });
   });
 
@@ -270,7 +272,6 @@ function svgTendenciaCategoriasPulso(serie){
     ${defsGridPulso('pulso-grid-tend')}
     <defs>${svgDefs}</defs>
     <rect x="0" y="0" width="${w}" height="${h-padB}" fill="url(#pulso-grid-tend)"/>
-    ${guias}
     ${svgAreas}
     <line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.75"/>
     ${svgLineasYPuntos}
@@ -429,7 +430,7 @@ function activarHistoricoPulso(cont){
 function barraCategoriasPulso(categorias){
   return `<div style="display:flex;flex-direction:column;height:100%;justify-content:space-between;">
     ${categorias.map(c=>`
-    <div class="pulso-barra-cat" data-categoria="${c.categoria}" data-info="${c.categoria} · ${c.peso_pct}% del peso total · ${c.n_notas||0} nota${(c.n_notas||0)!==1?'s':''} en ${c.n_temas||0} tema${(c.n_temas||0)!==1?'s':''} distinto${(c.n_temas||0)!==1?'s':''}${c.tema_principal ? ' — principal: '+tituloLimpio(c.tema_principal).replace(/"/g,'&quot;') : ''} · clic para ver las notas" style="cursor:pointer;">
+    <div class="pulso-barra-cat" data-categoria="${c.categoria}" style="cursor:pointer;">
       <div style="display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:2px;">
         <span>${c.categoria}</span><span style="font-family:var(--f-mono);color:var(--ink-2);">${c.peso_pct}%</span>
       </div>
@@ -448,9 +449,29 @@ function abrirModalCategoriaPulso(catData){
     document.body.appendChild(modal);
   }
   const notas = catData.notas || [];
+  // mismo umbral de impacto que usa Nuevos/Retomados (0-10, >=7 alto, >=4 medio) --
+  // aquí no hace falta el backend porque las notas ya vienen con su intensidad real.
+  const nAlto = notas.filter(n=>n.intensidad>=7).length;
+  const nMedio = notas.filter(n=>n.intensidad>=4 && n.intensidad<7).length;
+  const nBajo = notas.filter(n=>n.intensidad<4).length;
+  const totImp = nAlto+nMedio+nBajo || 1;
+  const barraImpacto = (etiqueta, n, color) => `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+      <span style="font-size:9.5px;color:var(--ink-2);width:74px;flex-shrink:0;">${etiqueta}</span>
+      <div style="flex:1;height:8px;background:var(--bg-1);border-radius:99px;overflow:hidden;">
+        <div style="width:${Math.round(n/totImp*100)}%;height:100%;background:${color};"></div>
+      </div>
+      <span style="font-size:9.5px;font-family:var(--f-mono);color:var(--ink-3);width:18px;text-align:right;">${n}</span>
+    </div>`;
   modal.innerHTML = `<div class="ficha-modal-card" style="max-width:480px;">
     <button class="ficha-modal-close">✕</button>
     <div class="eyebrow">${catData.categoria} · ${catData.peso_pct}% del peso · ${catData.n_notas||0} nota${(catData.n_notas||0)!==1?'s':''}</div>
+    ${notas.length ? `<div style="background:var(--bg-1);border-radius:7px;padding:10px 12px;margin:8px 0 4px;">
+      <div style="font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;">Notas por nivel de impacto</div>
+      ${barraImpacto('Alto', nAlto, 'var(--riesgo-alto)')}
+      ${barraImpacto('Medio', nMedio, 'var(--riesgo-medio)')}
+      ${barraImpacto('Bajo', nBajo, 'var(--ink-3)')}
+    </div>` : ''}
     ${notas.length ? notas.map(n=>`
       <div class="contexto-tema-box">
         <div style="font-size:11.5px;">${tituloLimpio(n.texto)}</div>
@@ -467,12 +488,15 @@ function abrirModalCategoriaPulso(catData){
 function activarBarraCategoriasPulso(cont, categorias){
   if(!cont) return;
   cont.querySelectorAll('.pulso-barra-cat').forEach(b=>{
-    b.addEventListener('mousemove', ev=> mostrarTooltipPulso(b.dataset.info, ev));
+    const catData = (categorias||[]).find(c=>c.categoria===b.dataset.categoria);
+    // hover simple: solo el total de notas, en letra chica y sutil la invitación a dar
+    // clic -- el detalle real (por qué pesa lo que pesa) vive en el modal, no en el hover.
+    const tipHtml = catData
+      ? `${catData.categoria} · ${catData.n_notas||0} nota${(catData.n_notas||0)!==1?'s':''}<div style="color:var(--ink-3);font-size:9px;font-weight:400;margin-top:2px;">clic para más detalles</div>`
+      : '';
+    b.addEventListener('mousemove', ev=> tipHtml && mostrarTooltipPulso(tipHtml, ev));
     b.addEventListener('mouseleave', ocultarTooltipPulso);
-    b.addEventListener('click', ()=>{
-      const catData = (categorias||[]).find(c=>c.categoria===b.dataset.categoria);
-      if(catData) abrirModalCategoriaPulso(catData);
-    });
+    b.addEventListener('click', ()=>{ if(catData) abrirModalCategoriaPulso(catData); });
   });
 }
 
@@ -520,15 +544,18 @@ function pintarPulso(cont, d){
   const listaTema = (items) => items.length ? items.map(t=>{
     const titular = tituloLimpio(t.motivo || t.nombre);
     const nombreDistinto = t.motivo && tituloLimpio(t.nombre) !== titular;
+    // el badge de impacto va justo debajo del titular, en su propia línea -- es el dato
+    // que más rápido debe leerse (alto/medio/bajo), no algo que competir por espacio con
+    // la categoría y el enlace en la fila de metadatos.
     return `
     <div style="padding:6px 0;border-top:1px solid var(--line);">
       <div style="font-size:11.5px;font-weight:600;line-height:1.4;">${titular}</div>
       ${nombreDistinto ? `<div style="font-size:9px;color:var(--ink-3);margin-top:1px;">tema: ${tituloLimpio(t.nombre)}</div>` : ''}
+      ${t.impacto ? `<div style="margin-top:3px;">${badgeImpacto(t.impacto)}</div>` : ''}
       <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:4px;">
         <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;">
           <span style="font-size:9.5px;color:var(--ink-3);">${t.categoria}</span>
           ${t.dias_silencio ? `<span style="font-size:8px;font-family:var(--f-mono);color:var(--arena);border:1px solid var(--arena);border-radius:99px;padding:1px 5px;white-space:nowrap;">${t.dias_silencio}D DE SILENCIO</span>` : ''}
-          ${badgeImpacto(t.impacto)}
         </div>
         ${enlaceNota(t.fuente_url)}
       </div>
