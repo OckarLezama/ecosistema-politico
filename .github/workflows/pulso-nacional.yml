@@ -11,6 +11,10 @@ concurrency:
   group: pulso-nacional-unico
   cancel-in-progress: false
 
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   calcular-pulso:
     runs-on: ubuntu-latest
@@ -19,9 +23,28 @@ jobs:
       - name: Calcular pulso nacional (y publicar solo si corresponde)
         run: python3 calcular_pulso_nacional.py
       - name: Guardar snapshot si se publico
+        id: snapshot
         run: |
           git config user.name "robot-pulso"
           git config user.email "robot@ecosistema-politico.local"
           git add data/pulso_nacional.json
-          git diff --staged --quiet || git commit -m "Pulso nacional: corte $(date -u +%Y-%m-%d\ %H:%M) UTC"
-          git diff --staged --quiet || (git pull --rebase && git push)
+          if git diff --staged --quiet; then
+            echo "publico=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Pulso nacional: corte $(date -u +%Y-%m-%d\ %H:%M) UTC"
+            git pull --rebase
+            git push
+            echo "publico=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Forzar reconstruccion de GitHub Pages
+        # un push hecho con el GITHUB_TOKEN automatico NO dispara el workflow interno
+        # "pages build and deployment" (asi lo previene GitHub para evitar loops) -- por
+        # eso el commit del robot quedaba en el repo pero el sitio publicado nunca se
+        # actualizaba solo. Esta llamada pide un build de Pages de forma explicita,
+        # sin depender de ese evento de push.
+        if: steps.snapshot.outputs.publico == 'true'
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds"
