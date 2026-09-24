@@ -1,34 +1,34 @@
 {
-  "generado_en": "2026-09-23T18:24:45.926349-06:00",
+  "generado_en": "2026-09-23T19:44:57.279779-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 15,
+  "n_notas_ventana": 12,
   "baja_confianza": false,
-  "tension_nacional": 71,
+  "tension_nacional": 70,
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 36,
+      "peso_pct": 37,
       "tema_principal": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
       "tema_principal_id": "auto-28603c7610",
-      "n_temas": 2
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 26,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 3
+      "n_temas": 1
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 25,
+      "peso_pct": 24,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 3
     },
     {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 23,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 3
+    },
+    {
       "categoria": "Economía",
-      "peso_pct": 13,
+      "peso_pct": 17,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 2
@@ -145,16 +145,28 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-28603c7610",
-      "nombre": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
+      "id": "auto-05d78984ca",
+      "nombre": "Claudia Sheinbaum gana la batalla política en Quintana Roo al derrotar a Rafael ",
       "categoria": "Gobernabilidad",
-      "resumen": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
-      "peso": 35.0,
-      "n_temas_agrupados": 6,
+      "resumen": "Claudia Sheinbaum gana la batalla política en Quintana Roo al derrotar a Rafael Marín en la postulación a gobernador. - El Congresista",
+      "peso": 21.0,
+      "n_temas_agrupados": 4,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 4,
-      "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/005n1pol?partner=rss"
+      "medios_corroborantes": 3,
+      "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPeDg1YnRvSzRxaXRoRUJZOFFZTmpWN19WT0xqeXdPZkdvOGdUMDhoRE5Na0h0SFpfaXFyUkwwazl3Y0s4c3hBTXlCTUFDRUlLcWUwVHhUdnN1eFBiRFBwc3pJYTJYVERGZWQ5YzFoVklGdW1VR1c5Ri1ZLUk3RTF1RHA1ejN0MW1kaEduWmkyNnh4SEtGcEJxd0NHSXgtUXl1dVpQaDZKdnVuOWZkajZFM3JJallxRGRGbGE0dm9ZYzJBNTZuZ25IX9IB3AFBVV95cUxNVHRyTml6dDUwZVNGQnV6eEYxRE5RN0VzWWpXbTJxOVZ5UHlXalVIZlZEUDVCeTJYQjJFbk1IN1BJQklxVW43aUVyTEpTRHhfaXp4Ri0zLXBzVUw1NndnSlJNUGQ2Tnl0RXZHRENvR2xwQmlibmlTWlE0aXNKQUxHeVo3dGZ0WXhCZTZnRVNGOFV3OEd4a0t1eWRkTFEyV1FLZnItUW1mNkgtSmd6SXhraXhKWHJXTXhlNERkMXdoV2ZYY0NwQVVlSGROQ3FLWmlrVlVtWnlUd1VfYjFL?oc=5"
+    },
+    {
+      "id": "sinaloa-crisis",
+      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
+      "peso": 7.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/013n2pol?partner=rss"
     }
   ],
   "temas_nuevos": [
@@ -163,20 +175,15 @@
       "nombre": "Chipote chillón a Citlalli Hernández: Familia de Chespirito reprueba uso de la m",
       "categoria": "Gobernabilidad",
       "peso": 12.0,
+      "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/espectaculos/2026/09/22/chipote-chillon-a-citlalli-hernandez-familia-de-chespirito-reprueba-uso-de-la-marca-en-campana-politica/"
-    },
-    {
-      "id": "auto-bba8005734",
-      "nombre": "¿Por qué hay una ‘caja de huevo’ en el Museo de Arte Carrillo Gil? La historia d",
-      "categoria": "Social",
-      "peso": 6.0,
-      "fuente_url": "https://www.elfinanciero.com.mx/entretenimiento/2026/09/22/una-caja-de-huevo-y-mas-en-el-museo-carrillo-gil-de-que-va-el-encuentro-nacional-de-arte-joven/"
     },
     {
       "id": "auto-3d8ce04cd2",
       "nombre": "¿Roberto Velasco contestó acusación de Trump con mensaje LGBTIQ+ en la ONU? Esto",
       "categoria": "Relación Bilateral",
       "peso": 5.0,
+      "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/22/roberto-velasco-contesto-acusacion-de-trump-con-mensaje-lgbtiq-en-la-onu-esto-sabemos/"
     },
     {
@@ -184,6 +191,7 @@
       "nombre": "Diputado del Verde cachetea a contrincante por candidatura en Puebla: lo apodan ",
       "categoria": "Gobernabilidad",
       "peso": 4.0,
+      "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOOTB4NTFFb2xkWERjanZtREUzbzhKT3JSRER4NzJja3BpRjItUzVXbURlZVNBMi1CZExvN2VHUmlYOUQ5cFlRc0p6QU5udERRTmxsR1J6Y1VMcG92RnV4R0JXeV83YlB1OW8tdmhVRW56MlNKRjZrOGR2ZC1RQTlCT3lGUlpmUlFfUExCRWV3V003bzE0cDg2S1pNdmdqS2NhTjlfQjdMYjR3OXRnNVhUTXl6aFhlRHA0cDI4Q2FrcktyZVhYZ3ZkM3ZnVnBaYjRBeVpJ0gHuAUFVX3lxTE11eUlLUEptY3hQZkRxR1BjSV8xbEZQSDUzTU1PaFZjWTItQ1RsLUVOUkNBNkVtbHR3UEgwZ2lseEdTQ2c2YnExNmZTeHdFaC1wUFNnQ2R6UElhOUtkbFZWaFlMcW5XamZjQVE3bTIxbUxvSi16UW9vSVpTZXZ1YjFnem5IMWh4Z1NPREhkU3JKREc3NE9HbXdMcEU1R2xnb0JFSExlUmFnd1UtcUNpRUU5NkJka29lOEFFOVhpRG9Eb1lrVThfaWNvZEFnVEtSMS0zcWNRalRtWmlEYkhyTEZfVUNnVWdkaUpUZmZWMkE?oc=5"
     },
     {
@@ -191,11 +199,30 @@
       "nombre": "¿Quién era Miguel Sánchez Altamirano,el alcalde de Juchitán detenido por fuerzas",
       "categoria": "Seguridad Nacional",
       "peso": 4.0,
+      "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxORjlXSm1yX0MtUG0wLWZobUtsYXRfMmhvMG5sb3Z0LXpYSVljVm5mV0lWY2JwbXBYMkVEMk5vWGZHYzJJZUJWbUV5YzlEb3ZXaWViWU5nNEVoVFM4ZDlwSmFrbEQ0RURkU0MwUUtpY3NlNzJyYWxsWGlmbHlmeFIwYXEtbEN0TWtEaXRNV2lQeTFIdDFId3R5V2dsT3ROd9IBngFBVV95cUxPbzFadWpYSlRfcHgzcEhaYW1VdTZHMGZWai1tcXdaam1aSWpud1otMFM4U3NIaW9sNHVyWEYwVzUwVnV2b0VQXzZtZDNuMnVKa292UUR6eHltbUc0cWZfdlhiQktfVVE4Zi1JdWRWeFNwWHJHX29FRnV2bU1EX3VrQ3U0TFl4SXhibEdWLWpMOFdVbmh0QzI2WXpCaS0xQQ?oc=5"
+    },
+    {
+      "id": "auto-0f514abbaf",
+      "nombre": "Tras una década de abandono, inicia la demolición del hospital general para dar ",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOWGtVMFU1M3lnTmVmVktDNmlPSnQ5RjJ0bC16emQ3UGtobTdOeHRaTk5lUnEyN2lpMmlpblZQbHAyZUVRbGJxQkRIdkJ1cE43dDVRbHZZck55WW5Wbkc0ajRBeHluNWFZXzBhZXhYRmZqZGdnbkt4TkVaTlg1dy0xOU0yUjZqZ0lqLUtiX2hYUjNrTlJWNFZSaE81RnA2dDloZ3VYbXc1QVNQRURDdW1pYWM3cHotNWtDS05KeFp3SUt4cXljVmxGRHgydUo1ZW93d0ZHeDNpWE9JU2FhalpKRTE0bko3X3Q3?oc=5"
     }
   ],
   "temas_retomados": [],
   "actores_destacados": [
+    {
+      "id": "ojeda",
+      "nombre": "Rafael Ojeda Durán",
+      "rol": "Mencionado",
+      "tema": "Huachicol Fiscal",
+      "nota": "Rafael Ojeda y la caja negra del huachicol fiscal, escribe Mario Maldonado - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQTG0zN2djdHZJMGJoMFVYVFlYRUpDbThRdy1KNkd5aGVRdEpFOFlERTNPbWxZa1NjYmFlTWJvdU0xYVBTVFJoWGZMMTFSdXVMdkFsbFBGWXduLXhRU1FyZGZ6VGZrLWFUZktpamZoNUo1NFNCdXNBeU9FR0RVVWQyQzlEQmdCdFlxY0tLQXJ0bTUtcUI2VVNRbHVQN3VvaVVJbG05RHBhMFM?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -217,32 +244,22 @@
       "tema_nuevo": false
     },
     {
-      "id": "ojeda",
-      "nombre": "Rafael Ojeda Durán",
-      "rol": "Mencionado",
-      "tema": "Huachicol Fiscal",
-      "nota": "Rafael Ojeda y la caja negra del huachicol fiscal, escribe Mario Maldonado - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQTG0zN2djdHZJMGJoMFVYVFlYRUpDbThRdy1KNkd5aGVRdEpFOFlERTNPbWxZa1NjYmFlTWJvdU0xYVBTVFJoWGZMMTFSdXVMdkFsbFBGWXduLXhRU1FyZGZ6VGZrLWFUZktpamZoNUo1NFNCdXNBeU9FR0RVVWQyQzlEQmdCdFlxY0tLQXJ0bTUtcUI2VVNRbHVQN3VvaVVJbG05RHBhMFM?oc=5",
+      "id": "citlalli",
+      "nombre": "Citlalli Hernández Mora",
+      "rol": "Responsable institucional",
+      "tema": "Chipote chillón a Citlalli Hernández: Familia de Chespirito reprueba uso de la m",
+      "nota": "Chipote chillón a Citlalli Hernández: Familia de Chespirito reprueba uso de la marca en campaña política",
+      "fuente_url": "https://www.elfinanciero.com.mx/espectaculos/2026/09/22/chipote-chillon-a-citlalli-hernandez-familia-de-chespirito-reprueba-uso-de-la-marca-en-campana-politica/",
       "reaparece": false,
-      "tema_nuevo": false
+      "tema_nuevo": true
     },
     {
-      "id": "farias_fernando",
-      "nombre": "Fernando Farías Laguna",
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
       "rol": "Investigado",
-      "tema": "Huachicol Fiscal",
-      "nota": "Fernando Farías Laguna es detenido en Buenos Aires, Argentina, con pasaporte falso de Guatemala.",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/22/sobrinos-de-exsecretario-de-marina-asesinaron-a-testigos-de-huachicol-fiscal/",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "farias_manuel",
-      "nombre": "Manuel Roberto Farías Laguna",
-      "rol": "Investigado",
-      "tema": "Huachicol Fiscal",
-      "nota": "Detención de 14 personas señaladas de encabezar la red, incluido el vicealmirante Manuel Roberto Farías Laguna.",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/01/22/secretaria-de-marina-actualiza-el-caso-de-huachicol-que-paso-con-los-marinos-involucrados/",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "Fiscales del Distrito Sur de Nueva York acusan formalmente a Rocha Moya y otros nueve funcionarios de narcotráfico y posesión de armas.",
+      "fuente_url": "https://cnnespanol.cnn.com/2026/04/29/mexico/acusacion-gobernador-sinaloa-ruben-rocha-orix",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -253,237 +270,232 @@
     "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/23/que-pregunto-el-inegi-sheinbaum-cuestiona-datos-sobre-desplazamiento-forzado-en-mexico/",
     "intensidad": 7.0
   },
-  "declaracion_otro": {
-    "actor": "Ariadna Montiel Reyes",
-    "texto": "No se vayan: Ariadna Montiel reconoce que a Morena le interesa seguir en alianza con el PT",
-    "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/22/no-se-vayan-ariadna-montiel-reconoce-que-a-morena-le-interesa-seguir-en-alianza-con-el-pt/",
-    "intensidad": 7.0
-  },
+  "declaracion_otro": null,
   "patron_historico_4sem": [
     {
       "fecha": "2026-08-27",
       "tension": 67,
       "n_notas": 14,
-      "n_alto": 10,
-      "n_medio": 1,
-      "n_bajo": 3
+      "n_alto_impacto": 6,
+      "n_medio_impacto": 8,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-08-28",
       "tension": 73,
       "n_notas": 9,
-      "n_alto": 4,
-      "n_medio": 3,
-      "n_bajo": 2
+      "n_alto_impacto": 6,
+      "n_medio_impacto": 3,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-08-29",
       "tension": 69,
       "n_notas": 8,
-      "n_alto": 4,
-      "n_medio": 0,
-      "n_bajo": 4
+      "n_alto_impacto": 4,
+      "n_medio_impacto": 4,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-08-30",
       "tension": 70,
       "n_notas": 12,
-      "n_alto": 6,
-      "n_medio": 0,
-      "n_bajo": 6
+      "n_alto_impacto": 7,
+      "n_medio_impacto": 5,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-08-31",
       "tension": 72,
       "n_notas": 10,
-      "n_alto": 5,
-      "n_medio": 3,
-      "n_bajo": 2
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 2,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-01",
       "tension": 75,
       "n_notas": 15,
-      "n_alto": 9,
-      "n_medio": 4,
-      "n_bajo": 2
+      "n_alto_impacto": 15,
+      "n_medio_impacto": 0,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-02",
       "tension": 65,
       "n_notas": 22,
-      "n_alto": 7,
-      "n_medio": 8,
-      "n_bajo": 7
+      "n_alto_impacto": 13,
+      "n_medio_impacto": 9,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-03",
       "tension": 65,
       "n_notas": 17,
-      "n_alto": 8,
-      "n_medio": 8,
-      "n_bajo": 1
+      "n_alto_impacto": 9,
+      "n_medio_impacto": 8,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-04",
       "tension": 67,
       "n_notas": 18,
-      "n_alto": 5,
-      "n_medio": 12,
-      "n_bajo": 1
+      "n_alto_impacto": 12,
+      "n_medio_impacto": 6,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-05",
       "tension": 66,
       "n_notas": 9,
-      "n_alto": 5,
-      "n_medio": 3,
-      "n_bajo": 1
+      "n_alto_impacto": 6,
+      "n_medio_impacto": 3,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-06",
       "tension": 64,
       "n_notas": 7,
-      "n_alto": 3,
-      "n_medio": 1,
-      "n_bajo": 3
+      "n_alto_impacto": 4,
+      "n_medio_impacto": 3,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-07",
       "tension": 63,
       "n_notas": 21,
-      "n_alto": 7,
-      "n_medio": 10,
-      "n_bajo": 4
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 13,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-08",
       "tension": 64,
       "n_notas": 21,
-      "n_alto": 12,
-      "n_medio": 6,
-      "n_bajo": 3
+      "n_alto_impacto": 12,
+      "n_medio_impacto": 9,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-09",
       "tension": 66,
       "n_notas": 31,
-      "n_alto": 12,
-      "n_medio": 8,
-      "n_bajo": 11
+      "n_alto_impacto": 17,
+      "n_medio_impacto": 14,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-10",
       "tension": 56,
       "n_notas": 20,
-      "n_alto": 5,
-      "n_medio": 3,
-      "n_bajo": 12
+      "n_alto_impacto": 3,
+      "n_medio_impacto": 17,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-11",
       "tension": 54,
       "n_notas": 24,
-      "n_alto": 10,
-      "n_medio": 6,
-      "n_bajo": 8
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 22,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-12",
       "tension": 57,
       "n_notas": 11,
-      "n_alto": 3,
-      "n_medio": 4,
-      "n_bajo": 4
+      "n_alto_impacto": 3,
+      "n_medio_impacto": 8,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-13",
       "tension": 56,
       "n_notas": 18,
-      "n_alto": 5,
-      "n_medio": 9,
-      "n_bajo": 4
+      "n_alto_impacto": 4,
+      "n_medio_impacto": 14,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-14",
       "tension": 59,
       "n_notas": 21,
-      "n_alto": 6,
-      "n_medio": 10,
-      "n_bajo": 5
+      "n_alto_impacto": 5,
+      "n_medio_impacto": 16,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-15",
       "tension": 64,
       "n_notas": 8,
-      "n_alto": 2,
-      "n_medio": 1,
-      "n_bajo": 5
+      "n_alto_impacto": 4,
+      "n_medio_impacto": 4,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-16",
       "tension": 58,
       "n_notas": 15,
-      "n_alto": 4,
-      "n_medio": 7,
-      "n_bajo": 4
+      "n_alto_impacto": 3,
+      "n_medio_impacto": 12,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-17",
       "tension": 64,
       "n_notas": 27,
-      "n_alto": 10,
-      "n_medio": 9,
-      "n_bajo": 8
+      "n_alto_impacto": 13,
+      "n_medio_impacto": 14,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-18",
       "tension": 74,
       "n_notas": 27,
-      "n_alto": 10,
-      "n_medio": 4,
-      "n_bajo": 13
+      "n_alto_impacto": 23,
+      "n_medio_impacto": 4,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-19",
       "tension": 73,
       "n_notas": 25,
-      "n_alto": 6,
-      "n_medio": 9,
-      "n_bajo": 10
+      "n_alto_impacto": 20,
+      "n_medio_impacto": 5,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-20",
       "tension": 71,
       "n_notas": 12,
-      "n_alto": 1,
-      "n_medio": 7,
-      "n_bajo": 4
+      "n_alto_impacto": 10,
+      "n_medio_impacto": 2,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-21",
       "tension": 71,
       "n_notas": 23,
-      "n_alto": 7,
-      "n_medio": 10,
-      "n_bajo": 6
+      "n_alto_impacto": 18,
+      "n_medio_impacto": 5,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-22",
       "tension": 69,
       "n_notas": 26,
-      "n_alto": 4,
-      "n_medio": 6,
-      "n_bajo": 16
+      "n_alto_impacto": 19,
+      "n_medio_impacto": 7,
+      "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-23",
       "tension": 70,
       "n_notas": 6,
-      "n_alto": 2,
-      "n_medio": 3,
-      "n_bajo": 1
+      "n_alto_impacto": 6,
+      "n_medio_impacto": 0,
+      "n_bajo_impacto": 0
     }
   ],
-  "hora_corte_publicada": "2026-09-23 18:24:46"
+  "hora_corte_publicada": "2026-09-23 19:44:57"
 }
