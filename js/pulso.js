@@ -231,22 +231,31 @@ function svgTendenciaCategoriasPulso(serie){
   // primero para quedar detrás de áreas/líneas/puntos.
   const guias = serie.map((s,i)=> `<line x1="${xDe(i).toFixed(1)}" y1="${padT}" x2="${xDe(i).toFixed(1)}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.6" stroke-dasharray="2,3" opacity="0.5"/>`).join('');
 
-  let svgAreas = '', svgLineasYPuntos = '';
-  categorias.forEach(cat=>{
+  // mismo lenguaje visual que la gráfica de tendencia de C3 (Legislativo): línea suave +
+  // área con degradado real (color→transparente, no una opacidad plana) + halo solo en el
+  // punto más alto -- aquí se repite 5 veces, una por categoría, sobre la misma cuadrícula.
+  let svgDefs = '', svgAreas = '', svgLineasYPuntos = '';
+  categorias.forEach((cat,ci)=>{
     const color = COLORES_TENDENCIA_CAT[cat] || '#8A8F98';
+    const gradId = `pulso-grad-tend-${ci}`;
     const valores = serie.map(s => (s.categorias.find(c=>c.categoria===cat)||{}).peso_pct || 0);
     const pts = valores.map((v,i)=> `${xDe(i).toFixed(1)},${y(v).toFixed(1)}`);
     const idxMax = valores.reduce((iMax,v,i)=> v>valores[iMax] ? i : iMax, 0);
 
-    // relleno de área translúcido bajo la línea, hasta la base
-    const areaPath = `M${pts[0]} L${pts.join(' L')} L${xDe(valores.length-1).toFixed(1)},${(h-padB).toFixed(1)} L${padL},${(h-padB).toFixed(1)} Z`;
-    svgAreas += `<path d="${areaPath}" fill="${color}" opacity="0.09"/>`;
+    svgDefs += `<linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${color}" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
+    </linearGradient>`;
 
-    svgLineasYPuntos += `<polyline class="pulso-tend-linea" data-cat="${cat}" points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="1.8" stroke-opacity="0.85" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.1s ease-out;"/>`;
+    // relleno de área con degradado real bajo la línea, hasta la base
+    const areaPath = `M${pts[0]} L${pts.join(' L')} L${xDe(valores.length-1).toFixed(1)},${(h-padB).toFixed(1)} L${padL},${(h-padB).toFixed(1)} Z`;
+    svgAreas += `<path d="${areaPath}" fill="url(#${gradId})"/>`;
+
+    svgLineasYPuntos += `<polyline class="pulso-tend-linea" data-cat="${cat}" points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="1.5" stroke-opacity="0.75" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.1s ease-out;"/>`;
     valores.forEach((v,i)=>{
       const esMax = i===idxMax;
       const halo = esMax ? `<circle cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="9" fill="none" stroke="${color}" stroke-width="1.4" style="animation:pulso-halo 1.8s ease-in-out infinite;"/>` : '';
-      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4:2.5}" fill="${color}" stroke="var(--bg-2)" stroke-width="0.8" style="cursor:pointer;"/>`;
+      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4.5:2}" fill="${color}" stroke="var(--bg-2)" stroke-width="${esMax?1:0.6}" style="cursor:pointer;"/>`;
     });
   });
 
@@ -259,6 +268,7 @@ function svgTendenciaCategoriasPulso(serie){
     </div>`).join('');
   return `<svg id="pulso-tendencia-svg" viewBox="0 0 ${w} ${h}" style="width:100%;display:block;overflow:visible;">
     ${defsGridPulso('pulso-grid-tend')}
+    <defs>${svgDefs}</defs>
     <rect x="0" y="0" width="${w}" height="${h-padB}" fill="url(#pulso-grid-tend)"/>
     ${guias}
     ${svgAreas}
@@ -380,8 +390,15 @@ function barrasHistoricoPulso(historico){
         style="cursor:pointer;transition:y 0.8s ease-out, height 0.8s ease-out;"/>`;
     }).join('')}
     ${historico.map((p,i)=> mostrarEtiqueta(i) ? `<text x="${(i*paso+paso/2).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${p.fecha.slice(5)}</text>` : '').join('')}
-    <polygon class="pulso-marca-viva" points="${(idxHoy*paso+paso/2).toFixed(1)},${(padT-4).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(padT-13).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(padT-13).toFixed(1)}" fill="var(--teal)"/>
-    <text x="${(idxHoy*paso+paso/2).toFixed(1)}" y="${(padT-16).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>
+    ${(()=>{
+      // la marca "HOY" va pegada a la punta de SU barra (no a un punto fijo del lienzo) --
+      // si no, en un día de tensión baja quedaba flotando muy arriba, lejos de su propia barra.
+      const tHoy = historico[idxHoy].tension;
+      const yHoy = tHoy!==null ? y(tHoy) : (h-padB);
+      const cxHoy = (idxHoy*paso+paso/2).toFixed(1);
+      return `<polygon class="pulso-marca-viva" points="${cxHoy},${(yHoy-2).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(yHoy-9).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(yHoy-9).toFixed(1)}" fill="var(--teal)"/>
+        <text x="${cxHoy}" y="${(yHoy-12).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>`;
+    })()}
   </svg>
   <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;">
     <span style="color:var(--riesgo-alto);">■</span> día de mayor tensión &nbsp; <span style="color:var(--riesgo-bajo);">■</span> día de menor tensión &nbsp; <span style="color:var(--teal);">▼</span> corte actual
@@ -402,22 +419,60 @@ function activarHistoricoPulso(cont){
   });
 }
 
+// se distribuyen en flex-column con height:100% para ocupar todo el alto real de la
+// tarjeta (antes quedaban 5 filas cortas arriba y un hueco vacío abajo, porque la
+// tarjeta estira su alto para igualar a la columna de Top 5, mucho más alta). El
+// tooltip ahora aclara EXPLÍCITAMENTE que el % pesa por intensidad total de las notas,
+// no por cuántos temas distintos hay -- una categoría con 1 solo tema pero varias notas
+// de esa misma historia puede pesar más que otra con más temas pero notas más flojas;
+// eso no es un error de orden, es la definición real de "peso".
 function barraCategoriasPulso(categorias){
-  return categorias.map(c=>`
-    <div class="pulso-barra-cat" data-info="${c.categoria} · ${c.peso_pct}% · ${c.n_temas||0} tema${(c.n_temas||0)!==1?'s':''} en esta categoría${c.tema_principal ? ' — principal: '+tituloLimpio(c.tema_principal).replace(/"/g,'&quot;') : ''}" style="margin-bottom:8px;cursor:pointer;">
+  return `<div style="display:flex;flex-direction:column;height:100%;justify-content:space-between;">
+    ${categorias.map(c=>`
+    <div class="pulso-barra-cat" data-categoria="${c.categoria}" data-info="${c.categoria} · ${c.peso_pct}% del peso total · ${c.n_notas||0} nota${(c.n_notas||0)!==1?'s':''} en ${c.n_temas||0} tema${(c.n_temas||0)!==1?'s':''} distinto${(c.n_temas||0)!==1?'s':''}${c.tema_principal ? ' — principal: '+tituloLimpio(c.tema_principal).replace(/"/g,'&quot;') : ''} · clic para ver las notas" style="cursor:pointer;">
       <div style="display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:2px;">
         <span>${c.categoria}</span><span style="font-family:var(--f-mono);color:var(--ink-2);">${c.peso_pct}%</span>
       </div>
-      <div style="height:6px;background:var(--bg-1);border-radius:99px;overflow:hidden;">
+      <div style="height:9px;background:var(--bg-1);border-radius:99px;overflow:hidden;">
         <div style="width:${c.peso_pct}%;height:100%;background:${colorCategoriaFijo(c.categoria)};transition:width .8s ease-out;"></div>
       </div>
-    </div>`).join('');
+    </div>`).join('')}
+  </div>`;
 }
-function activarBarraCategoriasPulso(cont){
+function abrirModalCategoriaPulso(catData){
+  let modal = document.getElementById('pulso-cat-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'pulso-cat-modal'; modal.className = 'ficha-modal-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+  const notas = catData.notas || [];
+  modal.innerHTML = `<div class="ficha-modal-card" style="max-width:480px;">
+    <button class="ficha-modal-close">✕</button>
+    <div class="eyebrow">${catData.categoria} · ${catData.peso_pct}% del peso · ${catData.n_notas||0} nota${(catData.n_notas||0)!==1?'s':''}</div>
+    ${notas.length ? notas.map(n=>`
+      <div class="contexto-tema-box">
+        <div style="font-size:11.5px;">${tituloLimpio(n.texto)}</div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:3px;">
+          <span style="font-size:9.5px;color:var(--ink-3);">${n.medio||'medio no identificado'} · intensidad ${n.intensidad}</span>
+          ${enlaceNota(n.fuente_url)}
+        </div>
+      </div>`).join('')
+      : '<p style="font-size:12px;color:var(--ink-3);">Sin notas individuales registradas para esta categoría en este corte.</p>'}
+  </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.classList.add('open');
+}
+function activarBarraCategoriasPulso(cont, categorias){
   if(!cont) return;
   cont.querySelectorAll('.pulso-barra-cat').forEach(b=>{
     b.addEventListener('mousemove', ev=> mostrarTooltipPulso(b.dataset.info, ev));
     b.addEventListener('mouseleave', ocultarTooltipPulso);
+    b.addEventListener('click', ()=>{
+      const catData = (categorias||[]).find(c=>c.categoria===b.dataset.categoria);
+      if(catData) abrirModalCategoriaPulso(catData);
+    });
   });
 }
 
@@ -456,23 +511,29 @@ function pintarPulso(cont, d){
     return `<span style="font-size:8px;font-family:var(--f-mono);color:${cfg[0]};border:1px solid ${cfg[0]};border-radius:99px;padding:1px 5px;white-space:nowrap;">${cfg[1]}</span>`;
   };
 
-  // mismo formato de tarjeta que Actores Destacados (encabezado en negrita + badges,
-  // línea secundaria mudada, y el motivo/titular citado con enlace al pie).
-  const listaTema = (items) => items.length ? items.map(t=>`
+  // el titular real (motivo, o el nombre del tema si no hay motivo aparte) va primero y
+  // en negrita -- es la información real que importa; la categoría baja a ser una
+  // etiqueta chica junto al enlace, no un encabezado. Antes, cuando no había "motivo"
+  // (caso de Nuevos), el mismo título se repetía dos veces en la misma tarjeta -- se
+  // corrige mostrándolo una sola vez, y solo se agrega el nombre original del tema como
+  // línea aparte cuando de verdad aporta algo distinto (Retomados, si difiere del motivo).
+  const listaTema = (items) => items.length ? items.map(t=>{
+    const titular = tituloLimpio(t.motivo || t.nombre);
+    const nombreDistinto = t.motivo && tituloLimpio(t.nombre) !== titular;
+    return `
     <div style="padding:6px 0;border-top:1px solid var(--line);">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;">
-        <div style="font-size:11.5px;font-weight:600;">${t.categoria}</div>
-        <div style="display:flex;gap:4px;align-items:center;">
+      <div style="font-size:11.5px;font-weight:600;line-height:1.4;">${titular}</div>
+      ${nombreDistinto ? `<div style="font-size:9px;color:var(--ink-3);margin-top:1px;">tema: ${tituloLimpio(t.nombre)}</div>` : ''}
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:4px;">
+        <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:9.5px;color:var(--ink-3);">${t.categoria}</span>
           ${t.dias_silencio ? `<span style="font-size:8px;font-family:var(--f-mono);color:var(--arena);border:1px solid var(--arena);border-radius:99px;padding:1px 5px;white-space:nowrap;">${t.dias_silencio}D DE SILENCIO</span>` : ''}
           ${badgeImpacto(t.impacto)}
         </div>
-      </div>
-      <div style="font-size:9.5px;color:var(--ink-3);margin-top:1px;">${tituloLimpio(t.nombre)}</div>
-      <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;margin-top:3px;">
-        <div style="font-size:10px;color:var(--ink-2);border-left:2px solid var(--line-strong);padding-left:6px;">${t.motivo ? tituloLimpio(t.motivo) : tituloLimpio(t.nombre)}</div>
         ${enlaceNota(t.fuente_url)}
       </div>
-    </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Ninguno en este corte.</div>`;
+    </div>`;
+  }).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Ninguno en este corte.</div>`;
 
   const listaActores = (items) => items.length ? items.map(a=>`
     <div style="padding:6px 0;border-top:1px solid var(--line);">
@@ -501,16 +562,27 @@ function pintarPulso(cont, d){
 
   const catDominante = d.categorias_dia && d.categorias_dia[0] && d.categorias_dia[0].peso_pct > 0 ? d.categorias_dia[0] : null;
 
-  const declaracionHTML = (etiqueta, decl) => decl ? `
-    <div style="background:var(--bg-1);border-left:3px solid var(--riesgo-medio);border-radius:7px;padding:12px;">
-      <div class="eyebrow" style="color:var(--riesgo-medio);font-size:9.5px;">${etiqueta} · ${decl.actor}</div>
-      <p style="font-size:11.5px;line-height:1.55;margin:6px 0;font-style:italic;">"${decl.texto}"</p>
+  // hasta 3 declaraciones apiladas, la más reciente arriba -- antes cada corte pisaba a
+  // la anterior sin dejar rastro; el historial lo arma y persiste el backend
+  // (declaracion_presidenta_historial / _otro_historial), este solo lo pinta. La más
+  // reciente (la de arriba) se distingue con el borde de color; las de abajo quedan más
+  // discretas, a manera de "las últimas 2 antes de ésta".
+  const tarjetaDeclaracion = (decl, esReciente) => `
+    <div style="background:var(--bg-1);border-left:3px solid ${esReciente?'var(--riesgo-medio)':'var(--line-strong)'};border-radius:7px;padding:${esReciente?'12px':'9px 12px'};${esReciente?'':'opacity:0.72;'}">
+      <div class="eyebrow" style="color:${esReciente?'var(--riesgo-medio)':'var(--ink-3)'};font-size:${esReciente?'9.5px':'8.5px'};">${decl.actor}</div>
+      <p style="font-size:${esReciente?'11.5px':'10.5px'};line-height:1.5;margin:5px 0;font-style:italic;">"${decl.texto}"</p>
       ${enlaceNota(decl.fuente_url)}
-    </div>` : `
-    <div style="background:var(--bg-1);border-radius:7px;padding:12px;">
-      <div class="eyebrow" style="font-size:9.5px;">${etiqueta}</div>
-      <div style="font-size:10.5px;color:var(--ink-3);margin-top:4px;">Sin declaración que cumpla los criterios en este corte.</div>
     </div>`;
+  const declaracionHTML = (etiqueta, historial) => {
+    const lista = (historial && historial.length) ? historial : [];
+    return `<div>
+      <div class="eyebrow" style="font-size:9.5px;margin-bottom:6px;">${etiqueta}</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        ${lista.length ? lista.map((decl,i)=> tarjetaDeclaracion(decl, i===0)).join('')
+          : `<div style="background:var(--bg-1);border-radius:7px;padding:12px;font-size:10.5px;color:var(--ink-3);">Sin declaración que cumpla los criterios en este corte.</div>`}
+      </div>
+    </div>`;
+  };
 
   cont.innerHTML = `
     <div style="display:flex;flex-direction:column;gap:14px;">
@@ -542,8 +614,10 @@ function pintarPulso(cont, d){
             </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin temas de agenda nacional con respaldo de medio de primer nivel en las últimas 24h.</div>`}
         `)}
         ${tarjeta(`
-          <div class="eyebrow" style="margin-bottom:6px;">PESO POR CATEGORÍA · HOY</div>
-          <div id="pulso-barras-dia">${barraCategoriasPulso(d.categorias_dia)}</div>
+          <div style="display:flex;flex-direction:column;height:100%;">
+            <div class="eyebrow" style="margin-bottom:6px;">PESO POR CATEGORÍA · HOY</div>
+            <div id="pulso-barras-dia" style="flex:1;">${barraCategoriasPulso(d.categorias_dia)}</div>
+          </div>
         `)}
         ${tarjeta(`
           <div style="text-align:center;">
@@ -571,14 +645,14 @@ function pintarPulso(cont, d){
 
       <!-- BLOQUE 4: declaración relevante -- 2 espacios fijos, cada uno con su propio criterio real -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        ${declaracionHTML('DECLARACIÓN · PRESIDENTA', d.declaracion_presidenta)}
-        ${declaracionHTML('DECLARACIÓN · OTRO ACTOR', d.declaracion_otro)}
+        ${declaracionHTML('DECLARACIÓN · PRESIDENTA', d.declaracion_presidenta_historial || (d.declaracion_presidenta ? [d.declaracion_presidenta] : []))}
+        ${declaracionHTML('DECLARACIÓN · OTRO ACTOR', d.declaracion_otro_historial || (d.declaracion_otro ? [d.declaracion_otro] : []))}
       </div>
 
     </div>`;
 
   animarVelocimetroPulso(d.tension_nacional);
-  activarBarraCategoriasPulso(cont.querySelector('#pulso-barras-dia'));
+  activarBarraCategoriasPulso(cont.querySelector('#pulso-barras-dia'), d.categorias_dia);
   activarTendenciaCategorias(cont.querySelector('#pulso-scroll-tendencia'));
   activarHistoricoPulso(cont.querySelector('#pulso-scroll-historico'));
   activarPanelesRecorribles(cont);
