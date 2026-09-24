@@ -47,6 +47,18 @@ function crearTooltipPulso(){
   tip.className = 'heatmap-tooltip';
   document.body.appendChild(tip);
 }
+
+/* ---------- marca "viva" del corte/semana actual -- triángulo con rebote suave, para
+   distinguir el punto/columna de AHORA de los marcados por valor (máximo/mínimo). Un solo
+   <style> inyectado una vez, igual que el tooltip de arriba. ---------- */
+function asegurarEstilosPulso(){
+  if(document.getElementById('pulso-estilos-extra')) return;
+  const st = document.createElement('style');
+  st.id = 'pulso-estilos-extra';
+  st.textContent = `@keyframes pulso-rebote{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);} }
+    .pulso-marca-viva{ animation:pulso-rebote 1.3s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }`;
+  document.head.appendChild(st);
+}
 function mostrarTooltipPulso(html, ev){
   const tip = document.getElementById('pulso-tooltip');
   if(!tip) return;
@@ -66,12 +78,16 @@ function enlaceNota(url){
 }
 
 /* ---------- panel recorrible (← →), sin zoom -- mismo espíritu del Timeline pero mucho
-   más simple: un contenedor con scroll horizontal y dos flechas que avanzan por pasos. La
-   gráfica interna se dibuja más ancha que su marco visible. ---------- */
-function panelRecorrible(idScroll, svgHTML, anchoContenidoPx){
+   más simple: un contenedor con scroll horizontal y dos flechas que avanzan por pasos.
+   anchoMinimoPx es un MÍNIMO, no un ancho fijo -- en una tarjeta más ancha que ese mínimo
+   la gráfica se ve completa sin necesidad de mover nada; solo aparece scroll real cuando
+   la tarjeta es más angosta que el contenido (pantallas chicas, o si más adelante la serie
+   crece con más barras/semanas) -- así se cumple "que se vea completa" Y "que se pueda
+   mover" a la vez, sin contradicción. ---------- */
+function panelRecorrible(idScroll, svgHTML, anchoMinimoPx){
   return `<div style="position:relative;">
     <div id="${idScroll}" style="overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;">
-      <div style="width:${anchoContenidoPx}px;max-width:none;">${svgHTML}</div>
+      <div style="min-width:${anchoMinimoPx}px;">${svgHTML}</div>
     </div>
     <button class="pulso-nav-flecha" data-target="${idScroll}" data-dir="-1" style="position:absolute;left:-4px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:var(--bg-1);border:1px solid var(--line-strong);color:var(--ink-2);cursor:pointer;font-size:11px;line-height:1;">‹</button>
     <button class="pulso-nav-flecha" data-target="${idScroll}" data-dir="1" style="position:absolute;right:-4px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:var(--bg-1);border:1px solid var(--line-strong);color:var(--ink-2);cursor:pointer;font-size:11px;line-height:1;">›</button>
@@ -293,17 +309,17 @@ function analizarPatronHistorico(historico){
     if(!semanaTop || total>semanaTop.total) semanaTop = { total, desde: bloque[0].fecha, hasta: bloque[bloque.length-1].fecha };
   }
 
-  // nivel de fuente de las notas del periodo completo -- cuánto de lo que alimenta esta
-  // gráfica viene de fuente de alto nivel (ALTA/OFICIAL) vs. media vs. baja/sin clasificar.
+  // nivel de IMPACTO real de las notas del periodo (por intensidad, no por confiabilidad
+  // de fuente -- ver _impacto_de en el backend, mismo umbral de 7/4 que usa todo el módulo).
   const totNotas = historico.reduce((a,p)=>a+(p.n_notas||0),0);
-  const totAlto = historico.reduce((a,p)=>a+(p.n_alto||0),0);
-  const totMedio = historico.reduce((a,p)=>a+(p.n_medio||0),0);
-  const totBajo = historico.reduce((a,p)=>a+(p.n_bajo||0),0);
-  const nivelFuente = totNotas>0 ? { altoPct: Math.round(totAlto/totNotas*100), medioPct: Math.round(totMedio/totNotas*100), bajoPct: Math.round(totBajo/totNotas*100) } : null;
+  const totAlto = historico.reduce((a,p)=>a+(p.n_alto_impacto||0),0);
+  const totMedio = historico.reduce((a,p)=>a+(p.n_medio_impacto||0),0);
+  const totBajo = historico.reduce((a,p)=>a+(p.n_bajo_impacto||0),0);
+  const nivelImpacto = totNotas>0 ? { altoPct: Math.round(totAlto/totNotas*100), medioPct: Math.round(totMedio/totNotas*100), bajoPct: Math.round(totBajo/totNotas*100) } : null;
 
   return { avgUlt: avgUlt!==null?Math.round(avgUlt):null, avgPrev: avgPrev!==null?Math.round(avgPrev):null,
     mediaGeneral: Math.round(mediaGeneral), delta, pct, f, vsMedia: vsMedia!==null?Math.round(vsMedia):null, datoLimitado,
-    semanaTop, nivelFuente };
+    semanaTop, nivelImpacto };
 }
 
 /* ---------- patrón histórico · 4 semanas -- BARRAS, granularidad diaria (28 barras reales),
@@ -315,13 +331,14 @@ function analizarPatronHistorico(historico){
 function barrasHistoricoPulso(historico){
   const vals = historico.map(h=>h.tension).filter(v=>v!==null);
   if(!vals.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Aún sin suficientes días con actividad para mostrar patrón.</div>`;
-  const w = 620, h = 190, padB = 22, padT = 20;
+  const w = 620, h = 196, padB = 22, padT = 26;
   const anchoBarra = (w/historico.length) * 0.62;
   const paso = w/historico.length;
   const y = v => padT + (1-(v/100))*(h-padB-padT);
   const conDato = historico.filter(p=>p.tension!==null);
   const diaTop = conDato.reduce((a,b)=> b.tension>a.tension ? b : a, conDato[0]);
   const diaBottom = conDato.reduce((a,b)=> b.tension<a.tension ? b : a, conDato[0]);
+  const idxHoy = historico.length - 1; // el día más reciente -- "semana/corte actual"
   const mostrarEtiqueta = i => i % 4 === 0 || i === historico.length-1;
   const an = analizarPatronHistorico(historico);
   const yMedia = an ? y(an.mediaGeneral) : null;
@@ -336,7 +353,7 @@ function barrasHistoricoPulso(historico){
         ${an.datoLimitado ? `<span style="color:var(--riesgo-medio);"> · ⚠ ventana con pocos días de dato real</span>` : ''}
       </div>
       ${an.semanaTop ? `<div>Semana con más volumen: <strong>${fmtFecha(an.semanaTop.desde)}–${fmtFecha(an.semanaTop.hasta)}</strong> (${an.semanaTop.total} notas)</div>` : ''}
-      ${an.nivelFuente ? `<div>Nivel de fuente del periodo: <strong style="color:var(--teal);">${an.nivelFuente.altoPct}% alto</strong> · <strong style="color:var(--riesgo-medio);">${an.nivelFuente.medioPct}% medio</strong> · <strong style="color:var(--riesgo-alto);">${an.nivelFuente.bajoPct}% bajo/sin clasificar</strong></div>` : ''}
+      ${an.nivelImpacto ? `<div>Nivel de impacto del periodo: <strong style="color:var(--riesgo-alto);">${an.nivelImpacto.altoPct}% alto impacto</strong> · <strong style="color:var(--riesgo-medio);">${an.nivelImpacto.medioPct}% impacto medio</strong> · <strong style="color:var(--ink-3);">${an.nivelImpacto.bajoPct}% bajo impacto</strong></div>` : ''}
     </div>` : '';
 
   return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
@@ -354,25 +371,20 @@ function barrasHistoricoPulso(historico){
       const alturaFinal = (h-padB) - yTope;
       const relleno = esTop ? 'var(--riesgo-alto)' : esBottom ? 'var(--riesgo-bajo)' : colorTension(p.tension);
       const contorno = esTop || esBottom ? `stroke="var(--ink-1)" stroke-width="1"` : '';
-      const cxBarra = (x+anchoBarra/2).toFixed(1);
-      // flechita-triángulo fija (sin animación) arriba de la barra: ▲ roja sobre el día
-      // más alto, ▼ verde sobre el más bajo -- además del color, para que se distingan
-      // incluso en escala de grises o para quien no diferencia bien los colores.
-      const marcaTriangulo = esTop
-        ? `<polygon points="${cxBarra},${(yTope-13).toFixed(1)} ${(x+anchoBarra/2-4.5).toFixed(1)},${(yTope-4).toFixed(1)} ${(x+anchoBarra/2+4.5).toFixed(1)},${(yTope-4).toFixed(1)}" fill="var(--riesgo-alto)"/>`
-        : esBottom
-        ? `<polygon points="${cxBarra},${(yTope-4).toFixed(1)} ${(x+anchoBarra/2-4.5).toFixed(1)},${(yTope-13).toFixed(1)} ${(x+anchoBarra/2+4.5).toFixed(1)},${(yTope-13).toFixed(1)}" fill="var(--riesgo-bajo)"/>`
-        : '';
-      return `${marcaTriangulo}<rect class="pulso-hist-barra" data-info="${p.fecha} · tensión ${p.tension}/100 · ${p.n_notas} nota${p.n_notas!==1?'s':''}${esTop?' · día más alto del periodo':''}${esBottom?' · día más bajo del periodo':''} · fuente: ${p.n_alto||0} alta/oficial, ${p.n_medio||0} media, ${p.n_bajo||0} baja/sin clasificar"
+      // el triángulo fijo que marcaba máximo/mínimo se quitó por pedido -- ahora esos dos
+      // días se distinguen SOLO por color (arriba, la leyenda de cuadritos de color).
+      return `<rect class="pulso-hist-barra" data-info="${p.fecha} · tensión ${p.tension}/100 · ${p.n_notas} nota${p.n_notas!==1?'s':''}${esTop?' · día más alto del periodo':''}${esBottom?' · día más bajo del periodo':''} · impacto: ${p.n_alto_impacto||0} alto, ${p.n_medio_impacto||0} medio, ${p.n_bajo_impacto||0} bajo"
         x="${x.toFixed(1)}" y="${(h-padB).toFixed(1)}" width="${anchoBarra.toFixed(1)}" height="0"
         data-y-final="${yTope.toFixed(1)}" data-h-final="${alturaFinal.toFixed(1)}"
         fill="${relleno}" opacity="${esTop||esBottom?1:0.68}" rx="2" ${contorno}
         style="cursor:pointer;transition:y 0.8s ease-out, height 0.8s ease-out;"/>`;
     }).join('')}
     ${historico.map((p,i)=> mostrarEtiqueta(i) ? `<text x="${(i*paso+paso/2).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${p.fecha.slice(5)}</text>` : '').join('')}
+    <polygon class="pulso-marca-viva" points="${(idxHoy*paso+paso/2).toFixed(1)},${(padT-4).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(padT-13).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(padT-13).toFixed(1)}" fill="var(--teal)"/>
+    <text x="${(idxHoy*paso+paso/2).toFixed(1)}" y="${(padT-16).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>
   </svg>
   <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;">
-    <span style="color:var(--riesgo-alto);">■</span> día de mayor tensión &nbsp; <span style="color:var(--riesgo-bajo);">■</span> día de menor tensión
+    <span style="color:var(--riesgo-alto);">■</span> día de mayor tensión &nbsp; <span style="color:var(--riesgo-bajo);">■</span> día de menor tensión &nbsp; <span style="color:var(--teal);">▼</span> corte actual
   </div>
   ${franjaAnalisis}`;
 }
@@ -425,6 +437,7 @@ function renderPulsoNacional(){
 
 function pintarPulso(cont, d){
   crearTooltipPulso();
+  asegurarEstilosPulso();
   const fechaCorte = d.hora_corte_publicada || d.generado_en;
   const fechaLegible = new Date(fechaCorte.replace(' ','T')).toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
   const horaLegible = new Date(fechaCorte.replace(' ','T')).toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit'});
@@ -434,14 +447,31 @@ function pintarPulso(cont, d){
   // nuevos/retomados: la categoría va primero y en grande; el título de la nota es
   // complemento chico -- para no mostrar el titular autogenerado como si fuera el
   // nombre editorial del tema.
+  // badge de nivel de impacto -- por intensidad real de la nota (0-10, mismo umbral que
+  // ya usa el resto del módulo: >=7 alto), no por confiabilidad de la fuente.
+  const badgeImpacto = imp => {
+    if(!imp) return '';
+    const cfg = { alto:['var(--riesgo-alto)','ALTO IMPACTO'], medio:['var(--riesgo-medio)','IMPACTO MEDIO'], bajo:['var(--ink-3)','BAJO IMPACTO'] }[imp];
+    if(!cfg) return '';
+    return `<span style="font-size:8px;font-family:var(--f-mono);color:${cfg[0]};border:1px solid ${cfg[0]};border-radius:99px;padding:1px 5px;white-space:nowrap;">${cfg[1]}</span>`;
+  };
+
+  // mismo formato de tarjeta que Actores Destacados (encabezado en negrita + badges,
+  // línea secundaria mudada, y el motivo/titular citado con enlace al pie).
   const listaTema = (items) => items.length ? items.map(t=>`
-    <div style="padding:7px 9px;background:var(--bg-1);border-radius:7px;margin-bottom:6px;">
-      <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline;">
-        <div style="font-size:12px;font-weight:700;">${t.categoria}</div>
+    <div style="padding:6px 0;border-top:1px solid var(--line);">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;">
+        <div style="font-size:11.5px;font-weight:600;">${t.categoria}</div>
+        <div style="display:flex;gap:4px;align-items:center;">
+          ${t.dias_silencio ? `<span style="font-size:8px;font-family:var(--f-mono);color:var(--arena);border:1px solid var(--arena);border-radius:99px;padding:1px 5px;white-space:nowrap;">${t.dias_silencio}D DE SILENCIO</span>` : ''}
+          ${badgeImpacto(t.impacto)}
+        </div>
+      </div>
+      <div style="font-size:9.5px;color:var(--ink-3);margin-top:1px;">${tituloLimpio(t.nombre)}</div>
+      <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;margin-top:3px;">
+        <div style="font-size:10px;color:var(--ink-2);border-left:2px solid var(--line-strong);padding-left:6px;">${t.motivo ? tituloLimpio(t.motivo) : tituloLimpio(t.nombre)}</div>
         ${enlaceNota(t.fuente_url)}
       </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:2px;">${tituloLimpio(t.nombre)}${t.motivo ? ' · '+t.dias_silencio+'d de silencio' : ''}</div>
-      ${t.motivo ? `<div style="font-size:10px;color:var(--ink-2);margin-top:3px;border-left:2px solid var(--arena);padding-left:6px;">${t.motivo}</div>` : ''}
     </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Ninguno en este corte.</div>`;
 
   const listaActores = (items) => items.length ? items.map(a=>`
@@ -535,7 +565,7 @@ function pintarPulso(cont, d){
 
       <!-- BLOQUE 3: peso por categoría · tendencia 4 semanas (60%) · patrón histórico 4 semanas en barras (40%) -->
       <div style="display:grid;grid-template-columns:3fr 2fr;gap:14px;">
-        ${tarjeta(`<div class="eyebrow">PESO POR CATEGORÍA · TENDENCIA 4 SEMANAS</div>${svgTendenciaCategoriasPulso(d.categorias_tendencia_4sem)}`)}
+        ${tarjeta(`<div class="eyebrow">PESO POR CATEGORÍA · TENDENCIA 4 SEMANAS</div>${panelRecorrible('pulso-scroll-tendencia', svgTendenciaCategoriasPulso(d.categorias_tendencia_4sem), 560)}`)}
         ${tarjeta(`<div class="eyebrow">PATRÓN HISTÓRICO · 4 SEMANAS</div>${panelRecorrible('pulso-scroll-historico', barrasHistoricoPulso(d.patron_historico_4sem), 620)}`)}
       </div>
 
@@ -549,7 +579,7 @@ function pintarPulso(cont, d){
 
   animarVelocimetroPulso(d.tension_nacional);
   activarBarraCategoriasPulso(cont.querySelector('#pulso-barras-dia'));
-  activarTendenciaCategorias(cont);
+  activarTendenciaCategorias(cont.querySelector('#pulso-scroll-tendencia'));
   activarHistoricoPulso(cont.querySelector('#pulso-scroll-historico'));
   activarPanelesRecorribles(cont);
 
