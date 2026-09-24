@@ -1,108 +1,24 @@
 {
-  "generado_en": "2026-09-23T20:32:18.431956-06:00",
+  "generado_en": "2026-09-24T10:15:59.574126-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 12,
+  "n_notas_ventana": 15,
   "baja_confianza": false,
-  "tension_nacional": 70,
+  "tension_nacional": 69,
   "categorias_dia": [
     {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 37,
-      "tema_principal": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
-      "tema_principal_id": "auto-28603c7610",
-      "n_temas": 1,
-      "n_notas": 4,
-      "notas": [
-        {
-          "texto": "Morena defiende metodología de encuesta que da aprobación del 68% a Javier May - XEVT",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcy0zeVhEekVRZTg2N0MwQmE1aXZlM3pVMFF3MGd6YlR0RVVaT1JqVGt4OF81WmxfalZ4ZWd0Qk5tUkxETnd5TTlEV01zajFmOC1qaklvSXVBbUlETnQtNFJIaVFBUldSeTlqMlRQVW8wTkxRajhWNDR5bFFRWEJ5eURTRGtmVV85aTI0amlPQnQ1MTBYMndUVFVJazgtaU5leTRNdDQ3anpEQTNhbGd4Szd4Tmc?oc=5",
-          "intensidad": 9.0,
-          "medio": "XEVT"
-        },
-        {
-          "texto": "Tabasco seguirá invirtiendo en desarrollo social, señala gobernador ante resultado de encuesta - XEVA",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNNVpxN2pyRGF2WklIdzlrOHpMR2p6eDEyNGJtZTZpQjVUblQtb044YUpESDdfVko3VF96SzVaci1jWWkza2FITHpQeWFwMjBmSG5CdkpuampVOXN1elFWVVNFRnZXT2JGWTdOOEdObUtmLUFfS2Z0dU44VnowNkFqNmQ5RWNOekg2dmRXNW1NQkZLRDdjbGNfVWE0UlEtc05EbFhMTGU3Vl95NUh4UU50WGN3cGg5V2l6cFFRU3BRMjRhYWdNQzBr?oc=5",
-          "intensidad": 8.0,
-          "medio": "XEVA"
-        },
-        {
-          "texto": "Llama Morena Tabasco a la unidad y al respeto entre aspirantes locales - Quadratín Tabasco",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOU3h4SnB1RW5wYXNwYm0wT2pCa2d4YWNnUFJsWlZISnFaNlhWc0taT295X251dkxCNW9NZFZ4b1VoQ1B4S1d4ZHp2ak5RSE83dFJlYjNxdGJSeWlTeEtoZk1KX3hvMDNLNFBIamZDcDdmUnBoNGVBUTdHMG1GdTNEem5TWFRFSl9WTDhIdDdLemt2T3NEN3dsQUc1SS1ETGlndkpzZDZvbzg2SVdjN1NYUUFEcFBIbkNNWXI5YXpiaXBDak0?oc=5",
-          "intensidad": 7.0,
-          "medio": "Quadratín Tabasco"
-        },
-        {
-          "texto": "Descarta Montiel cambios en los ganadores de encuestas de Morena",
-          "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/005n1pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 24,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 3,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "146 días después, Marko Cortés insiste en el caso Rocha Moya - Maya Comunicación",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPMktJdVlNRUlYbUZ1ZTRuYUFzMzljRm11bHdINUdxTmJUZjd0RFB2Vjl4T1NhaldKeGp2UU9uX0tHc3VmOFgzNnpOdnRDdDhkcFA3eE1zY3pOMUFKLXpsczVPS1U2YjJOX1VYeGxROXV3RHQxUk51akYwZmVabTExSTFIekxUZFVvRDJoQzVrRmczN19nVVZJ?oc=5",
-          "intensidad": 7.0,
-          "medio": "Maya Comunicación"
-        },
-        {
-          "texto": "Reporta SSPC  la detención de dos narcos en Sinaloa y CDMX",
-          "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/013n2pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
-        },
-        {
-          "texto": "Ramírez Cuéllar y expertos en el sector petrolero analizan iniciativas para combatir “huachicol fiscal” y limitar deducciones y pérdidas fiscales de empresas – Talla Politica - Talla Politica",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQcWNXTzI0WDdnU3ZKYnBNNThhZmNITEFyTG52QjhsdU5aWWNpTGo4YWppMVBTRll3bElOdUlVQzJwREZSS0NOd1h1Vm1WTnMwRGNFaE1OLVA2clVMSzdaXzJpbW1NT216TDNQcU5wdDlKNGtWbWI3YmFvYkxfWHRST1M5ZHlnR2pubE9iVFRTcVRycVpCUzJHejZrRXNvT1IwazB2eW9uWkliSXlpYTg0S2x4R21uclFNcWUybEhmQlktZnJMWFF3UU91UUcwX05IM0FNZ2lVTlJ0ZkJOWmlweVM1R2laWENYWTBhY2xtSGR6TXlHeGpGbFFCc2RiSURmLVhEczVjQ2xqVnlXdGNXVktRWkdqU1Vq?oc=5",
-          "intensidad": 6.0,
-          "medio": "Talla Politica"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 23,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 3,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Trump recibe  a Xi: comercio e IA serán temas del encuentro",
-          "fuente_url": "https://www.yucatan.com.mx/mundo/2026/09/23/trump-recibe-a-xi-comercio-e-ia-seran-temas-del-encuentro.html",
-          "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "¡DONALD TRUMP, “EL CHIMOLTRUFIA” DE LA CASA BLANCA!",
-          "fuente_url": "http://campechehoy.mx/2026/09/23/donald-trump-el-chimoltrufia-de-la-casa-blanca/",
-          "intensidad": 7.0,
-          "medio": "campechehoy.mx"
-        },
-        {
-          "texto": "Gasolineras del CJNG en México, según EE.UU.: un nexo con Andy López Beltrán",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/09/22/gasolineras-del-cjng-en-mexico-segun-ee-uu-un-nexo-con-andy-lopez-beltran.html",
-          "intensidad": 5.0,
-          "medio": "yucatan.com.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Economía",
-      "peso_pct": 17,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "peso_pct": 47,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 2,
+      "n_notas": 7,
       "notas": [
+        {
+          "texto": "T-MEC: Guajardo pide recuperar cero aranceles para la industria automotriz - La Silla Rota",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNR1lQT3UwdkNLOVdlTVpPNXZQU05KN1ZSUFE1eno0UDEzMy1peU1vY1RzbUJtckctT3RWVEluM3ZzTlgxX1RfaWJQQUJGcUNQbDNJSUd6ZXBNVVdtY1k0VVJBSktqZkpvSWZNemx2eDN6Qk9pQm9COU82R05lb3VwcHNFRjNuc0xEX1V2SUhBbFZVaDIwYmE1alVXTmg3LTlWd3JMbld1RDdRSV9Mc0V6ZGEzd3FvMm13Qk9IbVdaUU1qV2xfcVpN?oc=5",
+          "intensidad": 8.0,
+          "medio": "La Silla Rota"
+        },
         {
           "texto": "Claudia Sheinbaum habla sobre la baja de natalidad en México: \"Hay que entender qué está pasando en los jóvenes\" - Ambito",
           "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPWnV6QmhFaWhHYUlZM2ljM25pTUN5MWZFdV9pXzgydERCazB3REUtMUctSnY5LS1jMzc0bjFDUkEzMC1wMnFTcDZiWlNpcFFscWFxRk9QX2YtMEc5Mll6dWpwTVhmaldWcEw0Wl9VRGdwN1VaV0lfdzM0ME9PbF85b01JeUFqMWJKQVdtd09PTmc0T1NvS3QxcGN0MUJIOXVRZmdMTmVveWFYTmRYbnhtUUZEYWZVYkhLOEhkQ3BVV1JqVHFZZ2NBeDR1V29td2ZBMzRGRS01ZG83X1hiU2lsdlRlNjF5R0J40gHuAUFVX3lxTE1iRUZMUmFkc1BJcEhKMmx3MllQaUVuUUZlZ19sdFRITmxLbkZPQXppdGhaMGd6LW9KQy1DTVZuVzJaYUtydHhzOHJHbWlLUkllN3FLYktoQVRnSDdHYXQ3WlFwY1czWDB2UHVITVhPYVpvWEl2bTZpMUlTYWJqeU1WOVN6MnFTbE1hb282eVdXNGRUREVFV21XelAwN2RRYlNpb1dHRGpPRzZvMHVKeXVIWVI0dlk4V29HZ0dsemkwVEZQbHc0VUFXcVliNnB3enY1amZEckpqcUJVcTNWWE15UTBiOEl1Z1g3YU9XU0E?oc=5",
@@ -114,6 +30,108 @@
           "fuente_url": "http://campechehoy.mx/2026/09/23/cuestiona-sheinbaum-la-pension-de-zedillo/",
           "intensidad": 7.0,
           "medio": "campechehoy.mx"
+        },
+        {
+          "texto": "Trump puede cambiar lo pactado sobre el T-MEC; Sheinbaum tiene la llave, dice Ildefonso Guajardo - expansion.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNbDZ4ZDZyU3NoV3FRb2xOTUhFTGs4S0pVN080OTZxWnliQnlkdVp3QWVHYVMySHJUOWR4Sml2d1d1M2RtMmVWZ2dOU3NzVnBMMWtmcHhfTmFHRXRuUU9QZWhiV3Z6bXdVT2lEczkzUWZRTkhXX3dPZ09oejdFQzN4NHhCOEx1THYyNjlRZ1luSUx2UGNiNHfSAaMBQVVfeXFMTWlMS2tkZGpJbFBBa2ZhTjJkaWJ6NmtQbUl2b2VVUzkyMXk0eVRTUVZzUU9sd2NnSGRMOU9HSS02RUJ4QnJCRmp6Zk85ZVoyS0Z3Xy1iYWxtYTRLTWlfRVItYTZDLVQ5ckZBLUc5ZlEwNHJRR2ZZNXRzdjI5WFdJNXlIOXF4N2NPQlJ2NVZDTjBJWEctTV9UZjhkdTFsYTM3R0Z0OA?oc=5",
+          "intensidad": 7.0,
+          "medio": "expansion.mx"
+        },
+        {
+          "texto": "Acuerdan reparación laboral en la mina de oro Peñasquito",
+          "fuente_url": "https://www.jornada.com.mx/2026/09/24/politica/013n4pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
+        },
+        {
+          "texto": "Detienen a presidente municipal de Juchitán de Zaragoza, por vínculos con el crimen organizado - Diario del Yaqui",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxObmM3RmRDN2ZZNzJvNnlUaTVIdGUtdmRreWxZTGVGT083cXVqS0hUTng5LTVId3Q0R1UtVzE4cUdTeUFXYUhZdDc1aldWXzVDd3BSeDdQLTM0OHJJTDRGNWdfcENfZHdCSjR5NmotMEczWG0zWkhxVUlibDlmM0FzTzZ5cmpqWEl3TjdZSVVqUzJma19pc2NIWVJLSVVQUjRXd0x2SklnMzI5clNkX2Z1YWxSbXB2bWZHRWVVZWxSUEZ1Vmlob0VJQ1ZjYUE3b2s5?oc=5",
+          "intensidad": 6.0,
+          "medio": "Diario del Yaqui"
+        },
+        {
+          "texto": "México y Estados Unidos aplazan cuarta ronda del T-MEC - eluniversal.com.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQSHEwdG9ZR25oV19mSVN5QmY2ZzhRTGIyR1VGSlJvcU5Bck52TTdvUUdPb1RJc1pVd2IxbXlHd2pkcXRteDh4VUZ2U1U2b3k5TndrUjVxZF8xT0JoSG9kU1R4Smx1M1Z2R1BEQTdjbVNuRmhNZDhpeXZ0bjF6cGJldmJ3TzRJMlpsREwwM2l2YWxoMVlqdGxzX2NxYkd6b0JUZFg3Y09qN3BfMHpjZHJGdFU5QjI3SDFvRGE1T3V3VUlJX2trTEhKcm5OUmMybFlzajdSOUR5cFJHVFBFUFlWdl9xQjJvNGE2LVZYM1V30gGCAkFVX3lxTFB3ZEVKeElkbkEzMm9FTENSUHhST2pBamFkVk5rZXlNWDhjaXBmNUNKQjY5dnM5QVVJSmt4cVFwVFM5eFk5TkF3Q252TkF3QmFqeWtWa0VOb2dfR1ZLWHNoVmJ1ZGF0czRRQml0ajNTbUh2UGN1UnUxMkFuZHlYQVpsOWxsa3RuQkxfUUhnRlRGWGhWcWRSME5SYktjQ0tmMmdabFJNYzNFYlVDVU5xOHFWbDBmX2xhOFV5TjNGU3ZHbXZlQ0daNWNhZ0pNWU9UYk1mckJFNmU0YkFPbW94akhzN0Jobi1wOHdkNGtJTU9RLVo4ZGZEbkZ0akpfMWpmemdCZw?oc=5",
+          "intensidad": 6.0,
+          "medio": "eluniversal.com.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 41,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
+      "n_temas": 3,
+      "n_notas": 6,
+      "notas": [
+        {
+          "texto": "58% de mexicanos piensan que “Andy” es culpable de huachicol fiscal: México Elige - etcetera.com.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE03S1pXdjRWRWNtSlBJVlNfNEd6MHNtWWwzcms3dW42ZHkzUDlyM29EaEI3YnhFX0podzZZNGRUZUhlWkN6Y3dBS1JoVFNLbFNZeGhSRVZ0LXJMVWU4am9SXy1UbjI1STg5N1kzczkxUFhyUQ?oc=5",
+          "intensidad": 8.0,
+          "medio": "etcetera.com.mx"
+        },
+        {
+          "texto": "Ramírez Cuéllar propone nuevas medidas contra huachicol fiscal y facturas falsas - Eje Central",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONEFaY1dIeFNrVUxlMFFlNVMwdWhvVkp6Yk1DajR3azNEVFM3aGtNbDllUVQxT2FNeFdjb3BXWTItYkRqenhNYTNSQVhGN0FOVmw4QkI0Wnk1SWo3VFQ1Ymh1Vy1ZTFlMdUdKVldUck04UGVEQ1VTUHc4VERLTXE5TGtvQnhYbVZpcjVWVW11U0FJZUstYTZfOHJDUnRsS3RnWlJ5MEhzUXZUTlBhTnhyWGZ0WTBKZHh5N0piQ2pUMA?oc=5",
+          "intensidad": 8.0,
+          "medio": "Eje Central"
+        },
+        {
+          "texto": "SHORT: Xóchitl Gálvez cuestiona a Sheinbaum por su postura sobre la violencia en Sinaloa - Yahoo",
+          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNWS1tZ3pCdUdWTjN0eFJuTFM0RTV6TXp5Yk5vQVNlQjdMRUIyTTBWT1JUcmZnZlpfU1VuYW4yU3lmX09tSkd4aURJbzdPZ1NJRkFvSDgzcGY5OXlPSkxDYXJ3UkhoR0lSeWZCVVFxMFZUdUwtUGNGTWJhd091OFF5ckhlbE9QdjlTNDU3dW5MbTh1Tnc0WnA5U2Vxd3EzeUk?oc=5",
+          "intensidad": 7.0,
+          "medio": "Yahoo"
+        },
+        {
+          "texto": "Cesan a delegado de fiscalía de Guanajuato por megadecomiso",
+          "fuente_url": "https://www.jornada.com.mx/2026/09/24/politica/013n1pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
+        },
+        {
+          "texto": "Ernesto \"N\" podría cambiar de medida cautelar a prisión domiciliaria",
+          "fuente_url": "https://www.informador.mx/mexico/fgr-revisara-cambio-de-medida-cautelar-para-ernesto-ruffo-podria-llevar-el-resto-del-proceso-en-prision-domiciliaria-20260923-0093.html",
+          "intensidad": 6.0,
+          "medio": "informador.mx"
+        },
+        {
+          "texto": "“Rocha Moya desbordó los límites del viejo pacto entre política y crimen” - El Sol de México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNQzRUMkZXaU5iTjRWcE15aUVpNlVhRmd2aFMyT0pKbzl3RmFuODJnNXh5SllVM25hSVBScldlWEdHa1F3SHBSSVR2cnhYOUZ0N0ZBa1NqQ3E4VTFrc0ZULUZHMi1sb0I2R0FOY3VJUlREUzNEaHViMEl2enRNLXdjQW1WaW5zcUhaT3EyLTRuZWoxNTZwVksxVWpKalg3MnFHVVYzYV9fSlhiR0dobkVLRmhBZ0J4VEdhRUgyUHZ5X0N2MjV3bF9vUDdkQnoxemM?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Sol de México"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 7,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "¡DONALD TRUMP, “EL CHIMOLTRUFIA” DE LA CASA BLANCA!",
+          "fuente_url": "http://campechehoy.mx/2026/09/23/donald-trump-el-chimoltrufia-de-la-casa-blanca/",
+          "intensidad": 7.0,
+          "medio": "campechehoy.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Gobernabilidad",
+      "peso_pct": 6,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Detienen al alcalde de Juchitán, Oaxaca, por presunta extorsión - diariodetabasco.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNUnc2RGJXR3BUUmZ2ZTFEZEEzYlFHQVl2UUJBSHprZjAtZmtyMDByYXVIZTRGaE9QdmRfclhqVFpqdW5KVGkwLVhxSWk0X09qZFdzUVB1Sjl5dzR6aFQ3ZklCdkcyN1hJZDJCMTdjWjA3dTFuejR6ZmRNUE1qZkhXM0t5REcyX3dUbHZHU1B4Y3YtNjhUbjV2Q2V0YVlwbFJ0RDBBek8xM0RuWWYxSkNvbVVJNGM?oc=5",
+          "intensidad": 6.0,
+          "medio": "diariodetabasco.mx"
         }
       ]
     },
@@ -129,15 +147,15 @@
   ],
   "categorias_tendencia_4sem": [
     {
-      "semana_fin": "2026-09-02",
+      "semana_fin": "2026-09-03",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 78
+          "peso_pct": 77
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Relación Bilateral",
@@ -154,32 +172,32 @@
       ]
     },
     {
-      "semana_fin": "2026-09-09",
+      "semana_fin": "2026-09-10",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 54
+          "peso_pct": 55
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 21
+          "peso_pct": 22
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
-          "peso_pct": 16
+          "peso_pct": 15
         },
         {
           "categoria": "Social",
-          "peso_pct": 2
+          "peso_pct": 1
         }
       ]
     },
     {
-      "semana_fin": "2026-09-16",
+      "semana_fin": "2026-09-17",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
@@ -191,7 +209,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
@@ -204,23 +222,23 @@
       ]
     },
     {
-      "semana_fin": "2026-09-23",
+      "semana_fin": "2026-09-24",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 33
+          "peso_pct": 34
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 42
+          "peso_pct": 40
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
-          "peso_pct": 12
+          "peso_pct": 14
         },
         {
           "categoria": "Social",
@@ -231,121 +249,121 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-05d78984ca",
-      "nombre": "Claudia Sheinbaum gana la batalla política en Quintana Roo al derrotar a Rafael ",
+      "id": "auto-60e86e646e",
+      "nombre": "México no se doblega ni se arrodilla y nunca se vende, define Sheinbaum",
       "categoria": "Gobernabilidad",
-      "resumen": "Claudia Sheinbaum gana la batalla política en Quintana Roo al derrotar a Rafael Marín en la postulación a gobernador. - El Congresista",
+      "resumen": "México no se doblega ni se arrodilla y nunca se vende, define Sheinbaum",
       "peso": 21.0,
       "n_temas_agrupados": 4,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPeDg1YnRvSzRxaXRoRUJZOFFZTmpWN19WT0xqeXdPZkdvOGdUMDhoRE5Na0h0SFpfaXFyUkwwazl3Y0s4c3hBTXlCTUFDRUlLcWUwVHhUdnN1eFBiRFBwc3pJYTJYVERGZWQ5YzFoVklGdW1VR1c5Ri1ZLUk3RTF1RHA1ejN0MW1kaEduWmkyNnh4SEtGcEJxd0NHSXgtUXl1dVpQaDZKdnVuOWZkajZFM3JJallxRGRGbGE0dm9ZYzJBNTZuZ25IX9IB3AFBVV95cUxNVHRyTml6dDUwZVNGQnV6eEYxRE5RN0VzWWpXbTJxOVZ5UHlXalVIZlZEUDVCeTJYQjJFbk1IN1BJQklxVW43aUVyTEpTRHhfaXp4Ri0zLXBzVUw1NndnSlJNUGQ2Tnl0RXZHRENvR2xwQmlibmlTWlE0aXNKQUxHeVo3dGZ0WXhCZTZnRVNGOFV3OEd4a0t1eWRkTFEyV1FLZnItUW1mNkgtSmd6SXhraXhKWHJXTXhlNERkMXdoV2ZYY0NwQVVlSGROQ3FLWmlrVlVtWnlUd1VfYjFL?oc=5"
+      "medios_corroborantes": 2,
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/23/que-pregunto-el-inegi-sheinbaum-cuestiona-datos-sobre-desplazamiento-forzado-en-mexico/"
     },
     {
-      "id": "sinaloa-crisis",
-      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
-      "peso": 7.0,
-      "n_temas_agrupados": 3,
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "peso": 13.0,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/013n2pol?partner=rss"
+      "medios_corroborantes": 2,
+      "fuente_url": "https://www.jornada.com.mx/2026/09/24/politica/013n4pol?partner=rss"
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-3826350b67",
-      "nombre": "Chipote chillón a Citlalli Hernández: Familia de Chespirito reprueba uso de la m",
-      "categoria": "Gobernabilidad",
-      "peso": 12.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/espectaculos/2026/09/22/chipote-chillon-a-citlalli-hernandez-familia-de-chespirito-reprueba-uso-de-la-marca-en-campana-politica/"
-    },
-    {
-      "id": "auto-3d8ce04cd2",
-      "nombre": "¿Roberto Velasco contestó acusación de Trump con mensaje LGBTIQ+ en la ONU? Esto",
-      "categoria": "Relación Bilateral",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/22/roberto-velasco-contesto-acusacion-de-trump-con-mensaje-lgbtiq-en-la-onu-esto-sabemos/"
-    },
-    {
-      "id": "auto-7fc9fb56ad",
-      "nombre": "Diputado del Verde cachetea a contrincante por candidatura en Puebla: lo apodan ",
-      "categoria": "Gobernabilidad",
-      "peso": 4.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOOTB4NTFFb2xkWERjanZtREUzbzhKT3JSRER4NzJja3BpRjItUzVXbURlZVNBMi1CZExvN2VHUmlYOUQ5cFlRc0p6QU5udERRTmxsR1J6Y1VMcG92RnV4R0JXeV83YlB1OW8tdmhVRW56MlNKRjZrOGR2ZC1RQTlCT3lGUlpmUlFfUExCRWV3V003bzE0cDg2S1pNdmdqS2NhTjlfQjdMYjR3OXRnNVhUTXl6aFhlRHA0cDI4Q2FrcktyZVhYZ3ZkM3ZnVnBaYjRBeVpJ0gHuAUFVX3lxTE11eUlLUEptY3hQZkRxR1BjSV8xbEZQSDUzTU1PaFZjWTItQ1RsLUVOUkNBNkVtbHR3UEgwZ2lseEdTQ2c2YnExNmZTeHdFaC1wUFNnQ2R6UElhOUtkbFZWaFlMcW5XamZjQVE3bTIxbUxvSi16UW9vSVpTZXZ1YjFnem5IMWh4Z1NPREhkU3JKREc3NE9HbXdMcEU1R2xnb0JFSExlUmFnd1UtcUNpRUU5NkJka29lOEFFOVhpRG9Eb1lrVThfaWNvZEFnVEtSMS0zcWNRalRtWmlEYkhyTEZfVUNnVWdkaUpUZmZWMkE?oc=5"
-    },
-    {
       "id": "auto-0ab49cdc5e",
       "nombre": "¿Quién era Miguel Sánchez Altamirano,el alcalde de Juchitán detenido por fuerzas",
       "categoria": "Seguridad Nacional",
-      "peso": 4.0,
+      "peso": 18.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxORjlXSm1yX0MtUG0wLWZobUtsYXRfMmhvMG5sb3Z0LXpYSVljVm5mV0lWY2JwbXBYMkVEMk5vWGZHYzJJZUJWbUV5YzlEb3ZXaWViWU5nNEVoVFM4ZDlwSmFrbEQ0RURkU0MwUUtpY3NlNzJyYWxsWGlmbHlmeFIwYXEtbEN0TWtEaXRNV2lQeTFIdDFId3R5V2dsT3ROd9IBngFBVV95cUxPbzFadWpYSlRfcHgzcEhaYW1VdTZHMGZWai1tcXdaam1aSWpud1otMFM4U3NIaW9sNHVyWEYwVzUwVnV2b0VQXzZtZDNuMnVKa292UUR6eHltbUc0cWZfdlhiQktfVVE4Zi1JdWRWeFNwWHJHX29FRnV2bU1EX3VrQ3U0TFl4SXhibEdWLWpMOFdVbmh0QzI2WXpCaS0xQQ?oc=5"
     },
     {
-      "id": "auto-0f514abbaf",
-      "nombre": "Tras una década de abandono, inicia la demolición del hospital general para dar ",
+      "id": "auto-6df9b2e237",
+      "nombre": "La presidenta Claudia Sheinbaum confirmó que no asistirá este año a la Asamblea ",
       "categoria": "Gobernabilidad",
-      "peso": 4.0,
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://www.jornada.com.mx/2026/09/24/politica/003n2pol?partner=rss"
+    },
+    {
+      "id": "auto-8e69dc33da",
+      "nombre": "Heriberto M. Galindo Quiñones: Al combatir y afectar la doble nacionalidad ignor",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOWGtVMFU1M3lnTmVmVktDNmlPSnQ5RjJ0bC16emQ3UGtobTdOeHRaTk5lUnEyN2lpMmlpblZQbHAyZUVRbGJxQkRIdkJ1cE43dDVRbHZZck55WW5Wbkc0ajRBeHluNWFZXzBhZXhYRmZqZGdnbkt4TkVaTlg1dy0xOU0yUjZqZ0lqLUtiX2hYUjNrTlJWNFZSaE81RnA2dDloZ3VYbXc1QVNQRURDdW1pYWM3cHotNWtDS05KeFp3SUt4cXljVmxGRHgydUo1ZW93d0ZHeDNpWE9JU2FhalpKRTE0bko3X3Q3?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/09/24/politica/010a1pol?partner=rss"
+    },
+    {
+      "id": "auto-eff13d4fba",
+      "nombre": "¿Qué hay detrás de la ausencia de México en la Asamblea General de la ONU?",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/onu-que-hay-detras-de-la-ausencia-de-mexico-en-la-asamblea-general-20260923-0111.html"
+    },
+    {
+      "id": "auto-b817af87c2",
+      "nombre": "Ricardo Monreal respalda a Sheinbaum y ‘defiende’ reforma de nacionalidad única:",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQRk50ME44TkhSV2xvaFdCZ0RJRXp3QUU1OEo1VkF0eU5UYjY4UkZCMFJuakNwTzdTOXpYdWJVa3BDZEJVZnJMMTBrNUl2dkl3aW1oWmZvSTRpVDl6bm1LQU9uUGJMbzB6Z2ZibmJmenBIM2xoTmhYUUFpQ2FSX1ZOX01IZWlLcktISEdTRW9Zd1ZmZjdTUy1oZEYzOGRTM2QwbUJGV2JneW80NkpROGtkOHBCY0dNR3paaTBYV3FtYkUtTThCakpCNV9EVlRnN204dDltSEMtN01aMk5sZHVZc19GWVN0Zw?oc=5"
     }
   ],
   "temas_retomados": [],
   "actores_destacados": [
     {
-      "id": "ojeda",
-      "nombre": "Rafael Ojeda Durán",
-      "rol": "Mencionado",
-      "tema": "Huachicol Fiscal",
-      "nota": "Rafael Ojeda y la caja negra del huachicol fiscal, escribe Mario Maldonado - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQTG0zN2djdHZJMGJoMFVYVFlYRUpDbThRdy1KNkd5aGVRdEpFOFlERTNPbWxZa1NjYmFlTWJvdU0xYVBTVFJoWGZMMTFSdXVMdkFsbFBGWXduLXhRU1FyZGZ6VGZrLWFUZktpamZoNUo1NFNCdXNBeU9FR0RVVWQyQzlEQmdCdFlxY0tLQXJ0bTUtcUI2VVNRbHVQN3VvaVVJbG05RHBhMFM?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum gana la batalla política en Quintana Roo al derrotar a Rafael ",
-      "nota": "'Detrás del telón': la primera serie de Claudia Sheinbaum - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNOHFVUE9rUHRCaXpPMUNJV2lOZDFCZG9sMk5ibWl0UDgzTmpabEZpRUdyWU5ySXFhOWJwaTBJeWcxRmhrNW5JN2Rtb2Z4TzlOQ0c4d0ljc0FMczZieGlaaWRYNVl3a3dkRFR3OWRqazFzT2FYTEtOeDV4M2doRVJHb0lyS000NjNKY0lTMkRTZ0pua05kby00MjZfVWRYT2N6a3hZT011dllqR21IS0Z6SUE1N2hnZ2xvSy0zak9DSkduVjI3OE5Lb2oxb27SAcwBQVVfeXFMUDhCRi0tbmgtNDJBZDJRRHkwelNWMnV2QkludXYwNHpQdnpHWC1EQ2hOd2gtYy1VY0s4UzJILTVhMFAwNTFwS0k4OFdSSVZjZWtVNjE2Qm1LeDIxV3kyWkFsNHFqWkNUUnlGTjZqZzA2MGFuWGxQT1p3c2hmaWFqNXhvbjFYaE0zTlN5UVZTelV6dDBKdXgyZ1hqekt4X2V3UkRnLVNZME5aNzVra2xNYVhFNDEzNm5tSFRiWG4zLWo3UXBSa29tYmNiMDFD?oc=5",
+      "tema": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "nota": "Graciela Domínguez Nava acude a la mesa de seguridad de la presidenta Claudia Sheinbaum por primera vez tras crisis de violencia en Sinaloa - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOVUd4dVIwTDlZUWJmM0dQcXB1SlZqWTNsMDJ1eElBZldFaS11Mi1kWXYtOHhBRnVfd0FsNTc2QlVEVndldlhQblhWUWpacDl2TUNVUW5zOGw4dmN4MUZOVmV3d2x3WXpUUnZyZUhLd3h1MUFCUGh6cmxqNnpYNERwZUJPNF9wc2p3bXBvTlF6TkozWkxMdFliOEg4WTBXWHMwREJTUlNURHhOaGtreEkwakt0eDhFUkhzaUo0RlE3anfSAdsBQVVfeXFMTVdQcEZYX0ZzV3ZOaWV3czV3YUNlSERwZElFSkdzbGxQbDI1bUtfQ2lndHpXWWZJWlF4QzM0eFVuaXFfa0tVLXotdUp5X19WN2ZZamVQNFpqVDFLZVU0RFdQYjRySy1KYWxtb0w1ai1jbGd2cGZidWszWFdJODZjQW5ZWU9tN2VHVTAtRmxDc2NJX2F3bXYzMnREOHAtcGZKX002ZmR5T1RscTh1XzE1Z2JLTmpFaGlZWVQ0VHhLOEFkcHo1ZXFEMnRaZGVNcUc3NHFoOG9jazVwZXJr?oc=5",
       "reaparece": false,
       "tema_nuevo": false
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia",
-      "nota": "Sheinbaum confirma llamada telefónica con Donald Trump sobre comercio: \"Avanza la posibilidad de un acuerdo\" - milenio.com",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPeXdzVnc2a3g4VDFiT1hiLTBNd29uZ3ZJNHRPbC00cWdveHZZcjJZRk1sdDY5OEI1YzRWSXpzQ3JuVUhVZUU1ZnAwanFnR3gta05HenNSaGJhYlRzZXF6Wmc1NjBPNVB4cGxxT01hbXJ4R3pZQ3RKblpTMzFCNFNQaDRmMThxazdBYi0tZjRtaVVWbWI1RUdKa0xQZ9IBmwFBVV95cUxQZHI4VWJ1MWg4TzhFNGY0b3VtS3p1a3A4Y2ptN2hpMC1qYnc0Y1llaGJ0ZWRaOWRocVV0Znd2S2xSU2V5NXNOSnV4M1Z2M2FUY0xRY0pYYW9tQWo2a3licUJMODB6cG5DMmktR3NrSy03ZzV5TWx5VFk3cE5FdWJ6eGlnLUU4VklBa2JxZTBsQUJhb1cwc2xWS1p4Zw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "citlalli",
-      "nombre": "Citlalli Hernández Mora",
-      "rol": "Responsable institucional",
-      "tema": "Chipote chillón a Citlalli Hernández: Familia de Chespirito reprueba uso de la m",
-      "nota": "Chipote chillón a Citlalli Hernández: Familia de Chespirito reprueba uso de la marca en campaña política",
-      "fuente_url": "https://www.elfinanciero.com.mx/espectaculos/2026/09/22/chipote-chillon-a-citlalli-hernandez-familia-de-chespirito-reprueba-uso-de-la-marca-en-campana-politica/",
-      "reaparece": false,
-      "tema_nuevo": true
     },
     {
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
+      "rol": "Responsable institucional",
+      "tema": "Revisión del T-MEC",
+      "nota": "Ebrard niega que casos de Andy López y Rocha Moya debiliten a México en negociación del T-MEC - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQcVpibDh3eVVHMkpHNXlHSkh6LWtVZ1IySDI2ZGtpcHJZQjBSTmJHN3lWODBOREhuRFpCdHY3WjdfLTkzNExnM0tWT1NhMEJ6OEt2czRLeUxUaGtfdlJkOV9pOEtOeEtvc3BqTFhBSjhJdHJwTThDZTBwa0t1enFBa3hnblVJbnBUNVVSTlVrUms2TUVZQUlfLURtZnhrQnPSAZ8BQVVfeXFMUHFaYmw4d3lVRzJKRzV5R0pIei1rVWdSMkgyNmRraXByWUIwUk5iRzd5VjgwTkRIbkRaQnR2N1o3Xy05MzRMZzNLVk9TYTBCejhLdnM0S3lMVGhrX3ZSZDlfaThLTnhLb3NwakxYQUo4SXRycE04Q2UwcGtLdXpxQWt4Z25VSW5wVDVVUk5Va1JrNk1FWUFJXy1EbWZ4a0Jz?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "rocio_nahle_garcia",
+      "nombre": "Rocío Nahle García",
+      "rol": "Responsable institucional",
+      "tema": "Revisión del T-MEC",
+      "nota": "Explosión en planta de Jáltipan, Veracruz, deja tres muertos y un herido: Rocío Nahle activa operativo de emergencia - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNUldiMVo4b1NBby1raUI4bThzaU5MSWJFLVIxdmtWNXpibFd6VXJfa01Lc1JUUVQwNXUwS3F5YXFYRTVteGZsczFSSGNudXcxaGIxaFZwTlpacnVxcmNyRnFSNVprZ01XUC1ha1RWLTR4bjBsWGxGb0ZaVEZYRmRBQy0tYm1BMklqRk1CU3lkdE9tdi0wY2JobkYtMl9hN1FvNkhDRDNWamg2blB6eWtMUS1KLUVTMjhrY0JNWDB2UUFLYXZ5TlJVZGhvcHFacXpYYlBXcjFuZVNaZFBDSW85NmFsNE93MlNoZ0NSbtIBhwJBVV95cUxNV1p4dUJaa0ltMEc4Q3FNc2xleEM4STVfNGxtUkUyaUZHV2FQYktpdnRWbkI2WDBjUERCUkJ3UmRsYjZOZHI0QWt4bFlqaTdYSkVuZVhyTUUyRXZ3eGRQcllsME45TU5TRzBDTVJzVVBZT1BLeEVIeUtrZFJQVk9saFFxN2RScExvcUlaX0Nmdk9xSERoSHlvU3JLYzJDX0JITVljeTB2WUNmVG5JaXlzRmFyZ1Q1VXk2d2ZyYmt3TW1rcGRJRS1CNXZaaHNfUExTM3pBYUlCV0EtVXQ3VmVpWTA3aTBPeHkxb25DbWVmTVd6a3lsaW9wLW1kYmhwWVc3VHh3WThtZw?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "farias_fernando",
+      "nombre": "Fernando Farías Laguna",
       "rol": "Investigado",
-      "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "Fiscales del Distrito Sur de Nueva York acusan formalmente a Rocha Moya y otros nueve funcionarios de narcotráfico y posesión de armas.",
-      "fuente_url": "https://cnnespanol.cnn.com/2026/04/29/mexico/acusacion-gobernador-sinaloa-ruben-rocha-orix",
+      "tema": "Huachicol Fiscal",
+      "nota": "Fernando Farías Laguna es detenido en Buenos Aires, Argentina, con pasaporte falso de Guatemala.",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/22/sobrinos-de-exsecretario-de-marina-asesinaron-a-testigos-de-huachicol-fiscal/",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "farias_manuel",
+      "nombre": "Manuel Roberto Farías Laguna",
+      "rol": "Investigado",
+      "tema": "Huachicol Fiscal",
+      "nota": "Detención de 14 personas señaladas de encabezar la red, incluido el vicealmirante Manuel Roberto Farías Laguna.",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/01/22/secretaria-de-marina-actualiza-el-caso-de-huachicol-que-paso-con-los-marinos-involucrados/",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -358,14 +376,6 @@
   },
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-08-27",
-      "tension": 67,
-      "n_notas": 14,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 8,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-08-28",
       "tension": 73,
@@ -409,9 +419,9 @@
     {
       "fecha": "2026-09-02",
       "tension": 65,
-      "n_notas": 22,
+      "n_notas": 23,
       "n_alto_impacto": 13,
-      "n_medio_impacto": 9,
+      "n_medio_impacto": 10,
       "n_bajo_impacto": 0
     },
     {
@@ -448,10 +458,10 @@
     },
     {
       "fecha": "2026-09-07",
-      "tension": 63,
-      "n_notas": 21,
+      "tension": 62,
+      "n_notas": 22,
       "n_alto_impacto": 8,
-      "n_medio_impacto": 13,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
     {
@@ -465,9 +475,9 @@
     {
       "fecha": "2026-09-09",
       "tension": 66,
-      "n_notas": 31,
+      "n_notas": 32,
       "n_alto_impacto": 17,
-      "n_medio_impacto": 14,
+      "n_medio_impacto": 15,
       "n_bajo_impacto": 0
     },
     {
@@ -489,9 +499,9 @@
     {
       "fecha": "2026-09-12",
       "tension": 57,
-      "n_notas": 11,
+      "n_notas": 12,
       "n_alto_impacto": 3,
-      "n_medio_impacto": 8,
+      "n_medio_impacto": 9,
       "n_bajo_impacto": 0
     },
     {
@@ -528,10 +538,10 @@
     },
     {
       "fecha": "2026-09-17",
-      "tension": 64,
-      "n_notas": 27,
+      "tension": 63,
+      "n_notas": 28,
       "n_alto_impacto": 13,
-      "n_medio_impacto": 14,
+      "n_medio_impacto": 15,
       "n_bajo_impacto": 0
     },
     {
@@ -545,41 +555,49 @@
     {
       "fecha": "2026-09-19",
       "tension": 73,
-      "n_notas": 25,
+      "n_notas": 26,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 5,
+      "n_medio_impacto": 6,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-20",
-      "tension": 71,
-      "n_notas": 12,
+      "tension": 70,
+      "n_notas": 13,
       "n_alto_impacto": 10,
-      "n_medio_impacto": 2,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-21",
       "tension": 71,
-      "n_notas": 23,
-      "n_alto_impacto": 18,
+      "n_notas": 24,
+      "n_alto_impacto": 19,
       "n_medio_impacto": 5,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-22",
       "tension": 69,
-      "n_notas": 26,
-      "n_alto_impacto": 19,
+      "n_notas": 27,
+      "n_alto_impacto": 20,
       "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-23",
-      "tension": 70,
-      "n_notas": 6,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 0,
+      "tension": 69,
+      "n_notas": 15,
+      "n_alto_impacto": 11,
+      "n_medio_impacto": 4,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-09-24",
+      "tension": 67,
+      "n_notas": 3,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
   ],
@@ -592,5 +610,5 @@
     }
   ],
   "declaracion_otro_historial": [],
-  "hora_corte_publicada": "2026-09-23 20:32"
+  "hora_corte_publicada": "2026-09-24 10:15"
 }
