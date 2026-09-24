@@ -590,7 +590,14 @@ def calcular():
             t_dia = round(sum(float(e['intensidad']) for e in evs_dia) / len(evs_dia) * 10)
         else:
             t_dia = None
-        historico.append({'fecha': dia.isoformat(), 'tension': t_dia, 'n_notas': len(evs_dia)})
+        # nivel de la nota por confiabilidad real de fuente (mismo criterio que el resto
+        # del módulo, clasificar_fuente/nivel_evento) -- para que el patrón histórico diga
+        # no solo "cuántas notas" sino "de qué calidad de fuente", día por día.
+        n_alto = sum(1 for e in evs_dia if nivel_evento(e) in ('ALTA', 'OFICIAL'))
+        n_medio = sum(1 for e in evs_dia if nivel_evento(e) == 'MEDIA')
+        n_bajo = sum(1 for e in evs_dia if nivel_evento(e) in NIVELES_BAJA_O_SIN)
+        historico.append({'fecha': dia.isoformat(), 'tension': t_dia, 'n_notas': len(evs_dia),
+                           'n_alto': n_alto, 'n_medio': n_medio, 'n_bajo': n_bajo})
 
     # (se quitaron los KPIs "Alertas políticas" / "Temas en escalamiento" / "Temas
     # estables": comparaban promedios de 1-2 notas con un umbral de 1.5 puntos sin
