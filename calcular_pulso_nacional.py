@@ -118,16 +118,26 @@ def calcular():
     # tema principal. Peso = suma de intensidad real de sus notas -- no un conteo simple,
     # para que una categoría con pocas notas pero muy intensas no se subestime.
     # ================================================================
-    def peso_categorias(evs):
+    def peso_categorias(evs, con_notas=False):
         peso = {c: 0.0 for c in CATEGORIAS}
         tema_top_por_cat = {}
         temas_por_cat = {c: set() for c in CATEGORIAS}
+        notas_por_cat = {c: [] for c in CATEGORIAS}
+        n_notas_por_cat = {c: 0 for c in CATEGORIAS}
         for e in evs:
             cat = e.get('categoria')
             if cat not in peso:
                 continue
             peso[cat] += float(e['intensidad'])
             temas_por_cat[cat].add(e['tema_id'])
+            n_notas_por_cat[cat] += 1
+            if con_notas:
+                notas_por_cat[cat].append({
+                    'texto': e.get('descripcion', '')[:200],
+                    'fuente_url': e.get('fuente_url', ''),
+                    'intensidad': float(e['intensidad']),
+                    'medio': extraer_medio_de_descripcion(e.get('descripcion', '')) or dominio_de(e.get('fuente_url', '')) or '',
+                })
             # el "tema principal" que se muestra (driver del velocímetro) solo se elige
             # entre notas de medio de primer nivel (ALTA/OFICIAL) -- el % de la categoría
             # sí suma toda nota real, pero el titular que se destaca tiene que venir de
@@ -143,18 +153,22 @@ def calcular():
             if tema_top_por_cat.get(c):
                 tema_id_top = max(tema_top_por_cat[c], key=tema_top_por_cat[c].get)
             tema_top = temas_por_id.get(tema_id_top) if tema_id_top else None
-            salida.append({
+            entrada = {
                 'categoria': c,
                 'peso_pct': round(peso[c] / total * 100) if total else 0,
                 'tema_principal': tema_top['nombre'] if tema_top else None,
                 'tema_principal_id': tema_id_top,
                 'n_temas': len(temas_por_cat[c]),
-            })
+                'n_notas': n_notas_por_cat[c],
+            }
+            if con_notas:
+                entrada['notas'] = sorted(notas_por_cat[c], key=lambda n: n['intensidad'], reverse=True)[:15]
+            salida.append(entrada)
         return sorted(salida, key=lambda x: x['peso_pct'], reverse=True)
 
     hace_7d = ahora - timedelta(days=7)
     ventana_semana = [e for e in eventos_validos if hace_7d <= e['_ts'] <= ahora and e['tema_id'] in temas_1]
-    categorias_dia = peso_categorias(ventana_agenda)
+    categorias_dia = peso_categorias(ventana_agenda, con_notas=True)
     categorias_semana = peso_categorias(ventana_semana)
 
     # ================================================================
@@ -730,12 +744,32 @@ def decide_si_publicar(nuevo):
     return False, 'sin cambio suficiente, se mantiene el corte anterior'
 
 
+def _actualizar_historial_declaracion(anterior, nueva, campo_historial, maxlen=3):
+    """Acumula hasta 3 declaraciones a través de los cortes -- cada corte solo calcula
+    la MEJOR declaración del momento (sin memoria propia, ver arriba), así que sin esto
+    la anterior se perdía sin más al llegar una nueva. La más reciente queda arriba; no
+    se duplica si es exactamente la misma (mismo texto) que ya estaba hasta arriba."""
+    historial_previo = list((anterior or {}).get(campo_historial) or [])
+    if nueva and (not historial_previo or historial_previo[0].get('texto') != nueva.get('texto')):
+        historial_previo = [nueva] + historial_previo
+    return historial_previo[:maxlen]
+
+
 if __name__ == '__main__':
     resultado = calcular()
     publicar, motivo = decide_si_publicar(resultado)
     print(f'Tensión nacional: {resultado["tension_nacional"]} (n={resultado["n_notas_ventana"]}, baja_confianza={resultado["baja_confianza"]})')
     print(f'¿Publicar? {publicar} -- {motivo}')
     if publicar:
+        try:
+            with open(RUTA_SALIDA, encoding='utf-8') as f:
+                anterior_publicado = json.load(f)
+        except FileNotFoundError:
+            anterior_publicado = None
+        resultado['declaracion_presidenta_historial'] = _actualizar_historial_declaracion(
+            anterior_publicado, resultado.get('declaracion_presidenta'), 'declaracion_presidenta_historial')
+        resultado['declaracion_otro_historial'] = _actualizar_historial_declaracion(
+            anterior_publicado, resultado.get('declaracion_otro'), 'declaracion_otro_historial')
         resultado['hora_corte_publicada'] = datetime.now(ZONA_MX).strftime('%Y-%m-%d %H:%M')
         with open(RUTA_SALIDA, 'w', encoding='utf-8') as f:
             json.dump(resultado, f, ensure_ascii=False, indent=2)
