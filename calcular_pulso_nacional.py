@@ -121,11 +121,13 @@ def calcular():
     def peso_categorias(evs):
         peso = {c: 0.0 for c in CATEGORIAS}
         tema_top_por_cat = {}
+        temas_por_cat = {c: set() for c in CATEGORIAS}
         for e in evs:
             cat = e.get('categoria')
             if cat not in peso:
                 continue
             peso[cat] += float(e['intensidad'])
+            temas_por_cat[cat].add(e['tema_id'])
             # el "tema principal" que se muestra (driver del velocímetro) solo se elige
             # entre notas de medio de primer nivel (ALTA/OFICIAL) -- el % de la categoría
             # sí suma toda nota real, pero el titular que se destaca tiene que venir de
@@ -146,6 +148,7 @@ def calcular():
                 'peso_pct': round(peso[c] / total * 100) if total else 0,
                 'tema_principal': tema_top['nombre'] if tema_top else None,
                 'tema_principal_id': tema_id_top,
+                'n_temas': len(temas_por_cat[c]),
             })
         return sorted(salida, key=lambda x: x['peso_pct'], reverse=True)
 
@@ -377,7 +380,42 @@ def calcular():
     for e in eventos_validos:
         eventos_por_tema.setdefault(e['tema_id'], []).append(e)
 
-    nuevos, retomados = [], []
+    # BUG REAL encontrado en esta revisión: "Nuevos" exigía tid in temas_1 -- pero
+    # temas_1 exige 3+ días DISTINTOS de cobertura ANTES de hoy (calificaAgendaNacional
+    # en limpiar_agenda_nacional.py). Un tema cuyo primer evento en toda su historia cae
+    # dentro de las últimas 24h, por definición, no puede tener 3 días previos -- nunca
+    # entra a temas_1. Con esa combinación, "Nuevos" no estaba vacío por falta de
+    # noticias nuevas ese día: estaba vacío SIEMPRE, por contradicción estructural entre
+    # sus dos condiciones, sin importar el volumen real de temas nuevos que hubiera.
+    # Aquí "Nuevos" deja de depender de temas_1 -- usa el mismo universo amplio que el
+    # carril de última hora del Top 5 (cualquier tema, esté o no en agenda nacional) y
+    # exige al menos una nota de fuente de primer nivel (ALTA/OFICIAL) en la ventana,
+    # mismo criterio de calidad que el resto del módulo, para no listar como "nuevo"
+    # cualquier mención suelta sin respaldo.
+    nuevos = []
+    for tid, evs_todos in eventos_por_tema.items():
+        evs = sorted(evs_todos, key=lambda e: e['_ts'])
+        primera = evs[0]['_ts']
+        if primera < hace_24h:
+            continue
+        evs_ventana_pn = [e for e in evs if e in ventana and nivel_evento(e) in NIVELES_PRIMER_NIVEL]
+        if not evs_ventana_pn:
+            continue
+        t = temas_por_id.get(tid)
+        if not t:
+            continue
+        top_ventana = max(evs_ventana_pn, key=lambda e: float(e['intensidad']))
+        nuevos.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
+                        'peso': round(sum(float(e['intensidad']) for e in evs if e in ventana), 1),
+                        'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
+    nuevos = sorted(nuevos, key=lambda x: x['peso'], reverse=True)[:5]
+
+    # RETOMADOS -- sí se mantiene sobre temas_1: para hablar de "silencio tras cobertura
+    # previa" hace falta precisamente ese historial de 3+ días que temas_1 garantiza.
+    # UMBRAL_RETOMA: 7 días -- una semana completa de silencio es la unidad natural del
+    # ciclo noticioso (un apagón genuino, no solo un día flojo de cobertura).
+    retomados = []
+    UMBRAL_RETOMA_DIAS = 7
     for tid in temas_1:
         evs = sorted(eventos_por_tema.get(tid, []), key=lambda e: e['_ts'])
         if not evs:
@@ -386,24 +424,9 @@ def calcular():
         if not evs_ventana:
             continue
         t = temas_por_id[tid]
-        primera = evs[0]['_ts']
         fechas_previas = sorted({e['_ts'].date() for e in evs if e['_ts'] < hace_24h})
-
         top_ventana = max(evs_ventana, key=lambda e: float(e['intensidad']))
-        # UMBRAL_RETOMA: 7 días -- se elige una semana completa de silencio porque es la
-        # unidad natural del ciclo noticioso (una semana sin ninguna nota real es un
-        # apagón genuino, no solo un día flojo de cobertura), no un número arbitrario sin
-        # razón. Con eso, "continuidad" ya no necesita un segundo umbral propio: es
-        # simplemente todo lo que no es nuevo ni llevaba una semana entera en silencio --
-        # antes existía un hueco de 3-6 días de silencio que no entraba a ninguna de las
-        # tres listas (se detectó en esta revisión, con un tema real -- y encima el más
-        # activo del día -- desapareciendo de las tres columnas sin explicación).
-        UMBRAL_RETOMA_DIAS = 7
-        if primera >= hace_24h:
-            nuevos.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
-                            'peso': round(peso_tema.get(tid, 0), 1),
-                            'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
-        elif fechas_previas and (hace_24h.date() - fechas_previas[-1]).days >= UMBRAL_RETOMA_DIAS:
+        if fechas_previas and (hace_24h.date() - fechas_previas[-1]).days >= UMBRAL_RETOMA_DIAS:
             # tenía actividad antes, luego una semana entera o más de silencio, y ahora
             # reaparece -- el motivo es la nota más intensa de la ventana que lo reactivó
             motivo = top_ventana
@@ -411,12 +434,6 @@ def calcular():
                                'dias_silencio': (hace_24h.date() - fechas_previas[-1]).days,
                                'motivo': motivo['descripcion'][:220],
                                'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or ''})
-        # (se quitó "Continuidad": era la categoría residual -- todo lo que no era nuevo
-        # ni llevaba una semana en silencio -- sin criterio de selección propio, y la
-        # mayor parte de su contenido ya aparecía en Top 5. Nuevos y Retomados sí detectan
-        # un cambio de estado real; Continuidad solo confirmaba que nada cambió.)
-
-    nuevos = sorted(nuevos, key=lambda x: x['peso'], reverse=True)[:5]
     retomados = sorted(retomados, key=lambda x: x['dias_silencio'], reverse=True)[:5]
 
     # ================================================================
@@ -543,9 +560,49 @@ def calcular():
     # sobre Carlos Slim se le atribuyó a Sheinbaum solo por aparecer ambos en el texto).
     # También se exige fuente de primer nivel, mismo criterio que el resto del módulo.
     VERBOS_DECLARATIVOS = ['dijo', 'afirmó', 'declaró', 'aseguró', 'advirtió', 'sostuvo', 'señaló']
+    # comillas reales encontradas en los datos: las tipográficas ("" y '') -- el chequeo
+    # original repetía tres veces la misma comilla recta ASCII por error, que casi nunca
+    # aparece en titulares de medios (usan tipográficas o ninguna) -- ese bug por sí solo
+    # explicaba buena parte de por qué esta sección casi nunca encontraba nada.
+    MARCAS_CITA = ('"', '“', '”', '‘', '’')
 
     def es_presidenta(actor):
         return 'presidenta de méxico' in (actor.get('cargo') or '').lower()
+
+    def _mencion_un_apellido(nombre_actor, texto_lower, todos_actores):
+        """Caso real que se perdía por completo: la prensa casi nunca escribe 'Claudia
+        Sheinbaum Pardo' ni siquiera 'Claudia Sheinbaum' en un titular corto -- escribe
+        solo 'Sheinbaum'. _mencionadoDeFormaSegura() nunca prueba el PRIMER apellido
+        solo (partes[1] de un nombre de 3 palabras), solo nombre completo, nombre+primer
+        apellido, o el par de apellidos -- ninguno de los tres matchea 'Sheinbaum' a
+        secas. Aquí se agrega esa combinación, pero solo si ningún otro actor de la
+        misma lista comparte ese primer apellido (mismo espíritu del candado de
+        homónimos ya usado para el par de apellidos, más abajo en esta función)."""
+        partes = [p for p in nombre_actor.split() if len(p) > 2]
+        if len(partes) < 3:
+            return False
+        primer_apellido = partes[1].lower()
+        for a in todos_actores:
+            if a['nombre'] == nombre_actor:
+                continue
+            partes_o = [p for p in a['nombre'].split() if len(p) > 2]
+            if len(partes_o) >= 2 and partes_o[1].lower() == primer_apellido:
+                return False  # homónimo real en la lista -- no se arriesga
+        return re.search(r'\b' + re.escape(primer_apellido) + r'\b', texto_lower) is not None
+
+    def _atribucion_por_dos_puntos(nombre_actor, clausula):
+        """Segundo patrón real de titular, tan o más común que la cita con verbo: 'Frase
+        citada: Actor' o 'Actor: frase citada' (ej. real de los datos: 'Si pretendes
+        representar al Estado no puedes jurar a 2 banderas: Sheinbaum'). Sin esto, ese
+        estilo de atribución -- que no lleva comillas rectas ni verbo declarativo --
+        quedaba invisible para todo este bloque. Se exige que el nombre esté a lo más a
+        4 palabras de los dos puntos, para no capturar un actor mencionado lejos en la
+        misma cláusula por otro motivo."""
+        if ':' not in clausula:
+            return False
+        izq, _, der = clausula.partition(':')
+        ventana = ' '.join(izq.split()[-4:]) + ' ' + ' '.join(der.split()[:4])
+        return _mencionadoDeFormaSegura(nombre_actor, ventana.lower())
 
     declaracion_presidenta, mejor_int_pres = None, 0
     declaracion_otro, mejor_int_otro = None, 0
@@ -555,12 +612,13 @@ def calcular():
         clausulas = re.split(r'[;.]| pero | mientras ', e['descripcion'])
         for clausula in clausulas:
             cl_lower = clausula.lower()
-            es_cita = ('"' in clausula or '"' in clausula or '"' in clausula or
-                       any(f' {v} ' in f' {cl_lower} ' for v in VERBOS_DECLARATIVOS))
-            if not es_cita:
-                continue
-            actor_citado = next((a for a in actores_altos if _mencionadoDeFormaSegura(a['nombre'], cl_lower)), None)
+            actor_citado = next((a for a in actores_altos if _mencionadoDeFormaSegura(a['nombre'], cl_lower)
+                                  or _mencion_un_apellido(a['nombre'], cl_lower, actores_altos)), None)
             if not actor_citado:
+                continue
+            tiene_marca_cita = (any(m in clausula for m in MARCAS_CITA) or
+                                 any(f' {v} ' in f' {cl_lower} ' for v in VERBOS_DECLARATIVOS))
+            if not tiene_marca_cita and not _atribucion_por_dos_puntos(actor_citado['nombre'], clausula):
                 continue
             intensidad = float(e['intensidad'])
             entrada = {'actor': actor_citado['nombre'], 'texto': e['descripcion'][:280],
