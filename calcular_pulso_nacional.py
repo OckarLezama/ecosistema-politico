@@ -380,6 +380,17 @@ def calcular():
     for e in eventos_validos:
         eventos_por_tema.setdefault(e['tema_id'], []).append(e)
 
+    def _impacto_de(intensidad):
+        """Mismo umbral de intensidad (0-10) que ya usa el resto del módulo (carril de
+        última hora, declaración relevante) -- no uno nuevo. 'Nivel de impacto' habla de
+        qué tan fuerte fue la nota misma, no de qué tan confiable es la fuente que la
+        publicó (eso ya lo dice, aparte, el badge de fuente que trae cada tema)."""
+        if intensidad >= 7:
+            return 'alto'
+        if intensidad >= 4:
+            return 'medio'
+        return 'bajo'
+
     # BUG REAL encontrado en esta revisión: "Nuevos" exigía tid in temas_1 -- pero
     # temas_1 exige 3+ días DISTINTOS de cobertura ANTES de hoy (calificaAgendaNacional
     # en limpiar_agenda_nacional.py). Un tema cuyo primer evento en toda su historia cae
@@ -407,6 +418,7 @@ def calcular():
         top_ventana = max(evs_ventana_pn, key=lambda e: float(e['intensidad']))
         nuevos.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
                         'peso': round(sum(float(e['intensidad']) for e in evs if e in ventana), 1),
+                        'impacto': _impacto_de(float(top_ventana['intensidad'])),
                         'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
     nuevos = sorted(nuevos, key=lambda x: x['peso'], reverse=True)[:5]
 
@@ -433,6 +445,7 @@ def calcular():
             retomados.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
                                'dias_silencio': (hace_24h.date() - fechas_previas[-1]).days,
                                'motivo': motivo['descripcion'][:220],
+                               'impacto': _impacto_de(float(motivo['intensidad'])),
                                'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or ''})
     retomados = sorted(retomados, key=lambda x: x['dias_silencio'], reverse=True)[:5]
 
@@ -648,14 +661,17 @@ def calcular():
             t_dia = round(sum(float(e['intensidad']) for e in evs_dia) / len(evs_dia) * 10)
         else:
             t_dia = None
-        # nivel de la nota por confiabilidad real de fuente (mismo criterio que el resto
-        # del módulo, clasificar_fuente/nivel_evento) -- para que el patrón histórico diga
-        # no solo "cuántas notas" sino "de qué calidad de fuente", día por día.
-        n_alto = sum(1 for e in evs_dia if nivel_evento(e) in ('ALTA', 'OFICIAL'))
-        n_medio = sum(1 for e in evs_dia if nivel_evento(e) == 'MEDIA')
-        n_bajo = sum(1 for e in evs_dia if nivel_evento(e) in NIVELES_BAJA_O_SIN)
+        # nivel de IMPACTO real de la nota -- por intensidad (0-10, el mismo dato que ya
+        # decide el resto del módulo: >=7 es el mismo umbral que usan el carril de última
+        # hora y la declaración relevante, no uno nuevo inventado aquí), no por
+        # confiabilidad de la fuente -- una nota de fuente ALTA puede ser de bajo impacto
+        # real y viceversa, así que "de qué calidad de fuente" no contestaba lo que se
+        # necesitaba mostrar: qué tan fuerte fue la nota, no de dónde vino.
+        n_alto_impacto = sum(1 for e in evs_dia if float(e['intensidad']) >= 7)
+        n_medio_impacto = sum(1 for e in evs_dia if 4 <= float(e['intensidad']) < 7)
+        n_bajo_impacto = sum(1 for e in evs_dia if float(e['intensidad']) < 4)
         historico.append({'fecha': dia.isoformat(), 'tension': t_dia, 'n_notas': len(evs_dia),
-                           'n_alto': n_alto, 'n_medio': n_medio, 'n_bajo': n_bajo})
+                           'n_alto_impacto': n_alto_impacto, 'n_medio_impacto': n_medio_impacto, 'n_bajo_impacto': n_bajo_impacto})
 
     # (se quitaron los KPIs "Alertas políticas" / "Temas en escalamiento" / "Temas
     # estables": comparaban promedios de 1-2 notas con un umbral de 1.5 puntos sin
