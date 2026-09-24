@@ -1,5 +1,5 @@
 {
-  "generado_en": "2026-09-23T18:03:08.923082-06:00",
+  "generado_en": "2026-09-23T18:24:45.926349-06:00",
   "ventana_horas": 24,
   "n_notas_ventana": 15,
   "baja_confianza": false,
@@ -9,31 +9,36 @@
       "categoria": "Gobernabilidad",
       "peso_pct": 36,
       "tema_principal": "Llama Jorge Bracamonte a respetar resultados de encuestas de Morena - XEVA",
-      "tema_principal_id": "auto-28603c7610"
+      "tema_principal_id": "auto-28603c7610",
+      "n_temas": 2
     },
     {
       "categoria": "Relación Bilateral",
       "peso_pct": 26,
       "tema_principal": null,
-      "tema_principal_id": null
+      "tema_principal_id": null,
+      "n_temas": 3
     },
     {
       "categoria": "Seguridad Nacional",
       "peso_pct": 25,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis"
+      "tema_principal_id": "sinaloa-crisis",
+      "n_temas": 3
     },
     {
       "categoria": "Economía",
       "peso_pct": 13,
       "tema_principal": null,
-      "tema_principal_id": null
+      "tema_principal_id": null,
+      "n_temas": 2
     },
     {
       "categoria": "Social",
       "peso_pct": 0,
       "tema_principal": null,
-      "tema_principal_id": null
+      "tema_principal_id": null,
+      "n_temas": 0
     }
   ],
   "categorias_tendencia_4sem": [
@@ -152,7 +157,43 @@
       "fuente_url": "https://www.jornada.com.mx/2026/09/23/politica/005n1pol?partner=rss"
     }
   ],
-  "temas_nuevos": [],
+  "temas_nuevos": [
+    {
+      "id": "auto-3826350b67",
+      "nombre": "Chipote chillón a Citlalli Hernández: Familia de Chespirito reprueba uso de la m",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "fuente_url": "https://www.elfinanciero.com.mx/espectaculos/2026/09/22/chipote-chillon-a-citlalli-hernandez-familia-de-chespirito-reprueba-uso-de-la-marca-en-campana-politica/"
+    },
+    {
+      "id": "auto-bba8005734",
+      "nombre": "¿Por qué hay una ‘caja de huevo’ en el Museo de Arte Carrillo Gil? La historia d",
+      "categoria": "Social",
+      "peso": 6.0,
+      "fuente_url": "https://www.elfinanciero.com.mx/entretenimiento/2026/09/22/una-caja-de-huevo-y-mas-en-el-museo-carrillo-gil-de-que-va-el-encuentro-nacional-de-arte-joven/"
+    },
+    {
+      "id": "auto-3d8ce04cd2",
+      "nombre": "¿Roberto Velasco contestó acusación de Trump con mensaje LGBTIQ+ en la ONU? Esto",
+      "categoria": "Relación Bilateral",
+      "peso": 5.0,
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/22/roberto-velasco-contesto-acusacion-de-trump-con-mensaje-lgbtiq-en-la-onu-esto-sabemos/"
+    },
+    {
+      "id": "auto-7fc9fb56ad",
+      "nombre": "Diputado del Verde cachetea a contrincante por candidatura en Puebla: lo apodan ",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOOTB4NTFFb2xkWERjanZtREUzbzhKT3JSRER4NzJja3BpRjItUzVXbURlZVNBMi1CZExvN2VHUmlYOUQ5cFlRc0p6QU5udERRTmxsR1J6Y1VMcG92RnV4R0JXeV83YlB1OW8tdmhVRW56MlNKRjZrOGR2ZC1RQTlCT3lGUlpmUlFfUExCRWV3V003bzE0cDg2S1pNdmdqS2NhTjlfQjdMYjR3OXRnNVhUTXl6aFhlRHA0cDI4Q2FrcktyZVhYZ3ZkM3ZnVnBaYjRBeVpJ0gHuAUFVX3lxTE11eUlLUEptY3hQZkRxR1BjSV8xbEZQSDUzTU1PaFZjWTItQ1RsLUVOUkNBNkVtbHR3UEgwZ2lseEdTQ2c2YnExNmZTeHdFaC1wUFNnQ2R6UElhOUtkbFZWaFlMcW5XamZjQVE3bTIxbUxvSi16UW9vSVpTZXZ1YjFnem5IMWh4Z1NPREhkU3JKREc3NE9HbXdMcEU1R2xnb0JFSExlUmFnd1UtcUNpRUU5NkJka29lOEFFOVhpRG9Eb1lrVThfaWNvZEFnVEtSMS0zcWNRalRtWmlEYkhyTEZfVUNnVWdkaUpUZmZWMkE?oc=5"
+    },
+    {
+      "id": "auto-0ab49cdc5e",
+      "nombre": "¿Quién era Miguel Sánchez Altamirano,el alcalde de Juchitán detenido por fuerzas",
+      "categoria": "Seguridad Nacional",
+      "peso": 4.0,
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxORjlXSm1yX0MtUG0wLWZobUtsYXRfMmhvMG5sb3Z0LXpYSVljVm5mV0lWY2JwbXBYMkVEMk5vWGZHYzJJZUJWbUV5YzlEb3ZXaWViWU5nNEVoVFM4ZDlwSmFrbEQ0RURkU0MwUUtpY3NlNzJyYWxsWGlmbHlmeFIwYXEtbEN0TWtEaXRNV2lQeTFIdDFId3R5V2dsT3ROd9IBngFBVV95cUxPbzFadWpYSlRfcHgzcEhaYW1VdTZHMGZWai1tcXdaam1aSWpud1otMFM4U3NIaW9sNHVyWEYwVzUwVnV2b0VQXzZtZDNuMnVKa292UUR6eHltbUc0cWZfdlhiQktfVVE4Zi1JdWRWeFNwWHJHX29FRnV2bU1EX3VrQ3U0TFl4SXhibEdWLWpMOFdVbmh0QzI2WXpCaS0xQQ?oc=5"
+    }
+  ],
   "temas_retomados": [],
   "actores_destacados": [
     {
@@ -206,8 +247,18 @@
       "tema_nuevo": false
     }
   ],
-  "declaracion_presidenta": null,
-  "declaracion_otro": null,
+  "declaracion_presidenta": {
+    "actor": "Claudia Sheinbaum Pardo",
+    "texto": "‘¿Qué preguntó el INEGI?’: Sheinbaum cuestiona datos sobre desplazamiento forzado en México",
+    "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/23/que-pregunto-el-inegi-sheinbaum-cuestiona-datos-sobre-desplazamiento-forzado-en-mexico/",
+    "intensidad": 7.0
+  },
+  "declaracion_otro": {
+    "actor": "Ariadna Montiel Reyes",
+    "texto": "No se vayan: Ariadna Montiel reconoce que a Morena le interesa seguir en alianza con el PT",
+    "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/22/no-se-vayan-ariadna-montiel-reconoce-que-a-morena-le-interesa-seguir-en-alianza-con-el-pt/",
+    "intensidad": 7.0
+  },
   "patron_historico_4sem": [
     {
       "fecha": "2026-08-27",
@@ -434,5 +485,5 @@
       "n_bajo": 1
     }
   ],
-  "hora_corte_publicada": "2026-09-23 18:03:09"
+  "hora_corte_publicada": "2026-09-23 18:24:46"
 }
