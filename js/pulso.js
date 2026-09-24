@@ -87,32 +87,50 @@ function activarPanelesRecorribles(cont){
   });
 }
 
-/* ---------- velocímetro -- se dibuja en 0 y la aguja/número corren hasta el valor real ---------- */
+/* ---------- velocímetro -- rediseño: arco más delgado con gradiente suave entre zonas
+   (en vez de 3 tramos de color plano), marcas de 0/25/50/75/100, aguja con base en forma
+   de diamante y un halo detrás que respira suave (mismo keyframe pulso-halo del resto del
+   sitio), número grande con "/100" chico debajo. Se dibuja en 0 y corre hasta el valor
+   real, igual que antes. ---------- */
 function svgVelocimetroPulso(valor){
   if(valor===null || valor===undefined){
     return `<div style="text-align:center;padding:30px 0;color:var(--ink-3);font-size:11px;">Sin señal suficiente en las últimas 24h</div>`;
   }
-  const cx=110, cy=100, r=85;
-  const puntaDe = v => {
+  const cx=110, cy=104, r=82;
+  const puntaDe = (v, factor) => {
     const angulo = Math.PI - (v/100)*Math.PI;
-    return {x: cx + r*0.78*Math.cos(angulo), y: cy - r*0.78*Math.sin(angulo)};
+    return {x: cx + r*factor*Math.cos(angulo), y: cy - r*factor*Math.sin(angulo)};
   };
-  const p0 = puntaDe(0);
-  const arco = (desde, hasta, col) => {
-    const a1 = Math.PI*(1-desde/100), a2 = Math.PI*(1-hasta/100);
-    const x1=cx+r*Math.cos(a1), y1=cy-r*Math.sin(a1), x2=cx+r*Math.cos(a2), y2=cy-r*Math.sin(a2);
-    return `<path d="M${x1},${y1} A${r},${r} 0 0 1 ${x2},${y2}" fill="none" stroke="${col}" stroke-width="16" stroke-linecap="round"/>`;
+  const p0 = puntaDe(0, 0.72);
+  const marca = v => {
+    const a = Math.PI*(1-v/100);
+    const x1 = cx+(r+11)*Math.cos(a), y1 = cy-(r+11)*Math.sin(a);
+    const x2 = cx+(r+2)*Math.cos(a), y2 = cy-(r+2)*Math.sin(a);
+    const xt = cx+(r+21)*Math.cos(a), yt = cy-(r+21)*Math.sin(a);
+    return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.5"/>
+      <text x="${xt.toFixed(1)}" y="${(yt+3).toFixed(1)}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${v}</text>`;
   };
-  return `<svg viewBox="0 0 220 130" style="width:100%;max-width:260px;display:block;margin:0 auto;" data-valor-final="${valor}">
-    ${arco(0,33,'var(--riesgo-bajo)')}${arco(33,66,'var(--riesgo-medio)')}${arco(66,100,'var(--riesgo-alto)')}
-    <line id="pulso-aguja-linea" x1="${cx}" y1="${cy}" x2="${p0.x}" y2="${p0.y}" stroke="var(--ink-1)" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy}" r="6" fill="var(--ink-1)"/>
-    <text id="pulso-aguja-valor" x="${cx}" y="${cy+30}" text-anchor="middle" font-size="26" font-weight="700" fill="var(--ink-3)" font-family="var(--f-mono)">0</text>
+  return `<svg viewBox="0 0 220 148" style="width:100%;max-width:260px;display:block;margin:0 auto;" data-valor-final="${valor}">
+    <defs>
+      <linearGradient id="pulso-grad-veloc" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="var(--riesgo-bajo)"/>
+        <stop offset="50%" stop-color="var(--riesgo-medio)"/>
+        <stop offset="100%" stop-color="var(--riesgo-alto)"/>
+      </linearGradient>
+    </defs>
+    <path d="M${cx-r},${cy} A${r},${r} 0 0 1 ${cx+r},${cy}" fill="none" stroke="var(--bg-1)" stroke-width="20" stroke-linecap="round"/>
+    <path d="M${cx-r},${cy} A${r},${r} 0 0 1 ${cx+r},${cy}" fill="none" stroke="url(#pulso-grad-veloc)" stroke-width="13" stroke-linecap="round" opacity="0.92"/>
+    ${[0,25,50,75,100].map(marca).join('')}
+    <circle cx="${cx}" cy="${cy}" r="16" fill="${colorTension(valor)}" opacity="0.16" style="animation:pulso-halo 2.4s ease-in-out infinite;"/>
+    <line id="pulso-aguja-linea" x1="${cx}" y1="${cy}" x2="${p0.x.toFixed(1)}" y2="${p0.y.toFixed(1)}" stroke="var(--ink-1)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="7" fill="var(--bg-2)" stroke="var(--ink-1)" stroke-width="2"/>
+    <text id="pulso-aguja-valor" x="${cx}" y="${cy+38}" text-anchor="middle" font-size="30" font-weight="800" fill="var(--ink-3)" font-family="var(--f-mono)">0</text>
+    <text x="${cx}" y="${cy+52}" text-anchor="middle" font-size="9" fill="var(--ink-3)" font-family="var(--f-mono)" opacity="0.7">/ 100</text>
   </svg>`;
 }
 function animarVelocimetroPulso(valorFinal){
   if(valorFinal===null || valorFinal===undefined) return;
-  const cx=110, cy=100, r=85;
+  const cx=110, cy=104, r=82;
   const linea = document.getElementById('pulso-aguja-linea');
   const texto = document.getElementById('pulso-aguja-valor');
   if(!linea || !texto) return;
@@ -123,8 +141,8 @@ function animarVelocimetroPulso(valorFinal){
     const easeOut = 1 - Math.pow(1-t, 3);
     const v = valorFinal * easeOut;
     const angulo = Math.PI - (v/100)*Math.PI;
-    linea.setAttribute('x2', cx + r*0.78*Math.cos(angulo));
-    linea.setAttribute('y2', cy - r*0.78*Math.sin(angulo));
+    linea.setAttribute('x2', (cx + r*0.72*Math.cos(angulo)).toFixed(1));
+    linea.setAttribute('y2', (cy - r*0.72*Math.sin(angulo)).toFixed(1));
     texto.textContent = Math.round(v);
     texto.setAttribute('fill', colorTension(v));
     if(t < 1) requestAnimationFrame(frame);
@@ -182,31 +200,37 @@ function analizarTendenciaCategorias(serie){
 function svgTendenciaCategoriasPulso(serie){
   if(!serie || !serie.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Sin suficientes semanas para mostrar tendencia.</div>`;
   const categorias = serie[0].categorias.map(c=>c.categoria);
-  const w = 620, h = 190, padB = 22, padT = 10;
-  const paso = w/(serie.length-1 || 1);
+  // viewBox propio, responsive (width:100%, sin envoltorio de ancho fijo) -- con solo 4
+  // puntos no hay nada que "recorrer"; forzar un lienzo de 620px dentro de una tarjeta
+  // más angosta era justo lo que la dejaba viéndose cortada. padL/padR además de espacio
+  // para que el halo del punto máximo no se salga del viewBox en los extremos.
+  const w = 560, h = 190, padB = 22, padT = 14, padL = 14, padR = 14;
+  const anchoUtil = w - padL - padR;
+  const paso = anchoUtil/(serie.length-1 || 1);
+  const xDe = i => padL + i*paso;
   const y = v => padT + (1-(v/100))*(h-padB-padT);
   const analisis = analizarTendenciaCategorias(serie);
 
   // guías verticales punteadas, una por fecha, de la base hasta arriba del lienzo -- van
   // primero para quedar detrás de áreas/líneas/puntos.
-  const guias = serie.map((s,i)=> `<line x1="${i*paso}" y1="${padT}" x2="${i*paso}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.6" stroke-dasharray="2,3" opacity="0.5"/>`).join('');
+  const guias = serie.map((s,i)=> `<line x1="${xDe(i).toFixed(1)}" y1="${padT}" x2="${xDe(i).toFixed(1)}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.6" stroke-dasharray="2,3" opacity="0.5"/>`).join('');
 
   let svgAreas = '', svgLineasYPuntos = '';
   categorias.forEach(cat=>{
     const color = COLORES_TENDENCIA_CAT[cat] || '#8A8F98';
     const valores = serie.map(s => (s.categorias.find(c=>c.categoria===cat)||{}).peso_pct || 0);
-    const pts = valores.map((v,i)=> `${i*paso},${y(v).toFixed(1)}`);
+    const pts = valores.map((v,i)=> `${xDe(i).toFixed(1)},${y(v).toFixed(1)}`);
     const idxMax = valores.reduce((iMax,v,i)=> v>valores[iMax] ? i : iMax, 0);
 
     // relleno de área translúcido bajo la línea, hasta la base
-    const areaPath = `M${pts[0]} L${pts.join(' L')} L${(valores.length-1)*paso},${(h-padB).toFixed(1)} L0,${(h-padB).toFixed(1)} Z`;
+    const areaPath = `M${pts[0]} L${pts.join(' L')} L${xDe(valores.length-1).toFixed(1)},${(h-padB).toFixed(1)} L${padL},${(h-padB).toFixed(1)} Z`;
     svgAreas += `<path d="${areaPath}" fill="${color}" opacity="0.09"/>`;
 
     svgLineasYPuntos += `<polyline class="pulso-tend-linea" data-cat="${cat}" points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="1.8" stroke-opacity="0.85" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.1s ease-out;"/>`;
     valores.forEach((v,i)=>{
       const esMax = i===idxMax;
-      const halo = esMax ? `<circle cx="${i*paso}" cy="${y(v)}" r="9" fill="none" stroke="${color}" stroke-width="1.4" style="animation:pulso-halo 1.8s ease-in-out infinite;"/>` : '';
-      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${i*paso}" cy="${y(v)}" r="${esMax?4:2.5}" fill="${color}" stroke="var(--bg-2)" stroke-width="0.8" style="cursor:pointer;"/>`;
+      const halo = esMax ? `<circle cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="9" fill="none" stroke="${color}" stroke-width="1.4" style="animation:pulso-halo 1.8s ease-in-out infinite;"/>` : '';
+      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4:2.5}" fill="${color}" stroke="var(--bg-2)" stroke-width="0.8" style="cursor:pointer;"/>`;
     });
   });
 
@@ -217,14 +241,14 @@ function svgTendenciaCategoriasPulso(serie){
       <span style="font-family:var(--f-mono);color:${a.f.color};font-weight:700;">${a.f.icono} ${a.pct>0?'+':''}${a.pct}%</span>
       <span style="font-family:var(--f-mono);color:var(--ink-3);font-size:8.5px;" title="vs. su media de 4 semanas (${a.media4}%)">${a.vsMedia>0?'sobre':a.vsMedia<-2?'bajo':'en'} su media</span>
     </div>`).join('');
-  return `<svg id="pulso-tendencia-svg" viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
+  return `<svg id="pulso-tendencia-svg" viewBox="0 0 ${w} ${h}" style="width:100%;display:block;overflow:visible;">
     ${defsGridPulso('pulso-grid-tend')}
     <rect x="0" y="0" width="${w}" height="${h-padB}" fill="url(#pulso-grid-tend)"/>
     ${guias}
     ${svgAreas}
     <line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.75"/>
     ${svgLineasYPuntos}
-    ${serie.map((s,i)=>`<text x="${i*paso}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.semana_fin.slice(5)}</text>`).join('')}
+    ${serie.map((s,i)=>`<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.semana_fin.slice(5)}</text>`).join('')}
   </svg>
   <div style="display:flex;flex-wrap:wrap;margin-top:6px;">${leyenda}</div>
   <div style="font-size:9px;color:var(--ink-3);margin-top:2px;">% = variación de la semana en curso vs. la previa · el anillo marca el máximo real de cada categoría en las 4 semanas.</div>`;
@@ -291,7 +315,7 @@ function analizarPatronHistorico(historico){
 function barrasHistoricoPulso(historico){
   const vals = historico.map(h=>h.tension).filter(v=>v!==null);
   if(!vals.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Aún sin suficientes días con actividad para mostrar patrón.</div>`;
-  const w = 620, h = 190, padB = 22, padT = 10;
+  const w = 620, h = 190, padB = 22, padT = 20;
   const anchoBarra = (w/historico.length) * 0.62;
   const paso = w/historico.length;
   const y = v => padT + (1-(v/100))*(h-padB-padT);
@@ -330,7 +354,16 @@ function barrasHistoricoPulso(historico){
       const alturaFinal = (h-padB) - yTope;
       const relleno = esTop ? 'var(--riesgo-alto)' : esBottom ? 'var(--riesgo-bajo)' : colorTension(p.tension);
       const contorno = esTop || esBottom ? `stroke="var(--ink-1)" stroke-width="1"` : '';
-      return `<rect class="pulso-hist-barra" data-info="${p.fecha} · tensión ${p.tension}/100 · ${p.n_notas} nota${p.n_notas!==1?'s':''}${esTop?' · día más alto del periodo':''}${esBottom?' · día más bajo del periodo':''} · fuente: ${p.n_alto||0} alta/oficial, ${p.n_medio||0} media, ${p.n_bajo||0} baja/sin clasificar"
+      const cxBarra = (x+anchoBarra/2).toFixed(1);
+      // flechita-triángulo fija (sin animación) arriba de la barra: ▲ roja sobre el día
+      // más alto, ▼ verde sobre el más bajo -- además del color, para que se distingan
+      // incluso en escala de grises o para quien no diferencia bien los colores.
+      const marcaTriangulo = esTop
+        ? `<polygon points="${cxBarra},${(yTope-13).toFixed(1)} ${(x+anchoBarra/2-4.5).toFixed(1)},${(yTope-4).toFixed(1)} ${(x+anchoBarra/2+4.5).toFixed(1)},${(yTope-4).toFixed(1)}" fill="var(--riesgo-alto)"/>`
+        : esBottom
+        ? `<polygon points="${cxBarra},${(yTope-4).toFixed(1)} ${(x+anchoBarra/2-4.5).toFixed(1)},${(yTope-13).toFixed(1)} ${(x+anchoBarra/2+4.5).toFixed(1)},${(yTope-13).toFixed(1)}" fill="var(--riesgo-bajo)"/>`
+        : '';
+      return `${marcaTriangulo}<rect class="pulso-hist-barra" data-info="${p.fecha} · tensión ${p.tension}/100 · ${p.n_notas} nota${p.n_notas!==1?'s':''}${esTop?' · día más alto del periodo':''}${esBottom?' · día más bajo del periodo':''} · fuente: ${p.n_alto||0} alta/oficial, ${p.n_medio||0} media, ${p.n_bajo||0} baja/sin clasificar"
         x="${x.toFixed(1)}" y="${(h-padB).toFixed(1)}" width="${anchoBarra.toFixed(1)}" height="0"
         data-y-final="${yTope.toFixed(1)}" data-h-final="${alturaFinal.toFixed(1)}"
         fill="${relleno}" opacity="${esTop||esBottom?1:0.68}" rx="2" ${contorno}
@@ -359,7 +392,7 @@ function activarHistoricoPulso(cont){
 
 function barraCategoriasPulso(categorias){
   return categorias.map(c=>`
-    <div class="pulso-barra-cat" data-info="${c.categoria} · ${c.peso_pct}%${c.tema_principal ? ' — '+tituloLimpio(c.tema_principal).replace(/"/g,'&quot;') : ''}" style="margin-bottom:8px;cursor:pointer;">
+    <div class="pulso-barra-cat" data-info="${c.categoria} · ${c.peso_pct}% · ${c.n_temas||0} tema${(c.n_temas||0)!==1?'s':''} en esta categoría${c.tema_principal ? ' — principal: '+tituloLimpio(c.tema_principal).replace(/"/g,'&quot;') : ''}" style="margin-bottom:8px;cursor:pointer;">
       <div style="display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:2px;">
         <span>${c.categoria}</span><span style="font-family:var(--f-mono);color:var(--ink-2);">${c.peso_pct}%</span>
       </div>
@@ -495,14 +528,14 @@ function pintarPulso(cont, d){
 
       <!-- BLOQUE 2: actores destacados (sin cuotas) · temas nuevos · temas retomados -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-        ${tarjeta(`<div class="eyebrow">ACTORES DESTACADOS (máx. 5)</div>${listaActores(d.actores_destacados)}`)}
-        ${tarjeta(`<div class="eyebrow" style="color:var(--riesgo-bajo);">TEMAS NUEVOS (máx. 5)</div>${listaTema(d.temas_nuevos)}`)}
-        ${tarjeta(`<div class="eyebrow" style="color:var(--arena);">TEMAS RETOMADOS (máx. 5)</div>${listaTema(d.temas_retomados)}`)}
+        ${tarjeta(`<div class="eyebrow">ACTORES DESTACADOS</div>${listaActores(d.actores_destacados)}`)}
+        ${tarjeta(`<div class="eyebrow" style="color:var(--riesgo-bajo);">TEMAS NUEVOS</div>${listaTema(d.temas_nuevos)}`)}
+        ${tarjeta(`<div class="eyebrow" style="color:var(--arena);">TEMAS RETOMADOS</div>${listaTema(d.temas_retomados)}`)}
       </div>
 
       <!-- BLOQUE 3: peso por categoría · tendencia 4 semanas (60%) · patrón histórico 4 semanas en barras (40%) -->
       <div style="display:grid;grid-template-columns:3fr 2fr;gap:14px;">
-        ${tarjeta(`<div class="eyebrow">PESO POR CATEGORÍA · TENDENCIA 4 SEMANAS</div>${panelRecorrible('pulso-scroll-tendencia', svgTendenciaCategoriasPulso(d.categorias_tendencia_4sem), 620)}`)}
+        ${tarjeta(`<div class="eyebrow">PESO POR CATEGORÍA · TENDENCIA 4 SEMANAS</div>${svgTendenciaCategoriasPulso(d.categorias_tendencia_4sem)}`)}
         ${tarjeta(`<div class="eyebrow">PATRÓN HISTÓRICO · 4 SEMANAS</div>${panelRecorrible('pulso-scroll-historico', barrasHistoricoPulso(d.patron_historico_4sem), 620)}`)}
       </div>
 
@@ -516,7 +549,7 @@ function pintarPulso(cont, d){
 
   animarVelocimetroPulso(d.tension_nacional);
   activarBarraCategoriasPulso(cont.querySelector('#pulso-barras-dia'));
-  activarTendenciaCategorias(cont.querySelector('#pulso-scroll-tendencia'));
+  activarTendenciaCategorias(cont);
   activarHistoricoPulso(cont.querySelector('#pulso-scroll-historico'));
   activarPanelesRecorribles(cont);
 
