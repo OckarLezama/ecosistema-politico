@@ -13,6 +13,7 @@ Uso: python3 calcular_pulso_nacional.py
 """
 import csv
 import json
+import os
 import re
 import urllib.parse
 from datetime import datetime, timedelta, timezone
@@ -351,6 +352,19 @@ def calcular():
                 evs = confiables
         return max(evs, key=lambda e: float(e['intensidad'])) if evs else None
 
+    def mejor_evento_historico(tid):
+        """mejor_evento() solo mira la ventana de 24h -- un tema de agenda de varios días
+        (ej. Huachicol Fiscal) puede no tener NINGUNA nota nueva hoy y aun así seguir en
+        el Top 5 por su peso acumulado. Sin este respaldo, esos casos se quedaban sin
+        'motivo' y el panel caía de vuelta al resumen editorial genérico -- justo lo que
+        se pidió quitar. Aquí se busca en TODO el historial del tema (no solo hoy) la
+        nota más reciente de fuente confiable, para siempre poder mostrar un titular real
+        en vez de la descripción sintética del tema."""
+        evs = [e for e in eventos_validos if e['tema_id'] == tid]
+        confiables = [e for e in evs if nivel_evento(e) in NIVELES_PRIMER_NIVEL]
+        universo = confiables or evs
+        return max(universo, key=lambda e: e['_ts']) if universo else None
+
     peso_tema_primer_nivel = {}
     for tid in peso_tema:
         evs_pn = eventos_primer_nivel(tid)
@@ -425,7 +439,7 @@ def calcular():
         t_top = temas_por_id.get(tid_top)
         if not t_top:
             continue
-        ev_top = mejor_evento(tid_top, requerir_fuente_confiable=True)
+        ev_top = mejor_evento(tid_top, requerir_fuente_confiable=True) or mejor_evento_historico(tid_top)
         paraguas.append({
             'id': tid_top, 'nombre': t_top['nombre'], 'categoria': t_top['categoria'],
             'resumen': t_top.get('resumen') or '',
@@ -803,6 +817,8 @@ def decide_si_publicar(nuevo, ventana_agenda):
     tensión promedio se movió lo suficiente, o si apareció una nota puntual urgente --
     las dos excepciones que pidió el usuario, sin volverlo un refresh continuo (eso
     rompería la idea de "cortes", no la mejora)."""
+    if os.environ.get('FORZAR_PUBLICAR', '').lower() == 'true':
+        return True, 'forzado manualmente (workflow_dispatch con forzar=true)'
     ahora = datetime.now(ZONA_MX)
     if ahora.hour in CORTES_FIJOS and ahora.minute < 30:
         return True, f'corte fijo {ahora.hour:02d}:00'
