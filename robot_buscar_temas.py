@@ -940,7 +940,12 @@ def buscar_candidatos():
                     descripcion_final_kt = f'[Opinión] {descripcion_final_kt}'
                 eventos_nuevos.append({
                     'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
-                    'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
+                    # BUG REAL encontrado: antes copiaba la categoria del TEMA al que se agrupo la
+                    # nota (p.ej. "visa-de-andy" = Relacion Bilateral), no de lo que la nota en si
+                    # dice -- una nota sobre un tema distinto (p.ej. alguien escondido en el
+                    # extranjero) agrupada bajo ese tema heredaba "Relacion Bilateral" aunque no
+                    # tuviera nada que ver. La categoria describe la nota, no la carpeta donde cae.
+                    'categoria': clasificar_categoria(texto_completo),
                     'intensidad': intensidad, 'descripcion': descripcion_final_kt, 'fuente_url': enlace, 'cobertura': 1,
                     'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota, 'hora_registro': datetime.now(ZONA_MX).strftime('%H:%M'),
                 })
@@ -1019,7 +1024,9 @@ def buscar_candidatos():
                 conteo_hoy_por_tema[tema_encontrado] = conteo_hoy_por_tema.get(tema_encontrado, 0) + 1
                 intensidad = calcular_intensidad(texto_completo, tema_encontrado, eventos_existentes, actores_altos, conteo_hoy_por_tema[tema_encontrado])
                 eventos_nuevos.append({'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
-                    'categoria': next((t['categoria'] for t in temas if t['id']==tema_encontrado), ''),
+                    # mismo fix que arriba: categoria de lo que dice el punto de la mañanera, no
+                    # del tema al que se agrupo.
+                    'categoria': clasificar_categoria(texto_completo),
                     'intensidad': intensidad, 'descripcion': f'[Mañanera] {punto[:200]}', 'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
             elif es_migracion or alerta_actor:
                 categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
