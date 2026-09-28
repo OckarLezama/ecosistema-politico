@@ -884,6 +884,32 @@ def calcular():
         'nota_url': c['nota_url'], 'nota_texto': c['nota_texto'], 'es_nuevo': c['es_nuevo'],
     } for c in seleccionados], key=lambda c: c['x_hoy'] + c['y_hoy'], reverse=True)
 
+    # ================================================================
+    # RESUMEN MAÑANERA -- una sola actualización por día, no un carril más de "última
+    # hora". robot_buscar_temas.py ya guarda cada punto de la conferencia matutina como un
+    # evento normal con el prefijo "[Mañanera]" en su descripción (obtener_mananera_hoy());
+    # aquí solo se filtran los de la fecha de hoy y se les quita el prefijo para mostrarlos
+    # como lista. La página de mananeradehoy.com solo se actualiza cuando la conferencia ya
+    # terminó (normalmente cerca de las 10am) -- antes de esa hora sencillamente no hay
+    # eventos "[Mañanera]" de hoy todavía, así que se distingue "aún no hay resumen" de
+    # "no hubo mañanera ese día" con la hora actual, no con una constante inventada.
+    # ================================================================
+    hoy_iso = ahora.date().isoformat()
+    eventos_mananera_hoy = [e for e in eventos_validos if e.get('fecha') == hoy_iso and '[Mañanera]' in e['descripcion']]
+    resumen_mananera = [{
+        'texto': e['descripcion'].split('[Mañanera]', 1)[-1].strip(),
+        'categoria': e.get('categoria', ''),
+        'intensidad': float(e['intensidad']),
+        'alerta': '🔔 ALERTA' in e['descripcion'],
+        'fuente_url': e.get('fuente_url', ''),
+    } for e in sorted(eventos_mananera_hoy, key=lambda e: float(e['intensidad']), reverse=True)]
+    if resumen_mananera:
+        mananera_estado = 'ok'
+    elif ahora.hour < 10:
+        mananera_estado = 'pendiente'  # la mañanera de hoy puede seguir en curso o sin procesarse aún
+    else:
+        mananera_estado = 'sin_mananera'  # ya pasó la hora habitual y no hay nada -- no hubo, o fue día sin conferencia
+
     # (se quitaron los KPIs "Alertas políticas" / "Temas en escalamiento" / "Temas
     # estables": comparaban promedios de 1-2 notas con un umbral de 1.5 puntos sin
     # justificar -- ruido estadístico disfrazado de métrica. La señal real de
@@ -918,6 +944,8 @@ def calcular():
         'declaracion_otro': declaracion_otro,
         'patron_historico_4sem': historico,
         'tablero_actores': tablero_actores,
+        'resumen_mananera': resumen_mananera,
+        'mananera_estado': mananera_estado,
     }
     return salida, ventana_agenda
 
