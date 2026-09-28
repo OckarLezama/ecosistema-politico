@@ -252,6 +252,19 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   position:absolute; top:14px; right:14px; background:var(--bg-2); border:1px solid var(--line-strong);
   color:var(--ink-2); border-radius:50%; width:26px; height:26px; cursor:pointer;
 }
+
+/* Mapa de puntos (Portada del Día) -- ventana negra a pantalla completa con un
+   campo de puntos uniforme que gira una sola vez, muy lento, en sentido horario. */
+.mapa-puntos-backdrop{ background:rgba(0,0,0,.85); }
+.mapa-puntos-card{
+  background:#0B0D10; border:1px solid #1B1F25; max-width:600px; padding:32px;
+  display:flex; align-items:center; justify-content:center;
+}
+.mapa-puntos-giro{ transform-origin:320px 320px; animation:mapa-puntos-spin 160s linear infinite; }
+.mapa-puntos-linea{ animation:mapa-puntos-pulso 7s ease-in-out infinite; }
+@keyframes mapa-puntos-spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+@keyframes mapa-puntos-pulso{ 0%,100%{opacity:.06;} 50%{opacity:.2;} }
+
 .foda-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;}
 .foda-cuad{border:1px solid; border-radius:var(--radius-s); padding:8px; background:var(--bg-2);}
 .foda-titulo{font-family:var(--f-mono); font-size:9px; font-weight:700; text-transform:uppercase; margin-bottom:4px;}
