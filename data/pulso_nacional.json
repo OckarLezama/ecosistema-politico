@@ -1,5 +1,5 @@
 {
-  "generado_en": "2026-09-28T16:30:16.724141-06:00",
+  "generado_en": "2026-09-28T16:46:10.706947-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 11,
   "baja_confianza": false,
@@ -176,7 +176,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 33
+          "peso_pct": 34
         },
         {
           "categoria": "Gobernabilidad",
@@ -201,19 +201,19 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 38
+          "peso_pct": 36
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 37
+          "peso_pct": 38
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
-          "peso_pct": 14
+          "peso_pct": 15
         },
         {
           "categoria": "Social",
@@ -667,6 +667,8 @@
       "es_nuevo": false
     }
   ],
+  "resumen_mananera": [],
+  "mananera_estado": "sin_mananera",
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
@@ -690,5 +692,5 @@
       "intensidad": 7.0
     }
   ],
-  "hora_corte_publicada": "2026-09-28 16:30"
+  "hora_corte_publicada": "2026-09-28 16:46"
 }
