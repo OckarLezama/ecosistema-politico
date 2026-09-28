@@ -1,34 +1,82 @@
 {
-  "generado_en": "2026-09-28T13:08:18.966164-06:00",
+  "generado_en": "2026-09-28T16:09:35.479294-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 2,
-  "baja_confianza": true,
-  "tension_nacional": 25,
+  "n_notas_ventana": 11,
+  "baja_confianza": false,
+  "tension_nacional": 43,
   "categorias_dia": [
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 50,
+      "peso_pct": 73,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 1,
-      "n_notas": 1,
+      "n_temas": 3,
+      "n_notas": 8,
       "notas": [
+        {
+          "texto": "Huachicol fiscal mueve 3.1 billones de pesos y rebasa megaobras de la 4T - Energy21",
+          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNX3d6VVdLczRtTjlVLUVwTVlRcXlnRnhObU5pN29xa0UzYVFhYl8xSG5hczdFWnR2d2szUlpGT2dNQkljcnZ2TGlYLTFXdUdSZmZTbm5XU09RUXp2TGZiNFpIeTlfdm5McVdES0EyUU1YUUZoOHhjckpiQTlaOXlPYmllNGlfQ1ZydkhlTjdVQUhpRmh2MjJXdHNxa2FVdw?oc=5",
+          "intensidad": 8.0,
+          "medio": "Energy21"
+        },
+        {
+          "texto": "Huachicol fiscal sería la octava empresa más grande del país: Mexicanos contra la Corrupción (VIDEO) - TV Azteca",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOYnZvQUpkbUNpUmRuVXFxMEEyUlF5OUI5YlZsY3hFQURONmdzWmQ2Q3Y4QjFURlF6TVk4bmJDcGdWUlFRbVJCSnJqS1Y2XzFTRVVOTjU4QTVuS2xzOHN2TFpBZ2h5ZGczb1dJQklvZ1ctaGxVRndpbURyd0hrOGdfU21YcndncUhSNGVOLU5hb2VLVm50S3lwdDAyb0VuUnF3eTBUajRZcHJkQTVnOU9DV1FldF_SAcIBQVVfeXFMTkxtci05QmxFQkc4bVpIYnFqMXRFbTB5OFpQVktic1JTQ1lfckVyS2dRbFp4UVVDZWMxVHpPd2o4bVVYVDB4UHRCa04zSllabEpzZGRXSjV4Y1I0US1qUHloTVdrMVBqQXNTcU1NRlhpbVVNREVTbzZqVWFIZ3BsaS13VXlFazJJb1lRWEdQaW82QkdaYVBwaFNyYWJiOXdZUkZKYnFGVnVlZU16b2tPRldxd0F6V3hxbzJxbUcwY0J4RUE?oc=5",
+          "intensidad": 8.0,
+          "medio": "TV Azteca"
+        },
+        {
+          "texto": "Ernesto Ruffo pide “reinstitucionalizar” el país tras llegar a su casa en Ensenada",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/09/28/ernesto-ruffo-pide-reinstitucionalizar-el-pais-tras-llegar-a-su-casa-en-ensenada.html",
+          "intensidad": 8.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "Harfuch confirma quiebre de La Barredora y habla sobre drones - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQaVNVbzJ6NGEwMExNUllIUjFOQUxDYXg2cEZaMWdYQzFaSVEyQmJ5RmN4X01waEJlaE1NNGEzVEU0N3M4YmFDZkVycHVsYVVLZTNPMGpjanpLRHBja3h3U2dvV2pQY1VkcENyNHQ5aXlzYkNqeEVHd3RkNHM4T0lBSXFoZHVrYlNfNGJJd1lxeDFtM2x3M2JZX1RPcjcxMWR4VVJHZmJqa1_SAagBQVVfeXFMT1RLODFzQUZrSFZYR0pueHpJVWg2ZG1tUHRtaXluQVpYTy1JLUFwaW1NTDU5WlV3SjF6dDFyQXVEY3I2QU5OWldsSFRobWZVdC1XQWMwNm9FZ1NUZTVwODQ5YU9xaHlmb2NxSFZUZ3BMYmpKQ2h3UExiY1AzNHcxQ09hbFd3WHlMeGE4aWtnN0VUZ19hcERLNzQ5c2RmcmFWY1EyVWhfU0xr?oc=5",
+          "intensidad": 7.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
+          "intensidad": 7.0,
+          "medio": "Infobae"
+        },
         {
           "texto": "Huachicol fiscal también pasa por EU: Ernesto Ruffo, la clave para entender la relación con Texas - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUdIBjwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUQ?oc=5",
           "intensidad": 6.0,
           "medio": "MILENIO"
+        },
+        {
+          "texto": "El meganegocio del huachicol fiscal en México: El fraude millonario que supera 3 veces el costo del Tren Maya y Dos bocas - TV Azteca",
+          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQdGg3d3RfS28taEw4NWk1X0x5V2NWRVhuSjlUVFowVW5Pbkl4YmVsS0lkcGtNdXFUWDk5OGdHR3cteXY3QkZqVE9VckpRUXdQNm5HNFJZcnQzLUlsLWpEYk41YmRYZmhEbl9PajExYnVQY3o2SHlmaFpkNWpaNEtObGRuTGhRZk55dEJxVWRDUy1PLVlSYXcyY2RDdEZhOWRvV01na1VCOEFzYmE1bFZJ0gG8AUFVX3lxTFBpNDNKcTc0c1hBNU9vQ2FFWWI5cmJ2cmtWanlsNUJ0ZFExM2hFOVlEd2daQURKU3RHVFZiMFQ1QmZKVEt6ZlZlSS1hY0p0RGxYR2FtaE5lOUJZNFJEZ012Ylh0SU9vc2hMOGlFOVQ5azB4Zm9mS0UwV0Jtd2IxS2NvYXd5SnYwQkwza1pQNjVEanZyRnVWb1BpdWZhWDBNM01TcFBFUURLQkJBWVNKdlNfNTdwMms4eHZfaG1P?oc=5",
+          "intensidad": 6.0,
+          "medio": "TV Azteca"
+        },
+        {
+          "texto": "Tras 13 años del homicidio de mujer en Cuetzalan, condenan a 23 años de prisión a dos responsables",
+          "fuente_url": "https://www.angulo7.com.mx/2026/municipios/sierra-norte/tras-13-anos-del-homicidio-de-mujer-en-cuetzalan-condenan-a-23-anos-de-prision-a-dos-responsables/725346/",
+          "intensidad": 4.0,
+          "medio": "angulo7.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 50,
+      "peso_pct": 18,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 1,
+      "n_notas": 2,
       "notas": [
+        {
+          "texto": "La angustia del T-MEC de Sheinbaum - Semanario ZETA",
+          "fuente_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE90bmxZem1OOUFFSGo5WUE4RXZvc0syUkJ6UWx5NDhoUjBTSWFHM2dYS0F1RUFITVBtRWNBeHJVcUkyMThzUzBPb0s4ZUk0eDQxc3NJcmpDVWhnc3MxQjdLM1p2aWtMd3FsQ1dNM3VheFdORmJjYUE?oc=5",
+          "intensidad": 7.0,
+          "medio": "Semanario ZETA"
+        },
         {
           "texto": "¿Qué pasa con el T-MEC? México y EU buscan destrabar estos temas",
           "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/27/que-pasa-con-el-t-mec-mexico-y-eu-buscan-destrabar-estos-temas/",
@@ -38,16 +86,23 @@
       ]
     },
     {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 0,
+      "categoria": "Relación Bilateral",
+      "peso_pct": 9,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+          "intensidad": 7.0,
+          "medio": "adn40.mx"
+        }
+      ]
     },
     {
-      "categoria": "Relación Bilateral",
+      "categoria": "Gobernabilidad",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -125,7 +180,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 44
+          "peso_pct": 45
         },
         {
           "categoria": "Relación Bilateral",
@@ -137,7 +192,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 3
+          "peso_pct": 2
         }
       ]
     },
@@ -146,11 +201,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 34
+          "peso_pct": 38
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 41
+          "peso_pct": 37
         },
         {
           "categoria": "Relación Bilateral",
@@ -158,7 +213,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 15
+          "peso_pct": 14
         },
         {
           "categoria": "Social",
@@ -168,6 +223,19 @@
     }
   ],
   "top5_temas": [
+    {
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "motivo": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
+      "peso": 20.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5"
+    },
     {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
@@ -180,19 +248,6 @@
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/27/que-pasa-con-el-t-mec-mexico-y-eu-buscan-destrabar-estos-temas/"
-    },
-    {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "Huachicol fiscal también pasa por EU: Ernesto Ruffo, la clave para entender la relación con Texas - MILENIO",
-      "peso": 6.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUdIBjwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUQ?oc=5"
     }
   ],
   "temas_nuevos": [
@@ -227,6 +282,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOb0ZMMkFrakZOMVZnRkZWZzFzQ1BWV1pXUmpJdlBQWWhsakJvWDdYeEVBRzNrLUxJbFMyM1V5cUM4S3FZRy13NXloZXRxUk5hakRCcUJJOEFVbF9fQ0pWUy1QWU41R1Z0SDc0VG83ek5oS1FqQTVIWGdxWFZ4Q0ZTdHEtTzhrSUZjbTlQSVRwYlBTZ2l5N2NwNEFHc1p2WnBHZjNtbTlISkpzSHlmaFdmTlJ6b1JJSG5jRjZQLXpMd2dhUkhU0gHKAUFVX3lxTE5XMWttX3FWR29URnpQNUdabXpTQmU0cGphM21SZkxJVzJ3Tms2WExPNFh5dXg0dWs3VjFDTHN0VDRDc1J5ZDRxanY0YW5QNmF6dm1OY3dNbndwLUhFcmRIVzk0RC1SRjRXTkYyTnBBeFU0QW04ZkRMdExSX3hRTEVkX2xwS2hDSHgtWDlYdjFOUFJnQkV6WFpTaWVZZmdMY1RFREtiSzVqM2MyNGUwOWFLUHJpQ0VNbzRicUdLd2VqWWI5eWdNRVRVOVE?oc=5"
+    },
+    {
+      "id": "auto-2c99e79cce",
+      "nombre": "Loret revela presunto pacto entre Adán Augusto y la familia Yunes",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/loret-de-mola-revela-presunto-pacto-entre-adan-augusto-lopez-y-la-familia-yunes-para-aprobar-la-reforma-judicial-20260928-0041.html"
     }
   ],
   "temas_retomados": [
@@ -266,26 +329,6 @@
   ],
   "actores_destacados": [
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Responsable institucional",
-      "tema": "Manifestantes bloquean paso de Claudia Sheinbaum y le plantean demandas en Juáre",
-      "nota": "‘La Ciudad no dará un paso atrás’: Clara Brugada es coestelar de Claudia Sheinbaum en su mitin del Zócalo - EL PAÍS",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaDhuMkFIMG1MYUJON3Ezd0l1bDdrS1QxNVk5cVhkbDk2V2NTcWpLVzd4VTdwRF9CakhMNFg2NDc0Wi02cXNTZFVZQ1lGVU1fVjA5dmpnckJWWTNZV2c5RE9TMWs0NHBQUHRYTmp1TWtHQXAxVmMzdlA2NXY3T1QtV09pSXZweFlTVlN6eTltTVM0ZTRFWlpiTkNfSERzMEFtc25Telo5QmYwLThqM0JZUHhiTnI2c0pBVk5yMGw4NzVVU1ZaZlF5U3Z4WXF3RHV6alF2ajhMVE1YOXd60gHwAUFVX3lxTE5fWk9iaC1PUDJYbnhubnk4aXFTX0R3ckNXcV91SmdIS2VYOGVhclVLZFJoZnIzSnpEVUpaSF9uU1ZoZkYwVXNQRDBFcEtxc3YxbDlVVkw3TFBDNWNYRHk1U21xY2hBR2lRZk5GZ2ZqbFlvZ1dET2ZWQU00WHYzTTl6OE9XNUZtT01zeERsbEJ3Ty1zMW9uanZxUTU4VjFqMFh5cEhveGdQWURoYlZYWWJBYWs1bHR2VUdlSl9ZTlJYbnBCQVo5UjY1bG1GQ3Q1dHZvLWs0WVBoMGVMWDFUUXBqaHVYdWVYd0xPZkUyWW8wUw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "alfonso_durazo",
-      "nombre": "Alfonso Durazo Montaño",
-      "rol": "Responsable institucional",
-      "tema": "Sheinbaum logra bajar 53% los homicidios dolosos en menos de 2 años - polemon.mx",
-      "nota": "Bajó 68.2% el homicidio doloso en Sonora desde 2021: Alfonso Durazo",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/14/politica/004n2pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
       "id": "farias_fernando",
       "nombre": "Fernando Farías Laguna",
       "rol": "Investigado",
@@ -312,6 +355,26 @@
       "tema": "Huachicol Fiscal",
       "nota": "FGR descarta que proceso contra Ernesto Ruffo por presunto huachicol fiscal se detenga tras obtener prisión domiciliaria - Infobae",
       "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeExBNVVVZ0dwc2tRMUNvMzlTXzNvR3Q2NFJWY3JvbFp2V1h2cUtmNjZndGt6c1djQWM5OHM1LUlIOEZOM01KZEMxNXE4dmRyNW1ONGlhN3pKaFJJa1RRbjlBaGZ3Z3hEaGcxZWNBSjBTbVhYMG1CdkRfcHZVRUs1RS1aNjdjYVNhZFR4WWZsSlUwVDlHRVdqMVlhb1NzTDZLTXRlV0hEbjJSNTVnSWdnVEVEb1U2NndTZkNadW81MWlUQkQ1Ynhsa25PUmFjUVA1cXpiZlFhSE9FeTA1RDBSZDIxV1VhaU1VY1JNZGw2bV8yYV8yQmfSAZACQVVfeXFMT1lzaEFFQmt4b1VfQzlVVG9tLTRySXZnY0syMy04a3JoR2lxTlJzMGd1LWNZRnB4cDZiXzZxMFZMYjBjMTNMQndFX1d4bkx2aGlhcFBlMndhT0E3YWFzM2Y1MnRkckQ0ajBIekFwc0ZPVzFmQ1NCbzVBUmRyNGYxUDFvYm1wcWY1eHE0dWZmdEc3eTFXWEl0UkxmR21STHFicXZuaW9zSFpNVTBpQ0lSd01iQ2RmbFV3SDF6emxvZ1lYOXExcU1neElVVGt3enZicEN5WHA4ZkNIY3doUzN3YW12ajlwbkxycWRsWDRXNkIxdGpWOF9nQlJacmdLRnNBR0NyamRzdmxKTHlqaDEtNHA?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "ojeda",
+      "nombre": "Rafael Ojeda Durán",
+      "rol": "Mencionado",
+      "tema": "Huachicol Fiscal",
+      "nota": "Rafael Ojeda y la caja negra del huachicol fiscal, escribe Mario Maldonado - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQTG0zN2djdHZJMGJoMFVYVFlYRUpDbThRdy1KNkd5aGVRdEpFOFlERTNPbWxZa1NjYmFlTWJvdU0xYVBTVFJoWGZMMTFSdXVMdkFsbFBGWXduLXhRU1FyZGZ6VGZrLWFUZktpamZoNUo1NFNCdXNBeU9FR0RVVWQyQzlEQmdCdFlxY0tLQXJ0bTUtcUI2VVNRbHVQN3VvaVVJbG05RHBhMFM?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "rol": "Mencionado",
+      "tema": "Huachicol Fiscal",
+      "nota": "⚡ Posible presión de Andrés Manuel López Obrador — Exige PAN que FGR investigue a Andy López por huachicol fiscal - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOM21yaXNlQ2JEVlRsUU1mOVZ5aG1mWUx3ZkVDTk1ZUU15NlNLbzJXeWZKeEZ6Um80azRkWjZZYlNCa2VyMUNIZ2dPSkZKVlo3MmNSMzRVQnpReHhGaW10cVZ5LXc1bGlIdEM3MXRJUEhTT0lRd1pGZ1dRMlR5OTJPNUgtd2J6MGNLZWR3S21RNG95NW8xa01XS2VhZHdramZ6R2tnLV80R0xoblliVXhjcW5QczlsYjVGX2JrY21IMTFyNl9iVXpPY1hNSlZvdXc2MmZ3dWg4QkpUX3VfUnQ3cFZ4c2lPSVcwYS1ydtIBgAJBVV95cUxQSmNWdkpJSXlJd0d5VFIxNkNFWHBVbVh0WXR2SlhXZlVQSmlRZkVSbzhFT1JZTVRMenMxQmZWUnBfaXU0OG9hWjUzcE1PVXFZenZueVo2NkdpTjFCWlcwLVlJRnVrTHNFa0E5dHlZamdoQmF6YTBHeU90ZG5VMU5EZ2hxMzhyNEhzUlJXb1dRc0VwUUtqWllpd3MtbWxPRGwyOGdYYi12WjVxUTEyTnRNM2FQMHFXSVo5V2FvbU41Q2U2RC1vWGpPRVdXQVlVM2Z1Z3ZrUFV6V3RvckdrcWt4YktnckttaGlfQkpLaW5LY0t6TG9mSlB6Qm5XR3luZElE?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -391,10 +454,10 @@
     },
     {
       "fecha": "2026-09-09",
-      "tension": 39,
-      "n_notas": 32,
+      "tension": 38,
+      "n_notas": 33,
       "n_alto_impacto": 17,
-      "n_medio_impacto": 15,
+      "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     },
     {
@@ -439,18 +502,18 @@
     },
     {
       "fecha": "2026-09-15",
-      "tension": 34,
-      "n_notas": 8,
+      "tension": 31,
+      "n_notas": 9,
       "n_alto_impacto": 4,
-      "n_medio_impacto": 4,
+      "n_medio_impacto": 5,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-16",
-      "tension": 19,
-      "n_notas": 16,
+      "tension": 18,
+      "n_notas": 17,
       "n_alto_impacto": 3,
-      "n_medio_impacto": 13,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
     {
@@ -471,10 +534,10 @@
     },
     {
       "fecha": "2026-09-19",
-      "tension": 56,
-      "n_notas": 31,
+      "tension": 55,
+      "n_notas": 32,
       "n_alto_impacto": 24,
-      "n_medio_impacto": 7,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     },
     {
@@ -487,10 +550,10 @@
     },
     {
       "fecha": "2026-09-21",
-      "tension": 49,
-      "n_notas": 31,
+      "tension": 48,
+      "n_notas": 32,
       "n_alto_impacto": 24,
-      "n_medio_impacto": 7,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     },
     {
@@ -503,10 +566,10 @@
     },
     {
       "fecha": "2026-09-23",
-      "tension": 45,
-      "n_notas": 24,
+      "tension": 44,
+      "n_notas": 25,
       "n_alto_impacto": 18,
-      "n_medio_impacto": 6,
+      "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     },
     {
@@ -543,11 +606,93 @@
     },
     {
       "fecha": "2026-09-28",
-      "tension": 25,
-      "n_notas": 1,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 1,
+      "tension": 45,
+      "n_notas": 10,
+      "n_alto_impacto": 7,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
+    }
+  ],
+  "tablero_actores": [
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "x_lunes": 100,
+      "y_lunes": 97,
+      "x_hoy": 100,
+      "y_hoy": 97,
+      "delta_pts": 0.0,
+      "alcance": 15,
+      "n_alto": 14,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
+      "nota_texto": "Claudia Sheinbaum cuestiona la actitud de la ONU ante tantas guerras… - Revista Fortuna",
+      "es_nuevo": false
+    },
+    {
+      "id": "salomon_jara",
+      "nombre": "Salomón Jara Cruz",
+      "x_lunes": 13,
+      "y_lunes": 100,
+      "x_hoy": 13,
+      "y_hoy": 100,
+      "delta_pts": 0,
+      "alcance": 2,
+      "n_alto": 2,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQZExGM0NKSlZZRkxWYmhZLUJOWFk3dllBcl9hSk01MHMyUi1JVGNWYVlITE9oT0ZSXzVkTXFyT0hXeFpLOUhJYldqQk9pb3o2TWNGblJOUjJXX0tOYmd3bFdQQmpQenA5YzlTbVVzVENPOXNnYmMtT1J6Yjg3bU9fSzM3SVFrem55ZnZwcTZ1MkxwVHYwTllwYmdDSkpRTm9KdnctZDVaZ2RfUDU0WEdIbEhTR29uMmxOMHpOVFhNelc2d1VfQmM5VU5ibUg2cFJhQmxfbjE2bC05ejZPTlZPUGlB?oc=5",
+      "nota_texto": "Salomón Jara destaca resultados de Claudia Sheinbaum y avances de la transformación en Oaxaca https://mile.io/4htzV98 - facebook.com",
+      "es_nuevo": false
+    },
+    {
+      "id": "amilcar_olan_aparicio",
+      "nombre": "Amílcar Olán Aparicio",
+      "x_lunes": 20,
+      "y_lunes": 83,
+      "x_hoy": 20,
+      "y_hoy": 83,
+      "delta_pts": 0.0,
+      "alcance": 3,
+      "n_alto": 2,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "es_nuevo": false
+    },
+    {
+      "id": "ernesto_ruffo",
+      "nombre": "Ernesto Ruffo Appel",
+      "x_lunes": 13,
+      "y_lunes": 75,
+      "x_hoy": 13,
+      "y_hoy": 75,
+      "delta_pts": 0.0,
+      "alcance": 2,
+      "n_alto": 1,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://www.yucatan.com.mx/mexico/2026/09/28/ernesto-ruffo-pide-reinstitucionalizar-el-pais-tras-llegar-a-su-casa-en-ensenada.html",
+      "nota_texto": "Ernesto Ruffo pide “reinstitucionalizar” el país tras llegar a su casa en Ensenada",
+      "es_nuevo": false
+    },
+    {
+      "id": "canton_zetina",
+      "nombre": "Óscar Cantón Zetina",
+      "x_lunes": 7,
+      "y_lunes": 50,
+      "x_hoy": 7,
+      "y_hoy": 50,
+      "delta_pts": 0.0,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://www.tabascohoy.com/entregara-la-atp-premio-palabra-libre-miguel-canton-zetina-entre-los-galardonados/",
+      "nota_texto": "Entregará la ATP premio ‘Palabra Libre’; Miguel Cantón Zetina, entre los galardonados",
+      "es_nuevo": false
     }
   ],
   "declaracion_presidenta_historial": [
@@ -573,5 +718,5 @@
       "intensidad": 7.0
     }
   ],
-  "hora_corte_publicada": "2026-09-28 13:08"
+  "hora_corte_publicada": "2026-09-28 16:09"
 }
