@@ -276,6 +276,9 @@ function svgTendenciaCategoriasPulso(serie){
     <line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.75"/>
     ${svgLineasYPuntos}
     ${serie.map((s,i)=>`<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.semana_fin.slice(5)}</text>`).join('')}
+    <line x1="${xDe(serie.length-1).toFixed(1)}" y1="${padT}" x2="${xDe(serie.length-1).toFixed(1)}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
+    <polygon points="${xDe(serie.length-1).toFixed(1)},${(padT+7).toFixed(1)} ${(xDe(serie.length-1)-5).toFixed(1)},${padT} ${(xDe(serie.length-1)+5).toFixed(1)},${padT}" fill="var(--teal)"/>
+    <text x="${xDe(serie.length-1).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>
   </svg>
   <div style="display:flex;flex-wrap:wrap;margin-top:6px;">${leyenda}</div>
   <div style="font-size:9px;color:var(--ink-3);margin-top:2px;">% = variación de la semana en curso vs. la previa · el anillo marca el máximo real de cada categoría en las 4 semanas.</div>`;
@@ -593,7 +596,10 @@ function pintarPulso(cont, d){
   // discretas, a manera de "las últimas 2 antes de ésta".
   const tarjetaDeclaracion = (decl, esReciente) => `
     <div style="background:var(--bg-1);border-left:3px solid ${esReciente?'var(--riesgo-medio)':'var(--line-strong)'};border-radius:7px;padding:${esReciente?'12px':'9px 12px'};${esReciente?'':'opacity:0.72;'}">
-      <div class="eyebrow" style="color:${esReciente?'var(--riesgo-medio)':'var(--ink-3)'};font-size:${esReciente?'9.5px':'8.5px'};">${decl.actor}</div>
+      <div class="eyebrow" style="color:${esReciente?'var(--riesgo-medio)':'var(--ink-3)'};font-size:${esReciente?'9.5px':'8.5px'};display:flex;justify-content:space-between;gap:8px;">
+        <span>${decl.actor}</span>
+        ${decl.fecha ? `<span style="font-family:var(--f-mono);font-weight:400;color:var(--ink-3);">${new Date(decl.fecha+'T00:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'short'})}</span>` : ''}
+      </div>
       <p style="font-size:${esReciente?'11.5px':'10.5px'};line-height:1.5;margin:5px 0;font-style:italic;">"${decl.texto}"</p>
       ${enlaceNota(decl.fuente_url)}
     </div>`;
