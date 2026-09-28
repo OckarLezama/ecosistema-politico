@@ -518,28 +518,34 @@ def calcular():
                         'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
     nuevos = sorted(nuevos, key=lambda x: x['peso'], reverse=True)[:5]
 
-    # RETOMADOS -- sí se mantiene sobre temas_1: para hablar de "silencio tras cobertura
-    # previa" hace falta precisamente ese historial de 3+ días que temas_1 garantiza.
-    # UMBRAL_RETOMA: 7 días -- una semana completa de silencio es la unidad natural del
-    # ciclo noticioso (un apagón genuino, no solo un día flojo de cobertura).
+    # BUG REAL encontrado en esta revisión (mismo patrón que ya se corrigió en "Nuevos"):
+    # exigía tid in temas_1, pero esa clasificación la actualiza limpiar_agenda_nacional.py
+    # en su propia corrida, no este script -- un tema que se queda 7+ días callado y hoy
+    # reaparece bien puede seguir marcado nivel_relevancia='1' viejo (si nadie lo bajó) o
+    # ya haber caído a '3' (si sí lo bajaron) antes de que el pulso corra; en ambos casos
+    # depender de esa clasificación externa para "Retomados" es una carrera que puede
+    # perderse sin que sobre ningún tema retomado real. Aquí usa el mismo universo amplio
+    # que "Nuevos" (todo eventos_por_tema, sin filtrar por temas_1) y el mismo candado de
+    # calidad (nota de fuente de primer nivel en la ventana) para no listar un repunte
+    # sin respaldo real.
     retomados = []
     UMBRAL_RETOMA_DIAS = 7
-    for tid in temas_1:
-        evs = sorted(eventos_por_tema.get(tid, []), key=lambda e: e['_ts'])
-        if not evs:
+    for tid, evs_todos in eventos_por_tema.items():
+        evs = sorted(evs_todos, key=lambda e: e['_ts'])
+        evs_ventana_pn = [e for e in evs if e in ventana and nivel_evento(e) in NIVELES_PRIMER_NIVEL]
+        if not evs_ventana_pn:
             continue
-        evs_ventana = [e for e in evs if e in ventana_agenda]
-        if not evs_ventana:
+        t = temas_por_id.get(tid)
+        if not t:
             continue
-        t = temas_por_id[tid]
         fechas_previas = sorted({e['_ts'].date() for e in evs if e['_ts'] < hace_24h})
-        top_ventana = max(evs_ventana, key=lambda e: float(e['intensidad']))
-        if fechas_previas and (hace_24h.date() - fechas_previas[-1]).days >= UMBRAL_RETOMA_DIAS:
-            # tenía actividad antes, luego una semana entera o más de silencio, y ahora
-            # reaparece -- el motivo es la nota más intensa de la ventana que lo reactivó
-            motivo = top_ventana
+        if not fechas_previas:
+            continue  # sin cobertura previa -- eso es "Nuevo", no "Retomado"
+        dias_silencio = (hace_24h.date() - fechas_previas[-1]).days
+        if dias_silencio >= UMBRAL_RETOMA_DIAS:
+            motivo = max(evs_ventana_pn, key=lambda e: float(e['intensidad']))
             retomados.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
-                               'dias_silencio': (hace_24h.date() - fechas_previas[-1]).days,
+                               'dias_silencio': dias_silencio,
                                'motivo': motivo['descripcion'][:220],
                                'impacto': _impacto_de(float(motivo['intensidad'])),
                                'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or ''})
