@@ -23,7 +23,7 @@ from fuentes_confiabilidad import (clasificar_fuente, NIVELES_BAJA_O_SIN, domini
 RUTA_DATOS = 'data'
 RUTA_SALIDA = 'data/pulso_nacional.json'
 ZONA_MX = timezone(timedelta(hours=-6))
-VENTANA_HORAS = 24
+VENTANA_HORAS = 18
 CORTES_FIJOS = [6, 12, 18]  # hora CDMX
 UMBRAL_CAMBIO_TENSION = 12  # puntos de 0-100 -- si la tensión se mueve esto o más desde
                              # el último corte publicado, se considera "amerita actualizar"
@@ -600,10 +600,13 @@ def calcular():
 
     def nota_real_para_actor(nombre_actor, tema_id):
         """La nota real donde ese actor es mencionado dentro del tema -- nunca el título
-        del tema. Busca en TODO el historial del tema (no solo la ventana de 24h, porque
-        el vínculo actor-tema puede venir de una nota más vieja) con el mismo matcher
-        validado que ya decide el vínculo actor-tema. Si genuinamente ninguna nota lo
-        menciona por su nombre, regresa None -- sin nota real, el actor no se muestra.
+        del tema. Corregido: antes buscaba en TODO el historial del tema (por eso podían
+        salir notas de enero o mayo en un panel que se supone que es de "ahora mismo") --
+        eso ya no es lo que se pidió: Actores Destacados vive en el mismo corte de
+        ventana reciente que el resto del módulo, así que la nota tiene que caer dentro
+        de esa ventana (VENTANA_HORAS) igual que Top 5 / Nuevos. Si nadie tiene mención
+        reciente, el actor simplemente no aparece ese corte -- no se rellena con historial
+        viejo solo para no dejar el espacio vacío.
 
         Exige, además, que esa nota sea de un medio de primer nivel (ALTA/OFICIAL) --
         mismo criterio que ya aplica el Top 5 y la declaración relevante. Antes de esta
@@ -612,7 +615,7 @@ def calcular():
         justificados solo por una nota de un medio no reconocido). Si un actor de verdad
         relevante solo tiene mención en fuentes de menor nivel, se excluye -- no se
         muestra con una fuente floja solo para no dejar el espacio vacío."""
-        evs = eventos_por_tema.get(tema_id, [])
+        evs = [e for e in eventos_por_tema.get(tema_id, []) if hace_24h <= e['_ts'] <= ahora]
         partes = [x for x in nombre_actor.split() if len(x) > 2]
         clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
         hay_homonimo = clave_apellidos and len(apellidos_compartidos.get(clave_apellidos, ())) > 1
