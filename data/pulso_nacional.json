@@ -1,16 +1,16 @@
 {
-  "generado_en": "2026-09-27T19:50:56.369218-06:00",
+  "generado_en": "2026-09-28T10:23:00.072761-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 5,
+  "n_notas_ventana": 4,
   "baja_confianza": false,
-  "tension_nacional": 70,
+  "tension_nacional": 38,
   "categorias_dia": [
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 60,
+      "peso_pct": 77,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 2,
+      "n_temas": 1,
       "n_notas": 3,
       "notas": [
         {
@@ -20,50 +20,43 @@
           "medio": "diario.mx"
         },
         {
-          "texto": "El Show de la grilla",
-          "fuente_url": "https://www.tabascohoy.com/el-show-de-la-grilla-123/",
-          "intensidad": 7.0,
-          "medio": "tabascohoy.com"
-        },
-        {
           "texto": "FGR descarta que proceso contra Ernesto Ruffo por presunto huachicol fiscal se detenga tras obtener prisión domiciliaria - Infobae",
           "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeExBNVVVZ0dwc2tRMUNvMzlTXzNvR3Q2NFJWY3JvbFp2V1h2cUtmNjZndGt6c1djQWM5OHM1LUlIOEZOM01KZEMxNXE4dmRyNW1ONGlhN3pKaFJJa1RRbjlBaGZ3Z3hEaGcxZWNBSjBTbVhYMG1CdkRfcHZVRUs1RS1aNjdjYVNhZFR4WWZsSlUwVDlHRVdqMVlhb1NzTDZLTXRlV0hEbjJSNTVnSWdnVEVEb1U2NndTZkNadW81MWlUQkQ1Ynhsa25PUmFjUVA1cXpiZlFhSE9FeTA1RDBSZDIxV1VhaU1VY1JNZGw2bV8yYV8yQmfSAZACQVVfeXFMT1lzaEFFQmt4b1VfQzlVVG9tLTRySXZnY0syMy04a3JoR2lxTlJzMGd1LWNZRnB4cDZiXzZxMFZMYjBjMTNMQndFX1d4bkx2aGlhcFBlMndhT0E3YWFzM2Y1MnRkckQ0ajBIekFwc0ZPVzFmQ1NCbzVBUmRyNGYxUDFvYm1wcWY1eHE0dWZmdEc3eTFXWEl0UkxmR21STHFicXZuaW9zSFpNVTBpQ0lSd01iQ2RmbFV3SDF6emxvZ1lYOXExcU1neElVVGt3enZicEN5WHA4ZkNIY3doUzN3YW12ajlwbkxycWRsWDRXNkIxdGpWOF9nQlJacmdLRnNBR0NyamRzdmxKTHlqaDEtNHA?oc=5",
           "intensidad": 6.0,
           "medio": "Infobae"
-        }
-      ]
-    },
-    {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 20,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
+        },
         {
-          "texto": "¿A qué hora inicia el segundo informe de Gobierno de Claudia Sheinbaum en el Zócalo? Dónde ver en vivo - AS México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQazlZaXlhZk43MDl5LUE1blZRcEdJcFJHNlF0UVA0YnVmVnRRM09PM2pKaEZ6VENNaC11RGpZV1ZZV3pobHkyTGhTV1AwdkpfQ21pd3ZFdHgtUEszSXZiY3JPaF9oRUd6ZjR2aFF1ZXl3dTNMa3JRRUYwM2c5M05BNHpFSzlxMEJueWRWN2VPdldtNnlDM3BmR0I1WlpqSlJwMmdEV0FwT2hPWDNoRzBDOUZBYjc5X015MUs2X192RDRLVEdNWnRPaXljSjhfNjhKVnp5UW1ZcTRCUFl40gHwAUFVX3lxTFBUVnZLRVl0ZnVkQU9RVEcxZlh6aVhlcWRQa1VOb2RTc0Q5VHc4RUVZWTBTeUxSVXA0R0R1REp3SHVOdjA3Z1lxQlJMMGJfdnhjU0lLc2tCNkN6Q3dONUZkeGR6QXJYT0dWMVhKVUlkdTdaaWZCQVdLNzZJeGJsek1GR2V5MnM5WG9WTGNCTjZmVmd3RHd0M1JkVG5odElGV0dlbjllYU9jWHpNNzNuQVdXdlVWQmpPTlhOWENua2ItWjJQT0FBMWl6RjZvTm42VkVRS0hZOHJDdFdBa3F2Umw2Ul81WkN4Yk9sQjlORy11cw?oc=5",
-          "intensidad": 7.0,
-          "medio": "AS México"
+          "texto": "Huachicol fiscal también pasa por EU: Ernesto Ruffo, la clave para entender la relación con Texas - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUdIBjwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "MILENIO"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 20,
+      "peso_pct": 23,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Retos del año 3 de CSP: elecciones, Trump... - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8xTWhWRDY5QVd6REN4NzZoX0l5UWVmR3M1TFJhRm5EbXVqZXpCR3pUcXRweG1ZVllOMGR5dmtGeExSWE5Eb09hM3lsZUNyNmJiNDNkdzVLSHFUUjhSNHdkWVRzMFUtMEc2d0ZpVU9qNzQyTHFxVUhJQ0VzaGJDdw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Reforma"
+          "texto": "¿Qué pasa con el T-MEC? México y EU buscan destrabar estos temas",
+          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/27/que-pasa-con-el-t-mec-mexico-y-eu-buscan-destrabar-estos-temas/",
+          "intensidad": 6.0,
+          "medio": "elfinanciero.com.mx"
         }
       ]
+    },
+    {
+      "categoria": "Gobernabilidad",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Relación Bilateral",
@@ -86,7 +79,7 @@
   ],
   "categorias_tendencia_4sem": [
     {
-      "semana_fin": "2026-09-06",
+      "semana_fin": "2026-09-07",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
@@ -111,11 +104,11 @@
       ]
     },
     {
-      "semana_fin": "2026-09-13",
+      "semana_fin": "2026-09-14",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 42
+          "peso_pct": 43
         },
         {
           "categoria": "Gobernabilidad",
@@ -123,7 +116,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -136,15 +129,15 @@
       ]
     },
     {
-      "semana_fin": "2026-09-20",
+      "semana_fin": "2026-09-21",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 33
+          "peso_pct": 32
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 44
+          "peso_pct": 45
         },
         {
           "categoria": "Relación Bilateral",
@@ -161,7 +154,7 @@
       ]
     },
     {
-      "semana_fin": "2026-09-27",
+      "semana_fin": "2026-09-28",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
@@ -169,15 +162,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 41
+          "peso_pct": 39
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
-          "peso_pct": 14
+          "peso_pct": 15
         },
         {
           "categoria": "Social",
@@ -188,54 +181,62 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-4d06ef5b18",
-      "nombre": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
-      "categoria": "Gobernabilidad",
-      "resumen": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caída de producción: así fue el tenso momento - Ambito",
-      "peso": 46.0,
-      "n_temas_agrupados": 8,
-      "escalando": true,
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "peso": 12.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 5,
-      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOa3FwWmdPemxVM1JiZzNBSUdCY19vUVVNOXR2a2pON3ZZbzZ1eGlNMEpxZndzdnVXZGtQckQ1WVRfSDZHV0tZZTk1aUxZZWhDS25zNlRTRjRvRDBYWXRHblZKWktoTjRPMW82XzBhY19adGxiYkhBZEhScjV0bVBwUnEzNUNSZWZYUnpFMFVLem5XNU9POVV5b1BMOU9xc2RLUmlpbE9IcVhFbmtxWXVRZ0lQWVVyTnE2Mi1iRnFNQmZtVVM2SXNr?oc=5"
+      "medios_corroborantes": 2,
+      "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeExBNVVVZ0dwc2tRMUNvMzlTXzNvR3Q2NFJWY3JvbFp2V1h2cUtmNjZndGt6c1djQWM5OHM1LUlIOEZOM01KZEMxNXE4dmRyNW1ONGlhN3pKaFJJa1RRbjlBaGZ3Z3hEaGcxZWNBSjBTbVhYMG1CdkRfcHZVRUs1RS1aNjdjYVNhZFR4WWZsSlUwVDlHRVdqMVlhb1NzTDZLTXRlV0hEbjJSNTVnSWdnVEVEb1U2NndTZkNadW81MWlUQkQ1Ynhsa25PUmFjUVA1cXpiZlFhSE9FeTA1RDBSZDIxV1VhaU1VY1JNZGw2bV8yYV8yQmfSAZACQVVfeXFMT1lzaEFFQmt4b1VfQzlVVG9tLTRySXZnY0syMy04a3JoR2lxTlJzMGd1LWNZRnB4cDZiXzZxMFZMYjBjMTNMQndFX1d4bkx2aGlhcFBlMndhT0E3YWFzM2Y1MnRkckQ0ajBIekFwc0ZPVzFmQ1NCbzVBUmRyNGYxUDFvYm1wcWY1eHE0dWZmdEc3eTFXWEl0UkxmR21STHFicXZuaW9zSFpNVTBpQ0lSd01iQ2RmbFV3SDF6emxvZ1lYOXExcU1neElVVGt3enZicEN5WHA4ZkNIY3doUzN3YW12ajlwbkxycWRsWDRXNkIxdGpWOF9nQlJacmdLRnNBR0NyamRzdmxKTHlqaDEtNHA?oc=5"
     },
     {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "peso": 7.0,
+      "peso": 6.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
-      "fuente_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8xTWhWRDY5QVd6REN4NzZoX0l5UWVmR3M1TFJhRm5EbXVqZXpCR3pUcXRweG1ZVllOMGR5dmtGeExSWE5Eb09hM3lsZUNyNmJiNDNkdzVLSHFUUjhSNHdkWVRzMFUtMEc2d0ZpVU9qNzQyTHFxVUhJQ0VzaGJDdw?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/27/que-pasa-con-el-t-mec-mexico-y-eu-buscan-destrabar-estos-temas/"
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-848c856e18",
-      "nombre": "El Instituto Guatemalteco de Migración lanza Mateo, un asistente virtual para co",
+      "id": "auto-30056e8f7a",
+      "nombre": "Murieron 86 mil migrantes en rutas marítimas y terrestres desde 2014",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQaTNvclhsYWs0dFNKdkItUVdLQmY4YnVfOWFXaF8wcWw5UjFwYlRzM0dDT0xnZVNFNnBrME5adGw0UG1PZUROYTl5d1JXMkl6ZWJsV2hfQ2VKTEFXSFJaelJ2Ni1TMmYtOEd1c0pNYUN4YUZKWlZjaERoXzdXeEYzUFk1WE9ZMVhPRjdZQkR4NXpaOFVNVHdDOVlXOW9CZ2ZlZ01RdFpOSDBNT1YxY2RfTzdya2NPUG5rNExxUGZ5al9wX0prYWlUQzEwaXlHOC1RdFdiNnlJVENnNzd2aVZMM193bV80alBGVjcwbVBR0gGIAkFVX3lxTE1OV282Q3F0d2FpT0I1U2Z4bXR3bGpRMlJYWThnRmFNNW1IZXBybjZzVTFjenhRREp2ZUZWb01YQU8zM2FaTDNFczV2Ul9LT0MweWE2RXJsdFdwQ3R2bFZIRHMxVDNoOG5iRkttd3lSRFFaellhdmpGUUp6NnJ5c3dIVU1pRTdvQlpKQXVMWWJsS1pHTlVsVW9BMURDNk9lOWJoU2xvOWN2Z3ppN294aDZZOF9GZ0Q3bjVieklKV014QnJuNkxRTnE3cFVUZDdrbzJ6Z3ZjT3g4cndnYm1Kam9vdXRKeS1FblUzSmlxUTJrVTNQRU5QVUJfV2pndGt4MDZZY19wbHU3cg?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/005n2pol?partner=rss"
     },
     {
-      "id": "auto-2378f9e997",
-      "nombre": "Sheinbaum: ninguna élite determina el destino de la patria",
+      "id": "auto-eea6460031",
+      "nombre": "Zohran Kwame Mamdani*: Inmigrantes: fuerza que transforma para bien",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/015a1pol?partner=rss"
+    },
+    {
+      "id": "auto-620154193b",
+      "nombre": "Llama Brugada a la unidad en tres materias en torno a la Presidenta",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/27/politica/005n1pol?partner=rss"
+      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/004n1pol?partner=rss"
     },
     {
-      "id": "auto-62664166ee",
-      "nombre": "Tania Larios muestra oferta de transporte gratuito en cartel de Claudia Sheinbau",
+      "id": "auto-6048afedbf",
+      "nombre": "Detecta el INE 142 mil fallecidos e irregularidades en padrones de partidos; Mor",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPWUpCOXZfcHJBTXRacVFFcnJKRFNRQ1BPZm1pcTlRaFMwUkh1M0tUV0hyNEFpdWhYekVmOEFQN3ZkZTBoQVZ2SXA5a0tIaEtxdjVYMlItSjB5RmlmT0h6UHJHenNGek5uaDk4ZGs0aFo2dEczWkRIT2ZSZF9HbWtUcUZhNHE3ZUoyem5TaVk0czVieUpRQjFfY1RFeTZIWkJyOUFvdVZpaEl2eTM5Zk5hQ2cwb3dVX044akFRdlAtQ0I1bGFlNlg5VDNjbDJPSF9FZG9tUm9n?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOb0ZMMkFrakZOMVZnRkZWZzFzQ1BWV1pXUmpJdlBQWWhsakJvWDdYeEVBRzNrLUxJbFMyM1V5cUM4S3FZRy13NXloZXRxUk5hakRCcUJJOEFVbF9fQ0pWUy1QWU41R1Z0SDc0VG83ek5oS1FqQTVIWGdxWFZ4Q0ZTdHEtTzhrSUZjbTlQSVRwYlBTZ2l5N2NwNEFHc1p2WnBHZjNtbTlISkpzSHlmaFdmTlJ6b1JJSG5jRjZQLXpMd2dhUkhU0gHKAUFVX3lxTE5XMWttX3FWR29URnpQNUdabXpTQmU0cGphM21SZkxJVzJ3Tms2WExPNFh5dXg0dWs3VjFDTHN0VDRDc1J5ZDRxanY0YW5QNmF6dm1OY3dNbndwLUhFcmRIVzk0RC1SRjRXTkYyTnBBeFU0QW04ZkRMdExSX3hRTEVkX2xwS2hDSHgtWDlYdjFOUFJnQkV6WFpTaWVZZmdMY1RFREtiSzVqM2MyNGUwOWFLUHJpQ0VNbzRicUdLd2VqWWI5eWdNRVRVOVE?oc=5"
     }
   ],
   "temas_retomados": [],
@@ -291,30 +292,18 @@
       "tema_nuevo": false
     }
   ],
-  "declaracion_presidenta": {
-    "actor": "Claudia Sheinbaum Pardo",
-    "texto": "‘La Ciudad no dará un paso atrás’: Clara Brugada es coestelar de Claudia Sheinbaum en su mitin del Zócalo - EL PAÍS",
-    "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaDhuMkFIMG1MYUJON3Ezd0l1bDdrS1QxNVk5cVhkbDk2V2NTcWpLVzd4VTdwRF9CakhMNFg2NDc0Wi02cXNTZFVZQ1lGVU1fVjA5dmpnckJWWTNZV2c5RE9TMWs0NHBQUHRYTmp1TWtHQXAxVmMzdlA2NXY3T1QtV09pSXZweFlTVlN6eTltTVM0ZTRFWlpiTkNfSERzMEFtc25Telo5QmYwLThqM0JZUHhiTnI2c0pBVk5yMGw4NzVVU1ZaZlF5U3Z4WXF3RHV6alF2ajhMVE1YOXd60gHwAUFVX3lxTE5fWk9iaC1PUDJYbnhubnk4aXFTX0R3ckNXcV91SmdIS2VYOGVhclVLZFJoZnIzSnpEVUpaSF9uU1ZoZkYwVXNQRDBFcEtxc3YxbDlVVkw3TFBDNWNYRHk1U21xY2hBR2lRZk5GZ2ZqbFlvZ1dET2ZWQU00WHYzTTl6OE9XNUZtT01zeERsbEJ3Ty1zMW9uanZxUTU4VjFqMFh5cEhveGdQWURoYlZYWWJBYWs1bHR2VUdlSl9ZTlJYbnBCQVo5UjY1bG1GQ3Q1dHZvLWs0WVBoMGVMWDFUUXBqaHVYdWVYd0xPZkUyWW8wUw?oc=5",
-    "intensidad": 7.0
-  },
+  "declaracion_presidenta": null,
   "declaracion_otro": {
-    "actor": "Rosa Icela Rodríguez",
-    "texto": "Reiteramos compromiso con la verdad: Rosa Icela Rodríguez",
-    "fuente_url": "https://www.jornada.com.mx/2026/09/27/politica/003n2pol?partner=rss",
-    "intensidad": 7.0
+    "actor": "Ricardo Monreal",
+    "texto": "Ricardo Monreal reconoce “desgaste real” de Morena rumbo a 2027: estos son los 6 estados que ve más difíciles - Infobae",
+    "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNYXBTcVo3R3Z2WGpwczRhaXlmaGJLcU5tTHJrWEoxS1ZxSHBES3NlMjYzTVI1SkluVnFYRE5FbldHRy1yV3lwSHJ2VUdpZVRQREs3ZkhoMThQejRBNldXV1RZYnEtbEJpOGI4b1IxT3dXczg1Z1V3b1MtSzJaWXFiWUdzbVVnRXZSMnA2Ni1USmVzcXE1bC1KRzM4dTFCMnBOLWtwbmYwcE5uMjBzaUF3LXRpbUFBZ0pkYm5ualRET1RxV05JTXU2VHU3MVRTUGEtUkVnQm5lZkxfX05nRURLazZhSdIB_gFBVV95cUxOV1JGUmw5VUNtX1hLQ2FJbS02TzNJcml5M1JrWFNJNXhtaTlWNWNPQmhJYldwTE9RSE16bTU4VElYUUQ2VGVsU3pTMllCQmJ6dWN2SDg4aU1fVVYteUFQbFVjOXFfT2RsQklHaldIZzJ4ZGlXaUMxWjNoNzdpbzRBQmVzbkd4TjlMRHJoYk9TX0RJY1B4MzB6R3JsNjNIN0VWdVBmOW9ZUFpoSmloUFJ3U19iS3BWY2NzdXRpTjJ2MUgzSkxCLW5kdlM2WnZhUk9aQjFMSjlHaFNfQ3dJbnZ2TXhXTG93Ml82dDFvZndLeC1EYnRINFhHeTNvTGZ2UQ?oc=5",
+    "intensidad": 7.0,
+    "fecha": "2026-09-28"
   },
   "patron_historico_4sem": [
     {
-      "fecha": "2026-08-31",
-      "tension": 72,
-      "n_notas": 10,
-      "n_alto_impacto": 8,
-      "n_medio_impacto": 2,
-      "n_bajo_impacto": 0
-    },
-    {
       "fecha": "2026-09-01",
-      "tension": 75,
+      "tension": 63,
       "n_notas": 15,
       "n_alto_impacto": 15,
       "n_medio_impacto": 0,
@@ -322,7 +311,7 @@
     },
     {
       "fecha": "2026-09-02",
-      "tension": 65,
+      "tension": 37,
       "n_notas": 23,
       "n_alto_impacto": 13,
       "n_medio_impacto": 10,
@@ -330,7 +319,7 @@
     },
     {
       "fecha": "2026-09-03",
-      "tension": 65,
+      "tension": 37,
       "n_notas": 17,
       "n_alto_impacto": 9,
       "n_medio_impacto": 8,
@@ -338,7 +327,7 @@
     },
     {
       "fecha": "2026-09-04",
-      "tension": 67,
+      "tension": 43,
       "n_notas": 18,
       "n_alto_impacto": 12,
       "n_medio_impacto": 6,
@@ -346,7 +335,7 @@
     },
     {
       "fecha": "2026-09-05",
-      "tension": 66,
+      "tension": 39,
       "n_notas": 9,
       "n_alto_impacto": 6,
       "n_medio_impacto": 3,
@@ -354,7 +343,7 @@
     },
     {
       "fecha": "2026-09-06",
-      "tension": 62,
+      "tension": 31,
       "n_notas": 8,
       "n_alto_impacto": 4,
       "n_medio_impacto": 4,
@@ -362,7 +351,7 @@
     },
     {
       "fecha": "2026-09-07",
-      "tension": 62,
+      "tension": 31,
       "n_notas": 22,
       "n_alto_impacto": 8,
       "n_medio_impacto": 14,
@@ -370,7 +359,7 @@
     },
     {
       "fecha": "2026-09-08",
-      "tension": 64,
+      "tension": 36,
       "n_notas": 21,
       "n_alto_impacto": 12,
       "n_medio_impacto": 9,
@@ -378,7 +367,7 @@
     },
     {
       "fecha": "2026-09-09",
-      "tension": 66,
+      "tension": 39,
       "n_notas": 32,
       "n_alto_impacto": 17,
       "n_medio_impacto": 15,
@@ -386,7 +375,7 @@
     },
     {
       "fecha": "2026-09-10",
-      "tension": 55,
+      "tension": 14,
       "n_notas": 22,
       "n_alto_impacto": 3,
       "n_medio_impacto": 19,
@@ -394,7 +383,7 @@
     },
     {
       "fecha": "2026-09-11",
-      "tension": 54,
+      "tension": 10,
       "n_notas": 26,
       "n_alto_impacto": 2,
       "n_medio_impacto": 24,
@@ -402,7 +391,7 @@
     },
     {
       "fecha": "2026-09-12",
-      "tension": 57,
+      "tension": 17,
       "n_notas": 12,
       "n_alto_impacto": 3,
       "n_medio_impacto": 9,
@@ -410,7 +399,7 @@
     },
     {
       "fecha": "2026-09-13",
-      "tension": 56,
+      "tension": 15,
       "n_notas": 18,
       "n_alto_impacto": 4,
       "n_medio_impacto": 14,
@@ -418,7 +407,7 @@
     },
     {
       "fecha": "2026-09-14",
-      "tension": 59,
+      "tension": 23,
       "n_notas": 21,
       "n_alto_impacto": 5,
       "n_medio_impacto": 16,
@@ -426,7 +415,7 @@
     },
     {
       "fecha": "2026-09-15",
-      "tension": 64,
+      "tension": 34,
       "n_notas": 8,
       "n_alto_impacto": 4,
       "n_medio_impacto": 4,
@@ -434,7 +423,7 @@
     },
     {
       "fecha": "2026-09-16",
-      "tension": 58,
+      "tension": 19,
       "n_notas": 16,
       "n_alto_impacto": 3,
       "n_medio_impacto": 13,
@@ -442,7 +431,7 @@
     },
     {
       "fecha": "2026-09-17",
-      "tension": 61,
+      "tension": 28,
       "n_notas": 33,
       "n_alto_impacto": 13,
       "n_medio_impacto": 20,
@@ -450,7 +439,7 @@
     },
     {
       "fecha": "2026-09-18",
-      "tension": 74,
+      "tension": 60,
       "n_notas": 34,
       "n_alto_impacto": 29,
       "n_medio_impacto": 5,
@@ -458,7 +447,7 @@
     },
     {
       "fecha": "2026-09-19",
-      "tension": 72,
+      "tension": 56,
       "n_notas": 31,
       "n_alto_impacto": 24,
       "n_medio_impacto": 7,
@@ -466,7 +455,7 @@
     },
     {
       "fecha": "2026-09-20",
-      "tension": 70,
+      "tension": 50,
       "n_notas": 17,
       "n_alto_impacto": 14,
       "n_medio_impacto": 3,
@@ -474,7 +463,7 @@
     },
     {
       "fecha": "2026-09-21",
-      "tension": 70,
+      "tension": 49,
       "n_notas": 31,
       "n_alto_impacto": 24,
       "n_medio_impacto": 7,
@@ -482,7 +471,7 @@
     },
     {
       "fecha": "2026-09-22",
-      "tension": 69,
+      "tension": 49,
       "n_notas": 34,
       "n_alto_impacto": 27,
       "n_medio_impacto": 7,
@@ -490,7 +479,7 @@
     },
     {
       "fecha": "2026-09-23",
-      "tension": 68,
+      "tension": 45,
       "n_notas": 24,
       "n_alto_impacto": 18,
       "n_medio_impacto": 6,
@@ -498,7 +487,7 @@
     },
     {
       "fecha": "2026-09-24",
-      "tension": 68,
+      "tension": 44,
       "n_notas": 24,
       "n_alto_impacto": 19,
       "n_medio_impacto": 5,
@@ -506,7 +495,7 @@
     },
     {
       "fecha": "2026-09-25",
-      "tension": 70,
+      "tension": 51,
       "n_notas": 20,
       "n_alto_impacto": 15,
       "n_medio_impacto": 5,
@@ -514,7 +503,7 @@
     },
     {
       "fecha": "2026-09-26",
-      "tension": 65,
+      "tension": 38,
       "n_notas": 10,
       "n_alto_impacto": 6,
       "n_medio_impacto": 4,
@@ -522,9 +511,17 @@
     },
     {
       "fecha": "2026-09-27",
-      "tension": 70,
-      "n_notas": 5,
+      "tension": 46,
+      "n_notas": 6,
       "n_alto_impacto": 4,
+      "n_medio_impacto": 2,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-09-28",
+      "tension": 25,
+      "n_notas": 1,
+      "n_alto_impacto": 0,
       "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
@@ -551,11 +548,18 @@
   ],
   "declaracion_otro_historial": [
     {
+      "actor": "Ricardo Monreal",
+      "texto": "Ricardo Monreal reconoce “desgaste real” de Morena rumbo a 2027: estos son los 6 estados que ve más difíciles - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNYXBTcVo3R3Z2WGpwczRhaXlmaGJLcU5tTHJrWEoxS1ZxSHBES3NlMjYzTVI1SkluVnFYRE5FbldHRy1yV3lwSHJ2VUdpZVRQREs3ZkhoMThQejRBNldXV1RZYnEtbEJpOGI4b1IxT3dXczg1Z1V3b1MtSzJaWXFiWUdzbVVnRXZSMnA2Ni1USmVzcXE1bC1KRzM4dTFCMnBOLWtwbmYwcE5uMjBzaUF3LXRpbUFBZ0pkYm5ualRET1RxV05JTXU2VHU3MVRTUGEtUkVnQm5lZkxfX05nRURLazZhSdIB_gFBVV95cUxOV1JGUmw5VUNtX1hLQ2FJbS02TzNJcml5M1JrWFNJNXhtaTlWNWNPQmhJYldwTE9RSE16bTU4VElYUUQ2VGVsU3pTMllCQmJ6dWN2SDg4aU1fVVYteUFQbFVjOXFfT2RsQklHaldIZzJ4ZGlXaUMxWjNoNzdpbzRBQmVzbkd4TjlMRHJoYk9TX0RJY1B4MzB6R3JsNjNIN0VWdVBmOW9ZUFpoSmloUFJ3U19iS3BWY2NzdXRpTjJ2MUgzSkxCLW5kdlM2WnZhUk9aQjFMSjlHaFNfQ3dJbnZ2TXhXTG93Ml82dDFvZndLeC1EYnRINFhHeTNvTGZ2UQ?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-09-28"
+    },
+    {
       "actor": "Rosa Icela Rodríguez",
       "texto": "Reiteramos compromiso con la verdad: Rosa Icela Rodríguez",
       "fuente_url": "https://www.jornada.com.mx/2026/09/27/politica/003n2pol?partner=rss",
       "intensidad": 7.0
     }
   ],
-  "hora_corte_publicada": "2026-09-27 19:50"
+  "hora_corte_publicada": "2026-09-28 10:23"
 }
