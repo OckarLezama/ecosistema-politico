@@ -402,8 +402,13 @@ function barrasHistoricoPulso(historico){
       const tHoy = historico[idxHoy].tension;
       const yHoy = tHoy!==null ? y(tHoy) : (h-padB);
       const cxHoy = (idxHoy*paso+paso/2).toFixed(1);
-      return `<polygon class="pulso-marca-viva" points="${cxHoy},${(yHoy-2).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(yHoy-9).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(yHoy-9).toFixed(1)}" fill="var(--teal)"/>
-        <text x="${cxHoy}" y="${(yHoy-12).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>`;
+      // antes solo el triangulito pegado a la barra -- si esa barra ademas era la de menor
+      // tension del periodo (barra corta, casi al fondo), la marca se perdia visualmente
+      // contra el color de "dia mas bajo". La linea vertical completa (mismo tratamiento
+      // que ya tiene la grafica de tendencia por categoria) la hace imposible de no ver.
+      return `<line x1="${cxHoy}" y1="${padT}" x2="${cxHoy}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
+        <polygon class="pulso-marca-viva" points="${cxHoy},${(yHoy-2).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(yHoy-9).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(yHoy-9).toFixed(1)}" fill="var(--teal)"/>
+        <text x="${cxHoy}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>`;
     })()}
   </svg>
   <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;">
