@@ -1,85 +1,78 @@
 {
-  "generado_en": "2026-09-27T06:17:23.381761-06:00",
+  "generado_en": "2026-09-27T19:50:56.369218-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 6,
+  "n_notas_ventana": 5,
   "baja_confianza": false,
-  "tension_nacional": 65,
+  "tension_nacional": 70,
   "categorias_dia": [
     {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 36,
-      "tema_principal": "Amenazas de Intervención Militar de Trump",
-      "tema_principal_id": "intervencion-militar-eeuu",
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "‘No será necesario el Ejército’; Trump cree que habrá un acuerdo con Cuba",
-          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/26/no-sera-necesario-el-ejercito-trump-cree-que-habra-un-acuerdo-con-cuba/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "¿Por qué Andy López Beltrán no estuvo con Sheinbaum en Tabasco? Esto se sabe - Guillermo Ortega - Tu sitio de noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQeW1pR0ZNYks0T2Q0MW9NaHg1VjczSkR0d0xDN3pXTnVvSXNQYXI3T3JJMTdnY19VVzNzcHAtTDN3NXhUZTF2VHJwLWktNU1oV1JyM2V6WU0xM2NaLU44cGw4N0dlbVUtS2NMcDJCWXotVWVoYmJXeHNtTzRNSGF2VWE0RGdqeEpzanVBMlhtUzZXTklrZzBsRnkwd09zS2o4U0EwbEFJZFMwOVU?oc=5",
-          "intensidad": 7.0,
-          "medio": "Tu sitio de noticias"
-        }
-      ]
-    },
-    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 33,
-      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
-      "tema_principal_id": "rocha-moya-acusacion",
+      "peso_pct": 60,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
       "n_temas": 2,
-      "n_notas": 2,
+      "n_notas": 3,
       "notas": [
         {
-          "texto": "Anabel Hernández señala al gobierno de Sheinbaum por detener alcaldes y “no tocar” a Rocha Moya - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQTmpXLUlwWGRNSW0yZXZnMjFxY3NCcGNhY3RnVld2cHdsMjN4TlItOTlOb1lTN3h0bGRIQ0IzOFJXTVRXdG1pUkUxWTFyWGhWaVpBUmNtdDFLdjlDd05CeWlCWXE4dGFFUVBzTENyZ3B3N3B6ZlVIR1hOTldDQTVQVWFTWjFsQVVsX3lkeGpRUUpqb1dhZFgxRC1yS0dIdFVJUTgtakdZQVpJOHFFSnMwTUdmSzZMY2lOVnJyT2RoQXlqamVYcmRIM2E5UWw3a3RyV3fSAewBQVVfeXFMTnFQeXkxU3l1VG9aMXBIN21qVjBzOHhRX183Sm0zdHo1Xy1iR05vVjBMdEwzZEZQNmMzZF9nUHRkSThfak9QTFRiTGpLc08tX09KdWI4OEl3YVZnb25TQVZCREY2TTN6c01VdDJkR3VIUE9oQ3ljaFpvdFRQTGpiUVlfUzFjam9RYzBEUmEyVHFUUHZFVTJfUHZOUDl2cW5VSnNqSElJOGhNOU81dUlhaHF3YXdHVDFucmtxYzd1dXJpSmVqMkUtSE9nUjVzWHhuQTZOQ3F2ZHV1eXBMWnAyZTM2X1ZZOTRFMDRWSjM?oc=5",
-          "intensidad": 7.0,
-          "medio": "Infobae"
+          "texto": "Cae operador criminal señalado por huachicol fiscal - diario.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQLU5aV3U2QnlLRWx0bjUwRmtEQzZxbFJYMkg2NTE0bDljQU40OURWX1lQNTBuU3lpR0tQMGVDOFZGY3N1aGd2aldUTUVVaFk5RmhBZFhHcVRKRy10XzN6MHV5MWJvTE1xUTMwX0FRQXpkVHBZd1ZqZnZYQlRieDJZUFVaOVdVWEhnYTRVYld2ZmZiZUI4NmR5cGFEVWdfcWlwUWZyTHh3?oc=5",
+          "intensidad": 8.0,
+          "medio": "diario.mx"
         },
         {
-          "texto": "Ernesto ‘N’, exgobernador de Baja California, sale de El Altiplano; continuará su proceso en libertad",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/26/ernesto-n-exgobernador-de-baja-california-sale-de-el-altiplano-continuara-su-proceso-en-libertad/",
-          "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 18,
-      "tema_principal": "Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",
-      "tema_principal_id": "auto-043bf7b202",
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "Sheinbaum anuncia planta de Chocolates del Bienestar en Tabasco: ¿Cuánto se invertirá?",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/26/sheinbaum-anuncia-planta-de-chocolates-del-bienestar-en-tabasco-cuanto-se-invertira/",
+          "texto": "El Show de la grilla",
+          "fuente_url": "https://www.tabascohoy.com/el-show-de-la-grilla-123/",
           "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
+          "medio": "tabascohoy.com"
+        },
+        {
+          "texto": "FGR descarta que proceso contra Ernesto Ruffo por presunto huachicol fiscal se detenga tras obtener prisión domiciliaria - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeExBNVVVZ0dwc2tRMUNvMzlTXzNvR3Q2NFJWY3JvbFp2V1h2cUtmNjZndGt6c1djQWM5OHM1LUlIOEZOM01KZEMxNXE4dmRyNW1ONGlhN3pKaFJJa1RRbjlBaGZ3Z3hEaGcxZWNBSjBTbVhYMG1CdkRfcHZVRUs1RS1aNjdjYVNhZFR4WWZsSlUwVDlHRVdqMVlhb1NzTDZLTXRlV0hEbjJSNTVnSWdnVEVEb1U2NndTZkNadW81MWlUQkQ1Ynhsa25PUmFjUVA1cXpiZlFhSE9FeTA1RDBSZDIxV1VhaU1VY1JNZGw2bV8yYV8yQmfSAZACQVVfeXFMT1lzaEFFQmt4b1VfQzlVVG9tLTRySXZnY0syMy04a3JoR2lxTlJzMGd1LWNZRnB4cDZiXzZxMFZMYjBjMTNMQndFX1d4bkx2aGlhcFBlMndhT0E3YWFzM2Y1MnRkckQ0ajBIekFwc0ZPVzFmQ1NCbzVBUmRyNGYxUDFvYm1wcWY1eHE0dWZmdEc3eTFXWEl0UkxmR21STHFicXZuaW9zSFpNVTBpQ0lSd01iQ2RmbFV3SDF6emxvZ1lYOXExcU1neElVVGt3enZicEN5WHA4ZkNIY3doUzN3YW12ajlwbkxycWRsWDRXNkIxdGpWOF9nQlJacmdLRnNBR0NyamRzdmxKTHlqaDEtNHA?oc=5",
+          "intensidad": 6.0,
+          "medio": "Infobae"
         }
       ]
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 13,
+      "peso_pct": 20,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Proyectos del Occidente Michoacano destacan durante Segundo Informe de Gobierno de Claudia Sheinbaum - El Sol de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPaGVobE96em15ZXpSanI3aG50NzJIME50LVR6R2FBcFFWdDZXYnZSeGRVV0pBb2FHZEktT2gxaGQwV3BMbzdIWUN6MEhMbHhTZjc1bXRzM3Nmck5yblJVVHZ5NWNua0pYdVpYRDNRcVNlbXdOYVctelUxSld2SVQ3WkkzMWFXSldBVXpqcmxPMllnaFBBcEFRQmQ0cDRBYU9WTjdSbTItcGNmcXpWWC0zdHppdXdxVl9EZlN0VzRSRjhXbG5BWnJJM1dOelZpT1NUNDdaNkxhT0ZfODJFa29UNEstQQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Sol de México"
+          "texto": "¿A qué hora inicia el segundo informe de Gobierno de Claudia Sheinbaum en el Zócalo? Dónde ver en vivo - AS México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQazlZaXlhZk43MDl5LUE1blZRcEdJcFJHNlF0UVA0YnVmVnRRM09PM2pKaEZ6VENNaC11RGpZV1ZZV3pobHkyTGhTV1AwdkpfQ21pd3ZFdHgtUEszSXZiY3JPaF9oRUd6ZjR2aFF1ZXl3dTNMa3JRRUYwM2c5M05BNHpFSzlxMEJueWRWN2VPdldtNnlDM3BmR0I1WlpqSlJwMmdEV0FwT2hPWDNoRzBDOUZBYjc5X015MUs2X192RDRLVEdNWnRPaXljSjhfNjhKVnp5UW1ZcTRCUFl40gHwAUFVX3lxTFBUVnZLRVl0ZnVkQU9RVEcxZlh6aVhlcWRQa1VOb2RTc0Q5VHc4RUVZWTBTeUxSVXA0R0R1REp3SHVOdjA3Z1lxQlJMMGJfdnhjU0lLc2tCNkN6Q3dONUZkeGR6QXJYT0dWMVhKVUlkdTdaaWZCQVdLNzZJeGJsek1GR2V5MnM5WG9WTGNCTjZmVmd3RHd0M1JkVG5odElGV0dlbjllYU9jWHpNNzNuQVdXdlVWQmpPTlhOWENua2ItWjJQT0FBMWl6RjZvTm42VkVRS0hZOHJDdFdBa3F2Umw2Ul81WkN4Yk9sQjlORy11cw?oc=5",
+          "intensidad": 7.0,
+          "medio": "AS México"
         }
       ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 20,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Retos del año 3 de CSP: elecciones, Trump... - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8xTWhWRDY5QVd6REN4NzZoX0l5UWVmR3M1TFJhRm5EbXVqZXpCR3pUcXRweG1ZVllOMGR5dmtGeExSWE5Eb09hM3lsZUNyNmJiNDNkdzVLSHFUUjhSNHdkWVRzMFUtMEc2d0ZpVU9qNzQyTHFxVUhJQ0VzaGJDdw?oc=5",
+          "intensidad": 7.0,
+          "medio": "Reforma"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -97,11 +90,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 65
+          "peso_pct": 64
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 16
+          "peso_pct": 19
         },
         {
           "categoria": "Relación Bilateral",
@@ -109,7 +102,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -126,11 +119,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 33
+          "peso_pct": 32
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
@@ -147,23 +140,23 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 35
+          "peso_pct": 33
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 40
+          "peso_pct": 44
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Social",
-          "peso_pct": 2
+          "peso_pct": 3
         }
       ]
     },
@@ -172,62 +165,54 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 34
+          "peso_pct": 35
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 43
+          "peso_pct": 41
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
-          "peso_pct": 12
+          "peso_pct": 14
         },
         {
           "categoria": "Social",
-          "peso_pct": 1
+          "peso_pct": 0
         }
       ]
     }
   ],
   "top5_temas": [
     {
-      "id": "auto-043bf7b202",
-      "nombre": "Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",
+      "id": "auto-4d06ef5b18",
+      "nombre": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
       "categoria": "Gobernabilidad",
-      "resumen": "Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para incentivar a las Pymes - La Jornada",
-      "peso": 28.0,
-      "n_temas_agrupados": 5,
-      "escalando": false,
+      "resumen": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caída de producción: así fue el tenso momento - Ambito",
+      "peso": 46.0,
+      "n_temas_agrupados": 8,
+      "escalando": true,
       "ultima_hora": false,
-      "medios_corroborantes": 4,
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/26/sheinbaum-anuncia-planta-de-chocolates-del-bienestar-en-tabasco-cuanto-se-invertira/"
+      "medios_corroborantes": 5,
+      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOa3FwWmdPemxVM1JiZzNBSUdCY19vUVVNOXR2a2pON3ZZbzZ1eGlNMEpxZndzdnVXZGtQckQ1WVRfSDZHV0tZZTk1aUxZZWhDS25zNlRTRjRvRDBYWXRHblZKWktoTjRPMW82XzBhY19adGxiYkhBZEhScjV0bVBwUnEzNUNSZWZYUnpFMFVLem5XNU9POVV5b1BMOU9xc2RLUmlpbE9IcVhFbmtxWXVRZ0lQWVVyTnE2Mi1iRnFNQmZtVVM2SXNr?oc=5"
     },
     {
-      "id": "rocha-moya-acusacion",
-      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
-      "peso": 13.0,
-      "n_temas_agrupados": 2,
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "peso": 7.0,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQTmpXLUlwWGRNSW0yZXZnMjFxY3NCcGNhY3RnVld2cHdsMjN4TlItOTlOb1lTN3h0bGRIQ0IzOFJXTVRXdG1pUkUxWTFyWGhWaVpBUmNtdDFLdjlDd05CeWlCWXE4dGFFUVBzTENyZ3B3N3B6ZlVIR1hOTldDQTVQVWFTWjFsQVVsX3lkeGpRUUpqb1dhZFgxRC1yS0dIdFVJUTgtakdZQVpJOHFFSnMwTUdmSzZMY2lOVnJyT2RoQXlqamVYcmRIM2E5UWw3a3RyV3fSAewBQVVfeXFMTnFQeXkxU3l1VG9aMXBIN21qVjBzOHhRX183Sm0zdHo1Xy1iR05vVjBMdEwzZEZQNmMzZF9nUHRkSThfak9QTFRiTGpLc08tX09KdWI4OEl3YVZnb25TQVZCREY2TTN6c01VdDJkR3VIUE9oQ3ljaFpvdFRQTGpiUVlfUzFjam9RYzBEUmEyVHFUUHZFVTJfUHZOUDl2cW5VSnNqSElJOGhNOU81dUlhaHF3YXdHVDFucmtxYzd1dXJpSmVqMkUtSE9nUjVzWHhuQTZOQ3F2ZHV1eXBMWnAyZTM2X1ZZOTRFMDRWSjM?oc=5"
+      "medios_corroborantes": 1,
+      "fuente_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8xTWhWRDY5QVd6REN4NzZoX0l5UWVmR3M1TFJhRm5EbXVqZXpCR3pUcXRweG1ZVllOMGR5dmtGeExSWE5Eb09hM3lsZUNyNmJiNDNkdzVLSHFUUjhSNHdkWVRzMFUtMEc2d0ZpVU9qNzQyTHFxVUhJQ0VzaGJDdw?oc=5"
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-6029733ef0",
-      "nombre": "Siete años de aborto legal en Oaxaca: qué cambió, dónde se atiende y cómo contar",
-      "categoria": "Gobernabilidad",
-      "peso": 11.0,
-      "impacto": "alto",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/27/politica/003n1pol?partner=rss"
-    },
     {
       "id": "auto-848c856e18",
       "nombre": "El Instituto Guatemalteco de Migración lanza Mateo, un asistente virtual para co",
@@ -245,81 +230,71 @@
       "fuente_url": "https://www.jornada.com.mx/2026/09/27/politica/005n1pol?partner=rss"
     },
     {
-      "id": "auto-d19d80c92b",
-      "nombre": "‘No lo veas a los ojos’: ¿Por qué le dicen ‘El Jaguar Negro’ a Eduardo Ramírez, ",
+      "id": "auto-62664166ee",
+      "nombre": "Tania Larios muestra oferta de transporte gratuito en cartel de Claudia Sheinbau",
       "categoria": "Gobernabilidad",
-      "peso": 4.0,
+      "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQTlh2VHVYX2c4R0RIa29Qa1VWNTMza2FPLVgtV29fcThtb21TbTlNTUt5YzBlUlk1RG14eVlpeTVEakd0ZUVOUm81TFN3b201bmJ4M0RuMXVwU05RenVMa1dQa0dnUDJ5TlY2NDNKcVN0WlFJMFdJN1Y0dHRLYUYwRzVSUUNLOFhHazdSX1VuUVYtZG52RE8yWHBEdFVvZ3BFTzc0XzdhWXEwSjVSbDltZGZFbVNYZEJLS3AzaGdMZkFqc09oWWJsdnlmQjkxVnc3cGJwSGUzLXd4emNCNlNyZFQ3bw?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPWUpCOXZfcHJBTXRacVFFcnJKRFNRQ1BPZm1pcTlRaFMwUkh1M0tUV0hyNEFpdWhYekVmOEFQN3ZkZTBoQVZ2SXA5a0tIaEtxdjVYMlItSjB5RmlmT0h6UHJHenNGek5uaDk4ZGs0aFo2dEczWkRIT2ZSZF9HbWtUcUZhNHE3ZUoyem5TaVk0czVieUpRQjFfY1RFeTZIWkJyOUFvdVZpaEl2eTM5Zk5hQ2cwb3dVX044akFRdlAtQ0I1bGFlNlg5VDNjbDJPSF9FZG9tUm9n?oc=5"
     }
   ],
-  "temas_retomados": [
-    {
-      "id": "segundo-informe-gobierno-2026",
-      "nombre": "Segundo Informe de Gobierno de Claudia Sheinbaum",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 19,
-      "motivo": "Proyectos del Occidente Michoacano destacan durante Segundo Informe de Gobierno de Claudia Sheinbaum - El Sol de México",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPaGVobE96em15ZXpSanI3aG50NzJIME50LVR6R2FBcFFWdDZXYnZSeGRVV0pBb2FHZEktT2gxaGQwV3BMbzdIWUN6MEhMbHhTZjc1bXRzM3Nmck5yblJVVHZ5NWNua0pYdVpYRDNRcVNlbXdOYVctelUxSld2SVQ3WkkzMWFXSldBVXpqcmxPMllnaFBBcEFRQmQ0cDRBYU9WTjdSbTItcGNmcXpWWC0zdHppdXdxVl9EZlN0VzRSRjhXbG5BWnJJM1dOelZpT1NUNDdaNkxhT0ZfODJFa29UNEstQQ?oc=5"
-    }
-  ],
+  "temas_retomados": [],
   "actores_destacados": [
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Reacción social/mediática",
-      "tema": "Claudia Sheinbaum niega que los mexicanos quieran intervención extranjera y deja",
-      "nota": "⚡ Posible presión de Claudia Sheinbaum Pardo — Claudia Sheinbaum advierte contra el intervencionismo: “México es un país libre y soberano, bastante nos costó” - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNN1ZLNzNrOGxRODh6NExPOXpmWThkSmdNVFExVk9fZkI5WFdSZ01HZEtIYmFMaXB4Vi1qd01XR3ozY2F1Q1RxTlFTTkg3Vkx4bmdpVmQzbHdHZ0oyOV81MTBwNTB0TjFNSWZzel9yS2FCWmZuMWlUUmZBY1ZuWDhXaFdTaDVlcEx0dG1PQ04wSnVmM2I2R3AyY0ctTXFfMW5YUEt6Z2ZBVWVLTWxDTEpxOVRIVFp4Tk5Qd2NYQTdFLU16OFhSTEotZTBUMnB0T0ZxemJCeWlORElZVmwzYWtYUnFOREXSAf8BQVVfeXFMTTJRMkktWFdWYWtsbzZqbXNOUG9YbE1EOGo2WFFxTEdZMDlRWTVEZUx1LWZuUU9RMExrS2RPY2V0SDV3X00tRzJSSWtxNElpLVBQMFNtSEJFR29vWERPc0ZrQ1FZRGFBUEM1OV9tSTdDWXBHYzVCbDNvelM4QWpMWXVESmlldXJ6N2NxNlVMSEtxbjFLRUZzZjh6YlhFdlFMR0s5Q0gzejRhcFpxWGM3YW5VTG42dFU0MnVmanJnUC1jVlNGbk5ubzdnVnZlWlZMcWV1eTYzSzRzZk5RZGxBVzJ6LVdxV210TmNRS3kteTRCYno5LW5Jb0gtdlBNR21R?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "rosa_icela",
-      "nombre": "Rosa Icela Rodríguez",
       "rol": "Responsable institucional",
-      "tema": "Rosa Icela Rodríguez dialoga con parlamentarios europeos sobre migración y derec",
-      "nota": "Reiteramos compromiso con la verdad: Rosa Icela Rodríguez",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/27/politica/003n2pol?partner=rss",
+      "tema": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
+      "nota": "Discurso de Claudia Sheinbaum en evento oficial de la Ciudad de México - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOa3FwWmdPemxVM1JiZzNBSUdCY19vUVVNOXR2a2pON3ZZbzZ1eGlNMEpxZndzdnVXZGtQckQ1WVRfSDZHV0tZZTk1aUxZZWhDS25zNlRTRjRvRDBYWXRHblZKWktoTjRPMW82XzBhY19adGxiYkhBZEhScjV0bVBwUnEzNUNSZWZYUnpFMFVLem5XNU9POVV5b1BMOU9xc2RLUmlpbE9IcVhFbmtxWXVRZ0lQWVVyTnE2Mi1iRnFNQmZtVVM2SXNr?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
     {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "id": "farias_fernando",
+      "nombre": "Fernando Farías Laguna",
+      "rol": "Investigado",
+      "tema": "Huachicol Fiscal",
+      "nota": "Fernando Farías Laguna es detenido en Buenos Aires, Argentina, con pasaporte falso de Guatemala.",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/22/sobrinos-de-exsecretario-de-marina-asesinaron-a-testigos-de-huachicol-fiscal/",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "farias_manuel",
+      "nombre": "Manuel Roberto Farías Laguna",
+      "rol": "Investigado",
+      "tema": "Huachicol Fiscal",
+      "nota": "Detención de 14 personas señaladas de encabezar la red, incluido el vicealmirante Manuel Roberto Farías Laguna.",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/01/22/secretaria-de-marina-actualiza-el-caso-de-huachicol-que-paso-con-los-marinos-involucrados/",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "ernesto_ruffo",
+      "nombre": "Ernesto Ruffo Appel",
       "rol": "Mencionado",
       "tema": "Huachicol Fiscal",
-      "nota": "⚡ Posible presión de Andrés Manuel López Obrador — Exige PAN que FGR investigue a Andy López por huachicol fiscal - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOM21yaXNlQ2JEVlRsUU1mOVZ5aG1mWUx3ZkVDTk1ZUU15NlNLbzJXeWZKeEZ6Um80azRkWjZZYlNCa2VyMUNIZ2dPSkZKVlo3MmNSMzRVQnpReHhGaW10cVZ5LXc1bGlIdEM3MXRJUEhTT0lRd1pGZ1dRMlR5OTJPNUgtd2J6MGNLZWR3S21RNG95NW8xa01XS2VhZHdramZ6R2tnLV80R0xoblliVXhjcW5QczlsYjVGX2JrY21IMTFyNl9iVXpPY1hNSlZvdXc2MmZ3dWg4QkpUX3VfUnQ3cFZ4c2lPSVcwYS1ydtIBgAJBVV95cUxQSmNWdkpJSXlJd0d5VFIxNkNFWHBVbVh0WXR2SlhXZlVQSmlRZkVSbzhFT1JZTVRMenMxQmZWUnBfaXU0OG9hWjUzcE1PVXFZenZueVo2NkdpTjFCWlcwLVlJRnVrTHNFa0E5dHlZamdoQmF6YTBHeU90ZG5VMU5EZ2hxMzhyNEhzUlJXb1dRc0VwUUtqWllpd3MtbWxPRGwyOGdYYi12WjVxUTEyTnRNM2FQMHFXSVo5V2FvbU41Q2U2RC1vWGpPRVdXQVlVM2Z1Z3ZrUFV6V3RvckdrcWt4YktnckttaGlfQkpLaW5LY0t6TG9mSlB6Qm5XR3luZElE?oc=5",
+      "nota": "FGR descarta que proceso contra Ernesto Ruffo por presunto huachicol fiscal se detenga tras obtener prisión domiciliaria - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeExBNVVVZ0dwc2tRMUNvMzlTXzNvR3Q2NFJWY3JvbFp2V1h2cUtmNjZndGt6c1djQWM5OHM1LUlIOEZOM01KZEMxNXE4dmRyNW1ONGlhN3pKaFJJa1RRbjlBaGZ3Z3hEaGcxZWNBSjBTbVhYMG1CdkRfcHZVRUs1RS1aNjdjYVNhZFR4WWZsSlUwVDlHRVdqMVlhb1NzTDZLTXRlV0hEbjJSNTVnSWdnVEVEb1U2NndTZkNadW81MWlUQkQ1Ynhsa25PUmFjUVA1cXpiZlFhSE9FeTA1RDBSZDIxV1VhaU1VY1JNZGw2bV8yYV8yQmfSAZACQVVfeXFMT1lzaEFFQmt4b1VfQzlVVG9tLTRySXZnY0syMy04a3JoR2lxTlJzMGd1LWNZRnB4cDZiXzZxMFZMYjBjMTNMQndFX1d4bkx2aGlhcFBlMndhT0E3YWFzM2Y1MnRkckQ0ajBIekFwc0ZPVzFmQ1NCbzVBUmRyNGYxUDFvYm1wcWY1eHE0dWZmdEc3eTFXWEl0UkxmR21STHFicXZuaW9zSFpNVTBpQ0lSd01iQ2RmbFV3SDF6emxvZ1lYOXExcU1neElVVGt3enZicEN5WHA4ZkNIY3doUzN3YW12ajlwbkxycWRsWDRXNkIxdGpWOF9nQlJacmdLRnNBR0NyamRzdmxKTHlqaDEtNHA?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
     {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "rol": "Investigado",
-      "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "Fiscales del Distrito Sur de Nueva York acusan formalmente a Rocha Moya y otros nueve funcionarios de narcotráfico y posesión de armas.",
-      "fuente_url": "https://cnnespanol.cnn.com/2026/04/29/mexico/acusacion-gobernador-sinaloa-ruben-rocha-orix",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "landau",
-      "nombre": "Christopher Landau",
-      "rol": "Responsable institucional",
-      "tema": "Visa de Andy",
-      "nota": "Andy López Beltrán envía carta a Trump acusando a Marco Rubio y Christopher Landau de actuar en su contra por motivos políticos.",
-      "fuente_url": "https://www.eluniversal.com.mx/opinion/mario-maldonado/la-reaccion-de-sheinbaum-a-la-carta-de-andy/",
+      "id": "ojeda",
+      "nombre": "Rafael Ojeda Durán",
+      "rol": "Mencionado",
+      "tema": "Huachicol Fiscal",
+      "nota": "Rafael Ojeda y la caja negra del huachicol fiscal, escribe Mario Maldonado - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQTG0zN2djdHZJMGJoMFVYVFlYRUpDbThRdy1KNkd5aGVRdEpFOFlERTNPbWxZa1NjYmFlTWJvdU0xYVBTVFJoWGZMMTFSdXVMdkFsbFBGWXduLXhRU1FyZGZ6VGZrLWFUZktpamZoNUo1NFNCdXNBeU9FR0RVVWQyQzlEQmdCdFlxY0tLQXJ0bTUtcUI2VVNRbHVQN3VvaVVJbG05RHBhMFM?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     }
   ],
   "declaracion_presidenta": {
     "actor": "Claudia Sheinbaum Pardo",
-    "texto": "Anabel Hernández señala al gobierno de Sheinbaum por detener alcaldes y “no tocar” a Rocha Moya - Infobae",
-    "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQTmpXLUlwWGRNSW0yZXZnMjFxY3NCcGNhY3RnVld2cHdsMjN4TlItOTlOb1lTN3h0bGRIQ0IzOFJXTVRXdG1pUkUxWTFyWGhWaVpBUmNtdDFLdjlDd05CeWlCWXE4dGFFUVBzTENyZ3B3N3B6ZlVIR1hOTldDQTVQVWFTWjFsQVVsX3lkeGpRUUpqb1dhZFgxRC1yS0dIdFVJUTgtakdZQVpJOHFFSnMwTUdmSzZMY2lOVnJyT2RoQXlqamVYcmRIM2E5UWw3a3RyV3fSAewBQVVfeXFMTnFQeXkxU3l1VG9aMXBIN21qVjBzOHhRX183Sm0zdHo1Xy1iR05vVjBMdEwzZEZQNmMzZF9nUHRkSThfak9QTFRiTGpLc08tX09KdWI4OEl3YVZnb25TQVZCREY2TTN6c01VdDJkR3VIUE9oQ3ljaFpvdFRQTGpiUVlfUzFjam9RYzBEUmEyVHFUUHZFVTJfUHZOUDl2cW5VSnNqSElJOGhNOU81dUlhaHF3YXdHVDFucmtxYzd1dXJpSmVqMkUtSE9nUjVzWHhuQTZOQ3F2ZHV1eXBMWnAyZTM2X1ZZOTRFMDRWSjM?oc=5",
+    "texto": "‘La Ciudad no dará un paso atrás’: Clara Brugada es coestelar de Claudia Sheinbaum en su mitin del Zócalo - EL PAÍS",
+    "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaDhuMkFIMG1MYUJON3Ezd0l1bDdrS1QxNVk5cVhkbDk2V2NTcWpLVzd4VTdwRF9CakhMNFg2NDc0Wi02cXNTZFVZQ1lGVU1fVjA5dmpnckJWWTNZV2c5RE9TMWs0NHBQUHRYTmp1TWtHQXAxVmMzdlA2NXY3T1QtV09pSXZweFlTVlN6eTltTVM0ZTRFWlpiTkNfSERzMEFtc25Telo5QmYwLThqM0JZUHhiTnI2c0pBVk5yMGw4NzVVU1ZaZlF5U3Z4WXF3RHV6alF2ajhMVE1YOXd60gHwAUFVX3lxTE5fWk9iaC1PUDJYbnhubnk4aXFTX0R3ckNXcV91SmdIS2VYOGVhclVLZFJoZnIzSnpEVUpaSF9uU1ZoZkYwVXNQRDBFcEtxc3YxbDlVVkw3TFBDNWNYRHk1U21xY2hBR2lRZk5GZ2ZqbFlvZ1dET2ZWQU00WHYzTTl6OE9XNUZtT01zeERsbEJ3Ty1zMW9uanZxUTU4VjFqMFh5cEhveGdQWURoYlZYWWJBYWs1bHR2VUdlSl9ZTlJYbnBCQVo5UjY1bG1GQ3Q1dHZvLWs0WVBoMGVMWDFUUXBqaHVYdWVYd0xPZkUyWW8wUw?oc=5",
     "intensidad": 7.0
   },
   "declaracion_otro": {
@@ -547,14 +522,20 @@
     },
     {
       "fecha": "2026-09-27",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 70,
+      "n_notas": 5,
+      "n_alto_impacto": 4,
+      "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
   ],
   "declaracion_presidenta_historial": [
+    {
+      "actor": "Claudia Sheinbaum Pardo",
+      "texto": "‘La Ciudad no dará un paso atrás’: Clara Brugada es coestelar de Claudia Sheinbaum en su mitin del Zócalo - EL PAÍS",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaDhuMkFIMG1MYUJON3Ezd0l1bDdrS1QxNVk5cVhkbDk2V2NTcWpLVzd4VTdwRF9CakhMNFg2NDc0Wi02cXNTZFVZQ1lGVU1fVjA5dmpnckJWWTNZV2c5RE9TMWs0NHBQUHRYTmp1TWtHQXAxVmMzdlA2NXY3T1QtV09pSXZweFlTVlN6eTltTVM0ZTRFWlpiTkNfSERzMEFtc25Telo5QmYwLThqM0JZUHhiTnI2c0pBVk5yMGw4NzVVU1ZaZlF5U3Z4WXF3RHV6alF2ajhMVE1YOXd60gHwAUFVX3lxTE5fWk9iaC1PUDJYbnhubnk4aXFTX0R3ckNXcV91SmdIS2VYOGVhclVLZFJoZnIzSnpEVUpaSF9uU1ZoZkYwVXNQRDBFcEtxc3YxbDlVVkw3TFBDNWNYRHk1U21xY2hBR2lRZk5GZ2ZqbFlvZ1dET2ZWQU00WHYzTTl6OE9XNUZtT01zeERsbEJ3Ty1zMW9uanZxUTU4VjFqMFh5cEhveGdQWURoYlZYWWJBYWs1bHR2VUdlSl9ZTlJYbnBCQVo5UjY1bG1GQ3Q1dHZvLWs0WVBoMGVMWDFUUXBqaHVYdWVYd0xPZkUyWW8wUw?oc=5",
+      "intensidad": 7.0
+    },
     {
       "actor": "Claudia Sheinbaum Pardo",
       "texto": "Anabel Hernández señala al gobierno de Sheinbaum por detener alcaldes y “no tocar” a Rocha Moya - Infobae",
@@ -566,12 +547,6 @@
       "texto": "Sheinbaum: “Muy interesante”, la reunión entre Trump y Xi Jinping",
       "fuente_url": "https://www.jornada.com.mx/2026/09/26/politica/003n2pol?partner=rss",
       "intensidad": 7.0
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
-      "texto": "Sheinbaum emociona al ARMY: ‘Esperamos a BTS en México en 2027’, dice tras reunión con presidente surcoreano",
-      "fuente_url": "https://www.elfinanciero.com.mx/entretenimiento/2026/09/24/claudia-sheinbaum-espera-visita-de-bts-a-mexico-en-2027/",
-      "intensidad": 7.0
     }
   ],
   "declaracion_otro_historial": [
@@ -582,5 +557,5 @@
       "intensidad": 7.0
     }
   ],
-  "hora_corte_publicada": "2026-09-27 06:17"
+  "hora_corte_publicada": "2026-09-27 19:50"
 }
