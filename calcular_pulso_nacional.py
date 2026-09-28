@@ -99,6 +99,36 @@ def _mencionadoDeFormaSegura(nombre_actor, texto_lower):
     return any(re.search(r'\b' + re.escape(c) + r'\b', texto_lower) for c in combinaciones)
 
 
+def _posicion_mencion(nombre_actor, texto_lower):
+    """Igual que _mencionadoDeFormaSegura pero regresa DÓNDE matchea (o None), para
+    poder juzgar si lo que sigue de verdad le pertenece a esa mención. A nivel de módulo
+    (no solo dentro de calcular()) porque también se usa para limpiar retroactivamente
+    declaraciones ya guardadas en el historial de corridas anteriores a esta corrección."""
+    partes = [p for p in nombre_actor.split() if len(p) > 2]
+    combinaciones = [nombre_actor.lower()]
+    if len(partes) >= 2:
+        combinaciones.append(f'{partes[0]} {partes[1]}'.lower())
+    if len(partes) >= 3:
+        combinaciones.append(f'{partes[-2]} {partes[-1]}'.lower())
+        combinaciones.append(partes[1].lower())
+    for c in combinaciones:
+        m = re.search(r'\b' + re.escape(c) + r'\b', texto_lower)
+        if m:
+            return m.start()
+    return None
+
+
+def _actor_es_objeto(texto_lower, pos_inicio):
+    """Caso real que se colaba: 'Anabel Hernández señala al gobierno de Sheinbaum por...
+    "no tocar" a Rocha Moya' -- Sheinbaum aparece mencionada y hay comillas en la misma
+    cláusula, pero es OBJETO de la acusación de otra persona (Hernández), no quien
+    declara. Si justo antes de la mención hay 'de/a/al/del/contra' (patrón típico de
+    objeto: 'gobierno DE Sheinbaum', 'A Rocha Moya'), no cuenta como declaración propia
+    del actor, aunque haya comillas en algún lugar de la frase."""
+    previas = texto_lower[:pos_inicio].split()[-2:]
+    return any(p.rstrip(',') in ('de', 'a', 'al', 'del', 'contra') for p in previas)
+
+
 def timestamp_evento(e):
     """fecha+hora_registro reales cuando existen; si falta hora_registro, se asume
     mediodía de ese día -- una aproximación honesta (ni el inicio ni el fin del día),
@@ -398,7 +428,8 @@ def calcular():
         ev_top = mejor_evento(tid_top, requerir_fuente_confiable=True)
         paraguas.append({
             'id': tid_top, 'nombre': t_top['nombre'], 'categoria': t_top['categoria'],
-            'resumen': t_top.get('resumen') or '', 'peso': round(peso_grupo_pn, 1),
+            'resumen': t_top.get('resumen') or '',
+            'motivo': ((ev_top or {}).get('descripcion') or '')[:220], 'peso': round(peso_grupo_pn, 1),
             'n_temas_agrupados': len(miembros),
             'escalando': any(tema_escalando(m) for m in miembros),
             'ultima_hora': not es_grupo_agenda,
@@ -668,32 +699,6 @@ def calcular():
         ventana = ' '.join(izq.split()[-4:]) + ' ' + ' '.join(der.split()[:4])
         return _mencionadoDeFormaSegura(nombre_actor, ventana.lower())
 
-    def _posicion_mencion(nombre_actor, texto_lower):
-        """Igual que _mencionadoDeFormaSegura pero regresa DÓNDE matchea (o None), para
-        poder juzgar si lo que sigue de verdad le pertenece a esa mención."""
-        partes = [p for p in nombre_actor.split() if len(p) > 2]
-        combinaciones = [nombre_actor.lower()]
-        if len(partes) >= 2:
-            combinaciones.append(f'{partes[0]} {partes[1]}'.lower())
-        if len(partes) >= 3:
-            combinaciones.append(f'{partes[-2]} {partes[-1]}'.lower())
-            combinaciones.append(partes[1].lower())
-        for c in combinaciones:
-            m = re.search(r'\b' + re.escape(c) + r'\b', texto_lower)
-            if m:
-                return m.start()
-        return None
-
-    def _actor_es_objeto(texto_lower, pos_inicio):
-        """Caso real que se colaba: 'Anabel Hernández señala al gobierno de Sheinbaum
-        por... "no tocar" a Rocha Moya' -- Sheinbaum aparece mencionada y hay comillas en
-        la misma cláusula, pero es OBJETO de la acusación de otra persona (Hernández),
-        no quien declara. Si justo antes de la mención hay 'de/a/al/del/contra' (patrón
-        típico de objeto: 'gobierno DE Sheinbaum', 'A Rocha Moya'), no cuenta como
-        declaración propia del actor, aunque haya comillas en algún lugar de la frase."""
-        previas = texto_lower[:pos_inicio].split()[-2:]
-        return any(p.rstrip(',') in ('de', 'a', 'al', 'del', 'contra') for p in previas)
-
     declaracion_presidenta, mejor_int_pres = None, 0
     declaracion_otro, mejor_int_otro = None, 0
     for e in ventana:
@@ -831,12 +836,27 @@ def decide_si_publicar(nuevo, ventana_agenda):
     return False, 'sin cambio suficiente, se mantiene el corte anterior'
 
 
+def _declaracion_sigue_siendo_valida(decl):
+    """Re-aplica la misma regla de 'actor en posición de objeto' (ver _actor_es_objeto)
+    a una declaración YA guardada en el historial -- limpieza retroactiva. Sin esto, una
+    entrada contaminada antes de que existiera esta corrección (caso real: la acusación
+    de Anabel Hernández contra el gobierno, mal atribuida a Sheinbaum) se quedaba viva en
+    el historial para siempre, porque _actualizar_historial_declaracion solo agrega
+    declaraciones nuevas, nunca vuelve a revisar las viejas."""
+    actor, texto = decl.get('actor', ''), decl.get('texto', '')
+    if not actor or not texto:
+        return True
+    pos = _posicion_mencion(actor, texto.lower())
+    return pos is None or not _actor_es_objeto(texto.lower(), pos)
+
+
 def _actualizar_historial_declaracion(anterior, nueva, campo_historial, maxlen=3):
     """Acumula hasta 3 declaraciones a través de los cortes -- cada corte solo calcula
     la MEJOR declaración del momento (sin memoria propia, ver arriba), así que sin esto
     la anterior se perdía sin más al llegar una nueva. La más reciente queda arriba; no
     se duplica si es exactamente la misma (mismo texto) que ya estaba hasta arriba."""
     historial_previo = list((anterior or {}).get(campo_historial) or [])
+    historial_previo = [d for d in historial_previo if _declaracion_sigue_siendo_valida(d)]
     if nueva and (not historial_previo or historial_previo[0].get('texto') != nueva.get('texto')):
         historial_previo = [nueva] + historial_previo
     return historial_previo[:maxlen]
