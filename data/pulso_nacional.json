@@ -1,5 +1,5 @@
 {
-  "generado_en": "2026-09-28T10:23:00.072761-06:00",
+  "generado_en": "2026-09-28T11:23:11.815674-06:00",
   "ventana_horas": 24,
   "n_notas_ventana": 4,
   "baja_confianza": false,
@@ -185,6 +185,7 @@
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "motivo": "FGR descarta que proceso contra Ernesto Ruffo por presunto huachicol fiscal se detenga tras obtener prisión domiciliaria - Infobae",
       "peso": 12.0,
       "n_temas_agrupados": 1,
       "escalando": false,
@@ -197,6 +198,7 @@
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "¿Qué pasa con el T-MEC? México y EU buscan destrabar estos temas",
       "peso": 6.0,
       "n_temas_agrupados": 1,
       "escalando": false,
@@ -239,7 +241,35 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOb0ZMMkFrakZOMVZnRkZWZzFzQ1BWV1pXUmpJdlBQWWhsakJvWDdYeEVBRzNrLUxJbFMyM1V5cUM4S3FZRy13NXloZXRxUk5hakRCcUJJOEFVbF9fQ0pWUy1QWU41R1Z0SDc0VG83ek5oS1FqQTVIWGdxWFZ4Q0ZTdHEtTzhrSUZjbTlQSVRwYlBTZ2l5N2NwNEFHc1p2WnBHZjNtbTlISkpzSHlmaFdmTlJ6b1JJSG5jRjZQLXpMd2dhUkhU0gHKAUFVX3lxTE5XMWttX3FWR29URnpQNUdabXpTQmU0cGphM21SZkxJVzJ3Tms2WExPNFh5dXg0dWs3VjFDTHN0VDRDc1J5ZDRxanY0YW5QNmF6dm1OY3dNbndwLUhFcmRIVzk0RC1SRjRXTkYyTnBBeFU0QW04ZkRMdExSX3hRTEVkX2xwS2hDSHgtWDlYdjFOUFJnQkV6WFpTaWVZZmdMY1RFREtiSzVqM2MyNGUwOWFLUHJpQ0VNbzRicUdLd2VqWWI5eWdNRVRVOVE?oc=5"
     }
   ],
-  "temas_retomados": [],
+  "temas_retomados": [
+    {
+      "id": "auto-58c4fa9e35",
+      "nombre": "¿Terry Cole “promueve” a Harfuch? EU siempre ha buscado dividirnos, dice Sheinba",
+      "categoria": "Social",
+      "dias_silencio": 13,
+      "motivo": "PT: siempre vamos a ir con Claudia Sheinbaum",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/004n3pol?partner=rss"
+    },
+    {
+      "id": "auto-7d432c725e",
+      "nombre": "Movimiento Ciudadano va tras candidatos virtuales de Morena, presenta denuncia a",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 10,
+      "motivo": "Morena presentará a 7 defensores de la transformación este lunes; Chihuahua, entre ellos - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeXF2b3pBaFUwYXhkMU5tdExxODNYNW1YNC1ucmtGLUxFdlk1ZW9LeW9uLTFpZ0ZGQTBzNDlraVUwTk5ZYUczM1RzUlV3TGlYZWV0bVpCNXVpZzloM2x5X3VMemdsOF9jbDA1WjZIY2M3ZTJZSWlZa0Rkd2RCTWNxZmVlTWdGbGJvZ2ZISWFyS29OdkR3cjRwNkJSTHFXSWxLa0FQZmVCRWh4SzJVd0tqZUN6ZFVVUlhQV2wtNTNlNEY0MUU?oc=5"
+    },
+    {
+      "id": "auto-5e8f301bc2",
+      "nombre": "IMSS- Bienestar está funcionando: Sheinbaum defiende a coordinador estatal en Ve",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 9,
+      "motivo": "PRI elige a 'Fito' Bonilla como coordinador estatal en Zacatecas - MILENIO",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQQlI0QU5xQXdsNk93dVJQbnh2MXhpWFNZR2xCUmhudUVGb242OXNuUTNxOXktdnZPdUNBeXhuMnRwaHF3ZkdKaE5kQW93M3J4Q0s2NGU1ODBaMlBhaXJINV8xLWQ3eUJBU1pDUGpWRk9vRVVRbDRuM0psMnE2ektfUFd5X1VqRl82OW9lNNIBjAFBVV95cUxNOTd0Ukx3MUtwc3NIcFdyYzNmTGJVNjEtSlROYmZDcV8tVFY2ZUhWN3lOUC1fUEViQzdhbmZMUkU2YnBZa2NLOG8tbEdLcWlIeTBodGRKdXptNVg4SF9zdWQxQV9kTnNvdWtsVmhEam5Pd3pIQ2dEVDk0SlR2akN2ODI2MU1PdlNINDhsaw?oc=5"
+    }
+  ],
   "actores_destacados": [
     {
       "id": "sheinbaum",
@@ -529,18 +559,6 @@
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
-      "texto": "‘La Ciudad no dará un paso atrás’: Clara Brugada es coestelar de Claudia Sheinbaum en su mitin del Zócalo - EL PAÍS",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaDhuMkFIMG1MYUJON3Ezd0l1bDdrS1QxNVk5cVhkbDk2V2NTcWpLVzd4VTdwRF9CakhMNFg2NDc0Wi02cXNTZFVZQ1lGVU1fVjA5dmpnckJWWTNZV2c5RE9TMWs0NHBQUHRYTmp1TWtHQXAxVmMzdlA2NXY3T1QtV09pSXZweFlTVlN6eTltTVM0ZTRFWlpiTkNfSERzMEFtc25Telo5QmYwLThqM0JZUHhiTnI2c0pBVk5yMGw4NzVVU1ZaZlF5U3Z4WXF3RHV6alF2ajhMVE1YOXd60gHwAUFVX3lxTE5fWk9iaC1PUDJYbnhubnk4aXFTX0R3ckNXcV91SmdIS2VYOGVhclVLZFJoZnIzSnpEVUpaSF9uU1ZoZkYwVXNQRDBFcEtxc3YxbDlVVkw3TFBDNWNYRHk1U21xY2hBR2lRZk5GZ2ZqbFlvZ1dET2ZWQU00WHYzTTl6OE9XNUZtT01zeERsbEJ3Ty1zMW9uanZxUTU4VjFqMFh5cEhveGdQWURoYlZYWWJBYWs1bHR2VUdlSl9ZTlJYbnBCQVo5UjY1bG1GQ3Q1dHZvLWs0WVBoMGVMWDFUUXBqaHVYdWVYd0xPZkUyWW8wUw?oc=5",
-      "intensidad": 7.0
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
-      "texto": "Anabel Hernández señala al gobierno de Sheinbaum por detener alcaldes y “no tocar” a Rocha Moya - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQTmpXLUlwWGRNSW0yZXZnMjFxY3NCcGNhY3RnVld2cHdsMjN4TlItOTlOb1lTN3h0bGRIQ0IzOFJXTVRXdG1pUkUxWTFyWGhWaVpBUmNtdDFLdjlDd05CeWlCWXE4dGFFUVBzTENyZ3B3N3B6ZlVIR1hOTldDQTVQVWFTWjFsQVVsX3lkeGpRUUpqb1dhZFgxRC1yS0dIdFVJUTgtakdZQVpJOHFFSnMwTUdmSzZMY2lOVnJyT2RoQXlqamVYcmRIM2E5UWw3a3RyV3fSAewBQVVfeXFMTnFQeXkxU3l1VG9aMXBIN21qVjBzOHhRX183Sm0zdHo1Xy1iR05vVjBMdEwzZEZQNmMzZF9nUHRkSThfak9QTFRiTGpLc08tX09KdWI4OEl3YVZnb25TQVZCREY2TTN6c01VdDJkR3VIUE9oQ3ljaFpvdFRQTGpiUVlfUzFjam9RYzBEUmEyVHFUUHZFVTJfUHZOUDl2cW5VSnNqSElJOGhNOU81dUlhaHF3YXdHVDFucmtxYzd1dXJpSmVqMkUtSE9nUjVzWHhuQTZOQ3F2ZHV1eXBMWnAyZTM2X1ZZOTRFMDRWSjM?oc=5",
-      "intensidad": 7.0
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
       "texto": "Sheinbaum: “Muy interesante”, la reunión entre Trump y Xi Jinping",
       "fuente_url": "https://www.jornada.com.mx/2026/09/26/politica/003n2pol?partner=rss",
       "intensidad": 7.0
@@ -561,5 +579,5 @@
       "intensidad": 7.0
     }
   ],
-  "hora_corte_publicada": "2026-09-28 10:23"
+  "hora_corte_publicada": "2026-09-28 11:23"
 }
