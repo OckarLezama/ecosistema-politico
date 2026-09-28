@@ -5,7 +5,12 @@ name: Pulso nacional - termometro politico
     - cron: '*/30 * * * *'   # corre cada 30 min, pero el script decide si PUBLICA:
                               # solo en los 3 cortes fijos (06/12/18 CDMX) o si la
                               # tension se movio lo suficiente para ameritar excepcion
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'Publicar aunque no sea corte fijo ni haya cambio suficiente (util para probar un cambio de codigo de inmediato)'
+        type: boolean
+        default: false
 
 concurrency:
   group: pulso-nacional-unico
@@ -31,6 +36,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Calcular pulso nacional (y publicar solo si corresponde)
+        env:
+          FORZAR_PUBLICAR: ${{ github.event.inputs.forzar }}
         run: python3 calcular_pulso_nacional.py
       - name: Guardar snapshot si se publico
         id: snapshot
