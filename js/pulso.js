@@ -56,7 +56,9 @@ function asegurarEstilosPulso(){
   const st = document.createElement('style');
   st.id = 'pulso-estilos-extra';
   st.textContent = `@keyframes pulso-rebote{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);} }
-    .pulso-marca-viva{ animation:pulso-rebote 1.3s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }`;
+    .pulso-marca-viva{ animation:pulso-rebote 1.3s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+    @keyframes pulso-entrada{ from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:translateY(0);} }
+    .pulso-tarjeta-viva{ animation:pulso-entrada 0.45s ease-out backwards; }`;
   document.head.appendChild(st);
 }
 function mostrarTooltipPulso(html, ev){
@@ -277,7 +279,7 @@ function svgTendenciaCategoriasPulso(serie){
     ${svgLineasYPuntos}
     ${serie.map((s,i)=>`<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.semana_fin.slice(5)}</text>`).join('')}
     <line x1="${xDe(serie.length-1).toFixed(1)}" y1="${padT}" x2="${xDe(serie.length-1).toFixed(1)}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
-    <polygon points="${xDe(serie.length-1).toFixed(1)},${(padT+7).toFixed(1)} ${(xDe(serie.length-1)-5).toFixed(1)},${padT} ${(xDe(serie.length-1)+5).toFixed(1)},${padT}" fill="var(--teal)"/>
+    <polygon class="pulso-marca-viva" points="${xDe(serie.length-1).toFixed(1)},${(padT+7).toFixed(1)} ${(xDe(serie.length-1)-5).toFixed(1)},${padT} ${(xDe(serie.length-1)+5).toFixed(1)},${padT}" fill="var(--teal)"/>
     <text x="${xDe(serie.length-1).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>
   </svg>
   <div style="display:flex;flex-wrap:wrap;margin-top:6px;">${leyenda}</div>
@@ -524,7 +526,11 @@ function pintarPulso(cont, d){
   const fechaLegible = new Date(fechaCorte.replace(' ','T')).toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
   const horaLegible = new Date(fechaCorte.replace(' ','T')).toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit'});
 
-  const tarjeta = (contenidoHTML) => `<div style="background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-m);padding:14px;box-shadow:0 4px 16px -6px rgba(0,0,0,.4);">${contenidoHTML}</div>`;
+  // contador de tarjeta pintadas en esta corrida, solo para escalonar la animación de
+  // entrada (60ms entre una y la siguiente) -- sin esto todo el panel aparecía de golpe
+  // en el mismo frame, se sentía como una foto fija en vez de un tablero que "carga".
+  let _nTarjeta = 0;
+  const tarjeta = (contenidoHTML) => `<div class="pulso-tarjeta-viva" style="animation-delay:${(_nTarjeta++)*60}ms;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-m);padding:14px;box-shadow:0 4px 16px -6px rgba(0,0,0,.4);">${contenidoHTML}</div>`;
 
   // nuevos/retomados: la categoría va primero y en grande; el título de la nota es
   // complemento chico -- para no mostrar el titular autogenerado como si fuera el
@@ -622,7 +628,7 @@ function pintarPulso(cont, d){
           <span style="width:7px;height:7px;border-radius:50%;background:${colorTension(d.tension_nacional)};display:inline-block;animation:pulse-cintillo 2.2s ease-in-out infinite;"></span>
           PULSO NACIONAL · CORTE ${horaLegible}
         </span>
-        <span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-2);text-transform:capitalize;">${fechaLegible}</span>
+        <span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-2);text-transform:capitalize;">${fechaLegible} · <span id="pulso-hace-cuanto" data-generado="${d.generado_en}"></span></span>
         <button id="btn-exportar-pdf-analisis" style="font-size:10px;font-family:var(--f-mono);background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-2);border-radius:6px;padding:4px 10px;cursor:pointer;">↓ Exportar / compartir (PDF)</button>
       </div>
 
@@ -638,7 +644,7 @@ function pintarPulso(cont, d){
                   <div style="font-size:11.5px;font-weight:600;line-height:1.4;">${tituloLimpio(t.nombre)}</div>
                   ${etiquetasTema(t)}
                 </div>
-                <div style="font-size:10px;color:var(--ink-3);margin-top:2px;">${t.categoria}${t.n_temas_agrupados>1 ? ` · agrupa ${t.n_temas_agrupados} notas relacionadas` : ''} · corroborado por ${t.medios_corroborantes} medio${t.medios_corroborantes!==1?'s':''}${t.resumen ? ' — '+tituloLimpio(t.resumen).slice(0,100) : ''}</div>
+                <div style="font-size:10px;color:var(--ink-3);margin-top:2px;">${t.n_temas_agrupados>1 ? `agrupa ${t.n_temas_agrupados} notas relacionadas · ` : ''}corroborado por ${t.medios_corroborantes} medio${t.medios_corroborantes!==1?'s':''}${(t.motivo||t.resumen) ? ' — '+tituloLimpio(t.motivo||t.resumen).slice(0,140) : ''}</div>
                 ${enlaceNota(t.fuente_url)}
               </div>
             </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin temas de agenda nacional con respaldo de medio de primer nivel en las últimas 24h.</div>`}
@@ -693,6 +699,34 @@ function pintarPulso(cont, d){
     window.print();
     setTimeout(()=> document.body.classList.remove('modo-impresion-analisis'), 500);
   });
+
+  actualizarHaceCuantoPulso();
+}
+
+// "hace X min/h" junto a la fecha del corte, y refresco silencioso del JSON cada 5 min --
+// sin esto el panel se veía como una foto fija: mostraba la misma hora exacta sin importar
+// cuánto llevaras viéndolo, y solo se enteraba de un corte nuevo si recargabas la página a
+// mano. Un único set de timers vivos (se limpian antes de crear otros nuevos) para que
+// entrar y salir del tab de Análisis varias veces no vaya apilando intervalos.
+let _pulsoTimerHaceCuanto = null, _pulsoTimerRefresco = null;
+function actualizarHaceCuantoPulso(){
+  clearInterval(_pulsoTimerHaceCuanto);
+  clearInterval(_pulsoTimerRefresco);
+  const pintar = () => {
+    const el = document.getElementById('pulso-hace-cuanto');
+    if(!el) { clearInterval(_pulsoTimerHaceCuanto); return; }
+    const generado = new Date(el.dataset.generado.replace(' ','T'));
+    const minutos = Math.max(0, Math.round((Date.now() - generado.getTime())/60000));
+    el.textContent = minutos < 1 ? 'hace instantes'
+      : minutos < 60 ? `hace ${minutos} min`
+      : `hace ${Math.floor(minutos/60)}h ${minutos%60}min`;
+  };
+  pintar();
+  _pulsoTimerHaceCuanto = setInterval(pintar, 30000);
+  _pulsoTimerRefresco = setInterval(()=>{
+    if(document.getElementById('panel-analisis')?.classList.contains('active')) renderPulsoNacional();
+    else { clearInterval(_pulsoTimerRefresco); clearInterval(_pulsoTimerHaceCuanto); }
+  }, 5*60000);
 }
 
 document.addEventListener('ecosistema:datos-listos', renderPulsoNacional);
