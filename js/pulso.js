@@ -471,7 +471,8 @@ function tableroActoresPulso(actores){
     piezas += `<text x="${x2.toFixed(1)}" y="${(y2+3).toFixed(1)}" font-size="8" font-weight="700" fill="var(--bg-2)" text-anchor="middle" style="pointer-events:none;">${(a.nombre||'').trim().charAt(0)}</text>`;
     if(a.es_nuevo) piezas += `<text x="${x2.toFixed(1)}" y="${(y2-r-4).toFixed(1)}" font-size="7" fill="${color}" text-anchor="middle" font-family="var(--f-mono)">NUEVO</text>`;
   });
-  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;overflow:visible;">
+  return `<div style="flex:1;position:relative;min-height:220px;">
+    <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
     ${defsGridPulso('pulso-grid-tablero')}
     <rect x="${m}" y="${m*0.4}" width="${w-2*m}" height="${h-m-m*0.4}" fill="url(#pulso-grid-tablero)" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${cx}" y1="${m*0.4}" x2="${cx}" y2="${h-m}" stroke="var(--line-strong)" stroke-width="1"/>
@@ -484,6 +485,7 @@ function tableroActoresPulso(actores){
     <text x="14" y="${h/2}" font-size="8.5" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)" transform="rotate(-90 14 ${h/2})">INTENSIDAD DE IMPACTO →</text>
     ${piezas}
   </svg>
+  </div>
   <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos). Pasa el cursor sobre una pieza para ver el detalle del movimiento.</div>`;
 }
 function activarTableroActores(cont){
@@ -757,7 +759,7 @@ function pintarPulso(cont, d){
 
       <!-- BLOQUE 2: tablero de actores (posición semanal, ver tableroActoresPulso) · actores destacados · temas nuevos -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-        ${tarjeta(`<div class="eyebrow">TABLERO DE ACTORES · SEMANA EN CURSO</div><div id="pulso-tablero-actores">${tableroActoresPulso(d.tablero_actores)}</div>`)}
+        ${tarjeta(`<div style="display:flex;flex-direction:column;height:100%;"><div class="eyebrow" style="margin-bottom:6px;">TABLERO DE ACTORES · SEMANA EN CURSO</div><div id="pulso-tablero-actores" style="flex:1;display:flex;flex-direction:column;min-height:260px;">${tableroActoresPulso(d.tablero_actores)}</div></div>`)}
         ${tarjeta(`<div class="eyebrow">ACTORES DESTACADOS</div>${listaActores(d.actores_destacados)}`)}
         ${tarjeta(`<div class="eyebrow" style="color:var(--riesgo-bajo);">TEMAS NUEVOS</div>${listaTema(d.temas_nuevos)}`)}
       </div>
