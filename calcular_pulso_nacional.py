@@ -37,6 +37,15 @@ UMBRAL_HORAS_SIN_PUBLICAR = 13  # red de seguridad: GitHub Actions no garantiza 
                              # regla publica de todos modos en la siguiente corrida del cron
                              # (máximo ~1h después de perdido el corte), en vez de esperar
                              # hasta el siguiente corte fijo o un salto grande de tensión.
+UMBRAL_INTENSIDAD_URGENTE = 9  # segunda excepción, pedida por el usuario: el salto de
+                             # tensión (promedio de TODAS las notas de agenda en 24h) puede
+                             # no moverse lo suficiente aunque acabe de salir UNA nota
+                             # puntual muy relevante -- un evento de 9-10/10 se diluye en
+                             # el promedio si ya hay muchas notas en la ventana. Por eso
+                             # esta segunda excepción no mira el promedio: mira si apareció
+                             # una nota de agenda nueva (posterior al último corte publicado)
+                             # con intensidad >= 9, y si es así publica de inmediato aunque
+                             # no sea hora de corte fijo ni se haya movido el promedio.
 
 CATEGORIAS = ['Seguridad Nacional', 'Gobernabilidad', 'Relación Bilateral', 'Economía', 'Social']
 
@@ -44,6 +53,24 @@ CATEGORIAS = ['Seguridad Nacional', 'Gobernabilidad', 'Relación Bilateral', 'Ec
 def cargar_csv(nombre):
     with open(f'{RUTA_DATOS}/{nombre}', encoding='utf-8-sig') as f:
         return list(csv.DictReader(f))
+
+
+PISO_INTENSIDAD_AGENDA = 5   # p5 real de intensidad en notas de agenda nacional (nivel_relevancia
+TECHO_INTENSIDAD_AGENDA = 9  # 1), medido sobre el histórico -- ver nota en calibrar_tension().
+
+
+def calibrar_tension(promedio_intensidad):
+    """La fórmula anterior hacía tension = promedio*10 asumiendo que la intensidad (campo
+    editorial 1-10) usa todo ese rango en la práctica. Medido sobre el histórico real, las
+    notas que entran a este promedio (solo agenda nacional, nivel_relevancia=1) casi nunca
+    bajan de 5 ni suben de 9 -- quedan comprimidas ahí porque, por definición, ya son las
+    notas más relevantes del día. Resultado: el velocímetro vivía pegado en 60-75 sin
+    importar si el día era tranquilo o tenso, porque *10 solo reubica esa banda angosta,
+    no la estira. Aquí se reescala esa banda real (piso-techo) a 0-100 para que la
+    variación día a día sí se note, y se recorta a los extremos por si un día puntual se
+    sale del rango histórico."""
+    crudo = (promedio_intensidad - PISO_INTENSIDAD_AGENDA) / (TECHO_INTENSIDAD_AGENDA - PISO_INTENSIDAD_AGENDA) * 100
+    return round(max(0, min(100, crudo)))
 
 
 def noCuentaParaEscalar(descripcion):
@@ -118,7 +145,7 @@ def calcular():
     # ================================================================
     n_notas_agenda = len(ventana_agenda)
     if n_notas_agenda:
-        tension = round(sum(float(e['intensidad']) for e in ventana_agenda) / n_notas_agenda * 10)
+        tension = calibrar_tension(sum(float(e['intensidad']) for e in ventana_agenda) / n_notas_agenda)
     else:
         tension = None
     baja_confianza = n_notas_agenda < 3
@@ -641,6 +668,32 @@ def calcular():
         ventana = ' '.join(izq.split()[-4:]) + ' ' + ' '.join(der.split()[:4])
         return _mencionadoDeFormaSegura(nombre_actor, ventana.lower())
 
+    def _posicion_mencion(nombre_actor, texto_lower):
+        """Igual que _mencionadoDeFormaSegura pero regresa DÓNDE matchea (o None), para
+        poder juzgar si lo que sigue de verdad le pertenece a esa mención."""
+        partes = [p for p in nombre_actor.split() if len(p) > 2]
+        combinaciones = [nombre_actor.lower()]
+        if len(partes) >= 2:
+            combinaciones.append(f'{partes[0]} {partes[1]}'.lower())
+        if len(partes) >= 3:
+            combinaciones.append(f'{partes[-2]} {partes[-1]}'.lower())
+            combinaciones.append(partes[1].lower())
+        for c in combinaciones:
+            m = re.search(r'\b' + re.escape(c) + r'\b', texto_lower)
+            if m:
+                return m.start()
+        return None
+
+    def _actor_es_objeto(texto_lower, pos_inicio):
+        """Caso real que se colaba: 'Anabel Hernández señala al gobierno de Sheinbaum
+        por... "no tocar" a Rocha Moya' -- Sheinbaum aparece mencionada y hay comillas en
+        la misma cláusula, pero es OBJETO de la acusación de otra persona (Hernández),
+        no quien declara. Si justo antes de la mención hay 'de/a/al/del/contra' (patrón
+        típico de objeto: 'gobierno DE Sheinbaum', 'A Rocha Moya'), no cuenta como
+        declaración propia del actor, aunque haya comillas en algún lugar de la frase."""
+        previas = texto_lower[:pos_inicio].split()[-2:]
+        return any(p.rstrip(',') in ('de', 'a', 'al', 'del', 'contra') for p in previas)
+
     declaracion_presidenta, mejor_int_pres = None, 0
     declaracion_otro, mejor_int_otro = None, 0
     for e in ventana:
@@ -653,13 +706,18 @@ def calcular():
                                   or _mencion_un_apellido(a['nombre'], cl_lower, actores_altos)), None)
             if not actor_citado:
                 continue
-            tiene_marca_cita = (any(m in clausula for m in MARCAS_CITA) or
-                                 any(f' {v} ' in f' {cl_lower} ' for v in VERBOS_DECLARATIVOS))
+            pos_actor = _posicion_mencion(actor_citado['nombre'], cl_lower)
+            if pos_actor is not None and _actor_es_objeto(cl_lower, pos_actor):
+                continue
+            tiene_marca_cita = pos_actor is not None and (
+                any(m in clausula[pos_actor:] for m in MARCAS_CITA) or
+                any(f' {v} ' in f' {cl_lower[pos_actor:]} ' for v in VERBOS_DECLARATIVOS))
             if not tiene_marca_cita and not _atribucion_por_dos_puntos(actor_citado['nombre'], clausula):
                 continue
             intensidad = float(e['intensidad'])
             entrada = {'actor': actor_citado['nombre'], 'texto': e['descripcion'][:280],
-                       'fuente_url': e.get('fuente_url', ''), 'intensidad': intensidad}
+                       'fuente_url': e.get('fuente_url', ''), 'intensidad': intensidad,
+                       'fecha': e.get('fecha', '')}
             if es_presidenta(actor_citado):
                 if intensidad > mejor_int_pres:
                     declaracion_presidenta, mejor_int_pres = entrada, intensidad
@@ -682,7 +740,7 @@ def calcular():
         fin_dt = inicio_dt + timedelta(days=1)
         evs_dia = [e for e in eventos_validos if inicio_dt <= e['_ts'] < fin_dt and e['tema_id'] in temas_1]
         if evs_dia:
-            t_dia = round(sum(float(e['intensidad']) for e in evs_dia) / len(evs_dia) * 10)
+            t_dia = calibrar_tension(sum(float(e['intensidad']) for e in evs_dia) / len(evs_dia))
         else:
             t_dia = None
         # nivel de IMPACTO real de la nota -- por intensidad (0-10, el mismo dato que ya
@@ -731,15 +789,15 @@ def calcular():
         'declaracion_otro': declaracion_otro,
         'patron_historico_4sem': historico,
     }
-    return salida
+    return salida, ventana_agenda
 
 
-def decide_si_publicar(nuevo):
+def decide_si_publicar(nuevo, ventana_agenda):
     """Corre siempre a tiempo real (cada 30 min vía GitHub Actions), pero solo
-    SOBRESCRIBE el JSON publicado si es uno de los 3 cortes fijos (06/12/18 CDMX) o si
-    la tensión se movió lo suficiente desde el último corte publicado como para ameritar
-    actualizar antes -- la excepción que pidió el usuario, sin volverla un refresh
-    continuo (eso rompería la idea de "cortes", no la mejora)."""
+    SOBRESCRIBE el JSON publicado si es uno de los 3 cortes fijos (06/12/18 CDMX), si la
+    tensión promedio se movió lo suficiente, o si apareció una nota puntual urgente --
+    las dos excepciones que pidió el usuario, sin volverlo un refresh continuo (eso
+    rompería la idea de "cortes", no la mejora)."""
     ahora = datetime.now(ZONA_MX)
     if ahora.hour in CORTES_FIJOS and ahora.minute < 30:
         return True, f'corte fijo {ahora.hour:02d}:00'
@@ -752,13 +810,21 @@ def decide_si_publicar(nuevo):
     if t_ant is not None and t_nuevo is not None and abs(t_nuevo - t_ant) >= UMBRAL_CAMBIO_TENSION:
         return True, f'tensión se movió {abs(t_nuevo-t_ant)} puntos desde el último corte ({t_ant}→{t_nuevo})'
     generado_anterior = anterior.get('generado_en')
+    ts_anterior = None
     if generado_anterior:
         try:
             ts_anterior = datetime.fromisoformat(generado_anterior)
-            horas_transcurridas = (ahora - ts_anterior).total_seconds() / 3600
         except (ValueError, TypeError):
-            horas_transcurridas = None
-        if horas_transcurridas is not None and horas_transcurridas >= UMBRAL_HORAS_SIN_PUBLICAR:
+            ts_anterior = None
+    if ts_anterior:
+        nota_urgente = next((e for e in ventana_agenda
+                              if e['_ts'] > ts_anterior and float(e['intensidad']) >= UMBRAL_INTENSIDAD_URGENTE),
+                             None)
+        if nota_urgente:
+            return True, (f'nota urgente nueva desde el último corte (intensidad '
+                          f'{nota_urgente["intensidad"]}/10): {nota_urgente["descripcion"][:100]}')
+        horas_transcurridas = (ahora - ts_anterior).total_seconds() / 3600
+        if horas_transcurridas >= UMBRAL_HORAS_SIN_PUBLICAR:
             return True, (f'han pasado {horas_transcurridas:.1f}h sin publicar (>= '
                           f'{UMBRAL_HORAS_SIN_PUBLICAR}h) -- probable corte fijo perdido, '
                           f'se publica de todos modos')
@@ -777,8 +843,8 @@ def _actualizar_historial_declaracion(anterior, nueva, campo_historial, maxlen=3
 
 
 if __name__ == '__main__':
-    resultado = calcular()
-    publicar, motivo = decide_si_publicar(resultado)
+    resultado, ventana_agenda = calcular()
+    publicar, motivo = decide_si_publicar(resultado, ventana_agenda)
     print(f'Tensión nacional: {resultado["tension_nacional"]} (n={resultado["n_notas_ventana"]}, baja_confianza={resultado["baja_confianza"]})')
     print(f'¿Publicar? {publicar} -- {motivo}')
     if publicar:
