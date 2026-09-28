@@ -1,5 +1,5 @@
 {
-  "generado_en": "2026-09-28T16:46:10.706947-06:00",
+  "generado_en": "2026-09-28T16:52:40.000400-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 11,
   "baja_confianza": false,
@@ -692,5 +692,11 @@
       "intensidad": 7.0
     }
   ],
-  "hora_corte_publicada": "2026-09-28 16:46"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-09-28T16:46:10.706947-06:00",
+    "cambios": [
+      "Sin cambios relevantes respecto al corte anterior."
+    ]
+  },
+  "hora_corte_publicada": "2026-09-28 16:52"
 }
