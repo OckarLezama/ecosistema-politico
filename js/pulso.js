@@ -78,6 +78,7 @@ function ocultarTooltipPulso(){
 function enlaceNota(url){
   return url ? `<a href="${url}" target="_blank" rel="noopener" style="font-size:9.5px;color:var(--teal);white-space:nowrap;">ver nota →</a>` : '';
 }
+const fmtFechaCortaPulso = f => new Date(f+'T00:00:00').toLocaleDateString('es-MX', {day:'numeric', month:'short'}).toUpperCase();
 
 /* ---------- panel recorrible (← →), sin zoom -- mismo espíritu del Timeline pero mucho
    más simple: un contenedor con scroll horizontal y dos flechas que avanzan por pasos.
@@ -280,7 +281,7 @@ function svgTendenciaCategoriasPulso(serie){
     ${serie.map((s,i)=>`<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.semana_fin.slice(5)}</text>`).join('')}
     <line x1="${xDe(serie.length-1).toFixed(1)}" y1="${padT}" x2="${xDe(serie.length-1).toFixed(1)}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
     <polygon class="pulso-marca-viva" points="${xDe(serie.length-1).toFixed(1)},${(padT+7).toFixed(1)} ${(xDe(serie.length-1)-5).toFixed(1)},${padT} ${(xDe(serie.length-1)+5).toFixed(1)},${padT}" fill="var(--teal)"/>
-    <text x="${xDe(serie.length-1).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>
+    <text class="pulso-marca-viva" x="${xDe(serie.length-1).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY · ${fmtFechaCortaPulso(serie[serie.length-1].semana_fin)}</text>
   </svg>
   <div style="display:flex;flex-wrap:wrap;margin-top:6px;">${leyenda}</div>
   <div style="font-size:9px;color:var(--ink-3);margin-top:2px;">% = variación de la semana en curso vs. la previa · el anillo marca el máximo real de cada categoría en las 4 semanas.</div>`;
@@ -408,7 +409,7 @@ function barrasHistoricoPulso(historico){
       // que ya tiene la grafica de tendencia por categoria) la hace imposible de no ver.
       return `<line x1="${cxHoy}" y1="${padT}" x2="${cxHoy}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
         <polygon class="pulso-marca-viva" points="${cxHoy},${(yHoy-2).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(yHoy-9).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(yHoy-9).toFixed(1)}" fill="var(--teal)"/>
-        <text x="${cxHoy}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY</text>`;
+        <text class="pulso-marca-viva" x="${cxHoy}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY · ${fmtFechaCortaPulso(historico[idxHoy].fecha)}</text>`;
     })()}
   </svg>
   <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;">
