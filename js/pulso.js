@@ -84,6 +84,24 @@ function enlaceNota(url){
 }
 const fmtFechaCortaPulso = f => new Date(f+'T00:00:00').toLocaleDateString('es-MX', {day:'numeric', month:'short'}).toUpperCase();
 
+/* ---------- RESUMEN MAÑANERA -- una sola actualización al día. El backend ya distingue
+   "todavía no hay nada que mostrar hoy" de "no hubo mañanera ese día" con mananera_estado,
+   así que aquí solo se traduce ese estado a texto -- nada de heurísticas nuevas aquí. ---------- */
+function resumenMananeraHTML(items, estado){
+  if(items && items.length){
+    return items.map((m,i)=>`
+      <div style="padding:7px 0;border-top:${i?'1px solid var(--line)':'none'};">
+        <div style="font-size:10.5px;line-height:1.4;">${m.alerta?'🔔 ':''}${tituloLimpio(m.texto)}</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:3px;">
+          <span style="font-size:8.5px;color:var(--ink-3);">${m.categoria||''}</span>
+          ${enlaceNota(m.fuente_url)}
+        </div>
+      </div>`).join('');
+  }
+  if(estado === 'pendiente') return `<div style="font-size:10.5px;color:var(--ink-3);">Aún no termina o no se procesa la mañanera de hoy -- este resumen se actualiza una vez al día, normalmente después de las 10am.</div>`;
+  return `<div style="font-size:10.5px;color:var(--ink-3);">No hubo mañanera este día.</div>`;
+}
+
 /* ---------- panel recorrible (← →), sin zoom -- mismo espíritu del Timeline pero mucho
    más simple: un contenedor con scroll horizontal y dos flechas que avanzan por pasos.
    anchoMinimoPx es un MÍNIMO, no un ancho fijo -- en una tarjeta más ancha que ese mínimo
@@ -773,7 +791,7 @@ function pintarPulso(cont, d){
       <!-- BLOQUE 4: temas retomados · resumen mañanera (pendiente de revisar a detalle) · declaraciones (presidenta + otro actor, apiladas en la misma columna) -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
         ${tarjeta(`<div class="eyebrow" style="color:var(--arena);">TEMAS RETOMADOS</div>${listaTema(d.temas_retomados)}`)}
-        ${tarjeta(`<div class="eyebrow">RESUMEN MAÑANERA</div><div style="font-size:10.5px;color:var(--ink-3);">Pendiente -- se revisa a detalle qué ya hace mananera-widget.js antes de construir esto.</div>`)}
+        ${tarjeta(`<div class="eyebrow">RESUMEN MAÑANERA</div>${resumenMananeraHTML(d.resumen_mananera, d.mananera_estado)}`)}
         ${tarjeta(`<div style="display:flex;flex-direction:column;gap:10px;">
           ${declaracionHTML('DECLARACIÓN · PRESIDENTA', d.declaracion_presidenta_historial || (d.declaracion_presidenta ? [d.declaracion_presidenta] : []))}
           ${declaracionHTML('DECLARACIÓN · OTRO ACTOR', d.declaracion_otro_historial || (d.declaracion_otro ? [d.declaracion_otro] : []))}
