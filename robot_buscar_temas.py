@@ -57,6 +57,11 @@ FUENTES_RSS = [
     {'nombre': 'Google Noticias', 'url': 'https://news.google.com/rss/search?q=Sheinbaum+OR+%22Rocha+Moya%22+OR+%22huachicol+fiscal%22+OR+aranceles+OR+migraci%C3%B3n+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
     {'nombre': 'El Heraldo de México', 'url': 'https://heraldodemexico.com.mx/rss/feed.html?r=4'},
     {'nombre': 'El Financiero', 'url': 'https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml'},
+    # Reforma no publica RSS público (muro de pago) -- se cubre vía Google Noticias
+    # acotado a su dominio, igual que ya se hace abajo para estados/actores sin RSS propio.
+    {'nombre': 'Reforma (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:reforma.com+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    {'nombre': 'El Universal (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:eluniversal.com.mx+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    {'nombre': 'Milenio (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:milenio.com+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
     {'nombre': 'Diario de Yucatán', 'url': 'https://www.yucatan.com.mx/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
     {'nombre': 'Por Esto! (Yucatán/QRoo/Campeche)', 'url': 'https://www.poresto.com/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
     {'nombre': 'El Imparcial de Oaxaca', 'url': 'https://imparcialoaxaca.mx/feed', 'entidades_c3': ['Oaxaca']},
