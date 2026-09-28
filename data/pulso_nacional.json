@@ -1,30 +1,18 @@
 {
-  "generado_en": "2026-09-28T11:23:11.815674-06:00",
+  "generado_en": "2026-09-28T13:08:18.966164-06:00",
   "ventana_horas": 24,
-  "n_notas_ventana": 4,
-  "baja_confianza": false,
-  "tension_nacional": 38,
+  "n_notas_ventana": 2,
+  "baja_confianza": true,
+  "tension_nacional": 25,
   "categorias_dia": [
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 77,
+      "peso_pct": 50,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 1,
-      "n_notas": 3,
+      "n_notas": 1,
       "notas": [
-        {
-          "texto": "Cae operador criminal señalado por huachicol fiscal - diario.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQLU5aV3U2QnlLRWx0bjUwRmtEQzZxbFJYMkg2NTE0bDljQU40OURWX1lQNTBuU3lpR0tQMGVDOFZGY3N1aGd2aldUTUVVaFk5RmhBZFhHcVRKRy10XzN6MHV5MWJvTE1xUTMwX0FRQXpkVHBZd1ZqZnZYQlRieDJZUFVaOVdVWEhnYTRVYld2ZmZiZUI4NmR5cGFEVWdfcWlwUWZyTHh3?oc=5",
-          "intensidad": 8.0,
-          "medio": "diario.mx"
-        },
-        {
-          "texto": "FGR descarta que proceso contra Ernesto Ruffo por presunto huachicol fiscal se detenga tras obtener prisión domiciliaria - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeExBNVVVZ0dwc2tRMUNvMzlTXzNvR3Q2NFJWY3JvbFp2V1h2cUtmNjZndGt6c1djQWM5OHM1LUlIOEZOM01KZEMxNXE4dmRyNW1ONGlhN3pKaFJJa1RRbjlBaGZ3Z3hEaGcxZWNBSjBTbVhYMG1CdkRfcHZVRUs1RS1aNjdjYVNhZFR4WWZsSlUwVDlHRVdqMVlhb1NzTDZLTXRlV0hEbjJSNTVnSWdnVEVEb1U2NndTZkNadW81MWlUQkQ1Ynhsa25PUmFjUVA1cXpiZlFhSE9FeTA1RDBSZDIxV1VhaU1VY1JNZGw2bV8yYV8yQmfSAZACQVVfeXFMT1lzaEFFQmt4b1VfQzlVVG9tLTRySXZnY0syMy04a3JoR2lxTlJzMGd1LWNZRnB4cDZiXzZxMFZMYjBjMTNMQndFX1d4bkx2aGlhcFBlMndhT0E3YWFzM2Y1MnRkckQ0ajBIekFwc0ZPVzFmQ1NCbzVBUmRyNGYxUDFvYm1wcWY1eHE0dWZmdEc3eTFXWEl0UkxmR21STHFicXZuaW9zSFpNVTBpQ0lSd01iQ2RmbFV3SDF6emxvZ1lYOXExcU1neElVVGt3enZicEN5WHA4ZkNIY3doUzN3YW12ajlwbkxycWRsWDRXNkIxdGpWOF9nQlJacmdLRnNBR0NyamRzdmxKTHlqaDEtNHA?oc=5",
-          "intensidad": 6.0,
-          "medio": "Infobae"
-        },
         {
           "texto": "Huachicol fiscal también pasa por EU: Ernesto Ruffo, la clave para entender la relación con Texas - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUdIBjwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUQ?oc=5",
@@ -35,7 +23,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 23,
+      "peso_pct": 50,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -83,19 +71,19 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 64
+          "peso_pct": 60
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 19
+          "peso_pct": 22
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Social",
@@ -108,19 +96,19 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 43
+          "peso_pct": 40
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 32
+          "peso_pct": 33
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
-          "peso_pct": 15
+          "peso_pct": 16
         },
         {
           "categoria": "Social",
@@ -133,15 +121,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 32
+          "peso_pct": 33
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 45
+          "peso_pct": 44
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -158,15 +146,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 35
+          "peso_pct": 34
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 39
+          "peso_pct": 41
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -181,19 +169,6 @@
   ],
   "top5_temas": [
     {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "FGR descarta que proceso contra Ernesto Ruffo por presunto huachicol fiscal se detenga tras obtener prisión domiciliaria - Infobae",
-      "peso": 12.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeExBNVVVZ0dwc2tRMUNvMzlTXzNvR3Q2NFJWY3JvbFp2V1h2cUtmNjZndGt6c1djQWM5OHM1LUlIOEZOM01KZEMxNXE4dmRyNW1ONGlhN3pKaFJJa1RRbjlBaGZ3Z3hEaGcxZWNBSjBTbVhYMG1CdkRfcHZVRUs1RS1aNjdjYVNhZFR4WWZsSlUwVDlHRVdqMVlhb1NzTDZLTXRlV0hEbjJSNTVnSWdnVEVEb1U2NndTZkNadW81MWlUQkQ1Ynhsa25PUmFjUVA1cXpiZlFhSE9FeTA1RDBSZDIxV1VhaU1VY1JNZGw2bV8yYV8yQmfSAZACQVVfeXFMT1lzaEFFQmt4b1VfQzlVVG9tLTRySXZnY0syMy04a3JoR2lxTlJzMGd1LWNZRnB4cDZiXzZxMFZMYjBjMTNMQndFX1d4bkx2aGlhcFBlMndhT0E3YWFzM2Y1MnRkckQ0ajBIekFwc0ZPVzFmQ1NCbzVBUmRyNGYxUDFvYm1wcWY1eHE0dWZmdEc3eTFXWEl0UkxmR21STHFicXZuaW9zSFpNVTBpQ0lSd01iQ2RmbFV3SDF6emxvZ1lYOXExcU1neElVVGt3enZicEN5WHA4ZkNIY3doUzN3YW12ajlwbkxycWRsWDRXNkIxdGpWOF9nQlJacmdLRnNBR0NyamRzdmxKTHlqaDEtNHA?oc=5"
-    },
-    {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
@@ -205,6 +180,19 @@
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/27/que-pasa-con-el-t-mec-mexico-y-eu-buscan-destrabar-estos-temas/"
+    },
+    {
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "motivo": "Huachicol fiscal también pasa por EU: Ernesto Ruffo, la clave para entender la relación con Texas - MILENIO",
+      "peso": 6.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUdIBjwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUQ?oc=5"
     }
   ],
   "temas_nuevos": [
@@ -249,7 +237,9 @@
       "dias_silencio": 13,
       "motivo": "PT: siempre vamos a ir con Claudia Sheinbaum",
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/004n3pol?partner=rss"
+      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/004n3pol?partner=rss",
+      "fecha_anterior": "2026-09-14",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOWnlpeHFvSExFcjNrYXR2dDhCZmMtczBkTHY1Y2d1cFFfTTRBUVY5QzhoS1FpNDlMQW5pbm1SUjIxS0Y0UjlEcUw3eUY4TGpBTlhqOW5fclR5QWhDQVdWanVPblZSMHZ0NEc1MUY2M2syZFotNFkxYlpMd3NwUUROZUkzX0dMQQ?oc=5"
     },
     {
       "id": "auto-7d432c725e",
@@ -258,7 +248,9 @@
       "dias_silencio": 10,
       "motivo": "Morena presentará a 7 defensores de la transformación este lunes; Chihuahua, entre ellos - El Universal",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeXF2b3pBaFUwYXhkMU5tdExxODNYNW1YNC1ucmtGLUxFdlk1ZW9LeW9uLTFpZ0ZGQTBzNDlraVUwTk5ZYUczM1RzUlV3TGlYZWV0bVpCNXVpZzloM2x5X3VMemdsOF9jbDA1WjZIY2M3ZTJZSWlZa0Rkd2RCTWNxZmVlTWdGbGJvZ2ZISWFyS29OdkR3cjRwNkJSTHFXSWxLa0FQZmVCRWh4SzJVd0tqZUN6ZFVVUlhQV2wtNTNlNEY0MUU?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeXF2b3pBaFUwYXhkMU5tdExxODNYNW1YNC1ucmtGLUxFdlk1ZW9LeW9uLTFpZ0ZGQTBzNDlraVUwTk5ZYUczM1RzUlV3TGlYZWV0bVpCNXVpZzloM2x5X3VMemdsOF9jbDA1WjZIY2M3ZTJZSWlZa0Rkd2RCTWNxZmVlTWdGbGJvZ2ZISWFyS29OdkR3cjRwNkJSTHFXSWxLa0FQZmVCRWh4SzJVd0tqZUN6ZFVVUlhQV2wtNTNlNEY0MUU?oc=5",
+      "fecha_anterior": "2026-09-17",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQQ3p0NERQQVNXMDlGdERYX0owaDJNUktsM1BwU0hTVVRybUk0eHEzU3BVZEVKaEJNZXJ0cXZ2VlE2SXRaS244SDZlNXJOV0FmOHdiVk5qbnhTck53RkV1RnJqMXVlRDlTS0VmOHF6RnZXMDhld2Q2TlpWSFN5cU1rakRkOW9ReEpPOVgtQTRZMVZGQTdCcWFqanJwcDMzcDRwQzV1RkZGVXptYmJKNU1nY0NNLTBHd05kOW9uam5EamZQZkhIb21MQ1hhM1nSAecBQVVfeXFMTUROcHA3NXNGUGU1RnBKcEFFZE5Wcm9fT0x2cVRnUUtkUlRJZUtmVmMwdUxDNHVfN2UtVHJPRkNjby1LVEhGOHl2cThtOVhNdEdUY1ZEXzZPeEFIZFRhdVNRdHgwNWJxRndXblhRaWJNaHQ3bGt2YU1GZk92dDVLZjhEck9iZ3RIR0xwMXZwQk5VcmxMWVhLRTVaMG1fMHEtYk1OSENQbndqcHF2bmR1TGZWNkEwTC1jWmNDRjNWaFVXY0NUMEFBdndCU1IteVNVdURGV19STVJ4bHEwbEZWbGlYQ2ZFSUtF?oc=5"
     },
     {
       "id": "auto-5e8f301bc2",
@@ -267,7 +259,9 @@
       "dias_silencio": 9,
       "motivo": "PRI elige a 'Fito' Bonilla como coordinador estatal en Zacatecas - MILENIO",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQQlI0QU5xQXdsNk93dVJQbnh2MXhpWFNZR2xCUmhudUVGb242OXNuUTNxOXktdnZPdUNBeXhuMnRwaHF3ZkdKaE5kQW93M3J4Q0s2NGU1ODBaMlBhaXJINV8xLWQ3eUJBU1pDUGpWRk9vRVVRbDRuM0psMnE2ektfUFd5X1VqRl82OW9lNNIBjAFBVV95cUxNOTd0Ukx3MUtwc3NIcFdyYzNmTGJVNjEtSlROYmZDcV8tVFY2ZUhWN3lOUC1fUEViQzdhbmZMUkU2YnBZa2NLOG8tbEdLcWlIeTBodGRKdXptNVg4SF9zdWQxQV9kTnNvdWtsVmhEam5Pd3pIQ2dEVDk0SlR2akN2ODI2MU1PdlNINDhsaw?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQQlI0QU5xQXdsNk93dVJQbnh2MXhpWFNZR2xCUmhudUVGb242OXNuUTNxOXktdnZPdUNBeXhuMnRwaHF3ZkdKaE5kQW93M3J4Q0s2NGU1ODBaMlBhaXJINV8xLWQ3eUJBU1pDUGpWRk9vRVVRbDRuM0psMnE2ektfUFd5X1VqRl82OW9lNNIBjAFBVV95cUxNOTd0Ukx3MUtwc3NIcFdyYzNmTGJVNjEtSlROYmZDcV8tVFY2ZUhWN3lOUC1fUEViQzdhbmZMUkU2YnBZa2NLOG8tbEdLcWlIeTBodGRKdXptNVg4SF9zdWQxQV9kTnNvdWtsVmhEam5Pd3pIQ2dEVDk0SlR2akN2ODI2MU1PdlNINDhsaw?oc=5",
+      "fecha_anterior": "2026-09-18",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPVjc1Z1VyeVZ5cE54WHdHbGstWkVFbzBNZE9CTktvcFJrcGYtdko4TXl5ZWNqQjliSEpTZnVycm1vMW5rYWVBT0ptZG9wSk5fcTNacHg2NmxiNmtvRVBDM0lKVkgtMTI4djhtM2lvanMwUEZWNGlxUXVxQ1pDX1diaDJYdlgwb3luVS12VzVRWkJpbHBMWkdvSlROekFIbnZrRDBVN1hTV3YxOTRLX0MwRkhSNDhRcWJsV2dJWExNN3Zkb3pFTXJ2SVJtQldUQ0puNHdhODRqVW41T3lTbnVqaFZxVFZaMmJobE1wbmtzeUNpcTQ?oc=5"
     }
   ],
   "actores_destacados": [
@@ -275,9 +269,19 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
-      "nota": "Discurso de Claudia Sheinbaum en evento oficial de la Ciudad de México - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOa3FwWmdPemxVM1JiZzNBSUdCY19vUVVNOXR2a2pON3ZZbzZ1eGlNMEpxZndzdnVXZGtQckQ1WVRfSDZHV0tZZTk1aUxZZWhDS25zNlRTRjRvRDBYWXRHblZKWktoTjRPMW82XzBhY19adGxiYkhBZEhScjV0bVBwUnEzNUNSZWZYUnpFMFVLem5XNU9POVV5b1BMOU9xc2RLUmlpbE9IcVhFbmtxWXVRZ0lQWVVyTnE2Mi1iRnFNQmZtVVM2SXNr?oc=5",
+      "tema": "Manifestantes bloquean paso de Claudia Sheinbaum y le plantean demandas en Juáre",
+      "nota": "‘La Ciudad no dará un paso atrás’: Clara Brugada es coestelar de Claudia Sheinbaum en su mitin del Zócalo - EL PAÍS",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaDhuMkFIMG1MYUJON3Ezd0l1bDdrS1QxNVk5cVhkbDk2V2NTcWpLVzd4VTdwRF9CakhMNFg2NDc0Wi02cXNTZFVZQ1lGVU1fVjA5dmpnckJWWTNZV2c5RE9TMWs0NHBQUHRYTmp1TWtHQXAxVmMzdlA2NXY3T1QtV09pSXZweFlTVlN6eTltTVM0ZTRFWlpiTkNfSERzMEFtc25Telo5QmYwLThqM0JZUHhiTnI2c0pBVk5yMGw4NzVVU1ZaZlF5U3Z4WXF3RHV6alF2ajhMVE1YOXd60gHwAUFVX3lxTE5fWk9iaC1PUDJYbnhubnk4aXFTX0R3ckNXcV91SmdIS2VYOGVhclVLZFJoZnIzSnpEVUpaSF9uU1ZoZkYwVXNQRDBFcEtxc3YxbDlVVkw3TFBDNWNYRHk1U21xY2hBR2lRZk5GZ2ZqbFlvZ1dET2ZWQU00WHYzTTl6OE9XNUZtT01zeERsbEJ3Ty1zMW9uanZxUTU4VjFqMFh5cEhveGdQWURoYlZYWWJBYWs1bHR2VUdlSl9ZTlJYbnBCQVo5UjY1bG1GQ3Q1dHZvLWs0WVBoMGVMWDFUUXBqaHVYdWVYd0xPZkUyWW8wUw?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "alfonso_durazo",
+      "nombre": "Alfonso Durazo Montaño",
+      "rol": "Responsable institucional",
+      "tema": "Sheinbaum logra bajar 53% los homicidios dolosos en menos de 2 años - polemon.mx",
+      "nota": "Bajó 68.2% el homicidio doloso en Sonora desde 2021: Alfonso Durazo",
+      "fuente_url": "https://www.jornada.com.mx/2026/09/14/politica/004n2pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -308,16 +312,6 @@
       "tema": "Huachicol Fiscal",
       "nota": "FGR descarta que proceso contra Ernesto Ruffo por presunto huachicol fiscal se detenga tras obtener prisión domiciliaria - Infobae",
       "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeExBNVVVZ0dwc2tRMUNvMzlTXzNvR3Q2NFJWY3JvbFp2V1h2cUtmNjZndGt6c1djQWM5OHM1LUlIOEZOM01KZEMxNXE4dmRyNW1ONGlhN3pKaFJJa1RRbjlBaGZ3Z3hEaGcxZWNBSjBTbVhYMG1CdkRfcHZVRUs1RS1aNjdjYVNhZFR4WWZsSlUwVDlHRVdqMVlhb1NzTDZLTXRlV0hEbjJSNTVnSWdnVEVEb1U2NndTZkNadW81MWlUQkQ1Ynhsa25PUmFjUVA1cXpiZlFhSE9FeTA1RDBSZDIxV1VhaU1VY1JNZGw2bV8yYV8yQmfSAZACQVVfeXFMT1lzaEFFQmt4b1VfQzlVVG9tLTRySXZnY0syMy04a3JoR2lxTlJzMGd1LWNZRnB4cDZiXzZxMFZMYjBjMTNMQndFX1d4bkx2aGlhcFBlMndhT0E3YWFzM2Y1MnRkckQ0ajBIekFwc0ZPVzFmQ1NCbzVBUmRyNGYxUDFvYm1wcWY1eHE0dWZmdEc3eTFXWEl0UkxmR21STHFicXZuaW9zSFpNVTBpQ0lSd01iQ2RmbFV3SDF6emxvZ1lYOXExcU1neElVVGt3enZicEN5WHA4ZkNIY3doUzN3YW12ajlwbkxycWRsWDRXNkIxdGpWOF9nQlJacmdLRnNBR0NyamRzdmxKTHlqaDEtNHA?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "ojeda",
-      "nombre": "Rafael Ojeda Durán",
-      "rol": "Mencionado",
-      "tema": "Huachicol Fiscal",
-      "nota": "Rafael Ojeda y la caja negra del huachicol fiscal, escribe Mario Maldonado - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQTG0zN2djdHZJMGJoMFVYVFlYRUpDbThRdy1KNkd5aGVRdEpFOFlERTNPbWxZa1NjYmFlTWJvdU0xYVBTVFJoWGZMMTFSdXVMdkFsbFBGWXduLXhRU1FyZGZ6VGZrLWFUZktpamZoNUo1NFNCdXNBeU9FR0RVVWQyQzlEQmdCdFlxY0tLQXJ0bTUtcUI2VVNRbHVQN3VvaVVJbG05RHBhMFM?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -579,5 +573,5 @@
       "intensidad": 7.0
     }
   ],
-  "hora_corte_publicada": "2026-09-28 11:23"
+  "hora_corte_publicada": "2026-09-28 13:08"
 }
