@@ -544,11 +544,19 @@ def calcular():
         dias_silencio = (hace_24h.date() - fechas_previas[-1]).days
         if dias_silencio >= UMBRAL_RETOMA_DIAS:
             motivo = max(evs_ventana_pn, key=lambda e: float(e['intensidad']))
+            # la nota de la última vez que se cubrió ANTES del silencio -- sin esto "7+
+            # días de silencio" era una cifra que había que creerle al script; con el
+            # enlace de esa nota anterior al lado del de hoy, se puede verificar el
+            # silencio real comparando las dos fechas con la fuente en la mano.
+            evs_previos = [e for e in evs if e['_ts'] < hace_24h]
+            anterior = max(evs_previos, key=lambda e: e['_ts'])
             retomados.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
                                'dias_silencio': dias_silencio,
                                'motivo': motivo['descripcion'][:220],
                                'impacto': _impacto_de(float(motivo['intensidad'])),
-                               'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or ''})
+                               'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or '',
+                               'fecha_anterior': anterior['_ts'].date().isoformat(),
+                               'fuente_url_anterior': anterior.get('fuente_url') or ''})
     retomados = sorted(retomados, key=lambda x: x['dias_silencio'], reverse=True)[:5]
 
     # ================================================================
