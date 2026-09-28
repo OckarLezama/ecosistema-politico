@@ -615,11 +615,15 @@ function pintarPulso(cont, d){
       ${enlaceNota(decl.fuente_url)}
     </div>`;
   const declaracionHTML = (etiqueta, historial) => {
-    const lista = (historial && historial.length) ? historial : [];
+    // solo la más reciente -- el historial de hasta 3 sigue guardándose en el JSON (por si
+    // se quiere reusar), pero mostrar 2-3 declaraciones viejas en la misma tarjeta sin
+    // fecha destacada se leía como ruido, no como información nueva. Una sola, actual, con
+    // su fecha, es lo que se pidió.
+    const masReciente = (historial && historial.length) ? historial[0] : null;
     return `<div>
       <div class="eyebrow" style="font-size:9.5px;margin-bottom:6px;">${etiqueta}</div>
       <div style="display:flex;flex-direction:column;gap:6px;">
-        ${lista.length ? lista.map((decl,i)=> tarjetaDeclaracion(decl, i===0)).join('')
+        ${masReciente ? tarjetaDeclaracion(masReciente, true)
           : `<div style="background:var(--bg-1);border-radius:7px;padding:12px;font-size:10.5px;color:var(--ink-3);">Sin declaración que cumpla los criterios en este corte.</div>`}
       </div>
     </div>`;
