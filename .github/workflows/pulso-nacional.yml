@@ -9,7 +9,13 @@ name: Pulso nacional - termometro politico
 
 concurrency:
   group: pulso-nacional-unico
-  cancel-in-progress: false
+  # antes en false: si UNA corrida se quedaba colgada (red, git esperando algo), las
+  # siguientes 48 corridas del dia (cada 30 min) se apilaban en cola detras de ella sin
+  # ejecutarse -- asi se explica un hueco de horas sin publicar pese al candado de 13h en
+  # el script. Con true, cada corrida nueva cancela la anterior si sigue viva; el calculo
+  # es barato y se puede repetir sin riesgo, asi que no hay nada que proteger de una
+  # cancelacion a medias.
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -18,6 +24,10 @@ permissions:
 jobs:
   calcular-pulso:
     runs-on: ubuntu-latest
+    # limite duro: sin esto, el default de GitHub es 360 min -- una corrida colgada podia
+    # bloquear el candado de 13h del script por hasta 6 horas antes de que algo mas la
+    # interrumpiera. Este script tarda segundos; 5 min ya es generoso.
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - name: Calcular pulso nacional (y publicar solo si corresponde)
