@@ -788,6 +788,99 @@ def calcular():
         historico.append({'fecha': dia.isoformat(), 'tension': t_dia, 'n_notas': len(evs_dia),
                            'n_alto_impacto': n_alto_impacto, 'n_medio_impacto': n_medio_impacto, 'n_bajo_impacto': n_bajo_impacto})
 
+    # ================================================================
+    # TABLERO DE ACTORES -- posición semanal en un mapa de 2 ejes, ambos REALES: volumen
+    # de menciones verificadas (no solo vínculo tema-actor de tema_actores.csv, que es
+    # temático y puede sobrar -- se exige mención real del nombre en el texto de la nota,
+    # con el mismo matcher _mencionadoDeFormaSegura + guardia de homónimos que ya usa
+    # actores_destacados) e intensidad de impacto promedio de esas notas (mismo umbral
+    # alto/medio/bajo que el resto del módulo). Se descartó a propósito un eje de
+    # "cercanía al poder" o "alianzas": no hay hoy ningún dato del que derivarlo sin
+    # inventar un score de opinión -- ver decisión tomada con el usuario.
+    # Lunes = corte de esa jugada; hoy = acumulado de toda la semana en curso. Selección:
+    # unión de los que más se movieron (mayor |delta|) y los que ya dominan hoy -- así no
+    # se pierde a un actor estable pero dominante solo por no haberse movido.
+    # ================================================================
+    inicio_semana = (ahora - timedelta(days=ahora.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+    fin_lunes = inicio_semana + timedelta(days=1)
+    PESO_IMPACTO_ACTOR = {'alto': 3, 'medio': 1.5, 'bajo': 1}
+
+    def _actor_mencionado_en(actor, e):
+        texto = e['descripcion'].lower()
+        if not _mencionadoDeFormaSegura(actor['nombre'], texto):
+            return False
+        partes = [x for x in actor['nombre'].split() if len(x) > 2]
+        if len(partes) >= 3:
+            clave = f'{partes[-2]} {partes[-1]}'.lower()
+            if len(apellidos_compartidos.get(clave, ())) > 1 and actor['nombre'].lower() not in texto:
+                return False
+        return True
+
+    actor_temas = {}
+    for ta in tema_actores:
+        actor_temas.setdefault(ta['actor_id'], set()).add(ta['tema_id'])
+
+    candidatos_tablero = []
+    for actor in actores:
+        temas_ids = actor_temas.get(actor['id'])
+        if not temas_ids:
+            continue
+        evs_semana = {}
+        evs_previos_hay = False
+        for tid in temas_ids:
+            for e in eventos_por_tema.get(tid, []):
+                if e['_ts'] > ahora or not _actor_mencionado_en(actor, e):
+                    continue
+                if e['_ts'] < inicio_semana:
+                    evs_previos_hay = True
+                    continue
+                evs_semana[e['id']] = e
+        evs_semana = list(evs_semana.values())
+        if not evs_semana:
+            continue
+        evs_lunes = [e for e in evs_semana if e['_ts'] < fin_lunes]
+
+        def _peso(e):
+            return PESO_IMPACTO_ACTOR[_impacto_de(float(e['intensidad']))]
+
+        score_hoy = sum(_peso(e) for e in evs_semana)
+        score_lunes = sum(_peso(e) for e in evs_lunes)
+        vol_hoy, vol_lunes = len(evs_semana), len(evs_lunes)
+        intens_hoy = score_hoy / vol_hoy if vol_hoy else 0
+        intens_lunes = score_lunes / vol_lunes if vol_lunes else 0
+        n_alto = sum(1 for e in evs_semana if _impacto_de(float(e['intensidad'])) == 'alto')
+        n_medio = sum(1 for e in evs_semana if _impacto_de(float(e['intensidad'])) == 'medio')
+        n_bajo = sum(1 for e in evs_semana if _impacto_de(float(e['intensidad'])) == 'bajo')
+        nota_top = max(evs_semana, key=lambda e: float(e['intensidad']))
+        candidatos_tablero.append({
+            'id': actor['id'], 'nombre': actor['nombre'],
+            'vol_hoy': vol_hoy, 'vol_lunes': vol_lunes,
+            'intens_hoy': intens_hoy, 'intens_lunes': intens_lunes,
+            'score_hoy': score_hoy, 'score_lunes': score_lunes,
+            'alcance': len({identidad_medio(e) for e in evs_semana} - {None, ''}),
+            'n_alto': n_alto, 'n_medio': n_medio, 'n_bajo': n_bajo,
+            'nota_url': nota_top.get('fuente_url') or '', 'nota_texto': nota_top['descripcion'][:200],
+            'es_nuevo': vol_lunes == 0 and not evs_previos_hay,
+        })
+
+    por_movimiento = sorted(candidatos_tablero, key=lambda c: abs(c['score_hoy'] - c['score_lunes']), reverse=True)[:6]
+    por_score = sorted(candidatos_tablero, key=lambda c: c['score_hoy'], reverse=True)[:6]
+    seleccionados = list({c['id']: c for c in por_movimiento + por_score}.values())[:9]
+    max_vol = max([c['vol_hoy'] for c in seleccionados] + [1])
+    max_intens = max([c['intens_hoy'] for c in seleccionados] + [1])
+
+    def _norm(v, mx):
+        return round(min(100, (v / mx) * 100)) if mx else 0
+
+    tablero_actores = sorted([{
+        'id': c['id'], 'nombre': c['nombre'],
+        'x_lunes': _norm(c['vol_lunes'], max_vol), 'y_lunes': _norm(c['intens_lunes'], max_intens),
+        'x_hoy': _norm(c['vol_hoy'], max_vol), 'y_hoy': _norm(c['intens_hoy'], max_intens),
+        'delta_pts': round(c['score_hoy'] - c['score_lunes'], 1),
+        'alcance': c['alcance'], 'n_alto': c['n_alto'], 'n_medio': c['n_medio'], 'n_bajo': c['n_bajo'],
+        'nota_url': c['nota_url'], 'nota_texto': c['nota_texto'], 'es_nuevo': c['es_nuevo'],
+    } for c in seleccionados], key=lambda c: c['x_hoy'] + c['y_hoy'], reverse=True)
+
     # (se quitaron los KPIs "Alertas políticas" / "Temas en escalamiento" / "Temas
     # estables": comparaban promedios de 1-2 notas con un umbral de 1.5 puntos sin
     # justificar -- ruido estadístico disfrazado de métrica. La señal real de
@@ -821,6 +914,7 @@ def calcular():
         'declaracion_presidenta': declaracion_presidenta,
         'declaracion_otro': declaracion_otro,
         'patron_historico_4sem': historico,
+        'tablero_actores': tablero_actores,
     }
     return salida, ventana_agenda
 
