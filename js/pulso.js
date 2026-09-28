@@ -281,7 +281,7 @@ function svgTendenciaCategoriasPulso(serie){
     ${serie.map((s,i)=>`<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.semana_fin.slice(5)}</text>`).join('')}
     <line x1="${xDe(serie.length-1).toFixed(1)}" y1="${padT}" x2="${xDe(serie.length-1).toFixed(1)}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
     <polygon class="pulso-marca-viva" points="${xDe(serie.length-1).toFixed(1)},${(padT+7).toFixed(1)} ${(xDe(serie.length-1)-5).toFixed(1)},${padT} ${(xDe(serie.length-1)+5).toFixed(1)},${padT}" fill="var(--teal)"/>
-    <text class="pulso-marca-viva" x="${xDe(serie.length-1).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY · ${fmtFechaCortaPulso(serie[serie.length-1].semana_fin)}</text>
+    <text class="pulso-marca-viva" x="${(xDe(serie.length-1)+4).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="end">HOY · ${fmtFechaCortaPulso(serie[serie.length-1].semana_fin)}</text>
   </svg>
   <div style="display:flex;flex-wrap:wrap;margin-top:6px;">${leyenda}</div>
   <div style="font-size:9px;color:var(--ink-3);margin-top:2px;">% = variación de la semana en curso vs. la previa · el anillo marca el máximo real de cada categoría en las 4 semanas.</div>`;
@@ -373,7 +373,7 @@ function barrasHistoricoPulso(historico){
       ${an.nivelImpacto ? `<div>Nivel de impacto del periodo: <strong style="color:var(--riesgo-alto);">${an.nivelImpacto.altoPct}% alto impacto</strong> · <strong style="color:var(--riesgo-medio);">${an.nivelImpacto.medioPct}% impacto medio</strong> · <strong style="color:var(--ink-3);">${an.nivelImpacto.bajoPct}% bajo impacto</strong></div>` : ''}
     </div>` : '';
 
-  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;">
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;overflow:visible;">
     ${defsGridPulso('pulso-grid-hist')}
     <rect x="0" y="0" width="${w}" height="${h-padB}" fill="url(#pulso-grid-hist)"/>
     ${yMedia!==null ? `<line x1="0" y1="${yMedia.toFixed(1)}" x2="${w}" y2="${yMedia.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
@@ -409,7 +409,7 @@ function barrasHistoricoPulso(historico){
       // que ya tiene la grafica de tendencia por categoria) la hace imposible de no ver.
       return `<line x1="${cxHoy}" y1="${padT}" x2="${cxHoy}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
         <polygon class="pulso-marca-viva" points="${cxHoy},${(yHoy-2).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(yHoy-9).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(yHoy-9).toFixed(1)}" fill="var(--teal)"/>
-        <text class="pulso-marca-viva" x="${cxHoy}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY · ${fmtFechaCortaPulso(historico[idxHoy].fecha)}</text>`;
+        <text class="pulso-marca-viva" x="${(parseFloat(cxHoy)+4).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="end">HOY · ${fmtFechaCortaPulso(historico[idxHoy].fecha)}</text>`;
     })()}
   </svg>
   <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;">
@@ -571,6 +571,11 @@ function pintarPulso(cont, d){
         </div>
         ${enlaceNota(t.fuente_url)}
       </div>
+      ${t.fuente_url_anterior ? `
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:3px;padding-top:3px;border-top:1px dashed var(--line);">
+        <span style="font-size:8.5px;color:var(--ink-3);">última mención antes del silencio: ${fmtFechaCortaPulso(t.fecha_anterior)}</span>
+        <a href="${t.fuente_url_anterior}" target="_blank" rel="noopener" style="font-size:9.5px;color:var(--ink-3);white-space:nowrap;">ver nota →</a>
+      </div>` : ''}
     </div>`;
   }).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Ninguno en este corte.</div>`;
 
@@ -590,12 +595,13 @@ function pintarPulso(cont, d){
       </div>
     </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin actores con mención real vinculada en este corte.</div>`;
 
+  // "EN AGENDA" (el estado por default, sin nada especial que decir) se quitó -- era
+  // exactamente la "clasificación" sin valor que se pidió sacar. Solo queda una etiqueta
+  // cuando SÍ hay señal real que aportar (está escalando o es de última hora).
   const etiquetasTema = t => {
     let out = '';
     if(t.ultima_hora) out += `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--riesgo-alto);white-space:nowrap;background:rgba(244,104,131,.12);border-radius:3px;padding:1px 4px;">⚡ ÚLTIMA HORA</span> `;
-    out += t.escalando
-      ? `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--riesgo-alto);white-space:nowrap;">🔥 ESCALANDO</span>`
-      : `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--ink-3);white-space:nowrap;">EN AGENDA</span>`;
+    if(t.escalando) out += `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--riesgo-alto);white-space:nowrap;">🔥 ESCALANDO</span>`;
     return out;
   };
 
@@ -646,18 +652,28 @@ function pintarPulso(cont, d){
       <div style="display:grid;grid-template-columns:3fr 1fr 1fr;gap:14px;">
         ${tarjeta(`
           <div class="eyebrow">TEMAS EN MOVIMIENTO</div>
-          ${d.top5_temas.length ? d.top5_temas.map((t,i)=>`
+          ${d.top5_temas.length ? d.top5_temas.map((t,i)=>{
+            // mismo patrón que Nuevos/Retomados: el TITULAR REAL de la nota va en negrita
+            // arriba (lo que de verdad se pidió, varias veces) -- el nombre del tema
+            // agrupador y la categoría bajan a línea chica de contexto, no el encabezado.
+            const titular = tituloLimpio(t.motivo || t.resumen || t.nombre);
+            const nombreDistinto = tituloLimpio(t.nombre) !== titular;
+            return `
             <div style="display:flex;gap:10px;padding:8px 0;border-top:${i?'1px solid var(--line)':'none'};">
               <span style="font-family:var(--f-mono);font-weight:700;color:var(--ink-3);width:16px;">${i+1}</span>
               <div style="flex:1;">
-                <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline;">
-                  <div style="font-size:11.5px;font-weight:600;line-height:1.4;">${tituloLimpio(t.nombre)}</div>
-                  ${etiquetasTema(t)}
+                <div style="font-size:11.5px;font-weight:600;line-height:1.4;">${titular}</div>
+                ${nombreDistinto ? `<div style="font-size:9px;color:var(--ink-3);margin-top:1px;">tema: ${tituloLimpio(t.nombre)}${t.n_temas_agrupados>1 ? ` · agrupa ${t.n_temas_agrupados} notas relacionadas` : ''}</div>` : ''}
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:4px;">
+                  <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;">
+                    <span style="font-size:9.5px;color:var(--ink-3);">corroborado por ${t.medios_corroborantes} medio${t.medios_corroborantes!==1?'s':''}</span>
+                    ${etiquetasTema(t)}
+                  </div>
+                  ${enlaceNota(t.fuente_url)}
                 </div>
-                <div style="font-size:10px;color:var(--ink-3);margin-top:2px;">${t.n_temas_agrupados>1 ? `agrupa ${t.n_temas_agrupados} notas relacionadas · ` : ''}corroborado por ${t.medios_corroborantes} medio${t.medios_corroborantes!==1?'s':''}${(t.motivo||t.resumen) ? ' — '+tituloLimpio(t.motivo||t.resumen).slice(0,140) : ''}</div>
-                ${enlaceNota(t.fuente_url)}
               </div>
-            </div>`).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin temas de agenda nacional con respaldo de medio de primer nivel en las últimas 24h.</div>`}
+            </div>`;
+          }).join('') : `<div style="font-size:10.5px;color:var(--ink-3);">Sin temas de agenda nacional con respaldo de medio de primer nivel en las últimas 24h.</div>`}
         `)}
         ${tarjeta(`
           <div style="display:flex;flex-direction:column;height:100%;">
