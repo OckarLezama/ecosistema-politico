@@ -58,7 +58,11 @@ function asegurarEstilosPulso(){
   st.textContent = `@keyframes pulso-rebote{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);} }
     .pulso-marca-viva{ animation:pulso-rebote 1.3s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
     @keyframes pulso-entrada{ from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:translateY(0);} }
-    .pulso-tarjeta-viva{ animation:pulso-entrada 0.45s ease-out backwards; }`;
+    .pulso-tarjeta-viva{ animation:pulso-entrada 0.45s ease-out backwards; }
+    @keyframes pulso-halo{ 0%,100%{opacity:0.14;r:9;} 50%{opacity:0.32;r:13;} }
+    .pulso-halo-vivo{ animation:pulso-halo 2s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+    @keyframes pulso-trazo{ from{stroke-dashoffset:240;} to{stroke-dashoffset:0;} }
+    .pulso-trazo-jugada{ stroke-dasharray:240; animation:pulso-trazo 1.1s ease-out forwards; }`;
   document.head.appendChild(st);
 }
 function mostrarTooltipPulso(html, ev){
@@ -431,6 +435,65 @@ function activarHistoricoPulso(cont){
   });
 }
 
+/* ---------- TABLERO DE ACTORES -- mapa de cuadrantes (volumen × intensidad de impacto),
+   ambos ejes son conteos reales que ya manda el backend (tablero_actores en el JSON), no
+   un puntaje de opinión ("cercanía al poder"/"alianzas" se evaluaron y se descartaron por
+   no tener con qué calcularse honestamente -- ver conversación). Pieza hueca = posición
+   del lunes, pieza sólida = hoy; la línea entre ambas es deliberadamente gris/difuminada
+   (no del color del actor) para que se note que hubo movimiento sin competir visualmente
+   con la pieza misma. Toda la info numérica (casillas, notas) vive en el tooltip al
+   pasar el mouse -- por pedido, el tablero no lleva columna lateral de texto. ---------- */
+const PALETA_TABLERO_ACTORES = ['#D97757','#2DD4BF','#E5B93C','#6EA8FE','#B15FBD','#8FD14F','#F46883','#BDB58D','#9CA3AF'];
+function nombreCuadrante(x,y){
+  if(x>=50 && y>=50) return 'Centro de la agenda';
+  if(x<50 && y>=50) return 'Foco de alerta';
+  if(x>=50 && y<50) return 'Ruido';
+  return 'Bajo perfil';
+}
+function tableroActoresPulso(actores){
+  if(!actores || !actores.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Sin actores con menciones verificadas esta semana.</div>`;
+  const w=560, h=380, m=44;
+  const px = v => m + (v/100)*(w-2*m);
+  const py = v => (h-m) - (v/100)*(h-2*m);
+  const cx = px(50), cy = py(50);
+  let piezas = '';
+  actores.forEach((a,i)=>{
+    const color = PALETA_TABLERO_ACTORES[i % PALETA_TABLERO_ACTORES.length];
+    const x1=px(a.x_lunes), y1=py(a.y_lunes), x2=px(a.x_hoy), y2=py(a.y_hoy);
+    const info = `<b>${a.nombre}</b><br>${a.es_nuevo ? '⚡ nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}<br>Δ ${a.delta_pts>0?'+':''}${a.delta_pts} pts de exposición ponderada<br>Alcance: ${a.alcance} medio${a.alcance!==1?'s':''} · Impacto: ${a.n_alto} alto, ${a.n_medio} medio, ${a.n_bajo} bajo${a.nota_url?`<br><a href="${a.nota_url}" target="_blank" rel="noopener" style="color:var(--teal);">ver nota →</a>`:''}`;
+    if(!a.es_nuevo){
+      piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="7" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="0.4"/>`;
+      piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="0.4" style="cursor:pointer;"/>`;
+    }
+    const r = 9 + Math.min(6, (a.alcance||0));
+    piezas += `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+4}" fill="${color}"/>`;
+    piezas += `<circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5" style="cursor:pointer;"/>`;
+    piezas += `<text x="${x2.toFixed(1)}" y="${(y2+3).toFixed(1)}" font-size="8" font-weight="700" fill="var(--bg-2)" text-anchor="middle" style="pointer-events:none;">${(a.nombre||'').trim().charAt(0)}</text>`;
+    if(a.es_nuevo) piezas += `<text x="${x2.toFixed(1)}" y="${(y2-r-4).toFixed(1)}" font-size="7" fill="${color}" text-anchor="middle" font-family="var(--f-mono)">NUEVO</text>`;
+  });
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;display:block;overflow:visible;">
+    ${defsGridPulso('pulso-grid-tablero')}
+    <rect x="${m}" y="${m*0.4}" width="${w-2*m}" height="${h-m-m*0.4}" fill="url(#pulso-grid-tablero)" stroke="var(--line-strong)" stroke-width="1"/>
+    <line x1="${cx}" y1="${m*0.4}" x2="${cx}" y2="${h-m}" stroke="var(--line-strong)" stroke-width="1"/>
+    <line x1="${m}" y1="${cy}" x2="${w-m}" y2="${cy}" stroke="var(--line-strong)" stroke-width="1"/>
+    <text x="${m+6}" y="${m*0.4+14}" font-size="8" fill="var(--riesgo-medio)" font-weight="700">FOCO DE ALERTA</text>
+    <text x="${w-m-6}" y="${m*0.4+14}" font-size="8" fill="var(--riesgo-alto)" font-weight="700" text-anchor="end">CENTRO DE LA AGENDA</text>
+    <text x="${m+6}" y="${h-m-6}" font-size="8" fill="var(--ink-3)" font-weight="700">BAJO PERFIL</text>
+    <text x="${w-m-6}" y="${h-m-6}" font-size="8" fill="var(--riesgo-bajo)" font-weight="700" text-anchor="end">RUIDO</text>
+    <text x="${w/2}" y="${h-10}" font-size="8.5" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)">EXPOSICIÓN (volumen de menciones verificadas) →</text>
+    <text x="14" y="${h/2}" font-size="8.5" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)" transform="rotate(-90 14 ${h/2})">INTENSIDAD DE IMPACTO →</text>
+    ${piezas}
+  </svg>
+  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos). Pasa el cursor sobre una pieza para ver el detalle del movimiento.</div>`;
+}
+function activarTableroActores(cont){
+  if(!cont) return;
+  cont.querySelectorAll('.pulso-tablero-pieza').forEach(p=>{
+    p.addEventListener('mousemove', ev=> mostrarTooltipPulso(p.dataset.info, ev));
+    p.addEventListener('mouseleave', ocultarTooltipPulso);
+  });
+}
+
 // se distribuyen en flex-column con height:100% para ocupar todo el alto real de la
 // tarjeta (antes quedaban 5 filas cortas arriba y un hueco vacío abajo, porque la
 // tarjeta estira su alto para igualar a la columna de Top 5, mucho más alta). El
@@ -692,11 +755,11 @@ function pintarPulso(cont, d){
         `)}
       </div>
 
-      <!-- BLOQUE 2: actores destacados (sin cuotas) · temas nuevos · temas retomados -->
+      <!-- BLOQUE 2: tablero de actores (posición semanal, ver tableroActoresPulso) · actores destacados · temas nuevos -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+        ${tarjeta(`<div class="eyebrow">TABLERO DE ACTORES · SEMANA EN CURSO</div><div id="pulso-tablero-actores">${tableroActoresPulso(d.tablero_actores)}</div>`)}
         ${tarjeta(`<div class="eyebrow">ACTORES DESTACADOS</div>${listaActores(d.actores_destacados)}`)}
         ${tarjeta(`<div class="eyebrow" style="color:var(--riesgo-bajo);">TEMAS NUEVOS</div>${listaTema(d.temas_nuevos)}`)}
-        ${tarjeta(`<div class="eyebrow" style="color:var(--arena);">TEMAS RETOMADOS</div>${listaTema(d.temas_retomados)}`)}
       </div>
 
       <!-- BLOQUE 3: peso por categoría · tendencia 4 semanas (60%) · patrón histórico 4 semanas en barras (40%) -->
@@ -705,10 +768,14 @@ function pintarPulso(cont, d){
         ${tarjeta(`<div class="eyebrow">PATRÓN HISTÓRICO · 4 SEMANAS</div>${panelRecorrible('pulso-scroll-historico', barrasHistoricoPulso(d.patron_historico_4sem), 620)}`)}
       </div>
 
-      <!-- BLOQUE 4: declaración relevante -- 2 espacios fijos, cada uno con su propio criterio real -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        ${declaracionHTML('DECLARACIÓN · PRESIDENTA', d.declaracion_presidenta_historial || (d.declaracion_presidenta ? [d.declaracion_presidenta] : []))}
-        ${declaracionHTML('DECLARACIÓN · OTRO ACTOR', d.declaracion_otro_historial || (d.declaracion_otro ? [d.declaracion_otro] : []))}
+      <!-- BLOQUE 4: temas retomados · resumen mañanera (pendiente de revisar a detalle) · declaraciones (presidenta + otro actor, apiladas en la misma columna) -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+        ${tarjeta(`<div class="eyebrow" style="color:var(--arena);">TEMAS RETOMADOS</div>${listaTema(d.temas_retomados)}`)}
+        ${tarjeta(`<div class="eyebrow">RESUMEN MAÑANERA</div><div style="font-size:10.5px;color:var(--ink-3);">Pendiente -- se revisa a detalle qué ya hace mananera-widget.js antes de construir esto.</div>`)}
+        ${tarjeta(`<div style="display:flex;flex-direction:column;gap:10px;">
+          ${declaracionHTML('DECLARACIÓN · PRESIDENTA', d.declaracion_presidenta_historial || (d.declaracion_presidenta ? [d.declaracion_presidenta] : []))}
+          ${declaracionHTML('DECLARACIÓN · OTRO ACTOR', d.declaracion_otro_historial || (d.declaracion_otro ? [d.declaracion_otro] : []))}
+        </div>`)}
       </div>
 
     </div>`;
@@ -717,6 +784,7 @@ function pintarPulso(cont, d){
   activarBarraCategoriasPulso(cont.querySelector('#pulso-barras-dia'), d.categorias_dia);
   activarTendenciaCategorias(cont.querySelector('#pulso-scroll-tendencia'));
   activarHistoricoPulso(cont.querySelector('#pulso-scroll-historico'));
+  activarTableroActores(cont.querySelector('#pulso-tablero-actores'));
   activarPanelesRecorribles(cont);
 
   const btn = document.getElementById('btn-exportar-pdf-analisis');
