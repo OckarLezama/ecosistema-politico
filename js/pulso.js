@@ -731,6 +731,14 @@ function pintarPulso(cont, d){
         <button id="btn-exportar-pdf-analisis" style="font-size:10px;font-family:var(--f-mono);background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-2);border-radius:6px;padding:4px 10px;cursor:pointer;">↓ Exportar / compartir (PDF)</button>
       </div>
 
+      <!-- QUÉ CAMBIÓ DESDE EL CORTE ANTERIOR -- franja delgada, no compite por espacio con
+           las tarjetas; evita que el usuario tenga que comparar dos cortes a ojo. -->
+      ${d.diff_desde_corte_anterior ? `
+      <div style="background:var(--bg-1);border:1px solid var(--line);border-top:none;padding:7px 16px;font-size:9.5px;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:4px 14px;">
+        <span style="color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;font-size:8px;flex-shrink:0;">Desde el corte anterior:</span>
+        ${d.diff_desde_corte_anterior.cambios.map(c=>`<span>• ${c}</span>`).join('')}
+      </div>` : ''}
+
       <!-- BLOQUE 1: temas en movimiento (60%) · peso por categoría hoy (20%) · tensión nacional (20%) -->
       <div style="display:grid;grid-template-columns:3fr 1fr 1fr;gap:14px;">
         ${tarjeta(`
