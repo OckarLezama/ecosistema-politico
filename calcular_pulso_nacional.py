@@ -1011,6 +1011,61 @@ def _declaracion_sigue_siendo_valida(decl):
     return pos is None or not _actor_es_objeto(texto.lower(), pos)
 
 
+def calcular_diff_corte(anterior, nuevo):
+    """Qué cambió respecto al corte anterior -- comparación directa de los campos que ya
+    calcula el módulo, nada nuevo que mantener por separado. Barato a propósito: sin esto
+    el usuario tenía que comparar los dos cortes a ojo para saber qué era distinto. Se
+    limita a lo que de verdad importa para no volverse un changelog técnico ilegible."""
+    cambios = []
+    if not anterior:
+        return {'generado_anterior': None, 'cambios': ['Primer corte -- no hay uno anterior con qué comparar.']}
+
+    t_ant, t_nuevo = anterior.get('tension_nacional'), nuevo.get('tension_nacional')
+    if t_ant is not None and t_nuevo is not None and t_ant != t_nuevo:
+        signo = 'subió' if t_nuevo > t_ant else 'bajó'
+        cambios.append(f'Tensión nacional {signo} {abs(t_nuevo - t_ant)} pts ({t_ant} → {t_nuevo})')
+
+    ids_top5_ant = {t['id'] for t in (anterior.get('top5_temas') or [])}
+    ids_top5_nuevo = {t['id'] for t in (nuevo.get('top5_temas') or [])}
+    for t in (nuevo.get('top5_temas') or []):
+        if t['id'] not in ids_top5_ant:
+            cambios.append(f'Entra a Temas en Movimiento: {tituloLimpio_py(t.get("motivo") or t.get("resumen") or t["nombre"])}')
+    for t in (anterior.get('top5_temas') or []):
+        if t['id'] not in ids_top5_nuevo:
+            cambios.append(f'Sale de Temas en Movimiento: {t["nombre"]}')
+
+    ids_nuevos_ant = {t['id'] for t in (anterior.get('temas_nuevos') or [])}
+    for t in (nuevo.get('temas_nuevos') or []):
+        if t['id'] not in ids_nuevos_ant:
+            cambios.append(f'Tema nuevo detectado: {t["nombre"]}')
+
+    for campo, etiqueta in (('declaracion_presidenta', 'Presidenta'), ('declaracion_otro', 'otro actor')):
+        d_ant, d_nuevo = anterior.get(campo), nuevo.get(campo)
+        if d_nuevo and (not d_ant or d_ant.get('texto') != d_nuevo.get('texto')):
+            cambios.append(f'Nueva declaración relevante ({etiqueta}): {d_nuevo["actor"]}')
+
+    for a in (nuevo.get('tablero_actores') or []):
+        if a.get('es_nuevo'):
+            cambios.append(f'Nuevo en el Tablero de Actores: {a["nombre"]}')
+
+    cat_ant = max((anterior.get('categorias_dia') or []), key=lambda c: c.get('peso_pct', 0), default=None)
+    cat_nuevo = max((nuevo.get('categorias_dia') or []), key=lambda c: c.get('peso_pct', 0), default=None)
+    if cat_ant and cat_nuevo and cat_ant.get('categoria') != cat_nuevo.get('categoria'):
+        cambios.append(f'Categoría dominante del día cambió: {cat_ant["categoria"]} → {cat_nuevo["categoria"]}')
+
+    if not cambios:
+        cambios = ['Sin cambios relevantes respecto al corte anterior.']
+    return {'generado_anterior': anterior.get('generado_en'), 'cambios': cambios[:8]}
+
+
+def tituloLimpio_py(txt):
+    """Recorte simple para el diff -- no repite la limpieza de prefijos que sí hace
+    tituloLimpio() en el frontend (emoji de alerta, etc.), porque aquí solo es para un
+    changelog corto, no para el titular principal que ya se ve con su formato completo
+    en Temas en Movimiento."""
+    return (txt or '')[:90]
+
+
 def _actualizar_historial_declaracion(anterior, nueva, campo_historial, maxlen=3):
     """Acumula hasta 3 declaraciones a través de los cortes -- cada corte solo calcula
     la MEJOR declaración del momento (sin memoria propia, ver arriba), así que sin esto
@@ -1038,6 +1093,7 @@ if __name__ == '__main__':
             anterior_publicado, resultado.get('declaracion_presidenta'), 'declaracion_presidenta_historial')
         resultado['declaracion_otro_historial'] = _actualizar_historial_declaracion(
             anterior_publicado, resultado.get('declaracion_otro'), 'declaracion_otro_historial')
+        resultado['diff_desde_corte_anterior'] = calcular_diff_corte(anterior_publicado, resultado)
         resultado['hora_corte_publicada'] = datetime.now(ZONA_MX).strftime('%Y-%m-%d %H:%M')
         with open(RUTA_SALIDA, 'w', encoding='utf-8') as f:
             json.dump(resultado, f, ensure_ascii=False, indent=2)
