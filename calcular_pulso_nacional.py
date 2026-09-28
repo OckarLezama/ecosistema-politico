@@ -825,6 +825,12 @@ def decide_si_publicar(nuevo, ventana_agenda):
     rompería la idea de "cortes", no la mejora)."""
     if os.environ.get('FORZAR_PUBLICAR', '').lower() == 'true':
         return True, 'forzado manualmente (workflow_dispatch con forzar=true)'
+    if os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch':
+        # cualquier corrida disparada A MANO (botón "Run workflow") publica siempre, sin
+        # necesitar el checkbox 'forzar' -- si alguien lo corre manualmente es porque
+        # quiere ver un cambio reflejado ya, no para confirmar que el candado normal de
+        # cortes sigue funcionando (eso ya lo hace solo el cron automático).
+        return True, 'corrida manual (workflow_dispatch) -- se publica siempre'
     ahora = datetime.now(ZONA_MX)
     if ahora.hour in CORTES_FIJOS and ahora.minute < 30:
         return True, f'corte fijo {ahora.hour:02d}:00'
