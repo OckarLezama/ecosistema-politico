@@ -13,12 +13,14 @@ Uso: python3 calcular_pulso_nacional.py
 
 ROADMAP_PENDIENTE -- evaluación de este módulo como producto de inteligencia (2026-09-29),
 decisión explícita del usuario: primero construir todo lo que NO necesita IA de paga
-(síntesis ejecutiva por reglas, etiquetas de confianza, sección "a vigilar", auditoría de
-aciertos -- los 4 ya implementados en esta revisión). Quedan pendientes A PROPÓSITO, como
-"cereza del pastel" para retomar más adelante, las dos piezas que sí se benefician de un
-modelo de lenguaje real:
+(etiquetas de confianza, sección "a vigilar", auditoría de aciertos). Se probó además una
+"síntesis ejecutiva" por reglas fijas (tensión + tema dominante + actor en movimiento) y se
+retiró el mismo día: al verla publicada, la mayoría de sus líneas resultaron ser solo eco de
+tarjetas que ya existen en la misma pantalla, no información nueva -- ver el comentario en
+calcular() donde se quitó. Quedan pendientes A PROPÓSITO, como "cereza del pastel" para
+retomar más adelante, las dos piezas que sí se benefician de un modelo de lenguaje real:
   1. Síntesis con matices reales (razonamiento sobre el conjunto de señales, no una
-     plantilla de frases fijas como 'sintesis_ejecutiva' de abajo).
+     plantilla de frases fijas -- la plantilla ya se probó y no fue suficiente).
   2. Detección de patrones de ruido/contenido genérico que TODAVÍA no conocemos -- hoy se
      atrapan uno por uno conforme aparecen (ver _es_nota_generica_en_vivo, _mananera_valida
      como ejemplos de parches a patrones YA vistos); un modelo generalizaría a patrones
@@ -1419,41 +1421,17 @@ def calcular():
     precision_alertas = actualizar_auditoria_alertas(ahora, top5, temas_por_id, peso_tema)
 
     # ================================================================
-    # SÍNTESIS EJECUTIVA -- pedido explícito: "esto es lo que importa hoy y por qué" en
-    # 3-5 líneas arriba de todo, para alguien que tiene 90 segundos. Con reglas fijas
-    # sobre datos que este módulo YA calculó -- sin IA de paga, sin juicio nuevo, solo
-    # ensamblar en lenguaje llano lo que ya está en tension_nacional/top5/tablero/
-    # resumen_mananera/a_vigilar. El matiz real (una síntesis que de verdad razone sobre
-    # el conjunto, no una plantilla) queda pendiente a propósito -- ver nota en
+    # SÍNTESIS EJECUTIVA -- eliminada (2026-09-29). Se probó una versión de 3-5 líneas
+    # armadas con reglas fijas (tensión, tema dominante, actor en movimiento) y, al
+    # verla ya publicada, se confirmó lo que se sospechaba: la mayoría de esas líneas
+    # solo repetían en prosa datos que YA tienen su propia tarjeta en esta misma
+    # pantalla (tensión_nacional, top5_temas[0], tablero_actores) -- no era síntesis,
+    # era eco. Lo único que sí aportaba información nueva (a_vigilar y la auditoría de
+    # aciertos, ambas abajo) se quedó, movido al cierre del tablero como franja de
+    # seguimiento en vez de resumen ejecutivo. La síntesis real -- razonamiento sobre el
+    # conjunto de señales, no una plantilla -- sigue pendiente a propósito; ver
     # ROADMAP_PENDIENTE al principio de este archivo.
     # ================================================================
-    sintesis_ejecutiva = []
-    nivel_tension = 'alta' if tension >= 70 else ('moderada' if tension >= 40 else 'baja')
-    sintesis_ejecutiva.append(
-        f'Tensión nacional {nivel_tension} ({tension}/100), con {n_notas_agenda} nota'
-        f'{"s" if n_notas_agenda != 1 else ""} de agenda nacional en las últimas {VENTANA_HORAS}h'
-        + (' -- lectura de baja confianza por poco volumen.' if baja_confianza else '.'))
-    if top5:
-        principal = top5[0]
-        titular_principal = (principal.get('motivo') or principal.get('resumen') or principal['nombre'])[:160]
-        sintesis_ejecutiva.append(
-            f'Domina la agenda: «{titular_principal}» (confianza {principal["confianza"]}, '
-            f'{principal["medios_corroborantes"]} medio{"s" if principal["medios_corroborantes"] != 1 else ""} corroborando)'
-            + (' -- en escalada.' if principal.get('escalando') else '.'))
-    movedores = [a for a in tablero_actores if not a.get('apagado') and a.get('delta_pts', 0) > 0]
-    if movedores:
-        top_mover = max(movedores, key=lambda a: a['delta_pts'])
-        sintesis_ejecutiva.append(
-            f'{top_mover["nombre"]} es quien más se movió en la agenda esta semana '
-            f'(impacto {top_mover["impacto_nivel"]}, {top_mover["alcance"]} medio{"s" if top_mover["alcance"] != 1 else ""} distintos).')
-    if a_vigilar:
-        nombres_vigilar = ', '.join(t['nombre'] for t in a_vigilar[:3])
-        sintesis_ejecutiva.append(
-            f'A vigilar: {len(a_vigilar)} tema{"s" if len(a_vigilar) != 1 else ""} a un paso de entrar '
-            f'a la agenda nacional ({nombres_vigilar}).')
-    alerta_mananera = next((m for m in resumen_mananera if m.get('alerta')), None) if resumen_mananera else None
-    if alerta_mananera:
-        sintesis_ejecutiva.append(f'La mañanera de hoy incluyó una alerta: {alerta_mananera["texto"][:160]}')
 
     salida = {
         'generado_en': ahora.isoformat(),
@@ -1474,7 +1452,6 @@ def calcular():
         'tablero_semana_inicio': inicio_semana.date().isoformat(),
         'resumen_mananera': resumen_mananera,
         'mananera_estado': mananera_estado,
-        'sintesis_ejecutiva': sintesis_ejecutiva,
         'a_vigilar': a_vigilar,
         'precision_alertas': precision_alertas,
     }
