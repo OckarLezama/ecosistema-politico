@@ -1,76 +1,18 @@
 {
-  "generado_en": "2026-09-29T07:39:12.209349-06:00",
+  "generado_en": "2026-09-29T09:22:06.786588-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 11,
-  "baja_confianza": false,
-  "tension_nacional": 41,
+  "n_notas_ventana": 2,
+  "baja_confianza": true,
+  "tension_nacional": 12,
   "categorias_dia": [
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 66,
-      "tema_principal": "La Barredora",
-      "tema_principal_id": "la-barredora",
-      "n_temas": 3,
-      "n_notas": 7,
-      "notas": [
-        {
-          "texto": "Huachicol fiscal mueve 3.1 billones de pesos y rebasa megaobras de la 4T - Energy21",
-          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNX3d6VVdLczRtTjlVLUVwTVlRcXlnRnhObU5pN29xa0UzYVFhYl8xSG5hczdFWnR2d2szUlpGT2dNQkljcnZ2TGlYLTFXdUdSZmZTbm5XU09RUXp2TGZiNFpIeTlfdm5McVdES0EyUU1YUUZoOHhjckpiQTlaOXlPYmllNGlfQ1ZydkhlTjdVQUhpRmh2MjJXdHNxa2FVdw?oc=5",
-          "intensidad": 8.0,
-          "medio": "Energy21"
-        },
-        {
-          "texto": "Huachicol fiscal sería la octava empresa más grande del país: Mexicanos contra la Corrupción (VIDEO) - TV Azteca",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOYnZvQUpkbUNpUmRuVXFxMEEyUlF5OUI5YlZsY3hFQURONmdzWmQ2Q3Y4QjFURlF6TVk4bmJDcGdWUlFRbVJCSnJqS1Y2XzFTRVVOTjU4QTVuS2xzOHN2TFpBZ2h5ZGczb1dJQklvZ1ctaGxVRndpbURyd0hrOGdfU21YcndncUhSNGVOLU5hb2VLVm50S3lwdDAyb0VuUnF3eTBUajRZcHJkQTVnOU9DV1FldF_SAcIBQVVfeXFMTkxtci05QmxFQkc4bVpIYnFqMXRFbTB5OFpQVktic1JTQ1lfckVyS2dRbFp4UVVDZWMxVHpPd2o4bVVYVDB4UHRCa04zSllabEpzZGRXSjV4Y1I0US1qUHloTVdrMVBqQXNTcU1NRlhpbVVNREVTbzZqVWFIZ3BsaS13VXlFazJJb1lRWEdQaW82QkdaYVBwaFNyYWJiOXdZUkZKYnFGVnVlZU16b2tPRldxd0F6V3hxbzJxbUcwY0J4RUE?oc=5",
-          "intensidad": 8.0,
-          "medio": "TV Azteca"
-        },
-        {
-          "texto": "Ernesto Ruffo pide “reinstitucionalizar” el país tras llegar a su casa en Ensenada",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/09/28/ernesto-ruffo-pide-reinstitucionalizar-el-pais-tras-llegar-a-su-casa-en-ensenada.html",
-          "intensidad": 8.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "Harfuch confirma quiebre de La Barredora y habla sobre drones - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQaVNVbzJ6NGEwMExNUllIUjFOQUxDYXg2cEZaMWdYQzFaSVEyQmJ5RmN4X01waEJlaE1NNGEzVEU0N3M4YmFDZkVycHVsYVVLZTNPMGpjanpLRHBja3h3U2dvV2pQY1VkcENyNHQ5aXlzYkNqeEVHd3RkNHM4T0lBSXFoZHVrYlNfNGJJd1lxeDFtM2x3M2JZX1RPcjcxMWR4VVJHZmJqa1_SAagBQVVfeXFMT1RLODFzQUZrSFZYR0pueHpJVWg2ZG1tUHRtaXluQVpYTy1JLUFwaW1NTDU5WlV3SjF6dDFyQXVEY3I2QU5OWldsSFRobWZVdC1XQWMwNm9FZ1NUZTVwODQ5YU9xaHlmb2NxSFZUZ3BMYmpKQ2h3UExiY1AzNHcxQ09hbFd3WHlMeGE4aWtnN0VUZ19hcERLNzQ5c2RmcmFWY1EyVWhfU0xr?oc=5",
-          "intensidad": 7.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
-          "intensidad": 7.0,
-          "medio": "Infobae"
-        },
-        {
-          "texto": "El meganegocio del huachicol fiscal en México: El fraude millonario que supera 3 veces el costo del Tren Maya y Dos bocas - TV Azteca",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQdGg3d3RfS28taEw4NWk1X0x5V2NWRVhuSjlUVFowVW5Pbkl4YmVsS0lkcGtNdXFUWDk5OGdHR3cteXY3QkZqVE9VckpRUXdQNm5HNFJZcnQzLUlsLWpEYk41YmRYZmhEbl9PajExYnVQY3o2SHlmaFpkNWpaNEtObGRuTGhRZk55dEJxVWRDUy1PLVlSYXcyY2RDdEZhOWRvV01na1VCOEFzYmE1bFZJ0gG8AUFVX3lxTFBpNDNKcTc0c1hBNU9vQ2FFWWI5cmJ2cmtWanlsNUJ0ZFExM2hFOVlEd2daQURKU3RHVFZiMFQ1QmZKVEt6ZlZlSS1hY0p0RGxYR2FtaE5lOUJZNFJEZ012Ylh0SU9vc2hMOGlFOVQ5azB4Zm9mS0UwV0Jtd2IxS2NvYXd5SnYwQkwza1pQNjVEanZyRnVWb1BpdWZhWDBNM01TcFBFUURLQkJBWVNKdlNfNTdwMms4eHZfaG1P?oc=5",
-          "intensidad": 6.0,
-          "medio": "TV Azteca"
-        },
-        {
-          "texto": "Tras 13 años del homicidio de mujer en Cuetzalan, condenan a 23 años de prisión a dos responsables",
-          "fuente_url": "https://www.angulo7.com.mx/2026/municipios/sierra-norte/tras-13-anos-del-homicidio-de-mujer-en-cuetzalan-condenan-a-23-anos-de-prision-a-dos-responsables/725346/",
-          "intensidad": 4.0,
-          "medio": "angulo7.com.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 18,
+      "peso_pct": 55,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 2,
-      "n_notas": 2,
+      "n_temas": 1,
+      "n_notas": 1,
       "notas": [
-        {
-          "texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-          "intensidad": 7.0,
-          "medio": "adn40.mx"
-        },
         {
           "texto": "Subsecretario de Comercio Exterior irá a Washington para continuar negociaciones del T-MEC - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOSmRhdjdEY3l6STZYZ2ZaeFJKbnVnV2VtYXBLcl9zOWNjeExabUdISXI0RmhfVWNVQmFHTWVWNllmVXM1ZU8wRWczVExyV0Q3UHYtMjM1UlJTVUQ3MVpWODlNT1BVanpSN0ZXYnZSVG1nWFloMGtHSjlPSHdiT0tVN3luM2ZjekE1TmhWR3RjSkh1YzVCZmVJX0dB0gGaAUFVX3lxTE5KZGF2N0RjeXpJNlhnZlp4UkpudWdXZW1hcEtyX3M5Y2N4TFptR0hJcjRGaF9VY1VCYUdNZVY2WWZVczVlTzBFZzNUTHJXRDdQdi0yMzVSUlNVRDcxWlY4OU1PUFVqelI3RldidlJUbWdYWWgwa0dKOU9Id2JPS1U3eW4zZmN6QTVOaFZHdGNKSHVjNUJmZUlfR0E?oc=5",
@@ -80,24 +22,8 @@
       ]
     },
     {
-      "categoria": "Economía",
-      "peso_pct": 10,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "La angustia del T-MEC de Sheinbaum - Semanario ZETA",
-          "fuente_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE90bmxZem1OOUFFSGo5WUE4RXZvc0syUkJ6UWx5NDhoUjBTSWFHM2dYS0F1RUFITVBtRWNBeHJVcUkyMThzUzBPb0s4ZUk0eDQxc3NJcmpDVWhnc3MxQjdLM1p2aWtMd3FsQ1dNM3VheFdORmJjYUE?oc=5",
-          "intensidad": 7.0,
-          "medio": "Semanario ZETA"
-        }
-      ]
-    },
-    {
       "categoria": "Gobernabilidad",
-      "peso_pct": 7,
+      "peso_pct": 45,
       "tema_principal": "Abatimiento de \"El Mencho\"",
       "tema_principal_id": "el-mencho",
       "n_temas": 1,
@@ -110,6 +36,24 @@
           "medio": "informador.mx"
         }
       ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -181,7 +125,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 46
+          "peso_pct": 47
         },
         {
           "categoria": "Relación Bilateral",
@@ -225,30 +169,17 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-88859caeb0",
-      "nombre": "Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que ",
+      "id": "auto-af03748273",
+      "nombre": "Claudia Sheinbaum Pardo. . Presentamos resultados en rehabilitación y construcci",
       "categoria": "Gobernabilidad",
-      "resumen": "Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que son de diferentes partidos - La Silla Rota",
-      "motivo": "Sheinbaum lamenta asesinato de dos estudiantes en Cuernavaca; refrenda coordinación con gobernadora de Morelos - El Universal",
-      "peso": 30.0,
-      "n_temas_agrupados": 4,
-      "escalando": false,
-      "ultima_hora": true,
-      "medios_corroborantes": 4,
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQaEdaakN1dHhZN2E4cTZrQUpJbDNlajE5QUFlNV9DbjVkWlA1MGttdW5qc0haMkhrWXRzd2VVYU9LQ0JfcGRORlh1RUZDZERwdTZpc3UzQVg0OWsyWHpZbGp3bktxRFk1Zm9GbUhqUElFMTBtaUFtU3dOMFgwOUhfSmJvUFprRUptYzFCTEhGRlI1LXVscEo5RFlhMktNUUN5V3lJbjU4Z1pIVmNTZ0VEdGNiZHRQaUF1MklFOVhqbXEwLUFnTjZ3OElSN19OdVl0YWJSMkdocHB2UG9ib0RQTnRB?oc=5"
-    },
-    {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
+      "resumen": "Claudia Sheinbaum Pardo. . Presentamos resultados en rehabilitación y construcción de caminos y carreteras. Mejor comunicación es desarrollo y bienestar para todas y todos. - facebook.com",
+      "motivo": "Tatiana Clouthier acepta a regañadientes resultado en Nuevo León: solo respalda a Claudia Sheinbaum - Infobae",
       "peso": 14.0,
       "n_temas_agrupados": 2,
       "escalando": false,
-      "ultima_hora": false,
+      "ultima_hora": true,
       "medios_corroborantes": 2,
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQcUpEOW9iOWRicDVEOTN4Zzh5SWpoak9INDdrQTdQbGpyZVUzdXBJWjY1SjdYbTdra0ppTGxzeHZyYU1HZ2VrclNNUWNqYXVjTFV1YTVsM01zOHBzaTk3SGJuZTNUa2ZPSHlQY1BTWkpiR19KTHJhSnBLbzdFNEk0dDlkVnplWFdERklLN0JwNXZ3bmliM3RQVXJpUGU2Zk9GbHlBTTlmLU5kWmJNZl92N3l2aGJ2ZnhPT0VOaEsya3NRWWJpUzEyVDlNOU1xQmR1TnpqZDctbDLSAfMBQVVfeXFMT1FHLUtNTFkzLXZMVVRaV3R5b3NHckhDbGRMWF9LS1dzdWd0Smcwel8wR24ySVJJdTdUNElOanpxTGQwQTk4YVJ4Umd5Z1EwN1lKWnFFY3ZQcS11WDJBWU5hakk5bHBUdHdXcE9xTzF3N2E1SXdkZ1psVF9hU0k1cl9xMVhfWFV6U3F1VV9uTm1Zd0IzQk44N1RncEhNdGt1TGd5UVZwek5xNEk5U2RwcFZsbENMTWJ2dnZmRGpNdk9KS0tHTFpuT2NLWG1CUTlJQ0dZbGtDSGFXLXFGUmNTcHFJYmluakdBZzVHVGVyRlNYRjQw?oc=5"
     },
     {
       "id": "tmec-revision",
@@ -287,36 +218,36 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUTNQYmRzbi1NWnNZZ3BQemFVaHd0YWowSWYxWUlsWHh5NHBXYzhFUjBnSi01OThwLVlLZVpfdlRaUjFJb29PSEdFUTNTRHNuYllycy1Ob05qeERzTWFlSUlvc3BhQ24yZnhINFM0LXZ3TG9pUGI4RDJJR0ZFWlFOS0dSUHNnRjhTVzVSbHhidE13cWZObjUwSzB1RGJTcnRfRlp5cm9LZGZMbmFTS05HOTFEUjc0b0k5TjlUdHZYRFBCMWdqNGF0RVlJVGJUSU0zcEVFQ21n0gHwAUFVX3lxTE1pTklKUjhxa29SU3YwamZsZEZ5c1poNGkxRGFVOUUyX1JKMHl5WDNsbmFlOHBGNmJ1QUhYaW5Xbl9MaW5MeDB1cjVqLVIteGF0ZDhGN1Y2eEU2WU9rb0JUYWc0TkxHTFFsbm9EeENybzdaY05PdEktb2Q5YkdzeGVHc215WDFsOVJaV2x3QXQ0TUFpc2ZsUjl5OUVRTmFTLThWYW9ObFZuS3pJcDBNRkRwdUlVU1VQT002d2xlbmt1UWlGZzJOLS1PUGlCSGpuNnNpcmxNNWdwazgwUW5uQ0ZVamdSQ0FEdlJ3akxJUDhvQw?oc=5"
     },
     {
-      "id": "auto-2c99e79cce",
-      "nombre": "Loret revela presunto pacto entre Adán Augusto y la familia Yunes",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/loret-de-mola-revela-presunto-pacto-entre-adan-augusto-lopez-y-la-familia-yunes-para-aprobar-la-reforma-judicial-20260928-0041.html"
-    },
-    {
-      "id": "auto-e7e2d2372a",
-      "nombre": "Morena da a conocer hoy a los últimos coordinadores de la 4T previo a elecciones",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQVEl2SWQ0Zm4zeGZyTU5uRTM0SUZXUmlmTHRHMkFkVWR1U1l0MS1YVnN2UHBIYVRnYkx4MzZSaXZZQ3NaNm5YWHNROWFBWEJZSG5xdXZacVphenhfb0UyeE1OVzVSZWdfcmREMG1NclF6WHBycmZPUGZHbzNTS1RRblRhWHZ1dV9LSVhiYmVneHV2US12eHNRWjc2YTFHWTNqeE5nNVZyMF9zMTYzWUtKbUlBWmvSAbQBQVVfeXFMUFRJdklkNGZuM3hmck1ObkUzNElGV1JpZkx0RzJBZFVkdVNZdDEtWFZzdlBwSGFUZ2JMeDM2Uml2WUNzWjZuWFhzUTlhQVhCWUhucXV2WnFaYXp4X29FMnhNTlc1UmVnX3JkRDBtTXJRelhwcnJmT1BmR28zU0tUUW5UYVh2dXVfS0lYYmJlZ3h1dlEtdnhzUVo3NmExR1kzanhOZzVWcjBfczE2M1lLSm1JQVpr?oc=5"
-    },
-    {
-      "id": "auto-11f2b817b4",
-      "nombre": "Ignacio Mier se reúne con Gino Segura para analizar su trabajo rumbo a 2027 - MI",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdS1kUUx3cTdJVXFuVzEzcTFpYnBJQm1ROEVsd1AxR05lR1Zvem1VY3Qza1FycU9VYm9Gc2pEUzc1YWlVNk5XZ3VSNmtDTnFQd2lfVi1fMHItYm9JQUNXRmxWYVhfbTk1RGY3LXM3UU91Z3RlcmtYVDMybnppU0tvQmh3WDhfcU0yNFJJMUl5UnF5YWp4ZWVka1JGUXJwdnJuWFI0OdIBpAFBVV95cUxPRzA0RnY1UTFRbE5kckp4S3E1QldwRndoSGpEa0tKcXdQNWF0aUVGU0l5U3pIWl8tQ2RjMm9NcUtrNWpBbmJ6VE9QUlZuMC1POXl1amg5X1hvZEs2NkN6RUI2ZWx4eHN0Y3h5V1FKZkNsQVVMbEFVdmJlWmtjcGlHc0h3OEZLSnV4OXAyVHJnTDJzbS1jMWRMVUFKcVh1VXRUdnNpSg?oc=5"
-    },
-    {
       "id": "auto-7ff9f70a7e",
       "nombre": "El cablebús más largo y más peligroso del mundo (Línea 5), escribe Margarita Zav",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOTmxtSC1pNUxRLTQyaEdsemM4TzlEVEc1NS1QbUN1NjVjTTdsdDJlNGZrTFQ4NTMwSUxPTGJ5eFNlYlozQ0wtOVpGblMyUGFIRWRuWG1LUmI1QVl1WGdNYUxZZDNNODVaNkNjNDVNdmExaTFIMG1FT1RjUHgwQmRfLUVGaHVrVlNpSS0yMS1BaW1HRkJPZllkV2xESGlLS3pLeC1Ia3U4dUVGZUpidjhmM3ZB?oc=5"
+    },
+    {
+      "id": "auto-013c78098f",
+      "nombre": "Javier Corral y el humor - MILENIO",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNYUlwLWxsU29YWHYydjFfVnlFbXo1bm91V1RBWEtOMFNpeTRMZkNpRmFOR19SY3NvSTV1VGNGQWpONVVzcGRzMkVjV3ZJRFJITEFScEo0empiRXlqMUtacEpEQ0FkZFdwZFZsLXFuR0kzQU9NSXV4WXZlcWQ3YVNRdzRHX0hjVnpPMnlQMk5B0gGOAUFVX3lxTFBjX3VOa3REWDRKRFFOaWR1aVFyc3ZodDVaVV9kbHMxR3ctSXViMnZfVTh5eldUdjIzNG1oVUpQMDZyN0x1eUNBUng5ZTdRMFE3U19fcVE2ZTkxb095dnIybW1mNzZCRTdOVnBMWElwXzlXSDhOcjFhRlFfWlJVa3p6d0tsVlI2cjVXSGp0c3c?oc=5"
+    },
+    {
+      "id": "auto-a1e60ac83c",
+      "nombre": "Reconoce Mara Lezama la fuerza, identidad y liderazgo de las mujeres mayas con l",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTFd3UVBRaW5QN0kzd2xGTnJKQ2VrdHd2czdlY1RzMlVNSjJBN3Z2Zm5tOUJ3UW9HbzhId2V6Vy00V0hmMFdxZF9NNWR1eEd0V3ZtRFhpR0QwNWdHNTFlUDN5aXIyN045TTdfalUtcFVLYjFrRTgxbk00Qjk2bEN2TTZxWWhaaUtXbS1pOEh1U01GT3pCdFlNRXFqNjU3eDR5bHlmcEhPUVk2VTQxbnJqbmRRV2JuaUJ5TXVjbWtnRTNhRWs0TjNvT1ZHZTc4Z3B6aW5jRnNqaVdsNFE1S3ViUlY0WDZCUzVZckJONy1fd04?oc=5"
+    },
+    {
+      "id": "auto-4cab75075e",
+      "nombre": "Diputada del PT propone auditoría a gobierno de Jara por presuntos \"aviadores\" e",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOV19feEdwRlpUbnlVOVc1VTZMcnFnVERCMk1mUHVkVnBiUnlVWV9ybXBXVnl0SXYzSldydExzVUV1THJvbThIWUFpaXMwU2x4TGZEUldXOHBXeUVoWnNqMFAydF9LX1ZlLWlxRjZVNld1SFZfeGJjWjMwNHVUcHplUW1LZ2ZvMThnMVF2c3dOVTJuLVYxUWJzX1pRZG5VYWtyU19lQlFTbG5Dd0JtQzZJMXVhcWNsR0FUZEFxTXlKYllmSm1TYXpYeWtaTFRkTkdWeDVTVm1iZE1wWHFJcnY5UmtTeW5tUQ?oc=5"
     }
   ],
   "temas_retomados": [
@@ -340,16 +271,6 @@
       "tema": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
       "nota": "Nueva Constitución blinda soberanía e igualdad: Claudia Sheinbaum - MILENIO",
       "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSVpvMEZBRmhHYjN3c0s5QnB3OHo5UU5tU0Rzd1FwZkpyRGRnYjdMYmlwaHlFUnRlSUQ4UHBuTVR5Wk9kZTlEZFY4TEl6MHZjeXg2SmRaeWFiRGxUbmxUZmgwbUNtTHpvNVRtUHZFVDBEU01BNDlVM3lrMEVMTHBsS194dFRFNUZGS0VGbXVqTzjSAZABQVVfeXFMTnV2dWREQ3laem5hTk56OTNZZ25OMjBsV0NqdlNFLVRYZ3Z1RW1aVUEydWhQV2lqYWhOYUxPUUM0SDdlWE9DdFRJNEZyMHh6SnBXdGRXNXhya0E4cHJ6dGhQRFQyMC03OE5zTnI2ajJkSXFUcmRCNjRPSF9iQW42Q0ZBc1J2bGhvRDBFRGV6QlJV?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "amilcar_olan_aparicio",
-      "nombre": "Amílcar Olán Aparicio",
-      "rol": "Investigado",
-      "tema": "Huachicol Fiscal",
-      "nota": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -381,13 +302,7 @@
     "intensidad": 7.0,
     "fecha": "2026-09-28"
   },
-  "declaracion_otro": {
-    "actor": "Marcela Guerra Castillo",
-    "texto": "Grecia Quiroz denucia ‘guerra sucia’ en su contra: ‘Quieren meterme a la cárcel’",
-    "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/09/28/grecia-quiroz-denucia-guerra-sucia-en-su-contra-quieren-meterme-a-la-carcel/",
-    "intensidad": 7.0,
-    "fecha": "2026-09-28"
-  },
+  "declaracion_otro": null,
   "patron_historico_4sem": [
     {
       "fecha": "2026-09-02",
@@ -691,8 +606,8 @@
       "n_alto": 2,
       "n_medio": 1,
       "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
+      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
       "es_nuevo": false
     },
     {
@@ -800,13 +715,17 @@
     }
   ],
   "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-09-28T23:29:02.966634-06:00",
+    "generado_anterior": "2026-09-29T07:39:12.209349-06:00",
     "cambios": [
-      "Tensión nacional subió 1 pts (40 → 41)",
-      "Tema nuevo detectado: Ignacio Mier se reúne con Gino Segura para analizar su trabajo rumbo a 2027 - MI",
-      "Tema nuevo detectado: El cablebús más largo y más peligroso del mundo (Línea 5), escribe Margarita Zav",
-      "Nueva declaración relevante (otro actor): Marcela Guerra Castillo"
+      "Tensión nacional bajó 29 pts (41 → 12)",
+      "Entra a Temas en Movimiento: Tatiana Clouthier acepta a regañadientes resultado en Nuevo León: solo respalda a Claudia ",
+      "Sale de Temas en Movimiento: Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que ",
+      "Sale de Temas en Movimiento: Huachicol Fiscal",
+      "Tema nuevo detectado: Javier Corral y el humor - MILENIO",
+      "Tema nuevo detectado: Reconoce Mara Lezama la fuerza, identidad y liderazgo de las mujeres mayas con l",
+      "Tema nuevo detectado: Diputada del PT propone auditoría a gobierno de Jara por presuntos \"aviadores\" e",
+      "Categoría dominante del día cambió: Seguridad Nacional → Relación Bilateral"
     ]
   },
-  "hora_corte_publicada": "2026-09-29 07:39"
+  "hora_corte_publicada": "2026-09-29 09:22"
 }
