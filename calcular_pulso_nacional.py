@@ -10,6 +10,21 @@ peso inventado a mano. Si algo no se puede calcular con datos reales, se omite (
 nunca se rellena con un valor por default para que "se vea completo".
 
 Uso: python3 calcular_pulso_nacional.py
+
+ROADMAP_PENDIENTE -- evaluación de este módulo como producto de inteligencia (2026-09-29),
+decisión explícita del usuario: primero construir todo lo que NO necesita IA de paga
+(síntesis ejecutiva por reglas, etiquetas de confianza, sección "a vigilar", auditoría de
+aciertos -- los 4 ya implementados en esta revisión). Quedan pendientes A PROPÓSITO, como
+"cereza del pastel" para retomar más adelante, las dos piezas que sí se benefician de un
+modelo de lenguaje real:
+  1. Síntesis con matices reales (razonamiento sobre el conjunto de señales, no una
+     plantilla de frases fijas como 'sintesis_ejecutiva' de abajo).
+  2. Detección de patrones de ruido/contenido genérico que TODAVÍA no conocemos -- hoy se
+     atrapan uno por uno conforme aparecen (ver _es_nota_generica_en_vivo, _mananera_valida
+     como ejemplos de parches a patrones YA vistos); un modelo generalizaría a patrones
+     nuevos sin esperar a que alguien los reporte.
+No es indispensable para que el producto funcione bien -- es la mejora que sí requiere
+gasto recurrente (aunque sea mínimo, ej. una llamada al día para la síntesis).
 """
 import csv
 import json
@@ -147,6 +162,114 @@ def _actor_es_objeto(texto_lower, pos_inicio):
     del actor, aunque haya comillas en algún lugar de la frase."""
     previas = texto_lower[:pos_inicio].split()[-2:]
     return any(p.rstrip(',') in ('de', 'a', 'al', 'del', 'contra') for p in previas)
+
+
+RUTA_AUDITORIA = f'{RUTA_DATOS}/auditoria_alertas.csv'
+CAMPOS_AUDITORIA = ['id', 'tema_id', 'nombre_tema', 'tipo', 'fecha_deteccion',
+                     'peso_en_deteccion', 'fecha_evaluacion', 'resultado']
+DIAS_PARA_EVALUAR = 4     # cuánto se espera antes de calificar si una alerta acertó
+DIAS_VENTANA_PRECISION = 45  # cuántos días atrás se cuentan para el % de aciertos
+MIN_MUESTRA_PRECISION = 5    # con menos evaluadas que esto, no se muestra un % (engañaría)
+
+
+def _leer_auditoria():
+    try:
+        with open(RUTA_AUDITORIA, encoding='utf-8-sig') as f:
+            return list(csv.DictReader(f))
+    except FileNotFoundError:
+        return []
+
+
+def _escribir_auditoria(filas):
+    with open(RUTA_AUDITORIA, 'w', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=CAMPOS_AUDITORIA)
+        w.writeheader()
+        w.writerows(filas)
+
+
+def actualizar_auditoria_alertas(ahora, top5, temas_por_id, peso_tema):
+    """Registro de aciertos/fallos de las señales de alerta temprana ('escalando' en Top
+    5, 'alerta_temprana' en temas.csv), pedido explícito del usuario ("auditoría de
+    aciertos") como parte de lo que se puede construir sin IA de paga -- es contabilidad
+    de datos, no juicio nuevo.
+
+    Mecánica, sin ambigüedad editorial:
+    - Cada vez que un tema aparece marcado 'escalando' o 'alerta_temprana', se registra
+      UNA vez (no de nuevo en cada corrida mientras siga pendiente) con su peso/estado en
+      ese momento.
+    - Pasados DIAS_PARA_EVALUAR días, se revisa qué pasó de verdad:
+        · 'escalando' acierta si el peso real del tema (ventana de 18h) subió respecto al
+          momento en que se detectó -- la alerta decía "esto va a más", y si el peso bajó
+          o se quedó igual, falló.
+        · 'alerta_temprana' acierta si el tema de verdad llegó a nivel_relevancia='1'
+          (entró a la agenda nacional) para la fecha de evaluación -- eso es justo lo que
+          la alerta anunciaba que estaba por pasar.
+    - Se calcula un % de aciertos sobre los últimos DIAS_VENTANA_PRECISION días, pero solo
+      si ya hay al menos MIN_MUESTRA_PRECISION evaluadas -- con menos, un porcentaje sería
+      ruido estadístico disfrazado de dato duro, así que se reporta cuántas están
+      pendientes en vez de un % que no significa nada todavía."""
+    filas = _leer_auditoria()
+    existentes_pendientes = {(f['tema_id'], f['tipo']) for f in filas if f['resultado'] == 'pendiente'}
+    hoy = ahora.date()
+
+    candidatos = [(t['id'], 'escalando', t.get('nombre', ''), t.get('peso', 0))
+                  for t in top5 if t.get('escalando')]
+    candidatos += [(tid, 'alerta_temprana', t.get('nombre', ''), None)
+                   for tid, t in temas_por_id.items() if t.get('alerta_temprana')]
+
+    siguiente_id = max([int(f['id']) for f in filas if f['id'].isdigit()], default=0) + 1
+    for tema_id, tipo, nombre_tema, peso in candidatos:
+        if (tema_id, tipo) in existentes_pendientes:
+            continue  # ya se está siguiendo esta misma alerta, no se duplica
+        filas.append({
+            'id': str(siguiente_id), 'tema_id': tema_id, 'nombre_tema': nombre_tema,
+            'tipo': tipo, 'fecha_deteccion': hoy.isoformat(),
+            'peso_en_deteccion': '' if peso is None else str(peso),
+            'fecha_evaluacion': '', 'resultado': 'pendiente',
+        })
+        siguiente_id += 1
+        existentes_pendientes.add((tema_id, tipo))
+
+    for f in filas:
+        if f['resultado'] != 'pendiente':
+            continue
+        try:
+            fecha_det = datetime.strptime(f['fecha_deteccion'], '%Y-%m-%d').date()
+        except Exception:
+            continue
+        if (hoy - fecha_det).days < DIAS_PARA_EVALUAR:
+            continue
+        if f['tipo'] == 'alerta_temprana':
+            tema_actual = temas_por_id.get(f['tema_id'])
+            acierto = bool(tema_actual and tema_actual.get('nivel_relevancia') == '1')
+        else:  # 'escalando'
+            peso_actual = peso_tema.get(f['tema_id'], 0)
+            try:
+                peso_antes = float(f['peso_en_deteccion'] or 0)
+            except ValueError:
+                peso_antes = 0
+            acierto = peso_actual > peso_antes
+        f['resultado'] = 'acierto' if acierto else 'fallo'
+        f['fecha_evaluacion'] = hoy.isoformat()
+
+    _escribir_auditoria(filas)
+
+    limite = hoy - timedelta(days=DIAS_VENTANA_PRECISION)
+    evaluadas = []
+    for f in filas:
+        if f['resultado'] not in ('acierto', 'fallo') or not f['fecha_evaluacion']:
+            continue
+        try:
+            if datetime.strptime(f['fecha_evaluacion'], '%Y-%m-%d').date() >= limite:
+                evaluadas.append(f)
+        except Exception:
+            continue
+    pendientes = sum(1 for f in filas if f['resultado'] == 'pendiente')
+    if len(evaluadas) < MIN_MUESTRA_PRECISION:
+        return {'suficiente': False, 'evaluadas': len(evaluadas), 'pendientes': pendientes}
+    aciertos = sum(1 for f in evaluadas if f['resultado'] == 'acierto')
+    return {'suficiente': True, 'aciertos': aciertos, 'total': len(evaluadas),
+            'pct': round(aciertos / len(evaluadas) * 100), 'pendientes': pendientes}
 
 
 def timestamp_evento(e):
@@ -541,6 +664,11 @@ def calcular():
             'escalando': any(tema_escalando(m) for m in miembros),
             'ultima_hora': not es_grupo_agenda,
             'medios_corroborantes': medios_corroborantes,
+            # Etiqueta de confianza visible -- pedido explícito ("matices reales, no
+            # plantilla" queda para más adelante, pero ESTO sí se puede sin IA: ya se
+            # cuenta cuántos medios distintos corroboran cada tema, solo faltaba
+            # mostrarlo como semáforo en vez de dejarlo enterrado en el dato crudo.
+            'confianza': 'alta' if medios_corroborantes >= 3 else ('media' if medios_corroborantes >= 2 else 'baja'),
             'fuente_url': (ev_top or {}).get('fuente_url') or t_top.get('fuente_url') or '',
             '_dominio_top': identidad_medio(ev_top) if ev_top else '',
         })
@@ -876,6 +1004,11 @@ def calcular():
             'fuente_url': nota.get('fuente_url') or '',
             'reaparece': v['tema_id'] in ids_retomados,
             'tema_nuevo': v['tema_id'] in ids_nuevos,
+            # Etiqueta de confianza -- la nota ya tuvo que pasar NIVELES_PRIMER_NIVEL
+            # (ALTA u OFICIAL) para llegar aquí; esto solo distingue cuál de las dos, para
+            # que se vea igual que en Top 5 y Declaración (mismo criterio en todo el
+            # módulo, no uno nuevo por sección).
+            'confianza': 'alta' if nivel_evento(nota) == 'OFICIAL' else 'media',
         })
         nombres_ya_usados.add(clave_nombre)
 
@@ -964,9 +1097,12 @@ def calcular():
             if not tiene_marca_cita and not _atribucion_por_dos_puntos(actor_citado['nombre'], clausula):
                 continue
             intensidad = float(e['intensidad'])
+            # 'nivel_fuente' alimenta la etiqueta de confianza que se muestra junto a la
+            # declaración (OFICIAL -> alta, ALTA -> media) -- ambas ya pasaron el mismo
+            # candado NIVELES_PRIMER_NIVEL de arriba, esto solo distingue cuál de las dos.
             entrada = {'actor': actor_citado['nombre'], 'texto': e['descripcion'][:280],
                        'fuente_url': e.get('fuente_url', ''), 'intensidad': intensidad,
-                       'fecha': e.get('fecha', '')}
+                       'fecha': e.get('fecha', ''), 'nivel_fuente': nivel_evento(e)}
             if es_presidenta(actor_citado):
                 if intensidad > mejor_int_pres:
                     declaracion_presidenta, mejor_int_pres = entrada, intensidad
@@ -1258,6 +1394,67 @@ def calcular():
     # sin ninguna lectura de secuencia real que Top 5 y Nuevos/Continuidad/Retomados no
     # dieran ya -- no aportaba nada distinto, solo el mismo contenido en otro orden)
 
+    # ================================================================
+    # A VIGILAR -- temas.csv ya trae 'alerta_temprana' (robot_buscar_temas.py la activa
+    # cuando un tema está a un día de calificar como agenda nacional), pero antes de esta
+    # revisión ese dato se calculaba y se quedaba enterrado en el CSV -- nunca llegaba al
+    # JSON ni se mostraba en ningún lado. Es justo la señal de "esto todavía no es
+    # noticia grande pero está a punto" que un producto de inteligencia real necesita
+    # mostrar aparte de "lo que ya es grande hoy" (Top 5). Se excluyen los temas que ya
+    # entraron al Top 5 -- ahí la alerta ya se ve como 🔥 ESCALANDO, repetirla aquí sería
+    # ruido, no información nueva.
+    # ================================================================
+    ids_en_top5 = {t['id'] for t in top5}
+    a_vigilar = [{
+        'id': t['id'], 'nombre': t['nombre'], 'categoria': t['categoria'],
+        'resumen': (t.get('resumen') or '')[:200],
+        'fuente_url': t.get('fuente_url') or '',
+    } for t in temas if t.get('alerta_temprana') and t['id'] not in ids_en_top5]
+
+    # ================================================================
+    # AUDITORÍA DE ALERTAS -- ver actualizar_auditoria_alertas(). Corre en cada corrida
+    # (no solo cuando se publica) porque es contabilidad interna, no contenido publicado;
+    # se comporta bien aunque corra cada 30 min: no duplica una alerta ya en seguimiento.
+    # ================================================================
+    precision_alertas = actualizar_auditoria_alertas(ahora, top5, temas_por_id, peso_tema)
+
+    # ================================================================
+    # SÍNTESIS EJECUTIVA -- pedido explícito: "esto es lo que importa hoy y por qué" en
+    # 3-5 líneas arriba de todo, para alguien que tiene 90 segundos. Con reglas fijas
+    # sobre datos que este módulo YA calculó -- sin IA de paga, sin juicio nuevo, solo
+    # ensamblar en lenguaje llano lo que ya está en tension_nacional/top5/tablero/
+    # resumen_mananera/a_vigilar. El matiz real (una síntesis que de verdad razone sobre
+    # el conjunto, no una plantilla) queda pendiente a propósito -- ver nota en
+    # ROADMAP_PENDIENTE al principio de este archivo.
+    # ================================================================
+    sintesis_ejecutiva = []
+    nivel_tension = 'alta' if tension >= 70 else ('moderada' if tension >= 40 else 'baja')
+    sintesis_ejecutiva.append(
+        f'Tensión nacional {nivel_tension} ({tension}/100), con {n_notas_agenda} nota'
+        f'{"s" if n_notas_agenda != 1 else ""} de agenda nacional en las últimas {VENTANA_HORAS}h'
+        + (' -- lectura de baja confianza por poco volumen.' if baja_confianza else '.'))
+    if top5:
+        principal = top5[0]
+        titular_principal = (principal.get('motivo') or principal.get('resumen') or principal['nombre'])[:160]
+        sintesis_ejecutiva.append(
+            f'Domina la agenda: «{titular_principal}» (confianza {principal["confianza"]}, '
+            f'{principal["medios_corroborantes"]} medio{"s" if principal["medios_corroborantes"] != 1 else ""} corroborando)'
+            + (' -- en escalada.' if principal.get('escalando') else '.'))
+    movedores = [a for a in tablero_actores if not a.get('apagado') and a.get('delta_pts', 0) > 0]
+    if movedores:
+        top_mover = max(movedores, key=lambda a: a['delta_pts'])
+        sintesis_ejecutiva.append(
+            f'{top_mover["nombre"]} es quien más se movió en la agenda esta semana '
+            f'(impacto {top_mover["impacto_nivel"]}, {top_mover["alcance"]} medio{"s" if top_mover["alcance"] != 1 else ""} distintos).')
+    if a_vigilar:
+        nombres_vigilar = ', '.join(t['nombre'] for t in a_vigilar[:3])
+        sintesis_ejecutiva.append(
+            f'A vigilar: {len(a_vigilar)} tema{"s" if len(a_vigilar) != 1 else ""} a un paso de entrar '
+            f'a la agenda nacional ({nombres_vigilar}).')
+    alerta_mananera = next((m for m in resumen_mananera if m.get('alerta')), None) if resumen_mananera else None
+    if alerta_mananera:
+        sintesis_ejecutiva.append(f'La mañanera de hoy incluyó una alerta: {alerta_mananera["texto"][:160]}')
+
     salida = {
         'generado_en': ahora.isoformat(),
         'ventana_horas': VENTANA_HORAS,
@@ -1277,6 +1474,9 @@ def calcular():
         'tablero_semana_inicio': inicio_semana.date().isoformat(),
         'resumen_mananera': resumen_mananera,
         'mananera_estado': mananera_estado,
+        'sintesis_ejecutiva': sintesis_ejecutiva,
+        'a_vigilar': a_vigilar,
+        'precision_alertas': precision_alertas,
     }
     return salida, ventana_agenda
 
