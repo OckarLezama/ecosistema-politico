@@ -286,12 +286,34 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 @keyframes mapa-puntos-halo{ 0%,100%{opacity:.2; transform:scale(1);} 50%{opacity:.6; transform:scale(1.3);} }
 @keyframes mapa-puntos-destello{ 0%{opacity:1; transform:scale(0.6);} 60%{opacity:.5;} 100%{opacity:0; transform:scale(3.2);} }
 
+/* Puntos decorativos -- campo de "asteroides" puramente visual, no son notas. Cada
+   uno se desprende y desvanece a su propio ritmo, en bucle infinito (por eso vuelve
+   a aparecer solo): simula partículas que nacen, se alejan y se apagan. */
+.mapa-punto-decorativo{ fill:#E8EAED; transform-box:fill-box; transform-origin:center; animation-name:mapa-puntos-deriva; animation-timing-function:ease-in; animation-iteration-count:infinite; }
+@keyframes mapa-puntos-deriva{
+  0%{ opacity:var(--op-max,0.2); transform:translate(0,0) scale(1); }
+  70%{ opacity:calc(var(--op-max,0.2)*0.45); }
+  100%{ opacity:0; transform:translate(var(--dx,20px),var(--dy,-20px)) scale(0.55); }
+}
+/* Notas reales con más de 24h -- se desprenden y desvanecen UNA sola vez (no en
+   bucle, son datos reales), quedan atenuadas pero siguen siendo clicables */
+.mapa-punto-viejo{ animation:mapa-puntos-viejo-desvanece 5s ease-out 1 both; transform-box:fill-box; transform-origin:center; }
+@keyframes mapa-puntos-viejo-desvanece{ 0%{opacity:1; transform:translate(0,0);} 100%{opacity:.24; transform:translate(var(--vx,14px),var(--vy,-10px));} }
+
 /* Texto central superpuesto sobre el SVG -- carrusel permanente de las notas
    más relevantes del día (aparece, se desvanece, entra la siguiente). */
 .mapa-puntos-centro-nota{ transition:opacity .5s ease, transform .5s ease; opacity:1; transform:translateY(0); }
 .mapa-puntos-centro-nota.salir{ opacity:0; transform:translateY(-5px); }
 .mapa-puntos-centro-titulo{ font-family:var(--f-display); font-size:12px; line-height:1.35; color:#DDE1E6; }
+.mapa-puntos-centro-sub{ font-family:var(--f-mono); font-size:8.5px; color:#6B7280; margin-top:4px; }
+.mapa-puntos-centro-actor{ color:#8A93A0; }
 .mapa-puntos-centro-meta{ margin-top:8px; text-align:left; }
+.mapa-puntos-leyenda{
+  position:absolute; left:16px; bottom:16px; display:flex; flex-direction:column; gap:3px;
+  font-family:var(--f-mono); font-size:8px; color:#8A8F98; pointer-events:none;
+}
+.mapa-puntos-leyenda div{ display:flex; align-items:center; gap:5px; }
+.mapa-leyenda-punto{ width:7px; height:7px; border-radius:50%; display:inline-block; }
 .mapa-puntos-barra-fila{ display:flex; justify-content:space-between; font-family:var(--f-mono); font-size:8px; color:#8A8F98; margin-bottom:2px; }
 .mapa-puntos-barra{ height:3px; border-radius:99px; background:#22262C; overflow:hidden; }
 .mapa-puntos-barra-fill{ height:100%; border-radius:99px; transition:width .4s ease; }
