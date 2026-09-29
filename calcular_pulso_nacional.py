@@ -287,6 +287,17 @@ def calcular():
         total_sem = sum(pesos_sem.values()) or 1
         categorias_tendencia_4sem.append({
             'semana_fin': fin_dia_incl.isoformat(),
+            # NUEVO -- el eje de esta gráfica etiquetaba cada punto con el día en que
+            # TERMINA esa semana (fin_dia_incl), mientras que Patrón Histórico etiqueta
+            # cada punto con su propio día real -- el primer punto de Patrón Histórico ya
+            # es, literalmente, el primer día de toda la ventana de 28 días (ej. 02-sep).
+            # Con "termina en" como etiqueta, el primer punto de ESTA gráfica decía 08-sep
+            # (el fin de su semana), aunque sus datos SÍ arrancan el mismo 02-sep -- de ahí
+            # que a simple vista parecieran cubrir periodos distintos, cuando la ventana de
+            # datos siempre fue idéntica. 'semana_inicio' es para el eje (mismo criterio
+            # que Patrón Histórico: el día en que arranca cada punto); 'semana_fin' se deja
+            # tal cual para el texto del tooltip ("semana del ...").
+            'semana_inicio': inicio_dia.isoformat(),
             'categorias': [{'categoria': c, 'peso_pct': round(pesos_sem[c] / total_sem * 100) if total_sem else 0}
                             for c in CATEGORIAS],
         })
