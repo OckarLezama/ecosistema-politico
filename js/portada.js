@@ -276,13 +276,34 @@ function generarMapaPuntosSVG(){
   const gruposConectados = Object.entries(porTema).filter(([,g])=>g.length>=2);
 
   // líneas muy sutiles -- solo dan a entender que hay un hilo, no deben competir
-  // visualmente con los puntos
+  // visualmente con los puntos. Cada punto se une a su vecino MÁS CERCANO en
+  // pantalla dentro de su propio tema (no al siguiente cronológico) -- así el hilo
+  // real que se dibuja siempre es corto y nunca cruza el mapa de lado a lado.
+  // Se guarda el id de cada línea por punto para poder resaltar, en el hover,
+  // la línea real que los une (en vez de dibujar una aparte).
   let lineas = '';
+  let lineaContador = 0;
+  const lineaIdsPorPunto = new Map();
   gruposConectados.forEach(([,grupo])=>{
-    for(let i=0;i<grupo.length-1;i++){
-      const a = grupo[i], b = grupo[i+1];
-      lineas += `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="#8A93A0" stroke-width="0.5" opacity="0.14" class="mapa-puntos-linea"/>`;
-    }
+    const paresYaUnidos = new Set();
+    grupo.forEach((p, i)=>{
+      let vecino = null, vecinoIdx = -1, distMin = Infinity;
+      grupo.forEach((otro, j)=>{
+        if(j===i) return;
+        const d = Math.hypot(otro.x-p.x, otro.y-p.y);
+        if(d<distMin){ distMin = d; vecino = otro; vecinoIdx = j; }
+      });
+      if(!vecino) return;
+      const clave = i<vecinoIdx ? `${i}-${vecinoIdx}` : `${vecinoIdx}-${i}`;
+      if(paresYaUnidos.has(clave)) return;
+      paresYaUnidos.add(clave);
+      const lineaId = `mapa-linea-${lineaContador++}`;
+      lineas += `<line id="${lineaId}" x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${vecino.x.toFixed(1)}" y2="${vecino.y.toFixed(1)}" stroke="#8A93A0" stroke-width="0.5" opacity="0.14" class="mapa-puntos-linea"/>`;
+      [p, vecino].forEach(pt=>{
+        if(!lineaIdsPorPunto.has(pt)) lineaIdsPorPunto.set(pt, []);
+        lineaIdsPorPunto.get(pt).push(lineaId);
+      });
+    });
   });
 
   // notas destacadas -- mismo criterio de score que notasRelevantesDe (intensidad*2+
@@ -322,17 +343,12 @@ function generarMapaPuntosSVG(){
       const otras = grupoDeSuTema.length-1;
       nombreTemaTxt = nombreTemaPorId[p.ev.tema_id] || 'este tema';
       mensajeConexion = `Se conecta con ${otras} nota${otras!==1?'s':''} más de "${nombreTemaTxt}" — impacto ${impacto.toLowerCase()}, difusión ${difusion.split(' ')[0].toLowerCase()}.`;
-      // vecino REAL más cercano en pantalla (no el siguiente cronológico) -- así la
-      // línea que se traza al hacer hover es corta y no cruza el mapa de lado a lado
-      const idx = grupoDeSuTema.indexOf(p);
-      let vecino = null, distMin = Infinity;
-      grupoDeSuTema.forEach((otro, j)=>{
-        if(j===idx) return;
-        const d = Math.hypot(otro.x-p.x, otro.y-p.y);
-        if(d<distMin){ distMin = d; vecino = otro; }
-      });
-      if(vecino){
-        conexionAttrs = ` data-gx="${p.x.toFixed(1)}" data-gy="${p.y.toFixed(1)}" data-px="${vecino.x.toFixed(1)}" data-py="${vecino.y.toFixed(1)}" data-tema-nombre="${nombreTemaTxt.replace(/"/g,'&quot;')}"`;
+      // ids de las líneas REALES (ya dibujadas arriba, vecino más cercano en
+      // pantalla) que tocan este punto -- en el hover se resaltan esas mismas
+      // líneas, no se dibuja una aparte
+      const lineIds = lineaIdsPorPunto.get(p) || [];
+      if(lineIds.length){
+        conexionAttrs = ` data-gx="${p.x.toFixed(1)}" data-gy="${p.y.toFixed(1)}" data-lineas="${lineIds.join(',')}" data-tema-nombre="${nombreTemaTxt.replace(/"/g,'&quot;')}"`;
       }
     }
 
@@ -497,13 +513,30 @@ function mostrarConexionMapa(a, wrap){
   if(!giro) return;
   ocultarConexionMapa(wrap);
   const gx = parseFloat(a.dataset.gx), gy = parseFloat(a.dataset.gy);
-  const px = parseFloat(a.dataset.px), py = parseFloat(a.dataset.py);
-  if(isNaN(gx)||isNaN(px)) return;
+  const lineaIds = (a.dataset.lineas||'').split(',').filter(Boolean);
+  if(isNaN(gx) || !lineaIds.length) return;
   const cx = 320, cy = 320;
-  const dist = Math.hypot(px-gx, py-gy);
-  // el texto SIEMPRE se coloca hacia afuera del propio punto (nunca al centro
-  // del mapa, donde vive el carrusel) -- así jamás se pierde encima del texto
-  // central, sin importar dónde esté la nota vecina
+  // color real del impacto -- se usa para resaltar la línea real y el texto,
+  // mismo idioma visual que los puntos destacados
+  const colorLinea = a.dataset.impacto==='Alto' ? 'var(--riesgo-alto)' : a.dataset.impacto==='Medio' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+
+  // se resalta la línea REAL que ya está dibujada (la que efectivamente une a
+  // este punto con su vecino), no se traza una aparte -- así lo que se ilumina
+  // es exactamente lo que el usuario ve unido en el mapa
+  const lineasActivas = [];
+  lineaIds.forEach(id=>{
+    const linea = giro.querySelector('#'+id);
+    if(!linea) return;
+    linea.setAttribute('stroke', colorLinea);
+    linea.setAttribute('stroke-width', '1.5');
+    linea.setAttribute('opacity', '0.95');
+    lineasActivas.push(id);
+  });
+  if(!lineasActivas.length) return;
+
+  // el texto (sin recuadro) SIEMPRE se coloca hacia afuera del propio punto
+  // (nunca al centro del mapa, donde vive el carrusel) -- así jamás se pierde
+  // encima del texto central
   let dirx = gx-cx, diry = gy-cy;
   const mag = Math.hypot(dirx,diry) || 1;
   dirx/=mag; diry/=mag;
@@ -512,25 +545,15 @@ function mostrarConexionMapa(a, wrap){
   by = Math.max(22, Math.min(618, by));
   const angulo = calcularAnguloActualMapa();
   const nombreTema = (a.dataset.temaNombre||'este tema').slice(0,32);
-  // color real del impacto -- la línea y la marca en el punto se pintan con el
-  // mismo color que ya usan los puntos destacados, así se ve más "cargada" justo
-  // donde nace la conexión, sin necesidad de un recuadro de fondo
-  const colorLinea = a.dataset.impacto==='Alto' ? 'var(--riesgo-alto)' : a.dataset.impacto==='Medio' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
-  // la línea solo se dibuja si la nota vecina está cerca en pantalla -- si el único
-  // vecino de tema quedó del otro lado del círculo, una línea recta cruzaría por
-  // encima del texto del centro y se perdería, así que en ese caso solo se explica
-  // el porqué con el texto, sin trazar una línea que cruce todo el mapa
-  const lineaHTML = dist < 300
-    ? `<line x1="${gx}" y1="${gy}" x2="${px}" y2="${py}" stroke="${colorLinea}" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.65"/>
-       <circle cx="${gx}" cy="${gy}" r="5.5" fill="none" stroke="${colorLinea}" stroke-width="1" opacity="0.85"/>`
-    : `<circle cx="${gx}" cy="${gy}" r="5.5" fill="none" stroke="${colorLinea}" stroke-width="1" opacity="0.85"/>`;
-  // ya no lleva recuadro -- solo el texto, con un halo oscuro (paint-order:stroke)
-  // detrás de cada letra para que se lea limpio sobre cualquier fondo sin tapar
-  // el mapa con una caja
+
+  // marca circular en el propio punto, del mismo color -- ya no lleva recuadro,
+  // solo el texto con un halo oscuro (paint-order:stroke) detrás de cada letra
+  // para que se lea limpio sobre cualquier fondo sin tapar el mapa con una caja
   const g = document.createElementNS('http://www.w3.org/2000/svg','g');
   g.setAttribute('id','mapa-conexion-hover');
+  g.dataset.lineas = lineasActivas.join(',');
   g.innerHTML = `
-    ${lineaHTML}
+    <circle cx="${gx}" cy="${gy}" r="5.5" fill="none" stroke="${colorLinea}" stroke-width="1" opacity="0.9"/>
     <g transform="translate(${bx.toFixed(1)},${by.toFixed(1)}) rotate(${(-angulo).toFixed(1)})">
       <text x="0" y="-2" font-size="7.3" fill="#E8EAED" font-weight="700" font-family="var(--f-mono)" text-anchor="middle" paint-order="stroke" stroke="#0B0D10" stroke-width="2.5">${nombreTema}</text>
       <text x="0" y="8" font-size="6.4" fill="#9AA2AC" font-family="var(--f-mono)" text-anchor="middle" paint-order="stroke" stroke="#0B0D10" stroke-width="2.5">Impacto ${a.dataset.impacto} · Difusión ${a.dataset.difusion}</text>
@@ -539,7 +562,16 @@ function mostrarConexionMapa(a, wrap){
 }
 function ocultarConexionMapa(wrap){
   const existente = wrap.querySelector('#mapa-conexion-hover');
-  if(existente) existente.remove();
+  if(!existente) return;
+  const ids = (existente.dataset.lineas||'').split(',').filter(Boolean);
+  ids.forEach(id=>{
+    const linea = wrap.querySelector('#'+id);
+    if(!linea) return;
+    linea.setAttribute('stroke', '#8A93A0');
+    linea.setAttribute('stroke-width', '0.5');
+    linea.setAttribute('opacity', '0.14');
+  });
+  existente.remove();
 }
 
 function abrirMapaPuntos(){
