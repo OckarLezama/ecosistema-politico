@@ -205,34 +205,45 @@ function generarMapaPuntosSVG(){
   });
   const gruposConectados = Object.entries(porTema).filter(([,g])=>g.length>=2);
 
+  // líneas muy sutiles -- solo dan a entender que hay un hilo, no deben competir
+  // visualmente con los puntos
   let lineas = '';
   gruposConectados.forEach(([,grupo])=>{
     for(let i=0;i<grupo.length-1;i++){
       const a = grupo[i], b = grupo[i+1];
-      lineas += `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="#2DD4BF" stroke-width="0.9" opacity="0.22" class="mapa-puntos-linea"/>`;
+      lineas += `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="#8A93A0" stroke-width="0.5" opacity="0.14" class="mapa-puntos-linea"/>`;
     }
   });
 
   // notas destacadas -- mismo criterio de score que notasRelevantesDe (intensidad*2+
-  // cobertura, umbral 8): llevan halo permanente y alimentan el carrusel del centro
+  // cobertura, umbral 8): son las únicas que resaltan (más grandes, más brillantes)
+  // y alimentan el carrusel del centro. El resto son puntos blanco-gris pequeños,
+  // fijos, sin animación -- solo sirven de contexto para que lo importante se note.
   const destacadas = notasRelevantesDe(notas, 999);
   const destacadasSet = new Set(destacadas);
   const carruselNotas = destacadas.slice(0, 8);
   const ahoraDecimal = horaActualDecimalCDMX();
 
-  // puntos más grandes y clicables -- cada uno es un link real a su fuente, con un
-  // área de toque más grande (círculo invisible) para que funcione bien en tablet.
-  // Al pasar el mouse/foco crecen y muestran un tooltip propio (no solo el <title>
-  // nativo). Los destacados llevan halo pulsante; los recién registrados (últimos
-  // 45 min) llevan un destello de entrada una sola vez.
+  // puntos clicables -- cada uno es un link real a su fuente, con un área de toque
+  // más grande (círculo invisible) para que funcione bien en tablet, sin importar
+  // qué tan chico se vea el punto. Al pasar el mouse/foco crecen y muestran un
+  // tooltip propio con título, impacto, difusión y -- si la nota está conectada
+  // con otras del mismo tema -- el motivo de esa conexión. Los recién registrados
+  // (últimos 45 min) llevan un destello de entrada una sola vez.
   let dots = posiciones.map(p=>{
-    const r = (3.2+Math.random()*2.0).toFixed(2);
-    const dur = (2.6+Math.random()*2.4).toFixed(2), delay = (-Math.random()*5).toFixed(2);
     const url = p.ev.fuente_url || '';
     const titulo = (p.ev.descripcion||'').replace(/^\[Mañanera\]\s*/,'').replace(/"/g,'&quot;').slice(0,140);
     const impacto = nivelImpactoTexto(p.ev.intensidad);
     const difusion = difusionTexto(p.ev.cobertura);
     const esDestacada = destacadasSet.has(p.ev);
+
+    const grupoDeSuTema = p.ev.tema_id ? porTema[p.ev.tema_id] : null;
+    let mensajeConexion = '';
+    if(grupoDeSuTema && grupoDeSuTema.length>=2){
+      const otras = grupoDeSuTema.length-1;
+      const nombreTemaTxt = nombreTemaPorId[p.ev.tema_id] || 'este tema';
+      mensajeConexion = `Se conecta con ${otras} nota${otras!==1?'s':''} más de "${nombreTemaTxt}" — impacto ${impacto.toLowerCase()}, difusión ${difusion.split(' ')[0].toLowerCase()}.`;
+    }
 
     const horaNota = horaDecimalDeRegistro(p.ev.hora_registro);
     let esNueva = false;
@@ -243,32 +254,47 @@ function generarMapaPuntosSVG(){
     }
 
     let extra = '';
-    if(esDestacada) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(Number(r)*2.3).toFixed(2)}" fill="none" stroke="#2DD4BF" stroke-width="1.1" class="mapa-punto-halo"/>`;
-    if(esNueva) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="none" stroke="#F5D90A" stroke-width="1.8" class="mapa-punto-destello"/>`;
-
-    const colorDot = esDestacada ? '#2DD4BF' : '#E8EAED';
-    const circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="${colorDot}" class="mapa-punto-late" style="animation-duration:${dur}s;animation-delay:${delay}s;"></circle>`;
-    const hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="16" fill="transparent"/>`;
+    let circulo, hit;
+    if(esDestacada){
+      const r = (4.4+Math.random()*1.6).toFixed(2);
+      const dur = (2.6+Math.random()*2.4).toFixed(2), delay = (-Math.random()*5).toFixed(2);
+      extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(Number(r)*2.1).toFixed(2)}" fill="none" stroke="#E8EAED" stroke-width="0.9" class="mapa-punto-halo"/>`;
+      if(esNueva) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="none" stroke="#F5F5F5" stroke-width="1.6" class="mapa-punto-destello"/>`;
+      circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#F5F6F7" class="mapa-punto-late" style="animation-duration:${dur}s;animation-delay:${delay}s;"></circle>`;
+      hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="17" fill="transparent"/>`;
+    } else {
+      const r = (1.5+Math.random()*0.5).toFixed(2);
+      if(esNueva) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="none" stroke="#F5F5F5" stroke-width="1.3" class="mapa-punto-destello"/>`;
+      circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#767C86"></circle>`;
+      hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="13" fill="transparent"/>`;
+    }
     const contenido = extra + hit + circulo;
     if(!url) return `<g>${contenido}</g>`;
-    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link" data-titulo="${titulo}" data-impacto="${impacto}" data-difusion="${difusion}">${contenido}</a>`;
+    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link" data-titulo="${titulo}" data-impacto="${impacto}" data-difusion="${difusion}" data-conexion="${mensajeConexion.replace(/"/g,'&quot;')}">${contenido}</a>`;
   }).join('');
 
-  // callout del tema con más cobertura hoy, mismo lenguaje visual que el resto del
-  // sitio -- le da al mapa un punto de lectura, no solo decoración
+  // callout del grupo con más notas conectadas hoy -- usa el TÍTULO real de la nota
+  // más reciente de ese grupo (no el nombre del tema/clasificación) y explica el
+  // porqué de la conexión con el mismo lenguaje de impacto/difusión que el resto
   let callout = '';
   if(gruposConectados.length){
-    const [temaIdTop, grupoTop] = gruposConectados.sort((a,b)=>b[1].length-a[1].length)[0];
+    const [,grupoTop] = gruposConectados.sort((a,b)=>b[1].length-a[1].length)[0];
     const cxg = grupoTop.reduce((s,p)=>s+p.x,0)/grupoTop.length;
     const cyg = grupoTop.reduce((s,p)=>s+p.y,0)/grupoTop.length;
-    const nombreTema = nombreTemaPorId[temaIdTop] || 'Tema sin nombre';
+    const notaAncla = [...grupoTop].sort((a,b)=> (b.ev.hora_registro||'').localeCompare(a.ev.hora_registro||''))[0].ev;
+    const tituloAncla = notaAncla.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,54);
+    const avgIntensidad = grupoTop.reduce((s,p)=>s+Number(p.ev.intensidad||0),0)/grupoTop.length;
+    const avgCobertura = grupoTop.reduce((s,p)=>s+Number(p.ev.cobertura||1),0)/grupoTop.length;
+    const impactoTop = nivelImpactoTexto(avgIntensidad);
+    const difusionTop = difusionTexto(avgCobertura).split(' ')[0];
     const haciaAfuera = cxg>=cx;
-    const bx = haciaAfuera ? 470 : 40, by = 60;
+    const bx = haciaAfuera ? 420 : 40, by = 48;
     callout = `
-      <line x1="${cxg.toFixed(1)}" y1="${cyg.toFixed(1)}" x2="${(haciaAfuera?bx:bx+130).toFixed(1)}" y2="${(by+20).toFixed(1)}" stroke="#2DD4BF" stroke-width="0.75" stroke-dasharray="2,2" opacity="0.5"/>
-      <rect x="${bx}" y="${by}" width="130" height="40" rx="4" fill="#101317" stroke="#2A2F36"/>
-      <text x="${bx+10}" y="${by+15}" font-size="8" fill="#6B7280" font-family="var(--f-mono)">TEMA MÁS ACTIVO</text>
-      <text x="${bx+10}" y="${by+30}" font-size="9.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)">${nombreTema.slice(0,26)} · ${grupoTop.length}</text>`;
+      <line x1="${cxg.toFixed(1)}" y1="${cyg.toFixed(1)}" x2="${(haciaAfuera?bx:bx+180).toFixed(1)}" y2="${(by+24).toFixed(1)}" stroke="#8A93A0" stroke-width="0.6" stroke-dasharray="2,2" opacity="0.4"/>
+      <rect x="${bx}" y="${by}" width="180" height="58" rx="4" fill="#101317" stroke="#2A2F36"/>
+      <text x="${bx+10}" y="${by+14}" font-size="7.5" fill="#6B7280" font-family="var(--f-mono)">SE CONECTAN ${grupoTop.length} NOTAS</text>
+      <text x="${bx+10}" y="${by+29}" font-size="9.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)">${tituloAncla}</text>
+      <text x="${bx+10}" y="${by+44}" font-size="7.5" fill="#8A8F98" font-family="var(--f-mono)">Impacto ${impactoTop} · Difusión ${difusionTop}</text>`;
   }
 
   // centro -- ya no es un texto fijo del conteo: rota permanentemente entre las
@@ -288,7 +314,7 @@ function generarMapaPuntosSVG(){
 
   const html = `
     <div class="mapa-puntos-wrap">
-      <svg viewBox="0 0 640 640" style="width:100%;max-width:640px;display:block;margin:0 auto;">
+      <svg viewBox="0 0 640 640" style="width:100%;max-width:820px;display:block;margin:0 auto;">
         <g class="mapa-puntos-giro">
           <g>${lineas}</g>
           <g>${dots}</g>
@@ -329,7 +355,9 @@ function iniciarCarruselMapaPuntos(wrap, notas){
 }
 
 function mostrarTooltipMapa(a, wrap, tooltip, evt){
-  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>`;
+  const conexion = a.dataset.conexion;
+  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>` +
+    (conexion ? `<br><span style="color:#8A93A0;">${conexion}</span>` : '');
   tooltip.style.display = 'block';
   posicionarTooltipMapa(wrap, tooltip, evt);
 }
@@ -337,7 +365,7 @@ function posicionarTooltipMapa(wrap, tooltip, evt){
   const rect = wrap.getBoundingClientRect();
   const x = (evt && evt.clientX!==undefined) ? evt.clientX-rect.left : rect.width/2;
   const y = (evt && evt.clientY!==undefined) ? evt.clientY-rect.top : rect.height/2;
-  tooltip.style.left = Math.min(x+12, rect.width-195)+'px';
+  tooltip.style.left = Math.min(x+12, rect.width-235)+'px';
   tooltip.style.top = Math.max(0, y-42)+'px';
 }
 
