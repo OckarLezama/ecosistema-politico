@@ -215,10 +215,16 @@ function _flechaTendencia(delta, umbral){
 function analizarTendenciaCategorias(serie){
   if(!serie || serie.length < 2) return [];
   const categorias = serie[0].categorias.map(c=>c.categoria);
+  // CORRECCIÓN -- la serie pasó de 4 puntos semanales a 28 diarios (mismo dato, más
+  // resolución -- ver backend). "actual vs. previa" ya no puede comparar el último punto
+  // contra el anterior (serían días consecutivos, prácticamente iguales porque cada punto
+  // ya es un promedio móvil de 7 días) -- se compara contra el punto de HACE 7 DÍAS, que
+  // sigue leyéndose como "esta semana vs. la semana pasada", igual que antes.
+  const idxPrevia = Math.max(0, serie.length - 8);
   return categorias.map(cat=>{
     const valores = serie.map(s => (s.categorias.find(c=>c.categoria===cat)||{}).peso_pct || 0);
     const actual = valores[valores.length-1];
-    const previa = valores[valores.length-2];
+    const previa = valores[idxPrevia];
     const media4 = valores.reduce((a,b)=>a+b,0) / valores.length;
     const delta = actual - previa;
     const pct = previa > 0 ? Math.round((delta/previa)*100) : (actual>0 ? 100 : 0);
@@ -282,8 +288,10 @@ function svgTendenciaCategoriasPulso(serie){
     valores.forEach((v,i)=>{
       const esMax = i===idxMax;
       const halo = esMax ? `<circle cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="7.5" fill="${color}" opacity="0.22" style="animation:pulso-halo 1.8s ease-in-out infinite;"/>` : '';
-      const rangoSemana = serie[i].semana_inicio ? `${serie[i].semana_inicio} a ${serie[i].semana_fin}` : serie[i].semana_fin;
-      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${rangoSemana} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4.5:1.4}" fill="${color}" stroke="var(--bg-2)" stroke-width="${esMax?1:0.6}" style="cursor:pointer;"/>`;
+      // CORRECCIÓN -- cada punto ahora es un día (con promedio móvil de 7 días detrás, ver
+      // backend), no una semana -- el tooltip lo dice así para no sugerir un rango que ya
+      // no existe como tal.
+      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · ${serie[i].fecha} (promedio de los 7 días previos) · ${v}%${esMax?' · máximo del periodo':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4.5:1.4}" fill="${color}" stroke="var(--bg-2)" stroke-width="${esMax?1:0.6}" style="cursor:pointer;"/>`;
     });
   });
 
@@ -301,15 +309,16 @@ function svgTendenciaCategoriasPulso(serie){
     ${svgAreas}
     <line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.75"/>
     ${svgLineasYPuntos}
-    ${/* CORREGIDO -- pedido explícito, con evidencia visual: el eje etiquetaba el FIN de
-        cada semana, así que el primer punto decía "09-08" aunque su dato ya arrancaba el
-        02-sep (mismo día en que arranca Patrón Histórico) -- parecía un periodo más corto
-        sin serlo. Ahora usa semana_inicio, igual que Patrón Histórico usa el día real de
-        cada punto, así el primer rótulo de ambas gráficas coincide. */''}
-    ${serie.map((s,i)=>`<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${(s.semana_inicio||s.semana_fin).slice(5)}</text>`).join('')}
+    ${/* CORRECCIÓN -- pedido explícito, con evidencia visual: se comparaba contra Patrón
+        Histórico y no se veía la misma "temporalidad". El rango de fechas YA era idéntico
+        (ambas cubren los mismos 28 días), pero esta serie solo tenía 4 puntos (uno por
+        semana) así que no podía mostrar la misma densidad de etiquetas que una serie de 28
+        -- ahora también es diaria, con exactamente la misma regla de etiquetado que Patrón
+        Histórico (una de cada 4 días + el último), así el eje se ve igual en ambas. */''}
+    ${serie.map((s,i)=> (i%4===0 || i===serie.length-1) ? `<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.fecha.slice(5)}</text>` : '').join('')}
     <line x1="${xDe(serie.length-1).toFixed(1)}" y1="${padT}" x2="${xDe(serie.length-1).toFixed(1)}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
     <polygon class="pulso-marca-viva" points="${xDe(serie.length-1).toFixed(1)},${(padT+7).toFixed(1)} ${(xDe(serie.length-1)-5).toFixed(1)},${padT} ${(xDe(serie.length-1)+5).toFixed(1)},${padT}" fill="var(--teal)"/>
-    <text class="pulso-marca-viva" x="${(xDe(serie.length-1)+4).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="end">HOY · ${fmtFechaCortaPulso(serie[serie.length-1].semana_fin)}</text>
+    <text class="pulso-marca-viva" x="${(xDe(serie.length-1)+4).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="end">HOY · ${fmtFechaCortaPulso(serie[serie.length-1].fecha)}</text>
   </svg>
   <div style="display:flex;flex-wrap:wrap;margin-top:6px;">${leyenda}</div>
   <div style="font-size:9px;color:var(--ink-3);margin-top:2px;">% = variación de la semana en curso vs. la previa · el anillo marca el máximo real de cada categoría en las 4 semanas.</div>`;
@@ -542,17 +551,23 @@ function tableroActoresPulso(actores){
   // cuantas rondas, sin mover a quien no choca con nadie. La posición real (dato) se
   // conserva siempre que no haya choque -- esto es solo para que ninguna tape a otra.
   const datos = actores.map((a,i)=>{
-    const color = colorImpactoPieza(a);
+    // CORRECCIÓN -- pedido explícito: el tablero es para ver la trayectoria de un actor en
+    // la semana, no una foto suelta -- si hoy no tuvo mención nueva pero sigue siendo esta
+    // misma semana, el backend lo manda con 'apagado:true' en vez de quitarlo. Se pinta en
+    // gris apagado (sin su color de impacto, sin halo ni ping) para que se note que perdió
+    // continuidad, sin borrar su rastro de la semana.
+    const esApagado = !!a.apagado;
+    const color = esApagado ? 'var(--ink-3)' : colorImpactoPieza(a);
     // Un actor que solo figuró UN día esta semana no tiene el mismo peso que uno con
     // presencia sostenida -- se pide explícitamente que se vea tenue/apagado, no al
     // mismo brillo que el resto.
-    const esTenue = a.dias_activo === 1;
+    const esTenue = a.dias_activo === 1 || esApagado;
     const x1=px(a.x_lunes), y1=py(a.y_lunes);
     // CORRECCIÓN -- pedido explícito repetido: seguían viéndose encimadas. Piezas más
     // chicas (11-16 en vez de 14-21; el tamaño de letra CS/AL no se toca) para que quepan
     // 9 sin apretarse tanto.
     const r = 11 + Math.min(5, (a.alcance||0));
-    return { a, i, color, esTenue, x1, y1, x2: px(a.x_hoy), y2: py(a.y_hoy), r };
+    return { a, i, color, esTenue, esApagado, x1, y1, x2: px(a.x_hoy), y2: py(a.y_hoy), r };
   });
   // CORRECCIÓN -- el choque solo se medía contra el radio "r" del círculo sólido, pero
   // cada pieza también dibuja un halo (r+8) y un anillo (r+2) alrededor: con solo 6px de
@@ -569,12 +584,20 @@ function tableroActoresPulso(actores){
       for(let j=i+1; j<datos.length; j++){
         const p1 = datos[i], p2 = datos[j];
         const dx = p2.x2-p1.x2, dy = p2.y2-p1.y2;
-        const dist = Math.sqrt(dx*dx+dy*dy) || 0.01;
+        const dist = Math.sqrt(dx*dx+dy*dy);
         const minDist = (p1.r+HALO) + (p2.r+HALO) + GAP_MIN;
         if(dist < minDist){
           huboChoque = true;
-          const empuje = (minDist-dist)/2;
-          const nx = dx/dist, ny = dy/dist;
+          // CORRECCIÓN -- dos actores con EXACTAMENTE el mismo volumen/intensidad caen en
+          // el mismo (x_hoy,y_hoy) -- dx=dy=0, sin dirección real hacia dónde empujar (el
+          // "|| 0.01" de antes evitaba dividir entre 0 pero seguía dando nx=ny=0, o sea
+          // CERO desplazamiento real: se quedaban encimados para siempre). Cuando están
+          // exactamente encimados se usa un ángulo fijo (distinto por cada par, vía el
+          // ángulo dorado) para que sí se separen en vez de congelarse superpuestos.
+          const distReal = dist || 0.001;
+          const empuje = (minDist-distReal)/2;
+          const nx = dist > 0.001 ? dx/distReal : Math.cos((i*7+j)*2.399963);
+          const ny = dist > 0.001 ? dy/distReal : Math.sin((i*7+j)*2.399963);
           // Traslada la pieza COMPLETA (línea de "ayer" incluida), no solo el punto de
           // hoy -- así el trazo se mueve junto con su punta y no queda un ángulo raro,
           // y el marcador hueco de "ayer" tampoco termina encimado con otra pieza.
@@ -595,7 +618,7 @@ function tableroActoresPulso(actores){
     if(!huboChoque) break;
   }
   let piezas = '';
-  datos.forEach(({a,i,color,esTenue,x1,y1,x2,y2,r})=>{
+  datos.forEach(({a,i,color,esTenue,esApagado,x1,y1,x2,y2,r})=>{
     // Tooltip con lectura visual, no solo texto plano -- pedido explícito: la exposición
     // ponderada como barrita con signo/color, el impacto como franja de 3 tramos (alto/
     // medio/bajo) en vez de "2 alto, 1 medio", y el alcance como barrita también. El link
@@ -614,8 +637,8 @@ function tableroActoresPulso(actores){
     const alcancePct = Math.round((a.alcance||0) / maxAlcance * 100);
     const info = `
       <div style="min-width:172px;">
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;"><b>${a.nombre}</b>${a.es_nuevo?'<span style="font-size:8px;font-family:var(--f-mono);color:'+color+';border:1px solid '+color+';border-radius:99px;padding:0 5px;">NUEVO</span>':''}${esTenue?'<span style="font-size:8px;font-family:var(--f-mono);color:var(--ink-3);border:1px solid var(--line-strong);border-radius:99px;padding:0 5px;">1 SOLO DÍA</span>':''}</div>
-        <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;">${a.es_nuevo ? 'nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}</div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;"><b>${a.nombre}</b>${a.es_nuevo?'<span style="font-size:8px;font-family:var(--f-mono);color:'+color+';border:1px solid '+color+';border-radius:99px;padding:0 5px;">NUEVO</span>':''}${esApagado?'<span style="font-size:8px;font-family:var(--f-mono);color:var(--ink-3);border:1px solid var(--line-strong);border-radius:99px;padding:0 5px;">SIN CONTINUIDAD HOY</span>':esTenue?'<span style="font-size:8px;font-family:var(--f-mono);color:var(--ink-3);border:1px solid var(--line-strong);border-radius:99px;padding:0 5px;">1 SOLO DÍA</span>':''}</div>
+        <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;">${esApagado ? 'sin mención nueva hoy -- se conserva su última posición de esta semana' : a.es_nuevo ? 'nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}</div>
         <div style="display:flex;align-items:center;gap:5px;margin-top:7px;">
           <span style="font-family:var(--f-mono);font-size:10px;font-weight:700;color:${deltaColor};width:34px;flex-shrink:0;">${deltaFlecha} ${Math.abs(a.delta_pts||0)}</span>
           <div style="flex:1;height:4px;background:var(--bg-1);border-radius:99px;overflow:hidden;"><div style="width:${deltaPct}%;height:100%;background:${deltaColor};"></div></div>
