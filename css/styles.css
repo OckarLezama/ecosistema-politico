@@ -211,6 +211,11 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .pulso-tablero-link{ cursor:pointer; }
 .pulso-tablero-link:hover .pulso-tablero-pieza,
 .pulso-tablero-link:focus-visible .pulso-tablero-pieza{ transform:scale(1.18); }
+.pulso-tablero-anillo{ transform-box:fill-box; transform-origin:center; pointer-events:none; }
+.pulso-tablero-link:hover .pulso-tablero-anillo,
+.pulso-tablero-link:focus-visible .pulso-tablero-anillo{ transform:scale(1.18); }
+@keyframes pulso-destello-brillo{ 0%,100%{ opacity:0; transform:scale(0.3) rotate(0deg); } 50%{ opacity:1; transform:scale(1) rotate(20deg); } }
+.pulso-destello{ transform-box:fill-box; transform-origin:center; animation:pulso-destello-brillo 3.4s ease-in-out infinite; pointer-events:none; }
 
 .feed-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
