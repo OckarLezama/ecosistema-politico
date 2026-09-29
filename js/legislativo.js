@@ -1302,7 +1302,7 @@ function vistaReformaHTML(r, todasLasReformas){
       const concluida = ETAPAS_CONCLUIDAS_LEG.includes(r.etapa_actual);
       const periodo = estadoPeriodoOrdinarioLeg();
       return `<div style="margin-top:16px;">
-        <div class="eyebrow" style="color:var(--riesgo-alto);">${concluida ? 'Riesgo tras su aprobación' : 'Riesgo político específico'}</div>
+        <div class="eyebrow" style="color:var(--riesgo-alto);">${concluida ? 'Riesgo tras su aprobación' : 'Posible Riesgo político'}</div>
         <p style="font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:6px 0 0;">${r.analisis_riesgo}</p>
         ${(!concluida && r.probabilidad_avance) ? `<p style="font-size:10.5px;color:var(--ink-3);margin-top:6px;">Probabilidad de avance en el corto plazo: <strong style="color:var(--ink-1);">${r.probabilidad_avance}</strong> · Congreso ${periodo.enSesion?'en sesión':'en receso'} (${periodo.periodo}) -- es una estimación con criterio, no un pronóstico exacto.</p>` : ''}
       </div>`;

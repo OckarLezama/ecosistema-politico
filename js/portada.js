@@ -207,7 +207,7 @@ function renderPortada(){
             </button>
           </div>
         </div>
-        <div id="portada-dispersion" style="margin-bottom:10px;width:100%;"></div>
+        <div id="portada-dispersion" style="margin-bottom:10px;width:100%;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:10px 12px 6px;box-sizing:border-box;"></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
           ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
             <button data-cat="${cat}" style="background:${categoriaFiltroDispersion===cat?'var(--teal)':'var(--bg-2)'};border:1px solid ${categoriaFiltroDispersion===cat?'var(--teal)':'var(--line-strong)'};border-radius:99px;padding:3px 10px;font-size:10.5px;color:${categoriaFiltroDispersion===cat?'#0E1116':'var(--ink-2)'};cursor:pointer;">
@@ -845,7 +845,7 @@ function dibujarDispersionHoraria(eventos){
   if(!cont) return;
   const eventosFiltrados = categoriaFiltroDispersion ? eventos.filter(e=>e.categoria===categoriaFiltroDispersion) : eventos;
   if(!eventosFiltrados.length){ cont.innerHTML = `<div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div><p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
-  const ancho = 1000, alto = 130, margenIzq = 16, margenDer = 12, margenAbajo = 20, margenArriba = 14;
+  const ancho = 1000, alto = 175, margenIzq = 16, margenDer = 12, margenAbajo = 20, margenArriba = 10;
   const altoUtil = alto - margenArriba - margenAbajo;
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
 

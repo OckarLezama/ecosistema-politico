@@ -463,11 +463,18 @@ function activarHistoricoPulso(cont){
 // colores nuevos". Ahora se colorea con la MISMA paleta de categorías que ya se usa en
 // las barras de categoría y en el resto de Análisis (colorCategoriaFijo, de analisis.js),
 // así el tablero habla el mismo lenguaje visual que todo lo demás.
-function iniciales2(nombre){
-  const partes = (nombre||'').trim().split(/\s+/).filter(Boolean);
+// data/actores.csv YA trae una columna "iniciales" curada a mano por cada actor (ej.
+// "CS" para Claudia Sheinbaum Pardo, "AL" para Andrés Manuel López Beltrán ('Andy')) --
+// esa es la fuente real, no adivinar con el nombre: tomar ciegamente la primera y última
+// palabra rompía con nombres de 3+ partes (daba "CP" en vez de "CS", apellido materno en
+// vez de paterno) y con apodos entre paréntesis (daba "A(" para Andy). Solo si a un actor
+// le faltara ese dato se cae a una aproximación con el nombre.
+function iniciales2(a){
+  if(a && a.iniciales) return a.iniciales.slice(0,2).toUpperCase();
+  const partes = ((a&&a.nombre)||'').trim().split(/\s+/).filter(w=>/[a-zA-ZÀ-ÿ]/.test(w));
   if(!partes.length) return '';
   if(partes.length === 1) return partes[0].slice(0,2).toUpperCase();
-  return (partes[0].charAt(0) + partes[partes.length-1].charAt(0)).toUpperCase();
+  return (partes[0].charAt(0) + partes[1].charAt(0)).toUpperCase();
 }
 function nombreCuadrante(x,y){
   if(x>=50 && y>=50) return 'Centro de la agenda';
@@ -532,25 +539,31 @@ function tableroActoresPulso(actores){
       piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="8" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="${esTenue?0.22:0.4}"/>`;
       piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="${esTenue?0.22:0.4}" style="cursor:pointer;"/>`;
     }
-    // pedido: piezas más grandes en general; un actor "tenue" (1 solo día) se ve apagado
-    // -- menor opacidad y sin halo/ping, para que salte a la vista quién de verdad tiene
-    // peso esta semana sin dejar de mostrar a los demás.
-    const r = 12 + Math.min(8, (a.alcance||0));
+    // pedido: piezas notoriamente más grandes (las anteriores se veían "simples" en parte
+    // porque a este tamaño de tarjeta, r=12-20 termina siendo apenas unos px reales en
+    // pantalla -- ilegible para 2 letras). Un actor "tenue" (1 solo día) se ve apagado --
+    // menor opacidad y sin halo/glow, para que salte a la vista quién de verdad tiene peso
+    // esta semana sin dejar de mostrar a los demás.
+    const r = 16 + Math.min(9, (a.alcance||0));
     const opacidadPieza = esTenue ? 0.5 : 1;
     const abre = a.nota_url ? `<a href="${a.nota_url}" target="_blank" rel="noopener" class="pulso-tablero-link">` : '<g>';
     const cierra = a.nota_url ? '</a>' : '</g>';
     const retraso = ((i*0.37) % 2.4).toFixed(2);
-    // "que se vea vivo" -- además del halo que respira, un anillo nítido en --ink-1 (blanco
-    // en tema oscuro, negro en tema claro -- se adapta solo) recorta cada pieza contra su
-    // color de categoría, y un destello de 4 puntas titila en una esquina para dar sensación
-    // de brillo/movimiento sin depender del hover.
+    // "que se vea vivo" -- el halo ahora usa un filtro de desenfoque real (feGaussianBlur,
+    // definido una sola vez en el <defs> del SVG) para que se lea como un aura de luz de
+    // verdad, no como un círculo semitransparente plano. El anillo nítido en --ink-1
+    // (blanco en tema oscuro, negro en tema claro -- se adapta solo) recorta cada pieza
+    // contra su color de categoría. Se QUITÓ el destello de 4 puntas: combinaba el atributo
+    // SVG transform="translate(...)" con una animación CSS de transform, y en SVG el
+    // transform de CSS reemplaza por completo al atributo (no se combinan) -- por eso
+    // terminaba dibujándose en el origen del viewBox, pegado al título, en vez de sobre
+    // cada pieza.
     piezas += `${abre}
       ${(a.es_nuevo && !esTenue) ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="1.5" style="animation-delay:${retraso}s;"/>` : ''}
-      ${!esTenue ? `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+5}" fill="${color}" style="animation-delay:${retraso}s;"/>` : ''}
-      <circle class="pulso-tablero-anillo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${(r+1.5).toFixed(1)}" fill="none" stroke="var(--ink-1)" stroke-width="1.3" opacity="${esTenue?0.35:0.9}"/>
+      ${!esTenue ? `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+4}" fill="${color}" filter="url(#pulso-glow-actor)" style="animation-delay:${retraso}s;"/>` : ''}
+      <circle class="pulso-tablero-anillo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${(r+1.8).toFixed(1)}" fill="none" stroke="var(--ink-1)" stroke-width="1.5" opacity="${esTenue?0.35:0.9}"/>
       <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}"/>
-      <text x="${x2.toFixed(1)}" y="${(y2+3.2).toFixed(1)}" font-size="8.5" font-weight="700" fill="var(--bg-2)" text-anchor="middle" opacity="${opacidadPieza}" style="pointer-events:none;">${iniciales2(a.nombre)}</text>
-      ${!esTenue ? `<path class="pulso-destello" d="M0,-4.2 L1.1,-1.1 L4.2,0 L1.1,1.1 L0,4.2 L-1.1,1.1 L-4.2,0 L-1.1,-1.1 Z" fill="var(--ink-1)" transform="translate(${(x2+r*0.6).toFixed(1)},${(y2-r*0.6).toFixed(1)})" style="animation-delay:${(parseFloat(retraso)+0.9).toFixed(2)}s;"/>` : ''}
+      <text x="${x2.toFixed(1)}" y="${(y2+3.6).toFixed(1)}" font-size="10.5" font-weight="800" fill="var(--bg-2)" text-anchor="middle" opacity="${opacidadPieza}" style="pointer-events:none;">${iniciales2(a)}</text>
     ${cierra}`;
   });
   // preserveAspectRatio="none" (como estaba antes) estira el ancho y el alto por
@@ -562,6 +575,9 @@ function tableroActoresPulso(actores){
   return `<div style="flex:1;position:relative;min-height:220px;">
     <svg viewBox="0 0 ${w} ${h}" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
     ${defsGridPulso('pulso-grid-tablero')}
+    <defs><filter id="pulso-glow-actor" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3.2"/>
+    </filter></defs>
     <rect x="${m}" y="${m*0.4}" width="${w-2*m}" height="${h-m-m*0.4}" fill="url(#pulso-grid-tablero)" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${cx}" y1="${m*0.4}" x2="${cx}" y2="${h-m}" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${m}" y1="${cy}" x2="${w-m}" y2="${cy}" stroke="var(--line-strong)" stroke-width="1"/>
