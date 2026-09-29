@@ -260,6 +260,57 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
    recurrir a color. Las líneas de conexión son deliberadamente sutiles (no deben
    competir visualmente con los puntos). Ventana más grande para que todo se vea
    con más presencia, también en tablet. */
+/* Portadas del día -- ventana dedicada (mismo patrón que "mapa de relación"): un
+   botón chico en el panel principal abre esto, para no competir por espacio con
+   el Pulso del Día. Diseño tipo kiosco: el titular es lo protagonista, el medio
+   es solo la etiqueta de quién lo dice, con una barra de acento arriba de cada
+   tarjeta a modo de "cabecera" de periódico. */
+.titulares-backdrop{ background:rgba(0,0,0,.9); padding:16px; }
+.titulares-card{
+  background:#0B0D10; border:1px solid #1B1F25; width:min(920px,94vw,86vh); max-width:none;
+  padding:26px 24px; overflow-y:auto; max-height:86vh;
+}
+/* KPIs de clasificación -- mismo lenguaje visual que las categorías del panel
+   principal, arriba de la cuadrícula de tarjetas, para que Portadas del Día se
+   lea como parte del mismo producto de inteligencia y no como una vista aparte */
+.titulares-kpis{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+.titulares-kpi{
+  display:flex; align-items:center; gap:6px; background:#12151A; border:1px solid #22262C;
+  border-radius:99px; padding:5px 12px 5px 10px; font-family:var(--f-mono);
+}
+.titulares-kpi-punto{ width:7px; height:7px; border-radius:50%; display:inline-block; flex:none; }
+.titulares-kpi-num{ font-size:12px; color:#E8EAED; font-weight:700; }
+.titulares-kpi-cat{ font-size:9.5px; color:#8A8F98; }
+
+.titulares-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; }
+.titulares-item{
+  position:relative; background:#12151A; border:1px solid #22262C; border-radius:6px;
+  padding:0; overflow:hidden;
+}
+.titulares-item-medio{
+  font-family:var(--f-mono); font-size:9.5px; color:#8ED6C9; letter-spacing:1px;
+  text-transform:uppercase; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #22262C;
+}
+.titulares-item-titular{
+  font-family:var(--f-display); font-size:15px; line-height:1.4; color:#E8EAED; font-weight:600;
+}
+.titulares-item-link{ display:inline-block; margin-top:10px; font-family:var(--f-mono); font-size:10px; color:#6B7280; text-decoration:none; }
+.titulares-item-link:hover{ color:#8ED6C9; }
+.titulares-item-cuerpo{ padding:14px 16px 14px; }
+
+/* Sin imagen real -- cabecera sólida con el color de identidad del medio (a falta
+   de la foto real de su portada), el nombre en blanco, tipo mini-masthead */
+.titulares-item-masthead{
+  padding:11px 14px; font-family:var(--f-display); font-weight:700; font-size:13px;
+  letter-spacing:.5px; color:#fff; text-transform:uppercase;
+}
+
+/* Con imagen real -- se muestra arriba (recorte tipo periódico, más alto que ancho) */
+.titulares-item-img{
+  width:100%; height:180px; background-size:cover; background-position:top center;
+  background-color:#1B1F25; border-bottom:1px solid #22262C;
+}
+
 .mapa-puntos-backdrop{ background:rgba(0,0,0,.9); padding:16px; }
 .mapa-puntos-card{
   background:#0B0D10; border:1px solid #1B1F25; width:min(820px,94vw,74vh); max-width:none;
