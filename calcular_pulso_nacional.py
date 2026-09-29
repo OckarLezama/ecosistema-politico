@@ -381,6 +381,17 @@ def calcular():
             return True
         if dl.startswith('en vivo') and 'la mañanera de la presidenta' in dl:
             return True
+        # CORRECCIÓN -- mismo problema, otra forma: en Actores Destacados, Sheinbaum
+        # seguía "justificada" con "Conferencia de la presidenta Claudia Sheinbaum -- El
+        # Financiero" -- ya no es el liveblog "EN VIVO", pero es el mismo tipo de título:
+        # nombra el FORMATO (una conferencia de prensa) sin decir qué pasó o qué dijo. Se
+        # excluye igual cuando el titular completo (sin el sufijo "- Medio" que agrega
+        # clasificar_fuente) es solo eso, la etiqueta genérica de la conferencia.
+        sin_sufijo_medio = re.sub(r'\s*-\s*[^-]{2,40}$', '', dl).strip()
+        if sin_sufijo_medio in ('conferencia de la presidenta', 'conferencia matutina',
+                                 'conferencia de prensa de la presidenta') or \
+           re.match(r'^conferencia (de la presidenta|matutina)( [\wáéíóúñ]+){0,4}$', sin_sufijo_medio):
+            return True
         return False
 
     def nivel_evento(e):
@@ -724,6 +735,64 @@ def calcular():
             clave = f'{p[-2]} {p[-1]}'.lower()
             apellidos_compartidos.setdefault(clave, set()).add(nombre_limpio_a.strip().lower())
 
+    def _es_mencion_valida(e, nombre_actor):
+        """Un evento cuenta como mención real y utilizable de este actor: de fuente de
+        primer nivel (ALTA/OFICIAL), lo nombra de forma segura (nombre completo, o
+        apellidos + apodo cuando hay homónimo), no es una columna de opinión firmada por
+        el propio actor, y no es el envoltorio genérico de una conferencia/liveblog (ver
+        _es_nota_generica_en_vivo). Centralizado aquí porque lo usan tanto
+        nota_real_para_actor (búsqueda por tema propio del actor) como
+        nota_suelta_para_actor (búsqueda de respaldo en toda la ventana reciente)."""
+        nombre_limpio = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
+        partes = [x for x in nombre_limpio.split() if len(x) > 2]
+        clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
+        hay_homonimo = clave_apellidos and len(apellidos_compartidos.get(clave_apellidos, ())) > 1
+        # CORRECCIÓN -- este chequeo comparaba contra nombre_actor SIN limpiar (con el
+        # paréntesis del apodo todavía pegado), así que "nombre completo" nunca podía
+        # coincidir con ninguna nota real. Se usa nombre_limpio. Además, cuando el actor
+        # tiene apodo (ej. "Andy"), ese apodo por sí solo también cuenta como mención
+        # segura frente a un homónimo -- la prensa casi nunca escribe "Andrés Manuel",
+        # y ninguno de sus hermanos (mismo caso: José Ramón, Gonzalo López Beltrán) se
+        # hace llamar así.
+        apodo = _apodoDe(nombre_actor)
+        if nivel_evento(e) not in NIVELES_PRIMER_NIVEL:
+            return False
+        texto = e['descripcion'].lower()
+        tiene_apodo = apodo and re.search(r'\b' + re.escape(apodo.lower()) + r'\b', texto) is not None
+        # CORRECCIÓN -- caso real encontrado (pedido explícito, "sigues sin poner a Andy,
+        # lo dijo el NYT"): "EU va por 'Andy' López: Dos agencias investigan acusaciones
+        # de huachicoleo, dice el NYT" SÍ lo nombra sin ambigüedad -- pero
+        # _mencionadoDeFormaSegura solo prueba nombre completo, "primeras 2 palabras" o
+        # "últimas 2 palabras" del nombre en actores.csv ("López Beltrán" en este caso), y
+        # la nota dice "Andy López", sin el apellido "Beltrán" -- ninguna combinación
+        # coincidía, así que la nota se descartaba entera ANTES de llegar siquiera a
+        # revisar el apodo (ese chequeo solo corría más abajo, como desempate de
+        # homónimos, nunca como mención válida por sí sola). El apodo cuando aparece junto
+        # al apellido corto ("Andy López") es una mención igual de inequívoca que el
+        # nombre completo -- se acepta aquí directamente, no solo como desempate.
+        if not _mencionadoDeFormaSegura(nombre_actor, texto) and not tiene_apodo:
+            return False
+        # CORRECCIÓN -- una nota de opinión (columna firmada por el propio actor)
+        # no es evidencia de que tuvo impacto de agenda; es él mismo opinando. Sin
+        # este filtro, un columnista (ej. Loret de Mola) podía salir como "destacado"
+        # enlazando a su propia columna, no a una nota donde de verdad fue noticia.
+        if e['descripcion'].startswith('[Opinión]'):
+            return False
+        # CORRECCIÓN -- pedido explícito: en Actores Destacados, Sheinbaum salía
+        # "justificada" con la nota "EN VIVO | La Mañanera de la presidenta..." --
+        # el mismo envoltorio genérico de liveblog que ya se excluyó como titular en
+        # Temas en Movimiento (ver _es_nota_generica_en_vivo). La menciona (es de ella
+        # la conferencia) pero no es evidencia real de un hecho de agenda -- es la
+        # portada genérica del día, no una nota sobre algo que hizo o dijo.
+        if _es_nota_generica_en_vivo(e):
+            return False
+        if hay_homonimo and nombre_limpio.lower() not in texto and not tiene_apodo:
+            # coincide solo por los apellidos compartidos con otra persona real distinta --
+            # sin el nombre completo (o el apodo, cuando lo tiene) no hay certeza de a
+            # cuál de los dos se refiere la nota.
+            return False
+        return True
+
     def nota_real_para_actor(nombre_actor, tema_id):
         """La nota real donde ese actor es mencionado dentro del tema -- nunca el título
         del tema. Corregido: antes buscaba en TODO el historial del tema (por eso podían
@@ -744,47 +813,28 @@ def calcular():
         relevante solo tiene mención en fuentes de menor nivel, se excluye -- no se
         muestra con una fuente floja solo para no dejar el espacio vacío."""
         evs = [e for e in eventos_por_tema.get(tema_id, []) if hace_24h <= e['_ts'] <= ahora]
-        nombre_limpio = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
-        partes = [x for x in nombre_limpio.split() if len(x) > 2]
-        clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
-        hay_homonimo = clave_apellidos and len(apellidos_compartidos.get(clave_apellidos, ())) > 1
-        # CORRECCIÓN -- este chequeo comparaba contra nombre_actor SIN limpiar (con el
-        # paréntesis del apodo todavía pegado), así que "nombre completo" nunca podía
-        # coincidir con ninguna nota real. Se usa nombre_limpio. Además, cuando el actor
-        # tiene apodo (ej. "Andy"), ese apodo por sí solo también cuenta como mención
-        # segura frente a un homónimo -- la prensa casi nunca escribe "Andrés Manuel",
-        # y ninguno de sus hermanos (mismo caso: José Ramón, Gonzalo López Beltrán) se
-        # hace llamar así.
-        apodo = _apodoDe(nombre_actor)
-        con_mencion = []
-        for e in evs:
-            if nivel_evento(e) not in NIVELES_PRIMER_NIVEL:
-                continue
-            texto = e['descripcion'].lower()
-            if not _mencionadoDeFormaSegura(nombre_actor, texto):
-                continue
-            # CORRECCIÓN -- una nota de opinión (columna firmada por el propio actor)
-            # no es evidencia de que tuvo impacto de agenda; es él mismo opinando. Sin
-            # este filtro, un columnista (ej. Loret de Mola) podía salir como "destacado"
-            # enlazando a su propia columna, no a una nota donde de verdad fue noticia.
-            if e['descripcion'].startswith('[Opinión]'):
-                continue
-            # CORRECCIÓN -- pedido explícito: en Actores Destacados, Sheinbaum salía
-            # "justificada" con la nota "EN VIVO | La Mañanera de la presidenta..." --
-            # el mismo envoltorio genérico de liveblog que ya se excluyó como titular en
-            # Temas en Movimiento (ver _es_nota_generica_en_vivo). La menciona (es de ella
-            # la conferencia) pero no es evidencia real de un hecho de agenda -- es la
-            # portada genérica del día, no una nota sobre algo que hizo o dijo.
-            if _es_nota_generica_en_vivo(e):
-                continue
-            if hay_homonimo and nombre_limpio.lower() not in texto:
-                tiene_apodo = apodo and re.search(r'\b' + re.escape(apodo.lower()) + r'\b', texto) is not None
-                if not tiene_apodo:
-                    # coincide solo por los apellidos compartidos con otra persona real distinta --
-                    # sin el nombre completo (o el apodo, cuando lo tiene) no hay certeza de a
-                    # cuál de los dos se refiere la nota.
-                    continue
-            con_mencion.append(e)
+        con_mencion = [e for e in evs if _es_mencion_valida(e, nombre_actor)]
+        if not con_mencion:
+            return None
+        return max(con_mencion, key=lambda e: float(e['intensidad']))
+
+    def nota_suelta_para_actor(nombre_actor):
+        """CORRECCIÓN -- pedido explícito ("sigues sin poner a Andy, cuando es un tema
+        nacional, lo dijo el NYT"): se confirmó con los datos reales que SÍ existe una nota
+        de primer nivel que lo nombra directamente hoy ("EU va por 'Andy' López: Dos
+        agencias investigan acusaciones de huachicoleo, dice el NYT" -- El Financiero,
+        ALTA) -- pero esa nota quedó archivada bajo un tema_id auto-generado
+        (auto-f3c7c3cb43) que en tema_actores.csv solo se vinculó a Sheinbaum, no a Andy
+        -- un defecto de etiquetado del robot de ingesta, no de este cálculo. Exigir que
+        la nota viva exactamente bajo uno de los tema_id ya vinculados al actor (como hace
+        nota_real_para_actor) deja fuera a un actor real solo porque el vínculo
+        actor-tema no se generó -- aquí se agrega una segunda pasada, más amplia, que
+        busca en TODOS los eventos de la ventana de 18h (sin importar tema_id) antes de
+        rendirse. Se usa solo como respaldo, después de que la búsqueda por tema propia
+        del actor no encontró nada -- no reemplaza esa primera búsqueda, más precisa, y
+        exige exactamente el mismo estándar de calidad (_es_mencion_valida)."""
+        evs = [e for e in eventos_validos if hace_24h <= e['_ts'] <= ahora]
+        con_mencion = [e for e in evs if _es_mencion_valida(e, nombre_actor)]
         if not con_mencion:
             return None
         return max(con_mencion, key=lambda e: float(e['intensidad']))
@@ -808,6 +858,15 @@ def calcular():
             if n:
                 v, nota, tema_v = candidato, n, temas_por_id.get(candidato['tema_id'])
                 break
+        if not v:
+            # Ninguno de los tema_id ya vinculados a este actor en tema_actores.csv tiene
+            # una nota que lo mencione -- antes de descartarlo, se busca una vez más en
+            # TODA la ventana reciente (ver nota_suelta_para_actor): el vínculo
+            # actor-tema puede faltar por un defecto de etiquetado en la ingesta aunque sí
+            # exista una nota real y verificable que lo nombra directamente.
+            n_suelta = nota_suelta_para_actor(actor['nombre'])
+            if n_suelta:
+                v, nota, tema_v = vinculos_ordenados[0], n_suelta, temas_por_id.get(n_suelta['tema_id'])
         if not v:
             continue  # ningún vínculo tiene una nota real que lo mencione -- no se muestra
         actores_destacados.append({
@@ -1139,7 +1198,19 @@ def calcular():
     def _mananera_valida(e):
         return not any(m in e['descripcion'] for m in _MARCAS_JUNK_MANANERA)
 
-    eventos_mananera_hoy = [e for e in eventos_validos if e.get('fecha') == hoy_iso
+    # CORRECCIÓN REAL DE FONDO (esto era lo que de verdad tenía "No hubo mañanera este
+    # día" atorado todo el día, incluso ya con el robot guardando 9/9 puntos): esta lista
+    # se armaba a partir de 'eventos_validos', pero 'eventos_validos' EXCLUYE a propósito
+    # (ver noCuentaParaEscalar) cualquier evento '[Mañanera]' que no traiga el prefijo de
+    # alerta 🔔 -- esa exclusión existe para que un punto de mañanera sin corroborar no
+    # infle la tensión nacional/el escalamiento de temas, pero de paso también borraba esos
+    # mismos puntos de ESTA sección, que es la que existe justo para mostrarlos. Resultado:
+    # de los 9 puntos guardados, solo los marcados con 🔔 (alerta/migración) podían llegar
+    # aquí -- el resto, la mayoría, jamás se mostraba, sin importar cuántas veces se
+    # corrigiera el scraper. Aquí se lee de 'eventos' (con timestamp válido), NO de
+    # 'eventos_validos', para que el resumen de la mañanera no dependa de ese filtro de
+    # escalamiento que no le corresponde.
+    eventos_mananera_hoy = [e for e in eventos if e['_ts'] is not None and e.get('fecha') == hoy_iso
                              and '[Mañanera]' in e['descripcion'] and _mananera_valida(e)]
     vistos_mananera = set()
     eventos_mananera_hoy_unicos = []
