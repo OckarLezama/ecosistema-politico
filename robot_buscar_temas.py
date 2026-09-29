@@ -1121,7 +1121,20 @@ def buscar_candidatos():
                     'categoria': clasificar_categoria(texto_completo),
                     'intensidad': intensidad, 'descripcion': f'[Mañanera] {punto[:200]}', 'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
                 puntos_incluidos += 1
-            elif es_migracion or alerta_actor or mencion_relevante:
+            else:
+                # CORRECCIÓN real -- confirmado con un log real: "fecha_pagina=2026-09-29,
+                # puntos_extraidos=9" pero "0/9 puntos guardados como evento". El punto
+                # exigía además mención relevante EXPLÍCITA por nombre (mencion_relevante) o
+                # migración/alerta -- pero un punto de la mañanera casi nunca repite
+                # "Claudia Sheinbaum" o "Sheinbaum" dentro del propio bullet (se transcribe
+                # en tercera persona/paráfrasis de lo que YA es, por construcción, su propia
+                # conferencia), así que ese candado rechazaba los 9 de 9, incluso siendo
+                # contenido legítimo que ya pasó el filtro de basura de
+                # obtener_mananera_hoy(). Cualquier punto que llegue hasta aquí (con fecha
+                # de hoy, sin coincidir con un tema por palabra clave) es de por sí
+                # relevante -- es la conferencia matutina de la Presidenta -- así que ya no
+                # se exige mención de actor adicional, solo se conserva el etiquetado
+                # especial de migración/alerta cuando aplica.
                 categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
                 titulo_final = f'🔔 ALERTA — [Mañanera] {punto[:180]}' if (alerta_actor or es_migracion) else f'[Mañanera] {punto[:200]}'
                 tema_auto = buscar_tema_informativo_similar(punto[:80], actores_altos) or crear_tema_informativo(punto[:80], hoy_mx.strftime('%Y-%m-%d'), categoria_real)
