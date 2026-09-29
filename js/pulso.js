@@ -524,11 +524,15 @@ function tableroActoresPulso(actores){
   const maxAlcance = Math.max(1, ...actores.map(a=>a.alcance||0));
   // CORRECCIÓN de rumbo, pedido explícito: se quita el degradado tipo "esfera brillosa"
   // (no gustó el efecto) y el color deja de ser por categoría -- ahora es por NIVEL DE
-  // IMPACTO real de esa pieza, mismo criterio y mismos 3 colores que ya usa el resto del
-  // sitio (colorTension: >=66 alto/rojo, >=33 medio, si no bajo/turquesa) -- y coincide
-  // con el eje Y del propio tablero (INTENSIDAD DE IMPACTO), así que el color refuerza la
-  // posición en vez de mostrar un dato aparte (la categoría se sigue viendo en el tooltip).
-  const colorImpactoPieza = a => colorTension(a.y_hoy);
+  // IMPACTO real de esa pieza (mismos 3 colores que ya usa el resto del sitio).
+  // CORRECCIÓN -- antes se usaba colorTension(a.y_hoy), pero y_hoy es una posición
+  // NORMALIZADA solo relativa a los ~9 actores de este corte (el más intenso del grupo
+  // siempre llega a 100), no un nivel de impacto absoluto -- por eso casi todos terminaban
+  // en rojo aunque sus notas reales fueran de impacto medio/bajo. El backend ahora manda
+  // 'impacto_nivel' ('alto'/'medio'/'bajo') calculado sobre la intensidad real SIN
+  // normalizar, y es eso lo que colorea la pieza.
+  const COLOR_IMPACTO = { alto: 'var(--riesgo-alto)', medio: 'var(--riesgo-medio)', bajo: 'var(--riesgo-bajo)' };
+  const colorImpactoPieza = a => COLOR_IMPACTO[a.impacto_nivel] || 'var(--riesgo-bajo)';
   // ---- Paso 1: calcular posición y tamaño de cada pieza ANTES de dibujar nada, para
   // poder separar las que se encimen. Antes cada pieza se ubicaba solo por su dato real
   // (volumen/intensidad) sin importar si eso la ponía justo encima de otra -- pedido
@@ -544,35 +548,49 @@ function tableroActoresPulso(actores){
     // mismo brillo que el resto.
     const esTenue = a.dias_activo === 1;
     const x1=px(a.x_lunes), y1=py(a.y_lunes);
-    // Pedido explícito: piezas más chicas que antes (se veían "encimadas" entre sí y con
-    // las líneas) -- el tamaño de letra (CS, AL...) NO se toca, solo el círculo que la
-    // contiene.
-    const r = 14 + Math.min(7, (a.alcance||0));
+    // CORRECCIÓN -- pedido explícito repetido: seguían viéndose encimadas. Piezas más
+    // chicas (11-16 en vez de 14-21; el tamaño de letra CS/AL no se toca) para que quepan
+    // 9 sin apretarse tanto.
+    const r = 11 + Math.min(5, (a.alcance||0));
     return { a, i, color, esTenue, x1, y1, x2: px(a.x_hoy), y2: py(a.y_hoy), r };
   });
+  // CORRECCIÓN -- el choque solo se medía contra el radio "r" del círculo sólido, pero
+  // cada pieza también dibuja un halo (r+8) y un anillo (r+2) alrededor: con solo 6px de
+  // margen entre los círculos sólidos, esos halos se encimaban de sobra aunque los
+  // círculos en sí ya no chocaran -- eso es lo que seguía viéndose "encimado". Se separa
+  // usando el radio EFECTIVO (con halo) más margen, y se ubican por radio efectivo total,
+  // de mayor a menor, para que las piezas grandes reclamen su espacio primero.
   const GAP_MIN = 6;
-  for(let ronda=0; ronda<60; ronda++){
+  const HALO = 8;
+  datos.sort((p1,p2)=> (p2.r) - (p1.r));
+  for(let ronda=0; ronda<80; ronda++){
     let huboChoque = false;
     for(let i=0; i<datos.length; i++){
       for(let j=i+1; j<datos.length; j++){
         const p1 = datos[i], p2 = datos[j];
         const dx = p2.x2-p1.x2, dy = p2.y2-p1.y2;
         const dist = Math.sqrt(dx*dx+dy*dy) || 0.01;
-        const minDist = p1.r + p2.r + GAP_MIN;
+        const minDist = (p1.r+HALO) + (p2.r+HALO) + GAP_MIN;
         if(dist < minDist){
           huboChoque = true;
           const empuje = (minDist-dist)/2;
           const nx = dx/dist, ny = dy/dist;
-          p1.x2 -= nx*empuje; p1.y2 -= ny*empuje;
-          p2.x2 += nx*empuje; p2.y2 += ny*empuje;
+          // Traslada la pieza COMPLETA (línea de "ayer" incluida), no solo el punto de
+          // hoy -- así el trazo se mueve junto con su punta y no queda un ángulo raro,
+          // y el marcador hueco de "ayer" tampoco termina encimado con otra pieza.
+          p1.x2 -= nx*empuje; p1.y2 -= ny*empuje; p1.x1 -= nx*empuje; p1.y1 -= ny*empuje;
+          p2.x2 += nx*empuje; p2.y2 += ny*empuje; p2.x1 += nx*empuje; p2.y1 += ny*empuje;
         }
       }
     }
     // Ninguna pieza debe salirse del recuadro por haber sido empujada -- se recorta a su
-    // propio radio de distancia del borde del área jugable en cada ronda.
+    // propio radio (con halo) de distancia del borde del área jugable en cada ronda.
     datos.forEach(p=>{
-      p.x2 = Math.min(plotX1-p.r, Math.max(plotX0+p.r, p.x2));
-      p.y2 = Math.min(plotY1-p.r, Math.max(plotY0+p.r, p.y2));
+      const lim = p.r + HALO;
+      const dxClamp = Math.min(plotX1-lim, Math.max(plotX0+lim, p.x2)) - p.x2;
+      const dyClamp = Math.min(plotY1-lim, Math.max(plotY0+lim, p.y2)) - p.y2;
+      p.x2 += dxClamp; p.x1 += dxClamp;
+      p.y2 += dyClamp; p.y1 += dyClamp;
     });
     if(!huboChoque) break;
   }
