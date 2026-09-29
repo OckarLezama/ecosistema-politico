@@ -203,17 +203,19 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
    muerta, el halo nunca se movía, se veía plano). transform-box:fill-box es necesario
    para que scale() en un <circle> SVG escale desde su propio centro, no desde la esquina
    0,0 del viewBox entero. --- */
-@keyframes pulso-tablero-respira{ 0%,100%{ transform:scale(1); opacity:0.6; } 50%{ transform:scale(1.3); opacity:0.22; } }
-.pulso-halo-vivo{ transform-box:fill-box; transform-origin:center; animation:pulso-tablero-respira 2.6s ease-in-out infinite; opacity:0.6; }
+@keyframes pulso-tablero-respira{ 0%,100%{ transform:scale(1); opacity:0.85; } 50%{ transform:scale(1.45); opacity:0.35; } }
+.pulso-halo-vivo{ transform-box:fill-box; transform-origin:center; animation:pulso-tablero-respira 2.6s ease-in-out infinite; opacity:0.85; }
 @keyframes pulso-tablero-ping{ 0%{ transform:scale(0.9); opacity:0.6; } 100%{ transform:scale(2.3); opacity:0; } }
 .pulso-tablero-ping{ transform-box:fill-box; transform-origin:center; animation:pulso-tablero-ping 1.8s ease-out infinite; pointer-events:none; }
 .pulso-tablero-pieza{ transform-box:fill-box; transform-origin:center; transition:transform .15s ease; }
 .pulso-tablero-link{ cursor:pointer; }
 .pulso-tablero-link:hover .pulso-tablero-pieza,
-.pulso-tablero-link:focus-visible .pulso-tablero-pieza{ transform:scale(1.18); }
+.pulso-tablero-link:focus-visible .pulso-tablero-pieza{ transform:scale(1.25); }
 .pulso-tablero-anillo{ transform-box:fill-box; transform-origin:center; pointer-events:none; }
 .pulso-tablero-link:hover .pulso-tablero-anillo,
-.pulso-tablero-link:focus-visible .pulso-tablero-anillo{ transform:scale(1.18); }
+.pulso-tablero-link:focus-visible .pulso-tablero-anillo{ transform:scale(1.25); }
+.pulso-tablero-link:hover .pulso-halo-vivo,
+.pulso-tablero-link:focus-visible .pulso-halo-vivo{ animation-play-state:paused; transform:scale(1.5); opacity:0.9; }
 
 .feed-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
