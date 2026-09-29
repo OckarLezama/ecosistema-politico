@@ -461,7 +461,17 @@ function activarHistoricoPulso(cont){
    (no del color del actor) para que se note que hubo movimiento sin competir visualmente
    con la pieza misma. Toda la info numérica (casillas, notas) vive en el tooltip al
    pasar el mouse -- por pedido, el tablero no lleva columna lateral de texto. ---------- */
-const PALETA_TABLERO_ACTORES = ['#D97757','#2DD4BF','#E5B93C','#6EA8FE','#B15FBD','#8FD14F','#F46883','#BDB58D','#9CA3AF'];
+// Antes cada actor tomaba un color de una paleta arcoíris propia (PALETA_TABLERO_ACTORES),
+// con tonos que no se usan en ningún otro lado de la app -- de ahí la queja de "veo
+// colores nuevos". Ahora se colorea con la MISMA paleta de categorías que ya se usa en
+// las barras de categoría y en el resto de Análisis (colorCategoriaFijo, de analisis.js),
+// así el tablero habla el mismo lenguaje visual que todo lo demás.
+function iniciales2(nombre){
+  const partes = (nombre||'').trim().split(/\s+/).filter(Boolean);
+  if(!partes.length) return '';
+  if(partes.length === 1) return partes[0].slice(0,2).toUpperCase();
+  return (partes[0].charAt(0) + partes[partes.length-1].charAt(0)).toUpperCase();
+}
 function nombreCuadrante(x,y){
   if(x>=50 && y>=50) return 'Centro de la agenda';
   if(x<50 && y>=50) return 'Foco de alerta';
@@ -480,7 +490,11 @@ function tableroActoresPulso(actores){
   const maxAlcance = Math.max(1, ...actores.map(a=>a.alcance||0));
   let piezas = '';
   actores.forEach((a,i)=>{
-    const color = PALETA_TABLERO_ACTORES[i % PALETA_TABLERO_ACTORES.length];
+    const color = colorCategoriaFijo(a.categoria);
+    // Un actor que solo figuró UN día esta semana no tiene el mismo peso que uno con
+    // presencia sostenida -- se pide explícitamente que se vea tenue/apagado, no al
+    // mismo brillo que el resto.
+    const esTenue = a.dias_activo === 1;
     const x1=px(a.x_lunes), y1=py(a.y_lunes), x2=px(a.x_hoy), y2=py(a.y_hoy);
 
     // Tooltip con lectura visual, no solo texto plano -- pedido explícito: la exposición
@@ -501,7 +515,7 @@ function tableroActoresPulso(actores){
     const alcancePct = Math.round((a.alcance||0) / maxAlcance * 100);
     const info = `
       <div style="min-width:172px;">
-        <div style="display:flex;align-items:center;gap:6px;"><b>${a.nombre}</b>${a.es_nuevo?'<span style="font-size:8px;font-family:var(--f-mono);color:'+color+';border:1px solid '+color+';border-radius:99px;padding:0 5px;">NUEVO</span>':''}</div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;"><b>${a.nombre}</b>${a.es_nuevo?'<span style="font-size:8px;font-family:var(--f-mono);color:'+color+';border:1px solid '+color+';border-radius:99px;padding:0 5px;">NUEVO</span>':''}${esTenue?'<span style="font-size:8px;font-family:var(--f-mono);color:var(--ink-3);border:1px solid var(--line-strong);border-radius:99px;padding:0 5px;">1 SOLO DÍA</span>':''}</div>
         <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;">${a.es_nuevo ? 'nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}</div>
         <div style="display:flex;align-items:center;gap:5px;margin-top:7px;">
           <span style="font-family:var(--f-mono);font-size:10px;font-weight:700;color:${deltaColor};width:34px;flex-shrink:0;">${deltaFlecha} ${Math.abs(a.delta_pts||0)}</span>
@@ -518,22 +532,32 @@ function tableroActoresPulso(actores){
         </div>
       </div>`.replace(/"/g, '&quot;');
     if(!a.es_nuevo){
-      piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="7" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="0.4"/>`;
-      piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="0.4" style="cursor:pointer;"/>`;
+      piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="8" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="${esTenue?0.22:0.4}"/>`;
+      piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="${esTenue?0.22:0.4}" style="cursor:pointer;"/>`;
     }
-    const r = 9 + Math.min(6, (a.alcance||0));
+    // pedido: piezas más grandes en general; un actor "tenue" (1 solo día) se ve apagado
+    // -- menor opacidad y sin halo/ping, para que salte a la vista quién de verdad tiene
+    // peso esta semana sin dejar de mostrar a los demás.
+    const r = 12 + Math.min(8, (a.alcance||0));
+    const opacidadPieza = esTenue ? 0.5 : 1;
     const abre = a.nota_url ? `<a href="${a.nota_url}" target="_blank" rel="noopener" class="pulso-tablero-link">` : '<g>';
     const cierra = a.nota_url ? '</a>' : '</g>';
     const retraso = ((i*0.37) % 2.4).toFixed(2);
     piezas += `${abre}
-      ${a.es_nuevo ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="1.5" style="animation-delay:${retraso}s;"/>` : ''}
-      <circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+4}" fill="${color}" style="animation-delay:${retraso}s;"/>
-      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5"/>
-      <text x="${x2.toFixed(1)}" y="${(y2+3).toFixed(1)}" font-size="8" font-weight="700" fill="var(--bg-2)" text-anchor="middle" style="pointer-events:none;">${(a.nombre||'').trim().charAt(0)}</text>
+      ${(a.es_nuevo && !esTenue) ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="1.5" style="animation-delay:${retraso}s;"/>` : ''}
+      ${!esTenue ? `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+5}" fill="${color}" style="animation-delay:${retraso}s;"/>` : ''}
+      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}"/>
+      <text x="${x2.toFixed(1)}" y="${(y2+3.2).toFixed(1)}" font-size="8.5" font-weight="700" fill="var(--bg-2)" text-anchor="middle" opacity="${opacidadPieza}" style="pointer-events:none;">${iniciales2(a.nombre)}</text>
     ${cierra}`;
   });
+  // preserveAspectRatio="none" (como estaba antes) estira el ancho y el alto por
+  // separado para llenar el contenedor -- en celular/tablet, donde el contenedor no
+  // guarda la proporción 560:380 del viewBox, eso convertía cada círculo en un óvalo.
+  // Con el valor por default (xMidYMid meet) el SVG escala parejo en X y Y y los
+  // círculos se quedan círculos en cualquier pantalla, aunque queden pequeños márgenes
+  // arriba/abajo o a los lados en proporciones muy distintas.
   return `<div style="flex:1;position:relative;min-height:220px;">
-    <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
+    <svg viewBox="0 0 ${w} ${h}" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
     ${defsGridPulso('pulso-grid-tablero')}
     <rect x="${m}" y="${m*0.4}" width="${w-2*m}" height="${h-m-m*0.4}" fill="url(#pulso-grid-tablero)" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${cx}" y1="${m*0.4}" x2="${cx}" y2="${h-m}" stroke="var(--line-strong)" stroke-width="1"/>
@@ -547,7 +571,7 @@ function tableroActoresPulso(actores){
     ${piezas}
   </svg>
   </div>
-  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos). Toca o pasa el cursor sobre una pieza para ver el detalle; un tap/clic abre la nota.</div>`;
+  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos) · color = categoría dominante · pieza tenue = solo figuró 1 día esta semana. Toca o pasa el cursor sobre una pieza para ver el detalle; un tap/clic abre la nota.</div>`;
 }
 function activarTableroActores(cont){
   if(!cont) return;
