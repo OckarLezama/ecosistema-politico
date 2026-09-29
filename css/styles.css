@@ -268,6 +268,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 }
 .mapa-puntos-wrap{ position:relative; width:100%; }
 .mapa-puntos-giro{ transform-origin:320px 320px; animation:mapa-puntos-spin 55s linear infinite; }
+.mapa-puntos-giro.pausado{ animation-play-state:paused; }
 .mapa-puntos-linea{ animation:mapa-puntos-pulso 7s ease-in-out infinite; }
 .mapa-punto-late{ animation-name:mapa-puntos-latido; animation-timing-function:ease-in-out; animation-iteration-count:infinite; opacity:.6; transform-box:fill-box; transform-origin:center; transition:transform .18s ease, opacity .18s ease, filter .18s ease; }
 .mapa-punto-link{ cursor:pointer; }
