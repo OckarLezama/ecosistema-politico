@@ -41,7 +41,12 @@ def _mencionadoDeFormaSegura(nombre_actor, texto_lower):
     Nivel 1 (agenda nacional) solo por una coincidencia de palabra suelta. Se exige el
     nombre completo, o al menos 2 palabras consecutivas del nombre juntas (nombre+apellido,
     o los 2 apellidos) -- ni una palabra sola (muy laxo) ni el nombre completo obligatorio
-    (perdería menciones reales por solo apellido distintivo, ej. actores de C3)."""
+    (perdería menciones reales por solo apellido distintivo, ej. actores de C3).
+
+    CORRECCIÓN -- ver la misma corrección en calcular_pulso_nacional.py: un apodo entre
+    paréntesis pegado al nombre (ej. "...López Beltrán ('Andy')") se colaba como "última
+    palabra", así que el apellido compuesto real nunca se probaba. Se quita antes de partir."""
+    nombre_actor = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
     partes = [p for p in nombre_actor.split() if len(p) > 2]
     if len(partes) < 2:
         return bool(partes) and partes[0].lower() in texto_lower

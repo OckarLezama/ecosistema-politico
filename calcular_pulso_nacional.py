@@ -89,7 +89,15 @@ def _mencionadoDeFormaSegura(nombre_actor, texto_lower):
     (p.ej. "Vance") comparaba con "in" (subcadena cruda), lo que hacía falso-positivo dentro
     de palabras que simplemente contienen esas letras -- "Vance" quedaba "mencionado" en
     "avances" porque "vance" es subcadena literal de "avances". Aquí se exige límite de
-    palabra real (\\b) en todos los casos, de un solo apellido o de nombre completo."""
+    palabra real (\\b) en todos los casos, de un solo apellido o de nombre completo.
+
+    CORRECCIÓN adicional -- varios actores llevan un apodo entre paréntesis pegado al
+    nombre en actores.csv (ej. "Andrés Manuel López Beltrán ('Andy')", "María Elena
+    Hermelinda Lezama Espinosa ('Mara Lezama')"). Sin quitarlo, ese paréntesis se colaba
+    como "última palabra" del nombre, así que la combinación de los 2 apellidos reales
+    (p.ej. "López Beltrán") nunca se probaba -- se probaba "Beltrán ('Andy')", que ninguna
+    nota real contiene jamás. Se quita el paréntesis ANTES de partir el nombre en palabras."""
+    nombre_actor = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
     partes = [p for p in nombre_actor.split() if len(p) > 2]
     if len(partes) < 2:
         if not partes:
@@ -105,7 +113,10 @@ def _posicion_mencion(nombre_actor, texto_lower):
     """Igual que _mencionadoDeFormaSegura pero regresa DÓNDE matchea (o None), para
     poder juzgar si lo que sigue de verdad le pertenece a esa mención. A nivel de módulo
     (no solo dentro de calcular()) porque también se usa para limpiar retroactivamente
-    declaraciones ya guardadas en el historial de corridas anteriores a esta corrección."""
+    declaraciones ya guardadas en el historial de corridas anteriores a esta corrección.
+
+    Misma corrección de apodo entre paréntesis que en _mencionadoDeFormaSegura -- ver ahí."""
+    nombre_actor = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
     partes = [p for p in nombre_actor.split() if len(p) > 2]
     combinaciones = [nombre_actor.lower()]
     if len(partes) >= 2:
@@ -638,10 +649,14 @@ def calcular():
     # apellidos compartidos por 2+ actores distintos, para exigirles nombre completo.
     apellidos_compartidos = {}
     for a in actores:
-        p = [x for x in a['nombre'].split() if len(x) > 2]
+        # Mismo apodo-entre-paréntesis que se limpia en _mencionadoDeFormaSegura (ej.
+        # "...López Beltrán ('Andy')") -- sin quitarlo, la "clave" de apellidos para ese
+        # actor salía mal ("beltrán ('andy')") y nunca coincidía con la de nadie más.
+        nombre_limpio_a = re.sub(r'\([^)]*\)', '', a['nombre']).strip()
+        p = [x for x in nombre_limpio_a.split() if len(x) > 2]
         if len(p) >= 3:
             clave = f'{p[-2]} {p[-1]}'.lower()
-            apellidos_compartidos.setdefault(clave, set()).add(a['nombre'].strip().lower())
+            apellidos_compartidos.setdefault(clave, set()).add(nombre_limpio_a.strip().lower())
 
     def nota_real_para_actor(nombre_actor, tema_id):
         """La nota real donde ese actor es mencionado dentro del tema -- nunca el título
@@ -661,7 +676,8 @@ def calcular():
         relevante solo tiene mención en fuentes de menor nivel, se excluye -- no se
         muestra con una fuente floja solo para no dejar el espacio vacío."""
         evs = [e for e in eventos_por_tema.get(tema_id, []) if hace_24h <= e['_ts'] <= ahora]
-        partes = [x for x in nombre_actor.split() if len(x) > 2]
+        nombre_limpio = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
+        partes = [x for x in nombre_limpio.split() if len(x) > 2]
         clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
         hay_homonimo = clave_apellidos and len(apellidos_compartidos.get(clave_apellidos, ())) > 1
         con_mencion = []
@@ -857,10 +873,15 @@ def calcular():
         texto = e['descripcion'].lower()
         if not _mencionadoDeFormaSegura(actor['nombre'], texto):
             return False
-        partes = [x for x in actor['nombre'].split() if len(x) > 2]
+        # Mismo apodo-entre-paréntesis que se limpia en _mencionadoDeFormaSegura: sin
+        # quitarlo aquí, "clave" nunca era el apellido compuesto real (ej. quedaba
+        # "beltrán ('andy')" en vez de "lópez beltrán"), así que la guarda de homónimos
+        # compartidos nunca se activaba para estos actores.
+        nombre_limpio = re.sub(r'\([^)]*\)', '', actor['nombre']).strip()
+        partes = [x for x in nombre_limpio.split() if len(x) > 2]
         if len(partes) >= 3:
             clave = f'{partes[-2]} {partes[-1]}'.lower()
-            if len(apellidos_compartidos.get(clave, ())) > 1 and actor['nombre'].lower() not in texto:
+            if len(apellidos_compartidos.get(clave, ())) > 1 and nombre_limpio.lower() not in texto:
                 return False
         return True
 

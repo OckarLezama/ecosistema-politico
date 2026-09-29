@@ -682,7 +682,12 @@ def _mencionadoDeFormaSegura(nombre_actor, clausula_lower):
     notas que ni lo mencionan. Ahora se exige nombre completo, o al menos 2 palabras
     consecutivas del nombre juntas (nombre+apellido, o los 2 apellidos) -- nunca una
     palabra sola, sin importar su longitud.
+
+    CORRECCIÓN -- ver la misma corrección en calcular_pulso_nacional.py: un apodo entre
+    paréntesis pegado al nombre (ej. "...López Beltrán ('Andy')") se colaba como "última
+    palabra", así que el apellido compuesto real nunca se probaba. Se quita antes de partir.
     """
+    nombre_actor = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
     partes = [p for p in nombre_actor.split() if len(p) > 2]
     if len(partes) < 2:
         return partes and partes[0].lower() in clausula_lower
