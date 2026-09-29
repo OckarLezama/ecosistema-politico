@@ -1,17 +1,17 @@
 {
-  "generado_en": "2026-09-29T16:35:17.974463-06:00",
+  "generado_en": "2026-09-29T16:56:51.049577-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 30,
+  "n_notas_ventana": 31,
   "baja_confianza": false,
   "tension_nacional": 52,
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 65,
+      "peso_pct": 66,
       "tema_principal": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
       "tema_principal_id": "auto-4d06ef5b18",
-      "n_temas": 12,
-      "n_notas": 19,
+      "n_temas": 13,
+      "n_notas": 20,
       "notas": [
         {
           "texto": "Francisco Martín Moreno: Un día en la vida de Claudia Sheinbaum - Diario de Yucatán",
@@ -107,7 +107,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 16,
+      "peso_pct": 15,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 2,
@@ -147,7 +147,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 13,
+      "peso_pct": 12,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
@@ -393,7 +393,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 52
+          "peso_pct": 51
         },
         {
           "categoria": "Gobernabilidad",
@@ -422,7 +422,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 29
+          "peso_pct": 30
         },
         {
           "categoria": "Relación Bilateral",
@@ -447,7 +447,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 37
+          "peso_pct": 38
         },
         {
           "categoria": "Relación Bilateral",
@@ -468,7 +468,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 38
+          "peso_pct": 37
         },
         {
           "categoria": "Gobernabilidad",
@@ -505,7 +505,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Social",
@@ -547,7 +547,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 39
+          "peso_pct": 40
         },
         {
           "categoria": "Relación Bilateral",
@@ -622,7 +622,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 40
+          "peso_pct": 41
         },
         {
           "categoria": "Relación Bilateral",
@@ -630,7 +630,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Social",
@@ -647,7 +647,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 45
+          "peso_pct": 46
         },
         {
           "categoria": "Relación Bilateral",
@@ -672,7 +672,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 48
+          "peso_pct": 49
         },
         {
           "categoria": "Relación Bilateral",
@@ -747,7 +747,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 56
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
@@ -843,11 +843,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 25
+          "peso_pct": 24
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 57
+          "peso_pct": 58
         },
         {
           "categoria": "Relación Bilateral",
@@ -920,13 +920,26 @@
       "nombre": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
       "categoria": "Gobernabilidad",
       "resumen": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caída de producción: así fue el tenso momento - Ambito",
-      "motivo": "EU va por ‘Andy’ López: Dos agencias investigan acusaciones de huachicoleo, dice el NYT",
-      "peso": 40.0,
-      "n_temas_agrupados": 11,
+      "motivo": "Senado avala reforma que prohíbe doble nacionalidad en gubernaturas y presidencias",
+      "peso": 47.0,
+      "n_temas_agrupados": 12,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 5,
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/29/eu-va-por-andy-lopez-dos-agencias-investigan-acusaciones-de-huachicoleo-dice-el-nyt/"
+      "medios_corroborantes": 6,
+      "fuente_url": "https://www.informador.mx/mexico/senado-avala-reforma-de-sheinbaum-que-prohibe-doble-nacionalidad-en-gubernaturas-y-presidencias-que-sigue-20260929-0137.html"
+    },
+    {
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "motivo": "¿Cómo es la casa que alquiló el empresario Amílcar Olán en Suiza? Se renta en más de 300 mil pesos al mes",
+      "peso": 25.0,
+      "n_temas_agrupados": 5,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/"
     }
   ],
   "temas_nuevos": [
@@ -993,6 +1006,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNZjctTkRFUmdwdkJndEMxRi0wZDNhektaSFBtOGVKTFN6bGNJRUdTQ3hrdXJ5dUNDU0NuWlh4NnZfX0pidFRIY1pVSm5Ia083VDNkbG9EQUQxRHpiclQ0Q05oYy1Lc19OOFF0TDQ1a3BlN0tJT0VPdWRvY19RSVFrbGlELXkxWEtjTmh3RG94Um1HMXA5RWxGRlFB0gGaAUFVX3lxTE9QUFA1bWZ4cUUySXh4T1pqa0xSMXFpZ1M2N01maHN4LThmNTBub1NrcnNzRDlPOVJlc3NDSFk4SGMxcEhNMzY3X1BQU1JDRWp2XzM5WFRWeUZFb2VNRlB0bkZhMGhaMUdkaWVsOGMyOFhkaFlCc3dIN0tyb0ZUYWhub0ZnSUdSeG9XQmx3dHhRZXVVMUZ5eWlSNmc?oc=5",
       "fecha_anterior": "2026-09-15",
       "fuente_url_anterior": "https://www.tabascohoy.com/a-prueba-la-unidad-de-morena/"
+    },
+    {
+      "id": "auto-d4c722b2c0",
+      "nombre": "Adiós a los cargos sorpresa: Monreal presenta iniciativa contra cobros ocultos e",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 7,
+      "motivo": "🔔 ALERTA — PVEM presenta iniciativa para regular refugios animales - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQTXBFV1BWaTVoZGpUNnZoVTVpd0M4X00xSlk2LUg2Z2xvUGZZcUZWYkVSZ2prSnY2ZVh6S2IxSWxQSzBDX1pPd1pmY3ctZDJfRGo4Wk9OSTd4TXBwa25XRWYzeDBSTzkxbnhlejdYM1k3WXkxOVlhNlFaQWs1T3poYmtZUDdSWUhKSWZXbXoyczR3SzRPVzI0b2dMYWFqZGszLWRMV0tQNDhDUWgxUVA2RWpaT0dSd1ladXZoTE9ncjBtZDJIYmxCR1M4dWEzS2x2LUZYWWk2eDAxVVNJNXhSRWUxUVpVWWdwTHpmSmFCd1VCemtNMTROY3ZZRnIyM2lWWUxxdHZB?oc=5",
+      "fecha_anterior": "2026-09-21",
+      "fuente_url_anterior": "https://oem.com.mx/diariodexalapa/local/pri-propone-que-gobernadora-y-funcionarios-estatales-puedan-ser-juzgados-sin-fuero-32191867"
     }
   ],
   "actores_destacados": [
@@ -1000,9 +1024,19 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Rectora Yarabí Denuncia Asfixia Financiera Y Campaña Vs UMSNH; Buscará A Sheinba",
-      "nota": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNbUp1eUpxVTg3YjQtZUhTZUpYUmZZdGpIWXNETmlmYnBROTZ5cmtULWZ6d21GLWI3aVVZSGxXVGxkUWViOGtqakcyWnpoenZoZ182Vi1va2IyQzljekN4RmI3QmVGUUYzZkptdGppc1VfRW84dHIxaGxpVkVYTEtTMGFuX2luWWp2LWRMaVZjOEJmRWliTEhMczNJUkVJSkJUOFhVSDB5M0hrUWpw?oc=5",
+      "tema": "Claudia Tacoronte: un crimen que deja preguntas sobre seguridad y atención de em",
+      "nota": "Claudia Sheinbaum deja en manos de la FGR el caso de Jorge Amílcar Olán",
+      "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-deja-en-manos-de-la-fgrel-caso-de-jorge-amilcar-olan-20260929-0020.html",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "rol": "Mencionado",
+      "tema": "El futbol mexicano será investigado por el Gobierno de Sheinbaum tras acusacione",
+      "nota": "EU va por ‘Andy’ López: Dos agencias investigan acusaciones de huachicoleo, dice el NYT",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/29/eu-va-por-andy-lopez-dos-agencias-investigan-acusaciones-de-huachicoleo-dice-el-nyt/",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -1013,6 +1047,26 @@
       "tema": "Huachicol Fiscal",
       "nota": "¿Cómo es la casa que alquiló el empresario Amílcar Olán en Suiza? Se renta en más de 300 mil pesos al mes",
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "alito_moreno",
+      "nombre": "Alejandro Moreno Cárdenas",
+      "rol": "Responsable institucional",
+      "tema": "Alejandro Moreno pide extraditar a Amílcar Olán desde Suiza; exige que responda ",
+      "nota": "⚡ Posible presión de Alejandro Moreno Cárdenas — Alejandro Moreno pide extraditar a Amílcar Olán desde Suiza; exige que responda ante la justicia - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNbUtWNDd0YTI0ZVFIOUJqbVJ4VGF3TllrODZfUTlJZ0Z1UGFzd1BrQXJUNGRnSDFTbDV3akRlbXdjaVJ2VWZhSU9NcjcxZHFmeEV4amZyTzJUWU9iQlpPVnFIX0F5bUZGd1Y3ZG5iRnc5Znk0OEVQNTV3bDVod3dGb19vTDF4SXJyNjFPRUVlRW9KdVMwWXdaWWFrMXlyeHR3bzRLT3o5Z3ZISHZzYlBfU0dCVFA3SGR5Zk1FaVFVd0dsc0l2aEpveFdkdWNFcnc?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Mencionado",
+      "tema": "Por las tensiones nacionales, el PT amenaza romper la alianza con Morena en la C",
+      "nota": "Se logrará reforma  sobre doble nacionalidad: Morena",
+      "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/009n2pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -1090,10 +1144,10 @@
     },
     {
       "fecha": "2026-09-09",
-      "tension": 35,
-      "n_notas": 36,
+      "tension": 34,
+      "n_notas": 37,
       "n_alto_impacto": 17,
-      "n_medio_impacto": 19,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
@@ -1162,10 +1216,10 @@
     },
     {
       "fecha": "2026-09-18",
-      "tension": 56,
-      "n_notas": 40,
+      "tension": 55,
+      "n_notas": 41,
       "n_alto_impacto": 34,
-      "n_medio_impacto": 6,
+      "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     },
     {
@@ -1195,9 +1249,9 @@
     {
       "fecha": "2026-09-22",
       "tension": 49,
-      "n_notas": 49,
+      "n_notas": 50,
       "n_alto_impacto": 39,
-      "n_medio_impacto": 10,
+      "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     },
     {
@@ -1234,10 +1288,10 @@
     },
     {
       "fecha": "2026-09-27",
-      "tension": 48,
-      "n_notas": 14,
+      "tension": 43,
+      "n_notas": 15,
       "n_alto_impacto": 11,
-      "n_medio_impacto": 3,
+      "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     },
     {
@@ -1251,8 +1305,8 @@
     {
       "fecha": "2026-09-29",
       "tension": 52,
-      "n_notas": 28,
-      "n_alto_impacto": 20,
+      "n_notas": 29,
+      "n_alto_impacto": 21,
       "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
@@ -1315,10 +1369,10 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
+      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
       "es_nuevo": false,
-      "categoria": "Relación Bilateral",
+      "categoria": "Seguridad Nacional",
       "dias_activo": 2
     },
     {
@@ -1336,8 +1390,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://www.yucatan.com.mx/mexico/2026/09/29/estados-unidos-analiza-acusaciones-contra-andy-lopez-beltran-the-new-york-times.html",
+      "nota_texto": "Estados Unidos analiza acusaciones contra “Andy” López Beltrán: The New York Times",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 2
@@ -1449,8 +1503,72 @@
     }
   ],
   "tablero_semana_inicio": "2026-09-28",
-  "resumen_mananera": [],
-  "mananera_estado": "sin_mananera",
+  "resumen_mananera": [
+    {
+      "texto": "Se presentaron avances significativos en el programa de vacunación nacional durante los dos años de la administración Sheinbaum. Se han aplicado 149 millones de dosis de vacunas de manera universal, g",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "El programa \"Salud Casa por Casa\" ha realizado 24.8 millones de consultas en hogares de adultos mayores y personas con discapacidad. Se han efectuado 17.1 millones de pruebas de glucosa, colesterol y",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se informó sobre la construcción de 33 nuevos hospitales en los últimos dos años, con una inversión de aproximadamente 24 mil millones de pesos y la creación de 1,535 nuevas camas hospitalarias. Estos",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se presentó un análisis comparativo del crecimiento hospitalario en México. Durante los primeros 40 años del IMSS (1943-1982) se construyeron 35,000 camas. Sin embargo, en los 36 años del período neol",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se reportó una inversión de 15,800 millones de pesos en equipamiento médico de alta tecnología durante 2025-2026. Se adquirieron 241 tomógrafos, 5 PET-CT, 676 mastógrafos, 37 aceleradores lineales y 5",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se informó sobre la rehabilitación y modernización de 650 quirófanos en las instituciones de salud durante 2025-2026. El ISSSTE rehabilitó 122 quirófanos, el IMSS 235 y el INSABI 293, muchos de los cu",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se presentaron datos sobre el incremento en la entrega de medicamentos e insumos para la salud. Se realizó una inversión de 32 mil millones de pesos entre 2025 y 2026, resultando en la entrega de más",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se reportó un aumento significativo en la formación de médicos especialistas. Hace seis años se duplicó el número de plazas para especialistas, y actualmente se han asignado más de 56 mil plazas para",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se presentaron avances en las investigaciones del caso Ayotzinapa con nuevas líneas de investigación basadas en análisis técnico y científico. Se detectaron 17 personas que tuvieron comunicación telef",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    }
+  ],
+  "mananera_estado": "ok",
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
@@ -1497,5 +1615,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-09-29 16:35"
+  "hora_corte_publicada": "2026-09-29 16:56"
 }
