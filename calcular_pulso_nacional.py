@@ -515,8 +515,27 @@ def calcular():
         nuevos.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
                         'peso': round(sum(float(e['intensidad']) for e in evs if e in ventana), 1),
                         'impacto': _impacto_de(float(top_ventana['intensidad'])),
-                        'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or ''})
-    nuevos = sorted(nuevos, key=lambda x: x['peso'], reverse=True)[:5]
+                        'fuente_url': top_ventana.get('fuente_url') or t.get('fuente_url') or '',
+                        '_dominio_top': identidad_medio(top_ventana)})
+
+    # mismo criterio que Top 5: no repetir el mismo medio como fuente principal de dos
+    # temas nuevos -- de lo contrario "Nuevos" puede terminar siendo 3-4 notas del mismo
+    # diario nada más porque ese día tuvo mucho volumen, y se lee como que el resto de la
+    # prensa no cubrió nada nuevo, cuando en realidad no se le dio la oportunidad de
+    # aparecer. El de mayor peso se queda con el lugar; el resto del mismo medio se salta.
+    nuevos_ordenados = sorted(nuevos, key=lambda x: x['peso'], reverse=True)
+    nuevos = []
+    dominios_usados_nuevos = set()
+    for cand in nuevos_ordenados:
+        dom = cand['_dominio_top']
+        if dom and dom in dominios_usados_nuevos:
+            continue
+        if dom:
+            dominios_usados_nuevos.add(dom)
+        del cand['_dominio_top']
+        nuevos.append(cand)
+        if len(nuevos) == 5:
+            break
 
     # BUG REAL encontrado en esta revisión (mismo patrón que ya se corrigió en "Nuevos"):
     # exigía tid in temas_1, pero esa clasificación la actualiza limpiar_agenda_nacional.py
@@ -556,8 +575,23 @@ def calcular():
                                'impacto': _impacto_de(float(motivo['intensidad'])),
                                'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or '',
                                'fecha_anterior': anterior['_ts'].date().isoformat(),
-                               'fuente_url_anterior': anterior.get('fuente_url') or ''})
-    retomados = sorted(retomados, key=lambda x: x['dias_silencio'], reverse=True)[:5]
+                               'fuente_url_anterior': anterior.get('fuente_url') or '',
+                               '_dominio_top': identidad_medio(motivo)})
+
+    # mismo criterio de diversidad de medio que Nuevos/Top 5
+    retomados_ordenados = sorted(retomados, key=lambda x: x['dias_silencio'], reverse=True)
+    retomados = []
+    dominios_usados_retomados = set()
+    for cand in retomados_ordenados:
+        dom = cand['_dominio_top']
+        if dom and dom in dominios_usados_retomados:
+            continue
+        if dom:
+            dominios_usados_retomados.add(dom)
+        del cand['_dominio_top']
+        retomados.append(cand)
+        if len(retomados) == 5:
+            break
 
     # ================================================================
     # ACTORES CON TEMA EN AGENDA NACIONAL -- reaparición derivada de si su tema
@@ -1054,7 +1088,10 @@ def calcular_diff_corte(anterior, nuevo):
         cambios.append(f'Categoría dominante del día cambió: {cat_ant["categoria"]} → {cat_nuevo["categoria"]}')
 
     if not cambios:
-        cambios = ['Sin cambios relevantes respecto al corte anterior.']
+        # antes se mostraba "Sin cambios relevantes..." como placeholder -- a petición del
+        # usuario, si de verdad no hay nada que reportar simplemente no se muestra la franja
+        # (no aporta, y competía por atención con el resto del encabezado sin decir nada).
+        return None
     return {'generado_anterior': anterior.get('generado_en'), 'cambios': cambios[:8]}
 
 
