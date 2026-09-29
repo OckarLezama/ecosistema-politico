@@ -1,0 +1,26 @@
+name: Robot de portadas del día
+"on":
+  schedule:
+    # 11,12,13,15 UTC = 5,6,7,9am hora CDMX (Mexico usa UTC-6 fijo, sin horario
+    # de verano desde 2022). Varias corridas porque no todos los medios publican
+    # su portada a la misma hora -- cada una reintenta solo lo que aún falte.
+    - cron: '0 11,12,13,15 * * *'
+  workflow_dispatch: {}
+concurrency:
+  group: robot-portadas-unico
+  cancel-in-progress: false
+jobs:
+  capturar-portadas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Descargar portadas del día
+        run: python3 robot_portadas.py
+      - name: Guardar novedades
+        run: |
+          git config user.name "robot-portadas"
+          git config user.email "robot@ecosistema-politico.local"
+          git add data/titulares.csv data/portadas
+          git diff --staged --quiet || git commit -m "Robot: portadas del dia $(date -u +%Y-%m-%d)"
+          git pull --rebase
+          git push
