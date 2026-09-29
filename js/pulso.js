@@ -1056,24 +1056,13 @@ function pintarPulso(cont, d){
         <button id="btn-exportar-pdf-analisis" style="font-size:10px;font-family:var(--f-mono);background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-2);border-radius:6px;padding:4px 10px;cursor:pointer;">↓ Exportar / compartir (PDF)</button>
       </div>
 
-      <!-- SÍNTESIS DEL CORTE -- pedido explícito: "esto es lo que importa hoy y por qué"
-           arriba de todo, para alguien que tiene 90 segundos. Se arma en el backend con
-           reglas fijas sobre datos que el propio módulo ya calculó (tensión, tema
-           dominante, actor en movimiento, alertas tempranas) -- no es un resumen con
-           matices generado por un modelo, eso queda para más adelante a propósito. Mismo
-           estilo de tarjeta que el resto, pero primero en el orden visual. -->
-      ${d.sintesis_ejecutiva && d.sintesis_ejecutiva.length ? tarjeta(`
-        <div class="eyebrow" style="margin-bottom:7px;">SÍNTESIS DEL CORTE</div>
-        <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px;">
-          ${d.sintesis_ejecutiva.map(linea=>`<li style="font-size:11.5px;line-height:1.5;">${linea}</li>`).join('')}
-        </ul>
-        ${d.precision_alertas ? `
-        <div style="margin-top:8px;padding-top:7px;border-top:1px solid var(--line);font-size:9px;color:var(--ink-3);font-family:var(--f-mono);">
-          ${d.precision_alertas.suficiente
-            ? `Precisión de alertas tempranas (últimos 45 días): ${d.precision_alertas.aciertos}/${d.precision_alertas.total} acertaron (${d.precision_alertas.pct}%)`
-            : `Auditoría de alertas: acumulando historial (${d.precision_alertas.evaluadas} evaluada${d.precision_alertas.evaluadas!==1?'s':''}, ${d.precision_alertas.pendientes} en seguimiento) -- aún sin muestra suficiente para un % confiable.`}
-        </div>` : ''}
-      `) : ''}
+      <!-- SÍNTESIS DEL CORTE -- eliminada: la mayoría de sus líneas (tensión, tema
+           dominante, actor que más se movió) solo repetían en prosa lo que ya está en
+           tarjetas propias en esta misma pantalla. Lo único que aportaba información
+           nueva (A VIGILAR y la auditoría de aciertos) se movió al cierre, abajo, como
+           franja de seguimiento en vez de resumen ejecutivo. Ver ROADMAP_PENDIENTE en
+           calcular_pulso_nacional.py -- una síntesis con matices reales (razonamiento,
+           no plantilla) sigue pendiente y requiere IA de paga. -->
 
       <!-- QUÉ CAMBIÓ DESDE EL CORTE ANTERIOR -- franja delgada, no compite por espacio con
            las tarjetas; evita que el usuario tenga que comparar dos cortes a ojo. -->
@@ -1135,26 +1124,6 @@ function pintarPulso(cont, d){
         ${tarjeta(`<div class="eyebrow" style="color:var(--riesgo-bajo);">TEMAS NUEVOS</div>${listaTema(d.temas_nuevos)}`)}
       </div>
 
-      <!-- A VIGILAR -- pedido explícito: señal de alerta temprana (temas.csv ya la
-           calculaba, nunca se mostraba) para temas a un paso de entrar a la agenda
-           nacional, pero que todavía no califican para Top 5. Franja delgada como la de
-           "desde el corte anterior" -- es una señal de vigilancia, no una tarjeta de
-           contenido pesado, y se omite por completo cuando no hay nada que vigilar. -->
-      ${d.a_vigilar && d.a_vigilar.length ? `
-      <div style="background:var(--bg-1);border:1px solid var(--line);border-radius:var(--radius-m);padding:9px 16px;">
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="eyebrow" style="color:var(--riesgo-medio);flex-shrink:0;">👁 A VIGILAR</span>
-          <span style="font-size:9px;color:var(--ink-3);">a un paso de entrar a la agenda nacional</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
-          ${d.a_vigilar.map(t=>`
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
-              <span style="font-size:10.5px;"><strong>${t.nombre}</strong> <span style="color:var(--ink-3);font-size:9px;">· ${t.categoria}</span></span>
-              ${enlaceNota(t.fuente_url)}
-            </div>`).join('')}
-        </div>
-      </div>` : ''}
-
       <!-- BLOQUE 3: peso por categoría · tendencia 4 semanas (60%) · patrón histórico 4 semanas en barras (40%) -->
       <div style="display:grid;grid-template-columns:3fr 2fr;gap:14px;">
         ${tarjeta(`<div class="eyebrow">PESO POR CATEGORÍA · TENDENCIA 4 SEMANAS</div>${panelRecorrible('pulso-scroll-tendencia', svgTendenciaCategoriasPulso(d.categorias_tendencia_4sem), 560)}`)}
@@ -1170,6 +1139,45 @@ function pintarPulso(cont, d){
           ${declaracionHTML('DECLARACIÓN · OTRO ACTOR', d.declaracion_otro_historial || (d.declaracion_otro ? [d.declaracion_otro] : []))}
         </div>`)}
       </div>
+
+      <!-- CIERRE: A VIGILAR + AUDITORÍA DE ACIERTOS -- van al final a propósito. No son
+           el resumen del corte (eso ya está arriba, cada dato en su propia tarjeta): son
+           señales de seguimiento/autoevaluación -- "qué viene" y "qué tan confiable ha
+           sido el sistema hasta ahora" -- por eso se quedan como franja de cierre y no
+           compiten por el primer vistazo. Se omiten por completo cuando no hay nada
+           que mostrar en ninguna de las dos. -->
+      ${(d.a_vigilar && d.a_vigilar.length) || d.precision_alertas ? `
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        ${d.a_vigilar && d.a_vigilar.length ? `
+        <div style="background:var(--bg-1);border:1px solid var(--line);border-radius:var(--radius-m);padding:9px 16px;">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="eyebrow" style="color:var(--riesgo-medio);flex-shrink:0;">👁 A VIGILAR</span>
+            <span style="font-size:9px;color:var(--ink-3);">a un paso de entrar a la agenda nacional</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
+            ${d.a_vigilar.map(t=>`
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                <span style="font-size:10.5px;"><strong>${t.nombre}</strong> <span style="color:var(--ink-3);font-size:9px;">· ${t.categoria}</span></span>
+                ${enlaceNota(t.fuente_url)}
+              </div>`).join('')}
+          </div>
+        </div>` : ''}
+        ${d.precision_alertas ? `
+        <div style="background:var(--bg-1);border:1px solid var(--line);border-radius:var(--radius-m);padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+          <span class="eyebrow" style="flex-shrink:0;">⟲ AUDITORÍA DE ALERTAS</span>
+          ${d.precision_alertas.suficiente ? (() => {
+            const pct = d.precision_alertas.pct;
+            const color = pct >= 70 ? 'var(--teal)' : pct >= 50 ? 'var(--riesgo-medio)' : 'var(--riesgo-alto)';
+            const flecha = pct >= 70 ? '▲' : pct >= 50 ? '▬' : '▼';
+            return `<span style="font-size:11px;font-family:var(--f-mono);display:flex;align-items:center;gap:6px;">
+              <span style="font-size:13px;color:${color};">${flecha}</span>
+              <strong style="font-size:13px;color:${color};">${pct}%</strong>
+              <span style="color:var(--ink-3);font-size:9.5px;">de acierto · ${d.precision_alertas.aciertos}/${d.precision_alertas.total} en los últimos 45 días</span>
+            </span>`;
+          })() : `
+          <span style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);">acumulando historial (${d.precision_alertas.evaluadas} evaluada${d.precision_alertas.evaluadas!==1?'s':''}, ${d.precision_alertas.pendientes} en seguimiento) -- aún sin muestra suficiente para un % confiable</span>`}
+        </div>` : ''}
+      </div>` : ''}
 
     </div>`;
 
