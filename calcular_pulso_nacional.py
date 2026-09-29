@@ -713,6 +713,12 @@ def calcular():
             texto = e['descripcion'].lower()
             if not _mencionadoDeFormaSegura(nombre_actor, texto):
                 continue
+            # CORRECCIÓN -- una nota de opinión (columna firmada por el propio actor)
+            # no es evidencia de que tuvo impacto de agenda; es él mismo opinando. Sin
+            # este filtro, un columnista (ej. Loret de Mola) podía salir como "destacado"
+            # enlazando a su propia columna, no a una nota donde de verdad fue noticia.
+            if e['descripcion'].startswith('[Opinión]'):
+                continue
             if hay_homonimo and nombre_limpio.lower() not in texto:
                 tiene_apodo = apodo and re.search(r'\b' + re.escape(apodo.lower()) + r'\b', texto) is not None
                 if not tiene_apodo:
@@ -895,7 +901,13 @@ def calcular():
     # se pierde a un actor estable pero dominante solo por no haberse movido.
     # ================================================================
     inicio_semana = (ahora - timedelta(days=ahora.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
-    fin_lunes = inicio_semana + timedelta(days=1)
+    # CORRECCIÓN -- antes el "corte anterior" era el lunes A SECAS (un único día calendario),
+    # así que un actor sin mención específicamente EN LUNES arrancaba en (0,0) aunque llevara
+    # toda la semana activo -- el tablero se veía como si nadie tuviera "punto de ayer" real y
+    # todos aparecieran de la nada. Ahora el corte es "fin del día de ayer": el punto de
+    # referencia es lo acumulado de la semana hasta ayer, y "hoy" es lo acumulado hasta ahora --
+    # así sí hay un punto de partida real para cualquier actor con actividad antes de hoy.
+    inicio_hoy = ahora.replace(hour=0, minute=0, second=0, microsecond=0)
     PESO_IMPACTO_ACTOR = {'alto': 3, 'medio': 1.5, 'bajo': 1}
 
     def _actor_mencionado_en(actor, e):
@@ -935,6 +947,14 @@ def calcular():
         evs_semana = {}
         evs_previos_hay = False
         for tid in temas_ids:
+            if tid not in temas_1:
+                # CORRECCIÓN -- este era el único cálculo del módulo que no exigía agenda
+                # nacional (nivel_relevancia=1); por eso podía entrar un actor por una nota
+                # sin relevancia de agenda real (ej. Nahle / anuncio de sede de una olimpiada
+                # local) en vez de solo por lo que de verdad pesa en la agenda del país. Se
+                # alinea con el mismo filtro que ya usan diff de corte, tendencia de
+                # categorías y patrón histórico.
+                continue
             for e in eventos_por_tema.get(tid, []):
                 if e['_ts'] > ahora or not _actor_mencionado_en(actor, e):
                     continue
@@ -945,19 +965,27 @@ def calcular():
         evs_semana = list(evs_semana.values())
         if not evs_semana:
             continue
-        evs_lunes = [e for e in evs_semana if e['_ts'] < fin_lunes]
+        evs_ayer = [e for e in evs_semana if e['_ts'] < inicio_hoy]
 
         def _peso(e):
             return PESO_IMPACTO_ACTOR[_impacto_de(float(e['intensidad']))]
 
         score_hoy = sum(_peso(e) for e in evs_semana)
-        score_lunes = sum(_peso(e) for e in evs_lunes)
-        vol_hoy, vol_lunes = len(evs_semana), len(evs_lunes)
+        score_ayer = sum(_peso(e) for e in evs_ayer)
+        vol_hoy, vol_ayer = len(evs_semana), len(evs_ayer)
         intens_hoy = score_hoy / vol_hoy if vol_hoy else 0
-        intens_lunes = score_lunes / vol_lunes if vol_lunes else 0
+        intens_ayer = score_ayer / vol_ayer if vol_ayer else 0
         n_alto = sum(1 for e in evs_semana if _impacto_de(float(e['intensidad'])) == 'alto')
         n_medio = sum(1 for e in evs_semana if _impacto_de(float(e['intensidad'])) == 'medio')
         n_bajo = sum(1 for e in evs_semana if _impacto_de(float(e['intensidad'])) == 'bajo')
+        # CORRECCIÓN -- el color del tablero se pintaba con y_hoy, que es una posición
+        # NORMALIZADA relativa solo a los ~9 actores seleccionados (el más intenso de ese
+        # grupo siempre llega a 100), no un nivel de impacto absoluto -- por eso casi
+        # cualquiera terminaba en la banda "alta" (rojo) aunque sus notas reales fueran de
+        # impacto medio o bajo. Aquí se usa el nivel de impacto real (mismo umbral 0-10 que
+        # el resto del módulo) sobre el promedio de intensidad SIN normalizar.
+        intens_prom_hoy = sum(float(e['intensidad']) for e in evs_semana) / vol_hoy
+        impacto_nivel = _impacto_de(intens_prom_hoy)
         nota_top = max(evs_semana, key=lambda e: float(e['intensidad']))
         # categoría dominante del actor esta semana (para colorear con la MISMA paleta
         # de categorías que ya se usa en el resto de Análisis, en vez de colores nuevos
@@ -968,17 +996,17 @@ def calcular():
         dias_activo = len({e['_ts'].date() for e in evs_semana})
         candidatos_tablero.append({
             'id': actor['id'], 'nombre': actor['nombre'], 'iniciales': actor.get('iniciales') or '',
-            'vol_hoy': vol_hoy, 'vol_lunes': vol_lunes,
-            'intens_hoy': intens_hoy, 'intens_lunes': intens_lunes,
-            'score_hoy': score_hoy, 'score_lunes': score_lunes,
+            'vol_hoy': vol_hoy, 'vol_ayer': vol_ayer,
+            'intens_hoy': intens_hoy, 'intens_ayer': intens_ayer,
+            'score_hoy': score_hoy, 'score_ayer': score_ayer,
             'alcance': len({identidad_medio(e) for e in evs_semana} - {None, ''}),
-            'n_alto': n_alto, 'n_medio': n_medio, 'n_bajo': n_bajo,
+            'n_alto': n_alto, 'n_medio': n_medio, 'n_bajo': n_bajo, 'impacto_nivel': impacto_nivel,
             'nota_url': nota_top.get('fuente_url') or '', 'nota_texto': nota_top['descripcion'][:200],
-            'es_nuevo': vol_lunes == 0 and not evs_previos_hay,
+            'es_nuevo': vol_ayer == 0 and not evs_previos_hay,
             'categoria': categoria_dominante, 'dias_activo': dias_activo,
         })
 
-    por_movimiento = sorted(candidatos_tablero, key=lambda c: abs(c['score_hoy'] - c['score_lunes']), reverse=True)[:6]
+    por_movimiento = sorted(candidatos_tablero, key=lambda c: abs(c['score_hoy'] - c['score_ayer']), reverse=True)[:6]
     por_score = sorted(candidatos_tablero, key=lambda c: c['score_hoy'], reverse=True)[:6]
     seleccionados = list({c['id']: c for c in por_movimiento + por_score}.values())[:9]
     max_vol = max([c['vol_hoy'] for c in seleccionados] + [1])
@@ -989,10 +1017,11 @@ def calcular():
 
     tablero_actores = sorted([{
         'id': c['id'], 'nombre': c['nombre'], 'iniciales': c['iniciales'],
-        'x_lunes': _norm(c['vol_lunes'], max_vol), 'y_lunes': _norm(c['intens_lunes'], max_intens),
+        'x_lunes': _norm(c['vol_ayer'], max_vol), 'y_lunes': _norm(c['intens_ayer'], max_intens),
         'x_hoy': _norm(c['vol_hoy'], max_vol), 'y_hoy': _norm(c['intens_hoy'], max_intens),
-        'delta_pts': round(c['score_hoy'] - c['score_lunes'], 1),
+        'delta_pts': round(c['score_hoy'] - c['score_ayer'], 1),
         'alcance': c['alcance'], 'n_alto': c['n_alto'], 'n_medio': c['n_medio'], 'n_bajo': c['n_bajo'],
+        'impacto_nivel': c['impacto_nivel'],
         'nota_url': c['nota_url'], 'nota_texto': c['nota_texto'], 'es_nuevo': c['es_nuevo'],
         'categoria': c['categoria'], 'dias_activo': c['dias_activo'],
     } for c in seleccionados], key=lambda c: c['x_hoy'] + c['y_hoy'], reverse=True)
