@@ -1,4 +1,4 @@
-const ECOSISTEMA = { ready:false, actores:[], redesPersonales:[], conexiones:[], temas:[], eventos:[], temaActores:[] };
+const ECOSISTEMA = { ready:false, actores:[], redesPersonales:[], conexiones:[], temas:[], eventos:[], temaActores:[], titulares:[] };
 
 function cargarCSV(nombreArchivo){
   return new Promise((resolve)=>{
@@ -56,6 +56,11 @@ function iniciarActualizacionAutomatica(){
     ECOSISTEMA.eventos = eventos.map(e=>({...e, intensidad:Number(e.intensidad)||1}));
     ECOSISTEMA.temaActores = temaActores;
 
+    cargarCSV('titulares.csv').then(t=>{
+      if(t) ECOSISTEMA.titulares = t;
+      if(typeof renderTitularesDelDia==='function') renderTitularesDelDia();
+    });
+
     if(typeof renderFeed==='function') renderFeed();
     if(typeof renderCintillo==='function') renderCintillo();
     if(typeof revisarNotificacionesPendientes==='function') revisarNotificacionesPendientes();
@@ -75,6 +80,18 @@ function iniciarActualizacionAutomatica(){
   }, 3*60*1000);
 }
 document.addEventListener('ecosistema:datos-listos', iniciarActualizacionAutomatica, {once:true});
+
+// Titulares del día (portadas de 8 columnas) -- se carga aparte, NUNCA bloquea el
+// resto de los datos base: si 'titulares.csv' todavía no existe o falla, el
+// ecosistema sigue funcionando normal, solo sin esa sección. Se captura una vez
+// en la mañana (5-7am) y queda estática el resto del día, así que basta con
+// revisarla junto con el resto en la actualización automática cada 3 min.
+async function cargarTitulares(){
+  const datos = await cargarCSV('titulares.csv');
+  ECOSISTEMA.titulares = datos || [];
+  if(typeof renderTitularesDelDia==='function') renderTitularesDelDia();
+}
+document.addEventListener('DOMContentLoaded', cargarTitulares);
 
 function getTema(id){ return ECOSISTEMA.temas.find(t=>t.id===id); }
 
