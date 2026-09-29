@@ -5,8 +5,12 @@ name: Robot de monitoreo - temas Nivel 1
     - cron: '*/5 13-16 * * 1-5'
   workflow_dispatch: {}
 concurrency:
+  # Mismo fix que portadas.yml y pulso-nacional.yml: con cron cada 5-15 min, una corrida
+  # atrasada que se queda en cola detrás de otras retrasa la captura de notas nuevas por
+  # horas en vez de minutos -- justo el síntoma reportado (una nota de último momento que
+  # no aparecía). Al cancelar la vieja en cuanto entra una más nueva, se evita el backlog.
   group: robot-temas-unico
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   buscar-candidatos:
     runs-on: ubuntu-latest
