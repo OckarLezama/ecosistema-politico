@@ -89,14 +89,27 @@ const fmtFechaCortaPulso = f => new Date(f+'T00:00:00').toLocaleDateString('es-M
    así que aquí solo se traduce ese estado a texto -- nada de heurísticas nuevas aquí. ---------- */
 function resumenMananeraHTML(items, estado){
   if(items && items.length){
-    return items.map((m,i)=>`
+    // CORRECCIÓN -- pedido explícito: los puntos del resumen de la mañanera vienen todos
+    // de la MISMA página (mananeradehoy.com/mananera-de-hoy) -- repetir "ver nota →" con
+    // el mismo link en cada uno de los 5 puntos es puro ruido, no información nueva. Si
+    // todos comparten fuente, el link se pone UNA sola vez, junto al encabezado del
+    // bloque; si en algún momento empiezan a venir de fuentes distintas (varios medios
+    // cubriendo la mañanera), cada punto recupera su propio link, porque ahí sí aporta
+    // saber de dónde viene cada uno.
+    const urls = new Set(items.map(m=> m.fuente_url || '').filter(Boolean));
+    const fuenteUnica = urls.size === 1;
+    const filas = items.map((m,i)=>`
       <div style="padding:7px 0;border-top:${i?'1px solid var(--line)':'none'};">
         <div style="font-size:10.5px;line-height:1.4;">${m.alerta?'🔔 ':''}${tituloLimpio(m.texto)}</div>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:3px;">
           <span style="font-size:8.5px;color:var(--ink-3);">${m.categoria||''}</span>
-          ${enlaceNota(m.fuente_url)}
+          ${fuenteUnica ? '' : enlaceNota(m.fuente_url)}
         </div>
       </div>`).join('');
+    if(fuenteUnica){
+      return `<div style="display:flex;justify-content:flex-end;margin-bottom:-2px;">${enlaceNota([...urls][0])}</div>${filas}`;
+    }
+    return filas;
   }
   if(estado === 'pendiente') return `<div style="font-size:10.5px;color:var(--ink-3);">Aún no termina o no se procesa la mañanera de hoy -- este resumen se actualiza una vez al día, normalmente después de las 10am.</div>`;
   return `<div style="font-size:10.5px;color:var(--ink-3);">No hubo mañanera este día.</div>`;
@@ -602,7 +615,10 @@ function tableroActoresPulso(actores){
   // círculos en sí ya no chocaran -- eso es lo que seguía viéndose "encimado". Se separa
   // usando el radio EFECTIVO (con halo) más margen, y se ubican por radio efectivo total,
   // de mayor a menor, para que las piezas grandes reclamen su espacio primero.
-  const GAP_MIN = 6;
+  // CORRECCIÓN -- pedido explícito: aprovechar el espacio que dejó libre la leyenda
+  // recortada (ver debajo) para distribuir un poco más los círculos entre sí, no solo lo
+  // mínimo para que dejen de encimarse.
+  const GAP_MIN = 9;
   const HALO = 8;
   datos.sort((p1,p2)=> (p2.r) - (p1.r));
   for(let ronda=0; ronda<80; ronda++){
@@ -739,7 +755,7 @@ function tableroActoresPulso(actores){
   // Con el valor por default (xMidYMid meet) el SVG escala parejo en X y Y y los
   // círculos se quedan círculos en cualquier pantalla, aunque queden pequeños márgenes
   // arriba/abajo o a los lados en proporciones muy distintas.
-  return `<div style="flex:1;position:relative;min-height:220px;">
+  return `<div style="flex:1;position:relative;min-height:270px;">
     <svg viewBox="0 0 ${w} ${h}" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
     ${defsGridPulso('pulso-grid-tablero')}
     <defs>
@@ -753,16 +769,16 @@ function tableroActoresPulso(actores){
     <rect x="${m}" y="${m*0.4}" width="${w-2*m}" height="${h-m-m*0.4}" fill="url(#pulso-grid-tablero)" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${cx}" y1="${m*0.4}" x2="${cx}" y2="${h-m}" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${m}" y1="${cy}" x2="${w-m}" y2="${cy}" stroke="var(--line-strong)" stroke-width="1"/>
-    <text x="${m+6}" y="${m*0.4+16}" font-size="10" fill="var(--riesgo-medio)" font-weight="700">FOCO DE ALERTA</text>
-    <text x="${w-m-6}" y="${m*0.4+16}" font-size="10" fill="var(--riesgo-alto)" font-weight="700" text-anchor="end">CENTRO DE LA AGENDA</text>
-    <text x="${m+6}" y="${h-m-8}" font-size="10" fill="var(--ink-3)" font-weight="700">BAJO PERFIL</text>
-    <text x="${w-m-6}" y="${h-m-8}" font-size="10" fill="var(--riesgo-bajo)" font-weight="700" text-anchor="end">RUIDO</text>
+    <text class="pulso-cuadrante-etiqueta" data-info="FOCO DE ALERTA (arriba-izquierda): poca exposición pero alto impacto → algo grave/sensible que todavía no se masifica, pero vale la pena vigilar porque puede escalar." x="${m+6}" y="${m*0.4+16}" font-size="10" fill="var(--riesgo-medio)" font-weight="700" style="cursor:help;">FOCO DE ALERTA</text>
+    <text class="pulso-cuadrante-etiqueta" data-info="CENTRO DE LA AGENDA (arriba-derecha): mucha exposición y alto impacto → domina la conversación pública ahora mismo." x="${w-m-6}" y="${m*0.4+16}" font-size="10" fill="var(--riesgo-alto)" font-weight="700" text-anchor="end" style="cursor:help;">CENTRO DE LA AGENDA</text>
+    <text class="pulso-cuadrante-etiqueta" data-info="BAJO PERFIL (abajo-izquierda): poca exposición y bajo impacto → sin relevancia significativa esta semana." x="${m+6}" y="${h-m-8}" font-size="10" fill="var(--ink-3)" font-weight="700" style="cursor:help;">BAJO PERFIL</text>
+    <text class="pulso-cuadrante-etiqueta" data-info="RUIDO (abajo-derecha): mucha exposición pero bajo impacto → aparece seguido, pero en notas poco trascendentes." x="${w-m-6}" y="${h-m-8}" font-size="10" fill="var(--riesgo-bajo)" font-weight="700" text-anchor="end" style="cursor:help;">RUIDO</text>
     <text x="${w/2}" y="${h-10}" font-size="11" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)">EXPOSICIÓN (volumen de menciones verificadas) →</text>
     <text x="14" y="${h/2}" font-size="11" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)" transform="rotate(-90 14 ${h/2})">INTENSIDAD DE IMPACTO →</text>
     ${piezas}
   </svg>
   </div>
-  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos) · color = nivel de impacto (turquesa bajo · naranja medio · rojo alto) · pieza tenue = solo figuró 1 día esta semana. En computadora: pasa el cursor para ver el detalle y haz clic para abrir la nota. En celular/tablet: toca una vez para ver el detalle, toca de nuevo para abrir la nota.</div>`;
+  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">En computadora: pasa el cursor para ver el detalle y haz clic para abrir la nota. En celular/tablet: toca una vez para ver el detalle, toca de nuevo para abrir la nota.</div>`;
 }
 function activarTableroActores(cont){
   if(!cont) return;
@@ -771,6 +787,14 @@ function activarTableroActores(cont){
     p.addEventListener('pointermove', ev=> mostrarTooltipPulso(p.dataset.info, ev));
     p.addEventListener('pointerenter', ev=> mostrarTooltipPulso(p.dataset.info, ev));
     p.addEventListener('pointerleave', ocultarTooltipPulso);
+  });
+  // CORRECCIÓN -- pedido explícito: hover en los 4 rótulos de cuadrante (FOCO DE ALERTA /
+  // CENTRO DE LA AGENDA / BAJO PERFIL / RUIDO) explicando qué significa cada uno -- mismo
+  // mecanismo de tooltip que ya usan las piezas, no uno nuevo.
+  cont.querySelectorAll('.pulso-cuadrante-etiqueta').forEach(t=>{
+    t.addEventListener('pointermove', ev=> mostrarTooltipPulso(t.dataset.info, ev));
+    t.addEventListener('pointerenter', ev=> mostrarTooltipPulso(t.dataset.info, ev));
+    t.addEventListener('pointerleave', ocultarTooltipPulso);
   });
   // CORREGIDO -- pedido explícito: en celular/tablet no existe hover, así que un tap
   // sobre la pieza abría la nota de inmediato sin que la persona alcanzara a ver la
@@ -1070,7 +1094,7 @@ function pintarPulso(cont, d){
 
       <!-- BLOQUE 2: tablero de actores (posición semanal, ver tableroActoresPulso) · actores destacados · temas nuevos -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-        ${tarjeta(`<div style="display:flex;flex-direction:column;height:100%;"><div class="eyebrow" style="margin-bottom:6px;">TABLERO DE ACTORES · SEMANA EN CURSO</div><div id="pulso-tablero-actores" style="flex:1;display:flex;flex-direction:column;min-height:260px;">${tableroActoresPulso(d.tablero_actores)}</div></div>`)}
+        ${tarjeta(`<div style="display:flex;flex-direction:column;height:100%;"><div class="eyebrow" style="margin-bottom:6px;">TABLERO DE ACTORES · SEMANA EN CURSO</div><div id="pulso-tablero-actores" style="flex:1;display:flex;flex-direction:column;min-height:310px;">${tableroActoresPulso(d.tablero_actores)}</div></div>`)}
         ${tarjeta(`<div class="eyebrow">ACTORES DESTACADOS</div>${listaActores(d.actores_destacados)}`)}
         ${tarjeta(`<div class="eyebrow" style="color:var(--riesgo-bajo);">TEMAS NUEVOS</div>${listaTema(d.temas_nuevos)}`)}
       </div>
