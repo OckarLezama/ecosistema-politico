@@ -142,14 +142,45 @@ function renderPortada(){
    Cada punto es un link real a su fuente (clic/tap abre la nota). Todo el
    campo gira despacio en sentido horario, y cada punto además late
    (opacidad) a su propio ritmo, para que el movimiento se note incluso
-   antes de que complete una vuelta. Se regenera en cada apertura. */
+   antes de que complete una vuelta. Se regenera en cada apertura.
+
+   Además: los puntos con score alto (misma lógica que notasRelevantesDe)
+   llevan un halo que respira permanentemente; los registrados en los
+   últimos 45 minutos llevan un destello de entrada una sola vez; al pasar
+   el mouse/foco, cada punto crece y muestra un tooltip propio con título,
+   nivel de impacto y difusión (no solo el clic al enlace); y en el centro
+   va rotando, de forma permanente, un carrusel de las notas más relevantes
+   del momento. */
+function nivelImpactoTexto(intensidad){
+  const n = Number(intensidad||0);
+  if(n>=8) return 'Alto';
+  if(n>=4) return 'Medio';
+  return 'Bajo';
+}
+function difusionTexto(cobertura){
+  const c = Number(cobertura||1);
+  if(c>=3) return `Alta (${c})`;
+  if(c===2) return `Media (${c})`;
+  return 'Puntual (1)';
+}
+function horaDecimalDeRegistro(horaRegistro){
+  if(!horaRegistro) return null;
+  const [h,m] = horaRegistro.split(':').map(Number);
+  if(isNaN(h)||isNaN(m)) return null;
+  return h+m/60;
+}
+function horaActualDecimalCDMX(){
+  const txt = new Date().toLocaleTimeString('en-GB', {timeZone:'America/Mexico_City', hour12:false});
+  const [h,m] = txt.split(':').map(Number);
+  return h+m/60;
+}
 function generarMapaPuntosSVG(){
   const cx = 320, cy = 320, R = 260;
   const notas = eventosHoyCache;
   const n = notas.length;
 
   if(!n){
-    return `<div style="text-align:center;color:#6B7280;font-family:var(--f-mono);font-size:11px;padding:60px 0;">Aún no hay notas registradas hoy.</div>`;
+    return { html: `<div style="text-align:center;color:#6B7280;font-family:var(--f-mono);font-size:11px;padding:60px 0;">Aún no hay notas registradas hoy.</div>`, carrusel: [] };
   }
 
   const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
@@ -182,17 +213,45 @@ function generarMapaPuntosSVG(){
     }
   });
 
+  // notas destacadas -- mismo criterio de score que notasRelevantesDe (intensidad*2+
+  // cobertura, umbral 8): llevan halo permanente y alimentan el carrusel del centro
+  const destacadas = notasRelevantesDe(notas, 999);
+  const destacadasSet = new Set(destacadas);
+  const carruselNotas = destacadas.slice(0, 8);
+  const ahoraDecimal = horaActualDecimalCDMX();
+
   // puntos más grandes y clicables -- cada uno es un link real a su fuente, con un
-  // área de toque más grande (círculo invisible) para que funcione bien en tablet
+  // área de toque más grande (círculo invisible) para que funcione bien en tablet.
+  // Al pasar el mouse/foco crecen y muestran un tooltip propio (no solo el <title>
+  // nativo). Los destacados llevan halo pulsante; los recién registrados (últimos
+  // 45 min) llevan un destello de entrada una sola vez.
   let dots = posiciones.map(p=>{
-    const r = (2.0+Math.random()*1.6).toFixed(2);
+    const r = (3.2+Math.random()*2.0).toFixed(2);
     const dur = (2.6+Math.random()*2.4).toFixed(2), delay = (-Math.random()*5).toFixed(2);
     const url = p.ev.fuente_url || '';
     const titulo = (p.ev.descripcion||'').replace(/^\[Mañanera\]\s*/,'').replace(/"/g,'&quot;').slice(0,140);
-    const circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#E8EAED" class="mapa-punto-late" style="animation-duration:${dur}s;animation-delay:${delay}s;"><title>${titulo}</title></circle>`;
-    if(!url) return circulo;
-    const hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="11" fill="transparent"/>`;
-    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link">${hit}${circulo}</a>`;
+    const impacto = nivelImpactoTexto(p.ev.intensidad);
+    const difusion = difusionTexto(p.ev.cobertura);
+    const esDestacada = destacadasSet.has(p.ev);
+
+    const horaNota = horaDecimalDeRegistro(p.ev.hora_registro);
+    let esNueva = false;
+    if(horaNota!==null){
+      let diffMin = (ahoraDecimal - horaNota)*60;
+      if(diffMin < -1380) diffMin += 1440; // cruce de medianoche
+      esNueva = diffMin>=0 && diffMin<=45;
+    }
+
+    let extra = '';
+    if(esDestacada) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(Number(r)*2.3).toFixed(2)}" fill="none" stroke="#2DD4BF" stroke-width="1.1" class="mapa-punto-halo"/>`;
+    if(esNueva) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="none" stroke="#F5D90A" stroke-width="1.8" class="mapa-punto-destello"/>`;
+
+    const colorDot = esDestacada ? '#2DD4BF' : '#E8EAED';
+    const circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="${colorDot}" class="mapa-punto-late" style="animation-duration:${dur}s;animation-delay:${delay}s;"></circle>`;
+    const hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="16" fill="transparent"/>`;
+    const contenido = extra + hit + circulo;
+    if(!url) return `<g>${contenido}</g>`;
+    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link" data-titulo="${titulo}" data-impacto="${impacto}" data-difusion="${difusion}">${contenido}</a>`;
   }).join('');
 
   // callout del tema con más cobertura hoy, mismo lenguaje visual que el resto del
@@ -212,37 +271,110 @@ function generarMapaPuntosSVG(){
       <text x="${bx+10}" y="${by+30}" font-size="9.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)">${nombreTema.slice(0,26)} · ${grupoTop.length}</text>`;
   }
 
-  return `
-    <svg viewBox="0 0 640 640" style="width:100%;max-width:640px;display:block;margin:0 auto;">
-      <g class="mapa-puntos-giro">
-        <g>${lineas}</g>
-        <g>${dots}</g>
-      </g>
-      ${callout}
-      <g text-anchor="middle" font-family="var(--f-mono)">
-        <text x="320" y="308" font-size="9" fill="#6B7280" letter-spacing="1">MAPA DE RELACIÓN · HOY</text>
-        <text x="320" y="336" font-size="26" font-weight="700" fill="#DDE1E6">${n}</text>
-        <text x="320" y="352" font-size="9" fill="#8A8F98">notas activas</text>
-        <text x="320" y="366" font-size="8" fill="#6B7280">${gruposConectados.length} tema${gruposConectados.length!==1?'s':''} conectado${gruposConectados.length!==1?'s':''}</text>
-      </g>
-    </svg>`;
+  // centro -- ya no es un texto fijo del conteo: rota permanentemente entre las
+  // notas más relevantes del momento, mostrando título + nivel de impacto + difusión
+  let centroNota = '';
+  if(carruselNotas.length){
+    const primera = carruselNotas[0];
+    const tituloInicial = primera.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,90);
+    const metaInicial = `Impacto: ${nivelImpactoTexto(primera.intensidad)} · Difusión: ${difusionTexto(primera.cobertura)}`;
+    centroNota = `<div class="mapa-puntos-centro-nota">
+        <div class="mapa-puntos-centro-titulo">${tituloInicial}</div>
+        <div class="mapa-puntos-centro-meta">${metaInicial}</div>
+      </div>`;
+  } else {
+    centroNota = `<div class="mapa-puntos-centro-nota"><div class="mapa-puntos-centro-titulo" style="color:#6B7280;">Sin notas destacadas aún</div></div>`;
+  }
+
+  const html = `
+    <div class="mapa-puntos-wrap">
+      <svg viewBox="0 0 640 640" style="width:100%;max-width:640px;display:block;margin:0 auto;">
+        <g class="mapa-puntos-giro">
+          <g>${lineas}</g>
+          <g>${dots}</g>
+        </g>
+        ${callout}
+      </svg>
+      <div class="mapa-puntos-centro" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;max-width:256px;text-align:center;pointer-events:none;">
+        <div style="font-family:var(--f-mono);font-size:9px;color:#6B7280;letter-spacing:1px;margin-bottom:7px;">MAPA DE RELACIÓN · HOY</div>
+        ${centroNota}
+        <div style="font-family:var(--f-mono);font-size:8px;color:#4B5157;margin-top:11px;">${n} nota${n!==1?'s':''} activa${n!==1?'s':''} · ${gruposConectados.length} tema${gruposConectados.length!==1?'s':''} conectado${gruposConectados.length!==1?'s':''}</div>
+      </div>
+      <div class="mapa-puntos-tooltip" style="display:none;"></div>
+    </div>`;
+
+  return { html, carrusel: carruselNotas };
 }
+
+let intervaloMapaPuntos = null;
+
+function iniciarCarruselMapaPuntos(wrap, notas){
+  if(intervaloMapaPuntos){ clearInterval(intervaloMapaPuntos); intervaloMapaPuntos = null; }
+  if(notas.length<2) return; // nada que rotar
+  const notaEl = wrap.querySelector('.mapa-puntos-centro-nota');
+  if(!notaEl) return;
+  let i = 0;
+  intervaloMapaPuntos = setInterval(()=>{
+    notaEl.classList.add('salir');
+    setTimeout(()=>{
+      i = (i+1) % notas.length;
+      const ev = notas[i];
+      const tituloEl = notaEl.querySelector('.mapa-puntos-centro-titulo');
+      const metaEl = notaEl.querySelector('.mapa-puntos-centro-meta');
+      if(tituloEl) tituloEl.textContent = ev.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,90);
+      if(metaEl) metaEl.textContent = `Impacto: ${nivelImpactoTexto(ev.intensidad)} · Difusión: ${difusionTexto(ev.cobertura)}`;
+      notaEl.classList.remove('salir');
+    }, 480);
+  }, 4200);
+}
+
+function mostrarTooltipMapa(a, wrap, tooltip, evt){
+  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>`;
+  tooltip.style.display = 'block';
+  posicionarTooltipMapa(wrap, tooltip, evt);
+}
+function posicionarTooltipMapa(wrap, tooltip, evt){
+  const rect = wrap.getBoundingClientRect();
+  const x = (evt && evt.clientX!==undefined) ? evt.clientX-rect.left : rect.width/2;
+  const y = (evt && evt.clientY!==undefined) ? evt.clientY-rect.top : rect.height/2;
+  tooltip.style.left = Math.min(x+12, rect.width-195)+'px';
+  tooltip.style.top = Math.max(0, y-42)+'px';
+}
+
 function abrirMapaPuntos(){
   let modal = document.getElementById('mapa-puntos-modal');
   if(!modal){
     modal = document.createElement('div');
     modal.id = 'mapa-puntos-modal';
     modal.className = 'ficha-modal-backdrop mapa-puntos-backdrop';
-    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    modal.addEventListener('click', (e)=>{
+      if(e.target===modal){ modal.classList.remove('open'); if(intervaloMapaPuntos){ clearInterval(intervaloMapaPuntos); intervaloMapaPuntos=null; } }
+    });
     document.body.appendChild(modal);
   }
+  const { html, carrusel } = generarMapaPuntosSVG();
   modal.innerHTML = `
     <div class="ficha-modal-card mapa-puntos-card">
       <button class="ficha-modal-close">✕</button>
-      ${generarMapaPuntosSVG()}
+      ${html}
     </div>`;
-  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=>{
+    modal.classList.remove('open'); if(intervaloMapaPuntos){ clearInterval(intervaloMapaPuntos); intervaloMapaPuntos=null; }
+  });
   modal.classList.add('open');
+
+  const wrap = modal.querySelector('.mapa-puntos-wrap');
+  if(wrap){
+    iniciarCarruselMapaPuntos(wrap, carrusel);
+    const tooltip = wrap.querySelector('.mapa-puntos-tooltip');
+    wrap.querySelectorAll('.mapa-punto-link').forEach(a=>{
+      a.addEventListener('mouseenter', (e)=> mostrarTooltipMapa(a, wrap, tooltip, e));
+      a.addEventListener('mousemove', (e)=> posicionarTooltipMapa(wrap, tooltip, e));
+      a.addEventListener('mouseleave', ()=>{ tooltip.style.display='none'; });
+      a.addEventListener('focus', (e)=> mostrarTooltipMapa(a, wrap, tooltip, e));
+      a.addEventListener('blur', ()=>{ tooltip.style.display='none'; });
+    });
+  }
 }
 
 function filtrarEventosPortada(q, categoria){
