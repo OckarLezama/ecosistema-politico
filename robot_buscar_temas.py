@@ -14,6 +14,7 @@ Requiere: pip install feedparser --break-system-packages
 import csv
 import feedparser
 import hashlib
+import html
 import urllib.request
 import urllib.parse
 import json
@@ -580,14 +581,27 @@ def obtener_mananera_hoy():
     try:
         req = urllib.request.Request('https://mananeradehoy.com/mananera-de-hoy', headers={'User-Agent': 'Mozilla/5.0'})
         with urllib.request.urlopen(req, timeout=15) as resp:
-            html = resp.read().decode('utf-8', errors='ignore')
+            html_bruto = resp.read().decode('utf-8', errors='ignore')
     except Exception as e:
         print(f'  Mañanera de Hoy: error de conexión: {e}')
         return None, []
+    # CORRECCIÓN real -- confirmado en el log de una corrida real: la conexión SÍ funciona
+    # (no hay "error de conexión"), pero fecha_pagina salía None -- el regex exigía el
+    # texto "Conferencia matutina · " exacto, con ese punto medio (·) literal y sin nada
+    # de markup entre palabras. La página SÍ trae ese texto (se confirmó por fuera), pero
+    # casi seguro con etiquetas HTML o una entidad (&middot;, &nbsp;) entre "matutina" y la
+    # fecha, que el regex anterior no toleraba en absoluto -- un solo <span> de por medio
+    # bastaba para que fallara TODO el regex, sin aviso. Se decodifican entidades HTML, se
+    # quitan TODAS las etiquetas antes de buscar la fecha, y el separador entre "matutina"
+    # y el día ya no exige un carácter exacto: acepta cualquier tramo corto de texto que no
+    # sean dígitos (espacios, ·, saltos de línea, restos de markup).
+    texto_plano_fecha = re.sub(r'<[^>]+>', ' ', html.unescape(html_bruto))
+    texto_plano_fecha = re.sub(r'\s+', ' ', texto_plano_fecha)
     hoy_mx = datetime.now(ZONA_MX).date()
-    fecha_pagina_match = re.search(r'Conferencia matutina · (\d{1,2}) de (\w+) de (\d{4})', html)
+    fecha_pagina_match = re.search(r'Conferencia\s+matutina\D{0,12}?(\d{1,2})\s+de\s+(\w+)\s+de\s+(\d{4})', texto_plano_fecha, re.IGNORECASE)
     MESES = {'enero':1,'febrero':2,'marzo':3,'abril':4,'mayo':5,'junio':6,'julio':7,'agosto':8,'septiembre':9,'octubre':10,'noviembre':11,'diciembre':12}
     if not fecha_pagina_match:
+        print('  Mañanera de Hoy: no se encontró el patrón de fecha en la página (revisar si el sitio cambió de formato).')
         return None, []
     dia, mes_txt, anio = fecha_pagina_match.groups()
     mes = MESES.get(mes_txt.lower())
@@ -596,10 +610,10 @@ def obtener_mananera_hoy():
     fecha_pagina = f'{anio}-{mes:02d}-{int(dia):02d}'
     if fecha_pagina != hoy_mx.strftime('%Y-%m-%d'):
         return fecha_pagina, []
-    bloques = re.findall(r'<li[^>]*>(.*?)</li>', html, re.DOTALL)
+    bloques = re.findall(r'<li[^>]*>(.*?)</li>', html_bruto, re.DOTALL)
     puntos = []
     for b in bloques:
-        texto = re.sub(r'<[^>]+>', ' ', b)
+        texto = re.sub(r'<[^>]+>', ' ', html.unescape(b))
         texto = re.sub(r'\[\[\d{1,2}:\d{2}\]\]', ' ', texto)  # marcador de timestamp del video
         texto = re.sub(r'\s+', ' ', texto).strip(' -—')
         if len(texto) > 80:
@@ -610,7 +624,7 @@ def obtener_mananera_hoy():
         # muy común en contenido convertido de markdown a HTML con <p> o <div> en vez de
         # listas reales. Sin este respaldo, un cambio así deja el resumen vacío sin ningún
         # aviso -- de ahí el print de diagnóstico en cargarEventosDelDia().
-        texto_plano = re.sub(r'<[^>]+>', '\n', html)
+        texto_plano = re.sub(r'<[^>]+>', '\n', html.unescape(html_bruto))
         for linea in texto_plano.split('\n'):
             linea = re.sub(r'\[\[\d{1,2}:\d{2}\]\]', ' ', linea)
             linea = re.sub(r'\s+', ' ', linea).strip()
