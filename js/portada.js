@@ -51,6 +51,9 @@ const COLOR_MEDIO = {
   'El Financiero': '#0F2A4A',
   'El Economista': '#00707A',
   'La Prensa': '#C0392B',
+  'Excélsior': '#1B3A6B',
+  'La Razón': '#6B1F8B',
+  'El Sol de México': '#D9A400',
 };
 function colorDeMedio(medio){ return COLOR_MEDIO[medio] || '#4B5157'; }
 
@@ -64,6 +67,9 @@ const URL_OFICIAL_MEDIO = {
   'El Financiero': 'https://www.elfinanciero.com.mx',
   'El Economista': 'https://www.eleconomista.com.mx',
   'La Prensa': 'https://www.la-prensa.com.mx',
+  'Excélsior': 'https://www.excelsior.com.mx',
+  'La Razón': 'https://www.razon.com.mx',
+  'El Sol de México': 'https://www.elsoldemexico.com.mx',
 };
 
 // Titulares del día -- portadas (8 columnas) de los medios impresos, capturadas UNA
