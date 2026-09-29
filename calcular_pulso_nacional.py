@@ -363,6 +363,26 @@ def calcular():
     # posición por volumen si no tiene respaldo real de primer nivel.
     NIVELES_PRIMER_NIVEL = {'ALTA', 'OFICIAL'}
 
+    def _es_nota_generica_en_vivo(e):
+        """CORRECCIÓN -- pedido explícito: en 'Temas en movimiento' apareció como titular
+        'EN VIVO | La Mañanera de la presidenta Claudia Sheinbaum hoy martes 29 de
+        septiembre' para un tema que en realidad es sobre la confrontación con
+        funcionarios de PEMEX -- ese texto es el envoltorio genérico de un liveblog que
+        varios medios republican todos los días con el mismo patrón de título (cambia
+        solo la fecha), no una nota real sobre el tema. Como agrupa mucha cobertura del
+        día suele quedar con la intensidad más alta y termina ganando el lugar de
+        'motivo' (el titular que se muestra), desplazando el resumen real del tema. Se
+        excluye de la selección de titular -- el resumen de la mañanera del día ya vive
+        aparte, en 'resumen_mananera'; aquí no debe competir como si fuera la nota de un
+        tema distinto."""
+        d = (e.get('descripcion') or '')
+        dl = d.lower()
+        if dl.startswith('en vivo') and 'mañanera' in dl:
+            return True
+        if dl.startswith('en vivo') and 'la mañanera de la presidenta' in dl:
+            return True
+        return False
+
     def nivel_evento(e):
         return clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', ''))
 
@@ -393,6 +413,11 @@ def calcular():
             confiables = eventos_primer_nivel(tid)
             if confiables:
                 evs = confiables
+        # No se elige un envoltorio genérico de liveblog como titular si hay algo más
+        # específico disponible para este tema -- ver _es_nota_generica_en_vivo().
+        evs_sin_generico = [e for e in evs if not _es_nota_generica_en_vivo(e)]
+        if evs_sin_generico:
+            evs = evs_sin_generico
         return max(evs, key=lambda e: float(e['intensidad'])) if evs else None
 
     def mejor_evento_historico(tid):
@@ -406,6 +431,9 @@ def calcular():
         evs = [e for e in eventos_validos if e['tema_id'] == tid]
         confiables = [e for e in evs if nivel_evento(e) in NIVELES_PRIMER_NIVEL]
         universo = confiables or evs
+        universo_sin_generico = [e for e in universo if not _es_nota_generica_en_vivo(e)]
+        if universo_sin_generico:
+            universo = universo_sin_generico
         return max(universo, key=lambda e: e['_ts']) if universo else None
 
     peso_tema_primer_nivel = {}
@@ -482,7 +510,18 @@ def calcular():
         t_top = temas_por_id.get(tid_top)
         if not t_top:
             continue
-        ev_top = mejor_evento(tid_top, requerir_fuente_confiable=True) or mejor_evento_historico(tid_top)
+        # CORRECCIÓN -- pedido explícito: cuando el grupo agrupa varias notas (aquí 10),
+        # 'EN VIVO | La Mañanera...' seguía ganando como titular porque antes solo se
+        # buscaba en los eventos del tema_id ganador (tid_top) -- si esa nota genérica era
+        # la única confiable ahí, no quedaba nada más entre qué elegir y se usaba de
+        # todos modos. Ahora se busca primero en TODO el grupo (evs_pn_grupo, ya reunido
+        # arriba) un titular real que no sea el envoltorio genérico del liveblog, antes de
+        # limitarse solo al tema_id ganador.
+        evs_grupo_sin_generico = [e for e in evs_pn_grupo if not _es_nota_generica_en_vivo(e)]
+        if evs_grupo_sin_generico:
+            ev_top = max(evs_grupo_sin_generico, key=lambda e: float(e['intensidad']))
+        else:
+            ev_top = mejor_evento(tid_top, requerir_fuente_confiable=True) or mejor_evento_historico(tid_top)
         paraguas.append({
             'id': tid_top, 'nombre': t_top['nombre'], 'categoria': t_top['categoria'],
             'resumen': t_top.get('resumen') or '',
