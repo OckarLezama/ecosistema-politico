@@ -198,16 +198,18 @@ function renderPortada(){
 
   encabezado.innerHTML = `
       <div style="margin-bottom:10px;">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
-          <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
-          <div style="display:flex;gap:6px;align-items:center;">
-            <div id="portada-titulares"></div>
-            <button type="button" id="portada-btn-mapa-puntos" class="leg-tt" data-tt="Mapa de relación" aria-label="Mapa de relación" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"></circle><circle cx="5" cy="19" r="2"></circle><circle cx="19" cy="19" r="2"></circle><line x1="12" y1="7" x2="6.2" y2="17.3"></line><line x1="12" y1="7" x2="17.8" y2="17.3"></line><line x1="7" y1="19" x2="17" y2="19"></line></svg>
-            </button>
+        <div id="portada-dispersion" style="margin-bottom:10px;width:100%;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:10px 12px 6px;box-sizing:border-box;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <div id="portada-titulares"></div>
+              <button type="button" id="portada-btn-mapa-puntos" class="leg-tt" data-tt="Mapa de relación" aria-label="Mapa de relación" style="background:var(--bg-1);border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"></circle><circle cx="5" cy="19" r="2"></circle><circle cx="19" cy="19" r="2"></circle><line x1="12" y1="7" x2="6.2" y2="17.3"></line><line x1="12" y1="7" x2="17.8" y2="17.3"></line><line x1="7" y1="19" x2="17" y2="19"></line></svg>
+              </button>
+            </div>
           </div>
+          <div id="portada-dispersion-chart"></div>
         </div>
-        <div id="portada-dispersion" style="margin-bottom:10px;width:100%;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-m);padding:10px 12px 6px;box-sizing:border-box;"></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
           ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
             <button data-cat="${cat}" style="background:${categoriaFiltroDispersion===cat?'var(--teal)':'var(--bg-2)'};border:1px solid ${categoriaFiltroDispersion===cat?'var(--teal)':'var(--line-strong)'};border-radius:99px;padding:3px 10px;font-size:10.5px;color:${categoriaFiltroDispersion===cat?'#0E1116':'var(--ink-2)'};cursor:pointer;">
@@ -791,6 +793,32 @@ function abrirMapaPuntos(){
         reanudarGiroMapa(wrap);
       });
     });
+    // CORREGIDO -- mismo caso que el Tablero de Actores: en celular/tablet no hay
+    // "mouseenter", así que un tap sobre un punto del mapa abría la nota de inmediato,
+    // sin mostrar antes la info que sí se ve con el cursor en computadora. El PRIMER tap
+    // ahora muestra esa info (y la conexión visual) y cancela la navegación; un SEGUNDO
+    // tap sobre el mismo punto sí abre la nota. Tocar fuera de cualquier punto cierra el
+    // tooltip y reinicia el estado.
+    const esTactilMapa = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if(esTactilMapa){
+      wrap.querySelectorAll('.mapa-punto-link').forEach(a=>{
+        a.addEventListener('click', function(ev){
+          if(a.dataset.tocado === '1') return; // segundo tap: deja que navegue de verdad
+          ev.preventDefault();
+          a.dataset.tocado = '1';
+          mostrarTooltipMapa(a, wrap, tooltip, ev);
+          pausarGiroMapa(wrap);
+          if(a.dataset.gx) mostrarConexionMapa(a, wrap);
+        });
+      });
+      wrap.addEventListener('pointerdown', function(ev){
+        if(ev.target.closest('.mapa-punto-link')) return;
+        tooltip.style.display = 'none';
+        ocultarConexionMapa(wrap);
+        reanudarGiroMapa(wrap);
+        wrap.querySelectorAll('.mapa-punto-link[data-tocado]').forEach(l=> delete l.dataset.tocado);
+      });
+    }
   }
 }
 
@@ -841,10 +869,17 @@ function notasRelevantesDe(lista, maximo=5){
 }
 
 function dibujarDispersionHoraria(eventos){
-  const cont = document.getElementById('portada-dispersion');
+  // Pedido explícito: la fecha/conteo y los íconos (portadas del día, mapa de relación)
+  // se movieron ADENTRO del lienzo con borde de "Notas de hoy" (antes vivían afuera, en
+  // el encabezado) -- ver el nuevo #portada-dispersion en pintarPortada(). Este dibujo ya
+  // no necesita su propia etiqueta "Notas de hoy": la fecha que ahora vive en la cabecera
+  // del mismo recuadro cumple ese rol, así que solo se pinta adentro de
+  // #portada-dispersion-chart (un sub-div fijo que SÍ se puede reescribir en cada filtro
+  // de categoría sin borrar la cabecera de arriba, que solo se pinta una vez).
+  const cont = document.getElementById('portada-dispersion-chart');
   if(!cont) return;
   const eventosFiltrados = categoriaFiltroDispersion ? eventos.filter(e=>e.categoria===categoriaFiltroDispersion) : eventos;
-  if(!eventosFiltrados.length){ cont.innerHTML = `<div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div><p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
+  if(!eventosFiltrados.length){ cont.innerHTML = `<p style="font-size:11px;color:var(--ink-3);padding:10px 0;">Sin notas para este filtro.</p>`; return; }
   const ancho = 1000, alto = 175, margenIzq = 16, margenDer = 12, margenAbajo = 20, margenArriba = 10;
   const altoUtil = alto - margenArriba - margenAbajo;
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
@@ -907,7 +942,6 @@ function dibujarDispersionHoraria(eventos){
   }).join('');
 
   cont.innerHTML = `
-    <div style="font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-bottom:4px;">Notas de hoy</div>
     <div style="position:relative;width:100%;">
       <svg id="portada-svg-dispersion" width="100%" height="${alto}" viewBox="0 0 ${ancho} ${alto}" preserveAspectRatio="none" style="display:block;cursor:crosshair;">
         <defs>

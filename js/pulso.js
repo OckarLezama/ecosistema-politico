@@ -427,8 +427,14 @@ function barrasHistoricoPulso(historico){
       const cxHoy = (idxHoy*paso+paso/2).toFixed(1);
       // pedido: quitar la línea vertical completa y dejar solo la flechita pegada a su
       // barra con la fecha -- la línea larga competía visualmente con las barras.
+      // CORREGIDO -- pedido explícito: la fecha vivía en una posición FIJA (arriba del
+      // lienzo) mientras la flecha sube/baja con la barra de tensión del día, así que casi
+      // nunca quedaban alineadas. Ahora la fecha va siempre pegada justo ARRIBA de la
+      // punta de la flecha (se recorta a un mínimo para no salirse del lienzo si la barra
+      // de hoy es muy alta).
+      const yEtiquetaHoy = Math.max(9, yHoy-13);
       return `<polygon class="pulso-marca-viva" points="${cxHoy},${(yHoy-2).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(yHoy-9).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(yHoy-9).toFixed(1)}" fill="var(--teal)"/>
-        <text class="pulso-marca-viva" x="${(parseFloat(cxHoy)+4).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="end">HOY · ${fmtFechaCortaPulso(historico[idxHoy].fecha)}</text>`;
+        <text class="pulso-marca-viva" x="${cxHoy}" y="${yEtiquetaHoy.toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="middle">HOY · ${fmtFechaCortaPulso(historico[idxHoy].fecha)}</text>`;
     })()}
   </svg>
   <div style="font-size:8.5px;color:var(--ink-3);margin-top:2px;">
@@ -500,7 +506,7 @@ function tableroActoresPulso(actores){
   // salía visualmente del tablero -- justo lo que se reportó. innerPad reserva ese espacio:
   // el CENTRO de cualquier pieza queda siempre a por lo menos innerPad px del borde del
   // recuadro, así que la pieza completa (con halo y todo) se queda adentro.
-  const innerPad = 48;
+  const innerPad = 40;
   const plotX0 = m+innerPad, plotX1 = w-m-innerPad;
   const plotY0 = m*0.4+innerPad, plotY1 = h-m-innerPad;
   const px = v => plotX0 + (v/100)*(plotX1-plotX0);
@@ -510,19 +516,13 @@ function tableroActoresPulso(actores){
   // a un número fijo inventado, para que la barra siempre use el rango completo.
   const maxAbsDelta = Math.max(1, ...actores.map(a=>Math.abs(a.delta_pts||0)));
   const maxAlcance = Math.max(1, ...actores.map(a=>a.alcance||0));
-  // Degradado radial por cada color de categoría presente (centro claro -> borde con el
-  // color real de colorCategoriaFijo) -- pedido explícito tras varias vueltas: el círculo
-  // de color plano se veía "opaco, sin vida" por más halo o anillo que se le pusiera. Un
-  // degradado da aspecto de esfera con luz propia, sin inventar ningún color nuevo (el
-  // borde sigue siendo exactamente el color de categoría de siempre).
-  const coloresUsados = [...new Set(actores.map(a=>colorCategoriaFijo(a.categoria)))];
-  const idGrad = c => 'grad-actor-' + c.replace('#','');
-  const gradientesDefs = coloresUsados.map(c=>`
-    <radialGradient id="${idGrad(c)}" cx="38%" cy="32%" r="72%">
-      <stop offset="0%" stop-color="${aclararHex(c,0.6)}"/>
-      <stop offset="55%" stop-color="${c}"/>
-      <stop offset="100%" stop-color="${aclararHex(c,-0.22)}"/>
-    </radialGradient>`).join('');
+  // CORRECCIÓN de rumbo, pedido explícito: se quita el degradado tipo "esfera brillosa"
+  // (no gustó el efecto) y el color deja de ser por categoría -- ahora es por NIVEL DE
+  // IMPACTO real de esa pieza, mismo criterio y mismos 3 colores que ya usa el resto del
+  // sitio (colorTension: >=66 alto/rojo, >=33 medio, si no bajo/turquesa) -- y coincide
+  // con el eje Y del propio tablero (INTENSIDAD DE IMPACTO), así que el color refuerza la
+  // posición en vez de mostrar un dato aparte (la categoría se sigue viendo en el tooltip).
+  const colorImpactoPieza = a => colorTension(a.y_hoy);
   // ---- Paso 1: calcular posición y tamaño de cada pieza ANTES de dibujar nada, para
   // poder separar las que se encimen. Antes cada pieza se ubicaba solo por su dato real
   // (volumen/intensidad) sin importar si eso la ponía justo encima de otra -- pedido
@@ -532,13 +532,16 @@ function tableroActoresPulso(actores){
   // cuantas rondas, sin mover a quien no choca con nadie. La posición real (dato) se
   // conserva siempre que no haya choque -- esto es solo para que ninguna tape a otra.
   const datos = actores.map((a,i)=>{
-    const color = colorCategoriaFijo(a.categoria);
+    const color = colorImpactoPieza(a);
     // Un actor que solo figuró UN día esta semana no tiene el mismo peso que uno con
     // presencia sostenida -- se pide explícitamente que se vea tenue/apagado, no al
     // mismo brillo que el resto.
     const esTenue = a.dias_activo === 1;
     const x1=px(a.x_lunes), y1=py(a.y_lunes);
-    const r = 18 + Math.min(10, (a.alcance||0));
+    // Pedido explícito: piezas más chicas que antes (se veían "encimadas" entre sí y con
+    // las líneas) -- el tamaño de letra (CS, AL...) NO se toca, solo el círculo que la
+    // contiene.
+    const r = 14 + Math.min(7, (a.alcance||0));
     return { a, i, color, esTenue, x1, y1, x2: px(a.x_hoy), y2: py(a.y_hoy), r };
   });
   const GAP_MIN = 6;
@@ -630,21 +633,15 @@ function tableroActoresPulso(actores){
     const abre = a.nota_url ? `<a href="${a.nota_url}" target="_blank" rel="noopener" class="pulso-tablero-link">` : '<g>';
     const cierra = a.nota_url ? '</a>' : '</g>';
     const retraso = ((i*0.37) % 2.4).toFixed(2);
-    // Tercer intento en esta misma tarde: el problema no era falta de halo, era que la
-    // PIEZA misma (lo que de verdad se ve, no lo que la rodea) era un círculo de color
-    // plano -- ningún halo alrededor arregla eso. Ahora:
-    // 1) la pieza se rellena con un degradado radial (mismo color de categoría de
-    //    siempre, sin inventar ninguno nuevo) que simula una esfera con luz propia.
-    // 2) el halo detrás es mucho más grande y opaco, con blur real (feGaussianBlur en el
-    //    <defs> del SVG) para leerse como un aura de luz de verdad, no un círculo
-    //    semitransparente.
-    // 3) el anillo nítido en --ink-1 (blanco en tema oscuro, negro en claro) sigue
-    //    recortando la pieza contra el fondo.
+    // Cuarta vuelta -- pedido explícito: quitar el degradado tipo "esfera brillosa" (no
+    // gustó el efecto). La pieza vuelve a ser un círculo de color PLANO -- ahora por nivel
+    // de impacto, no por categoría -- con el halo que respira detrás (para que no se vea
+    // "muerta") y el anillo nítido en --ink-1 recortándola contra el fondo.
     piezas += `${abre}
       ${(a.es_nuevo && !esTenue) ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="2" style="animation-delay:${retraso}s;"/>` : ''}
       ${!esTenue ? `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+8}" fill="${color}" filter="url(#pulso-glow-actor)" style="animation-delay:${retraso}s;"/>` : ''}
       <circle class="pulso-tablero-anillo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${(r+2).toFixed(1)}" fill="none" stroke="var(--ink-1)" stroke-width="1.6" opacity="${esTenue?0.35:0.95}"/>
-      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${esTenue?color:`url(#${idGrad(color)})`}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}" style="${esTenue?'':`filter:drop-shadow(0 0 5px ${color}bb);`}"/>
+      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}"/>
       <text x="${x2.toFixed(1)}" y="${(y2+3.8).toFixed(1)}" font-size="11.5" font-weight="800" fill="var(--bg-2)" text-anchor="middle" opacity="${opacidadPieza}" style="pointer-events:none;text-shadow:0 0 2px rgba(255,255,255,0.4);">${iniciales2(a)}</text>
     ${cierra}`;
   });
@@ -664,21 +661,20 @@ function tableroActoresPulso(actores){
       <marker id="pulso-flecha-jugada" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
         <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-3)"/>
       </marker>
-      ${gradientesDefs}
     </defs>
     <rect x="${m}" y="${m*0.4}" width="${w-2*m}" height="${h-m-m*0.4}" fill="url(#pulso-grid-tablero)" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${cx}" y1="${m*0.4}" x2="${cx}" y2="${h-m}" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${m}" y1="${cy}" x2="${w-m}" y2="${cy}" stroke="var(--line-strong)" stroke-width="1"/>
-    <text x="${m+6}" y="${m*0.4+14}" font-size="8" fill="var(--riesgo-medio)" font-weight="700">FOCO DE ALERTA</text>
-    <text x="${w-m-6}" y="${m*0.4+14}" font-size="8" fill="var(--riesgo-alto)" font-weight="700" text-anchor="end">CENTRO DE LA AGENDA</text>
-    <text x="${m+6}" y="${h-m-6}" font-size="8" fill="var(--ink-3)" font-weight="700">BAJO PERFIL</text>
-    <text x="${w-m-6}" y="${h-m-6}" font-size="8" fill="var(--riesgo-bajo)" font-weight="700" text-anchor="end">RUIDO</text>
+    <text x="${m+6}" y="${m*0.4+16}" font-size="10" fill="var(--riesgo-medio)" font-weight="700">FOCO DE ALERTA</text>
+    <text x="${w-m-6}" y="${m*0.4+16}" font-size="10" fill="var(--riesgo-alto)" font-weight="700" text-anchor="end">CENTRO DE LA AGENDA</text>
+    <text x="${m+6}" y="${h-m-8}" font-size="10" fill="var(--ink-3)" font-weight="700">BAJO PERFIL</text>
+    <text x="${w-m-6}" y="${h-m-8}" font-size="10" fill="var(--riesgo-bajo)" font-weight="700" text-anchor="end">RUIDO</text>
     <text x="${w/2}" y="${h-10}" font-size="8.5" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)">EXPOSICIÓN (volumen de menciones verificadas) →</text>
     <text x="14" y="${h/2}" font-size="8.5" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)" transform="rotate(-90 14 ${h/2})">INTENSIDAD DE IMPACTO →</text>
     ${piezas}
   </svg>
   </div>
-  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos) · color = categoría dominante · pieza tenue = solo figuró 1 día esta semana. En computadora: pasa el cursor para ver el detalle y haz clic para abrir la nota. En celular/tablet: toca una vez para ver el detalle, toca de nuevo para abrir la nota.</div>`;
+  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos) · color = nivel de impacto (turquesa bajo · naranja medio · rojo alto) · pieza tenue = solo figuró 1 día esta semana. En computadora: pasa el cursor para ver el detalle y haz clic para abrir la nota. En celular/tablet: toca una vez para ver el detalle, toca de nuevo para abrir la nota.</div>`;
 }
 function activarTableroActores(cont){
   if(!cont) return;
