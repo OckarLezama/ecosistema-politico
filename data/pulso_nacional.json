@@ -1,13 +1,13 @@
 {
-  "generado_en": "2026-09-29T15:44:44.301363-06:00",
+  "generado_en": "2026-09-29T16:29:28.707789-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 29,
+  "n_notas_ventana": 30,
   "baja_confianza": false,
-  "tension_nacional": 53,
+  "tension_nacional": 52,
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 67,
+      "peso_pct": 65,
       "tema_principal": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
       "tema_principal_id": "auto-4d06ef5b18",
       "n_temas": 12,
@@ -147,11 +147,11 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 10,
+      "peso_pct": 13,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 3,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "EU y México ‘chocan’ por China: Restricciones de Trump ponen en riesgo al T-MEC",
@@ -170,6 +170,12 @@
           "fuente_url": "https://www.yucatan.com.mx/mexico/2026/09/29/estados-unidos-analiza-acusaciones-contra-andy-lopez-beltran-the-new-york-times.html",
           "intensidad": 7.0,
           "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "Industria automotriz pide reducir aranceles hasta 4%; prevé acuerdo del T-MEC antes de elección de EU - Revista TyT",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOWXNUY2lkSmxHbnhQb2JHLTJyQnNzd05yTFhHNzVKb0pTb2kxLXpBcUpuNnBPcjNQYVcyWkU1WktvUkV5RnExbzFhWEZJOVd3M2Y0cjdxendCTWU5d05Sd2F1Zm4zaF9HN2lSRDNTSzhsUTRobnR5WEV6czZqOEt6QmFLSnFEZVBnU2V5R1hET0s3cXVZYm9fd1lFMGkxQnRpT2tnVTdFM25JdldOV2tocGR6c05qaTJHbnFYQmVyOXZJSVJKWmc?oc=5",
+          "intensidad": 6.0,
+          "medio": "Revista TyT"
         }
       ]
     },
@@ -914,26 +920,13 @@
       "nombre": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
       "categoria": "Gobernabilidad",
       "resumen": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caída de producción: así fue el tenso momento - Ambito",
-      "motivo": "EN VIVO | La Mañanera de la presidenta Claudia Sheinbaum hoy martes 29 de septiembre - Infobae",
+      "motivo": "EU va por ‘Andy’ López: Dos agencias investigan acusaciones de huachicoleo, dice el NYT",
       "peso": 40.0,
       "n_temas_agrupados": 11,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 5,
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOUXdWSGhWSnA5TG1NTjR0cVg4UFpfd1JrTWpNcXJpT0VOZmplR1M4RlJqMlVfQlAyX01DekR1dzZMZlZpVS1sT1NQaEJLNTNSWTJvbXB0R0JLelhIREhfSUxONUNORGRyRWZCelU2cS1ZQk5GdUp6WGZCX3RJM0FqV01YYU53Zkx1WVFWTnUyMGlKSDZpS3RrdkJvcDJJRGdtaVRCNFB1Y05uSU1BSFg0N1hTSDRJRFZS0gHTAUFVX3lxTE9mYUZLRDhHTUljcUNnVThQaVVsTFhDdHZHV0RMOUo2Z2dUUUwtM0phVERwOEExUEV5RFR5Y3lfdThaSHRDQ2tpVzR6cWdxVndRRjBZd1B6TFU5WmZsaWV6VW8wQ2ZWQkZ3aTVVcEJ1RlJHZDNyRmo5STlRNG90UXZCT3dqSk1mWnhmdzlGQ2hhdXl5aTM4WWI2dHR1Y2c1eUg2NHNaTTl4WEZjd3JzZzVSa1NkODVNcDNVdHlYS3R0QTdCLXN6UkRqbWNJRXBIVEFvVXM?oc=5"
-    },
-    {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "¿Cómo es la casa que alquiló el empresario Amílcar Olán en Suiza? Se renta en más de 300 mil pesos al mes",
-      "peso": 25.0,
-      "n_temas_agrupados": 5,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/"
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/29/eu-va-por-andy-lopez-dos-agencias-investigan-acusaciones-de-huachicoleo-dice-el-nyt/"
     }
   ],
   "temas_nuevos": [
@@ -962,20 +955,20 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPbzZKRFJEeGNIR3RYdmhyN01EVi15a0hMc052aEUxUE1rTTlpSTFnNFBNeDhoTVlYdTFZM3dkLUNnZjgzZ01jUkx3enpwZ0pRdEtacmNLbGNiWGdGV1R1YWJuSW5pWUxrUzhZY3J2TER6RExuWUtBWXlCQXhvNXhINWhkTmVaME1OSUpuMUU5Z3ZwOUZObFZsZWRYdEFsSkxoMXpnNlRQU0lDbHFq0gGsAUFVX3lxTFBtM2J2NDhBRlNGR1hLRVdTSUVER0tsdUNtTjF5c292c1ZHWDRjeWU3M2xTSzVYOVE0R0hFQU5MNWpINi1xWTEtN1k3ZVVyWi04MllPMTZYYkZYYnhKekpORjlZSTNxUHRiakJSOUNxQzEtUkFXeHdEMGYyaWdyS0VKSUhYTHF1dlhheVlzb1hWaVR4MkdaSjYtOW94OHVwLVFlT1RiTUdobDgtS0I?oc=5"
     },
     {
+      "id": "auto-32aecbf31b",
+      "nombre": "Tribunal en Texas acusa a 2 mexicanos de traficar con menores migrantes y darles",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/29/tribunal-en-texas-acusa-a-2-mexicanos-de-traficar-con-menores-migrantes-y-darles-gomitas-con-thc/"
+    },
+    {
       "id": "auto-be26b251d4",
       "nombre": "Alejandro Moreno pide extraditar a Amílcar Olán desde Suiza; exige que responda ",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNbUtWNDd0YTI0ZVFIOUJqbVJ4VGF3TllrODZfUTlJZ0Z1UGFzd1BrQXJUNGRnSDFTbDV3akRlbXdjaVJ2VWZhSU9NcjcxZHFmeEV4amZyTzJUWU9iQlpPVnFIX0F5bUZGd1Y3ZG5iRnc5Znk0OEVQNTV3bDVod3dGb19vTDF4SXJyNjFPRUVlRW9KdVMwWXdaWWFrMXlyeHR3bzRLT3o5Z3ZISHZzYlBfU0dCVFA3SGR5Zk1FaVFVd0dsc0l2aEpveFdkdWNFcnc?oc=5"
-    },
-    {
-      "id": "auto-2286113e27",
-      "nombre": "¿Tomás Zerón regresará a México? Sheinbaum revela cambios en la FGR para acelera",
-      "categoria": "Seguridad Nacional",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/tomas-zeron-regresara-a-mexico-sheinbaum-revela-cambios-en-la-fgr-para-acelerar-su-extradicion/"
     }
   ],
   "temas_retomados": [
@@ -1257,10 +1250,10 @@
     },
     {
       "fecha": "2026-09-29",
-      "tension": 53,
-      "n_notas": 27,
+      "tension": 52,
+      "n_notas": 28,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 7,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
   ],
@@ -1301,8 +1294,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZExOeEpMWS10UHZqdEhIb3p5V2xQR0ZVVi1zS2xreXgzWkttRjFqTmpQdWJydzJJTjZrT2F1LWpaRy1tTlR6c1hYcDh4MzJyNklzYmxNN0xxb2pvZG11T1JvZF9TOENrd2VXb3NHZGV4Zzl3Sjd2ektaZDdyd004cXRHVlc0aFZHVE1NTE01bFVDVVVxTGR3NWtNSDlESUxGaG45eDAtTFBjZkxfaWJxR2hhYlNUc1dMNzlQTks2YWg?oc=5",
-      "nota_texto": "“Hubo mucha unidad”: Sheinbaum celebra proceso interno de Morena rumbo a 2027 - Nación321",
+      "nota_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXRhRXFHa2tnQTFXOEJOSUZWdXZlQjNsTzhJLUpMYzk5UlJ6UjMydTNCaENTVU5lMWVubmlyZHdibE1wYU1SZS1abkZiR2ZsdlpDNnN2cDJDQ1lBRi1ZSDJLMXdVbTRtYk1IWms5MEdDa2xSSmVXbHJqd3VfdnF4MThhQkNYX2pueXhWWnJpckxLU2R2d3BGSDlZcVBiOTBrZnfSAacBQVVfeXFMT1NrRGtNVDlsenA2ZkVMeU5FMUxzUHlqNmtaMEIwd1VFY3Q1cmdQdWMxamlqTEhLMERvZW9OaHdMclJPM0FGM0FjTkhQcC1leDBoZnR1cWgwXzh4QTR6OHpYX1VCbHFRSnREdUwtWmQ4STh4NmozNHlsZ3JyUU1rbkgyR0RaN0t4SW1tRGtlSl9kWmxhb1J4QTdVbDJmTGxMU2k3SzFBRGc?oc=5",
+      "nota_texto": "Morena presentará a 7 defensores de la transformación este lunes - Uniradio Informa",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2
@@ -1322,10 +1315,10 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
+      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
       "es_nuevo": false,
-      "categoria": "Relación Bilateral",
+      "categoria": "Seguridad Nacional",
       "dias_activo": 2
     },
     {
@@ -1343,8 +1336,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://www.yucatan.com.mx/mexico/2026/09/29/estados-unidos-analiza-acusaciones-contra-andy-lopez-beltran-the-new-york-times.html",
+      "nota_texto": "Estados Unidos analiza acusaciones contra “Andy” López Beltrán: The New York Times",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 2
@@ -1503,11 +1496,6 @@
       "fecha": "2026-09-28"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-09-29T13:50:22.072492-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
-    ]
-  },
-  "hora_corte_publicada": "2026-09-29 15:44"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-09-29 16:29"
 }
