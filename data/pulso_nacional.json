@@ -1,17 +1,17 @@
 {
-  "generado_en": "2026-09-28T23:29:02.966634-06:00",
+  "generado_en": "2026-09-29T07:39:12.209349-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 12,
+  "n_notas_ventana": 11,
   "baja_confianza": false,
-  "tension_nacional": 40,
+  "tension_nacional": 41,
   "categorias_dia": [
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 68,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal",
+      "peso_pct": 66,
+      "tema_principal": "La Barredora",
+      "tema_principal_id": "la-barredora",
       "n_temas": 3,
-      "n_notas": 8,
+      "n_notas": 7,
       "notas": [
         {
           "texto": "Huachicol fiscal mueve 3.1 billones de pesos y rebasa megaobras de la 4T - Energy21",
@@ -44,12 +44,6 @@
           "medio": "Infobae"
         },
         {
-          "texto": "Huachicol fiscal también pasa por EU: Ernesto Ruffo, la clave para entender la relación con Texas - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUdIBjwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
-        },
-        {
           "texto": "El meganegocio del huachicol fiscal en México: El fraude millonario que supera 3 veces el costo del Tren Maya y Dos bocas - TV Azteca",
           "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQdGg3d3RfS28taEw4NWk1X0x5V2NWRVhuSjlUVFowVW5Pbkl4YmVsS0lkcGtNdXFUWDk5OGdHR3cteXY3QkZqVE9VckpRUXdQNm5HNFJZcnQzLUlsLWpEYk41YmRYZmhEbl9PajExYnVQY3o2SHlmaFpkNWpaNEtObGRuTGhRZk55dEJxVWRDUy1PLVlSYXcyY2RDdEZhOWRvV01na1VCOEFzYmE1bFZJ0gG8AUFVX3lxTFBpNDNKcTc0c1hBNU9vQ2FFWWI5cmJ2cmtWanlsNUJ0ZFExM2hFOVlEd2daQURKU3RHVFZiMFQ1QmZKVEt6ZlZlSS1hY0p0RGxYR2FtaE5lOUJZNFJEZ012Ylh0SU9vc2hMOGlFOVQ5azB4Zm9mS0UwV0Jtd2IxS2NvYXd5SnYwQkwza1pQNjVEanZyRnVWb1BpdWZhWDBNM01TcFBFUURLQkJBWVNKdlNfNTdwMms4eHZfaG1P?oc=5",
           "intensidad": 6.0,
@@ -65,7 +59,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 16,
+      "peso_pct": 18,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
@@ -87,7 +81,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 9,
+      "peso_pct": 10,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -103,7 +97,7 @@
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 6,
+      "peso_pct": 7,
       "tema_principal": "Abatimiento de \"El Mencho\"",
       "tema_principal_id": "el-mencho",
       "n_temas": 1,
@@ -129,7 +123,7 @@
   ],
   "categorias_tendencia_4sem": [
     {
-      "semana_fin": "2026-09-07",
+      "semana_fin": "2026-09-08",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
@@ -154,7 +148,7 @@
       ]
     },
     {
-      "semana_fin": "2026-09-14",
+      "semana_fin": "2026-09-15",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
@@ -179,7 +173,7 @@
       ]
     },
     {
-      "semana_fin": "2026-09-21",
+      "semana_fin": "2026-09-22",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
@@ -204,7 +198,7 @@
       ]
     },
     {
-      "semana_fin": "2026-09-28",
+      "semana_fin": "2026-09-29",
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
@@ -212,7 +206,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 36
+          "peso_pct": 35
         },
         {
           "categoria": "Relación Bilateral",
@@ -220,7 +214,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 15
+          "peso_pct": 16
         },
         {
           "categoria": "Social",
@@ -249,7 +243,7 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
       "motivo": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
-      "peso": 20.0,
+      "peso": 14.0,
       "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
@@ -293,22 +287,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUTNQYmRzbi1NWnNZZ3BQemFVaHd0YWowSWYxWUlsWHh5NHBXYzhFUjBnSi01OThwLVlLZVpfdlRaUjFJb29PSEdFUTNTRHNuYllycy1Ob05qeERzTWFlSUlvc3BhQ24yZnhINFM0LXZ3TG9pUGI4RDJJR0ZFWlFOS0dSUHNnRjhTVzVSbHhidE13cWZObjUwSzB1RGJTcnRfRlp5cm9LZGZMbmFTS05HOTFEUjc0b0k5TjlUdHZYRFBCMWdqNGF0RVlJVGJUSU0zcEVFQ21n0gHwAUFVX3lxTE1pTklKUjhxa29SU3YwamZsZEZ5c1poNGkxRGFVOUUyX1JKMHl5WDNsbmFlOHBGNmJ1QUhYaW5Xbl9MaW5MeDB1cjVqLVIteGF0ZDhGN1Y2eEU2WU9rb0JUYWc0TkxHTFFsbm9EeENybzdaY05PdEktb2Q5YkdzeGVHc215WDFsOVJaV2x3QXQ0TUFpc2ZsUjl5OUVRTmFTLThWYW9ObFZuS3pJcDBNRkRwdUlVU1VQT002d2xlbmt1UWlGZzJOLS1PUGlCSGpuNnNpcmxNNWdwazgwUW5uQ0ZVamdSQ0FEdlJ3akxJUDhvQw?oc=5"
     },
     {
-      "id": "auto-30056e8f7a",
-      "nombre": "Murieron 86 mil migrantes en rutas marítimas y terrestres desde 2014",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/005n2pol?partner=rss"
-    },
-    {
-      "id": "auto-6048afedbf",
-      "nombre": "Detecta el INE 142 mil fallecidos e irregularidades en padrones de partidos; Mor",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOb0ZMMkFrakZOMVZnRkZWZzFzQ1BWV1pXUmpJdlBQWWhsakJvWDdYeEVBRzNrLUxJbFMyM1V5cUM4S3FZRy13NXloZXRxUk5hakRCcUJJOEFVbF9fQ0pWUy1QWU41R1Z0SDc0VG83ek5oS1FqQTVIWGdxWFZ4Q0ZTdHEtTzhrSUZjbTlQSVRwYlBTZ2l5N2NwNEFHc1p2WnBHZjNtbTlISkpzSHlmaFdmTlJ6b1JJSG5jRjZQLXpMd2dhUkhU0gHKAUFVX3lxTE5XMWttX3FWR29URnpQNUdabXpTQmU0cGphM21SZkxJVzJ3Tms2WExPNFh5dXg0dWs3VjFDTHN0VDRDc1J5ZDRxanY0YW5QNmF6dm1OY3dNbndwLUhFcmRIVzk0RC1SRjRXTkYyTnBBeFU0QW04ZkRMdExSX3hRTEVkX2xwS2hDSHgtWDlYdjFOUFJnQkV6WFpTaWVZZmdMY1RFREtiSzVqM2MyNGUwOWFLUHJpQ0VNbzRicUdLd2VqWWI5eWdNRVRVOVE?oc=5"
-    },
-    {
       "id": "auto-2c99e79cce",
       "nombre": "Loret revela presunto pacto entre Adán Augusto y la familia Yunes",
       "categoria": "Gobernabilidad",
@@ -323,20 +301,25 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQVEl2SWQ0Zm4zeGZyTU5uRTM0SUZXUmlmTHRHMkFkVWR1U1l0MS1YVnN2UHBIYVRnYkx4MzZSaXZZQ3NaNm5YWHNROWFBWEJZSG5xdXZacVphenhfb0UyeE1OVzVSZWdfcmREMG1NclF6WHBycmZPUGZHbzNTS1RRblRhWHZ1dV9LSVhiYmVneHV2US12eHNRWjc2YTFHWTNqeE5nNVZyMF9zMTYzWUtKbUlBWmvSAbQBQVVfeXFMUFRJdklkNGZuM3hmck1ObkUzNElGV1JpZkx0RzJBZFVkdVNZdDEtWFZzdlBwSGFUZ2JMeDM2Uml2WUNzWjZuWFhzUTlhQVhCWUhucXV2WnFaYXp4X29FMnhNTlc1UmVnX3JkRDBtTXJRelhwcnJmT1BmR28zU0tUUW5UYVh2dXVfS0lYYmJlZ3h1dlEtdnhzUVo3NmExR1kzanhOZzVWcjBfczE2M1lLSm1JQVpr?oc=5"
+    },
+    {
+      "id": "auto-11f2b817b4",
+      "nombre": "Ignacio Mier se reúne con Gino Segura para analizar su trabajo rumbo a 2027 - MI",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdS1kUUx3cTdJVXFuVzEzcTFpYnBJQm1ROEVsd1AxR05lR1Zvem1VY3Qza1FycU9VYm9Gc2pEUzc1YWlVNk5XZ3VSNmtDTnFQd2lfVi1fMHItYm9JQUNXRmxWYVhfbTk1RGY3LXM3UU91Z3RlcmtYVDMybnppU0tvQmh3WDhfcU0yNFJJMUl5UnF5YWp4ZWVka1JGUXJwdnJuWFI0OdIBpAFBVV95cUxPRzA0RnY1UTFRbE5kckp4S3E1QldwRndoSGpEa0tKcXdQNWF0aUVGU0l5U3pIWl8tQ2RjMm9NcUtrNWpBbmJ6VE9QUlZuMC1POXl1amg5X1hvZEs2NkN6RUI2ZWx4eHN0Y3h5V1FKZkNsQVVMbEFVdmJlWmtjcGlHc0h3OEZLSnV4OXAyVHJnTDJzbS1jMWRMVUFKcVh1VXRUdnNpSg?oc=5"
+    },
+    {
+      "id": "auto-7ff9f70a7e",
+      "nombre": "El cablebús más largo y más peligroso del mundo (Línea 5), escribe Margarita Zav",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOTmxtSC1pNUxRLTQyaEdsemM4TzlEVEc1NS1QbUN1NjVjTTdsdDJlNGZrTFQ4NTMwSUxPTGJ5eFNlYlozQ0wtOVpGblMyUGFIRWRuWG1LUmI1QVl1WGdNYUxZZDNNODVaNkNjNDVNdmExaTFIMG1FT1RjUHgwQmRfLUVGaHVrVlNpSS0yMS1BaW1HRkJPZllkV2xESGlLS3pLeC1Ia3U4dUVGZUpidjhmM3ZB?oc=5"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-58c4fa9e35",
-      "nombre": "¿Terry Cole “promueve” a Harfuch? EU siempre ha buscado dividirnos, dice Sheinba",
-      "categoria": "Social",
-      "dias_silencio": 14,
-      "motivo": "PT: siempre vamos a ir con Claudia Sheinbaum",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/004n3pol?partner=rss",
-      "fecha_anterior": "2026-09-14",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOWnlpeHFvSExFcjNrYXR2dDhCZmMtczBkTHY1Y2d1cFFfTTRBUVY5QzhoS1FpNDlMQW5pbm1SUjIxS0Y0UjlEcUw3eUY4TGpBTlhqOW5fclR5QWhDQVdWanVPblZSMHZ0NEc1MUY2M2syZFotNFkxYlpMd3NwUUROZUkzX0dMQQ?oc=5"
-    },
     {
       "id": "auto-118e35df96",
       "nombre": "Migrante impugna fallo y ahora será refugiada",
@@ -357,16 +340,6 @@
       "tema": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
       "nota": "Nueva Constitución blinda soberanía e igualdad: Claudia Sheinbaum - MILENIO",
       "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSVpvMEZBRmhHYjN3c0s5QnB3OHo5UU5tU0Rzd1FwZkpyRGRnYjdMYmlwaHlFUnRlSUQ4UHBuTVR5Wk9kZTlEZFY4TEl6MHZjeXg2SmRaeWFiRGxUbmxUZmgwbUNtTHpvNVRtUHZFVDBEU01BNDlVM3lrMEVMTHBsS194dFRFNUZGS0VGbXVqTzjSAZABQVVfeXFMTnV2dWREQ3laem5hTk56OTNZZ25OMjBsV0NqdlNFLVRYZ3Z1RW1aVUEydWhQV2lqYWhOYUxPUUM0SDdlWE9DdFRJNEZyMHh6SnBXdGRXNXhya0E4cHJ6dGhQRFQyMC03OE5zTnI2ajJkSXFUcmRCNjRPSF9iQW42Q0ZBc1J2bGhvRDBFRGV6QlJV?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "ernesto_ruffo",
-      "nombre": "Ernesto Ruffo Appel",
-      "rol": "Mencionado",
-      "tema": "Huachicol Fiscal",
-      "nota": "Huachicol fiscal también pasa por EU: Ernesto Ruffo, la clave para entender la relación con Texas - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUdIBjwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false
     },
@@ -409,21 +382,13 @@
     "fecha": "2026-09-28"
   },
   "declaracion_otro": {
-    "actor": "Ricardo Monreal",
-    "texto": "Ricardo Monreal reconoce “desgaste real” de Morena rumbo a 2027: estos son los 6 estados que ve más difíciles - Infobae",
-    "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNYXBTcVo3R3Z2WGpwczRhaXlmaGJLcU5tTHJrWEoxS1ZxSHBES3NlMjYzTVI1SkluVnFYRE5FbldHRy1yV3lwSHJ2VUdpZVRQREs3ZkhoMThQejRBNldXV1RZYnEtbEJpOGI4b1IxT3dXczg1Z1V3b1MtSzJaWXFiWUdzbVVnRXZSMnA2Ni1USmVzcXE1bC1KRzM4dTFCMnBOLWtwbmYwcE5uMjBzaUF3LXRpbUFBZ0pkYm5ualRET1RxV05JTXU2VHU3MVRTUGEtUkVnQm5lZkxfX05nRURLazZhSdIB_gFBVV95cUxOV1JGUmw5VUNtX1hLQ2FJbS02TzNJcml5M1JrWFNJNXhtaTlWNWNPQmhJYldwTE9RSE16bTU4VElYUUQ2VGVsU3pTMllCQmJ6dWN2SDg4aU1fVVYteUFQbFVjOXFfT2RsQklHaldIZzJ4ZGlXaUMxWjNoNzdpbzRBQmVzbkd4TjlMRHJoYk9TX0RJY1B4MzB6R3JsNjNIN0VWdVBmOW9ZUFpoSmloUFJ3U19iS3BWY2NzdXRpTjJ2MUgzSkxCLW5kdlM2WnZhUk9aQjFMSjlHaFNfQ3dJbnZ2TXhXTG93Ml82dDFvZndLeC1EYnRINFhHeTNvTGZ2UQ?oc=5",
+    "actor": "Marcela Guerra Castillo",
+    "texto": "Grecia Quiroz denucia ‘guerra sucia’ en su contra: ‘Quieren meterme a la cárcel’",
+    "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/09/28/grecia-quiroz-denucia-guerra-sucia-en-su-contra-quieren-meterme-a-la-carcel/",
     "intensidad": 7.0,
     "fecha": "2026-09-28"
   },
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-01",
-      "tension": 63,
-      "n_notas": 15,
-      "n_alto_impacto": 15,
-      "n_medio_impacto": 0,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-02",
       "tension": 37,
@@ -639,19 +604,27 @@
       "n_alto_impacto": 7,
       "n_medio_impacto": 5,
       "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-09-29",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
+      "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
-      "x_lunes": 100,
+      "x_lunes": 91,
       "y_lunes": 98,
       "x_hoy": 100,
       "y_hoy": 98,
-      "delta_pts": 0.0,
-      "alcance": 20,
-      "n_alto": 19,
+      "delta_pts": 6.0,
+      "alcance": 22,
+      "n_alto": 21,
       "n_medio": 1,
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
@@ -661,9 +634,9 @@
     {
       "id": "salomon_jara",
       "nombre": "Salomón Jara Cruz",
-      "x_lunes": 15,
+      "x_lunes": 14,
       "y_lunes": 100,
-      "x_hoy": 15,
+      "x_hoy": 14,
       "y_hoy": 100,
       "delta_pts": 0,
       "alcance": 3,
@@ -672,6 +645,22 @@
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQZExGM0NKSlZZRkxWYmhZLUJOWFk3dllBcl9hSk01MHMyUi1JVGNWYVlITE9oT0ZSXzVkTXFyT0hXeFpLOUhJYldqQk9pb3o2TWNGblJOUjJXX0tOYmd3bFdQQmpQenA5YzlTbVVzVENPOXNnYmMtT1J6Yjg3bU9fSzM3SVFrem55ZnZwcTZ1MkxwVHYwTllwYmdDSkpRTm9KdnctZDVaZ2RfUDU0WEdIbEhTR29uMmxOMHpOVFhNelc2d1VfQmM5VU5ibUg2cFJhQmxfbjE2bC05ejZPTlZPUGlB?oc=5",
       "nota_texto": "Salomón Jara destaca resultados de Claudia Sheinbaum y avances de la transformación en Oaxaca https://mile.io/4htzV98 - facebook.com",
+      "es_nuevo": false
+    },
+    {
+      "id": "rocio_nahle_garcia",
+      "nombre": "Rocío Nahle García",
+      "x_lunes": 14,
+      "y_lunes": 83,
+      "x_hoy": 18,
+      "y_hoy": 88,
+      "delta_pts": 3.0,
+      "alcance": 4,
+      "n_alto": 3,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://oem.com.mx/diariodexalapa/local/veracruz-volvera-a-ser-sede-de-la-olimpiada-nacional-conade-en-2027-anuncia-gobernadora-rocio-nahle-32324856",
+      "nota_texto": "Veracruz volverá a ser sede de la Olimpiada Nacional Conade en 2027, anuncia gobernadora Rocío Nahle",
       "es_nuevo": false
     },
     {
@@ -691,43 +680,27 @@
       "es_nuevo": false
     },
     {
-      "id": "rocio_nahle_garcia",
-      "nombre": "Rocío Nahle García",
-      "x_lunes": 15,
-      "y_lunes": 83,
-      "x_hoy": 15,
-      "y_hoy": 83,
-      "delta_pts": 0.0,
-      "alcance": 3,
-      "n_alto": 2,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUi02OUhvU1V6Rjd5by1XV09EY21jQ3kzZFMyZHFTNWNQU19vNXI3SmdyZFZkQnp5bGQ2bHd1LXNJS2QtLVRZbEFYZk15VktrenNhTzRfZ3R0SWMxR29ESFQwZVYxdjhPTkQ2cU9KZXhidTVIZENPUHh4SHlxOVFZUGFzbS1EUy1XcGVDeTZQZVRrY0xfZ2tPRXdqTjhLUVhWcEtkMDZNOUlTWkFSb2lTV0s0WTZDbXdPQ2U3WXRzVVdNWm0wdXpVVDMza0NsOElHTUQ5NHJhazB6eDN0Q2Qw?oc=5",
-      "nota_texto": "Rocío Nahle, Esteban Bautista, Marcelo Ruiz y Diego Castañeda articulan acuerdos clave en el Congreso - Entorno Político",
-      "es_nuevo": false
-    },
-    {
       "id": "amilcar_olan_aparicio",
       "nombre": "Amílcar Olán Aparicio",
-      "x_lunes": 15,
+      "x_lunes": 14,
       "y_lunes": 83,
-      "x_hoy": 15,
+      "x_hoy": 14,
       "y_hoy": 83,
       "delta_pts": 0.0,
       "alcance": 3,
       "n_alto": 2,
       "n_medio": 1,
       "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
-      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false
     },
     {
       "id": "ernesto_ruffo",
       "nombre": "Ernesto Ruffo Appel",
-      "x_lunes": 10,
+      "x_lunes": 9,
       "y_lunes": 75,
-      "x_hoy": 10,
+      "x_hoy": 9,
       "y_hoy": 75,
       "delta_pts": 0.0,
       "alcance": 2,
@@ -736,6 +709,22 @@
       "n_bajo": 0,
       "nota_url": "https://www.yucatan.com.mx/mexico/2026/09/28/ernesto-ruffo-pide-reinstitucionalizar-el-pais-tras-llegar-a-su-casa-en-ensenada.html",
       "nota_texto": "Ernesto Ruffo pide “reinstitucionalizar” el país tras llegar a su casa en Ensenada",
+      "es_nuevo": false
+    },
+    {
+      "id": "alejandro_armenta",
+      "nombre": "Alejandro Armenta Mier",
+      "x_lunes": 14,
+      "y_lunes": 67,
+      "x_hoy": 14,
+      "y_hoy": 67,
+      "delta_pts": 0.0,
+      "alcance": 3,
+      "n_alto": 1,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNN2Q0dGtRSFZ6dmZRWU9yQlZ4U19sNVVfRWhTSWt4SG0xTEZZV0FiX0dOc3VOdlJxV2hwU0I3V2Jhel9pazBDYXlLMGhNeDlzVHNhem5QQmFMaTlHaV8zeWpJZ05FbmtSeEEtcUxaQjlWQmxVa2dqcXQwNGc2Nm45dVp6czBVSzNvWmM0ODFHNS1PYWp0MlJCc2hJTVR0NHdYMzBPcjFuaDBsbGpTZFc0aFhPazBwYU1hMEpReUltaFIzcWhYMHgxZDBaclhweWVKbm53YnNsN1lqWGd5WFNUcG0xQnQwM1NsR1Bn?oc=5",
+      "nota_texto": "Alejandro Armenta, gobernador de Puebla, llama “sicarios” a periodistas mientras la entidad acumula agresiones contra la prensa - Azteca Puebla",
       "es_nuevo": false
     },
     {
@@ -769,26 +758,10 @@
       "nota_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOSWoweG9uNmVPVTU0VXRnMEZVbWlxSG1PdjFDdm95SkZ6dXhOU1dOQ3ZFOW1FeG00YjBXaEFEVTB4RzhMNW81d0hfMGFncG5nNmhLVkYybDVPMkJUZ1lGTXJCVnRfMG5XYkx1WkRvdXR5enNUeGNaVHJBeHZIbjcxSGdmeTAySHdUcDhTUXdlQTExUEcxci1sQ0lwZHhuel9WcV9SNzBHcw?oc=5",
       "nota_texto": "Morena elige a Lorenia Valles, del equipo de Alfonso Durazo, como coordinadora de la 4T en Sonora - politica.expansion.mx",
       "es_nuevo": false
-    },
-    {
-      "id": "rafael_marin_mollinedo",
-      "nombre": "Rafael Marín Mollinedo",
-      "x_lunes": 5,
-      "y_lunes": 50,
-      "x_hoy": 5,
-      "y_hoy": 50,
-      "delta_pts": 0.0,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5OOUpXeC16WHRGMmx6T1BaNlFEQW5rMXdONVA0WnNZUFpuaDZhUEdKRVN3VEI4aWVPYlZKR2RqQnpIVTlPTkIzb2VqWTctc0dFWFBxMThtVi1aQmpxc0NNSnNhZWk?oc=5",
-      "nota_texto": "Rafa Marín Mollinedo refrenda su lealtad a Morena desde Tulum tras proceso interno - Ruptura360",
-      "es_nuevo": false
     }
   ],
   "resumen_mananera": [],
-  "mananera_estado": "sin_mananera",
+  "mananera_estado": "pendiente",
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
@@ -806,6 +779,13 @@
   ],
   "declaracion_otro_historial": [
     {
+      "actor": "Marcela Guerra Castillo",
+      "texto": "Grecia Quiroz denucia ‘guerra sucia’ en su contra: ‘Quieren meterme a la cárcel’",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/09/28/grecia-quiroz-denucia-guerra-sucia-en-su-contra-quieren-meterme-a-la-carcel/",
+      "intensidad": 7.0,
+      "fecha": "2026-09-28"
+    },
+    {
       "actor": "Ricardo Monreal",
       "texto": "Ricardo Monreal reconoce “desgaste real” de Morena rumbo a 2027: estos son los 6 estados que ve más difíciles - Infobae",
       "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNYXBTcVo3R3Z2WGpwczRhaXlmaGJLcU5tTHJrWEoxS1ZxSHBES3NlMjYzTVI1SkluVnFYRE5FbldHRy1yV3lwSHJ2VUdpZVRQREs3ZkhoMThQejRBNldXV1RZYnEtbEJpOGI4b1IxT3dXczg1Z1V3b1MtSzJaWXFiWUdzbVVnRXZSMnA2Ni1USmVzcXE1bC1KRzM4dTFCMnBOLWtwbmYwcE5uMjBzaUF3LXRpbUFBZ0pkYm5ualRET1RxV05JTXU2VHU3MVRTUGEtUkVnQm5lZkxfX05nRURLazZhSdIB_gFBVV95cUxOV1JGUmw5VUNtX1hLQ2FJbS02TzNJcml5M1JrWFNJNXhtaTlWNWNPQmhJYldwTE9RSE16bTU4VElYUUQ2VGVsU3pTMllCQmJ6dWN2SDg4aU1fVVYteUFQbFVjOXFfT2RsQklHaldIZzJ4ZGlXaUMxWjNoNzdpbzRBQmVzbkd4TjlMRHJoYk9TX0RJY1B4MzB6R3JsNjNIN0VWdVBmOW9ZUFpoSmloUFJ3U19iS3BWY2NzdXRpTjJ2MUgzSkxCLW5kdlM2WnZhUk9aQjFMSjlHaFNfQ3dJbnZ2TXhXTG93Ml82dDFvZndLeC1EYnRINFhHeTNvTGZ2UQ?oc=5",
@@ -819,6 +799,14 @@
       "intensidad": 7.0
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-09-28 23:29"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-09-28T23:29:02.966634-06:00",
+    "cambios": [
+      "Tensión nacional subió 1 pts (40 → 41)",
+      "Tema nuevo detectado: Ignacio Mier se reúne con Gino Segura para analizar su trabajo rumbo a 2027 - MI",
+      "Tema nuevo detectado: El cablebús más largo y más peligroso del mundo (Línea 5), escribe Margarita Zav",
+      "Nueva declaración relevante (otro actor): Marcela Guerra Castillo"
+    ]
+  },
+  "hora_corte_publicada": "2026-09-29 07:39"
 }
