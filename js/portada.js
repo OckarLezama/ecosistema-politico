@@ -79,7 +79,10 @@ function renderPortada(){
 
   encabezado.innerHTML = `
       <div style="margin-bottom:10px;">
-        <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;margin-bottom:8px;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
+          <button id="portada-btn-mapa-puntos" style="background:none;border:1px solid var(--line-strong);color:var(--ink-3);font-family:var(--f-mono);font-size:10px;padding:3px 10px;border-radius:99px;cursor:pointer;">● mapa de relación</button>
+        </div>
         <div id="portada-dispersion" style="margin-bottom:10px;width:100%;"></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
           ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
@@ -129,6 +132,85 @@ function renderPortada(){
     const q = e.target.value.trim().toLowerCase();
     pintarTarjetasPortada(filtrarEventosPortada(q, categoriaActiva));
   });
+
+  document.getElementById('portada-btn-mapa-puntos').addEventListener('click', abrirMapaPuntos);
+}
+
+/* ---- Mapa de puntos (ventana emergente) --------------------------------
+   Cada punto = 1 nota real de hoy (eventosHoyCache), sin codificar
+   intensidad/categoría en el color ni tamaño -- son uniformes, estilo
+   referencia "altar-1". Las líneas SÍ son reales: conectan notas del
+   MISMO tema (tema_id), formando una cadena cronológica por hilo -- no son
+   decorativas ni aleatorias. Todo el campo gira una sola vez, muy lento y
+   sutil, en sentido horario. Se regenera cada vez que se abre porque las
+   notas del día cambian. */
+function generarMapaPuntosSVG(){
+  const cx = 320, cy = 320, R = 260;
+  const notas = eventosHoyCache;
+  const n = notas.length;
+
+  if(!n){
+    return `<div style="text-align:center;color:#6B7280;font-family:var(--f-mono);font-size:11px;padding:60px 0;">Aún no hay notas registradas hoy.</div>`;
+  }
+
+  // posición de cada nota en el anillo -- orden estable (por hora_registro) para que el
+  // hilo de un mismo tema quede geográficamente cerca en el círculo, no disperso al azar
+  const orden = [...notas].sort((a,b)=> (a.hora_registro||'').localeCompare(b.hora_registro||''));
+  const posiciones = orden.map((ev, i)=>{
+    const ang = (i/n)*Math.PI*2 + (Math.random()*0.06-0.03);
+    const rad = R*(0.55+0.45*Math.random());
+    return { ev, x: cx+rad*Math.cos(ang), y: cy+rad*Math.sin(ang) };
+  });
+
+  let dots = posiciones.map(p=>{
+    const r = (0.9+Math.random()*1.2).toFixed(2), op = (0.35+Math.random()*0.45).toFixed(2);
+    return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#E8EAED" opacity="${op}"/>`;
+  }).join('');
+
+  // agrupar por tema_id real -- solo temas con 2+ notas hoy generan conexión
+  const porTema = {};
+  posiciones.forEach(p=>{
+    const t = p.ev.tema_id;
+    if(!t) return;
+    (porTema[t] = porTema[t] || []).push(p);
+  });
+  let lineas = '';
+  Object.values(porTema).forEach(grupo=>{
+    if(grupo.length < 2) return;
+    // cadena cronológica dentro del tema (ya viene ordenado por hora_registro) --
+    // conecta cada nota con la siguiente del mismo hilo, no todas contra todas
+    for(let i=0;i<grupo.length-1;i++){
+      const a = grupo[i], b = grupo[i+1];
+      lineas += `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="#2DD4BF" stroke-width="0.7" opacity="0.16" class="mapa-puntos-linea"/>`;
+    }
+  });
+
+  return `
+    <svg viewBox="0 0 640 640" style="width:100%;max-width:520px;display:block;margin:0 auto;">
+      <g class="mapa-puntos-giro">
+        <g>${lineas}</g>
+        <g>${dots}</g>
+      </g>
+      <text x="320" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#DDE1E6" font-family="var(--f-mono)">notas de hoy</text>
+      <text x="320" y="334" text-anchor="middle" font-size="8" fill="#6B7280" font-family="var(--f-mono)">${n} activas · líneas = mismo tema</text>
+    </svg>`;
+}
+function abrirMapaPuntos(){
+  let modal = document.getElementById('mapa-puntos-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'mapa-puntos-modal';
+    modal.className = 'ficha-modal-backdrop mapa-puntos-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = `
+    <div class="ficha-modal-card mapa-puntos-card">
+      <button class="ficha-modal-close">✕</button>
+      ${generarMapaPuntosSVG()}
+    </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.classList.add('open');
 }
 
 function filtrarEventosPortada(q, categoria){
@@ -186,14 +268,14 @@ function dibujarDispersionHoraria(eventos){
   const altoUtil = alto - margenArriba - margenAbajo;
   const xDeHora = h => margenIzq + (h/24)*(ancho-margenIzq-margenDer);
 
-  const BLOQUES = 48;
+  const BLOQUES = 96; // cortes de 15 min (antes 48 = 30 min) -- se ve como frecuencia real, no como puntos espaciados
   const porBloque = Array.from({length:BLOQUES}, ()=>[]);
   eventosFiltrados.forEach(e=>{
     const hora = horaDeteccionDe(e);
     if(!hora) return; // sin hora real -- no se dibuja como punto individual, pero ya se contó en el total del día aparte
     const horaDecimal = hora.getHours()+hora.getMinutes()/60;
     if(isNaN(horaDecimal)) return;
-    const idx = Math.min(BLOQUES-1, Math.max(0, Math.floor(horaDecimal*2)));
+    const idx = Math.min(BLOQUES-1, Math.max(0, Math.floor(horaDecimal*4)));
     porBloque[idx].push(e);
   });
   const maxConteo = Math.max(...porBloque.map(l=>l.length), 1);
@@ -211,7 +293,7 @@ function dibujarDispersionHoraria(eventos){
   }
 
   const puntos = porBloque.map((lista,i)=>{
-    const x = xDeHora((i+0.5)/2);
+    const x = xDeHora((i+0.5)/4);
     const y = margenArriba + altoUtil - (lista.length/maxConteo)*altoUtil*0.85;
     return {x, y, lista};
   });
@@ -234,7 +316,7 @@ function dibujarDispersionHoraria(eventos){
     if(!p.lista.length) return '';
     const promedioImpacto = p.lista.reduce((s,e)=>s+Number(e.intensidad),0)/p.lista.length;
     const color = colorPorImpactoDispersion(promedioImpacto);
-    const h = Math.floor(i/2), m = (i%2)*30;
+    const h = Math.floor(i/4), m = (i%4)*15;
     const horaTxt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
     const relevantes = notasRelevantesDe(p.lista);
     const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
@@ -277,7 +359,7 @@ function dibujarDispersionHoraria(eventos){
     lineaGuia.setAttribute('stroke-opacity', '0.5');
     if(cercano.lista.length){
       const idx = puntos.indexOf(cercano);
-      const h = Math.floor(idx/2), m = (idx%2)*30;
+      const h = Math.floor(idx/4), m = (idx%4)*15;
       const relevantes = notasRelevantesDe(cercano.lista);
       const titulares = relevantes.map(e=>e.descripcion.slice(0,70)).join(' | ');
       tooltip.innerHTML = `<strong>${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</strong> — ${cercano.lista.length} nota${cercano.lista.length!==1?'s':''}` +
