@@ -198,6 +198,20 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 @keyframes pulso-halo{ 0%,100%{fill-opacity:0.25;} 50%{fill-opacity:0.5;} }
 .nodo-halo{animation:pulso-halo 2.6s ease-in-out infinite;}
 
+/* --- Tablero de Actores (Pulso Nacional): halo que respira + ping de "nuevo" + hover
+   táctil -- antes .pulso-halo-vivo no tenía NINGUNA regla en ningún lado del CSS (clase
+   muerta, el halo nunca se movía, se veía plano). transform-box:fill-box es necesario
+   para que scale() en un <circle> SVG escale desde su propio centro, no desde la esquina
+   0,0 del viewBox entero. --- */
+@keyframes pulso-tablero-respira{ 0%,100%{ transform:scale(1); opacity:0.35; } 50%{ transform:scale(1.22); opacity:0.12; } }
+.pulso-halo-vivo{ transform-box:fill-box; transform-origin:center; animation:pulso-tablero-respira 2.6s ease-in-out infinite; opacity:0.35; }
+@keyframes pulso-tablero-ping{ 0%{ transform:scale(0.9); opacity:0.6; } 100%{ transform:scale(2.3); opacity:0; } }
+.pulso-tablero-ping{ transform-box:fill-box; transform-origin:center; animation:pulso-tablero-ping 1.8s ease-out infinite; pointer-events:none; }
+.pulso-tablero-pieza{ transform-box:fill-box; transform-origin:center; transition:transform .15s ease; }
+.pulso-tablero-link{ cursor:pointer; }
+.pulso-tablero-link:hover .pulso-tablero-pieza,
+.pulso-tablero-link:focus-visible .pulso-tablero-pieza{ transform:scale(1.18); }
+
 .feed-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card);
@@ -369,6 +383,10 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .mapa-leyenda-barra{ width:34px; height:3px; border-radius:99px; background:#22262C; overflow:hidden; display:inline-block; flex:none; }
 .mapa-leyenda-barra span{ display:block; height:100%; border-radius:99px; }
 .mapa-leyenda-num{ color:#DDE1E6; min-width:14px; text-align:right; }
+.mapa-leyenda-flecha{ font-size:8px; min-width:20px; text-align:right; }
+.mapa-leyenda-flecha.sube{ color:var(--riesgo-alto); }
+.mapa-leyenda-flecha.baja{ color:var(--riesgo-bajo); }
+.mapa-leyenda-flecha.igual{ color:#4B5157; }
 
 /* Puntos "satélite" -- viven fuera del SVG, esparcidos por toda la ventana del
    modal (no solo dentro del disco), puramente decorativos y sin interacción;
@@ -377,6 +395,22 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .mapa-punto-satelite{
   position:absolute; border-radius:50%; background:#E8EAED; transform-origin:center;
   animation-name:mapa-puntos-deriva; animation-timing-function:ease-in; animation-iteration-count:infinite;
+}
+
+/* "Cometas" -- rachas difuminadas que cruzan el disco en línea recta (distinto
+   de los puntos decorativos, que solo se desvanecen en su lugar). El <g> padre
+   ya trae la rotación fija (ángulo de viaje) como atributo SVG; aquí solo se
+   anima translateX en el eje local, así viaja en línea recta sin pelearse con
+   ese atributo. */
+.mapa-cometa{
+  opacity:0; filter:blur(1.6px); transform-box:fill-box; transform-origin:center;
+  animation-name:mapa-cometa-viaje; animation-timing-function:linear; animation-iteration-count:infinite;
+}
+@keyframes mapa-cometa-viaje{
+  0%{ opacity:0; transform:translateX(calc(var(--dist) * -0.5)); }
+  10%{ opacity:0.5; }
+  85%{ opacity:0.45; }
+  100%{ opacity:0; transform:translateX(calc(var(--dist) * 0.5)); }
 }
 .mapa-puntos-barra-fila{ display:flex; justify-content:space-between; font-family:var(--f-mono); font-size:8px; color:#8A8F98; margin-bottom:2px; }
 .mapa-puntos-barra{ height:3px; border-radius:99px; background:#22262C; overflow:hidden; }
