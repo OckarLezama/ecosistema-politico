@@ -577,6 +577,25 @@ def clasificar_categoria(texto_completo):
     return 'Gobernabilidad'
 
 
+def _punto_mananera_valido(texto):
+    """Filtra ruido de markup que se cuela cuando el <li> capturado en realidad es un
+    widget de 'nota relacionada'/compartir con datos estructurados SEO (JSON-LD) embebidos,
+    no un punto real de la conferencia -- se detectó justo este caso: el texto capturado
+    era el título genérico de la página seguido del bloque de datos estructurados en crudo,
+    repetido varias veces idéntico."""
+    if not texto:
+        return False
+    marcas_json = ('@context', '@type', 'schema.org', 'NewsArticle', 'application/ld+json',
+                   '"headline"', '"datePublished"')
+    if any(m in texto for m in marcas_json):
+        return False
+    # el <title> genérico de esta página sigue el patrón "... | Mañanera de Hoy" -- un
+    # punto real de la conferencia no trae ese separador de título de sitio.
+    if '| Mañanera de Hoy' in texto or '|Mañanera de Hoy' in texto:
+        return False
+    return True
+
+
 def obtener_mananera_hoy():
     try:
         req = urllib.request.Request('https://mananeradehoy.com/mananera-de-hoy', headers={'User-Agent': 'Mozilla/5.0'})
@@ -613,10 +632,17 @@ def obtener_mananera_hoy():
     bloques = re.findall(r'<li[^>]*>(.*?)</li>', html_bruto, re.DOTALL)
     puntos = []
     for b in bloques:
+        # CORRECCIÓN real -- confirmado con un resumen ya publicado: al menos un <li> de la
+        # página no era un punto de la conferencia sino un widget de "nota relacionada" con
+        # datos estructurados SEO (JSON-LD) embebidos dentro del propio <li> -- quitar solo
+        # las etiquetas <script>...</script> deja su CONTENIDO (el JSON en crudo) como si
+        # fuera texto visible, y ese widget repite el mismo título genérico de la página
+        # ("Mañanera de hoy ... | Mañanera de Hoy") -- de ahí que saliera 3 veces idéntico.
+        b = re.sub(r'<script[^>]*>.*?</script>', ' ', b, flags=re.DOTALL | re.IGNORECASE)
         texto = re.sub(r'<[^>]+>', ' ', html.unescape(b))
         texto = re.sub(r'\[\[\d{1,2}:\d{2}\]\]', ' ', texto)  # marcador de timestamp del video
         texto = re.sub(r'\s+', ' ', texto).strip(' -—')
-        if len(texto) > 80:
+        if len(texto) > 80 and _punto_mananera_valido(texto):
             puntos.append(texto)
     if not puntos:
         # Respaldo -- si el sitio no usa <li> (o cambió de estructura) los puntos de la
@@ -631,9 +657,19 @@ def obtener_mananera_hoy():
             es_bullet = linea.startswith(('- ', '— ', '• '))
             if es_bullet:
                 linea = linea[2:].strip()
-            if es_bullet and 80 < len(linea) < 500:
+            if es_bullet and 80 < len(linea) < 500 and _punto_mananera_valido(linea):
                 puntos.append(linea)
-    return fecha_pagina, puntos
+    # CORRECCIÓN -- el mismo widget/artículo relacionado puede aparecer repetido varias
+    # veces en la página (se confirmó: el mismo texto salió 3 veces en un resumen real) --
+    # se deduplica por los primeros 60 caracteres antes de convertir cada punto en evento.
+    vistos, puntos_unicos = set(), []
+    for p in puntos:
+        clave = p[:60].strip().lower()
+        if clave in vistos:
+            continue
+        vistos.add(clave)
+        puntos_unicos.append(p)
+    return fecha_pagina, puntos_unicos
 
 
 def cargar_temas_todos():

@@ -171,6 +171,9 @@ def calcular():
 
     ahora = datetime.now(ZONA_MX)
     hace_24h = ahora - timedelta(hours=VENTANA_HORAS)
+    # Se mueve aquí (antes solo existía dentro del bloque de Tablero de Actores) porque
+    # Actores Destacados también la necesita ahora -- ver corrección más abajo.
+    inicio_semana = (ahora - timedelta(days=ahora.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
 
     temas_por_id = {t['id']: t for t in temas}
     temas_1 = {t['id'] for t in temas if t.get('nivel_relevancia') == '1'}
@@ -273,32 +276,32 @@ def calcular():
     # días de calendario (hoy y los 27 anteriores) en 4 bloques de 7 días idénticos.
     # ================================================================
     hoy_fecha = ahora.date()
+    # CORRECCIÓN -- pedido explícito, con evidencia (comparó las dos gráficas): el rango de
+    # 28 días YA era idéntico al de Patrón Histórico, pero esta serie tenía solo 4 puntos
+    # (uno por semana) mientras Patrón Histórico tiene 28 (uno por día) -- por diseño, para
+    # evitar que una categoría se vea en cero la mayoría de los días. Con solo 4 puntos es
+    # IMPOSIBLE mostrar la misma densidad de etiquetas (09-02, 09-06, 09-10...) que una
+    # serie de 28 -- no es que falten etiquetas, es que no hay más datos que etiquetar. Se
+    # pasa a un punto POR DÍA, igual que Patrón Histórico, pero cada punto sigue siendo un
+    # promedio móvil de los 7 días anteriores (no el día suelto) para no perder el propósito
+    # original: evitar que una categoría con poco volumen se vea saltando a cero y a 100%
+    # de un día a otro. Resultado: mismos 28 puntos, mismas etiquetas, misma "temporalidad"
+    # visual que Patrón Histórico, sin el ruido de una serie diaria cruda.
+    VENTANA_SUAVIZADO_DIAS = 7
     categorias_tendencia_4sem = []
-    for semanas_atras in range(3, -1, -1):
-        fin_dia_incl = hoy_fecha - timedelta(days=7 * semanas_atras)
-        inicio_dia = fin_dia_incl - timedelta(days=6)
-        inicio_sem = datetime.combine(inicio_dia, datetime.min.time()).replace(tzinfo=ZONA_MX)
-        fin_sem = datetime.combine(fin_dia_incl, datetime.min.time()).replace(tzinfo=ZONA_MX) + timedelta(days=1)
-        evs_sem = [e for e in eventos_validos if inicio_sem <= e['_ts'] < fin_sem and e['tema_id'] in temas_1]
-        pesos_sem = {c: 0.0 for c in CATEGORIAS}
-        for e in evs_sem:
-            if e.get('categoria') in pesos_sem:
-                pesos_sem[e['categoria']] += float(e['intensidad'])
-        total_sem = sum(pesos_sem.values()) or 1
+    for dias_atras in range(27, -1, -1):
+        dia = hoy_fecha - timedelta(days=dias_atras)
+        fin_ventana = datetime.combine(dia, datetime.min.time()).replace(tzinfo=ZONA_MX) + timedelta(days=1)
+        inicio_ventana = fin_ventana - timedelta(days=VENTANA_SUAVIZADO_DIAS)
+        evs_v = [e for e in eventos_validos if inicio_ventana <= e['_ts'] < fin_ventana and e['tema_id'] in temas_1]
+        pesos_v = {c: 0.0 for c in CATEGORIAS}
+        for e in evs_v:
+            if e.get('categoria') in pesos_v:
+                pesos_v[e['categoria']] += float(e['intensidad'])
+        total_v = sum(pesos_v.values()) or 1
         categorias_tendencia_4sem.append({
-            'semana_fin': fin_dia_incl.isoformat(),
-            # NUEVO -- el eje de esta gráfica etiquetaba cada punto con el día en que
-            # TERMINA esa semana (fin_dia_incl), mientras que Patrón Histórico etiqueta
-            # cada punto con su propio día real -- el primer punto de Patrón Histórico ya
-            # es, literalmente, el primer día de toda la ventana de 28 días (ej. 02-sep).
-            # Con "termina en" como etiqueta, el primer punto de ESTA gráfica decía 08-sep
-            # (el fin de su semana), aunque sus datos SÍ arrancan el mismo 02-sep -- de ahí
-            # que a simple vista parecieran cubrir periodos distintos, cuando la ventana de
-            # datos siempre fue idéntica. 'semana_inicio' es para el eje (mismo criterio
-            # que Patrón Histórico: el día en que arranca cada punto); 'semana_fin' se deja
-            # tal cual para el texto del tooltip ("semana del ...").
-            'semana_inicio': inicio_dia.isoformat(),
-            'categorias': [{'categoria': c, 'peso_pct': round(pesos_sem[c] / total_sem * 100) if total_sem else 0}
+            'fecha': dia.isoformat(),
+            'categorias': [{'categoria': c, 'peso_pct': round(pesos_v[c] / total_v * 100) if total_v else 0}
                             for c in CATEGORIAS],
         })
 
@@ -651,13 +654,28 @@ def calcular():
     ids_retomados = {r['id'] for r in retomados}
     ids_nuevos = {n['id'] for n in nuevos}
 
+    # CORRECCIÓN -- pedido explícito ("aquí solo hay uno"): esta sección vivía en la MISMA
+    # ventana angosta de 18h que Top 5/Nuevos (peso_tema), pero encima de esa ventana ya
+    # corta se le exige nota de fuente ALTA/OFICIAL + mención real por nombre + que no sea
+    # columna de opinión -- con 4 filtros exigentes encimados sobre solo 18h, casi siempre
+    # sobrevive un único actor (se confirmó: en un corte real, 46 actores vinculados a
+    # temas de agenda nacional recientes, pero solo 1 con nota real que lo nombre en esa
+    # ventana). Se amplía la ventana de CANDIDATOS a la misma semana en curso que ya usa
+    # el Tablero de Actores -- sigue exigiendo agenda nacional real (temas_1) y todos los
+    # demás filtros de calidad, solo deja de cortar en 18h.
+    def _peso_tema_semana(tid):
+        return sum(float(e['intensidad']) for e in eventos_por_tema.get(tid, [])
+                   if inicio_semana <= e['_ts'] <= ahora)
+
+    temas_recientes_semana = {tid for tid in temas_1
+                               if any(inicio_semana <= e['_ts'] <= ahora for e in eventos_por_tema.get(tid, []))}
     conteo_actor = {}
     for ta in tema_actores:
-        if ta['tema_id'] not in peso_tema:
+        if ta['tema_id'] not in temas_recientes_semana:
             continue
         conteo_actor.setdefault(ta['actor_id'], []).append(ta)
     ranking_actores = sorted(conteo_actor.items(),
-                              key=lambda kv: max(peso_tema.get(x['tema_id'], 0) for x in kv[1]),
+                              key=lambda kv: max(_peso_tema_semana(x['tema_id']) for x in kv[1]),
                               reverse=True)
     # actores.csv puede tener dos personas reales distintas que comparten los mismos dos
     # apellidos (hermanos, p.ej. "Fernando Farías Laguna" / "Manuel Roberto Farías Laguna").
@@ -680,11 +698,12 @@ def calcular():
         """La nota real donde ese actor es mencionado dentro del tema -- nunca el título
         del tema. Corregido: antes buscaba en TODO el historial del tema (por eso podían
         salir notas de enero o mayo en un panel que se supone que es de "ahora mismo") --
-        eso ya no es lo que se pidió: Actores Destacados vive en el mismo corte de
-        ventana reciente que el resto del módulo, así que la nota tiene que caer dentro
-        de esa ventana (VENTANA_HORAS) igual que Top 5 / Nuevos. Si nadie tiene mención
-        reciente, el actor simplemente no aparece ese corte -- no se rellena con historial
-        viejo solo para no dejar el espacio vacío.
+        eso ya no es lo que se pidió: Actores Destacados vive ahora en la misma ventana
+        SEMANAL que el Tablero de Actores (antes era la ventana de 18h de Top 5/Nuevos,
+        demasiado angosta combinada con los demás filtros -- ver corrección arriba, en
+        ranking_actores). Si nadie tiene mención real esta semana, el actor simplemente no
+        aparece ese corte -- no se rellena con historial viejo solo para no dejar el
+        espacio vacío.
 
         Exige, además, que esa nota sea de un medio de primer nivel (ALTA/OFICIAL) --
         mismo criterio que ya aplica el Top 5 y la declaración relevante. Antes de esta
@@ -693,7 +712,7 @@ def calcular():
         justificados solo por una nota de un medio no reconocido). Si un actor de verdad
         relevante solo tiene mención en fuentes de menor nivel, se excluye -- no se
         muestra con una fuente floja solo para no dejar el espacio vacío."""
-        evs = [e for e in eventos_por_tema.get(tema_id, []) if hace_24h <= e['_ts'] <= ahora]
+        evs = [e for e in eventos_por_tema.get(tema_id, []) if inicio_semana <= e['_ts'] <= ahora]
         nombre_limpio = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
         partes = [x for x in nombre_limpio.split() if len(x) > 2]
         clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
@@ -743,7 +762,7 @@ def calcular():
         clave_nombre = actor['nombre'].strip().lower()
         if clave_nombre in nombres_ya_usados:
             continue
-        vinculos_ordenados = sorted(vinculos, key=lambda x: peso_tema.get(x['tema_id'], 0), reverse=True)
+        vinculos_ordenados = sorted(vinculos, key=lambda x: _peso_tema_semana(x['tema_id']), reverse=True)
         v, nota, tema_v = None, None, None
         for candidato in vinculos_ordenados:
             n = nota_real_para_actor(actor['nombre'], candidato['tema_id'])
@@ -900,7 +919,7 @@ def calcular():
     # unión de los que más se movieron (mayor |delta|) y los que ya dominan hoy -- así no
     # se pierde a un actor estable pero dominante solo por no haberse movido.
     # ================================================================
-    inicio_semana = (ahora - timedelta(days=ahora.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+    # inicio_semana ya se define al inicio de calcular() -- Actores Destacados también la usa.
     # CORRECCIÓN -- antes el "corte anterior" era el lunes A SECAS (un único día calendario),
     # así que un actor sin mención específicamente EN LUNES arrancaba en (0,0) aunque llevara
     # toda la semana activo -- el tablero se veía como si nadie tuviera "punto de ayer" real y
@@ -994,6 +1013,12 @@ def calcular():
         cats_semana = Counter(e.get('categoria') for e in evs_semana if e.get('categoria'))
         categoria_dominante = cats_semana.most_common(1)[0][0] if cats_semana else None
         dias_activo = len({e['_ts'].date() for e in evs_semana})
+        # CORRECCIÓN -- pedido explícito: "para eso es el tablero, para ver cómo se mueve
+        # un actor en la agenda" -- si no tiene mención de HOY MISMO mientras sigue en el
+        # tablero por su peso acumulado de la semana, no debe desaparecer sin más: su
+        # círculo se marca "apagado" (se dibuja atenuado) en vez de que el actor
+        # simplemente se esfume del panel.
+        activo_hoy = any(e['_ts'] >= inicio_hoy for e in evs_semana)
         candidatos_tablero.append({
             'id': actor['id'], 'nombre': actor['nombre'], 'iniciales': actor.get('iniciales') or '',
             'vol_hoy': vol_hoy, 'vol_ayer': vol_ayer,
@@ -1002,13 +1027,33 @@ def calcular():
             'alcance': len({identidad_medio(e) for e in evs_semana} - {None, ''}),
             'n_alto': n_alto, 'n_medio': n_medio, 'n_bajo': n_bajo, 'impacto_nivel': impacto_nivel,
             'nota_url': nota_top.get('fuente_url') or '', 'nota_texto': nota_top['descripcion'][:200],
-            'es_nuevo': vol_ayer == 0 and not evs_previos_hay,
+            'es_nuevo': vol_ayer == 0 and not evs_previos_hay, 'apagado': not activo_hoy,
             'categoria': categoria_dominante, 'dias_activo': dias_activo,
         })
 
-    por_movimiento = sorted(candidatos_tablero, key=lambda c: abs(c['score_hoy'] - c['score_ayer']), reverse=True)[:6]
-    por_score = sorted(candidatos_tablero, key=lambda c: c['score_hoy'], reverse=True)[:6]
-    seleccionados = list({c['id']: c for c in por_movimiento + por_score}.values())[:9]
+    # CORRECCIÓN -- pedido explícito: "ya quitaste a unos y pusiste a otros... no sirve de
+    # nada la flecha [si no hay continuidad]". La unión "top 6 por movimiento + top 6 por
+    # score" cambiaba de roster de un corte a otro casi por completo, porque un actor con
+    # un salto grande de UN día (movimiento) podía sacar del cupo de 9 a otro con más peso
+    # acumulado en la semana, aunque ese no se hubiera movido por simplemente seguir
+    # dominando. Ahora la selección es un solo criterio estable: el peso REAL acumulado en
+    # lo que va de la semana (score_hoy) -- el mismo actor sigue apareciendo mientras siga
+    # entre los 9 de mayor peso semanal, así la flecha sí cuenta una historia continua de
+    # cómo se mueve, y solo cae del tablero cuando de verdad lo superan otros, no por un
+    # criterio secundario de "quién se movió más hoy".
+    # CORRECCIÓN -- actores.csv puede traer 2 filas (ids distintos) para la MISMA persona
+    # real (ej. "citlalli" y "hernandez_mora", ambas "Citlalli Hernández Mora") -- Actores
+    # Destacados ya se protegía de esto (nombres_ya_usados) pero el Tablero no, así que
+    # podía salir la misma persona dos veces como si fueran dos actores distintos. Se
+    # deduplica por nombre, quedándose con el registro de mayor peso semanal.
+    mejores_por_nombre = {}
+    for c in candidatos_tablero:
+        clave = c['nombre'].strip().lower()
+        if clave not in mejores_por_nombre or c['score_hoy'] > mejores_por_nombre[clave]['score_hoy']:
+            mejores_por_nombre[clave] = c
+    candidatos_tablero = list(mejores_por_nombre.values())
+
+    seleccionados = sorted(candidatos_tablero, key=lambda c: c['score_hoy'], reverse=True)[:9]
     max_vol = max([c['vol_hoy'] for c in seleccionados] + [1])
     max_intens = max([c['intens_hoy'] for c in seleccionados] + [1])
 
@@ -1021,10 +1066,13 @@ def calcular():
         'x_hoy': _norm(c['vol_hoy'], max_vol), 'y_hoy': _norm(c['intens_hoy'], max_intens),
         'delta_pts': round(c['score_hoy'] - c['score_ayer'], 1),
         'alcance': c['alcance'], 'n_alto': c['n_alto'], 'n_medio': c['n_medio'], 'n_bajo': c['n_bajo'],
-        'impacto_nivel': c['impacto_nivel'],
+        'impacto_nivel': c['impacto_nivel'], 'apagado': c['apagado'],
         'nota_url': c['nota_url'], 'nota_texto': c['nota_texto'], 'es_nuevo': c['es_nuevo'],
         'categoria': c['categoria'], 'dias_activo': c['dias_activo'],
     } for c in seleccionados], key=lambda c: c['x_hoy'] + c['y_hoy'], reverse=True)
+    # 'tablero_semana_inicio' identifica la semana de este corte -- se usa en __main__ para
+    # decidir si un actor que hoy no aparece se puede seguir mostrando "apagado" (misma
+    # semana, solo perdió continuidad) o si ya toca limpiarlo (empezó una semana nueva).
 
     # ================================================================
     # RESUMEN MAÑANERA -- una sola actualización por día, no un carril más de "última
@@ -1086,6 +1134,7 @@ def calcular():
         'declaracion_otro': declaracion_otro,
         'patron_historico_4sem': historico,
         'tablero_actores': tablero_actores,
+        'tablero_semana_inicio': inicio_semana.date().isoformat(),
         'resumen_mananera': resumen_mananera,
         'mananera_estado': mananera_estado,
     }
@@ -1241,6 +1290,21 @@ def _actualizar_historial_declaracion(anterior, nueva, campo_historial, maxlen=3
     return historial_previo[:maxlen]
 
 
+def _fusionar_tablero_con_apagados(anterior, tablero_nuevo, semana_iso):
+    """CORRECCIÓN -- pedido explícito: el tablero es para ver cómo se MUEVE un actor en la
+    agenda durante la semana, no una foto suelta -- si un actor con presencia esta semana
+    no tiene mención nueva hoy, antes desaparecía del todo de un corte a otro, como si nunca
+    hubiera estado ahí, y la flecha de movimiento perdía sentido. Ahora, mientras siga siendo
+    la MISMA semana, se conserva en su última posición conocida marcada 'apagado' (el
+    frontend lo dibuja atenuado, sin halo/ping ni línea de flujo) -- se ve que perdió
+    continuidad, no que se borró. Se limpia solo al cruzar a una semana nueva."""
+    if not anterior or anterior.get('tablero_semana_inicio') != semana_iso:
+        return tablero_nuevo
+    ids_nuevos = {a['id'] for a in tablero_nuevo}
+    apagados = [dict(a, apagado=True) for a in (anterior.get('tablero_actores') or []) if a['id'] not in ids_nuevos]
+    return (tablero_nuevo + apagados)[:12]
+
+
 if __name__ == '__main__':
     resultado, ventana_agenda = calcular()
     publicar, motivo = decide_si_publicar(resultado, ventana_agenda)
@@ -1257,6 +1321,8 @@ if __name__ == '__main__':
         resultado['declaracion_otro_historial'] = _actualizar_historial_declaracion(
             anterior_publicado, resultado.get('declaracion_otro'), 'declaracion_otro_historial')
         resultado['diff_desde_corte_anterior'] = calcular_diff_corte(anterior_publicado, resultado)
+        resultado['tablero_actores'] = _fusionar_tablero_con_apagados(
+            anterior_publicado, resultado['tablero_actores'], resultado.get('tablero_semana_inicio'))
         resultado['hora_corte_publicada'] = datetime.now(ZONA_MX).strftime('%Y-%m-%d %H:%M')
         with open(RUTA_SALIDA, 'w', encoding='utf-8') as f:
             json.dump(resultado, f, ensure_ascii=False, indent=2)
