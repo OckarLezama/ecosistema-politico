@@ -1,5 +1,5 @@
 {
-  "generado_en": "2026-09-29T09:22:06.786588-06:00",
+  "generado_en": "2026-09-29T09:59:42.377272-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 2,
   "baja_confianza": true,
@@ -96,7 +96,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 39
+          "peso_pct": 40
         },
         {
           "categoria": "Gobernabilidad",
@@ -104,7 +104,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -146,15 +146,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 37
+          "peso_pct": 36
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 35
+          "peso_pct": 34
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -544,7 +544,9 @@
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
       "nota_texto": "Claudia Sheinbaum cuestiona la actitud de la ONU ante tantas guerras… - Revista Fortuna",
-      "es_nuevo": false
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2
     },
     {
       "id": "salomon_jara",
@@ -560,7 +562,9 @@
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQZExGM0NKSlZZRkxWYmhZLUJOWFk3dllBcl9hSk01MHMyUi1JVGNWYVlITE9oT0ZSXzVkTXFyT0hXeFpLOUhJYldqQk9pb3o2TWNGblJOUjJXX0tOYmd3bFdQQmpQenA5YzlTbVVzVENPOXNnYmMtT1J6Yjg3bU9fSzM3SVFrem55ZnZwcTZ1MkxwVHYwTllwYmdDSkpRTm9KdnctZDVaZ2RfUDU0WEdIbEhTR29uMmxOMHpOVFhNelc2d1VfQmM5VU5ibUg2cFJhQmxfbjE2bC05ejZPTlZPUGlB?oc=5",
       "nota_texto": "Salomón Jara destaca resultados de Claudia Sheinbaum y avances de la transformación en Oaxaca https://mile.io/4htzV98 - facebook.com",
-      "es_nuevo": false
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1
     },
     {
       "id": "rocio_nahle_garcia",
@@ -574,9 +578,11 @@
       "n_alto": 3,
       "n_medio": 1,
       "n_bajo": 0,
-      "nota_url": "https://oem.com.mx/diariodexalapa/local/veracruz-volvera-a-ser-sede-de-la-olimpiada-nacional-conade-en-2027-anuncia-gobernadora-rocio-nahle-32324856",
-      "nota_texto": "Veracruz volverá a ser sede de la Olimpiada Nacional Conade en 2027, anuncia gobernadora Rocío Nahle",
-      "es_nuevo": false
+      "nota_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUi02OUhvU1V6Rjd5by1XV09EY21jQ3kzZFMyZHFTNWNQU19vNXI3SmdyZFZkQnp5bGQ2bHd1LXNJS2QtLVRZbEFYZk15VktrenNhTzRfZ3R0SWMxR29ESFQwZVYxdjhPTkQ2cU9KZXhidTVIZENPUHh4SHlxOVFZUGFzbS1EUy1XcGVDeTZQZVRrY0xfZ2tPRXdqTjhLUVhWcEtkMDZNOUlTWkFSb2lTV0s0WTZDbXdPQ2U3WXRzVVdNWm0wdXpVVDMza0NsOElHTUQ5NHJhazB6eDN0Q2Qw?oc=5",
+      "nota_texto": "Rocío Nahle, Esteban Bautista, Marcelo Ruiz y Diego Castañeda articulan acuerdos clave en el Congreso - Entorno Político",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2
     },
     {
       "id": "godoy",
@@ -592,7 +598,9 @@
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQRC12N3RqQ0xVbUhJajU4Vnczb1NvSVVoczFZLU43N0JCdjBJME9PV2RObTlZd1NWVWRBUEduMmpobkVUSE8xLWt4aUZwcVZxWE9BdHRoX0I3a0paQS0yeTZRNE5GWWstci1Sbl9oU1Nuanl6MEFSUXZXTzF1cjNrVm1DU184YVFPR1IzWXdQRi1IZkp1WWluZQ?oc=5",
       "nota_texto": "Recuperar el valor de la verdad, escribe Ernestina Godoy Ramos - El Universal",
-      "es_nuevo": false
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -606,9 +614,11 @@
       "n_alto": 2,
       "n_medio": 1,
       "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
-      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
-      "es_nuevo": false
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "es_nuevo": false,
+      "categoria": "Seguridad Nacional",
+      "dias_activo": 1
     },
     {
       "id": "ernesto_ruffo",
@@ -624,7 +634,9 @@
       "n_bajo": 0,
       "nota_url": "https://www.yucatan.com.mx/mexico/2026/09/28/ernesto-ruffo-pide-reinstitucionalizar-el-pais-tras-llegar-a-su-casa-en-ensenada.html",
       "nota_texto": "Ernesto Ruffo pide “reinstitucionalizar” el país tras llegar a su casa en Ensenada",
-      "es_nuevo": false
+      "es_nuevo": false,
+      "categoria": "Seguridad Nacional",
+      "dias_activo": 1
     },
     {
       "id": "alejandro_armenta",
@@ -640,7 +652,9 @@
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNN2Q0dGtRSFZ6dmZRWU9yQlZ4U19sNVVfRWhTSWt4SG0xTEZZV0FiX0dOc3VOdlJxV2hwU0I3V2Jhel9pazBDYXlLMGhNeDlzVHNhem5QQmFMaTlHaV8zeWpJZ05FbmtSeEEtcUxaQjlWQmxVa2dqcXQwNGc2Nm45dVp6czBVSzNvWmM0ODFHNS1PYWp0MlJCc2hJTVR0NHdYMzBPcjFuaDBsbGpTZFc0aFhPazBwYU1hMEpReUltaFIzcWhYMHgxZDBaclhweWVKbm53YnNsN1lqWGd5WFNUcG0xQnQwM1NsR1Bn?oc=5",
       "nota_texto": "Alejandro Armenta, gobernador de Puebla, llama “sicarios” a periodistas mientras la entidad acumula agresiones contra la prensa - Azteca Puebla",
-      "es_nuevo": false
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1
     },
     {
       "id": "rosa_icela",
@@ -656,7 +670,9 @@
       "n_bajo": 0,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/9/28/rosa-icela-rodriguez-se-reune-con-representante-de-acnur-para-dialogar-sobre-proteccion-solicitantes-de-refugio-897128.html",
       "nota_texto": "🔔 ALERTA — Rosa Icela Rodríguez se reúne con representante de ACNUR para dialogar sobre protección a solicitantes de refugio",
-      "es_nuevo": false
+      "es_nuevo": false,
+      "categoria": "Social",
+      "dias_activo": 1
     },
     {
       "id": "alfonso_durazo",
@@ -672,7 +688,9 @@
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOSWoweG9uNmVPVTU0VXRnMEZVbWlxSG1PdjFDdm95SkZ6dXhOU1dOQ3ZFOW1FeG00YjBXaEFEVTB4RzhMNW81d0hfMGFncG5nNmhLVkYybDVPMkJUZ1lGTXJCVnRfMG5XYkx1WkRvdXR5enNUeGNaVHJBeHZIbjcxSGdmeTAySHdUcDhTUXdlQTExUEcxci1sQ0lwZHhuel9WcV9SNzBHcw?oc=5",
       "nota_texto": "Morena elige a Lorenia Valles, del equipo de Alfonso Durazo, como coordinadora de la 4T en Sonora - politica.expansion.mx",
-      "es_nuevo": false
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1
     }
   ],
   "resumen_mananera": [],
@@ -714,18 +732,6 @@
       "intensidad": 7.0
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-09-29T07:39:12.209349-06:00",
-    "cambios": [
-      "Tensión nacional bajó 29 pts (41 → 12)",
-      "Entra a Temas en Movimiento: Tatiana Clouthier acepta a regañadientes resultado en Nuevo León: solo respalda a Claudia ",
-      "Sale de Temas en Movimiento: Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que ",
-      "Sale de Temas en Movimiento: Huachicol Fiscal",
-      "Tema nuevo detectado: Javier Corral y el humor - MILENIO",
-      "Tema nuevo detectado: Reconoce Mara Lezama la fuerza, identidad y liderazgo de las mujeres mayas con l",
-      "Tema nuevo detectado: Diputada del PT propone auditoría a gobierno de Jara por presuntos \"aviadores\" e",
-      "Categoría dominante del día cambió: Seguridad Nacional → Relación Bilateral"
-    ]
-  },
-  "hora_corte_publicada": "2026-09-29 09:22"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-09-29 09:59"
 }
