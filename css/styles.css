@@ -217,6 +217,13 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .pulso-tablero-link:hover .pulso-halo-vivo,
 .pulso-tablero-link:focus-visible .pulso-halo-vivo{ animation-play-state:paused; transform:scale(1.5); opacity:0.9; }
 
+/* Pedido explícito: la línea de "jugada" (lunes -> hoy) debe verse pasar/fluir hacia el
+   punto de hoy -- es la ÚNICA línea del tablero con movimiento. Guiones cortos que recorren
+   la línea sin parar, en el color del actor; el trazo base (gris, con la flecha) se queda
+   quieto debajo y sigue siendo el que recibe el clic/tap. */
+@keyframes pulso-flujo-jugada{ to{ stroke-dashoffset:-64; } }
+.pulso-flujo-jugada{ stroke-dasharray:7 25; animation:pulso-flujo-jugada 1.4s linear infinite; opacity:0.9; pointer-events:none; }
+
 .feed-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card);
