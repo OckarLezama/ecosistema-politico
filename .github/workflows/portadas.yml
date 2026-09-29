@@ -7,8 +7,13 @@ name: Robot de portadas del día
     - cron: '0 11,12,13,15 * * *'
   workflow_dispatch: {}
 concurrency:
+  # Si una corrida se atrasa (falla temporal de GitHub Actions) y ya hay
+  # otra más nueva en cola o en curso, se cancela la vieja en vez de
+  # apilarla. Cada corrida solo llena huecos del día real (hora CDMX), así
+  # que una corrida vieja no aporta nada que la más reciente no vuelva a
+  # intentar; dejarla en cola solo atrasa que aparezcan las portadas de hoy.
   group: robot-portadas-unico
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   capturar-portadas:
     runs-on: ubuntu-latest
@@ -22,6 +27,6 @@ jobs:
           git config user.email "robot@ecosistema-politico.local"
           git add data/titulares.csv data/portadas
           [ -f data/_diagnostico_jornada.html ] && git add data/_diagnostico_jornada.html
-          git diff --staged --quiet || git commit -m "Robot: portadas del dia $(date -u +%Y-%m-%d)"
+          git diff --staged --quiet || git commit -m "Robot: portadas del dia $(TZ=America/Mexico_City date +%Y-%m-%d)"
           git pull --rebase
           git push
