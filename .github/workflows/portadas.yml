@@ -20,7 +20,8 @@ jobs:
         run: |
           git config user.name "robot-portadas"
           git config user.email "robot@ecosistema-politico.local"
-          git add data/titulares.csv data/portadas data/_diagnostico_jornada.html
+          git add data/titulares.csv data/portadas
+          [ -f data/_diagnostico_jornada.html ] && git add data/_diagnostico_jornada.html
           git diff --staged --quiet || git commit -m "Robot: portadas del dia $(date -u +%Y-%m-%d)"
           git pull --rebase
           git push
