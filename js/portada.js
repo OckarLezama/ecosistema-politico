@@ -176,6 +176,27 @@ function barrasImpactoDifusionHTML(ev){
     <div class="mapa-puntos-barra-fila" style="margin-top:5px;"><span>Difusión</span><span>${difusionTexto(ev.cobertura)}</span></div>
     <div class="mapa-puntos-barra"><div class="mapa-puntos-barra-fill" style="width:${pctDifusion}%;background:#8A93A0;"></div></div>`;
 }
+function actorDestacadoDe(ev){
+  // mismo criterio de detección que ya usa el resumen "En la nota hoy" de arriba --
+  // si algún actor real aparece mencionado en el texto, se muestra su nombre
+  const texto = (ev.descripcion||'').toLowerCase();
+  const encontrado = (ECOSISTEMA.actores||[]).find(a=>
+    variantesDeNombre(a.nombre).some(v=>{
+      const regex = new RegExp(`\\b${v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\b`);
+      return regex.test(texto);
+    })
+  );
+  return encontrado ? encontrado.nombre : null;
+}
+function centroContenidoHTML(ev){
+  const tituloTxt = (ev.descripcion||'').replace(/^\[Mañanera\]\s*/,'').slice(0,90);
+  const hora = ev.hora_registro || '';
+  const actor = actorDestacadoDe(ev);
+  return `
+    <div class="mapa-puntos-centro-titulo">${tituloTxt}</div>
+    <div class="mapa-puntos-centro-sub">${hora ? `<span>${hora}</span>` : ''}${actor ? `<span class="mapa-puntos-centro-actor">${hora ? ' · ' : ''}${actor}</span>` : ''}</div>
+    <div class="mapa-puntos-centro-meta">${barrasImpactoDifusionHTML(ev)}</div>`;
+}
 function horaDecimalDeRegistro(horaRegistro){
   if(!horaRegistro) return null;
   const [h,m] = horaRegistro.split(':').map(Number);
@@ -212,16 +233,21 @@ function generarMapaPuntosSVG(){
   });
 
   // puntos decorativos -- SOLO de relleno visual, no representan notas reales, no
-  // llevan a ningún lado. Van dispersos dentro del disco para que el conjunto se
-  // vea más lleno sin competir con las notas reales (que son las únicas clicables)
+  // llevan a ningún lado. Van dispersos dentro del disco, tipo campo de asteroides,
+  // y cada uno se va desprendiendo y desvaneciendo solo (a su propio ritmo, en bucle)
+  // para que el conjunto se sienta vivo sin competir con las notas reales (las
+  // únicas clicables)
   let decorativos = '';
-  const nDecorativos = Math.round(30 + Math.random()*16);
+  const nDecorativos = Math.round(34 + Math.random()*18);
   for(let i=0;i<nDecorativos;i++){
     const ang = Math.random()*Math.PI*2;
-    const rad = R*(0.12+0.95*Math.random());
+    const rad = R*(0.1+0.98*Math.random());
     const dx = cx+rad*Math.cos(ang), dy = cy+rad*Math.sin(ang);
-    const r = (0.45+Math.random()*0.45).toFixed(2);
-    decorativos += `<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${r}" fill="#E8EAED" fill-opacity="${(0.08+Math.random()*0.13).toFixed(2)}"></circle>`;
+    const r = (0.6+Math.random()*0.7).toFixed(2);
+    const opMax = (0.15+Math.random()*0.22).toFixed(2);
+    const vx = (Math.random()*50-25).toFixed(1), vy = (Math.random()*50-25).toFixed(1);
+    const dur = (7+Math.random()*11).toFixed(1), delay = (-Math.random()*18).toFixed(1);
+    decorativos += `<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${r}" class="mapa-punto-decorativo" style="--op-max:${opMax};--dx:${vx}px;--dy:${vy}px;animation-duration:${dur}s;animation-delay:${delay}s;"></circle>`;
   }
 
   // agrupar por tema_id real -- solo temas con 2+ notas hoy generan conexión
@@ -265,28 +291,41 @@ function generarMapaPuntosSVG(){
     const difusion = difusionTexto(p.ev.cobertura);
     const esDestacada = destacadasSet.has(p.ev);
 
+    const hora = p.ev.hora_registro || '';
+
     const grupoDeSuTema = p.ev.tema_id ? porTema[p.ev.tema_id] : null;
     let mensajeConexion = '', nombreTemaTxt = '', conexionAttrs = '';
     if(grupoDeSuTema && grupoDeSuTema.length>=2){
       const otras = grupoDeSuTema.length-1;
       nombreTemaTxt = nombreTemaPorId[p.ev.tema_id] || 'este tema';
       mensajeConexion = `Se conecta con ${otras} nota${otras!==1?'s':''} más de "${nombreTemaTxt}" — impacto ${impacto.toLowerCase()}, difusión ${difusion.split(' ')[0].toLowerCase()}.`;
-      // vecino en la cadena del mismo tema -- al hacer hover se traza una línea real
-      // hacia esta nota (no decorativa) explicando el porqué en un cuadrito
+      // vecino REAL más cercano en pantalla (no el siguiente cronológico) -- así la
+      // línea que se traza al hacer hover es corta y no cruza el mapa de lado a lado
       const idx = grupoDeSuTema.indexOf(p);
-      const vecino = grupoDeSuTema[idx+1] || grupoDeSuTema[idx-1];
+      let vecino = null, distMin = Infinity;
+      grupoDeSuTema.forEach((otro, j)=>{
+        if(j===idx) return;
+        const d = Math.hypot(otro.x-p.x, otro.y-p.y);
+        if(d<distMin){ distMin = d; vecino = otro; }
+      });
       if(vecino){
         conexionAttrs = ` data-gx="${p.x.toFixed(1)}" data-gy="${p.y.toFixed(1)}" data-px="${vecino.x.toFixed(1)}" data-py="${vecino.y.toFixed(1)}" data-tema-nombre="${nombreTemaTxt.replace(/"/g,'&quot;')}"`;
       }
     }
 
     const horaNota = horaDecimalDeRegistro(p.ev.hora_registro);
-    let esNueva = false;
+    let esNueva = false, edadHoras = null;
     if(horaNota!==null){
       let diffMin = (ahoraDecimal - horaNota)*60;
       if(diffMin < -1380) diffMin += 1440; // cruce de medianoche
       esNueva = diffMin>=0 && diffMin<=45;
+      edadHoras = diffMin>=0 ? diffMin/60 : (diffMin+1440)/60;
     }
+    // notas con más de 24h -- se desprenden y se desvanecen solas (una sola vez, no
+    // en bucle) para que lo viejo se sienta que va quedando atrás. Con datos de un
+    // solo día esto casi no se activa (rara vez una nota de HOY pasa las 24h) --
+    // queda listo para cuando el mapa mire más de un día hacia atrás.
+    const esVieja = edadHoras!==null && edadHoras>=24;
 
     let extra = '';
     let circulo, hit;
@@ -309,21 +348,21 @@ function generarMapaPuntosSVG(){
       circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#E8EAED" fill-opacity="0.38"></circle>`;
       hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="12" fill="transparent"/>`;
     }
-    const contenido = extra + hit + circulo;
+    let contenido = extra + hit + circulo;
+    if(esVieja){
+      const dx0 = p.x-cx, dy0 = p.y-cy, mag0 = Math.hypot(dx0,dy0)||1;
+      const vx = (dx0/mag0*16).toFixed(1), vy = (dy0/mag0*16).toFixed(1);
+      contenido = `<g class="mapa-punto-viejo" style="--vx:${vx}px;--vy:${vy}px;">${contenido}</g>`;
+    }
     if(!url) return `<g>${contenido}</g>`;
-    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link" data-titulo="${titulo}" data-impacto="${impacto}" data-difusion="${difusion}" data-conexion="${mensajeConexion.replace(/"/g,'&quot;')}"${conexionAttrs}>${contenido}</a>`;
+    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link" data-titulo="${titulo}" data-impacto="${impacto}" data-difusion="${difusion}" data-hora="${hora}" data-conexion="${mensajeConexion.replace(/"/g,'&quot;')}"${conexionAttrs}>${contenido}</a>`;
   }).join('');
 
   // centro -- ya no es un texto fijo del conteo: rota permanentemente entre las
   // notas más relevantes del momento, mostrando título + nivel de impacto + difusión
   let centroNota = '';
   if(carruselNotas.length){
-    const primera = carruselNotas[0];
-    const tituloInicial = primera.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,90);
-    centroNota = `<div class="mapa-puntos-centro-nota">
-        <div class="mapa-puntos-centro-titulo">${tituloInicial}</div>
-        <div class="mapa-puntos-centro-meta">${barrasImpactoDifusionHTML(primera)}</div>
-      </div>`;
+    centroNota = `<div class="mapa-puntos-centro-nota">${centroContenidoHTML(carruselNotas[0])}</div>`;
   } else {
     centroNota = `<div class="mapa-puntos-centro-nota"><div class="mapa-puntos-centro-titulo" style="color:#6B7280;">Sin notas destacadas aún</div></div>`;
   }
@@ -343,6 +382,11 @@ function generarMapaPuntosSVG(){
         <div style="font-family:var(--f-mono);font-size:8px;color:#4B5157;margin-top:11px;">${n} nota${n!==1?'s':''} activa${n!==1?'s':''} · ${gruposConectados.length} tema${gruposConectados.length!==1?'s':''} conectado${gruposConectados.length!==1?'s':''}</div>
       </div>
       <div class="mapa-puntos-tooltip" style="display:none;"></div>
+      <div class="mapa-puntos-leyenda">
+        <div><span class="mapa-leyenda-punto" style="background:${colorPorImpactoDispersion(9)};"></span>Alto</div>
+        <div><span class="mapa-leyenda-punto" style="background:${colorPorImpactoDispersion(5)};"></span>Medio</div>
+        <div><span class="mapa-leyenda-punto" style="background:${colorPorImpactoDispersion(1)};"></span>Bajo</div>
+      </div>
     </div>`;
 
   return { html, carrusel: carruselNotas };
@@ -360,11 +404,7 @@ function iniciarCarruselMapaPuntos(wrap, notas){
     notaEl.classList.add('salir');
     setTimeout(()=>{
       i = (i+1) % notas.length;
-      const ev = notas[i];
-      const tituloEl = notaEl.querySelector('.mapa-puntos-centro-titulo');
-      const metaEl = notaEl.querySelector('.mapa-puntos-centro-meta');
-      if(tituloEl) tituloEl.textContent = ev.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,90);
-      if(metaEl) metaEl.innerHTML = barrasImpactoDifusionHTML(ev);
+      notaEl.innerHTML = centroContenidoHTML(notas[i]);
       notaEl.classList.remove('salir');
     }, 480);
   }, 4200);
@@ -374,7 +414,8 @@ function mostrarTooltipMapa(a, wrap, tooltip, evt){
   // el "por qué" de la conexión ya no va aquí -- ahora se ve como línea + cuadrito
   // reales sobre el propio mapa (mostrarConexionMapa), este tooltip solo habla de
   // la nota en sí
-  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>`;
+  const hora = a.dataset.hora;
+  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">${hora ? `${hora} · ` : ''}Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>`;
   tooltip.style.display = 'block';
   posicionarTooltipMapa(wrap, tooltip, evt);
 }
@@ -422,14 +463,31 @@ function mostrarConexionMapa(a, wrap){
   const gx = parseFloat(a.dataset.gx), gy = parseFloat(a.dataset.gy);
   const px = parseFloat(a.dataset.px), py = parseFloat(a.dataset.py);
   if(isNaN(gx)||isNaN(px)) return;
-  const mx = (gx+px)/2, my = (gy+py)/2;
+  const cx = 320, cy = 320;
+  const dist = Math.hypot(px-gx, py-gy);
+  // el cuadrito SIEMPRE se coloca hacia afuera del propio punto (nunca al centro
+  // del mapa, donde vive el carrusel) -- así jamás se pierde encima del texto
+  // central, sin importar dónde esté la nota vecina
+  let dirx = gx-cx, diry = gy-cy;
+  const mag = Math.hypot(dirx,diry) || 1;
+  dirx/=mag; diry/=mag;
+  let bx = gx + dirx*48, by = gy + diry*48;
+  bx = Math.max(100, Math.min(540, bx));
+  by = Math.max(40, Math.min(600, by));
   const angulo = calcularAnguloActualMapa();
   const nombreTema = (a.dataset.temaNombre||'este tema').slice(0,32);
+  // la línea solo se dibuja si la nota vecina está cerca en pantalla -- si el único
+  // vecino de tema quedó del otro lado del círculo, una línea recta cruzaría por
+  // encima del texto del centro y se perdería, así que en ese caso solo se explica
+  // el porqué con el cuadrito, sin trazar una línea que cruce todo el mapa
+  const lineaHTML = dist < 300
+    ? `<line x1="${gx}" y1="${gy}" x2="${px}" y2="${py}" stroke="#DDE1E6" stroke-width="1" stroke-dasharray="3,3" opacity="0.85"/>`
+    : '';
   const g = document.createElementNS('http://www.w3.org/2000/svg','g');
   g.setAttribute('id','mapa-conexion-hover');
   g.innerHTML = `
-    <line x1="${gx}" y1="${gy}" x2="${px}" y2="${py}" stroke="#DDE1E6" stroke-width="1" stroke-dasharray="3,3" opacity="0.85"/>
-    <g transform="translate(${mx.toFixed(1)},${my.toFixed(1)}) rotate(${(-angulo).toFixed(1)})">
+    ${lineaHTML}
+    <g transform="translate(${bx.toFixed(1)},${by.toFixed(1)}) rotate(${(-angulo).toFixed(1)})">
       <rect x="-90" y="-19" width="180" height="34" rx="4" fill="#101317" stroke="#2A2F36"/>
       <text x="0" y="-5" font-size="7.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)" text-anchor="middle">${nombreTema}</text>
       <text x="0" y="8" font-size="7" fill="#8A93A0" font-family="var(--f-mono)" text-anchor="middle">Impacto ${a.dataset.impacto} · Difusión ${a.dataset.difusion}</text>
