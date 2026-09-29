@@ -658,7 +658,14 @@ def calcular():
             ev_top = max(evs_grupo_sin_generico, key=lambda e: float(e['intensidad']))
         else:
             ev_top = mejor_evento(tid_top, requerir_fuente_confiable=True) or mejor_evento_historico(tid_top)
+        # actores vinculados a CUALQUIER tema_id del grupo (no solo tid_top) -- se usa más
+        # abajo, una vez calculado tablero_actores, para el cruce de señales (ver
+        # CRUCE DE SEÑALES). Se guarda aquí porque 'miembros' solo existe en este scope.
+        actores_grupo_conjunto = set()
+        for m in miembros:
+            actores_grupo_conjunto |= actores_por_tema.get(m, set())
         paraguas.append({
+            '_actores_grupo': actores_grupo_conjunto,
             'id': tid_top, 'nombre': t_top['nombre'], 'categoria': t_top['categoria'],
             'resumen': t_top.get('resumen') or '',
             'motivo': ((ev_top or {}).get('descripcion') or '')[:220], 'peso': round(peso_grupo_pn, 1),
@@ -681,6 +688,7 @@ def calcular():
     # veces el mismo medio como si fuera cobertura diversa)
     top5 = []
     dominios_usados = set()
+    actores_grupo_por_top5 = {}
     for cand in sorted(paraguas, key=lambda x: x['peso'], reverse=True):
         dom = cand['_dominio_top']
         if dom and dom in dominios_usados:
@@ -688,6 +696,7 @@ def calcular():
         if dom:
             dominios_usados.add(dom)
         del cand['_dominio_top']
+        actores_grupo_por_top5[cand['id']] = cand.pop('_actores_grupo')
         top5.append(cand)
         if len(top5) == 5:
             break
@@ -1306,6 +1315,23 @@ def calcular():
         'nota_url': c['nota_url'], 'nota_texto': c['nota_texto'], 'es_nuevo': c['es_nuevo'],
         'categoria': c['categoria'], 'dias_activo': c['dias_activo'],
     } for c in seleccionados], key=lambda c: c['x_hoy'] + c['y_hoy'], reverse=True)
+
+    # ================================================================
+    # CRUCE DE SEÑALES -- pedido explícito tras evaluar que la síntesis por plantilla no
+    # aportaba: ¿el tema que domina la agenda (o cualquiera del Top 5) es el mismo que
+    # está moviendo al actor que más subió esta semana en el Tablero, o son cosas
+    # distintas ocurriendo en paralelo? Antes cada tarjeta vivía aislada; esto conecta los
+    # dos puntos con datos que el módulo ya tiene (actores_por_tema, tablero_actores) --
+    # sin IA, sin juicio nuevo, solo revisar si comparten actor vinculado real.
+    # ================================================================
+    movedores_tablero = sorted(
+        [a for a in tablero_actores if not a.get('apagado') and a.get('delta_pts', 0) > 0],
+        key=lambda a: a['delta_pts'], reverse=True)
+    for t in top5:
+        actores_del_tema = actores_grupo_por_top5.get(t['id'], set())
+        vinculado = next((a for a in movedores_tablero if a['id'] in actores_del_tema), None)
+        t['actor_vinculado'] = {'id': vinculado['id'], 'nombre': vinculado['nombre']} if vinculado else None
+
     # 'tablero_semana_inicio' identifica la semana de este corte -- se usa en __main__ para
     # decidir si un actor que hoy no aparece se puede seguir mostrando "apagado" (misma
     # semana, solo perdió continuidad) o si ya toca limpiarlo (empezó una semana nueva).
@@ -1412,6 +1438,14 @@ def calcular():
         'resumen': (t.get('resumen') or '')[:200],
         'fuente_url': t.get('fuente_url') or '',
     } for t in temas if t.get('alerta_temprana') and t['id'] not in ids_en_top5]
+    # Mismo cruce de señales que en Top 5: si un tema "a vigilar" ya involucra al actor
+    # que más subió esta semana, es una lectura de pronóstico real (este tema todavía no
+    # es agenda nacional, pero el actor que lo protagoniza ya está en ascenso) -- no una
+    # coincidencia que un producto de inteligencia deba dejar pasar en silencio.
+    for t in a_vigilar:
+        actores_del_tema = actores_por_tema.get(t['id'], set())
+        vinculado = next((a for a in movedores_tablero if a['id'] in actores_del_tema), None)
+        t['actor_vinculado'] = {'id': vinculado['id'], 'nombre': vinculado['nombre']} if vinculado else None
 
     # ================================================================
     # AUDITORÍA DE ALERTAS -- ver actualizar_auditoria_alertas(). Corre en cada corrida
