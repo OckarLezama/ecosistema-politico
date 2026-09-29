@@ -1016,6 +1016,20 @@ def decide_si_publicar(nuevo, ventana_agenda):
     # el último corte fijo que YA debería haber pasado: si el snapshot publicado es de
     # ANTES de ese corte fijo, se publica ahora mismo sin importar qué tan tarde vaya el
     # cron -- autocorrectivo ante cualquier retraso, no solo uno menor a 30 min.
+    # Cambio de día calendario -- a petición del usuario: antes, si el último corte
+    # publicado había sido tarde en la noche (ej. 23:29), el sitio seguía mostrando esa
+    # fecha de AYER durante horas después de medianoche, hasta el corte fijo de las 06:00.
+    # Ahora, apenas el reloj de CDMX cruza a un día nuevo, se publica de inmediato (sin
+    # esperar la hora fija) para que la fecha del encabezado nunca quede desfasada.
+    generado_anterior_raw_dia = anterior.get('generado_en')
+    if generado_anterior_raw_dia:
+        try:
+            ts_anterior_dia = datetime.fromisoformat(generado_anterior_raw_dia)
+            if ts_anterior_dia.astimezone(ZONA_MX).date() < ahora.date():
+                return True, f'cambió el día calendario desde el último corte ({ts_anterior_dia.date()} → {ahora.date()})'
+        except (ValueError, TypeError):
+            pass
+
     hora_fija_objetivo = max((h for h in CORTES_FIJOS if h <= ahora.hour), default=None)
     if hora_fija_objetivo is not None:
         objetivo_dt = ahora.replace(hour=hora_fija_objetivo, minute=0, second=0, microsecond=0)
