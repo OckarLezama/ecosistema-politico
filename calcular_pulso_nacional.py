@@ -16,6 +16,7 @@ import json
 import os
 import re
 import urllib.parse
+from collections import Counter
 from datetime import datetime, timedelta, timezone
 from fuentes_confiabilidad import (clasificar_fuente, NIVELES_BAJA_O_SIN, dominio_de,
                                     extraer_medio_de_descripcion, sin_acentos)
@@ -889,6 +890,13 @@ def calcular():
         n_medio = sum(1 for e in evs_semana if _impacto_de(float(e['intensidad'])) == 'medio')
         n_bajo = sum(1 for e in evs_semana if _impacto_de(float(e['intensidad'])) == 'bajo')
         nota_top = max(evs_semana, key=lambda e: float(e['intensidad']))
+        # categoría dominante del actor esta semana (para colorear con la MISMA paleta
+        # de categorías que ya se usa en el resto de Análisis, en vez de colores nuevos
+        # inventados solo para este tablero) y días distintos en que se le mencionó (para
+        # distinguir a alguien con presencia sostenida de quien solo figuró un día suelto).
+        cats_semana = Counter(e.get('categoria') for e in evs_semana if e.get('categoria'))
+        categoria_dominante = cats_semana.most_common(1)[0][0] if cats_semana else None
+        dias_activo = len({e['_ts'].date() for e in evs_semana})
         candidatos_tablero.append({
             'id': actor['id'], 'nombre': actor['nombre'],
             'vol_hoy': vol_hoy, 'vol_lunes': vol_lunes,
@@ -898,6 +906,7 @@ def calcular():
             'n_alto': n_alto, 'n_medio': n_medio, 'n_bajo': n_bajo,
             'nota_url': nota_top.get('fuente_url') or '', 'nota_texto': nota_top['descripcion'][:200],
             'es_nuevo': vol_lunes == 0 and not evs_previos_hay,
+            'categoria': categoria_dominante, 'dias_activo': dias_activo,
         })
 
     por_movimiento = sorted(candidatos_tablero, key=lambda c: abs(c['score_hoy'] - c['score_lunes']), reverse=True)[:6]
@@ -916,6 +925,7 @@ def calcular():
         'delta_pts': round(c['score_hoy'] - c['score_lunes'], 1),
         'alcance': c['alcance'], 'n_alto': c['n_alto'], 'n_medio': c['n_medio'], 'n_bajo': c['n_bajo'],
         'nota_url': c['nota_url'], 'nota_texto': c['nota_texto'], 'es_nuevo': c['es_nuevo'],
+        'categoria': c['categoria'], 'dias_activo': c['dias_activo'],
     } for c in seleccionados], key=lambda c: c['x_hoy'] + c['y_hoy'], reverse=True)
 
     # ================================================================
@@ -1091,33 +1101,22 @@ def calcular_diff_corte(anterior, nuevo):
     if not anterior:
         return {'generado_anterior': None, 'cambios': ['Primer corte -- no hay uno anterior con qué comparar.']}
 
+    # Antes esta franja repetía, con otras palabras, lo que ya se ve en las tarjetas de
+    # abajo (Temas en Movimiento, Temas Nuevos, el badge NUEVO del Tablero de Actores) --
+    # quejas del usuario: quita mucho espacio y no aporta inteligencia. Se deja solo lo
+    # que de verdad es un delta que NO se ve ya como tal en ningún otro lado: cuánto
+    # cambió la tensión, si cambió la categoría dominante, y si hay una declaración
+    # nueva. El detalle de qué tema entró/salió o cuál es nuevo ya vive en su propia
+    # tarjeta, con su titular completo y su link -- no hace falta un changelog aparte.
     t_ant, t_nuevo = anterior.get('tension_nacional'), nuevo.get('tension_nacional')
     if t_ant is not None and t_nuevo is not None and t_ant != t_nuevo:
         signo = 'subió' if t_nuevo > t_ant else 'bajó'
         cambios.append(f'Tensión nacional {signo} {abs(t_nuevo - t_ant)} pts ({t_ant} → {t_nuevo})')
 
-    ids_top5_ant = {t['id'] for t in (anterior.get('top5_temas') or [])}
-    ids_top5_nuevo = {t['id'] for t in (nuevo.get('top5_temas') or [])}
-    for t in (nuevo.get('top5_temas') or []):
-        if t['id'] not in ids_top5_ant:
-            cambios.append(f'Entra a Temas en Movimiento: {tituloLimpio_py(t.get("motivo") or t.get("resumen") or t["nombre"])}')
-    for t in (anterior.get('top5_temas') or []):
-        if t['id'] not in ids_top5_nuevo:
-            cambios.append(f'Sale de Temas en Movimiento: {t["nombre"]}')
-
-    ids_nuevos_ant = {t['id'] for t in (anterior.get('temas_nuevos') or [])}
-    for t in (nuevo.get('temas_nuevos') or []):
-        if t['id'] not in ids_nuevos_ant:
-            cambios.append(f'Tema nuevo detectado: {t["nombre"]}')
-
     for campo, etiqueta in (('declaracion_presidenta', 'Presidenta'), ('declaracion_otro', 'otro actor')):
         d_ant, d_nuevo = anterior.get(campo), nuevo.get(campo)
         if d_nuevo and (not d_ant or d_ant.get('texto') != d_nuevo.get('texto')):
             cambios.append(f'Nueva declaración relevante ({etiqueta}): {d_nuevo["actor"]}')
-
-    for a in (nuevo.get('tablero_actores') or []):
-        if a.get('es_nuevo'):
-            cambios.append(f'Nuevo en el Tablero de Actores: {a["nombre"]}')
 
     cat_ant = max((anterior.get('categorias_dia') or []), key=lambda c: c.get('peso_pct', 0), default=None)
     cat_nuevo = max((nuevo.get('categorias_dia') or []), key=lambda c: c.get('peso_pct', 0), default=None)
@@ -1130,14 +1129,6 @@ def calcular_diff_corte(anterior, nuevo):
         # (no aporta, y competía por atención con el resto del encabezado sin decir nada).
         return None
     return {'generado_anterior': anterior.get('generado_en'), 'cambios': cambios[:8]}
-
-
-def tituloLimpio_py(txt):
-    """Recorte simple para el diff -- no repite la limpieza de prefijos que sí hace
-    tituloLimpio() en el frontend (emoji de alerta, etc.), porque aquí solo es para un
-    changelog corto, no para el titular principal que ya se ve con su formato completo
-    en Temas en Movimiento."""
-    return (txt or '')[:90]
 
 
 def _actualizar_historial_declaracion(anterior, nueva, campo_historial, maxlen=3):
