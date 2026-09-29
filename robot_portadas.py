@@ -19,6 +19,11 @@ todos los medios publican su portada a la misma hora -- cada corrida vuelve a
 intentar solo los medios que aún no tengan imagen de HOY, sin tocar los que ya
 la consiguieron en una corrida anterior.
 
+Además, al final de cada corrida guarda un diagnóstico (data/_diagnostico_jornada.html)
+con el HTML real de la página de La Jornada que sí trae el titular en texto --
+paso previo, temporal, para escribir el extractor de texto real en la
+siguiente entrega (ver diagnosticar_titular_jornada()).
+
 Cómo correrlo: python3 robot_portadas.py
 Requiere: solo librería estándar (urllib) -- sin dependencias externas.
 """
@@ -49,6 +54,12 @@ MEDIOS = [
     {'medio': 'El Financiero', 'slug': 'financiero',   'categoria': 'Economía',           'url_oficial': 'https://www.elfinanciero.com.mx/'},
     {'medio': 'El Economista', 'slug': 'eleconomista', 'categoria': 'Economía',           'url_oficial': 'https://www.eleconomista.com.mx/'},
     {'medio': 'La Prensa',     'slug': 'laprensa',     'categoria': 'Social',             'url_oficial': 'https://www.la-prensa.com.mx/'},
+    # Agregados: slugs confirmados en kiosko.net, aún sin una corrida real que
+    # pruebe la descarga -- si el slug estuviera mal, simplemente no bajan
+    # imagen (mismo comportamiento seguro que el resto, no rompe nada).
+    {'medio': 'Excélsior',        'slug': 'excelsior',  'categoria': 'Gobernabilidad', 'url_oficial': 'https://www.excelsior.com.mx/'},
+    {'medio': 'La Razón',         'slug': 'razon',       'categoria': 'Gobernabilidad', 'url_oficial': 'https://www.razon.com.mx/'},
+    {'medio': 'El Sol de México', 'slug': 'sol_mexico',  'categoria': 'Social',         'url_oficial': 'https://www.elsoldemexico.com.mx/'},
 ]
 
 
@@ -72,6 +83,27 @@ def descargar_imagen(url, destino):
     with open(destino, 'wb') as f:
         f.write(datos)
     return True
+
+
+def diagnosticar_titular_jornada():
+    """Paso 1 hacia el titular en TEXTO (no imagen): La Jornada publica su
+    edición impresa como texto real en jornada.com.mx/impresa.php, con el
+    titular principal del día. Antes de escribir el extractor definitivo hay
+    que ver el HTML real de esa página -- desde el entorno donde se escribió
+    este robot no hay forma de verlo, así que esta función solo GUARDA una
+    copia del HTML de hoy en data/_diagnostico_jornada.html. No toca
+    titulares.csv ni afecta nada del sitio. Una vez que se revise ese HTML
+    real, esta función se reemplaza por el extractor de verdad y se borra el
+    archivo de diagnóstico."""
+    try:
+        req = urllib.request.Request('https://www.jornada.com.mx/impresa.php', headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            html = resp.read().decode('utf-8', errors='replace')
+        with open('data/_diagnostico_jornada.html', 'w', encoding='utf-8') as f:
+            f.write(html[:60000])
+        print("diag La Jornada: HTML guardado en data/_diagnostico_jornada.html")
+    except Exception as e:
+        print(f"diag La Jornada: no se pudo obtener el HTML ({e})")
 
 
 def cargar_titulares():
@@ -128,6 +160,8 @@ def main():
 
     guardar_titulares(filas)
     print(f"Listo. {conseguidas} imagen(es) nueva(s) para {fecha_txt}.")
+
+    diagnosticar_titular_jornada()
 
 
 if __name__ == '__main__':
