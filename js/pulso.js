@@ -980,7 +980,10 @@ function pintarPulso(cont, d){
           ${a.tema_nuevo ? `<span style="font-size:8px;font-family:var(--f-mono);color:var(--riesgo-bajo);border:1px solid var(--riesgo-bajo);border-radius:99px;padding:1px 5px;white-space:nowrap;">NUEVO</span>` : ''}
         </div>
       </div>
-      <div style="font-size:9.5px;color:var(--ink-3);margin-top:1px;">${a.rol}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:1px;">
+        <span style="font-size:9.5px;color:var(--ink-3);">${a.rol}</span>
+        ${badgeConfianza(a.confianza)}
+      </div>
       <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;margin-top:3px;">
         <div style="font-size:10px;color:var(--ink-2);border-left:2px solid var(--line-strong);padding-left:6px;">${tituloLimpio(a.nota)}</div>
         ${enlaceNota(a.fuente_url)}
@@ -996,6 +999,19 @@ function pintarPulso(cont, d){
     if(t.escalando) out += `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--riesgo-alto);white-space:nowrap;">🔥 ESCALANDO</span>`;
     return out;
   };
+  // Etiqueta de confianza -- pedido explícito, parte de lo que sí se puede sin IA de
+  // paga: el backend ya distingue cuántos medios corroboran cada dato y de qué nivel es
+  // la fuente (ALTA/OFICIAL); esto solo lo pinta como semáforo, mismo criterio para Top
+  // 5, Actores Destacados y Declaración -- no uno distinto por sección.
+  const badgeConfianza = nivel => {
+    const mapa = {
+      alta: {color:'var(--teal)', label:'CONFIANZA ALTA'},
+      media: {color:'var(--ink-2)', label:'CONFIANZA MEDIA'},
+      baja: {color:'var(--ink-3)', label:'FUENTE ÚNICA'},
+    };
+    const c = mapa[nivel];
+    return c ? `<span style="font-size:8px;font-family:var(--f-mono);color:${c.color};white-space:nowrap;" title="Nivel de corroboración de esta información">${c.label}</span>` : '';
+  };
 
   const catDominante = d.categorias_dia && d.categorias_dia[0] && d.categorias_dia[0].peso_pct > 0 ? d.categorias_dia[0] : null;
 
@@ -1006,8 +1022,8 @@ function pintarPulso(cont, d){
   // discretas, a manera de "las últimas 2 antes de ésta".
   const tarjetaDeclaracion = (decl, esReciente) => `
     <div style="background:var(--bg-1);border-left:3px solid ${esReciente?'var(--riesgo-medio)':'var(--line-strong)'};border-radius:7px;padding:${esReciente?'12px':'9px 12px'};${esReciente?'':'opacity:0.72;'}">
-      <div class="eyebrow" style="color:${esReciente?'var(--riesgo-medio)':'var(--ink-3)'};font-size:${esReciente?'9.5px':'8.5px'};display:flex;justify-content:space-between;gap:8px;">
-        <span>${decl.actor}</span>
+      <div class="eyebrow" style="color:${esReciente?'var(--riesgo-medio)':'var(--ink-3)'};font-size:${esReciente?'9.5px':'8.5px'};display:flex;justify-content:space-between;align-items:center;gap:8px;">
+        <span style="display:flex;align-items:center;gap:6px;">${decl.actor}${decl.nivel_fuente ? badgeConfianza(decl.nivel_fuente === 'OFICIAL' ? 'alta' : 'media') : ''}</span>
         ${decl.fecha ? `<span style="font-family:var(--f-mono);font-weight:400;color:var(--ink-3);">${new Date(decl.fecha+'T00:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'short'})}</span>` : ''}
       </div>
       <p style="font-size:${esReciente?'11.5px':'10.5px'};line-height:1.5;margin:5px 0;font-style:italic;">"${decl.texto}"</p>
@@ -1040,6 +1056,25 @@ function pintarPulso(cont, d){
         <button id="btn-exportar-pdf-analisis" style="font-size:10px;font-family:var(--f-mono);background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-2);border-radius:6px;padding:4px 10px;cursor:pointer;">↓ Exportar / compartir (PDF)</button>
       </div>
 
+      <!-- SÍNTESIS DEL CORTE -- pedido explícito: "esto es lo que importa hoy y por qué"
+           arriba de todo, para alguien que tiene 90 segundos. Se arma en el backend con
+           reglas fijas sobre datos que el propio módulo ya calculó (tensión, tema
+           dominante, actor en movimiento, alertas tempranas) -- no es un resumen con
+           matices generado por un modelo, eso queda para más adelante a propósito. Mismo
+           estilo de tarjeta que el resto, pero primero en el orden visual. -->
+      ${d.sintesis_ejecutiva && d.sintesis_ejecutiva.length ? tarjeta(`
+        <div class="eyebrow" style="margin-bottom:7px;">SÍNTESIS DEL CORTE</div>
+        <ul style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px;">
+          ${d.sintesis_ejecutiva.map(linea=>`<li style="font-size:11.5px;line-height:1.5;">${linea}</li>`).join('')}
+        </ul>
+        ${d.precision_alertas ? `
+        <div style="margin-top:8px;padding-top:7px;border-top:1px solid var(--line);font-size:9px;color:var(--ink-3);font-family:var(--f-mono);">
+          ${d.precision_alertas.suficiente
+            ? `Precisión de alertas tempranas (últimos 45 días): ${d.precision_alertas.aciertos}/${d.precision_alertas.total} acertaron (${d.precision_alertas.pct}%)`
+            : `Auditoría de alertas: acumulando historial (${d.precision_alertas.evaluadas} evaluada${d.precision_alertas.evaluadas!==1?'s':''}, ${d.precision_alertas.pendientes} en seguimiento) -- aún sin muestra suficiente para un % confiable.`}
+        </div>` : ''}
+      `) : ''}
+
       <!-- QUÉ CAMBIÓ DESDE EL CORTE ANTERIOR -- franja delgada, no compite por espacio con
            las tarjetas; evita que el usuario tenga que comparar dos cortes a ojo. -->
       ${d.diff_desde_corte_anterior ? `
@@ -1067,6 +1102,7 @@ function pintarPulso(cont, d){
                 <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:4px;">
                   <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;">
                     <span style="font-size:9.5px;color:var(--ink-3);">corroborado por ${t.medios_corroborantes} medio${t.medios_corroborantes!==1?'s':''}</span>
+                    ${badgeConfianza(t.confianza)}
                     ${etiquetasTema(t)}
                   </div>
                   ${enlaceNota(t.fuente_url)}
@@ -1098,6 +1134,26 @@ function pintarPulso(cont, d){
         ${tarjeta(`<div class="eyebrow">ACTORES DESTACADOS</div>${listaActores(d.actores_destacados)}`)}
         ${tarjeta(`<div class="eyebrow" style="color:var(--riesgo-bajo);">TEMAS NUEVOS</div>${listaTema(d.temas_nuevos)}`)}
       </div>
+
+      <!-- A VIGILAR -- pedido explícito: señal de alerta temprana (temas.csv ya la
+           calculaba, nunca se mostraba) para temas a un paso de entrar a la agenda
+           nacional, pero que todavía no califican para Top 5. Franja delgada como la de
+           "desde el corte anterior" -- es una señal de vigilancia, no una tarjeta de
+           contenido pesado, y se omite por completo cuando no hay nada que vigilar. -->
+      ${d.a_vigilar && d.a_vigilar.length ? `
+      <div style="background:var(--bg-1);border:1px solid var(--line);border-radius:var(--radius-m);padding:9px 16px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span class="eyebrow" style="color:var(--riesgo-medio);flex-shrink:0;">👁 A VIGILAR</span>
+          <span style="font-size:9px;color:var(--ink-3);">a un paso de entrar a la agenda nacional</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
+          ${d.a_vigilar.map(t=>`
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+              <span style="font-size:10.5px;"><strong>${t.nombre}</strong> <span style="color:var(--ink-3);font-size:9px;">· ${t.categoria}</span></span>
+              ${enlaceNota(t.fuente_url)}
+            </div>`).join('')}
+        </div>
+      </div>` : ''}
 
       <!-- BLOQUE 3: peso por categoría · tendencia 4 semanas (60%) · patrón histórico 4 semanas en barras (40%) -->
       <div style="display:grid;grid-template-columns:3fr 2fr;gap:14px;">
