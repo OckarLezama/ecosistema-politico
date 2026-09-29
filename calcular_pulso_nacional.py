@@ -769,6 +769,14 @@ def calcular():
             # enlazando a su propia columna, no a una nota donde de verdad fue noticia.
             if e['descripcion'].startswith('[Opinión]'):
                 continue
+            # CORRECCIÓN -- pedido explícito: en Actores Destacados, Sheinbaum salía
+            # "justificada" con la nota "EN VIVO | La Mañanera de la presidenta..." --
+            # el mismo envoltorio genérico de liveblog que ya se excluyó como titular en
+            # Temas en Movimiento (ver _es_nota_generica_en_vivo). La menciona (es de ella
+            # la conferencia) pero no es evidencia real de un hecho de agenda -- es la
+            # portada genérica del día, no una nota sobre algo que hizo o dijo.
+            if _es_nota_generica_en_vivo(e):
+                continue
             if hay_homonimo and nombre_limpio.lower() not in texto:
                 tiene_apodo = apodo and re.search(r'\b' + re.escape(apodo.lower()) + r'\b', texto) is not None
                 if not tiene_apodo:
