@@ -42,13 +42,13 @@ ZONA_MX = timezone(timedelta(hours=-6))
 # puede corregir a mano después sin que el robot la pise: solo llena categoria
 # si la fila es nueva). Agregar más aquí conforme se confirmen más slugs.
 MEDIOS = [
-    {'medio': 'El Universal',  'slug': 'universal',   'categoria': 'Seguridad Nacional'},
-    {'medio': 'Reforma',       'slug': 'reforma',      'categoria': 'Gobernabilidad'},
-    {'medio': 'Milenio',       'slug': 'milenio',      'categoria': 'Seguridad Nacional'},
-    {'medio': 'La Jornada',    'slug': 'jornada',      'categoria': 'Social'},
-    {'medio': 'El Financiero', 'slug': 'financiero',   'categoria': 'Economía'},
-    {'medio': 'El Economista', 'slug': 'eleconomista', 'categoria': 'Economía'},
-    {'medio': 'La Prensa',     'slug': 'laprensa',     'categoria': 'Social'},
+    {'medio': 'El Universal',  'slug': 'universal',   'categoria': 'Seguridad Nacional', 'url_oficial': 'https://www.eluniversal.com.mx/'},
+    {'medio': 'Reforma',       'slug': 'reforma',      'categoria': 'Gobernabilidad',     'url_oficial': 'https://www.reforma.com/'},
+    {'medio': 'Milenio',       'slug': 'milenio',      'categoria': 'Seguridad Nacional', 'url_oficial': 'https://www.milenio.com/'},
+    {'medio': 'La Jornada',    'slug': 'jornada',      'categoria': 'Social',             'url_oficial': 'https://www.jornada.com.mx/'},
+    {'medio': 'El Financiero', 'slug': 'financiero',   'categoria': 'Economía',           'url_oficial': 'https://www.elfinanciero.com.mx/'},
+    {'medio': 'El Economista', 'slug': 'eleconomista', 'categoria': 'Economía',           'url_oficial': 'https://www.eleconomista.com.mx/'},
+    {'medio': 'La Prensa',     'slug': 'laprensa',     'categoria': 'Social',             'url_oficial': 'https://www.la-prensa.com.mx/'},
 ]
 
 
@@ -116,7 +116,7 @@ def main():
                     'medio': m['medio'],
                     'titular': '',
                     'categoria': m['categoria'],
-                    'url_fuente': f"https://es.kiosko.net/mx/np/mx_{m['slug']}.html",
+                    'url_fuente': m['url_oficial'],
                     'imagen_url': destino,
                 }
                 filas.append(fila)
