@@ -495,8 +495,16 @@ function nombreCuadrante(x,y){
 function tableroActoresPulso(actores){
   if(!actores || !actores.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Sin actores con menciones verificadas esta semana.</div>`;
   const w=560, h=380, m=44;
-  const px = v => m + (v/100)*(w-2*m);
-  const py = v => (h-m) - (v/100)*(h-2*m);
+  // Las piezas llegan a medir hasta r=28 (más el anillo +2 y el halo +8), así que si el
+  // centro se pudiera colocar justo en el borde del recuadro (valor 0 o 100), la pieza se
+  // salía visualmente del tablero -- justo lo que se reportó. innerPad reserva ese espacio:
+  // el CENTRO de cualquier pieza queda siempre a por lo menos innerPad px del borde del
+  // recuadro, así que la pieza completa (con halo y todo) se queda adentro.
+  const innerPad = 48;
+  const plotX0 = m+innerPad, plotX1 = w-m-innerPad;
+  const plotY0 = m*0.4+innerPad, plotY1 = h-m-innerPad;
+  const px = v => plotX0 + (v/100)*(plotX1-plotX0);
+  const py = v => plotY1 - (v/100)*(plotY1-plotY0);
   const cx = px(50), cy = py(50);
   // Escalas para las barritas del tooltip -- relativas al máximo real de ESTE corte, no
   // a un número fijo inventado, para que la barra siempre use el rango completo.
@@ -558,16 +566,26 @@ function tableroActoresPulso(actores){
           <span style="font-size:8.5px;color:var(--ink-2);font-family:var(--f-mono);white-space:nowrap;">${a.alcance} medio${a.alcance!==1?'s':''}</span>
         </div>
       </div>`.replace(/"/g, '&quot;');
-    if(!a.es_nuevo){
-      piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="8" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="${esTenue?0.22:0.4}"/>`;
-      piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="${esTenue?0.22:0.4}" style="cursor:pointer;"/>`;
-    }
     // pedido: piezas notoriamente más grandes (las anteriores se veían "simples" en parte
     // porque a este tamaño de tarjeta, r=12-20 termina siendo apenas unos px reales en
     // pantalla -- ilegible para 2 letras). Un actor "tenue" (1 solo día) se ve apagado --
     // menor opacidad y sin halo/glow, para que salte a la vista quién de verdad tiene peso
     // esta semana sin dejar de mostrar a los demás.
     const r = 18 + Math.min(10, (a.alcance||0));
+    if(!a.es_nuevo){
+      // La línea de "jugada" (lunes -> hoy) llega hasta el CENTRO de la pieza de hoy, pero
+      // la pieza se dibuja ENCIMA y la tapa por completo -- cualquier flecha en la punta
+      // quedaría escondida debajo. Se recorta la línea para que termine justo en el borde
+      // de la pieza (r + margen), y ahí sí se ve la punta de flecha marcando el sentido del
+      // movimiento (de lunes hacia hoy).
+      const dx = x2-x1, dy = y2-y1;
+      const distLinea = Math.sqrt(dx*dx+dy*dy) || 1;
+      const retroceso = Math.min(distLinea-1, r+5);
+      const xLineaFin = x2 - (dx/distLinea)*retroceso;
+      const yLineaFin = y2 - (dy/distLinea)*retroceso;
+      piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="8" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="${esTenue?0.22:0.4}"/>`;
+      piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${xLineaFin.toFixed(1)}" y2="${yLineaFin.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="${esTenue?0.32:0.55}" marker-end="url(#pulso-flecha-jugada)" style="cursor:pointer;"/>`;
+    }
     const opacidadPieza = esTenue ? 0.55 : 1;
     const abre = a.nota_url ? `<a href="${a.nota_url}" target="_blank" rel="noopener" class="pulso-tablero-link">` : '<g>';
     const cierra = a.nota_url ? '</a>' : '</g>';
@@ -586,7 +604,7 @@ function tableroActoresPulso(actores){
       ${(a.es_nuevo && !esTenue) ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="2" style="animation-delay:${retraso}s;"/>` : ''}
       ${!esTenue ? `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+8}" fill="${color}" filter="url(#pulso-glow-actor)" style="animation-delay:${retraso}s;"/>` : ''}
       <circle class="pulso-tablero-anillo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${(r+2).toFixed(1)}" fill="none" stroke="var(--ink-1)" stroke-width="1.6" opacity="${esTenue?0.35:0.95}"/>
-      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${esTenue?color:`url(#${idGrad(color)})`}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}"/>
+      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${esTenue?color:`url(#${idGrad(color)})`}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}" style="${esTenue?'':`filter:drop-shadow(0 0 5px ${color}bb);`}"/>
       <text x="${x2.toFixed(1)}" y="${(y2+3.8).toFixed(1)}" font-size="11.5" font-weight="800" fill="var(--bg-2)" text-anchor="middle" opacity="${opacidadPieza}" style="pointer-events:none;text-shadow:0 0 2px rgba(255,255,255,0.4);">${iniciales2(a)}</text>
     ${cierra}`;
   });
@@ -603,6 +621,9 @@ function tableroActoresPulso(actores){
       <filter id="pulso-glow-actor" x="-120%" y="-120%" width="340%" height="340%">
         <feGaussianBlur stdDeviation="5.5"/>
       </filter>
+      <marker id="pulso-flecha-jugada" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-3)"/>
+      </marker>
       ${gradientesDefs}
     </defs>
     <rect x="${m}" y="${m*0.4}" width="${w-2*m}" height="${h-m-m*0.4}" fill="url(#pulso-grid-tablero)" stroke="var(--line-strong)" stroke-width="1"/>
