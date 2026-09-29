@@ -908,7 +908,7 @@ def calcular():
         categoria_dominante = cats_semana.most_common(1)[0][0] if cats_semana else None
         dias_activo = len({e['_ts'].date() for e in evs_semana})
         candidatos_tablero.append({
-            'id': actor['id'], 'nombre': actor['nombre'],
+            'id': actor['id'], 'nombre': actor['nombre'], 'iniciales': actor.get('iniciales') or '',
             'vol_hoy': vol_hoy, 'vol_lunes': vol_lunes,
             'intens_hoy': intens_hoy, 'intens_lunes': intens_lunes,
             'score_hoy': score_hoy, 'score_lunes': score_lunes,
@@ -929,7 +929,7 @@ def calcular():
         return round(min(100, (v / mx) * 100)) if mx else 0
 
     tablero_actores = sorted([{
-        'id': c['id'], 'nombre': c['nombre'],
+        'id': c['id'], 'nombre': c['nombre'], 'iniciales': c['iniciales'],
         'x_lunes': _norm(c['vol_lunes'], max_vol), 'y_lunes': _norm(c['intens_lunes'], max_intens),
         'x_hoy': _norm(c['vol_hoy'], max_vol), 'y_hoy': _norm(c['intens_hoy'], max_intens),
         'delta_pts': round(c['score_hoy'] - c['score_lunes'], 1),
@@ -1066,6 +1066,16 @@ def decide_si_publicar(nuevo, ventana_agenda):
     t_ant, t_nuevo = anterior.get('tension_nacional'), nuevo.get('tension_nacional')
     if t_ant is not None and t_nuevo is not None and abs(t_nuevo - t_ant) >= UMBRAL_CAMBIO_TENSION:
         return True, f'tensión se movió {abs(t_nuevo-t_ant)} puntos desde el último corte ({t_ant}→{t_nuevo})'
+
+    # Resumen de la mañanera recién disponible -- BUG REAL: mananeradehoy.com solo publica
+    # la transcripción cerca de las 10am, es decir DESPUÉS del corte fijo de las 06:00 pero
+    # ANTES del de las 12:00. Sin este disparador, aunque robot_buscar_temas.py ya hubiera
+    # capturado los eventos "[Mañanera]" desde las 10am, el snapshot publicado se quedaba
+    # congelado en "pendiente" (o "sin_mananera") hasta el corte de mediodía -- 2 horas de
+    # sitio mostrando "esperando resumen" con el dato ya disponible en el CSV. Se publica en
+    # cuanto el estado pasa de no-listo a 'ok', igual que la nota urgente de arriba.
+    if nuevo.get('mananera_estado') == 'ok' and anterior.get('mananera_estado') != 'ok':
+        return True, 'resumen de la mañanera recién disponible (antes: ' + str(anterior.get('mananera_estado')) + ')'
     generado_anterior = anterior.get('generado_en')
     ts_anterior = None
     if generado_anterior:
