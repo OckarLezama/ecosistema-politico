@@ -995,6 +995,10 @@ function pintarPulso(cont, d){
   // cuando SÍ hay señal real que aportar (está escalando o es de última hora).
   const etiquetasTema = t => {
     let out = '';
+    // Cruce de señales -- pedido explícito: si este tema comparte actor vinculado con
+    // quien más subió esta semana en el Tablero, esa conexión es información nueva (no
+    // repite lo que ya dice la tarjeta del Tablero, la relaciona con esta otra).
+    if(t.actor_vinculado) out += `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--teal);white-space:nowrap;" title="Comparte actor con quien más subió esta semana en el Tablero">🔗 ${t.actor_vinculado.nombre}</span> `;
     if(t.ultima_hora) out += `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--riesgo-alto);white-space:nowrap;background:rgba(244,104,131,.12);border-radius:3px;padding:1px 4px;">⚡ ÚLTIMA HORA</span> `;
     if(t.escalando) out += `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--riesgo-alto);white-space:nowrap;">🔥 ESCALANDO</span>`;
     return out;
@@ -1157,7 +1161,9 @@ function pintarPulso(cont, d){
           <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
             ${d.a_vigilar.map(t=>`
               <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
-                <span style="font-size:10.5px;"><strong>${t.nombre}</strong> <span style="color:var(--ink-3);font-size:9px;">· ${t.categoria}</span></span>
+                <span style="font-size:10.5px;"><strong>${t.nombre}</strong> <span style="color:var(--ink-3);font-size:9px;">· ${t.categoria}</span>
+                  ${t.actor_vinculado ? `<span style="font-size:8.5px;font-family:var(--f-mono);color:var(--teal);white-space:nowrap;margin-left:4px;" title="Comparte actor con quien más subió esta semana en el Tablero">🔗 ${t.actor_vinculado.nombre}</span>` : ''}
+                </span>
                 ${enlaceNota(t.fuente_url)}
               </div>`).join('')}
           </div>
