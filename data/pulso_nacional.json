@@ -1,39 +1,69 @@
 {
-  "generado_en": "2026-09-29T09:59:42.377272-06:00",
+  "generado_en": "2026-09-29T10:46:21.663593-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 2,
-  "baja_confianza": true,
-  "tension_nacional": 12,
+  "n_notas_ventana": 7,
+  "baja_confianza": false,
+  "tension_nacional": 32,
   "categorias_dia": [
     {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 55,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 1,
+      "categoria": "Gobernabilidad",
+      "peso_pct": 70,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
+      "n_temas": 4,
+      "n_notas": 5,
       "notas": [
         {
-          "texto": "Subsecretario de Comercio Exterior irá a Washington para continuar negociaciones del T-MEC - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOSmRhdjdEY3l6STZYZ2ZaeFJKbnVnV2VtYXBLcl9zOWNjeExabUdISXI0RmhfVWNVQmFHTWVWNllmVXM1ZU8wRWczVExyV0Q3UHYtMjM1UlJTVUQ3MVpWODlNT1BVanpSN0ZXYnZSVG1nWFloMGtHSjlPSHdiT0tVN3luM2ZjekE1TmhWR3RjSkh1YzVCZmVJX0dB0gGaAUFVX3lxTE5KZGF2N0RjeXpJNlhnZlp4UkpudWdXZW1hcEtyX3M5Y2N4TFptR0hJcjRGaF9VY1VCYUdNZVY2WWZVczVlTzBFZzNUTHJXRDdQdi0yMzVSUlNVRDcxWlY4OU1PUFVqelI3RldidlJUbWdYWWgwa0dKOU9Id2JPS1U3eW4zZmN6QTVOaFZHdGNKSHVjNUJmZUlfR0E?oc=5",
+          "texto": "Huachicol fiscal: Una red llena de tráfico de influencias y corrupción - tvazteca.com",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNNms0d1lia080Z2JkcTE3Q2JKNzNrRS1LdkEtZklaTkVZam9ENzN3cGVmV0c5LTlseTA0WHIzTkJteTJjSXZXSFl4bl81REc3Ry1UZ19yYVByLW93cFFLTTRkRjZvTjJZc196ZVR4OTY1dVFCV2dhcTZsY1lFb0tnYndSMU5LN2puS2xBdnNIbnpJcXkzM3RIeWZXMGlXdEYwcngwM29wSHI3VFhjR2Z5ZndpSFExYmlmV3htNlBB0gHLAUFVX3lxTE5MX1VabGhqY2pVV3ltbzYyUTFXUlpqNUNrTUJlVFpDX1RsWl9DdGhTV3FZQ3JWRzl5M1E3cEdHdGNHOFRrdmpZUV9xTU1GcGhkaG5PYkhyZ1ktNDRwSnl1LUp4M0x5bGVZMEJxNmdreXphb0F4bG1PZUNLcTAwb1lQdnE4M1d3VTZ4T1I4QVZhTkpxY1lmZWNXNWxuNFdhMEpkSW1LNFAxNFFNWDJ5cTlMSjZyTlJhbVIzMENQcmxJVDBqLVM2Qkx6ZWRV?oc=5",
+          "intensidad": 8.0,
+          "medio": "tvazteca.com"
+        },
+        {
+          "texto": "Ruffo llega de buen humor a su casa de Ensenada y agradece a la Guardia",
+          "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/003n1pol?partner=rss",
           "intensidad": 6.0,
-          "medio": "MILENIO"
-        }
-      ]
-    },
-    {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 45,
-      "tema_principal": "Abatimiento de \"El Mencho\"",
-      "tema_principal_id": "el-mencho",
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
+          "medio": "jornada.com.mx"
+        },
+        {
+          "texto": "Rocha Moya en Culiacán y Amílcar Olán en los Alpes - informador.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQMk9lSzFjWGIyZ0szU2NyekNScldPeFlDWXNKWDg3cEFlOWs2OE4zQldZbDdxV19LTWpyX0RWdUxsMkpTeFljUGNURW9TVTY0VVNrV2V5QlFwT1FrcVJQaXZ0Umw0YXJLcXFTNW9CcVoxeHNycWJyMm9fS0JBMWxIb1R2VTI4dmZFYWtsQUJ1SlBiZEVjdHA1VGFSVXMtb2NzNVlj0gGoAUFVX3lxTE5XYXVfX2F2SC1iTFJqMXVjWldCR21fNmtQd1J3eDNDNE90ZVc1UkZBTnVHY2xKbmN2SDV4N1FxQVpxOUQ4eFd2Y2VQLXA2ZS1xUGhWSW5vX1hKZGxjTi1hYzgxb211dEVySnFoSV9MOHFmWXh5N0hnZkRsUUhsdHpDbUVjQURIUDF6NS1SVnpMd0g2Wng3bjM4R09jNjdIUlh4TmF0TmRwZQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "informador.mx"
+        },
+        {
+          "texto": "Jubilados del COBAO piden intervención del gobernador Salomón Jara en problema de pago de finiquitos - Canal 13 Mexico",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNZXpZR2FNM21CUURiTTVGaDY4NElzcVozN1QwZ21xVXMyMWNWeHBPbjZVQm01Qkw2d0VtbEFqNXdhQlp3SGNoald0amhoQW5BZ0RmcERBMkhEWm9wQmJ1amJKT3JlLVoxNWx5SS1ITG1ZcHpBQVA0bVZscnJ4SG1ZN2xkb3VXNWQ5LUhlU3V0X0haMkg4bGJwMDY3dkFDQldScm5mZUdVRW1jQV9XckNuRjRwQVZfQ3Z0V0dwRVZReVAwYVlwNHd0OEFDYXBocWQwUDJoYktOVVQ0cjNwNTlhUUx5cWM1Z1B4dllDaw?oc=5",
+          "intensidad": 6.0,
+          "medio": "Canal 13 Mexico"
+        },
         {
           "texto": "Así era el modus operandi de 'El Bebo' y su relación con 'El Mencho'",
           "fuente_url": "https://www.informador.mx/mexico/asi-era-el-modus-operandi-de-el-bebo-y-su-relacion-con-el-mencho-20260928-0155.html",
           "intensidad": 5.0,
           "medio": "informador.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 30,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "EU y México ‘chocan’ por China: Restricciones de Trump ponen en riesgo al T-MEC",
+          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/29/eu-y-mexico-chocan-por-china-restricciones-de-trump-ponen-en-riesgo-al-t-mec/",
+          "intensidad": 7.0,
+          "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "Subsecretario de Comercio Exterior irá a Washington para continuar negociaciones del T-MEC - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOSmRhdjdEY3l6STZYZ2ZaeFJKbnVnV2VtYXBLcl9zOWNjeExabUdISXI0RmhfVWNVQmFHTWVWNllmVXM1ZU8wRWczVExyV0Q3UHYtMjM1UlJTVUQ3MVpWODlNT1BVanpSN0ZXYnZSVG1nWFloMGtHSjlPSHdiT0tVN3luM2ZjekE1TmhWR3RjSkh1YzVCZmVJX0dB0gGaAUFVX3lxTE5KZGF2N0RjeXpJNlhnZlp4UkpudWdXZW1hcEtyX3M5Y2N4TFptR0hJcjRGaF9VY1VCYUdNZVY2WWZVczVlTzBFZzNUTHJXRDdQdi0yMzVSUlNVRDcxWlY4OU1PUFVqelI3RldidlJUbWdYWWgwa0dKOU9Id2JPS1U3eW4zZmN6QTVOaFZHdGNKSHVjNUJmZUlfR0E?oc=5",
+          "intensidad": 6.0,
+          "medio": "MILENIO"
         }
       ]
     },
@@ -71,15 +101,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 60
+          "peso_pct": 61
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 22
+          "peso_pct": 23
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
@@ -96,15 +126,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 40
+          "peso_pct": 37
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 33
+          "peso_pct": 34
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
@@ -121,19 +151,19 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 34
+          "peso_pct": 31
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 47
+          "peso_pct": 48
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -146,19 +176,19 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 36
+          "peso_pct": 38
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 34
+          "peso_pct": 33
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
-          "peso_pct": 16
+          "peso_pct": 17
         },
         {
           "categoria": "Social",
@@ -169,30 +199,30 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-af03748273",
-      "nombre": "Claudia Sheinbaum Pardo. . Presentamos resultados en rehabilitación y construcci",
-      "categoria": "Gobernabilidad",
-      "resumen": "Claudia Sheinbaum Pardo. . Presentamos resultados en rehabilitación y construcción de caminos y carreteras. Mejor comunicación es desarrollo y bienestar para todas y todos. - facebook.com",
-      "motivo": "Tatiana Clouthier acepta a regañadientes resultado en Nuevo León: solo respalda a Claudia Sheinbaum - Infobae",
-      "peso": 14.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": true,
-      "medios_corroborantes": 2,
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQcUpEOW9iOWRicDVEOTN4Zzh5SWpoak9INDdrQTdQbGpyZVUzdXBJWjY1SjdYbTdra0ppTGxzeHZyYU1HZ2VrclNNUWNqYXVjTFV1YTVsM01zOHBzaTk3SGJuZTNUa2ZPSHlQY1BTWkpiR19KTHJhSnBLbzdFNEk0dDlkVnplWFdERklLN0JwNXZ3bmliM3RQVXJpUGU2Zk9GbHlBTTlmLU5kWmJNZl92N3l2aGJ2ZnhPT0VOaEsya3NRWWJpUzEyVDlNOU1xQmR1TnpqZDctbDLSAfMBQVVfeXFMT1FHLUtNTFkzLXZMVVRaV3R5b3NHckhDbGRMWF9LS1dzdWd0Smcwel8wR24ySVJJdTdUNElOanpxTGQwQTk4YVJ4Umd5Z1EwN1lKWnFFY3ZQcS11WDJBWU5hakk5bHBUdHdXcE9xTzF3N2E1SXdkZ1psVF9hU0k1cl9xMVhfWFV6U3F1VV9uTm1Zd0IzQk44N1RncEhNdGt1TGd5UVZwek5xNEk5U2RwcFZsbENMTWJ2dnZmRGpNdk9KS0tHTFpuT2NLWG1CUTlJQ0dZbGtDSGFXLXFGUmNTcHFJYmluakdBZzVHVGVyRlNYRjQw?oc=5"
-    },
-    {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Subsecretario de Comercio Exterior irá a Washington para continuar negociaciones del T-MEC - MILENIO",
-      "peso": 6.0,
+      "motivo": "EU y México ‘chocan’ por China: Restricciones de Trump ponen en riesgo al T-MEC",
+      "peso": 13.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOSmRhdjdEY3l6STZYZ2ZaeFJKbnVnV2VtYXBLcl9zOWNjeExabUdISXI0RmhfVWNVQmFHTWVWNllmVXM1ZU8wRWczVExyV0Q3UHYtMjM1UlJTVUQ3MVpWODlNT1BVanpSN0ZXYnZSVG1nWFloMGtHSjlPSHdiT0tVN3luM2ZjekE1TmhWR3RjSkh1YzVCZmVJX0dB0gGaAUFVX3lxTE5KZGF2N0RjeXpJNlhnZlp4UkpudWdXZW1hcEtyX3M5Y2N4TFptR0hJcjRGaF9VY1VCYUdNZVY2WWZVczVlTzBFZzNUTHJXRDdQdi0yMzVSUlNVRDcxWlY4OU1PUFVqelI3RldidlJUbWdYWWgwa0dKOU9Id2JPS1U3eW4zZmN6QTVOaFZHdGNKSHVjNUJmZUlfR0E?oc=5"
+      "medios_corroborantes": 2,
+      "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/29/eu-y-mexico-chocan-por-china-restricciones-de-trump-ponen-en-riesgo-al-t-mec/"
+    },
+    {
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "motivo": "Ruffo llega de buen humor a su casa de Ensenada y agradece a la Guardia",
+      "peso": 11.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/003n1pol?partner=rss"
     },
     {
       "id": "el-mencho",
@@ -218,6 +248,22 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUTNQYmRzbi1NWnNZZ3BQemFVaHd0YWowSWYxWUlsWHh5NHBXYzhFUjBnSi01OThwLVlLZVpfdlRaUjFJb29PSEdFUTNTRHNuYllycy1Ob05qeERzTWFlSUlvc3BhQ24yZnhINFM0LXZ3TG9pUGI4RDJJR0ZFWlFOS0dSUHNnRjhTVzVSbHhidE13cWZObjUwSzB1RGJTcnRfRlp5cm9LZGZMbmFTS05HOTFEUjc0b0k5TjlUdHZYRFBCMWdqNGF0RVlJVGJUSU0zcEVFQ21n0gHwAUFVX3lxTE1pTklKUjhxa29SU3YwamZsZEZ5c1poNGkxRGFVOUUyX1JKMHl5WDNsbmFlOHBGNmJ1QUhYaW5Xbl9MaW5MeDB1cjVqLVIteGF0ZDhGN1Y2eEU2WU9rb0JUYWc0TkxHTFFsbm9EeENybzdaY05PdEktb2Q5YkdzeGVHc215WDFsOVJaV2x3QXQ0TUFpc2ZsUjl5OUVRTmFTLThWYW9ObFZuS3pJcDBNRkRwdUlVU1VQT002d2xlbmt1UWlGZzJOLS1PUGlCSGpuNnNpcmxNNWdwazgwUW5uQ0ZVamdSQ0FEdlJ3akxJUDhvQw?oc=5"
     },
     {
+      "id": "auto-a9e0c59f33",
+      "nombre": "Sonora se prepara para segundo impacto del huracán \"Polo\" en territorio mexicano",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/sonora-se-prepara-para-segundo-impacto-del-huracan-polo-en-territorio-mexicano-20260929-0048.html"
+    },
+    {
+      "id": "auto-adacabf226",
+      "nombre": "Bruselas reforzará el blindaje de sus fronteras frente a la migración irregular:",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxPSEN0V0lrejFKUU9YSEVsZ0RIbzJ3VnNCSDBMYWFQX1VxX2NmcllmSF9lQmV1ZmRXeUFWXy1aZzIyNGJXTlJqQmhLWmdrUzBMZlVwaHBHbTRoNkJ0R3d4S09yaEVLbG1uQ1E2bnpSNm5PSlJldzdCbGxKS0pJZnVYT19CNEhSTnFFbjZ5NGxIV3ZZeUlfb1ljOUZCcFVpbDFUdEVzMWJTZUpJNmxiTUY4RnJrT1h0RjRWZ2JSWGZfbFVqZlBJdWw2NTl2WVJVblpNQzhhSW5IRWFTRzUxM0QtTnBqX0otVVIzU1BaWnMwQVlFNV9JZ3A5dS1KZkdIY3pTdjRrSVotdFhMcmZrVFHSAaICQVVfeXFMTUpUT1RKRUhQcl9BWG5Ib1dDenNSRm9pLTZsQmdDMDdIcEpkeFdCN0c3RFpPV1pVcGM3Y1VkNU01VzlBVGhqTmVGX1dDWXdVMC1aT1BKMUN4UUtmcDlzOUxLcnB6ZUFtWXNLT3NqMUdzdWhTdFh6dnVJMzE3THBqazZuZ2stZkN3cldjckRLbjRlR182dkdLNklIdHNNTDZVZmJpaEVoNi1GbTQyeXJRaHRiZE51WkVYc01aNHNabXRndmhvbkVINDR2Vkg0NlRheUQ2WF9ONVBDa3ZuQmEzaWs5UEd4XzZKZHNCOUZvMFczRklkbUtxMWRlZ0kwZ29uSDYwZ2kzalZmUmJCQlZXS2dCNUh1VFYtcE9OVUs4UGJDWHc?oc=5"
+    },
+    {
       "id": "auto-7ff9f70a7e",
       "nombre": "El cablebús más largo y más peligroso del mundo (Línea 5), escribe Margarita Zav",
       "categoria": "Gobernabilidad",
@@ -232,25 +278,20 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNYUlwLWxsU29YWHYydjFfVnlFbXo1bm91V1RBWEtOMFNpeTRMZkNpRmFOR19SY3NvSTV1VGNGQWpONVVzcGRzMkVjV3ZJRFJITEFScEo0empiRXlqMUtacEpEQ0FkZFdwZFZsLXFuR0kzQU9NSXV4WXZlcWQ3YVNRdzRHX0hjVnpPMnlQMk5B0gGOAUFVX3lxTFBjX3VOa3REWDRKRFFOaWR1aVFyc3ZodDVaVV9kbHMxR3ctSXViMnZfVTh5eldUdjIzNG1oVUpQMDZyN0x1eUNBUng5ZTdRMFE3U19fcVE2ZTkxb095dnIybW1mNzZCRTdOVnBMWElwXzlXSDhOcjFhRlFfWlJVa3p6d0tsVlI2cjVXSGp0c3c?oc=5"
-    },
-    {
-      "id": "auto-a1e60ac83c",
-      "nombre": "Reconoce Mara Lezama la fuerza, identidad y liderazgo de las mujeres mayas con l",
-      "categoria": "Gobernabilidad",
-      "peso": 4.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTFd3UVBRaW5QN0kzd2xGTnJKQ2VrdHd2czdlY1RzMlVNSjJBN3Z2Zm5tOUJ3UW9HbzhId2V6Vy00V0hmMFdxZF9NNWR1eEd0V3ZtRFhpR0QwNWdHNTFlUDN5aXIyN045TTdfalUtcFVLYjFrRTgxbk00Qjk2bEN2TTZxWWhaaUtXbS1pOEh1U01GT3pCdFlNRXFqNjU3eDR5bHlmcEhPUVk2VTQxbnJqbmRRV2JuaUJ5TXVjbWtnRTNhRWs0TjNvT1ZHZTc4Z3B6aW5jRnNqaVdsNFE1S3ViUlY0WDZCUzVZckJONy1fd04?oc=5"
-    },
-    {
-      "id": "auto-4cab75075e",
-      "nombre": "Diputada del PT propone auditoría a gobierno de Jara por presuntos \"aviadores\" e",
-      "categoria": "Gobernabilidad",
-      "peso": 4.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOV19feEdwRlpUbnlVOVc1VTZMcnFnVERCMk1mUHVkVnBiUnlVWV9ybXBXVnl0SXYzSldydExzVUV1THJvbThIWUFpaXMwU2x4TGZEUldXOHBXeUVoWnNqMFAydF9LX1ZlLWlxRjZVNld1SFZfeGJjWjMwNHVUcHplUW1LZ2ZvMThnMVF2c3dOVTJuLVYxUWJzX1pRZG5VYWtyU19lQlFTbG5Dd0JtQzZJMXVhcWNsR0FUZEFxTXlKYllmSm1TYXpYeWtaTFRkTkdWeDVTVm1iZE1wWHFJcnY5UmtTeW5tUQ?oc=5"
     }
   ],
   "temas_retomados": [
+    {
+      "id": "auto-e16c2c5511",
+      "nombre": "Sheinbaum ofrece expertos para Ayotzinapa sin abrir archivos militares - Los Áng",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 17,
+      "motivo": "Caso Ayotzinapa no está cerrado, dice Sheinbaum",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/004n1pol?partner=rss",
+      "fecha_anterior": "2026-09-11",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQaFdiWTlkcHhyQkE1UF9sdnQyZ2NSenE4a3NWTlEyNUZLUEY2UkczWEhRRHEwNl82bkxzOGRfTzJJVndzeGZIazEyNzBCZXRrOHJ1X2RWdTFKRGFiZUxoWGhickZKVUFoMkltcUUxZWM0Rkg1SGdwVnQxeE9qbGhlSi0zemtqSjUyaWk2bXZrbGM1WEdfaEc0V0tuenl3cDNCLWVDcVNEcVE3YVZfV3lpRTdpUVRUWnp6R1FYUXZwSk05Ul9xZ1hKTzhn0gHPAUFVX3lxTE9VS2pYWlljMXZyUUhzSm5UcGxFNWNTdzdfSno0WUtSSFV1c2xpQS1BUkpxNmhxTTFrekw3SmdfbmZEbll0TTdha3pFWjMxTVlvSXZEcWhCZV9BU19VVVhBb2FMTk9lamh5U3BpdjNYNVJwTFFJRkZzaWRZeF82NzUtazBobWRTSW1fdzM0ODhYNWVqWDRUd1FBYWZZc183SXFRS2g1ZDU3enQyS1VnbmtjVFZseF83UkJBQzRUblZIZGhBaHB6dmk2N0RLd05uRQ?oc=5"
+    },
     {
       "id": "auto-118e35df96",
       "nombre": "Migrante impugna fallo y ahora será refugiada",
@@ -314,10 +355,10 @@
     },
     {
       "fecha": "2026-09-03",
-      "tension": 37,
-      "n_notas": 17,
+      "tension": 35,
+      "n_notas": 18,
       "n_alto_impacto": 9,
-      "n_medio_impacto": 8,
+      "n_medio_impacto": 9,
       "n_bajo_impacto": 0
     },
     {
@@ -354,10 +395,10 @@
     },
     {
       "fecha": "2026-09-08",
-      "tension": 36,
-      "n_notas": 21,
+      "tension": 34,
+      "n_notas": 22,
       "n_alto_impacto": 12,
-      "n_medio_impacto": 9,
+      "n_medio_impacto": 10,
       "n_bajo_impacto": 0
     },
     {
@@ -370,10 +411,10 @@
     },
     {
       "fecha": "2026-09-10",
-      "tension": 14,
-      "n_notas": 22,
+      "tension": 13,
+      "n_notas": 23,
       "n_alto_impacto": 3,
-      "n_medio_impacto": 19,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
@@ -514,18 +555,18 @@
     },
     {
       "fecha": "2026-09-28",
-      "tension": 40,
-      "n_notas": 12,
+      "tension": 37,
+      "n_notas": 13,
       "n_alto_impacto": 7,
-      "n_medio_impacto": 5,
+      "n_medio_impacto": 6,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-29",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 40,
+      "n_notas": 5,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
@@ -533,14 +574,15 @@
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
-      "x_lunes": 91,
+      "iniciales": "CS",
+      "x_lunes": 56,
       "y_lunes": 98,
       "x_hoy": 100,
-      "y_hoy": 98,
-      "delta_pts": 6.0,
-      "alcance": 22,
-      "n_alto": 21,
-      "n_medio": 1,
+      "y_hoy": 96,
+      "delta_pts": 45.0,
+      "alcance": 30,
+      "n_alto": 33,
+      "n_medio": 3,
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
       "nota_texto": "Claudia Sheinbaum cuestiona la actitud de la ONU ante tantas guerras… - Revista Fortuna",
@@ -549,47 +591,12 @@
       "dias_activo": 2
     },
     {
-      "id": "salomon_jara",
-      "nombre": "Salomón Jara Cruz",
-      "x_lunes": 14,
-      "y_lunes": 100,
-      "x_hoy": 14,
-      "y_hoy": 100,
-      "delta_pts": 0,
-      "alcance": 3,
-      "n_alto": 3,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQZExGM0NKSlZZRkxWYmhZLUJOWFk3dllBcl9hSk01MHMyUi1JVGNWYVlITE9oT0ZSXzVkTXFyT0hXeFpLOUhJYldqQk9pb3o2TWNGblJOUjJXX0tOYmd3bFdQQmpQenA5YzlTbVVzVENPOXNnYmMtT1J6Yjg3bU9fSzM3SVFrem55ZnZwcTZ1MkxwVHYwTllwYmdDSkpRTm9KdnctZDVaZ2RfUDU0WEdIbEhTR29uMmxOMHpOVFhNelc2d1VfQmM5VU5ibUg2cFJhQmxfbjE2bC05ejZPTlZPUGlB?oc=5",
-      "nota_texto": "Salomón Jara destaca resultados de Claudia Sheinbaum y avances de la transformación en Oaxaca https://mile.io/4htzV98 - facebook.com",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1
-    },
-    {
-      "id": "rocio_nahle_garcia",
-      "nombre": "Rocío Nahle García",
-      "x_lunes": 14,
-      "y_lunes": 83,
-      "x_hoy": 18,
-      "y_hoy": 88,
-      "delta_pts": 3.0,
-      "alcance": 4,
-      "n_alto": 3,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUi02OUhvU1V6Rjd5by1XV09EY21jQ3kzZFMyZHFTNWNQU19vNXI3SmdyZFZkQnp5bGQ2bHd1LXNJS2QtLVRZbEFYZk15VktrenNhTzRfZ3R0SWMxR29ESFQwZVYxdjhPTkQ2cU9KZXhidTVIZENPUHh4SHlxOVFZUGFzbS1EUy1XcGVDeTZQZVRrY0xfZ2tPRXdqTjhLUVhWcEtkMDZNOUlTWkFSb2lTV0s0WTZDbXdPQ2U3WXRzVVdNWm0wdXpVVDMza0NsOElHTUQ5NHJhazB6eDN0Q2Qw?oc=5",
-      "nota_texto": "Rocío Nahle, Esteban Bautista, Marcelo Ruiz y Diego Castañeda articulan acuerdos clave en el Congreso - Entorno Político",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2
-    },
-    {
       "id": "godoy",
       "nombre": "Ernestina Godoy",
-      "x_lunes": 5,
+      "iniciales": "EG",
+      "x_lunes": 3,
       "y_lunes": 100,
-      "x_hoy": 5,
+      "x_hoy": 3,
       "y_hoy": 100,
       "delta_pts": 0,
       "alcance": 1,
@@ -603,11 +610,50 @@
       "dias_activo": 1
     },
     {
+      "id": "rocio_nahle_garcia",
+      "nombre": "Rocío Nahle García",
+      "iniciales": "RN",
+      "x_lunes": 8,
+      "y_lunes": 83,
+      "x_hoy": 11,
+      "y_hoy": 88,
+      "delta_pts": 3.0,
+      "alcance": 4,
+      "n_alto": 3,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUi02OUhvU1V6Rjd5by1XV09EY21jQ3kzZFMyZHFTNWNQU19vNXI3SmdyZFZkQnp5bGQ2bHd1LXNJS2QtLVRZbEFYZk15VktrenNhTzRfZ3R0SWMxR29ESFQwZVYxdjhPTkQ2cU9KZXhidTVIZENPUHh4SHlxOVFZUGFzbS1EUy1XcGVDeTZQZVRrY0xfZ2tPRXdqTjhLUVhWcEtkMDZNOUlTWkFSb2lTV0s0WTZDbXdPQ2U3WXRzVVdNWm0wdXpVVDMza0NsOElHTUQ5NHJhazB6eDN0Q2Qw?oc=5",
+      "nota_texto": "Rocío Nahle, Esteban Bautista, Marcelo Ruiz y Diego Castañeda articulan acuerdos clave en el Congreso - Entorno Político",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2
+    },
+    {
+      "id": "salomon_jara",
+      "nombre": "Salomón Jara Cruz",
+      "iniciales": "SJ",
+      "x_lunes": 8,
+      "y_lunes": 100,
+      "x_hoy": 11,
+      "y_hoy": 88,
+      "delta_pts": 1.5,
+      "alcance": 4,
+      "n_alto": 3,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQZExGM0NKSlZZRkxWYmhZLUJOWFk3dllBcl9hSk01MHMyUi1JVGNWYVlITE9oT0ZSXzVkTXFyT0hXeFpLOUhJYldqQk9pb3o2TWNGblJOUjJXX0tOYmd3bFdQQmpQenA5YzlTbVVzVENPOXNnYmMtT1J6Yjg3bU9fSzM3SVFrem55ZnZwcTZ1MkxwVHYwTllwYmdDSkpRTm9KdnctZDVaZ2RfUDU0WEdIbEhTR29uMmxOMHpOVFhNelc2d1VfQmM5VU5ibUg2cFJhQmxfbjE2bC05ejZPTlZPUGlB?oc=5",
+      "nota_texto": "Salomón Jara destaca resultados de Claudia Sheinbaum y avances de la transformación en Oaxaca https://mile.io/4htzV98 - facebook.com",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2
+    },
+    {
       "id": "amilcar_olan_aparicio",
       "nombre": "Amílcar Olán Aparicio",
-      "x_lunes": 14,
+      "iniciales": "AO",
+      "x_lunes": 8,
       "y_lunes": 83,
-      "x_hoy": 14,
+      "x_hoy": 8,
       "y_hoy": 83,
       "delta_pts": 0.0,
       "alcance": 3,
@@ -623,9 +669,10 @@
     {
       "id": "ernesto_ruffo",
       "nombre": "Ernesto Ruffo Appel",
-      "x_lunes": 9,
+      "iniciales": "ER",
+      "x_lunes": 6,
       "y_lunes": 75,
-      "x_hoy": 9,
+      "x_hoy": 6,
       "y_hoy": 75,
       "delta_pts": 0.0,
       "alcance": 2,
@@ -641,9 +688,10 @@
     {
       "id": "alejandro_armenta",
       "nombre": "Alejandro Armenta Mier",
-      "x_lunes": 14,
+      "iniciales": "AA",
+      "x_lunes": 8,
       "y_lunes": 67,
-      "x_hoy": 14,
+      "x_hoy": 8,
       "y_hoy": 67,
       "delta_pts": 0.0,
       "alcance": 3,
@@ -657,44 +705,46 @@
       "dias_activo": 1
     },
     {
-      "id": "rosa_icela",
-      "nombre": "Rosa Icela Rodríguez",
-      "x_lunes": 5,
-      "y_lunes": 50,
-      "x_hoy": 5,
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 3,
       "y_hoy": 50,
-      "delta_pts": 0.0,
+      "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
       "n_medio": 1,
       "n_bajo": 0,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/9/28/rosa-icela-rodriguez-se-reune-con-representante-de-acnur-para-dialogar-sobre-proteccion-solicitantes-de-refugio-897128.html",
-      "nota_texto": "🔔 ALERTA — Rosa Icela Rodríguez se reúne con representante de ACNUR para dialogar sobre protección a solicitantes de refugio",
+      "nota_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQMk9lSzFjWGIyZ0szU2NyekNScldPeFlDWXNKWDg3cEFlOWs2OE4zQldZbDdxV19LTWpyX0RWdUxsMkpTeFljUGNURW9TVTY0VVNrV2V5QlFwT1FrcVJQaXZ0Umw0YXJLcXFTNW9CcVoxeHNycWJyMm9fS0JBMWxIb1R2VTI4dmZFYWtsQUJ1SlBiZEVjdHA1VGFSVXMtb2NzNVlj0gGoAUFVX3lxTE5XYXVfX2F2SC1iTFJqMXVjWldCR21fNmtQd1J3eDNDNE90ZVc1UkZBTnVHY2xKbmN2SDV4N1FxQVpxOUQ4eFd2Y2VQLXA2ZS1xUGhWSW5vX1hKZGxjTi1hYzgxb211dEVySnFoSV9MOHFmWXh5N0hnZkRsUUhsdHpDbUVjQURIUDF6NS1SVnpMd0g2Wng3bjM4R09jNjdIUlh4TmF0TmRwZQ?oc=5",
+      "nota_texto": "Rocha Moya en Culiacán y Amílcar Olán en los Alpes - informador.mx",
       "es_nuevo": false,
-      "categoria": "Social",
+      "categoria": "Gobernabilidad",
       "dias_activo": 1
     },
     {
-      "id": "alfonso_durazo",
-      "nombre": "Alfonso Durazo Montaño",
-      "x_lunes": 5,
-      "y_lunes": 50,
-      "x_hoy": 5,
+      "id": "ricardo_salinas_pliego",
+      "nombre": "Ricardo Salinas Pliego",
+      "iniciales": "RS",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 3,
       "y_hoy": 50,
-      "delta_pts": 0.0,
+      "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
       "n_medio": 1,
       "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOSWoweG9uNmVPVTU0VXRnMEZVbWlxSG1PdjFDdm95SkZ6dXhOU1dOQ3ZFOW1FeG00YjBXaEFEVTB4RzhMNW81d0hfMGFncG5nNmhLVkYybDVPMkJUZ1lGTXJCVnRfMG5XYkx1WkRvdXR5enNUeGNaVHJBeHZIbjcxSGdmeTAySHdUcDhTUXdlQTExUEcxci1sQ0lwZHhuel9WcV9SNzBHcw?oc=5",
-      "nota_texto": "Morena elige a Lorenia Valles, del equipo de Alfonso Durazo, como coordinadora de la 4T en Sonora - politica.expansion.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMingJBVV95cUxNeHRmZmlLbkNpbkdXYTZjanRsY1BDTUNUMUdlNG5LcTRIUzU0VVNuOXhPV18xOGlUQzdoWUNJTFhLMmpEcnk2bzVXc3ljUGtGTVVndVctMjdMTHVNejd1OEV5RXBoZmxxVE80aEZVb3dta2RUV2lURTdPNmdnRlFmZG1yeVdfdE9xRzhMNlVNM1RlT1g1SDBuWG9NcDlGLU1HUDdpejFJX0laN0R6VXc0VzdkbTdMMkN6dlh0dFNlTjJyaHNhYnJUVm5QTWZEQkFUZDlFWnhOT1NmZ3VPT0hpOHIzYVhCaGFtWFJqM1RNX3N2NkRmQS0zTFJ2cnlLNlBOVUFJT3NjM3cyVTJ6SmhwTUNTaVZFdUxYRVFlN1Rn0gGjAkFVX3lxTFBGQkM1RFp6SnJkUWlTNDJ3amhGcVFieFZKa0pMOHRNZU9GMElBWDBxdUVLQVhOTzVJSlFkU3BRcUd2Wm93bF9PbkZqeHlrT1BoaTF3anRlcUlQYTZ0cDNVUzJiYWxRbkZOd0NMWGRKNzRaUEo3WGI3OHFNRjRNUHg3U1A1UmV1aDBFNlktRnQxOWp6NnhJeVZ6QzZlLUUtUVpNcXhGdU0xWkw1YS1uS0pSaEZLTDhXWlhoTVotZFAwX3hUM2F1RmI0SkluWF9rMXZ1WVBtR29venJXMzZheFAxa1A4S3h6SGJJRFliclpCZUtDa3dXNUJoN2w2MkdDYlQ1NF9WUUZVZUNVdjhVX2s2OE00Ujh2TGYzb0ZvNVRIbDZQVQ?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego, el multimillonario opositor a Claudia Sheinbaum, en contra de las pensiones IMSS e ISSSTE: \"El trabajador tiene la obligación de ahorrar\" - Ambito",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1
     }
   ],
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "sin_mananera",
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
@@ -732,6 +782,12 @@
       "intensidad": 7.0
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-09-29 09:59"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-09-29T09:59:42.377272-06:00",
+    "cambios": [
+      "Tensión nacional subió 20 pts (12 → 32)",
+      "Categoría dominante del día cambió: Relación Bilateral → Gobernabilidad"
+    ]
+  },
+  "hora_corte_publicada": "2026-09-29 10:46"
 }
