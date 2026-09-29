@@ -1,13 +1,13 @@
 {
-  "generado_en": "2026-09-28T16:52:40.000400-06:00",
+  "generado_en": "2026-09-28T23:27:47.746739-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 11,
+  "n_notas_ventana": 12,
   "baja_confianza": false,
-  "tension_nacional": 43,
+  "tension_nacional": 40,
   "categorias_dia": [
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 73,
+      "peso_pct": 68,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 3,
@@ -64,29 +64,29 @@
       ]
     },
     {
-      "categoria": "Economía",
-      "peso_pct": 18,
+      "categoria": "Relación Bilateral",
+      "peso_pct": 16,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
+      "n_temas": 2,
       "n_notas": 2,
       "notas": [
         {
-          "texto": "La angustia del T-MEC de Sheinbaum - Semanario ZETA",
-          "fuente_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE90bmxZem1OOUFFSGo5WUE4RXZvc0syUkJ6UWx5NDhoUjBTSWFHM2dYS0F1RUFITVBtRWNBeHJVcUkyMThzUzBPb0s4ZUk0eDQxc3NJcmpDVWhnc3MxQjdLM1p2aWtMd3FsQ1dNM3VheFdORmJjYUE?oc=5",
+          "texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
           "intensidad": 7.0,
-          "medio": "Semanario ZETA"
+          "medio": "adn40.mx"
         },
         {
-          "texto": "¿Qué pasa con el T-MEC? México y EU buscan destrabar estos temas",
-          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/27/que-pasa-con-el-t-mec-mexico-y-eu-buscan-destrabar-estos-temas/",
+          "texto": "Subsecretario de Comercio Exterior irá a Washington para continuar negociaciones del T-MEC - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOSmRhdjdEY3l6STZYZ2ZaeFJKbnVnV2VtYXBLcl9zOWNjeExabUdISXI0RmhfVWNVQmFHTWVWNllmVXM1ZU8wRWczVExyV0Q3UHYtMjM1UlJTVUQ3MVpWODlNT1BVanpSN0ZXYnZSVG1nWFloMGtHSjlPSHdiT0tVN3luM2ZjekE1TmhWR3RjSkh1YzVCZmVJX0dB0gGaAUFVX3lxTE5KZGF2N0RjeXpJNlhnZlp4UkpudWdXZW1hcEtyX3M5Y2N4TFptR0hJcjRGaF9VY1VCYUdNZVY2WWZVczVlTzBFZzNUTHJXRDdQdi0yMzVSUlNVRDcxWlY4OU1PUFVqelI3RldidlJUbWdYWWgwa0dKOU9Id2JPS1U3eW4zZmN6QTVOaFZHdGNKSHVjNUJmZUlfR0E?oc=5",
           "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
+          "medio": "MILENIO"
         }
       ]
     },
     {
-      "categoria": "Relación Bilateral",
+      "categoria": "Economía",
       "peso_pct": 9,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -94,21 +94,28 @@
       "n_notas": 1,
       "notas": [
         {
-          "texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+          "texto": "La angustia del T-MEC de Sheinbaum - Semanario ZETA",
+          "fuente_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE90bmxZem1OOUFFSGo5WUE4RXZvc0syUkJ6UWx5NDhoUjBTSWFHM2dYS0F1RUFITVBtRWNBeHJVcUkyMThzUzBPb0s4ZUk0eDQxc3NJcmpDVWhnc3MxQjdLM1p2aWtMd3FsQ1dNM3VheFdORmJjYUE?oc=5",
           "intensidad": 7.0,
-          "medio": "adn40.mx"
+          "medio": "Semanario ZETA"
         }
       ]
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
+      "peso_pct": 6,
+      "tema_principal": "Abatimiento de \"El Mencho\"",
+      "tema_principal_id": "el-mencho",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Así era el modus operandi de 'El Bebo' y su relación con 'El Mencho'",
+          "fuente_url": "https://www.informador.mx/mexico/asi-era-el-modus-operandi-de-el-bebo-y-su-relacion-con-el-mencho-20260928-0155.html",
+          "intensidad": 5.0,
+          "medio": "informador.mx"
+        }
+      ]
     },
     {
       "categoria": "Social",
@@ -155,15 +162,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 34
+          "peso_pct": 33
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
-          "peso_pct": 16
+          "peso_pct": 17
         },
         {
           "categoria": "Social",
@@ -180,15 +187,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 44
+          "peso_pct": 46
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -201,15 +208,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 36
+          "peso_pct": 37
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 38
+          "peso_pct": 36
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
@@ -224,6 +231,19 @@
   ],
   "top5_temas": [
     {
+      "id": "auto-88859caeb0",
+      "nombre": "Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que ",
+      "categoria": "Gobernabilidad",
+      "resumen": "Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que son de diferentes partidos - La Silla Rota",
+      "motivo": "Sheinbaum lamenta asesinato de dos estudiantes en Cuernavaca; refrenda coordinación con gobernadora de Morelos - El Universal",
+      "peso": 30.0,
+      "n_temas_agrupados": 4,
+      "escalando": false,
+      "ultima_hora": true,
+      "medios_corroborantes": 4,
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQaEdaakN1dHhZN2E4cTZrQUpJbDNlajE5QUFlNV9DbjVkWlA1MGttdW5qc0haMkhrWXRzd2VVYU9LQ0JfcGRORlh1RUZDZERwdTZpc3UzQVg0OWsyWHpZbGp3bktxRFk1Zm9GbUhqUElFMTBtaUFtU3dOMFgwOUhfSmJvUFprRUptYzFCTEhGRlI1LXVscEo5RFlhMktNUUN5V3lJbjU4Z1pIVmNTZ0VEdGNiZHRQaUF1MklFOVhqbXEwLUFnTjZ3OElSN19OdVl0YWJSMkdocHB2UG9ib0RQTnRB?oc=5"
+    },
+    {
       "id": "huachicol-fiscal",
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
@@ -237,33 +257,41 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5"
     },
     {
-      "id": "auto-88859caeb0",
-      "nombre": "Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que ",
-      "categoria": "Gobernabilidad",
-      "resumen": "Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que son de diferentes partidos - La Silla Rota",
-      "motivo": "Sheinbaum lamenta asesinato de dos estudiantes en Cuernavaca; refrenda coordinación con gobernadora de Morelos - El Universal",
-      "peso": 16.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": true,
-      "medios_corroborantes": 2,
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQaEdaakN1dHhZN2E4cTZrQUpJbDNlajE5QUFlNV9DbjVkWlA1MGttdW5qc0haMkhrWXRzd2VVYU9LQ0JfcGRORlh1RUZDZERwdTZpc3UzQVg0OWsyWHpZbGp3bktxRFk1Zm9GbUhqUElFMTBtaUFtU3dOMFgwOUhfSmJvUFprRUptYzFCTEhGRlI1LXVscEo5RFlhMktNUUN5V3lJbjU4Z1pIVmNTZ0VEdGNiZHRQaUF1MklFOVhqbXEwLUFnTjZ3OElSN19OdVl0YWJSMkdocHB2UG9ib0RQTnRB?oc=5"
-    },
-    {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "¿Qué pasa con el T-MEC? México y EU buscan destrabar estos temas",
+      "motivo": "Subsecretario de Comercio Exterior irá a Washington para continuar negociaciones del T-MEC - MILENIO",
       "peso": 6.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
-      "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/27/que-pasa-con-el-t-mec-mexico-y-eu-buscan-destrabar-estos-temas/"
+      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOSmRhdjdEY3l6STZYZ2ZaeFJKbnVnV2VtYXBLcl9zOWNjeExabUdISXI0RmhfVWNVQmFHTWVWNllmVXM1ZU8wRWczVExyV0Q3UHYtMjM1UlJTVUQ3MVpWODlNT1BVanpSN0ZXYnZSVG1nWFloMGtHSjlPSHdiT0tVN3luM2ZjekE1TmhWR3RjSkh1YzVCZmVJX0dB0gGaAUFVX3lxTE5KZGF2N0RjeXpJNlhnZlp4UkpudWdXZW1hcEtyX3M5Y2N4TFptR0hJcjRGaF9VY1VCYUdNZVY2WWZVczVlTzBFZzNUTHJXRDdQdi0yMzVSUlNVRDcxWlY4OU1PUFVqelI3RldidlJUbWdYWWgwa0dKOU9Id2JPS1U3eW4zZmN6QTVOaFZHdGNKSHVjNUJmZUlfR0E?oc=5"
+    },
+    {
+      "id": "el-mencho",
+      "nombre": "Abatimiento de \"El Mencho\"",
+      "categoria": "Seguridad Nacional",
+      "resumen": "El 22 de febrero de 2026, fuerzas de seguridad mexicanas abatieron a Nemesio 'El Mencho' Oseguera Cervantes, líder del Cártel Jalisco Nueva Generación, durante un operativo militar en Tapalpa, Jalisco. El operativo detonó una ola de violencia, bloqueos e incendios en varios estados; su lugarteniente 'El Tuli' encabezó las represalias hasta ser abatido, con un saldo de al menos 25 elementos de la Guardia Nacional muertos y decenas de detenidos.",
+      "motivo": "Así era el modus operandi de 'El Bebo' y su relación con 'El Mencho'",
+      "peso": 5.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "fuente_url": "https://www.informador.mx/mexico/asi-era-el-modus-operandi-de-el-bebo-y-su-relacion-con-el-mencho-20260928-0155.html"
     }
   ],
   "temas_nuevos": [
+    {
+      "id": "auto-1fee792b90",
+      "nombre": "Morena designa a Jasmine Bugarín Rodríguez, Clara Luz Flores, Ana Lilia Rivera y",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUTNQYmRzbi1NWnNZZ3BQemFVaHd0YWowSWYxWUlsWHh5NHBXYzhFUjBnSi01OThwLVlLZVpfdlRaUjFJb29PSEdFUTNTRHNuYllycy1Ob05qeERzTWFlSUlvc3BhQ24yZnhINFM0LXZ3TG9pUGI4RDJJR0ZFWlFOS0dSUHNnRjhTVzVSbHhidE13cWZObjUwSzB1RGJTcnRfRlp5cm9LZGZMbmFTS05HOTFEUjc0b0k5TjlUdHZYRFBCMWdqNGF0RVlJVGJUSU0zcEVFQ21n0gHwAUFVX3lxTE1pTklKUjhxa29SU3YwamZsZEZ5c1poNGkxRGFVOUUyX1JKMHl5WDNsbmFlOHBGNmJ1QUhYaW5Xbl9MaW5MeDB1cjVqLVIteGF0ZDhGN1Y2eEU2WU9rb0JUYWc0TkxHTFFsbm9EeENybzdaY05PdEktb2Q5YkdzeGVHc215WDFsOVJaV2x3QXQ0TUFpc2ZsUjl5OUVRTmFTLThWYW9ObFZuS3pJcDBNRkRwdUlVU1VQT002d2xlbmt1UWlGZzJOLS1PUGlCSGpuNnNpcmxNNWdwazgwUW5uQ0ZVamdSQ0FEdlJ3akxJUDhvQw?oc=5"
+    },
     {
       "id": "auto-30056e8f7a",
       "nombre": "Murieron 86 mil migrantes en rutas marítimas y terrestres desde 2014",
@@ -271,22 +299,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/005n2pol?partner=rss"
-    },
-    {
-      "id": "auto-eea6460031",
-      "nombre": "Zohran Kwame Mamdani*: Inmigrantes: fuerza que transforma para bien",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/015a1pol?partner=rss"
-    },
-    {
-      "id": "auto-620154193b",
-      "nombre": "Llama Brugada a la unidad en tres materias en torno a la Presidenta",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/004n1pol?partner=rss"
     },
     {
       "id": "auto-6048afedbf",
@@ -303,6 +315,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/loret-de-mola-revela-presunto-pacto-entre-adan-augusto-lopez-y-la-familia-yunes-para-aprobar-la-reforma-judicial-20260928-0041.html"
+    },
+    {
+      "id": "auto-e7e2d2372a",
+      "nombre": "Morena da a conocer hoy a los últimos coordinadores de la 4T previo a elecciones",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQVEl2SWQ0Zm4zeGZyTU5uRTM0SUZXUmlmTHRHMkFkVWR1U1l0MS1YVnN2UHBIYVRnYkx4MzZSaXZZQ3NaNm5YWHNROWFBWEJZSG5xdXZacVphenhfb0UyeE1OVzVSZWdfcmREMG1NclF6WHBycmZPUGZHbzNTS1RRblRhWHZ1dV9LSVhiYmVneHV2US12eHNRWjc2YTFHWTNqeE5nNVZyMF9zMTYzWUtKbUlBWmvSAbQBQVVfeXFMUFRJdklkNGZuM3hmck1ObkUzNElGV1JpZkx0RzJBZFVkdVNZdDEtWFZzdlBwSGFUZ2JMeDM2Uml2WUNzWjZuWFhzUTlhQVhCWUhucXV2WnFaYXp4X29FMnhNTlc1UmVnX3JkRDBtTXJRelhwcnJmT1BmR28zU0tUUW5UYVh2dXVfS0lYYmJlZ3h1dlEtdnhzUVo3NmExR1kzanhOZzVWcjBfczE2M1lLSm1JQVpr?oc=5"
     }
   ],
   "temas_retomados": [
@@ -310,7 +330,7 @@
       "id": "auto-58c4fa9e35",
       "nombre": "¿Terry Cole “promueve” a Harfuch? EU siempre ha buscado dividirnos, dice Sheinba",
       "categoria": "Social",
-      "dias_silencio": 13,
+      "dias_silencio": 14,
       "motivo": "PT: siempre vamos a ir con Claudia Sheinbaum",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/09/28/politica/004n3pol?partner=rss",
@@ -318,18 +338,28 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOWnlpeHFvSExFcjNrYXR2dDhCZmMtczBkTHY1Y2d1cFFfTTRBUVY5QzhoS1FpNDlMQW5pbm1SUjIxS0Y0UjlEcUw3eUY4TGpBTlhqOW5fclR5QWhDQVdWanVPblZSMHZ0NEc1MUY2M2syZFotNFkxYlpMd3NwUUROZUkzX0dMQQ?oc=5"
     },
     {
-      "id": "auto-7d432c725e",
-      "nombre": "Movimiento Ciudadano va tras candidatos virtuales de Morena, presenta denuncia a",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 10,
-      "motivo": "Morena presentará a 7 defensores de la transformación este lunes; Chihuahua, entre ellos - El Universal",
+      "id": "auto-118e35df96",
+      "nombre": "Migrante impugna fallo y ahora será refugiada",
+      "categoria": "Social",
+      "dias_silencio": 7,
+      "motivo": "🔔 ALERTA — \"Un reino para todos nosotros\" abre puertas a migrantes y refugiados - El Universal",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeXF2b3pBaFUwYXhkMU5tdExxODNYNW1YNC1ucmtGLUxFdlk1ZW9LeW9uLTFpZ0ZGQTBzNDlraVUwTk5ZYUczM1RzUlV3TGlYZWV0bVpCNXVpZzloM2x5X3VMemdsOF9jbDA1WjZIY2M3ZTJZSWlZa0Rkd2RCTWNxZmVlTWdGbGJvZ2ZISWFyS29OdkR3cjRwNkJSTHFXSWxLa0FQZmVCRWh4SzJVd0tqZUN6ZFVVUlhQV2wtNTNlNEY0MUU?oc=5",
-      "fecha_anterior": "2026-09-17",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQQ3p0NERQQVNXMDlGdERYX0owaDJNUktsM1BwU0hTVVRybUk0eHEzU3BVZEVKaEJNZXJ0cXZ2VlE2SXRaS244SDZlNXJOV0FmOHdiVk5qbnhTck53RkV1RnJqMXVlRDlTS0VmOHF6RnZXMDhld2Q2TlpWSFN5cU1rakRkOW9ReEpPOVgtQTRZMVZGQTdCcWFqanJwcDMzcDRwQzV1RkZGVXptYmJKNU1nY0NNLTBHd05kOW9uam5EamZQZkhIb21MQ1hhM1nSAecBQVVfeXFMTUROcHA3NXNGUGU1RnBKcEFFZE5Wcm9fT0x2cVRnUUtkUlRJZUtmVmMwdUxDNHVfN2UtVHJPRkNjby1LVEhGOHl2cThtOVhNdEdUY1ZEXzZPeEFIZFRhdVNRdHgwNWJxRndXblhRaWJNaHQ3bGt2YU1GZk92dDVLZjhEck9iZ3RIR0xwMXZwQk5VcmxMWVhLRTVaMG1fMHEtYk1OSENQbndqcHF2bmR1TGZWNkEwTC1jWmNDRjNWaFVXY0NUMEFBdndCU1IteVNVdURGV19STVJ4bHEwbEZWbGlYQ2ZFSUtF?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOS3dsdTdmRHBuZElZR1BmZkV2RlV3dDNLYTZZOVlRY3o4VUIyaC1Ba3pMVWYtQ2hOSmJtMkcweDFLSm1hRGVuU0kzV0tGTnZzRXRmbWZuYlFnMWhPQTBiaHg4c21wTDJaYnpQblBnUW0zNXF4eHRHa19ZZ216TjRZUHNNTzB0c1J3MFg5QUhXbS13bkl2ZlBrTXhhLWc4TmRDWWdjaG5JVDZtOWVBNDhCdg?oc=5",
+      "fecha_anterior": "2026-09-21",
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/21/politica/012n3pol?partner=rss"
     }
   ],
   "actores_destacados": [
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "rol": "Responsable institucional",
+      "tema": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
+      "nota": "Nueva Constitución blinda soberanía e igualdad: Claudia Sheinbaum - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSVpvMEZBRmhHYjN3c0s5QnB3OHo5UU5tU0Rzd1FwZkpyRGRnYjdMYmlwaHlFUnRlSUQ4UHBuTVR5Wk9kZTlEZFY4TEl6MHZjeXg2SmRaeWFiRGxUbmxUZmgwbUNtTHpvNVRtUHZFVDBEU01BNDlVM3lrMEVMTHBsS194dFRFNUZGS0VGbXVqTzjSAZABQVVfeXFMTnV2dWREQ3laem5hTk56OTNZZ25OMjBsV0NqdlNFLVRYZ3Z1RW1aVUEydWhQV2lqYWhOYUxPUUM0SDdlWE9DdFRJNEZyMHh6SnBXdGRXNXhya0E4cHJ6dGhQRFQyMC03OE5zTnI2ajJkSXFUcmRCNjRPSF9iQW42Q0ZBc1J2bGhvRDBFRGV6QlJV?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
     {
       "id": "ernesto_ruffo",
       "nombre": "Ernesto Ruffo Appel",
@@ -349,9 +379,35 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
       "reaparece": false,
       "tema_nuevo": false
+    },
+    {
+      "id": "godoy",
+      "nombre": "Ernestina Godoy",
+      "rol": "Responsable institucional",
+      "tema": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
+      "nota": "Recuperar el valor de la verdad, escribe Ernestina Godoy Ramos - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQRC12N3RqQ0xVbUhJajU4Vnczb1NvSVVoczFZLU43N0JCdjBJME9PV2RObTlZd1NWVWRBUEduMmpobkVUSE8xLWt4aUZwcVZxWE9BdHRoX0I3a0paQS0yeTZRNE5GWWstci1Sbl9oU1Nuanl6MEFSUXZXTzF1cjNrVm1DU184YVFPR1IzWXdQRi1IZkp1WWluZQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
+    },
+    {
+      "id": "loret_de_mola",
+      "nombre": "Carlos Loret de Mola",
+      "rol": "Mencionado",
+      "tema": "Listo, el expediente contra Samuel, escribe Carlos Loret de Mola - El Universal",
+      "nota": "El pacto de Adán Augusto: la cárcel o tu voto, escribe Carlos Loret de Mola - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNTnhHeC1LUHhzb2hsOXhodjhkZWJocTlXcEF3emprUXBJQ2dTTXdFVE14amdRTFM2UVJ6eGZyQ1M2Y0VvVF9QLXZyNnBGTkVVOHBSeGtzbGlpMjJYM0huMkE1VHNfalI2X0ZrTi1USS10ZEtUSFczSUQxRC13MG9fbTQ1RnluaGFUNGU1M3J3dUhoMV9pWFFVbDA1WVpkQThIWWR6bkhON3M?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false
     }
   ],
-  "declaracion_presidenta": null,
+  "declaracion_presidenta": {
+    "actor": "Claudia Sheinbaum Pardo",
+    "texto": "Nueva Constitución blinda soberanía e igualdad: Claudia Sheinbaum - MILENIO",
+    "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSVpvMEZBRmhHYjN3c0s5QnB3OHo5UU5tU0Rzd1FwZkpyRGRnYjdMYmlwaHlFUnRlSUQ4UHBuTVR5Wk9kZTlEZFY4TEl6MHZjeXg2SmRaeWFiRGxUbmxUZmgwbUNtTHpvNVRtUHZFVDBEU01BNDlVM3lrMEVMTHBsS194dFRFNUZGS0VGbXVqTzjSAZABQVVfeXFMTnV2dWREQ3laem5hTk56OTNZZ25OMjBsV0NqdlNFLVRYZ3Z1RW1aVUEydWhQV2lqYWhOYUxPUUM0SDdlWE9DdFRJNEZyMHh6SnBXdGRXNXhya0E4cHJ6dGhQRFQyMC03OE5zTnI2ajJkSXFUcmRCNjRPSF9iQW42Q0ZBc1J2bGhvRDBFRGV6QlJV?oc=5",
+    "intensidad": 7.0,
+    "fecha": "2026-09-28"
+  },
   "declaracion_otro": {
     "actor": "Ricardo Monreal",
     "texto": "Ricardo Monreal reconoce “desgaste real” de Morena rumbo a 2027: estos son los 6 estados que ve más difíciles - Infobae",
@@ -578,10 +634,10 @@
     },
     {
       "fecha": "2026-09-28",
-      "tension": 45,
-      "n_notas": 10,
+      "tension": 40,
+      "n_notas": 12,
       "n_alto_impacto": 7,
-      "n_medio_impacto": 3,
+      "n_medio_impacto": 5,
       "n_bajo_impacto": 0
     }
   ],
@@ -590,12 +646,12 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "x_lunes": 100,
-      "y_lunes": 97,
+      "y_lunes": 98,
       "x_hoy": 100,
-      "y_hoy": 97,
+      "y_hoy": 98,
       "delta_pts": 0.0,
-      "alcance": 15,
-      "n_alto": 14,
+      "alcance": 20,
+      "n_alto": 19,
       "n_medio": 1,
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
@@ -605,13 +661,13 @@
     {
       "id": "salomon_jara",
       "nombre": "Salomón Jara Cruz",
-      "x_lunes": 13,
+      "x_lunes": 15,
       "y_lunes": 100,
-      "x_hoy": 13,
+      "x_hoy": 15,
       "y_hoy": 100,
       "delta_pts": 0,
-      "alcance": 2,
-      "n_alto": 2,
+      "alcance": 3,
+      "n_alto": 3,
       "n_medio": 0,
       "n_bajo": 0,
       "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQZExGM0NKSlZZRkxWYmhZLUJOWFk3dllBcl9hSk01MHMyUi1JVGNWYVlITE9oT0ZSXzVkTXFyT0hXeFpLOUhJYldqQk9pb3o2TWNGblJOUjJXX0tOYmd3bFdQQmpQenA5YzlTbVVzVENPOXNnYmMtT1J6Yjg3bU9fSzM3SVFrem55ZnZwcTZ1MkxwVHYwTllwYmdDSkpRTm9KdnctZDVaZ2RfUDU0WEdIbEhTR29uMmxOMHpOVFhNelc2d1VfQmM5VU5ibUg2cFJhQmxfbjE2bC05ejZPTlZPUGlB?oc=5",
@@ -619,27 +675,59 @@
       "es_nuevo": false
     },
     {
-      "id": "amilcar_olan_aparicio",
-      "nombre": "Amílcar Olán Aparicio",
-      "x_lunes": 20,
+      "id": "godoy",
+      "nombre": "Ernestina Godoy",
+      "x_lunes": 5,
+      "y_lunes": 100,
+      "x_hoy": 5,
+      "y_hoy": 100,
+      "delta_pts": 0,
+      "alcance": 1,
+      "n_alto": 1,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQRC12N3RqQ0xVbUhJajU4Vnczb1NvSVVoczFZLU43N0JCdjBJME9PV2RObTlZd1NWVWRBUEduMmpobkVUSE8xLWt4aUZwcVZxWE9BdHRoX0I3a0paQS0yeTZRNE5GWWstci1Sbl9oU1Nuanl6MEFSUXZXTzF1cjNrVm1DU184YVFPR1IzWXdQRi1IZkp1WWluZQ?oc=5",
+      "nota_texto": "Recuperar el valor de la verdad, escribe Ernestina Godoy Ramos - El Universal",
+      "es_nuevo": false
+    },
+    {
+      "id": "rocio_nahle_garcia",
+      "nombre": "Rocío Nahle García",
+      "x_lunes": 15,
       "y_lunes": 83,
-      "x_hoy": 20,
+      "x_hoy": 15,
       "y_hoy": 83,
       "delta_pts": 0.0,
       "alcance": 3,
       "n_alto": 2,
       "n_medio": 1,
       "n_bajo": 0,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://oem.com.mx/diariodexalapa/local/veracruz-volvera-a-ser-sede-de-la-olimpiada-nacional-conade-en-2027-anuncia-gobernadora-rocio-nahle-32324856",
+      "nota_texto": "Veracruz volverá a ser sede de la Olimpiada Nacional Conade en 2027, anuncia gobernadora Rocío Nahle",
+      "es_nuevo": false
+    },
+    {
+      "id": "amilcar_olan_aparicio",
+      "nombre": "Amílcar Olán Aparicio",
+      "x_lunes": 15,
+      "y_lunes": 83,
+      "x_hoy": 15,
+      "y_hoy": 83,
+      "delta_pts": 0.0,
+      "alcance": 3,
+      "n_alto": 2,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
+      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
       "es_nuevo": false
     },
     {
       "id": "ernesto_ruffo",
       "nombre": "Ernesto Ruffo Appel",
-      "x_lunes": 13,
+      "x_lunes": 10,
       "y_lunes": 75,
-      "x_hoy": 13,
+      "x_hoy": 10,
       "y_hoy": 75,
       "delta_pts": 0.0,
       "alcance": 2,
@@ -651,25 +739,64 @@
       "es_nuevo": false
     },
     {
-      "id": "canton_zetina",
-      "nombre": "Óscar Cantón Zetina",
-      "x_lunes": 7,
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "x_lunes": 5,
       "y_lunes": 50,
-      "x_hoy": 7,
+      "x_hoy": 5,
       "y_hoy": 50,
       "delta_pts": 0.0,
       "alcance": 1,
       "n_alto": 0,
       "n_medio": 1,
       "n_bajo": 0,
-      "nota_url": "https://www.tabascohoy.com/entregara-la-atp-premio-palabra-libre-miguel-canton-zetina-entre-los-galardonados/",
-      "nota_texto": "Entregará la ATP premio ‘Palabra Libre’; Miguel Cantón Zetina, entre los galardonados",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/9/28/rosa-icela-rodriguez-se-reune-con-representante-de-acnur-para-dialogar-sobre-proteccion-solicitantes-de-refugio-897128.html",
+      "nota_texto": "🔔 ALERTA — Rosa Icela Rodríguez se reúne con representante de ACNUR para dialogar sobre protección a solicitantes de refugio",
+      "es_nuevo": false
+    },
+    {
+      "id": "alfonso_durazo",
+      "nombre": "Alfonso Durazo Montaño",
+      "x_lunes": 5,
+      "y_lunes": 50,
+      "x_hoy": 5,
+      "y_hoy": 50,
+      "delta_pts": 0.0,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOSWoweG9uNmVPVTU0VXRnMEZVbWlxSG1PdjFDdm95SkZ6dXhOU1dOQ3ZFOW1FeG00YjBXaEFEVTB4RzhMNW81d0hfMGFncG5nNmhLVkYybDVPMkJUZ1lGTXJCVnRfMG5XYkx1WkRvdXR5enNUeGNaVHJBeHZIbjcxSGdmeTAySHdUcDhTUXdlQTExUEcxci1sQ0lwZHhuel9WcV9SNzBHcw?oc=5",
+      "nota_texto": "Morena elige a Lorenia Valles, del equipo de Alfonso Durazo, como coordinadora de la 4T en Sonora - politica.expansion.mx",
+      "es_nuevo": false
+    },
+    {
+      "id": "rafael_marin_mollinedo",
+      "nombre": "Rafael Marín Mollinedo",
+      "x_lunes": 5,
+      "y_lunes": 50,
+      "x_hoy": 5,
+      "y_hoy": 50,
+      "delta_pts": 0.0,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "nota_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5OOUpXeC16WHRGMmx6T1BaNlFEQW5rMXdONVA0WnNZUFpuaDZhUEdKRVN3VEI4aWVPYlZKR2RqQnpIVTlPTkIzb2VqWTctc0dFWFBxMThtVi1aQmpxc0NNSnNhZWk?oc=5",
+      "nota_texto": "Rafa Marín Mollinedo refrenda su lealtad a Morena desde Tulum tras proceso interno - Ruptura360",
       "es_nuevo": false
     }
   ],
   "resumen_mananera": [],
   "mananera_estado": "sin_mananera",
   "declaracion_presidenta_historial": [
+    {
+      "actor": "Claudia Sheinbaum Pardo",
+      "texto": "Nueva Constitución blinda soberanía e igualdad: Claudia Sheinbaum - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSVpvMEZBRmhHYjN3c0s5QnB3OHo5UU5tU0Rzd1FwZkpyRGRnYjdMYmlwaHlFUnRlSUQ4UHBuTVR5Wk9kZTlEZFY4TEl6MHZjeXg2SmRaeWFiRGxUbmxUZmgwbUNtTHpvNVRtUHZFVDBEU01BNDlVM3lrMEVMTHBsS194dFRFNUZGS0VGbXVqTzjSAZABQVVfeXFMTnV2dWREQ3laem5hTk56OTNZZ25OMjBsV0NqdlNFLVRYZ3Z1RW1aVUEydWhQV2lqYWhOYUxPUUM0SDdlWE9DdFRJNEZyMHh6SnBXdGRXNXhya0E4cHJ6dGhQRFQyMC03OE5zTnI2ajJkSXFUcmRCNjRPSF9iQW42Q0ZBc1J2bGhvRDBFRGV6QlJV?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-09-28"
+    },
     {
       "actor": "Claudia Sheinbaum Pardo",
       "texto": "Sheinbaum: “Muy interesante”, la reunión entre Trump y Xi Jinping",
@@ -693,10 +820,14 @@
     }
   ],
   "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-09-28T16:46:10.706947-06:00",
+    "generado_anterior": "2026-09-28T16:52:40.000400-06:00",
     "cambios": [
-      "Sin cambios relevantes respecto al corte anterior."
+      "Tensión nacional bajó 3 pts (43 → 40)",
+      "Entra a Temas en Movimiento: Así era el modus operandi de 'El Bebo' y su relación con 'El Mencho'",
+      "Tema nuevo detectado: Morena designa a Jasmine Bugarín Rodríguez, Clara Luz Flores, Ana Lilia Rivera y",
+      "Tema nuevo detectado: Morena da a conocer hoy a los últimos coordinadores de la 4T previo a elecciones",
+      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
     ]
   },
-  "hora_corte_publicada": "2026-09-28 16:52"
+  "hora_corte_publicada": "2026-09-28 23:27"
 }
