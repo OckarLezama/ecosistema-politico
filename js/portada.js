@@ -163,6 +163,19 @@ function difusionTexto(cobertura){
   if(c===2) return `Media (${c})`;
   return 'Puntual (1)';
 }
+function barrasImpactoDifusionHTML(ev){
+  // mini barras de impacto/difusión -- mismo código de color que los puntos
+  // destacados del mapa (rojo/ámbar/teal), para que el centro "luzca" más que un
+  // simple texto y hable el mismo idioma visual que el resto de la pieza
+  const colorImpacto = colorPorImpactoDispersion(ev.intensidad);
+  const pctImpacto = Math.max(8, Math.min(100, Number(ev.intensidad||0)*10));
+  const pctDifusion = Math.max(8, Math.min(100, Number(ev.cobertura||1)*24));
+  return `
+    <div class="mapa-puntos-barra-fila"><span>Impacto</span><span>${nivelImpactoTexto(ev.intensidad)}</span></div>
+    <div class="mapa-puntos-barra"><div class="mapa-puntos-barra-fill" style="width:${pctImpacto}%;background:${colorImpacto};"></div></div>
+    <div class="mapa-puntos-barra-fila" style="margin-top:5px;"><span>Difusión</span><span>${difusionTexto(ev.cobertura)}</span></div>
+    <div class="mapa-puntos-barra"><div class="mapa-puntos-barra-fill" style="width:${pctDifusion}%;background:#8A93A0;"></div></div>`;
+}
 function horaDecimalDeRegistro(horaRegistro){
   if(!horaRegistro) return null;
   const [h,m] = horaRegistro.split(':').map(Number);
@@ -185,14 +198,16 @@ function generarMapaPuntosSVG(){
 
   const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
 
-  // posición de cada nota -- banda de anillo más angosta y cerca del radio máximo
-  // (0.68R-0.96R) para que se lea como un aro sólido y continuo, no puntos sueltos
-  // flotando en el vacío. Orden estable por hora_registro para que el hilo de un
-  // mismo tema quede geográficamente cerca en el círculo.
+  // posición de cada nota -- banda angosta y pegada al radio máximo para que se lea
+  // como un círculo limpio, no una mancha. Una minoría aleatoria (~12%) se coloca
+  // más afuera de la banda, como si se "desprendiera" del aro -- da textura orgánica
+  // sin perder la forma circular de conjunto. Orden estable por hora_registro para
+  // que el hilo de un mismo tema quede geográficamente cerca en el círculo.
   const orden = [...notas].sort((a,b)=> (a.hora_registro||'').localeCompare(b.hora_registro||''));
   const posiciones = orden.map((ev, i)=>{
     const ang = (i/n)*Math.PI*2 + (Math.random()*0.05-0.025);
-    const rad = R*(0.68+0.28*Math.random());
+    const seDesprende = Math.random() < 0.12;
+    const rad = seDesprende ? R*(1.02+0.22*Math.random()) : R*(0.82+0.14*Math.random());
     return { ev, x: cx+rad*Math.cos(ang), y: cy+rad*Math.sin(ang) };
   });
 
@@ -256,17 +271,23 @@ function generarMapaPuntosSVG(){
     let extra = '';
     let circulo, hit;
     if(esDestacada){
-      const r = (4.4+Math.random()*1.6).toFixed(2);
+      // color real según nivel de impacto -- mismo código de color que ya usa la
+      // gráfica de frecuencia de arriba (rojo=alto, ámbar=medio, teal=bajo), así el
+      // mapa habla el mismo idioma visual que el resto de Portada del Día
+      const colorImpacto = colorPorImpactoDispersion(p.ev.intensidad);
+      const r = (3.6+Math.random()*1.3).toFixed(2);
       const dur = (2.6+Math.random()*2.4).toFixed(2), delay = (-Math.random()*5).toFixed(2);
-      extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(Number(r)*2.1).toFixed(2)}" fill="none" stroke="#E8EAED" stroke-width="0.9" class="mapa-punto-halo"/>`;
+      extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(Number(r)*1.9).toFixed(2)}" fill="none" style="stroke:${colorImpacto};" stroke-width="0.9" class="mapa-punto-halo"/>`;
       if(esNueva) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="none" stroke="#F5F5F5" stroke-width="1.6" class="mapa-punto-destello"/>`;
-      circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#F5F6F7" class="mapa-punto-late" style="animation-duration:${dur}s;animation-delay:${delay}s;"></circle>`;
-      hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="17" fill="transparent"/>`;
+      circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" class="mapa-punto-late" style="animation-duration:${dur}s;animation-delay:${delay}s;fill:${colorImpacto};"></circle>`;
+      hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="16" fill="transparent"/>`;
     } else {
-      const r = (1.5+Math.random()*0.5).toFixed(2);
-      if(esNueva) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="none" stroke="#F5F5F5" stroke-width="1.3" class="mapa-punto-destello"/>`;
-      circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#767C86"></circle>`;
-      hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="13" fill="transparent"/>`;
+      // acompañantes -- chicos, blanco-gris translúcido, sin animación; solo dan
+      // contexto para que lo destacado (con color) resalte de verdad
+      const r = (1.1+Math.random()*0.4).toFixed(2);
+      if(esNueva) extra += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="none" stroke="#F5F5F5" stroke-width="1.2" class="mapa-punto-destello"/>`;
+      circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#E8EAED" fill-opacity="0.38"></circle>`;
+      hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="12" fill="transparent"/>`;
     }
     const contenido = extra + hit + circulo;
     if(!url) return `<g>${contenido}</g>`;
@@ -275,23 +296,23 @@ function generarMapaPuntosSVG(){
 
   // callout del grupo con más notas conectadas hoy -- usa el TÍTULO real de la nota
   // más reciente de ese grupo (no el nombre del tema/clasificación) y explica el
-  // porqué de la conexión con el mismo lenguaje de impacto/difusión que el resto
+  // porqué de la conexión con el mismo lenguaje de impacto/difusión que el resto.
+  // Vive en una esquina fija del lienzo, SIN línea hacia el grupo -- el anillo gira
+  // permanentemente y una línea apuntando a un punto que se mueve queda desfasada
+  // en cuanto avanza la rotación, así que en vez de eso el punto ancla ya se
+  // distingue solo por su color (mismo código de impacto que el resto del mapa).
   let callout = '';
   if(gruposConectados.length){
     const [,grupoTop] = gruposConectados.sort((a,b)=>b[1].length-a[1].length)[0];
-    const cxg = grupoTop.reduce((s,p)=>s+p.x,0)/grupoTop.length;
-    const cyg = grupoTop.reduce((s,p)=>s+p.y,0)/grupoTop.length;
     const notaAncla = [...grupoTop].sort((a,b)=> (b.ev.hora_registro||'').localeCompare(a.ev.hora_registro||''))[0].ev;
-    const tituloAncla = notaAncla.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,54);
+    const tituloAncla = notaAncla.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,46);
     const avgIntensidad = grupoTop.reduce((s,p)=>s+Number(p.ev.intensidad||0),0)/grupoTop.length;
     const avgCobertura = grupoTop.reduce((s,p)=>s+Number(p.ev.cobertura||1),0)/grupoTop.length;
     const impactoTop = nivelImpactoTexto(avgIntensidad);
     const difusionTop = difusionTexto(avgCobertura).split(' ')[0];
-    const haciaAfuera = cxg>=cx;
-    const bx = haciaAfuera ? 420 : 40, by = 48;
+    const bx = 18, by = 18;
     callout = `
-      <line x1="${cxg.toFixed(1)}" y1="${cyg.toFixed(1)}" x2="${(haciaAfuera?bx:bx+180).toFixed(1)}" y2="${(by+24).toFixed(1)}" stroke="#8A93A0" stroke-width="0.6" stroke-dasharray="2,2" opacity="0.4"/>
-      <rect x="${bx}" y="${by}" width="180" height="58" rx="4" fill="#101317" stroke="#2A2F36"/>
+      <rect x="${bx}" y="${by}" width="192" height="58" rx="4" fill="#101317" stroke="#2A2F36"/>
       <text x="${bx+10}" y="${by+14}" font-size="7.5" fill="#6B7280" font-family="var(--f-mono)">SE CONECTAN ${grupoTop.length} NOTAS</text>
       <text x="${bx+10}" y="${by+29}" font-size="9.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)">${tituloAncla}</text>
       <text x="${bx+10}" y="${by+44}" font-size="7.5" fill="#8A8F98" font-family="var(--f-mono)">Impacto ${impactoTop} · Difusión ${difusionTop}</text>`;
@@ -303,10 +324,9 @@ function generarMapaPuntosSVG(){
   if(carruselNotas.length){
     const primera = carruselNotas[0];
     const tituloInicial = primera.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,90);
-    const metaInicial = `Impacto: ${nivelImpactoTexto(primera.intensidad)} · Difusión: ${difusionTexto(primera.cobertura)}`;
     centroNota = `<div class="mapa-puntos-centro-nota">
         <div class="mapa-puntos-centro-titulo">${tituloInicial}</div>
-        <div class="mapa-puntos-centro-meta">${metaInicial}</div>
+        <div class="mapa-puntos-centro-meta">${barrasImpactoDifusionHTML(primera)}</div>
       </div>`;
   } else {
     centroNota = `<div class="mapa-puntos-centro-nota"><div class="mapa-puntos-centro-titulo" style="color:#6B7280;">Sin notas destacadas aún</div></div>`;
@@ -348,7 +368,7 @@ function iniciarCarruselMapaPuntos(wrap, notas){
       const tituloEl = notaEl.querySelector('.mapa-puntos-centro-titulo');
       const metaEl = notaEl.querySelector('.mapa-puntos-centro-meta');
       if(tituloEl) tituloEl.textContent = ev.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,90);
-      if(metaEl) metaEl.textContent = `Impacto: ${nivelImpactoTexto(ev.intensidad)} · Difusión: ${difusionTexto(ev.cobertura)}`;
+      if(metaEl) metaEl.innerHTML = barrasImpactoDifusionHTML(ev);
       notaEl.classList.remove('salir');
     }, 480);
   }, 4200);
