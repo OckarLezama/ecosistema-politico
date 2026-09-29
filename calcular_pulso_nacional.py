@@ -1220,6 +1220,12 @@ def calcular():
             continue
         vistos_mananera.add(clave)
         eventos_mananera_hoy_unicos.append(e)
+    # CORRECCIÓN -- pedido explícito: "solo dejar máximo 5, los más relevantes". La lista
+    # ya venía ordenada por intensidad descendente (ver sorted() arriba, usado para el
+    # dedup) -- se recorta aquí a los 5 primeros, que son justamente los de mayor
+    # intensidad/relevancia editorial de ese corte.
+    MAX_PUNTOS_MANANERA = 5
+    eventos_mananera_hoy_unicos = eventos_mananera_hoy_unicos[:MAX_PUNTOS_MANANERA]
     resumen_mananera = [{
         'texto': e['descripcion'].split('[Mañanera]', 1)[-1].strip(),
         'categoria': e.get('categoria', ''),
