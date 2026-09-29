@@ -623,8 +623,22 @@ function tableroActoresPulso(actores){
           // ángulo dorado) para que sí se separen en vez de congelarse superpuestos.
           const distReal = dist || 0.001;
           const empuje = (minDist-distReal)/2;
-          const nx = dist > 0.001 ? dx/distReal : Math.cos((i*7+j)*2.399963);
-          const ny = dist > 0.001 ? dy/distReal : Math.sin((i*7+j)*2.399963);
+          let nx = dist > 0.001 ? dx/distReal : Math.cos((i*7+j)*2.399963);
+          let ny = dist > 0.001 ? dy/distReal : Math.sin((i*7+j)*2.399963);
+          // CORRECCIÓN -- pedido explícito ("puedes poner uno arriba y otro abajo, por qué
+          // a fuerza lo alineas?"): cuando dos piezas quedan casi al mismo nivel (dy chico
+          // frente a dx), el empuje de arriba las separaba en línea recta HORIZONTAL --
+          // resultado válido matemáticamente (ya no se tocan) pero se ve como una fila de
+          // círculos alineados, que es justo lo que se reportó. Se sesga el vector de
+          // empuje hacia arriba/abajo (alternando por par, determinista) cuando el choque
+          // es casi horizontal, para que la separación también reparta en vertical en vez
+          // de solo estirar la fila.
+          if(Math.abs(ny) < 0.4){
+            const sesgo = (i+j) % 2 === 0 ? 1 : -1;
+            ny += sesgo * 0.65;
+            const norm = Math.hypot(nx, ny) || 1;
+            nx /= norm; ny /= norm;
+          }
           // Traslada la pieza COMPLETA (línea de "ayer" incluida), no solo el punto de
           // hoy -- así el trazo se mueve junto con su punta y no queda un ángulo raro,
           // y el marcador hueco de "ayer" tampoco termina encimado con otra pieza.
@@ -743,8 +757,8 @@ function tableroActoresPulso(actores){
     <text x="${w-m-6}" y="${m*0.4+16}" font-size="10" fill="var(--riesgo-alto)" font-weight="700" text-anchor="end">CENTRO DE LA AGENDA</text>
     <text x="${m+6}" y="${h-m-8}" font-size="10" fill="var(--ink-3)" font-weight="700">BAJO PERFIL</text>
     <text x="${w-m-6}" y="${h-m-8}" font-size="10" fill="var(--riesgo-bajo)" font-weight="700" text-anchor="end">RUIDO</text>
-    <text x="${w/2}" y="${h-10}" font-size="8.5" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)">EXPOSICIÓN (volumen de menciones verificadas) →</text>
-    <text x="14" y="${h/2}" font-size="8.5" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)" transform="rotate(-90 14 ${h/2})">INTENSIDAD DE IMPACTO →</text>
+    <text x="${w/2}" y="${h-10}" font-size="11" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)">EXPOSICIÓN (volumen de menciones verificadas) →</text>
+    <text x="14" y="${h/2}" font-size="11" fill="var(--ink-3)" text-anchor="middle" font-family="var(--f-mono)" transform="rotate(-90 14 ${h/2})">INTENSIDAD DE IMPACTO →</text>
     ${piezas}
   </svg>
   </div>
