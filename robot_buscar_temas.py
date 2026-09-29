@@ -1,0 +1,1170 @@
+#!/usr/bin/env python3
+"""
+Robot de monitoreo — Fase 4, primer paso.
+
+Qué hace: revisa fuentes RSS reales de medios mexicanos, busca coincidencias
+con los temas Nivel 1 ya existentes en temas.csv, y las deja en
+candidatos_revision.csv para que un humano las revise antes de que entren
+a eventos.csv. NUNCA escribe directo a eventos.csv — ese es el punto:
+proponer, no decidir solo.
+
+Cómo correrlo: python3 robot_buscar_temas.py
+Requiere: pip install feedparser --break-system-packages
+"""
+import csv
+import feedparser
+import hashlib
+import html
+import urllib.request
+import urllib.parse
+import json
+import re
+import unicodedata
+from datetime import datetime, timezone, timedelta
+from fuentes_confiabilidad import clasificar_fuente, NIVELES_BAJA_O_SIN
+
+RUTA_TEMAS = 'data/temas.csv'
+RUTA_EVENTOS = 'data/eventos.csv'
+RUTA_ACTORES = 'data/actores.csv'
+RUTA_TEMA_ACTORES = 'data/tema_actores.csv'
+RUTA_CANDIDATOS = 'data/candidatos_revision.csv'
+ZONA_MX = timezone(timedelta(hours=-6))
+
+
+def cargar_actores_alta_influencia():
+    with open(RUTA_ACTORES, encoding='utf-8') as f:
+        actores = list(csv.DictReader(f))
+    return [a for a in actores if a.get('nivel_influencia') and int(a['nivel_influencia']) >= 7]
+
+
+def calcular_intensidad(texto_completo, tema_id, eventos_existentes, actores_altos, apariciones_hoy):
+    intensidad = 4
+    if apariciones_hoy >= 2:
+        intensidad += 2
+    hace_3_dias = (datetime.now(ZONA_MX) - timedelta(days=3)).date()
+    activo_reciente = any(datetime.strptime(e['fecha'], '%Y-%m-%d').date() >= hace_3_dias
+                           for e in eventos_existentes if e['tema_id'] == tema_id)
+    if activo_reciente:
+        intensidad += 2
+    if any(any(palabra.lower() in texto_completo for palabra in a['nombre'].split() if len(palabra) > 3)
+           for a in actores_altos):
+        intensidad += 1
+    return min(intensidad, 10)
+
+
+FUENTES_RSS = [
+    {'nombre': 'El Informador', 'url': 'https://www.informador.mx/rss/mexico.xml'},
+    {'nombre': 'La Jornada', 'url': 'https://www.jornada.com.mx/rss/politica.xml?v=1'},
+    {'nombre': 'Google Noticias', 'url': 'https://news.google.com/rss/search?q=Sheinbaum+OR+%22Rocha+Moya%22+OR+%22huachicol+fiscal%22+OR+aranceles+OR+migraci%C3%B3n+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    {'nombre': 'El Heraldo de México', 'url': 'https://heraldodemexico.com.mx/rss/feed.html?r=4'},
+    {'nombre': 'El Financiero', 'url': 'https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml'},
+    # Reforma no publica RSS público (muro de pago) -- se cubre vía Google Noticias
+    # acotado a su dominio, igual que ya se hace abajo para estados/actores sin RSS propio.
+    {'nombre': 'Reforma (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:reforma.com+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    {'nombre': 'El Universal (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:eluniversal.com.mx+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    {'nombre': 'Milenio (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:milenio.com+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    {'nombre': 'Diario de Yucatán', 'url': 'https://www.yucatan.com.mx/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
+    {'nombre': 'Por Esto! (Yucatán/QRoo/Campeche)', 'url': 'https://www.poresto.com/feed', 'entidades_c3': ['Yucatán','Campeche','Quintana Roo']},
+    {'nombre': 'El Imparcial de Oaxaca', 'url': 'https://imparcialoaxaca.mx/feed', 'entidades_c3': ['Oaxaca']},
+    {'nombre': 'Noticias Voz e Imagen de Oaxaca', 'url': 'https://www.nvinoticias.com/feed', 'entidades_c3': ['Oaxaca']},
+    {'nombre': 'Diario de Xalapa (Veracruz)', 'url': 'https://www.diariodexalapa.com.mx/rss', 'entidades_c3': ['Veracruz']},
+    {'nombre': 'Notiver (Veracruz)', 'url': 'https://www.notiver.com.mx/feed', 'entidades_c3': ['Veracruz']},
+    {'nombre': 'Cuarto Poder (Chiapas)', 'url': 'https://www.cuartopoder.mx/feed/', 'entidades_c3': ['Chiapas']},
+    {'nombre': 'Diario del Sur (Chiapas)', 'url': 'https://www.diariodelsur.com.mx/rss', 'entidades_c3': ['Chiapas']},
+    {'nombre': 'Tabasco Hoy', 'url': 'https://www.tabascohoy.com/feed', 'entidades_c3': ['Tabasco']},
+    {'nombre': 'Presente (Tabasco)', 'url': 'https://presente.mx/feed', 'entidades_c3': ['Tabasco']},
+    {'nombre': 'Campeche Hoy', 'url': 'http://campechehoy.mx/feed/', 'entidades_c3': ['Campeche']},
+    {'nombre': 'e-consulta (Puebla)', 'url': 'https://www.e-consulta.com/rss.xml', 'entidades_c3': ['Puebla']},
+    {'nombre': 'Angulo 7 (Puebla)', 'url': 'https://www.angulo7.com.mx/feed/', 'entidades_c3': ['Puebla']},
+    {'nombre': 'Google Noticias C3+Puebla', 'url': 'https://news.google.com/rss/search?q=(Veracruz+OR+Oaxaca+OR+Chiapas+OR+Tabasco+OR+Campeche+OR+Yucat%C3%A1n+OR+%22Quintana+Roo%22+OR+Puebla)+gobierno+estatal+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': None},
+    {'nombre': 'Google Noticias Veracruz', 'url': 'https://news.google.com/rss/search?q=Veracruz+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Veracruz']},
+    {'nombre': 'Google Noticias Oaxaca', 'url': 'https://news.google.com/rss/search?q=Oaxaca+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Oaxaca']},
+    {'nombre': 'Google Noticias Chiapas', 'url': 'https://news.google.com/rss/search?q=Chiapas+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Chiapas']},
+    {'nombre': 'Google Noticias Tabasco', 'url': 'https://news.google.com/rss/search?q=Tabasco+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Tabasco']},
+    {'nombre': 'Google Noticias Campeche', 'url': 'https://news.google.com/rss/search?q=Campeche+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Campeche']},
+    {'nombre': 'Google Noticias Yucatán', 'url': 'https://news.google.com/rss/search?q=Yucat%C3%A1n+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Yucatán']},
+    {'nombre': 'Google Noticias Quintana Roo', 'url': 'https://news.google.com/rss/search?q=%22Quintana+Roo%22+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Puebla', 'url': 'https://news.google.com/rss/search?q=Puebla+pol%C3%ADtica+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
+    {'nombre': 'Google Noticias Rocío Nahle', 'url': 'https://news.google.com/rss/search?q=%22Roc%C3%ADo+Nahle%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Veracruz']},
+    {'nombre': 'Google Noticias Salomón Jara', 'url': 'https://news.google.com/rss/search?q=%22Salom%C3%B3n+Jara%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Oaxaca']},
+    {'nombre': 'Google Noticias Eduardo Ramírez', 'url': 'https://news.google.com/rss/search?q=%22Eduardo+Ram%C3%ADrez%22+Chiapas+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Chiapas']},
+    {'nombre': 'Google Noticias Javier May', 'url': 'https://news.google.com/rss/search?q=%22Javier+May%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Tabasco']},
+    {'nombre': 'Google Noticias Layda Sansores', 'url': 'https://news.google.com/rss/search?q=%22Layda+Sansores%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Campeche']},
+    {'nombre': 'Google Noticias Joaquín Díaz Mena', 'url': 'https://news.google.com/rss/search?q=(%22Joaqu%C3%ADn+D%C3%ADaz+Mena%22+OR+Huacho)+Yucat%C3%A1n+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Yucatán']},
+    {'nombre': 'Google Noticias Mara Lezama', 'url': 'https://news.google.com/rss/search?q=%22Mara+Lezama%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Gino Segura', 'url': 'https://news.google.com/rss/search?q=(%22Gino+Segura%22+OR+%22Eugenio+Segura%22)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Rafael Marín', 'url': 'https://news.google.com/rss/search?q=%22Rafael+Mar%C3%ADn+Mollinedo%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Carlos Ulloa', 'url': 'https://news.google.com/rss/search?q=%22Carlos+Ulloa%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
+    {'nombre': 'Google Noticias Alejandro Armenta', 'url': 'https://news.google.com/rss/search?q=%22Alejandro+Armenta%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
+]
+
+def noCuentaParaEscalar(descripcion):
+    if descripcion.startswith('[Opinión]'):
+        return True
+    if descripcion.startswith('[Mañanera]') and '🔔' not in descripcion:
+        return True
+    return False
+
+
+ACTOR_FUENTE_RUTINARIA_ID = 'sheinbaum'
+
+def calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str):
+    if not evs_del_tema:
+        return False, 'sin notas'
+    dias_distintos = len({e['fecha'] for e in evs_del_tema if e['fecha'] != hoy_str})
+    if dias_distintos < 3:
+        return False, f'{dias_distintos} día(s) antes de hoy (necesita 3+, hoy no cuenta)'
+    dominios = set()
+    for e in evs_del_tema:
+        try:
+            dominios.add(urllib.parse.urlparse(e.get('fuente_url','')).netloc)
+        except Exception:
+            pass
+    dominios.discard('')
+    if len(dominios) < 2:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+)'
+    # NUEVO -- candado de calidad mínima: "2+ medios" no distingue calidad, así que una
+    # nota amplificada solo en Facebook/Instagram/sitios sin trayectoria (todos "Baja" o
+    # "Sin clasificar" en fuentes_confiabilidad.py) podía calificar como agenda nacional
+    # aunque ningún medio con editorial real la hubiera tocado. Se exige que AL MENOS UNA
+    # de las fuentes del tema sea de calidad verificable (Alta, Media u Oficial) -- no se
+    # exige en TODAS, solo que no sea puro volumen de fuentes flojas.
+    niveles = {clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', '')) for e in evs_del_tema}
+    if not (niveles - NIVELES_BAJA_O_SIN):
+        return False, f'{len(dominios)} medios, pero ninguno de calidad verificable (todos Baja o sin clasificar)'
+    actores_mencionados = set()
+    for e in evs_del_tema:
+        texto = e['descripcion'].lower()
+        for a in actores_altos:
+            # CORREGIDO -- usaba una palabra suelta de 4+ letras del nombre (ej. "Rosa" o
+            # "Ávila"), el mismo bug ya identificado y corregido en _mencionadoDeFormaSegura()
+            # para otros usos, pero que aquí seguía inflando actores_mencionados con falsos
+            # positivos y empujando temas irrelevantes a Nivel 1 (agenda nacional). Ahora
+            # reusa la misma función ya validada (nombre completo, o 2 palabras consecutivas).
+            if _mencionadoDeFormaSegura(a['nombre'], texto):
+                actores_mencionados.add(a['id'])
+    intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
+    puntos = len(dominios) - 2
+    if intensidad_prom >= 7: puntos += 2
+    if len(actores_mencionados) >= 2: puntos += 2
+    if puntos >= 3:
+        return True, f'{puntos} puntos ({len(dominios)} medios, intensidad {intensidad_prom:.1f}, {len(actores_mencionados)} actor(es))'
+    return False, f'solo {puntos} puntos (necesita 3+)'
+
+
+def evaluaAlertaTemprana(evs_del_tema, actores_altos, hoy_str):
+    """Alerta temprana (warning intelligence) -- mismo criterio de calificaAgendaNacional()
+    de arriba, evaluado un paso antes. De los 4 requisitos (3+ días, 2+ medios, al menos 1
+    de calidad verificable, puntos>=3), el único que solo puede subir con el tiempo --
+    nunca bajar -- es el conteo de días. Por eso la alerta se limita al caso más
+    defendible: el tema YA cumple los otros 3 requisitos y le falta EXACTAMENTE 1 día de
+    cobertura para calificar como agenda nacional. No se dispara por "casi" en intensidad
+    o actores -- esos sí pueden no repetirse -- solo por lo que ya es, en los hechos, un
+    día de distancia. Ver mismo criterio, mismo comentario, en limpiar_agenda_nacional.py."""
+    if not evs_del_tema:
+        return False, 'sin notas'
+    dias_distintos = len({e['fecha'] for e in evs_del_tema if e['fecha'] != hoy_str})
+    if dias_distintos != 2:
+        return False, f'{dias_distintos} día(s) antes de hoy (la alerta solo aplica con exactamente 2)'
+    dominios = set()
+    for e in evs_del_tema:
+        try:
+            dominios.add(urllib.parse.urlparse(e.get('fuente_url','')).netloc)
+        except Exception:
+            pass
+    dominios.discard('')
+    if len(dominios) < 2:
+        return False, f'{len(dominios)} medio(s) distinto(s) (necesita 2+)'
+    niveles = {clasificar_fuente(e.get('fuente_url', ''), e.get('descripcion', '')) for e in evs_del_tema}
+    if not (niveles - NIVELES_BAJA_O_SIN):
+        return False, 'ningún medio de calidad verificable todavía'
+    actores_mencionados = set()
+    for e in evs_del_tema:
+        texto = e['descripcion'].lower()
+        for a in actores_altos:
+            if _mencionadoDeFormaSegura(a['nombre'], texto):
+                actores_mencionados.add(a['id'])
+    intensidad_prom = sum(float(e.get('intensidad') or 0) for e in evs_del_tema) / len(evs_del_tema)
+    puntos = len(dominios) - 2
+    if intensidad_prom >= 7: puntos += 2
+    if len(actores_mencionados) >= 2: puntos += 2
+    if puntos >= 3:
+        return True, f'cumple medios+calidad+puntos ({puntos}) -- le falta exactamente 1 día de cobertura'
+    return False, f'2 días, pero solo {puntos} puntos (necesita 3+)'
+
+
+def sin_acentos(s):
+    return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+
+def variantes_actor_c3(nombre_completo, apodo=None):
+    partes = nombre_completo.split()
+    variantes = [nombre_completo]
+    if len(partes) >= 2:
+        variantes.append(f'{partes[0]} {partes[1]}')
+    if len(partes) >= 3:
+        variantes.append(f'{partes[0]} {partes[-1]}')
+        variantes.append(f'{partes[-2]} {partes[-1]}')
+    if len(partes) >= 4:
+        # nombres de 4 palabras (nombre + 2 apellidos + a veces un segundo nombre) --
+        # antes solo se cubrían las 2 primeras y las 2 últimas palabras juntas, nunca la
+        # combinación del medio. Caso real encontrado: "Sergio Salomón Céspedes
+        # Peregrina" no generaba "Salomón Céspedes" (nombre + primer apellido, sin el
+        # primer nombre de pila), una forma común de referirse a alguien con nombre
+        # compuesto o 2 apellidos.
+        variantes.append(f'{partes[1]} {partes[2]}')
+        # primeras 3 palabras juntas -- caso real: "Adán Augusto López Hernández" se
+        # suele nombrar como "Adán Augusto López" (nombre compuesto + primer apellido,
+        # sin el segundo apellido).
+        variantes.append(f'{partes[0]} {partes[1]} {partes[2]}')
+    if apodo:
+        # apodo ahora acepta uno o varios (lista o string suelto) -- necesario para
+        # casos como "Pepe Chedraui", donde "Pepe" es apodo de "José" y no se puede
+        # derivar de ninguna combinación de las palabras del nombre real
+        apodos = apodo if isinstance(apodo, list) else [apodo]
+        variantes.extend(apodos)
+    return [sin_acentos(v.lower()) for v in variantes]
+
+ACTORES_C3 = {
+    'Veracruz': [
+        ('Rocío Nahle García', 'Gobernadora', 'Nahle'),
+        ('Ricardo Ahued Bardahuil', 'Secretario de Gobierno', None),
+        ('Manuel Huerta Ladrón de Guevara', 'Senador; presidente Comisión Estudios Legislativos I', None),
+        ('Sergio Gutiérrez Luna', 'Diputado federal; primer vicepresidente Mesa Directiva', None),
+        ('Miguel Ángel Yunes Márquez', 'Senador; presidente Comisión Hacienda y Crédito Público', None),
+        ('Esteban Bautista Hernández', 'Diputado federal', None),
+        ('José Yunes Zorrilla', 'PRI', None),
+        ('Alberto Islas Reyes', 'Alcalde de Xalapa', None),
+    ],
+    'Oaxaca': [
+        ('Salomón Jara Cruz', 'Gobernador', None),
+        ('Jesús Romero López', 'Secretario de Gobierno', None),
+        ('Antonino Morales Toledo', 'Senador', None),
+        ('Laura Estrada Mauro', 'Senadora', None),
+        ('Susana Harp Iturribarría', 'Senadora; presidenta Comisión Ciencia y Tecnología', None),
+        ('Nino Morales Toledo', 'Senador', None),
+        ('César Yáñez Centeno', 'Entorno presidencial', None),
+        ('Flavio Sosa Villavicencio', 'Operador de Morena', None),
+        ('Benjamín Robles Montoya', 'PT', None),
+        ('Raymundo Chagoya Villanueva', 'Alcalde de Oaxaca de Juárez', None),
+    ],
+    'Chiapas': [
+        ('Eduardo Ramírez Aguilar', 'Gobernador', None),
+        ('Sasil de León Villard', 'Senadora; integrante de la Jucopo', None),
+        ('José Manuel Cruz Castellanos', 'Senador; presidente Comisión de Salud', None),
+        ('Luis Armando Melgar Bravo', 'Senador (PVEM)', None),
+        ('Antonio Santos Romero', 'Entorno de Sheinbaum', None),
+        ('Zoé Robledo Aburto', 'Figura nacional en Chiapas', None),
+        ('Jorge Luis Llaven Abarca', 'Morena/PVEM', None),
+        ('Ismael Brito Mazariegos', 'Diputado federal', None),
+        ('Carlos Molina Velasco', 'Morena', None),
+        ('Yamil Melgar Bravo', 'Presencia territorial', None),
+    ],
+    'Tabasco': [
+        ('Javier May Rodríguez', 'Gobernador', None),
+        ('Adán Augusto López Hernández', 'Senador', None),
+        ('José Ramiro López Obrador', 'Secretario de Gobierno', None),
+        ('Andrés Manuel López Beltrán', 'Proyecto electoral en Tabasco', 'Andy'),
+        ('Yolanda Osuna Huerta', 'Alcaldesa de Centro (Villahermosa)', None),
+        ('Octavio Romero Oropeza', 'Figura histórica tabasqueña', None),
+        ('Rafael Marín Mollinedo', 'Vínculos nacionales', None),
+        ('Marcos Rosendo Medina Filigrana', 'Legislativo', None),
+        ('Óscar Cantón Zetina', 'Senador; presidente Comisión Puntos Constitucionales', None),
+        ('Jorge Orlando Bracamonte Hernández', 'Congreso local', None),
+    ],
+    'Campeche': [
+        ('Pablo Gutiérrez Lazarus', 'Coordinador estatal de Morena 2027', None),
+        ('Layda Sansores San Román', 'Gobernadora', 'Layda'),
+        ('Rocío Abreu Artiñano', 'Senadora', None),
+        ('Aníbal Ostoa Ortega', 'Senador', None),
+        ('Liz Hernández Romero', 'Operación política del Ejecutivo', None),
+        ('Raúl Ojeda Zubieta', 'Entorno de López Obrador', None),
+        ('Biby Rabelo de la Torre', 'Alcaldesa de Campeche (MC)', None),
+        ('Jorge Carlos Hurtado Montero', 'Referente opositor', None),
+        ('Christian Castro Bello', 'PRI', None),
+        ('Alejandro Moreno Cárdenas', 'Senador; presidente nacional del PRI', 'Alito'),
+        ('Pablo Angulo Briceño', 'Senador; secretario técnico Consejo Político Nacional PRI', None),
+        ('Eliseo Fernández Montúfar', 'MC; exalcalde de Campeche', None),
+    ],
+    'Yucatán': [
+        ('Joaquín Díaz Mena', 'Gobernador', 'Huacho'),
+        ('Cecilia Patrón Laviada', 'Alcaldesa de Mérida', None),
+        ('Mauricio Vila Dosal', 'Senador (PAN); vicepresidente Mesa Directiva', None),
+        ('Renán Barrera Concha', 'Ex candidato a gobernador', None),
+        ('Rommel Pacheco Marrufo', 'Morena', None),
+        ('Verónica Camino Farjat', 'Senadora', None),
+        ('Jorge Carlos Ramírez Marín', 'Senador (PVEM); vicepresidente Mesa Directiva', None),
+        ('Raúl Paz Alonzo', 'Morena', None),
+        ('Rolando Zapata Bello', 'Senador (PRI); exgobernador de Yucatán', None),
+        ('Vida Gómez Herrera', 'MC', None),
+    ],
+    'Quintana Roo': [
+        ('Mara Lezama Espinosa', 'Gobernadora', 'Lezama'),
+        ('Eugenio Segura Vázquez', 'Ex senador', ['Gino', 'Gino Segura']),
+        ('Ana Patricia Peralta de la Peña', 'Alcaldesa de Benito Juárez (Cancún)', None),
+        ('Marybel Villegas Canché', 'Senadora', None),
+        ('Rafael Marín Mollinedo', 'Vínculos nacionales', None),
+        ('Juan Carrillo Soberanis', 'Diputado federal (PVEM)', None),
+        ('Renán Sánchez Tajonar', 'PVEM', None),
+        ('Humberto Aldana Navarro', 'Diputado federal (Morena)', None),
+        ('Julián Ricalde Magaña', 'Estructura en Benito Juárez', None),
+        ('Carlos Ulloa Pérez', 'Conexión nacional (entorno Sheinbaum)', None),
+    ],
+    'Puebla': [
+        ('Alejandro Armenta Mier', 'Gobernador', 'Armenta'),
+        ('José Luis García Parra', 'Coordinador de Gabinete', 'El Choco'),
+        ('José Chedraui Budib', 'Alcalde de Puebla', ['Chedraui', 'Pepe Chedraui']),
+        ('Xitlalic Ceja', 'Diputada local', None),
+        ('Ignacio Mier Bañuelos', 'Diputado federal', 'Nacho Mier'),
+        ('Rodrigo Abdala Dartigues', 'Morena', None),
+        ('Sergio Salomón Céspedes Peregrina', 'Exgobernador', None),
+        ('Mario Riestra Piña', 'PAN', None),
+    ],
+}
+
+INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estado',
+    'cnte', 'snte', 'sección 22', 'seccion 22', 'sociedad civil', 'colectivo',
+    'morena', 'pan', 'pri', 'movimiento ciudadano', 'pvem', 'pt',
+    'cfe', 'comisión federal de electricidad', 'imss', 'issste', 'sedena', 'guardia nacional',
+    'fiscalía general del estado', 'fiscalia general del estado', 'poder judicial',
+    'secretaría de seguridad', 'secretaria de seguridad', 'ayuntamiento', 'cabildo',
+    'universidad autónoma', 'universidad autonoma']
+
+def buscarEntidadC3PorActorMencionado(texto_completo):
+    texto_sin_acentos = sin_acentos(texto_completo)
+    for entidad, actores in ACTORES_C3.items():
+        for nombre, cargo, apodo in actores:
+            if any(v in texto_sin_acentos for v in variantes_actor_c3(nombre, apodo)):
+                return entidad
+    return ''
+
+
+PALABRAS_CLAVE = {
+    'huachicol-fiscal': ['huachicol fiscal', 'farías laguna', 'contrabando de combustible'],
+    'visa-de-andy': ['andy lópez beltrán', 'visa de andy', 'andrés manuel lópez beltrán'],
+    'visas-politicos-eeuu': ['revocación de visa', 'visa revocada', 'políticos mexicanos visa'],
+    'tmec-revision': ['t-mec', 'tmec', 'revisión del tratado'],
+    'rocha-moya-acusacion': ['rocha moya', 'rubén rocha'],
+    'intervencion-militar-eeuu': ['intervención militar', 'trump méxico cárteles', 'ataque a cárteles'],
+    'el-mencho': ['el mencho', 'oseguera cervantes'],
+    'sinaloa-crisis': ['chapitos', 'guerra en sinaloa', 'violencia en sinaloa'],
+}
+
+
+def cargar_temas_nivel1():
+    with open(RUTA_TEMAS, encoding='utf-8') as f:
+        temas = list(csv.DictReader(f))
+    return [t for t in temas if t.get('nivel_relevancia') == '1']
+
+
+def cargar_candidatos_existentes():
+    try:
+        with open(RUTA_CANDIDATOS, encoding='utf-8') as f:
+            return {r['hash_enlace'] for r in csv.DictReader(f)}
+    except FileNotFoundError:
+        return set()
+
+
+def cargar_eventos_existentes():
+    with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
+        return list(csv.DictReader(f))
+
+
+def siguiente_id_evento(eventos_existentes):
+    numeros = [int(e['id'][1:]) for e in eventos_existentes if e['id'].startswith('e') and e['id'][1:].isdigit()]
+    return f"e{(max(numeros)+1) if numeros else 1}"
+
+
+MIGRACION_KEYWORDS = ['migración', 'migrante', 'migrantes', 'deportación', 'deportados', 'frontera sur',
+    'caravana migrante', 'redadas', 'ice ', 'instituto nacional de migración', 'refugio', 'asilo']
+ALERTA_NOMBRES = {'sergio_salomon': ['salomón céspedes', 'sergio salomón']}
+
+def palabras_significativas(texto):
+    conectores = {'para','como','pero','este','esta','estos','estas','desde','hasta','sobre','tras','entre','dice','ante','contra'}
+    palabras = re.findall(r'\w+', texto.lower())
+    return set(p for p in palabras if p not in conectores and len(p)>3)
+
+PALABRAS_POLITICA_LOCAL = ['gobernador', 'gobernadora', 'alcalde', 'alcaldesa', 'presidente municipal',
+    'ayuntamiento', 'secretaría de gobierno', 'secretaria de gobierno', 'cabildo', 'congreso',
+    'diputado', 'diputada', 'senador', 'senadora', 'elección', 'eleccion', 'corrupción', 'corrupcion',
+    'seguridad pública', 'seguridad publica', 'fiscalía', 'fiscalia', 'gobierno del estado',
+    'gobierno estatal', 'morena', 'oposición', 'oposicion', 'coordinador estatal', 'candidato',
+    'candidata', 'huachicol', 'cártel', 'cartel', 'narcotráfico', 'narcotrafico', 'homicidio',
+    'detención', 'detencion', 'presupuesto estatal', 'reforma',
+    'protesta social', 'protesta política', 'bloqueo carretero', 'bloquean carretera',
+    'bloqueo vial', 'marcha de protesta']
+
+def esContenidoPoliticoLocal(texto_completo):
+    return any(re.search(r'\b' + re.escape(p) + r'\b', texto_completo) for p in PALABRAS_POLITICA_LOCAL)
+
+
+PALABRAS_POSITIVAS_C3 = ['impulsa', 'impulsó', 'logra', 'logró', 'reconoce', 'reconoció',
+    'avanza', 'avanzó', 'consolida', 'consolidó', 'inaugura', 'inauguró', 'anuncia inversión',
+    'felicita', 'celebra', 'aprueba', 'aprobó', 'firma acuerdo', 'entrega']
+PALABRAS_NEGATIVAS_C3 = ['acusan', 'acusa', 'señalan', 'señala', 'crítica', 'critica',
+    'fractura', 'renuncia', 'renunció', 'escándalo', 'destituye', 'destituyó', 'investigación',
+    'denuncia', 'denuncian', 'protesta', 'bloqueo', 'rechazo', 'rechazan', 'corrupción',
+    'desvío', 'desvio', 'fracasa', 'fracasó', 'crisis']
+
+def clasificarSentimientoC3(texto_completo):
+    positivas = sum(1 for p in PALABRAS_POSITIVAS_C3 if p in texto_completo)
+    negativas = sum(1 for p in PALABRAS_NEGATIVAS_C3 if p in texto_completo)
+    if positivas==0 and negativas==0:
+        return 'neutro'
+    return 'positivo' if positivas>=negativas else 'negativo'
+
+
+def actoresYEntidadesMencionadosC3(texto_completo, entidad):
+    encontrados = []
+    texto_sin_acentos = sin_acentos(texto_completo)
+    for nombre, cargo, apodo in ACTORES_C3.get(entidad, []):
+        if any(v in texto_sin_acentos for v in variantes_actor_c3(nombre, apodo)):
+            encontrados.append(nombre)
+    for inst in INSTITUCIONES_C3:
+        if inst in texto_completo:
+            encontrados.append(inst.title())
+    return encontrados
+
+
+RUTA_MENCIONES_C3 = 'data/menciones_actores_c3.csv'
+
+def guardarMencionesC3(fecha, entidad, actores_mencionados, sentimiento, evento_id, fuente_url, titular):
+    if not actores_mencionados:
+        return
+    campos = ['fecha', 'entidad', 'actor', 'sentimiento', 'evento_id', 'fuente_url', 'titular']
+    try:
+        with open(RUTA_MENCIONES_C3, encoding='utf-8-sig') as f:
+            existe = True
+            primera_linea = f.readline()
+    except FileNotFoundError:
+        existe = False
+        primera_linea = ''
+    if existe and 'titular' not in primera_linea:
+        with open(RUTA_MENCIONES_C3, encoding='utf-8-sig') as f:
+            filas_viejas = list(csv.DictReader(f))
+        with open(RUTA_MENCIONES_C3, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, restval='')
+            w.writeheader()
+            for fila in filas_viejas:
+                fila.pop(None, None)
+                w.writerow(fila)
+    with open(RUTA_MENCIONES_C3, 'a', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+        if not existe:
+            w.writeheader()
+        for actor in actores_mencionados:
+            w.writerow({'fecha':fecha, 'entidad':entidad, 'actor':actor, 'sentimiento':sentimiento,
+                        'evento_id':evento_id, 'fuente_url':fuente_url, 'titular':titular[:150]})
+
+
+SEGMENTOS_URL_OPINION = ['/opinion/', '/columna/', '/columnas/', '/columnistas/',
+    '/blogs/', '/editorial/', '/analisis-y-opinion/']
+
+def esColumnaDeOpinion(url):
+    if not url:
+        return False
+    return any(seg in url.lower() for seg in SEGMENTOS_URL_OPINION)
+
+
+def extraer_imagen_entrada(entrada, enlace_articulo=None):
+    try:
+        if hasattr(entrada, 'media_thumbnail') and entrada.media_thumbnail:
+            return entrada.media_thumbnail[0].get('url', '')
+        if hasattr(entrada, 'media_content') and entrada.media_content:
+            return entrada.media_content[0].get('url', '')
+        if hasattr(entrada, 'enclosures') and entrada.enclosures:
+            for enc in entrada.enclosures:
+                if 'image' in enc.get('type', ''):
+                    return enc.get('href', '')
+    except Exception:
+        pass
+    if enlace_articulo:
+        try:
+            req = urllib.request.Request(enlace_articulo, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                html_parcial = resp.read(120000).decode('utf-8', errors='ignore')
+            m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html_parcial, re.IGNORECASE)
+            if not m:
+                m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', html_parcial, re.IGNORECASE)
+            if not m:
+                m = re.search(r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']', html_parcial, re.IGNORECASE)
+            if not m:
+                m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']twitter:image["\']', html_parcial, re.IGNORECASE)
+            if not m:
+                for img_url in re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', html_parcial, re.IGNORECASE):
+                    if not any(p in img_url.lower() for p in ['logo', 'icon', 'avatar', 'spacer', '.svg']):
+                        m = type('M', (), {'group': lambda self, n: img_url})()
+                        break
+            if m:
+                return m.group(1)
+        except Exception:
+            pass
+    return ''
+
+
+def similitud_titulares(t1, t2):
+    p1, p2 = palabras_significativas(t1), palabras_significativas(t2)
+    if not p1 or not p2: return 0
+    raiz = lambda palabras: set(p[:6] for p in palabras)
+    r1, r2 = raiz(p1), raiz(p2)
+    return len(r1 & r2) / len(r1 | r2)
+
+VERBOS_PRESION = ['presiona', 'presiono', 'presionó', 'exige', 'exigio', 'exigió', 'advierte',
+                  'advirtio', 'advirtió', 'amenaza', 'amenazo', 'amenazó', 'insta ', 'insto ',
+                  'instó', 'ultimatum', 'ultimatum']
+
+CARGOS_FUNCIONARIO_PUBLICO = ['diputado', 'diputada', 'senador', 'senadora', 'alcalde', 'alcaldesa',
+    'gobernador', 'gobernadora', 'regidor', 'regidora', 'presidente municipal', 'síndico', 'sindica',
+    'magistrado', 'magistrada', 'fiscal', 'secretario de estado', 'secretaria de estado']
+PALABRAS_MUERTE_VIOLENTA = ['muerto', 'muerta', 'asesinado', 'asesinada', 'asesinato', 'ejecutado',
+    'ejecutada', 'privado de la vida', 'privada de la vida', 'atentado', 'balacera', 'baleado', 'baleada']
+
+PALABRAS_ESCANDALO_PERSONAL = ['señalado', 'señalada', 'acusado', 'acusada', 'denuncia', 'denunciado',
+    'denunciada', 'corrupción', 'corrupcion', 'usar influencias', 'tráfico de influencias',
+    'trafico de influencias', 'despojar', 'despojo', 'nepotismo', 'conflicto de interés',
+    'conflicto de interes', 'enriquecimiento', 'investigado', 'investigada']
+
+def actorMencionadoEn(nombre_actor, texto):
+    # mismo aprendizaje ya aplicado en variantes_actor_c3 y _mencionadoDeFormaSegura --
+    # esta función se usaba en 7 lugares distintos (incluida buscar_tema_informativo_similar,
+    # que decide si una nota nueva se fusiona con un tema existente por actores
+    # compartidos) con la versión insegura: cualquier palabra suelta de 4+ letras del
+    # nombre completo. Un apellido común (ej. "Ávila") bastaba para fusionar notas de
+    # personas totalmente distintas en el mismo tema -- causa real y recurrente del
+    # problema de Giselle Arellano apareciendo con notas de Mara Lezama, que sobrevivía
+    # a la limpieza porque esta función seguía creando el vínculo malo en cada corrida.
+    return _mencionadoDeFormaSegura(nombre_actor, texto)
+
+def esEscandaloPersonalDeActor(texto_completo, actores_altos):
+    tiene_escandalo = any(p in texto_completo for p in PALABRAS_ESCANDALO_PERSONAL)
+    if not tiene_escandalo: return False
+    return any(actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
+
+def esMuerteDeFuncionario(texto_completo):
+    tiene_cargo = any(c in texto_completo for c in CARGOS_FUNCIONARIO_PUBLICO)
+    tiene_muerte = any(m in texto_completo for m in PALABRAS_MUERTE_VIOLENTA)
+    return tiene_cargo and tiene_muerte
+
+def detectarPresion(texto_completo, actores_altos):
+    if not any(v in texto_completo for v in VERBOS_PRESION):
+        return None
+    for a in actores_altos:
+        if actorMencionadoEn(a['nombre'], texto_completo):
+            return a['nombre']
+    return None
+
+def esTemaMigracion(texto_completo):
+    if any(p in texto_completo for p in MIGRACION_KEYWORDS if p != 'ice '):
+        return True
+    return bool(re.search(r'\bice\b', texto_completo))
+
+def tieneAlertaEspecial(texto_completo):
+    for actor_id, patrones in ALERTA_NOMBRES.items():
+        if any(p in texto_completo for p in patrones):
+            return actor_id
+    return None
+
+CATEGORIA_KEYWORDS = {
+    'Seguridad Nacional': ['cártel', 'narco', 'cjng', 'chapitos', 'homicidio', 'violencia', 'guardia nacional', 'fgr', 'sedena', 'marina'],
+    'Relación Bilateral': ['trump', 'eeuu', 'estados unidos', 'washington', 'embajada', 'aranceles', 'visa', 'rubio'],
+    'Economía': ['peso', 'inflación', 'pib', 'banxico', 'exportación', 'arancel', 't-mec', 'tmec'],
+    'Social': ['periodista', 'derechos humanos', 'protesta', 'huelga'],
+}
+
+def clasificar_categoria(texto_completo):
+    for cat, palabras in CATEGORIA_KEYWORDS.items():
+        if any(p in texto_completo for p in palabras):
+            return cat
+    return 'Gobernabilidad'
+
+
+def obtener_mananera_hoy():
+    try:
+        req = urllib.request.Request('https://mananeradehoy.com/mananera-de-hoy', headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            html_bruto = resp.read().decode('utf-8', errors='ignore')
+    except Exception as e:
+        print(f'  Mañanera de Hoy: error de conexión: {e}')
+        return None, []
+    # CORRECCIÓN real -- confirmado en el log de una corrida real: la conexión SÍ funciona
+    # (no hay "error de conexión"), pero fecha_pagina salía None -- el regex exigía el
+    # texto "Conferencia matutina · " exacto, con ese punto medio (·) literal y sin nada
+    # de markup entre palabras. La página SÍ trae ese texto (se confirmó por fuera), pero
+    # casi seguro con etiquetas HTML o una entidad (&middot;, &nbsp;) entre "matutina" y la
+    # fecha, que el regex anterior no toleraba en absoluto -- un solo <span> de por medio
+    # bastaba para que fallara TODO el regex, sin aviso. Se decodifican entidades HTML, se
+    # quitan TODAS las etiquetas antes de buscar la fecha, y el separador entre "matutina"
+    # y el día ya no exige un carácter exacto: acepta cualquier tramo corto de texto que no
+    # sean dígitos (espacios, ·, saltos de línea, restos de markup).
+    texto_plano_fecha = re.sub(r'<[^>]+>', ' ', html.unescape(html_bruto))
+    texto_plano_fecha = re.sub(r'\s+', ' ', texto_plano_fecha)
+    hoy_mx = datetime.now(ZONA_MX).date()
+    fecha_pagina_match = re.search(r'Conferencia\s+matutina\D{0,12}?(\d{1,2})\s+de\s+(\w+)\s+de\s+(\d{4})', texto_plano_fecha, re.IGNORECASE)
+    MESES = {'enero':1,'febrero':2,'marzo':3,'abril':4,'mayo':5,'junio':6,'julio':7,'agosto':8,'septiembre':9,'octubre':10,'noviembre':11,'diciembre':12}
+    if not fecha_pagina_match:
+        print('  Mañanera de Hoy: no se encontró el patrón de fecha en la página (revisar si el sitio cambió de formato).')
+        return None, []
+    dia, mes_txt, anio = fecha_pagina_match.groups()
+    mes = MESES.get(mes_txt.lower())
+    if not mes:
+        return None, []
+    fecha_pagina = f'{anio}-{mes:02d}-{int(dia):02d}'
+    if fecha_pagina != hoy_mx.strftime('%Y-%m-%d'):
+        return fecha_pagina, []
+    bloques = re.findall(r'<li[^>]*>(.*?)</li>', html_bruto, re.DOTALL)
+    puntos = []
+    for b in bloques:
+        texto = re.sub(r'<[^>]+>', ' ', html.unescape(b))
+        texto = re.sub(r'\[\[\d{1,2}:\d{2}\]\]', ' ', texto)  # marcador de timestamp del video
+        texto = re.sub(r'\s+', ' ', texto).strip(' -—')
+        if len(texto) > 80:
+            puntos.append(texto)
+    if not puntos:
+        # Respaldo -- si el sitio no usa <li> (o cambió de estructura) los puntos de la
+        # mañanera de todos modos aparecen como líneas que empiezan con guión, un patrón
+        # muy común en contenido convertido de markdown a HTML con <p> o <div> en vez de
+        # listas reales. Sin este respaldo, un cambio así deja el resumen vacío sin ningún
+        # aviso -- de ahí el print de diagnóstico en cargarEventosDelDia().
+        texto_plano = re.sub(r'<[^>]+>', '\n', html.unescape(html_bruto))
+        for linea in texto_plano.split('\n'):
+            linea = re.sub(r'\[\[\d{1,2}:\d{2}\]\]', ' ', linea)
+            linea = re.sub(r'\s+', ' ', linea).strip()
+            es_bullet = linea.startswith(('- ', '— ', '• '))
+            if es_bullet:
+                linea = linea[2:].strip()
+            if es_bullet and 80 < len(linea) < 500:
+                puntos.append(linea)
+    return fecha_pagina, puntos
+
+
+def cargar_temas_todos():
+    with open(RUTA_TEMAS, encoding='utf-8') as f:
+        return list(csv.DictReader(f))
+
+
+def buscar_tema_informativo_similar(titulo, actores_altos, umbral=0.15):
+    temas_todos = cargar_temas_todos()
+    texto_nuevo = titulo.lower()
+    actores_en_nuevo = {a['nombre'] for a in actores_altos if actorMencionadoEn(a['nombre'], texto_nuevo)}
+    for t in temas_todos:
+        if t.get('tipo') != 'informativo': continue
+        if similitud_titulares(t['nombre'], titulo) >= umbral:
+            return t['id']
+        actores_en_existente = {a['nombre'] for a in actores_altos if actorMencionadoEn(a['nombre'], t['nombre'].lower())}
+        if len(actores_en_nuevo & actores_en_existente) >= 2:
+            return t['id']
+    return None
+
+
+def crear_tema_informativo(titulo, fecha, categoria='Gobernabilidad'):
+    campos = ['id', 'nombre', 'categoria', 'peso_politico', 'horizonte', 'resumen',
+              'actores_involucrados', 'responsable', 'fuente_nombre', 'fuente_url',
+              'fecha', 'nivel_relevancia', 'tipo', 'estado']
+    temas = cargar_temas_todos()
+    nuevo_id = 'auto-' + hashlib.md5((titulo+fecha).encode()).hexdigest()[:10]
+    if any(t['id']==nuevo_id for t in temas):
+        return nuevo_id
+    nuevo = {c: '' for c in campos}
+    nuevo.update({
+        'id': nuevo_id, 'nombre': titulo[:80], 'categoria': categoria,
+        'peso_politico': '5', 'horizonte': 'corto', 'resumen': titulo,
+        'nivel_relevancia': '3', 'tipo': 'informativo', 'estado': 'activo',
+    })
+    with open(RUTA_TEMAS, 'a', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+        w.writerow(nuevo)
+    return nuevo_id
+
+
+PALABRAS_SENALADO = ['acusa', 'acusan', 'acusado', 'investigación', 'investigado',
+    'denuncia', 'implicado', 'señalado', 'sospecha', 'presunto', 'vinculado al caso',
+    'carpeta de investigación', 'orden de aprehensión']
+PALABRAS_REACCION = ['critica', 'critican', 'rechaza', 'rechazan', 'cuestiona',
+    'cuestionan', 'responde', 'reacciona', 'exige', 'condena', 'pide investigación',
+    'exigen', 'demandan']
+PALABRAS_RED_EMPRESARIAL = ['empresa', 'empresario', 'contrato', 'licitación', 'negocio']
+PALABRAS_CARGO_INSTITUCIONAL = ['secretario', 'secretaria', 'titular', 'director',
+    'gobernador', 'gobernadora', 'presidenta', 'presidente', 'fiscal', 'alcalde',
+    'alcaldesa', 'ministro', 'ministra']
+
+def clasificarRolActorEnTema(texto_completo, actor):
+    if any(p in texto_completo for p in PALABRAS_SENALADO):
+        return 'Investigado'
+    if any(p in texto_completo for p in PALABRAS_REACCION):
+        grupo = (actor.get('grupo') or '').lower()
+        if any(p in grupo for p in ['pan', 'pri', 'mc', 'movimiento ciudadano', 'oposición']):
+            return 'Reacción de oposición'
+        if 'morena' in grupo:
+            return 'Reacción del gobierno'
+        return 'Reacción social/mediática'
+    if any(p in texto_completo for p in PALABRAS_RED_EMPRESARIAL):
+        return 'Red empresarial'
+    cargo = (actor.get('cargo') or '').lower()
+    if any(p in cargo for p in PALABRAS_CARGO_INSTITUCIONAL) or any(p in texto_completo for p in PALABRAS_CARGO_INSTITUCIONAL):
+        return 'Responsable institucional'
+    return 'Mencionado'
+
+
+def _mencionadoDeFormaSegura(nombre_actor, clausula_lower):
+    """Mismo aprendizaje que ya tuvimos con C3 (caso real: 'Briceño' de un actor se
+    confundía con otra persona de apellido compartido) -- aquí el riesgo era todavía
+    mayor: se comparaba CUALQUIER palabra suelta de 4+ letras del nombre completo, así
+    que un apellido común como 'Ávila' bastaba para vincular al actor equivocado con
+    notas que ni lo mencionan. Ahora se exige nombre completo, o al menos 2 palabras
+    consecutivas del nombre juntas (nombre+apellido, o los 2 apellidos) -- nunca una
+    palabra sola, sin importar su longitud.
+
+    CORRECCIÓN -- ver la misma corrección en calcular_pulso_nacional.py: un apodo entre
+    paréntesis pegado al nombre (ej. "...López Beltrán ('Andy')") se colaba como "última
+    palabra", así que el apellido compuesto real nunca se probaba. Se quita antes de partir.
+    """
+    nombre_actor = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
+    partes = [p for p in nombre_actor.split() if len(p) > 2]
+    if len(partes) < 2:
+        return partes and partes[0].lower() in clausula_lower
+    combinaciones = [nombre_actor.lower()]
+    combinaciones.append(f'{partes[0]} {partes[1]}'.lower())
+    if len(partes) >= 3:
+        combinaciones.append(f'{partes[-2]} {partes[-1]}'.lower())
+    return any(c in clausula_lower for c in combinaciones)
+
+
+def actualizarTemaActoresAutomatico(tema_id, evs_del_tema):
+    try:
+        with open(RUTA_ACTORES, encoding='utf-8-sig') as f:
+            actores = list(csv.DictReader(f))
+    except FileNotFoundError:
+        return
+    try:
+        with open(RUTA_TEMA_ACTORES, encoding='utf-8-sig') as f:
+            ya_existentes = {(r['tema_id'], r['actor_id']) for r in csv.DictReader(f)}
+    except FileNotFoundError:
+        ya_existentes = set()
+    nuevas_filas = []
+    for actor in actores:
+        if (tema_id, actor['id']) in ya_existentes:
+            continue
+        fragmentos_de_este_actor = []
+        for e in evs_del_tema:
+            clausulas = re.split(r'[;.]| pero | mientras ', e['descripcion'])
+            for clausula in clausulas:
+                clausula_lower = clausula.lower()
+                if _mencionadoDeFormaSegura(actor['nombre'], clausula_lower):
+                    fragmentos_de_este_actor.append(clausula_lower)
+        if not fragmentos_de_este_actor:
+            continue
+        rol = clasificarRolActorEnTema(' '.join(fragmentos_de_este_actor), actor)
+        nuevas_filas.append({'tema_id': tema_id, 'actor_id': actor['id'], 'rol': rol, 'detalle': ''})
+    if nuevas_filas:
+        campos = ['tema_id', 'actor_id', 'rol', 'detalle']
+        try:
+            with open(RUTA_TEMA_ACTORES, encoding='utf-8-sig') as f:
+                existe = True
+        except FileNotFoundError:
+            existe = False
+        with open(RUTA_TEMA_ACTORES, 'a', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+            if not existe:
+                w.writeheader()
+            for fila in nuevas_filas:
+                w.writerow(fila)
+
+
+def escalar_temas_informativos():
+    temas = cargar_temas_todos()
+    eventos = cargar_eventos_existentes()
+    actores_altos = cargar_actores_alta_influencia()
+    hoy_str = datetime.now(ZONA_MX).date().strftime('%Y-%m-%d')
+    cambios = 0
+    cambios_alerta = 0
+    for t in temas:
+        if t.get('tipo') != 'informativo':
+            continue
+        evs_del_tema = [e for e in eventos if e['tema_id'] == t['id'] and not noCuentaParaEscalar(e['descripcion'])]
+        if len(evs_del_tema) == 0:
+            continue
+        cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str)
+        if cumple:
+            t['tipo'] = 'completo'
+            t['nivel_relevancia'] = '1'
+            cambios += 1
+            actualizarTemaActoresAutomatico(t['id'], evs_del_tema)
+            alerta_nueva = ''
+        else:
+            # NUEVO -- alerta temprana (warning intelligence), ver evaluaAlertaTemprana()
+            # arriba: mismo criterio de calificaAgendaNacional, evaluado un paso antes.
+            alerta_ok, _ = evaluaAlertaTemprana(evs_del_tema, actores_altos, hoy_str)
+            alerta_nueva = '1' if alerta_ok else ''
+        if t.get('alerta_temprana', '') != alerta_nueva:
+            t['alerta_temprana'] = alerta_nueva
+            cambios_alerta += 1
+    if cambios or cambios_alerta:
+        campos = list(temas[0].keys())
+        with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+            w.writeheader()
+            for t in temas: w.writerow(t)
+        if cambios:
+            print(f'{cambios} tema(s) escalado(s) automáticamente a agenda nacional (Nivel 1).')
+        if cambios_alerta:
+            print(f'{cambios_alerta} tema(s) con cambio de alerta temprana.')
+
+
+def escalar_a_agenda_nacional_si_aplica(tema_id, conteo_hoy, eventos_existentes, actores_altos):
+    temas = cargar_temas_todos()
+    tema = next((t for t in temas if t['id']==tema_id), None)
+    if not tema or tema.get('tipo') != 'informativo':
+        return
+    evs_del_tema = [e for e in eventos_existentes if e['tema_id']==tema_id and not noCuentaParaEscalar(e['descripcion'])]
+    hoy_str = datetime.now(ZONA_MX).date().strftime('%Y-%m-%d')
+    cumple, razon = calificaAgendaNacional(evs_del_tema, actores_altos, hoy_str)
+    if cumple:
+        campos = list(temas[0].keys())
+        for t in temas:
+            if t['id']==tema_id:
+                t['nivel_relevancia'] = '1'
+                t['tipo'] = 'completo'
+                t['alerta_temprana'] = ''
+        actualizarTemaActoresAutomatico(tema_id, evs_del_tema)
+        with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+            w.writeheader()
+            for t in temas: w.writerow(t)
+        print(f'  -> Tema {tema_id} ESCALADO a agenda nacional (cobertura real confirmada).')
+        return
+
+    # NUEVO -- alerta temprana (warning intelligence): mismo criterio de
+    # calificaAgendaNacional, evaluado un paso antes (ver evaluaAlertaTemprana arriba).
+    alerta_ok, _ = evaluaAlertaTemprana(evs_del_tema, actores_altos, hoy_str)
+    alerta_nueva = '1' if alerta_ok else ''
+    if tema.get('alerta_temprana', '') != alerta_nueva:
+        campos = list(temas[0].keys())
+        for t in temas:
+            if t['id']==tema_id:
+                t['alerta_temprana'] = alerta_nueva
+        with open(RUTA_TEMAS, 'w', encoding='utf-8', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+            w.writeheader()
+            for t in temas: w.writerow(t)
+        if alerta_ok:
+            print(f'  -> Tema {tema_id}: ALERTA TEMPRANA activada -- a 1 día de calificar como agenda nacional.')
+
+
+def guardar_evento_directo(evento):
+    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url', 'entidad_c3', 'hora_registro']
+    with open(RUTA_EVENTOS, 'a', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+        w.writerow(evento)
+
+
+def reparar_encabezado_eventos():
+    campos = ['id', 'tema_id', 'fecha', 'categoria', 'intensidad', 'descripcion', 'fuente_url', 'evento_origen_id', 'cobertura', 'imagen_url', 'entidad_c3', 'hora_registro']
+    try:
+        with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
+            primera_linea = f.readline()
+    except FileNotFoundError:
+        return
+    if 'hora_registro' in primera_linea and 'entidad_c3' in primera_linea:
+        return
+    print('  [reparación] eventos.csv tenía encabezado desactualizado -- corrigiendo una sola vez...')
+    with open(RUTA_EVENTOS, encoding='utf-8-sig') as f:
+        primera_linea_campos = [c.strip() for c in f.readline().strip().split(',')]
+        filas_viejas = list(csv.DictReader(f, fieldnames=primera_linea_campos))
+    columnas_faltantes = [c for c in ['entidad_c3', 'hora_registro'] if c not in primera_linea_campos]
+    for fila in filas_viejas:
+        extra = fila.pop(None, None) or []
+        for nombre_col, valor in zip(columnas_faltantes, extra):
+            fila[nombre_col] = valor
+    with open(RUTA_EVENTOS, 'w', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, restval='')
+        w.writeheader()
+        for fila in filas_viejas:
+            fila.pop(None, None)
+            w.writerow(fila)
+    print(f'  [reparación] {len(filas_viejas)} fila(s) reescritas con encabezado correcto.')
+
+
+def buscar_candidatos():
+    temas = cargar_temas_nivel1()
+    temas_ids_validos = {t['id'] for t in temas}
+    ya_vistos = cargar_candidatos_existentes()
+    eventos_existentes = cargar_eventos_existentes()
+    ya_procesados_eventos = {e['fuente_url'] for e in eventos_existentes}
+    actores_altos = cargar_actores_alta_influencia()
+    hoy_mx = datetime.now(ZONA_MX).date()
+    titulos_ya_agregados_hoy = {e['descripcion'].strip().lower() for e in eventos_existentes if e['fecha']==hoy_mx.strftime('%Y-%m-%d')}
+
+    candidatos_sin_tema = []
+    eventos_nuevos = []
+    conteo_hoy_por_tema = {}
+    conteo_hoy_por_fuente = {}
+    incrementos_cobertura_existente = {}
+    LIMITE_POR_FUENTE = 20
+
+    for fuente in FUENTES_RSS:
+        feed = feedparser.parse(fuente['url'])
+        for entrada in feed.entries:
+            if conteo_hoy_por_fuente.get(fuente['nombre'], 0) >= LIMITE_POR_FUENTE:
+                continue
+            fecha_pub = entrada.get('published_parsed') or entrada.get('updated_parsed')
+            if not fecha_pub:
+                if 'news.google.com' in fuente['url']:
+                    fecha_pub_dt = hoy_mx
+                else:
+                    continue
+            else:
+                fecha_pub_dt = datetime(*fecha_pub[:6], tzinfo=timezone.utc).astimezone(ZONA_MX).date()
+            if fecha_pub_dt != hoy_mx:
+                continue
+
+            titulo_original = entrada.get('title', '')
+            texto_completo = (titulo_original + ' ' + (entrada.get('description') or '')).lower()
+            enlace = entrada.get('link') or ''
+            imagen_url = extraer_imagen_entrada(entrada, enlace)
+
+            entidad_c3_nota = ''
+            entidades_de_esta_fuente = fuente.get('entidades_c3')
+            if entidades_de_esta_fuente:
+                if len(entidades_de_esta_fuente) == 1:
+                    entidad_c3_nota = entidades_de_esta_fuente[0]
+                else:
+                    texto_para_entidad = (titulo_original + ' ' + (entrada.get('description') or '')).lower()
+                    for ent in entidades_de_esta_fuente:
+                        if ent.lower() in texto_para_entidad:
+                            entidad_c3_nota = ent
+                            break
+                if entidad_c3_nota and not esContenidoPoliticoLocal(texto_completo):
+                    entidad_c3_nota = ''
+            else:
+                entidad_c3_nota = buscarEntidadC3PorActorMencionado(texto_completo)
+            if enlace in ya_procesados_eventos:
+                continue
+            titulo_normalizado = titulo_original.strip().lower()
+            if titulo_normalizado in titulos_ya_agregados_hoy:
+                continue
+            hash_enlace = hashlib.md5(enlace.encode()).hexdigest()
+
+            tema_encontrado = None
+            for tema_id, palabras in PALABRAS_CLAVE.items():
+                if tema_id in temas_ids_validos and any(p in texto_completo for p in palabras):
+                    tema_encontrado = tema_id
+                    break
+            if not tema_encontrado:
+                for t in temas:
+                    if t['id'] not in PALABRAS_CLAVE and t['nombre'].lower() in texto_completo:
+                        tema_encontrado = t['id']
+                        break
+
+            if tema_encontrado:
+                similar_existente = None
+                for ev_prev in eventos_nuevos:
+                    if ev_prev['tema_id']==tema_encontrado and ev_prev['fecha']==hoy_mx.strftime('%Y-%m-%d'):
+                        if similitud_titulares(ev_prev['descripcion'], titulo_original) >= 0.15:
+                            similar_existente = ev_prev; break
+                if similar_existente:
+                    similar_existente['cobertura'] = int(similar_existente.get('cobertura', 1)) + 1
+                    titulos_ya_agregados_hoy.add(titulo_normalizado)
+                    continue
+                ya_guardado_similar = next((e for e in eventos_existentes
+                    if e['tema_id']==tema_encontrado and e['fecha']==hoy_mx.strftime('%Y-%m-%d')
+                    and similitud_titulares(e['descripcion'], titulo_original) >= 0.15), None)
+                if ya_guardado_similar:
+                    incrementos_cobertura_existente[ya_guardado_similar['id']] = incrementos_cobertura_existente.get(ya_guardado_similar['id'], 0) + 1
+                    titulos_ya_agregados_hoy.add(titulo_normalizado)
+                    continue
+                conteo_hoy_por_tema[tema_encontrado] = conteo_hoy_por_tema.get(tema_encontrado, 0) + 1
+                intensidad = calcular_intensidad(texto_completo, tema_encontrado, eventos_existentes,
+                                                   actores_altos, conteo_hoy_por_tema[tema_encontrado])
+                actor_presion_kt = detectarPresion(texto_completo, actores_altos)
+                descripcion_final_kt = (f'⚡ Posible presión de {actor_presion_kt} — {titulo_original}') if actor_presion_kt else titulo_original
+                if esColumnaDeOpinion(enlace):
+                    descripcion_final_kt = f'[Opinión] {descripcion_final_kt}'
+                eventos_nuevos.append({
+                    'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                    # BUG REAL encontrado: antes copiaba la categoria del TEMA al que se agrupo la
+                    # nota (p.ej. "visa-de-andy" = Relacion Bilateral), no de lo que la nota en si
+                    # dice -- una nota sobre un tema distinto (p.ej. alguien escondido en el
+                    # extranjero) agrupada bajo ese tema heredaba "Relacion Bilateral" aunque no
+                    # tuviera nada que ver. La categoria describe la nota, no la carpeta donde cae.
+                    'categoria': clasificar_categoria(texto_completo),
+                    'intensidad': intensidad, 'descripcion': descripcion_final_kt, 'fuente_url': enlace, 'cobertura': 1,
+                    'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota, 'hora_registro': datetime.now(ZONA_MX).strftime('%H:%M'),
+                })
+                conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
+                titulos_ya_agregados_hoy.add(titulo_normalizado)
+            else:
+                menciones = sum(1 for a in actores_altos if actorMencionadoEn(a['nombre'], texto_completo))
+                mencion_top = any(int(a['nivel_influencia'])>=9 and actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
+                mencion_relevante = any(int(a['nivel_influencia'])>=5 and actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
+                es_migracion = esTemaMigracion(texto_completo)
+                alerta_actor = tieneAlertaEspecial(texto_completo)
+                actor_presion = detectarPresion(texto_completo, actores_altos)
+                es_fuente_local_c3 = bool(fuente.get('entidades_c3'))
+                if es_fuente_local_c3:
+                    disparador = (esContenidoPoliticoLocal(texto_completo) or menciones>=1 or mencion_top) and hash_enlace not in ya_vistos
+                else:
+                    disparador = (menciones >= 2 or mencion_top or mencion_relevante or es_migracion or alerta_actor or esMuerteDeFuncionario(texto_completo) or esEscandaloPersonalDeActor(texto_completo, actores_altos)) and hash_enlace not in ya_vistos
+                if disparador:
+                    categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
+                    prefijo = '🔔 ALERTA — ' if (alerta_actor or es_migracion) else ''
+                    prefijo += f'⚡ Posible presión de {actor_presion} — ' if actor_presion else ''
+                    titulo_final = prefijo + titulo_original
+                    if esColumnaDeOpinion(enlace):
+                        titulo_final = f'[Opinión] {titulo_final}'
+                    tema_auto = buscar_tema_informativo_similar(titulo_original, actores_altos) or crear_tema_informativo(titulo_original, hoy_mx.strftime('%Y-%m-%d'), categoria_real)
+                    conteo_hoy_por_tema[tema_auto] = conteo_hoy_por_tema.get(tema_auto, 0) + 1
+                    if alerta_actor:
+                        intensidad_final = 8
+                    elif es_migracion:
+                        intensidad_final = 6
+                    else:
+                        # ANTES era un valor fijo de 5 para TODO lo que no fuera alerta o
+                        # migración -- eso aplanaba por completo la intensidad real de C3:
+                        # cada estado terminaba con pulso EXACTAMENTE 50/100, sin importar
+                        # cuántas notas tuviera ni qué tan relevantes fueran (bug real
+                        # confirmado: Veracruz, Oaxaca, Chiapas, Tabasco, Campeche,
+                        # Quintana Roo y Puebla, todos en 50/100 exacto, el mismo día).
+                        # Ahora se usa la misma fórmula real de intensidad que ya varía
+                        # según cobertura cruzada, persistencia y mención de actor.
+                        intensidad_final = calcular_intensidad(texto_completo, tema_auto, eventos_existentes, actores_altos, conteo_hoy_por_tema[tema_auto])
+                    similar_existente = None
+                    for ev_prev in eventos_nuevos:
+                        if ev_prev['tema_id']==tema_auto and ev_prev['fecha']==hoy_mx.strftime('%Y-%m-%d'):
+                            if similitud_titulares(ev_prev['descripcion'], titulo_original) >= 0.15:
+                                similar_existente = ev_prev; break
+                    if similar_existente:
+                        similar_existente['cobertura'] = int(similar_existente.get('cobertura', 1)) + 1
+                    else:
+                        ya_guardado_similar = next((e for e in eventos_existentes
+                            if e['tema_id']==tema_auto and e['fecha']==hoy_mx.strftime('%Y-%m-%d')
+                            and similitud_titulares(e['descripcion'], titulo_original) >= 0.15), None)
+                        if ya_guardado_similar:
+                            incrementos_cobertura_existente[ya_guardado_similar['id']] = incrementos_cobertura_existente.get(ya_guardado_similar['id'], 0) + 1
+                        else:
+                            eventos_nuevos.append({
+                                'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                                'categoria': categoria_real, 'intensidad': intensidad_final,
+                                'descripcion': titulo_final, 'fuente_url': enlace, 'cobertura': 1,
+                                'imagen_url': imagen_url, 'entidad_c3': entidad_c3_nota, 'hora_registro': datetime.now(ZONA_MX).strftime('%H:%M'),
+                            })
+                            conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
+
+    fecha_pagina_manan, puntos_manan = obtener_mananera_hoy()
+    # Diagnóstico -- antes esta llamada era muda: si mananeradehoy.com cambiaba de
+    # estructura, o el fetch fallaba, o simplemente no había puntos que calzaran, no
+    # quedaba ningún rastro en el log de GitHub Actions para saber POR QUÉ el resumen de
+    # la mañanera seguía vacío. Ahora sí queda constancia.
+    print(f'  Mañanera de Hoy: fecha_pagina={fecha_pagina_manan}, puntos_extraidos={len(puntos_manan)}')
+    if fecha_pagina_manan == hoy_mx.strftime('%Y-%m-%d'):
+        puntos_incluidos = 0
+        for punto in puntos_manan:
+            hash_punto = hashlib.md5(('mananera-'+punto[:120]).encode()).hexdigest()
+            if hash_punto in ya_vistos: continue
+            texto_completo = punto.lower()
+            tema_encontrado = None
+            for tema_id, palabras in PALABRAS_CLAVE.items():
+                if tema_id in temas_ids_validos and any(p in texto_completo for p in palabras):
+                    tema_encontrado = tema_id; break
+            es_migracion = esTemaMigracion(texto_completo)
+            alerta_actor = tieneAlertaEspecial(texto_completo)
+            # CORRECCIÓN real -- antes, un punto de la mañanera que no calzaba con un tema
+            # por PALABRAS_CLAVE (una lista corta y fija) Y no era migración/alerta se
+            # descartaba POR COMPLETO, sin crear ni siquiera un tema informativo -- a
+            # diferencia de las notas normales, que si mencionan a un actor relevante SÍ
+            # generan su propio tema (ver el bloque de arriba, "disparador"). La mañanera
+            # toca decenas de temas que nunca están en PALABRAS_CLAVE, así que casi todos
+            # los días el resumen terminaba completamente vacío -- 0 puntos guardados en
+            # TODO el historial hasta esta revisión. Ahora se usa el mismo criterio de
+            # "mención relevante" que ya usa el resto del robot.
+            mencion_relevante = any(int(a['nivel_influencia'])>=5 and actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
+            if tema_encontrado:
+                conteo_hoy_por_tema[tema_encontrado] = conteo_hoy_por_tema.get(tema_encontrado, 0) + 1
+                intensidad = calcular_intensidad(texto_completo, tema_encontrado, eventos_existentes, actores_altos, conteo_hoy_por_tema[tema_encontrado])
+                eventos_nuevos.append({'tema_id': tema_encontrado, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                    # mismo fix que arriba: categoria de lo que dice el punto de la mañanera, no
+                    # del tema al que se agrupo.
+                    'categoria': clasificar_categoria(texto_completo),
+                    'intensidad': intensidad, 'descripcion': f'[Mañanera] {punto[:200]}', 'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
+                puntos_incluidos += 1
+            elif es_migracion or alerta_actor or mencion_relevante:
+                categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
+                titulo_final = f'🔔 ALERTA — [Mañanera] {punto[:180]}' if (alerta_actor or es_migracion) else f'[Mañanera] {punto[:200]}'
+                tema_auto = buscar_tema_informativo_similar(punto[:80], actores_altos) or crear_tema_informativo(punto[:80], hoy_mx.strftime('%Y-%m-%d'), categoria_real)
+                intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5)
+                eventos_nuevos.append({'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
+                    'categoria': categoria_real, 'intensidad': intensidad_final, 'descripcion': titulo_final,
+                    'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
+                puntos_incluidos += 1
+        print(f'  Mañanera de Hoy: {puntos_incluidos}/{len(puntos_manan)} puntos guardados como evento.')
+
+    return eventos_nuevos, candidatos_sin_tema, incrementos_cobertura_existente
+
+
+def aplicar_incrementos_cobertura(incrementos):
+    if not incrementos:
+        return
+    with open(RUTA_EVENTOS, encoding='utf-8') as f:
+        campos = next(csv.reader(f))
+    eventos = cargar_eventos_existentes()
+    for e in eventos:
+        e.pop(None, None)
+        if e['id'] in incrementos:
+            e['cobertura'] = str(int(e.get('cobertura') or 1) + incrementos[e['id']])
+    with open(RUTA_EVENTOS, 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, extrasaction='ignore')
+        w.writeheader()
+        for e in eventos: w.writerow(e)
+    print(f'Cobertura sumada a {len(incrementos)} nota(s) ya existente(s) del día (mismo hecho real, otra fuente).')
+
+
+def guardar_candidatos(nuevos):
+    if not nuevos:
+        print('Sin candidatos nuevos esta corrida.')
+        return
+    campos = ['hash_enlace', 'tema_id_sugerido', 'fecha_encontrado', 'titular', 'fuente_nombre', 'fuente_url', 'estado']
+    existe = True
+    try:
+        open(RUTA_CANDIDATOS, encoding='utf-8').close()
+    except FileNotFoundError:
+        existe = False
+    with open(RUTA_CANDIDATOS, 'a', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=campos)
+        if not existe:
+            w.writeheader()
+        for c in nuevos:
+            w.writerow(c)
+    print(f'{len(nuevos)} candidato(s) nuevo(s) agregado(s) a {RUTA_CANDIDATOS} para revisión.')
+
+
+if __name__ == '__main__':
+    reparar_encabezado_eventos()
+    eventos_nuevos, candidatos_sin_tema, incrementos_cobertura_existente = buscar_candidatos()
+
+    for ev in eventos_nuevos:
+        eventos_ya = cargar_eventos_existentes()
+        ev['id'] = siguiente_id_evento(eventos_ya)
+        guardar_evento_directo(ev)
+        if ev.get('entidad_c3'):
+            texto_c3 = ev['descripcion'].lower()
+            mencionados = actoresYEntidadesMencionadosC3(texto_c3, ev['entidad_c3'])
+            nombres_de_personas_curadas = {nombre for nombre, cargo, apodo in ACTORES_C3.get(ev['entidad_c3'], [])}
+            solo_personas = [m for m in mencionados if m in nombres_de_personas_curadas]
+            if solo_personas:
+                sentimiento = clasificarSentimientoC3(texto_c3)
+                guardarMencionesC3(ev['fecha'], ev['entidad_c3'], solo_personas, sentimiento, ev['id'], ev.get('fuente_url',''), ev.get('descripcion',''))
+
+    aplicar_incrementos_cobertura(incrementos_cobertura_existente)
+
+    conteo_final = {}
+    for ev in eventos_nuevos:
+        conteo_final[ev['tema_id']] = conteo_final.get(ev['tema_id'], 0) + 1
+    actores_altos_para_escalar = cargar_actores_alta_influencia()
+    for tema_id, conteo in conteo_final.items():
+        escalar_a_agenda_nacional_si_aplica(tema_id, conteo, cargar_eventos_existentes(), actores_altos_para_escalar)
+
+    if eventos_nuevos:
+        print(f'{len(eventos_nuevos)} evento(s) NUEVO(S) escrito(s) directo a eventos.csv (tiempo real, tema ya conocido).')
+    else:
+        print('Sin eventos nuevos de temas conocidos esta corrida.')
+
+    guardar_candidatos(candidatos_sin_tema)
+    escalar_temas_informativos()
