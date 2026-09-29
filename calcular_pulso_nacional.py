@@ -999,13 +999,36 @@ def decide_si_publicar(nuevo, ventana_agenda):
         # cortes sigue funcionando (eso ya lo hace solo el cron automático).
         return True, 'corrida manual (workflow_dispatch) -- se publica siempre'
     ahora = datetime.now(ZONA_MX)
-    if ahora.hour in CORTES_FIJOS and ahora.minute < 30:
-        return True, f'corte fijo {ahora.hour:02d}:00'
     try:
         with open(RUTA_SALIDA, encoding='utf-8') as f:
             anterior = json.load(f)
     except FileNotFoundError:
         return True, 'primer corte, no había snapshot previo'
+
+    # Corte fijo -- BUG REAL detectado el 2026-09-24 (y repetido después, ver el corte de
+    # las 18:00 quedándose pegado en el de las 16:52 horas más tarde): GitHub Actions NO
+    # garantiza que un cron corra al minuto exacto -- si la corrida programada para las
+    # 18:00 se retrasa más de 30 min (pasa seguido bajo carga), la condición vieja
+    # ("ahora.hour in CORTES_FIJOS and ahora.minute < 30") ya no era cierta para ESA
+    # corrida, y como el cron no vuelve a caer en la hora 18 hasta el día siguiente, el
+    # corte fijo se perdía por completo -- no en 13h (el umbral de abajo), sino hasta el
+    # siguiente corte fijo real. Ahora en vez de exigir un minuto exacto, se compara contra
+    # el último corte fijo que YA debería haber pasado: si el snapshot publicado es de
+    # ANTES de ese corte fijo, se publica ahora mismo sin importar qué tan tarde vaya el
+    # cron -- autocorrectivo ante cualquier retraso, no solo uno menor a 30 min.
+    hora_fija_objetivo = max((h for h in CORTES_FIJOS if h <= ahora.hour), default=None)
+    if hora_fija_objetivo is not None:
+        objetivo_dt = ahora.replace(hour=hora_fija_objetivo, minute=0, second=0, microsecond=0)
+        generado_anterior_raw = anterior.get('generado_en')
+        ts_anterior_chk = None
+        if generado_anterior_raw:
+            try:
+                ts_anterior_chk = datetime.fromisoformat(generado_anterior_raw)
+            except (ValueError, TypeError):
+                ts_anterior_chk = None
+        if not ts_anterior_chk or ts_anterior_chk < objetivo_dt:
+            return True, f'corte fijo {hora_fija_objetivo:02d}:00 pendiente de publicar (último corte: {generado_anterior_raw})'
+
     t_ant, t_nuevo = anterior.get('tension_nacional'), nuevo.get('tension_nacional')
     if t_ant is not None and t_nuevo is not None and abs(t_nuevo - t_ant) >= UMBRAL_CAMBIO_TENSION:
         return True, f'tensión se movió {abs(t_nuevo-t_ant)} puntos desde el último corte ({t_ant}→{t_nuevo})'
