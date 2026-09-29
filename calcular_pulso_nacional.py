@@ -654,28 +654,19 @@ def calcular():
     ids_retomados = {r['id'] for r in retomados}
     ids_nuevos = {n['id'] for n in nuevos}
 
-    # CORRECCIÓN -- pedido explícito ("aquí solo hay uno"): esta sección vivía en la MISMA
-    # ventana angosta de 18h que Top 5/Nuevos (peso_tema), pero encima de esa ventana ya
-    # corta se le exige nota de fuente ALTA/OFICIAL + mención real por nombre + que no sea
-    # columna de opinión -- con 4 filtros exigentes encimados sobre solo 18h, casi siempre
-    # sobrevive un único actor (se confirmó: en un corte real, 46 actores vinculados a
-    # temas de agenda nacional recientes, pero solo 1 con nota real que lo nombre en esa
-    # ventana). Se amplía la ventana de CANDIDATOS a la misma semana en curso que ya usa
-    # el Tablero de Actores -- sigue exigiendo agenda nacional real (temas_1) y todos los
-    # demás filtros de calidad, solo deja de cortar en 18h.
-    def _peso_tema_semana(tid):
-        return sum(float(e['intensidad']) for e in eventos_por_tema.get(tid, [])
-                   if inicio_semana <= e['_ts'] <= ahora)
-
-    temas_recientes_semana = {tid for tid in temas_1
-                               if any(inicio_semana <= e['_ts'] <= ahora for e in eventos_por_tema.get(tid, []))}
+    # CONFIRMADO Y REVERTIDO -- se probó ampliar esta ventana a la semana completa (como el
+    # Tablero) para que salieran más de 1 actor, pero eso también dejaba pasar notas de
+    # 2-3 días de antigüedad ("hay actores con fecha de ayer, más de 24hrs") -- decisión
+    # explícita: se prefiere la ventana angosta de 18h (peso_tema, la misma de Top 5/
+    # Nuevos) aunque case tras corte sobreviva un único actor, antes que mostrar notas
+    # viejas como si fueran de "ahora mismo".
     conteo_actor = {}
     for ta in tema_actores:
-        if ta['tema_id'] not in temas_recientes_semana:
+        if ta['tema_id'] not in peso_tema:
             continue
         conteo_actor.setdefault(ta['actor_id'], []).append(ta)
     ranking_actores = sorted(conteo_actor.items(),
-                              key=lambda kv: max(_peso_tema_semana(x['tema_id']) for x in kv[1]),
+                              key=lambda kv: max(peso_tema.get(x['tema_id'], 0) for x in kv[1]),
                               reverse=True)
     # actores.csv puede tener dos personas reales distintas que comparten los mismos dos
     # apellidos (hermanos, p.ej. "Fernando Farías Laguna" / "Manuel Roberto Farías Laguna").
@@ -698,12 +689,13 @@ def calcular():
         """La nota real donde ese actor es mencionado dentro del tema -- nunca el título
         del tema. Corregido: antes buscaba en TODO el historial del tema (por eso podían
         salir notas de enero o mayo en un panel que se supone que es de "ahora mismo") --
-        eso ya no es lo que se pidió: Actores Destacados vive ahora en la misma ventana
-        SEMANAL que el Tablero de Actores (antes era la ventana de 18h de Top 5/Nuevos,
-        demasiado angosta combinada con los demás filtros -- ver corrección arriba, en
-        ranking_actores). Si nadie tiene mención real esta semana, el actor simplemente no
-        aparece ese corte -- no se rellena con historial viejo solo para no dejar el
-        espacio vacío.
+        eso ya no es lo que se pidió: Actores Destacados vive en el mismo corte de
+        ventana reciente que el resto del módulo (18h, VENTANA_HORAS), igual que Top 5 /
+        Nuevos -- se probó ampliarla a la semana pero eso dejaba pasar notas de 2-3 días,
+        que el usuario no quiere ver aquí (decisión explícita: prefiere 18h aunque casi
+        siempre sobreviva un único actor). Si nadie tiene mención reciente, el actor
+        simplemente no aparece ese corte -- no se rellena con historial viejo solo para no
+        dejar el espacio vacío.
 
         Exige, además, que esa nota sea de un medio de primer nivel (ALTA/OFICIAL) --
         mismo criterio que ya aplica el Top 5 y la declaración relevante. Antes de esta
@@ -712,7 +704,7 @@ def calcular():
         justificados solo por una nota de un medio no reconocido). Si un actor de verdad
         relevante solo tiene mención en fuentes de menor nivel, se excluye -- no se
         muestra con una fuente floja solo para no dejar el espacio vacío."""
-        evs = [e for e in eventos_por_tema.get(tema_id, []) if inicio_semana <= e['_ts'] <= ahora]
+        evs = [e for e in eventos_por_tema.get(tema_id, []) if hace_24h <= e['_ts'] <= ahora]
         nombre_limpio = re.sub(r'\([^)]*\)', '', nombre_actor).strip()
         partes = [x for x in nombre_limpio.split() if len(x) > 2]
         clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
@@ -762,7 +754,7 @@ def calcular():
         clave_nombre = actor['nombre'].strip().lower()
         if clave_nombre in nombres_ya_usados:
             continue
-        vinculos_ordenados = sorted(vinculos, key=lambda x: _peso_tema_semana(x['tema_id']), reverse=True)
+        vinculos_ordenados = sorted(vinculos, key=lambda x: peso_tema.get(x['tema_id'], 0), reverse=True)
         v, nota, tema_v = None, None, None
         for candidato in vinculos_ordenados:
             n = nota_real_para_actor(actor['nombre'], candidato['tema_id'])
@@ -1085,14 +1077,38 @@ def calcular():
     # "no hubo mañanera ese día" con la hora actual, no con una constante inventada.
     # ================================================================
     hoy_iso = ahora.date().isoformat()
-    eventos_mananera_hoy = [e for e in eventos_validos if e.get('fecha') == hoy_iso and '[Mañanera]' in e['descripcion']]
+    # CORRECCIÓN -- confirmado con un resumen real ya publicado: robot_buscar_temas.py
+    # (ya corregido para que no vuelva a pasar) había guardado 3 eventos "[Mañanera]"
+    # duplicados con un widget de nota relacionada (JSON-LD en crudo) en vez de un punto
+    # real -- pero esos eventos YA quedaron grabados en eventos.csv, así que arreglar el
+    # robot no los limpia retroactivamente: seguirían mostrándose hasta que cambie la
+    # fecha. Aquí, al leer para mostrar, se filtra lo mismo defensivamente (para lo ya
+    # guardado) y se deduplica por texto -- así se autocorrige sin tener que editar
+    # eventos.csv a mano.
+    _MARCAS_JUNK_MANANERA = ('@context', '@type', 'schema.org', 'NewsArticle',
+                              'application/ld+json', '"headline"', '"datePublished"',
+                              '| Mañanera de Hoy')
+
+    def _mananera_valida(e):
+        return not any(m in e['descripcion'] for m in _MARCAS_JUNK_MANANERA)
+
+    eventos_mananera_hoy = [e for e in eventos_validos if e.get('fecha') == hoy_iso
+                             and '[Mañanera]' in e['descripcion'] and _mananera_valida(e)]
+    vistos_mananera = set()
+    eventos_mananera_hoy_unicos = []
+    for e in sorted(eventos_mananera_hoy, key=lambda e: float(e['intensidad']), reverse=True):
+        clave = e['descripcion'].split('[Mañanera]', 1)[-1].strip()[:60].lower()
+        if clave in vistos_mananera:
+            continue
+        vistos_mananera.add(clave)
+        eventos_mananera_hoy_unicos.append(e)
     resumen_mananera = [{
         'texto': e['descripcion'].split('[Mañanera]', 1)[-1].strip(),
         'categoria': e.get('categoria', ''),
         'intensidad': float(e['intensidad']),
         'alerta': '🔔 ALERTA' in e['descripcion'],
         'fuente_url': e.get('fuente_url', ''),
-    } for e in sorted(eventos_mananera_hoy, key=lambda e: float(e['intensidad']), reverse=True)]
+    } for e in eventos_mananera_hoy_unicos]
     if resumen_mananera:
         mananera_estado = 'ok'
     elif ahora.hour < 10:
