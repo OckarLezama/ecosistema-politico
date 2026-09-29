@@ -203,8 +203,8 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
    muerta, el halo nunca se movía, se veía plano). transform-box:fill-box es necesario
    para que scale() en un <circle> SVG escale desde su propio centro, no desde la esquina
    0,0 del viewBox entero. --- */
-@keyframes pulso-tablero-respira{ 0%,100%{ transform:scale(1); opacity:0.35; } 50%{ transform:scale(1.22); opacity:0.12; } }
-.pulso-halo-vivo{ transform-box:fill-box; transform-origin:center; animation:pulso-tablero-respira 2.6s ease-in-out infinite; opacity:0.35; }
+@keyframes pulso-tablero-respira{ 0%,100%{ transform:scale(1); opacity:0.6; } 50%{ transform:scale(1.3); opacity:0.22; } }
+.pulso-halo-vivo{ transform-box:fill-box; transform-origin:center; animation:pulso-tablero-respira 2.6s ease-in-out infinite; opacity:0.6; }
 @keyframes pulso-tablero-ping{ 0%{ transform:scale(0.9); opacity:0.6; } 100%{ transform:scale(2.3); opacity:0; } }
 .pulso-tablero-ping{ transform-box:fill-box; transform-origin:center; animation:pulso-tablero-ping 1.8s ease-out infinite; pointer-events:none; }
 .pulso-tablero-pieza{ transform-box:fill-box; transform-origin:center; transition:transform .15s ease; }
@@ -214,8 +214,6 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .pulso-tablero-anillo{ transform-box:fill-box; transform-origin:center; pointer-events:none; }
 .pulso-tablero-link:hover .pulso-tablero-anillo,
 .pulso-tablero-link:focus-visible .pulso-tablero-anillo{ transform:scale(1.18); }
-@keyframes pulso-destello-brillo{ 0%,100%{ opacity:0; transform:scale(0.3) rotate(0deg); } 50%{ opacity:1; transform:scale(1) rotate(20deg); } }
-.pulso-destello{ transform-box:fill-box; transform-origin:center; animation:pulso-destello-brillo 3.4s ease-in-out infinite; pointer-events:none; }
 
 .feed-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
