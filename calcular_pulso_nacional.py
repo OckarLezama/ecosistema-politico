@@ -246,11 +246,21 @@ def calcular():
     # deja muchos días en cero para las categorías menos activas y se ve más como ruido
     # que como tendencia -- una semana amortigua eso y sigue siendo 100% real (mismo
     # cálculo de siempre: % del peso total que es de cada categoría).
+    #
+    # Las 4 semanas se alinean a los MISMOS días de calendario (hora CDMX) que usa Patrón
+    # Histórico más abajo -- antes esta serie cortaba sus semanas en la hora exacta de
+    # "ahora" (ej. martes 9:51am a martes 9:51am), mientras Patrón Histórico corta por
+    # día completo de medianoche a medianoche; con relojes distintos los dos "4 semanas"
+    # terminaban mostrando rangos ligeramente distintos. Ahora ambos parten los mismos 28
+    # días de calendario (hoy y los 27 anteriores) en 4 bloques de 7 días idénticos.
     # ================================================================
+    hoy_fecha = ahora.date()
     categorias_tendencia_4sem = []
     for semanas_atras in range(3, -1, -1):
-        fin_sem = ahora - timedelta(days=7 * semanas_atras)
-        inicio_sem = fin_sem - timedelta(days=7)
+        fin_dia_incl = hoy_fecha - timedelta(days=7 * semanas_atras)
+        inicio_dia = fin_dia_incl - timedelta(days=6)
+        inicio_sem = datetime.combine(inicio_dia, datetime.min.time()).replace(tzinfo=ZONA_MX)
+        fin_sem = datetime.combine(fin_dia_incl, datetime.min.time()).replace(tzinfo=ZONA_MX) + timedelta(days=1)
         evs_sem = [e for e in eventos_validos if inicio_sem <= e['_ts'] < fin_sem and e['tema_id'] in temas_1]
         pesos_sem = {c: 0.0 for c in CATEGORIAS}
         for e in evs_sem:
@@ -258,7 +268,7 @@ def calcular():
                 pesos_sem[e['categoria']] += float(e['intensidad'])
         total_sem = sum(pesos_sem.values()) or 1
         categorias_tendencia_4sem.append({
-            'semana_fin': fin_sem.date().isoformat(),
+            'semana_fin': fin_dia_incl.isoformat(),
             'categorias': [{'categoria': c, 'peso_pct': round(pesos_sem[c] / total_sem * 100) if total_sem else 0}
                             for c in CATEGORIAS],
         })
