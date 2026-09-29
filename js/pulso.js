@@ -282,7 +282,8 @@ function svgTendenciaCategoriasPulso(serie){
     valores.forEach((v,i)=>{
       const esMax = i===idxMax;
       const halo = esMax ? `<circle cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="7.5" fill="${color}" opacity="0.22" style="animation:pulso-halo 1.8s ease-in-out infinite;"/>` : '';
-      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${serie[i].semana_fin} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4.5:1.4}" fill="${color}" stroke="var(--bg-2)" stroke-width="${esMax?1:0.6}" style="cursor:pointer;"/>`;
+      const rangoSemana = serie[i].semana_inicio ? `${serie[i].semana_inicio} a ${serie[i].semana_fin}` : serie[i].semana_fin;
+      svgLineasYPuntos += `${halo}<circle class="pulso-tend-pt" data-info="${cat} · semana del ${rangoSemana} · ${v}%${esMax?' · máximo de sus 4 semanas':''}" cx="${xDe(i).toFixed(1)}" cy="${y(v)}" r="${esMax?4.5:1.4}" fill="${color}" stroke="var(--bg-2)" stroke-width="${esMax?1:0.6}" style="cursor:pointer;"/>`;
     });
   });
 
@@ -300,7 +301,12 @@ function svgTendenciaCategoriasPulso(serie){
     ${svgAreas}
     <line x1="0" y1="${h-padB}" x2="${w}" y2="${h-padB}" stroke="var(--line-strong)" stroke-width="0.75"/>
     ${svgLineasYPuntos}
-    ${serie.map((s,i)=>`<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${s.semana_fin.slice(5)}</text>`).join('')}
+    ${/* CORREGIDO -- pedido explícito, con evidencia visual: el eje etiquetaba el FIN de
+        cada semana, así que el primer punto decía "09-08" aunque su dato ya arrancaba el
+        02-sep (mismo día en que arranca Patrón Histórico) -- parecía un periodo más corto
+        sin serlo. Ahora usa semana_inicio, igual que Patrón Histórico usa el día real de
+        cada punto, así el primer rótulo de ambas gráficas coincide. */''}
+    ${serie.map((s,i)=>`<text x="${xDe(i).toFixed(1)}" y="${h-6}" font-size="8" fill="var(--ink-3)" font-family="var(--f-mono)" text-anchor="middle">${(s.semana_inicio||s.semana_fin).slice(5)}</text>`).join('')}
     <line x1="${xDe(serie.length-1).toFixed(1)}" y1="${padT}" x2="${xDe(serie.length-1).toFixed(1)}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
     <polygon class="pulso-marca-viva" points="${xDe(serie.length-1).toFixed(1)},${(padT+7).toFixed(1)} ${(xDe(serie.length-1)-5).toFixed(1)},${padT} ${(xDe(serie.length-1)+5).toFixed(1)},${padT}" fill="var(--teal)"/>
     <text class="pulso-marca-viva" x="${(xDe(serie.length-1)+4).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="end">HOY · ${fmtFechaCortaPulso(serie[serie.length-1].semana_fin)}</text>
