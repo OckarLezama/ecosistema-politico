@@ -236,8 +236,21 @@ function calcularDuracionesEtapasLeg(reforma){
   let entradas = [];
   if(reforma.historial_etapas){
     entradas = reforma.historial_etapas.split('|').map(par=>{
-      const [etapa, fecha] = par.split(':').map(s=>s?.trim());
-      return { etapa, fecha };
+      let [etapa, fecha] = par.split(':').map(s=>s?.trim());
+      // CORRECCIÓN real -- reportado: clic en el nodo "Comisión" del stepper no mostraba
+      // nada. El dato real trae una anotación pegada entre paréntesis al nombre de la
+      // etapa (ej. "Comisión (dictamen aprobado, primera lectura):2026-09-23"), así que la
+      // clave que quedaba en `entradas`/`resultado` era el string completo con la
+      // anotación, no "Comisión" a secas -- todas las búsquedas del resto del archivo
+      // comparan contra las etiquetas fijas de ETAPAS_LINEA_LEG ('Presentada', 'Comisión',
+      // 'Pleno'...), así que nunca encontraban coincidencia y el nodo se quedaba sin datos.
+      // Se separa la anotación del nombre canónico de la etapa, conservándola aparte.
+      let detalle = null;
+      if(etapa){
+        const m = etapa.match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+        if(m){ etapa = m[1].trim(); detalle = m[2].trim(); }
+      }
+      return { etapa, fecha, detalle };
     }).filter(e=> e.etapa && e.fecha);
   }
   if(!entradas.length && reforma.fecha_presentacion){
@@ -254,7 +267,7 @@ function calcularDuracionesEtapasLeg(reforma){
     const siguiente = entradas[i+1];
     const fin = siguiente ? new Date(siguiente.fecha+'T00:00:00').getTime() : Date.now();
     const dias = Math.max(0, Math.round((fin-inicio)/86400000));
-    resultado[e.etapa] = { dias, corriendo: !siguiente, fechaInicio: e.fecha };
+    resultado[e.etapa] = { dias, corriendo: !siguiente, fechaInicio: e.fecha, detalle: e.detalle };
   });
 
   // Defensivo: si a `etapa_actual` se le adelantó la columna pero a
