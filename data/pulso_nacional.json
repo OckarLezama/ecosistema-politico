@@ -1,13 +1,13 @@
 {
-  "generado_en": "2026-09-29T13:28:27.887845-06:00",
+  "generado_en": "2026-09-29T13:50:22.072492-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 30,
+  "n_notas_ventana": 31,
   "baja_confianza": false,
   "tension_nacional": 55,
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 71,
+      "peso_pct": 69,
       "tema_principal": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
       "tema_principal_id": "auto-4d06ef5b18",
       "n_temas": 12,
@@ -107,17 +107,23 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 12,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
+      "peso_pct": 15,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
       "n_temas": 2,
-      "n_notas": 4,
+      "n_notas": 5,
       "notas": [
         {
           "texto": "Confirma Sheinbaum reunión de Ebrard con funcionarios de EU por T-MEC - Quadratín México",
           "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOZjd1NlQtbDE3ODQ3bW93X2tPWU9EeWdmMkp3WjN4eEo1ZmYzT1RTYl9xcXVtaG5adkRzbS1LangwTzZiaXpSQVJ1b2hHNnNNVWg0cWFrX1JqYnMwNXlULXlqUnB4OWNjMU1rYnNrdjZ1RW53aFVHbG9SenNtbHM3VFlKY3ZtajlJSjhXLTJuSmo0RVg0LTU0dU91cWhqMmFUNnhtcQ?oc=5",
           "intensidad": 9.0,
           "medio": "Quadratín México"
+        },
+        {
+          "texto": "¿Cómo es la casa que alquiló el empresario Amílcar Olán en Suiza? Se renta en más de 300 mil pesos al mes",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/",
+          "intensidad": 7.0,
+          "medio": "elfinanciero.com.mx"
         },
         {
           "texto": "Huachicol fiscal movió 3.1 billones de pesos, tres veces el costo de las obras insignia de AMLO - EL CEO",
@@ -141,7 +147,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 10,
+      "peso_pct": 9,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
@@ -917,30 +923,30 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSVpvMEZBRmhHYjN3c0s5QnB3OHo5UU5tU0Rzd1FwZkpyRGRnYjdMYmlwaHlFUnRlSUQ4UHBuTVR5Wk9kZTlEZFY4TEl6MHZjeXg2SmRaeWFiRGxUbmxUZmgwbUNtTHpvNVRtUHZFVDBEU01BNDlVM3lrMEVMTHBsS194dFRFNUZGS0VGbXVqTzjSAZABQVVfeXFMTnV2dWREQ3laem5hTk56OTNZZ25OMjBsV0NqdlNFLVRYZ3Z1RW1aVUEydWhQV2lqYWhOYUxPUUM0SDdlWE9DdFRJNEZyMHh6SnBXdGRXNXhya0E4cHJ6dGhQRFQyMC03OE5zTnI2ajJkSXFUcmRCNjRPSF9iQW42Q0ZBc1J2bGhvRDBFRGV6QlJV?oc=5"
     },
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "EU y México ‘chocan’ por China: Restricciones de Trump ponen en riesgo al T-MEC",
-      "peso": 20.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/29/eu-y-mexico-chocan-por-china-restricciones-de-trump-ponen-en-riesgo-al-t-mec/"
-    },
-    {
-      "id": "sinaloa-crisis",
-      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
-      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
-      "motivo": "EU sanciona a líderes del Cártel de Sinaloa, entre ellos, al hijo del \"Mayo\" Zambada",
-      "peso": 18.0,
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "motivo": "¿Cómo es la casa que alquiló el empresario Amílcar Olán en Suiza? Se renta en más de 300 mil pesos al mes",
+      "peso": 25.0,
       "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "fuente_url": "https://www.informador.mx/mexico/eu-sanciona-a-lideres-del-cartel-de-sinaloa-entre-ellos-al-hijo-del-mayo-zambada-la-uif-bloquea-cuentas-20260929-0102.html"
+      "medios_corroborantes": 3,
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/"
+    },
+    {
+      "id": "el-mencho",
+      "nombre": "Abatimiento de \"El Mencho\"",
+      "categoria": "Seguridad Nacional",
+      "resumen": "El 22 de febrero de 2026, fuerzas de seguridad mexicanas abatieron a Nemesio 'El Mencho' Oseguera Cervantes, líder del Cártel Jalisco Nueva Generación, durante un operativo militar en Tapalpa, Jalisco. El operativo detonó una ola de violencia, bloqueos e incendios en varios estados; su lugarteniente 'El Tuli' encabezó las represalias hasta ser abatido, con un saldo de al menos 25 elementos de la Guardia Nacional muertos y decenas de detenidos.",
+      "motivo": "Así era el modus operandi de 'El Bebo' y su relación con 'El Mencho'",
+      "peso": 5.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "fuente_url": "https://www.informador.mx/mexico/asi-era-el-modus-operandi-de-el-bebo-y-su-relacion-con-el-mencho-20260928-0155.html"
     }
   ],
   "temas_nuevos": [
@@ -1021,42 +1027,12 @@
       "tema_nuevo": false
     },
     {
-      "id": "ernesto_ruffo",
-      "nombre": "Ernesto Ruffo Appel",
-      "rol": "Mencionado",
-      "tema": "Huachicol Fiscal",
-      "nota": "Huachicol fiscal también pasa por EU: Ernesto Ruffo, la clave para entender la relación con Texas - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUdIBjwFBVV95cUxNTDRVVU5EX2dmalJWNFFYeWRzYWJ6WEVyR3FfckNFSVdiZTVfSk81dVNnRVpTUWtUVGtZT3gzTmhJbHVnazB5ZkIxZ2E3VV9hazROemFCWXZqaUlVVzkyazdoZnBKajFCSHYwdDBxMDlWMHNVcGxpckVaT2pVUXFia040ckw5ckxHckhlQ3pyUQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
       "id": "amilcar_olan_aparicio",
       "nombre": "Amílcar Olán Aparicio",
       "rol": "Investigado",
       "tema": "Huachicol Fiscal",
-      "nota": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "Operación Enjambre suma 14 alcaldes procesados; cuatro son de Morena - El Inform",
-      "nota": "Procesan al alcalde de Salina Cruz por violencia política contra candidata de Morena: lo acusan de pagar a medios para hablar en su contra - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOYnJKS1JEM1BRMHVyenpBS1pVam9yOW0xZnpGLW1fTFN1SWlvNy0xVzZaZUNqVU51cTJFU0hfRjhaNXRqVzhmYTV4cktfVUVqdzBRZEFYSGgzQ250MlpkMFdJR1QzaTc5eC1mWGZ3UzJRRUxacE9yM1NGZ2FoOXpyVHhHc01sVkRoZ1NtNjktVS1qSDBCT2pHaWVCX0h4dGlIYkhScjdnQWxTa1dwZ0xEaExNc2Y5dzkzcVNfX1FKUzljOElPaDNkMm8wLWFLT3JHY0pkM2pzU1YzaTY0MXFueFNUUkJzVzZ5RG9YMkFucHZFQXZDdy1FNXh0blUxV1g4WnIxUVhwTWJkQlpp0gGnAkFVX3lxTFBjeG1hNkVVZHYzb2dLTml4YjFlTHFKa09CWFl3dzZtQ2FpTTE2TV81ZE9QV2hCa19HS1FXQm9wandHMF9xQUg4eWI2UXNiOW0zb3NEWUM5Y1JYYUxENmRTaTdpLVBqLUVveVpuMXVzY192OXJYcE1qdTlaZTVOUlJtM1BIM3cwM1dENVRCZTU5RzFmbWlJQ1RiVnpfS2g2MXAzX2RiTV80RTJuVlJ3dktBY1FVU3gySUY5RTYwclVBMFEzV3dqTkc0ZjJYS1NxRl9oazc5a0RGeXhFV2JSb09OZG54enBKeVpqSmI2dGxjQ3dxR1BucW4zSDFCYTJFN2JOTTBaX01vVE80QmtYei1KSjBVUjhZM2RVNVlXdHNEZllHOGl2Vjg?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false
-    },
-    {
-      "id": "monreal",
-      "nombre": "Ricardo Monreal",
-      "rol": "Responsable institucional",
-      "tema": "Morena rumbo a 2027: Zacatecas y Guerrero, estados donde enfrenta divisiones int",
-      "nota": "Ricardo Monreal reconoce “desgaste real” de Morena rumbo a 2027: estos son los 6 estados que ve más difíciles - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNYXBTcVo3R3Z2WGpwczRhaXlmaGJLcU5tTHJrWEoxS1ZxSHBES3NlMjYzTVI1SkluVnFYRE5FbldHRy1yV3lwSHJ2VUdpZVRQREs3ZkhoMThQejRBNldXV1RZYnEtbEJpOGI4b1IxT3dXczg1Z1V3b1MtSzJaWXFiWUdzbVVnRXZSMnA2Ni1USmVzcXE1bC1KRzM4dTFCMnBOLWtwbmYwcE5uMjBzaUF3LXRpbUFBZ0pkYm5ualRET1RxV05JTXU2VHU3MVRTUGEtUkVnQm5lZkxfX05nRURLazZhSdIB_gFBVV95cUxOV1JGUmw5VUNtX1hLQ2FJbS02TzNJcml5M1JrWFNJNXhtaTlWNWNPQmhJYldwTE9RSE16bTU4VElYUUQ2VGVsU3pTMllCQmJ6dWN2SDg4aU1fVVYteUFQbFVjOXFfT2RsQklHaldIZzJ4ZGlXaUMxWjNoNzdpbzRBQmVzbkd4TjlMRHJoYk9TX0RJY1B4MzB6R3JsNjNIN0VWdVBmOW9ZUFpoSmloUFJ3U19iS3BWY2NzdXRpTjJ2MUgzSkxCLW5kdlM2WnZhUk9aQjFMSjlHaFNfQ3dJbnZ2TXhXTG93Ml82dDFvZndLeC1EYnRINFhHeTNvTGZ2UQ?oc=5",
+      "nota": "¿Cómo es la casa que alquiló el empresario Amílcar Olán en Suiza? Se renta en más de 300 mil pesos al mes",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/",
       "reaparece": false,
       "tema_nuevo": false
     }
@@ -1295,8 +1271,8 @@
     {
       "fecha": "2026-09-29",
       "tension": 55,
-      "n_notas": 25,
-      "n_alto_impacto": 19,
+      "n_notas": 26,
+      "n_alto_impacto": 20,
       "n_medio_impacto": 6,
       "n_bajo_impacto": 0
     }
@@ -1338,10 +1314,31 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXRhRXFHa2tnQTFXOEJOSUZWdXZlQjNsTzhJLUpMYzk5UlJ6UjMydTNCaENTVU5lMWVubmlyZHdibE1wYU1SZS1abkZiR2ZsdlpDNnN2cDJDQ1lBRi1ZSDJLMXdVbTRtYk1IWms5MEdDa2xSSmVXbHJqd3VfdnF4MThhQkNYX2pueXhWWnJpckxLU2R2d3BGSDlZcVBiOTBrZnfSAacBQVVfeXFMT1NrRGtNVDlsenA2ZkVMeU5FMUxzUHlqNmtaMEIwd1VFY3Q1cmdQdWMxamlqTEhLMERvZW9OaHdMclJPM0FGM0FjTkhQcC1leDBoZnR1cWgwXzh4QTR6OHpYX1VCbHFRSnREdUwtWmQ4STh4NmozNHlsZ3JyUU1rbkgyR0RaN0t4SW1tRGtlSl9kWmxhb1J4QTdVbDJmTGxMU2k3SzFBRGc?oc=5",
-      "nota_texto": "Morena presentará a 7 defensores de la transformación este lunes - Uniradio Informa",
+      "nota_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZExOeEpMWS10UHZqdEhIb3p5V2xQR0ZVVi1zS2xreXgzWkttRjFqTmpQdWJydzJJTjZrT2F1LWpaRy1tTlR6c1hYcDh4MzJyNklzYmxNN0xxb2pvZG11T1JvZF9TOENrd2VXb3NHZGV4Zzl3Sjd2ektaZDdyd004cXRHVlc0aFZHVE1NTE01bFVDVVVxTGR3NWtNSDlESUxGaG45eDAtTFBjZkxfaWJxR2hhYlNUc1dMNzlQTks2YWg?oc=5",
+      "nota_texto": "“Hubo mucha unidad”: Sheinbaum celebra proceso interno de Morena rumbo a 2027 - Nación321",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
+      "dias_activo": 2
+    },
+    {
+      "id": "amilcar_olan_aparicio",
+      "nombre": "Amílcar Olán Aparicio",
+      "iniciales": "AO",
+      "x_lunes": 18,
+      "y_lunes": 100,
+      "x_hoy": 36,
+      "y_hoy": 100,
+      "delta_pts": 6,
+      "alcance": 4,
+      "n_alto": 4,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "es_nuevo": false,
+      "categoria": "Relación Bilateral",
       "dias_activo": 2
     },
     {
@@ -1359,31 +1356,10 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://www.yucatan.com.mx/mexico/2026/09/29/estados-unidos-analiza-acusaciones-contra-andy-lopez-beltran-the-new-york-times.html",
-      "nota_texto": "Estados Unidos analiza acusaciones contra “Andy” López Beltrán: The New York Times",
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
-      "dias_activo": 2
-    },
-    {
-      "id": "amilcar_olan_aparicio",
-      "nombre": "Amílcar Olán Aparicio",
-      "iniciales": "AO",
-      "x_lunes": 18,
-      "y_lunes": 100,
-      "x_hoy": 27,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 3,
-      "n_alto": 3,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
-      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
-      "es_nuevo": false,
-      "categoria": "Seguridad Nacional",
       "dias_activo": 2
     },
     {
@@ -1493,30 +1469,8 @@
     }
   ],
   "tablero_semana_inicio": "2026-09-28",
-  "resumen_mananera": [
-    {
-      "texto": "Mañanera de hoy 29 de septiembre de 2026: resumen y qué dijo Sheinbaum | Mañanera de Hoy {\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"headline\":\"Mañanera de hoy 29 de se",
-      "categoria": "Social",
-      "intensidad": 6.0,
-      "alerta": true,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Mañanera de hoy 29 de septiembre de 2026: resumen y qué dijo Sheinbaum | Mañanera de Hoy {\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"headline\":\"Mañanera de hoy 29 de se",
-      "categoria": "Social",
-      "intensidad": 6.0,
-      "alerta": true,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Mañanera de hoy 29 de septiembre de 2026: resumen y qué dijo Sheinbaum | Mañanera de Hoy {\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"headline\":\"Mañanera de hoy 29 de se",
-      "categoria": "Social",
-      "intensidad": 6.0,
-      "alerta": true,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
+  "resumen_mananera": [],
+  "mananera_estado": "sin_mananera",
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
@@ -1556,5 +1510,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-09-29 13:28"
+  "hora_corte_publicada": "2026-09-29 13:50"
 }
