@@ -253,17 +253,27 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   color:var(--ink-2); border-radius:50%; width:26px; height:26px; cursor:pointer;
 }
 
-/* Mapa de puntos (Portada del Día) -- ventana negra a pantalla completa con un
-   campo de puntos uniforme que gira una sola vez, muy lento, en sentido horario. */
-.mapa-puntos-backdrop{ background:rgba(0,0,0,.85); }
+/* Mapa de puntos (Portada del Día) -- ventana negra con un campo de puntos que
+   gira en sentido horario a un ritmo perceptible, y cada punto late (opacidad)
+   a su propio tiempo -- así el movimiento se nota de inmediato, no solo al
+   cabo de varios minutos. Tamaño pensado para verse bien también en tablet. */
+.mapa-puntos-backdrop{ background:rgba(0,0,0,.9); padding:16px; }
 .mapa-puntos-card{
-  background:#0B0D10; border:1px solid #1B1F25; max-width:600px; padding:32px;
-  display:flex; align-items:center; justify-content:center;
+  background:#0B0D10; border:1px solid #1B1F25; max-width:min(680px,94vw); width:auto;
+  padding:28px 20px; display:flex; align-items:center; justify-content:center;
 }
-.mapa-puntos-giro{ transform-origin:320px 320px; animation:mapa-puntos-spin 160s linear infinite; }
-.mapa-puntos-linea{ animation:mapa-puntos-pulso 7s ease-in-out infinite; }
+.mapa-puntos-giro{ transform-origin:320px 320px; animation:mapa-puntos-spin 55s linear infinite; }
+.mapa-puntos-linea{ animation:mapa-puntos-pulso 6s ease-in-out infinite; }
+.mapa-punto-late{ animation-name:mapa-puntos-latido; animation-timing-function:ease-in-out; animation-iteration-count:infinite; opacity:.55; transform-box:fill-box; transform-origin:center; }
+.mapa-punto-link{ cursor:pointer; }
+.mapa-punto-link:hover .mapa-punto-late,
+.mapa-punto-link:focus .mapa-punto-late{ opacity:1 !important; }
 @keyframes mapa-puntos-spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
-@keyframes mapa-puntos-pulso{ 0%,100%{opacity:.06;} 50%{opacity:.2;} }
+@keyframes mapa-puntos-pulso{ 0%,100%{opacity:.14;} 50%{opacity:.32;} }
+@keyframes mapa-puntos-latido{ 0%,100%{opacity:.4; transform:scale(1);} 50%{opacity:.95; transform:scale(1.25);} }
+@media (max-width:820px){
+  .mapa-puntos-card{ padding:18px 10px; }
+}
 
 .foda-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;}
 .foda-cuad{border:1px solid; border-radius:var(--radius-s); padding:8px; background:var(--bg-2);}
