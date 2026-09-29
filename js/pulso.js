@@ -474,25 +474,63 @@ function tableroActoresPulso(actores){
   const px = v => m + (v/100)*(w-2*m);
   const py = v => (h-m) - (v/100)*(h-2*m);
   const cx = px(50), cy = py(50);
+  // Escalas para las barritas del tooltip -- relativas al máximo real de ESTE corte, no
+  // a un número fijo inventado, para que la barra siempre use el rango completo.
+  const maxAbsDelta = Math.max(1, ...actores.map(a=>Math.abs(a.delta_pts||0)));
+  const maxAlcance = Math.max(1, ...actores.map(a=>a.alcance||0));
   let piezas = '';
   actores.forEach((a,i)=>{
     const color = PALETA_TABLERO_ACTORES[i % PALETA_TABLERO_ACTORES.length];
     const x1=px(a.x_lunes), y1=py(a.y_lunes), x2=px(a.x_hoy), y2=py(a.y_hoy);
-    // OJO: este texto se inyecta dentro de otro atributo HTML (data-info="...") -- el
-    // href="..." de abajo trae comillas dobles propias que, sin escapar, cierran ese
-    // atributo antes de tiempo y rompen el <circle>/<line> completo (bug real: el
-    // tablero no dibujaba NADA, ni un punto, aunque los datos venían bien). Se escapan
-    // las comillas dobles a &quot; justo antes de usarlo como atributo.
-    const info = `<b>${a.nombre}</b><br>${a.es_nuevo ? '⚡ nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}<br>Δ ${a.delta_pts>0?'+':''}${a.delta_pts} pts de exposición ponderada<br>Alcance: ${a.alcance} medio${a.alcance!==1?'s':''} · Impacto: ${a.n_alto} alto, ${a.n_medio} medio, ${a.n_bajo} bajo${a.nota_url?`<br><a href="${a.nota_url}" target="_blank" rel="noopener" style="color:var(--teal);">ver nota →</a>`:''}`.replace(/"/g, '&quot;');
+
+    // Tooltip con lectura visual, no solo texto plano -- pedido explícito: la exposición
+    // ponderada como barrita con signo/color, el impacto como franja de 3 tramos (alto/
+    // medio/bajo) en vez de "2 alto, 1 medio", y el alcance como barrita también. El link
+    // "ver nota" que traía antes SE QUITÓ: el tooltip tiene pointer-events:none (no se
+    // podía ni hacer clic) y además se perdía al mover el cursor hacia él -- inútil dos
+    // veces. Ahora la pieza ENTERA es el link real (ver más abajo, igual que un punto del
+    // mapa de relación): un tap en celular/tablet abre la nota directo, sin depender de
+    // ningún hover, que ahí no existe.
+    const deltaColor = a.delta_pts > 0 ? 'var(--riesgo-alto)' : a.delta_pts < 0 ? 'var(--teal)' : 'var(--ink-3)';
+    const deltaFlecha = a.delta_pts > 0 ? '▲' : a.delta_pts < 0 ? '▼' : '—';
+    const deltaPct = Math.round(Math.abs(a.delta_pts||0) / maxAbsDelta * 100);
+    const totalImpacto = (a.n_alto||0) + (a.n_medio||0) + (a.n_bajo||0) || 1;
+    const segAlto = Math.round((a.n_alto||0)/totalImpacto*100);
+    const segMedio = Math.round((a.n_medio||0)/totalImpacto*100);
+    const segBajo = Math.max(0, 100 - segAlto - segMedio);
+    const alcancePct = Math.round((a.alcance||0) / maxAlcance * 100);
+    const info = `
+      <div style="min-width:172px;">
+        <div style="display:flex;align-items:center;gap:6px;"><b>${a.nombre}</b>${a.es_nuevo?'<span style="font-size:8px;font-family:var(--f-mono);color:'+color+';border:1px solid '+color+';border-radius:99px;padding:0 5px;">NUEVO</span>':''}</div>
+        <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;">${a.es_nuevo ? 'nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}</div>
+        <div style="display:flex;align-items:center;gap:5px;margin-top:7px;">
+          <span style="font-family:var(--f-mono);font-size:10px;font-weight:700;color:${deltaColor};width:34px;flex-shrink:0;">${deltaFlecha} ${Math.abs(a.delta_pts||0)}</span>
+          <div style="flex:1;height:4px;background:var(--bg-1);border-radius:99px;overflow:hidden;"><div style="width:${deltaPct}%;height:100%;background:${deltaColor};"></div></div>
+        </div>
+        <div style="font-size:8px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;margin-top:1px;">exposición ponderada</div>
+        <div style="display:flex;height:6px;border-radius:99px;overflow:hidden;margin-top:7px;">
+          <div style="width:${segAlto}%;background:var(--riesgo-alto);"></div><div style="width:${segMedio}%;background:var(--riesgo-medio);"></div><div style="width:${segBajo}%;background:var(--ink-3);"></div>
+        </div>
+        <div style="font-size:8.5px;color:var(--ink-2);margin-top:2px;">Impacto: ${a.n_alto} alto · ${a.n_medio} medio · ${a.n_bajo} bajo</div>
+        <div style="display:flex;align-items:center;gap:5px;margin-top:6px;">
+          <div style="flex:1;height:4px;background:var(--bg-1);border-radius:99px;overflow:hidden;"><div style="width:${alcancePct}%;height:100%;background:var(--teal);"></div></div>
+          <span style="font-size:8.5px;color:var(--ink-2);font-family:var(--f-mono);white-space:nowrap;">${a.alcance} medio${a.alcance!==1?'s':''}</span>
+        </div>
+      </div>`.replace(/"/g, '&quot;');
     if(!a.es_nuevo){
       piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="7" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="0.4"/>`;
       piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="0.4" style="cursor:pointer;"/>`;
     }
     const r = 9 + Math.min(6, (a.alcance||0));
-    piezas += `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+4}" fill="${color}"/>`;
-    piezas += `<circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5" style="cursor:pointer;"/>`;
-    piezas += `<text x="${x2.toFixed(1)}" y="${(y2+3).toFixed(1)}" font-size="8" font-weight="700" fill="var(--bg-2)" text-anchor="middle" style="pointer-events:none;">${(a.nombre||'').trim().charAt(0)}</text>`;
-    if(a.es_nuevo) piezas += `<text x="${x2.toFixed(1)}" y="${(y2-r-4).toFixed(1)}" font-size="7" fill="${color}" text-anchor="middle" font-family="var(--f-mono)">NUEVO</text>`;
+    const abre = a.nota_url ? `<a href="${a.nota_url}" target="_blank" rel="noopener" class="pulso-tablero-link">` : '<g>';
+    const cierra = a.nota_url ? '</a>' : '</g>';
+    const retraso = ((i*0.37) % 2.4).toFixed(2);
+    piezas += `${abre}
+      ${a.es_nuevo ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="1.5" style="animation-delay:${retraso}s;"/>` : ''}
+      <circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+4}" fill="${color}" style="animation-delay:${retraso}s;"/>
+      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5"/>
+      <text x="${x2.toFixed(1)}" y="${(y2+3).toFixed(1)}" font-size="8" font-weight="700" fill="var(--bg-2)" text-anchor="middle" style="pointer-events:none;">${(a.nombre||'').trim().charAt(0)}</text>
+    ${cierra}`;
   });
   return `<div style="flex:1;position:relative;min-height:220px;">
     <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
@@ -509,13 +547,18 @@ function tableroActoresPulso(actores){
     ${piezas}
   </svg>
   </div>
-  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos). Pasa el cursor sobre una pieza para ver el detalle del movimiento.</div>`;
+  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos). Toca o pasa el cursor sobre una pieza para ver el detalle; un tap/clic abre la nota.</div>`;
 }
 function activarTableroActores(cont){
   if(!cont) return;
+  // pointerenter/pointermove/pointerleave (no mouse-only) para que el tooltip también
+  // reaccione en pantallas táctiles -- pero la acción real (ver la nota) YA NO depende de
+  // esto: cada pieza es un <a> real, así que en celular/tablet un tap simplemente abre el
+  // artículo directo, sin necesitar el hover que ahí no existe.
   cont.querySelectorAll('.pulso-tablero-pieza').forEach(p=>{
-    p.addEventListener('mousemove', ev=> mostrarTooltipPulso(p.dataset.info, ev));
-    p.addEventListener('mouseleave', ocultarTooltipPulso);
+    p.addEventListener('pointermove', ev=> mostrarTooltipPulso(p.dataset.info, ev));
+    p.addEventListener('pointerenter', ev=> mostrarTooltipPulso(p.dataset.info, ev));
+    p.addEventListener('pointerleave', ocultarTooltipPulso);
   });
 }
 
