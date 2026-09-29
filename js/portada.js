@@ -39,16 +39,32 @@ function agruparPorHechoReal(eventos){
   return grupos;
 }
 
-// Color de identidad por medio -- se usa cuando NO hay imagen real de la portada,
-// para que la tarjeta igual se sienta "de ese medio" (cabecera de color) en vez de
-// un gris genérico. Se define aquí, a mano, conforme se van agregando medios --
-// el que no esté en la lista cae a un gris neutro.
+// Color de identidad por medio -- se usa como acento (borde superior) en TODAS las
+// tarjetas, tengan o no imagen real, para reforzar de qué medio es cada una de un
+// vistazo. Se define aquí, a mano, conforme se van agregando medios -- el que no
+// esté en la lista cae a un gris neutro.
 const COLOR_MEDIO = {
   'El Universal': '#3B5DC9',
   'Reforma': '#2E8B57',
   'Milenio': '#C0392B',
+  'La Jornada': '#8B1E1E',
+  'El Financiero': '#0F2A4A',
+  'El Economista': '#00707A',
+  'La Prensa': '#C0392B',
 };
 function colorDeMedio(medio){ return COLOR_MEDIO[medio] || '#4B5157'; }
+
+// Sitio oficial de cada medio -- "Ver portada" debe llevar a la página del propio
+// medio, no al agregador (kiosko.net) que solo se usa como fuente de la imagen.
+const URL_OFICIAL_MEDIO = {
+  'El Universal': 'https://www.eluniversal.com.mx',
+  'Reforma': 'https://www.reforma.com',
+  'Milenio': 'https://www.milenio.com',
+  'La Jornada': 'https://www.jornada.com.mx',
+  'El Financiero': 'https://www.elfinanciero.com.mx',
+  'El Economista': 'https://www.eleconomista.com.mx',
+  'La Prensa': 'https://www.la-prensa.com.mx',
+};
 
 // Titulares del día -- portadas (8 columnas) de los medios impresos, capturadas UNA
 // sola vez en la mañana (5-7am) y estáticas el resto del día. Se leen de
@@ -62,7 +78,10 @@ function renderTitularesDelDia(){
   const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && (t.titular || t.imagen_url));
   if(!titulares.length){ cont.innerHTML = ''; return; }
   cont.innerHTML = `
-    <button id="portada-btn-titulares" style="background:none;border:1px solid var(--line-strong);color:var(--ink-3);font-family:var(--f-mono);font-size:10px;padding:3px 10px;border-radius:99px;cursor:pointer;margin-bottom:10px;">📰 portadas del día · ${titulares.length}</button>`;
+    <button type="button" id="portada-btn-titulares" class="leg-tt" data-tt="Portadas del día · ${titulares.length}" aria-label="Portadas del día" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4Z"/><path d="M4 4h16"/><path d="M8 4v6"/><path d="M8 14h8"/><path d="M8 17h5"/></svg>
+      <span style="position:absolute;top:-6px;right:-6px;background:var(--teal);color:#0E1116;font-family:var(--f-mono);font-size:9px;line-height:1;padding:2px 4px;border-radius:99px;min-width:14px;text-align:center;">${titulares.length}</span>
+    </button>`;
   document.getElementById('portada-btn-titulares').addEventListener('click', abrirTitularesModal);
 }
 
@@ -107,19 +126,22 @@ function abrirTitularesModal(){
       <div class="titulares-grid">
         ${titulares.map(t=>{
           const color = colorDeMedio(t.medio);
+          // el link SIEMPRE va al sitio oficial del medio -- kiosko.net solo se usa
+          // como fuente de la imagen, no es a donde se manda a la gente a leer
+          const urlOficial = URL_OFICIAL_MEDIO[t.medio] || t.url_fuente || '';
           return `
-          <div class="titulares-item${t.imagen_url ? ' con-imagen' : ''}">
+          <div class="titulares-item${t.imagen_url ? ' con-imagen' : ''}" style="border-top:3px solid ${color};">
             ${t.imagen_url
               ? `<div class="titulares-item-img" style="background-image:url('${t.imagen_url}');"></div>
                  <div class="titulares-item-cuerpo">
                    <div class="titulares-item-medio">${t.medio}</div>
                    ${t.titular ? `<div class="titulares-item-titular">${t.titular}</div>` : ''}
-                   ${t.url_fuente ? `<a href="${t.url_fuente}" target="_blank" rel="noopener" class="titulares-item-link">Ver portada →</a>` : ''}
+                   ${urlOficial ? `<a href="${urlOficial}" target="_blank" rel="noopener" class="titulares-item-link">Ver portada →</a>` : ''}
                  </div>`
               : `<div class="titulares-item-masthead" style="background:${color};">${t.medio}</div>
                  <div class="titulares-item-cuerpo">
                    ${t.titular ? `<div class="titulares-item-titular">${t.titular}</div>` : `<div class="titulares-item-titular" style="color:#6B7280;font-weight:400;font-style:italic;">Portada aún no capturada hoy.</div>`}
-                   ${t.url_fuente ? `<a href="${t.url_fuente}" target="_blank" rel="noopener" class="titulares-item-link">Ver portada →</a>` : ''}
+                   ${urlOficial ? `<a href="${urlOficial}" target="_blank" rel="noopener" class="titulares-item-link">Ver portada →</a>` : ''}
                  </div>`}
           </div>`;
         }).join('')}
@@ -172,9 +194,13 @@ function renderPortada(){
       <div style="margin-bottom:10px;">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
           <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
-          <button id="portada-btn-mapa-puntos" style="background:none;border:1px solid var(--line-strong);color:var(--ink-3);font-family:var(--f-mono);font-size:10px;padding:3px 10px;border-radius:99px;cursor:pointer;">● mapa de relación</button>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <div id="portada-titulares"></div>
+            <button type="button" id="portada-btn-mapa-puntos" class="leg-tt" data-tt="Mapa de relación" aria-label="Mapa de relación" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"></circle><circle cx="5" cy="19" r="2"></circle><circle cx="19" cy="19" r="2"></circle><line x1="12" y1="7" x2="6.2" y2="17.3"></line><line x1="12" y1="7" x2="17.8" y2="17.3"></line><line x1="7" y1="19" x2="17" y2="19"></line></svg>
+            </button>
+          </div>
         </div>
-        <div id="portada-titulares"></div>
         <div id="portada-dispersion" style="margin-bottom:10px;width:100%;"></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
           ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
@@ -359,6 +385,29 @@ function generarMapaPuntosSVG(){
     satelites += `<span class="mapa-punto-satelite" style="left:${left}%;top:${top}%;width:${size}px;height:${size}px;--op-max:${opMax};--dx:${vx}px;--dy:${vy}px;animation-duration:${dur}s;animation-delay:${delay}s;"></span>`;
   }
 
+  // "cometas" -- rachas difuminadas que cruzan el fondo del disco en línea recta,
+  // a diferencia de los puntos decorativos (que solo se desvanecen en su lugar).
+  // Es puramente atmosférico -- da la sensación de que la red sigue recibiendo
+  // información todo el tiempo, incluso en las zonas donde no hay notas reales.
+  // Cada una viaja sobre su propio eje rotado (rotate en el <g> estático) y
+  // se anima solo en translateX local -- así cruza en línea recta sin pelearse
+  // con el atributo transform del SVG.
+  let cometas = '';
+  const nCometas = Math.round(3 + Math.random()*3);
+  for(let i=0;i<nCometas;i++){
+    const anguloViaje = Math.random()*Math.PI*2;
+    const anguloGrados = (anguloViaje*180/Math.PI).toFixed(1);
+    const distancia = Math.round(R*(1.3+Math.random()*0.7));
+    const largoTrail = (16+Math.random()*16).toFixed(1);
+    const dur = (11+Math.random()*10).toFixed(1), delay = (-Math.random()*20).toFixed(1);
+    cometas += `
+      <g transform="translate(${cx},${cy}) rotate(${anguloGrados})">
+        <g class="mapa-cometa" style="--dist:${distancia}px;animation-duration:${dur}s;animation-delay:${delay}s;">
+          <rect x="${(-largoTrail/2).toFixed(1)}" y="-1" width="${largoTrail}" height="2" rx="1" fill="url(#mapa-cometa-gradiente)"/>
+        </g>
+      </g>`;
+  }
+
   // agrupar por tema_id real -- solo temas con 2+ notas hoy generan conexión
   const porTema = {};
   posiciones.forEach(p=>{
@@ -414,6 +463,17 @@ function generarMapaPuntosSVG(){
   const conteoNiveles = { Alto:0, Medio:0, Bajo:0 };
   notas.forEach(ev=> conteoNiveles[nivelImpactoTexto(ev.intensidad)]++);
   let nuevasCount = 0;
+
+  // variación contra ayer -- mismo criterio (nivelImpactoTexto) aplicado a las notas
+  // de un día antes, para saber si "Alto" viene subiendo o bajando respecto a la
+  // jornada anterior. Si ayer no hay ninguna nota (dato faltante, no cero real), no
+  // se muestra flecha para no sugerir una caída que en realidad es "sin dato".
+  const fechaHoyObj = new Date();
+  const fechaAyer = new Date(fechaHoyObj.getTime() - 24*60*60*1000).toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const notasAyer = (ECOSISTEMA.eventos||[]).filter(e=>e.fecha===fechaAyer && !e.entidad_c3);
+  const conteoNivelesAyer = { Alto:0, Medio:0, Bajo:0 };
+  notasAyer.forEach(ev=> conteoNivelesAyer[nivelImpactoTexto(ev.intensidad)]++);
+  const hayDatoAyer = notasAyer.length > 0;
 
   // puntos clicables -- cada uno es un link real a su fuente, con un área de toque
   // más grande (círculo invisible) para que funcione bien en tablet, sin importar
@@ -502,12 +562,23 @@ function generarMapaPuntosSVG(){
 
   const maxNivel = Math.max(conteoNiveles.Alto, conteoNiveles.Medio, conteoNiveles.Bajo, 1);
   const filaLeyenda = (nombre, color, valor)=>{
-    const pct = Math.max(6, Math.round((valor/maxNivel)*100));
+    // el piso mínimo de ancho SOLO aplica si de verdad hay algo que contar -- en 0
+    // la barra debe verse vacía, no pintada como si hubiera al menos una nota
+    const pct = valor>0 ? Math.max(6, Math.round((valor/maxNivel)*100)) : 0;
+    let flechaHTML = '';
+    if(hayDatoAyer){
+      const ayer = conteoNivelesAyer[nombre] || 0;
+      const delta = valor - ayer;
+      if(delta > 0) flechaHTML = `<span class="mapa-leyenda-flecha sube">▲${delta}</span>`;
+      else if(delta < 0) flechaHTML = `<span class="mapa-leyenda-flecha baja">▼${Math.abs(delta)}</span>`;
+      else flechaHTML = `<span class="mapa-leyenda-flecha igual">—</span>`;
+    }
     return `<div class="mapa-leyenda-fila">
       <span class="mapa-leyenda-punto" style="background:${color};"></span>
       <span class="mapa-leyenda-nombre">${nombre}</span>
       <span class="mapa-leyenda-barra"><span style="width:${pct}%;background:${color};"></span></span>
       <span class="mapa-leyenda-num">${valor}</span>
+      ${flechaHTML}
     </div>`;
   };
 
@@ -515,6 +586,14 @@ function generarMapaPuntosSVG(){
     <div class="mapa-puntos-wrap">
       <div class="mapa-puntos-satelites">${satelites}</div>
       <svg viewBox="0 0 640 640" style="width:100%;max-width:820px;display:block;margin:0 auto;position:relative;">
+        <defs>
+          <linearGradient id="mapa-cometa-gradiente" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#8ED6C9" stop-opacity="0"/>
+            <stop offset="75%" stop-color="#8ED6C9" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#E8EAED" stop-opacity="0.85"/>
+          </linearGradient>
+        </defs>
+        <g>${cometas}</g>
         <g class="mapa-puntos-giro">
           <g>${decorativos}</g>
           <g>${lineas}</g>
@@ -556,11 +635,13 @@ function iniciarCarruselMapaPuntos(wrap, notas){
 }
 
 function mostrarTooltipMapa(a, wrap, tooltip, evt){
-  // el "por qué" de la conexión ya no va aquí -- ahora se ve como línea + cuadrito
-  // reales sobre el propio mapa (mostrarConexionMapa), este tooltip solo habla de
-  // la nota en sí
+  // el "por qué" de la conexión vive AQUÍ, dentro del mismo tooltip -- antes había
+  // un segundo texto flotando sobre la línea, y resultaba un elemento de más; ahora
+  // todo lo que hay que saber de la nota (incluida la conexión, si la tiene) sale
+  // en un solo lugar
   const hora = a.dataset.hora;
-  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">${hora ? `${hora} · ` : ''}Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>`;
+  const conexion = a.dataset.conexion;
+  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">${hora ? `${hora} · ` : ''}Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>${conexion ? `<br><span style="color:#8ED6C9;">${conexion}</span>` : ''}`;
   tooltip.style.display = 'block';
   posicionarTooltipMapa(wrap, tooltip, evt);
 }
@@ -608,14 +689,15 @@ function mostrarConexionMapa(a, wrap){
   const gx = parseFloat(a.dataset.gx), gy = parseFloat(a.dataset.gy);
   const lineaIds = (a.dataset.lineas||'').split(',').filter(Boolean);
   if(isNaN(gx) || !lineaIds.length) return;
-  const cx = 320, cy = 320;
-  // color real del impacto -- se usa para resaltar la línea real y el texto,
-  // mismo idioma visual que los puntos destacados
+  // color real del impacto -- se usa para resaltar la línea real, mismo idioma
+  // visual que los puntos destacados
   const colorLinea = a.dataset.impacto==='Alto' ? 'var(--riesgo-alto)' : a.dataset.impacto==='Medio' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
 
   // se resalta la línea REAL que ya está dibujada (la que efectivamente une a
   // este punto con su vecino), no se traza una aparte -- así lo que se ilumina
-  // es exactamente lo que el usuario ve unido en el mapa
+  // es exactamente lo que el usuario ve unido en el mapa. El "por qué" de la
+  // conexión ya no va flotando aparte sobre el mapa -- vive en el tooltip
+  // (mostrarTooltipMapa), junto con el resto de datos de la nota.
   const lineasActivas = [];
   lineaIds.forEach(id=>{
     const linea = giro.querySelector('#'+id);
@@ -627,30 +709,10 @@ function mostrarConexionMapa(a, wrap){
   });
   if(!lineasActivas.length) return;
 
-  // el texto (sin recuadro) SIEMPRE se coloca hacia afuera del propio punto
-  // (nunca al centro del mapa, donde vive el carrusel) -- así jamás se pierde
-  // encima del texto central
-  let dirx = gx-cx, diry = gy-cy;
-  const mag = Math.hypot(dirx,diry) || 1;
-  dirx/=mag; diry/=mag;
-  let bx = gx + dirx*30, by = gy + diry*30;
-  bx = Math.max(60, Math.min(580, bx));
-  by = Math.max(22, Math.min(618, by));
-  const angulo = calcularAnguloActualMapa();
-  const nombreTema = (a.dataset.temaNombre||'este tema').slice(0,32);
-
-  // marca circular en el propio punto, del mismo color -- ya no lleva recuadro,
-  // solo el texto con un halo oscuro (paint-order:stroke) detrás de cada letra
-  // para que se lea limpio sobre cualquier fondo sin tapar el mapa con una caja
   const g = document.createElementNS('http://www.w3.org/2000/svg','g');
   g.setAttribute('id','mapa-conexion-hover');
   g.dataset.lineas = lineasActivas.join(',');
-  g.innerHTML = `
-    <circle cx="${gx}" cy="${gy}" r="5.5" fill="none" stroke="${colorLinea}" stroke-width="1" opacity="0.9"/>
-    <g transform="translate(${bx.toFixed(1)},${by.toFixed(1)}) rotate(${(-angulo).toFixed(1)})">
-      <text x="0" y="-2" font-size="7.3" fill="#E8EAED" font-weight="700" font-family="var(--f-mono)" text-anchor="middle" paint-order="stroke" stroke="#0B0D10" stroke-width="2.5">${nombreTema}</text>
-      <text x="0" y="8" font-size="6.4" fill="#9AA2AC" font-family="var(--f-mono)" text-anchor="middle" paint-order="stroke" stroke="#0B0D10" stroke-width="2.5">Impacto ${a.dataset.impacto} · Difusión ${a.dataset.difusion}</text>
-    </g>`;
+  g.innerHTML = `<circle cx="${gx}" cy="${gy}" r="5.5" fill="none" stroke="${colorLinea}" stroke-width="1" opacity="0.9"/>`;
   giro.appendChild(g);
 }
 function ocultarConexionMapa(wrap){
