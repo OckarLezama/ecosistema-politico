@@ -137,13 +137,12 @@ function renderPortada(){
 }
 
 /* ---- Mapa de puntos (ventana emergente) --------------------------------
-   Cada punto = 1 nota real de hoy (eventosHoyCache), sin codificar
-   intensidad/categoría en el color ni tamaño -- son uniformes, estilo
-   referencia "altar-1". Las líneas SÍ son reales: conectan notas del
-   MISMO tema (tema_id), formando una cadena cronológica por hilo -- no son
-   decorativas ni aleatorias. Todo el campo gira una sola vez, muy lento y
-   sutil, en sentido horario. Se regenera cada vez que se abre porque las
-   notas del día cambian. */
+   Cada punto = 1 nota real de hoy (eventosHoyCache). Las líneas conectan
+   notas del MISMO tema (tema_id) en cadena cronológica -- no decorativas.
+   Cada punto es un link real a su fuente (clic/tap abre la nota). Todo el
+   campo gira despacio en sentido horario, y cada punto además late
+   (opacidad) a su propio ritmo, para que el movimiento se note incluso
+   antes de que complete una vuelta. Se regenera en cada apertura. */
 function generarMapaPuntosSVG(){
   const cx = 320, cy = 320, R = 260;
   const notas = eventosHoyCache;
@@ -153,19 +152,18 @@ function generarMapaPuntosSVG(){
     return `<div style="text-align:center;color:#6B7280;font-family:var(--f-mono);font-size:11px;padding:60px 0;">Aún no hay notas registradas hoy.</div>`;
   }
 
-  // posición de cada nota en el anillo -- orden estable (por hora_registro) para que el
-  // hilo de un mismo tema quede geográficamente cerca en el círculo, no disperso al azar
+  const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
+
+  // posición de cada nota -- banda de anillo más angosta y cerca del radio máximo
+  // (0.68R-0.96R) para que se lea como un aro sólido y continuo, no puntos sueltos
+  // flotando en el vacío. Orden estable por hora_registro para que el hilo de un
+  // mismo tema quede geográficamente cerca en el círculo.
   const orden = [...notas].sort((a,b)=> (a.hora_registro||'').localeCompare(b.hora_registro||''));
   const posiciones = orden.map((ev, i)=>{
-    const ang = (i/n)*Math.PI*2 + (Math.random()*0.06-0.03);
-    const rad = R*(0.55+0.45*Math.random());
+    const ang = (i/n)*Math.PI*2 + (Math.random()*0.05-0.025);
+    const rad = R*(0.68+0.28*Math.random());
     return { ev, x: cx+rad*Math.cos(ang), y: cy+rad*Math.sin(ang) };
   });
-
-  let dots = posiciones.map(p=>{
-    const r = (0.9+Math.random()*1.2).toFixed(2), op = (0.35+Math.random()*0.45).toFixed(2);
-    return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#E8EAED" opacity="${op}"/>`;
-  }).join('');
 
   // agrupar por tema_id real -- solo temas con 2+ notas hoy generan conexión
   const porTema = {};
@@ -174,25 +172,59 @@ function generarMapaPuntosSVG(){
     if(!t) return;
     (porTema[t] = porTema[t] || []).push(p);
   });
+  const gruposConectados = Object.entries(porTema).filter(([,g])=>g.length>=2);
+
   let lineas = '';
-  Object.values(porTema).forEach(grupo=>{
-    if(grupo.length < 2) return;
-    // cadena cronológica dentro del tema (ya viene ordenado por hora_registro) --
-    // conecta cada nota con la siguiente del mismo hilo, no todas contra todas
+  gruposConectados.forEach(([,grupo])=>{
     for(let i=0;i<grupo.length-1;i++){
       const a = grupo[i], b = grupo[i+1];
-      lineas += `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="#2DD4BF" stroke-width="0.7" opacity="0.16" class="mapa-puntos-linea"/>`;
+      lineas += `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="#2DD4BF" stroke-width="0.9" opacity="0.22" class="mapa-puntos-linea"/>`;
     }
   });
 
+  // puntos más grandes y clicables -- cada uno es un link real a su fuente, con un
+  // área de toque más grande (círculo invisible) para que funcione bien en tablet
+  let dots = posiciones.map(p=>{
+    const r = (2.0+Math.random()*1.6).toFixed(2);
+    const dur = (2.6+Math.random()*2.4).toFixed(2), delay = (-Math.random()*5).toFixed(2);
+    const url = p.ev.fuente_url || '';
+    const titulo = (p.ev.descripcion||'').replace(/^\[Mañanera\]\s*/,'').replace(/"/g,'&quot;').slice(0,140);
+    const circulo = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="#E8EAED" class="mapa-punto-late" style="animation-duration:${dur}s;animation-delay:${delay}s;"><title>${titulo}</title></circle>`;
+    if(!url) return circulo;
+    const hit = `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="11" fill="transparent"/>`;
+    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link">${hit}${circulo}</a>`;
+  }).join('');
+
+  // callout del tema con más cobertura hoy, mismo lenguaje visual que el resto del
+  // sitio -- le da al mapa un punto de lectura, no solo decoración
+  let callout = '';
+  if(gruposConectados.length){
+    const [temaIdTop, grupoTop] = gruposConectados.sort((a,b)=>b[1].length-a[1].length)[0];
+    const cxg = grupoTop.reduce((s,p)=>s+p.x,0)/grupoTop.length;
+    const cyg = grupoTop.reduce((s,p)=>s+p.y,0)/grupoTop.length;
+    const nombreTema = nombreTemaPorId[temaIdTop] || 'Tema sin nombre';
+    const haciaAfuera = cxg>=cx;
+    const bx = haciaAfuera ? 470 : 40, by = 60;
+    callout = `
+      <line x1="${cxg.toFixed(1)}" y1="${cyg.toFixed(1)}" x2="${(haciaAfuera?bx:bx+130).toFixed(1)}" y2="${(by+20).toFixed(1)}" stroke="#2DD4BF" stroke-width="0.75" stroke-dasharray="2,2" opacity="0.5"/>
+      <rect x="${bx}" y="${by}" width="130" height="40" rx="4" fill="#101317" stroke="#2A2F36"/>
+      <text x="${bx+10}" y="${by+15}" font-size="8" fill="#6B7280" font-family="var(--f-mono)">TEMA MÁS ACTIVO</text>
+      <text x="${bx+10}" y="${by+30}" font-size="9.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)">${nombreTema.slice(0,26)} · ${grupoTop.length}</text>`;
+  }
+
   return `
-    <svg viewBox="0 0 640 640" style="width:100%;max-width:520px;display:block;margin:0 auto;">
+    <svg viewBox="0 0 640 640" style="width:100%;max-width:640px;display:block;margin:0 auto;">
       <g class="mapa-puntos-giro">
         <g>${lineas}</g>
         <g>${dots}</g>
       </g>
-      <text x="320" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#DDE1E6" font-family="var(--f-mono)">notas de hoy</text>
-      <text x="320" y="334" text-anchor="middle" font-size="8" fill="#6B7280" font-family="var(--f-mono)">${n} activas · líneas = mismo tema</text>
+      ${callout}
+      <g text-anchor="middle" font-family="var(--f-mono)">
+        <text x="320" y="308" font-size="9" fill="#6B7280" letter-spacing="1">MAPA DE RELACIÓN · HOY</text>
+        <text x="320" y="336" font-size="26" font-weight="700" fill="#DDE1E6">${n}</text>
+        <text x="320" y="352" font-size="9" fill="#8A8F98">notas activas</text>
+        <text x="320" y="366" font-size="8" fill="#6B7280">${gruposConectados.length} tema${gruposConectados.length!==1?'s':''} conectado${gruposConectados.length!==1?'s':''}</text>
+      </g>
     </svg>`;
 }
 function abrirMapaPuntos(){
