@@ -600,9 +600,25 @@ def obtener_mananera_hoy():
     puntos = []
     for b in bloques:
         texto = re.sub(r'<[^>]+>', ' ', b)
-        texto = re.sub(r'\s+', ' ', texto).strip()
+        texto = re.sub(r'\[\[\d{1,2}:\d{2}\]\]', ' ', texto)  # marcador de timestamp del video
+        texto = re.sub(r'\s+', ' ', texto).strip(' -—')
         if len(texto) > 80:
             puntos.append(texto)
+    if not puntos:
+        # Respaldo -- si el sitio no usa <li> (o cambió de estructura) los puntos de la
+        # mañanera de todos modos aparecen como líneas que empiezan con guión, un patrón
+        # muy común en contenido convertido de markdown a HTML con <p> o <div> en vez de
+        # listas reales. Sin este respaldo, un cambio así deja el resumen vacío sin ningún
+        # aviso -- de ahí el print de diagnóstico en cargarEventosDelDia().
+        texto_plano = re.sub(r'<[^>]+>', '\n', html)
+        for linea in texto_plano.split('\n'):
+            linea = re.sub(r'\[\[\d{1,2}:\d{2}\]\]', ' ', linea)
+            linea = re.sub(r'\s+', ' ', linea).strip()
+            es_bullet = linea.startswith(('- ', '— ', '• '))
+            if es_bullet:
+                linea = linea[2:].strip()
+            if es_bullet and 80 < len(linea) < 500:
+                puntos.append(linea)
     return fecha_pagina, puntos
 
 
@@ -1019,7 +1035,13 @@ def buscar_candidatos():
                             conteo_hoy_por_fuente[fuente['nombre']] = conteo_hoy_por_fuente.get(fuente['nombre'], 0) + 1
 
     fecha_pagina_manan, puntos_manan = obtener_mananera_hoy()
+    # Diagnóstico -- antes esta llamada era muda: si mananeradehoy.com cambiaba de
+    # estructura, o el fetch fallaba, o simplemente no había puntos que calzaran, no
+    # quedaba ningún rastro en el log de GitHub Actions para saber POR QUÉ el resumen de
+    # la mañanera seguía vacío. Ahora sí queda constancia.
+    print(f'  Mañanera de Hoy: fecha_pagina={fecha_pagina_manan}, puntos_extraidos={len(puntos_manan)}')
     if fecha_pagina_manan == hoy_mx.strftime('%Y-%m-%d'):
+        puntos_incluidos = 0
         for punto in puntos_manan:
             hash_punto = hashlib.md5(('mananera-'+punto[:120]).encode()).hexdigest()
             if hash_punto in ya_vistos: continue
@@ -1030,6 +1052,16 @@ def buscar_candidatos():
                     tema_encontrado = tema_id; break
             es_migracion = esTemaMigracion(texto_completo)
             alerta_actor = tieneAlertaEspecial(texto_completo)
+            # CORRECCIÓN real -- antes, un punto de la mañanera que no calzaba con un tema
+            # por PALABRAS_CLAVE (una lista corta y fija) Y no era migración/alerta se
+            # descartaba POR COMPLETO, sin crear ni siquiera un tema informativo -- a
+            # diferencia de las notas normales, que si mencionan a un actor relevante SÍ
+            # generan su propio tema (ver el bloque de arriba, "disparador"). La mañanera
+            # toca decenas de temas que nunca están en PALABRAS_CLAVE, así que casi todos
+            # los días el resumen terminaba completamente vacío -- 0 puntos guardados en
+            # TODO el historial hasta esta revisión. Ahora se usa el mismo criterio de
+            # "mención relevante" que ya usa el resto del robot.
+            mencion_relevante = any(int(a['nivel_influencia'])>=5 and actorMencionadoEn(a['nombre'], texto_completo) for a in actores_altos)
             if tema_encontrado:
                 conteo_hoy_por_tema[tema_encontrado] = conteo_hoy_por_tema.get(tema_encontrado, 0) + 1
                 intensidad = calcular_intensidad(texto_completo, tema_encontrado, eventos_existentes, actores_altos, conteo_hoy_por_tema[tema_encontrado])
@@ -1038,14 +1070,17 @@ def buscar_candidatos():
                     # del tema al que se agrupo.
                     'categoria': clasificar_categoria(texto_completo),
                     'intensidad': intensidad, 'descripcion': f'[Mañanera] {punto[:200]}', 'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
-            elif es_migracion or alerta_actor:
+                puntos_incluidos += 1
+            elif es_migracion or alerta_actor or mencion_relevante:
                 categoria_real = 'Social' if es_migracion else clasificar_categoria(texto_completo)
                 titulo_final = f'🔔 ALERTA — [Mañanera] {punto[:180]}' if (alerta_actor or es_migracion) else f'[Mañanera] {punto[:200]}'
-                tema_auto = crear_tema_informativo(punto[:80], hoy_mx.strftime('%Y-%m-%d'), categoria_real)
-                intensidad_final = 8 if alerta_actor else 6
+                tema_auto = buscar_tema_informativo_similar(punto[:80], actores_altos) or crear_tema_informativo(punto[:80], hoy_mx.strftime('%Y-%m-%d'), categoria_real)
+                intensidad_final = 8 if alerta_actor else (6 if es_migracion else 5)
                 eventos_nuevos.append({'tema_id': tema_auto, 'fecha': hoy_mx.strftime('%Y-%m-%d'),
                     'categoria': categoria_real, 'intensidad': intensidad_final, 'descripcion': titulo_final,
                     'fuente_url': 'https://mananeradehoy.com/mananera-de-hoy'})
+                puntos_incluidos += 1
+        print(f'  Mañanera de Hoy: {puntos_incluidos}/{len(puntos_manan)} puntos guardados como evento.')
 
     return eventos_nuevos, candidatos_sin_tema, incrementos_cobertura_existente
 

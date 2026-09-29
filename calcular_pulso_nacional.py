@@ -83,6 +83,13 @@ def noCuentaParaEscalar(descripcion):
     return False
 
 
+def _apodoDe(nombre_actor):
+    """Extrae el apodo entre paréntesis pegado al nombre en actores.csv, si tiene uno
+    (ej. "Andrés Manuel López Beltrán ('Andy')" -> "Andy"). None si no tiene."""
+    m = re.search(r"\(['\"]?([^)'\"]+)['\"]?\)", nombre_actor or '')
+    return m.group(1).strip() if m else None
+
+
 def _mencionadoDeFormaSegura(nombre_actor, texto_lower):
     """Mismo criterio base ya validado en robot_buscar_temas.py / limpiar_agenda_nacional.py,
     con una corrección real encontrada en esta revisión: el caso de un solo apellido corto
@@ -680,6 +687,14 @@ def calcular():
         partes = [x for x in nombre_limpio.split() if len(x) > 2]
         clave_apellidos = f'{partes[-2]} {partes[-1]}'.lower() if len(partes) >= 3 else None
         hay_homonimo = clave_apellidos and len(apellidos_compartidos.get(clave_apellidos, ())) > 1
+        # CORRECCIÓN -- este chequeo comparaba contra nombre_actor SIN limpiar (con el
+        # paréntesis del apodo todavía pegado), así que "nombre completo" nunca podía
+        # coincidir con ninguna nota real. Se usa nombre_limpio. Además, cuando el actor
+        # tiene apodo (ej. "Andy"), ese apodo por sí solo también cuenta como mención
+        # segura frente a un homónimo -- la prensa casi nunca escribe "Andrés Manuel",
+        # y ninguno de sus hermanos (mismo caso: José Ramón, Gonzalo López Beltrán) se
+        # hace llamar así.
+        apodo = _apodoDe(nombre_actor)
         con_mencion = []
         for e in evs:
             if nivel_evento(e) not in NIVELES_PRIMER_NIVEL:
@@ -687,10 +702,13 @@ def calcular():
             texto = e['descripcion'].lower()
             if not _mencionadoDeFormaSegura(nombre_actor, texto):
                 continue
-            if hay_homonimo and nombre_actor.lower() not in texto:
-                # coincide solo por los apellidos compartidos con otra persona real distinta --
-                # sin el nombre completo no hay certeza de a cuál de los dos se refiere la nota.
-                continue
+            if hay_homonimo and nombre_limpio.lower() not in texto:
+                tiene_apodo = apodo and re.search(r'\b' + re.escape(apodo.lower()) + r'\b', texto) is not None
+                if not tiene_apodo:
+                    # coincide solo por los apellidos compartidos con otra persona real distinta --
+                    # sin el nombre completo (o el apodo, cuando lo tiene) no hay certeza de a
+                    # cuál de los dos se refiere la nota.
+                    continue
             con_mencion.append(e)
         if not con_mencion:
             return None
@@ -882,7 +900,16 @@ def calcular():
         if len(partes) >= 3:
             clave = f'{partes[-2]} {partes[-1]}'.lower()
             if len(apellidos_compartidos.get(clave, ())) > 1 and nombre_limpio.lower() not in texto:
-                return False
+                # CORRECCIÓN real -- Andy comparte "López Beltrán" con sus 2 hermanos (José
+                # Ramón y Gonzalo), así que sin este apodo casi NUNCA se le contaba: la
+                # prensa prácticamente nunca escribe su nombre completo "Andrés Manuel",
+                # siempre "Andy López Beltrán". El apodo entre paréntesis (cuando existe)
+                # ya es suficiente para distinguirlo de sus hermanos -- ninguno de ellos se
+                # hace llamar "Andy" -- así que también cuenta como mención segura.
+                apodo = _apodoDe(actor['nombre'])
+                tiene_apodo = apodo and re.search(r'\b' + re.escape(apodo.lower()) + r'\b', texto) is not None
+                if not tiene_apodo:
+                    return False
         return True
 
     actor_temas = {}
@@ -1144,25 +1171,15 @@ def calcular_diff_corte(anterior, nuevo):
 
     # Antes esta franja repetía, con otras palabras, lo que ya se ve en las tarjetas de
     # abajo (Temas en Movimiento, Temas Nuevos, el badge NUEVO del Tablero de Actores) --
-    # quejas del usuario: quita mucho espacio y no aporta inteligencia. Se deja solo lo
-    # que de verdad es un delta que NO se ve ya como tal en ningún otro lado: cuánto
-    # cambió la tensión, si cambió la categoría dominante, y si hay una declaración
-    # nueva. El detalle de qué tema entró/salió o cuál es nuevo ya vive en su propia
-    # tarjeta, con su titular completo y su link -- no hace falta un changelog aparte.
-    t_ant, t_nuevo = anterior.get('tension_nacional'), nuevo.get('tension_nacional')
-    if t_ant is not None and t_nuevo is not None and t_ant != t_nuevo:
-        signo = 'subió' if t_nuevo > t_ant else 'bajó'
-        cambios.append(f'Tensión nacional {signo} {abs(t_nuevo - t_ant)} pts ({t_ant} → {t_nuevo})')
-
+    # quejas del usuario: quita mucho espacio y no aporta inteligencia. SEGUNDA vuelta de
+    # recorte, pedido explícito: "Tensión nacional subió/bajó X pts" y "Categoría dominante
+    # del día cambió" TAMPOCO aportan -- la tensión y la categoría dominante ya se ven,
+    # con más contexto, en sus propias tarjetas de arriba. Lo único que queda aquí es lo
+    # que de verdad no se ve como delta en ningún otro lado: una declaración nueva.
     for campo, etiqueta in (('declaracion_presidenta', 'Presidenta'), ('declaracion_otro', 'otro actor')):
         d_ant, d_nuevo = anterior.get(campo), nuevo.get(campo)
         if d_nuevo and (not d_ant or d_ant.get('texto') != d_nuevo.get('texto')):
             cambios.append(f'Nueva declaración relevante ({etiqueta}): {d_nuevo["actor"]}')
-
-    cat_ant = max((anterior.get('categorias_dia') or []), key=lambda c: c.get('peso_pct', 0), default=None)
-    cat_nuevo = max((nuevo.get('categorias_dia') or []), key=lambda c: c.get('peso_pct', 0), default=None)
-    if cat_ant and cat_nuevo and cat_ant.get('categoria') != cat_nuevo.get('categoria'):
-        cambios.append(f'Categoría dominante del día cambió: {cat_ant["categoria"]} → {cat_nuevo["categoria"]}')
 
     if not cambios:
         # antes se mostraba "Sin cambios relevantes..." como placeholder -- a petición del
