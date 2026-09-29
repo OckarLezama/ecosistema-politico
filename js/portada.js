@@ -39,6 +39,96 @@ function agruparPorHechoReal(eventos){
   return grupos;
 }
 
+// Color de identidad por medio -- se usa cuando NO hay imagen real de la portada,
+// para que la tarjeta igual se sienta "de ese medio" (cabecera de color) en vez de
+// un gris genérico. Se define aquí, a mano, conforme se van agregando medios --
+// el que no esté en la lista cae a un gris neutro.
+const COLOR_MEDIO = {
+  'El Universal': '#3B5DC9',
+  'Reforma': '#2E8B57',
+  'Milenio': '#C0392B',
+};
+function colorDeMedio(medio){ return COLOR_MEDIO[medio] || '#4B5157'; }
+
+// Titulares del día -- portadas (8 columnas) de los medios impresos, capturadas UNA
+// sola vez en la mañana (5-7am) y estáticas el resto del día. Se leen de
+// ECOSISTEMA.titulares (CSV aparte, cargado sin bloquear el resto de los datos).
+// Igual que "mapa de relación": un botón chico que abre una ventana dedicada, para
+// no competir por espacio con el Pulso del Día ni con las notas del panel principal.
+function renderTitularesDelDia(){
+  const cont = document.getElementById('portada-titulares');
+  if(!cont) return;
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && t.titular);
+  if(!titulares.length){ cont.innerHTML = ''; return; }
+  cont.innerHTML = `
+    <button id="portada-btn-titulares" style="background:none;border:1px solid var(--line-strong);color:var(--ink-3);font-family:var(--f-mono);font-size:10px;padding:3px 10px;border-radius:99px;cursor:pointer;margin-bottom:10px;">📰 portadas del día · ${titulares.length}</button>`;
+  document.getElementById('portada-btn-titulares').addEventListener('click', abrirTitularesModal);
+}
+
+function abrirTitularesModal(){
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const fechaTexto = new Date().toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long', timeZone:'America/Mexico_City'});
+  const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && t.titular);
+
+  // KPIs de clasificación -- mismo lenguaje de categorías que ya usa el resto del
+  // ecosistema (Seguridad Nacional, Gobernabilidad, Economía, etc.), así "Portadas
+  // del día" se lee como parte del mismo producto de inteligencia, no como un
+  // apéndice de prensa aparte. Un titular sin categoría asignada cae en "Sin
+  // clasificar" -- no se inventa una categoría que el dato no trae.
+  const conteoCategoriaTitulares = {};
+  titulares.forEach(t=>{
+    const cat = t.categoria || 'Sin clasificar';
+    conteoCategoriaTitulares[cat] = (conteoCategoriaTitulares[cat]||0) + 1;
+  });
+  const kpiHTML = Object.entries(conteoCategoriaTitulares).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
+    <div class="titulares-kpi">
+      <span class="titulares-kpi-punto" style="background:${cat==='Sin clasificar' ? '#4B5157' : colorCategoria(cat)};"></span>
+      <span class="titulares-kpi-num">${n}</span>
+      <span class="titulares-kpi-cat">${cat}</span>
+    </div>`).join('');
+
+  let modal = document.getElementById('titulares-modal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'titulares-modal';
+    modal.className = 'ficha-modal-backdrop titulares-backdrop';
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = `
+    <div class="ficha-modal-card titulares-card">
+      <button class="ficha-modal-close">✕</button>
+      <div style="margin-bottom:14px;">
+        <div style="font-family:var(--f-mono);font-size:9px;color:#6B7280;letter-spacing:1px;text-transform:uppercase;">Portadas del día · titular de 8 columnas</div>
+        <div style="font-family:var(--f-display);font-size:16px;color:#E8EAED;text-transform:capitalize;margin-top:3px;">${fechaTexto}</div>
+      </div>
+      ${kpiHTML ? `<div class="titulares-kpis">${kpiHTML}</div>` : ''}
+      <div class="titulares-grid">
+        ${titulares.map(t=>{
+          const color = colorDeMedio(t.medio);
+          return `
+          <div class="titulares-item${t.imagen_url ? ' con-imagen' : ''}">
+            ${t.imagen_url
+              ? `<div class="titulares-item-img" style="background-image:url('${t.imagen_url}');"></div>
+                 <div class="titulares-item-cuerpo">
+                   <div class="titulares-item-medio">${t.medio}</div>
+                   <div class="titulares-item-titular">${t.titular}</div>
+                   ${t.url_fuente ? `<a href="${t.url_fuente}" target="_blank" rel="noopener" class="titulares-item-link">Ver portada →</a>` : ''}
+                 </div>`
+              : `<div class="titulares-item-masthead" style="background:${color};">${t.medio}</div>
+                 <div class="titulares-item-cuerpo">
+                   <div class="titulares-item-titular">${t.titular}</div>
+                   ${t.url_fuente ? `<a href="${t.url_fuente}" target="_blank" rel="noopener" class="titulares-item-link">Ver portada →</a>` : ''}
+                 </div>`}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.classList.add('open');
+}
+
 function renderPortada(){
   const cont = document.getElementById('portada-contenido');
   const encabezado = document.getElementById('portada-encabezado-fijo');
@@ -54,7 +144,8 @@ function renderPortada(){
     .sort((a,b)=> (b.hora_registro||'').localeCompare(a.hora_registro||''));
 
   if(!eventosHoyCache.length){
-    encabezado.innerHTML = '';
+    encabezado.innerHTML = `<div id="portada-titulares"></div>`;
+    renderTitularesDelDia();
     cont.innerHTML = `<p style="font-size:13px;color:var(--ink-3);text-align:center;padding:40px 0;">Aún no hay notas registradas hoy — vuelve más tarde.</p>`;
     return;
   }
@@ -83,6 +174,7 @@ function renderPortada(){
           <div style="font-family:var(--f-display);font-size:13px;color:var(--ink-3);text-transform:capitalize;">${fechaTexto} · ${eventosHoyCache.length} nota${eventosHoyCache.length!==1?'s':''}</div>
           <button id="portada-btn-mapa-puntos" style="background:none;border:1px solid var(--line-strong);color:var(--ink-3);font-family:var(--f-mono);font-size:10px;padding:3px 10px;border-radius:99px;cursor:pointer;">● mapa de relación</button>
         </div>
+        <div id="portada-titulares"></div>
         <div id="portada-dispersion" style="margin-bottom:10px;width:100%;"></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;" id="portada-chips-categoria">
           ${Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]).map(([cat,n])=>`
@@ -98,6 +190,7 @@ function renderPortada(){
       </div>
       <input id="portada-buscador" type="text" placeholder="Buscar en las notas o actores de hoy..." style="width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:9px 12px;font-size:12.5px;color:var(--ink-1);">
   `;
+  renderTitularesDelDia();
   dibujarDispersionHoraria(eventosHoyCache);
   cont.innerHTML = `
     <div id="portada-tarjetas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding-top:14px;"></div>
