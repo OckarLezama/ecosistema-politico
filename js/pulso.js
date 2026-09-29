@@ -476,6 +476,16 @@ function iniciales2(a){
   if(partes.length === 1) return partes[0].slice(0,2).toUpperCase();
   return (partes[0].charAt(0) + partes[1].charAt(0)).toUpperCase();
 }
+// Aclara un color hex hacia blanco (0=sin cambio, 1=blanco puro) -- se usa para el centro
+// del degradado radial de cada pieza del Tablero de Actores, dándole aspecto de esfera con
+// luz propia en vez de un círculo de color plano.
+function aclararHex(hex, cant){
+  const h = (hex||'').replace('#','');
+  if(h.length!==6) return hex;
+  const r = parseInt(h.slice(0,2),16), g = parseInt(h.slice(2,4),16), b = parseInt(h.slice(4,6),16);
+  const mezclar = c => Math.max(0, Math.min(255, Math.round(c + (255-c)*cant)));
+  return `#${[mezclar(r),mezclar(g),mezclar(b)].map(v=>v.toString(16).padStart(2,'0')).join('')}`;
+}
 function nombreCuadrante(x,y){
   if(x>=50 && y>=50) return 'Centro de la agenda';
   if(x<50 && y>=50) return 'Foco de alerta';
@@ -492,6 +502,19 @@ function tableroActoresPulso(actores){
   // a un número fijo inventado, para que la barra siempre use el rango completo.
   const maxAbsDelta = Math.max(1, ...actores.map(a=>Math.abs(a.delta_pts||0)));
   const maxAlcance = Math.max(1, ...actores.map(a=>a.alcance||0));
+  // Degradado radial por cada color de categoría presente (centro claro -> borde con el
+  // color real de colorCategoriaFijo) -- pedido explícito tras varias vueltas: el círculo
+  // de color plano se veía "opaco, sin vida" por más halo o anillo que se le pusiera. Un
+  // degradado da aspecto de esfera con luz propia, sin inventar ningún color nuevo (el
+  // borde sigue siendo exactamente el color de categoría de siempre).
+  const coloresUsados = [...new Set(actores.map(a=>colorCategoriaFijo(a.categoria)))];
+  const idGrad = c => 'grad-actor-' + c.replace('#','');
+  const gradientesDefs = coloresUsados.map(c=>`
+    <radialGradient id="${idGrad(c)}" cx="38%" cy="32%" r="72%">
+      <stop offset="0%" stop-color="${aclararHex(c,0.6)}"/>
+      <stop offset="55%" stop-color="${c}"/>
+      <stop offset="100%" stop-color="${aclararHex(c,-0.22)}"/>
+    </radialGradient>`).join('');
   let piezas = '';
   actores.forEach((a,i)=>{
     const color = colorCategoriaFijo(a.categoria);
@@ -544,26 +567,27 @@ function tableroActoresPulso(actores){
     // pantalla -- ilegible para 2 letras). Un actor "tenue" (1 solo día) se ve apagado --
     // menor opacidad y sin halo/glow, para que salte a la vista quién de verdad tiene peso
     // esta semana sin dejar de mostrar a los demás.
-    const r = 16 + Math.min(9, (a.alcance||0));
-    const opacidadPieza = esTenue ? 0.5 : 1;
+    const r = 18 + Math.min(10, (a.alcance||0));
+    const opacidadPieza = esTenue ? 0.55 : 1;
     const abre = a.nota_url ? `<a href="${a.nota_url}" target="_blank" rel="noopener" class="pulso-tablero-link">` : '<g>';
     const cierra = a.nota_url ? '</a>' : '</g>';
     const retraso = ((i*0.37) % 2.4).toFixed(2);
-    // "que se vea vivo" -- el halo ahora usa un filtro de desenfoque real (feGaussianBlur,
-    // definido una sola vez en el <defs> del SVG) para que se lea como un aura de luz de
-    // verdad, no como un círculo semitransparente plano. El anillo nítido en --ink-1
-    // (blanco en tema oscuro, negro en tema claro -- se adapta solo) recorta cada pieza
-    // contra su color de categoría. Se QUITÓ el destello de 4 puntas: combinaba el atributo
-    // SVG transform="translate(...)" con una animación CSS de transform, y en SVG el
-    // transform de CSS reemplaza por completo al atributo (no se combinan) -- por eso
-    // terminaba dibujándose en el origen del viewBox, pegado al título, en vez de sobre
-    // cada pieza.
+    // Tercer intento en esta misma tarde: el problema no era falta de halo, era que la
+    // PIEZA misma (lo que de verdad se ve, no lo que la rodea) era un círculo de color
+    // plano -- ningún halo alrededor arregla eso. Ahora:
+    // 1) la pieza se rellena con un degradado radial (mismo color de categoría de
+    //    siempre, sin inventar ninguno nuevo) que simula una esfera con luz propia.
+    // 2) el halo detrás es mucho más grande y opaco, con blur real (feGaussianBlur en el
+    //    <defs> del SVG) para leerse como un aura de luz de verdad, no un círculo
+    //    semitransparente.
+    // 3) el anillo nítido en --ink-1 (blanco en tema oscuro, negro en claro) sigue
+    //    recortando la pieza contra el fondo.
     piezas += `${abre}
-      ${(a.es_nuevo && !esTenue) ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="1.5" style="animation-delay:${retraso}s;"/>` : ''}
-      ${!esTenue ? `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+4}" fill="${color}" filter="url(#pulso-glow-actor)" style="animation-delay:${retraso}s;"/>` : ''}
-      <circle class="pulso-tablero-anillo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${(r+1.8).toFixed(1)}" fill="none" stroke="var(--ink-1)" stroke-width="1.5" opacity="${esTenue?0.35:0.9}"/>
-      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}"/>
-      <text x="${x2.toFixed(1)}" y="${(y2+3.6).toFixed(1)}" font-size="10.5" font-weight="800" fill="var(--bg-2)" text-anchor="middle" opacity="${opacidadPieza}" style="pointer-events:none;">${iniciales2(a)}</text>
+      ${(a.es_nuevo && !esTenue) ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="2" style="animation-delay:${retraso}s;"/>` : ''}
+      ${!esTenue ? `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+8}" fill="${color}" filter="url(#pulso-glow-actor)" style="animation-delay:${retraso}s;"/>` : ''}
+      <circle class="pulso-tablero-anillo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${(r+2).toFixed(1)}" fill="none" stroke="var(--ink-1)" stroke-width="1.6" opacity="${esTenue?0.35:0.95}"/>
+      <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${esTenue?color:`url(#${idGrad(color)})`}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}"/>
+      <text x="${x2.toFixed(1)}" y="${(y2+3.8).toFixed(1)}" font-size="11.5" font-weight="800" fill="var(--bg-2)" text-anchor="middle" opacity="${opacidadPieza}" style="pointer-events:none;text-shadow:0 0 2px rgba(255,255,255,0.4);">${iniciales2(a)}</text>
     ${cierra}`;
   });
   // preserveAspectRatio="none" (como estaba antes) estira el ancho y el alto por
@@ -575,9 +599,12 @@ function tableroActoresPulso(actores){
   return `<div style="flex:1;position:relative;min-height:220px;">
     <svg viewBox="0 0 ${w} ${h}" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
     ${defsGridPulso('pulso-grid-tablero')}
-    <defs><filter id="pulso-glow-actor" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="3.2"/>
-    </filter></defs>
+    <defs>
+      <filter id="pulso-glow-actor" x="-120%" y="-120%" width="340%" height="340%">
+        <feGaussianBlur stdDeviation="5.5"/>
+      </filter>
+      ${gradientesDefs}
+    </defs>
     <rect x="${m}" y="${m*0.4}" width="${w-2*m}" height="${h-m-m*0.4}" fill="url(#pulso-grid-tablero)" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${cx}" y1="${m*0.4}" x2="${cx}" y2="${h-m}" stroke="var(--line-strong)" stroke-width="1"/>
     <line x1="${m}" y1="${cy}" x2="${w-m}" y2="${cy}" stroke="var(--line-strong)" stroke-width="1"/>
