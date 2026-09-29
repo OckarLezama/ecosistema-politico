@@ -59,7 +59,7 @@ function renderTitularesDelDia(){
   const cont = document.getElementById('portada-titulares');
   if(!cont) return;
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
-  const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && t.titular);
+  const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && (t.titular || t.imagen_url));
   if(!titulares.length){ cont.innerHTML = ''; return; }
   cont.innerHTML = `
     <button id="portada-btn-titulares" style="background:none;border:1px solid var(--line-strong);color:var(--ink-3);font-family:var(--f-mono);font-size:10px;padding:3px 10px;border-radius:99px;cursor:pointer;margin-bottom:10px;">📰 portadas del día · ${titulares.length}</button>`;
@@ -69,7 +69,7 @@ function renderTitularesDelDia(){
 function abrirTitularesModal(){
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
   const fechaTexto = new Date().toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long', timeZone:'America/Mexico_City'});
-  const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && t.titular);
+  const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && (t.titular || t.imagen_url));
 
   // KPIs de clasificación -- mismo lenguaje de categorías que ya usa el resto del
   // ecosistema (Seguridad Nacional, Gobernabilidad, Economía, etc.), así "Portadas
@@ -113,12 +113,12 @@ function abrirTitularesModal(){
               ? `<div class="titulares-item-img" style="background-image:url('${t.imagen_url}');"></div>
                  <div class="titulares-item-cuerpo">
                    <div class="titulares-item-medio">${t.medio}</div>
-                   <div class="titulares-item-titular">${t.titular}</div>
+                   ${t.titular ? `<div class="titulares-item-titular">${t.titular}</div>` : ''}
                    ${t.url_fuente ? `<a href="${t.url_fuente}" target="_blank" rel="noopener" class="titulares-item-link">Ver portada →</a>` : ''}
                  </div>`
               : `<div class="titulares-item-masthead" style="background:${color};">${t.medio}</div>
                  <div class="titulares-item-cuerpo">
-                   <div class="titulares-item-titular">${t.titular}</div>
+                   ${t.titular ? `<div class="titulares-item-titular">${t.titular}</div>` : `<div class="titulares-item-titular" style="color:#6B7280;font-weight:400;font-style:italic;">Portada aún no capturada hoy.</div>`}
                    ${t.url_fuente ? `<a href="${t.url_fuente}" target="_blank" rel="noopener" class="titulares-item-link">Ver portada →</a>` : ''}
                  </div>`}
           </div>`;
