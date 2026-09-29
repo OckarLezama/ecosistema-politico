@@ -250,6 +250,22 @@ function generarMapaPuntosSVG(){
     decorativos += `<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${r}" class="mapa-punto-decorativo" style="--op-max:${opMax};--dx:${vx}px;--dy:${vy}px;animation-duration:${dur}s;animation-delay:${delay}s;"></circle>`;
   }
 
+  // puntos "satélite" -- la misma idea pero esparcidos por TODA la ventana abierta,
+  // no solo dentro del disco. Viven fuera del SVG (encima del fondo de la tarjeta),
+  // no interactúan con nada (pointer-events:none) y simulan una red de fondo
+  // generando información constantemente, sin competir con el mapa real
+  let satelites = '';
+  const nSatelites = Math.round(22 + Math.random()*14);
+  for(let i=0;i<nSatelites;i++){
+    const left = (Math.random()*100).toFixed(1);
+    const top = (Math.random()*100).toFixed(1);
+    const size = (1+Math.random()*1.6).toFixed(2);
+    const opMax = (0.1+Math.random()*0.2).toFixed(2);
+    const vx = (Math.random()*60-30).toFixed(1), vy = (Math.random()*60-30).toFixed(1);
+    const dur = (9+Math.random()*13).toFixed(1), delay = (-Math.random()*22).toFixed(1);
+    satelites += `<span class="mapa-punto-satelite" style="left:${left}%;top:${top}%;width:${size}px;height:${size}px;--op-max:${opMax};--dx:${vx}px;--dy:${vy}px;animation-duration:${dur}s;animation-delay:${delay}s;"></span>`;
+  }
+
   // agrupar por tema_id real -- solo temas con 2+ notas hoy generan conexión
   const porTema = {};
   posiciones.forEach(p=>{
@@ -277,6 +293,13 @@ function generarMapaPuntosSVG(){
   const destacadasSet = new Set(destacadas);
   const carruselNotas = destacadas.slice(0, 8);
   const ahoraDecimal = horaActualDecimalCDMX();
+
+  // conteo por nivel de impacto -- alimenta la leyenda con números reales, no solo
+  // color, y "nuevasCount" mide cuántas notas llegaron en los últimos 45 min, como
+  // señal de que la red sigue generando información en vivo
+  const conteoNiveles = { Alto:0, Medio:0, Bajo:0 };
+  notas.forEach(ev=> conteoNiveles[nivelImpactoTexto(ev.intensidad)]++);
+  let nuevasCount = 0;
 
   // puntos clicables -- cada uno es un link real a su fuente, con un área de toque
   // más grande (círculo invisible) para que funcione bien en tablet, sin importar
@@ -321,6 +344,7 @@ function generarMapaPuntosSVG(){
       esNueva = diffMin>=0 && diffMin<=45;
       edadHoras = diffMin>=0 ? diffMin/60 : (diffMin+1440)/60;
     }
+    if(esNueva) nuevasCount++;
     // notas con más de 24h -- se desprenden y se desvanecen solas (una sola vez, no
     // en bucle) para que lo viejo se sienta que va quedando atrás. Con datos de un
     // solo día esto casi no se activa (rara vez una nota de HOY pasa las 24h) --
@@ -367,9 +391,21 @@ function generarMapaPuntosSVG(){
     centroNota = `<div class="mapa-puntos-centro-nota"><div class="mapa-puntos-centro-titulo" style="color:#6B7280;">Sin notas destacadas aún</div></div>`;
   }
 
+  const maxNivel = Math.max(conteoNiveles.Alto, conteoNiveles.Medio, conteoNiveles.Bajo, 1);
+  const filaLeyenda = (nombre, color, valor)=>{
+    const pct = Math.max(6, Math.round((valor/maxNivel)*100));
+    return `<div class="mapa-leyenda-fila">
+      <span class="mapa-leyenda-punto" style="background:${color};"></span>
+      <span class="mapa-leyenda-nombre">${nombre}</span>
+      <span class="mapa-leyenda-barra"><span style="width:${pct}%;background:${color};"></span></span>
+      <span class="mapa-leyenda-num">${valor}</span>
+    </div>`;
+  };
+
   const html = `
     <div class="mapa-puntos-wrap">
-      <svg viewBox="0 0 640 640" style="width:100%;max-width:820px;display:block;margin:0 auto;">
+      <div class="mapa-puntos-satelites">${satelites}</div>
+      <svg viewBox="0 0 640 640" style="width:100%;max-width:820px;display:block;margin:0 auto;position:relative;">
         <g class="mapa-puntos-giro">
           <g>${decorativos}</g>
           <g>${lineas}</g>
@@ -379,13 +415,13 @@ function generarMapaPuntosSVG(){
       <div class="mapa-puntos-centro" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;max-width:256px;text-align:center;pointer-events:none;">
         <div style="font-family:var(--f-mono);font-size:9px;color:#6B7280;letter-spacing:1px;margin-bottom:7px;">MAPA DE RELACIÓN · HOY</div>
         ${centroNota}
-        <div style="font-family:var(--f-mono);font-size:8px;color:#4B5157;margin-top:11px;">${n} nota${n!==1?'s':''} activa${n!==1?'s':''} · ${gruposConectados.length} tema${gruposConectados.length!==1?'s':''} conectado${gruposConectados.length!==1?'s':''}</div>
+        <div style="font-family:var(--f-mono);font-size:8px;color:#4B5157;margin-top:11px;">${n} nota${n!==1?'s':''} activa${n!==1?'s':''} · ${gruposConectados.length} tema${gruposConectados.length!==1?'s':''} conectado${gruposConectados.length!==1?'s':''}${nuevasCount ? ` · <span style="color:#8ED6C9;">● ${nuevasCount} nueva${nuevasCount!==1?'s':''} (últ. 45 min)</span>` : ''}</div>
       </div>
       <div class="mapa-puntos-tooltip" style="display:none;"></div>
       <div class="mapa-puntos-leyenda">
-        <div><span class="mapa-leyenda-punto" style="background:${colorPorImpactoDispersion(9)};"></span>Alto</div>
-        <div><span class="mapa-leyenda-punto" style="background:${colorPorImpactoDispersion(5)};"></span>Medio</div>
-        <div><span class="mapa-leyenda-punto" style="background:${colorPorImpactoDispersion(1)};"></span>Bajo</div>
+        ${filaLeyenda('Alto', colorPorImpactoDispersion(9), conteoNiveles.Alto)}
+        ${filaLeyenda('Medio', colorPorImpactoDispersion(5), conteoNiveles.Medio)}
+        ${filaLeyenda('Bajo', colorPorImpactoDispersion(1), conteoNiveles.Bajo)}
       </div>
     </div>`;
 
@@ -465,32 +501,39 @@ function mostrarConexionMapa(a, wrap){
   if(isNaN(gx)||isNaN(px)) return;
   const cx = 320, cy = 320;
   const dist = Math.hypot(px-gx, py-gy);
-  // el cuadrito SIEMPRE se coloca hacia afuera del propio punto (nunca al centro
+  // el texto SIEMPRE se coloca hacia afuera del propio punto (nunca al centro
   // del mapa, donde vive el carrusel) -- así jamás se pierde encima del texto
   // central, sin importar dónde esté la nota vecina
   let dirx = gx-cx, diry = gy-cy;
   const mag = Math.hypot(dirx,diry) || 1;
   dirx/=mag; diry/=mag;
-  let bx = gx + dirx*48, by = gy + diry*48;
-  bx = Math.max(100, Math.min(540, bx));
-  by = Math.max(40, Math.min(600, by));
+  let bx = gx + dirx*30, by = gy + diry*30;
+  bx = Math.max(60, Math.min(580, bx));
+  by = Math.max(22, Math.min(618, by));
   const angulo = calcularAnguloActualMapa();
   const nombreTema = (a.dataset.temaNombre||'este tema').slice(0,32);
+  // color real del impacto -- la línea y la marca en el punto se pintan con el
+  // mismo color que ya usan los puntos destacados, así se ve más "cargada" justo
+  // donde nace la conexión, sin necesidad de un recuadro de fondo
+  const colorLinea = a.dataset.impacto==='Alto' ? 'var(--riesgo-alto)' : a.dataset.impacto==='Medio' ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
   // la línea solo se dibuja si la nota vecina está cerca en pantalla -- si el único
   // vecino de tema quedó del otro lado del círculo, una línea recta cruzaría por
   // encima del texto del centro y se perdería, así que en ese caso solo se explica
-  // el porqué con el cuadrito, sin trazar una línea que cruce todo el mapa
+  // el porqué con el texto, sin trazar una línea que cruce todo el mapa
   const lineaHTML = dist < 300
-    ? `<line x1="${gx}" y1="${gy}" x2="${px}" y2="${py}" stroke="#DDE1E6" stroke-width="1" stroke-dasharray="3,3" opacity="0.85"/>`
-    : '';
+    ? `<line x1="${gx}" y1="${gy}" x2="${px}" y2="${py}" stroke="${colorLinea}" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.65"/>
+       <circle cx="${gx}" cy="${gy}" r="5.5" fill="none" stroke="${colorLinea}" stroke-width="1" opacity="0.85"/>`
+    : `<circle cx="${gx}" cy="${gy}" r="5.5" fill="none" stroke="${colorLinea}" stroke-width="1" opacity="0.85"/>`;
+  // ya no lleva recuadro -- solo el texto, con un halo oscuro (paint-order:stroke)
+  // detrás de cada letra para que se lea limpio sobre cualquier fondo sin tapar
+  // el mapa con una caja
   const g = document.createElementNS('http://www.w3.org/2000/svg','g');
   g.setAttribute('id','mapa-conexion-hover');
   g.innerHTML = `
     ${lineaHTML}
     <g transform="translate(${bx.toFixed(1)},${by.toFixed(1)}) rotate(${(-angulo).toFixed(1)})">
-      <rect x="-90" y="-19" width="180" height="34" rx="4" fill="#101317" stroke="#2A2F36"/>
-      <text x="0" y="-5" font-size="7.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)" text-anchor="middle">${nombreTema}</text>
-      <text x="0" y="8" font-size="7" fill="#8A93A0" font-family="var(--f-mono)" text-anchor="middle">Impacto ${a.dataset.impacto} · Difusión ${a.dataset.difusion}</text>
+      <text x="0" y="-2" font-size="7.3" fill="#E8EAED" font-weight="700" font-family="var(--f-mono)" text-anchor="middle" paint-order="stroke" stroke="#0B0D10" stroke-width="2.5">${nombreTema}</text>
+      <text x="0" y="8" font-size="6.4" fill="#9AA2AC" font-family="var(--f-mono)" text-anchor="middle" paint-order="stroke" stroke="#0B0D10" stroke-width="2.5">Impacto ${a.dataset.impacto} · Difusión ${a.dataset.difusion}</text>
     </g>`;
   giro.appendChild(g);
 }
