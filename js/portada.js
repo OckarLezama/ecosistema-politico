@@ -198,18 +198,31 @@ function generarMapaPuntosSVG(){
 
   const nombreTemaPorId = {}; (ECOSISTEMA.temas||[]).forEach(t=> nombreTemaPorId[t.id]=t.nombre);
 
-  // posición de cada nota -- banda angosta y pegada al radio máximo para que se lea
-  // como un círculo limpio, no una mancha. Una minoría aleatoria (~12%) se coloca
-  // más afuera de la banda, como si se "desprendiera" del aro -- da textura orgánica
-  // sin perder la forma circular de conjunto. Orden estable por hora_registro para
-  // que el hilo de un mismo tema quede geográficamente cerca en el círculo.
+  // posición de cada nota -- banda MUY angosta pegada al radio máximo para que se
+  // lea como un círculo limpio y parejo, no una mancha. Una minoría aleatoria (~10%)
+  // se coloca más afuera de la banda, como si se "desprendiera" del aro -- da
+  // textura orgánica sin perder la forma circular de conjunto. Orden estable por
+  // hora_registro para que el hilo de un mismo tema quede geográficamente cerca.
   const orden = [...notas].sort((a,b)=> (a.hora_registro||'').localeCompare(b.hora_registro||''));
   const posiciones = orden.map((ev, i)=>{
-    const ang = (i/n)*Math.PI*2 + (Math.random()*0.05-0.025);
-    const seDesprende = Math.random() < 0.12;
-    const rad = seDesprende ? R*(1.02+0.22*Math.random()) : R*(0.82+0.14*Math.random());
+    const ang = (i/n)*Math.PI*2 + (Math.random()*0.04-0.02);
+    const seDesprende = Math.random() < 0.1;
+    const rad = seDesprende ? R*(1.04+0.2*Math.random()) : R*(0.9+0.07*Math.random());
     return { ev, x: cx+rad*Math.cos(ang), y: cy+rad*Math.sin(ang) };
   });
+
+  // puntos decorativos -- SOLO de relleno visual, no representan notas reales, no
+  // llevan a ningún lado. Van dispersos dentro del disco para que el conjunto se
+  // vea más lleno sin competir con las notas reales (que son las únicas clicables)
+  let decorativos = '';
+  const nDecorativos = Math.round(30 + Math.random()*16);
+  for(let i=0;i<nDecorativos;i++){
+    const ang = Math.random()*Math.PI*2;
+    const rad = R*(0.12+0.95*Math.random());
+    const dx = cx+rad*Math.cos(ang), dy = cy+rad*Math.sin(ang);
+    const r = (0.45+Math.random()*0.45).toFixed(2);
+    decorativos += `<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${r}" fill="#E8EAED" fill-opacity="${(0.08+Math.random()*0.13).toFixed(2)}"></circle>`;
+  }
 
   // agrupar por tema_id real -- solo temas con 2+ notas hoy generan conexión
   const porTema = {};
@@ -253,11 +266,18 @@ function generarMapaPuntosSVG(){
     const esDestacada = destacadasSet.has(p.ev);
 
     const grupoDeSuTema = p.ev.tema_id ? porTema[p.ev.tema_id] : null;
-    let mensajeConexion = '';
+    let mensajeConexion = '', nombreTemaTxt = '', conexionAttrs = '';
     if(grupoDeSuTema && grupoDeSuTema.length>=2){
       const otras = grupoDeSuTema.length-1;
-      const nombreTemaTxt = nombreTemaPorId[p.ev.tema_id] || 'este tema';
+      nombreTemaTxt = nombreTemaPorId[p.ev.tema_id] || 'este tema';
       mensajeConexion = `Se conecta con ${otras} nota${otras!==1?'s':''} más de "${nombreTemaTxt}" — impacto ${impacto.toLowerCase()}, difusión ${difusion.split(' ')[0].toLowerCase()}.`;
+      // vecino en la cadena del mismo tema -- al hacer hover se traza una línea real
+      // hacia esta nota (no decorativa) explicando el porqué en un cuadrito
+      const idx = grupoDeSuTema.indexOf(p);
+      const vecino = grupoDeSuTema[idx+1] || grupoDeSuTema[idx-1];
+      if(vecino){
+        conexionAttrs = ` data-gx="${p.x.toFixed(1)}" data-gy="${p.y.toFixed(1)}" data-px="${vecino.x.toFixed(1)}" data-py="${vecino.y.toFixed(1)}" data-tema-nombre="${nombreTemaTxt.replace(/"/g,'&quot;')}"`;
+      }
     }
 
     const horaNota = horaDecimalDeRegistro(p.ev.hora_registro);
@@ -291,32 +311,8 @@ function generarMapaPuntosSVG(){
     }
     const contenido = extra + hit + circulo;
     if(!url) return `<g>${contenido}</g>`;
-    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link" data-titulo="${titulo}" data-impacto="${impacto}" data-difusion="${difusion}" data-conexion="${mensajeConexion.replace(/"/g,'&quot;')}">${contenido}</a>`;
+    return `<a href="${url}" target="_blank" rel="noopener" class="mapa-punto-link" data-titulo="${titulo}" data-impacto="${impacto}" data-difusion="${difusion}" data-conexion="${mensajeConexion.replace(/"/g,'&quot;')}"${conexionAttrs}>${contenido}</a>`;
   }).join('');
-
-  // callout del grupo con más notas conectadas hoy -- usa el TÍTULO real de la nota
-  // más reciente de ese grupo (no el nombre del tema/clasificación) y explica el
-  // porqué de la conexión con el mismo lenguaje de impacto/difusión que el resto.
-  // Vive en una esquina fija del lienzo, SIN línea hacia el grupo -- el anillo gira
-  // permanentemente y una línea apuntando a un punto que se mueve queda desfasada
-  // en cuanto avanza la rotación, así que en vez de eso el punto ancla ya se
-  // distingue solo por su color (mismo código de impacto que el resto del mapa).
-  let callout = '';
-  if(gruposConectados.length){
-    const [,grupoTop] = gruposConectados.sort((a,b)=>b[1].length-a[1].length)[0];
-    const notaAncla = [...grupoTop].sort((a,b)=> (b.ev.hora_registro||'').localeCompare(a.ev.hora_registro||''))[0].ev;
-    const tituloAncla = notaAncla.descripcion.replace(/^\[Mañanera\]\s*/,'').slice(0,46);
-    const avgIntensidad = grupoTop.reduce((s,p)=>s+Number(p.ev.intensidad||0),0)/grupoTop.length;
-    const avgCobertura = grupoTop.reduce((s,p)=>s+Number(p.ev.cobertura||1),0)/grupoTop.length;
-    const impactoTop = nivelImpactoTexto(avgIntensidad);
-    const difusionTop = difusionTexto(avgCobertura).split(' ')[0];
-    const bx = 18, by = 18;
-    callout = `
-      <rect x="${bx}" y="${by}" width="192" height="58" rx="4" fill="#101317" stroke="#2A2F36"/>
-      <text x="${bx+10}" y="${by+14}" font-size="7.5" fill="#6B7280" font-family="var(--f-mono)">SE CONECTAN ${grupoTop.length} NOTAS</text>
-      <text x="${bx+10}" y="${by+29}" font-size="9.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)">${tituloAncla}</text>
-      <text x="${bx+10}" y="${by+44}" font-size="7.5" fill="#8A8F98" font-family="var(--f-mono)">Impacto ${impactoTop} · Difusión ${difusionTop}</text>`;
-  }
 
   // centro -- ya no es un texto fijo del conteo: rota permanentemente entre las
   // notas más relevantes del momento, mostrando título + nivel de impacto + difusión
@@ -336,10 +332,10 @@ function generarMapaPuntosSVG(){
     <div class="mapa-puntos-wrap">
       <svg viewBox="0 0 640 640" style="width:100%;max-width:820px;display:block;margin:0 auto;">
         <g class="mapa-puntos-giro">
+          <g>${decorativos}</g>
           <g>${lineas}</g>
           <g>${dots}</g>
         </g>
-        ${callout}
       </svg>
       <div class="mapa-puntos-centro" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;max-width:256px;text-align:center;pointer-events:none;">
         <div style="font-family:var(--f-mono);font-size:9px;color:#6B7280;letter-spacing:1px;margin-bottom:7px;">MAPA DE RELACIÓN · HOY</div>
@@ -375,9 +371,10 @@ function iniciarCarruselMapaPuntos(wrap, notas){
 }
 
 function mostrarTooltipMapa(a, wrap, tooltip, evt){
-  const conexion = a.dataset.conexion;
-  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>` +
-    (conexion ? `<br><span style="color:#8A93A0;">${conexion}</span>` : '');
+  // el "por qué" de la conexión ya no va aquí -- ahora se ve como línea + cuadrito
+  // reales sobre el propio mapa (mostrarConexionMapa), este tooltip solo habla de
+  // la nota en sí
+  tooltip.innerHTML = `<strong>${a.dataset.titulo}</strong><br><span style="color:#8A8F98;">Impacto: ${a.dataset.impacto} · Difusión: ${a.dataset.difusion}</span>`;
   tooltip.style.display = 'block';
   posicionarTooltipMapa(wrap, tooltip, evt);
 }
@@ -387,6 +384,61 @@ function posicionarTooltipMapa(wrap, tooltip, evt){
   const y = (evt && evt.clientY!==undefined) ? evt.clientY-rect.top : rect.height/2;
   tooltip.style.left = Math.min(x+12, rect.width-235)+'px';
   tooltip.style.top = Math.max(0, y-42)+'px';
+}
+
+// -- Pausa del giro al hover + línea/cuadrito de conexión real ---------------
+// El anillo gira permanentemente (CSS). En vez de intentar mantener sincronizada
+// una línea "por qué se conecta" mientras todo se mueve, al pasar el mouse sobre
+// una nota se PAUSA el giro (así nada se pierde de vista) y se traza, en ese
+// instante, una línea real hacia su vecino de tema + un cuadrito con el motivo,
+// contra-rotado para que el texto siempre se lea derecho sin importar en qué
+// ángulo haya quedado pausado el aro.
+let mapaGiroInicio = null, mapaGiroPausaAcumulada = 0, mapaGiroPausadoDesde = null;
+const MAPA_GIRO_DURACION_MS = 55000;
+
+function calcularAnguloActualMapa(){
+  if(mapaGiroInicio===null) return 0;
+  const ahora = Date.now();
+  const pausaExtra = mapaGiroPausadoDesde!==null ? (ahora-mapaGiroPausadoDesde) : 0;
+  const transcurrido = ahora - mapaGiroInicio - mapaGiroPausaAcumulada - pausaExtra;
+  return ((transcurrido/MAPA_GIRO_DURACION_MS)*360) % 360;
+}
+function pausarGiroMapa(wrap){
+  const giro = wrap.querySelector('.mapa-puntos-giro');
+  if(!giro || giro.classList.contains('pausado')) return;
+  giro.classList.add('pausado');
+  mapaGiroPausadoDesde = Date.now();
+}
+function reanudarGiroMapa(wrap){
+  const giro = wrap.querySelector('.mapa-puntos-giro');
+  if(!giro || !giro.classList.contains('pausado')) return;
+  giro.classList.remove('pausado');
+  if(mapaGiroPausadoDesde!==null){ mapaGiroPausaAcumulada += Date.now()-mapaGiroPausadoDesde; mapaGiroPausadoDesde=null; }
+}
+function mostrarConexionMapa(a, wrap){
+  const giro = wrap.querySelector('.mapa-puntos-giro');
+  if(!giro) return;
+  ocultarConexionMapa(wrap);
+  const gx = parseFloat(a.dataset.gx), gy = parseFloat(a.dataset.gy);
+  const px = parseFloat(a.dataset.px), py = parseFloat(a.dataset.py);
+  if(isNaN(gx)||isNaN(px)) return;
+  const mx = (gx+px)/2, my = (gy+py)/2;
+  const angulo = calcularAnguloActualMapa();
+  const nombreTema = (a.dataset.temaNombre||'este tema').slice(0,32);
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('id','mapa-conexion-hover');
+  g.innerHTML = `
+    <line x1="${gx}" y1="${gy}" x2="${px}" y2="${py}" stroke="#DDE1E6" stroke-width="1" stroke-dasharray="3,3" opacity="0.85"/>
+    <g transform="translate(${mx.toFixed(1)},${my.toFixed(1)}) rotate(${(-angulo).toFixed(1)})">
+      <rect x="-90" y="-19" width="180" height="34" rx="4" fill="#101317" stroke="#2A2F36"/>
+      <text x="0" y="-5" font-size="7.5" fill="#DDE1E6" font-weight="700" font-family="var(--f-mono)" text-anchor="middle">${nombreTema}</text>
+      <text x="0" y="8" font-size="7" fill="#8A93A0" font-family="var(--f-mono)" text-anchor="middle">Impacto ${a.dataset.impacto} · Difusión ${a.dataset.difusion}</text>
+    </g>`;
+  giro.appendChild(g);
+}
+function ocultarConexionMapa(wrap){
+  const existente = wrap.querySelector('#mapa-conexion-hover');
+  if(existente) existente.remove();
 }
 
 function abrirMapaPuntos(){
@@ -411,16 +463,39 @@ function abrirMapaPuntos(){
   });
   modal.classList.add('open');
 
+  // reinicia el reloj del giro cada vez que se abre la ventana -- el ángulo actual
+  // se calcula desde aquí, y se usa para que la línea/cuadrito de conexión (y el
+  // texto dentro) siempre queden bien orientados al pausar
+  mapaGiroInicio = Date.now();
+  mapaGiroPausaAcumulada = 0;
+  mapaGiroPausadoDesde = null;
+
   const wrap = modal.querySelector('.mapa-puntos-wrap');
   if(wrap){
     iniciarCarruselMapaPuntos(wrap, carrusel);
     const tooltip = wrap.querySelector('.mapa-puntos-tooltip');
     wrap.querySelectorAll('.mapa-punto-link').forEach(a=>{
-      a.addEventListener('mouseenter', (e)=> mostrarTooltipMapa(a, wrap, tooltip, e));
+      a.addEventListener('mouseenter', (e)=>{
+        mostrarTooltipMapa(a, wrap, tooltip, e);
+        pausarGiroMapa(wrap);
+        if(a.dataset.gx) mostrarConexionMapa(a, wrap);
+      });
       a.addEventListener('mousemove', (e)=> posicionarTooltipMapa(wrap, tooltip, e));
-      a.addEventListener('mouseleave', ()=>{ tooltip.style.display='none'; });
-      a.addEventListener('focus', (e)=> mostrarTooltipMapa(a, wrap, tooltip, e));
-      a.addEventListener('blur', ()=>{ tooltip.style.display='none'; });
+      a.addEventListener('mouseleave', ()=>{
+        tooltip.style.display='none';
+        ocultarConexionMapa(wrap);
+        reanudarGiroMapa(wrap);
+      });
+      a.addEventListener('focus', (e)=>{
+        mostrarTooltipMapa(a, wrap, tooltip, e);
+        pausarGiroMapa(wrap);
+        if(a.dataset.gx) mostrarConexionMapa(a, wrap);
+      });
+      a.addEventListener('blur', ()=>{
+        tooltip.style.display='none';
+        ocultarConexionMapa(wrap);
+        reanudarGiroMapa(wrap);
+      });
     });
   }
 }
