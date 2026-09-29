@@ -478,7 +478,12 @@ function tableroActoresPulso(actores){
   actores.forEach((a,i)=>{
     const color = PALETA_TABLERO_ACTORES[i % PALETA_TABLERO_ACTORES.length];
     const x1=px(a.x_lunes), y1=py(a.y_lunes), x2=px(a.x_hoy), y2=py(a.y_hoy);
-    const info = `<b>${a.nombre}</b><br>${a.es_nuevo ? '⚡ nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}<br>Δ ${a.delta_pts>0?'+':''}${a.delta_pts} pts de exposición ponderada<br>Alcance: ${a.alcance} medio${a.alcance!==1?'s':''} · Impacto: ${a.n_alto} alto, ${a.n_medio} medio, ${a.n_bajo} bajo${a.nota_url?`<br><a href="${a.nota_url}" target="_blank" rel="noopener" style="color:var(--teal);">ver nota →</a>`:''}`;
+    // OJO: este texto se inyecta dentro de otro atributo HTML (data-info="...") -- el
+    // href="..." de abajo trae comillas dobles propias que, sin escapar, cierran ese
+    // atributo antes de tiempo y rompen el <circle>/<line> completo (bug real: el
+    // tablero no dibujaba NADA, ni un punto, aunque los datos venían bien). Se escapan
+    // las comillas dobles a &quot; justo antes de usarlo como atributo.
+    const info = `<b>${a.nombre}</b><br>${a.es_nuevo ? '⚡ nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}<br>Δ ${a.delta_pts>0?'+':''}${a.delta_pts} pts de exposición ponderada<br>Alcance: ${a.alcance} medio${a.alcance!==1?'s':''} · Impacto: ${a.n_alto} alto, ${a.n_medio} medio, ${a.n_bajo} bajo${a.nota_url?`<br><a href="${a.nota_url}" target="_blank" rel="noopener" style="color:var(--teal);">ver nota →</a>`:''}`.replace(/"/g, '&quot;');
     if(!a.es_nuevo){
       piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="7" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="0.4"/>`;
       piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="0.4" style="cursor:pointer;"/>`;
