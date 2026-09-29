@@ -771,6 +771,8 @@ const NOMBRES_CORTOS_LEG = {
   'reforma-poder-judicial-2024': 'Poder Judicial (elección de jueces por voto popular)',
   'reforma-guardia-nacional-sedena-2024': 'Guardia Nacional a la Sedena',
   'reforma-ley-amparo-2025': 'Ley de Amparo',
+  'reforma-propiedad-industrial-antimemes-2026': 'Propiedad Industrial ("Ley Antimemes")',
+  'reforma-ley-educacion-celulares-escuelas-2025': 'Celulares en escuelas (Ley General de Educación)',
 };
 function nombreCortoLeg(r){ return NOMBRES_CORTOS_LEG[r.id] || r.nombre; }
 

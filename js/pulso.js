@@ -425,12 +425,9 @@ function barrasHistoricoPulso(historico){
       const tHoy = historico[idxHoy].tension;
       const yHoy = tHoy!==null ? y(tHoy) : (h-padB);
       const cxHoy = (idxHoy*paso+paso/2).toFixed(1);
-      // antes solo el triangulito pegado a la barra -- si esa barra ademas era la de menor
-      // tension del periodo (barra corta, casi al fondo), la marca se perdia visualmente
-      // contra el color de "dia mas bajo". La linea vertical completa (mismo tratamiento
-      // que ya tiene la grafica de tendencia por categoria) la hace imposible de no ver.
-      return `<line x1="${cxHoy}" y1="${padT}" x2="${cxHoy}" y2="${h-padB}" stroke="var(--teal)" stroke-width="1" stroke-dasharray="3,3" opacity="0.55"/>
-        <polygon class="pulso-marca-viva" points="${cxHoy},${(yHoy-2).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(yHoy-9).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(yHoy-9).toFixed(1)}" fill="var(--teal)"/>
+      // pedido: quitar la línea vertical completa y dejar solo la flechita pegada a su
+      // barra con la fecha -- la línea larga competía visualmente con las barras.
+      return `<polygon class="pulso-marca-viva" points="${cxHoy},${(yHoy-2).toFixed(1)} ${(idxHoy*paso+paso/2-5).toFixed(1)},${(yHoy-9).toFixed(1)} ${(idxHoy*paso+paso/2+5).toFixed(1)},${(yHoy-9).toFixed(1)}" fill="var(--teal)"/>
         <text class="pulso-marca-viva" x="${(parseFloat(cxHoy)+4).toFixed(1)}" y="${(padT-3).toFixed(1)}" font-size="7" fill="var(--teal)" font-family="var(--f-mono)" text-anchor="end">HOY · ${fmtFechaCortaPulso(historico[idxHoy].fecha)}</text>`;
     })()}
   </svg>
@@ -543,11 +540,17 @@ function tableroActoresPulso(actores){
     const abre = a.nota_url ? `<a href="${a.nota_url}" target="_blank" rel="noopener" class="pulso-tablero-link">` : '<g>';
     const cierra = a.nota_url ? '</a>' : '</g>';
     const retraso = ((i*0.37) % 2.4).toFixed(2);
+    // "que se vea vivo" -- además del halo que respira, un anillo nítido en --ink-1 (blanco
+    // en tema oscuro, negro en tema claro -- se adapta solo) recorta cada pieza contra su
+    // color de categoría, y un destello de 4 puntas titila en una esquina para dar sensación
+    // de brillo/movimiento sin depender del hover.
     piezas += `${abre}
       ${(a.es_nuevo && !esTenue) ? `<circle class="pulso-tablero-ping" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="none" stroke="${color}" stroke-width="1.5" style="animation-delay:${retraso}s;"/>` : ''}
       ${!esTenue ? `<circle class="pulso-halo-vivo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r+5}" fill="${color}" style="animation-delay:${retraso}s;"/>` : ''}
+      <circle class="pulso-tablero-anillo" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${(r+1.5).toFixed(1)}" fill="none" stroke="var(--ink-1)" stroke-width="1.3" opacity="${esTenue?0.35:0.9}"/>
       <circle class="pulso-tablero-pieza" data-info="${info}" cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="${r}" fill="${color}" stroke="var(--bg-2)" stroke-width="1.5" opacity="${opacidadPieza}"/>
       <text x="${x2.toFixed(1)}" y="${(y2+3.2).toFixed(1)}" font-size="8.5" font-weight="700" fill="var(--bg-2)" text-anchor="middle" opacity="${opacidadPieza}" style="pointer-events:none;">${iniciales2(a.nombre)}</text>
+      ${!esTenue ? `<path class="pulso-destello" d="M0,-4.2 L1.1,-1.1 L4.2,0 L1.1,1.1 L0,4.2 L-1.1,1.1 L-4.2,0 L-1.1,-1.1 Z" fill="var(--ink-1)" transform="translate(${(x2+r*0.6).toFixed(1)},${(y2-r*0.6).toFixed(1)})" style="animation-delay:${(parseFloat(retraso)+0.9).toFixed(2)}s;"/>` : ''}
     ${cierra}`;
   });
   // preserveAspectRatio="none" (como estaba antes) estira el ancho y el alto por
