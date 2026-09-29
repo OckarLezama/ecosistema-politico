@@ -523,15 +523,52 @@ function tableroActoresPulso(actores){
       <stop offset="55%" stop-color="${c}"/>
       <stop offset="100%" stop-color="${aclararHex(c,-0.22)}"/>
     </radialGradient>`).join('');
-  let piezas = '';
-  actores.forEach((a,i)=>{
+  // ---- Paso 1: calcular posición y tamaño de cada pieza ANTES de dibujar nada, para
+  // poder separar las que se encimen. Antes cada pieza se ubicaba solo por su dato real
+  // (volumen/intensidad) sin importar si eso la ponía justo encima de otra -- pedido
+  // explícito: "que no se encimen los círculos". Se hace un pequeño ajuste iterativo
+  // (relajación de colisión clásica): si dos piezas quedan más cerca que la suma de sus
+  // radios + un margen, se empujan una a otra a lo largo de la línea que las une, unas
+  // cuantas rondas, sin mover a quien no choca con nadie. La posición real (dato) se
+  // conserva siempre que no haya choque -- esto es solo para que ninguna tape a otra.
+  const datos = actores.map((a,i)=>{
     const color = colorCategoriaFijo(a.categoria);
     // Un actor que solo figuró UN día esta semana no tiene el mismo peso que uno con
     // presencia sostenida -- se pide explícitamente que se vea tenue/apagado, no al
     // mismo brillo que el resto.
     const esTenue = a.dias_activo === 1;
-    const x1=px(a.x_lunes), y1=py(a.y_lunes), x2=px(a.x_hoy), y2=py(a.y_hoy);
-
+    const x1=px(a.x_lunes), y1=py(a.y_lunes);
+    const r = 18 + Math.min(10, (a.alcance||0));
+    return { a, i, color, esTenue, x1, y1, x2: px(a.x_hoy), y2: py(a.y_hoy), r };
+  });
+  const GAP_MIN = 6;
+  for(let ronda=0; ronda<60; ronda++){
+    let huboChoque = false;
+    for(let i=0; i<datos.length; i++){
+      for(let j=i+1; j<datos.length; j++){
+        const p1 = datos[i], p2 = datos[j];
+        const dx = p2.x2-p1.x2, dy = p2.y2-p1.y2;
+        const dist = Math.sqrt(dx*dx+dy*dy) || 0.01;
+        const minDist = p1.r + p2.r + GAP_MIN;
+        if(dist < minDist){
+          huboChoque = true;
+          const empuje = (minDist-dist)/2;
+          const nx = dx/dist, ny = dy/dist;
+          p1.x2 -= nx*empuje; p1.y2 -= ny*empuje;
+          p2.x2 += nx*empuje; p2.y2 += ny*empuje;
+        }
+      }
+    }
+    // Ninguna pieza debe salirse del recuadro por haber sido empujada -- se recorta a su
+    // propio radio de distancia del borde del área jugable en cada ronda.
+    datos.forEach(p=>{
+      p.x2 = Math.min(plotX1-p.r, Math.max(plotX0+p.r, p.x2));
+      p.y2 = Math.min(plotY1-p.r, Math.max(plotY0+p.r, p.y2));
+    });
+    if(!huboChoque) break;
+  }
+  let piezas = '';
+  datos.forEach(({a,i,color,esTenue,x1,y1,x2,y2,r})=>{
     // Tooltip con lectura visual, no solo texto plano -- pedido explícito: la exposición
     // ponderada como barrita con signo/color, el impacto como franja de 3 tramos (alto/
     // medio/bajo) en vez de "2 alto, 1 medio", y el alcance como barrita también. El link
@@ -566,12 +603,6 @@ function tableroActoresPulso(actores){
           <span style="font-size:8.5px;color:var(--ink-2);font-family:var(--f-mono);white-space:nowrap;">${a.alcance} medio${a.alcance!==1?'s':''}</span>
         </div>
       </div>`.replace(/"/g, '&quot;');
-    // pedido: piezas notoriamente más grandes (las anteriores se veían "simples" en parte
-    // porque a este tamaño de tarjeta, r=12-20 termina siendo apenas unos px reales en
-    // pantalla -- ilegible para 2 letras). Un actor "tenue" (1 solo día) se ve apagado --
-    // menor opacidad y sin halo/glow, para que salte a la vista quién de verdad tiene peso
-    // esta semana sin dejar de mostrar a los demás.
-    const r = 18 + Math.min(10, (a.alcance||0));
     if(!a.es_nuevo){
       // La línea de "jugada" (lunes -> hoy) llega hasta el CENTRO de la pieza de hoy, pero
       // la pieza se dibuja ENCIMA y la tapa por completo -- cualquier flecha en la punta
@@ -585,6 +616,15 @@ function tableroActoresPulso(actores){
       const yLineaFin = y2 - (dy/distLinea)*retroceso;
       piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="8" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="${esTenue?0.22:0.4}"/>`;
       piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${xLineaFin.toFixed(1)}" y2="${yLineaFin.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="${esTenue?0.32:0.55}" marker-end="url(#pulso-flecha-jugada)" style="cursor:pointer;"/>`;
+      // Pedido explícito: que la línea hacia el punto de HOY se vea "pasar" hacia esa
+      // dirección -- un halo/destello que fluye, no solo una línea estática con flecha. Es
+      // la ÚNICA línea del tablero con movimiento (ninguna otra traza lo tiene). Se logra
+      // con un segundo trazo encimado, de guiones cortos, cuyo stroke-dashoffset se anima
+      // sin parar (ver @keyframes pulso-flujo-jugada en css/styles.css): visualmente son
+      // "cuentas de luz" del color del actor recorriendo la línea de lunes hacia hoy.
+      if(!esTenue){
+        piezas += `<line class="pulso-flujo-jugada" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${xLineaFin.toFixed(1)}" y2="${yLineaFin.toFixed(1)}" stroke="${color}" stroke-width="2.2" stroke-linecap="round"/>`;
+      }
     }
     const opacidadPieza = esTenue ? 0.55 : 1;
     const abre = a.nota_url ? `<a href="${a.nota_url}" target="_blank" rel="noopener" class="pulso-tablero-link">` : '<g>';
@@ -638,19 +678,41 @@ function tableroActoresPulso(actores){
     ${piezas}
   </svg>
   </div>
-  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos) · color = categoría dominante · pieza tenue = solo figuró 1 día esta semana. Toca o pasa el cursor sobre una pieza para ver el detalle; un tap/clic abre la nota.</div>`;
+  <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">Pieza hueca = posición del lunes · pieza sólida = hoy · tamaño = alcance (medios distintos) · color = categoría dominante · pieza tenue = solo figuró 1 día esta semana. En computadora: pasa el cursor para ver el detalle y haz clic para abrir la nota. En celular/tablet: toca una vez para ver el detalle, toca de nuevo para abrir la nota.</div>`;
 }
 function activarTableroActores(cont){
   if(!cont) return;
-  // pointerenter/pointermove/pointerleave (no mouse-only) para que el tooltip también
-  // reaccione en pantallas táctiles -- pero la acción real (ver la nota) YA NO depende de
-  // esto: cada pieza es un <a> real, así que en celular/tablet un tap simplemente abre el
-  // artículo directo, sin necesitar el hover que ahí no existe.
+  // pointerenter/pointermove/pointerleave para que el tooltip también reaccione con mouse.
   cont.querySelectorAll('.pulso-tablero-pieza').forEach(p=>{
     p.addEventListener('pointermove', ev=> mostrarTooltipPulso(p.dataset.info, ev));
     p.addEventListener('pointerenter', ev=> mostrarTooltipPulso(p.dataset.info, ev));
     p.addEventListener('pointerleave', ocultarTooltipPulso);
   });
+  // CORREGIDO -- pedido explícito: en celular/tablet no existe hover, así que un tap
+  // sobre la pieza abría la nota de inmediato sin que la persona alcanzara a ver la
+  // información (exposición, impacto, alcance). En pantallas táctiles, el PRIMER tap
+  // sobre cada pieza ahora muestra esa info (como el hover de escritorio) y CANCELA la
+  // navegación; solo un SEGUNDO tap sobre la misma pieza abre la nota. Tocar fuera de
+  // cualquier pieza cierra el tooltip y reinicia ese estado, para que la siguiente pieza
+  // que se toque también muestre su info primero.
+  const esTactil = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  if(esTactil){
+    cont.querySelectorAll('.pulso-tablero-link').forEach(link=>{
+      link.addEventListener('click', function(ev){
+        if(link.dataset.tocado === '1') return; // segundo tap: deja que navegue de verdad
+        const pieza = link.querySelector('.pulso-tablero-pieza');
+        if(!pieza) return;
+        ev.preventDefault();
+        link.dataset.tocado = '1';
+        mostrarTooltipPulso(pieza.dataset.info, ev);
+      });
+    });
+    cont.addEventListener('pointerdown', function(ev){
+      if(ev.target.closest('.pulso-tablero-link')) return;
+      ocultarTooltipPulso();
+      cont.querySelectorAll('.pulso-tablero-link[data-tocado]').forEach(l=> delete l.dataset.tocado);
+    });
+  }
 }
 
 // se distribuyen en flex-column con height:100% para ocupar todo el alto real de la
