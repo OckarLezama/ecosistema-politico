@@ -569,6 +569,33 @@ function tableroActoresPulso(actores){
     const r = 11 + Math.min(5, (a.alcance||0));
     return { a, i, color, esTenue, esApagado, x1, y1, x2: px(a.x_hoy), y2: py(a.y_hoy), r };
   });
+  // CORRECCIÓN -- pedido explícito repetido, con capturas de pantalla: "parece que todos
+  // siguen la misma línea". La separación de arriba solo evita que las piezas de HOY
+  // (x2,y2) se encimen -- pero el otro extremo de cada trazo, el punto de "ayer" (x1,y1),
+  // se calcula igual para cualquier actor sin mención el día anterior (vol_ayer=0,
+  // intens_ayer=0 -> misma esquina normalizada para todos). Con varios actores arrancando
+  // EXACTAMENTE del mismo punto, sus líneas se ven como una sola línea gruesa abriéndose
+  // en abanico -- eso es lo que se estaba viendo, no un error de colisión. Se detectan los
+  // puntos de "ayer" que coinciden (redondeando a 1px) y se reparten en un pequeño círculo
+  // alrededor del punto real, con un ángulo fijo por posición (ángulo dorado) para que el
+  // reparto sea determinista y no cambie de forma aleatoria entre cortes.
+  {
+    const gruposAyer = new Map();
+    datos.forEach(p=>{
+      const clave = `${Math.round(p.x1)}:${Math.round(p.y1)}`;
+      if(!gruposAyer.has(clave)) gruposAyer.set(clave, []);
+      gruposAyer.get(clave).push(p);
+    });
+    gruposAyer.forEach(grupo=>{
+      if(grupo.length < 2) return;
+      const RADIO_ABANICO = 13;
+      grupo.forEach((p,k)=>{
+        const ang = (k*2.399963) + 0.6;
+        p.x1 += Math.cos(ang)*RADIO_ABANICO;
+        p.y1 += Math.sin(ang)*RADIO_ABANICO;
+      });
+    });
+  }
   // CORRECCIÓN -- el choque solo se medía contra el radio "r" del círculo sólido, pero
   // cada pieza también dibuja un halo (r+8) y un anillo (r+2) alrededor: con solo 6px de
   // margen entre los círculos sólidos, esos halos se encimaban de sobra aunque los
