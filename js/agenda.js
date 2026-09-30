@@ -1006,7 +1006,16 @@ function renderMatriz(){
   // flotando arriba del lienzo de la matriz, en vez de sentirse parte del mismo
   // producto. Ahora entra DENTRO de la misma tarjeta (mismo fondo de cuadrícula,
   // mismo borde) que el gráfico de dispersión -- un solo lienzo, no dos piezas.
-  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;display:flex;flex-direction:column;"></div>`;
+  // CORRECCIÓN -- pedido explícito, ronda 3: "no me gusta que se expanda, porque
+  // alarga todo, se ve estirado, debería de ser proporcional". Con el ancho del panel
+  // ya ampliado (1322px) y el alto fijo compartido con Red de Actores/Timeline/Feed
+  // (609px), el plano quedaba con una proporción muy ancha y corta (~3:1) -- se sentía
+  // "estirado" en vez de un gráfico proporcionado. Se limita el ancho del lienzo (no
+  // su alto, para no romper la igualdad de alto con los otros 3 paneles) a un máximo
+  // razonable y se centra -- en pantallas angostas el límite no aplica (sigue usando
+  // el 100% disponible, como pedido en una ronda anterior), solo entra en juego cuando
+  // sobra espacio de más.
+  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;max-width:1000px;margin:0 auto;flex:1;min-height:0;position:relative;display:flex;flex-direction:column;"></div>`;
   // CORRECCIÓN -- pedido explícito: la tarjeta con fondo+borde propio (.matriz-lienzo)
   // quedaba ANIDADA dentro de la tarjeta que YA pone .graph-card alrededor de todo
   // #agenda-contenido -- dos bordes/fondos encimados, doble caja. Genealogía no hace
@@ -1027,9 +1036,25 @@ function renderMatriz(){
   // como el de Genealogía". El aviso de límite de puntos vivía en su propia fila
   // (franja completa, aunque el texto es corto) -- ahora es el último elemento de la
   // fila de leyenda (ver más abajo), así se recupera esa fila entera para el SVG.
+  // CORRECCIÓN -- pedido explícito, ronda 3: "se encima de la matriz, y sale cortado
+  // el ⓘ, no deberá de encimarse nada, por eso te había pedido que estuvieran dentro".
+  // Diagnosticado con mediciones reales (getBoundingClientRect): el ícono vivía DENTRO
+  // del propio <svg>, posicionado a mano en coordenadas relativas al margen superior
+  // del gráfico (margen.arriba-27) -- cuando ese margen se redujo en una corrección
+  // anterior (a 18px) para aprovechar más espacio, ya no quedaba hueco para el ícono
+  // y su área de hover, y el <svg> (overflow:hidden por defecto) lo recortaba. Ahora
+  // el ícono es un elemento HTML aparte, anclado con position:absolute al propio
+  // envoltorio del <svg> (no a coordenadas internas del dibujo) -- siempre "adentro"
+  // de esa caja sin importar cuánto mida el margen interno del gráfico, y sin
+  // depender de que el <svg> ya tenga su tamaño final calculado.
   document.getElementById('matriz-lista-zona').innerHTML =
     `<div id="matriz-resumen-html" style="flex:none;"></div>
-     <svg id="matriz-riesgo-svg" style="width:100%;flex:1;min-height:0;display:block;"></svg>
+     <div style="width:100%;flex:1;min-height:0;position:relative;">
+       <svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg>
+       <span class="leg-tt" data-tt="El plano es un ranking del corte de hoy (percentil de riesgo y volumen entre los temas activos), no un valor absoluto -- no comparable directamente entre días distintos." style="position:absolute;top:4px;right:6px;width:16px;height:16px;cursor:help;display:flex;align-items:center;justify-content:center;">
+         <svg width="16" height="16" viewBox="0 0 24 24" style="pointer-events:none;"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--ink-3)" stroke-width="2"/><line x1="12" y1="16" x2="12" y2="12" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"/></svg>
+       </span>
+     </div>
      <div id="matriz-leyenda-html" style="flex:none;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:5px 10px 4px;font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);"></div>`;
   dibujarMatrizRiesgo();
 }
@@ -1344,9 +1369,6 @@ function dibujarMatrizRiesgo(){
   const svg = d3.select(svgEl);
   svg.selectAll('*').remove();
 
-  const width = svgEl.clientWidth || 700, height = svgEl.clientHeight || 560;
-  svg.attr('viewBox',[0,0,width,height]);
-
   const COLOR_RIESGO = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
   const nivelRiesgo = r => r>=7?'alto':r>=4?'medio':'bajo';
 
@@ -1363,7 +1385,14 @@ function dibujarMatrizRiesgo(){
   datosTodos.sort((a,b)=> (a.apagado===b.apagado ? 0 : a.apagado ? 1 : -1) || ((b.riesgoReal+b.veces) - (a.riesgoReal+a.veces)));
   const datos = datosTodos.slice(0, LIMITE_PUNTOS_MATRIZ);
 
+  const resumenEl = document.getElementById('matriz-resumen-html');
+  const leyendaEl = document.getElementById('matriz-leyenda-html');
+
   if(!datos.length){
+    if(resumenEl) resumenEl.innerHTML = '';
+    if(leyendaEl) leyendaEl.innerHTML = '';
+    const width = svgEl.clientWidth || 700, height = svgEl.clientHeight || 560;
+    svg.attr('viewBox',[0,0,width,height]);
     svg.append('text').attr('x',width/2).attr('y',height/2).attr('text-anchor','middle')
       .attr('font-family','var(--f-display)').attr('font-size','14px').attr('fill','var(--ink-3)')
       .text('Sin temas con este filtro');
@@ -1386,26 +1415,6 @@ function dibujarMatrizRiesgo(){
     ? `mostrando ${datos.length} de ${totalAntesDeLimite} -- filtra por categoría para ver el resto`
     : `${datos.length} tema${datos.length!==1?'s':''} en esta vista`;
 
-  // ---- geometría: X = volumen reciente (notas en 14d), Y = riesgo reciente (arriba = alto) ----
-  // CORRECCIÓN -- pedido explícito: "¿esto es un producto de inteligencia real?". Las
-  // anotaciones flotantes ("quién se movió más") y las etiquetas de cuadrante de 2
-  // líneas ya no viven DENTRO del SVG -- esa lectura ahora la da el resumen en HTML de
-  // arriba (más claro) y una flecha de tendencia en cada punto (ver más abajo). Sin esas
-  // dos cosas peleando por espacio, el margen superior vuelve a ser chico y el plano
-  // recupera el área que antes se le quitaba.
-  // CORRECCIÓN -- pedido explícito: "desperdiciamos mucho espacio... que el radar
-  // cubriera todo el div". Márgenes recortados al mínimo que los rótulos de eje (rotado
-  // a la izquierda, horizontal abajo) todavía necesitan sin recortarse -- verificado con
-  // captura real a 1322px de ancho. El radar YA cubre el rectángulo completo de los ejes
-  // (su radio llega a la esquina más lejana, ver dibujarBarridoRadar) -- al reducir el
-  // margen, ese rectángulo crece y el radar crece con él automáticamente.
-  // abajo no baja de 24: el rótulo del eje X se dibuja a margen.abajo+22px bajo el eje
-  // (ver más abajo, "más notas recientes...") -- con menos de eso, el texto queda fuera
-  // del área visible del SVG y se corta.
-  const margen = {izq:26, der:8, arriba:18, abajo:24};
-  const anchoUtil = Math.max(80, width - margen.izq - margen.der);
-  const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
-
   // CORRECCIÓN -- pedido explícito: "cuando el filtro está en todos... queda mucho
   // hacia abajo, no luce por la distribución". Causa real: con valor absoluto, la
   // mayoría de los temas de agenda tienen riesgo 5-9 y pocas notas -- así que TODOS
@@ -1415,13 +1424,15 @@ function dibujarMatrizRiesgo(){
   // siempre queda arriba del todo y el de menor siempre abajo del todo, sin importar
   // si los valores reales están todos entre 5 y 9 o repartidos de 0 a 10 -- el lienzo
   // completo se usa siempre. El valor real sigue intacto en el tooltip.
+  // Nótese que hasta aquí (ranking, umbral, clasificación de cuadrante) todo se calcula
+  // sobre PORCENTAJES (0..1), sin tocar aún el ancho/alto real del <svg> -- eso es lo
+  // que permite calcular la clasificación (y con ella el resumen y la leyenda en HTML,
+  // ver más abajo) ANTES de medir el <svg>, en vez de después.
   const nDatos = datos.length;
   [...datos].sort((a,b)=> a.veces-b.veces || a.tema.id.localeCompare(b.tema.id))
     .forEach((d,i)=> d._rankX = nDatos>1 ? i/(nDatos-1) : 0.5);
   [...datos].sort((a,b)=> b.riesgoReal-a.riesgoReal || a.tema.id.localeCompare(b.tema.id))
     .forEach((d,i)=> d._rankY = nDatos>1 ? i/(nDatos-1) : 0.5);
-  const xDe = d => margen.izq + d._rankX * anchoUtil;
-  const yDe = d => margen.arriba + d._rankY * altoUtil;
   // CORRECCIÓN -- verificado con captura real: con el umbral fijo en 0.5 de TODO el
   // corte (activos + apagados), "ACTUAR YA" salía con 18 de 44 temas activos -- muy
   // alto para ser útil como triage ("si todo es urgente, nada lo es"). La causa: los
@@ -1435,88 +1446,17 @@ function dibujarMatrizRiesgo(){
   const _medianaDe = arr => { const s=[...arr].sort((a,b)=>a-b); return s.length ? s[Math.floor((s.length-1)/2)] : 0.5; };
   const umbralRankX = activosParaUmbral.length ? _medianaDe(activosParaUmbral.map(d=>d._rankX)) : 0.5;
   const umbralRankY = activosParaUmbral.length ? _medianaDe(activosParaUmbral.map(d=>d._rankY)) : 0.5;
-  const xMediana = margen.izq + umbralRankX*anchoUtil, yMediana = margen.arriba + umbralRankY*altoUtil;
 
-  // ---- fondo de cuadrícula, una sola escala -- mismo criterio que Genealogía
-  // (#geneal-grid): un <pattern> dibujado directo en el SVG, sin envolver el gráfico
-  // en una tarjeta con su propio fondo/borde (eso duplicaba la caja que ya pone
-  // .graph-card alrededor de todo el panel). ----
-  const defs = svg.append('defs');
-  const patGrid = defs.append('pattern').attr('id','matriz-grid').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
-  patGrid.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
-  svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#matriz-grid)');
-
-  // ---- fondo: los 4 cuadrantes con su propio tinte. CORRECCIÓN -- pedido explícito:
-  // "algunas están en posición baja y riesgo alto, tener claro ese análisis" -- un tema
-  // de riesgo alto pero poco volumen (VIGILAR) se perdía en el mismo fondo neutro que
-  // "bajo perfil". Las etiquetas largas de cuadrante ("alto riesgo + alto volumen") ya
-  // NO van aquí -- esa lectura la da el resumen en HTML arriba del gráfico, con mejor
-  // tipografía y sin pelear por espacio con los puntos. Aquí solo queda el nombre corto,
-  // discreto, en la esquina -- referencia rápida para quien ya leyó el resumen.
-  svg.append('rect').attr('x',xMediana).attr('y',margen.arriba).attr('width',margen.izq+anchoUtil-xMediana).attr('height',yMediana-margen.arriba)
-    .attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.08);
-  svg.append('rect').attr('x',margen.izq).attr('y',margen.arriba).attr('width',xMediana-margen.izq).attr('height',yMediana-margen.arriba)
-    .attr('fill','var(--riesgo-medio)').attr('fill-opacity',0.06);
-  svg.append('rect').attr('x',xMediana).attr('y',yMediana).attr('width',margen.izq+anchoUtil-xMediana).attr('height',margen.arriba+altoUtil-yMediana)
-    .attr('fill','var(--ink-3)').attr('fill-opacity',0.05);
-  const rotuloCuadrante = (x,y,anchor,color,texto) => svg.append('text').attr('x',x).attr('y',y).attr('text-anchor',anchor)
-    .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('font-weight','700').attr('fill',color).attr('opacity',0.75).style('pointer-events','none')
-    .text(texto);
-  rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+11, 'end', 'var(--riesgo-alto)', 'ACTUAR YA');
-  rotuloCuadrante(margen.izq+4, margen.arriba+11, 'start', 'var(--riesgo-medio)', 'VIGILAR');
-  rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+altoUtil-6, 'end', 'var(--ink-3)', 'RUIDO');
-  rotuloCuadrante(margen.izq+4, margen.arriba+altoUtil-6, 'start', 'var(--ink-3)', 'BAJO PERFIL');
-
-  // líneas guía de los umbrales -- pedido explícito: "más gruesa / más marcada, que se
-  // distinga" -- eran 1px punteadas casi invisibles contra el fondo oscuro.
-  svg.append('line').attr('x1',xMediana).attr('x2',xMediana).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil)
-    .attr('stroke','var(--line-strong)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',0.85);
-  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',yMediana).attr('y2',yMediana)
-    .attr('stroke','var(--line-strong)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',0.85);
-
-  // ejes
-  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
-  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',margen.arriba+altoUtil).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
-  // CORRECCIÓN -- pedido explícito: "tiene mucho margen, aprovechemos, hagamos que
-  // luzca" -- las etiquetas de eje quedaban chicas (9px, sin peso) dejando bastante
-  // espacio sin usar alrededor. Más grandes, con peso y letter-spacing, ocupan mejor su
-  // franja de margen y se leen como un título de eje, no como una nota al pie.
-  // CORRECCIÓN -- pedido explícito, análisis crítico de la matriz: los ejes son un
-  // RANKING dentro del corte de hoy, no un valor absoluto -- el mismo tema puede
-  // aparecer en otra zona un día distinto solo porque el resto de la agenda cambió,
-  // no porque él cambió. Eso no estaba declarado en ningún lado. La etiqueta del eje X
-  // ahora lo dice ("ranking de hoy"), igual que ya lo decía a medias la del eje Y
-  // ("relativo"); y se agrega un ícono de info con el detalle completo en su title
-  // nativo (sin gastar espacio permanente del lienzo -- aparece solo al pasar el mouse).
-  svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
-    .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
-    .text(`más notas recientes, ranking de hoy (${VENTANA_RADAR_DIAS}d) →`);
-  svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',17).attr('text-anchor','middle')
-    .attr('transform','rotate(-90)')
-    .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
-    .text(`↑ mayor riesgo relativo`);
-  // CORRECCIÓN -- pedido explícito: "tiene formato genérico, darle el formato que ya
-  // está establecido". El <title> nativo del navegador (tooltip gris del sistema
-  // operativo) no es el formato del sitio -- el sitio ya tiene un tooltip propio
-  // compartido (#leg-tooltip-flotante, clase .leg-tt + atributo data-tt, ver
-  // wireTooltipFlotanteLeg() en legislativo.js), usado en Legislativo y Portada.
-  // Se reusa aquí en vez de inventar un tercer estilo de tooltip. wireTooltipFlotanteLeg
-  // ya protege contra doble inicialización, así que llamarla aquí también es seguro
-  // aunque el usuario nunca haya abierto Legislativo en la sesión.
-  if(typeof wireTooltipFlotanteLeg === 'function') wireTooltipFlotanteLeg();
-  // CORRECCIÓN -- pedido explícito: "los íconos deberán de ser del estilo de los
-  // íconos del segmento de análisis" -- ahí los íconos son SVG estilo lucide/feather
-  // (trazo, stroke-width 2, viewBox 24x24), no formas dibujadas a mano dentro del
-  // propio SVG del gráfico. Se sustituye el círculo+"i" ad-hoc por el ícono "info"
-  // real de ese mismo set, reescalado dentro del lienzo.
-  const gInfo = svg.append('g').attr('class','leg-tt')
-    .attr('data-tt','El plano es un ranking del corte de hoy (percentil de riesgo y volumen entre los temas activos), no un valor absoluto -- no comparable directamente entre días distintos.')
-    .attr('transform',`translate(${margen.izq+anchoUtil-9},${margen.arriba-27})`).style('cursor','help');
-  // círculo invisible más grande que el ícono real -- área de hover cómoda (el trazo
-  // fino del ícono por sí solo es difícil de acertar con el mouse).
-  gInfo.append('circle').attr('cx',9).attr('cy',9).attr('r',9).attr('fill','transparent').style('pointer-events','all');
-  gInfo.append('g').attr('transform','scale(0.6)').style('pointer-events','none')
-    .html('<circle cx="12" cy="12" r="10" fill="none" stroke="var(--ink-3)" stroke-width="2"/><line x1="12" y1="16" x2="12" y2="12" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"/>');
+  // ---- clasificación de cuadrante por RANKING (no por x/y ya con jitter de colisión,
+  // para que la clasificación no cambie si dos puntos se empujan entre sí) -- se usa
+  // para 1) el resumen en HTML de arriba, y 2) pintar con color solo lo que importa
+  // (ver "puntos" más abajo). Se calcula aquí, antes de medir el <svg>, porque solo
+  // depende de los rankings de arriba -- no de márgenes ni del tamaño del lienzo. ----
+  datos.forEach(d=>{
+    d._cuadrante = d.apagado ? 'apagado'
+      : d._rankY<umbralRankY ? (d._rankX>=umbralRankX ? 'actuar' : 'vigilar')
+      : (d._rankX>=umbralRankX ? 'ruido' : 'bajoperfil');
+  });
 
   // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
   // colores, no indicamos qué significa cada color". CORRECCIÓN de esta ronda:
@@ -1538,18 +1478,7 @@ function dibujarMatrizRiesgo(){
     chip(`<svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="none" stroke="${COLOR_RIESGO.alto}" stroke-width="1.4"/></svg>`, 'anillo = tema más urgente ahora'),
     `<span style="opacity:0.6;margin-left:auto;">${textoAvisoLimite}</span>`,
   ];
-  const leyendaEl = document.getElementById('matriz-leyenda-html');
   if(leyendaEl) leyendaEl.innerHTML = chipsLeyenda.join('');
-
-  // ---- clasificación de cuadrante por RANKING (no por x/y ya con jitter de colisión,
-  // para que la clasificación no cambie si dos puntos se empujan entre sí) -- se usa
-  // para 1) el resumen en HTML de arriba, y 2) pintar con color solo lo que importa
-  // (ver "puntos" más abajo). ----
-  datos.forEach(d=>{
-    d._cuadrante = d.apagado ? 'apagado'
-      : d._rankY<umbralRankY ? (d._rankX>=umbralRankX ? 'actuar' : 'vigilar')
-      : (d._rankX>=umbralRankX ? 'ruido' : 'bajoperfil');
-  });
 
   // ---- resumen en HTML, arriba del gráfico -- pedido explícito: "¿esto es un producto
   // de inteligencia que alguien consultaría para tomar decisiones?". Una conclusión de
@@ -1563,7 +1492,6 @@ function dibujarMatrizRiesgo(){
   const catsOrdenadas = Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]);
   const actuarCount = activos.filter(d=>d._cuadrante==='actuar').length;
   const vigilarItems = activos.filter(d=>d._cuadrante==='vigilar').sort((a,b)=>b.riesgoReal-a.riesgoReal);
-  const resumenEl = document.getElementById('matriz-resumen-html');
   if(resumenEl){
     if(!activos.length){
       resumenEl.innerHTML = '';
@@ -1651,6 +1579,115 @@ function dibujarMatrizRiesgo(){
       });
     }
   }
+
+  // ---- AHORA que el resumen y la leyenda ya insertaron su HTML real (y el navegador
+  // ya recalculó cuánto espacio les toca), se mide el <svg> -- pedido explícito, ronda
+  // 3: "se encima de la matriz... no deberá de encimarse nada". Diagnosticado y
+  // corroborado con mediciones reales (getBoundingClientRect): antes esta medida se
+  // tomaba al principio de la función, con el resumen todavía VACÍO o con el texto de
+  // la vuelta anterior (más corto) -- el <svg> se dibujaba para una altura mayor a la
+  // que en realidad le quedaba una vez que el texto real (a veces de 2 líneas) ya
+  // estaba insertado, y el contenido del gráfico terminaba fuera de su caja real.
+  const width = svgEl.clientWidth || 700, height = svgEl.clientHeight || 560;
+  svg.attr('viewBox',[0,0,width,height]);
+
+  // ---- geometría: X = volumen reciente (notas en 14d), Y = riesgo reciente (arriba = alto) ----
+  // CORRECCIÓN -- pedido explícito: "¿esto es un producto de inteligencia real?". Las
+  // anotaciones flotantes ("quién se movió más") y las etiquetas de cuadrante de 2
+  // líneas ya no viven DENTRO del SVG -- esa lectura ahora la da el resumen en HTML de
+  // arriba (más claro) y una flecha de tendencia en cada punto (ver más abajo). Sin esas
+  // dos cosas peleando por espacio, el margen superior vuelve a ser chico y el plano
+  // recupera el área que antes se le quitaba.
+  // CORRECCIÓN -- pedido explícito: "desperdiciamos mucho espacio... que el radar
+  // cubriera todo el div". Márgenes recortados al mínimo que los rótulos de eje (rotado
+  // a la izquierda, horizontal abajo) todavía necesitan sin recortarse -- verificado con
+  // captura real a 1322px de ancho. El radar YA cubre el rectángulo completo de los ejes
+  // (su radio llega a la esquina más lejana, ver dibujarBarridoRadar) -- al reducir el
+  // margen, ese rectángulo crece y el radar crece con él automáticamente.
+  // abajo no baja de 24: el rótulo del eje X se dibuja a margen.abajo+22px bajo el eje
+  // (ver más abajo, "más notas recientes...") -- con menos de eso, el texto queda fuera
+  // del área visible del SVG y se corta.
+  const margen = {izq:26, der:8, arriba:18, abajo:24};
+  const anchoUtil = Math.max(80, width - margen.izq - margen.der);
+  const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
+  const xDe = d => margen.izq + d._rankX * anchoUtil;
+  const yDe = d => margen.arriba + d._rankY * altoUtil;
+  const xMediana = margen.izq + umbralRankX*anchoUtil, yMediana = margen.arriba + umbralRankY*altoUtil;
+
+  // ---- fondo de cuadrícula, una sola escala -- mismo criterio que Genealogía
+  // (#geneal-grid): un <pattern> dibujado directo en el SVG, sin envolver el gráfico
+  // en una tarjeta con su propio fondo/borde (eso duplicaba la caja que ya pone
+  // .graph-card alrededor de todo el panel). ----
+  const defs = svg.append('defs');
+  const patGrid = defs.append('pattern').attr('id','matriz-grid').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
+  patGrid.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
+  svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#matriz-grid)');
+
+  // ---- fondo: los 4 cuadrantes con su propio tinte. CORRECCIÓN -- pedido explícito:
+  // "algunas están en posición baja y riesgo alto, tener claro ese análisis" -- un tema
+  // de riesgo alto pero poco volumen (VIGILAR) se perdía en el mismo fondo neutro que
+  // "bajo perfil". Las etiquetas largas de cuadrante ("alto riesgo + alto volumen") ya
+  // NO van aquí -- esa lectura la da el resumen en HTML arriba del gráfico, con mejor
+  // tipografía y sin pelear por espacio con los puntos. Aquí solo queda el nombre corto,
+  // discreto, en la esquina -- referencia rápida para quien ya leyó el resumen.
+  svg.append('rect').attr('x',xMediana).attr('y',margen.arriba).attr('width',margen.izq+anchoUtil-xMediana).attr('height',yMediana-margen.arriba)
+    .attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.08);
+  svg.append('rect').attr('x',margen.izq).attr('y',margen.arriba).attr('width',xMediana-margen.izq).attr('height',yMediana-margen.arriba)
+    .attr('fill','var(--riesgo-medio)').attr('fill-opacity',0.06);
+  svg.append('rect').attr('x',xMediana).attr('y',yMediana).attr('width',margen.izq+anchoUtil-xMediana).attr('height',margen.arriba+altoUtil-yMediana)
+    .attr('fill','var(--ink-3)').attr('fill-opacity',0.05);
+  const rotuloCuadrante = (x,y,anchor,color,texto) => svg.append('text').attr('x',x).attr('y',y).attr('text-anchor',anchor)
+    .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('font-weight','700').attr('fill',color).attr('opacity',0.75).style('pointer-events','none')
+    .text(texto);
+  rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+11, 'end', 'var(--riesgo-alto)', 'ACTUAR YA');
+  rotuloCuadrante(margen.izq+4, margen.arriba+11, 'start', 'var(--riesgo-medio)', 'VIGILAR');
+  rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+altoUtil-6, 'end', 'var(--ink-3)', 'RUIDO');
+  rotuloCuadrante(margen.izq+4, margen.arriba+altoUtil-6, 'start', 'var(--ink-3)', 'BAJO PERFIL');
+
+  // líneas guía de los umbrales -- pedido explícito: "más gruesa / más marcada, que se
+  // distinga" -- eran 1px punteadas casi invisibles contra el fondo oscuro.
+  svg.append('line').attr('x1',xMediana).attr('x2',xMediana).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil)
+    .attr('stroke','var(--line-strong)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',0.85);
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',yMediana).attr('y2',yMediana)
+    .attr('stroke','var(--line-strong)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',0.85);
+
+  // ejes
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',margen.arriba+altoUtil).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
+  // CORRECCIÓN -- pedido explícito: "tiene mucho margen, aprovechemos, hagamos que
+  // luzca" -- las etiquetas de eje quedaban chicas (9px, sin peso) dejando bastante
+  // espacio sin usar alrededor. Más grandes, con peso y letter-spacing, ocupan mejor su
+  // franja de margen y se leen como un título de eje, no como una nota al pie.
+  // CORRECCIÓN -- pedido explícito, análisis crítico de la matriz: los ejes son un
+  // RANKING dentro del corte de hoy, no un valor absoluto -- el mismo tema puede
+  // aparecer en otra zona un día distinto solo porque el resto de la agenda cambió,
+  // no porque él cambió. Eso no estaba declarado en ningún lado. La etiqueta del eje X
+  // ahora lo dice ("ranking de hoy"), igual que ya lo decía a medias la del eje Y
+  // ("relativo"); y se agrega un ícono de info con el detalle completo en su title
+  // nativo (sin gastar espacio permanente del lienzo -- aparece solo al pasar el mouse).
+  svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
+    .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
+    .text(`más notas recientes, ranking de hoy (${VENTANA_RADAR_DIAS}d) →`);
+  svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',17).attr('text-anchor','middle')
+    .attr('transform','rotate(-90)')
+    .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
+    .text(`↑ mayor riesgo relativo`);
+  // CORRECCIÓN -- pedido explícito: "tiene formato genérico, darle el formato que ya
+  // está establecido". El <title> nativo del navegador (tooltip gris del sistema
+  // operativo) no es el formato del sitio -- el sitio ya tiene un tooltip propio
+  // compartido (#leg-tooltip-flotante, clase .leg-tt + atributo data-tt, ver
+  // wireTooltipFlotanteLeg() en legislativo.js), usado en Legislativo y Portada.
+  // Se reusa aquí en vez de inventar un tercer estilo de tooltip. wireTooltipFlotanteLeg
+  // ya protege contra doble inicialización, así que llamarla aquí también es seguro
+  // aunque el usuario nunca haya abierto Legislativo en la sesión.
+  if(typeof wireTooltipFlotanteLeg === 'function') wireTooltipFlotanteLeg();
+  // El ícono de información (detalle del ranking) ya no se dibuja aquí dentro del
+  // SVG -- pedido explícito, ronda 3: "sale cortado el ⓘ... por eso te había pedido
+  // que estuvieran dentro". Ahora es el <span class="leg-tt"> HTML agregado en
+  // renderMatriz(), anclado con position:absolute al envoltorio del <svg> (no a
+  // coordenadas internas del dibujo) -- así siempre queda "adentro" de esa caja sin
+  // depender del margen interno del gráfico ni de que el <svg> ya tenga su tamaño
+  // final calculado en el momento en que se dibuja.
 
   // ---- posición ancla de cada punto + resolución de colisiones (d3-force) --
   // con dos ejes reales y continuos el amontonamiento es mucho menor que con el radar
