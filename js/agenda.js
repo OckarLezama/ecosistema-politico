@@ -1225,6 +1225,15 @@ function calcularDatosRadarAgenda(temasBase){
 
 function _radioPrincipalRadar(d){ return d.apagado ? 5 : 7+Math.min(4, d.veces*0.6); }
 
+// corta un texto largo sin partir una palabra a la mitad -- busca el último espacio
+// antes del límite; si no hay ninguno (una sola palabra larguísima), corta seco.
+function _truncarEnPalabra(texto, max){
+  if(texto.length <= max) return texto;
+  const corte = texto.slice(0, max-1);
+  const ultimoEspacio = corte.lastIndexOf(' ');
+  return (ultimoEspacio > max*0.5 ? corte.slice(0, ultimoEspacio) : corte) + '…';
+}
+
 function _tooltipRadar(d, datosVisibles){
   const ICONO_TENDENCIA = {subiendo:'↑ subiendo', bajando:'↓ bajando', estable:'→ estable'};
   let html = `<strong>${d.tema.nombre}</strong><br>Riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
@@ -1283,16 +1292,24 @@ function dibujarMatrizRiesgo(){
     return;
   }
 
+  // CORRECCIÓN -- pedido explícito: "no entiendo por qué en los filtros muestra datos
+  // que cuando están todos no". No es un error: con "Todas" activo, el corte de 45
+  // se aplica sobre TODOS los temas, así que un tema de una categoría chica puede
+  // quedar fuera del top 45 general aunque sí esté entre los más relevantes DE SU
+  // categoría -- al filtrar por esa categoría, ya no compite contra el resto y entra.
+  // Antes el aviso solo aparecía cuando el corte recortaba algo; ahora siempre dice
+  // cuántos se ven y de cuántos, y explica la causa cuando aplica el corte.
   const avisoLimite = document.getElementById('matriz-aviso-limite');
   if(avisoLimite) avisoLimite.textContent = totalAntesDeLimite > datos.length
-    ? `Mostrando los ${datos.length} de mayor relevancia real de ${totalAntesDeLimite}` : '';
+    ? `Mostrando los ${datos.length} de mayor relevancia real de ${totalAntesDeLimite} -- el resto no cabe en esta vista general; fíltralos por categoría para verlos`
+    : `Mostrando los ${datos.length} temas de esta vista`;
 
   // ---- geometría: X = volumen reciente (notas en 14d), Y = riesgo reciente (arriba = alto) ----
   // margen.arriba con espacio para hasta 3 anotaciones ancladas (ver más abajo,
   // "QUIÉN SE MOVIÓ MÁS" -- ya no es una franja de texto aparte con líneas propias,
   // ahora son anotaciones con línea guía apuntando a su punto real, como en las
   // referencias que mandó el usuario)
-  const margen = {izq:46, der:22, arriba:62, abajo:52};
+  const margen = {izq:46, der:22, arriba:90, abajo:72};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
 
@@ -1323,46 +1340,103 @@ function dibujarMatrizRiesgo(){
   patGrid.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
   svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#matriz-grid)');
 
-  // ---- fondo: cuadrantes de prioridad (arriba/derecha = mitad de mayor riesgo y
-  // mayor volumen dentro del corte actual) ----
+  // ---- fondo: los 4 cuadrantes ahora tienen su propio tinte, no solo "ACTUAR YA".
+  // CORRECCIÓN -- pedido explícito: "algunas están en posición baja y riesgo alto,
+  // tener claro ese análisis" -- un tema de riesgo alto pero poco volumen (VIGILAR)
+  // se perdía en el mismo fondo neutro que "bajo perfil" y no se distinguía como algo
+  // que sí importa vigilar. Cada cuadrante ahora tiene su propio tinte y su etiqueta
+  // usa el color de riesgo correspondiente, para que la lectura no dependa de comparar
+  // posiciones a ojo. ----
   svg.append('rect').attr('x',xMediana).attr('y',margen.arriba).attr('width',margen.izq+anchoUtil-xMediana).attr('height',yMediana-margen.arriba)
-    .attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.05);
-  svg.append('text').attr('x',margen.izq+anchoUtil-4).attr('y',margen.arriba+13).attr('text-anchor','end')
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--riesgo-alto)').style('pointer-events','none')
-    .text('ACTUAR YA');
-  svg.append('text').attr('x',margen.izq+4).attr('y',margen.arriba+13)
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
-    .text('VIGILAR');
-  svg.append('text').attr('x',margen.izq+anchoUtil-4).attr('y',margen.arriba+altoUtil-6).attr('text-anchor','end')
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
-    .text('RUIDO');
-  svg.append('text').attr('x',margen.izq+4).attr('y',margen.arriba+altoUtil-6)
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
-    .text('BAJO PERFIL');
-  // CORRECCIÓN -- esta leyenda vivía en la esquina superior derecha, justo donde ahora
-  // se dibujan las anotaciones de "quién se movió más" (ver más abajo) -- se mueve
-  // abajo, junto al eje X, donde no compite por espacio con nada.
-  svg.append('text').attr('x',width-4).attr('y',height-8).attr('text-anchor','end')
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
-    .text('● color = categoría  ·  borde = riesgo');
+    .attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.08);
+  svg.append('rect').attr('x',margen.izq).attr('y',margen.arriba).attr('width',xMediana-margen.izq).attr('height',yMediana-margen.arriba)
+    .attr('fill','var(--riesgo-medio)').attr('fill-opacity',0.06);
+  svg.append('rect').attr('x',xMediana).attr('y',yMediana).attr('width',margen.izq+anchoUtil-xMediana).attr('height',margen.arriba+altoUtil-yMediana)
+    .attr('fill','var(--ink-3)').attr('fill-opacity',0.05);
+  // CORRECCIÓN -- las etiquetas de cuadrante vivían DENTRO del plano, justo donde el
+  // ranking siempre pone la mayor concentración de puntos (los de mayor riesgo/volumen
+  // caen exactamente en el borde superior/derecho) -- un punto terminaba tapando la
+  // palabra "YA" de "ACTUAR YA". Ahora las 4 etiquetas viven FUERA del área de puntos,
+  // en la franja superior/inferior del margen, donde nunca hay un círculo encima.
+  svg.append('text').attr('x',margen.izq+anchoUtil).attr('y',margen.arriba-16).attr('text-anchor','end')
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('font-weight','700').attr('fill','var(--riesgo-alto)')
+    .text('ACTUAR YA · alto riesgo + alto volumen');
+  svg.append('text').attr('x',margen.izq).attr('y',margen.arriba-16)
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('font-weight','700').attr('fill','var(--riesgo-medio)')
+    .text('VIGILAR · alto riesgo, poco volumen aún');
+  svg.append('text').attr('x',margen.izq+anchoUtil).attr('y',margen.arriba+altoUtil+14).attr('text-anchor','end')
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)')
+    .text('RUIDO · mucho volumen, bajo riesgo');
+  svg.append('text').attr('x',margen.izq).attr('y',margen.arriba+altoUtil+14)
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)')
+    .text('BAJO PERFIL · poco volumen y bajo riesgo');
 
-  // líneas guía de los umbrales -- ahora es literalmente la mitad del corte actual
-  // (percentil 50), consistente con el ranking usado para posicionar los puntos
+  // líneas guía de los umbrales -- pedido explícito: "más gruesa / más marcada, que se
+  // distinga" -- eran 1px punteadas casi invisibles contra el fondo oscuro. Ahora usan
+  // el mismo color fuerte que los ejes y un trazo más ancho.
   svg.append('line').attr('x1',xMediana).attr('x2',xMediana).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil)
-    .attr('stroke','var(--line)').attr('stroke-dasharray','3 4');
+    .attr('stroke','var(--line-strong)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',0.85);
   svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',yMediana).attr('y2',yMediana)
-    .attr('stroke','var(--line)').attr('stroke-dasharray','3 4');
+    .attr('stroke','var(--line-strong)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',0.85);
 
   // ejes
-  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)');
-  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',margen.arriba+altoUtil).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)');
-  svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',margen.arriba+altoUtil).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
+  svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+32).attr('text-anchor','middle')
     .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
     .text(`más notas recientes (${VENTANA_RADAR_DIAS}d) →`);
   svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',14).attr('text-anchor','middle')
     .attr('transform','rotate(-90)')
     .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
     .text(`↑ mayor riesgo relativo`);
+  // CORRECCIÓN -- pedido explícito: "agregar algo de texto en el lienzo" para que la
+  // posición no quede a interpretación -- una sola línea, discreta, aclarando que el eje
+  // es relativo a esta vista (ranking), no un valor absoluto comparable entre filtros.
+  // Sube un poco respecto de las etiquetas de cuadrante (que ahora viven justo debajo,
+  // fuera del área de puntos) para no pisarlas.
+  svg.append('text').attr('x',margen.izq).attr('y',margen.arriba-32)
+    .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('fill','var(--ink-3)').style('pointer-events','none')
+    .text('posición = ranking dentro de esta vista, no valor absoluto');
+
+  // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
+  // colores, no indicamos qué significa cada color". Antes era una sola línea de texto
+  // ("color = categoría · borde = riesgo") que no decía CUÁL color es cuál categoría.
+  // Ahora son muestras de color reales, solo de las categorías presentes en esta vista
+  // (para no listar categorías que ni siquiera aparecen), en una franja horizontal bajo
+  // el eje X, dentro de un panel semitransparente para no competir con los puntos.
+  const categoriasPresentes = [...new Set(datos.map(d=>d.categoria))];
+  const itemsLeyenda = [
+    ...categoriasPresentes.map(cat=>({tipo:'relleno', color:colorCategoria(cat), texto:cat})),
+    {tipo:'sep'},
+    {tipo:'borde', color:COLOR_RIESGO.alto, texto:'riesgo alto'},
+    {tipo:'borde', color:COLOR_RIESGO.medio, texto:'riesgo medio'},
+    {tipo:'borde', color:COLOR_RIESGO.bajo, texto:'riesgo bajo'},
+    {tipo:'plano', color:'var(--ink-3)', texto:'sin actividad en 14d'},
+  ];
+  const yLeyenda = margen.arriba + altoUtil + 52;
+  // ancho aproximado por ítem (para centrar la franja completa) -- monoespaciada, así
+  // que el ancho de texto es predecible sin medirlo en el DOM.
+  const anchoItem = it => it.tipo==='sep' ? 10 : 16 + it.texto.length*4.6;
+  const anchoTotal = itemsLeyenda.reduce((s,it)=>s+anchoItem(it), 0);
+  const panelAncho = Math.min(anchoUtil, anchoTotal) + 16;
+  const panelX = margen.izq + (anchoUtil-panelAncho)/2;
+  svg.append('rect').attr('x',panelX).attr('y',yLeyenda-11).attr('width',panelAncho).attr('height',18).attr('rx',4)
+    .attr('fill','var(--bg-1)').attr('fill-opacity',0.7).attr('stroke','var(--line)').attr('stroke-width',0.6);
+  let xCursor = panelX + 8;
+  itemsLeyenda.forEach(it=>{
+    if(it.tipo==='sep'){ xCursor += anchoItem(it); return; }
+    if(it.tipo==='relleno'){
+      svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',3.5).attr('fill',it.color);
+    } else if(it.tipo==='borde'){
+      svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',3.5).attr('fill','none').attr('stroke',it.color).attr('stroke-width',1.6);
+    } else {
+      svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',2.5).attr('fill',it.color).attr('fill-opacity',0.6);
+    }
+    svg.append('text').attr('x',xCursor+10).attr('y',yLeyenda+1)
+      .attr('font-family','var(--f-mono)').attr('font-size','7.5px').attr('fill','var(--ink-3)')
+      .text(it.texto);
+    xCursor += anchoItem(it);
+  });
 
   // ---- posición ancla de cada punto + resolución de colisiones (d3-force) --
   // con dos ejes reales y continuos el amontonamiento es mucho menor que con el radar
@@ -1436,24 +1510,25 @@ function dibujarMatrizRiesgo(){
     .transition().duration(380).delay((d,i)=>i*9).ease(d3.easeBackOut ? d3.easeBackOut.overshoot(1.6) : d3.easeCubicOut)
     .attr('r', d=>_radioPrincipalRadar(d));
 
+  // CORRECCIÓN -- pedido explícito: "no sé por qué unos círculos parpadean y otros
+  // tienen otro movimiento". Antes el foco crítico tenía un aro que SALE disparado hacia
+  // afuera y desaparece (.pulso-tablero-ping), mientras los otros 2 puntos "vivos"
+  // solo respiraban en su lugar (.pulso-halo-vivo) -- dos lenguajes de movimiento
+  // distintos en el mismo gráfico. Ahora los 3 puntos animados usan EXACTAMENTE la
+  // misma animación (respirar), sin excepción. El foco crítico se distingue por un
+  // aro ESTÁTICO (sin animación propia) alrededor -- una marca fija de "este es el
+  // prioritario ahora", no un segundo tipo de movimiento.
   const focoCritico = datos.find(d=>!d.apagado);
   if(focoCritico){
-    // CORRECCIÓN -- usar el nombre del keyframe en 'animation' NO basta: la regla
-    // .pulso-tablero-ping en styles.css trae transform-box:fill-box + transform-origin:
-    // center, indispensable para que el scale() del keyframe crezca desde el centro
-    // del propio círculo y no desde la esquina 0,0 de todo el SVG (por eso, sin la
-    // clase, el aro terminaba lejísimos de su punto real). Hay que aplicar la CLASE,
-    // no solo la animación.
-    g.filter(d=>d===focoCritico).insert('circle','.nodo-principal').attr('class','foco-critico-radar pulso-tablero-ping')
+    g.filter(d=>d===focoCritico).insert('circle','.nodo-principal').attr('class','foco-critico-radar')
       .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',_radioPrincipalRadar(focoCritico)+3)
-      .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
+      .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6).attr('stroke-dasharray','2 2');
   }
   // pedido explícito: "más animación en los círculos" -- sin repetir el error de
-  // animar una fracción grande del plano. Los siguientes 2 de mayor prioridad real
-  // (después del foco crítico, que ya tiene su aro) respiran muy suave -- escala
-  // sutil, no un aro nuevo -- para dar algo de vida sin competir por atención con el
-  // foco crítico ni ensuciar el resto del plano. 3 puntos animados de 45, no más.
-  datos.filter(d=>!d.apagado && d!==focoCritico).slice(0,2).forEach(d=>{
+  // animar una fracción grande del plano, y ahora con UNA sola animación consistente
+  // para los 3 puntos vivos (el foco crítico + los siguientes 2 de mayor prioridad real).
+  // 3 puntos animados de 45, no más.
+  [focoCritico, ...datos.filter(d=>!d.apagado && d!==focoCritico).slice(0,2)].filter(Boolean).forEach(d=>{
     g.filter(dd=>dd===d).select('circle.nodo-principal').classed('pulso-halo-vivo', true);
   });
 
@@ -1476,7 +1551,10 @@ function dibujarMatrizRiesgo(){
     const yEtiqueta = 12 + i*15;
     const xEtiqueta = Math.max(margen.izq+8, Math.min(width-margen.der-8, d.x));
     const anchor = xEtiqueta > margen.izq + anchoUtil/2 ? 'end' : 'start';
-    const nombreCorto = d.tema.nombre.length>34 ? d.tema.nombre.slice(0,33)+'…' : d.tema.nombre;
+    // CORRECCIÓN -- pedido explícito: "Señalan a funcionario del IEEPO p… no es claro".
+    // El corte a 33 caracteres caía a mitad de palabra ("p" de "por"). Ahora corta en el
+    // último espacio antes del límite, para nunca dejar una palabra partida a la mitad.
+    const nombreCorto = _truncarEnPalabra(d.tema.nombre, 34);
     const gAnot = svg.append('g').attr('class','anotacion-movimiento').style('cursor','pointer')
       .on('click', ()=> abrirFichaTema(d.tema.id));
     gAnot.append('line')
