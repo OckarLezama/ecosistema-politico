@@ -1443,12 +1443,26 @@ def calcular():
         'alerta': '🔔 ALERTA' in e['descripcion'],
         'fuente_url': e.get('fuente_url', ''),
     } for e in eventos_mananera_hoy_unicos]
+    # CORRECCIÓN -- pedido explícito, con evidencia real: a las 11:09am de un miércoles
+    # (día hábil, sí hubo mañanera -- confirmado con notas de Milenio, Excélsior,
+    # Informador, UnoTV y Reporte Índigo del mismo día) el sitio seguía diciendo "No
+    # hubo mañanera este día". La causa real: mananeradehoy.com (la ÚNICA fuente que
+    # este robot usa para el resumen) todavía mostraba la transcripción del día
+    # anterior a esa hora -- un retraso de ESA fuente puntual, no evidencia de que la
+    # conferencia no ocurrió. "ausencia de dato" no es lo mismo que "dato de ausencia":
+    # antes se trataban igual. Ahora solo se declara "no hubo mañanera" con confianza
+    # en fin de semana (sábado/domingo), que es cuando de verdad no suele haber
+    # conferencia -- entre semana, si sigue vacío después de la hora habitual, se dice
+    # honestamente que la fuente no ha publicado todavía, sin afirmar que no hubo.
+    es_fin_de_semana = ahora.weekday() >= 5  # 5=sábado, 6=domingo
     if resumen_mananera:
         mananera_estado = 'ok'
     elif ahora.hour < 10:
         mananera_estado = 'pendiente'  # la mañanera de hoy puede seguir en curso o sin procesarse aún
+    elif es_fin_de_semana:
+        mananera_estado = 'sin_mananera'  # fin de semana: sí es razonable no esperar conferencia
     else:
-        mananera_estado = 'sin_mananera'  # ya pasó la hora habitual y no hay nada -- no hubo, o fue día sin conferencia
+        mananera_estado = 'fuente_retrasada'  # día hábil sin dato -- retraso de la fuente, no ausencia confirmada
 
     # (se quitaron los KPIs "Alertas políticas" / "Temas en escalamiento" / "Temas
     # estables": comparaban promedios de 1-2 notas con un umbral de 1.5 puntos sin
