@@ -42,13 +42,6 @@ function diasSinActividad(temaId){
   return Math.round((new Date() - new Date(evs[evs.length-1])) / 86400000);
 }
 
-function _diasConActividad14d(temaId){
-  const hace14 = new Date(); hace14.setDate(hace14.getDate()-VENTANA_RADAR_DIAS);
-  const fechaCorte = hace14.toISOString().slice(0,10);
-  const fechasUnicas = new Set(ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId && e.fecha>=fechaCorte).map(e=>e.fecha));
-  return fechasUnicas.size;
-}
-
 function calcularIndiceEscalamiento(tema){
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===tema.id).sort((a,b)=> a.fecha.localeCompare(b.fecha));
   let tendencia = 'estable', puntosTendencia = 17.5;
@@ -241,11 +234,6 @@ function abrirFichaTema(temaId){
 let categoriaFiltroAgenda = '';
 let impactoFiltroAgenda = '';
 let soloAgendaNacional = true;
-let busquedaLista = ''; // pedido explícito: "es una lista interminable... no hay para
-// buscar" -- filtro de texto libre sobre el nombre del tema, solo para la vista Lista.
-let ordenLista = 'riesgo'; // 'riesgo' | 'volumen' | 'categoria' -- columna activa de orden
-// en la vista Lista (clic en el encabezado la cambia; clic de nuevo invierte dirección).
-let ordenListaInvertido = false;
 
 let vistaAgenda = 'matriz';
 let temasDisponiblesActuales = [];
@@ -433,20 +421,6 @@ function initAgenda(){
       vistaAgenda = btn.dataset.vista;
       document.querySelectorAll('#agenda-vista-principal .chip-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-      // el grupo de íconos secundario (Cuadrícula/Lista) solo tiene sentido cuando
-      // el ícono principal activo es Matriz -- se oculta para Notas y Genealogía
-      const secundaria = document.getElementById('agenda-vista-secundaria');
-      if(secundaria) secundaria.style.display = (vistaAgenda==='matriz') ? 'flex' : 'none';
-      renderAgendaGrid();
-    });
-    btn.dataset.conectado='1';
-  });
-  document.querySelectorAll('#agenda-vista-secundaria .chip-btn').forEach(btn=>{
-    if(btn.dataset.conectado) return;
-    btn.addEventListener('click', ()=>{
-      vistaMatrizInterna = btn.dataset.subvista;
-      document.querySelectorAll('#agenda-vista-secundaria .chip-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
       renderAgendaGrid();
     });
     btn.dataset.conectado='1';
@@ -522,66 +496,11 @@ function renderNotasAgenda(){
       `<span style="white-space:nowrap;"><span class="legend-dot" style="background:${color}"></span>${texto}</span>`).join('');
   }
 
-  // REVERTIDO -- pedido explícito: "no combines las notas [top 10] con el grafo, se ve
-  // espantoso, le quita todo el poder a los grafos". Notas vuelve a ser solo el grafo.
-  // El top 10 de notas de mayor impacto y la continuidad por tema no se descartan --
-  // el usuario aclaró que esa pieza era para el apartado de Listado (ver
-  // renderListaAgenda), no para acá. Las funciones siguen abajo, ahora usadas ahí.
+  // Notas es solo el grafo -- pedido explícito: "no combines las notas con el grafo, se
+  // ve espantoso, le quita todo el poder a los grafos".
   cont.innerHTML = `<svg id="notas-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
 
   dibujarNotasConGrafoReal();
-}
-
-function _bloqueTop10NotasImpacto(temasBase){
-  const hace14 = new Date(); hace14.setDate(hace14.getDate()-VENTANA_RADAR_DIAS);
-  const fechaCorte = hace14.toISOString().slice(0,10);
-  const idsNacional = new Set(temasBase.filter(t=>Number(t.nivel_relevancia)===1).map(t=>t.id));
-  const evsRecientes = ECOSISTEMA.eventos.filter(e=> idsNacional.has(e.tema_id) && e.fecha>=fechaCorte);
-  // mismo criterio de consolidación que ya usa la ficha de tema/Genealogía -- sin esto,
-  // una sola noticia grande cubierta por 5 medios distintos ocuparía 5 de los 10 lugares.
-  const top10 = consolidarNotasPorSimilitud(evsRecientes)
-    .sort((a,b)=> Number(b.intensidad)-Number(a.intensidad) || b.fecha.localeCompare(a.fecha))
-    .slice(0,10);
-  if(!top10.length) return '';
-  const nivelNota = i => i>=7 ? {t:'ALTO',c:'var(--riesgo-alto)'} : i>=4 ? {t:'MEDIO',c:'var(--riesgo-medio)'} : {t:'BAJO',c:'var(--riesgo-bajo)'};
-  const filas = top10.map(n=>{
-    const tema = getTema(n.tema_id);
-    const niv = nivelNota(Number(n.intensidad));
-    const cobertura = n.cobertura>1 ? ` <span style="color:var(--ink-3);">· ${n.cobertura} medios</span>` : '';
-    return `<div class="nota-top10-item" data-tema="${n.tema_id}" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-top:1px solid var(--line);cursor:pointer;">
-      <span style="font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:${niv.c};border:1px solid ${niv.c};border-radius:99px;padding:1px 6px;white-space:nowrap;flex-shrink:0;">${niv.t}</span>
-      <span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);white-space:nowrap;flex-shrink:0;">${n.fecha}</span>
-      <span style="font-size:11px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${n.descripcion}${cobertura}</span>
-      <span style="font-size:9.5px;color:var(--ink-2);white-space:nowrap;flex-shrink:0;">${tema ? _truncarEnPalabra(_nombreClaroTema(tema),20) : ''}</span>
-    </div>`;
-  }).join('');
-  return `<div class="contexto-tema-box" style="margin:8px 14px 0;flex:none;max-height:200px;overflow-y:auto;">
-    <div class="eyebrow">Top 10 notas de mayor impacto · agenda nacional (${VENTANA_RADAR_DIAS}d)</div>
-    ${filas}
-  </div>`;
-}
-
-function _sparklineContinuidadTema(temaId){
-  if(!temaId) return '';
-  const dias = [];
-  for(let i=VENTANA_RADAR_DIAS-1; i>=0; i--){
-    const d = new Date(); d.setDate(d.getDate()-i);
-    dias.push(d.toISOString().slice(0,10));
-  }
-  const evsTema = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
-  const conteoPorDia = dias.map(f=> evsTema.filter(e=>e.fecha===f).length);
-  const maxConteo = Math.max(...conteoPorDia, 1);
-  const diasConActividad = conteoPorDia.filter(c=>c>0).length;
-  const barras = conteoPorDia.map(c=>
-    `<div title="${c} nota${c!==1?'s':''}" style="flex:1;height:${Math.max(8,(c/maxConteo)*100)}%;background:${c>0?'var(--teal)':'var(--line-strong)'};border-radius:1px;opacity:${c>0?0.9:0.4};"></div>`
-  ).join('');
-  // continuidad -- días con nota real de los últimos 14, no acumulado histórico: un tema
-  // con 1 pico y silencio después se ve MUY distinto de uno con cobertura sostenida,
-  // aunque ambos puedan tener el mismo total de notas.
-  return `<div style="display:flex;flex-direction:column;gap:3px;">
-    <div style="font-size:9px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;">continuidad -- ${diasConActividad}/${VENTANA_RADAR_DIAS}d con nota real</div>
-    <div style="display:flex;align-items:flex-end;gap:1.5px;height:22px;">${barras}</div>
-  </div>`;
 }
 
 function dibujarNotasConGrafoReal(){
@@ -623,15 +542,20 @@ function dibujarNotasAgenda(temaId){
   const node = container.selectAll('g.notas-node').data(nodes).join('g')
     .attr('class','notas-node').style('cursor', d=>d.esCentro?'pointer':'default')
     .on('click', (ev,d)=>{ if(d.esCentro) abrirFichaTema(d.id); })
-    .on('mouseenter', function(ev,d){
+    // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
+    // touch" -- mouseenter/mousemove/mouseleave no disparan de forma confiable con touch
+    // puro (sin mouse). pointerenter/pointermove/pointerleave sí cubren mouse Y touch con
+    // el mismo listener, sin duplicar lógica -- mismo criterio que ya usa el tooltip
+    // .leg-tt del sitio (wireTooltipFlotanteLeg, con pointerover/pointerout).
+    .on('pointerenter', function(ev,d){
       if(d.esCentro) return;
       mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${COLOR_ROL_NOTAS[d.rol]||'var(--ink-3)'};">${TEXTO_ROL_NOTAS[d.rol]||d.rol}</span>`, ev);
     })
-    .on('mousemove', function(ev,d){
+    .on('pointermove', function(ev,d){
       if(d.esCentro) return;
       mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${COLOR_ROL_NOTAS[d.rol]||'var(--ink-3)'};">${TEXTO_ROL_NOTAS[d.rol]||d.rol}</span>`, ev);
     })
-    .on('mouseleave', ocultarTooltipAgenda)
+    .on('pointerleave', ocultarTooltipAgenda)
     .call(d3.drag()
       .on('start',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0.3).restart(); if(!d.esCentro){d.fx=d.x; d.fy=d.y;} })
       .on('drag',(ev,d)=>{ if(!d.esCentro){ d.fx=ev.x; d.fy=ev.y; } })
@@ -730,7 +654,10 @@ function renderGenealogiaAgenda(){
       <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
     </div>` : ''}
-    <div id="geneal-scroll" style="width:100%;flex:1;min-height:0;overflow-x:auto;overflow-y:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>`;
+    <div style="position:relative;width:100%;flex:1;min-height:0;">
+      <div id="geneal-scroll" style="width:100%;height:100%;overflow-x:auto;overflow-y:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>
+      <div id="geneal-contador-flotante" style="position:absolute;top:8px;right:10px;font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;pointer-events:none;"></div>
+    </div>`;
 
   dibujarGenealogia(temaGenealogiaSeleccionado);
 }
@@ -847,24 +774,66 @@ function dibujarGenealogia(temaId){
     scrollEl.scrollLeft = width;
   }
 
-  gOrigen.on('click', ()=>{
+  // pedido explícito: "poder pausar dando click a cualquier parte del div, o poner un
+  // control, como tú digas" -- se elige "cualquier parte", con el nodo de origen como
+  // acceso adicional (más descubrible que un punto cualquiera del lienzo). Una sola
+  // función de alternancia sirve a ambos: el nodo de origen y el contenedor con scroll.
+  function toggleReproduccionGenealogia(){
     if(reproduciendoGenealogia){
       // pausa -- invalida la generación vigente (mismo mecanismo que ya detenía una
       // reproducción al cambiar de tema), pero SIN tocar genealogiaRevelados ni
       // temaGenealogiaAnterior, así que el progreso hecho hasta ahora se conserva.
       generacionGenealogiaActual++;
       reproduciendoGenealogia = false;
-      const contador = document.querySelector('#geneal-svg .geneal-contador');
-      if(contador) contador.textContent = `Pausado — ${genealogiaRevelados} de ${eventos.length} (clic para continuar)`;
+      _actualizarContadorGenealogia(`Pausado — ${genealogiaRevelados} de ${eventos.length} (clic para continuar)`, genealogiaRevelados, eventos.length);
       gOrigen.style('cursor','pointer');
     } else if(genealogiaRevelados < eventos.length){
       reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height, genealogiaRevelados);
     }
-  });
+  }
+  // El nodo de origen NO lleva su propio listener de click -- el click ahí burbujea de
+  // todas formas hasta el contenedor (#geneal-scroll, ver abajo), que es quien decide.
+  // Ponerle uno aquí ADEMÁS duplicaría el toggle (pausa y de inmediato reanuda, o al
+  // revés) porque ambos dispararían con el mismo click.
+
+  // click en cualquier parte del contenedor (fondo, cuadrícula, zona vacía, o el nodo de
+  // origen) alterna play/pausa -- excepto sobre algo que ya tiene su propia acción de
+  // click (abrir la fuente de una nota, marcado con .geneal-no-toggle) para no interferir
+  // con eso ni disparar una pausa justo al abrir un enlace.
+  if(scrollEl && !scrollEl.dataset.toggleWired){
+    scrollEl.dataset.toggleWired = '1';
+    scrollEl.addEventListener('click', (ev)=>{
+      if(ev.target.closest && ev.target.closest('.geneal-no-toggle')) return;
+      if(typeof toggleReproduccionGenealogiaVigente === 'function') toggleReproduccionGenealogiaVigente();
+    });
+  }
+  // el listener de arriba se conecta UNA sola vez (dataset.toggleWired), pero cada
+  // redibujo (nuevo tema, o el mismo tema tras el refresco automático) define una nueva
+  // versión de toggleReproduccionGenealogia con las variables (eventos/posiciones/etc)
+  // del dibujo VIGENTE -- este puntero global siempre apunta a la más reciente, así el
+  // listener de una sola vez nunca actúa sobre datos de un dibujo ya reemplazado.
+  toggleReproduccionGenealogiaVigente = toggleReproduccionGenealogia;
 
   svg.append('text').attr('class','geneal-contador').attr('x',xInicio).attr('y',height-10).attr('text-anchor','middle')
     .attr('font-size','10px').attr('fill','var(--ink-3)')
     .text(genealogiaRevelados<=1 ? '' : genealogiaRevelados>=eventos.length ? `${eventos.length} de ${eventos.length} notas — recorrido completo` : `Pausado — ${genealogiaRevelados} de ${eventos.length} (clic para continuar)`);
+  const flotanteInicial = document.getElementById('geneal-contador-flotante');
+  if(flotanteInicial) flotanteInicial.textContent = `${genealogiaRevelados}/${eventos.length}`;
+}
+
+let toggleReproduccionGenealogiaVigente = null;
+
+// pedido explícito: "un contador algo así 3/42, con texto semitransparente pero que se
+// vea, para saber en qué punto de qué tanto estamos" -- el texto descriptivo dentro del
+// SVG (que sí explica el estado con palabras: "Pausado", "recorrido completo") se queda,
+// pero vive DENTRO del área con scroll horizontal, así que se pierde de vista en cuanto
+// se avanza. Este segundo texto, compacto ("3/42"), vive en el overlay flotante fuera
+// del scroll (#geneal-contador-flotante, ver renderGenealogiaAgenda) y por eso siempre
+// es visible sin importar cuánto se haya desplazado el lienzo.
+function _actualizarContadorGenealogia(textoLargo, revelados, total){
+  d3.select('#geneal-svg .geneal-contador').text(textoLargo);
+  const flotante = document.getElementById('geneal-contador-flotante');
+  if(flotante) flotante.textContent = `${revelados}/${total}`;
 }
 
 let generacionGenealogiaActual = 0; // se incrementa en cada render fresco -- así una reproducción
@@ -875,7 +844,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
   const miGeneracion = generacionGenealogiaActual;
   reproduciendoGenealogia = true;
   const scrollEl = document.getElementById('geneal-scroll');
-  d3.select('#geneal-svg .geneal-contador').text(`Reproduciendo — ${desde||1} de ${eventos.length}`);
+  _actualizarContadorGenealogia(`Reproduciendo — ${desde||1} de ${eventos.length}`, desde||1, eventos.length);
   function siguienteTramo(i){
     if(generacionGenealogiaActual !== miGeneracion){ return; }
     if(i>=eventos.length){ genealogiaRevelados = eventos.length; reproduciendoGenealogia = false; return; }
@@ -898,7 +867,10 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
         if(generacionGenealogiaActual !== miGeneracion){ return; }
         dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, true, width, height);
         genealogiaRevelados = i+1;
-        d3.select('#geneal-svg .geneal-contador').text(i+1<eventos.length ? `Reproduciendo — ${i+1} de ${eventos.length}` : `${eventos.length} de ${eventos.length} notas — recorrido completo`);
+        _actualizarContadorGenealogia(
+          i+1<eventos.length ? `Reproduciendo — ${i+1} de ${eventos.length}` : `${eventos.length} de ${eventos.length} notas — recorrido completo`,
+          i+1, eventos.length
+        );
         setTimeout(()=> siguienteTramo(i+1), 700);
       });
   }
@@ -974,7 +946,10 @@ function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
       contenido.append('text').attr('x',x+9).attr('y',yBase+lineas.length*11).attr('font-size','7.5px').attr('font-style','italic').attr('fill','var(--teal)').text(fuente.length>26?fuente.slice(0,24)+'…':fuente);
     }
     if(n.fuente_url){
-      contenido.append('rect').attr('x',x).attr('y',yBase-9).attr('width',anchoCaja).attr('height',altoUnaNota-2).attr('fill','transparent').style('cursor','pointer')
+      // .geneal-no-toggle -- este rect ya tiene su propia acción de click (abrir la
+      // fuente); sin esta marca, el listener de pausa/reproducción del contenedor
+      // (delegado, ver dibujarGenealogia) también reaccionaría al mismo click.
+      contenido.append('rect').attr('class','geneal-no-toggle').attr('x',x).attr('y',yBase-9).attr('width',anchoCaja).attr('height',altoUnaNota-2).attr('fill','transparent').style('cursor','pointer')
         .on('click', ()=> window.open(n.fuente_url, '_blank', 'noopener'))
         .on('mouseenter', function(){ d3.select(this).attr('fill','rgba(76,193,186,.08)'); })
         .on('mouseleave', function(){ d3.select(this).attr('fill','transparent'); });
@@ -982,95 +957,6 @@ function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
   });
 }
 
-function renderListaAgenda(){
-  let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
-  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
-
-  let datosLista = calcularDatosRadarAgenda(temasBase);
-
-  // CORRECCIÓN -- pedido explícito, análisis crítico: "es una lista interminable, no hay
-  // KPI, no hay para buscar, ¿en verdad aporta inteligencia?". El KPI ya existe arriba
-  // (Alto/Medio/Bajo impacto, agenda-kpis) -- lo que de verdad faltaba era poder
-  // encontrar un tema puntual sin hacer scroll ciego por los 71, y poder reordenar por
-  // la columna que importe en ese momento (no siempre es riesgo+volumen). Se agrega
-  // buscador de texto libre (nombre del tema) y encabezado clickeable para cambiar el
-  // criterio de orden -- clic de nuevo invierte la dirección.
-  if(busquedaLista.trim()){
-    const q = busquedaLista.trim().toLowerCase();
-    datosLista = datosLista.filter(d=> d.tema.nombre.toLowerCase().includes(q));
-  }
-  const nivelRiesgoLista = r => r>=7?'alto':r>=4?'medio':'bajo';
-  const COMPARADORES = {
-    riesgo: (a,b)=> (b.riesgoReal+b.veces) - (a.riesgoReal+a.veces),
-    volumen: (a,b)=> b.veces - a.veces,
-    categoria: (a,b)=> a.tema.categoria.localeCompare(b.tema.categoria) || a.tema.nombre.localeCompare(b.tema.nombre),
-  };
-  datosLista.sort(COMPARADORES[ordenLista] || COMPARADORES.riesgo);
-  if(ordenListaInvertido) datosLista.reverse();
-
-  const cont = document.getElementById('matriz-lista-zona') || document.getElementById('agenda-contenido');
-  const ICONO_TENDENCIA_LISTA = {subiendo:'↑', bajando:'↓', estable:'→'};
-  const COLS = [
-    {key:'riesgo', label:'Riesgo/volumen'},
-    {key:'volumen', label:'Volumen'},
-    {key:'categoria', label:'Categoría'},
-  ];
-  // CORRECCIÓN -- pedido explícito: el top 10 de notas de mayor impacto y el análisis de
-  // apoyo eran para ESTE apartado (el ícono de Listado), no para Notas -- se movieron
-  // aquí (antes estaban mal puestos encima del grafo de Notas).
-  const bloqueTop10 = _bloqueTop10NotasImpacto(temasBase);
-  const barraControles = `
-    <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);flex:none;flex-wrap:wrap;">
-      <input type="text" id="lista-buscador" placeholder="Buscar tema..." value="${busquedaLista.replace(/"/g,'&quot;')}"
-        style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:12px;width:200px;">
-      <span style="font-size:9px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;">ordenar por</span>
-      <div style="display:flex;gap:4px;">
-        ${COLS.map(c=>`<button class="lista-orden-btn${ordenLista===c.key?' activo':''}" data-orden="${c.key}"
-          style="font-size:10.5px;padding:4px 9px;border-radius:99px;border:1px solid ${ordenLista===c.key?'var(--teal)':'var(--line-strong)'};background:${ordenLista===c.key?'rgba(76,193,186,0.12)':'var(--bg-2)'};color:${ordenLista===c.key?'var(--teal)':'var(--ink-2)'};cursor:pointer;">
-          ${c.label}${ordenLista===c.key?(ordenListaInvertido?' ↑':' ↓'):''}</button>`).join('')}
-      </div>
-      <span style="margin-left:auto;font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);white-space:nowrap;">${datosLista.length} tema${datosLista.length!==1?'s':''}</span>
-    </div>`;
-
-  if(!datosLista.length){
-    cont.innerHTML = bloqueTop10 + barraControles + `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">${busquedaLista.trim() ? 'Sin resultados para "'+busquedaLista+'"' : 'Sin temas con este filtro'}</div>`;
-  } else {
-    cont.innerHTML = bloqueTop10 + barraControles + `<div class="lista-agenda">${datosLista.map(d=>{
-      const t = d.tema;
-      const color = COLOR_IMPACTO_CACHE[nivelRiesgoLista(d.riesgoReal)];
-      const dias = diasSinActividad(t.id);
-      const estadoTexto = dias===null ? 'Sin datos' : dias<=30 ? `Última nota hace ${dias}d` : `Sin actividad reciente (${dias}d)`;
-      const tendenciaTxt = (d.tendencia && !d.apagado) ? ` ${ICONO_TENDENCIA_LISTA[d.tendencia]}` : '';
-      // continuidad -- pedido explícito de origen ("frecuencia o continuidad"): días
-      // distintos con nota real en la ventana de 14d, no solo el conteo total -- un tema
-      // con 10 notas en 2 días no es igual a uno con 10 notas repartidas en 10 días.
-      const continuidadTxt = !d.apagado ? ` · continuidad ${_diasConActividad14d(t.id)}/${VENTANA_RADAR_DIAS}d` : '';
-      return `<div class="lista-item" style="border-left-color:${color};cursor:pointer;" data-tema="${t.id}">
-        <div class="lista-nombre">${t.nombre}</div>
-        <div class="lista-meta">${t.categoria} · Riesgo ${d.riesgoReal}/10${tendenciaTxt} · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS}d${continuidadTxt} · desde ${d.primeraMencion||'—'} · ${estadoTexto}</div>
-      </div>`;
-    }).join('')}</div>`;
-  }
-  cont.querySelectorAll('.lista-item').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
-  cont.querySelectorAll('.nota-top10-item').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
-
-  const buscadorEl = document.getElementById('lista-buscador');
-  if(buscadorEl){
-    buscadorEl.addEventListener('input', ()=>{ busquedaLista = buscadorEl.value; renderListaAgenda(); });
-    // el foco se pierde en cada re-render (innerHTML se reconstruye) -- se devuelve al
-    // campo y al final del texto para que escribir no se sienta cortado a cada letra.
-    buscadorEl.focus();
-    const v = buscadorEl.value; buscadorEl.value=''; buscadorEl.value = v;
-  }
-  cont.querySelectorAll('.lista-orden-btn').forEach(el=> el.addEventListener('click', ()=>{
-    const key = el.dataset.orden;
-    ordenListaInvertido = (ordenLista === key) ? !ordenListaInvertido : false;
-    ordenLista = key;
-    renderListaAgenda();
-  }));
-}
-const COLOR_IMPACTO_CACHE = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
 
 function poblarFiltroCategoriaAgenda(){
   const sel = document.getElementById('agenda-categoria');
@@ -1085,8 +971,6 @@ function poblarFiltroCategoriaAgenda(){
   sel.addEventListener('change', (e)=>{ categoriaFiltroAgenda = e.target.value; renderAgendaGrid(); });
 }
 
-let vistaMatrizInterna = 'cuadricula'; // 'cuadricula' o 'lista' -- fusiona lo que antes eran 2 pestañas separadas (Matriz y Lista) en una sola vista con un botón interno, mismos datos y mismo filtro
-
 function renderAgendaGrid(){
   const cont = document.getElementById('agenda-contenido');
   if(!cont) return;
@@ -1094,29 +978,24 @@ function renderAgendaGrid(){
   // los KPIs de impacto (Alto/Medio/Bajo) son propios de la Matriz -- no tienen sentido
   // en Notas ni Genealogía, así que solo se muestran ahí
   const kpisEl = document.getElementById('agenda-kpis');
-  if(vistaAgenda==='matriz' || vistaAgenda==='lista'){
+  if(vistaAgenda==='matriz'){
     renderKpisImpacto();
   } else if(kpisEl){
     kpisEl.innerHTML = '';
     const desgloseEl = document.getElementById('agenda-desglose');
     if(desgloseEl){ desgloseEl.innerHTML=''; desgloseEl.style.visibility='hidden'; }
   }
-  // "matriz" y "lista" ahora son la MISMA vista fusionada -- cualquiera de las 2
-  // pestañas (si tu HTML aún tiene ambos botones) cae en el mismo lugar, con un
-  // interruptor interno para alternar entre cuadrícula y lista
-  if(vistaAgenda==='matriz' || vistaAgenda==='lista'){ renderMatrizYLista(); return; }
+  if(vistaAgenda==='matriz'){ renderMatriz(); return; }
   if(vistaAgenda==='notas'){ renderNotasAgenda(); return; }
   if(vistaAgenda==='genealogia'){ renderGenealogiaAgenda(); return; }
 }
 
-function renderMatrizYLista(){
+function renderMatriz(){
   const cont = document.getElementById('agenda-contenido');
   const selectWrap = document.getElementById('agenda-tema-select-wrap');
   if(selectWrap) selectWrap.style.display = 'none'; // el selector de tema es solo para Notas/Genealogía
   const leyendaNotas = document.getElementById('agenda-notas-leyenda');
   if(leyendaNotas) leyendaNotas.style.display = 'none';
-  // el interruptor Cuadrícula/Lista ahora es un ícono estático en el HTML
-  // (#agenda-vista-secundaria) -- aquí solo se dibuja el contenido según su estado
   const bloqueGlobal = analisisGlobalAgendaIA
     ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:10px 14px 0;">
         <div class="eyebrow" style="color:var(--teal);">Panorama de la agenda (IA)</div>
@@ -1128,34 +1007,31 @@ function renderMatrizYLista(){
   // producto. Ahora entra DENTRO de la misma tarjeta (mismo fondo de cuadrícula,
   // mismo borde) que el gráfico de dispersión -- un solo lienzo, no dos piezas.
   cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;display:flex;flex-direction:column;"></div>`;
-  if(vistaMatrizInterna==='lista') renderListaAgenda();
-  else {
-    // CORRECCIÓN -- pedido explícito: la tarjeta con fondo+borde propio (.matriz-lienzo)
-    // quedaba ANIDADA dentro de la tarjeta que YA pone .graph-card alrededor de todo
-    // #agenda-contenido -- dos bordes/fondos encimados, doble caja. Genealogía no hace
-    // eso: dibuja su cuadrícula (una sola escala, 20x20, línea fina) directo dentro del
-    // propio SVG con un <pattern>, sin envolver nada en una tarjeta extra. Se iguala
-    // ese mismo criterio acá -- ver el patrón "matriz-grid" al inicio de dibujarMatrizRiesgo().
-    // CORRECCIÓN -- pedido explícito: "¿esto es un producto de inteligencia que alguien
-    // consultaría para decidir?". La conclusión y la alerta de riesgos silenciosos van
-    // en HTML (no texto dentro del SVG) -- mejor tipografía, jerarquía real (negritas,
-    // tamaños), y no le quitan espacio al plano peleando por posición como pasaba con
-    // las anotaciones flotantes de antes.
-    // CORRECCIÓN -- pedido explícito: "distribuye mejor... muy amontonado y pegado
-    // hasta abajo". La leyenda vivía dibujada a mano dentro del SVG con anchos de texto
-    // calculados a ojo (monoespaciada) -- no hace wrap, así que en pantallas angostas
-    // (tablet, celular) se apretaba toda en una sola fila pegada al borde inferior. Ahora
-    // es HTML normal con flex-wrap: se acomoda solo según el espacio disponible.
-    // CORRECCIÓN -- pedido explícito: "el lienzo completo que abarque todo el espacio
-    // como el de Genealogía". El aviso de límite de puntos vivía en su propia fila
-    // (franja completa, aunque el texto es corto) -- ahora es el último elemento de la
-    // fila de leyenda (ver más abajo), así se recupera esa fila entera para el SVG.
-    document.getElementById('matriz-lista-zona').innerHTML =
-      `<div id="matriz-resumen-html" style="flex:none;"></div>
-       <svg id="matriz-riesgo-svg" style="width:100%;flex:1;min-height:0;display:block;"></svg>
-       <div id="matriz-leyenda-html" style="flex:none;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:5px 10px 4px;font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);"></div>`;
-    dibujarMatrizRiesgo();
-  }
+  // CORRECCIÓN -- pedido explícito: la tarjeta con fondo+borde propio (.matriz-lienzo)
+  // quedaba ANIDADA dentro de la tarjeta que YA pone .graph-card alrededor de todo
+  // #agenda-contenido -- dos bordes/fondos encimados, doble caja. Genealogía no hace
+  // eso: dibuja su cuadrícula (una sola escala, 20x20, línea fina) directo dentro del
+  // propio SVG con un <pattern>, sin envolver nada en una tarjeta extra. Se iguala
+  // ese mismo criterio acá -- ver el patrón "matriz-grid" al inicio de dibujarMatrizRiesgo().
+  // CORRECCIÓN -- pedido explícito: "¿esto es un producto de inteligencia que alguien
+  // consultaría para decidir?". La conclusión y la alerta de riesgos silenciosos van
+  // en HTML (no texto dentro del SVG) -- mejor tipografía, jerarquía real (negritas,
+  // tamaños), y no le quitan espacio al plano peleando por posición como pasaba con
+  // las anotaciones flotantes de antes.
+  // CORRECCIÓN -- pedido explícito: "distribuye mejor... muy amontonado y pegado
+  // hasta abajo". La leyenda vivía dibujada a mano dentro del SVG con anchos de texto
+  // calculados a ojo (monoespaciada) -- no hace wrap, así que en pantallas angostas
+  // (tablet, celular) se apretaba toda en una sola fila pegada al borde inferior. Ahora
+  // es HTML normal con flex-wrap: se acomoda solo según el espacio disponible.
+  // CORRECCIÓN -- pedido explícito: "el lienzo completo que abarque todo el espacio
+  // como el de Genealogía". El aviso de límite de puntos vivía en su propia fila
+  // (franja completa, aunque el texto es corto) -- ahora es el último elemento de la
+  // fila de leyenda (ver más abajo), así se recupera esa fila entera para el SVG.
+  document.getElementById('matriz-lista-zona').innerHTML =
+    `<div id="matriz-resumen-html" style="flex:none;"></div>
+     <svg id="matriz-riesgo-svg" style="width:100%;flex:1;min-height:0;display:block;"></svg>
+     <div id="matriz-leyenda-html" style="flex:none;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:5px 10px 4px;font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);"></div>`;
+  dibujarMatrizRiesgo();
 }
 
 function crearTooltipAgenda(){
@@ -1498,7 +1374,13 @@ function dibujarMatrizRiesgo(){
   // arriba (más claro) y una flecha de tendencia en cada punto (ver más abajo). Sin esas
   // dos cosas peleando por espacio, el margen superior vuelve a ser chico y el plano
   // recupera el área que antes se le quitaba.
-  const margen = {izq:46, der:22, arriba:34, abajo:30};
+  // CORRECCIÓN -- pedido explícito: "desperdiciamos mucho espacio... que el radar
+  // cubriera todo el div". Márgenes recortados al mínimo que los rótulos de eje (rotado
+  // a la izquierda, horizontal abajo) todavía necesitan sin recortarse -- verificado con
+  // captura real a 1322px de ancho. El radar YA cubre el rectángulo completo de los ejes
+  // (su radio llega a la esquina más lejana, ver dibujarBarridoRadar) -- al reducir el
+  // margen, ese rectángulo crece y el radar crece con él automáticamente.
+  const margen = {izq:34, der:14, arriba:26, abajo:24};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
 
@@ -1619,7 +1501,7 @@ function dibujarMatrizRiesgo(){
   // "distribuye mejor... muy amontonado y pegado hasta abajo" -- dibujada a mano dentro
   // del SVG con anchos de texto calculados a ojo, no hacía wrap: en pantallas angostas
   // (tablet, celular) se apretaba toda en una sola fila. Ahora es HTML normal con
-  // flex-wrap (ver el div #matriz-leyenda-html en renderMatrizYLista) -- se acomoda
+  // flex-wrap (ver el div #matriz-leyenda-html en renderMatriz) -- se acomoda
   // solo según el espacio disponible, en 1, 2 o 3 filas.
   const categoriasPresentes = [...new Set(datos.map(d=>d.categoria))];
   const chip = (svgInterno, texto) => `<span style="display:inline-flex;align-items:center;gap:3px;white-space:nowrap;">${svgInterno}${texto}</span>`;
@@ -1699,8 +1581,21 @@ function dibujarMatrizRiesgo(){
       // CORRECCIÓN -- pedido explícito: "el titular y el aviso de riesgo silencioso no
       // son clickeables, y son el texto más útil del gráfico". Ahora sí abren la ficha
       // del tema (mismo mecanismo que ya usan los puntos y la vista de Lista).
+      // CORRECCIÓN -- pedido explícito: "para mi eso no sirve para tomar decisiones...
+      // debemos ser más claro". El texto anterior ("poca cobertura pese al riesgo")
+      // describía el dato pero no decía qué hacer con él ni por qué es una alerta y no
+      // un dato neutro -- alguien que no conoce el vocabulario del tablero (riesgo vs.
+      // volumen) podía leerlo como algo bueno. Ahora: una etiqueta explícita de "PUNTO
+      // CIEGO" (no una lectura ambigua), una frase que dice la implicación en lenguaje
+      // llano (riesgo real que los medios todavía no están cubriendo -- puede explotar
+      // sin aviso previo), y el dato duro de cada tema (riesgo/10 y cuántas notas lo
+      // sostienen en la ventana) para que la magnitud del hueco sea verificable, no solo
+      // una lista de nombres sueltos.
       const callout = vigilarItems.length
-        ? `<div style="margin-top:2px;font-size:10.5px;color:var(--riesgo-medio);line-height:1.3;">⚠ poca cobertura pese al riesgo: ${vigilarItems.slice(0,3).map(d=>`<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema),30)}</span>`).join(' · ')}</div>`
+        ? `<div style="margin-top:4px;font-size:10.5px;line-height:1.35;display:flex;gap:6px;align-items:flex-start;">
+            <span style="flex-shrink:0;font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:var(--riesgo-medio);border:1px solid var(--riesgo-medio);border-radius:99px;padding:1px 7px;margin-top:1px;">PUNTO CIEGO</span>
+            <span style="color:var(--ink-2);">riesgo real sin cobertura proporcional -- vigilar de cerca, puede escalar sin aviso: ${vigilarItems.slice(0,3).map(d=>`<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema),28)}</span><span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);"> (riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''})</span>`).join(' · ')}</span>
+          </div>`
         : '';
       resumenEl.innerHTML = `<div style="border-left:3px solid var(--riesgo-alto);padding:2px 10px;margin:6px 14px 0;">
         <div style="font-family:var(--f-display);font-size:12.5px;font-weight:600;color:var(--ink-1);line-height:1.25;">${headline}</div>
@@ -1769,11 +1664,15 @@ function dibujarMatrizRiesgo(){
     destello.node().addEventListener('animationend', ()=> destello.remove());
   };
 
+  // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
+  // touch" -- pointerenter/pointermove/pointerleave cubren mouse Y touch con el mismo
+  // listener (mouseenter/mousemove/mouseleave no disparan de forma confiable con touch
+  // puro).
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
-    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); destelloEnPunto(d); })
-    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); })
-    .on('mouseleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
+    .on('pointerenter', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); destelloEnPunto(d); })
+    .on('pointermove', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); })
+    .on('pointerleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
   // CORRECCIÓN -- pedido explícito: "pensar la interacción en móviles, tablets y

@@ -70,6 +70,10 @@ const RADIOS_ANILLO = {1:85, 2:145, 3:200};
 const COLOR_POR_SLOT = { nucleo:'var(--familia-nucleo)', cruce1:'var(--familia-cruce1)', cruce2:'var(--familia-cruce2)' };
 
 function initRedActores(){
+  // los íconos de Red/Actor/Restablecer ahora usan el tooltip flotante del sitio
+  // (.leg-tt/data-tt, definido en legislativo.js) en vez del title nativo del navegador --
+  // se asegura aquí por si Red de Actores es el primer panel que visita la persona.
+  if(typeof wireTooltipFlotanteLeg === 'function') wireTooltipFlotanteLeg();
   poblarSelectores();
   renderGrafo();
   setTimeout(asegurarPanelDetalle, 50);
@@ -446,15 +450,17 @@ function renderGrafo(svgId='graph-svg'){
       if(svgId==='notas-svg') return;
       mostrarFicha(d.id, d, nodes);
     })
-    .on('mouseenter', function(ev,d){
+    // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
+    // touch" -- pointerenter/pointermove/pointerleave cubren mouse Y touch.
+    .on('pointerenter', function(ev,d){
       if(svgId!=='notas-svg' || d.esTema || !d.rolEnTema) return;
       if(typeof mostrarTooltipAgenda==='function') mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${(typeof COLOR_ROL_NOTAS!=='undefined'&&COLOR_ROL_NOTAS[d.rolEnTema])||'var(--ink-3)'};">${(typeof TEXTO_ROL_NOTAS!=='undefined'&&TEXTO_ROL_NOTAS[d.rolEnTema])||d.rolEnTema}</span>`, ev);
     })
-    .on('mousemove', function(ev,d){
+    .on('pointermove', function(ev,d){
       if(svgId!=='notas-svg' || d.esTema || !d.rolEnTema) return;
       if(typeof mostrarTooltipAgenda==='function') mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${(typeof COLOR_ROL_NOTAS!=='undefined'&&COLOR_ROL_NOTAS[d.rolEnTema])||'var(--ink-3)'};">${(typeof TEXTO_ROL_NOTAS!=='undefined'&&TEXTO_ROL_NOTAS[d.rolEnTema])||d.rolEnTema}</span>`, ev);
     })
-    .on('mouseleave', function(ev,d){
+    .on('pointerleave', function(ev,d){
       if(svgId==='notas-svg' && typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda();
     })
     .call(d3.drag()

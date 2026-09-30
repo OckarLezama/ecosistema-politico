@@ -140,6 +140,21 @@ function puntoPrincipalTL(temaId){
   return {fecha:top.fecha, intensidad:top.intensidad};
 }
 
+// pedido explícito, revisión crítica del Timeline: "que aparezcan los titulares/
+// encabezados, si bien lo podemos clasificar [por categoría], lo que debe destacar es el
+// titular". Antes el hover y las tarjetas solo mostraban tema.nombre (la etiqueta de
+// clasificación, ej. "Huachicol Fiscal") -- nunca el texto real de una nota. El dato sí
+// existe (evento.descripcion, la misma fuente que ya usa Genealogía) -- aquí se toman
+// las notas más recientes de verdad, consolidadas (mismo criterio que el resto del sitio,
+// para no repetir el mismo hecho cubierto por varios medios) para mostrar el titular real
+// en el hover, no solo la categoría.
+function titularesRecientesTL(temaId, n){
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
+  if(!evs.length) return [];
+  const consolidadas = typeof consolidarNotasPorSimilitud === 'function' ? consolidarNotasPorSimilitud(evs) : evs;
+  return consolidadas.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha)).slice(0,n);
+}
+
 function actoresDeTemaTL(tema){
   // solo reacciones en el hover — no nombres sueltos de "Mencionado" ni otros roles
   const ROLES_REACCION = ['Reacción de oposición','Reacción del gobierno','Reacción social/mediática'];
@@ -170,6 +185,21 @@ function mostrarTooltipTL(d, ev){
     const indice = calcularIndiceEscalamiento(d.tema);
     const colorIdx = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
     html += `<br><span style="font-size:10px;color:${colorIdx};font-weight:700;">Índice de escalamiento: ${indice.total}/100 (${indice.nivel})</span>`;
+  }
+  // pedido explícito: "lo que debe destacar es el titular" -- el nombre del tema de arriba
+  // es una CLASIFICACIÓN, no una noticia. Aquí van los titulares reales más recientes
+  // (texto de evento.descripcion), con la fuente cuando el formato de la nota la trae
+  // separada, y cuántos medios cubrieron cada uno.
+  const titulares = titularesRecientesTL(d.tema.id, 2);
+  if(titulares.length){
+    html += `<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:8.5px;font-family:var(--f-mono);text-transform:uppercase;opacity:.7;">titular${titulares.length>1?'es':''} más reciente${titulares.length>1?'s':''}</span>`;
+    titulares.forEach(t=>{
+      const match = (t.descripcion||'').match(/^(.*?)\s*-\s*([^-]+)$/);
+      const texto = match ? match[1] : t.descripcion;
+      const fuente = match ? match[2] : '';
+      const cobertura = t.cobertura>1 ? ` · ${t.cobertura} medios` : '';
+      html += `<div style="font-size:10px;line-height:1.35;margin-top:2px;"><strong>${t.fecha}:</strong> ${_truncarEnPalabra(texto, 90)}${fuente?` <em style="opacity:.7;">(${fuente}${cobertura})</em>`:cobertura}</div>`;
+    });
   }
   if(reacciones.length){
     html += `<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;"><span style="font-size:9.5px;line-height:1.4;">${reacciones.join('<br>')}</span>`;
@@ -352,12 +382,16 @@ function dibujarTL(xScaleActual){
   const COLOR_RIESGO = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
   const COLOR_RIESGO_2 = {alto:'var(--rojo)', medio:'var(--arena)', bajo:'var(--verde)'}; // paleta distinta para Nivel 2/3, no compite visualmente con Nivel 1
 
+  // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
+  // touch" -- pointerenter/pointermove/pointerleave cubren mouse Y touch con el mismo
+  // listener (mouseenter/mousemove/mouseleave no disparan de forma confiable con touch
+  // puro).
   const g = tlContainer.selectAll('g.tl-punto').data(tlPuntos).join('g')
     .attr('class','tl-punto').style('cursor','pointer')
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id))
-    .on('mouseenter', function(ev,d){ mostrarTooltipTL(d, ev); })
-    .on('mousemove', function(ev,d){ mostrarTooltipTL(d, ev); })
-    .on('mouseleave', ocultarTooltipAgenda);
+    .on('pointerenter', function(ev,d){ mostrarTooltipTL(d, ev); })
+    .on('pointermove', function(ev,d){ mostrarTooltipTL(d, ev); })
+    .on('pointerleave', ocultarTooltipAgenda);
 
   g.each(function(d){
     const esNivel1 = Number(d.tema.nivel_relevancia)===1;

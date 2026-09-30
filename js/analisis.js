@@ -171,14 +171,16 @@ function dibujarAreaApilada(temasNivel1){
     const xIni = idx===0 ? escalaX(0) : (escalaX(idx-1)+escalaX(idx))/2;
     const xFin = idx===serie.length-1 ? escalaX(idx) : (escalaX(idx)+escalaX(idx+1))/2;
     svg.append('rect').attr('x',xIni).attr('y',0).attr('width',Math.max(1,xFin-xIni)).attr('height',h).attr('fill','transparent').style('cursor','pointer')
-      .on('mouseenter', function(ev){
+      // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
+      // touch" -- pointerenter/pointermove/pointerleave cubren mouse Y touch.
+      .on('pointerenter', function(ev){
         d3.select(svgEl).selectAll('.linea-guia-analisis').remove();
         d3.select(svgEl).append('line').attr('class','linea-guia-analisis').attr('x1',escalaX(idx)).attr('x2',escalaX(idx)).attr('y1',0).attr('y2',h).attr('stroke','var(--ink-2)').attr('stroke-width',1).attr('stroke-dasharray','3 2');
         const desglose = CATEGORIAS_ANALISIS.filter(c=>f[c]>0).map(c=>`<span style="color:${colorCategoriaFijo(c)};">●</span> ${c}: ${f[c]}`).join('<br>');
         mostrarTooltipAgenda(`<strong>${f.mes}</strong><br>${f.total} nota${f.total!==1?'s':''} en total<br>${desglose||'Sin actividad'}`, ev);
       })
-      .on('mousemove', function(ev){ mostrarTooltipAgenda(`<strong>${f.mes}</strong><br>${f.total} nota${f.total!==1?'s':''} en total<br>${CATEGORIAS_ANALISIS.filter(c=>f[c]>0).map(c=>`<span style="color:${colorCategoriaFijo(c)};">●</span> ${c}: ${f[c]}`).join('<br>')||'Sin actividad'}`, ev); })
-      .on('mouseleave', function(){ d3.select(svgEl).selectAll('.linea-guia-analisis').remove(); ocultarTooltipAgenda(); });
+      .on('pointermove', function(ev){ mostrarTooltipAgenda(`<strong>${f.mes}</strong><br>${f.total} nota${f.total!==1?'s':''} en total<br>${CATEGORIAS_ANALISIS.filter(c=>f[c]>0).map(c=>`<span style="color:${colorCategoriaFijo(c)};">●</span> ${c}: ${f[c]}`).join('<br>')||'Sin actividad'}`, ev); })
+      .on('pointerleave', function(){ d3.select(svgEl).selectAll('.linea-guia-analisis').remove(); ocultarTooltipAgenda(); });
   });
 }
 

@@ -534,6 +534,15 @@ function nombreCuadrante(x,y){
   if(x>=50 && y<50) return 'Ruido';
   return 'Bajo perfil';
 }
+// "martes 30" en vez de "2026-09-30" -- para la fecha de transición (apagado/reactivado)
+// del Tablero de Actores, pedido explícito: dejar claro EN QUÉ DÍA de la semana se movió
+// la ficha, no solo que se movió.
+const DIAS_TL = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+function _fechaCortaDiaTL(fechaISO){
+  if(!fechaISO) return '';
+  const d = new Date(fechaISO+'T12:00:00');
+  return `${DIAS_TL[d.getDay()]} ${d.getDate()}`;
+}
 function tableroActoresPulso(actores){
   if(!actores || !actores.length) return `<div style="font-size:10.5px;color:var(--ink-3);">Sin actores con menciones verificadas esta semana.</div>`;
   const w=560, h=380, m=44;
@@ -703,7 +712,13 @@ function tableroActoresPulso(actores){
     const info = `
       <div style="min-width:172px;">
         <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;"><b>${a.nombre}</b>${a.es_nuevo?'<span style="font-size:8px;font-family:var(--f-mono);color:'+color+';border:1px solid '+color+';border-radius:99px;padding:0 5px;">NUEVO</span>':''}${esApagado?'<span style="font-size:8px;font-family:var(--f-mono);color:var(--ink-3);border:1px solid var(--line-strong);border-radius:99px;padding:0 5px;">SIN CONTINUIDAD HOY</span>':esTenue?'<span style="font-size:8px;font-family:var(--f-mono);color:var(--ink-3);border:1px solid var(--line-strong);border-radius:99px;padding:0 5px;">1 SOLO DÍA</span>':''}</div>
-        <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;">${esApagado ? 'sin mención nueva hoy -- se conserva su última posición de esta semana' : a.es_nuevo ? 'nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`}</div>
+        <div style="font-size:9.5px;color:var(--ink-3);margin-top:2px;">${
+          esApagado
+            ? `sin mención nueva hoy -- se conserva su última posición de esta semana${a.fecha_apagado ? ` <span style="color:var(--ink-2);">(apagado desde el ${_fechaCortaDiaTL(a.fecha_apagado)})</span>` : ''}`
+            : a.fecha_reactivado
+              ? `<span style="color:var(--riesgo-bajo);">volvió a aparecer el ${_fechaCortaDiaTL(a.fecha_reactivado)}</span> -- de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`
+              : a.es_nuevo ? 'nuevo en el tablero esta semana' : `de ${nombreCuadrante(a.x_lunes,a.y_lunes)} a ${nombreCuadrante(a.x_hoy,a.y_hoy)}`
+        }</div>
         <div style="display:flex;align-items:center;gap:5px;margin-top:7px;">
           <span style="font-family:var(--f-mono);font-size:10px;font-weight:700;color:${deltaColor};width:34px;flex-shrink:0;">${deltaFlecha} ${Math.abs(a.delta_pts||0)}</span>
           <div style="flex:1;height:4px;background:var(--bg-1);border-radius:99px;overflow:hidden;"><div style="width:${deltaPct}%;height:100%;background:${deltaColor};"></div></div>
