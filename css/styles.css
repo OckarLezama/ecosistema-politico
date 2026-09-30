@@ -122,25 +122,6 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),
   var(--bg-0);
 }
-/* mismo lienzo de cuadritos que ya usa Legislativo (.reforma-lienzo) -- reutilizado
-   tal cual (misma cuadrícula fina 13px + gruesa 65px, misma opacidad) para que la
-   matriz de Agenda comparta el lenguaje visual del resto del sitio. */
-.matriz-lienzo{
-  position:relative; background-color:var(--bg-1); border-radius:var(--radius-s);
-  border:1px solid var(--line); overflow:hidden;
-}
-.matriz-lienzo::before{
-  content:""; position:absolute; inset:0;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px),
-    linear-gradient(var(--line-strong) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line-strong) 1px, transparent 1px);
-  background-size: 13px 13px, 13px 13px, 65px 65px, 65px 65px;
-  opacity:.22; pointer-events:none;
-}
-.matriz-lienzo > *{ position:relative; }
-
 .graph-empty-state{
   height:560px; display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:6px; color:var(--ink-3); text-align:center;
@@ -231,6 +212,15 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .pulso-tablero-link:hover .pulso-tablero-pieza,
 .pulso-tablero-link:focus-visible .pulso-tablero-pieza{ transform:scale(1.25); }
 .pulso-tablero-anillo{ transform-box:fill-box; transform-origin:center; pointer-events:none; }
+
+/* --- Agenda & Coyuntura, matriz de riesgo: pedido explícito tras varias rondas de
+   confusión ("no sé por qué unos círculos tienen movimiento de una forma y otros
+   líneas punteadas") -- la única animación continua de todo el gráfico es este aro,
+   reservado siempre para el mismo elemento (el tema de mayor prioridad), nunca para
+   otra cosa. transform-box:fill-box + transform-origin:center, mismo criterio que
+   .pulso-halo-vivo arriba, para que escale desde su propio centro. --- */
+@keyframes prioridad-respira{ 0%,100%{ transform:scale(1); opacity:0.9; } 50%{ transform:scale(1.22); opacity:0.45; } }
+.prioridad-anillo-vivo{ transform-box:fill-box; transform-origin:center; animation:prioridad-respira 2.4s ease-in-out infinite; pointer-events:none; }
 .pulso-tablero-link:hover .pulso-tablero-anillo,
 .pulso-tablero-link:focus-visible .pulso-tablero-anillo{ transform:scale(1.25); }
 .pulso-tablero-link:hover .pulso-halo-vivo,
