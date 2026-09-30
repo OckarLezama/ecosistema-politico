@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-09-30T13:28:02.475392-06:00",
+  "generado_en": "2026-09-30T14:58:29.502599-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 5,
+  "n_notas_ventana": 6,
   "baja_confianza": false,
-  "tension_nacional": 30,
+  "tension_nacional": 29,
   "tension_anomalia": {
-    "z": -0.44,
+    "z": -0.51,
     "nivel": "normal",
     "media_periodo": 36.2,
     "dias_base": 27
@@ -13,7 +13,7 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 61,
+      "peso_pct": 51,
       "tema_principal": "Visa de Andy",
       "tema_principal_id": "visa-de-andy",
       "n_temas": 2,
@@ -40,8 +40,24 @@
       ]
     },
     {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 16,
+      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
+      "tema_principal_id": "rocha-moya-acusacion",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Felipe Calderón enciende alerta por Rocha Moya y el cártel de Sinaloa: pide unión a la derecha por “captura del Estado” en México - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNb2p3WTVwM1hqb0VwMF91aklLUnp6NF8tdVZOazAzeFM3UmFyZG9kVVk1UExrUmNSQWl5OHVYYXBZeXJhV1BWZnRIRk5ONWRPRDZUSHhXcThJQkNVeDFqMTZ0QTd6elpweGJDWG1nVnVhNEh1NXRFX044eW1pQnB5RVhIMkJOWms0NWIwXzlTbF9uTGQ3blpmYXdOUERRNzFMb3Fpa0xGN3hwa1N1YVZxaW5MYmdWRGJHVDVhckt4WUtvZ0pyYzZ2amxaNzUwZGdTNlpxNXBJMFp1WFJDNlM0VmN6TC1hWW15d0ZVTlM2LVd6MUVSSDlubnNpZWpWZw?oc=5",
+          "intensidad": 6.0,
+          "medio": "Infobae"
+        }
+      ]
+    },
+    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 19,
+      "peso_pct": 16,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -57,7 +73,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 19,
+      "peso_pct": 16,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -70,15 +86,6 @@
           "medio": "Impulso Informativo |"
         }
       ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
     },
     {
       "categoria": "Social",
@@ -775,7 +782,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 58
         },
         {
           "categoria": "Relación Bilateral",
@@ -827,6 +834,24 @@
       }
     },
     {
+      "id": "rocha-moya-acusacion",
+      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
+      "motivo": "Felipe Calderón enciende alerta por Rocha Moya y el cártel de Sinaloa: pide unión a la derecha por “captura del Estado” en México - Infobae",
+      "peso": 6.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNb2p3WTVwM1hqb0VwMF91aklLUnp6NF8tdVZOazAzeFM3UmFyZG9kVVk1UExrUmNSQWl5OHVYYXBZeXJhV1BWZnRIRk5ONWRPRDZUSHhXcThJQkNVeDFqMTZ0QTd6elpweGJDWG1nVnVhNEh1NXRFX044eW1pQnB5RVhIMkJOWms0NWIwXzlTbF9uTGQ3blpmYXdOUERRNzFMb3Fpa0xGN3hwa1N1YVZxaW5MYmdWRGJHVDVhckt4WUtvZ0pyYzZ2amxaNzUwZGdTNlpxNXBJMFp1WFJDNlM0VmN6TC1hWW15d0ZVTlM2LVd6MUVSSDlubnNpZWpWZw?oc=5",
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
+    },
+    {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
@@ -839,10 +864,21 @@
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://www.jornada.com.mx/2026/09/30/politica/013n2pol?partner=rss",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     }
   ],
   "temas_nuevos": [
+    {
+      "id": "auto-1e92c857a3",
+      "nombre": "Morena descartó a cercanos de AMLO para sus gubernaturas: García Soto - El Unive",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNM21OVTVMVGhtSlJvT0VkRnh5d2swWk1XTzVBRTNEczhhWU16TU0waDJEckFvMEJvblA3RFFDbDZjQXJIdU4zZ2paYVFJOFBNY1lJX0NfVHBnVHQ1ek9ZcUJ6Qm9rdm1KYlE5MVBwaTlIc210UE4zdUN5djh3cWFlRWFrcldOSFdkeUd6THFzN0lLcWtGUFZ6ZjAtWk1JcVBiOG92a1BLemJzei1kQkp5UnRGYVp6Q1BGa0xmdGVnZzJCN3A0UHBDdEJRRk1Md2ZJRXRvdDNXbkNIOHFmWWdvcHVjTmxzNG5uVVFj0gH_AUFVX3lxTFBuSlpLbF9IR1RhblQ1UE1MaFk2dTZ3NVVDblZIWjc2MUdIeE1XRnpSY2g0WmJQNGowamwtTENXUklPVVljYWo0NEp2LXl5eEVyQTRPZ2xZMWhOODNTU21YZTBtYjg1OFZEbmdkbXJ4d3VfenpSRGJtSG5hYXF6cXFidFBfa2dnZHRzTV9zREViYjE5Q3FudWx4cHJIODhBSUxsRUloMjNYOWNybWNSdnNHUXdkRWNDa2JBdVIwMXVhcnI5akV1S05YMWwtUW1TQ2FNdGlvYVdhTFBPaUVrVzFadHM1Ty02Zjg3YWtwMTNxQklvbXMtcGhuX0VaZ3Utdw?oc=5"
+    },
     {
       "id": "auto-86dc7a2537",
       "nombre": "California desafía a Trump: Newsom prohíbe guantes de electrochoques de ICE para",
@@ -866,14 +902,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQbmRaOGtuOUdsWlc2RkZrdkllOUh4dHBhQmczWEVwTzhYdEVTaFNQaDBOcnpWbzU3S3FxLTItY0VKcm1ZNmUwdGxEdUlmNEl3UEY0eVZVNkF2R2QtaW1sWXBFTGZvV1VlcUQxNC1wODE3NUl6UkhEOFdzd2Z3U2ozUUd2N05fS2JUZDA0SUR2VW04UllDN2FXdUpTT1Z1UnlFeWxmeG9BZTZ6bE55THhTTXdtSElSTmtVTnpYYkFMbHZPR0xyYTVVMjZfMU1pMFY4YlFHaHc5QV9mZ1lqeU9rTEx5czd5cDYtQU5SQnFZREttQXNpdWlLMGZkNnE1NXFKMDV4UEZUSQ?oc=5"
-    },
-    {
-      "id": "auto-0f61979f62",
-      "nombre": "Trasladan a 100 reos de alta peligrosidad a penal de Chiapas; suman 300 internos",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQYVhPT1gzeXpUYjVMOVc1SmRtdEJBdmlyNzdMYWlRWUIySDF0MjZqUnk3WjlzVGFpaktHd01oMGwwT1FQbkExUkNhRWN1UEs3WVJIUGdLZmNkZlF0S1Zqdk9XZkFDczA0ejhWRTE3UFNueDh5WlFYdnVuTlk1aktubDFlaEZtWDhNZUR6SWJLUHhrNmpqNl9wM3dkX1dkTGxERjl3cE9raWZXOGF6XzJ0MWV1MUFfc2RSNGFpMS1SRU9jSm5tM3duR3NqcUtUXzJJMzQxeGdoMlZwT1pQbFJ2LU5SRQ?oc=5"
     },
     {
       "id": "auto-33af9eb0c0",
@@ -908,6 +936,17 @@
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/15/politica/006n2pol?partner=rss"
     },
     {
+      "id": "auto-933a68633a",
+      "nombre": "En el “Alcatraz de los caimanes” se habrían usado jaulas para confinar a migrant",
+      "categoria": "Social",
+      "dias_silencio": 14,
+      "motivo": "🔔 ALERTA — Sheinbaum solicitará reporte por jaulas a migrantes en Alligator Alcatraz: “No lo habían reportado” - Infobae",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOT0NJejFlWmpSSlJxYkNPbS1RVzBwV0JzWGNBRUZLa2NfY0lpUElFVFl4Y3dROEl4dzM2YVlvMGpndURKcFF6YWk0RUJHaWgzVVZQTVF4bUZHUDJKaEduS1hVTm1PQkM3aXdVTm51SDdHN2sxckJMazM3NHI4bXpOWGY2V1dFYWNEdU1OODByb3MxLUtXUGJkUElkSWRxRVA0bFBuODFnZ281VXN1b0NYbExjcHFHWFc2cDNsTTdZd25iRjZGb19NczI2cGxuY2dlTmt0MXZn0gHwAUFVX3lxTFBXZC1QUFhscVREbWt0dmI1ZGZ0RHhDMzZ0YW5Sb3BvQi1Xek5EQ2w0THhjczV4UkdGcERCR0pPbGtaZ0Fya25qeThPT0ZEVmRVZXd4XzlRb0dWUmFWNHpONEdabkVVSGxQRzhfek5kNEZwQWxnWXdOSE5BTEl4QXRzcW5OcUFwVzRISkVnYUdoaDM4aHZHMnFNN2hKUk5vV2o1bkh6dWVxNTRDQmRTX19kdXZGblcwQkEtVTM2TDRXMHlWMTBtT0NKTklfR2ZTNFFPU0QwY1N2VG9XRHdsQWVsR2FiM1BPWldSZ0c0c24xcA?oc=5",
+      "fecha_anterior": "2026-09-15",
+      "fuente_url_anterior": "https://www.yucatan.com.mx/mundo/2026/09/15/en-el-alcatraz-de-los-caimanes-se-habrian-usado-jaulas-para-confinar-a-migrantes.html"
+    },
+    {
       "id": "auto-071957561c",
       "nombre": "Con coordinación e inteligencia, gobierno estatal registra resultados contundent",
       "categoria": "Gobernabilidad",
@@ -917,6 +956,17 @@
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/morena-publica-los-resultados-de-las-encuestas-para-coordinaciones-estatales/",
       "fecha_anterior": "2026-09-18",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNbXF0cTdpYmRyRlF2dFAxM3lTOUZsRGhXRnZ4aUVmWWdSMWNnSGhoOHkzSndXX1U0dWxWdFdyUlZIM2RmWjh0b1NaU1FKcFUxMG83V0pJdE5SeGQyWWtIVmRyNHBZOEhfenI1VzhWakVUakdJU094eF96SGhybmVJMGNyM0NjNHNFeGFETE5UblNTbHdETHUtamM2WjU4U3pCNUNmSWtKTHcyR3JQeGNwb3lJSmg5SmZyU0NwVjEwd1Nsb2RmcTIzekFGVm1wV1NPc01BdWF4eFFDQjJxc2c?oc=5"
+    },
+    {
+      "id": "auto-e5f040f156",
+      "nombre": "Acusan de agresión a 2 guardias de un centro de detención de migrantes en Florid",
+      "categoria": "Social",
+      "dias_silencio": 7,
+      "motivo": "🔔 ALERTA — Sheinbaum desconoce uso de presuntas jaulas para migrantes en centro de detención en Florida - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxORHNMak1zOFhGQ2RXZWRYbjF3MWZCRmRRdHF6cG5pTlZGRko2R1lxR0UyZ2NqX0cza2s0bzh6aFZvQ0pQZWdpREpNMGZUajdjSUVocWNGNXdMU0lZQ2pWV1pjZWFWTEVxNjROLWI1OTA1UE01RTY3cTllenRvNkdpWE92QUNTdGhYRVpxb3RhZ2ktYXhBMFJ5b2VHX01oV1BCVzVnUUNwWllIUWNvSXV0OFk1OERQWTBTdGdpbzRlYVhLR1dQZk1vOHF0NDNMMVlTQ3hDcGJIMVQzRHpBQmtSTHE3VzR1MEtYQVRyTHNn?oc=5",
+      "fecha_anterior": "2026-09-22",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPTzhwdDkxOUZYWUwzVTAtTEhmNHJ6NFBIcVBzOXpxRzk0bUVnXzNZWVZ0eThyQ1NvdTJvRDFUMzhqbGwtUjQ4VUdOMXFfSGpiUkk1Y3lIUDNCZXJ3LUF2YmFvZU1qZWNtVUVwQlpncUhGRnR6XzBKcWVZZjlvY1BPOFJOM2ZqWUlDWUlGUnR6d2d2cU9INGRraXF6SWpsWUZ6bDlPbGxkOHVMTXc5cmJNYw?oc=5"
     }
   ],
   "actores_destacados": [
@@ -954,12 +1004,23 @@
       "confianza": "media"
     },
     {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "rol": "Investigado",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "Felipe Calderón enciende alerta por Rocha Moya y el cártel de Sinaloa: pide unión a la derecha por “captura del Estado” en México - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNb2p3WTVwM1hqb0VwMF91aklLUnp6NF8tdVZOazAzeFM3UmFyZG9kVVk1UExrUmNSQWl5OHVYYXBZeXJhV1BWZnRIRk5ONWRPRDZUSHhXcThJQkNVeDFqMTZ0QTd6elpweGJDWG1nVnVhNEh1NXRFX044eW1pQnB5RVhIMkJOWms0NWIwXzlTbF9uTGQ3blpmYXdOUERRNzFMb3Fpa0xGN3hwa1N1YVZxaW5MYmdWRGJHVDVhckt4WUtvZ0pyYzZ2amxaNzUwZGdTNlpxNXBJMFp1WFJDNlM0VmN6TC1hWW15d0ZVTlM2LVd6MUVSSDlubnNpZWpWZw?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
       "rol": "Reacción social/mediática",
-      "tema": "Morena descartó a cercanos de AMLO para sus gubernaturas: García Soto - El Unive",
-      "nota": "Morena descartó a cercanos de AMLO para sus gubernaturas: García Soto - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNM21OVTVMVGhtSlJvT0VkRnh5d2swWk1XTzVBRTNEczhhWU16TU0waDJEckFvMEJvblA3RFFDbDZjQXJIdU4zZ2paYVFJOFBNY1lJX0NfVHBnVHQ1ek9ZcUJ6Qm9rdm1KYlE5MVBwaTlIc210UE4zdUN5djh3cWFlRWFrcldOSFdkeUd6THFzN0lLcWtGUFZ6ZjAtWk1JcVBiOG92a1BLemJzei1kQkp5UnRGYVp6Q1BGa0xmdGVnZzJCN3A0UHBDdEJRRk1Md2ZJRXRvdDNXbkNIOHFmWWdvcHVjTmxzNG5uVVFj?oc=5",
+      "tema": "‘Serenos todos’: Sheinbaum niega dedazo en Morena y llama a la calma a inconform",
+      "nota": "“No hay dedazo, es lo que dijo la gente”: Sheinbaum defiende encuestas de Morena y recuerda bases de AMLO - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPQkhwa3ZnQno4a19IZHdMNXFiWnhRRFBaUnpBcmJGVEVfSUxqemdwX29aUjktZnJWcUdTSmo3SEpQUy12Z1IzeDNLNHFWc1lpcjdEUzltZlowVFVPckFydk1lNnQwbENxQmhZSEpjLUx1YkFBYkFSVUpGM2FlY25oWExMOEF1WE5PMjdxUXdLb2dkY3UtcHNVb2pUbXNSU01oQ0luR0ZRNk1vTXl1V0FhM0VZOUlodGNEZnpoOUh3XzNHdHhLSmh6WU40SFRQNU1vcUZmckNMU1dKQm1v0gH3AUFVX3lxTE96YTZfQWdLVDBBVG5IT0NzRnMyTjVTY2xqZ0gtbFVwdGwwQ1FtR1BjU3hsVnlaSzlDUGNiX0N2bnJ0bWM3Z2k5TVBjWFI1NWZodElucnR2elZCb2VHeFBUQ1hTRVMyb0ctVnVOd0xETjJ0eFN2d0wtT3dOenJVNEtobUlXbmpqeHpXNWhTd2hQZDVtYlhITWdMWnpROEs3Z3FSMEw1MlJxWDhhd21CNXcwc0FjUFVoTHBWcHcwemdSVzFnT1dRYXJLR3pIVnZPOWxKSTdyMnI5NTdvd3h6NHlwRW0tdURGV19VTlNuNElLaDluS3JFVHc?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1200,10 +1261,10 @@
     },
     {
       "fecha": "2026-09-30",
-      "tension": 31,
-      "n_notas": 4,
+      "tension": 30,
+      "n_notas": 5,
       "n_alto_impacto": 1,
-      "n_medio_impacto": 3,
+      "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     }
   ],
@@ -1267,8 +1328,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://www.yucatan.com.mx/mexico/2026/09/29/estados-unidos-analiza-acusaciones-contra-andy-lopez-beltran-the-new-york-times.html",
+      "nota_texto": "Estados Unidos analiza acusaciones contra “Andy” López Beltrán: The New York Times",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3
@@ -1288,10 +1349,10 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
+      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
       "es_nuevo": false,
-      "categoria": "Relación Bilateral",
+      "categoria": "Seguridad Nacional",
       "dias_activo": 2,
       "fecha_apagado": "2026-09-30"
     },
@@ -1362,6 +1423,28 @@
       "fecha_apagado": "2026-09-30"
     },
     {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 9,
+      "y_lunes": 50,
+      "x_hoy": 18,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 2,
+      "n_alto": 0,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQMk9lSzFjWGIyZ0szU2NyekNScldPeFlDWXNKWDg3cEFlOWs2OE4zQldZbDdxV19LTWpyX0RWdUxsMkpTeFljUGNURW9TVTY0VVNrV2V5QlFwT1FrcVJQaXZ0Umw0YXJLcXFTNW9CcVoxeHNycWJyMm9fS0JBMWxIb1R2VTI4dmZFYWtsQUJ1SlBiZEVjdHA1VGFSVXMtb2NzNVlj0gGoAUFVX3lxTE5XYXVfX2F2SC1iTFJqMXVjWldCR21fNmtQd1J3eDNDNE90ZVc1UkZBTnVHY2xKbmN2SDV4N1FxQVpxOUQ4eFd2Y2VQLXA2ZS1xUGhWSW5vX1hKZGxjTi1hYzgxb211dEVySnFoSV9MOHFmWXh5N0hnZkRsUUhsdHpDbUVjQURIUDF6NS1SVnpMd0g2Wng3bjM4R09jNjdIUlh4TmF0TmRwZQ?oc=5",
+      "nota_texto": "Rocha Moya en Culiacán y Amílcar Olán en los Alpes - informador.mx",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "fecha_reactivado": "2026-09-30"
+    },
+    {
       "id": "trump",
       "nombre": "Donald Trump",
       "iniciales": "DT",
@@ -1382,33 +1465,47 @@
       "categoria": "Relación Bilateral",
       "dias_activo": 1,
       "fecha_apagado": "2026-09-30"
-    },
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 9,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQMk9lSzFjWGIyZ0szU2NyekNScldPeFlDWXNKWDg3cEFlOWs2OE4zQldZbDdxV19LTWpyX0RWdUxsMkpTeFljUGNURW9TVTY0VVNrV2V5QlFwT1FrcVJQaXZ0Umw0YXJLcXFTNW9CcVoxeHNycWJyMm9fS0JBMWxIb1R2VTI4dmZFYWtsQUJ1SlBiZEVjdHA1VGFSVXMtb2NzNVlj0gGoAUFVX3lxTE5XYXVfX2F2SC1iTFJqMXVjWldCR21fNmtQd1J3eDNDNE90ZVc1UkZBTnVHY2xKbmN2SDV4N1FxQVpxOUQ4eFd2Y2VQLXA2ZS1xUGhWSW5vX1hKZGxjTi1hYzgxb211dEVySnFoSV9MOHFmWXh5N0hnZkRsUUhsdHpDbUVjQURIUDF6NS1SVnpMd0g2Wng3bjM4R09jNjdIUlh4TmF0TmRwZQ?oc=5",
-      "nota_texto": "Rocha Moya en Culiacán y Amílcar Olán en los Alpes - informador.mx",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "fecha_apagado": "2026-09-30"
     }
   ],
   "tablero_semana_inicio": "2026-09-28",
-  "resumen_mananera": [],
-  "mananera_estado": "fuente_retrasada",
+  "resumen_mananera": [
+    {
+      "texto": "Política ambiental humanista y cambio climático: La Secretaría de Medio Ambiente presentó los resultados del sector ambiental, enfatizando que la política ambiental se basa en un cambio de paradigma d",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Inversión histórica en agua como derecho humano: Se presentó una inversión sin precedentes de más de 80,000 millones de pesos durante el sexenio para proyectos de agua potable, drenaje y saneamiento.",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Saneamiento de ríos contaminados: Se presentó un plan integral de saneamiento de los tres ríos más contaminados del país (Lerma, Atoyac y Tula). Se han rehabilitado y construido 23 plantas de tratamie",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Proyectos estratégicos de agua en todo el país: Se presentaron 17 proyectos estratégicos en ejecución, incluyendo agua saludable para la laguna de Durango, plan oriente del Estado de México, plan inte",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Reforma de nacionalidad única para presidentes y gobernadores: La presidenta Claudia Sheinbaum defendió la reforma aprobada en el Senado que establece que los presidentes y gobernadores de México solo",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    }
+  ],
+  "mananera_estado": "ok",
   "a_vigilar": [
     {
       "id": "auto-b817af87c2",
@@ -1473,5 +1570,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-09-30 13:28"
+  "hora_corte_publicada": "2026-09-30 14:58"
 }
