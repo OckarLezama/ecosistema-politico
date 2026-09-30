@@ -1,9 +1,15 @@
 {
-  "generado_en": "2026-09-29T18:11:36.736655-06:00",
+  "generado_en": "2026-09-29T18:18:37.602655-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 29,
   "baja_confianza": false,
   "tension_nacional": 52,
+  "tension_anomalia": {
+    "z": 1.15,
+    "nivel": "normal",
+    "media_periodo": 35.9,
+    "dias_base": 27
+  },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
@@ -1387,8 +1393,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXRhRXFHa2tnQTFXOEJOSUZWdXZlQjNsTzhJLUpMYzk5UlJ6UjMydTNCaENTVU5lMWVubmlyZHdibE1wYU1SZS1abkZiR2ZsdlpDNnN2cDJDQ1lBRi1ZSDJLMXdVbTRtYk1IWms5MEdDa2xSSmVXbHJqd3VfdnF4MThhQkNYX2pueXhWWnJpckxLU2R2d3BGSDlZcVBiOTBrZnfSAacBQVVfeXFMT1NrRGtNVDlsenA2ZkVMeU5FMUxzUHlqNmtaMEIwd1VFY3Q1cmdQdWMxamlqTEhLMERvZW9OaHdMclJPM0FGM0FjTkhQcC1leDBoZnR1cWgwXzh4QTR6OHpYX1VCbHFRSnREdUwtWmQ4STh4NmozNHlsZ3JyUU1rbkgyR0RaN0t4SW1tRGtlSl9kWmxhb1J4QTdVbDJmTGxMU2k3SzFBRGc?oc=5",
-      "nota_texto": "Morena presentará a 7 defensores de la transformación este lunes - Uniradio Informa",
+      "nota_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZExOeEpMWS10UHZqdEhIb3p5V2xQR0ZVVi1zS2xreXgzWkttRjFqTmpQdWJydzJJTjZrT2F1LWpaRy1tTlR6c1hYcDh4MzJyNklzYmxNN0xxb2pvZG11T1JvZF9TOENrd2VXb3NHZGV4Zzl3Sjd2ektaZDdyd004cXRHVlc0aFZHVE1NTE01bFVDVVVxTGR3NWtNSDlESUxGaG45eDAtTFBjZkxfaWJxR2hhYlNUc1dMNzlQTks2YWg?oc=5",
+      "nota_texto": "“Hubo mucha unidad”: Sheinbaum celebra proceso interno de Morena rumbo a 2027 - Nación321",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2
@@ -1641,5 +1647,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-09-29 18:11"
+  "hora_corte_publicada": "2026-09-29 18:18"
 }
