@@ -1380,7 +1380,10 @@ function dibujarMatrizRiesgo(){
   // captura real a 1322px de ancho. El radar YA cubre el rectángulo completo de los ejes
   // (su radio llega a la esquina más lejana, ver dibujarBarridoRadar) -- al reducir el
   // margen, ese rectángulo crece y el radar crece con él automáticamente.
-  const margen = {izq:34, der:14, arriba:26, abajo:24};
+  // abajo no baja de 24: el rótulo del eje X se dibuja a margen.abajo+22px bajo el eje
+  // (ver más abajo, "más notas recientes...") -- con menos de eso, el texto queda fuera
+  // del área visible del SVG y se corta.
+  const margen = {izq:26, der:8, arriba:18, abajo:24};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
 
