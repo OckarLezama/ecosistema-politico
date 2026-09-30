@@ -42,6 +42,13 @@ function diasSinActividad(temaId){
   return Math.round((new Date() - new Date(evs[evs.length-1])) / 86400000);
 }
 
+function _diasConActividad14d(temaId){
+  const hace14 = new Date(); hace14.setDate(hace14.getDate()-VENTANA_RADAR_DIAS);
+  const fechaCorte = hace14.toISOString().slice(0,10);
+  const fechasUnicas = new Set(ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId && e.fecha>=fechaCorte).map(e=>e.fecha));
+  return fechasUnicas.size;
+}
+
 function calcularIndiceEscalamiento(tema){
   const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===tema.id).sort((a,b)=> a.fecha.localeCompare(b.fecha));
   let tendencia = 'estable', puntosTendencia = 17.5;
@@ -515,27 +522,12 @@ function renderNotasAgenda(){
       `<span style="white-space:nowrap;"><span class="legend-dot" style="background:${color}"></span>${texto}</span>`).join('');
   }
 
-  // ---- CORRECCIÓN -- pedido explícito: "Notas" abría directo el grafo de actores del
-  // tema, sin mostrar ninguna nota real ni su frecuencia -- el nombre de la pestaña no
-  // correspondía a lo que entregaba. Se agregan dos piezas de señal real, sin IA de
-  // pago: (1) un top 10 de notas de mayor impacto de TODA la agenda nacional (no por
-  // tema -- es una capa de granularidad que no existía en ningún lado del sitio, la
-  // Matriz agrega por tema, esto es a nivel de nota individual), consolidando near-
-  // duplicados (misma nota cubierta por varios medios) con el mismo criterio que ya usa
-  // la ficha de tema; y (2) un sparkline de continuidad del tema seleccionado -- cuántos
-  // de los últimos 14 días tuvieron nota real, para distinguir cobertura sostenida de un
-  // pico aislado con silencio después (información que antes no se podía leer en ningún
-  // lado de Notas ni Genealogía).
-  const bloqueTop10 = _bloqueTop10NotasImpacto(temasBase);
-  const bloqueContinuidad = `<div style="padding:6px 14px 2px;flex:none;">${_sparklineContinuidadTema(temaNotasSeleccionado)}</div>`;
-
-  cont.innerHTML = bloqueTop10 + bloqueContinuidad +
-    `<svg id="notas-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
-
-  cont.querySelectorAll('.nota-top10-item').forEach(el=> el.addEventListener('click', ()=>{
-    temaNotasSeleccionado = el.dataset.tema;
-    renderNotasAgenda();
-  }));
+  // REVERTIDO -- pedido explícito: "no combines las notas [top 10] con el grafo, se ve
+  // espantoso, le quita todo el poder a los grafos". Notas vuelve a ser solo el grafo.
+  // El top 10 de notas de mayor impacto y la continuidad por tema no se descartan --
+  // el usuario aclaró que esa pieza era para el apartado de Listado (ver
+  // renderListaAgenda), no para acá. Las funciones siguen abajo, ahora usadas ahí.
+  cont.innerHTML = `<svg id="notas-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
 
   dibujarNotasConGrafoReal();
 }
@@ -707,6 +699,24 @@ function renderGenealogiaAgenda(){
   }
   if(!temaGenealogiaSeleccionado || !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)){ temaGenealogiaSeleccionado = temasDisponibles[0].id; genealogiaRevelados = 1; }
 
+  // CORRECCIÓN -- pedido explícito, verificado: "empieza a correr pero no es líneas, el
+  // movimiento se ve que adelante y regresa". Causa real: el refresco automático de
+  // datos (cada 3 minutos, ver iniciarActualizacionAutomatica en data-loader.js) llama a
+  // renderAgendaGrid() -> renderGenealogiaAgenda() sin importar si hay una reproducción
+  // en curso. dibujarGenealogia() ya se protegía con 'if(reproduciendoGenealogia) return'
+  // -- pero esa protección no servía de nada porque ESTA función, la que lo llama,
+  // reconstruía #geneal-scroll/#geneal-svg DESDE CERO (cont.innerHTML) un renglón antes
+  // de invocarla. El SVG visible quedaba vacío (el nuevo, recién creado) mientras la
+  // animación en curso seguía corriendo sola sobre el árbol de nodos VIEJO, ya
+  // desconectado del documento -- invisible. El scroll horizontal, que sí había avanzado
+  // antes del refresco, volvía a 0 de golpe en el nuevo contenedor: eso es lo que se veía
+  // como "avanza y luego regresa". La solución es no destruir el DOM mientras haya una
+  // reproducción activa del MISMO tema -- se deja que termine sola (dibujarGenealogia ya
+  // sabe conservar el progreso revelado cuando el tema no cambió).
+  if(reproduciendoGenealogia && temaGenealogiaSeleccionado === temaGenealogiaAnterior){
+    return;
+  }
+
   // mismo selector estático que Notas -- una sola fila junto a Categoría e íconos
   selectWrap.style.display = 'flex';
   document.getElementById('agenda-tema-lista-nombres').innerHTML = temasDisponibles.map(t=>`<option value="${t.nombre}">`).join('');
@@ -746,15 +756,28 @@ function agruparEventosPorDia(notas){
 }
 
 function dibujarGenealogia(temaId){
-  if(reproduciendoGenealogia) return; // hay una reproducción en curso -- no interrumpirla; se dejará sola cuando termine
+  const cambioDeTema = temaId !== temaGenealogiaAnterior;
+  // si el tema sigue siendo el mismo y hay una reproducción en curso, no la interrumpe --
+  // se deja sola (esto ya lo cubre también el guard en renderGenealogiaAgenda, se deja
+  // aquí como segunda barrera por si algún día se llama a dibujarGenealogia directo).
+  // CORRECCIÓN -- pedido explícito, verificado: si el tema SÍ cambió (el usuario elige
+  // otro en el buscador) mientras el anterior seguía reproduciéndose, este 'return'
+  // temprano dejaba el lienzo nuevo completamente en blanco -- la función se negaba a
+  // dibujar nada, porque 'reproduciendoGenealogia' seguía en true de la reproducción
+  // vieja, que además nunca se enteraba de que ya no aplicaba (generacionGenealogiaActual
+  // no se llegaba a incrementar) y seguía corriendo sola, invisible, sobre el árbol de
+  // nodos desconectado del tema anterior. Ahora un cambio de tema real SIEMPRE invalida
+  // y detiene cualquier reproducción vigente, sin importar de qué tema fuera.
+  if(reproduciendoGenealogia && !cambioDeTema) return;
   // cada dibujo fresco invalida cualquier reproducción que estuviera corriendo de fondo
   // (de otro tema, o de antes de salir y volver a la vista) -- la variable de protección
   // existía pero nunca se incrementaba, así que nunca detenía nada
   generacionGenealogiaActual++;
+  reproduciendoGenealogia = false;
   // solo se reinicia el progreso revelado si el tema CAMBIÓ de verdad -- si sigue siendo
   // el mismo (ej. el refresco automático de datos cada 3 minutos volvió a llamar a esta
   // función con el mismo tema abierto), se conserva lo que ya se había revelado
-  if(temaId !== temaGenealogiaAnterior){
+  if(cambioDeTema){
     genealogiaRevelados = 1;
     temaGenealogiaAnterior = temaId;
   }
@@ -802,15 +825,21 @@ function dibujarGenealogia(temaId){
   const lineaBase = svg.append('g').attr('class','geneal-linea-capa');
   const puntosBase = svg.append('g').attr('class','geneal-puntos-capa');
 
-  const gOrigen = puntosBase.append('g').attr('transform',`translate(${posiciones[0].x},${posiciones[0].y})`).style('cursor', genealogiaRevelados>1?'default':'pointer');
+  // CORRECCIÓN -- pedido explícito: "poner la acción que si está en play y se da click se
+  // ponga pausa". Antes el nodo de origen solo tenía click activo ANTES de empezar
+  // (genealogiaRevelados<=1) -- una vez arrancada la reproducción, se volvía inerte
+  // (cursor:default, sin listener), así que no había forma de detenerla a medio camino.
+  // Ahora siempre es clickeable, y el propio click decide qué hacer según el estado
+  // vigente EN ESE MOMENTO (no el que tenía al dibujarse): si está reproduciendo, pausa;
+  // si está pausada o nunca empezó, reproduce/continúa desde donde se quedó.
+  const puedeAccionar = reproduciendoGenealogia || genealogiaRevelados < eventos.length;
+  const gOrigen = puntosBase.append('g').attr('transform',`translate(${posiciones[0].x},${posiciones[0].y})`).style('cursor', puedeAccionar?'pointer':'default');
   gOrigen.append('circle').attr('r',26).attr('fill',colorTema).attr('stroke','#fff').attr('stroke-width',3);
   gOrigen.append('text').attr('text-anchor','middle').attr('dy','0.35em').attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','#fff').text(eventos[0].fecha.slice(5));
   gOrigen.append('text').attr('text-anchor','middle').attr('dy',44).attr('font-size','11px').attr('font-weight','700').attr('fill','var(--ink-1)')
     .text(tema.nombre.length>30?tema.nombre.slice(0,28)+'…':tema.nombre);
 
-  if(genealogiaRevelados<=1){
-    gOrigen.on('click', ()=> reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height));
-  } else {
+  if(genealogiaRevelados>1){
     for(let i=1;i<genealogiaRevelados;i++){
       lineaBase.append('line').attr('x1',posiciones[i-1].x).attr('y1',y).attr('x2',posiciones[i].x).attr('y2',y).attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
       dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, false, width, height);
@@ -818,22 +847,37 @@ function dibujarGenealogia(temaId){
     scrollEl.scrollLeft = width;
   }
 
+  gOrigen.on('click', ()=>{
+    if(reproduciendoGenealogia){
+      // pausa -- invalida la generación vigente (mismo mecanismo que ya detenía una
+      // reproducción al cambiar de tema), pero SIN tocar genealogiaRevelados ni
+      // temaGenealogiaAnterior, así que el progreso hecho hasta ahora se conserva.
+      generacionGenealogiaActual++;
+      reproduciendoGenealogia = false;
+      const contador = document.querySelector('#geneal-svg .geneal-contador');
+      if(contador) contador.textContent = `Pausado — ${genealogiaRevelados} de ${eventos.length} (clic para continuar)`;
+      gOrigen.style('cursor','pointer');
+    } else if(genealogiaRevelados < eventos.length){
+      reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height, genealogiaRevelados);
+    }
+  });
+
   svg.append('text').attr('class','geneal-contador').attr('x',xInicio).attr('y',height-10).attr('text-anchor','middle')
     .attr('font-size','10px').attr('fill','var(--ink-3)')
-    .text(genealogiaRevelados<=1 ? '' : `${genealogiaRevelados} de ${eventos.length} notas — recorrido completo`);
+    .text(genealogiaRevelados<=1 ? '' : genealogiaRevelados>=eventos.length ? `${eventos.length} de ${eventos.length} notas — recorrido completo` : `Pausado — ${genealogiaRevelados} de ${eventos.length} (clic para continuar)`);
 }
 
 let generacionGenealogiaActual = 0; // se incrementa en cada render fresco -- así una reproducción
 // en curso de un tema anterior (o de antes de salir de la vista) se detiene sola al notar
 // que ya no es la generación vigente, en vez de seguir corriendo de fondo indefinidamente
 
-function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height){
+function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase, puntosBase, width, height, desde){
   const miGeneracion = generacionGenealogiaActual;
   reproduciendoGenealogia = true;
   const scrollEl = document.getElementById('geneal-scroll');
-  d3.select('#geneal-svg .geneal-contador').text(`Reproduciendo — 1 de ${eventos.length}`);
+  d3.select('#geneal-svg .geneal-contador').text(`Reproduciendo — ${desde||1} de ${eventos.length}`);
   function siguienteTramo(i){
-    if(generacionGenealogiaActual !== miGeneracion){ reproduciendoGenealogia = false; return; }
+    if(generacionGenealogiaActual !== miGeneracion){ return; }
     if(i>=eventos.length){ genealogiaRevelados = eventos.length; reproduciendoGenealogia = false; return; }
     scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
@@ -842,14 +886,23 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
     linea.transition().duration(600).ease(d3.easeLinear)
       .attr('x2',posiciones[i].x).attr('y2',posiciones[i].y)
       .on('end', ()=>{
-        if(generacionGenealogiaActual !== miGeneracion){ reproduciendoGenealogia = false; return; } // revisar de nuevo -- pudo cambiar mientras corría la transición
+        // CORRECCIÓN -- bug real encontrado al probar pausa/reanudar: esta transición
+        // puede seguir viva (en curso desde ANTES de una pausa) y su 'end' dispara
+        // después de que ya se reanudó la reproducción con una generación nueva. Si esta
+        // rama, al notar que ya no es la generación vigente, apagara
+        // 'reproduciendoGenealogia', apagaría por error la sesión NUEVA que sí está
+        // corriendo (la variable es compartida y esta transición vieja no tiene forma de
+        // saber si alguien más la volvió a encender). Solo quien SÍ es la generación
+        // vigente tiene permiso de tocar esa bandera -- una transición vieja simplemente
+        // se calla y no hace nada más.
+        if(generacionGenealogiaActual !== miGeneracion){ return; }
         dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, true, width, height);
         genealogiaRevelados = i+1;
         d3.select('#geneal-svg .geneal-contador').text(i+1<eventos.length ? `Reproduciendo — ${i+1} de ${eventos.length}` : `${eventos.length} de ${eventos.length} notas — recorrido completo`);
         setTimeout(()=> siguienteTramo(i+1), 700);
       });
   }
-  siguienteTramo(1);
+  siguienteTramo(desde || 1);
 }
 
 function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, height){
@@ -963,6 +1016,10 @@ function renderListaAgenda(){
     {key:'volumen', label:'Volumen'},
     {key:'categoria', label:'Categoría'},
   ];
+  // CORRECCIÓN -- pedido explícito: el top 10 de notas de mayor impacto y el análisis de
+  // apoyo eran para ESTE apartado (el ícono de Listado), no para Notas -- se movieron
+  // aquí (antes estaban mal puestos encima del grafo de Notas).
+  const bloqueTop10 = _bloqueTop10NotasImpacto(temasBase);
   const barraControles = `
     <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);flex:none;flex-wrap:wrap;">
       <input type="text" id="lista-buscador" placeholder="Buscar tema..." value="${busquedaLista.replace(/"/g,'&quot;')}"
@@ -977,21 +1034,26 @@ function renderListaAgenda(){
     </div>`;
 
   if(!datosLista.length){
-    cont.innerHTML = barraControles + `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">${busquedaLista.trim() ? 'Sin resultados para "'+busquedaLista+'"' : 'Sin temas con este filtro'}</div>`;
+    cont.innerHTML = bloqueTop10 + barraControles + `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">${busquedaLista.trim() ? 'Sin resultados para "'+busquedaLista+'"' : 'Sin temas con este filtro'}</div>`;
   } else {
-    cont.innerHTML = barraControles + `<div class="lista-agenda">${datosLista.map(d=>{
+    cont.innerHTML = bloqueTop10 + barraControles + `<div class="lista-agenda">${datosLista.map(d=>{
       const t = d.tema;
       const color = COLOR_IMPACTO_CACHE[nivelRiesgoLista(d.riesgoReal)];
       const dias = diasSinActividad(t.id);
       const estadoTexto = dias===null ? 'Sin datos' : dias<=30 ? `Última nota hace ${dias}d` : `Sin actividad reciente (${dias}d)`;
       const tendenciaTxt = (d.tendencia && !d.apagado) ? ` ${ICONO_TENDENCIA_LISTA[d.tendencia]}` : '';
+      // continuidad -- pedido explícito de origen ("frecuencia o continuidad"): días
+      // distintos con nota real en la ventana de 14d, no solo el conteo total -- un tema
+      // con 10 notas en 2 días no es igual a uno con 10 notas repartidas en 10 días.
+      const continuidadTxt = !d.apagado ? ` · continuidad ${_diasConActividad14d(t.id)}/${VENTANA_RADAR_DIAS}d` : '';
       return `<div class="lista-item" style="border-left-color:${color};cursor:pointer;" data-tema="${t.id}">
         <div class="lista-nombre">${t.nombre}</div>
-        <div class="lista-meta">${t.categoria} · Riesgo ${d.riesgoReal}/10${tendenciaTxt} · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS}d · desde ${d.primeraMencion||'—'} · ${estadoTexto}</div>
+        <div class="lista-meta">${t.categoria} · Riesgo ${d.riesgoReal}/10${tendenciaTxt} · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS}d${continuidadTxt} · desde ${d.primeraMencion||'—'} · ${estadoTexto}</div>
       </div>`;
     }).join('')}</div>`;
   }
   cont.querySelectorAll('.lista-item').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
+  cont.querySelectorAll('.nota-top10-item').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
 
   const buscadorEl = document.getElementById('lista-buscador');
   if(buscadorEl){
@@ -1827,11 +1889,16 @@ function dibujarMatrizRiesgo(){
   // respecto al cruce, y el barrido se vería descuadrado/pegado a una esquina). Por eso
   // se dibuja únicamente sin filtro de categoría.
   if(!categoriaFiltroAgenda){
-    dibujarBarridoRadar(svg, xMediana, yMediana, margen, anchoUtil, altoUtil);
+    dibujarBarridoRadar(svg, xMediana, yMediana, margen, anchoUtil, altoUtil, datos);
   }
 }
 
-function dibujarBarridoRadar(svg, cx, cy, margen, anchoUtil, altoUtil){
+// duración de una vuelta completa del haz -- tiene que ser el MISMO número que
+// "radar-girar" en css/styles.css (5s). Vive acá porque el cálculo de cuándo cada punto
+// debe destellar (dibujarBarridoRadar) necesita el valor exacto, no solo la animación.
+const RADAR_DURACION_MS = 5000;
+
+function dibujarBarridoRadar(svg, cx, cy, margen, anchoUtil, altoUtil, datos){
   // radio -- debe alcanzar la esquina más lejana del plano desde el centro del cruce,
   // para que el barrido cubra todo el lienzo y no se quede corto en las esquinas.
   const esquinas = [
@@ -1853,6 +1920,21 @@ function dibujarBarridoRadar(svg, cx, cy, margen, anchoUtil, altoUtil){
     g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',radio*f)
       .attr('fill','none').attr('stroke','var(--riesgo-bajo)').attr('stroke-width',0.6).attr('stroke-opacity',0.12);
   });
+
+  // CORRECCIÓN -- pedido explícito, verificado: cada 3 minutos el refresco automático de
+  // datos vuelve a llamar a dibujarMatrizRiesgo() desde cero (mismo patrón que ya
+  // causaba el problema de Genealogía, ver reproducirGenealogia/renderGenealogiaAgenda).
+  // Eso recrea este <div> del haz -- y un <div> nuevo con animation-delay:0 SIEMPRE
+  // arranca la vuelta desde 0°, sin importar en qué ángulo iba el anterior: se veía como
+  // que el barrido "regresaba" de golpe al inicio cada vez que refrescaba. La solución no
+  // es impedir el refresco (la Matriz sí necesita redibujarse con datos nuevos) sino que
+  // el haz nunca dependa de "cuándo se creó este <div>": se ancla al reloj real
+  // (Date.now()) con un animation-delay NEGATIVO -- el navegador interpreta eso como "la
+  // animación ya lleva corriendo este tiempo", así que un <div> recién creado nace
+  // exactamente en el ángulo que le toca en este momento del reloj, no en 0°. Recrear el
+  // elemento se vuelve invisible para el ojo.
+  const offsetMs = Date.now() % RADAR_DURACION_MS;
+
   // el haz -- una cuña que gira 360° sin parar, con degradado de opacidad de líder a
   // cola para simular la estela clásica de un radar. foreignObject + conic-gradient en
   // vez de un <path> de SVG porque un degradado angular real no existe en SVG nativo
@@ -1860,7 +1942,31 @@ function dibujarBarridoRadar(svg, cx, cy, margen, anchoUtil, altoUtil){
   // lo resuelve de forma nativa y barata en CSS.
   const fo = g.append('foreignObject')
     .attr('x', cx-radio).attr('y', cy-radio).attr('width', radio*2).attr('height', radio*2);
-  fo.append('xhtml:div').attr('class','radar-barrido-cono');
+  fo.append('xhtml:div').attr('class','radar-barrido-cono')
+    .style('animation-delay', `-${offsetMs}ms`);
+
+  // CORRECCIÓN -- pedido explícito: "que cuando pase por los círculos/notas, estas
+  // tengan un leve destello". El haz gira por CSS puro (no hay un bucle de JS
+  // calculando el ángulo cuadro a cuadro), así que el destello de cada punto también se
+  // resuelve en CSS: se calcula el ángulo real del punto respecto al centro del cruce
+  // (mismo cero y mismo sentido horario que usa el conic-gradient del haz) y a qué
+  // milisegundo de la vuelta corresponde ese ángulo -- ese valor es el animation-delay
+  // del destello de ESE punto, con animation-iteration-count infinito y la MISMA
+  // duración que una vuelta completa del haz: el destello se repite exactamente una vez
+  // por vuelta, justo cuando el haz pasa por encima. Usa el mismo offsetMs de arriba, así
+  // que sigue en sincronía incluso después de que el refresco automático recree todo.
+  const gDestellos = svg.append('g').attr('class','radar-destellos-puntos').style('pointer-events','none');
+  datos.forEach(d=>{
+    const dx = d.x-cx, dy = d.y-cy;
+    if(Math.hypot(dx,dy) < 1) return; // el punto está prácticamente sobre el propio centro -- sin ángulo real que calcular
+    const anguloDeg = ((Math.atan2(dx, -dy) * 180/Math.PI) + 360) % 360;
+    const msDentroDeVuelta = (anguloDeg/360) * RADAR_DURACION_MS;
+    const delayMs = ((msDentroDeVuelta - offsetMs) % RADAR_DURACION_MS + RADAR_DURACION_MS) % RADAR_DURACION_MS;
+    gDestellos.append('circle').attr('class','radar-punto-destello')
+      .attr('cx',d.x).attr('cy',d.y).attr('r', _radioPrincipalRadar(d)+3)
+      .attr('fill','none').attr('stroke','var(--riesgo-bajo)').attr('stroke-width',1.5)
+      .style('animation-duration', RADAR_DURACION_MS+'ms').style('animation-delay', delayMs+'ms');
+  });
 }
 
 let interpretacionMatrizIA = {};
