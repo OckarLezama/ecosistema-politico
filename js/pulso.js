@@ -958,14 +958,14 @@ function pintarPulso(cont, d){
       <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:4px;">
         <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;">
           <span style="font-size:9.5px;color:var(--ink-3);">${t.categoria}</span>
-          ${t.dias_silencio ? `<span style="font-size:8px;font-family:var(--f-mono);color:var(--arena);border:1px solid var(--arena);border-radius:99px;padding:1px 5px;white-space:nowrap;">${t.dias_silencio}D DE SILENCIO</span>` : ''}
+          ${t.dias_silencio ? `<span style="font-size:8px;font-family:var(--f-mono);color:var(--arena);border:1px solid var(--arena);border-radius:99px;padding:1px 5px;white-space:nowrap;">${t.dias_silencio}D SIN MENCIÓN</span>` : ''}
           ${badgeImpacto(t.impacto)}
         </div>
         ${enlaceNota(t.fuente_url)}
       </div>
       ${t.fuente_url_anterior ? `
       <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:3px;padding-top:3px;border-top:1px dashed var(--line);">
-        <span style="font-size:8.5px;color:var(--ink-3);">última mención antes del silencio: ${fmtFechaCortaPulso(t.fecha_anterior)}</span>
+        <span style="font-size:8.5px;color:var(--ink-3);">última mención antes de dejar de aparecer: ${fmtFechaCortaPulso(t.fecha_anterior)}</span>
         <a href="${t.fuente_url_anterior}" target="_blank" rel="noopener" style="font-size:9.5px;color:var(--ink-3);white-space:nowrap;">ver nota →</a>
       </div>` : ''}
     </div>`;
@@ -1116,6 +1116,15 @@ function pintarPulso(cont, d){
             <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;">TENSIÓN NACIONAL / 100</div>
             <div style="font-size:9.5px;color:var(--ink-3);margin-top:4px;">${d.n_notas_ventana} nota${d.n_notas_ventana!==1?'s':''} de agenda nacional, últimas 24h</div>
             ${d.baja_confianza ? `<div style="font-size:9.5px;color:var(--riesgo-medio);margin-top:2px;">⚠ pocas notas — lectura de baja confianza</div>` : ''}
+            <!-- ANOMALÍA ESTADÍSTICA -- pedido explícito: no dejar que el lector calcule a
+                 ojo si la tensión de hoy es rara o normal frente al histórico. Cuando SÍ es
+                 anómala (z fuera de ±2) se destaca; cuando es normal, una línea discreta
+                 confirma que se revisó, sin competir por atención. -->
+            ${d.tension_anomalia ? (d.tension_anomalia.nivel === 'normal' ? `
+            <div style="font-size:8.5px;color:var(--ink-3);margin-top:4px;">dentro de lo normal frente a los últimos ${d.tension_anomalia.dias_base} días</div>` : `
+            <div style="font-size:9.5px;font-weight:600;margin-top:4px;color:${d.tension_anomalia.nivel==='alta'?'var(--riesgo-alto)':'var(--teal)'};">
+              ${d.tension_anomalia.nivel==='alta'?'▲':'▼'} tensión anómalamente ${d.tension_anomalia.nivel==='alta'?'alta':'baja'} vs. últimos ${d.tension_anomalia.dias_base} días
+            </div>`) : ''}
             ${catDominante ? `<div style="font-size:9.5px;color:var(--ink-2);margin-top:6px;border-top:1px solid var(--line);padding-top:6px;">Impulsada por <strong>${catDominante.categoria}</strong> (${catDominante.peso_pct}%)</div>` : ''}
           </div>
         `)}
