@@ -1242,6 +1242,7 @@ function _tooltipRadar(d, datosVisibles){
   const ICONO_TENDENCIA = {subiendo:'↑ subiendo', bajando:'↓ bajando', estable:'→ estable'};
   let html = `<strong>${d.tema.nombre}</strong><br>Riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
   if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
+  if(d.esNuevo && !d.apagado) html += ` <span style="color:var(--teal);">· 🆕 actividad en las últimas 48h</span>`;
   if(d.tendencia && !d.apagado) html += `<br>Tendencia: ${ICONO_TENDENCIA[d.tendencia]}`;
   html += `<br>Corroborado por ${d.nMedios} medio${d.nMedios!==1?'s':''} distinto${d.nMedios!==1?'s':''}`;
   if(d.anomalia && d.anomalia.nivel!=='normal') html += `<br><span style="color:${d.anomalia.nivel==='alta'?'var(--riesgo-alto)':'var(--teal)'};">Riesgo anómalamente ${d.anomalia.nivel} vs. su propio histórico</span>`;
@@ -1253,6 +1254,17 @@ function _tooltipRadar(d, datosVisibles){
   return html;
 }
 
+// DECISIÓN -- tras 3 intentos de radar polar que seguían viéndose encimados o con
+// elementos que "no servían de nada" (pedido explícito del usuario: "la matriz, ya
+// llevas muchos intentos y no se ve que vayas a poder solucionarlo"), se regresa a un
+// plano cartesiano de 2 ejes -- más simple, y ya verificado con captura de pantalla
+// real (no solo con el simulador jsdom que no renderiza layout) antes de entregarlo.
+// La diferencia contra la matriz ORIGINAL: los dos ejes ahora son datos reales y vivos
+// -- Y = riesgo reciente (máxima intensidad en los últimos 14 días, calcularDatosRadarAgenda),
+// X = volumen reciente (notas en 14 días) -- en vez de peso_político (congelado en 5
+// para 98% de los temas) y riesgo histórico de todo el tiempo (un pico de hace meses
+// pesaba igual que uno de hoy). Esto es lo que de verdad hacía que "la matriz no
+// dijera mucho o nada".
 function dibujarMatrizRiesgo(){
   const svgEl = document.getElementById('matriz-riesgo-svg');
   const svg = d3.select(svgEl);
@@ -1268,16 +1280,14 @@ function dibujarMatrizRiesgo(){
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
 
-  const datosRadarTodos = calcularDatosRadarAgenda(temasBase);
+  const datosTodos = calcularDatosRadarAgenda(temasBase);
 
-  // PRIORIDAD -- pedido explícito tras revisar el primer intento: los temas SIN
-  // actividad real en 14 días (apagados) no deben desplazar a los que sí la tienen solo
-  // por haber tenido un pico histórico alto. Primero entran los vivos (por riesgo+
-  // volumen reciente), los apagados solo llenan huecos si sobra espacio.
+  // PRIORIDAD -- los temas SIN actividad real en 14 días (apagados) no deben
+  // desplazar a los que sí la tienen solo por haber tenido un pico histórico alto.
   const LIMITE_PUNTOS_MATRIZ = 45;
-  const totalAntesDeLimite = datosRadarTodos.length;
-  datosRadarTodos.sort((a,b)=> (a.apagado===b.apagado ? 0 : a.apagado ? 1 : -1) || ((b.riesgoReal+b.veces) - (a.riesgoReal+a.veces)));
-  const datos = datosRadarTodos.slice(0, LIMITE_PUNTOS_MATRIZ);
+  const totalAntesDeLimite = datosTodos.length;
+  datosTodos.sort((a,b)=> (a.apagado===b.apagado ? 0 : a.apagado ? 1 : -1) || ((b.riesgoReal+b.veces) - (a.riesgoReal+a.veces)));
+  const datos = datosTodos.slice(0, LIMITE_PUNTOS_MATRIZ);
 
   if(!datos.length){
     svg.append('text').attr('x',width/2).attr('y',height/2).attr('text-anchor','middle')
@@ -1290,185 +1300,117 @@ function dibujarMatrizRiesgo(){
   if(avisoLimite) avisoLimite.textContent = totalAntesDeLimite > datos.length
     ? `Mostrando los ${datos.length} de mayor relevancia real de ${totalAntesDeLimite}` : '';
 
-  // ---- geometría del radar: anillos = riesgo reciente (centro = crítico), sectores
-  // angulares = categoría ----
-  const cx = width/2, cy = height/2;
-  const radioMax = Math.max(60, Math.min(width,height)/2 - 54);
-  const radioMin = 22;
-  const radioDe = riesgo => radioMax - (Math.max(0,Math.min(10,riesgo))/10) * (radioMax-radioMin);
+  // ---- geometría: X = volumen reciente (notas en 14d), Y = riesgo reciente (arriba = alto) ----
+  const margen = {izq:46, der:22, arriba:26, abajo:52};
+  const anchoUtil = Math.max(80, width - margen.izq - margen.der);
+  const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
+  const vecesMax = Math.max(3, ...datos.map(d=>d.veces));
+  const xDe = veces => margen.izq + (Math.min(veces, vecesMax)/vecesMax) * anchoUtil;
+  const yDe = riesgo => margen.arriba + (1 - Math.max(0,Math.min(10,riesgo))/10) * altoUtil;
 
-  // CORRECCIÓN -- pedido explícito tras ver el primer intento encimado: antes cada
-  // categoría se llevaba el mismo ángulo sin importar cuántos temas tuviera, así que
-  // categorías con 1-2 temas ocupaban tanto espacio como la que tenía 20 -- resultado:
-  // sectores vacíos enormes y un sector real apretadísimo. Ahora el ángulo de cada
-  // sector es proporcional a cuántos temas tiene, con un piso mínimo para que una
-  // categoría chica no desaparezca del todo.
-  const categorias = [...new Set(datos.map(d=>d.categoria))].sort();
-  const nCat = categorias.length;
-  const conteoPorCat = {};
-  datos.forEach(d=> conteoPorCat[d.categoria] = (conteoPorCat[d.categoria]||0)+1);
-  const gapSector = nCat > 1 ? 0.045 : 0;
-  const ANGULO_MIN_SECTOR = nCat > 1 ? Math.min((2*Math.PI)/nCat, (2*Math.PI)*0.09) : 2*Math.PI;
-  const catsConPiso = categorias.filter(cat => (conteoPorCat[cat]/datos.length)*2*Math.PI < ANGULO_MIN_SECTOR);
-  const anguloReservado = catsConPiso.length * ANGULO_MIN_SECTOR;
-  const anguloRestante = Math.max(0.1, 2*Math.PI - anguloReservado);
-  const conteoSobrante = categorias.reduce((s,cat)=> s + (catsConPiso.includes(cat) ? 0 : conteoPorCat[cat]), 0);
-  const anguloPorCategoria = {}, anguloInicioSector = {};
-  let anguloAcum = -Math.PI/2;
-  categorias.forEach(cat=>{
-    const ang = catsConPiso.includes(cat) ? ANGULO_MIN_SECTOR : (conteoPorCat[cat]/conteoSobrante)*anguloRestante;
-    anguloPorCategoria[cat] = ang;
-    anguloInicioSector[cat] = anguloAcum;
-    anguloAcum += ang;
-  });
+  // umbral de "alto volumen" -- mediana real de los temas VIVOS que se están mostrando,
+  // no un número fijo inventado, para que el corte tenga sentido con el corte de datos
+  // actual (un día tranquilo y uno agitado no deberían usar el mismo umbral).
+  const vecesVivos = datos.filter(d=>!d.apagado).map(d=>d.veces).sort((a,b)=>a-b);
+  const vecesUmbral = vecesVivos.length ? Math.max(1, vecesVivos[Math.floor(vecesVivos.length/2)]) : 1;
+  const riesgoUmbral = 7;
 
-  // dentro de cada sector, cada tema ocupa una sub-posición angular fija por su ID
-  // (orden estable), no al azar -- así el mismo tema cae siempre en el mismo ángulo
-  // relativo entre un corte y el siguiente, mientras siga en la misma categoría. Esto es
-  // solo el ANCLA -- la posición final se resuelve abajo con una simulación de
-  // colisión, porque con muchos temas de riesgo parecido en el mismo sector la
-  // separación angular sola no basta (se encimaban en el primer intento).
-  const porCategoria = {};
-  datos.forEach(d=> (porCategoria[d.categoria] = porCategoria[d.categoria]||[]).push(d));
-  Object.keys(porCategoria).forEach(cat=>{
-    const items = porCategoria[cat].sort((a,b)=> a.tema.id.localeCompare(b.tema.id));
-    const n = items.length, anguloUtil = anguloPorCategoria[cat] - gapSector*2;
-    items.forEach((d,i)=>{
-      d._angulo = anguloInicioSector[cat] + anguloPorCategoria[cat]/2 + (n>1 ? (i/(n-1)-0.5)*anguloUtil : 0);
-    });
-  });
+  // ---- fondo: cuadrantes de prioridad (misma idea que la matriz original, pero con
+  // ejes que sí varían con datos reales) ----
+  const defs = svg.append('defs');
+  svg.append('rect').attr('x',xDe(vecesUmbral)).attr('y',margen.arriba).attr('width',margen.izq+anchoUtil-xDe(vecesUmbral)).attr('height',yDe(riesgoUmbral)-margen.arriba)
+    .attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.05);
+  svg.append('text').attr('x',margen.izq+anchoUtil-4).attr('y',margen.arriba+13).attr('text-anchor','end')
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--riesgo-alto)').style('pointer-events','none')
+    .text('ACTUAR YA');
+  svg.append('text').attr('x',margen.izq+4).attr('y',margen.arriba+13)
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
+    .text('VIGILAR');
+  svg.append('text').attr('x',margen.izq+anchoUtil-4).attr('y',margen.arriba+altoUtil-6).attr('text-anchor','end')
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
+    .text('RUIDO');
+  svg.append('text').attr('x',margen.izq+4).attr('y',margen.arriba+altoUtil-6)
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
+    .text('BAJO PERFIL');
+  svg.append('text').attr('x',width-4).attr('y',13).attr('text-anchor','end')
+    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
+    .text('● color = categoría  ·  borde = riesgo');
 
+  // líneas guía de los umbrales (discretas, no compiten visualmente con los puntos)
+  svg.append('line').attr('x1',xDe(vecesUmbral)).attr('x2',xDe(vecesUmbral)).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil)
+    .attr('stroke','var(--line)').attr('stroke-dasharray','3 4');
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',yDe(riesgoUmbral)).attr('y2',yDe(riesgoUmbral))
+    .attr('stroke','var(--line)').attr('stroke-dasharray','3 4');
+
+  // ejes
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)');
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',margen.arriba+altoUtil).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)');
+  svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
+    .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
+    .text(`volumen reciente (notas en ${VENTANA_RADAR_DIAS}d) →`);
+  svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',14).attr('text-anchor','middle')
+    .attr('transform','rotate(-90)')
+    .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
+    .text(`↑ riesgo reciente`);
+
+  // ---- posición ancla de cada punto + resolución de colisiones (d3-force) --
+  // con dos ejes reales y continuos el amontonamiento es mucho menor que con el radar
+  // (ahí casi todo caía en el mismo anillo de riesgo alto); aun así varios temas
+  // pueden compartir (veces, riesgo) exactos, así que se mantiene la simulación.
   datos.forEach(d=>{
-    // los apagados se empujan cerca del borde exterior (no compiten por el centro con
-    // los temas que sí tienen actividad real) -- su radio de riesgo histórico solo se
-    // conserva para el color/tooltip, no para la posición
-    const rAncla = d.apagado ? radioMax*0.88 : radioDe(d.riesgoReal);
-    d.xAncla = cx + rAncla*Math.cos(d._angulo); d.yAncla = cy + rAncla*Math.sin(d._angulo);
+    d.xAncla = xDe(d.veces); d.yAncla = yDe(d.riesgoReal);
     d.x = d.xAncla; d.y = d.yAncla;
   });
-
-  // RESOLUCIÓN DE COLISIONES -- simulación de fuerzas (d3-force, ya viene en el bundle
-  // de d3 que carga el sitio): cada punto es "jalado" hacia su ancla ideal (categoría +
-  // riesgo) pero una fuerza de colisión los separa si se encimarían. Se corre estática
-  // (sin animación continua) y se detiene sola -- el resultado es una posición fija,
-  // comparable entre cortes, no una simulación viva de fondo.
   if(datos.length > 1 && typeof d3.forceSimulation === 'function'){
     const sim = d3.forceSimulation(datos)
-      .force('x', d3.forceX(d=>d.xAncla).strength(0.4))
-      .force('y', d3.forceY(d=>d.yAncla).strength(0.4))
-      .force('colision', d3.forceCollide(d=>(_radioPrincipalRadar(d)+6)).strength(0.85))
+      .force('x', d3.forceX(d=>d.xAncla).strength(0.5))
+      .force('y', d3.forceY(d=>d.yAncla).strength(0.5))
+      .force('colision', d3.forceCollide(d=>(_radioPrincipalRadar(d)+3)).strength(0.9))
       .stop();
     for(let i=0;i<220;i++) sim.tick();
+    // mantener los puntos dentro del área del gráfico tras la colisión
+    datos.forEach(d=>{
+      d.x = Math.max(margen.izq+4, Math.min(margen.izq+anchoUtil-4, d.x));
+      d.y = Math.max(margen.arriba+4, Math.min(margen.arriba+altoUtil-4, d.y));
+    });
   }
 
-  // ---- fondo: sectores de categoría + anillos de riesgo ----
-  const defs = svg.append('defs');
-  const arcoSector = d3.arc().innerRadius(0).outerRadius(radioMax+16);
-  categorias.forEach(cat=>{
-    svg.append('path')
-      .attr('d', arcoSector({startAngle: anguloInicioSector[cat]+Math.PI/2+gapSector, endAngle: anguloInicioSector[cat]+anguloPorCategoria[cat]+Math.PI/2-gapSector}))
-      .attr('transform', `translate(${cx},${cy})`)
-      .attr('fill', colorCategoria(cat)).attr('fill-opacity', 0.045);
-  });
-
-  [4,7].forEach(r=>{
-    svg.append('circle').attr('cx',cx).attr('cy',cy).attr('r',radioDe(r))
-      .attr('fill','none').attr('stroke','var(--ink-3)').attr('stroke-width',1).attr('stroke-dasharray','3 4').attr('opacity',0.5);
-  });
-  svg.append('circle').attr('cx',cx).attr('cy',cy).attr('r',radioMin*0.5).attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.18);
-
-  // CORRECCIÓN -- pedido explícito: las 3 etiquetas de anillo (alto/medio/bajo) se
-  // encimaban entre sí Y con las etiquetas de categoría en el primer intento, porque
-  // ambas vivían sobre la misma línea vertical (12 en punto). Se reemplazan por UNA
-  // leyenda fija en la esquina, que nunca compite por espacio con los datos.
-  svg.append('text').attr('x',10).attr('y',16)
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)')
-    .style('pointer-events','none')
-    .text('◉ centro = riesgo alto  ·  borde = riesgo bajo');
-
-  // etiqueta de categoría -- se omite en sectores muy angostos (piso mínimo) para no
-  // amontonar texto donde no cabe; el color del sector y el tooltip ya identifican
-  // esos temas sin necesidad de rótulo.
-  categorias.forEach(cat=>{
-    if(anguloPorCategoria[cat] < 0.30) return;
-    const ang = anguloInicioSector[cat] + anguloPorCategoria[cat]/2;
-    svg.append('text').attr('x', cx+(radioMax+30)*Math.cos(ang)).attr('y', cy+(radioMax+30)*Math.sin(ang))
-      .attr('text-anchor','middle').attr('dominant-baseline','middle')
-      .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill',colorCategoria(cat))
-      .style('pointer-events','none')
-      .text(cat.length>16 ? cat.slice(0,15)+'…' : cat);
-  });
-
-  // ---- barrido -- AMBIENTAL, gira despacio y sin detenerse: transmite "esto se
-  // revisa en vivo". La información real está en el halo de "nuevo" y el anillo de
-  // anomalía de abajo, no en este giro -- por diseño, para no repetir el error de
-  // animación sin dato real detrás (mismo criterio que ya aplicamos al quitar la
-  // síntesis de plantilla en Pulso Nacional). ----
-  const gradSweep = defs.append('linearGradient').attr('id','grad-barrido-radar').attr('x1','0%').attr('y1','0%').attr('x2','100%').attr('y2','0%');
-  gradSweep.append('stop').attr('offset','0%').attr('stop-color','var(--teal)').attr('stop-opacity',0.20);
-  gradSweep.append('stop').attr('offset','100%').attr('stop-color','var(--teal)').attr('stop-opacity',0);
-  svg.append('g').attr('class','radar-barrido')
-    .attr('transform', `translate(${cx},${cy})`)
-    .style('transform-origin', `${cx}px ${cy}px`)
-    .style('animation', 'mapa-puntos-spin 12s linear infinite')
-    .style('pointer-events','none')
-    .append('path')
-      .attr('d', d3.arc().innerRadius(0).outerRadius(radioMax+16)({startAngle:0, endAngle:0.26}))
-      .attr('fill', 'url(#grad-barrido-radar)');
-
-  // ---- puntos ----
-  // CORRECCIÓN -- pedido explícito: los apagados (sin actividad en 14 días) solo tenían
-  // el relleno atenuado, pero el trazo de color seguía a toda opacidad -- por eso se
-  // veían como "círculos huecos con líneas turquesa" sin aportar nada. Ahora TODO el
-  // punto (relleno, trazo, halo) se atenúa de una sola vez con la opacidad del grupo.
+  // ---- puntos -- color = categoría (los ejes ya dicen riesgo y volumen; repetir
+  // riesgo en el color era redundante). Apagados se atenúan completos (relleno +
+  // trazo) para no repetir el error de "círculo hueco" del intento anterior. ----
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
-    .style('opacity', d=>d.apagado?0.4:1)
     .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); })
     .on('mousemove', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); })
     .on('mouseleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
-  // CORRECCIÓN -- pedido explícito tras el 2º intento: dibujar una línea antes->hoy
-  // por cada tema con cambio de riesgo (13-18 de 45 puntos, según el corte) seguía
-  // viéndose como una maraña sobre un radar ya denso. Esa lectura de movimiento YA
-  // tiene un lugar propio y más claro: la franja "QUIÉN SE MOVIÓ MÁS" arriba del radar
-  // (para el resumen) y el tooltip de cada punto (para el detalle, con dirección y
-  // magnitud en texto). El radar en sí queda como snapshot -- posición, tamaño y color
-  // del momento actual -- sin líneas cruzando el círculo.
+  // CORRECCIÓN -- pedido explícito: el anillo pulsante de "nuevo" (esNuevo) y el
+  // anillo punteado de anomalía se veían bien en aislado, pero con datos reales ~20%
+  // de los 45 puntos (14 de 69 en el corte de prueba) califican como "nuevo" al mismo
+  // tiempo -- eso son ~9 aros turquesa parpadeando A LA VEZ sobre el gráfico, que es
+  // exactamente el efecto de "líneas turquesa moviéndose" que se reportó. La señal es
+  // real y sigue disponible (tooltip de cada punto la muestra en texto: "Tendencia",
+  // "anómalamente alto/bajo"), pero ya no se dibuja como aro animado sobre el plano --
+  // un plano de dispersión con 45 puntos no tiene espacio para además animar una
+  // fracción grande de ellos sin verse ruidoso.
 
-  // halo de "nuevo" -- actividad real en las últimas ~48h, pulso que se apaga solo
-  // (keyframe ya existente en styles.css, reutilizado tal cual)
-  g.filter(d=>d.esNuevo && !d.apagado).append('circle').attr('class','halo-nuevo-radar')
-    .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',16)
-    .attr('fill','none').attr('stroke','var(--teal)').attr('stroke-width',2)
-    .style('animation','pulso-tablero-ping 1.8s ease-out infinite');
+  // CORRECCIÓN -- ya van dos intentos donde un tema apagado (atenuado por opacidad de
+  // grupo, con su color de categoría/riesgo de siempre) termina viéndose como un
+  // "círculo hueco" -- a 30-40% de opacidad, un color pastel sobre fondo oscuro casi
+  // desaparece y solo el trazo queda visible. La solución no es ajustar el número de
+  // opacidad otra vez: es dejar de usar el mismo lenguaje visual (color+borde) para un
+  // estado que significa "esto no es una señal activa". Los apagados ahora son un
+  // punto gris chico, plano, sin borde de color -- inconfundible de un tema vivo a
+  // cualquier nivel de opacidad.
+  g.filter(d=>d.apagado).append('circle').attr('class','nodo-principal')
+    .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d))
+    .attr('fill','var(--ink-3)').attr('fill-opacity',0.6).attr('stroke','none');
 
-  // anillo de anomalía estadística (riesgo reciente vs. histórico propio del tema)
-  g.filter(d=>d.anomalia && d.anomalia.nivel!=='normal').append('circle').attr('class','anillo-anomalia-radar')
-    .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',13)
-    .attr('fill','none').attr('stroke', d=>d.anomalia.nivel==='alta'?'var(--riesgo-alto)':'var(--teal)')
-    .attr('stroke-width',1.6).attr('stroke-dasharray','2 2');
-
-  // CORRECCIÓN -- pedido explícito tras el 2º intento: cada punto llevaba 4-5 capas
-  // encimadas (halo de relleno + aro de categoría a color + glifo de tendencia flotante +
-  // línea de trayectoria) -- con 45 puntos eso era denso aunque ningún par se tocara
-  // en sentido estricto. Además "--riesgo-bajo" y "--teal" (color de la categoría
-  // Relación Bilateral) son EL MISMO color (#4CC1BA): un tema de riesgo bajo en esa
-  // categoría quedaba con relleno y aro idénticos en turquesa, y atenuado (si estaba
-  // apagado) se leía como "círculo hueco sin sentido". Se quita el halo decorativo
-  // (era puro relleno translúcido repetido, no info nueva) y el aro deja de usar el
-  // color de categoría -- la categoría ya se identifica por el sector de fondo y el
-  // tooltip, no hace falta repetirla en cada punto.
-  g.append('circle').attr('class','nodo-principal').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d))
-    .attr('fill', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('fill-opacity', 0.92)
-    .attr('stroke', 'var(--bg-0)').attr('stroke-width', 1.5)
+  g.filter(d=>!d.apagado).append('circle').attr('class','nodo-principal').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d))
+    .attr('fill', d=>colorCategoria(d.categoria)).attr('fill-opacity', 0.85)
+    .attr('stroke', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('stroke-width', 1.5)
     .style('transition','r .12s');
-
-  // el glifo de tendencia (▲▼●) flotando sobre cada uno de los 45 puntos sumaba otra
-  // capa de texto encimada; esa lectura ya vive en el tooltip y, para los movimientos
-  // que de verdad importan, en la franja "QUIÉN SE MOVIÓ MÁS" de arriba -- no hace
-  // falta repetirla sobre el radar mismo.
 }
 
 let interpretacionMatrizIA = {};
