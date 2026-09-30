@@ -1497,13 +1497,24 @@ function dibujarMatrizRiesgo(){
   // luzca" -- las etiquetas de eje quedaban chicas (9px, sin peso) dejando bastante
   // espacio sin usar alrededor. Más grandes, con peso y letter-spacing, ocupan mejor su
   // franja de margen y se leen como un título de eje, no como una nota al pie.
+  // CORRECCIÓN -- pedido explícito, análisis crítico de la matriz: los ejes son un
+  // RANKING dentro del corte de hoy, no un valor absoluto -- el mismo tema puede
+  // aparecer en otra zona un día distinto solo porque el resto de la agenda cambió,
+  // no porque él cambió. Eso no estaba declarado en ningún lado. La etiqueta del eje X
+  // ahora lo dice ("ranking de hoy"), igual que ya lo decía a medias la del eje Y
+  // ("relativo"); y se agrega un ícono de info con el detalle completo en su title
+  // nativo (sin gastar espacio permanente del lienzo -- aparece solo al pasar el mouse).
   svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
     .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
-    .text(`más notas recientes (${VENTANA_RADAR_DIAS}d) →`);
+    .text(`más notas recientes, ranking de hoy (${VENTANA_RADAR_DIAS}d) →`);
   svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',17).attr('text-anchor','middle')
     .attr('transform','rotate(-90)')
     .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
     .text(`↑ mayor riesgo relativo`);
+  const gInfo = svg.append('g').attr('transform',`translate(${margen.izq+anchoUtil-2},${margen.arriba-20})`).style('cursor','help');
+  gInfo.append('circle').attr('r',7).attr('fill','none').attr('stroke','var(--ink-3)').attr('stroke-width',1);
+  gInfo.append('text').attr('text-anchor','middle').attr('dy','0.32em').attr('font-family','var(--f-mono)').attr('font-size','9px').attr('font-weight','700').attr('fill','var(--ink-3)').text('i');
+  gInfo.append('title').text('La posición de cada punto es un ranking dentro del corte de hoy (percentil de riesgo y de volumen entre los temas activos), no un valor absoluto. No es directamente comparable entre días distintos: un mismo tema puede cambiar de cuadrante de un día a otro solo porque el resto de la agenda cambió, aunque él se mantenga igual.');
 
   // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
   // colores, no indicamos qué significa cada color". CORRECCIÓN de esta ronda:
@@ -1563,21 +1574,46 @@ function dibujarMatrizRiesgo(){
       // cargado), pero SIEMPRE se nombra el más urgente de todos (datos ya viene
       // ordenado por riesgo+volumen) para que haya un punto de partida concreto.
       let headline = actuarCount>0
-        ? `${actuarCount} tema${actuarCount!==1?'s':''} en zona crítica · el más urgente: ${_truncarEnPalabra(_nombreClaroTema(activos[0].tema), 42)}`
+        ? `${actuarCount} tema${actuarCount!==1?'s':''} en zona crítica · el más urgente: <span class="matriz-link" data-tema="${activos[0].tema.id}">${_truncarEnPalabra(_nombreClaroTema(activos[0].tema), 42)}</span>`
         : `Ningún tema en zona crítica ahora mismo`;
       headline += ` · agenda concentrada en ${catDom} (${nCatDom} de ${activos.length})`;
+      // CORRECCIÓN -- pedido explícito: análisis crítico de la matriz -- "los ejes son
+      // un ranking del día, no un valor absoluto: el mismo tema puede caer en zona
+      // distinta de un día a otro solo porque el resto de la agenda cambió, no porque
+      // él haya cambiado". Eso no estaba dicho en ningún lado. Se agrega aquí, con
+      // datos que YA existen (veces/vecesPrev de cada tema, la misma ventana de 14 días
+      // contra la ventana de 14 días anterior) -- una lectura de qué tan cargada está
+      // HOY la agenda contra la quincena anterior, sin IA, pura aritmética.
+      const totalVecesHoy = datosTodos.reduce((s,d)=>s+d.veces,0);
+      const totalVecesPrev = datosTodos.reduce((s,d)=>s+d.vecesPrev,0);
+      if(totalVecesPrev > 0){
+        const cambioPct = Math.round((totalVecesHoy-totalVecesPrev)/totalVecesPrev*100);
+        const lecturaCambio = Math.abs(cambioPct) < 12
+          ? 'actividad similar a la quincena anterior'
+          : cambioPct > 0 ? `${cambioPct}% más activa que la quincena anterior` : `${Math.abs(cambioPct)}% más tranquila que la quincena anterior`;
+        headline += ` · <span style="opacity:0.65;">${lecturaCambio}</span>`;
+      }
       // CORRECCIÓN -- pedido explícito: "no se vería mejor... ahorita quita mucho
       // espacio". La tarjeta completa (.contexto-tema-box: fondo propio + borde + label
       // "LECTURA DE HOY" en su propia línea) pesaba más de lo que decía. Se queda solo
       // una franja delgada con acento de color, sin fondo ni card, y sin la línea de
       // eyebrow aparte -- el texto en negritas ya deja claro que es la lectura principal.
+      // CORRECCIÓN -- pedido explícito: "el titular y el aviso de riesgo silencioso no
+      // son clickeables, y son el texto más útil del gráfico". Ahora sí abren la ficha
+      // del tema (mismo mecanismo que ya usan los puntos y la vista de Lista).
       const callout = vigilarItems.length
-        ? `<div style="margin-top:2px;font-size:10.5px;color:var(--riesgo-medio);line-height:1.3;">⚠ poca cobertura pese al riesgo: ${vigilarItems.slice(0,3).map(d=>_truncarEnPalabra(_nombreClaroTema(d.tema),30)).join(' · ')}</div>`
+        ? `<div style="margin-top:2px;font-size:10.5px;color:var(--riesgo-medio);line-height:1.3;">⚠ poca cobertura pese al riesgo: ${vigilarItems.slice(0,3).map(d=>`<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema),30)}</span>`).join(' · ')}</div>`
         : '';
       resumenEl.innerHTML = `<div style="border-left:3px solid var(--riesgo-alto);padding:2px 10px;margin:6px 14px 0;">
         <div style="font-family:var(--f-display);font-size:12.5px;font-weight:600;color:var(--ink-1);line-height:1.25;">${headline}</div>
         ${callout}
       </div>`;
+      resumenEl.querySelectorAll('.matriz-link').forEach(el=>{
+        el.style.cursor = 'pointer';
+        el.style.textDecoration = 'underline';
+        el.style.textUnderlineOffset = '2px';
+        el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema));
+      });
     }
   }
 
@@ -1687,9 +1723,18 @@ function dibujarMatrizRiesgo(){
   // solo hay UN elemento con vida, y es siempre el mismo, siempre por la misma razón. ----
   const focoCritico = datos.find(d=>!d.apagado);
   if(focoCritico){
+    // CORRECCIÓN -- pedido explícito: "algo tipo sonar, sutil, limpio pero que se
+    // logre notar". El aro fijo se queda como referencia estática (mismo radio de
+    // siempre), y encima se insertan 2 anillos que se expanden y desvanecen -- el
+    // ping de sonar -- con arranque escalonado para que la onda se vea continua.
     svg.insert('circle', '.punto-tema').attr('class','prioridad-anillo-vivo')
       .attr('cx',focoCritico.x).attr('cy',focoCritico.y).attr('r',_radioPrincipalRadar(focoCritico)+4)
       .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
+    ['', 'retraso'].forEach(clase=>{
+      svg.insert('circle', '.punto-tema').attr('class', `prioridad-sonar-ping ${clase}`.trim())
+        .attr('cx',focoCritico.x).attr('cy',focoCritico.y).attr('r',_radioPrincipalRadar(focoCritico)+4)
+        .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.4);
+    });
 
     // CORRECCIÓN -- pedido explícito, verificado en captura real: "ya hay una línea,
     // pero ¿eso qué significa? una línea no me dice nada... alguien que no tenga idea
