@@ -1014,10 +1014,16 @@ function renderMatrizYLista(){
     // en HTML (no texto dentro del SVG) -- mejor tipografía, jerarquía real (negritas,
     // tamaños), y no le quitan espacio al plano peleando por posición como pasaba con
     // las anotaciones flotantes de antes.
+    // CORRECCIÓN -- pedido explícito: "distribuye mejor... muy amontonado y pegado
+    // hasta abajo". La leyenda vivía dibujada a mano dentro del SVG con anchos de texto
+    // calculados a ojo (monoespaciada) -- no hace wrap, así que en pantallas angostas
+    // (tablet, celular) se apretaba toda en una sola fila pegada al borde inferior. Ahora
+    // es HTML normal con flex-wrap: se acomoda solo según el espacio disponible.
     document.getElementById('matriz-lista-zona').innerHTML =
       `<div id="matriz-resumen-html" style="flex:none;"></div>
        <svg id="matriz-riesgo-svg" style="width:100%;flex:1;min-height:0;display:block;"></svg>
-       <div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
+       <div id="matriz-leyenda-html" style="flex:none;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:6px 10px 4px;font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);"></div>
+       <div id="matriz-aviso-limite" style="position:relative;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;padding-bottom:2px;"></div>`;
     dibujarMatrizRiesgo();
   }
 }
@@ -1074,8 +1080,21 @@ function crearTooltipAgenda(){
   document.body.appendChild(tip);
 }
 function mostrarTooltipAgenda(html, ev){
+  // CORRECCIÓN -- pedido explícito: "el hover se sale de la vista". Se posicionaba
+  // siempre 14px a la derecha y abajo del cursor sin revisar si eso lo sacaba de la
+  // pantalla -- con un tooltip largo (racha, corroboración, actor vinculado) cerca del
+  // borde derecho o de abajo, una parte quedaba fuera de la vista, invisible. Ahora se
+  // mide el tooltip ya con su contenido puesto y se voltea hacia el lado contrario
+  // (izquierda / arriba del cursor) cuando no cabe del lado normal.
   const tip = document.getElementById('agenda-tooltip');
-  tip.innerHTML = html; tip.style.left=(ev.pageX+14)+'px'; tip.style.top=(ev.pageY+14)+'px'; tip.classList.add('visible');
+  tip.innerHTML = html; tip.classList.add('visible');
+  const anchoTip = tip.offsetWidth, altoTip = tip.offsetHeight;
+  const margenSeguro = 10;
+  let x = ev.pageX + 14, y = ev.pageY + 14;
+  if(x + anchoTip + margenSeguro > window.scrollX + window.innerWidth) x = ev.pageX - anchoTip - 14;
+  if(y + altoTip + margenSeguro > window.scrollY + window.innerHeight) y = ev.pageY - altoTip - 14;
+  tip.style.left = Math.max(margenSeguro, x) + 'px';
+  tip.style.top = Math.max(margenSeguro, y) + 'px';
 }
 function ocultarTooltipAgenda(){ document.getElementById('agenda-tooltip').classList.remove('visible'); }
 
@@ -1293,21 +1312,29 @@ function _nombreClaroTema(tema){
   return base.trim();
 }
 
+// CORRECCIÓN -- pedido explícito: "haz mucho texto... el hover se sale de la vista,
+// revisar, ser más estratégico". El tooltip venía acumulando una línea por cada señal
+// (tendencia, corroboración, anomalía, actor vinculado, racha) sin límite -- con todas
+// las señales presentes a la vez llegaba a 6-7 líneas más el nombre completo del tema
+// vinculado, empujando el tooltip fuera de la pantalla. Ahora es más selectivo: solo 1
+// actor vinculado (el que comparte, no hace falta una lista), nombres más cortos, y las
+// señales menos esenciales (anomalía estadística) se recortan si ya hay suficiente texto.
 function _tooltipRadar(d, datosVisibles){
   const ICONO_TENDENCIA = {subiendo:'↑ subiendo', bajando:'↓ bajando', estable:'→ estable'};
-  let html = `<strong>${_nombreClaroTema(d.tema)}</strong><br>Riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
+  let html = `<strong>${_truncarEnPalabra(_nombreClaroTema(d.tema), 60)}</strong><br>Riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
   if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
-  if(d.esNuevo && !d.apagado) html += ` <span style="color:var(--teal);">· 🆕 actividad en las últimas 48h</span>`;
-  if(d.tendencia && !d.apagado) html += `<br>Tendencia: ${ICONO_TENDENCIA[d.tendencia]}`;
+  else if(d.esNuevo) html += ` <span style="color:var(--teal);">· 🆕 últimas 48h</span>`;
+  else if(d.tendencia && d.tendencia!=='estable') html += ` <span style="color:${d.tendencia==='subiendo'?'var(--riesgo-alto)':'var(--riesgo-bajo)'};">· ${ICONO_TENDENCIA[d.tendencia]}</span>`;
   // CORROBORACIÓN -- pedido explícito: no enterrarla como una línea más entre otras --
-  // un tema con 1 sola fuente pesa distinto que uno confirmado por varios medios, y esa
-  // diferencia debe notarse (color de alerta si es una sola fuente), no solo estar ahí.
+  // un tema con 1 sola fuente pesa distinto que uno confirmado por varios medios.
   const colorCorrob = d.nMedios<=1 ? 'var(--riesgo-medio)' : 'var(--ink-2)';
-  html += `<br><span style="color:${colorCorrob};">${d.nMedios<=1?'⚠ solo 1 fuente, sin corroborar':`✓ corroborado por ${d.nMedios} medios distintos`}</span>`;
-  if(d.anomalia && d.anomalia.nivel!=='normal') html += `<br><span style="color:${d.anomalia.nivel==='alta'?'var(--riesgo-alto)':'var(--teal)'};">Riesgo anómalamente ${d.anomalia.nivel} vs. su propio histórico</span>`;
+  html += `<br><span style="color:${colorCorrob};">${d.nMedios<=1?'⚠ solo 1 fuente':`✓ ${d.nMedios} medios distintos`}</span>`;
   if(d.actorIds.size){
     const vinculados = datosVisibles.filter(o=>o!==d && [...o.actorIds].some(id=>d.actorIds.has(id)));
-    if(vinculados.length) html += `<br><span style="color:var(--teal);">🔗 comparte actor con: ${vinculados.slice(0,2).map(o=>_nombreClaroTema(o.tema)).join(', ')}</span>`;
+    if(vinculados.length){
+      const extra = vinculados.length>1 ? ` +${vinculados.length-1}` : '';
+      html += ` <span style="color:var(--teal);">· 🔗 ${_truncarEnPalabra(_nombreClaroTema(vinculados[0].tema),22)}${extra}</span>`;
+    }
   }
   // ANTIGÜEDAD / RACHA -- pedido explícito: "¿cuánto lleva el tema en la agenda? cuándo
   // se apaga, cuándo se vuelve a prender, el tiempo que se mantiene?". Un tema nuevo
@@ -1384,7 +1411,7 @@ function dibujarMatrizRiesgo(){
   // arriba (más claro) y una flecha de tendencia en cada punto (ver más abajo). Sin esas
   // dos cosas peleando por espacio, el margen superior vuelve a ser chico y el plano
   // recupera el área que antes se le quitaba.
-  const margen = {izq:46, der:22, arriba:34, abajo:56};
+  const margen = {izq:46, der:22, arriba:34, abajo:30};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
 
@@ -1459,58 +1486,38 @@ function dibujarMatrizRiesgo(){
   // ejes
   svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
   svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',margen.arriba+altoUtil).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
+  // CORRECCIÓN -- pedido explícito: "tiene mucho margen, aprovechemos, hagamos que
+  // luzca" -- las etiquetas de eje quedaban chicas (9px, sin peso) dejando bastante
+  // espacio sin usar alrededor. Más grandes, con peso y letter-spacing, ocupan mejor su
+  // franja de margen y se leen como un título de eje, no como una nota al pie.
   svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
-    .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
+    .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
     .text(`más notas recientes (${VENTANA_RADAR_DIAS}d) →`);
-  svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',14).attr('text-anchor','middle')
+  svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',17).attr('text-anchor','middle')
     .attr('transform','rotate(-90)')
-    .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
+    .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
     .text(`↑ mayor riesgo relativo`);
 
   // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
-  // colores, no indicamos qué significa cada color". Antes era una sola línea de texto
-  // ("color = categoría · borde = riesgo") que no decía CUÁL color es cuál categoría.
-  // Ahora son muestras de color reales, solo de las categorías presentes en esta vista
-  // (para no listar categorías que ni siquiera aparecen), en una franja horizontal bajo
-  // el eje X, dentro de un panel semitransparente para no competir con los puntos.
+  // colores, no indicamos qué significa cada color". CORRECCIÓN de esta ronda:
+  // "distribuye mejor... muy amontonado y pegado hasta abajo" -- dibujada a mano dentro
+  // del SVG con anchos de texto calculados a ojo, no hacía wrap: en pantallas angostas
+  // (tablet, celular) se apretaba toda en una sola fila. Ahora es HTML normal con
+  // flex-wrap (ver el div #matriz-leyenda-html en renderMatrizYLista) -- se acomoda
+  // solo según el espacio disponible, en 1, 2 o 3 filas.
   const categoriasPresentes = [...new Set(datos.map(d=>d.categoria))];
-  const itemsLeyenda = [
-    ...categoriasPresentes.map(cat=>({tipo:'relleno', color:colorCategoria(cat), texto:cat})),
-    {tipo:'sep'},
-    {tipo:'borde', color:COLOR_RIESGO.alto, texto:'riesgo alto'},
-    {tipo:'borde', color:COLOR_RIESGO.medio, texto:'riesgo medio'},
-    {tipo:'borde', color:COLOR_RIESGO.bajo, texto:'riesgo bajo'},
-    {tipo:'plano', color:'var(--ink-3)', texto:'sin actividad en 14d'},
-    {tipo:'sep'},
-    {tipo:'glifo', glifo:'▲', color:'var(--riesgo-alto)', texto:'escalando'},
-    {tipo:'glifo', glifo:'▼', color:'var(--riesgo-bajo)', texto:'bajando'},
+  const chip = (svgInterno, texto) => `<span style="display:inline-flex;align-items:center;gap:3px;white-space:nowrap;">${svgInterno}${texto}</span>`;
+  const chipsLeyenda = [
+    ...categoriasPresentes.map(cat=> chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="4" fill="${colorCategoria(cat)}"/></svg>`, cat)),
+    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.alto}" stroke-width="1.6"/></svg>`, 'riesgo alto'),
+    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.medio}" stroke-width="1.6"/></svg>`, 'riesgo medio'),
+    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.bajo}" stroke-width="1.6"/></svg>`, 'riesgo bajo'),
+    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="var(--ink-3)" fill-opacity="0.6"/></svg>`, 'sin actividad en 14d'),
+    chip(`<span style="color:var(--riesgo-alto);font-weight:700;">▲</span>`, 'escalando'),
+    chip(`<span style="color:var(--riesgo-bajo);font-weight:700;">▼</span>`, 'bajando'),
   ];
-  const yLeyenda = margen.arriba + altoUtil + 40;
-  // ancho aproximado por ítem (para centrar la franja completa) -- monoespaciada, así
-  // que el ancho de texto es predecible sin medirlo en el DOM.
-  const anchoItem = it => it.tipo==='sep' ? 10 : 16 + it.texto.length*4.6;
-  const anchoTotal = itemsLeyenda.reduce((s,it)=>s+anchoItem(it), 0);
-  const panelAncho = Math.min(anchoUtil, anchoTotal) + 16;
-  const panelX = margen.izq + (anchoUtil-panelAncho)/2;
-  svg.append('rect').attr('x',panelX).attr('y',yLeyenda-11).attr('width',panelAncho).attr('height',18).attr('rx',4)
-    .attr('fill','var(--bg-1)').attr('fill-opacity',0.7).attr('stroke','var(--line)').attr('stroke-width',0.6);
-  let xCursor = panelX + 8;
-  itemsLeyenda.forEach(it=>{
-    if(it.tipo==='sep'){ xCursor += anchoItem(it); return; }
-    if(it.tipo==='relleno'){
-      svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',3.5).attr('fill',it.color);
-    } else if(it.tipo==='borde'){
-      svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',3.5).attr('fill','none').attr('stroke',it.color).attr('stroke-width',1.6);
-    } else if(it.tipo==='glifo'){
-      svg.append('text').attr('x',xCursor).attr('y',yLeyenda).attr('font-size','8px').attr('fill',it.color).text(it.glifo);
-    } else {
-      svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',2.5).attr('fill',it.color).attr('fill-opacity',0.6);
-    }
-    svg.append('text').attr('x',xCursor+10).attr('y',yLeyenda+1)
-      .attr('font-family','var(--f-mono)').attr('font-size','7.5px').attr('fill','var(--ink-3)')
-      .text(it.texto);
-    xCursor += anchoItem(it);
-  });
+  const leyendaEl = document.getElementById('matriz-leyenda-html');
+  if(leyendaEl) leyendaEl.innerHTML = chipsLeyenda.join('');
 
   // ---- clasificación de cuadrante por RANKING (no por x/y ya con jitter de colisión,
   // para que la clasificación no cambie si dos puntos se empujan entre sí) -- se usa
@@ -1550,12 +1557,16 @@ function dibujarMatrizRiesgo(){
         ? `${actuarCount} tema${actuarCount!==1?'s':''} en zona crítica · el más urgente: ${_truncarEnPalabra(_nombreClaroTema(activos[0].tema), 42)}`
         : `Ningún tema en zona crítica ahora mismo`;
       headline += ` · agenda concentrada en ${catDom} (${nCatDom} de ${activos.length})`;
+      // CORRECCIÓN -- pedido explícito: "no se vería mejor... ahorita quita mucho
+      // espacio". La tarjeta completa (.contexto-tema-box: fondo propio + borde + label
+      // "LECTURA DE HOY" en su propia línea) pesaba más de lo que decía. Se queda solo
+      // una franja delgada con acento de color, sin fondo ni card, y sin la línea de
+      // eyebrow aparte -- el texto en negritas ya deja claro que es la lectura principal.
       const callout = vigilarItems.length
-        ? `<div style="margin-top:5px;font-size:11px;color:var(--riesgo-medio);">⚠ Riesgo alto con poca cobertura, fácil de perder de vista: ${vigilarItems.slice(0,3).map(d=>_truncarEnPalabra(_nombreClaroTema(d.tema),36)).join(' · ')}</div>`
+        ? `<div style="margin-top:2px;font-size:10.5px;color:var(--riesgo-medio);line-height:1.3;">⚠ poca cobertura pese al riesgo: ${vigilarItems.slice(0,3).map(d=>_truncarEnPalabra(_nombreClaroTema(d.tema),30)).join(' · ')}</div>`
         : '';
-      resumenEl.innerHTML = `<div class="contexto-tema-box" style="border-left:3px solid var(--riesgo-alto);margin:10px 14px 6px;">
-        <div class="eyebrow">Lectura de hoy</div>
-        <div style="font-family:var(--f-display);font-size:13px;font-weight:600;color:var(--ink-1);margin-top:3px;">${headline}</div>
+      resumenEl.innerHTML = `<div style="border-left:3px solid var(--riesgo-alto);padding:3px 10px;margin:8px 14px 2px;">
+        <div style="font-family:var(--f-display);font-size:12.5px;font-weight:600;color:var(--ink-1);line-height:1.3;">${headline}</div>
         ${callout}
       </div>`;
     }
@@ -1601,6 +1612,17 @@ function dibujarMatrizRiesgo(){
     .on('mouseleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
+  // CORRECCIÓN -- pedido explícito: "pensar la interacción en móviles, tablets y
+  // pantallas touch". Varios puntos dibujan a radio 5-9px -- un objetivo cómodo con
+  // mouse, pero angosto para un dedo (Apple/Google recomiendan ~44px de área táctil
+  // mínima). Un círculo invisible más grande detrás de cada punto amplía el área que
+  // responde al toque/clic sin cambiar el tamaño visual del punto. En touch no hay
+  // "hover", así que el tap va directo al detalle completo (abrirFichaTema) -- no
+  // depende de que el tooltip aparezca primero.
+  g.insert('circle','.nodo-principal').attr('class','area-toque')
+    .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>Math.max(_radioPrincipalRadar(d)+2, 16))
+    .attr('fill','transparent');
+
   // CORRECCIÓN -- pedido explícito, ya van dos rondas: "no entiendo por qué unos
   // círculos tienen movimiento de una forma y otros líneas punteadas". La única forma
   // de que esto deje de ser ambiguo es que NO haya ningún movimiento continuo en el
@@ -1617,30 +1639,36 @@ function dibujarMatrizRiesgo(){
     .attr('r', d=>_radioPrincipalRadar(d));
 
   // ---- tendencia -- pedido explícito: "¿en verdad es un producto de inteligencia?"
-  // sin esto, la matriz es una FOTO (así está hoy) y no dice hacia dónde va cada tema,
-  // que es lo que de verdad cambia una decisión (un tema estable en riesgo alto ya está
-  // contenido; uno que está escalando rápido todavía no). Antes esto vivía en 3
-  // anotaciones de texto flotando y peleando por espacio -- ahora es una marca chica y
-  // consistente en CADA punto que se mueve (no solo los 3 que más cambiaron), sin
-  // texto, sin animación, solo un glifo ▲/▼ pegado al punto. Estable no lleva marca --
-  // sin cambio no hay nada que señalar.
-  g.filter(d=>!d.apagado && d.tendencia && d.tendencia!=='estable').append('text')
-    .attr('x',d=>d.x + _radioPrincipalRadar(d)*0.7).attr('y',d=>d.y - _radioPrincipalRadar(d)*0.7)
-    .attr('text-anchor','middle').attr('font-size','8px').attr('font-weight','700')
+  // sin esto, la matriz es una FOTO (así está hoy) y no dice hacia dónde va cada tema.
+  // CORRECCIÓN de diseño -- pedido explícito: "las flechitas (triángulo), no lo luce".
+  // Un glifo de texto unicode (▲/▼) con un truco de stroke blanco alrededor para que se
+  // lea sobre cualquier fondo se ve tosco y con bordes irregulares al hacer zoom o en
+  // pantallas de alta densidad. Ahora es un triángulo real dibujado con <path> --
+  // esquinas limpias, tamaño exacto, y un circulito de fondo sólido detrás (no un halo
+  // de stroke) para que resalte igual sobre cualquier color de punto.
+  const _triangulo = (cx,cy,r,haciaArriba) => haciaArriba
+    ? `M ${cx} ${cy-r} L ${cx+r*0.9} ${cy+r*0.7} L ${cx-r*0.9} ${cy+r*0.7} Z`
+    : `M ${cx} ${cy+r} L ${cx+r*0.9} ${cy-r*0.7} L ${cx-r*0.9} ${cy-r*0.7} Z`;
+  const gTendencia = g.filter(d=>!d.apagado && d.tendencia && d.tendencia!=='estable');
+  gTendencia.append('circle')
+    .attr('cx',d=>d.x + _radioPrincipalRadar(d)*0.72).attr('cy',d=>d.y - _radioPrincipalRadar(d)*0.72).attr('r',5.5)
+    .attr('fill','var(--bg-1)').style('pointer-events','none');
+  gTendencia.append('path')
+    .attr('d', d=> _triangulo(d.x + _radioPrincipalRadar(d)*0.72, d.y - _radioPrincipalRadar(d)*0.72, 3.6, d.tendencia==='subiendo'))
     .attr('fill', d=>d.tendencia==='subiendo' ? 'var(--riesgo-alto)' : 'var(--riesgo-bajo)')
-    .style('pointer-events','none').style('paint-order','stroke').attr('stroke','var(--bg-1)').attr('stroke-width',2)
-    .text(d=>d.tendencia==='subiendo' ? '▲' : '▼');
+    .style('pointer-events','none');
 
-  // ---- marca fija del tema de mayor prioridad real ahora mismo -- una etiqueta de
-  // texto, no un efecto visual, para no repetir la confusión de "por qué ese sí se
-  // mueve distinto". Es solo el primero de "datos" (ya viene ordenado por riesgo+volumen). ----
+  // ---- marca del tema de mayor prioridad real ahora mismo -- pedido explícito: la
+  // etiqueta de texto fija ("◆ MÁXIMA PRIORIDAD") ocupaba espacio del lienzo y competía
+  // con los puntos de alrededor. Se reemplaza por UN aro respirando, suave y lento --
+  // es la ÚNICA animación continua de todo el gráfico (los puntos y el resto del plano
+  // no se mueven nunca), así que no hay ambigüedad de "por qué ese sí y los demás no":
+  // solo hay UN elemento con vida, y es siempre el mismo, siempre por la misma razón. ----
   const focoCritico = datos.find(d=>!d.apagado);
   if(focoCritico){
-    const yEtiquetaFoco = focoCritico.y - _radioPrincipalRadar(focoCritico) - 6;
-    svg.append('text').attr('x',focoCritico.x).attr('y', Math.max(margen.arriba-2, yEtiquetaFoco)).attr('text-anchor','middle')
-      .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('font-weight','700').attr('fill','var(--riesgo-alto)')
-      .style('pointer-events','none').style('paint-order','stroke').attr('stroke','var(--bg-1)').attr('stroke-width',3)
-      .text('◆ MÁXIMA PRIORIDAD');
+    svg.insert('circle', '.punto-tema').attr('class','prioridad-anillo-vivo')
+      .attr('cx',focoCritico.x).attr('cy',focoCritico.y).attr('r',_radioPrincipalRadar(focoCritico)+4)
+      .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
   }
 }
 
