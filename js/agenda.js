@@ -1003,13 +1003,14 @@ function renderMatrizYLista(){
   if(btnAnalisis && !btnAnalisis.dataset.conectado){ btnAnalisis.addEventListener('click', abrirModalAnalisisMatriz); btnAnalisis.dataset.conectado='1'; }
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
-    const franjaMovimiento = franjaMovimientoRadar();
+    // CORRECCIÓN -- pedido explícito: la barra de "QUIÉN SE MOVIÓ MÁS" con su línea de
+    // arriba y de abajo se sentía como un cartel pegado al gráfico, no parte de él.
+    // Tomando como referencia las imágenes que mandó el usuario (anotaciones de texto
+    // CON línea guía apuntando directo al punto, estilo Economist/Tableau), esa lectura
+    // ahora se dibuja DENTRO del lienzo, como anotaciones ancladas a sus propios puntos
+    // -- ver dibujarMatrizRiesgo(). Ya no hay una franja de texto aparte.
     document.getElementById('matriz-lista-zona').innerHTML =
-      `<div class="matriz-lienzo" style="flex:1;min-height:0;display:flex;flex-direction:column;">` +
-        franjaMovimiento +
-        `<div style="flex:1;min-height:0;position:relative;"><svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div></div>` +
-      `</div>`;
-    cont.querySelectorAll('[data-tema-mov]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.temaMov)));
+      `<div class="matriz-lienzo" style="flex:1;min-height:0;position:relative;"><svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div></div>`;
     dibujarMatrizRiesgo();
   }
 }
@@ -1219,30 +1220,8 @@ function calcularDatosRadarAgenda(temasBase){
   });
 }
 
-// ================================================================
-// "QUIÉN SE MOVIÓ MÁS" -- pedido explícito: un ancla de lectura de 5 segundos antes de
-// meterse al radar completo, mismo patrón que "A vigilar" en Pulso Nacional. Reutiliza
-// exactamente los mismos filtros y el mismo cálculo (calcularDatosRadarAgenda) que el
-// radar, para que nunca se contradigan entre sí.
-// ================================================================
-function franjaMovimientoRadar(){
-  let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
-  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
-  const movidos = calcularDatosRadarAgenda(temasBase).filter(d=>!d.apagado && d.riesgoReal!==d.riesgoAnterior);
-  if(!movidos.length) return '';
-  const top = movidos.sort((a,b)=> Math.abs(b.riesgoReal-b.riesgoAnterior) - Math.abs(a.riesgoReal-a.riesgoAnterior)).slice(0,3);
-  return `<div style="flex-shrink:0;display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:7px 14px;font-size:10.5px;color:var(--ink-2);border-bottom:1px solid var(--line-strong);">
-    <span class="eyebrow" style="flex-shrink:0;">QUIÉN SE MOVIÓ MÁS · ${VENTANA_RADAR_DIAS}D</span>
-    ${top.map(d=>{
-      const sube = d.riesgoReal > d.riesgoAnterior;
-      return `<span style="white-space:nowrap;cursor:pointer;" data-tema-mov="${d.tema.id}">
-        <span style="color:${sube?'var(--riesgo-alto)':'var(--riesgo-bajo)'};font-weight:700;">${sube?'▲':'▼'}</span>
-        ${d.tema.nombre} <span style="color:var(--ink-3);">(riesgo ${d.riesgoAnterior}→${d.riesgoReal})</span>
-      </span>`;
-    }).join('')}
-  </div>`;
-}
+// "QUIÉN SE MOVIÓ MÁS" ya no es una franja de HTML aparte -- se dibuja como
+// anotaciones dentro del propio lienzo, ver el final de dibujarMatrizRiesgo().
 
 function _radioPrincipalRadar(d){ return d.apagado ? 5 : 7+Math.min(4, d.veces*0.6); }
 
@@ -1309,7 +1288,11 @@ function dibujarMatrizRiesgo(){
     ? `Mostrando los ${datos.length} de mayor relevancia real de ${totalAntesDeLimite}` : '';
 
   // ---- geometría: X = volumen reciente (notas en 14d), Y = riesgo reciente (arriba = alto) ----
-  const margen = {izq:46, der:22, arriba:26, abajo:52};
+  // margen.arriba con espacio para hasta 3 anotaciones ancladas (ver más abajo,
+  // "QUIÉN SE MOVIÓ MÁS" -- ya no es una franja de texto aparte con líneas propias,
+  // ahora son anotaciones con línea guía apuntando a su punto real, como en las
+  // referencias que mandó el usuario)
+  const margen = {izq:46, der:22, arriba:62, abajo:52};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
   const vecesMax = Math.max(3, ...datos.map(d=>d.veces));
@@ -1340,7 +1323,10 @@ function dibujarMatrizRiesgo(){
   svg.append('text').attr('x',margen.izq+4).attr('y',margen.arriba+altoUtil-6)
     .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
     .text('BAJO PERFIL');
-  svg.append('text').attr('x',width-4).attr('y',13).attr('text-anchor','end')
+  // CORRECCIÓN -- esta leyenda vivía en la esquina superior derecha, justo donde ahora
+  // se dibujan las anotaciones de "quién se movió más" (ver más abajo) -- se mueve
+  // abajo, junto al eje X, donde no compite por espacio con nada.
+  svg.append('text').attr('x',width-4).attr('y',height-8).attr('text-anchor','end')
     .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
     .text('● color = categoría  ·  borde = riesgo');
 
@@ -1445,6 +1431,31 @@ function dibujarMatrizRiesgo(){
       .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',_radioPrincipalRadar(focoCritico)+3)
       .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
   }
+
+  // ---- "QUIÉN SE MOVIÓ MÁS" -- pedido explícito: ya no es una franja de texto con
+  // línea de arriba y de abajo, pegada como cartel encima del gráfico. Siguiendo las
+  // imágenes de referencia que mandó el usuario (anotaciones tipo Economist/Tableau:
+  // texto flotando en espacio abierto, con una línea guía delgada apuntando directo
+  // al punto real), esto ahora vive DENTRO del lienzo como anotaciones ancladas a su
+  // dato -- 3 como máximo, apiladas arriba, cada una con su propia línea hacia su punto. ----
+  const movidos = datos.filter(d=>!d.apagado && d.riesgoReal!==d.riesgoAnterior)
+    .sort((a,b)=> Math.abs(b.riesgoReal-b.riesgoAnterior) - Math.abs(a.riesgoReal-a.riesgoAnterior)).slice(0,3);
+  movidos.forEach((d,i)=>{
+    const subeIcono = d.riesgoReal > d.riesgoAnterior;
+    const yEtiqueta = 12 + i*15;
+    const xEtiqueta = Math.max(margen.izq+70, Math.min(width-margen.der-70, d.x));
+    const anchor = xEtiqueta > width - margen.der - 90 ? 'end' : 'start';
+    const nombreCorto = d.tema.nombre.length>44 ? d.tema.nombre.slice(0,43)+'…' : d.tema.nombre;
+    const gAnot = svg.append('g').attr('class','anotacion-movimiento').style('cursor','pointer')
+      .on('click', ()=> abrirFichaTema(d.tema.id));
+    gAnot.append('line')
+      .attr('x1', xEtiqueta).attr('y1', yEtiqueta+3).attr('x2', d.x).attr('y2', d.y)
+      .attr('stroke','var(--ink-3)').attr('stroke-width',1).attr('stroke-dasharray','2 2').attr('opacity',0.6);
+    const texto = gAnot.append('text').attr('x',xEtiqueta).attr('y',yEtiqueta).attr('text-anchor',anchor)
+      .attr('font-family','var(--f-mono)').attr('font-size','9px');
+    texto.append('tspan').attr('fill', subeIcono?'var(--riesgo-alto)':'var(--riesgo-bajo)').attr('font-weight','700').text(subeIcono?'▲ ':'▼ ');
+    texto.append('tspan').attr('fill','var(--ink-2)').text(`${nombreCorto} (${d.riesgoAnterior}→${d.riesgoReal})`);
+  });
 }
 
 let interpretacionMatrizIA = {};
