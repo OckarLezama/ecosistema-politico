@@ -1664,9 +1664,30 @@ function dibujarMatrizRiesgo(){
   const colorPunto = d => (d._cuadrante==='actuar' || d._cuadrante==='vigilar') ? colorCategoria(d.categoria) : 'var(--ink-3)';
   const opacidadPunto = d => d.apagado ? 0.55 : (d._cuadrante==='actuar' || d._cuadrante==='vigilar') ? 0.9 : 0.45;
 
+  // CORRECCIÓN -- pedido explícito, aclarado tras confusión con el aro del tema #1:
+  // "el efecto de radar es que cuando pase sobre los puntos, estos tengan un pequeño
+  // destello". Esto es DISTINTO del ping continuo del tema #1 (prioridad-sonar-ping,
+  // permanente, un solo punto) -- este es un flash de una sola vez, en CUALQUIER
+  // punto, disparado por el propio hover del mouse, como un radar iluminando el
+  // blanco justo cuando el haz lo cruza. Un solo disparo por hover (no en bucle), y se
+  // autodestruye al terminar (animationend) para no acumular circles en el DOM si el
+  // usuario pasa el mouse por muchos puntos seguidos.
+  // CORRECCIÓN -- verificado con captura real: el destello con el mismo color del
+  // punto (colorPunto) se perdía contra el propio borde de riesgo del punto, que ya es
+  // de un color parecido -- un flash debe leerse como luz, no como "otro círculo del
+  // mismo tono". Blanco/claro fijo, sin importar la categoría, se lee como destello
+  // real sobre cualquier color de fondo.
+  const destelloEnPunto = function(d){
+    const destello = svg.insert('circle', '.punto-tema')
+      .attr('class','destello-punto')
+      .attr('cx', d.x).attr('cy', d.y).attr('r', _radioPrincipalRadar(d))
+      .attr('fill','none').attr('stroke', 'var(--ink-1)').attr('stroke-width', 2);
+    destello.node().addEventListener('animationend', ()=> destello.remove());
+  };
+
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
-    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); })
+    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); destelloEnPunto(d); })
     .on('mousemove', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); })
     .on('mouseleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));

@@ -112,7 +112,15 @@ function resumenMananeraHTML(items, estado){
     return filas;
   }
   if(estado === 'pendiente') return `<div style="font-size:10.5px;color:var(--ink-3);">Aún no termina o no se procesa la mañanera de hoy -- este resumen se actualiza una vez al día, normalmente después de las 10am.</div>`;
-  return `<div style="font-size:10.5px;color:var(--ink-3);">No hubo mañanera este día.</div>`;
+  // CORRECCIÓN -- pedido explícito, con evidencia real (11:09am un miércoles con
+  // mañanera confirmada en 5+ medios, y aquí seguía diciendo "no hubo"): la fuente
+  // única que usa este resumen (mananeradehoy.com) puede publicar tarde. "No
+  // encontramos el resumen todavía" y "no hubo conferencia" son afirmaciones
+  // distintas -- solo la segunda se dice cuando el backend ya distinguió fin de
+  // semana real (mananera_estado==='sin_mananera'); entre semana sin dato usa
+  // 'fuente_retrasada' y aquí se refleja como eso, no como un hecho confirmado.
+  if(estado === 'fuente_retrasada') return `<div style="font-size:10.5px;color:var(--ink-3);">Sin resumen todavía -- la fuente de la mañanera no lo ha publicado a esta hora (puede ser retraso de esa fuente, no necesariamente que no hubo conferencia).</div>`;
+  return `<div style="font-size:10.5px;color:var(--ink-3);">No hubo mañanera este día (fin de semana).</div>`;
 }
 
 /* ---------- panel recorrible (← →), sin zoom -- mismo espíritu del Timeline pero mucho
