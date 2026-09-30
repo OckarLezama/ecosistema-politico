@@ -350,8 +350,12 @@ function activarTendenciaCategorias(cont){
     cont.querySelectorAll('.pulso-tend-linea').forEach(l=>{ l.style.strokeDashoffset = '0'; });
   });
   cont.querySelectorAll('.pulso-tend-pt').forEach(pt=>{
-    pt.addEventListener('mousemove', ev=> mostrarTooltipPulso(pt.dataset.info, ev));
-    pt.addEventListener('mouseleave', ocultarTooltipPulso);
+    // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
+    // touch" -- pointermove/pointerleave cubren mouse Y touch (mousemove/mouseleave no
+    // disparan de forma confiable con touch puro), mismo criterio ya aplicado en el
+    // resto del sitio (agenda.js, timeline.js, actores.js, analisis.js, c3.js).
+    pt.addEventListener('pointermove', ev=> mostrarTooltipPulso(pt.dataset.info, ev));
+    pt.addEventListener('pointerleave', ocultarTooltipPulso);
   });
 }
 
@@ -487,8 +491,8 @@ function activarHistoricoPulso(cont){
     });
   });
   cont.querySelectorAll('.pulso-hist-barra').forEach(b=>{
-    b.addEventListener('mousemove', ev=> mostrarTooltipPulso(b.dataset.info, ev));
-    b.addEventListener('mouseleave', ocultarTooltipPulso);
+    b.addEventListener('pointermove', ev=> mostrarTooltipPulso(b.dataset.info, ev));
+    b.addEventListener('pointerleave', ocultarTooltipPulso);
   });
 }
 
@@ -920,8 +924,8 @@ function activarBarraCategoriasPulso(cont, categorias){
     const tipHtml = catData
       ? `${catData.categoria} · ${catData.n_notas||0} nota${(catData.n_notas||0)!==1?'s':''}<div style="color:var(--ink-3);font-size:9px;font-weight:400;margin-top:2px;">clic para más detalles</div>`
       : '';
-    b.addEventListener('mousemove', ev=> tipHtml && mostrarTooltipPulso(tipHtml, ev));
-    b.addEventListener('mouseleave', ocultarTooltipPulso);
+    b.addEventListener('pointermove', ev=> tipHtml && mostrarTooltipPulso(tipHtml, ev));
+    b.addEventListener('pointerleave', ocultarTooltipPulso);
     b.addEventListener('click', ()=>{ if(catData) abrirModalCategoriaPulso(catData); });
   });
 }

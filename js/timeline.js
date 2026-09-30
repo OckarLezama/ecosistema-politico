@@ -432,9 +432,28 @@ function dibujarTL(xScaleActual){
         .append('title').text(`${reaccionesDelTema.length} reacción${reaccionesDelTema.length!==1?'es':''} documentada${reaccionesDelTema.length!==1?'s':''}`);
     }
 
+    // CORRECCIÓN -- pedido explícito, confirmado: la etiqueta SIEMPRE visible de la
+    // tarjeta mostraba tema.nombre (la clasificación, ej. "Visa de Andy") -- se veía
+    // como si fuera el titular de una nota real, sin serlo. Ahora usa el mismo dato
+    // que ya alimenta el hover (titularesRecientesTL, evento.descripcion real) -- el
+    // fragmento del titular más reciente, sin la fuente al final. Si un tema no
+    // tuviera ningún evento con descripción (no debería pasar, pero por seguridad),
+    // se conserva tema.nombre como respaldo para no dejar la tarjeta vacía.
+    const _tlTitularReciente = titularesRecientesTL(d.tema.id, 1)[0];
+    let _textoTarjeta = d.tema.nombre;
+    if(_tlTitularReciente && _tlTitularReciente.descripcion){
+      const _m = _tlTitularReciente.descripcion.match(/^(.*?)\s*-\s*([^-]+)$/);
+      _textoTarjeta = _m ? _m[1] : _tlTitularReciente.descripcion;
+    }
+    // _truncarEnPalabra (definida en agenda.js, cargado antes) corta en un espacio en
+    // vez de a media palabra -- mejor para un fragmento de titular real (frases) que
+    // el slice() a ciegas que bastaba para el nombre corto de clasificación.
+    const _textoTarjetaCorto = typeof _truncarEnPalabra === 'function'
+      ? _truncarEnPalabra(_textoTarjeta, esNivel1?24:22)
+      : (_textoTarjeta.length>(esNivel1?24:22) ? _textoTarjeta.slice(0,(esNivel1?22:20))+'…' : _textoTarjeta);
     gg.append('text').attr('x',x).attr('y',yTarjeta+(esNivel1?14:12)).attr('text-anchor','middle')
       .attr('font-size', esNivel1?'9.5px':'8px').attr('font-weight',esNivel1?'700':'500').attr('fill', esNivel1?'var(--ink-1)':'var(--ink-3)')
-      .text(d.tema.nombre.length>(esNivel1?24:22) ? d.tema.nombre.slice(0,(esNivel1?22:20))+'…' : d.tema.nombre);
+      .text(_textoTarjetaCorto);
     if(esNivel1){
       // FIX #1: antes solo mostraba la fecha pico -- ahora, si el tema estuvo activo más de un
       // día, muestra duración + total de notas (información de persistencia real)

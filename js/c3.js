@@ -638,9 +638,14 @@ function pintarDetalleC3(ent){
 function iniciarAutoScrollC3(){
   const cont = document.getElementById('c3-feed-notas');
   if(!cont) return;
+  // pedido explícito: "el carrusel no se pausa al tocar en móvil" -- mouseenter/
+  // mouseleave no disparan con touch puro, así que en celular el feed seguía
+  // desplazándose solo mientras el usuario intentaba leer o hacer scroll manual dentro
+  // de él. pointerenter/pointerleave sí cubren touch (se activan al tocar el feed y se
+  // liberan al soltar), mismo criterio ya aplicado en el resto del sitio.
   let pausado = false;
-  cont.addEventListener('mouseenter', ()=> pausado = true);
-  cont.addEventListener('mouseleave', ()=> pausado = false);
+  cont.addEventListener('pointerenter', ()=> pausado = true);
+  cont.addEventListener('pointerleave', ()=> pausado = false);
   const intervalo = setInterval(()=>{
     if(!document.body.contains(cont)){ clearInterval(intervalo); return; } // si se cambió de entidad y este feed ya no existe, para el intervalo
     if(pausado) return;
