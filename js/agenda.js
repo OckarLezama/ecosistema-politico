@@ -1019,11 +1019,14 @@ function renderMatrizYLista(){
     // calculados a ojo (monoespaciada) -- no hace wrap, así que en pantallas angostas
     // (tablet, celular) se apretaba toda en una sola fila pegada al borde inferior. Ahora
     // es HTML normal con flex-wrap: se acomoda solo según el espacio disponible.
+    // CORRECCIÓN -- pedido explícito: "el lienzo completo que abarque todo el espacio
+    // como el de Genealogía". El aviso de límite de puntos vivía en su propia fila
+    // (franja completa, aunque el texto es corto) -- ahora es el último elemento de la
+    // fila de leyenda (ver más abajo), así se recupera esa fila entera para el SVG.
     document.getElementById('matriz-lista-zona').innerHTML =
       `<div id="matriz-resumen-html" style="flex:none;"></div>
        <svg id="matriz-riesgo-svg" style="width:100%;flex:1;min-height:0;display:block;"></svg>
-       <div id="matriz-leyenda-html" style="flex:none;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:6px 10px 4px;font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);"></div>
-       <div id="matriz-aviso-limite" style="position:relative;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;padding-bottom:2px;"></div>`;
+       <div id="matriz-leyenda-html" style="flex:none;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:5px 10px 4px;font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);"></div>`;
     dibujarMatrizRiesgo();
   }
 }
@@ -1399,10 +1402,14 @@ function dibujarMatrizRiesgo(){
   // categoría -- al filtrar por esa categoría, ya no compite contra el resto y entra.
   // Antes el aviso solo aparecía cuando el corte recortaba algo; ahora siempre dice
   // cuántos se ven y de cuántos, y explica la causa cuando aplica el corte.
-  const avisoLimite = document.getElementById('matriz-aviso-limite');
-  if(avisoLimite) avisoLimite.textContent = totalAntesDeLimite > datos.length
-    ? `Mostrando los ${datos.length} de mayor relevancia real de ${totalAntesDeLimite} -- el resto no cabe en esta vista general; fíltralos por categoría para verlos`
-    : `Mostrando los ${datos.length} temas de esta vista`;
+  // CORRECCIÓN -- pedido explícito: "el lienzo completo que abarque todo el espacio
+  // como el de Genealogía". Este aviso tenía su propia fila completa (franja de ancho
+  // completo) para una sola línea corta de texto -- ahora se guarda y se agrega como
+  // último elemento de la leyenda (ver chipsLeyenda más abajo), recuperando esa fila
+  // entera de alto para el plano.
+  const textoAvisoLimite = totalAntesDeLimite > datos.length
+    ? `mostrando ${datos.length} de ${totalAntesDeLimite} -- filtra por categoría para ver el resto`
+    : `${datos.length} tema${datos.length!==1?'s':''} en esta vista`;
 
   // ---- geometría: X = volumen reciente (notas en 14d), Y = riesgo reciente (arriba = alto) ----
   // CORRECCIÓN -- pedido explícito: "¿esto es un producto de inteligencia real?". Las
@@ -1515,6 +1522,7 @@ function dibujarMatrizRiesgo(){
     chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="var(--ink-3)" fill-opacity="0.6"/></svg>`, 'sin actividad en 14d'),
     chip(`<span style="color:var(--riesgo-alto);font-weight:700;">▲</span>`, 'escalando'),
     chip(`<span style="color:var(--riesgo-bajo);font-weight:700;">▼</span>`, 'bajando'),
+    `<span style="opacity:0.6;margin-left:auto;">${textoAvisoLimite}</span>`,
   ];
   const leyendaEl = document.getElementById('matriz-leyenda-html');
   if(leyendaEl) leyendaEl.innerHTML = chipsLeyenda.join('');
@@ -1565,8 +1573,8 @@ function dibujarMatrizRiesgo(){
       const callout = vigilarItems.length
         ? `<div style="margin-top:2px;font-size:10.5px;color:var(--riesgo-medio);line-height:1.3;">⚠ poca cobertura pese al riesgo: ${vigilarItems.slice(0,3).map(d=>_truncarEnPalabra(_nombreClaroTema(d.tema),30)).join(' · ')}</div>`
         : '';
-      resumenEl.innerHTML = `<div style="border-left:3px solid var(--riesgo-alto);padding:3px 10px;margin:8px 14px 2px;">
-        <div style="font-family:var(--f-display);font-size:12.5px;font-weight:600;color:var(--ink-1);line-height:1.3;">${headline}</div>
+      resumenEl.innerHTML = `<div style="border-left:3px solid var(--riesgo-alto);padding:2px 10px;margin:6px 14px 0;">
+        <div style="font-family:var(--f-display);font-size:12.5px;font-weight:600;color:var(--ink-1);line-height:1.25;">${headline}</div>
         ${callout}
       </div>`;
     }
@@ -1646,15 +1654,27 @@ function dibujarMatrizRiesgo(){
   // pantallas de alta densidad. Ahora es un triángulo real dibujado con <path> --
   // esquinas limpias, tamaño exacto, y un circulito de fondo sólido detrás (no un halo
   // de stroke) para que resalte igual sobre cualquier color de punto.
+  // CORRECCIÓN -- pedido explícito, verificado en captura real: "las flechitas
+  // (triángulos), no se logran apreciar con claridad". La causa no era el triángulo en
+  // sí sino la posición: el círculo de fondo (r 5.5) se dibujaba a solo 0.72*radio del
+  // centro del punto -- con puntos de radio 7-11px, esa insignia terminaba MONTADA
+  // encima del punto en vez de junto a él, casi del mismo tamaño, y las dos formas se
+  // leían como una sola mancha. Ahora la insignia se ancla por fuera del borde del
+  // punto (radio del punto + margen fijo), tangente en vez de superpuesta, y lleva su
+  // propio borde para separarse visualmente de cualquier color de fondo.
   const _triangulo = (cx,cy,r,haciaArriba) => haciaArriba
     ? `M ${cx} ${cy-r} L ${cx+r*0.9} ${cy+r*0.7} L ${cx-r*0.9} ${cy+r*0.7} Z`
     : `M ${cx} ${cy+r} L ${cx+r*0.9} ${cy-r*0.7} L ${cx-r*0.9} ${cy-r*0.7} Z`;
+  const _distInsignia = d => _radioPrincipalRadar(d) + 6;
+  const _cxInsignia = d => d.x + _distInsignia(d)*0.7071;
+  const _cyInsignia = d => d.y - _distInsignia(d)*0.7071;
   const gTendencia = g.filter(d=>!d.apagado && d.tendencia && d.tendencia!=='estable');
   gTendencia.append('circle')
-    .attr('cx',d=>d.x + _radioPrincipalRadar(d)*0.72).attr('cy',d=>d.y - _radioPrincipalRadar(d)*0.72).attr('r',5.5)
-    .attr('fill','var(--bg-1)').style('pointer-events','none');
+    .attr('cx',_cxInsignia).attr('cy',_cyInsignia).attr('r',6.5)
+    .attr('fill','var(--bg-1)').attr('stroke','var(--line-strong)').attr('stroke-width',1).attr('stroke-opacity',0.6)
+    .style('pointer-events','none');
   gTendencia.append('path')
-    .attr('d', d=> _triangulo(d.x + _radioPrincipalRadar(d)*0.72, d.y - _radioPrincipalRadar(d)*0.72, 3.6, d.tendencia==='subiendo'))
+    .attr('d', d=> _triangulo(_cxInsignia(d), _cyInsignia(d), 4.2, d.tendencia==='subiendo'))
     .attr('fill', d=>d.tendencia==='subiendo' ? 'var(--riesgo-alto)' : 'var(--riesgo-bajo)')
     .style('pointer-events','none');
 
@@ -1669,6 +1689,42 @@ function dibujarMatrizRiesgo(){
     svg.insert('circle', '.punto-tema').attr('class','prioridad-anillo-vivo')
       .attr('cx',focoCritico.x).attr('cy',focoCritico.y).attr('r',_radioPrincipalRadar(focoCritico)+4)
       .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
+
+    // CORRECCIÓN -- pedido explícito: "me gustaba lo de las líneas punteadas, habría
+    // forma de contar con eso de nuevo?". Antes había hasta 3 anotaciones flotantes
+    // (una por cada "quién se movió más") peleando por espacio y desbordándose en
+    // pantallas angostas -- por eso se quitaron. Ahora vuelve UNA sola, solo para el
+    // tema de mayor prioridad real (el mismo que ya nombra el titular en HTML arriba),
+    // así conecta visualmente el texto con su punto en el plano sin repetir la
+    // sobrecarga anterior. Se ancla en el lado del plano con más espacio libre (el
+    // opuesto a donde cae el punto) para minimizar choques con otros puntos.
+    const nombreFoco = _truncarEnPalabra(_nombreClaroTema(focoCritico.tema), 30);
+    const ladoDerecho = focoCritico.x < margen.izq + anchoUtil/2;
+    const anclaX = ladoDerecho ? margen.izq + anchoUtil - 6 : margen.izq + 6;
+    const anclaY = margen.arriba + 24;
+    const anchorTexto = ladoDerecho ? 'end' : 'start';
+
+    svg.append('line')
+      .attr('x1', anclaX).attr('y1', anclaY + 3)
+      .attr('x2', focoCritico.x).attr('y2', focoCritico.y)
+      .attr('stroke','var(--riesgo-alto)').attr('stroke-width',1).attr('stroke-dasharray','2 2').attr('opacity',0.55)
+      .style('pointer-events','none');
+
+    // fondo detrás de la etiqueta para que se lea sobre la cuadrícula/tinte de cuadrante
+    // -- ancho estimado por caracteres (fuente mono a 9px, ~5.3px/caracter) en vez de
+    // getBBox() para no depender de que el SVG ya esté medible en el DOM.
+    const textoFoco = `★ máxima prioridad: ${nombreFoco}`;
+    const anchoEstimado = textoFoco.length * 5.3;
+    svg.append('rect')
+      .attr('x', ladoDerecho ? anclaX-anchoEstimado-4 : anclaX-4).attr('y', anclaY-10)
+      .attr('width', anchoEstimado+8).attr('height', 14)
+      .attr('fill','var(--bg-1)').attr('opacity',0.82).style('pointer-events','none');
+
+    svg.append('text')
+      .attr('x', anclaX).attr('y', anclaY).attr('text-anchor', anchorTexto)
+      .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('font-weight','700')
+      .attr('fill','var(--riesgo-alto)').style('pointer-events','none')
+      .text(textoFoco);
   }
 }
 
