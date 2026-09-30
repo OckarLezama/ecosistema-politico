@@ -12,21 +12,43 @@ nunca se rellena con un valor por default para que "se vea completo".
 Uso: python3 calcular_pulso_nacional.py
 
 ROADMAP_PENDIENTE -- evaluación de este módulo como producto de inteligencia (2026-09-29),
-decisión explícita del usuario: primero construir todo lo que NO necesita IA de paga
-(etiquetas de confianza, sección "a vigilar", auditoría de aciertos). Se probó además una
-"síntesis ejecutiva" por reglas fijas (tensión + tema dominante + actor en movimiento) y se
-retiró el mismo día: al verla publicada, la mayoría de sus líneas resultaron ser solo eco de
-tarjetas que ya existen en la misma pantalla, no información nueva -- ver el comentario en
-calcular() donde se quitó. Quedan pendientes A PROPÓSITO, como "cereza del pastel" para
-retomar más adelante, las dos piezas que sí se benefician de un modelo de lenguaje real:
-  1. Síntesis con matices reales (razonamiento sobre el conjunto de señales, no una
-     plantilla de frases fijas -- la plantilla ya se probó y no fue suficiente).
-  2. Detección de patrones de ruido/contenido genérico que TODAVÍA no conocemos -- hoy se
+decisión explícita del usuario: primero construir todo lo que NO necesita IA de paga.
+Ya implementado por esa vía: etiquetas de confianza, sección "a vigilar", auditoría de
+aciertos, y el cruce de señales (¿el tema que domina la agenda comparte actor vinculado
+con quien más subió esta semana en el Tablero? -- ver actor_vinculado en top5_temas y
+a_vigilar). Se probó además una "síntesis ejecutiva" por reglas fijas (tensión + tema
+dominante + actor en movimiento) y se retiró el mismo día: al verla publicada, la mayoría
+de sus líneas resultaron ser solo eco de tarjetas que ya existen en la misma pantalla, no
+información nueva -- ver el comentario en calcular() donde se quitó.
+
+Con eso, lo que NO necesita IA de paga está agotado -- lo que queda pendiente A PROPÓSITO,
+como "cereza del pastel" para retomar más adelante, son las piezas que sí requieren un
+modelo de lenguaje real (llamada recurrente, aunque sea mínima -- ej. una vez por corte):
+
+  1. Síntesis con matices reales -- razonamiento sobre el CONJUNTO de señales (Top 5,
+     Tablero, a vigilar, cruce de señales, mañanera), no una plantilla de frases fijas
+     (la plantilla ya se probó y no fue suficiente). Debe decir algo que ninguna tarjeta
+     dice por separado: por qué importa, hacia dónde va, qué implica -- no repetir el
+     dato. Requiere: mandar el JSON ya calculado (no los CSV crudos) a un modelo con un
+     prompt que le pida esa lectura, en 2-4 líneas, citando de qué dato sale cada
+     afirmación (nada que el módulo no pueda respaldar con un campo real).
+
+  2. Detección de contradicción entre fuentes -- hoy 'medios_corroborantes' solo CUENTA
+     cuántos medios distintos cubren el mismo tema_id, nunca compara SI dicen lo mismo.
+     Un producto de inteligencia real señala cuando dos fuentes reportan versiones
+     distintas del mismo hecho (cifras distintas, una lo confirma y otra lo desmiente,
+     etc.) -- hoy esas discrepancias pasan inadvertidas, se cuentan como corroboración.
+     Requiere comparación semántica entre las notas de un mismo tema_id (no es tarea de
+     reglas fijas: hace falta que un modelo lea las notas y diga si concuerdan o no).
+
+  3. Detección de patrones de ruido/contenido genérico que TODAVÍA no conocemos -- hoy se
      atrapan uno por uno conforme aparecen (ver _es_nota_generica_en_vivo, _mananera_valida
      como ejemplos de parches a patrones YA vistos); un modelo generalizaría a patrones
-     nuevos sin esperar a que alguien los reporte.
-No es indispensable para que el producto funcione bien -- es la mejora que sí requiere
-gasto recurrente (aunque sea mínimo, ej. una llamada al día para la síntesis).
+     nuevos sin esperar a que alguien los reporte y avise.
+
+Ninguna de las 3 es indispensable para que el producto funcione bien tal como está --
+son la mejora que sí requiere gasto recurrente, y quedan aquí anotadas para no perder el
+hilo cuando se decida retomarlas.
 """
 import csv
 import json
