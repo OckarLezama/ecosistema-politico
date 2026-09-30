@@ -1174,6 +1174,30 @@ def calcular():
                            'n_alto_impacto': n_alto_impacto, 'n_medio_impacto': n_medio_impacto, 'n_bajo_impacto': n_bajo_impacto})
 
     # ================================================================
+    # ANOMALÍA ESTADÍSTICA -- pedido explícito: no basta con mostrar la tensión de hoy y
+    # el histórico de 4 semanas uno al lado del otro y esperar que el lector calcule a
+    # ojo si hoy es raro o normal. Esto compara la tensión de HOY contra la media y
+    # desviación estándar de los 27 días anteriores (el propio 'historico' ya calculado
+    # arriba, sin 'hoy') -- estadística simple sobre un dato real, sin IA. Se omite (None)
+    # si no hay suficiente historia real todavía o si la desviación da 0 (datos idénticos,
+    # no hay anomalía que detectar, y dividir entre 0 no es válido).
+    # ================================================================
+    MIN_DIAS_ANOMALIA = 10
+    tensiones_previas = [h['tension'] for h in historico[:-1] if h['tension'] is not None]
+    tension_anomalia = None
+    if tension is not None and len(tensiones_previas) >= MIN_DIAS_ANOMALIA:
+        media_prev = sum(tensiones_previas) / len(tensiones_previas)
+        varianza = sum((x - media_prev) ** 2 for x in tensiones_previas) / len(tensiones_previas)
+        desviacion = varianza ** 0.5
+        if desviacion > 0:
+            z = (tension - media_prev) / desviacion
+            nivel = 'alta' if z >= 2 else ('baja' if z <= -2 else 'normal')
+            tension_anomalia = {
+                'z': round(z, 2), 'nivel': nivel,
+                'media_periodo': round(media_prev, 1), 'dias_base': len(tensiones_previas),
+            }
+
+    # ================================================================
     # TABLERO DE ACTORES -- posición semanal en un mapa de 2 ejes, ambos REALES: volumen
     # de menciones verificadas (no solo vínculo tema-actor de tema_actores.csv, que es
     # temático y puede sobrar -- se exige mención real del nombre en el texto de la nota,
@@ -1495,6 +1519,7 @@ def calcular():
         'n_notas_ventana': n_notas_agenda,
         'baja_confianza': baja_confianza,
         'tension_nacional': tension,
+        'tension_anomalia': tension_anomalia,
         'categorias_dia': categorias_dia,
         'categorias_tendencia_4sem': categorias_tendencia_4sem,
         'top5_temas': top5,
