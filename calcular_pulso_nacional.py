@@ -1275,7 +1275,18 @@ def calcular():
         evs_semana = list(evs_semana.values())
         if not evs_semana:
             continue
-        evs_ayer = [e for e in evs_semana if e['_ts'] < inicio_hoy]
+        # CORRECCIÓN -- pedido explícito: "los actores deshabilitados no tienen la línea
+        # que trazó su movimiento -- eso debería verse". El corte "antes de hoy" (inicio_hoy)
+        # funciona para un actor ACTIVO hoy, pero para uno apagado (sin mención hoy)
+        # evs_semana y evs_ayer terminan siendo EXACTAMENTE el mismo conjunto de eventos
+        # (ninguno cae después de inicio_hoy porque no hubo nada hoy) -- x_lunes/y_lunes
+        # sale IDÉNTICO a x_hoy/y_hoy, o sea una línea de longitud cero, aunque el actor sí
+        # se haya movido antes de apagarse. Se usa el inicio de su ÚLTIMO día con actividad
+        # real como corte (coincide con inicio_hoy para un actor activo hoy -- sin cambio de
+        # comportamiento ahí), para que el tramo "antes" sí capture su recorrido previo.
+        ultimo_ts = max(e['_ts'] for e in evs_semana)
+        inicio_dia_ref = ultimo_ts.replace(hour=0, minute=0, second=0, microsecond=0)
+        evs_ayer = [e for e in evs_semana if e['_ts'] < inicio_dia_ref]
 
         def _peso(e):
             return PESO_IMPACTO_ACTOR[_impacto_de(float(e['intensidad']))]
