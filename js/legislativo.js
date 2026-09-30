@@ -1472,9 +1472,21 @@ function wireTooltipFlotanteLeg(){
   tt.id = 'leg-tooltip-flotante';
   document.body.appendChild(tt);
 
+  // CORRECCIÓN -- pedido explícito ("no veo el tooltip, dale el formato ya
+  // establecido") llevó a encontrar el bug real: el feed lateral (Pulso) se
+  // autodesplaza sin parar (ver scrollTop en feed.js) -- eso dispara eventos
+  // "scroll" constantemente, y como el listener de abajo escuchaba CUALQUIER
+  // scroll de CUALQUIER contenedor de la página (capture:true, sin filtrar),
+  // ocultaba el tooltip milisegundos después de mostrarse, siempre, en
+  // cualquier módulo que use .leg-tt -- no solo en Agenda. Ahora solo se
+  // oculta si el scroll es de la página misma o de un contenedor que
+  // realmente contiene al elemento anclado (no de un panel lateral sin
+  // relación, como el feed).
+  let elAnclado = null;
   const mostrar = (el)=>{
     const texto = el.dataset.tt;
     if(!texto) return;
+    elAnclado = el;
     tt.textContent = texto;
     tt.classList.add('visible');
     const rect = el.getBoundingClientRect();
@@ -1486,7 +1498,7 @@ function wireTooltipFlotanteLeg(){
     tt.style.left = left + 'px';
     tt.style.top = top + 'px';
   };
-  const ocultar = ()=>{ tt.classList.remove('visible'); };
+  const ocultar = ()=>{ elAnclado = null; tt.classList.remove('visible'); };
 
   document.addEventListener('pointerover', e=>{
     const el = e.target.closest && e.target.closest('.leg-tt');
@@ -1496,7 +1508,11 @@ function wireTooltipFlotanteLeg(){
     const el = e.target.closest && e.target.closest('.leg-tt');
     if(el) ocultar();
   });
-  document.addEventListener('scroll', ocultar, true);
+  document.addEventListener('scroll', e=>{
+    if(!elAnclado) return;
+    if(e.target === document || e.target === window) { ocultar(); return; }
+    if(e.target.contains && e.target.contains(elAnclado)) ocultar();
+  }, true);
 }
 
 function initLegislativo(){

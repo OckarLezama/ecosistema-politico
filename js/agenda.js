@@ -1511,10 +1511,24 @@ function dibujarMatrizRiesgo(){
     .attr('transform','rotate(-90)')
     .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
     .text(`↑ mayor riesgo relativo`);
-  const gInfo = svg.append('g').attr('transform',`translate(${margen.izq+anchoUtil-2},${margen.arriba-20})`).style('cursor','help');
-  gInfo.append('circle').attr('r',7).attr('fill','none').attr('stroke','var(--ink-3)').attr('stroke-width',1);
-  gInfo.append('text').attr('text-anchor','middle').attr('dy','0.32em').attr('font-family','var(--f-mono)').attr('font-size','9px').attr('font-weight','700').attr('fill','var(--ink-3)').text('i');
-  gInfo.append('title').text('La posición de cada punto es un ranking dentro del corte de hoy (percentil de riesgo y de volumen entre los temas activos), no un valor absoluto. No es directamente comparable entre días distintos: un mismo tema puede cambiar de cuadrante de un día a otro solo porque el resto de la agenda cambió, aunque él se mantenga igual.');
+  // CORRECCIÓN -- pedido explícito: "tiene formato genérico, darle el formato que ya
+  // está establecido". El <title> nativo del navegador (tooltip gris del sistema
+  // operativo) no es el formato del sitio -- el sitio ya tiene un tooltip propio
+  // compartido (#leg-tooltip-flotante, clase .leg-tt + atributo data-tt, ver
+  // wireTooltipFlotanteLeg() en legislativo.js), usado en Legislativo y Portada.
+  // Se reusa aquí en vez de inventar un tercer estilo de tooltip. wireTooltipFlotanteLeg
+  // ya protege contra doble inicialización, así que llamarla aquí también es seguro
+  // aunque el usuario nunca haya abierto Legislativo en la sesión.
+  if(typeof wireTooltipFlotanteLeg === 'function') wireTooltipFlotanteLeg();
+  const gInfo = svg.append('g').attr('class','leg-tt')
+    .attr('data-tt','El plano es un ranking del corte de hoy (percentil de riesgo y volumen entre los temas activos), no un valor absoluto -- no comparable directamente entre días distintos.')
+    .attr('transform',`translate(${margen.izq+anchoUtil-2},${margen.arriba-20})`).style('cursor','help');
+  // CORRECCIÓN -- verificado con la herramienta: "fill:none" excluye del hover el
+  // interior del círculo (solo el borde de 1px respondía), así que casi nadie lograba
+  // activar el tooltip. pointer-events:all fuerza a que toda el área responda, no
+  // solo lo pintado.
+  gInfo.append('circle').attr('r',7).attr('fill','none').attr('stroke','var(--ink-3)').attr('stroke-width',1).style('pointer-events','all');
+  gInfo.append('text').attr('text-anchor','middle').attr('dy','0.32em').attr('font-family','var(--f-mono)').attr('font-size','9px').attr('font-weight','700').attr('fill','var(--ink-3)').style('pointer-events','none').text('i');
 
   // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
   // colores, no indicamos qué significa cada color". CORRECCIÓN de esta ronda:
