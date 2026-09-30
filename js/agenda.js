@@ -1003,14 +1003,14 @@ function renderMatrizYLista(){
   if(btnAnalisis && !btnAnalisis.dataset.conectado){ btnAnalisis.addEventListener('click', abrirModalAnalisisMatriz); btnAnalisis.dataset.conectado='1'; }
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
-    // CORRECCIÓN -- pedido explícito: la barra de "QUIÉN SE MOVIÓ MÁS" con su línea de
-    // arriba y de abajo se sentía como un cartel pegado al gráfico, no parte de él.
-    // Tomando como referencia las imágenes que mandó el usuario (anotaciones de texto
-    // CON línea guía apuntando directo al punto, estilo Economist/Tableau), esa lectura
-    // ahora se dibuja DENTRO del lienzo, como anotaciones ancladas a sus propios puntos
-    // -- ver dibujarMatrizRiesgo(). Ya no hay una franja de texto aparte.
+    // CORRECCIÓN -- pedido explícito: la tarjeta con fondo+borde propio (.matriz-lienzo)
+    // quedaba ANIDADA dentro de la tarjeta que YA pone .graph-card alrededor de todo
+    // #agenda-contenido -- dos bordes/fondos encimados, doble caja. Genealogía no hace
+    // eso: dibuja su cuadrícula (una sola escala, 20x20, línea fina) directo dentro del
+    // propio SVG con un <pattern>, sin envolver nada en una tarjeta extra. Se iguala
+    // ese mismo criterio acá -- ver el patrón "matriz-grid" al inicio de dibujarMatrizRiesgo().
     document.getElementById('matriz-lista-zona').innerHTML =
-      `<div class="matriz-lienzo" style="flex:1;min-height:0;position:relative;"><svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div></div>`;
+      `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
     dibujarMatrizRiesgo();
   }
 }
@@ -1295,21 +1295,37 @@ function dibujarMatrizRiesgo(){
   const margen = {izq:46, der:22, arriba:62, abajo:52};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
-  const vecesMax = Math.max(3, ...datos.map(d=>d.veces));
-  const xDe = veces => margen.izq + (Math.min(veces, vecesMax)/vecesMax) * anchoUtil;
-  const yDe = riesgo => margen.arriba + (1 - Math.max(0,Math.min(10,riesgo))/10) * altoUtil;
 
-  // umbral de "alto volumen" -- mediana real de los temas VIVOS que se están mostrando,
-  // no un número fijo inventado, para que el corte tenga sentido con el corte de datos
-  // actual (un día tranquilo y uno agitado no deberían usar el mismo umbral).
-  const vecesVivos = datos.filter(d=>!d.apagado).map(d=>d.veces).sort((a,b)=>a-b);
-  const vecesUmbral = vecesVivos.length ? Math.max(1, vecesVivos[Math.floor(vecesVivos.length/2)]) : 1;
-  const riesgoUmbral = 7;
+  // CORRECCIÓN -- pedido explícito: "cuando el filtro está en todos... queda mucho
+  // hacia abajo, no luce por la distribución". Causa real: con valor absoluto, la
+  // mayoría de los temas de agenda tienen riesgo 5-9 y pocas notas -- así que TODOS
+  // caían apretados en la misma banda alta/izquierda del plano, dejando vacía la mitad
+  // del lienzo sin importar cuántos puntos hubiera. La posición ahora es por RANKING
+  // (percentil dentro del corte actual), no por valor crudo: el de mayor riesgo
+  // siempre queda arriba del todo y el de menor siempre abajo del todo, sin importar
+  // si los valores reales están todos entre 5 y 9 o repartidos de 0 a 10 -- el lienzo
+  // completo se usa siempre. El valor real sigue intacto en el tooltip.
+  const nDatos = datos.length;
+  [...datos].sort((a,b)=> a.veces-b.veces || a.tema.id.localeCompare(b.tema.id))
+    .forEach((d,i)=> d._rankX = nDatos>1 ? i/(nDatos-1) : 0.5);
+  [...datos].sort((a,b)=> b.riesgoReal-a.riesgoReal || a.tema.id.localeCompare(b.tema.id))
+    .forEach((d,i)=> d._rankY = nDatos>1 ? i/(nDatos-1) : 0.5);
+  const xDe = d => margen.izq + d._rankX * anchoUtil;
+  const yDe = d => margen.arriba + d._rankY * altoUtil;
+  const xMediana = margen.izq + anchoUtil*0.5, yMediana = margen.arriba + altoUtil*0.5;
 
-  // ---- fondo: cuadrantes de prioridad (misma idea que la matriz original, pero con
-  // ejes que sí varían con datos reales) ----
+  // ---- fondo de cuadrícula, una sola escala -- mismo criterio que Genealogía
+  // (#geneal-grid): un <pattern> dibujado directo en el SVG, sin envolver el gráfico
+  // en una tarjeta con su propio fondo/borde (eso duplicaba la caja que ya pone
+  // .graph-card alrededor de todo el panel). ----
   const defs = svg.append('defs');
-  svg.append('rect').attr('x',xDe(vecesUmbral)).attr('y',margen.arriba).attr('width',margen.izq+anchoUtil-xDe(vecesUmbral)).attr('height',yDe(riesgoUmbral)-margen.arriba)
+  const patGrid = defs.append('pattern').attr('id','matriz-grid').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
+  patGrid.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
+  svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#matriz-grid)');
+
+  // ---- fondo: cuadrantes de prioridad (arriba/derecha = mitad de mayor riesgo y
+  // mayor volumen dentro del corte actual) ----
+  svg.append('rect').attr('x',xMediana).attr('y',margen.arriba).attr('width',margen.izq+anchoUtil-xMediana).attr('height',yMediana-margen.arriba)
     .attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.05);
   svg.append('text').attr('x',margen.izq+anchoUtil-4).attr('y',margen.arriba+13).attr('text-anchor','end')
     .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--riesgo-alto)').style('pointer-events','none')
@@ -1330,10 +1346,11 @@ function dibujarMatrizRiesgo(){
     .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
     .text('● color = categoría  ·  borde = riesgo');
 
-  // líneas guía de los umbrales (discretas, no compiten visualmente con los puntos)
-  svg.append('line').attr('x1',xDe(vecesUmbral)).attr('x2',xDe(vecesUmbral)).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil)
+  // líneas guía de los umbrales -- ahora es literalmente la mitad del corte actual
+  // (percentil 50), consistente con el ranking usado para posicionar los puntos
+  svg.append('line').attr('x1',xMediana).attr('x2',xMediana).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil)
     .attr('stroke','var(--line)').attr('stroke-dasharray','3 4');
-  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',yDe(riesgoUmbral)).attr('y2',yDe(riesgoUmbral))
+  svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',yMediana).attr('y2',yMediana)
     .attr('stroke','var(--line)').attr('stroke-dasharray','3 4');
 
   // ejes
@@ -1341,18 +1358,18 @@ function dibujarMatrizRiesgo(){
   svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',margen.arriba+altoUtil).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)');
   svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
     .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
-    .text(`volumen reciente (notas en ${VENTANA_RADAR_DIAS}d) →`);
+    .text(`más notas recientes (${VENTANA_RADAR_DIAS}d) →`);
   svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',14).attr('text-anchor','middle')
     .attr('transform','rotate(-90)')
     .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
-    .text(`↑ riesgo reciente`);
+    .text(`↑ mayor riesgo relativo`);
 
   // ---- posición ancla de cada punto + resolución de colisiones (d3-force) --
   // con dos ejes reales y continuos el amontonamiento es mucho menor que con el radar
   // (ahí casi todo caía en el mismo anillo de riesgo alto); aun así varios temas
   // pueden compartir (veces, riesgo) exactos, así que se mantiene la simulación.
   datos.forEach(d=>{
-    d.xAncla = xDe(d.veces); d.yAncla = yDe(d.riesgoReal);
+    d.xAncla = xDe(d); d.yAncla = yDe(d);
     d.x = d.xAncla; d.y = d.yAncla;
   });
   if(datos.length > 1 && typeof d3.forceSimulation === 'function'){
@@ -1431,6 +1448,14 @@ function dibujarMatrizRiesgo(){
       .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',_radioPrincipalRadar(focoCritico)+3)
       .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
   }
+  // pedido explícito: "más animación en los círculos" -- sin repetir el error de
+  // animar una fracción grande del plano. Los siguientes 2 de mayor prioridad real
+  // (después del foco crítico, que ya tiene su aro) respiran muy suave -- escala
+  // sutil, no un aro nuevo -- para dar algo de vida sin competir por atención con el
+  // foco crítico ni ensuciar el resto del plano. 3 puntos animados de 45, no más.
+  datos.filter(d=>!d.apagado && d!==focoCritico).slice(0,2).forEach(d=>{
+    g.filter(dd=>dd===d).select('circle.nodo-principal').classed('pulso-halo-vivo', true);
+  });
 
   // ---- "QUIÉN SE MOVIÓ MÁS" -- pedido explícito: ya no es una franja de texto con
   // línea de arriba y de abajo, pegada como cartel encima del gráfico. Siguiendo las
@@ -1442,10 +1467,16 @@ function dibujarMatrizRiesgo(){
     .sort((a,b)=> Math.abs(b.riesgoReal-b.riesgoAnterior) - Math.abs(a.riesgoReal-a.riesgoAnterior)).slice(0,3);
   movidos.forEach((d,i)=>{
     const subeIcono = d.riesgoReal > d.riesgoAnterior;
+    // CORRECCIÓN -- el texto (hasta ~44 caracteres en monoespaciada) mide bastante más
+    // que el margen de 90px que decidía el lado del ancla -- una etiqueta cerca del
+    // borde derecho pero fuera de esos 90px seguía anclada a la izquierda y su texto
+    // se salía del lienzo por la derecha. El lado ahora es simplemente en qué mitad
+    // del plano cae el punto, y el texto se acorta más para caber cómodo de cualquier
+    // lado sin medir su ancho real.
     const yEtiqueta = 12 + i*15;
-    const xEtiqueta = Math.max(margen.izq+70, Math.min(width-margen.der-70, d.x));
-    const anchor = xEtiqueta > width - margen.der - 90 ? 'end' : 'start';
-    const nombreCorto = d.tema.nombre.length>44 ? d.tema.nombre.slice(0,43)+'…' : d.tema.nombre;
+    const xEtiqueta = Math.max(margen.izq+8, Math.min(width-margen.der-8, d.x));
+    const anchor = xEtiqueta > margen.izq + anchoUtil/2 ? 'end' : 'start';
+    const nombreCorto = d.tema.nombre.length>34 ? d.tema.nombre.slice(0,33)+'…' : d.tema.nombre;
     const gAnot = svg.append('g').attr('class','anotacion-movimiento').style('cursor','pointer')
       .on('click', ()=> abrirFichaTema(d.tema.id));
     gAnot.append('line')
