@@ -994,14 +994,22 @@ function renderMatrizYLista(){
         <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${analisisGlobalAgendaIA}</p>
       </div>` : '';
 
-  const franjaMovimiento = vistaMatrizInterna==='cuadricula' ? franjaMovimientoRadar() : '';
-  cont.innerHTML = bloqueGlobal + franjaMovimiento + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;"></div>`;
+  // CORRECCIÓN -- pedido explícito: "QUIÉN SE MOVIÓ MÁS" vivía en una franja aparte,
+  // flotando arriba del lienzo de la matriz, en vez de sentirse parte del mismo
+  // producto. Ahora entra DENTRO de la misma tarjeta (mismo fondo de cuadrícula,
+  // mismo borde) que el gráfico de dispersión -- un solo lienzo, no dos piezas.
+  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;display:flex;flex-direction:column;"></div>`;
   const btnAnalisis = document.getElementById('agenda-btn-analisis');
   if(btnAnalisis && !btnAnalisis.dataset.conectado){ btnAnalisis.addEventListener('click', abrirModalAnalisisMatriz); btnAnalisis.dataset.conectado='1'; }
-  cont.querySelectorAll('[data-tema-mov]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.temaMov)));
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
-    document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
+    const franjaMovimiento = franjaMovimientoRadar();
+    document.getElementById('matriz-lista-zona').innerHTML =
+      `<div class="matriz-lienzo" style="flex:1;min-height:0;display:flex;flex-direction:column;">` +
+        franjaMovimiento +
+        `<div style="flex:1;min-height:0;position:relative;"><svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div></div>` +
+      `</div>`;
+    cont.querySelectorAll('[data-tema-mov]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.temaMov)));
     dibujarMatrizRiesgo();
   }
 }
@@ -1224,7 +1232,7 @@ function franjaMovimientoRadar(){
   const movidos = calcularDatosRadarAgenda(temasBase).filter(d=>!d.apagado && d.riesgoReal!==d.riesgoAnterior);
   if(!movidos.length) return '';
   const top = movidos.sort((a,b)=> Math.abs(b.riesgoReal-b.riesgoAnterior) - Math.abs(a.riesgoReal-a.riesgoAnterior)).slice(0,3);
-  return `<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:7px 14px;font-size:10.5px;color:var(--ink-2);border-bottom:1px solid var(--line);">
+  return `<div style="flex-shrink:0;display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:7px 14px;font-size:10.5px;color:var(--ink-2);border-bottom:1px solid var(--line-strong);">
     <span class="eyebrow" style="flex-shrink:0;">QUIÉN SE MOVIÓ MÁS · ${VENTANA_RADAR_DIAS}D</span>
     ${top.map(d=>{
       const sube = d.riesgoReal > d.riesgoAnterior;
@@ -1403,14 +1411,40 @@ function dibujarMatrizRiesgo(){
   // estado que significa "esto no es una señal activa". Los apagados ahora son un
   // punto gris chico, plano, sin borde de color -- inconfundible de un tema vivo a
   // cualquier nivel de opacidad.
+  // "VIDA" -- pedido explícito de darle dinamismo a los nodos. La lección de los
+  // intentos anteriores fue clara: animar MUCHOS puntos a la vez (halos, aros,
+  // trayectorias) se ve como ruido, no como vida. Acá la animación es de dos tipos,
+  // ninguno permanente ni repetido sobre todos los puntos:
+  // 1) entrada escalonada -- los puntos "aparecen" creciendo desde radio 0, uno tras
+  //    otro (10ms de diferencia), UNA sola vez por cada dibujo/filtro -- transmite
+  //    "esto se acaba de armar" sin quedar animando para siempre.
+  // 2) un único pulso -- reservado SOLO para el punto de mayor prioridad real ahora
+  //    mismo (el primero de "datos", ya viene ordenado por riesgo+volumen), como foco
+  //    de atención. Uno solo, no 9 ni 14.
   g.filter(d=>d.apagado).append('circle').attr('class','nodo-principal')
-    .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d))
-    .attr('fill','var(--ink-3)').attr('fill-opacity',0.6).attr('stroke','none');
+    .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',0)
+    .attr('fill','var(--ink-3)').attr('fill-opacity',0.6).attr('stroke','none')
+    .transition().duration(320).delay((d,i)=>i*9).attr('r', d=>_radioPrincipalRadar(d));
 
-  g.filter(d=>!d.apagado).append('circle').attr('class','nodo-principal').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d))
+  g.filter(d=>!d.apagado).append('circle').attr('class','nodo-principal').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',0)
     .attr('fill', d=>colorCategoria(d.categoria)).attr('fill-opacity', 0.85)
     .attr('stroke', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('stroke-width', 1.5)
-    .style('transition','r .12s');
+    .style('transition','r .12s')
+    .transition().duration(380).delay((d,i)=>i*9).ease(d3.easeBackOut ? d3.easeBackOut.overshoot(1.6) : d3.easeCubicOut)
+    .attr('r', d=>_radioPrincipalRadar(d));
+
+  const focoCritico = datos.find(d=>!d.apagado);
+  if(focoCritico){
+    // CORRECCIÓN -- usar el nombre del keyframe en 'animation' NO basta: la regla
+    // .pulso-tablero-ping en styles.css trae transform-box:fill-box + transform-origin:
+    // center, indispensable para que el scale() del keyframe crezca desde el centro
+    // del propio círculo y no desde la esquina 0,0 de todo el SVG (por eso, sin la
+    // clase, el aro terminaba lejísimos de su punto real). Hay que aplicar la CLASE,
+    // no solo la animación.
+    g.filter(d=>d===focoCritico).insert('circle','.nodo-principal').attr('class','foco-critico-radar pulso-tablero-ping')
+      .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',_radioPrincipalRadar(focoCritico)+3)
+      .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
+  }
 }
 
 let interpretacionMatrizIA = {};
