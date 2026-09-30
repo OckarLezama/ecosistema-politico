@@ -122,6 +122,25 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),
   var(--bg-0);
 }
+/* mismo lienzo de cuadritos que ya usa Legislativo (.reforma-lienzo) -- reutilizado
+   tal cual (misma cuadrícula fina 13px + gruesa 65px, misma opacidad) para que la
+   matriz de Agenda comparta el lenguaje visual del resto del sitio. */
+.matriz-lienzo{
+  position:relative; background-color:var(--bg-1); border-radius:var(--radius-s);
+  border:1px solid var(--line); overflow:hidden;
+}
+.matriz-lienzo::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px),
+    linear-gradient(var(--line-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-strong) 1px, transparent 1px);
+  background-size: 13px 13px, 13px 13px, 65px 65px, 65px 65px;
+  opacity:.22; pointer-events:none;
+}
+.matriz-lienzo > *{ position:relative; }
+
 .graph-empty-state{
   height:560px; display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:6px; color:var(--ink-3); text-align:center;
