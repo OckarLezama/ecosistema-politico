@@ -234,6 +234,11 @@ function abrirFichaTema(temaId){
 let categoriaFiltroAgenda = '';
 let impactoFiltroAgenda = '';
 let soloAgendaNacional = true;
+let busquedaLista = ''; // pedido explícito: "es una lista interminable... no hay para
+// buscar" -- filtro de texto libre sobre el nombre del tema, solo para la vista Lista.
+let ordenLista = 'riesgo'; // 'riesgo' | 'volumen' | 'categoria' -- columna activa de orden
+// en la vista Lista (clic en el encabezado la cambia; clic de nuevo invierte dirección).
+let ordenListaInvertido = false;
 
 let vistaAgenda = 'matriz';
 let temasDisponiblesActuales = [];
@@ -510,9 +515,81 @@ function renderNotasAgenda(){
       `<span style="white-space:nowrap;"><span class="legend-dot" style="background:${color}"></span>${texto}</span>`).join('');
   }
 
-  cont.innerHTML = `<svg id="notas-svg" style="width:100%;flex:1;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
+  // ---- CORRECCIÓN -- pedido explícito: "Notas" abría directo el grafo de actores del
+  // tema, sin mostrar ninguna nota real ni su frecuencia -- el nombre de la pestaña no
+  // correspondía a lo que entregaba. Se agregan dos piezas de señal real, sin IA de
+  // pago: (1) un top 10 de notas de mayor impacto de TODA la agenda nacional (no por
+  // tema -- es una capa de granularidad que no existía en ningún lado del sitio, la
+  // Matriz agrega por tema, esto es a nivel de nota individual), consolidando near-
+  // duplicados (misma nota cubierta por varios medios) con el mismo criterio que ya usa
+  // la ficha de tema; y (2) un sparkline de continuidad del tema seleccionado -- cuántos
+  // de los últimos 14 días tuvieron nota real, para distinguir cobertura sostenida de un
+  // pico aislado con silencio después (información que antes no se podía leer en ningún
+  // lado de Notas ni Genealogía).
+  const bloqueTop10 = _bloqueTop10NotasImpacto(temasBase);
+  const bloqueContinuidad = `<div style="padding:6px 14px 2px;flex:none;">${_sparklineContinuidadTema(temaNotasSeleccionado)}</div>`;
+
+  cont.innerHTML = bloqueTop10 + bloqueContinuidad +
+    `<svg id="notas-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
+
+  cont.querySelectorAll('.nota-top10-item').forEach(el=> el.addEventListener('click', ()=>{
+    temaNotasSeleccionado = el.dataset.tema;
+    renderNotasAgenda();
+  }));
 
   dibujarNotasConGrafoReal();
+}
+
+function _bloqueTop10NotasImpacto(temasBase){
+  const hace14 = new Date(); hace14.setDate(hace14.getDate()-VENTANA_RADAR_DIAS);
+  const fechaCorte = hace14.toISOString().slice(0,10);
+  const idsNacional = new Set(temasBase.filter(t=>Number(t.nivel_relevancia)===1).map(t=>t.id));
+  const evsRecientes = ECOSISTEMA.eventos.filter(e=> idsNacional.has(e.tema_id) && e.fecha>=fechaCorte);
+  // mismo criterio de consolidación que ya usa la ficha de tema/Genealogía -- sin esto,
+  // una sola noticia grande cubierta por 5 medios distintos ocuparía 5 de los 10 lugares.
+  const top10 = consolidarNotasPorSimilitud(evsRecientes)
+    .sort((a,b)=> Number(b.intensidad)-Number(a.intensidad) || b.fecha.localeCompare(a.fecha))
+    .slice(0,10);
+  if(!top10.length) return '';
+  const nivelNota = i => i>=7 ? {t:'ALTO',c:'var(--riesgo-alto)'} : i>=4 ? {t:'MEDIO',c:'var(--riesgo-medio)'} : {t:'BAJO',c:'var(--riesgo-bajo)'};
+  const filas = top10.map(n=>{
+    const tema = getTema(n.tema_id);
+    const niv = nivelNota(Number(n.intensidad));
+    const cobertura = n.cobertura>1 ? ` <span style="color:var(--ink-3);">· ${n.cobertura} medios</span>` : '';
+    return `<div class="nota-top10-item" data-tema="${n.tema_id}" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-top:1px solid var(--line);cursor:pointer;">
+      <span style="font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:${niv.c};border:1px solid ${niv.c};border-radius:99px;padding:1px 6px;white-space:nowrap;flex-shrink:0;">${niv.t}</span>
+      <span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);white-space:nowrap;flex-shrink:0;">${n.fecha}</span>
+      <span style="font-size:11px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${n.descripcion}${cobertura}</span>
+      <span style="font-size:9.5px;color:var(--ink-2);white-space:nowrap;flex-shrink:0;">${tema ? _truncarEnPalabra(_nombreClaroTema(tema),20) : ''}</span>
+    </div>`;
+  }).join('');
+  return `<div class="contexto-tema-box" style="margin:8px 14px 0;flex:none;max-height:200px;overflow-y:auto;">
+    <div class="eyebrow">Top 10 notas de mayor impacto · agenda nacional (${VENTANA_RADAR_DIAS}d)</div>
+    ${filas}
+  </div>`;
+}
+
+function _sparklineContinuidadTema(temaId){
+  if(!temaId) return '';
+  const dias = [];
+  for(let i=VENTANA_RADAR_DIAS-1; i>=0; i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    dias.push(d.toISOString().slice(0,10));
+  }
+  const evsTema = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId);
+  const conteoPorDia = dias.map(f=> evsTema.filter(e=>e.fecha===f).length);
+  const maxConteo = Math.max(...conteoPorDia, 1);
+  const diasConActividad = conteoPorDia.filter(c=>c>0).length;
+  const barras = conteoPorDia.map(c=>
+    `<div title="${c} nota${c!==1?'s':''}" style="flex:1;height:${Math.max(8,(c/maxConteo)*100)}%;background:${c>0?'var(--teal)':'var(--line-strong)'};border-radius:1px;opacity:${c>0?0.9:0.4};"></div>`
+  ).join('');
+  // continuidad -- días con nota real de los últimos 14, no acumulado histórico: un tema
+  // con 1 pico y silencio después se ve MUY distinto de uno con cobertura sostenida,
+  // aunque ambos puedan tener el mismo total de notas.
+  return `<div style="display:flex;flex-direction:column;gap:3px;">
+    <div style="font-size:9px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;">continuidad -- ${diasConActividad}/${VENTANA_RADAR_DIAS}d con nota real</div>
+    <div style="display:flex;align-items:flex-end;gap:1.5px;height:22px;">${barras}</div>
+  </div>`;
 }
 
 function dibujarNotasConGrafoReal(){
@@ -857,34 +934,79 @@ function renderListaAgenda(){
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
 
-  // ORDEN CORREGIDO -- pedido explícito: antes ordenaba por 'peso_politico', un campo
-  // que se asigna una sola vez al crear el tema y casi nunca se vuelve a tocar (98% de
-  // los temas reales quedan congelados en el valor por default, ver nota en
-  // calcularDatosRadarAgenda). Ahora ordena por riesgo + volumen REAL de los últimos 14
-  // días -- mismo cálculo que ya usa el Radar, para que Lista y Radar nunca se
-  // contradigan entre sí sobre qué es lo más relevante ahora mismo.
-  const datosLista = calcularDatosRadarAgenda(temasBase)
-    .sort((a,b)=> (b.riesgoReal+b.veces) - (a.riesgoReal+a.veces));
+  let datosLista = calcularDatosRadarAgenda(temasBase);
 
-  const cont = document.getElementById('matriz-lista-zona') || document.getElementById('agenda-contenido');
-  if(!datosLista.length){
-    cont.innerHTML = `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">Sin temas con este filtro</div>`;
-    return;
+  // CORRECCIÓN -- pedido explícito, análisis crítico: "es una lista interminable, no hay
+  // KPI, no hay para buscar, ¿en verdad aporta inteligencia?". El KPI ya existe arriba
+  // (Alto/Medio/Bajo impacto, agenda-kpis) -- lo que de verdad faltaba era poder
+  // encontrar un tema puntual sin hacer scroll ciego por los 71, y poder reordenar por
+  // la columna que importe en ese momento (no siempre es riesgo+volumen). Se agrega
+  // buscador de texto libre (nombre del tema) y encabezado clickeable para cambiar el
+  // criterio de orden -- clic de nuevo invierte la dirección.
+  if(busquedaLista.trim()){
+    const q = busquedaLista.trim().toLowerCase();
+    datosLista = datosLista.filter(d=> d.tema.nombre.toLowerCase().includes(q));
   }
   const nivelRiesgoLista = r => r>=7?'alto':r>=4?'medio':'bajo';
+  const COMPARADORES = {
+    riesgo: (a,b)=> (b.riesgoReal+b.veces) - (a.riesgoReal+a.veces),
+    volumen: (a,b)=> b.veces - a.veces,
+    categoria: (a,b)=> a.tema.categoria.localeCompare(b.tema.categoria) || a.tema.nombre.localeCompare(b.tema.nombre),
+  };
+  datosLista.sort(COMPARADORES[ordenLista] || COMPARADORES.riesgo);
+  if(ordenListaInvertido) datosLista.reverse();
+
+  const cont = document.getElementById('matriz-lista-zona') || document.getElementById('agenda-contenido');
   const ICONO_TENDENCIA_LISTA = {subiendo:'↑', bajando:'↓', estable:'→'};
-  cont.innerHTML = `<div class="lista-agenda">${datosLista.map(d=>{
-    const t = d.tema;
-    const color = COLOR_IMPACTO_CACHE[nivelRiesgoLista(d.riesgoReal)];
-    const dias = diasSinActividad(t.id);
-    const estadoTexto = dias===null ? 'Sin datos' : dias<=30 ? `Última nota hace ${dias}d` : `Sin actividad reciente (${dias}d)`;
-    const tendenciaTxt = (d.tendencia && !d.apagado) ? ` ${ICONO_TENDENCIA_LISTA[d.tendencia]}` : '';
-    return `<div class="lista-item" style="border-left-color:${color};cursor:pointer;" data-tema="${t.id}">
-      <div class="lista-nombre">${t.nombre}</div>
-      <div class="lista-meta">${t.categoria} · Riesgo ${d.riesgoReal}/10${tendenciaTxt} · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS}d · desde ${d.primeraMencion||'—'} · ${estadoTexto}</div>
+  const COLS = [
+    {key:'riesgo', label:'Riesgo/volumen'},
+    {key:'volumen', label:'Volumen'},
+    {key:'categoria', label:'Categoría'},
+  ];
+  const barraControles = `
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);flex:none;flex-wrap:wrap;">
+      <input type="text" id="lista-buscador" placeholder="Buscar tema..." value="${busquedaLista.replace(/"/g,'&quot;')}"
+        style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:5px 9px;font-size:12px;width:200px;">
+      <span style="font-size:9px;color:var(--ink-3);font-family:var(--f-mono);text-transform:uppercase;">ordenar por</span>
+      <div style="display:flex;gap:4px;">
+        ${COLS.map(c=>`<button class="lista-orden-btn${ordenLista===c.key?' activo':''}" data-orden="${c.key}"
+          style="font-size:10.5px;padding:4px 9px;border-radius:99px;border:1px solid ${ordenLista===c.key?'var(--teal)':'var(--line-strong)'};background:${ordenLista===c.key?'rgba(76,193,186,0.12)':'var(--bg-2)'};color:${ordenLista===c.key?'var(--teal)':'var(--ink-2)'};cursor:pointer;">
+          ${c.label}${ordenLista===c.key?(ordenListaInvertido?' ↑':' ↓'):''}</button>`).join('')}
+      </div>
+      <span style="margin-left:auto;font-size:9.5px;color:var(--ink-3);font-family:var(--f-mono);white-space:nowrap;">${datosLista.length} tema${datosLista.length!==1?'s':''}</span>
     </div>`;
-  }).join('')}</div>`;
+
+  if(!datosLista.length){
+    cont.innerHTML = barraControles + `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">${busquedaLista.trim() ? 'Sin resultados para "'+busquedaLista+'"' : 'Sin temas con este filtro'}</div>`;
+  } else {
+    cont.innerHTML = barraControles + `<div class="lista-agenda">${datosLista.map(d=>{
+      const t = d.tema;
+      const color = COLOR_IMPACTO_CACHE[nivelRiesgoLista(d.riesgoReal)];
+      const dias = diasSinActividad(t.id);
+      const estadoTexto = dias===null ? 'Sin datos' : dias<=30 ? `Última nota hace ${dias}d` : `Sin actividad reciente (${dias}d)`;
+      const tendenciaTxt = (d.tendencia && !d.apagado) ? ` ${ICONO_TENDENCIA_LISTA[d.tendencia]}` : '';
+      return `<div class="lista-item" style="border-left-color:${color};cursor:pointer;" data-tema="${t.id}">
+        <div class="lista-nombre">${t.nombre}</div>
+        <div class="lista-meta">${t.categoria} · Riesgo ${d.riesgoReal}/10${tendenciaTxt} · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS}d · desde ${d.primeraMencion||'—'} · ${estadoTexto}</div>
+      </div>`;
+    }).join('')}</div>`;
+  }
   cont.querySelectorAll('.lista-item').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
+
+  const buscadorEl = document.getElementById('lista-buscador');
+  if(buscadorEl){
+    buscadorEl.addEventListener('input', ()=>{ busquedaLista = buscadorEl.value; renderListaAgenda(); });
+    // el foco se pierde en cada re-render (innerHTML se reconstruye) -- se devuelve al
+    // campo y al final del texto para que escribir no se sienta cortado a cada letra.
+    buscadorEl.focus();
+    const v = buscadorEl.value; buscadorEl.value=''; buscadorEl.value = v;
+  }
+  cont.querySelectorAll('.lista-orden-btn').forEach(el=> el.addEventListener('click', ()=>{
+    const key = el.dataset.orden;
+    ordenListaInvertido = (ordenLista === key) ? !ordenListaInvertido : false;
+    ordenLista = key;
+    renderListaAgenda();
+  }));
 }
 const COLOR_IMPACTO_CACHE = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
 
@@ -925,61 +1047,6 @@ function renderAgendaGrid(){
   if(vistaAgenda==='genealogia'){ renderGenealogiaAgenda(); return; }
 }
 
-function narrativaMatrizAgenda(crudos){
-  if(!crudos.length) return 'Sin actividad relevante en los últimos 14 días.';
-  const top = crudos[0];
-  const subiendo = crudos.filter(c=>c.tendencia==='subiendo');
-  const bajando = crudos.filter(c=>c.tendencia==='bajando');
-  const conteoCategoria = {};
-  crudos.forEach(c=> conteoCategoria[c.tema.categoria] = (conteoCategoria[c.tema.categoria]||0)+1);
-  const [catDominante, nCat] = Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1])[0];
-
-  let f1 = `${crudos.length} tema${crudos.length!==1?'s':''} con actividad real en los últimos 14 días, concentrados en ${catDominante} (${nCat} de ${crudos.length}).`;
-  let f2 = `${top.tema.nombre} es el de mayor prioridad ahora mismo — ${top.veces} nota${top.veces!==1?'s':''} recientes y ${top.tendencia==='subiendo'?'sigue escalando':top.tendencia==='bajando'?'ya se está enfriando':'se mantiene estable'}.`;
-  let f3;
-  if(subiendo.length > bajando.length) f3 = `El ambiente general se está calentando: ${subiendo.length} tema${subiendo.length!==1?'s':''} escalando frente a solo ${bajando.length} enfriándose.`;
-  else if(bajando.length > subiendo.length) f3 = `El ambiente general se está enfriando: ${bajando.length} tema${bajando.length!==1?'s':''} a la baja frente a ${subiendo.length} escalando.`;
-  else f3 = `Sin una dirección clara predominante — escalamiento y enfriamiento están equilibrados.`;
-
-  return `${f1} ${f2} ${f3}`;
-}
-
-function sintesisMatrizAgenda(crudos){
-  if(!crudos.length) return '';
-  const top = crudos.slice(0,4);
-  const enAltoAlto = crudos.filter(c=>c.impactoReal>=6 && c.riesgoReal>=6).length;
-  const enBajoBajo = crudos.filter(c=>c.impactoReal<4 && c.riesgoReal<4).length;
-
-  const maxVeces = Math.max(...top.map(c=>c.veces), 1);
-  const iconoTendencia = {subiendo:'↑', bajando:'↓', estable:'→'};
-  const colorTendencia = {subiendo:'var(--riesgo-alto)', bajando:'var(--riesgo-bajo)', estable:'var(--ink-3)'};
-
-  const listaTop = top.map(c=>{
-    const nivelR = c.riesgoReal>=8?'CRÍTICO':c.riesgoReal>=6?'ALTO':c.riesgoReal>=4?'MEDIO':'BAJO';
-    const colorR = c.riesgoReal>=8?'var(--riesgo-alto)':c.riesgoReal>=6?'var(--riesgo-medio)':'var(--riesgo-bajo)';
-    return `<div style="padding:6px 0;border-top:1px solid var(--line);cursor:pointer;" data-tema="${c.tema.id}">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-        <span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${colorR};border:1px solid ${colorR};border-radius:99px;padding:1px 7px;white-space:nowrap;">${nivelR}</span>
-        <span style="font-size:11.5px;flex:1;">${c.tema.nombre}</span>
-        <span style="font-family:var(--f-mono);font-size:12px;font-weight:700;color:${colorTendencia[c.tendencia]};" title="${c.tendencia} en los últimos 14 días">${iconoTendencia[c.tendencia]}</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:6px;">
-        <div style="flex:1;height:5px;background:var(--bg-1);border-radius:99px;overflow:hidden;">
-          <div style="width:${(c.veces/maxVeces)*100}%;height:100%;background:${colorR};"></div>
-        </div>
-        <span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);white-space:nowrap;">${c.veces} · 14d</span>
-      </div>
-    </div>`;
-  }).join('');
-
-  return `
-    <div class="contexto-tema-box" style="border-left-color:var(--riesgo-alto);margin:10px 14px 0;">
-      <div class="eyebrow" style="color:var(--riesgo-alto);">Lo que exige atención ahora mismo</div>
-      <p style="font-size:12px;line-height:1.6;color:var(--ink-1);margin:6px 0 10px;background:var(--bg-1);border-left:3px solid var(--riesgo-alto);border-radius:0 6px 6px 0;padding:8px 12px;">${narrativaMatrizAgenda(crudos)}</p>
-      ${listaTop}
-    </div>`;
-}
-
 function renderMatrizYLista(){
   const cont = document.getElementById('agenda-contenido');
   const selectWrap = document.getElementById('agenda-tema-select-wrap');
@@ -999,8 +1066,6 @@ function renderMatrizYLista(){
   // producto. Ahora entra DENTRO de la misma tarjeta (mismo fondo de cuadrícula,
   // mismo borde) que el gráfico de dispersión -- un solo lienzo, no dos piezas.
   cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;display:flex;flex-direction:column;"></div>`;
-  const btnAnalisis = document.getElementById('agenda-btn-analisis');
-  if(btnAnalisis && !btnAnalisis.dataset.conectado){ btnAnalisis.addEventListener('click', abrirModalAnalisisMatriz); btnAnalisis.dataset.conectado='1'; }
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
     // CORRECCIÓN -- pedido explícito: la tarjeta con fondo+borde propio (.matriz-lienzo)
@@ -1029,51 +1094,6 @@ function renderMatrizYLista(){
        <div id="matriz-leyenda-html" style="flex:none;display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:5px 10px 4px;font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);"></div>`;
     dibujarMatrizRiesgo();
   }
-}
-
-function calcularCrudosSintesisMatriz(){
-  // CORREGIDO -- antes usaba TODO el historial del tema (todas sus notas de siempre),
-  // así que un tema que tuvo su pico hace meses seguía saliendo "CRÍTICO" hoy solo por
-  // volumen acumulado, aunque ya no tuviera ninguna actividad reciente real. Caso real
-  // confirmado: "Huachicol Fiscal" con 184 notas históricas apareciendo como urgencia
-  // de HOY. Ahora solo considera los últimos 14 días -- sin actividad reciente, no
-  // aparece aquí, sin importar cuánta historia acumulada tenga.
-  let temasBaseSintesis = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  if(impactoFiltroAgenda) temasBaseSintesis = temasBaseSintesis.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
-  if(soloAgendaNacional) temasBaseSintesis = temasBaseSintesis.filter(t=>Number(t.nivel_relevancia)===1);
-  const hace14dias = new Date(); hace14dias.setDate(hace14dias.getDate()-14);
-  const fechaCorte = hace14dias.toISOString().slice(0,10);
-  return temasBaseSintesis.map(t=>{
-    const evsRecientes = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && e.fecha>=fechaCorte);
-    const riesgoMax = evsRecientes.length ? Math.max(...evsRecientes.map(e=>e.intensidad)) : 0;
-    // tendencia -- compara la primera mitad de la ventana de 14 días contra la segunda,
-    // para saber si el tema está subiendo o bajando AHORA, no solo cuánto acumuló
-    const hace7dias = new Date(); hace7dias.setDate(hace7dias.getDate()-7);
-    const fechaMitad = hace7dias.toISOString().slice(0,10);
-    const mitadReciente = evsRecientes.filter(e=>e.fecha>=fechaMitad).length;
-    const mitadAnterior = evsRecientes.length - mitadReciente;
-    const tendencia = mitadReciente>mitadAnterior ? 'subiendo' : mitadReciente<mitadAnterior ? 'bajando' : 'estable';
-    return { tema:t, impactoReal:Number(t.peso_politico), riesgoReal:riesgoMax, veces:evsRecientes.length, tendencia };
-  }).filter(c=>c.veces>0)
-    .sort((a,b)=>(b.impactoReal+b.riesgoReal)-(a.impactoReal+a.riesgoReal));
-}
-
-function abrirModalAnalisisMatriz(){
-  let modal = document.getElementById('matriz-analisis-modal');
-  if(!modal){
-    modal = document.createElement('div');
-    modal.id = 'matriz-analisis-modal'; modal.className = 'ficha-modal-backdrop';
-    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
-    document.body.appendChild(modal);
-  }
-  const crudos = calcularCrudosSintesisMatriz();
-  modal.innerHTML = `<div class="ficha-modal-card" style="max-width:520px;">
-    <button class="ficha-modal-close">✕</button>
-    ${sintesisMatrizAgenda(crudos)}
-  </div>`;
-  modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
-  modal.querySelectorAll('[data-tema]').forEach(el=> el.addEventListener('click', ()=>{ modal.classList.remove('open'); abrirFichaTema(el.dataset.tema); }));
-  modal.classList.add('open');
 }
 
 function crearTooltipAgenda(){
@@ -1174,8 +1194,7 @@ function separarPuntos(datos, minDist, iteracionesMax, limites){
 // datos reales, 1,909 de 1,945 temas (98%) tienen ese campo congelado en 5. Y el eje de
 // riesgo usaba la intensidad máxima de TODA la vida del tema, no la reciente, así que un
 // pico de hace meses se veía tan urgente como uno de hoy. Esto sustituye ambos ejes por
-// actividad REAL y RECIENTE (ventana de 14 días, misma que ya usa el modal de síntesis
-// en calcularCrudosSintesisMatriz), agrega movimiento antes/hoy, tendencia, confianza
+// actividad REAL y RECIENTE (ventana de 14 días), agrega movimiento antes/hoy, tendencia, confianza
 // (medios distintos que corroboran), cruce de señales (actor compartido con otro tema
 // del propio radar) y anomalía estadística contra el propio histórico del tema -- mismos
 // principios ya aplicados en Pulso Nacional, sin IA de paga.
@@ -1195,8 +1214,7 @@ function calcularDatosRadarAgenda(temasBase){
     const evsPrev = evsTodos.filter(e=>{ const d=_diasAtras(e.fecha); return d>=VENTANA_RADAR_DIAS && d<VENTANA_RADAR_DIAS*2; });
     const evsHistoricos = evsTodos.filter(e=> _diasAtras(e.fecha) >= VENTANA_RADAR_DIAS);
 
-    // tendencia -- primera mitad de la ventana de 14 días contra la segunda (mismo
-    // criterio que calcularCrudosSintesisMatriz, para que Radar y modal no se contradigan)
+    // tendencia -- primera mitad de la ventana de 14 días contra la segunda
     const evsMitadReciente = evsHoy.filter(e=>_diasAtras(e.fecha) < Math.round(VENTANA_RADAR_DIAS/2));
     const evsMitadAnterior = evsHoy.length - evsMitadReciente.length;
     const tendencia = !evsHoy.length ? null
@@ -1520,15 +1538,19 @@ function dibujarMatrizRiesgo(){
   // ya protege contra doble inicialización, así que llamarla aquí también es seguro
   // aunque el usuario nunca haya abierto Legislativo en la sesión.
   if(typeof wireTooltipFlotanteLeg === 'function') wireTooltipFlotanteLeg();
+  // CORRECCIÓN -- pedido explícito: "los íconos deberán de ser del estilo de los
+  // íconos del segmento de análisis" -- ahí los íconos son SVG estilo lucide/feather
+  // (trazo, stroke-width 2, viewBox 24x24), no formas dibujadas a mano dentro del
+  // propio SVG del gráfico. Se sustituye el círculo+"i" ad-hoc por el ícono "info"
+  // real de ese mismo set, reescalado dentro del lienzo.
   const gInfo = svg.append('g').attr('class','leg-tt')
     .attr('data-tt','El plano es un ranking del corte de hoy (percentil de riesgo y volumen entre los temas activos), no un valor absoluto -- no comparable directamente entre días distintos.')
-    .attr('transform',`translate(${margen.izq+anchoUtil-2},${margen.arriba-20})`).style('cursor','help');
-  // CORRECCIÓN -- verificado con la herramienta: "fill:none" excluye del hover el
-  // interior del círculo (solo el borde de 1px respondía), así que casi nadie lograba
-  // activar el tooltip. pointer-events:all fuerza a que toda el área responda, no
-  // solo lo pintado.
-  gInfo.append('circle').attr('r',7).attr('fill','none').attr('stroke','var(--ink-3)').attr('stroke-width',1).style('pointer-events','all');
-  gInfo.append('text').attr('text-anchor','middle').attr('dy','0.32em').attr('font-family','var(--f-mono)').attr('font-size','9px').attr('font-weight','700').attr('fill','var(--ink-3)').style('pointer-events','none').text('i');
+    .attr('transform',`translate(${margen.izq+anchoUtil-9},${margen.arriba-27})`).style('cursor','help');
+  // círculo invisible más grande que el ícono real -- área de hover cómoda (el trazo
+  // fino del ícono por sí solo es difícil de acertar con el mouse).
+  gInfo.append('circle').attr('cx',9).attr('cy',9).attr('r',9).attr('fill','transparent').style('pointer-events','all');
+  gInfo.append('g').attr('transform','scale(0.6)').style('pointer-events','none')
+    .html('<circle cx="12" cy="12" r="10" fill="none" stroke="var(--ink-3)" stroke-width="2"/><line x1="12" y1="16" x2="12" y2="12" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"/>');
 
   // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
   // colores, no indicamos qué significa cada color". CORRECCIÓN de esta ronda:
@@ -1759,17 +1781,13 @@ function dibujarMatrizRiesgo(){
   const focoCritico = datos.find(d=>!d.apagado);
   if(focoCritico){
     // CORRECCIÓN -- pedido explícito: "algo tipo sonar, sutil, limpio pero que se
-    // logre notar". El aro fijo se queda como referencia estática (mismo radio de
-    // siempre), y encima se insertan 2 anillos que se expanden y desvanecen -- el
-    // ping de sonar -- con arranque escalonado para que la onda se vea continua.
+    // logre notar". Aro fijo de referencia -- estático, sin animación propia. El
+    // "efecto de radar" real (barrido giratorio) es un elemento aparte, ver
+    // dibujarBarridoRadar() más abajo -- esto ya no intenta simularlo con anillos
+    // expandiéndose, que el usuario aclaró explícitamente que NO es lo que pedía.
     svg.insert('circle', '.punto-tema').attr('class','prioridad-anillo-vivo')
       .attr('cx',focoCritico.x).attr('cy',focoCritico.y).attr('r',_radioPrincipalRadar(focoCritico)+4)
       .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
-    ['', 'retraso'].forEach(clase=>{
-      svg.insert('circle', '.punto-tema').attr('class', `prioridad-sonar-ping ${clase}`.trim())
-        .attr('cx',focoCritico.x).attr('cy',focoCritico.y).attr('r',_radioPrincipalRadar(focoCritico)+4)
-        .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.4);
-    });
 
     // CORRECCIÓN -- pedido explícito, verificado en captura real: "ya hay una línea,
     // pero ¿eso qué significa? una línea no me dice nada... alguien que no tenga idea
@@ -1799,6 +1817,50 @@ function dibujarMatrizRiesgo(){
       .attr('fill','var(--riesgo-alto)').style('pointer-events','none')
       .text(textoFoco);
   }
+
+  // ---- efecto de radar real -- pedido explícito, aclarado por el usuario: NO son los
+  // anillos expandiéndose de un punto (eso ya se quitó arriba), es un barrido giratorio
+  // clásico de radar, desde un centro, con estela que se desvanece. Solo tiene sentido
+  // visual con el cruce de medianas (xMediana,yMediana) cerca del centro real del
+  // lienzo -- lo cual el usuario confirmó que solo pasa con el filtro de categoría en
+  // "Todas" (con una sola categoría activa, la nube de puntos ya no está centrada
+  // respecto al cruce, y el barrido se vería descuadrado/pegado a una esquina). Por eso
+  // se dibuja únicamente sin filtro de categoría.
+  if(!categoriaFiltroAgenda){
+    dibujarBarridoRadar(svg, xMediana, yMediana, margen, anchoUtil, altoUtil);
+  }
+}
+
+function dibujarBarridoRadar(svg, cx, cy, margen, anchoUtil, altoUtil){
+  // radio -- debe alcanzar la esquina más lejana del plano desde el centro del cruce,
+  // para que el barrido cubra todo el lienzo y no se quede corto en las esquinas.
+  const esquinas = [
+    [margen.izq, margen.arriba], [margen.izq+anchoUtil, margen.arriba],
+    [margen.izq, margen.arriba+altoUtil], [margen.izq+anchoUtil, margen.arriba+altoUtil],
+  ];
+  const radio = Math.max(...esquinas.map(([ex,ey])=>Math.hypot(ex-cx, ey-cy)));
+
+  // recorta el barrido a la zona jugable del plano (mismo rectángulo que los ejes) --
+  // sin esto, el círculo del barrido se saldría por encima/debajo de la matriz.
+  const idClip = 'radar-clip-'+Math.random().toString(36).slice(2,8);
+  svg.append('defs').append('clipPath').attr('id', idClip).append('rect')
+    .attr('x',margen.izq).attr('y',margen.arriba).attr('width',anchoUtil).attr('height',altoUtil);
+
+  const g = svg.append('g').attr('class','radar-barrido').attr('clip-path',`url(#${idClip})`).style('pointer-events','none');
+  // fondo tenue: círculos concéntricos, referencia visual de "pantalla de radar" -- muy
+  // sutil, no debe competir con los puntos reales.
+  [0.33,0.66,1].forEach(f=>{
+    g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',radio*f)
+      .attr('fill','none').attr('stroke','var(--riesgo-bajo)').attr('stroke-width',0.6).attr('stroke-opacity',0.12);
+  });
+  // el haz -- una cuña que gira 360° sin parar, con degradado de opacidad de líder a
+  // cola para simular la estela clásica de un radar. foreignObject + conic-gradient en
+  // vez de un <path> de SVG porque un degradado angular real no existe en SVG nativo
+  // (linearGradient/radialGradient son posicionales, no angulares) -- conic-gradient sí
+  // lo resuelve de forma nativa y barata en CSS.
+  const fo = g.append('foreignObject')
+    .attr('x', cx-radio).attr('y', cy-radio).attr('width', radio*2).attr('height', radio*2);
+  fo.append('xhtml:div').attr('class','radar-barrido-cono');
 }
 
 let interpretacionMatrizIA = {};

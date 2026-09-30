@@ -412,6 +412,7 @@ function resumenEjecutivoHTML(temas, alertas, tensionGeneral, pctAlza, rankingOp
 function renderAnalisis(){
   const cont = document.getElementById('analisis-contenido');
   if(!cont) return;
+  if(typeof wireTooltipFlotanteLeg === 'function') wireTooltipFlotanteLeg();
   const temas = ECOSISTEMA.temas.filter(t=>!t.id.startsWith('auto-') && Number(t.nivel_relevancia)===1);
   const tendencias = temas.map(calcularTendenciaTema).filter(t=>t.menciones30d>0 || t.menciones30dPrevios>0);
   const enAlza = tendencias.filter(t=>t.cambioPct>0).sort((a,b)=>b.cambioPct-a.cambioPct);
@@ -463,7 +464,7 @@ function renderAnalisis(){
       </div>
 
       <div style="display:flex;gap:2px;margin-top:14px;overflow-x:auto;">
-        ${matrizRiesgo.map(r=>`<div style="flex:1;min-width:90px;text-align:center;padding:6px 4px;background:var(--bg-1);border-radius:4px;" title="${r.dimension}: ${r.banda}">
+        ${matrizRiesgo.map(r=>`<div class="leg-tt" data-tt="${r.dimension}: ${r.banda}" style="flex:1;min-width:90px;text-align:center;padding:6px 4px;background:var(--bg-1);border-radius:4px;cursor:help;">
           <div style="font-size:8px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;">${r.dimension}</div>
           <div style="font-family:var(--f-mono);font-size:11px;letter-spacing:1px;color:${r.bloques>=4?'var(--riesgo-alto)':r.bloques>=2?'var(--riesgo-medio)':r.bloques>=1?'var(--riesgo-bajo)':'var(--ink-3)'};">${bloquesHTML(r.bloques)}</div>
         </div>`).join('')}

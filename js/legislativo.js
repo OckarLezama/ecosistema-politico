@@ -701,7 +701,7 @@ function lineaTiempoReaccionesHTML(reforma){
           opacity:0; animation:leg-etiqueta-aparece .3s ease ${DURACION_TRAZO}s both;">›</div>
         <div style="display:flex;gap:4px;overflow-x:auto;position:relative;padding-right:20px;">
           ${eventos.map((e,i)=>`
-            <div style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;" title="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}">
+            <div class="${e.detalle?'leg-tt':''}" data-tt="${e.detalle?e.detalle.replace(/"/g,'&quot;'):''}" style="flex:0 0 auto;width:150px;text-align:center;padding:0 6px;${e.detalle?'cursor:help;':''}">
               <div style="height:${ALTO_PUNTO}px;display:flex;align-items:center;justify-content:center;">
                 <div style="width:${(e.origen||e.hito)?13:9}px;height:${(e.origen||e.hito)?13:9}px;border-radius:50%;background:${e.color};border:2.5px solid var(--bg-1);box-shadow:0 0 0 1.5px ${e.color};
                   opacity:0; animation:leg-punto-aparece .3s ease-out ${(DURACION_TRAZO*(n>1?i/(n-1):1)).toFixed(2)}s both;"></div>
@@ -1166,11 +1166,10 @@ function votacionPieHTML(r, etapa){
   return `
     <div class="eyebrow" style="margin-top:2px;">Votación · ${etapa}</div>
     <div style="display:flex;align-items:center;gap:14px;margin-top:8px;">
-      <div style="width:62px;height:62px;border-radius:50%;flex-shrink:0;
+      <div class="leg-tt" data-tt="${favor} a favor, ${contra} en contra${abst?`, ${abst} abstención`:''}" style="width:62px;height:62px;border-radius:50%;flex-shrink:0;cursor:help;
         background:conic-gradient(var(--riesgo-bajo) 0 ${pF}%, var(--riesgo-alto) ${pF}% ${finC}%, var(--riesgo-medio) ${finC}% ${finA}%, var(--line-strong) ${finA}% 100%);
         -webkit-mask:radial-gradient(circle, transparent 54%, #000 55%);
-        mask:radial-gradient(circle, transparent 54%, #000 55%);"
-        title="${favor} a favor, ${contra} en contra${abst?`, ${abst} abstención`:''}"></div>
+        mask:radial-gradient(circle, transparent 54%, #000 55%);"></div>
       <div style="font-size:11px;color:var(--ink-2);line-height:1.8;">
         <div><span class="legend-dot" style="background:var(--riesgo-bajo)"></span><strong style="color:var(--ink-1);">${Math.round(pF)}%</strong> a favor <span style="color:var(--ink-3);">(${favor})</span></div>
         <div><span class="legend-dot" style="background:var(--riesgo-alto)"></span><strong style="color:var(--ink-1);">${Math.round(pC)}%</strong> en contra <span style="color:var(--ink-3);">(${contra})</span></div>
