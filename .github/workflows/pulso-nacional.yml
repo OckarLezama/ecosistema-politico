@@ -2,7 +2,13 @@ name: Pulso nacional - termometro politico
 
 "on":
   schedule:
-    - cron: '*/30 * * * *'   # corre cada 30 min, pero el script decide si PUBLICA:
+    # CORRECCIÓN -- confirmado con evidencia real: el corte de las 06:00 CDMX seguía sin
+    # publicarse a las 10:05, pese a que decide_si_publicar() ya se autocorrige para
+    # justo este caso. La causa más probable: minutos de cron redondos (:00, :30) caen
+    # en la franja de mayor carga de todo GitHub Actions, no solo este repo. Correr en
+    # minutos no redondos no cambia la lógica (sigue bastando con que UNA corrida caiga
+    # después de las 06/12/18 en punto), solo evita competir con esa hora pico.
+    - cron: '6,36 * * * *'   # corre cada 30 min, pero el script decide si PUBLICA:
                               # solo en los 3 cortes fijos (06/12/18 CDMX) o si la
                               # tension se movio lo suficiente para ameritar excepcion
   workflow_dispatch: {}

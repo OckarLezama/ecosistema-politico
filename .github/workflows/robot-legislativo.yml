@@ -2,7 +2,11 @@ name: Robot Legislativo
 "on":
   workflow_dispatch: {}
   schedule:
-    - cron: "0 14 * * *"
+    # CORRECCIÓN -- confirmado con evidencia real: coincidía exactamente con
+    # analisis-ia.yml (los dos a las 14:00 UTC en punto), y los minutos redondos son
+    # justo cuando GitHub Actions documenta más retraso en workflows programados (hora
+    # pico de todo GitHub, no solo este repo). Se corre 26 min después para no chocar.
+    - cron: "26 14 * * *"
 permissions:
   contents: write
   issues: write

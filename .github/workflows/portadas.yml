@@ -8,7 +8,12 @@ name: Robot de portadas del día
     # barata cuando ya no queda nada por descargar (revisa y no hace nada),
     # así que correr cada 20 min no tiene costo real y hace que una portada
     # nueva aparezca en minutos, no en horas.
-    - cron: '*/20 10-16 * * *'
+    # CORRECCIÓN -- confirmado con el historial real de commits: en 2 días seguidos, el
+    # primer commit del día llegó hasta las 8:08am y 10:13am CDMX respectivamente, muy
+    # tarde para una ventana que arranca a las 4am. Igual que los demás cron de este
+    # repo, corría en minutos redondos (:00, :20, :40) -- la franja de más carga en
+    # GitHub Actions en general. Se corre en minutos no redondos, misma frecuencia.
+    - cron: '4,24,44 10-16 * * *'
   workflow_dispatch: {}
 concurrency:
   # Si una corrida se atrasa (falla temporal de GitHub Actions) y ya hay

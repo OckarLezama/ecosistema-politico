@@ -4,7 +4,14 @@ on:
   schedule:
     # 8:00 hora de Ciudad de México (UTC-6) -- 1 sola vez al día, como se acordó. Las alertas
     # (calculadas en el navegador, sin costo) avisan si algo cambia el resto del día.
-    - cron: '0 14 * * *'
+    # CORRECCIÓN -- confirmado con evidencia real (huecos de 5+ horas sin publicar en
+    # varios workflows del repo, siempre coincidiendo con minutos "redondos" de cron):
+    # GitHub Actions documenta que los workflows programados justo en punto o en
+    # minutos redondos (:00, :05, :10...) sufren más retraso porque coinciden con la
+    # hora pico de TODOS los repos de GitHub, no solo el nuestro. Este workflow y
+    # robot-legislativo.yml corrían ambos exactamente a las 14:00 UTC -- se corrigen
+    # los minutos de todos los cron del repo a valores no redondos y sin chocar entre sí.
+    - cron: '11 14 * * *'
   workflow_dispatch: {}  # permite correrlo manualmente desde GitHub para probar
 
 jobs:

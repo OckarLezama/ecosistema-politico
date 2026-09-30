@@ -1,7 +1,9 @@
 name: Limpieza diaria - agenda nacional (Nivel 1)
 "on":
   schedule:
-    - cron: '0 12 * * *'   # 06:00 hora CDMX todos los días (12:00 UTC)
+    # CORRECCIÓN -- mismo criterio que el resto de los cron de este repo: minutos
+    # redondos coinciden con la hora de mayor carga de GitHub Actions en general.
+    - cron: '16 12 * * *'   # ~06:00 hora CDMX todos los días (12:00 UTC)
   workflow_dispatch: {}
 concurrency:
   group: limpiar-agenda-nacional-unico
