@@ -541,9 +541,12 @@ function dibujarTendenciaEstadoC3(nombreEstado){
       if(actor) texto += `<br>Más mencionado: ${actor}`;
       mostrarTooltipAgenda(texto, ev);
     };
-    punto.addEventListener('mouseenter', function(ev){ this.setAttribute('r', Number(this.getAttribute('r'))+1.5); mostrar(ev); });
-    punto.addEventListener('mousemove', mostrar);
-    punto.addEventListener('mouseleave', function(){ this.setAttribute('r', this.dataset.total==='0'?1.4:2.2); ocultarTooltipAgenda(); });
+    // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
+    // touch" -- sin acción de click que navegue aquí (es un punto informativo, no un
+    // enlace), pointerenter/pointermove/pointerleave cubren mouse Y touch sin conflicto.
+    punto.addEventListener('pointerenter', function(ev){ this.setAttribute('r', Number(this.getAttribute('r'))+1.5); mostrar(ev); });
+    punto.addEventListener('pointermove', mostrar);
+    punto.addEventListener('pointerleave', function(){ this.setAttribute('r', this.dataset.total==='0'?1.4:2.2); ocultarTooltipAgenda(); });
   });
 }
 

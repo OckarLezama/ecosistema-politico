@@ -1177,8 +1177,23 @@ function calcularDatosRadarAgenda(temasBase){
     const evsParaMedios = apagado ? evsTodos : evsHoy;
     const medios = new Set(evsParaMedios.map(e=>{ try{ return typeof _dominioDe==='function' ? _dominioDe(e.fuente_url) : new URL(e.fuente_url).hostname.replace(/^www\./,''); }catch(err){ return null; } }).filter(Boolean));
 
-    // actores vinculados -- para el cruce de señales entre temas del propio radar
+    // actores vinculados -- para el cruce de señales entre temas del propio radar.
+    // CORRECCIÓN -- bug real reportado y corroborado con datos: "INE instala Comisión de
+    // Verificación..." aparecía vinculado a "Huachicol Fiscal" (+8 más) solo porque
+    // ambos temas tienen a Alito Moreno etiquetado -- ahí como "Reacción de oposición",
+    // acá como "Responsable institucional". Son dos notas sin relación real; el actor
+    // compartido es alguien que reacciona/opina o encabeza una institución en decenas de
+    // temas por su cargo (Sheinbaum, por ejemplo, está etiquetada en 197 de los ~700
+    // temas de la base -- CUALQUIER par de temas suyos se habría visto "vinculado").
+    // Contar cualquier actor compartido, sin importar su rol, hacía que el cruce de
+    // señales casi siempre fuera ruido: compartir presidenta u oposición no dice nada.
+    // Ahora solo cuentan roles que sí implican un vínculo estructural real con el HECHO
+    // del tema (quién está siendo investigado, qué red empresarial opera, quién es
+    // víctima) -- no quién comenta o quién encabeza la institución que le toca comentar
+    // cualquier cosa.
+    const ROLES_VINCULO_SUSTANTIVO = ['Investigado','Red empresarial','Víctima del caso'];
     const actorIds = new Set(ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===t.id).map(ta=>ta.actor_id));
+    const actorIdsVinculo = new Set(ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===t.id && ROLES_VINCULO_SUSTANTIVO.includes(ta.rol)).map(ta=>ta.actor_id));
 
     // anomalía -- riesgo reciente contra el propio histórico del tema (antes de la
     // ventana reciente), no contra un promedio general -- cada tema es su propia base.
@@ -1209,7 +1224,7 @@ function calcularDatosRadarAgenda(temasBase){
     return {
       tema: t, categoria: t.categoria, riesgoReal, riesgoAnterior,
       veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
-      nMedios: medios.size, actorIds, anomalia,
+      nMedios: medios.size, actorIds, actorIdsVinculo, anomalia,
       primeraMencion: evsTodos.length ? evsTodos.map(e=>e.fecha).sort()[0] : null,
       diasEnAgenda: rachaInfo.diasEnAgenda, diasEnRachaActual: rachaInfo.diasEnRachaActual,
       reactivaciones: rachaInfo.reactivaciones, diasDesdeUltima: rachaInfo.diasDesdeUltima,
@@ -1288,8 +1303,12 @@ function _tooltipRadar(d, datosVisibles){
   // un tema con 1 sola fuente pesa distinto que uno confirmado por varios medios.
   const colorCorrob = d.nMedios<=1 ? 'var(--riesgo-medio)' : 'var(--ink-2)';
   html += `<br><span style="color:${colorCorrob};">${d.nMedios<=1?'⚠ solo 1 fuente':`✓ ${d.nMedios} medios distintos`}</span>`;
-  if(d.actorIds.size){
-    const vinculados = datosVisibles.filter(o=>o!==d && [...o.actorIds].some(id=>d.actorIds.has(id)));
+  // CORRECCIÓN -- pedido explícito, corroborado con datos: el cruce ya NO cuenta
+  // cualquier actor compartido (ver actorIdsVinculo en calcularDatosRadarAgenda) --
+  // solo un rol sustantivo compartido (investigado en ambos, misma red empresarial,
+  // misma víctima) cuenta como vínculo real entre dos temas.
+  if(d.actorIdsVinculo && d.actorIdsVinculo.size){
+    const vinculados = datosVisibles.filter(o=>o!==d && o.actorIdsVinculo && [...o.actorIdsVinculo].some(id=>d.actorIdsVinculo.has(id)));
     if(vinculados.length){
       const extra = vinculados.length>1 ? ` +${vinculados.length-1}` : '';
       html += ` <span style="color:var(--teal);">· 🔗 ${_truncarEnPalabra(_nombreClaroTema(vinculados[0].tema),22)}${extra}</span>`;
@@ -1587,17 +1606,37 @@ function dibujarMatrizRiesgo(){
       // CORRECCIÓN -- pedido explícito: "para mi eso no sirve para tomar decisiones...
       // debemos ser más claro". El texto anterior ("poca cobertura pese al riesgo")
       // describía el dato pero no decía qué hacer con él ni por qué es una alerta y no
-      // un dato neutro -- alguien que no conoce el vocabulario del tablero (riesgo vs.
-      // volumen) podía leerlo como algo bueno. Ahora: una etiqueta explícita de "PUNTO
-      // CIEGO" (no una lectura ambigua), una frase que dice la implicación en lenguaje
-      // llano (riesgo real que los medios todavía no están cubriendo -- puede explotar
-      // sin aviso previo), y el dato duro de cada tema (riesgo/10 y cuántas notas lo
-      // sostienen en la ventana) para que la magnitud del hueco sea verificable, no solo
-      // una lista de nombres sueltos.
+      // un dato neutro.
+      // CORRECCIÓN -- pedido explícito, segunda vuelta: "al decir PUNTO CIEGO qué quiere
+      // decir? es como si el gobierno se tuviera que cuidar de algo, hay que tener
+      // cuidado con eso". "Punto ciego" sonaba a consejo defensivo hacia un actor
+      // concreto (el gobierno) -- este tablero es una lectura analítica de agenda
+      // mediática, no una recomendación de a quién proteger. La etiqueta y el texto
+      // ahora describen el HECHO medible (riesgo alto, cobertura baja) y su utilidad
+      // analítica (anticipar antes de que escale en atención pública) sin implicar de
+      // quién es la responsabilidad ni a quién conviene cuidarse.
+      // NUEVO -- pedido explícito ("que tiene de inteligencia? esto nos dice algo como
+      // gobernabilidad"): antes solo se listaban los 3 temas de bajo perfil, sin decir
+      // si comparten algo entre sí. Una lista de nombres sueltos no es un patrón. Ahora,
+      // si los de bajo perfil (TODOS los de la ventana, no solo los 3 mostrados)
+      // comparten la misma categoría, se dice explícitamente -- eso es lo que separa
+      // "aquí hay 3 notas con poca cobertura" de "esto es un patrón concentrado en un
+      // área, no ruido disperso".
+      let lecturaPatron = '';
+      if(vigilarItems.length>=2){
+        const catsVigilar = {};
+        vigilarItems.forEach(d=> catsVigilar[d.categoria] = (catsVigilar[d.categoria]||0)+1);
+        const [catDomVigilar, nDomVigilar] = Object.entries(catsVigilar).sort((a,b)=>b[1]-a[1])[0];
+        if(nDomVigilar === vigilarItems.length){
+          lecturaPatron = ` <strong style="color:var(--ink-1);">${nDomVigilar} de ${nDomVigilar} son de ${catDomVigilar}</strong> -- patrón concentrado en un área, no ruido disperso.`;
+        } else if(nDomVigilar/vigilarItems.length >= 0.6){
+          lecturaPatron = ` <strong style="color:var(--ink-1);">${nDomVigilar} de ${vigilarItems.length} son de ${catDomVigilar}</strong>.`;
+        }
+      }
       const callout = vigilarItems.length
         ? `<div style="margin-top:4px;font-size:10.5px;line-height:1.35;display:flex;gap:6px;align-items:flex-start;">
-            <span style="flex-shrink:0;font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:var(--riesgo-medio);border:1px solid var(--riesgo-medio);border-radius:99px;padding:1px 7px;margin-top:1px;">PUNTO CIEGO</span>
-            <span style="color:var(--ink-2);">riesgo real sin cobertura proporcional -- vigilar de cerca, puede escalar sin aviso: ${vigilarItems.slice(0,3).map(d=>`<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema),28)}</span><span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);"> (riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''})</span>`).join(' · ')}</span>
+            <span style="flex-shrink:0;font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:var(--riesgo-medio);border:1px solid var(--riesgo-medio);border-radius:99px;padding:1px 7px;margin-top:1px;">BAJO PERFIL MEDIÁTICO</span>
+            <span style="color:var(--ink-2);">riesgo alto con cobertura mediática todavía baja -- útil para anticipar antes de que escale en atención pública.${lecturaPatron} ${vigilarItems.slice(0,3).map(d=>`<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema),28)}</span><span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);"> (riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''})</span>`).join(' · ')}</span>
           </div>`
         : '';
       resumenEl.innerHTML = `<div style="border-left:3px solid var(--riesgo-alto);padding:2px 10px;margin:6px 14px 0;">
