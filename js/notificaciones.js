@@ -28,6 +28,12 @@
      warning intelligence real, no una notificación extra decorativa.
      Se muestra con etiqueta y color distintos a "Nota relevante", para
      no aparentar una certeza que todavía no tiene.
+   - NUEVO -- agenda-nacional/alerta-temprana solo cuentan si la nota puntual viene
+     de una fuente verificada (ver confiabilidadFuente en fuentes.js). Evita que un
+     post promocional o de baja calidad (ej. "ya comienza la transmisión en vivo")
+     se notifique solo por pertenecer a un tema importante -- la nota en sí necesita
+     su propio peso (actor rastreado, migración, o intensidad alta) si su fuente no
+     está verificada.
    ============================================================ */
 
 const CLAVE_NOTIFICADOS = 'ecosistema_notas_notificadas';
@@ -84,7 +90,24 @@ function revisarNotificacionesPendientes(){
     // NUEVO -- alerta temprana: el tema aún no es agenda nacional, pero ya cumple
     // todo lo demás y le falta 1 día de cobertura (ver comentario arriba)
     const esAlertaTemprana = Number(tema.alerta_temprana) === 1;
-    const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8 || esAgendaNacional || esAlertaTemprana;
+    // CORREGIDO -- pedido explícito, caso real: llegó una notificación de "Nota
+    // relevante" que solo era un post de Facebook de Milenio invitando a ver la
+    // mañanera en vivo ("Ya comienza la conferencia matutina... Sigue..."), marcada
+    // ella misma como "Fuente sin verificar". El TEMA sí era agenda nacional (la
+    // mañanera acumula cobertura real de sobra), pero ESA nota puntual no tenía nada
+    // de "alcance, impacto, cobertura" propio -- era un aviso de transmisión, no una
+    // nota informativa. agenda-nacional/alerta-temprana son propiedades del TEMA, no
+    // de cada nota suya; una nota individual de fuente sin verificar (ver
+    // confiabilidadFuente en fuentes.js) no debe heredar esa relevancia solo por
+    // pertenecer a un tema importante -- necesita su propio peso real (actor
+    // rastreado, migración, o intensidad alta) para ganarse la notificación.
+    const fuenteEsVerificada = (()=>{
+      if(typeof confiabilidadFuente !== 'function') return true; // si no se puede evaluar, no se bloquea
+      const c = confiabilidadFuente({ fuenteUrl: e.fuente_url, descripcion: e.descripcion, cobertura: e.cobertura });
+      return c.nivel !== 'BAJA' && c.nivel !== 'SIN_CLASIFICAR';
+    })();
+    const esRelevante = idsSergio.has(e.tema_id) || esTemaDeMigracion(tema) || Number(e.intensidad)>=8
+      || ((esAgendaNacional || esAlertaTemprana) && fuenteEsVerificada);
     return esRelevante;
   }).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad));
 
