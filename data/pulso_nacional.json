@@ -1,5 +1,5 @@
 {
-  "generado_en": "2026-09-29T17:51:00.330312-06:00",
+  "generado_en": "2026-09-29T18:07:00.483911-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 29,
   "baja_confianza": false,
@@ -927,7 +927,11 @@
       "ultima_hora": false,
       "medios_corroborantes": 6,
       "confianza": "alta",
-      "fuente_url": "https://www.informador.mx/mexico/senado-avala-reforma-de-sheinbaum-que-prohibe-doble-nacionalidad-en-gubernaturas-y-presidencias-que-sigue-20260929-0137.html"
+      "fuente_url": "https://www.informador.mx/mexico/senado-avala-reforma-de-sheinbaum-que-prohibe-doble-nacionalidad-en-gubernaturas-y-presidencias-que-sigue-20260929-0137.html",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
     },
     {
       "id": "huachicol-fiscal",
@@ -941,7 +945,11 @@
       "ultima_hora": false,
       "medios_corroborantes": 3,
       "confianza": "alta",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/"
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
     }
   ],
   "temas_nuevos": [
@@ -988,10 +996,21 @@
   ],
   "temas_retomados": [
     {
+      "id": "auto-2358100142",
+      "nombre": "Solo 10% de empresas cumplió con reparto de utilidades este año, revela CROC en ",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 20,
+      "motivo": "Morena revela la fórmula con que repartió 10 puntos entre aspirantes a las gubernaturas - La Jornada",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOTkYxb0w2ZkJXTnhJS01ad2hmSnFvQlQ2ZFNrbElqN1BNRzJZaHZxZnowOEhSNmluSXliakdSeXRRNEMtdHB1TEk2MDBrcXFOa3BVZi05cnlKN2NBRzJzMXJkcV80Q3ExZ08zUEJYODNLbXpYQ2w5ZGFPbEk4dFo4LUxaNm1YaWgzZDhQUkJNWVh3N0tBNFJDakxXdlF2ZEJMVmM1bjlyQWZLU291WXpVcHdOSlBlUlZHUk1oUlE5U25NZnliajAxTjgtVkZkc0pwMW0tbnZFZUdQdw?oc=5",
+      "fecha_anterior": "2026-09-09",
+      "fuente_url_anterior": "https://oem.com.mx/diariodexalapa/local/solo-10-por-ciento-de-empresas-cumplio-con-reparto-de-utilidades-este-ano-revela-croc-en-veracruz-31979691"
+    },
+    {
       "id": "auto-e16c2c5511",
       "nombre": "Sheinbaum ofrece expertos para Ayotzinapa sin abrir archivos militares - Los Áng",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 17,
+      "dias_silencio": 18,
       "motivo": "Caso Ayotzinapa no está cerrado, dice Sheinbaum",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/004n1pol?partner=rss",
@@ -1002,7 +1021,7 @@
       "id": "auto-422c0710a5",
       "nombre": "Unidad 4T: del dicho al hecho",
       "categoria": "Economía",
-      "dias_silencio": 13,
+      "dias_silencio": 14,
       "motivo": "Morena, ¿su unidad en riesgo? - MILENIO",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNZjctTkRFUmdwdkJndEMxRi0wZDNhektaSFBtOGVKTFN6bGNJRUdTQ3hrdXJ5dUNDU0NuWlh4NnZfX0pidFRIY1pVSm5Ia083VDNkbG9EQUQxRHpiclQ0Q05oYy1Lc19OOFF0TDQ1a3BlN0tJT0VPdWRvY19RSVFrbGlELXkxWEtjTmh3RG94Um1HMXA5RWxGRlFB0gGaAUFVX3lxTE9QUFA1bWZ4cUUySXh4T1pqa0xSMXFpZ1M2N01maHN4LThmNTBub1NrcnNzRDlPOVJlc3NDSFk4SGMxcEhNMzY3X1BQU1JDRWp2XzM5WFRWeUZFb2VNRlB0bkZhMGhaMUdkaWVsOGMyOFhkaFlCc3dIN0tyb0ZUYWhub0ZnSUdSeG9XQmx3dHhRZXVVMUZ5eWlSNmc?oc=5",
@@ -1010,15 +1029,26 @@
       "fuente_url_anterior": "https://www.tabascohoy.com/a-prueba-la-unidad-de-morena/"
     },
     {
-      "id": "auto-d4c722b2c0",
-      "nombre": "Adiós a los cargos sorpresa: Monreal presenta iniciativa contra cobros ocultos e",
+      "id": "auto-c62cbc14fc",
+      "nombre": "MC pide al INE ser un \"verdadero árbitro\" ante designación de \"corcholatas\" more",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 7,
-      "motivo": "🔔 ALERTA — PVEM presenta iniciativa para regular refugios animales - El Universal",
+      "dias_silencio": 14,
+      "motivo": "Acusa morenista 'dedazo' en designación de corcholatas - Reforma",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQTXBFV1BWaTVoZGpUNnZoVTVpd0M4X00xSlk2LUg2Z2xvUGZZcUZWYkVSZ2prSnY2ZVh6S2IxSWxQSzBDX1pPd1pmY3ctZDJfRGo4Wk9OSTd4TXBwa25XRWYzeDBSTzkxbnhlejdYM1k3WXkxOVlhNlFaQWs1T3poYmtZUDdSWUhKSWZXbXoyczR3SzRPVzI0b2dMYWFqZGszLWRMV0tQNDhDUWgxUVA2RWpaT0dSd1ladXZoTE9ncjBtZDJIYmxCR1M4dWEzS2x2LUZYWWk2eDAxVVNJNXhSRWUxUVpVWWdwTHpmSmFCd1VCemtNMTROY3ZZRnIyM2lWWUxxdHZB?oc=5",
-      "fecha_anterior": "2026-09-21",
-      "fuente_url_anterior": "https://oem.com.mx/diariodexalapa/local/pri-propone-que-gobernadora-y-funcionarios-estatales-puedan-ser-juzgados-sin-fuero-32191867"
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOV3RFa1NVaTVGcGlXaG9LV2E2WkRCSjlPd0JpbUxtVUMyX1otOXRrMkgyN3UxZk83b2M1TVBOdWRLUWhHMHZaTFlDTEUwOGZaMWs0bVpIdHhLcGFCbUJKS2k3QTRkZVdWbWZubWNjRUxGdU5aVGhJR3hVQkNtaVByV0I1Zi03S3FJWncxMm9nSQ?oc=5",
+      "fecha_anterior": "2026-09-15",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPbmJxd2ZPdDVrbjhKSC0tRV9pbVdCWVZZSlV4cGxDM0UzS3pGTGwwdEhUNERURVQwZ0VPMDZFVlRuWllBenY4NHdZaGNqdXR4cWdTUlU0U29hOThrQ2IwNnE4VlMwRXhNSUdKRFBmVDRuZXY0NXo1QjhtTHd2ZnNCS0hrZXRTQTNQTXktSG5IdzA2a0VDZnlfdG1NblZXMkdFOUw4MFNOWkpzQ1g3c1JMQ2h6OVNwWWt1QzVvaXVqN3ZIMXpENjd0cEF5Q0tSRmtTcWFjUEl2SlZWUzNfSk8xOV93WlNZZUwzQ2xIZmJhdw?oc=5"
+    },
+    {
+      "id": "auto-33f3ce8dff",
+      "nombre": "Sentencian a Noel \"N\", líder de facción del Cártel de Sinaloa y allegado al \"Cha",
+      "categoria": "Seguridad Nacional",
+      "dias_silencio": 10,
+      "motivo": "¿Quién es Carlos Alberto Torres Torres? Señalado por nexos con el Cártel de Sinaloa",
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/baja-california--marina-del-pilar-quien-es-carlos-alberto-torres-torres-senalado-por-la-ofac-con-vinculos-con-el-cartel-de-sinaloa-20260929-0143.html",
+      "fecha_anterior": "2026-09-19",
+      "fuente_url_anterior": "https://www.tabascohoy.com/nuevo-golpe-a-una-fraccion-del-cartel-de-sinaloa-caen-nueve/"
     }
   ],
   "actores_destacados": [
@@ -1056,23 +1086,23 @@
       "confianza": "media"
     },
     {
+      "id": "pt_partido",
+      "nombre": "Partido del Trabajo (PT)",
+      "rol": "Mencionado",
+      "tema": "¿Ruptura entre Morena y PT? Citlalli Hernández aclara qué pasará con la alianza ",
+      "nota": "¿Ruptura entre Morena y PT? Citlalli Hernández aclara qué pasará con la alianza rumbo a 2027 - Expansión Política",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTkQ5cHRuTlJqQjBPcWdiQWgyZTdlV256b0o2Q01ZODFXNlNEbzRWVjJRbUhmd0ZPdEF4T0diak1CYmZ6WEJHWUNKNVVobGdSa0NYZFBnRU1QUEZPTTJZel9lNXk0LWZFTjA4QWU0RGt6X3ZJRE1zbk5QRm42LWcxNE8zY3A5WnBVWUZuUm5R0gGOAUFVX3lxTFBORDlwdG5OUmpCME9xZ2JBaDJlN2VXbnpvSjZDTVk4MVc2U0RvNFZWMlFtSGZ3Rk90QXhPR2JqTUJiZnpYQkdZQ0o1VWhsZ1JrQ1hkUGdFTVBQRk9NMll6X2U1eTQtZkVOMDhBZTREa3pfdklETXNuTlBGbjYtZzE0TzNjcDlacFVZRm5SblE?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Mencionado",
       "tema": "Por las tensiones nacionales, el PT amenaza romper la alianza con Morena en la C",
       "nota": "Se logrará reforma  sobre doble nacionalidad: Morena",
       "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/009n2pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "citlalli",
-      "nombre": "Citlalli Hernández Mora",
-      "rol": "Responsable institucional",
-      "tema": "Las tribus en MORENA de los 17 estados en que habrá elección de gobernador han m",
-      "nota": "En ninguno de los 17 estados hubo desconocimiento de la encuesta de Morena: Citlalli Hernández - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOamRpYUJWZW9QZWV4dlY0THVWSHB1QXNjQ3oyZFNjYWRQZUJ5RnN6YkhSQWxxRDFfSWx1N2lwZXdDSTdLX1cweDRiaW1xdHJaZkl1V25uRmJ4Z3lERFJGempybnVKalVfbVRlcmJpckFaNWxaVWZkRE1kUWdmNnhpc0czR083TGJ1QWlfY3hhRXdfelB5dGhuZmx5QThtcXBTTE1VV19CcVRHdFhmZC00OTMxblN0ck52NlFoM3M5SGFjS3lXQmFEQTc5Unpfa2NGOWJhUXFMLVZ6UElINEE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1556,7 +1586,8 @@
       "nombre": "Carlos Torres Piña renuncia como fiscal de Michoacán; asume cargo en Morena",
       "categoria": "Gobernabilidad",
       "resumen": "Carlos Torres Piña renuncia como fiscal de Michoacán; asume cargo en Morena",
-      "fuente_url": ""
+      "fuente_url": "",
+      "actor_vinculado": null
     }
   ],
   "precision_alertas": {
@@ -1610,5 +1641,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-09-29 17:51"
+  "hora_corte_publicada": "2026-09-29 18:07"
 }
