@@ -1522,6 +1522,7 @@ function dibujarMatrizRiesgo(){
     chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="var(--ink-3)" fill-opacity="0.6"/></svg>`, 'sin actividad en 14d'),
     chip(`<span style="color:var(--riesgo-alto);font-weight:700;">▲</span>`, 'escalando'),
     chip(`<span style="color:var(--riesgo-bajo);font-weight:700;">▼</span>`, 'bajando'),
+    chip(`<svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="none" stroke="${COLOR_RIESGO.alto}" stroke-width="1.4"/></svg>`, 'anillo = tema más urgente ahora'),
     `<span style="opacity:0.6;margin-left:auto;">${textoAvisoLimite}</span>`,
   ];
   const leyendaEl = document.getElementById('matriz-leyenda-html');
@@ -1690,38 +1691,30 @@ function dibujarMatrizRiesgo(){
       .attr('cx',focoCritico.x).attr('cy',focoCritico.y).attr('r',_radioPrincipalRadar(focoCritico)+4)
       .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
 
-    // CORRECCIÓN -- pedido explícito: "me gustaba lo de las líneas punteadas, habría
-    // forma de contar con eso de nuevo?". Antes había hasta 3 anotaciones flotantes
-    // (una por cada "quién se movió más") peleando por espacio y desbordándose en
-    // pantallas angostas -- por eso se quitaron. Ahora vuelve UNA sola, solo para el
-    // tema de mayor prioridad real (el mismo que ya nombra el titular en HTML arriba),
-    // así conecta visualmente el texto con su punto en el plano sin repetir la
-    // sobrecarga anterior. Se ancla en el lado del plano con más espacio libre (el
-    // opuesto a donde cae el punto) para minimizar choques con otros puntos.
-    const nombreFoco = _truncarEnPalabra(_nombreClaroTema(focoCritico.tema), 30);
-    const ladoDerecho = focoCritico.x < margen.izq + anchoUtil/2;
-    const anclaX = ladoDerecho ? margen.izq + anchoUtil - 6 : margen.izq + 6;
-    const anclaY = margen.arriba + 24;
+    // CORRECCIÓN -- pedido explícito, verificado en captura real: "ya hay una línea,
+    // pero ¿eso qué significa? una línea no me dice nada... alguien que no tenga idea
+    // tendría que entenderle solo con verlo". La línea diagonal larga hacia una
+    // etiqueta flotante lejana no se leía como una explicación, se leía como una línea
+    // suelta sin contexto. Se quita esa línea larga y esa etiqueta lejana. En su lugar,
+    // la palabra que explica el anillo va PEGADA al propio punto (a unos px de su
+    // borde, no cruzando medio lienzo) -- y además la leyenda de abajo tiene su propia
+    // entrada para el anillo (ver chipsLeyenda más arriba). El significado ya no
+    // depende de adivinar qué conecta con qué: está escrito junto a lo que describe, y
+    // repetido en la leyenda para quien lo vea sin contexto.
+    const nombreFocoCorto = _truncarEnPalabra(_nombreClaroTema(focoCritico.tema), 22);
+    const rFoco = _radioPrincipalRadar(focoCritico) + 4;
+    const ladoDerecho = focoCritico.x > margen.izq + anchoUtil - 100;
     const anchorTexto = ladoDerecho ? 'end' : 'start';
-
-    svg.append('line')
-      .attr('x1', anclaX).attr('y1', anclaY + 3)
-      .attr('x2', focoCritico.x).attr('y2', focoCritico.y)
-      .attr('stroke','var(--riesgo-alto)').attr('stroke-width',1).attr('stroke-dasharray','2 2').attr('opacity',0.55)
-      .style('pointer-events','none');
-
-    // fondo detrás de la etiqueta para que se lea sobre la cuadrícula/tinte de cuadrante
-    // -- ancho estimado por caracteres (fuente mono a 9px, ~5.3px/caracter) en vez de
-    // getBBox() para no depender de que el SVG ya esté medible en el DOM.
-    const textoFoco = `★ máxima prioridad: ${nombreFoco}`;
-    const anchoEstimado = textoFoco.length * 5.3;
+    const xEtiqueta = ladoDerecho ? focoCritico.x - rFoco - 5 : focoCritico.x + rFoco + 5;
+    const yEtiqueta = Math.max(margen.arriba+9, focoCritico.y - rFoco - 5);
+    const textoFoco = `◉ MÁS URGENTE: ${nombreFocoCorto}`;
+    const anchoEstimado = textoFoco.length * 5.6;
     svg.append('rect')
-      .attr('x', ladoDerecho ? anclaX-anchoEstimado-4 : anclaX-4).attr('y', anclaY-10)
-      .attr('width', anchoEstimado+8).attr('height', 14)
-      .attr('fill','var(--bg-1)').attr('opacity',0.82).style('pointer-events','none');
-
+      .attr('x', ladoDerecho ? xEtiqueta-anchoEstimado-3 : xEtiqueta-3).attr('y', yEtiqueta-9)
+      .attr('width', anchoEstimado+6).attr('height', 13)
+      .attr('fill','var(--bg-1)').attr('opacity',0.85).style('pointer-events','none');
     svg.append('text')
-      .attr('x', anclaX).attr('y', anclaY).attr('text-anchor', anchorTexto)
+      .attr('x', xEtiqueta).attr('y', yEtiqueta).attr('text-anchor', anchorTexto)
       .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('font-weight','700')
       .attr('fill','var(--riesgo-alto)').style('pointer-events','none')
       .text(textoFoco);
