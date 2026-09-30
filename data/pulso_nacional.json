@@ -1,36 +1,24 @@
 {
-  "generado_en": "2026-09-29T18:18:37.602655-06:00",
+  "generado_en": "2026-09-30T04:38:10.444065-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 29,
+  "n_notas_ventana": 18,
   "baja_confianza": false,
-  "tension_nacional": 52,
+  "tension_nacional": 49,
   "tension_anomalia": {
-    "z": 1.15,
+    "z": 0.88,
     "nivel": "normal",
-    "media_periodo": 35.9,
+    "media_periodo": 36.4,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 63,
-      "tema_principal": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
-      "tema_principal_id": "auto-4d06ef5b18",
-      "n_temas": 12,
-      "n_notas": 18,
+      "peso_pct": 46,
+      "tema_principal": "¿Tienes doble ciudadanía? Así cambiarían los requisitos para buscar la Presidenc",
+      "tema_principal_id": "auto-a05c1de8b6",
+      "n_temas": 8,
+      "n_notas": 8,
       "notas": [
-        {
-          "texto": "Francisco Martín Moreno: Un día en la vida de Claudia Sheinbaum - Diario de Yucatán",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPSWNjQmNWWW9RY2JhZmEwX0FvMFJGd0p0QUJScEMwbUowSDcxZTVMNWdmYVNYaXRIcGF0SHk2amtHQWhtTGxWRzZRMU9kaFhVNXp0UG95ZjI5dTlSMmwyUkhsMzFLaU1YM1NtZGs2cmYyaldwbjJfbFRHLXJfdmFSeGF1VzRuX2k5bzB1NEtlNGgwc1FWMWFGTGIwTTNtMkJmRFdHZ2JnQWV0WFpwZkJ5VklPd21VQQ?oc=5",
-          "intensidad": 9.0,
-          "medio": "Diario de Yucatán"
-        },
-        {
-          "texto": "Claudia Sheinbaum alerta a Sonora por llegada de huracán Polo - abcnoticias.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxORWR3TzhrWXlseWwwbEk2cTZnekdOanAwMnZhN0NhbThfUUduLUZ6VHFiOHBkTzE4NnlaV0FPbDI5a0dnejRraUZjMzZ5VHpZQV9KUU91a2lzTlFuY1ZjdzViaHJMRU5Vc2ZVcndYX3M0aEFHYkQ4RHByOWlFQ3dvSWVldWRjeVlJUGVsTTJjekpYbWpKLW1GNmFVbDNyYnBhaXdXRXRqcDY0ZmV2dXRCdWgxeGQ0QQ?oc=5",
-          "intensidad": 9.0,
-          "medio": "abcnoticias.mx"
-        },
         {
           "texto": "“Hubo mucha unidad”: Sheinbaum celebra proceso interno de Morena rumbo a 2027 - Nación321",
           "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZExOeEpMWS10UHZqdEhIb3p5V2xQR0ZVVi1zS2xreXgzWkttRjFqTmpQdWJydzJJTjZrT2F1LWpaRy1tTlR6c1hYcDh4MzJyNklzYmxNN0xxb2pvZG11T1JvZF9TOENrd2VXb3NHZGV4Zzl3Sjd2ektaZDdyd004cXRHVlc0aFZHVE1NTE01bFVDVVVxTGR3NWtNSDlESUxGaG45eDAtTFBjZkxfaWJxR2hhYlNUc1dMNzlQTks2YWg?oc=5",
@@ -42,42 +30,6 @@
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/9/29/quisieramos-avanzar-mas-rapido-claudia-sheinbaum-sobre-desaparicion-de-43-normalistas-897724.html",
           "intensidad": 9.0,
           "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "Huachicol fiscal: Una red llena de tráfico de influencias y corrupción - tvazteca.com",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNNms0d1lia080Z2JkcTE3Q2JKNzNrRS1LdkEtZklaTkVZam9ENzN3cGVmV0c5LTlseTA0WHIzTkJteTJjSXZXSFl4bl81REc3Ry1UZ19yYVByLW93cFFLTTRkRjZvTjJZc196ZVR4OTY1dVFCV2dhcTZsY1lFb0tnYndSMU5LN2puS2xBdnNIbnpJcXkzM3RIeWZXMGlXdEYwcngwM29wSHI3VFhjR2Z5ZndpSFExYmlmV3htNlBB0gHLAUFVX3lxTE5MX1VabGhqY2pVV3ltbzYyUTFXUlpqNUNrTUJlVFpDX1RsWl9DdGhTV3FZQ3JWRzl5M1E3cEdHdGNHOFRrdmpZUV9xTU1GcGhkaG5PYkhyZ1ktNDRwSnl1LUp4M0x5bGVZMEJxNmdreXphb0F4bG1PZUNLcTAwb1lQdnE4M1d3VTZ4T1I4QVZhTkpxY1lmZWNXNWxuNFdhMEpkSW1LNFAxNFFNWDJ5cTlMSjZyTlJhbVIzMENQcmxJVDBqLVM2Qkx6ZWRV?oc=5",
-          "intensidad": 8.0,
-          "medio": "tvazteca.com"
-        },
-        {
-          "texto": "Pemex pierde protagonismo con Claudia Sheinbaum; exportaciones petroleras se hunden más de 50% - EL CEO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQNlIyYVR4dVlwbldQM3hrYWhPRzhmSVcwUmVSa2xtTWdMWjlvVmEwUFJHbmpMYUlHN3h5MmlzWkt5dm1fZmREbklHMjZOV3B6QXQyZk93ekVsendhSFlYd0tLS0VSckFGdnRyRERUMHlWWnpFc0ZjX2lzNTJUTHZ2d3FBT3lOOWxJdC1wVXlXUTZHME5UNVB2YmRDN2VwUkJDYnF6UGVfalF0M1p0VkxQelJfUlBGUHo2ZFh5Rg?oc=5",
-          "intensidad": 7.0,
-          "medio": "EL CEO"
-        },
-        {
-          "texto": "EN VIVO | La Mañanera de la presidenta Claudia Sheinbaum hoy martes 29 de septiembre - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOUXdWSGhWSnA5TG1NTjR0cVg4UFpfd1JrTWpNcXJpT0VOZmplR1M4RlJqMlVfQlAyX01DekR1dzZMZlZpVS1sT1NQaEJLNTNSWTJvbXB0R0JLelhIREhfSUxONUNORGRyRWZCelU2cS1ZQk5GdUp6WGZCX3RJM0FqV01YYU53Zkx1WVFWTnUyMGlKSDZpS3RrdkJvcDJJRGdtaVRCNFB1Y05uSU1BSFg0N1hTSDRJRFZS0gHTAUFVX3lxTE9mYUZLRDhHTUljcUNnVThQaVVsTFhDdHZHV0RMOUo2Z2dUUUwtM0phVERwOEExUEV5RFR5Y3lfdThaSHRDQ2tpVzR6cWdxVndRRjBZd1B6TFU5WmZsaWV6VW8wQ2ZWQkZ3aTVVcEJ1RlJHZDNyRmo5STlRNG90UXZCT3dqSk1mWnhmdzlGQ2hhdXl5aTM4WWI2dHR1Y2c1eUg2NHNaTTl4WEZjd3JzZzVSa1NkODVNcDNVdHlYS3R0QTdCLXN6UkRqbWNJRXBIVEFvVXM?oc=5",
-          "intensidad": 7.0,
-          "medio": "Infobae"
-        },
-        {
-          "texto": "“Hubo mucha unidad”: Sheinbaum sobre proceso interno de Morena",
-          "fuente_url": "https://www.tabascohoy.com/hubo-mucha-unidad-sheinbaum-sobre-proceso-interno-de-morena/",
-          "intensidad": 7.0,
-          "medio": "tabascohoy.com"
-        },
-        {
-          "texto": "Nueve senadores de Morena encabezan coordinación política en estados rumbo a 2027 👉 Nacional - En blanco y Negro | Noticias de Chihuahua",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQNnNVb1k4MExxNWU4UDNxZDdEZUhKYTlDQ2NxS1Z6YVg4M3Rwb3pQMXlkbDd3dGd6a0RRRFF4T3d4dm45TUhOQW9nNmx5YVVIUFBfVTRkRzJUWjJ4WHh3ay05Z2h5RlQ2WDhRb2l3U2dZNW5qdDQ3Ty12NXpNVDlxa1QwNmMtS0J2dXVxUGtHb0V2aF9JM3ZCU1A5ZkxsQzR6RVRLeHJCUEg3b0RPenNxeWIxOWtzNVp4QTY1em5hMDY?oc=5",
-          "intensidad": 7.0,
-          "medio": "En blanco y Negro | Noticias de Chihuahua"
-        },
-        {
-          "texto": "Carvajal levanta la mano para buscar la alcaldía de Puebla por Morena - La Jornada de Oriente",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNMmJBYUY3LXF4bVNQYU9fNHV5bGh6TEp3bXZpUHpJWDBJVmpRQzROMUZxUnhva2pkWDAycWdBV1dCMTJ4VmRyeWVTVFBOb0tTdmRzQTZSRm5rck13SVZ5SUphYWI1SmJfNE5WT2pOMnlCbVFJNjVEOVpBeXRLcFotMlZHenBld0tnU1JmMXlrTmdieVlRMXQtWTZEeTQ4ZGZnRmYxdzEzYVl5T05tUlUxRjZkcDZEc2Zx?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Jornada de Oriente"
         },
         {
           "texto": "Congreso descarta reforma para alternancia de género en gubernatura de Puebla - Almanaque Puebla",
@@ -104,16 +56,22 @@
           "medio": "informador.mx"
         },
         {
-          "texto": "Ruffo llega de buen humor a su casa de Ensenada y agradece a la Guardia",
-          "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/003n1pol?partner=rss",
+          "texto": "PAN cuestiona vínculos de Cruz Pérez Cuéllar con empresario investigado por huachicol fiscal - elexpres.com",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5IcW8xTmhFNU5BNFNSaDFGY25HNlhnUFFXVDRyazFIUHdud2w0bndZVFRHVFVWOWtOYlVqbWwyc21jaHVuVUJPWlhva2xzRTlCc3hBT1lROWRodzk2dEE?oc=5",
           "intensidad": 6.0,
-          "medio": "jornada.com.mx"
+          "medio": "elexpres.com"
+        },
+        {
+          "texto": "Los destapes de Morena con miras a 2027: quién es quién de los aspirantes a gobernador - Hipócrita Lector",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQdjJxekNQa0ZsQzdsWDl5eDZpY1A1bGwtQXNENjRvNnBZbXlCT0xadm4ydzl0QzJpRV9jbkcxYUZGUjU0OUJVb1FRTzduTVQwNjZOdGxZYVR1b1RQenhvZzN2ekQwMHVscWM2Qmo3ZzdrVDZoQW1CZjNxMnBJLWhLQXJlSXlCR3NWaUlsZERQZy1sZjBlZ1laeE5XMjNoenZFSzJfWWZkWEZwMDVYazFqcjNNWDFYLWx6RGNONTI1aldSUQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "Hipócrita Lector"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 17,
+      "peso_pct": 27,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 2,
@@ -153,18 +111,12 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 13,
+      "peso_pct": 16,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 4,
+      "n_notas": 3,
       "notas": [
-        {
-          "texto": "EU y México ‘chocan’ por China: Restricciones de Trump ponen en riesgo al T-MEC",
-          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/09/29/eu-y-mexico-chocan-por-china-restricciones-de-trump-ponen-en-riesgo-al-t-mec/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
-        },
         {
           "texto": "México busca evitar nuevos aranceles en negociación del T-MEC; Ebrard alista viaje a EU - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNX21jbndwQzF3YUtrQThNWmJ4TVR5aVpXQzY2NmNPNFJUM0otaFZKUjl1Yll1YVd1dV9HRnNlcHhXRnl3TjZwMUdEb2Q1dmU0OUx2eDBabHVXNHNiTDVBZW9vMlFnc2ItSGlLRzZhQXZ4TTBFcVlZUm41bEJfR0tlQ25lSW9BZGJDT1UxaE5RS1lQTW9MSHRaMlBJaGJueVpuUUdLMVFuREk4bGVqOEpsMk9YVFRRRzltWTJuVnplam5OREk?oc=5",
@@ -187,7 +139,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 3,
+      "peso_pct": 6,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 1,
@@ -203,7 +155,7 @@
     },
     {
       "categoria": "Social",
-      "peso_pct": 3,
+      "peso_pct": 6,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -219,31 +171,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-02",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 77
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 4
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 2
-        }
-      ]
-    },
     {
       "fecha": "2026-09-03",
       "categorias": [
@@ -918,26 +845,63 @@
           "peso_pct": 1
         }
       ]
+    },
+    {
+      "fecha": "2026-09-30",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 21
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 58
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 11
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 1
+        }
+      ]
     }
   ],
   "top5_temas": [
     {
-      "id": "auto-4d06ef5b18",
-      "nombre": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caí",
+      "id": "auto-a05c1de8b6",
+      "nombre": "¿Tienes doble ciudadanía? Así cambiarían los requisitos para buscar la Presidenc",
       "categoria": "Gobernabilidad",
-      "resumen": "Claudia Sheinbaum confronta a funcionarios de PEMEX en Palacio Nacional tras caída de producción: así fue el tenso momento - Ambito",
+      "resumen": "¿Tienes doble ciudadanía? Así cambiarían los requisitos para buscar la Presidencia con la reforma de Claudia Sheinbaum - EL CEO",
       "motivo": "Senado avala reforma que prohíbe doble nacionalidad en gubernaturas y presidencias",
-      "peso": 47.0,
-      "n_temas_agrupados": 11,
-      "escalando": false,
+      "peso": 28.0,
+      "n_temas_agrupados": 7,
+      "escalando": true,
       "ultima_hora": false,
-      "medios_corroborantes": 6,
+      "medios_corroborantes": 3,
       "confianza": "alta",
       "fuente_url": "https://www.informador.mx/mexico/senado-avala-reforma-de-sheinbaum-que-prohibe-doble-nacionalidad-en-gubernaturas-y-presidencias-que-sigue-20260929-0137.html",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
+    },
+    {
+      "id": "auto-73c1c5814c",
+      "nombre": "¡DESIGNA MORENA A 'AHIJADO' DE MARA EN QR! - NOTIVER",
+      "categoria": "Gobernabilidad",
+      "resumen": "¡DESIGNA MORENA A 'AHIJADO' DE MARA EN QR! - NOTIVER",
+      "motivo": "Maribel Villegas acusa \"negociación\" de Morena para designar a Gino Segura en Quintana Roo - La Jornada",
+      "peso": 16.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": true,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPaWVSZ19RWndybHJJaFpIRWUwbGlVNTU1bDJJX2tYcjhEa0xyaEdKQUpKR2R4VEVVYjNCZnEweU1paG9yaklQNUpIbVlVaTJEazY0WWNMbDhyc0NNV1NjOW9PdXdqeGlYb2tGWXRRaW1tZG1UQnJweldnMFZaRW1NN1pzZEV1UmNsVkJhX3M1RDFwbnFHTl9uSnhPRXV1TzAwOUF5WWttMkl1R1FOOW9YSmdqVDg5cVZNRE12VDFXWWJCc1NWZkthUTVZZjdnWmdPWFI2UU5fcXcyUFk?oc=5",
+      "actor_vinculado": null
     },
     {
       "id": "huachicol-fiscal",
@@ -945,36 +909,32 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
       "motivo": "¿Cómo es la casa que alquiló el empresario Amílcar Olán en Suiza? Se renta en más de 300 mil pesos al mes",
-      "peso": 25.0,
-      "n_temas_agrupados": 5,
+      "peso": 14.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
+      "medios_corroborantes": 2,
+      "confianza": "media",
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/como-es-la-casa-que-alquilo-el-empresario-amilcar-olan-en-suiza-se-renta-en-mas-de-300-mil-pesos-al-mes/",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "México busca evitar nuevos aranceles en negociación del T-MEC; Ebrard alista viaje a EU - El Universal",
+      "peso": 13.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNX21jbndwQzF3YUtrQThNWmJ4TVR5aVpXQzY2NmNPNFJUM0otaFZKUjl1Yll1YVd1dV9HRnNlcHhXRnl3TjZwMUdEb2Q1dmU0OUx2eDBabHVXNHNiTDVBZW9vMlFnc2ItSGlLRzZhQXZ4TTBFcVlZUm41bEJfR0tlQ25lSW9BZGJDT1UxaE5RS1lQTW9MSHRaMlBJaGJueVpuUUdLMVFuREk4bGVqOEpsMk9YVFRRRzltWTJuVnplam5OREk?oc=5",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-a9e0c59f33",
-      "nombre": "Sonora se prepara para segundo impacto del huracán \"Polo\" en territorio mexicano",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/sonora-se-prepara-para-segundo-impacto-del-huracan-polo-en-territorio-mexicano-20260929-0048.html"
-    },
-    {
-      "id": "auto-adacabf226",
-      "nombre": "Bruselas reforzará el blindaje de sus fronteras frente a la migración irregular:",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxPSEN0V0lrejFKUU9YSEVsZ0RIbzJ3VnNCSDBMYWFQX1VxX2NmcllmSF9lQmV1ZmRXeUFWXy1aZzIyNGJXTlJqQmhLWmdrUzBMZlVwaHBHbTRoNkJ0R3d4S09yaEVLbG1uQ1E2bnpSNm5PSlJldzdCbGxKS0pJZnVYT19CNEhSTnFFbjZ5NGxIV3ZZeUlfb1ljOUZCcFVpbDFUdEVzMWJTZUpJNmxiTUY4RnJrT1h0RjRWZ2JSWGZfbFVqZlBJdWw2NTl2WVJVblpNQzhhSW5IRWFTRzUxM0QtTnBqX0otVVIzU1BaWnMwQVlFNV9JZ3A5dS1KZkdIY3pTdjRrSVotdFhMcmZrVFHSAaICQVVfeXFMTUpUT1RKRUhQcl9BWG5Ib1dDenNSRm9pLTZsQmdDMDdIcEpkeFdCN0c3RFpPV1pVcGM3Y1VkNU01VzlBVGhqTmVGX1dDWXdVMC1aT1BKMUN4UUtmcDlzOUxLcnB6ZUFtWXNLT3NqMUdzdWhTdFh6dnVJMzE3THBqazZuZ2stZkN3cldjckRLbjRlR182dkdLNklIdHNNTDZVZmJpaEVoNi1GbTQyeXJRaHRiZE51WkVYc01aNHNabXRndmhvbkVINDR2Vkg0NlRheUQ2WF9ONVBDa3ZuQmEzaWs5UEd4XzZKZHNCOUZvMFczRklkbUtxMWRlZ0kwZ29uSDYwZ2kzalZmUmJCQlZXS2dCNUh1VFYtcE9OVUs4UGJDWHc?oc=5"
-    },
     {
       "id": "auto-fff2f35282",
       "nombre": "Identifican al agente de ICE acusado de matar a migrante mexicano Lorenzo Salgad",
@@ -982,6 +942,14 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPbzZKRFJEeGNIR3RYdmhyN01EVi15a0hMc052aEUxUE1rTTlpSTFnNFBNeDhoTVlYdTFZM3dkLUNnZjgzZ01jUkx3enpwZ0pRdEtacmNLbGNiWGdGV1R1YWJuSW5pWUxrUzhZY3J2TER6RExuWUtBWXlCQXhvNXhINWhkTmVaME1OSUpuMUU5Z3ZwOUZObFZsZWRYdEFsSkxoMXpnNlRQU0lDbHFq0gGsAUFVX3lxTFBtM2J2NDhBRlNGR1hLRVdTSUVER0tsdUNtTjF5c292c1ZHWDRjeWU3M2xTSzVYOVE0R0hFQU5MNWpINi1xWTEtN1k3ZVVyWi04MllPMTZYYkZYYnhKekpORjlZSTNxUHRiakJSOUNxQzEtUkFXeHdEMGYyaWdyS0VKSUhYTHF1dlhheVlzb1hWaVR4MkdaSjYtOW94OHVwLVFlT1RiTUdobDgtS0I?oc=5"
+    },
+    {
+      "id": "auto-a57e3833a7",
+      "nombre": "Habitantes de refugios en BCS regresan hoy a sus hogares tras el paso de \"Polo\"",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/habitantes-de-refugios-en-baja-california-sur-regresan-hoy-a-sus-hogares-tras-el-paso-del-huracan-polo-sin-victimas-mortales-20260929-0084.html"
     },
     {
       "id": "auto-32aecbf31b",
@@ -992,12 +960,20 @@
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/29/tribunal-en-texas-acusa-a-2-mexicanos-de-traficar-con-menores-migrantes-y-darles-gomitas-con-thc/"
     },
     {
-      "id": "auto-90da53e333",
-      "nombre": "Morena elige en Chihuahua a Cruz Pérez Cuéllar: \"estamos obligados a sacar a la ",
+      "id": "auto-5bd0920f78",
+      "nombre": "¿Ruptura entre Morena y PT? Citlalli Hernández aclara qué pasará con la alianza ",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNU3ZkdzY3TmhuRkNQbndnSk1abS02WWhHeHUtTUFyTC1yNTNMU09BZ2pXdWdoX0xySktRbVk3Y3BDSDd4STM1TE9rZUVKN2pOcUV3QlZYQ3E2bkdodHpKV3pPUS1RVnc3SGhJZi1laHBYNV8zcnVyVkRlLVZMZG9XWDBjT2JZRVNHYm5vM0o0aDNKaktUT1BUX1JpeWtBMjBLeE5IX2tTTzhxQQ?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTkQ5cHRuTlJqQjBPcWdiQWgyZTdlV256b0o2Q01ZODFXNlNEbzRWVjJRbUhmd0ZPdEF4T0diak1CYmZ6WEJHWUNKNVVobGdSa0NYZFBnRU1QUEZPTTJZel9lNXk0LWZFTjA4QWU0RGt6X3ZJRE1zbk5QRm42LWcxNE8zY3A5WnBVWUZuUm5R0gGOAUFVX3lxTFBORDlwdG5OUmpCME9xZ2JBaDJlN2VXbnpvSjZDTVk4MVc2U0RvNFZWMlFtSGZ3Rk90QXhPR2JqTUJiZnpYQkdZQ0o1VWhsZ1JrQ1hkUGdFTVBQRk9NMll6X2U1eTQtZkVOMDhBZTREa3pfdklETXNuTlBGbjYtZzE0TzNjcDlacFVZRm5SblE?oc=5"
+    },
+    {
+      "id": "auto-1e92c857a3",
+      "nombre": "Morena descartó a cercanos de AMLO para sus gubernaturas: García Soto - El Unive",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNM21OVTVMVGhtSlJvT0VkRnh5d2swWk1XTzVBRTNEczhhWU16TU0waDJEckFvMEJvblA3RFFDbDZjQXJIdU4zZ2paYVFJOFBNY1lJX0NfVHBnVHQ1ek9ZcUJ6Qm9rdm1KYlE5MVBwaTlIc210UE4zdUN5djh3cWFlRWFrcldOSFdkeUd6THFzN0lLcWtGUFZ6ZjAtWk1JcVBiOG92a1BLemJzei1kQkp5UnRGYVp6Q1BGa0xmdGVnZzJCN3A0UHBDdEJRRk1Md2ZJRXRvdDNXbkNIOHFmWWdvcHVjTmxzNG5uVVFj?oc=5"
     }
   ],
   "temas_retomados": [
@@ -1013,26 +989,15 @@
       "fuente_url_anterior": "https://oem.com.mx/diariodexalapa/local/solo-10-por-ciento-de-empresas-cumplio-con-reparto-de-utilidades-este-ano-revela-croc-en-veracruz-31979691"
     },
     {
-      "id": "auto-e16c2c5511",
-      "nombre": "Sheinbaum ofrece expertos para Ayotzinapa sin abrir archivos militares - Los Áng",
+      "id": "auto-0aff0917b3",
+      "nombre": "Denunció agresión sexual a su hija en secundaria; Fiscalía de Veracruz la proces",
       "categoria": "Gobernabilidad",
       "dias_silencio": 18,
-      "motivo": "Caso Ayotzinapa no está cerrado, dice Sheinbaum",
+      "motivo": "Oposición se enfrenta contra INE por no fiscalizar procesos internos de Morena - MILENIO",
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/004n1pol?partner=rss",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQWmRBY2F2NHVQa1NJU1hhWjVPc3A2MmJzcUZiS0FMeUdCcW9oTHRLZGRCWTAtR3dIOEN4SWkyenpzYkdmejRUOFV6M25FajZRUHh6RkVJVlh2UjhBbV9WaV9jQW1JblZxcktXeThwcVZjeFd2OFc4ek1oSENyc1VvQUFzYzdxMTFNMm54a25HaFhQOGNDbVHSAZYBQVVfeXFMUFpkQWNhdjR1UGtTSVNYYVo1T3NwNjJic3FGYktBTHlHQnFvaEx0S2RkQlkwLUd3SDhDeElpMnp6c2JHZno0VDhVejNuRWo2UVB4ekZFSVZYdlI4QW1fVmlfY0FtSW5WcXJLV3k4cHFWY3hXdjhXOHpNaEhDcnNVb0FBc2M3cTExTTJueGtuR2hYUDhjQ21R?oc=5",
       "fecha_anterior": "2026-09-11",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQaFdiWTlkcHhyQkE1UF9sdnQyZ2NSenE4a3NWTlEyNUZLUEY2UkczWEhRRHEwNl82bkxzOGRfTzJJVndzeGZIazEyNzBCZXRrOHJ1X2RWdTFKRGFiZUxoWGhickZKVUFoMkltcUUxZWM0Rkg1SGdwVnQxeE9qbGhlSi0zemtqSjUyaWk2bXZrbGM1WEdfaEc0V0tuenl3cDNCLWVDcVNEcVE3YVZfV3lpRTdpUVRUWnp6R1FYUXZwSk05Ul9xZ1hKTzhn0gHPAUFVX3lxTE9VS2pYWlljMXZyUUhzSm5UcGxFNWNTdzdfSno0WUtSSFV1c2xpQS1BUkpxNmhxTTFrekw3SmdfbmZEbll0TTdha3pFWjMxTVlvSXZEcWhCZV9BU19VVVhBb2FMTk9lamh5U3BpdjNYNVJwTFFJRkZzaWRZeF82NzUtazBobWRTSW1fdzM0ODhYNWVqWDRUd1FBYWZZc183SXFRS2g1ZDU3enQyS1VnbmtjVFZseF83UkJBQzRUblZIZGhBaHB6dmk2N0RLd05uRQ?oc=5"
-    },
-    {
-      "id": "auto-422c0710a5",
-      "nombre": "Unidad 4T: del dicho al hecho",
-      "categoria": "Economía",
-      "dias_silencio": 14,
-      "motivo": "Morena, ¿su unidad en riesgo? - MILENIO",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNZjctTkRFUmdwdkJndEMxRi0wZDNhektaSFBtOGVKTFN6bGNJRUdTQ3hrdXJ5dUNDU0NuWlh4NnZfX0pidFRIY1pVSm5Ia083VDNkbG9EQUQxRHpiclQ0Q05oYy1Lc19OOFF0TDQ1a3BlN0tJT0VPdWRvY19RSVFrbGlELXkxWEtjTmh3RG94Um1HMXA5RWxGRlFB0gGaAUFVX3lxTE9QUFA1bWZ4cUUySXh4T1pqa0xSMXFpZ1M2N01maHN4LThmNTBub1NrcnNzRDlPOVJlc3NDSFk4SGMxcEhNMzY3X1BQU1JDRWp2XzM5WFRWeUZFb2VNRlB0bkZhMGhaMUdkaWVsOGMyOFhkaFlCc3dIN0tyb0ZUYWhub0ZnSUdSeG9XQmx3dHhRZXVVMUZ5eWlSNmc?oc=5",
-      "fecha_anterior": "2026-09-15",
-      "fuente_url_anterior": "https://www.tabascohoy.com/a-prueba-la-unidad-de-morena/"
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPVFJ0SkxxNWNURXllYmthaXRiekFBX1ljTzJpUVc5ajV0OURIVHVTMzN5QUI5aDFDamNwMlQxOUhXaHhzaE92UnZuWjNpZHM0cndfYzF0YlRPOEZ4RVdVRzZWTzM0Ylg3NlVvcjdzVC04bU5KTTNYbzhmOC1XeDdPQlNPQmYwXzRYMVI4M1J3OHNxTUxKN2dvc3hfUnpRcWtNMFVmRUNNX1ZsV2lhLWhVLTFUd0dUWGFhbWxsVdIBvAFBVV95cUxPVFJ0SkxxNWNURXllYmthaXRiekFBX1ljTzJpUVc5ajV0OURIVHVTMzN5QUI5aDFDamNwMlQxOUhXaHhzaE92UnZuWjNpZHM0cndfYzF0YlRPOEZ4RVdVRzZWTzM0Ylg3NlVvcjdzVC04bU5KTTNYbzhmOC1XeDdPQlNPQmYwXzRYMVI4M1J3OHNxTUxKN2dvc3hfUnpRcWtNMFVmRUNNX1ZsV2lhLWhVLTFUd0dUWGFhbWxsVQ?oc=5"
     },
     {
       "id": "auto-c62cbc14fc",
@@ -1044,6 +1009,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOV3RFa1NVaTVGcGlXaG9LV2E2WkRCSjlPd0JpbUxtVUMyX1otOXRrMkgyN3UxZk83b2M1TVBOdWRLUWhHMHZaTFlDTEUwOGZaMWs0bVpIdHhLcGFCbUJKS2k3QTRkZVdWbWZubWNjRUxGdU5aVGhJR3hVQkNtaVByV0I1Zi03S3FJWncxMm9nSQ?oc=5",
       "fecha_anterior": "2026-09-15",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPbmJxd2ZPdDVrbjhKSC0tRV9pbVdCWVZZSlV4cGxDM0UzS3pGTGwwdEhUNERURVQwZ0VPMDZFVlRuWllBenY4NHdZaGNqdXR4cWdTUlU0U29hOThrQ2IwNnE4VlMwRXhNSUdKRFBmVDRuZXY0NXo1QjhtTHd2ZnNCS0hrZXRTQTNQTXktSG5IdzA2a0VDZnlfdG1NblZXMkdFOUw4MFNOWkpzQ1g3c1JMQ2h6OVNwWWt1QzVvaXVqN3ZIMXpENjd0cEF5Q0tSRmtTcWFjUEl2SlZWUzNfSk8xOV93WlNZZUwzQ2xIZmJhdw?oc=5"
+    },
+    {
+      "id": "auto-071957561c",
+      "nombre": "Con coordinación e inteligencia, gobierno estatal registra resultados contundent",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 11,
+      "motivo": "‘Todo ha sido transparente’: Morena publica los resultados de las encuestas para coordinaciones estatales",
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/09/29/morena-publica-los-resultados-de-las-encuestas-para-coordinaciones-estatales/",
+      "fecha_anterior": "2026-09-18",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNbXF0cTdpYmRyRlF2dFAxM3lTOUZsRGhXRnZ4aUVmWWdSMWNnSGhoOHkzSndXX1U0dWxWdFdyUlZIM2RmWjh0b1NaU1FKcFUxMG83V0pJdE5SeGQyWWtIVmRyNHBZOEhfenI1VzhWakVUakdJU094eF96SGhybmVJMGNyM0NjNHNFeGFETE5UblNTbHdETHUtamM2WjU4U3pCNUNmSWtKTHcyR3JQeGNwb3lJSmg5SmZyU0NwVjEwd1Nsb2RmcTIzekFGVm1wV1NPc01BdWF4eFFDQjJxc2c?oc=5"
     },
     {
       "id": "auto-33f3ce8dff",
@@ -1059,23 +1035,23 @@
   ],
   "actores_destacados": [
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Responsable institucional",
-      "tema": "Claudia Tacoronte: un crimen que deja preguntas sobre seguridad y atención de em",
-      "nota": "Claudia Sheinbaum deja en manos de la FGR el caso de Jorge Amílcar Olán",
-      "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-deja-en-manos-de-la-fgrel-caso-de-jorge-amilcar-olan-20260929-0020.html",
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "rol": "Mencionado",
+      "tema": "PRI analiza no ponerle contrincante a Morena en Tabasco: \"Que juegue solo 'Andy'",
+      "nota": "Morena reacciona a acusaciones de EU contra Andy López y Marina del Pilar",
+      "fuente_url": "https://www.informador.mx/mexico/morena-rompe-el-silencio-sobre-las-investigaciones-de-eu-a-andy-lopez-y-sancion-al-exesposo-de-marina-del-pilar-video-20260929-0152.html",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "rol": "Mencionado",
-      "tema": "El futbol mexicano será investigado por el Gobierno de Sheinbaum tras acusacione",
-      "nota": "EU va por ‘Andy’ López: Dos agencias investigan acusaciones de huachicoleo, dice el NYT",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/09/29/eu-va-por-andy-lopez-dos-agencias-investigan-acusaciones-de-huachicoleo-dice-el-nyt/",
+      "id": "amlo",
+      "nombre": "Andrés Manuel López Obrador ('AMLO')",
+      "rol": "Reacción social/mediática",
+      "tema": "Morena descartó a cercanos de AMLO para sus gubernaturas: García Soto - El Unive",
+      "nota": "Morena descartó a cercanos de AMLO para sus gubernaturas: García Soto - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNM21OVTVMVGhtSlJvT0VkRnh5d2swWk1XTzVBRTNEczhhWU16TU0waDJEckFvMEJvblA3RFFDbDZjQXJIdU4zZ2paYVFJOFBNY1lJX0NfVHBnVHQ1ek9ZcUJ6Qm9rdm1KYlE5MVBwaTlIc210UE4zdUN5djh3cWFlRWFrcldOSFdkeUd6THFzN0lLcWtGUFZ6ZjAtWk1JcVBiOG92a1BLemJzei1kQkp5UnRGYVp6Q1BGa0xmdGVnZzJCN3A0UHBDdEJRRk1Md2ZJRXRvdDNXbkNIOHFmWWdvcHVjTmxzNG5uVVFj?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1092,23 +1068,23 @@
       "confianza": "media"
     },
     {
-      "id": "pt_partido",
-      "nombre": "Partido del Trabajo (PT)",
-      "rol": "Mencionado",
-      "tema": "¿Ruptura entre Morena y PT? Citlalli Hernández aclara qué pasará con la alianza ",
-      "nota": "¿Ruptura entre Morena y PT? Citlalli Hernández aclara qué pasará con la alianza rumbo a 2027 - Expansión Política",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTkQ5cHRuTlJqQjBPcWdiQWgyZTdlV256b0o2Q01ZODFXNlNEbzRWVjJRbUhmd0ZPdEF4T0diak1CYmZ6WEJHWUNKNVVobGdSa0NYZFBnRU1QUEZPTTJZel9lNXk0LWZFTjA4QWU0RGt6X3ZJRE1zbk5QRm42LWcxNE8zY3A5WnBVWUZuUm5R0gGOAUFVX3lxTFBORDlwdG5OUmpCME9xZ2JBaDJlN2VXbnpvSjZDTVk4MVc2U0RvNFZWMlFtSGZ3Rk90QXhPR2JqTUJiZnpYQkdZQ0o1VWhsZ1JrQ1hkUGdFTVBQRk9NMll6X2U1eTQtZkVOMDhBZTREa3pfdklETXNuTlBGbjYtZzE0TzNjcDlacFVZRm5SblE?oc=5",
+      "id": "marina_pilar",
+      "nombre": "Marina del Pilar Ávila",
+      "rol": "Responsable institucional",
+      "tema": "PRI analiza no ponerle contrincante a Morena en Tabasco: \"Que juegue solo 'Andy'",
+      "nota": "Morena reacciona a acusaciones de EU contra Andy López y Marina del Pilar",
+      "fuente_url": "https://www.informador.mx/mexico/morena-rompe-el-silencio-sobre-las-investigaciones-de-eu-a-andy-lopez-y-sancion-al-exesposo-de-marina-del-pilar-video-20260929-0152.html",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
+      "id": "manuel_velasco",
+      "nombre": "Manuel Velasco Coello",
       "rol": "Mencionado",
-      "tema": "Por las tensiones nacionales, el PT amenaza romper la alianza con Morena en la C",
-      "nota": "Se logrará reforma  sobre doble nacionalidad: Morena",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/009n2pol?partner=rss",
+      "tema": "Manuel Velasco pide mantener unido al bloque oficialista rumbo a 2027 - Capital ",
+      "nota": "⚡ Posible presión de Manuel Velasco Coello — Manuel Velasco advierte rumbo a las elecciones: \"Nunca hay que dar por hecho lo supuesto en política\" - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOVWNyb2NhQXVGWTRiZklOb0tOaF9WUTA1dEJ0VW1kSUppclFSLUVtX2NNWUZ5TXVJSHlxZXRyRFh4cDRpbGhYck1QWFhNeTladEI1QzFxdUtmc2o3bk8xS1EzNHZKU0d6eEZpdnN1ckZGaDRraERHZlROM0lwYUl2bW9xUkdyR2lyZUN5ODVsUlJubEZ5enfSAZYBQVVfeXFMT0plVFlHT18xcGwtT1BJX212UkhSTmJpVHREWnlBcXdlREljeGlPVGMwZnBGLS1Ma2NjT1duTGV0WVFPLUJOYThUbDBDM19GMTJKdFNjdDJ0QkZwSFlLcFBMTUZwMjdnUUpFVTloVUkxbzZZaEdDTnAwQXZZQ3hiWnlWTGdkbXlBNWRFSU1PM3J4V043YlN3?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1122,23 +1098,8 @@
     "fecha": "2026-09-29",
     "nivel_fuente": "ALTA"
   },
-  "declaracion_otro": {
-    "actor": "Morena (partido político)",
-    "texto": "Se logrará reforma  sobre doble nacionalidad: Morena",
-    "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/009n2pol?partner=rss",
-    "intensidad": 7.0,
-    "fecha": "2026-09-29",
-    "nivel_fuente": "ALTA"
-  },
+  "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-02",
-      "tension": 37,
-      "n_notas": 23,
-      "n_alto_impacto": 13,
-      "n_medio_impacto": 10,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-03",
       "tension": 35,
@@ -1349,10 +1310,18 @@
     },
     {
       "fecha": "2026-09-29",
-      "tension": 52,
-      "n_notas": 29,
+      "tension": 51,
+      "n_notas": 30,
       "n_alto_impacto": 21,
-      "n_medio_impacto": 8,
+      "n_medio_impacto": 9,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-09-30",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1361,17 +1330,17 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 55,
+      "x_lunes": 100,
       "y_lunes": 100,
       "x_hoy": 100,
       "y_hoy": 100,
-      "delta_pts": 15,
+      "delta_pts": 0,
       "alcance": 11,
       "n_alto": 11,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
       "nota_texto": "Claudia Sheinbaum cuestiona la actitud de la ONU ante tantas guerras… - Revista Fortuna",
       "es_nuevo": false,
@@ -1382,17 +1351,17 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 55,
+      "x_lunes": 91,
       "y_lunes": 100,
       "x_hoy": 91,
       "y_hoy": 100,
-      "delta_pts": 12,
+      "delta_pts": 0,
       "alcance": 8,
       "n_alto": 10,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZExOeEpMWS10UHZqdEhIb3p5V2xQR0ZVVi1zS2xreXgzWkttRjFqTmpQdWJydzJJTjZrT2F1LWpaRy1tTlR6c1hYcDh4MzJyNklzYmxNN0xxb2pvZG11T1JvZF9TOENrd2VXb3NHZGV4Zzl3Sjd2ektaZDdyd004cXRHVlc0aFZHVE1NTE01bFVDVVVxTGR3NWtNSDlESUxGaG45eDAtTFBjZkxfaWJxR2hhYlNUc1dMNzlQTks2YWg?oc=5",
       "nota_texto": "“Hubo mucha unidad”: Sheinbaum celebra proceso interno de Morena rumbo a 2027 - Nación321",
       "es_nuevo": false,
@@ -1403,17 +1372,17 @@
       "id": "amilcar_olan_aparicio",
       "nombre": "Amílcar Olán Aparicio",
       "iniciales": "AO",
-      "x_lunes": 18,
+      "x_lunes": 36,
       "y_lunes": 100,
       "x_hoy": 36,
       "y_hoy": 100,
-      "delta_pts": 6,
+      "delta_pts": 0,
       "alcance": 4,
       "n_alto": 4,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
       "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false,
@@ -1424,17 +1393,17 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 9,
+      "x_lunes": 27,
       "y_lunes": 100,
       "x_hoy": 27,
       "y_hoy": 100,
-      "delta_pts": 6,
+      "delta_pts": 0,
       "alcance": 3,
       "n_alto": 3,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
       "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false,
@@ -1529,17 +1498,17 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 0,
-      "y_lunes": 0,
+      "x_lunes": 9,
+      "y_lunes": 50,
       "x_hoy": 9,
       "y_hoy": 50,
-      "delta_pts": 1.5,
+      "delta_pts": 0.0,
       "alcance": 1,
       "n_alto": 0,
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQMk9lSzFjWGIyZ0szU2NyekNScldPeFlDWXNKWDg3cEFlOWs2OE4zQldZbDdxV19LTWpyX0RWdUxsMkpTeFljUGNURW9TVTY0VVNrV2V5QlFwT1FrcVJQaXZ0Umw0YXJLcXFTNW9CcVoxeHNycWJyMm9fS0JBMWxIb1R2VTI4dmZFYWtsQUJ1SlBiZEVjdHA1VGFSVXMtb2NzNVlj0gGoAUFVX3lxTE5XYXVfX2F2SC1iTFJqMXVjWldCR21fNmtQd1J3eDNDNE90ZVc1UkZBTnVHY2xKbmN2SDV4N1FxQVpxOUQ4eFd2Y2VQLXA2ZS1xUGhWSW5vX1hKZGxjTi1hYzgxb211dEVySnFoSV9MOHFmWXh5N0hnZkRsUUhsdHpDbUVjQURIUDF6NS1SVnpMd0g2Wng3bjM4R09jNjdIUlh4TmF0TmRwZQ?oc=5",
       "nota_texto": "Rocha Moya en Culiacán y Amílcar Olán en los Alpes - informador.mx",
       "es_nuevo": false,
@@ -1548,44 +1517,8 @@
     }
   ],
   "tablero_semana_inicio": "2026-09-28",
-  "resumen_mananera": [
-    {
-      "texto": "Se presentaron avances significativos en el programa de vacunación nacional durante los dos años de la administración Sheinbaum. Se han aplicado 149 millones de dosis de vacunas de manera universal, g",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "El programa \"Salud Casa por Casa\" ha realizado 24.8 millones de consultas en hogares de adultos mayores y personas con discapacidad. Se han efectuado 17.1 millones de pruebas de glucosa, colesterol y",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se informó sobre la construcción de 33 nuevos hospitales en los últimos dos años, con una inversión de aproximadamente 24 mil millones de pesos y la creación de 1,535 nuevas camas hospitalarias. Estos",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se presentó un análisis comparativo del crecimiento hospitalario en México. Durante los primeros 40 años del IMSS (1943-1982) se construyeron 35,000 camas. Sin embargo, en los 36 años del período neol",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se reportó una inversión de 15,800 millones de pesos en equipamiento médico de alta tecnología durante 2025-2026. Se adquirieron 241 tomógrafos, 5 PET-CT, 676 mastógrafos, 37 aceleradores lineales y 5",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
+  "resumen_mananera": [],
+  "mananera_estado": "pendiente",
   "a_vigilar": [
     {
       "id": "auto-2125ed5fd0",
@@ -1599,7 +1532,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 2
   },
   "declaracion_presidenta_historial": [
     {
@@ -1647,5 +1580,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-09-29 18:18"
+  "hora_corte_publicada": "2026-09-30 04:38"
 }
