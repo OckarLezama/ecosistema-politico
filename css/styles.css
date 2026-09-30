@@ -243,6 +243,24 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   animation:radar-girar 5s linear infinite;
 }
 
+/* --- destello al paso del haz de radar sobre un punto -- pedido explícito: "que cuando
+   pase por los círculos/notas, estas tengan un leve destello". Cada punto tiene su
+   propio animation-delay calculado en JS (dibujarBarridoRadar) según el ángulo real que
+   le toca respecto al centro del barrido -- por eso la duración de este keyframe es
+   igual a una vuelta completa del haz (RADAR_DURACION_MS) y no a lo que dura el
+   destello en sí: el destello visual ocupa solo el primer ~12% del ciclo, el resto del
+   tiempo el punto vuelve a su estado normal, en silencio, hasta la siguiente vuelta. */
+@keyframes radar-punto-flash{
+  0%   { opacity:0; transform:scale(0.75); }
+  3%   { opacity:0.85; transform:scale(1.05); }
+  12%  { opacity:0; transform:scale(1.35); }
+  100% { opacity:0; transform:scale(1.35); }
+}
+.radar-punto-destello{
+  transform-box:fill-box; transform-origin:center; pointer-events:none;
+  animation-name:radar-punto-flash; animation-timing-function:linear; animation-iteration-count:infinite;
+}
+
 /* --- destello al pasar el mouse sobre CUALQUIER punto de la matriz -- pedido
    explícito: "el efecto de radar es que cuando pase sobre los puntos, estos tengan un
    pequeño destello". Un solo disparo por hover (no en bucle, a diferencia del sonar
