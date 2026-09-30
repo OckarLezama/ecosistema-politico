@@ -1009,8 +1009,15 @@ function renderMatrizYLista(){
     // eso: dibuja su cuadrícula (una sola escala, 20x20, línea fina) directo dentro del
     // propio SVG con un <pattern>, sin envolver nada en una tarjeta extra. Se iguala
     // ese mismo criterio acá -- ver el patrón "matriz-grid" al inicio de dibujarMatrizRiesgo().
+    // CORRECCIÓN -- pedido explícito: "¿esto es un producto de inteligencia que alguien
+    // consultaría para decidir?". La conclusión y la alerta de riesgos silenciosos van
+    // en HTML (no texto dentro del SVG) -- mejor tipografía, jerarquía real (negritas,
+    // tamaños), y no le quitan espacio al plano peleando por posición como pasaba con
+    // las anotaciones flotantes de antes.
     document.getElementById('matriz-lista-zona').innerHTML =
-      `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
+      `<div id="matriz-resumen-html" style="flex:none;"></div>
+       <svg id="matriz-riesgo-svg" style="width:100%;flex:1;min-height:0;display:block;"></svg>
+       <div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
     dibujarMatrizRiesgo();
   }
 }
@@ -1211,13 +1218,51 @@ function calcularDatosRadarAgenda(temasBase){
       }
     }
 
+    // CORRECCIÓN -- pedido explícito: "¿se podría decir cuánto lleva el tema en la
+    // agenda? contar cuándo se apaga, cuándo se vuelve a prender, el tiempo que se
+    // mantiene?". Un tema nuevo (primera vez en la agenda) y uno crónico (lleva 60 días
+    // sin resolverse, apagándose y volviendo a prender) se ven IGUAL hoy con solo
+    // riesgo+volumen -- son políticamente distintos y esto los distingue sin usar IA,
+    // con datos que ya existen (fechas de eventos). Una "racha" es un tramo de
+    // actividad sin huecos de más de 6 días; varias rachas separadas por huecos largos
+    // = el tema se apagó y se volvió a prender.
+    const rachaInfo = _calcularRachasTema(evsTodos);
+
     return {
       tema: t, categoria: t.categoria, riesgoReal, riesgoAnterior,
       veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
       nMedios: medios.size, actorIds, anomalia,
       primeraMencion: evsTodos.length ? evsTodos.map(e=>e.fecha).sort()[0] : null,
+      diasEnAgenda: rachaInfo.diasEnAgenda, diasEnRachaActual: rachaInfo.diasEnRachaActual,
+      reactivaciones: rachaInfo.reactivaciones, diasDesdeUltima: rachaInfo.diasDesdeUltima,
     };
   });
+}
+
+// ver calcularDatosRadarAgenda -- reconstruye la "vida" de un tema a partir de sus
+// fechas de eventos: cuánto lleva en la agenda en total, cuántas veces se apagó y
+// volvió a prender, y cuántos días lleva la racha de actividad actual (o desde cuándo
+// está apagado, si ya no tiene actividad).
+function _calcularRachasTema(evsTodos){
+  if(!evsTodos.length) return { diasEnAgenda:0, diasEnRachaActual:0, reactivaciones:0, diasDesdeUltima:null };
+  const GAP_RACHA_DIAS = 6; // hueco sin ninguna nota mayor a esto = el tema se apagó y esto ya es otra racha
+  const fechas = [...new Set(evsTodos.map(e=>e.fecha))].sort();
+  const rachas = [[fechas[0]]];
+  for(let i=1;i<fechas.length;i++){
+    const brecha = (new Date(fechas[i]) - new Date(fechas[i-1])) / 86400000;
+    if(brecha > GAP_RACHA_DIAS) rachas.push([fechas[i]]);
+    else rachas[rachas.length-1].push(fechas[i]);
+  }
+  const ultimaRacha = rachas[rachas.length-1];
+  const diasDesdeUltima = _diasAtras(fechas[fechas.length-1]);
+  const diasEnRachaActual = Math.round((new Date(ultimaRacha[ultimaRacha.length-1]) - new Date(ultimaRacha[0])) / 86400000)
+    + (diasDesdeUltima < VENTANA_RADAR_DIAS ? diasDesdeUltima : 0);
+  return {
+    diasEnAgenda: _diasAtras(fechas[0]),
+    diasEnRachaActual,
+    reactivaciones: rachas.length - 1,
+    diasDesdeUltima,
+  };
 }
 
 // "QUIÉN SE MOVIÓ MÁS" ya no es una franja de HTML aparte -- se dibuja como
@@ -1234,19 +1279,47 @@ function _truncarEnPalabra(texto, max){
   return (ultimoEspacio > max*0.5 ? corte.slice(0, ultimoEspacio) : corte) + '…';
 }
 
+// CORRECCIÓN -- pedido explícito: "Operación Enjambre suma 14… no se entiende nada".
+// La causa real NO era el truncado: para un tema "auto-" (detectado solo, sin nombre
+// editorial propio -- 1,908 de los temas en data/temas.csv), el campo 'nombre' ES el
+// titular de la nota que lo originó, y ese titular YA viene cortado a mitad de palabra
+// desde el propio dato de origen ("...El Univer", sin cerrar). 'resumen' trae el
+// titular completo, con la fuente pegada al final ("... - El Universal") -- se usa ese
+// cuando es más largo que 'nombre' (señal de que 'nombre' es el recorte roto), y se le
+// quita la fuente pegada para quedarse con la idea, no la cita de dónde salió.
+function _nombreClaroTema(tema){
+  let base = (tema.resumen && tema.resumen.length > tema.nombre.length) ? tema.resumen : tema.nombre;
+  base = base.replace(/\s+[-–]\s+[^-–]{2,40}$/, ''); // quita "- Fuente" pegado al final
+  return base.trim();
+}
+
 function _tooltipRadar(d, datosVisibles){
   const ICONO_TENDENCIA = {subiendo:'↑ subiendo', bajando:'↓ bajando', estable:'→ estable'};
-  let html = `<strong>${d.tema.nombre}</strong><br>Riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
+  let html = `<strong>${_nombreClaroTema(d.tema)}</strong><br>Riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
   if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
   if(d.esNuevo && !d.apagado) html += ` <span style="color:var(--teal);">· 🆕 actividad en las últimas 48h</span>`;
   if(d.tendencia && !d.apagado) html += `<br>Tendencia: ${ICONO_TENDENCIA[d.tendencia]}`;
-  html += `<br>Corroborado por ${d.nMedios} medio${d.nMedios!==1?'s':''} distinto${d.nMedios!==1?'s':''}`;
+  // CORROBORACIÓN -- pedido explícito: no enterrarla como una línea más entre otras --
+  // un tema con 1 sola fuente pesa distinto que uno confirmado por varios medios, y esa
+  // diferencia debe notarse (color de alerta si es una sola fuente), no solo estar ahí.
+  const colorCorrob = d.nMedios<=1 ? 'var(--riesgo-medio)' : 'var(--ink-2)';
+  html += `<br><span style="color:${colorCorrob};">${d.nMedios<=1?'⚠ solo 1 fuente, sin corroborar':`✓ corroborado por ${d.nMedios} medios distintos`}</span>`;
   if(d.anomalia && d.anomalia.nivel!=='normal') html += `<br><span style="color:${d.anomalia.nivel==='alta'?'var(--riesgo-alto)':'var(--teal)'};">Riesgo anómalamente ${d.anomalia.nivel} vs. su propio histórico</span>`;
   if(d.actorIds.size){
     const vinculados = datosVisibles.filter(o=>o!==d && [...o.actorIds].some(id=>d.actorIds.has(id)));
-    if(vinculados.length) html += `<br><span style="color:var(--teal);">🔗 comparte actor con: ${vinculados.slice(0,2).map(o=>o.tema.nombre).join(', ')}</span>`;
+    if(vinculados.length) html += `<br><span style="color:var(--teal);">🔗 comparte actor con: ${vinculados.slice(0,2).map(o=>_nombreClaroTema(o.tema)).join(', ')}</span>`;
   }
-  html += `<br><span style="font-size:9px;opacity:.7;">desde ${d.primeraMencion||'—'}</span>`;
+  // ANTIGÜEDAD / RACHA -- pedido explícito: "¿cuánto lleva el tema en la agenda? cuándo
+  // se apaga, cuándo se vuelve a prender, el tiempo que se mantiene?". Un tema nuevo
+  // (diasEnAgenda chico, 0 reactivaciones) es una historia distinta de uno crónico
+  // (semanas en agenda, ya se apagó y volvió a prender varias veces) -- aunque hoy
+  // tengan el mismo riesgo y volumen.
+  html += `<br><span style="font-size:10px;opacity:.85;">`;
+  if(d.diasEnAgenda <= 1) html += `🆕 tema nuevo, primera vez en la agenda`;
+  else if(d.apagado) html += `en agenda desde hace ${d.diasEnAgenda} días · sin actividad hace ${d.diasDesdeUltima} días`;
+  else html += `en agenda desde hace ${d.diasEnAgenda} días · racha activa de ${d.diasEnRachaActual} día${d.diasEnRachaActual!==1?'s':''}`;
+  if(d.reactivaciones>0) html += ` · se apagó y volvió a prender ${d.reactivaciones} vez${d.reactivaciones!==1?'es':''}`;
+  html += `</span>`;
   return html;
 }
 
@@ -1305,11 +1378,13 @@ function dibujarMatrizRiesgo(){
     : `Mostrando los ${datos.length} temas de esta vista`;
 
   // ---- geometría: X = volumen reciente (notas en 14d), Y = riesgo reciente (arriba = alto) ----
-  // margen.arriba con espacio para hasta 3 anotaciones ancladas (ver más abajo,
-  // "QUIÉN SE MOVIÓ MÁS" -- ya no es una franja de texto aparte con líneas propias,
-  // ahora son anotaciones con línea guía apuntando a su punto real, como en las
-  // referencias que mandó el usuario)
-  const margen = {izq:46, der:22, arriba:90, abajo:72};
+  // CORRECCIÓN -- pedido explícito: "¿esto es un producto de inteligencia real?". Las
+  // anotaciones flotantes ("quién se movió más") y las etiquetas de cuadrante de 2
+  // líneas ya no viven DENTRO del SVG -- esa lectura ahora la da el resumen en HTML de
+  // arriba (más claro) y una flecha de tendencia en cada punto (ver más abajo). Sin esas
+  // dos cosas peleando por espacio, el margen superior vuelve a ser chico y el plano
+  // recupera el área que antes se le quitaba.
+  const margen = {izq:46, der:22, arriba:34, abajo:56};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
 
@@ -1329,7 +1404,20 @@ function dibujarMatrizRiesgo(){
     .forEach((d,i)=> d._rankY = nDatos>1 ? i/(nDatos-1) : 0.5);
   const xDe = d => margen.izq + d._rankX * anchoUtil;
   const yDe = d => margen.arriba + d._rankY * altoUtil;
-  const xMediana = margen.izq + anchoUtil*0.5, yMediana = margen.arriba + altoUtil*0.5;
+  // CORRECCIÓN -- verificado con captura real: con el umbral fijo en 0.5 de TODO el
+  // corte (activos + apagados), "ACTUAR YA" salía con 18 de 44 temas activos -- muy
+  // alto para ser útil como triage ("si todo es urgente, nada lo es"). La causa: los
+  // apagados tienen 0 notas por definición, así que se amontonan todos en el extremo
+  // bajo de volumen y corren la MEDIANA hacia abajo -- un tema activo con apenas unas
+  // pocas notas ya calificaba como "alto volumen" solo por comparársele contra un montón
+  // de temas sin ninguna actividad. El umbral de cuadrante ahora se calcula SOLO sobre
+  // los temas con actividad real -- la pregunta correcta es "¿está esto por encima de
+  // la mitad de lo que de verdad está pasando hoy?", no "...de todo el archivo histórico".
+  const activosParaUmbral = datos.filter(d=>!d.apagado);
+  const _medianaDe = arr => { const s=[...arr].sort((a,b)=>a-b); return s.length ? s[Math.floor((s.length-1)/2)] : 0.5; };
+  const umbralRankX = activosParaUmbral.length ? _medianaDe(activosParaUmbral.map(d=>d._rankX)) : 0.5;
+  const umbralRankY = activosParaUmbral.length ? _medianaDe(activosParaUmbral.map(d=>d._rankY)) : 0.5;
+  const xMediana = margen.izq + umbralRankX*anchoUtil, yMediana = margen.arriba + umbralRankY*altoUtil;
 
   // ---- fondo de cuadrícula, una sola escala -- mismo criterio que Genealogía
   // (#geneal-grid): un <pattern> dibujado directo en el SVG, sin envolver el gráfico
@@ -1340,40 +1428,29 @@ function dibujarMatrizRiesgo(){
   patGrid.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
   svg.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','url(#matriz-grid)');
 
-  // ---- fondo: los 4 cuadrantes ahora tienen su propio tinte, no solo "ACTUAR YA".
-  // CORRECCIÓN -- pedido explícito: "algunas están en posición baja y riesgo alto,
-  // tener claro ese análisis" -- un tema de riesgo alto pero poco volumen (VIGILAR)
-  // se perdía en el mismo fondo neutro que "bajo perfil" y no se distinguía como algo
-  // que sí importa vigilar. Cada cuadrante ahora tiene su propio tinte y su etiqueta
-  // usa el color de riesgo correspondiente, para que la lectura no dependa de comparar
-  // posiciones a ojo. ----
+  // ---- fondo: los 4 cuadrantes con su propio tinte. CORRECCIÓN -- pedido explícito:
+  // "algunas están en posición baja y riesgo alto, tener claro ese análisis" -- un tema
+  // de riesgo alto pero poco volumen (VIGILAR) se perdía en el mismo fondo neutro que
+  // "bajo perfil". Las etiquetas largas de cuadrante ("alto riesgo + alto volumen") ya
+  // NO van aquí -- esa lectura la da el resumen en HTML arriba del gráfico, con mejor
+  // tipografía y sin pelear por espacio con los puntos. Aquí solo queda el nombre corto,
+  // discreto, en la esquina -- referencia rápida para quien ya leyó el resumen.
   svg.append('rect').attr('x',xMediana).attr('y',margen.arriba).attr('width',margen.izq+anchoUtil-xMediana).attr('height',yMediana-margen.arriba)
     .attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.08);
   svg.append('rect').attr('x',margen.izq).attr('y',margen.arriba).attr('width',xMediana-margen.izq).attr('height',yMediana-margen.arriba)
     .attr('fill','var(--riesgo-medio)').attr('fill-opacity',0.06);
   svg.append('rect').attr('x',xMediana).attr('y',yMediana).attr('width',margen.izq+anchoUtil-xMediana).attr('height',margen.arriba+altoUtil-yMediana)
     .attr('fill','var(--ink-3)').attr('fill-opacity',0.05);
-  // CORRECCIÓN -- las etiquetas de cuadrante vivían DENTRO del plano, justo donde el
-  // ranking siempre pone la mayor concentración de puntos (los de mayor riesgo/volumen
-  // caen exactamente en el borde superior/derecho) -- un punto terminaba tapando la
-  // palabra "YA" de "ACTUAR YA". Ahora las 4 etiquetas viven FUERA del área de puntos,
-  // en la franja superior/inferior del margen, donde nunca hay un círculo encima.
-  svg.append('text').attr('x',margen.izq+anchoUtil).attr('y',margen.arriba-16).attr('text-anchor','end')
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('font-weight','700').attr('fill','var(--riesgo-alto)')
-    .text('ACTUAR YA · alto riesgo + alto volumen');
-  svg.append('text').attr('x',margen.izq).attr('y',margen.arriba-16)
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('font-weight','700').attr('fill','var(--riesgo-medio)')
-    .text('VIGILAR · alto riesgo, poco volumen aún');
-  svg.append('text').attr('x',margen.izq+anchoUtil).attr('y',margen.arriba+altoUtil+14).attr('text-anchor','end')
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)')
-    .text('RUIDO · mucho volumen, bajo riesgo');
-  svg.append('text').attr('x',margen.izq).attr('y',margen.arriba+altoUtil+14)
-    .attr('font-family','var(--f-mono)').attr('font-size','8.5px').attr('fill','var(--ink-3)')
-    .text('BAJO PERFIL · poco volumen y bajo riesgo');
+  const rotuloCuadrante = (x,y,anchor,color,texto) => svg.append('text').attr('x',x).attr('y',y).attr('text-anchor',anchor)
+    .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('font-weight','700').attr('fill',color).attr('opacity',0.75).style('pointer-events','none')
+    .text(texto);
+  rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+11, 'end', 'var(--riesgo-alto)', 'ACTUAR YA');
+  rotuloCuadrante(margen.izq+4, margen.arriba+11, 'start', 'var(--riesgo-medio)', 'VIGILAR');
+  rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+altoUtil-6, 'end', 'var(--ink-3)', 'RUIDO');
+  rotuloCuadrante(margen.izq+4, margen.arriba+altoUtil-6, 'start', 'var(--ink-3)', 'BAJO PERFIL');
 
   // líneas guía de los umbrales -- pedido explícito: "más gruesa / más marcada, que se
-  // distinga" -- eran 1px punteadas casi invisibles contra el fondo oscuro. Ahora usan
-  // el mismo color fuerte que los ejes y un trazo más ancho.
+  // distinga" -- eran 1px punteadas casi invisibles contra el fondo oscuro.
   svg.append('line').attr('x1',xMediana).attr('x2',xMediana).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil)
     .attr('stroke','var(--line-strong)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',0.85);
   svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',yMediana).attr('y2',yMediana)
@@ -1382,21 +1459,13 @@ function dibujarMatrizRiesgo(){
   // ejes
   svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq).attr('y1',margen.arriba).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
   svg.append('line').attr('x1',margen.izq).attr('x2',margen.izq+anchoUtil).attr('y1',margen.arriba+altoUtil).attr('y2',margen.arriba+altoUtil).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
-  svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+32).attr('text-anchor','middle')
+  svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
     .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
     .text(`más notas recientes (${VENTANA_RADAR_DIAS}d) →`);
   svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',14).attr('text-anchor','middle')
     .attr('transform','rotate(-90)')
     .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill','var(--ink-3)')
     .text(`↑ mayor riesgo relativo`);
-  // CORRECCIÓN -- pedido explícito: "agregar algo de texto en el lienzo" para que la
-  // posición no quede a interpretación -- una sola línea, discreta, aclarando que el eje
-  // es relativo a esta vista (ranking), no un valor absoluto comparable entre filtros.
-  // Sube un poco respecto de las etiquetas de cuadrante (que ahora viven justo debajo,
-  // fuera del área de puntos) para no pisarlas.
-  svg.append('text').attr('x',margen.izq).attr('y',margen.arriba-32)
-    .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('fill','var(--ink-3)').style('pointer-events','none')
-    .text('posición = ranking dentro de esta vista, no valor absoluto');
 
   // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
   // colores, no indicamos qué significa cada color". Antes era una sola línea de texto
@@ -1412,8 +1481,11 @@ function dibujarMatrizRiesgo(){
     {tipo:'borde', color:COLOR_RIESGO.medio, texto:'riesgo medio'},
     {tipo:'borde', color:COLOR_RIESGO.bajo, texto:'riesgo bajo'},
     {tipo:'plano', color:'var(--ink-3)', texto:'sin actividad en 14d'},
+    {tipo:'sep'},
+    {tipo:'glifo', glifo:'▲', color:'var(--riesgo-alto)', texto:'escalando'},
+    {tipo:'glifo', glifo:'▼', color:'var(--riesgo-bajo)', texto:'bajando'},
   ];
-  const yLeyenda = margen.arriba + altoUtil + 52;
+  const yLeyenda = margen.arriba + altoUtil + 40;
   // ancho aproximado por ítem (para centrar la franja completa) -- monoespaciada, así
   // que el ancho de texto es predecible sin medirlo en el DOM.
   const anchoItem = it => it.tipo==='sep' ? 10 : 16 + it.texto.length*4.6;
@@ -1429,6 +1501,8 @@ function dibujarMatrizRiesgo(){
       svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',3.5).attr('fill',it.color);
     } else if(it.tipo==='borde'){
       svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',3.5).attr('fill','none').attr('stroke',it.color).attr('stroke-width',1.6);
+    } else if(it.tipo==='glifo'){
+      svg.append('text').attr('x',xCursor).attr('y',yLeyenda).attr('font-size','8px').attr('fill',it.color).text(it.glifo);
     } else {
       svg.append('circle').attr('cx',xCursor+3).attr('cy',yLeyenda-2).attr('r',2.5).attr('fill',it.color).attr('fill-opacity',0.6);
     }
@@ -1437,6 +1511,55 @@ function dibujarMatrizRiesgo(){
       .text(it.texto);
     xCursor += anchoItem(it);
   });
+
+  // ---- clasificación de cuadrante por RANKING (no por x/y ya con jitter de colisión,
+  // para que la clasificación no cambie si dos puntos se empujan entre sí) -- se usa
+  // para 1) el resumen en HTML de arriba, y 2) pintar con color solo lo que importa
+  // (ver "puntos" más abajo). ----
+  datos.forEach(d=>{
+    d._cuadrante = d.apagado ? 'apagado'
+      : d._rankY<umbralRankY ? (d._rankX>=umbralRankX ? 'actuar' : 'vigilar')
+      : (d._rankX>=umbralRankX ? 'ruido' : 'bajoperfil');
+  });
+
+  // ---- resumen en HTML, arriba del gráfico -- pedido explícito: "¿esto es un producto
+  // de inteligencia que alguien consultaría para tomar decisiones?". Una conclusión de
+  // una línea (qué exige acción hoy + dónde se concentra la agenda) y, si aplica, la
+  // única lectura que ESTE gráfico puede dar y un texto no: los "riesgos silenciosos"
+  // -- temas de riesgo alto con poca cobertura, que un ranking por relevancia
+  // combinada enterraría entre los demás. ----
+  const activos = datos.filter(d=>!d.apagado);
+  const conteoCategoria = {};
+  activos.forEach(d=> conteoCategoria[d.categoria] = (conteoCategoria[d.categoria]||0)+1);
+  const catsOrdenadas = Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]);
+  const actuarCount = activos.filter(d=>d._cuadrante==='actuar').length;
+  const vigilarItems = activos.filter(d=>d._cuadrante==='vigilar').sort((a,b)=>b.riesgoReal-a.riesgoReal);
+  const resumenEl = document.getElementById('matriz-resumen-html');
+  if(resumenEl){
+    if(!activos.length){
+      resumenEl.innerHTML = '';
+    } else {
+      const [catDom, nCatDom] = catsOrdenadas[0];
+      // CORRECCIÓN -- verificado con captura real: en una semana con mucha actividad
+      // simultánea, "18 temas exigen acción inmediata" es honesto (así de cargada está
+      // la agenda) pero deja al lector sin saber por dónde empezar -- una lista de 18
+      // "urgentes" no es triage. El conteo se queda (no hay que esconder que el día está
+      // cargado), pero SIEMPRE se nombra el más urgente de todos (datos ya viene
+      // ordenado por riesgo+volumen) para que haya un punto de partida concreto.
+      let headline = actuarCount>0
+        ? `${actuarCount} tema${actuarCount!==1?'s':''} en zona crítica · el más urgente: ${_truncarEnPalabra(_nombreClaroTema(activos[0].tema), 42)}`
+        : `Ningún tema en zona crítica ahora mismo`;
+      headline += ` · agenda concentrada en ${catDom} (${nCatDom} de ${activos.length})`;
+      const callout = vigilarItems.length
+        ? `<div style="margin-top:5px;font-size:11px;color:var(--riesgo-medio);">⚠ Riesgo alto con poca cobertura, fácil de perder de vista: ${vigilarItems.slice(0,3).map(d=>_truncarEnPalabra(_nombreClaroTema(d.tema),36)).join(' · ')}</div>`
+        : '';
+      resumenEl.innerHTML = `<div class="contexto-tema-box" style="border-left:3px solid var(--riesgo-alto);margin:10px 14px 6px;">
+        <div class="eyebrow">Lectura de hoy</div>
+        <div style="font-family:var(--f-display);font-size:13px;font-weight:600;color:var(--ink-1);margin-top:3px;">${headline}</div>
+        ${callout}
+      </div>`;
+    }
+  }
 
   // ---- posición ancla de cada punto + resolución de colisiones (d3-force) --
   // con dos ejes reales y continuos el amontonamiento es mucho menor que con el radar
@@ -1460,9 +1583,17 @@ function dibujarMatrizRiesgo(){
     });
   }
 
-  // ---- puntos -- color = categoría (los ejes ya dicen riesgo y volumen; repetir
-  // riesgo en el color era redundante). Apagados se atenúan completos (relleno +
-  // trazo) para no repetir el error de "círculo hueco" del intento anterior. ----
+  // ---- puntos -- CORRECCIÓN de fondo, pedido explícito: "¿esto es un producto de
+  // inteligencia real?". Antes TODOS los puntos llevaban su color de categoría a full
+  // intensidad, compitiendo entre sí -- 45 colores gritando a la vez no destacan nada.
+  // Ahora el color es una señal de ATENCIÓN, no solo de categoría: los puntos que
+  // exigen acción o vigilancia (cuadrantes ACTUAR YA / VIGILAR) llevan su color de
+  // categoría a toda intensidad; el resto (RUIDO, BAJO PERFIL, apagados) se atenúa a
+  // gris -- sigue siendo clickeable e informativo en el tooltip, pero no compite
+  // visualmente con lo que sí importa hoy.
+  const colorPunto = d => (d._cuadrante==='actuar' || d._cuadrante==='vigilar') ? colorCategoria(d.categoria) : 'var(--ink-3)';
+  const opacidadPunto = d => d.apagado ? 0.55 : (d._cuadrante==='actuar' || d._cuadrante==='vigilar') ? 0.9 : 0.45;
+
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
     .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); })
@@ -1470,101 +1601,47 @@ function dibujarMatrizRiesgo(){
     .on('mouseleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
-  // CORRECCIÓN -- pedido explícito: el anillo pulsante de "nuevo" (esNuevo) y el
-  // anillo punteado de anomalía se veían bien en aislado, pero con datos reales ~20%
-  // de los 45 puntos (14 de 69 en el corte de prueba) califican como "nuevo" al mismo
-  // tiempo -- eso son ~9 aros turquesa parpadeando A LA VEZ sobre el gráfico, que es
-  // exactamente el efecto de "líneas turquesa moviéndose" que se reportó. La señal es
-  // real y sigue disponible (tooltip de cada punto la muestra en texto: "Tendencia",
-  // "anómalamente alto/bajo"), pero ya no se dibuja como aro animado sobre el plano --
-  // un plano de dispersión con 45 puntos no tiene espacio para además animar una
-  // fracción grande de ellos sin verse ruidoso.
-
-  // CORRECCIÓN -- ya van dos intentos donde un tema apagado (atenuado por opacidad de
-  // grupo, con su color de categoría/riesgo de siempre) termina viéndose como un
-  // "círculo hueco" -- a 30-40% de opacidad, un color pastel sobre fondo oscuro casi
-  // desaparece y solo el trazo queda visible. La solución no es ajustar el número de
-  // opacidad otra vez: es dejar de usar el mismo lenguaje visual (color+borde) para un
-  // estado que significa "esto no es una señal activa". Los apagados ahora son un
-  // punto gris chico, plano, sin borde de color -- inconfundible de un tema vivo a
-  // cualquier nivel de opacidad.
-  // "VIDA" -- pedido explícito de darle dinamismo a los nodos. La lección de los
-  // intentos anteriores fue clara: animar MUCHOS puntos a la vez (halos, aros,
-  // trayectorias) se ve como ruido, no como vida. Acá la animación es de dos tipos,
-  // ninguno permanente ni repetido sobre todos los puntos:
-  // 1) entrada escalonada -- los puntos "aparecen" creciendo desde radio 0, uno tras
-  //    otro (10ms de diferencia), UNA sola vez por cada dibujo/filtro -- transmite
-  //    "esto se acaba de armar" sin quedar animando para siempre.
-  // 2) un único pulso -- reservado SOLO para el punto de mayor prioridad real ahora
-  //    mismo (el primero de "datos", ya viene ordenado por riesgo+volumen), como foco
-  //    de atención. Uno solo, no 9 ni 14.
-  g.filter(d=>d.apagado).append('circle').attr('class','nodo-principal')
+  // CORRECCIÓN -- pedido explícito, ya van dos rondas: "no entiendo por qué unos
+  // círculos tienen movimiento de una forma y otros líneas punteadas". La única forma
+  // de que esto deje de ser ambiguo es que NO haya ningún movimiento continuo en el
+  // plano -- cero. Lo único que se anima es la entrada (los puntos "aparecen" creciendo,
+  // UNA sola vez al cargar o cambiar de filtro) -- después de eso, nada se mueve nunca,
+  // sin excepción, sin puntos "especiales" con su propio efecto.
+  g.append('circle').attr('class','nodo-principal')
     .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',0)
-    .attr('fill','var(--ink-3)').attr('fill-opacity',0.6).attr('stroke','none')
-    .transition().duration(320).delay((d,i)=>i*9).attr('r', d=>_radioPrincipalRadar(d));
-
-  g.filter(d=>!d.apagado).append('circle').attr('class','nodo-principal').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',0)
-    .attr('fill', d=>colorCategoria(d.categoria)).attr('fill-opacity', 0.85)
-    .attr('stroke', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('stroke-width', 1.5)
+    .attr('fill', colorPunto).attr('fill-opacity', opacidadPunto)
+    .attr('stroke', d=> d.apagado ? 'none' : COLOR_RIESGO[nivelRiesgo(d.riesgoReal)])
+    .attr('stroke-width', d=>d.apagado?0:1.5).attr('stroke-opacity', d=>(d._cuadrante==='actuar'||d._cuadrante==='vigilar')?1:0.5)
     .style('transition','r .12s')
-    .transition().duration(380).delay((d,i)=>i*9).ease(d3.easeBackOut ? d3.easeBackOut.overshoot(1.6) : d3.easeCubicOut)
+    .transition().duration(380).delay((d,i)=>i*8).ease(d3.easeBackOut ? d3.easeBackOut.overshoot(1.6) : d3.easeCubicOut)
     .attr('r', d=>_radioPrincipalRadar(d));
 
-  // CORRECCIÓN -- pedido explícito: "no sé por qué unos círculos parpadean y otros
-  // tienen otro movimiento". Antes el foco crítico tenía un aro que SALE disparado hacia
-  // afuera y desaparece (.pulso-tablero-ping), mientras los otros 2 puntos "vivos"
-  // solo respiraban en su lugar (.pulso-halo-vivo) -- dos lenguajes de movimiento
-  // distintos en el mismo gráfico. Ahora los 3 puntos animados usan EXACTAMENTE la
-  // misma animación (respirar), sin excepción. El foco crítico se distingue por un
-  // aro ESTÁTICO (sin animación propia) alrededor -- una marca fija de "este es el
-  // prioritario ahora", no un segundo tipo de movimiento.
+  // ---- tendencia -- pedido explícito: "¿en verdad es un producto de inteligencia?"
+  // sin esto, la matriz es una FOTO (así está hoy) y no dice hacia dónde va cada tema,
+  // que es lo que de verdad cambia una decisión (un tema estable en riesgo alto ya está
+  // contenido; uno que está escalando rápido todavía no). Antes esto vivía en 3
+  // anotaciones de texto flotando y peleando por espacio -- ahora es una marca chica y
+  // consistente en CADA punto que se mueve (no solo los 3 que más cambiaron), sin
+  // texto, sin animación, solo un glifo ▲/▼ pegado al punto. Estable no lleva marca --
+  // sin cambio no hay nada que señalar.
+  g.filter(d=>!d.apagado && d.tendencia && d.tendencia!=='estable').append('text')
+    .attr('x',d=>d.x + _radioPrincipalRadar(d)*0.7).attr('y',d=>d.y - _radioPrincipalRadar(d)*0.7)
+    .attr('text-anchor','middle').attr('font-size','8px').attr('font-weight','700')
+    .attr('fill', d=>d.tendencia==='subiendo' ? 'var(--riesgo-alto)' : 'var(--riesgo-bajo)')
+    .style('pointer-events','none').style('paint-order','stroke').attr('stroke','var(--bg-1)').attr('stroke-width',2)
+    .text(d=>d.tendencia==='subiendo' ? '▲' : '▼');
+
+  // ---- marca fija del tema de mayor prioridad real ahora mismo -- una etiqueta de
+  // texto, no un efecto visual, para no repetir la confusión de "por qué ese sí se
+  // mueve distinto". Es solo el primero de "datos" (ya viene ordenado por riesgo+volumen). ----
   const focoCritico = datos.find(d=>!d.apagado);
   if(focoCritico){
-    g.filter(d=>d===focoCritico).insert('circle','.nodo-principal').attr('class','foco-critico-radar')
-      .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',_radioPrincipalRadar(focoCritico)+3)
-      .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6).attr('stroke-dasharray','2 2');
+    const yEtiquetaFoco = focoCritico.y - _radioPrincipalRadar(focoCritico) - 6;
+    svg.append('text').attr('x',focoCritico.x).attr('y', Math.max(margen.arriba-2, yEtiquetaFoco)).attr('text-anchor','middle')
+      .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('font-weight','700').attr('fill','var(--riesgo-alto)')
+      .style('pointer-events','none').style('paint-order','stroke').attr('stroke','var(--bg-1)').attr('stroke-width',3)
+      .text('◆ MÁXIMA PRIORIDAD');
   }
-  // pedido explícito: "más animación en los círculos" -- sin repetir el error de
-  // animar una fracción grande del plano, y ahora con UNA sola animación consistente
-  // para los 3 puntos vivos (el foco crítico + los siguientes 2 de mayor prioridad real).
-  // 3 puntos animados de 45, no más.
-  [focoCritico, ...datos.filter(d=>!d.apagado && d!==focoCritico).slice(0,2)].filter(Boolean).forEach(d=>{
-    g.filter(dd=>dd===d).select('circle.nodo-principal').classed('pulso-halo-vivo', true);
-  });
-
-  // ---- "QUIÉN SE MOVIÓ MÁS" -- pedido explícito: ya no es una franja de texto con
-  // línea de arriba y de abajo, pegada como cartel encima del gráfico. Siguiendo las
-  // imágenes de referencia que mandó el usuario (anotaciones tipo Economist/Tableau:
-  // texto flotando en espacio abierto, con una línea guía delgada apuntando directo
-  // al punto real), esto ahora vive DENTRO del lienzo como anotaciones ancladas a su
-  // dato -- 3 como máximo, apiladas arriba, cada una con su propia línea hacia su punto. ----
-  const movidos = datos.filter(d=>!d.apagado && d.riesgoReal!==d.riesgoAnterior)
-    .sort((a,b)=> Math.abs(b.riesgoReal-b.riesgoAnterior) - Math.abs(a.riesgoReal-a.riesgoAnterior)).slice(0,3);
-  movidos.forEach((d,i)=>{
-    const subeIcono = d.riesgoReal > d.riesgoAnterior;
-    // CORRECCIÓN -- el texto (hasta ~44 caracteres en monoespaciada) mide bastante más
-    // que el margen de 90px que decidía el lado del ancla -- una etiqueta cerca del
-    // borde derecho pero fuera de esos 90px seguía anclada a la izquierda y su texto
-    // se salía del lienzo por la derecha. El lado ahora es simplemente en qué mitad
-    // del plano cae el punto, y el texto se acorta más para caber cómodo de cualquier
-    // lado sin medir su ancho real.
-    const yEtiqueta = 12 + i*15;
-    const xEtiqueta = Math.max(margen.izq+8, Math.min(width-margen.der-8, d.x));
-    const anchor = xEtiqueta > margen.izq + anchoUtil/2 ? 'end' : 'start';
-    // CORRECCIÓN -- pedido explícito: "Señalan a funcionario del IEEPO p… no es claro".
-    // El corte a 33 caracteres caía a mitad de palabra ("p" de "por"). Ahora corta en el
-    // último espacio antes del límite, para nunca dejar una palabra partida a la mitad.
-    const nombreCorto = _truncarEnPalabra(d.tema.nombre, 34);
-    const gAnot = svg.append('g').attr('class','anotacion-movimiento').style('cursor','pointer')
-      .on('click', ()=> abrirFichaTema(d.tema.id));
-    gAnot.append('line')
-      .attr('x1', xEtiqueta).attr('y1', yEtiqueta+3).attr('x2', d.x).attr('y2', d.y)
-      .attr('stroke','var(--ink-3)').attr('stroke-width',1).attr('stroke-dasharray','2 2').attr('opacity',0.6);
-    const texto = gAnot.append('text').attr('x',xEtiqueta).attr('y',yEtiqueta).attr('text-anchor',anchor)
-      .attr('font-family','var(--f-mono)').attr('font-size','9px');
-    texto.append('tspan').attr('fill', subeIcono?'var(--riesgo-alto)':'var(--riesgo-bajo)').attr('font-weight','700').text(subeIcono?'▲ ':'▼ ');
-    texto.append('tspan').attr('fill','var(--ink-2)').text(`${nombreCorto} (${d.riesgoAnterior}→${d.riesgoReal})`);
-  });
 }
 
 let interpretacionMatrizIA = {};
