@@ -79,7 +79,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .module-nav button:hover{color:var(--ink-1);}
 .module-nav button.active{color:var(--teal); border-bottom-color:var(--teal);}
 
-.app-main{max-width:1400px;margin:0 auto;padding:18px 20px;}
+.app-main{max-width:1680px;margin:0 auto;padding:18px 20px;}
 .module-panel{display:none;}
 .module-panel.active{display:block;}
 
@@ -184,7 +184,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .vista-toggle{display:flex; gap:6px;}
 .vista-toggle .chip-btn.active{background:var(--familia-nucleo); border-color:var(--familia-nucleo); color:#fff;}
 
-.lista-agenda{padding:14px; display:flex; flex-direction:column; gap:6px; overflow-y:auto; height:560px;
+.lista-agenda{padding:14px; display:flex; flex-direction:column; gap:6px; overflow-y:auto; flex:1; min-height:0;
   scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);}
 .lista-agenda::-webkit-scrollbar{width:6px;}
 .lista-agenda::-webkit-scrollbar-track{background:var(--bg-1);}
@@ -227,17 +227,21 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
    siempre haya una onda saliendo, nunca un parpadeo sincronizado y brusco. Sigue
    siendo UN solo elemento conceptual (el tema #1), solo que 2 anillos en vez de 1
    logran el efecto de onda continua en vez de un solo aro pulsando en el lugar. */
-@keyframes prioridad-sonar{
-  0%   { transform:scale(0.7); opacity:0.65; }
-  75%  { opacity:0.08; }
-  100% { transform:scale(2.1); opacity:0; }
-}
 .prioridad-anillo-vivo{ transform-box:fill-box; transform-origin:center; pointer-events:none; }
-.prioridad-sonar-ping{
-  transform-box:fill-box; transform-origin:center; pointer-events:none;
-  animation:prioridad-sonar 2.8s cubic-bezier(0.25,0.6,0.4,1) infinite;
+
+/* --- efecto de radar real -- pedido explícito, aclarado tras confusión con el ping de
+   sonar de arriba: "no sabes cómo es un radar y su movimiento" -- un radar de verdad es
+   un haz que GIRA desde un centro, con una estela que se desvanece detrás, no anillos
+   que se expanden desde un punto fijo. Gira sin parar sobre el cruce de medianas de la
+   propia Matriz (ver dibujarBarridoRadar en agenda.js), que solo se dibuja con el
+   filtro de categoría en "Todas" -- confirmado por el usuario que es la única vista
+   donde ese cruce queda cerca del centro real del lienzo. */
+@keyframes radar-girar{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+.radar-barrido-cono{
+  width:100%; height:100%; border-radius:50%;
+  background:conic-gradient(from 0deg, rgba(76,193,186,0.5), rgba(76,193,186,0.12) 18deg, transparent 55deg, transparent 360deg);
+  animation:radar-girar 5s linear infinite;
 }
-.prioridad-sonar-ping.retraso{ animation-delay:1.4s; }
 
 /* --- destello al pasar el mouse sobre CUALQUIER punto de la matriz -- pedido
    explícito: "el efecto de radar es que cuando pase sobre los puntos, estos tengan un
