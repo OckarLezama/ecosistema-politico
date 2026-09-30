@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-<link rel="stylesheet" href="css/styles.css?v=110">
+<link rel="stylesheet" href="css/styles.css?v=111">
 <style>
   /* hover propio para los botones de ícono -- el hover genérico de .chip-btn cambia
      border-color a teal, lo que en un grupo segmentado (bordes internos entre botones)
@@ -65,10 +65,10 @@
       <div class="graph-card">
         <div class="graph-toolbar">
           <div class="vista-toggle" id="modo-red-toggle" style="border-radius:var(--radius-s);overflow:hidden;">
-            <button class="chip-btn icon-btn active" data-modo="grupo" title="Red" style="border-radius:0;">
+            <button class="chip-btn icon-btn leg-tt active" data-modo="grupo" data-tt="Red" style="border-radius:0;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><line x1="12" y1="7.5" x2="6.3" y2="17"/><line x1="12" y1="7.5" x2="17.7" y2="17"/></svg>
             </button>
-            <button class="chip-btn icon-btn" data-modo="actor" title="Actor" style="border-radius:0;">
+            <button class="chip-btn icon-btn leg-tt" data-modo="actor" data-tt="Actor" style="border-radius:0;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
             </button>
           </div>
@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class="vista-toggle" style="border-radius:var(--radius-s);overflow:hidden;width:auto;">
-            <button class="chip-btn icon-btn" id="btn-reset-grafo" title="Restablecer" style="border-radius:0;">
+            <button class="chip-btn icon-btn leg-tt" id="btn-reset-grafo" data-tt="Restablecer" style="border-radius:0;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 2.6 6.3"/><polyline points="3 17 3 21 7 21"/></svg>
             </button>
           </div>
@@ -138,22 +138,14 @@
             <select id="agenda-categoria"><option value="">Todas</option></select>
           </div>
           <div class="vista-toggle" id="agenda-vista-principal" style="border-radius:var(--radius-s);overflow:hidden;">
-            <button class="chip-btn icon-btn active" data-vista="matriz" title="Matriz" style="border-radius:0;">
+            <button class="chip-btn icon-btn leg-tt active" data-vista="matriz" data-tt="Matriz" style="border-radius:0;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
             </button>
-            <button class="chip-btn icon-btn" data-vista="notas" title="Notas" style="border-radius:0;">
+            <button class="chip-btn icon-btn leg-tt" data-vista="notas" data-tt="Notas" style="border-radius:0;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
             </button>
-            <button class="chip-btn icon-btn" data-vista="genealogia" title="Genealogía" style="border-radius:0;">
+            <button class="chip-btn icon-btn leg-tt" data-vista="genealogia" data-tt="Genealogía" style="border-radius:0;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
-            </button>
-          </div>
-          <div class="vista-toggle" id="agenda-vista-secundaria" style="display:flex;border-radius:var(--radius-s);overflow:hidden;">
-            <button class="chip-btn icon-btn active" data-subvista="cuadricula" title="Cuadrícula" style="border-radius:0;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-            </button>
-            <button class="chip-btn icon-btn" data-subvista="lista" title="Lista" style="border-radius:0;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
             </button>
           </div>
           <div class="core-select" id="agenda-tema-select-wrap" style="display:none;">
@@ -280,13 +272,13 @@ document.getElementById('module-nav').addEventListener('click', (e)=>{
 <script src="js/data-loader.js?v=104"></script>
 <script src="js/fuentes.js?v=1"></script>
 <script src="js/portada.js?v=104"></script>
-<script src="js/actores.js?v=101"></script>
+<script src="js/actores.js?v=102"></script>
 <script src="js/feed.js?v=103"></script>
-<script src="js/agenda.js?v=110"></script>
-<script src="js/timeline.js?v=101"></script>
+<script src="js/agenda.js?v=111"></script>
+<script src="js/timeline.js?v=102"></script>
 <script src="js/notificaciones.js?v=103"></script>
-<script src="js/analisis.js?v=110"></script>
-<script src="js/pulso.js?v=16"></script>
+<script src="js/analisis.js?v=111"></script>
+<script src="js/pulso.js?v=17"></script>
 <script src="js/c3.js?v=102"></script>
 <script src="js/mananera-widget.js?v=100"></script>
 <script src="js/legislativo.js?v=146"></script>

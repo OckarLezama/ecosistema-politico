@@ -1720,11 +1720,41 @@ def _fusionar_tablero_con_apagados(anterior, tablero_nuevo, semana_iso):
     hubiera estado ahí, y la flecha de movimiento perdía sentido. Ahora, mientras siga siendo
     la MISMA semana, se conserva en su última posición conocida marcada 'apagado' (el
     frontend lo dibuja atenuado, sin halo/ping ni línea de flujo) -- se ve que perdió
-    continuidad, no que se borró. Se limpia solo al cruzar a una semana nueva."""
+    continuidad, no que se borró. Se limpia solo al cruzar a una semana nueva.
+
+    CORRECCIÓN -- pedido explícito: "poder revisar en qué fecha de la semana se apagó y
+    cuándo se prende [un actor]". Antes 'apagado' era solo un booleano del corte actual,
+    sin memoria de CUÁNDO cambió -- dos actores apagados se veían igual aunque uno lleve
+    apagado desde el lunes y otro se haya apagado hace un corte. Aquí se compara cada
+    actor contra su versión del corte anterior (mismo id) para fechar la transición real:
+    'fecha_apagado' se fija la primera vez que pasa de activo a apagado y se conserva
+    mientras siga apagado (no se vuelve a pisar en cada corte); 'fecha_reactivado' se fija
+    el corte en que vuelve a tener mención del día. Un actor que nunca cambió de estado
+    simplemente no lleva estos campos -- el frontend trata su ausencia como "sin dato de
+    transición todavía" (por ejemplo si llegó ya apagado desde antes del primer corte que
+    lo vio)."""
     if not anterior or anterior.get('tablero_semana_inicio') != semana_iso:
         return tablero_nuevo
+    hoy_str = datetime.now(ZONA_MX).date().isoformat()
+    anterior_por_id = {a['id']: a for a in (anterior.get('tablero_actores') or [])}
+
+    def _con_transicion(a, prev):
+        a = dict(a)
+        if a.get('apagado'):
+            if prev and prev.get('apagado') and prev.get('fecha_apagado'):
+                a['fecha_apagado'] = prev['fecha_apagado']
+            else:
+                a['fecha_apagado'] = hoy_str
+        elif prev and prev.get('apagado'):
+            a['fecha_reactivado'] = hoy_str
+        return a
+
+    tablero_nuevo = [_con_transicion(a, anterior_por_id.get(a['id'])) for a in tablero_nuevo]
     ids_nuevos = {a['id'] for a in tablero_nuevo}
-    apagados = [dict(a, apagado=True) for a in (anterior.get('tablero_actores') or []) if a['id'] not in ids_nuevos]
+    apagados = [
+        _con_transicion(dict(a, apagado=True), a)
+        for a in (anterior.get('tablero_actores') or []) if a['id'] not in ids_nuevos
+    ]
     return (tablero_nuevo + apagados)[:12]
 
 
