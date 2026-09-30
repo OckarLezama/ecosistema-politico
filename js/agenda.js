@@ -473,8 +473,12 @@ let temaGenealogiaSeleccionado = null;
 function renderNotasAgenda(){
   const cont = document.getElementById('agenda-contenido');
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  const temasDisponibles = temasBase.filter(t=>Number(t.nivel_relevancia)===1)
-    .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+  // mismo criterio que Lista y Radar: riesgo + volumen real de los últimos 14 días, no
+  // 'peso_politico' (congelado en el 98% de los temas reales) -- así el tema que
+  // aparece por default al abrir Notas es el que de verdad tiene actividad ahora.
+  const temasDisponibles = calcularDatosRadarAgenda(temasBase.filter(t=>Number(t.nivel_relevancia)===1))
+    .sort((a,b)=> (b.riesgoReal+b.veces) - (a.riesgoReal+a.veces))
+    .map(d=>d.tema);
   if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){
     temaNotasSeleccionado = temasDisponibles[0]?.id || null;
   }
@@ -852,23 +856,32 @@ function renderListaAgenda(){
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
-  temasBase = temasBase.slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+
+  // ORDEN CORREGIDO -- pedido explícito: antes ordenaba por 'peso_politico', un campo
+  // que se asigna una sola vez al crear el tema y casi nunca se vuelve a tocar (98% de
+  // los temas reales quedan congelados en el valor por default, ver nota en
+  // calcularDatosRadarAgenda). Ahora ordena por riesgo + volumen REAL de los últimos 14
+  // días -- mismo cálculo que ya usa el Radar, para que Lista y Radar nunca se
+  // contradigan entre sí sobre qué es lo más relevante ahora mismo.
+  const datosLista = calcularDatosRadarAgenda(temasBase)
+    .sort((a,b)=> (b.riesgoReal+b.veces) - (a.riesgoReal+a.veces));
 
   const cont = document.getElementById('matriz-lista-zona') || document.getElementById('agenda-contenido');
-  if(!temasBase.length){
+  if(!datosLista.length){
     cont.innerHTML = `<div class="lista-agenda" style="align-items:center;justify-content:center;color:var(--ink-3);font-family:var(--f-display);">Sin temas con este filtro</div>`;
     return;
   }
-  cont.innerHTML = `<div class="lista-agenda">${temasBase.map(t=>{
-    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
-    const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
-    const color = COLOR_IMPACTO_CACHE[nivelImpacto(t.peso_politico)];
-    const primeraMencion = evs.length ? evs.map(e=>e.fecha).sort()[0] : '—';
+  const nivelRiesgoLista = r => r>=7?'alto':r>=4?'medio':'bajo';
+  const ICONO_TENDENCIA_LISTA = {subiendo:'↑', bajando:'↓', estable:'→'};
+  cont.innerHTML = `<div class="lista-agenda">${datosLista.map(d=>{
+    const t = d.tema;
+    const color = COLOR_IMPACTO_CACHE[nivelRiesgoLista(d.riesgoReal)];
     const dias = diasSinActividad(t.id);
     const estadoTexto = dias===null ? 'Sin datos' : dias<=30 ? `Última nota hace ${dias}d` : `Sin actividad reciente (${dias}d)`;
+    const tendenciaTxt = (d.tendencia && !d.apagado) ? ` ${ICONO_TENDENCIA_LISTA[d.tendencia]}` : '';
     return `<div class="lista-item" style="border-left-color:${color};cursor:pointer;" data-tema="${t.id}">
       <div class="lista-nombre">${t.nombre}</div>
-      <div class="lista-meta">${t.categoria} · Impacto ${t.peso_politico}/10 · Riesgo ${riesgoMax}/10 · desde ${primeraMencion} · ${estadoTexto}</div>
+      <div class="lista-meta">${t.categoria} · Riesgo ${d.riesgoReal}/10${tendenciaTxt} · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS}d · desde ${d.primeraMencion||'—'} · ${estadoTexto}</div>
     </div>`;
   }).join('')}</div>`;
   cont.querySelectorAll('.lista-item').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema)));
@@ -981,9 +994,11 @@ function renderMatrizYLista(){
         <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${analisisGlobalAgendaIA}</p>
       </div>` : '';
 
-  cont.innerHTML = bloqueGlobal + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;"></div>`;
+  const franjaMovimiento = vistaMatrizInterna==='cuadricula' ? franjaMovimientoRadar() : '';
+  cont.innerHTML = bloqueGlobal + franjaMovimiento + `<div id="matriz-lista-zona" style="width:100%;flex:1;min-height:0;position:relative;"></div>`;
   const btnAnalisis = document.getElementById('agenda-btn-analisis');
   if(btnAnalisis && !btnAnalisis.dataset.conectado){ btnAnalisis.addEventListener('click', abrirModalAnalisisMatriz); btnAnalisis.dataset.conectado='1'; }
+  cont.querySelectorAll('[data-tema-mov]').forEach(el=> el.addEventListener('click', ()=> abrirFichaTema(el.dataset.temaMov)));
   if(vistaMatrizInterna==='lista') renderListaAgenda();
   else {
     document.getElementById('matriz-lista-zona').innerHTML = `<svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg><div id="matriz-aviso-limite" style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:9px;color:var(--ink-3);pointer-events:none;"></div>`;
@@ -1114,94 +1129,293 @@ function separarPuntos(datos, minDist, iteracionesMax, limites){
   return datos;
 }
 
+// ================================================================
+// RADAR DE COYUNTURA -- pedido explícito: la matriz anterior posicionaba casi todos los
+// temas en la misma columna porque 'peso_politico' es un campo que se asigna UNA VEZ al
+// crear el tema (valor por default: 5) y casi nunca se vuelve a tocar después -- en los
+// datos reales, 1,909 de 1,945 temas (98%) tienen ese campo congelado en 5. Y el eje de
+// riesgo usaba la intensidad máxima de TODA la vida del tema, no la reciente, así que un
+// pico de hace meses se veía tan urgente como uno de hoy. Esto sustituye ambos ejes por
+// actividad REAL y RECIENTE (ventana de 14 días, misma que ya usa el modal de síntesis
+// en calcularCrudosSintesisMatriz), agrega movimiento antes/hoy, tendencia, confianza
+// (medios distintos que corroboran), cruce de señales (actor compartido con otro tema
+// del propio radar) y anomalía estadística contra el propio histórico del tema -- mismos
+// principios ya aplicados en Pulso Nacional, sin IA de paga.
+// ================================================================
+const VENTANA_RADAR_DIAS = 14;
+
+function _diasAtras(fechaStr){
+  // 'fechaStr' en formato YYYY-MM-DD (mismo formato que usa todo el resto del archivo,
+  // ej. e.fecha en ECOSISTEMA.eventos) -- entero de días transcurridos desde esa fecha.
+  return Math.floor((Date.now() - new Date(fechaStr+'T00:00:00').getTime()) / 86400000);
+}
+
+function calcularDatosRadarAgenda(temasBase){
+  return temasBase.map(t=>{
+    const evsTodos = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
+    const evsHoy = evsTodos.filter(e=>{ const d=_diasAtras(e.fecha); return d>=0 && d<VENTANA_RADAR_DIAS; });
+    const evsPrev = evsTodos.filter(e=>{ const d=_diasAtras(e.fecha); return d>=VENTANA_RADAR_DIAS && d<VENTANA_RADAR_DIAS*2; });
+    const evsHistoricos = evsTodos.filter(e=> _diasAtras(e.fecha) >= VENTANA_RADAR_DIAS);
+
+    // tendencia -- primera mitad de la ventana de 14 días contra la segunda (mismo
+    // criterio que calcularCrudosSintesisMatriz, para que Radar y modal no se contradigan)
+    const evsMitadReciente = evsHoy.filter(e=>_diasAtras(e.fecha) < Math.round(VENTANA_RADAR_DIAS/2));
+    const evsMitadAnterior = evsHoy.length - evsMitadReciente.length;
+    const tendencia = !evsHoy.length ? null
+      : evsMitadReciente.length > evsMitadAnterior ? 'subiendo'
+      : evsMitadReciente.length < evsMitadAnterior ? 'bajando' : 'estable';
+
+    // apagado -- sin actividad real en los últimos 14 días. No se oculta del radar (sigue
+    // siendo agenda nacional), pero se dibuja tenue y con el riesgo histórico, no uno
+    // inventado -- mismo concepto que 'apagado' en el Tablero de Actores de Pulso.
+    const apagado = evsHoy.length === 0;
+    const riesgoHistoricoMax = evsTodos.length ? Math.max(...evsTodos.map(e=>Number(e.intensidad))) : 3;
+    const riesgoReal = apagado ? riesgoHistoricoMax : Math.max(...evsHoy.map(e=>Number(e.intensidad)));
+    const riesgoAnterior = evsPrev.length ? Math.max(...evsPrev.map(e=>Number(e.intensidad))) : riesgoReal;
+
+    // esNuevo -- actividad en las últimas ~48h, para el halo que se enciende una vez al
+    // cargar la vista (ver dibujarMatrizRiesgo) -- señal real, no decorativa.
+    const esNuevo = evsTodos.some(e=>_diasAtras(e.fecha) <= 1);
+
+    // confianza -- mismo criterio que Pulso Nacional: dominios distintos de fuente_url
+    // que cubren el tema (en la ventana reciente si hay actividad, en todo el histórico
+    // si está apagado -- para no decir "sin corroboración" de un tema viejo que sí la tuvo).
+    const evsParaMedios = apagado ? evsTodos : evsHoy;
+    const medios = new Set(evsParaMedios.map(e=>{ try{ return typeof _dominioDe==='function' ? _dominioDe(e.fuente_url) : new URL(e.fuente_url).hostname.replace(/^www\./,''); }catch(err){ return null; } }).filter(Boolean));
+
+    // actores vinculados -- para el cruce de señales entre temas del propio radar
+    const actorIds = new Set(ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===t.id).map(ta=>ta.actor_id));
+
+    // anomalía -- riesgo reciente contra el propio histórico del tema (antes de la
+    // ventana reciente), no contra un promedio general -- cada tema es su propia base.
+    // Se omite (null) sin muestra suficiente (mínimo 4 notas históricas) o si la
+    // desviación da 0 (no hay variación real que comparar).
+    let anomalia = null;
+    if(!apagado && evsHistoricos.length >= 4){
+      const valores = evsHistoricos.map(e=>Number(e.intensidad));
+      const media = valores.reduce((s,v)=>s+v,0) / valores.length;
+      const varianza = valores.reduce((s,v)=>s+(v-media)**2,0) / valores.length;
+      const desv = Math.sqrt(varianza);
+      if(desv > 0){
+        const z = (riesgoReal - media) / desv;
+        anomalia = { z: Math.round(z*100)/100, nivel: z>=2?'alta':z<=-2?'baja':'normal' };
+      }
+    }
+
+    return {
+      tema: t, categoria: t.categoria, riesgoReal, riesgoAnterior,
+      veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
+      nMedios: medios.size, actorIds, anomalia,
+      primeraMencion: evsTodos.length ? evsTodos.map(e=>e.fecha).sort()[0] : null,
+    };
+  });
+}
+
+// ================================================================
+// "QUIÉN SE MOVIÓ MÁS" -- pedido explícito: un ancla de lectura de 5 segundos antes de
+// meterse al radar completo, mismo patrón que "A vigilar" en Pulso Nacional. Reutiliza
+// exactamente los mismos filtros y el mismo cálculo (calcularDatosRadarAgenda) que el
+// radar, para que nunca se contradigan entre sí.
+// ================================================================
+function franjaMovimientoRadar(){
+  let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
+  if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
+  if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
+  const movidos = calcularDatosRadarAgenda(temasBase).filter(d=>!d.apagado && d.riesgoReal!==d.riesgoAnterior);
+  if(!movidos.length) return '';
+  const top = movidos.sort((a,b)=> Math.abs(b.riesgoReal-b.riesgoAnterior) - Math.abs(a.riesgoReal-a.riesgoAnterior)).slice(0,3);
+  return `<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:7px 14px;font-size:10.5px;color:var(--ink-2);border-bottom:1px solid var(--line);">
+    <span class="eyebrow" style="flex-shrink:0;">QUIÉN SE MOVIÓ MÁS · ${VENTANA_RADAR_DIAS}D</span>
+    ${top.map(d=>{
+      const sube = d.riesgoReal > d.riesgoAnterior;
+      return `<span style="white-space:nowrap;cursor:pointer;" data-tema-mov="${d.tema.id}">
+        <span style="color:${sube?'var(--riesgo-alto)':'var(--riesgo-bajo)'};font-weight:700;">${sube?'▲':'▼'}</span>
+        ${d.tema.nombre} <span style="color:var(--ink-3);">(riesgo ${d.riesgoAnterior}→${d.riesgoReal})</span>
+      </span>`;
+    }).join('')}
+  </div>`;
+}
+
+function _radioPrincipalRadar(d){ return d.apagado ? 5 : 7+Math.min(4, d.veces*0.6); }
+
+function _tooltipRadar(d, datosVisibles){
+  const ICONO_TENDENCIA = {subiendo:'↑ subiendo', bajando:'↓ bajando', estable:'→ estable'};
+  let html = `<strong>${d.tema.nombre}</strong><br>Riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
+  if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
+  if(d.tendencia && !d.apagado) html += `<br>Tendencia: ${ICONO_TENDENCIA[d.tendencia]}`;
+  html += `<br>Corroborado por ${d.nMedios} medio${d.nMedios!==1?'s':''} distinto${d.nMedios!==1?'s':''}`;
+  if(d.anomalia && d.anomalia.nivel!=='normal') html += `<br><span style="color:${d.anomalia.nivel==='alta'?'var(--riesgo-alto)':'var(--teal)'};">Riesgo anómalamente ${d.anomalia.nivel} vs. su propio histórico</span>`;
+  if(d.actorIds.size){
+    const vinculados = datosVisibles.filter(o=>o!==d && [...o.actorIds].some(id=>d.actorIds.has(id)));
+    if(vinculados.length) html += `<br><span style="color:var(--teal);">🔗 comparte actor con: ${vinculados.slice(0,2).map(o=>o.tema.nombre).join(', ')}</span>`;
+  }
+  html += `<br><span style="font-size:9px;opacity:.7;">desde ${d.primeraMencion||'—'}</span>`;
+  return html;
+}
+
 function dibujarMatrizRiesgo(){
   const svgEl = document.getElementById('matriz-riesgo-svg');
   const svg = d3.select(svgEl);
   svg.selectAll('*').remove();
 
   const width = svgEl.clientWidth || 700, height = svgEl.clientHeight || 560;
-  const pad = {left:32, right:20, top:20, bottom:36};
   svg.attr('viewBox',[0,0,width,height]);
 
-  const COLOR_IMPACTO = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
+  const COLOR_RIESGO = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'};
+  const nivelRiesgo = r => r>=7?'alto':r>=4?'medio':'bajo';
 
   let temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
   if(impactoFiltroAgenda) temasBase = temasBase.filter(t=>nivelImpacto(t.peso_politico)===impactoFiltroAgenda);
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
 
-  const x = d3.scaleLinear().domain([0,10]).range([pad.left, width-pad.right]);
-  const y = d3.scaleLinear().domain([0,10]).range([height-pad.bottom, pad.top]);
+  const datosRadarTodos = calcularDatosRadarAgenda(temasBase);
 
-  const crudos = temasBase.map(t=>{
-    const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
-    const riesgoMax = evs.length ? Math.max(...evs.map(e=>e.intensidad)) : 3;
-    return { tema:t, impactoReal:t.peso_politico, riesgoReal:riesgoMax, veces:evs.length,
-      primeraMencion: evs.length ? evs.map(e=>e.fecha).sort()[0] : null,
-      x: x(t.peso_politico), y: y(riesgoMax) };
-  });
-  // LÍMITE DE PUNTOS -- sin importar cuántos temas tenga nivel_relevancia=1 en los
-  // datos, la matriz nunca dibuja más de este número a la vez. Con muchos más puntos
-  // que esto, el espacio visual se satura y pierde sentido (se ve como un amontonado
-  // de círculos sin poder distinguir nada) -- se muestran los de mayor relevancia real
-  // (impacto + riesgo combinados), y se avisa cuántos quedaron fuera.
+  // LÍMITE DE PUNTOS -- mismo propósito que antes (no saturar el radar), ahora
+  // prioriza por riesgo + volumen REALES en vez del peso político congelado.
   const LIMITE_PUNTOS_MATRIZ = 45;
-  const totalAntesDeLimite = crudos.length;
-  crudos.sort((a,b)=> (b.impactoReal+b.riesgoReal) - (a.impactoReal+a.riesgoReal));
-  const crudosLimitados = crudos.slice(0, LIMITE_PUNTOS_MATRIZ);
-  const datos = separarPuntos(crudosLimitados, 40, Math.max(60, Math.round(20000/Math.max(crudosLimitados.length,1))), {xMin:pad.left+14, xMax:width-pad.right-14, yMin:pad.top+14, yMax:height-pad.bottom-14});
+  const totalAntesDeLimite = datosRadarTodos.length;
+  datosRadarTodos.sort((a,b)=> (b.riesgoReal+b.veces) - (a.riesgoReal+a.veces));
+  const datos = datosRadarTodos.slice(0, LIMITE_PUNTOS_MATRIZ);
 
   if(!datos.length){
-    svg.attr('viewBox',[0,0,width,height]);
     svg.append('text').attr('x',width/2).attr('y',height/2).attr('text-anchor','middle')
       .attr('font-family','var(--f-display)').attr('font-size','14px').attr('fill','var(--ink-3)')
       .text('Sin temas con este filtro');
     return;
   }
-  // el aviso de "mostrando los N de mayor relevancia" se muestra FUERA del SVG (en el
-  // div contenedor), no dentro del propio dibujo -- estaba a 10px de la etiqueta
-  // "IMPACTO" del eje, tapándola por completo
+
   const avisoLimite = document.getElementById('matriz-aviso-limite');
-  if(avisoLimite) avisoLimite.textContent = '';
+  if(avisoLimite) avisoLimite.textContent = totalAntesDeLimite > datos.length
+    ? `Mostrando los ${datos.length} de mayor relevancia real de ${totalAntesDeLimite}` : '';
 
+  // ---- geometría del radar: anillos = riesgo reciente (centro = crítico), sectores
+  // angulares = categoría ----
+  const cx = width/2, cy = height/2;
+  const radioMax = Math.max(60, Math.min(width,height)/2 - 54);
+  const radioMin = 22;
+  const radioDe = riesgo => radioMax - (Math.max(0,Math.min(10,riesgo))/10) * (radioMax-radioMin);
+
+  // orden alfabético estable -- una categoría no debe "saltar" de sector solo porque
+  // cambió el orden de aparición en los datos de este corte
+  const categorias = [...new Set(datos.map(d=>d.categoria))].sort();
+  const nCat = categorias.length;
+  const gapSector = nCat > 1 ? 0.05 : 0;
+  const anguloPorSector = (2*Math.PI)/nCat;
+  const anguloInicioSector = {};
+  categorias.forEach((cat,i)=> anguloInicioSector[cat] = -Math.PI/2 + i*anguloPorSector);
+
+  // dentro de cada sector, cada tema ocupa una sub-posición angular fija por su ID
+  // (orden estable), no al azar -- así el mismo tema cae siempre en el mismo ángulo
+  // relativo entre un corte y el siguiente, mientras siga en la misma categoría.
+  const porCategoria = {};
+  datos.forEach(d=> (porCategoria[d.categoria] = porCategoria[d.categoria]||[]).push(d));
+  Object.keys(porCategoria).forEach(cat=>{
+    const items = porCategoria[cat].sort((a,b)=> a.tema.id.localeCompare(b.tema.id));
+    const n = items.length, anguloUtil = anguloPorSector - gapSector*2;
+    items.forEach((d,i)=>{
+      d._angulo = anguloInicioSector[cat] + anguloPorSector/2 + (n>1 ? (i/(n-1)-0.5)*anguloUtil : 0);
+    });
+  });
+
+  datos.forEach(d=>{
+    const r = radioDe(d.riesgoReal), rPrev = radioDe(d.riesgoAnterior);
+    d.x = cx + r*Math.cos(d._angulo); d.y = cy + r*Math.sin(d._angulo);
+    d.xPrev = cx + rPrev*Math.cos(d._angulo); d.yPrev = cy + rPrev*Math.sin(d._angulo);
+  });
+
+  // ---- fondo: sectores de categoría + anillos de riesgo ----
   const defs = svg.append('defs');
-  const blur = defs.append('filter').attr('id','glow-blur').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
-  blur.append('feGaussianBlur').attr('stdDeviation', 4);
-  const pat = defs.append('pattern').attr('id','grid-agenda').attr('width',20).attr('height',20).attr('patternUnits','userSpaceOnUse');
-  pat.append('path').attr('d','M 20 0 L 0 0 0 20').attr('fill','none').attr('stroke','var(--line)').attr('stroke-width',0.6);
-  svg.append('rect').attr('x',pad.left).attr('y',pad.top).attr('width',width-pad.left-pad.right).attr('height',height-pad.top-pad.bottom).attr('fill','url(#grid-agenda)');
+  const arcoSector = d3.arc().innerRadius(0).outerRadius(radioMax+16);
+  categorias.forEach(cat=>{
+    svg.append('path')
+      .attr('d', arcoSector({startAngle: anguloInicioSector[cat]+Math.PI/2+gapSector, endAngle: anguloInicioSector[cat]+anguloPorSector+Math.PI/2-gapSector}))
+      .attr('transform', `translate(${cx},${cy})`)
+      .attr('fill', colorCategoria(cat)).attr('fill-opacity', 0.045);
+  });
 
-  svg.append('rect').attr('x',x(5)).attr('y',pad.top).attr('width',x(10)-x(5)).attr('height',y(5)-pad.top).attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.09);
-  svg.append('rect').attr('x',pad.left).attr('y',pad.top).attr('width',x(5)-pad.left).attr('height',y(5)-pad.top).attr('fill','var(--riesgo-medio)').attr('fill-opacity',0.06);
-  svg.append('rect').attr('x',x(5)).attr('y',y(5)).attr('width',x(10)-x(5)).attr('height',height-pad.bottom-y(5)).attr('fill','var(--riesgo-medio)').attr('fill-opacity',0.06);
-  svg.append('rect').attr('x',pad.left).attr('y',y(5)).attr('width',x(5)-pad.left).attr('height',height-pad.bottom-y(5)).attr('fill','var(--riesgo-bajo)').attr('fill-opacity',0.06);
+  [4,7].forEach(r=>{
+    svg.append('circle').attr('cx',cx).attr('cy',cy).attr('r',radioDe(r))
+      .attr('fill','none').attr('stroke','var(--ink-3)').attr('stroke-width',1).attr('stroke-dasharray','3 4').attr('opacity',0.5);
+  });
+  svg.append('circle').attr('cx',cx).attr('cy',cy).attr('r',radioMin*0.5).attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.18);
 
-  const estiloEtiqueta = s=>s.attr('font-family','var(--f-display)').attr('font-size','22px').attr('font-weight','700').attr('fill','var(--ink-1)').attr('fill-opacity',0.08).style('pointer-events','none');
-  estiloEtiqueta(svg.append('text')).attr('x',(pad.left+x(5))/2).attr('y',(pad.top+y(5))/2).attr('text-anchor','middle').text('MEDIO');
-  estiloEtiqueta(svg.append('text')).attr('x',(x(5)+width-pad.right)/2).attr('y',(pad.top+y(5))/2).attr('text-anchor','middle').text('ALTO');
-  estiloEtiqueta(svg.append('text')).attr('x',(x(5)+width-pad.right)/2).attr('y',(y(5)+height-pad.bottom)/2).attr('text-anchor','middle').text('MEDIO');
-  estiloEtiqueta(svg.append('text')).attr('x',(pad.left+x(5))/2).attr('y',(y(5)+height-pad.bottom)/2).attr('text-anchor','middle').text('BAJO');
+  const estiloEtiquetaAnillo = s=>s.attr('text-anchor','middle').attr('font-family','var(--f-mono)').attr('font-size','8px').attr('fill','var(--ink-3)').style('pointer-events','none');
+  estiloEtiquetaAnillo(svg.append('text')).attr('x',cx).attr('y',cy-radioDe(7)-4).text('RIESGO MEDIO');
+  estiloEtiquetaAnillo(svg.append('text')).attr('x',cx).attr('y',cy-radioDe(4)-4).text('RIESGO ALTO');
+  estiloEtiquetaAnillo(svg.append('text')).attr('x',cx).attr('y',cy-radioMax-8).text('RIESGO BAJO');
 
-  svg.append('line').attr('x1',x(5)).attr('x2',x(5)).attr('y1',pad.top).attr('y2',height-pad.bottom).attr('stroke','var(--ink-3)').attr('stroke-width',1.3).attr('stroke-dasharray','4 3');
-  svg.append('line').attr('x1',pad.left).attr('x2',width-pad.right).attr('y1',y(5)).attr('y2',y(5)).attr('stroke','var(--ink-3)').attr('stroke-width',1.3).attr('stroke-dasharray','4 3');
-  svg.append('line').attr('x1',pad.left).attr('x2',width-pad.right).attr('y1',height-pad.bottom).attr('y2',height-pad.bottom).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
-  svg.append('line').attr('x1',pad.left).attr('x2',pad.left).attr('y1',pad.top).attr('y2',height-pad.bottom).attr('stroke','var(--line-strong)').attr('stroke-width',1.5);
-  svg.append('text').attr('x',width/2).attr('y',(height-pad.bottom)+20).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').text('IMPACTO (peso político) →');
-  svg.append('text').attr('x',pad.left-20).attr('y',height/2).attr('text-anchor','middle').attr('font-size','10px').attr('fill','var(--ink-2)').attr('font-family','var(--f-mono)').attr('transform',`rotate(-90,${pad.left-20},${height/2})`).text('RIESGO (intensidad máxima) →');
+  categorias.forEach(cat=>{
+    const ang = anguloInicioSector[cat] + anguloPorSector/2;
+    svg.append('text').attr('x', cx+(radioMax+30)*Math.cos(ang)).attr('y', cy+(radioMax+30)*Math.sin(ang))
+      .attr('text-anchor','middle').attr('dominant-baseline','middle')
+      .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('fill',colorCategoria(cat))
+      .style('pointer-events','none')
+      .text(cat.length>16 ? cat.slice(0,15)+'…' : cat);
+  });
 
+  // ---- barrido -- AMBIENTAL, gira despacio y sin detenerse: transmite "esto se
+  // revisa en vivo". La información real está en el halo de "nuevo" y el anillo de
+  // anomalía de abajo, no en este giro -- por diseño, para no repetir el error de
+  // animación sin dato real detrás (mismo criterio que ya aplicamos al quitar la
+  // síntesis de plantilla en Pulso Nacional). ----
+  const gradSweep = defs.append('linearGradient').attr('id','grad-barrido-radar').attr('x1','0%').attr('y1','0%').attr('x2','100%').attr('y2','0%');
+  gradSweep.append('stop').attr('offset','0%').attr('stop-color','var(--teal)').attr('stop-opacity',0.20);
+  gradSweep.append('stop').attr('offset','100%').attr('stop-color','var(--teal)').attr('stop-opacity',0);
+  svg.append('g').attr('class','radar-barrido')
+    .attr('transform', `translate(${cx},${cy})`)
+    .style('transform-origin', `${cx}px ${cy}px`)
+    .style('animation', 'mapa-puntos-spin 12s linear infinite')
+    .style('pointer-events','none')
+    .append('path')
+      .attr('d', d3.arc().innerRadius(0).outerRadius(radioMax+16)({startAngle:0, endAngle:0.26}))
+      .attr('fill', 'url(#grad-barrido-radar)');
+
+  // ---- puntos ----
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
-    .attr('transform', d=>`translate(${d.x},${d.y})`)
-    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); d3.select(this).select('circle.nodo-principal').attr('r',13); })
-    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(`<strong>${d.tema.nombre}</strong><br>Impacto ${d.impactoReal}/10 · Riesgo ${d.riesgoReal}/10<br>Mencionado ${d.veces} ${d.veces!==1?'veces':'vez'} · desde ${d.primeraMencion||'—'}`, ev); })
-    .on('mouseleave', function(){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r',9); })
+    .on('mouseenter', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); })
+    .on('mousemove', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); })
+    .on('mouseleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
-  g.append('circle').attr('class','nodo-halo').attr('r',15)
-    .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.riesgoReal)]).attr('fill-opacity',0.28);
+  // trayectoria antes (14-28d) -> hoy (0-14d), solo cuando de verdad cambió de posición
+  const defsMarker = defs.append('marker').attr('id','punta-trayecto-radar').attr('viewBox','0 0 10 10')
+    .attr('refX',8).attr('refY',5).attr('markerWidth',5).attr('markerHeight',5).attr('orient','auto-start-reverse');
+  defsMarker.append('path').attr('d','M0,0L10,5L0,10z').attr('fill','var(--ink-3)');
+  g.filter(d=> Math.round(d.xPrev)!==Math.round(d.x) || Math.round(d.yPrev)!==Math.round(d.y))
+    .append('line').attr('class','trayecto-radar')
+    .attr('x1',d=>d.xPrev).attr('y1',d=>d.yPrev).attr('x2',d=>d.x).attr('y2',d=>d.y)
+    .attr('stroke', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('stroke-width',1.4).attr('stroke-opacity',0.55)
+    .attr('marker-end','url(#punta-trayecto-radar)');
 
-  g.append('circle').attr('class','nodo-principal').attr('r',9)
-    .attr('fill', d=>COLOR_IMPACTO[nivelImpacto(d.riesgoReal)]).attr('fill-opacity',0.9)
-    .attr('stroke', d=>colorCategoria(d.tema.categoria)).attr('stroke-width',2.5).style('transition','r .12s');
+  // halo de "nuevo" -- actividad real en las últimas ~48h, pulso que se apaga solo
+  // (keyframe ya existente en styles.css, reutilizado tal cual)
+  g.filter(d=>d.esNuevo && !d.apagado).append('circle').attr('class','halo-nuevo-radar')
+    .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',16)
+    .attr('fill','none').attr('stroke','var(--teal)').attr('stroke-width',2)
+    .style('animation','pulso-tablero-ping 1.8s ease-out infinite');
+
+  // anillo de anomalía estadística (riesgo reciente vs. histórico propio del tema)
+  g.filter(d=>d.anomalia && d.anomalia.nivel!=='normal').append('circle').attr('class','anillo-anomalia-radar')
+    .attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',13)
+    .attr('fill','none').attr('stroke', d=>d.anomalia.nivel==='alta'?'var(--riesgo-alto)':'var(--teal)')
+    .attr('stroke-width',1.6).attr('stroke-dasharray','2 2');
+
+  g.append('circle').attr('class','nodo-halo').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d)+6)
+    .attr('fill', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('fill-opacity', d=>d.apagado?0.12:0.26);
+
+  g.append('circle').attr('class','nodo-principal').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d))
+    .attr('fill', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('fill-opacity', d=>d.apagado?0.35:0.92)
+    .attr('stroke', d=>colorCategoria(d.categoria)).attr('stroke-width', d=>d.apagado?1.2:2.2)
+    .style('transition','r .12s');
+
+  const ICONO_TENDENCIA = {subiendo:'▲', bajando:'▼', estable:'●'};
+  g.filter(d=>d.tendencia && !d.apagado).append('text')
+    .attr('x',d=>d.x).attr('y',d=>d.y - (_radioPrincipalRadar(d)+8))
+    .attr('text-anchor','middle').attr('font-size','8px').attr('font-family','var(--f-mono)')
+    .style('pointer-events','none')
+    .attr('fill', d=>d.tendencia==='subiendo'?'var(--riesgo-alto)':d.tendencia==='bajando'?'var(--riesgo-bajo)':'var(--ink-3)')
+    .text(d=>ICONO_TENDENCIA[d.tendencia]);
 }
 
 let interpretacionMatrizIA = {};
