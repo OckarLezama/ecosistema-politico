@@ -215,12 +215,29 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 
 /* --- Agenda & Coyuntura, matriz de riesgo: pedido explícito tras varias rondas de
    confusión ("no sé por qué unos círculos tienen movimiento de una forma y otros
-   líneas punteadas") -- la única animación continua de todo el gráfico es este aro,
-   reservado siempre para el mismo elemento (el tema de mayor prioridad), nunca para
-   otra cosa. transform-box:fill-box + transform-origin:center, mismo criterio que
-   .pulso-halo-vivo arriba, para que escale desde su propio centro. --- */
-@keyframes prioridad-respira{ 0%,100%{ transform:scale(1); opacity:0.9; } 50%{ transform:scale(1.22); opacity:0.45; } }
-.prioridad-anillo-vivo{ transform-box:fill-box; transform-origin:center; animation:prioridad-respira 2.4s ease-in-out infinite; pointer-events:none; }
+   líneas punteadas") -- la única animación continua de todo el gráfico vive en este
+   punto, reservado siempre para el mismo elemento (el tema de mayor prioridad), nunca
+   para otra cosa. transform-box:fill-box + transform-origin:center, mismo criterio que
+   .pulso-halo-vivo arriba, para que escale desde su propio centro.
+   CORRECCIÓN -- pedido explícito: "algo tipo sonar, sutil, limpio pero que se logre
+   notar". El aro que solo respiraba (escala 1↔1.22 sin desvanecerse del todo) se
+   sentía como un halo fijo con temblor, no como una señal activa. Ahora son 2 anillos
+   que se expanden desde el punto y se desvanecen a la vez que crecen -- el mismo
+   lenguaje visual de un ping de sonar/radar -- con inicio escalonado (delay) para que
+   siempre haya una onda saliendo, nunca un parpadeo sincronizado y brusco. Sigue
+   siendo UN solo elemento conceptual (el tema #1), solo que 2 anillos en vez de 1
+   logran el efecto de onda continua en vez de un solo aro pulsando en el lugar. */
+@keyframes prioridad-sonar{
+  0%   { transform:scale(0.7); opacity:0.65; }
+  75%  { opacity:0.08; }
+  100% { transform:scale(2.1); opacity:0; }
+}
+.prioridad-anillo-vivo{ transform-box:fill-box; transform-origin:center; pointer-events:none; }
+.prioridad-sonar-ping{
+  transform-box:fill-box; transform-origin:center; pointer-events:none;
+  animation:prioridad-sonar 2.8s cubic-bezier(0.25,0.6,0.4,1) infinite;
+}
+.prioridad-sonar-ping.retraso{ animation-delay:1.4s; }
 .pulso-tablero-link:hover .pulso-tablero-anillo,
 .pulso-tablero-link:focus-visible .pulso-tablero-anillo{ transform:scale(1.25); }
 .pulso-tablero-link:hover .pulso-halo-vivo,
