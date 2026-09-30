@@ -165,6 +165,51 @@ def calcularPuntajePrioridad(texto_completo, tipo_reforma=None):
 UMBRAL_PRIORIDAD_LEG = 2  # a partir de 2 señales de controversia real, se avisa
 
 
+# NUEVO 2026-09-30 -- caso real: "Ley Antimemes" aprobada en Pleno del Senado, y las
+# fuentes de prensa NO coincidían en la votación (68 vs. 72 votos a favor; 34 en contra
+# y 0 abstenciones sí coincidían). Hasta ahora el robot nunca tocaba votos_favor/
+# votos_contra/votos_abstencion -- se actualizaban a mano. Mismo principio que el resto
+# del archivo ("proponer, no decidir solo" cuando hay ambigüedad): el robot SOLO
+# actualiza los votos cuando TODAS las fuentes de esta corrida que mencionan la reforma
+# coinciden en la misma cifra exacta -- si hay desacuerdo entre fuentes (como pasó con
+# esta reforma), no elige una ni promedia: dispara un candidato de revisión manual con
+# las cifras en conflicto y de dónde salió cada una, y deja los votos existentes tal
+# cual hasta que una persona decida. Solo se intenta extraer votos en textos donde la
+# etapa detectada es 'Pleno' o 'Aprobada' -- son las únicas etapas que representan una
+# votación real; en 'Comisión' los números que aparecen sueltos en una nota suelen ser
+# de integrantes de la comisión, no de un resultado de votación.
+PATRON_VOTOS_FAVOR = re.compile(r'(\d+|cero|ningun[oa])\s*(?:votos?\s*)?a favor')
+PATRON_VOTOS_CONTRA = re.compile(r'(\d+|cero|ningun[oa])\s*(?:votos?\s*)?en contra')
+PATRON_VOTOS_ABSTENCION = re.compile(r'(\d+|cero|ningun[oa])\s*abstenci')
+
+def _numeroDeTexto(token):
+    if token.isdigit():
+        return int(token)
+    return 0  # 'cero'/'ninguno'/'ninguna'
+
+def extraerVotos(texto_completo):
+    m_favor = PATRON_VOTOS_FAVOR.search(texto_completo)
+    m_contra = PATRON_VOTOS_CONTRA.search(texto_completo)
+    m_abst = PATRON_VOTOS_ABSTENCION.search(texto_completo)
+    if not (m_favor and m_contra and m_abst):
+        return None
+    return (_numeroDeTexto(m_favor.group(1)), _numeroDeTexto(m_contra.group(1)), _numeroDeTexto(m_abst.group(1)))
+
+
+def actualizar_votos_reforma(reforma_id, votos, campos):
+    reformas = cargar_reformas()
+    hoy = datetime.now(ZONA_MX).strftime('%Y-%m-%d')
+    for r in reformas:
+        if r['id'] == reforma_id:
+            r['votos_favor'], r['votos_contra'], r['votos_abstencion'] = (str(v) for v in votos)
+            r['fecha_ultima_actualizacion'] = hoy
+    with open(RUTA_REFORMAS, 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL)
+        w.writeheader()
+        for r in reformas:
+            w.writerow(r)
+
+
 # Abre un Issue en GitHub con gh CLI -- disponible sin configuración extra
 # dentro de GitHub Actions (usa el GITHUB_TOKEN del propio workflow). Si se
 # corre fuera de Actions (una prueba local sin `gh` autenticado), falla en
@@ -376,6 +421,7 @@ def procesar():
     actualizaciones = 0
     candidatos_generados = 0
     saltados_por_duplicado = 0
+    votos_detectados = {}  # reforma_id -> [(triple, fuente_nombre, enlace), ...] de TODA la corrida
 
     for fuente in FUENTES_OFICIALES_LEG:
         try:
@@ -428,6 +474,19 @@ def procesar():
                 candidatos_generados += 1
                 continue
 
+            # NUEVO 2026-09-30: intento de extraer votos, INDEPENDIENTE de si esta
+            # entrada resulta ser un avance de etapa válido o no -- una nota que
+            # confirma la MISMA etapa (ej. otra cobertura del mismo Pleno ya
+            # registrado) igual trae la cifra real de la votación y vale la pena
+            # capturarla. Solo se intenta en 'Pleno'/'Aprobada' (las únicas etapas
+            # que son una votación real) y solo se acumula aquí -- la decisión de
+            # actualizar o mandar a revisión por conflicto se toma después de leer
+            # TODAS las fuentes de esta corrida, no con la primera que aparezca.
+            if etapa_detectada in ('Pleno', 'Aprobada'):
+                votos = extraerVotos(texto_completo)
+                if votos:
+                    votos_detectados.setdefault(reforma['id'], []).append((votos, fuente['nombre'], enlace))
+
             if not esAvanceValido(reforma['etapa_actual'], etapa_detectada):
                 guardar_candidato_legislativo({
                     'fecha_detectado': hoy_mx.strftime('%Y-%m-%d'), 'nombre_reforma_o_texto': reforma['nombre'],
@@ -444,7 +503,45 @@ def procesar():
             actualizaciones += 1
             print(f'  -> {reforma["nombre"]}: {reforma["etapa_actual"]} -> {etapa_detectada} (fuente: {fuente["nombre"]})')
 
+    # ---- resolución de votos, con TODAS las fuentes de esta corrida ya leídas ----
+    # Mismo criterio que el resto del robot: solo se publica lo que está seguro. Si
+    # todas las fuentes que mencionan la votación de una reforma coinciden en la misma
+    # cifra exacta, se actualiza. Si hay UNA sola discrepancia entre fuentes (como pasó
+    # con la "Ley Antimemes": 68 vs. 72 votos a favor), no se elige ninguna -- se manda
+    # a revisión manual con las cifras y la fuente de cada una, y los votos existentes
+    # se quedan tal cual hasta que una persona decida.
+    reformas_por_id = {r['id']: r for r in cargar_reformas()}
+    votos_actualizados = 0
+    for reforma_id, muestras in votos_detectados.items():
+        reforma = reformas_por_id.get(reforma_id)
+        if not reforma:
+            continue
+        triples_unicos = sorted(set(m[0] for m in muestras))
+        if len(triples_unicos) == 1:
+            votos = triples_unicos[0]
+            ya_coincide = (
+                str(votos[0]) == (reforma.get('votos_favor') or '').strip() and
+                str(votos[1]) == (reforma.get('votos_contra') or '').strip() and
+                str(votos[2]) == (reforma.get('votos_abstencion') or '').strip()
+            )
+            if not ya_coincide:
+                actualizar_votos_reforma(reforma_id, votos, campos)
+                votos_actualizados += 1
+                print(f'  -> {reforma["nombre"]}: votos actualizados a {votos[0]}-{votos[1]}-{votos[2]} '
+                      f'({len(muestras)} fuente(s) coinciden: {", ".join(sorted(set(m[1] for m in muestras)))})')
+        else:
+            detalle = ' vs. '.join(f'{v[0]}-{v[1]}-{v[2]} (según {n})' for v, n, _ in muestras)
+            guardar_candidato_legislativo({
+                'fecha_detectado': hoy_mx.strftime('%Y-%m-%d'), 'nombre_reforma_o_texto': reforma['nombre'],
+                'etapa_sugerida': '', 'fuente_url': muestras[0][2], 'fuente_nombre': ' / '.join(sorted(set(m[1] for m in muestras))),
+                'motivo_revision': f'Cifras de votación en conflicto entre fuentes: {detalle}',
+                'puntaje_prioridad': 0,
+            })
+            candidatos_generados += 1
+            print(f'  -> {reforma["nombre"]}: cifras de votación en conflicto entre fuentes, enviado a revisión manual ({detalle})')
+
     print(f'\n{actualizaciones} reforma(s) actualizada(s) automáticamente.')
+    print(f'{votos_actualizados} reforma(s) con votos actualizados automáticamente (todas las fuentes coincidían).')
     print(f'{candidatos_generados} caso(s) ambiguo(s) enviado(s) a revisión manual en {RUTA_CANDIDATOS_LEG}.')
     print(f'{saltados_por_duplicado} artículo(s) ya vistos en corridas anteriores, ignorados sin duplicar.')
 
