@@ -1343,9 +1343,7 @@ function dibujarMatrizRiesgo(){
     // los temas que sí tienen actividad real) -- su radio de riesgo histórico solo se
     // conserva para el color/tooltip, no para la posición
     const rAncla = d.apagado ? radioMax*0.88 : radioDe(d.riesgoReal);
-    const rPrev = radioDe(d.riesgoAnterior);
     d.xAncla = cx + rAncla*Math.cos(d._angulo); d.yAncla = cy + rAncla*Math.sin(d._angulo);
-    d.xPrev = cx + rPrev*Math.cos(d._angulo); d.yPrev = cy + rPrev*Math.sin(d._angulo);
     d.x = d.xAncla; d.y = d.yAncla;
   });
 
@@ -1431,15 +1429,13 @@ function dibujarMatrizRiesgo(){
     .on('mouseleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
     .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
 
-  // trayectoria antes (14-28d) -> hoy (0-14d), solo cuando de verdad cambió de posición
-  const defsMarker = defs.append('marker').attr('id','punta-trayecto-radar').attr('viewBox','0 0 10 10')
-    .attr('refX',8).attr('refY',5).attr('markerWidth',5).attr('markerHeight',5).attr('orient','auto-start-reverse');
-  defsMarker.append('path').attr('d','M0,0L10,5L0,10z').attr('fill','var(--ink-3)');
-  g.filter(d=> Math.round(d.xPrev)!==Math.round(d.x) || Math.round(d.yPrev)!==Math.round(d.y))
-    .append('line').attr('class','trayecto-radar')
-    .attr('x1',d=>d.xPrev).attr('y1',d=>d.yPrev).attr('x2',d=>d.x).attr('y2',d=>d.y)
-    .attr('stroke', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('stroke-width',1.4).attr('stroke-opacity',0.55)
-    .attr('marker-end','url(#punta-trayecto-radar)');
+  // CORRECCIÓN -- pedido explícito tras el 2º intento: dibujar una línea antes->hoy
+  // por cada tema con cambio de riesgo (13-18 de 45 puntos, según el corte) seguía
+  // viéndose como una maraña sobre un radar ya denso. Esa lectura de movimiento YA
+  // tiene un lugar propio y más claro: la franja "QUIÉN SE MOVIÓ MÁS" arriba del radar
+  // (para el resumen) y el tooltip de cada punto (para el detalle, con dirección y
+  // magnitud en texto). El radar en sí queda como snapshot -- posición, tamaño y color
+  // del momento actual -- sin líneas cruzando el círculo.
 
   // halo de "nuevo" -- actividad real en las últimas ~48h, pulso que se apaga solo
   // (keyframe ya existente en styles.css, reutilizado tal cual)
@@ -1454,21 +1450,25 @@ function dibujarMatrizRiesgo(){
     .attr('fill','none').attr('stroke', d=>d.anomalia.nivel==='alta'?'var(--riesgo-alto)':'var(--teal)')
     .attr('stroke-width',1.6).attr('stroke-dasharray','2 2');
 
-  g.append('circle').attr('class','nodo-halo').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d)+6)
-    .attr('fill', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('fill-opacity', 0.26);
-
+  // CORRECCIÓN -- pedido explícito tras el 2º intento: cada punto llevaba 4-5 capas
+  // encimadas (halo de relleno + aro de categoría a color + glifo de tendencia flotante +
+  // línea de trayectoria) -- con 45 puntos eso era denso aunque ningún par se tocara
+  // en sentido estricto. Además "--riesgo-bajo" y "--teal" (color de la categoría
+  // Relación Bilateral) son EL MISMO color (#4CC1BA): un tema de riesgo bajo en esa
+  // categoría quedaba con relleno y aro idénticos en turquesa, y atenuado (si estaba
+  // apagado) se leía como "círculo hueco sin sentido". Se quita el halo decorativo
+  // (era puro relleno translúcido repetido, no info nueva) y el aro deja de usar el
+  // color de categoría -- la categoría ya se identifica por el sector de fondo y el
+  // tooltip, no hace falta repetirla en cada punto.
   g.append('circle').attr('class','nodo-principal').attr('cx',d=>d.x).attr('cy',d=>d.y).attr('r',d=>_radioPrincipalRadar(d))
     .attr('fill', d=>COLOR_RIESGO[nivelRiesgo(d.riesgoReal)]).attr('fill-opacity', 0.92)
-    .attr('stroke', d=>colorCategoria(d.categoria)).attr('stroke-width', 2)
+    .attr('stroke', 'var(--bg-0)').attr('stroke-width', 1.5)
     .style('transition','r .12s');
 
-  const ICONO_TENDENCIA = {subiendo:'▲', bajando:'▼', estable:'●'};
-  g.filter(d=>d.tendencia && !d.apagado).append('text')
-    .attr('x',d=>d.x).attr('y',d=>d.y - (_radioPrincipalRadar(d)+8))
-    .attr('text-anchor','middle').attr('font-size','8px').attr('font-family','var(--f-mono)')
-    .style('pointer-events','none')
-    .attr('fill', d=>d.tendencia==='subiendo'?'var(--riesgo-alto)':d.tendencia==='bajando'?'var(--riesgo-bajo)':'var(--ink-3)')
-    .text(d=>ICONO_TENDENCIA[d.tendencia]);
+  // el glifo de tendencia (▲▼●) flotando sobre cada uno de los 45 puntos sumaba otra
+  // capa de texto encimada; esa lectura ya vive en el tooltip y, para los movimientos
+  // que de verdad importan, en la franja "QUIÉN SE MOVIÓ MÁS" de arriba -- no hace
+  // falta repetirla sobre el radar mismo.
 }
 
 let interpretacionMatrizIA = {};
