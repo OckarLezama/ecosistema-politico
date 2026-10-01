@@ -260,8 +260,18 @@ function renderGrafo(svgId='graph-svg'){
   if(empty) empty.style.display='none';
   svgEl.innerHTML='';
 
+  // BUG real encontrado en dispositivo físico (celular, pantalla touch): el ancho sí se
+  // media del contenedor real, pero el alto estaba fijo en 560 sin importar el alto real
+  // disponible. En escritorio ambos coinciden casi siempre y no se nota, pero en celular
+  // -- donde el toolbar envuelve en varias filas y deja mucho menos alto real para el
+  // grafo -- el viewBox quedaba con una proporción (ancho:560) que ya no correspondía al
+  // tamaño real del <svg>, y el navegador lo escalaba para que "quepa" (preserveAspectRatio
+  // por defecto), dejando el grafo diminuto y centrado con muchísimo espacio vacío
+  // alrededor -- exactamente lo reportado. Ahora el alto también se mide del <svg> real.
   const anchoReal = svgEl.parentElement.getBoundingClientRect().width;
-  const width = (anchoReal>100 ? anchoReal : svgEl.clientWidth) || 900, height = 560;
+  const width = (anchoReal>100 ? anchoReal : svgEl.clientWidth) || 900;
+  const altoReal = svgEl.getBoundingClientRect().height;
+  const height = (altoReal>80 ? altoReal : svgEl.clientHeight) || 560;
 
   const nodesMap = new Map();
   const linksBase = [];
@@ -529,13 +539,25 @@ function renderGrafo(svgId='graph-svg'){
     return f;
   }
 
+  // BUG real reportado en pantalla touch GRANDE (kiosco/TV táctil): el ancho y el alto ya
+  // se miden del contenedor real (ver arriba), pero las fuerzas de la simulación (qué tan
+  // separados quedan los nodos entre sí) estaban en números fijos -- pensados para una
+  // pantalla de referencia de ~900px. En una pantalla angosta eso ya se veía bien porque el
+  // tamaño real nunca se alejaba mucho de esa referencia. Pero en una pantalla MUY ancha
+  // (kiosco táctil, TV, monitor grande) el <svg> real mide mucho más que esa referencia, y
+  // como las fuerzas no sabían eso, el grafo seguía ocupando el mismo puñado de píxeles de
+  // siempre -- un cúmulo chiquito perdido en medio de un recuadro enorme, exactamente lo
+  // reportado. "escala" crece la separación entre nodos cuando la pantalla real es más
+  // ancha que la referencia (nunca la encoge por debajo de 1, así que el celular/tablet ya
+  // verificado se queda exactamente igual).
+  const escala = Math.max(1, Math.min(width/900, 2.2));
   if(simulacion) simulacion.stop();
   simulacion = d3.forceSimulation(nodes)
     .alpha(0.5).velocityDecay(0.22)
     .force('orbita', forceOrbita(1.8))
-    .force('charge', d3.forceManyBody().strength(-45))
-    .force('collide', d3.forceCollide().radius(d=> d.esCentro ? radioNodo(d)+40 : radioNodo(d)+22).strength(0.6))
-    .force('link', d3.forceLink(links).id(d=>d.id).distance(90).strength(0.05))
+    .force('charge', d3.forceManyBody().strength(-45*escala))
+    .force('collide', d3.forceCollide().radius(d=> (d.esCentro ? radioNodo(d)+40 : radioNodo(d)+22)*escala).strength(0.6))
+    .force('link', d3.forceLink(links).id(d=>d.id).distance(90*escala).strength(0.05))
     .force('x', d3.forceX(width/2).strength(0.15))
     .force('y', d3.forceY(height/2).strength(0.22))
     .on('tick', ()=>{
