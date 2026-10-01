@@ -95,6 +95,38 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .actores-layout{display:grid; grid-template-columns:1fr 300px; gap:16px; align-items:start;}
 @media (max-width:880px){ .actores-layout{grid-template-columns:1fr;} }
 
+/* ============================================================
+   ANÁLISIS (Pulso Nacional) -- pedido explícito: "necesitamos que se adapte a
+   cualquier resolución de pantalla... móvil, tablet, pantallas touch, monitores".
+   Causa real del desbordamiento reportado en pantalla touch: las filas usaban
+   grid-template-columns con fracciones puras (3fr 1fr 1fr, etc.) -- un track de
+   grid con fr puro tiene un mínimo implícito igual al contenido más ancho que
+   tenga adentro, así que cuando una tarjeta trae un panelRecorrible con
+   min-width:560/620px (pensado para su PROPIO scroll interno), el track del
+   grid se negaba a encogerse por debajo de eso y empujaba a TODA la página a
+   desbordarse de lado -- no era un scroll contenido dentro de la tarjeta, era
+   la cuadrícula entera rompiendo el margen. minmax(0,Nfr) le quita ese mínimo
+   implícito al track: ahora si la tarjeta es más angosta que su contenido, el
+   scroll queda contenido ADENTRO de ella (que es justo lo que panelRecorrible
+   ya estaba diseñado para hacer), en vez de reventar el layout completo. ----
+   */
+.pulso-grid-3-1-1{ display:grid; grid-template-columns:minmax(0,3fr) minmax(0,1fr) minmax(0,1fr); gap:14px; }
+.pulso-grid-1-1-1{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr); gap:14px; }
+.pulso-grid-3-2{ display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:14px; }
+@media (max-width:880px){
+  .pulso-grid-3-1-1, .pulso-grid-1-1-1, .pulso-grid-3-2{ grid-template-columns:1fr; }
+}
+/* El track ya puede encogerse (minmax(0,Nfr) arriba), pero cada TARJETA es a su vez un
+   ítem de grid, y un ítem de grid también trae su propio mínimo implícito (min-width:auto
+   = ancho de su contenido más angosto), el mismo problema que los tracks pero un nivel
+   más adentro -- por eso seguía reventando aunque el track ya tuviera minmax(0,...).
+   min-width:0 en la tarjeta le quita ESE mínimo también: ahora si se encoge, el que
+   scrollea es el panelRecorrible de adentro (como ya estaba pensado), no la tarjeta
+   entera empujando fuera de su columna. */
+.pulso-grid-3-1-1 > .pulso-tarjeta-viva,
+.pulso-grid-1-1-1 > .pulso-tarjeta-viva,
+.pulso-grid-3-2 > .pulso-tarjeta-viva{ min-width:0; }
+
 .graph-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card); overflow:hidden;
