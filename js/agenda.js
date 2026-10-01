@@ -951,8 +951,10 @@ function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
       // (delegado, ver dibujarGenealogia) también reaccionaría al mismo click.
       contenido.append('rect').attr('class','geneal-no-toggle').attr('x',x).attr('y',yBase-9).attr('width',anchoCaja).attr('height',altoUnaNota-2).attr('fill','transparent').style('cursor','pointer')
         .on('click', ()=> window.open(n.fuente_url, '_blank', 'noopener'))
-        .on('mouseenter', function(){ d3.select(this).attr('fill','rgba(76,193,186,.08)'); })
-        .on('mouseleave', function(){ d3.select(this).attr('fill','transparent'); });
+        // pointerenter/pointerleave en vez de mouseenter/mouseleave -- cubren mouse Y touch
+        // con el mismo listener (igual que el resto de los tooltips del sitio).
+        .on('pointerenter', function(){ d3.select(this).attr('fill','rgba(76,193,186,.08)'); })
+        .on('pointerleave', function(){ d3.select(this).attr('fill','transparent'); });
     }
   });
 }
