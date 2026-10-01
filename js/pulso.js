@@ -1104,7 +1104,7 @@ function pintarPulso(cont, d){
       </div>` : ''}
 
       <!-- BLOQUE 1: temas en movimiento (60%) · peso por categoría hoy (20%) · tensión nacional (20%) -->
-      <div style="display:grid;grid-template-columns:3fr 1fr 1fr;gap:14px;">
+      <div class="pulso-grid-3-1-1">
         ${tarjeta(`
           <div class="eyebrow">TEMAS EN MOVIMIENTO</div>
           ${d.top5_temas.length ? d.top5_temas.map((t,i)=>{
@@ -1158,20 +1158,20 @@ function pintarPulso(cont, d){
       </div>
 
       <!-- BLOQUE 2: tablero de actores (posición semanal, ver tableroActoresPulso) · actores destacados · temas nuevos -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+      <div class="pulso-grid-1-1-1">
         ${tarjeta(`<div style="display:flex;flex-direction:column;height:100%;"><div class="eyebrow" style="margin-bottom:6px;">TABLERO DE ACTORES · SEMANA EN CURSO</div><div id="pulso-tablero-actores" style="flex:1;display:flex;flex-direction:column;min-height:310px;">${tableroActoresPulso(d.tablero_actores)}</div></div>`)}
         ${tarjeta(`<div class="eyebrow">ACTORES DESTACADOS</div>${listaActores(d.actores_destacados)}`)}
         ${tarjeta(`<div class="eyebrow" style="color:var(--riesgo-bajo);">TEMAS NUEVOS</div>${listaTema(d.temas_nuevos)}`)}
       </div>
 
       <!-- BLOQUE 3: peso por categoría · tendencia 4 semanas (60%) · patrón histórico 4 semanas en barras (40%) -->
-      <div style="display:grid;grid-template-columns:3fr 2fr;gap:14px;">
+      <div class="pulso-grid-3-2">
         ${tarjeta(`<div class="eyebrow">PESO POR CATEGORÍA · TENDENCIA 4 SEMANAS</div>${panelRecorrible('pulso-scroll-tendencia', svgTendenciaCategoriasPulso(d.categorias_tendencia_4sem), 560)}`)}
         ${tarjeta(`<div class="eyebrow">PATRÓN HISTÓRICO · 4 SEMANAS</div>${panelRecorrible('pulso-scroll-historico', barrasHistoricoPulso(d.patron_historico_4sem), 620)}`)}
       </div>
 
       <!-- BLOQUE 4: temas retomados · resumen mañanera (pendiente de revisar a detalle) · declaraciones (presidenta + otro actor, apiladas en la misma columna) -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+      <div class="pulso-grid-1-1-1">
         ${tarjeta(`<div class="eyebrow" style="color:var(--arena);">TEMAS RETOMADOS</div>${listaTema(d.temas_retomados)}`)}
         ${tarjeta(`<div class="eyebrow">RESUMEN MAÑANERA</div>${resumenMananeraHTML(d.resumen_mananera, d.mananera_estado)}`)}
         ${tarjeta(`<div style="display:flex;flex-direction:column;gap:10px;">
