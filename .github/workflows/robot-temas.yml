@@ -34,6 +34,32 @@ jobs:
           git config user.name "robot-temas"
           git config user.email "robot@ecosistema-politico.local"
           git add data/eventos.csv data/candidatos_revision.csv data/temas.csv data/menciones_actores_c3.csv data/tema_actores.csv
-          git diff --staged --quiet || git commit -m "Robot: actualizacion automatica $(date -u +%Y-%m-%d)"
-          git pull --rebase
-          git push
+          if git diff --staged --quiet; then
+            echo "Sin cambios que publicar"
+          else
+            git commit -m "Robot: actualizacion automatica $(date -u +%Y-%m-%d)"
+            # data/temas.csv y data/tema_actores.csv tambien los edita
+            # limpiar-agenda-nacional.yml y diagnostico-tema.yml, que pueden correr al
+            # mismo tiempo que esto -- un "pull --rebase" sin reintentos truena con
+            # conflicto si el remoto avanzo entre el commit y el push, y deja el
+            # workflow en rojo sin publicar nada. Se reintenta con rebase (no se
+            # descarta nada a la fuerza): si el conflicto es real -- las dos corridas
+            # tocaron la misma fila -- se aborta y falla visiblemente para que alguien
+            # lo revise, en vez de perder datos en silencio.
+            for intento in 1 2 3 4 5; do
+              if git push; then
+                break
+              fi
+              git fetch origin main
+              if ! git rebase origin/main; then
+                echo "Conflicto real al reintegrar cambios -- requiere revision manual" >&2
+                git rebase --abort
+                exit 1
+              fi
+              if [ "$intento" = "5" ]; then
+                echo "No se pudo publicar tras 5 intentos" >&2
+                exit 1
+              fi
+              sleep $((RANDOM % 5 + 1))
+            done
+          fi

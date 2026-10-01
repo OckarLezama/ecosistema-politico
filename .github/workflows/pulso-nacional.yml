@@ -52,8 +52,27 @@ jobs:
             echo "publico=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Pulso nacional: corte $(date -u +%Y-%m-%d\ %H:%M) UTC"
-            git pull --rebase
-            git push
+            # data/pulso_nacional.json se recalcula COMPLETO en cada corrida (no es un
+            # archivo que acumula cambios linea por linea) -- si otra corrida ya
+            # publico un snapshot mas nuevo, "pull --rebase" intenta fusionar ese
+            # archivo como si fueran ediciones puntuales y truena con conflicto real,
+            # aunque no haya nada que perder: cualquiera de los dos snapshots es
+            # valido, y el siguiente ciclo lo vuelve a calcular de cero. Por eso aqui
+            # se reintenta con "merge -X ours" (se queda con el snapshot que esta
+            # corrida acaba de calcular) en vez de con rebase.
+            for intento in 1 2 3 4 5; do
+              if git push; then
+                break
+              fi
+              git fetch origin main
+              git merge origin/main -X ours --no-edit \
+                -m "Merge origin/main (snapshot regenerado, se conserva el mas reciente)"
+              if [ "$intento" = "5" ]; then
+                echo "No se pudo publicar el snapshot tras 5 intentos" >&2
+                exit 1
+              fi
+              sleep $((RANDOM % 5 + 1))
+            done
             echo "publico=true" >> "$GITHUB_OUTPUT"
           fi
       - name: Forzar reconstruccion de GitHub Pages
