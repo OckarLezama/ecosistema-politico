@@ -130,7 +130,16 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .graph-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card); overflow:hidden;
-  height:609px; display:flex; flex-direction:column; /* mismo alto fijo en todos los módulos que comparten esta clase base (Actores, Agenda) */
+  /* antes 609px fijo -- en celular horizontal (ej. 844x390) esos 609px de alto no cabían
+     ni de cerca en los ~390px reales de la pantalla: el toolbar y apenas el titulo del
+     módulo entraban en la primera pantalla, y el usuario tenía que desplazarse casi 4
+     pantallas completas para ver el resto. min(609px,75vh) deja el mismo alto de siempre
+     en cualquier pantalla con suficiente altura (monitores, tablet, celular vertical --
+     ahí 75vh siempre es mayor a 609px, así que no cambia nada) y SOLO se encoge cuando la
+     altura real es corta, como horizontal en celular. El contenido de adentro (matriz,
+     genealogía, radar, etc.) ya lee su alto real del contenedor en cada dibujo, así que se
+     reacomoda solo, sin necesidad de tocar el JS de cada vista. */
+  height:min(609px,75vh); display:flex; flex-direction:column; /* mismo alto en todos los módulos que comparten esta clase base (Actores, Agenda, Timeline) */
 }
 .graph-toolbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
@@ -166,7 +175,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .detail-card{
   background:var(--bg-1); border:1px solid var(--line-strong); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card); padding:16px;
-  position:fixed !important; width:300px; height:609px; top:160px; right:20px; left:auto;
+  position:fixed !important; width:300px; height:min(609px,calc(100vh - 180px)); top:160px; right:20px; left:auto;
   overflow-y:auto; z-index:500;
   scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1);
   display:block !important; visibility:visible !important; opacity:1 !important;
@@ -208,7 +217,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .agenda-layout{display:grid; grid-template-columns:1fr 300px; gap:16px; align-items:start;}
 @media (max-width:880px){ .agenda-layout{grid-template-columns:1fr;} }
 
-.agenda-grid{ display:flex; flex-direction:column; height:609px; } /* altura fija total, igual a Feed y Red de Actores — así no importa cuántas filas tenga el toolbar */
+.agenda-grid{ display:flex; flex-direction:column; height:min(609px,75vh); } /* mismo alto que Feed y Red de Actores -- min(…,75vh) para que se encoja en pantallas cortas (celular horizontal) en vez de desbordar la página */
 #agenda-contenido{flex:1; min-height:0; display:flex; flex-direction:column; position:relative;}
 #matriz-riesgo-svg{width:100%; flex:1; display:block;} /* flex, no fijo — se ajusta solo al espacio que sobra */
 .chip-btn.kpi-activo{border-color:var(--teal); color:var(--teal);}
@@ -311,7 +320,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .feed-card{
   background:var(--bg-1); border:1px solid var(--line); border-radius:var(--radius-l);
   box-shadow:var(--shadow-card);
-  height:609px; display:flex; flex-direction:column; overflow:hidden;
+  height:min(609px,75vh); display:flex; flex-direction:column; overflow:hidden;
 }
 .feed-card .feed-lista{
   overflow-y:auto; padding:12px 14px 20px; margin:0; max-width:none;
@@ -332,7 +341,7 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 #timeline-heatmap-wrap{width:100%; padding:12px 14px 4px; box-sizing:border-box;}
 #timeline-heatmap-svg{display:block; width:100%; height:64px;}
 #timeline-svg{display:block; width:100%;}
-#panel-timeline .graph-card{height:609px; display:flex; flex-direction:column;} /* mismo alto total que Red de Actores (toolbar 49px + svg 560px) */
+#panel-timeline .graph-card{height:min(609px,75vh); display:flex; flex-direction:column;} /* mismo alto total que Red de Actores (toolbar 49px + svg 560px) */
 
 .ficha-notas-scroll{
   max-height:180px; overflow-y:auto;
