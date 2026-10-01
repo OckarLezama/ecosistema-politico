@@ -170,6 +170,13 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .graph-empty-state h3{font-family:var(--f-display); color:var(--ink-2); font-size:15px; margin:0;}
 
 .node-label{fill:var(--ink-2); pointer-events:none; font-family:var(--f-body);}
+/* pedido explícito: que el grafo se adapte también a pantallas touch -- los nodos son
+   arrastrables (d3.drag), y sin esto el navegador puede interpretar el primer touchmove
+   como un intento de hacer scroll de la página en vez de mover el nodo (compiten por el
+   mismo gesto). touch-action:none le dice al navegador que ese gesto es solo para JS, no
+   para su propio scroll/zoom nativo -- el arrastre con el dedo queda tan fluido como con
+   mouse, sin que la página se jalonee al mismo tiempo. */
+#graph-svg g.node{ touch-action:none; }
 .anillo-guia{pointer-events:none;}
 
 .detail-card{
@@ -184,6 +191,21 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .detail-card::-webkit-scrollbar-track{ background:var(--bg-1); }
 .detail-card::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:99px; }
 .detail-card::-webkit-scrollbar-thumb:hover{ background:var(--teal); }
+/* BUG real encontrado en móvil -- pedido explícito: "no solo es desbordamiento, tienes que
+   checar que se adapte". El panel vivía SIEMPRE en position:fixed, pensado para flotar en
+   el espacio de la columna de 300px que .actores-layout reserva en escritorio. Pero esa
+   columna desaparece en pantallas angostas (grid-template-columns pasa a 1fr abajo de
+   880px, igual que Agenda), y el panel -- al seguir fijo -- se quedaba flotando ENCIMA de
+   TODO el grafo y del toolbar (incluyendo el botón de "Restablecer"), sin ninguna forma de
+   cerrarlo: el usuario quedaba atrapado viendo solo la ficha, sin poder volver a tocar el
+   grafo. Abajo de 880px el panel se vuelve parte normal del flujo (estático, debajo del
+   grafo, igual que el Feed en Agenda) en vez de flotar fijo sobre el contenido. */
+@media (max-width:880px){
+  .detail-card{
+    position:static !important; width:100% !important; height:auto !important;
+    max-height:70vh; top:auto !important; right:auto !important; left:auto !important;
+  }
+}
 .detail-empty{color:var(--ink-3); font-size:12.5px; text-align:center; padding:40px 10px;}
 .detail-avatar{
   width:56px;height:56px;border-radius:50%; display:flex; align-items:center; justify-content:center;
