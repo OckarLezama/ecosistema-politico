@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-02T02:58:50.851978-06:00",
+  "generado_en": "2026-10-02T09:29:51.578059-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 14,
+  "n_notas_ventana": 7,
   "baja_confianza": false,
-  "tension_nacional": 46,
+  "tension_nacional": 43,
   "tension_anomalia": {
-    "z": 0.61,
+    "z": 0.42,
     "nivel": "normal",
     "media_periodo": 36.7,
     "dias_base": 27
@@ -13,47 +13,23 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 50,
-      "tema_principal": "Sheinbaum admite que México debe crecer más, pero pide medir también cómo se dis",
-      "tema_principal_id": "auto-1a7070ab4b",
-      "n_temas": 7,
-      "n_notas": 7,
+      "peso_pct": 38,
+      "tema_principal": "Visa de Andy",
+      "tema_principal_id": "visa-de-andy",
+      "n_temas": 3,
+      "n_notas": 3,
       "notas": [
         {
-          "texto": "Claudia Sheinbaum cuenta con 70 % de aprobación ciudadana, según encuesta de El Financiero",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/01/claudia-sheinbaum-cuenta-con-70-de-aprobacion-ciudadana-segun-encuesta-de-el-financiero.html",
-          "intensidad": 9.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "Ricardo Monreal respalda a Gino Segura en Quintana Roo - Maya Comunicación",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQRWxTNHVtaVdNZWJZZVNlTmtjc0Q2ZFdJT29tZTBDQ3UyMWtmWWRFcXhIYkFfSnc2anl2aE5yb1h4YmZEM3Bqc2xoWGExTmFoWXdxeTBJSDFBRnlpTkxIWHpxVlY0WmNDNGpnSTJNTkZ4aW5DU2NkTnBjVmdaNFBOXzJYN3dyZlF0dlNyYThzbWU?oc=5",
-          "intensidad": 9.0,
-          "medio": "Maya Comunicación"
-        },
-        {
-          "texto": "¿Qué es la Ley Antimemes en México? Sheinbaum niega prohibición",
-          "fuente_url": "https://www.informador.mx/mexico/que-es-la-ley-antimemes-en-mexico-sheinbaum-niega-prohibicion-20261001-0095.html",
+          "texto": "Andy López Beltrán va por el fuero: se registra para buscar diputación federal en Tabasco con Morena - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPal9Fbk9pV2hCaVE1cmF0OEF1Tm93b1YteGg4NUVOT00xXzZjNXM3V2JVT3AxMDBWZ1M0cnc4QzVUMjBtUVVlUnJyUDFNU1E2S01NVjNVRnQ3dmdTUGtRWUZCZHpXSFAzN3hZRzd3SVhhaUdiOTVEZWZDVV9wZzh5eGg2MExCVDNCc3dqQ29SaE16dGpqTFhfcUxMSDJhLWZubldSTFVmbm15SEVvOEpHaGE4ak9WUlZxUl9ITkw5QjdrZjJwYWZrelV6d3dOSXfSAeoBQVVfeXFMTlVHWmg3bXhkVk1TS0k3Q0V4RGpWZ01xYUVvNWNWZGUyVm1fbXBSSmV2WVk2d0FMVEloNnBXNGJJcnBsaGNadVJkUmhHLVJZTThRTGtQSjRRSVhvUjdGTmtEVFlnTW8xWjBFaUcxcFFRTk85THk4ZWlRRV9NNEVDS3p6TkU1VDFWYVhhYlE1dEV5cVZ5ZkVlbThkWVpxVE5udm5YM0hYMy1fZEQxVjJHREMwTzJWQWRKVExmTTdYMUZjRnlmOU10VDFfcG03YnVoeTNlS2hlMjJIaHZ2ZmlHN1FRcDJTNmtPM0Z3?oc=5",
           "intensidad": 7.0,
-          "medio": "informador.mx"
-        },
-        {
-          "texto": "Delfina Gómez recorrerá las cuatro regiones del Edomex como parte de su Tercer Informe - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPcnZ1QjVIZWN0aXcxQzhvREJyMkJ6LWRuRm1hVDI5N1ZkVTNqTXNkdFYzbnJKWkg2ZjVVUFVIWmlSdWFfOGtyUW9EQ2hnM0tGc1VhMjRDQXVaM1gzRHk2WE5WcWtKa0w5X2lNZGtGTWNkRklTcE5id3BNa093Wjd3TnhIX2JlQkYxVEwzU0tiejFWc3NnRk1aaUlpeEJYa01kT2tLN2pfa1JmNUVoQld3SmROVkYtQnQ3Ql84dDhBMDVjbkRuQmVn0gHbAUFVX3lxTE01QVh0b25SSm1YbFdFYVRxRHlhNjFpaE9ZaC1nNm9ScnRad2N4RGpiUEI2dUdWSXVYMDlpV2piUnZQblE2ZlRVZVV0dkp4S19hZTY0YVFSYXU1d3pRbVpQNVZtZENEZVFieTRmdHZiT0t2eUFndWFSaTFPQWNtMmlFWEw3emw1RG9tQnZLZlZicnhaN1RhZl83RGl0Uk8yU2dFMTlGdFNiZHZzVGcwRVJDbkJlaEpwbFN5dVFRYWtLeGRBQnozY2c5VTZLR0FqRWIwelc0Rlo1X0d4TQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
+          "medio": "Infobae"
         },
         {
           "texto": "Reforma a Ley Aduanera avanza en comisiones de Diputados con reserva para sancionar huachicol fiscal - El Economista",
           "fuente_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPcjV0aDBVQ1hJaklKZUdmUDdBVnZ1ZllJX2xEdW1DVzJ1NFpSSmFiWk5aa2x6ZVVldlA4dmlSSlh0dUJ1NTNVNDg1ZUU2aTVsQ0JoNUROd1dGZ2UxTkFzeWFsY0gzbmVIcm8zaXU5cWk3RTJDUy1SNnN0SE93UkhDWEJCMU90YnliRENfZDh5N3pRUHR1dl8zWVplNnI0cjN5UkFXdnJFMFhaek04QVpBcjRWQUZjM3p0MDZNazEwcU81Q3NycmFmemcwUndySzZidldUaGlCMERGUndRREHSAeMBQVVfeXFMTUc3QVhJOXhsSkE2bzZkalFVS1NmT0U1bGxVWEVGdzE5aU5HTXk3TUVneWlidDgzTFR5Mms0TzJxSTdOejA5aE5RekdqeVFvajB6U09YTjdmQ0FiQnFWc2wtTkFXVTRTY3VuNzdaY3hlSWtxMFZPb0l5SGFhSWRPMU5tdkw0dnRLaFd0Y19BUXljbnIzcUgxZC1JQlRzdW5pcl9sbzYxcUhFcXFtdkVPazQyMEVCb0d6TnBmYWluZW5BUmthcWc0azdRcXZhMU5fWktZbDJsRl9sZlRXUFNHT25OSjQ?oc=5",
           "intensidad": 6.0,
           "medio": "El Economista"
-        },
-        {
-          "texto": "“Le agradezco mucho sus palabras”: Sheinbaum reacciona a la reaparición de AMLO",
-          "fuente_url": "https://www.informador.mx/mexico/le-agradezco-mucho-sus-palabras-sheinbaum-reacciona-a-la-reaparicion-de-amlo-20261001-0087.html",
-          "intensidad": 5.0,
-          "medio": "informador.mx"
         },
         {
           "texto": "Morena resalta logros de Sheinbaum a dos años de Gobierno - Nación321",
@@ -65,18 +41,12 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 27,
-      "tema_principal": "Visa de Andy",
-      "tema_principal_id": "visa-de-andy",
-      "n_temas": 4,
-      "n_notas": 4,
+      "peso_pct": 30,
+      "tema_principal": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o",
+      "tema_principal_id": "auto-8983512cec",
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
-        {
-          "texto": "Andy López Beltrán reaparece tras reportaje del NYT sobre agencias de EEUU que lo tienen en la mira: presume libro de AMLO - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNWU41a0o0ck53TmY3VlpCODFoQnVNU3BoWHBaMVF0aUxRdVZhT21sWDdXN0F1MHJhcXQ1a3hUaHNkc0d1emE0Q2hiYVk3Q0VEUWZ2U0VaTFNyTXB6bzlWZHptTnFScHNzWURKUl9ZYkpjMzFQNGdTU0pGS01wdXpCbmdUZkd6OFhXTVk2bEN5TDlvOGJKU3E1VndMR0ZkY19fQ0ZlcVFHelRHZDc1WHR1VkNrU2F4bE1MVTl5VXVCNFpRYTUwVzRZS2huemdISzBCazlaV1FId3lYT2xlX0dudnpRLUFlWVVOY1hmSGpoLWpOWGdBbV930gGSAkFVX3lxTFBtaVVQSndPcTV6T2R2elY5V21EOHZCeUdPa2laSEpoMzZMVFNnb1VPOE1sMkppR1BXZm1oaFMtUzRKd0lod21hdkduLVhoajRUeE5zdDNJN1VSRlVOOVVqTVVPTFhNbjMyYnV2RnZvTzdzeDdqaUQxV0VrUUV0NXBCYVR4ektoTExJT1JNU09IaTZpNEl5QzdJc2ZKeGRIQ2xya0ZiclFBYTFvazFpU3BmMFhqRE5uZGlzWlJ4NGxQWURjd01OWmpTSFNHRnJlcDFQOGl3TlV2bjNLQlF4RFREZ0poQnhKTDlNZ3dwMjUtV1NJdmI2ek90OEJNd2tVeDk4djVfbHlSMm4tdVh2MU1zLWc?oc=5",
-          "intensidad": 7.0,
-          "medio": "Infobae"
-        },
         {
           "texto": "Claudia Sheinbaum anuncia acuerdos para aumentar la exportación de aguacate a EEUU: industria genera ingresos por más de 3 mil mdd - Infobae",
           "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNWVh6TER0d243dGMtdVAtOVZ5azlIZTJCSmFHMktEcE8wTkVKamJsenMzT2N3UzdOTWNFUmVxTnhSZ0s5Z21JcTRvMzl3RFRULUx6UTNZZDZEUmNmMzZjb0VaODRjWjRWY2REdzl2TEFxRUFxckhkcTY5QTh0UmRjUERCNEVJaTgxOE1kNnI1SkpZdUR0WGUxRTg2X2RXek04VXFSeTg1SU5vQkZ2VERnRW95Z29ydTl5S21SdkVqTW5XTUJWRjhLWmtYVndrMkY5dVZ2TjctSlZ3azAyNkRyWDgzMExEMmx0QWhj0gGGAkFVX3lxTE1jQ2JhS3VmQzJsYlVPMzQyYW5IaXpaUjAyNWhlWnhmdE1QVUxObEtZejZoR1dOTnZRd1k4ZDY4RVhlcHF2RkxOb2pJa2xKRXdTVzRMZUc0ME41SnloQzdGWjkwTjlpaHdQYS1JVjduLXhLcTBhNDBuRENheTdMSXlpTlNsaEp2cU5DNnN0QkZYUGpyRkhxMXR1RVZSS3lzdUNJSzFsQU9BWFI1Wm5KU2trTlduODB2MEk3bDQzQ0lTU1lESEE1QW5GLUk5cmpOT0s5VDdFektKa1pHZ1dQcTk0YXVKaHlNbHdubkVnOGpxRVNLbHhJamExSjFEQVIyVTJteFRLb3c?oc=5",
@@ -88,40 +58,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOazRPeUVPLVphWkRVUWpzZVhCM1lTRm9IaFF5U1hubkx5QnEtZXN2XzRoLWpzZXVBVW13WGVLZEw0WE1YdDY4NjNkUnB4eXB5bE1ZenVoeDc4UGstMFU3RTlEbmd5Um1RNVhMNUlwQmhhOFY5VnRDZnFJa3FiRUZ3UHZleTJlT0JGRFZlcy1KMHdvQnlfU1pvNmRxMHl6ZVXSAZ8BQVVfeXFMTXJaNkF1ekFLY095bGhoM0YtWmhHemM3WVBFMnM3MG9ma2d1OVZfRld6T1p1NUtET05kVzZ5VG11cnVSQnhUcTgySjNWT0VreVNyNnU3SjhSdEJWS3haZUl1QXY4WXBnSDlzcXA3WnpRbUpyNmdwdnVjQVplelZmUHpVS3Q3bUNWaFFSX2hQME1BdVcyaDRLdTVEZGlZMGNn?oc=5",
           "intensidad": 7.0,
           "medio": "MILENIO"
-        },
-        {
-          "texto": "‘TENEMOS’ EL 60% DEL PETRÓLEO DE LA TIERRA’",
-          "fuente_url": "http://campechehoy.mx/2026/10/01/tenemos-el-60-del-petroleo-de-la-tierra/",
-          "intensidad": 5.0,
-          "medio": "campechehoy.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 15,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Jesús Selván analiza no participar en proceso de coordinadores territoriales de Morena",
-          "fuente_url": "https://www.tabascohoy.com/jesus-selvan-analiza-no-participar-en-proceso-de-coordinadores-territoriales-de-morena/",
-          "intensidad": 7.0,
-          "medio": "tabascohoy.com"
-        },
-        {
-          "texto": "De fisicoculturista a narco: así inició su vida criminal José Antonio, presunto líder del Cártel del Noreste",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/11/de-fisicoculturista-a-narco-asi-inicio-su-vida-criminal-el-titan-lider-del-cartel-del-noreste/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 8,
+      "peso_pct": 17,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -132,6 +74,22 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxObkNaLTBQdldTajFDVVJyV3pZaTdjSk4yQklVOFhJX0liUDQzcloxWjI5dEM5N1JGeGI3VVdtdl9GTDNoMF83Q19TVkNTYTM0eXpOZVQ4bW1NZU5ZMU0tMERTRkZ3dmtOc19ob0VZazZNNkYtTzRibWdmQjdad3BRbzVJdnRuRmR5SHBPTkFsTVExZFVzal9xS2xPSThMZjRDcUHSAa8BQVVfeXFMTldQSW1tUlpSSmhkVWY2NVFGZ0Y3bXdSb0JsQVJRWk4xV0RNUVNpWFd3ZEN5V3B4aDVKS3VDS1VGd1VobTNWcnJTU2JENERaWjJSaE4yMzJscGlEcTlfYW9mLVJUOERPMm9XMmktNXRDY01sUXg1Sm4wWUZqcjBYY3J2aHNfWjBSYmp3djlEMnlZU0hndnRxdTRkNlNLVTFXajZ5RGM3Y1lzdjBMdUlxOA?oc=5",
           "intensidad": 8.0,
           "medio": "expansion.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 15,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "De fisicoculturista a narco: así inició su vida criminal José Antonio, presunto líder del Cártel del Noreste",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/11/de-fisicoculturista-a-narco-asi-inicio-su-vida-criminal-el-titan-lider-del-cartel-del-noreste/",
+          "intensidad": 7.0,
+          "medio": "elfinanciero.com.mx"
         }
       ]
     },
@@ -849,19 +807,22 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-8983512cec",
-      "nombre": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o",
-      "categoria": "Gobernabilidad",
-      "resumen": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian obras e inversiones - Infobae",
-      "motivo": "Claudia Sheinbaum condena vandalismo contra estatua de Felipe Calderón - Infobae",
-      "peso": 47.0,
-      "n_temas_agrupados": 7,
-      "escalando": true,
+      "id": "auto-1925c582a4",
+      "nombre": "Trump amenaza con aniquilar a Irán ante la ONU",
+      "categoria": "Relación Bilateral",
+      "resumen": "Trump amenaza con aniquilar a Irán ante la ONU",
+      "motivo": "\"Atentos a Cuba\": Trump delega el plan en Marco Rubio - MILENIO",
+      "peso": 26.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 4,
+      "medios_corroborantes": 3,
       "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNbzRXMmI5NUs4b1hNN3Iwc0E5UlpISWJwei1iekZJeUl5LVdFSXdCaTJiYU81Z0hxaGg1OHR1OHhXVThYSlVhVXZYcUFNMFU3emZTOGRDcmowaHE4eDhSNnl5OUJXMlkxWE0tYUZnNmJzUnMwX1Z1X2h5MFdicEd6bEJJQ1ViTl9nSVkwVHJ5aHNUdGh0dXdocTRLWVREMTRKZHVsMUNwU2x5a3Bic2VoemZsdkZ0XzNT?oc=5",
-      "actor_vinculado": null
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOazRPeUVPLVphWkRVUWpzZVhCM1lTRm9IaFF5U1hubkx5QnEtZXN2XzRoLWpzZXVBVW13WGVLZEw0WE1YdDY4NjNkUnB4eXB5bE1ZenVoeDc4UGstMFU3RTlEbmd5Um1RNVhMNUlwQmhhOFY5VnRDZnFJa3FiRUZ3UHZleTJlT0JGRFZlcy1KMHdvQnlfU1pvNmRxMHl6ZVXSAZ8BQVVfeXFMTXJaNkF1ekFLY095bGhoM0YtWmhHemM3WVBFMnM3MG9ma2d1OVZfRld6T1p1NUtET05kVzZ5VG11cnVSQnhUcTgySjNWT0VreVNyNnU3SjhSdEJWS3haZUl1QXY4WXBnSDlzcXA3WnpRbUpyNmdwdnVjQVplelZmUHpVS3Q3bUNWaFFSX2hQME1BdVcyaDRLdTVEZGlZMGNn?oc=5",
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
     },
     {
       "id": "huachicol-fiscal",
@@ -876,33 +837,35 @@
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/11/de-fisicoculturista-a-narco-asi-inicio-su-vida-criminal-el-titan-lider-del-cartel-del-noreste/",
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
+    },
+    {
+      "id": "auto-8983512cec",
+      "nombre": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o",
+      "categoria": "Gobernabilidad",
+      "resumen": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian obras e inversiones - Infobae",
+      "motivo": "Claudia Sheinbaum anuncia acuerdos para aumentar la exportación de aguacate a EEUU: industria genera ingresos por más de 3 mil mdd - Infobae",
+      "peso": 12.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNWVh6TER0d243dGMtdVAtOVZ5azlIZTJCSmFHMktEcE8wTkVKamJsenMzT2N3UzdOTWNFUmVxTnhSZ0s5Z21JcTRvMzl3RFRULUx6UTNZZDZEUmNmMzZjb0VaODRjWjRWY2REdzl2TEFxRUFxckhkcTY5QTh0UmRjUERCNEVJaTgxOE1kNnI1SkpZdUR0WGUxRTg2X2RXek04VXFSeTg1SU5vQkZ2VERnRW95Z29ydTl5S21SdkVqTW5XTUJWRjhLWmtYVndrMkY5dVZ2TjctSlZ3azAyNkRyWDgzMExEMmx0QWhj0gGGAkFVX3lxTE1jQ2JhS3VmQzJsYlVPMzQyYW5IaXpaUjAyNWhlWnhmdE1QVUxObEtZejZoR1dOTnZRd1k4ZDY4RVhlcHF2RkxOb2pJa2xKRXdTVzRMZUc0ME41SnloQzdGWjkwTjlpaHdQYS1JVjduLXhLcTBhNDBuRENheTdMSXlpTlNsaEp2cU5DNnN0QkZYUGpyRkhxMXR1RVZSS3lzdUNJSzFsQU9BWFI1Wm5KU2trTlduODB2MEk3bDQzQ0lTU1lESEE1QW5GLUk5cmpOT0s5VDdFektKa1pHZ1dQcTk0YXVKaHlNbHdubkVnOGpxRVNLbHhJamExSjFEQVIyVTJteFRLb3c?oc=5",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-9bc65c6223",
-      "nombre": "Sheinbaum, sobre López Obrador y su nuevo libro: “Se dedica a reflexionar y escr",
-      "categoria": "Gobernabilidad",
-      "peso": 14.0,
+      "id": "auto-6ab8ec4f03",
+      "nombre": "ICE tiene nuevas medidas para persecuciones en auto: Prohíbe la alta velocidad y",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPM2VOWjZKM2hmbUpFbGFhS0tIRjk2eElmdGU5X1BYODJuczBOajdvUkJNdHdLVU9ub1Y2WHk0WEstbHRUaDBXdXJHT242cFo2SDZiVW13ME1MdzFKMFFOZmJNajVtS3AwTGRIRi1DVVhyZTFhN1lwZkZCeGlxSjFINVlnU3EwOGZOcG56NkxLWUROQkNsMnpaT2t4NkZkWnFTS2tXazZCOVFyS0tNc29IVzhYUklPOUZKdEdRc296bVk0eGFEOTM3dTdPQ0VLMkNrYTZJVzBkc2dyR29CeWJENURMalVUa2NkcVBINngzYmtkWnMweWdYZV930gGOAkFVX3lxTE83TzdlMFprWjlKM2Zsd0pfcWR4QVdCNjJXeE1iOTlEMEVoQjltYy1Qa04wM19ISzNVSWJSazRHWkVacU9yajl0ZjZXR0c3ZzZPRFVlQ1o0RWVmNy04LWdEVWNXdVdNVmhxMkxqMmZzNXRLSVNVMG1FNUFkbXphVGV4NkR1SDBkbzR6VmNXLXZnS2NuT1VtaTNQaHd1WWthVlBqc0tjNEFKVnVoMk42WTZFLXBxMWRtRXFkYjQwM0xfMFhEVnRSN08xc3Q5SDFDWWh4Ni1hNkE4NkhFWDg3bXhvR2JiUC1abmYwZ1cyM0Q1MEJRYnV6VW5LWEJCYTZHZVhKRjY0b2Y2WEEyVUVuZw?oc=5"
-    },
-    {
-      "id": "auto-8e3b2ad436",
-      "nombre": "Jasmín Bugarín admite que aún tiene ciudadanía estadounidense: ‘Mi equipo y yo e",
-      "categoria": "Gobernabilidad",
-      "peso": 12.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/01/jasmin-bugarin-admite-que-aun-tiene-ciudadania-estadounidense-mi-equipo-y-yo-estamos-en-ese-proceso/"
-    },
-    {
-      "id": "auto-6a465d9c94",
-      "nombre": "InfoNL pediría presupuesto para el 2027; insiste Morena en desaparecer al órgano",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOd3pUS2hYYkMtT0huUF9hOUVkU2k4aXZpOUF0dEU1aV94TTZ2RmZSVUpxNlhGb2w1QzVuM2RCQnkzaENhMzQwWGEwa1Nka3pPbE04bE5nVjM3WVk0dVFVeVVhYXNRYmtvUFFHOVY1cjdOSl9ub19UWEZrSFJLNjhWR2xnYV9pVnpWb0F4TU9JVW9uN1Y5a0g4cVBhUUJSajjSAZ8BQVVfeXFMTnd6VEtoWGJDLU9IblBfYTlFZFNpOGl2aTlBdHRFNWlfeE02dkZmUlVKcTZYRm9sNUM1bjNkQkJ5M2hDYTM0MFhhMGtTZGt6T2xNOGxOZ1YzN1lZNHVRVXlVYWFzUWJrb1BRRzlWNXI3Tkpfbm9fVFhGa0hSSzY4VkdsZ2FfaVZ6Vm9BeE1PSVVvbjdWOWtIOHFQYVFCUmo4?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/01/ice-tiene-nuevas-medidas-para-persecusiones-en-auto-prohibe-la-alta-velocidad-y-endurece-reglas-de-trafico/"
     },
     {
       "id": "auto-3853465cd3",
@@ -915,26 +878,15 @@
   ],
   "temas_retomados": [
     {
-      "id": "auto-11006d328a",
-      "nombre": "AMLO no llama; lo invocan",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 23,
-      "motivo": "Morena respalda a Sheinbaum y llama a seguir profundizando la transformación iniciada por AMLO - Infobae",
-      "impacto": "alto",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNR195NWRjaHI3S2xRalBFdHVtaFAyNDlqeUJwQmYydTk5ZlVGaUk4VUM0eVV0WjJpVWxVbG9YV1VHRnpfUmlrRjlmNnlESmZOZUZfNWFReEpTVTZoc25zVlQ5SVFqYVlZZjVfenlvaG9BbzNkWGZJMjlaOE5WR1QwcVgxWFlZNVdaZ0hQb1hLV2NZY3laV3NWRHBWbVVGWlpYdlAxem9iUWdjYmw2VFJVS2ltYUpHRUhNWGtXVEdlRVVvdTI4YjhaN3RKSWw3bk1lNTlB0gHuAUFVX3lxTE0yT0RrUVQxa2xaQm5Qdng5VjRRajg1aVBJODRCcW50WkRHX1R2STU2UVlNcFJmbnJTMWxLOGdhUFdBTGZ5RllJTlFzM1oyZnVBZlVuSEEtUlR4Xy1CVTh6aWs2eFE5YWVYZU91WW9zeUFCTms4alRNdFZCeVM4S1BSZk1xU2JOWW9tTnVicXlSb3VxRXJyRE5wT2o0azEwYTZpTUNqc3hoZWRhRGRHM1BiOFRCV2dIb0x2dC1YX1luaFhOUG5LbTIzZk1xdWNLVGVLOUZHN0prOE9tRzJPOXhYN0pJaThKT1A2ZVNqaVE?oc=5",
-      "fecha_anterior": "2026-09-08",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiekFVX3lxTE10NFVsME8wNnhhdXhxQlQ5THFIVHN4eHFobmRkTUl5eEFqZXY1Q2pZZ3Q3RDNINjlhMGV0RFBHUlF5OHFkZUVRbG02SFZvLWt1eFVjaHV3MG5jRWZyUW1ncUlGcVVHdDNvbVVsN0R0aHozZEEzdlF2VUxn?oc=5"
-    },
-    {
-      "id": "auto-32dee1a56b",
-      "nombre": "Con Alonso Romero, ANAM fortalece controles de confianza para nuevo personal: Sh",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 18,
-      "motivo": "🔔 ALERTA — ONU selecciona a México para programa de trabajo para migrantes: ‘Son personas confiables y trabajadoras’",
+      "id": "auto-5017ab5430",
+      "nombre": "Trump va por políticos mexicanos que ‘ayuden’ a cárteles: ‘Traicionan la soberan",
+      "categoria": "Seguridad Nacional",
+      "dias_silencio": 14,
+      "motivo": "🔔 ALERTA — Con todo y pérdida de apoyo de hispanos: Trump defiende su política migratoria",
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/bloomberg/2026/10/01/onu-selecciona-a-mexico-para-programa-de-trabajo-para-migrantes-son-personas-confiables-y-trabajadoras/",
-      "fecha_anterior": "2026-09-13",
-      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/13/politica/008n1pol?partner=rss"
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/01/con-todo-y-perdida-de-apoyo-de-hispanos-trump-defiende-su-politica-migratoria/",
+      "fecha_anterior": "2026-09-17",
+      "fuente_url_anterior": "https://www.elfinanciero.com.mx/mundo/2026/09/17/trump-va-por-politicos-mexicanos-que-ayuden-a-carteles-traicionan-la-soberania-de-su-propio-pais/"
     },
     {
       "id": "auto-b6e78f32e0",
@@ -961,23 +913,23 @@
   ],
   "actores_destacados": [
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Responsable institucional",
-      "tema": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel",
-      "nota": "Claudia Sheinbaum condena vandalismo contra estatua de Felipe Calderón - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNbzRXMmI5NUs4b1hNN3Iwc0E5UlpISWJwei1iekZJeUl5LVdFSXdCaTJiYU81Z0hxaGg1OHR1OHhXVThYSlVhVXZYcUFNMFU3emZTOGRDcmowaHE4eDhSNnl5OUJXMlkxWE0tYUZnNmJzUnMwX1Z1X2h5MFdicEd6bEJJQ1ViTl9nSVkwVHJ5aHNUdGh0dXdocTRLWVREMTRKZHVsMUNwU2x5a3Bic2VoemZsdkZ0XzNT?oc=5",
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "rol": "Mencionado",
+      "tema": "Visa de Andy",
+      "nota": "Andy López Beltrán va por el fuero: se registra para buscar diputación federal en Tabasco con Morena - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPal9Fbk9pV2hCaVE1cmF0OEF1Tm93b1YteGg4NUVOT00xXzZjNXM3V2JVT3AxMDBWZ1M0cnc4QzVUMjBtUVVlUnJyUDFNU1E2S01NVjNVRnQ3dmdTUGtRWUZCZHpXSFAzN3hZRzd3SVhhaUdiOTVEZWZDVV9wZzh5eGg2MExCVDNCc3dqQ29SaE16dGpqTFhfcUxMSDJhLWZubldSTFVmbm15SEVvOEpHaGE4ak9WUlZxUl9ITkw5QjdrZjJwYWZrelV6d3dOSXfSAeoBQVVfeXFMTlVHWmg3bXhkVk1TS0k3Q0V4RGpWZ01xYUVvNWNWZGUyVm1fbXBSSmV2WVk2d0FMVEloNnBXNGJJcnBsaGNadVJkUmhHLVJZTThRTGtQSjRRSVhvUjdGTmtEVFlnTW8xWjBFaUcxcFFRTk85THk4ZWlRRV9NNEVDS3p6TkU1VDFWYVhhYlE1dEV5cVZ5ZkVlbThkWVpxVE5udm5YM0hYMy1fZEQxVjJHREMwTzJWQWRKVExmTTdYMUZjRnlmOU10VDFfcG03YnVoeTNlS2hlMjJIaHZ2ZmlHN1FRcDJTNmtPM0Z3?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "rol": "Mencionado",
-      "tema": "Visa de Andy",
-      "nota": "Andy López Beltrán reaparece tras reportaje del NYT sobre agencias de EEUU que lo tienen en la mira: presume libro de AMLO - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNWU41a0o0ck53TmY3VlpCODFoQnVNU3BoWHBaMVF0aUxRdVZhT21sWDdXN0F1MHJhcXQ1a3hUaHNkc0d1emE0Q2hiYVk3Q0VEUWZ2U0VaTFNyTXB6bzlWZHptTnFScHNzWURKUl9ZYkpjMzFQNGdTU0pGS01wdXpCbmdUZkd6OFhXTVk2bEN5TDlvOGJKU3E1VndMR0ZkY19fQ0ZlcVFHelRHZDc1WHR1VkNrU2F4bE1MVTl5VXVCNFpRYTUwVzRZS2huemdISzBCazlaV1FId3lYT2xlX0dudnpRLUFlWVVOY1hmSGpoLWpOWGdBbV930gGSAkFVX3lxTFBtaVVQSndPcTV6T2R2elY5V21EOHZCeUdPa2laSEpoMzZMVFNnb1VPOE1sMkppR1BXZm1oaFMtUzRKd0lod21hdkduLVhoajRUeE5zdDNJN1VSRlVOOVVqTVVPTFhNbjMyYnV2RnZvTzdzeDdqaUQxV0VrUUV0NXBCYVR4ektoTExJT1JNU09IaTZpNEl5QzdJc2ZKeGRIQ2xya0ZiclFBYTFvazFpU3BmMFhqRE5uZGlzWlJ4NGxQWURjd01OWmpTSFNHRnJlcDFQOGl3TlV2bjNLQlF4RFREZ0poQnhKTDlNZ3dwMjUtV1NJdmI2ek90OEJNd2tVeDk4djVfbHlSMm4tdVh2MU1zLWc?oc=5",
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "rol": "Responsable institucional",
+      "tema": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o",
+      "nota": "Claudia Sheinbaum anuncia acuerdos para aumentar la exportación de aguacate a EEUU: industria genera ingresos por más de 3 mil mdd - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNWVh6TER0d243dGMtdVAtOVZ5azlIZTJCSmFHMktEcE8wTkVKamJsenMzT2N3UzdOTWNFUmVxTnhSZ0s5Z21JcTRvMzl3RFRULUx6UTNZZDZEUmNmMzZjb0VaODRjWjRWY2REdzl2TEFxRUFxckhkcTY5QTh0UmRjUERCNEVJaTgxOE1kNnI1SkpZdUR0WGUxRTg2X2RXek04VXFSeTg1SU5vQkZ2VERnRW95Z29ydTl5S21SdkVqTW5XTUJWRjhLWmtYVndrMkY5dVZ2TjctSlZ3azAyNkRyWDgzMExEMmx0QWhj0gGGAkFVX3lxTE1jQ2JhS3VmQzJsYlVPMzQyYW5IaXpaUjAyNWhlWnhmdE1QVUxObEtZejZoR1dOTnZRd1k4ZDY4RVhlcHF2RkxOb2pJa2xKRXdTVzRMZUc0ME41SnloQzdGWjkwTjlpaHdQYS1JVjduLXhLcTBhNDBuRENheTdMSXlpTlNsaEp2cU5DNnN0QkZYUGpyRkhxMXR1RVZSS3lzdUNJSzFsQU9BWFI1Wm5KU2trTlduODB2MEk3bDQzQ0lTU1lESEE1QW5GLUk5cmpOT0s5VDdFektKa1pHZ1dQcTk0YXVKaHlNbHdubkVnOGpxRVNLbHhJamExSjFEQVIyVTJteFRLb3c?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -985,21 +937,10 @@
     {
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Mencionado",
-      "tema": "Visa de Andy",
-      "nota": "Andy López Beltrán reaparece tras reportaje del NYT sobre agencias de EEUU que lo tienen en la mira: presume libro de AMLO - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNWU41a0o0ck53TmY3VlpCODFoQnVNU3BoWHBaMVF0aUxRdVZhT21sWDdXN0F1MHJhcXQ1a3hUaHNkc0d1emE0Q2hiYVk3Q0VEUWZ2U0VaTFNyTXB6bzlWZHptTnFScHNzWURKUl9ZYkpjMzFQNGdTU0pGS01wdXpCbmdUZkd6OFhXTVk2bEN5TDlvOGJKU3E1VndMR0ZkY19fQ0ZlcVFHelRHZDc1WHR1VkNrU2F4bE1MVTl5VXVCNFpRYTUwVzRZS2huemdISzBCazlaV1FId3lYT2xlX0dudnpRLUFlWVVOY1hmSGpoLWpOWGdBbV930gGSAkFVX3lxTFBtaVVQSndPcTV6T2R2elY5V21EOHZCeUdPa2laSEpoMzZMVFNnb1VPOE1sMkppR1BXZm1oaFMtUzRKd0lod21hdkduLVhoajRUeE5zdDNJN1VSRlVOOVVqTVVPTFhNbjMyYnV2RnZvTzdzeDdqaUQxV0VrUUV0NXBCYVR4ektoTExJT1JNU09IaTZpNEl5QzdJc2ZKeGRIQ2xya0ZiclFBYTFvazFpU3BmMFhqRE5uZGlzWlJ4NGxQWURjd01OWmpTSFNHRnJlcDFQOGl3TlV2bjNLQlF4RFREZ0poQnhKTDlNZ3dwMjUtV1NJdmI2ek90OEJNd2tVeDk4djVfbHlSMm4tdVh2MU1zLWc?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "raymundo_riva_palacio",
-      "nombre": "Raymundo Riva Palacio",
-      "rol": "Responsable institucional",
-      "tema": "Riva Palacio revela alteración de encuestas en Morena por candidaturas - El Info",
-      "nota": "Riva Palacio revela ofensiva de amparos del entorno cercano a hijos de AMLO",
-      "fuente_url": "https://www.informador.mx/mexico/cunde-el-panico-raymundo-riva-palacio-revela-ofensiva-de-amparos-del-entorno-financiero-cercano-a-los-hijos-de-amlo-20261001-0071.html",
+      "rol": "Reacción social/mediática",
+      "tema": "AMLO no llama; lo invocan",
+      "nota": "Morena respalda a Sheinbaum y llama a seguir profundizando la transformación iniciada por AMLO - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNR195NWRjaHI3S2xRalBFdHVtaFAyNDlqeUJwQmYydTk5ZlVGaUk4VUM0eVV0WjJpVWxVbG9YV1VHRnpfUmlrRjlmNnlESmZOZUZfNWFReEpTVTZoc25zVlQ5SVFqYVlZZjVfenlvaG9BbzNkWGZJMjlaOE5WR1QwcVgxWFlZNVdaZ0hQb1hLV2NZY3laV3NWRHBWbVVGWlpYdlAxem9iUWdjYmw2VFJVS2ltYUpHRUhNWGtXVEdlRVVvdTI4YjhaN3RKSWw3bk1lNTlB0gHuAUFVX3lxTE0yT0RrUVQxa2xaQm5Qdng5VjRRajg1aVBJODRCcW50WkRHX1R2STU2UVlNcFJmbnJTMWxLOGdhUFdBTGZ5RllJTlFzM1oyZnVBZlVuSEEtUlR4Xy1CVTh6aWs2eFE5YWVYZU91WW9zeUFCTms4alRNdFZCeVM4S1BSZk1xU2JOWW9tTnVicXlSb3VxRXJyRE5wT2o0azEwYTZpTUNqc3hoZWRhRGRHM1BiOFRCV2dIb0x2dC1YX1luaFhOUG5LbTIzZk1xdWNLVGVLOUZHN0prOE9tRzJPOXhYN0pJaThKT1A2ZVNqaVE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1014,17 +955,21 @@
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
+    },
+    {
+      "id": "rubio",
+      "nombre": "Marco Rubio",
+      "rol": "Responsable institucional",
+      "tema": "Carlos Fazio: Trump, el procónsul Rubio y sus yes men",
+      "nota": "\"Atentos a Cuba\": Trump delega el plan en Marco Rubio - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOazRPeUVPLVphWkRVUWpzZVhCM1lTRm9IaFF5U1hubkx5QnEtZXN2XzRoLWpzZXVBVW13WGVLZEw0WE1YdDY4NjNkUnB4eXB5bE1ZenVoeDc4UGstMFU3RTlEbmd5Um1RNVhMNUlwQmhhOFY5VnRDZnFJa3FiRUZ3UHZleTJlT0JGRFZlcy1KMHdvQnlfU1pvNmRxMHl6ZVXSAZ8BQVVfeXFMTXJaNkF1ekFLY095bGhoM0YtWmhHemM3WVBFMnM3MG9ma2d1OVZfRld6T1p1NUtET05kVzZ5VG11cnVSQnhUcTgySjNWT0VreVNyNnU3SjhSdEJWS3haZUl1QXY4WXBnSDlzcXA3WnpRbUpyNmdwdnVjQVplelZmUHpVS3Q3bUNWaFFSX2hQME1BdVcyaDRLdTVEZGlZMGNn?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
     }
   ],
   "declaracion_presidenta": null,
-  "declaracion_otro": {
-    "actor": "Delfina Gómez Álvarez",
-    "texto": "‘Ofrecimos un cambio y lo estamos cumpliendo’: Delfina Gómez rinde su Tercer Informe de Gobierno",
-    "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/10/01/ofrecimos-un-cambio-y-lo-estamos-cumpliendo-delfina-gomez-rinde-su-tercer-informe-de-gobierno/",
-    "intensidad": 7.0,
-    "fecha": "2026-10-01",
-    "nivel_fuente": "ALTA"
-  },
+  "declaracion_otro": null,
   "patron_historico_4sem": [
     {
       "fecha": "2026-09-05",
@@ -1244,9 +1189,9 @@
     },
     {
       "fecha": "2026-10-02",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
+      "tension": 50,
+      "n_notas": 1,
+      "n_alto_impacto": 1,
       "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
@@ -1278,23 +1223,23 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 24,
+      "x_lunes": 29,
       "y_lunes": 100,
-      "x_hoy": 29,
+      "x_hoy": 33,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 6,
-      "n_alto": 6,
+      "n_alto": 7,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://www.yucatan.com.mx/mexico/2026/09/29/estados-unidos-analiza-acusaciones-contra-andy-lopez-beltran-the-new-york-times.html",
-      "nota_texto": "Estados Unidos analiza acusaciones contra “Andy” López Beltrán: The New York Times",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false,
-      "categoria": "Relación Bilateral",
-      "dias_activo": 4,
-      "fecha_apagado": "2026-10-02"
+      "categoria": "Gobernabilidad",
+      "dias_activo": 5,
+      "fecha_reactivado": "2026-10-02"
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1311,10 +1256,10 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
-      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false,
-      "categoria": "Seguridad Nacional",
+      "categoria": "Relación Bilateral",
       "dias_activo": 2,
       "fecha_apagado": "2026-09-30"
     },
@@ -1524,7 +1469,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 0
   },
   "declaracion_presidenta_historial": [
     {
@@ -1576,5 +1521,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-02 02:58"
+  "hora_corte_publicada": "2026-10-02 09:29"
 }
