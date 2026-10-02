@@ -1,24 +1,30 @@
 {
-  "generado_en": "2026-10-02T09:29:51.578059-06:00",
+  "generado_en": "2026-10-02T14:39:55.958538-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 7,
+  "n_notas_ventana": 9,
   "baja_confianza": false,
-  "tension_nacional": 43,
+  "tension_nacional": 39,
   "tension_anomalia": {
-    "z": 0.42,
+    "z": 0.16,
     "nivel": "normal",
-    "media_periodo": 36.7,
+    "media_periodo": 36.6,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 38,
-      "tema_principal": "Visa de Andy",
-      "tema_principal_id": "visa-de-andy",
+      "peso_pct": 66,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
       "n_temas": 3,
-      "n_notas": 3,
+      "n_notas": 6,
       "notas": [
+        {
+          "texto": "🔴Andrés Manuel López Beltrán informa que se registró como aspirante a Coordinador de los Comités de la Defensa de la Cuarta Transformación y de la Soberanía Nacional del Distrito 6 de Tabasco. Señaló ",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQLTZBd1hCbExKbmVSWUJwMV9KUklibGRXQk1JVkVRUW9IUGJnQ0VhVzB1a1N1bU9FMnNHRTV6YXZYXzQtWXg4SElCN1FQazMxbHQ5SGphZ2IzZHlfdHJSNHk5RGh5cTdSMzB4bVA3WjBJT1dyd2Y2VV8tUzFxUDR5YWtjRlQtRHMzaXVUNGxmN29maXJDUjZ6OFNENjNDSzJOaGV0OUdlQmUtRDJ5YkZVZjR6U2pBU09CVWNyZDBKZ3NQb0dhSUxjajNUa3F6RER4M1pSNE9pTVdSV0tIMVZKV1diTkJxdDF2M1BKbUliNjF4N01NaUE?oc=5",
+          "intensidad": 9.0,
+          "medio": "facebook.com"
+        },
         {
           "texto": "Andy López Beltrán va por el fuero: se registra para buscar diputación federal en Tabasco con Morena - Infobae",
           "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPal9Fbk9pV2hCaVE1cmF0OEF1Tm93b1YteGg4NUVOT00xXzZjNXM3V2JVT3AxMDBWZ1M0cnc4QzVUMjBtUVVlUnJyUDFNU1E2S01NVjNVRnQ3dmdTUGtRWUZCZHpXSFAzN3hZRzd3SVhhaUdiOTVEZWZDVV9wZzh5eGg2MExCVDNCc3dqQ29SaE16dGpqTFhfcUxMSDJhLWZubldSTFVmbm15SEVvOEpHaGE4ak9WUlZxUl9ITkw5QjdrZjJwYWZrelV6d3dOSXfSAeoBQVVfeXFMTlVHWmg3bXhkVk1TS0k3Q0V4RGpWZ01xYUVvNWNWZGUyVm1fbXBSSmV2WVk2d0FMVEloNnBXNGJJcnBsaGNadVJkUmhHLVJZTThRTGtQSjRRSVhvUjdGTmtEVFlnTW8xWjBFaUcxcFFRTk85THk4ZWlRRV9NNEVDS3p6TkU1VDFWYVhhYlE1dEV5cVZ5ZkVlbThkWVpxVE5udm5YM0hYMy1fZEQxVjJHREMwTzJWQWRKVExmTTdYMUZjRnlmOU10VDFfcG03YnVoeTNlS2hlMjJIaHZ2ZmlHN1FRcDJTNmtPM0Z3?oc=5",
@@ -26,75 +32,81 @@
           "medio": "Infobae"
         },
         {
-          "texto": "Reforma a Ley Aduanera avanza en comisiones de Diputados con reserva para sancionar huachicol fiscal - El Economista",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPcjV0aDBVQ1hJaklKZUdmUDdBVnZ1ZllJX2xEdW1DVzJ1NFpSSmFiWk5aa2x6ZVVldlA4dmlSSlh0dUJ1NTNVNDg1ZUU2aTVsQ0JoNUROd1dGZ2UxTkFzeWFsY0gzbmVIcm8zaXU5cWk3RTJDUy1SNnN0SE93UkhDWEJCMU90YnliRENfZDh5N3pRUHR1dl8zWVplNnI0cjN5UkFXdnJFMFhaek04QVpBcjRWQUZjM3p0MDZNazEwcU81Q3NycmFmemcwUndySzZidldUaGlCMERGUndRREHSAeMBQVVfeXFMTUc3QVhJOXhsSkE2bzZkalFVS1NmT0U1bGxVWEVGdzE5aU5HTXk3TUVneWlidDgzTFR5Mms0TzJxSTdOejA5aE5RekdqeVFvajB6U09YTjdmQ0FiQnFWc2wtTkFXVTRTY3VuNzdaY3hlSWtxMFZPb0l5SGFhSWRPMU5tdkw0dnRLaFd0Y19BUXljbnIzcUgxZC1JQlRzdW5pcl9sbzYxcUhFcXFtdkVPazQyMEVCb0d6TnBmYWluZW5BUmthcWc0azdRcXZhMU5fWktZbDJsRl9sZlRXUFNHT25OSjQ?oc=5",
+          "texto": "Miguel Ángel Solano llega al Altiplano por presunto huachicol fiscal - Aristegui Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOZkF3LUlVamxOTHdueEZydUd2Q3pDRUFwekFLV2htQmZXNVZYMEZvWlFKQ0p6VkZONnUzQ0V1YjFnTjZDbUdISXgwZmFyNXpBVEUzRkxpaUowS0dub2g3WmtTWGpENEtzR2F6a1lRMHViTFo0QjEwU1cyVEF6UDVvVXJHUnlrQkJBYTE4M1ZhMDVHMC1HbGNRTGlQMDZSSTBJWG5qbW94X0JXUkl1VTlBXw?oc=5",
+          "intensidad": 7.0,
+          "medio": "Aristegui Noticias"
+        },
+        {
+          "texto": "¿Quién es el Capitán Sol, detenido por huachicol fiscal? - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOQmFNSm56V3JJa2xXbDQwUDBUck9PRDJmMkRUdFRJWEhZS2ZmVVVyUDk3ekFJdVhLTkVTWEpSRWNHR3hOMDUxN3BEWUtFdlZkREI3ZVBPSVJ2N0NLaHpzQnFSTzJUdjJuTDBLSkg4b0NHLXZsLTE2cEQwd1NxOEhKcG1NNDhaYmJiazdfYUo1UWw?oc=5",
           "intensidad": 6.0,
-          "medio": "El Economista"
+          "medio": "Reforma"
         },
         {
-          "texto": "Morena resalta logros de Sheinbaum a dos años de Gobierno - Nación321",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOTEY5eGMtRG1KSVZuc2dxaUs2a1M1NWZBTG4yd3g2dHY4N2ZmaEczNW9QbDg1c1ZoZlBFVUc2ZlpOT3A4QUdqOGJLd09YTE05SFNqVVlScy1udl92eGlrMWdZenBxQndtWG1OUlFIZVI4RTI5Y3R3NXl2V0JjeEhlQkhDajBPZWdaSFFzOWk2d2puYlZtTldVUkV2blU4MGd0cC1NYzVFOA?oc=5",
-          "intensidad": 5.0,
-          "medio": "Nación321"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 30,
-      "tema_principal": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o",
-      "tema_principal_id": "auto-8983512cec",
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Claudia Sheinbaum anuncia acuerdos para aumentar la exportación de aguacate a EEUU: industria genera ingresos por más de 3 mil mdd - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNWVh6TER0d243dGMtdVAtOVZ5azlIZTJCSmFHMktEcE8wTkVKamJsenMzT2N3UzdOTWNFUmVxTnhSZ0s5Z21JcTRvMzl3RFRULUx6UTNZZDZEUmNmMzZjb0VaODRjWjRWY2REdzl2TEFxRUFxckhkcTY5QTh0UmRjUERCNEVJaTgxOE1kNnI1SkpZdUR0WGUxRTg2X2RXek04VXFSeTg1SU5vQkZ2VERnRW95Z29ydTl5S21SdkVqTW5XTUJWRjhLWmtYVndrMkY5dVZ2TjctSlZ3azAyNkRyWDgzMExEMmx0QWhj0gGGAkFVX3lxTE1jQ2JhS3VmQzJsYlVPMzQyYW5IaXpaUjAyNWhlWnhmdE1QVUxObEtZejZoR1dOTnZRd1k4ZDY4RVhlcHF2RkxOb2pJa2xKRXdTVzRMZUc0ME41SnloQzdGWjkwTjlpaHdQYS1JVjduLXhLcTBhNDBuRENheTdMSXlpTlNsaEp2cU5DNnN0QkZYUGpyRkhxMXR1RVZSS3lzdUNJSzFsQU9BWFI1Wm5KU2trTlduODB2MEk3bDQzQ0lTU1lESEE1QW5GLUk5cmpOT0s5VDdFektKa1pHZ1dQcTk0YXVKaHlNbHdubkVnOGpxRVNLbHhJamExSjFEQVIyVTJteFRLb3c?oc=5",
-          "intensidad": 7.0,
-          "medio": "Infobae"
+          "texto": "Huachicol fiscal: detienen a excoordinador externo de Aduanas vinculado a los hermanos Farías Laguna - Grupo Animal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNbkJ0TlFPTFFuNTFXbkNzTm1Lc19YeE16N0xoZmRZdnRUb2g0LTJzV2tYTzNSc05lOHY3ZGk0VFdmUjdsN3JURVRFR0J2aG1qdjZqb01vVXFZMW5JSmVZSWNfODFsaVpQWEt1S2hiblN4Rk5CRUNES2sySF9YYlNlUnJibGc0S3c?oc=5",
+          "intensidad": 6.0,
+          "medio": "Grupo Animal"
         },
         {
-          "texto": "\"Atentos a Cuba\": Trump delega el plan en Marco Rubio - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOazRPeUVPLVphWkRVUWpzZVhCM1lTRm9IaFF5U1hubkx5QnEtZXN2XzRoLWpzZXVBVW13WGVLZEw0WE1YdDY4NjNkUnB4eXB5bE1ZenVoeDc4UGstMFU3RTlEbmd5Um1RNVhMNUlwQmhhOFY5VnRDZnFJa3FiRUZ3UHZleTJlT0JGRFZlcy1KMHdvQnlfU1pvNmRxMHl6ZVXSAZ8BQVVfeXFMTXJaNkF1ekFLY095bGhoM0YtWmhHemM3WVBFMnM3MG9ma2d1OVZfRld6T1p1NUtET05kVzZ5VG11cnVSQnhUcTgySjNWT0VreVNyNnU3SjhSdEJWS3haZUl1QXY4WXBnSDlzcXA3WnpRbUpyNmdwdnVjQVplelZmUHpVS3Q3bUNWaFFSX2hQME1BdVcyaDRLdTVEZGlZMGNn?oc=5",
-          "intensidad": 7.0,
-          "medio": "MILENIO"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 17,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "Por huachicol fiscal, el SAT perdió 4,600 millones de pesos en IVA e impuestos especiales - expansion.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxObkNaLTBQdldTajFDVVJyV3pZaTdjSk4yQklVOFhJX0liUDQzcloxWjI5dEM5N1JGeGI3VVdtdl9GTDNoMF83Q19TVkNTYTM0eXpOZVQ4bW1NZU5ZMU0tMERTRkZ3dmtOc19ob0VZazZNNkYtTzRibWdmQjdad3BRbzVJdnRuRmR5SHBPTkFsTVExZFVzal9xS2xPSThMZjRDcUHSAa8BQVVfeXFMTldQSW1tUlpSSmhkVWY2NVFGZ0Y3bXdSb0JsQVJRWk4xV0RNUVNpWFd3ZEN5V3B4aDVKS3VDS1VGd1VobTNWcnJTU2JENERaWjJSaE4yMzJscGlEcTlfYW9mLVJUOERPMm9XMmktNXRDY01sUXg1Sm4wWUZqcjBYY3J2aHNfWjBSYmp3djlEMnlZU0hndnRxdTRkNlNLVTFXajZ5RGM3Y1lzdjBMdUlxOA?oc=5",
-          "intensidad": 8.0,
-          "medio": "expansion.mx"
+          "texto": "Castigarán abandono de mujeres embarazadas.",
+          "fuente_url": "http://campechehoy.mx/2026/10/02/castigaran-abandono-de-mujeres-embarazadas/",
+          "intensidad": 4.0,
+          "medio": "campechehoy.mx"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 15,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal",
+      "peso_pct": 12,
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis",
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "De fisicoculturista a narco: así inició su vida criminal José Antonio, presunto líder del Cártel del Noreste",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/11/de-fisicoculturista-a-narco-asi-inicio-su-vida-criminal-el-titan-lider-del-cartel-del-noreste/",
+          "texto": "Guerra de Chapitos y Mayos desborda uso de drones - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQNFNpOUdmR1lpbmE4UW9jRElGSEVEV0FnTE45OUNILWk4XzFvWUlSSzN0VC1jXzB6TVRIMVJNWllNSEhjamItV2EyZzVyZ3BDbnFZLXhNeGRtSXZ4WlY4aDdxOXBkZ0FSdm5MRWlZT2JURElqTDU2SU1maFhhdlJaWTVsNTNNQTFRVXJmb2lZVVJHUdIBpgFBVV95cUxQUmdzVjJfSG4xQjhzNHRtUkIyaVN6M2l3WEVKYWtwY0FKQjFmT2hGLUFRQlRKX2xUWjctU1lFOEhqck01X01ETDFFbU9pRXhBa1BsaC1DVlZaTmg3dlJ1SzBlRG1aNHpEd0tfSkVPa2wxMV9VNmxtNkp5YkVrMzl4UU13RS1rdGtlYWJ3azRpQXZ0N0gzeUFFWXd5dlR0UGl3N0xUanZ3?oc=5",
           "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
+          "medio": "El Universal"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 12,
+      "tema_principal": "Visa de Andy",
+      "tema_principal_id": "visa-de-andy",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "\"La UIF investiga a Amílcar Olán\": Loret revela cuenta en Suiza con mil 433 MDP",
+          "fuente_url": "https://www.informador.mx/mexico/la-uif-investiga-a-amilcar-olan-carlos-loret-de-mola-revela-cuenta-en-suiza-con-mil-433-millones-de-pesos-20261002-0063.html",
+          "intensidad": 7.0,
+          "medio": "informador.mx"
         }
       ]
     },
     {
       "categoria": "Social",
+      "peso_pct": 10,
+      "tema_principal": "Acusan de agresión a 2 guardias de un centro de detención de migrantes en Florid",
+      "tema_principal_id": "auto-e5f040f156",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "🔔 ALERTA — La detención de migrantes es la peor tragedia: Lazzeri",
+          "fuente_url": "https://www.jornada.com.mx/2026/10/02/politica/003n2pol?partner=rss",
+          "intensidad": 6.0,
+          "medio": "jornada.com.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -109,11 +121,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 65
+          "peso_pct": 64
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 16
+          "peso_pct": 17
         },
         {
           "categoria": "Relación Bilateral",
@@ -125,7 +137,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 3
+          "peso_pct": 4
         }
       ]
     },
@@ -134,7 +146,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 63
+          "peso_pct": 62
         },
         {
           "categoria": "Gobernabilidad",
@@ -150,7 +162,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 3
+          "peso_pct": 4
         }
       ]
     },
@@ -159,32 +171,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 59
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 23
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 3
-        }
-      ]
-    },
-    {
-      "fecha": "2026-09-08",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 59
+          "peso_pct": 58
         },
         {
           "categoria": "Gobernabilidad",
@@ -196,11 +183,36 @@
         },
         {
           "categoria": "Economía",
+          "peso_pct": 7
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 4
+        }
+      ]
+    },
+    {
+      "fecha": "2026-09-08",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 58
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 25
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 7
+        },
+        {
+          "categoria": "Economía",
           "peso_pct": 6
         },
         {
           "categoria": "Social",
-          "peso_pct": 3
+          "peso_pct": 4
         }
       ]
     },
@@ -225,7 +237,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 1
+          "peso_pct": 2
         }
       ]
     },
@@ -234,7 +246,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 45
+          "peso_pct": 44
         },
         {
           "categoria": "Gobernabilidad",
@@ -259,7 +271,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 40
+          "peso_pct": 39
         },
         {
           "categoria": "Gobernabilidad",
@@ -275,7 +287,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 1
+          "peso_pct": 2
         }
       ]
     },
@@ -288,7 +300,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 39
+          "peso_pct": 40
         },
         {
           "categoria": "Relación Bilateral",
@@ -313,7 +325,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 38
+          "peso_pct": 39
         },
         {
           "categoria": "Relación Bilateral",
@@ -363,7 +375,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 39
+          "peso_pct": 40
         },
         {
           "categoria": "Relación Bilateral",
@@ -384,7 +396,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 37
+          "peso_pct": 36
         },
         {
           "categoria": "Gobernabilidad",
@@ -409,7 +421,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 38
+          "peso_pct": 37
         },
         {
           "categoria": "Gobernabilidad",
@@ -421,7 +433,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -442,7 +454,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -450,7 +462,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 1
+          "peso_pct": 2
         }
       ]
     },
@@ -459,7 +471,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 33
+          "peso_pct": 32
         },
         {
           "categoria": "Gobernabilidad",
@@ -500,7 +512,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 2
+          "peso_pct": 3
         }
       ]
     },
@@ -559,11 +571,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 24
+          "peso_pct": 23
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 58
         },
         {
           "categoria": "Relación Bilateral",
@@ -575,7 +587,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 1
+          "peso_pct": 2
         }
       ]
     },
@@ -592,7 +604,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 7
+          "peso_pct": 6
         },
         {
           "categoria": "Economía",
@@ -667,7 +679,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 7
+          "peso_pct": 6
         },
         {
           "categoria": "Economía",
@@ -675,7 +687,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 0
+          "peso_pct": 1
         }
       ]
     },
@@ -700,7 +712,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 0
+          "peso_pct": 1
         }
       ]
     },
@@ -738,7 +750,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 66
+          "peso_pct": 65
         },
         {
           "categoria": "Relación Bilateral",
@@ -759,11 +771,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 16
+          "peso_pct": 15
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -788,127 +800,164 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 66
+          "peso_pct": 65
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
-          "peso_pct": 1
+          "peso_pct": 2
         }
       ]
     }
   ],
   "top5_temas": [
     {
-      "id": "auto-1925c582a4",
-      "nombre": "Trump amenaza con aniquilar a Irán ante la ONU",
-      "categoria": "Relación Bilateral",
-      "resumen": "Trump amenaza con aniquilar a Irán ante la ONU",
-      "motivo": "\"Atentos a Cuba\": Trump delega el plan en Marco Rubio - MILENIO",
-      "peso": 26.0,
-      "n_temas_agrupados": 3,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOazRPeUVPLVphWkRVUWpzZVhCM1lTRm9IaFF5U1hubkx5QnEtZXN2XzRoLWpzZXVBVW13WGVLZEw0WE1YdDY4NjNkUnB4eXB5bE1ZenVoeDc4UGstMFU3RTlEbmd5Um1RNVhMNUlwQmhhOFY5VnRDZnFJa3FiRUZ3UHZleTJlT0JGRFZlcy1KMHdvQnlfU1pvNmRxMHl6ZVXSAZ8BQVVfeXFMTXJaNkF1ekFLY095bGhoM0YtWmhHemM3WVBFMnM3MG9ma2d1OVZfRld6T1p1NUtET05kVzZ5VG11cnVSQnhUcTgySjNWT0VreVNyNnU3SjhSdEJWS3haZUl1QXY4WXBnSDlzcXA3WnpRbUpyNmdwdnVjQVplelZmUHpVS3Q3bUNWaFFSX2hQME1BdVcyaDRLdTVEZGlZMGNn?oc=5",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
-    },
-    {
       "id": "huachicol-fiscal",
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "De fisicoculturista a narco: así inició su vida criminal José Antonio, presunto líder del Cártel del Noreste",
-      "peso": 13.0,
-      "n_temas_agrupados": 2,
+      "motivo": "Miguel Ángel Solano llega al Altiplano por presunto huachicol fiscal - Aristegui Noticias",
+      "peso": 27.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/05/11/de-fisicoculturista-a-narco-asi-inicio-su-vida-criminal-el-titan-lider-del-cartel-del-noreste/",
+      "medios_corroborantes": 4,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOZkF3LUlVamxOTHdueEZydUd2Q3pDRUFwekFLV2htQmZXNVZYMEZvWlFKQ0p6VkZONnUzQ0V1YjFnTjZDbUdISXgwZmFyNXpBVEUzRkxpaUowS0dub2g3WmtTWGpENEtzR2F6a1lRMHViTFo0QjEwU1cyVEF6UDVvVXJHUnlrQkJBYTE4M1ZhMDVHMC1HbGNRTGlQMDZSSTBJWG5qbW94X0JXUkl1VTlBXw?oc=5",
       "actor_vinculado": {
         "id": "andy",
         "nombre": "Andrés Manuel López Beltrán ('Andy')"
       }
     },
     {
-      "id": "auto-8983512cec",
-      "nombre": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o",
+      "id": "auto-02d8e54c89",
+      "nombre": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel",
       "categoria": "Gobernabilidad",
-      "resumen": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian obras e inversiones - Infobae",
-      "motivo": "Claudia Sheinbaum anuncia acuerdos para aumentar la exportación de aguacate a EEUU: industria genera ingresos por más de 3 mil mdd - Infobae",
-      "peso": 12.0,
-      "n_temas_agrupados": 2,
+      "resumen": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguela aquí en vivo - El Financiero",
+      "motivo": "La Mañanera del Pueblo de Claudia Sheinbaum en vivo hoy viernes 2 de octubre - Sin Embargo",
+      "peso": 23.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": true,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNc3RUX3BHQjVJZmtXQWtGOG4yX1d2dVNZS29vV3JFM0FYWnFXaHB4ekM2d283ZHlwWWQ0NzhWWFN4V1RZTXFFUHdNQnh4bjZ2VmtlRWxZTmgxT3hwMmE1MnhMYjVrRDAyWTNFTFAxa3NLZjRpeV8xM2xuVmc2QkVpM2RNbXVBcV9HdkZkdzIwSlZxeXlPc0xSTzVZdUpsZHkwQ1hUWGpZRDZjMnFoUWZiOQ?oc=5",
+      "actor_vinculado": null
+    },
+    {
+      "id": "visa-de-andy",
+      "nombre": "Visa de Andy",
+      "categoria": "Relación Bilateral",
+      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
+      "motivo": "Andy López Beltrán va por el fuero: se registra para buscar diputación federal en Tabasco con Morena - Infobae",
+      "peso": 14.0,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNWVh6TER0d243dGMtdVAtOVZ5azlIZTJCSmFHMktEcE8wTkVKamJsenMzT2N3UzdOTWNFUmVxTnhSZ0s5Z21JcTRvMzl3RFRULUx6UTNZZDZEUmNmMzZjb0VaODRjWjRWY2REdzl2TEFxRUFxckhkcTY5QTh0UmRjUERCNEVJaTgxOE1kNnI1SkpZdUR0WGUxRTg2X2RXek04VXFSeTg1SU5vQkZ2VERnRW95Z29ydTl5S21SdkVqTW5XTUJWRjhLWmtYVndrMkY5dVZ2TjctSlZ3azAyNkRyWDgzMExEMmx0QWhj0gGGAkFVX3lxTE1jQ2JhS3VmQzJsYlVPMzQyYW5IaXpaUjAyNWhlWnhmdE1QVUxObEtZejZoR1dOTnZRd1k4ZDY4RVhlcHF2RkxOb2pJa2xKRXdTVzRMZUc0ME41SnloQzdGWjkwTjlpaHdQYS1JVjduLXhLcTBhNDBuRENheTdMSXlpTlNsaEp2cU5DNnN0QkZYUGpyRkhxMXR1RVZSS3lzdUNJSzFsQU9BWFI1Wm5KU2trTlduODB2MEk3bDQzQ0lTU1lESEE1QW5GLUk5cmpOT0s5VDdFektKa1pHZ1dQcTk0YXVKaHlNbHdubkVnOGpxRVNLbHhJamExSjFEQVIyVTJteFRLb3c?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPal9Fbk9pV2hCaVE1cmF0OEF1Tm93b1YteGg4NUVOT00xXzZjNXM3V2JVT3AxMDBWZ1M0cnc4QzVUMjBtUVVlUnJyUDFNU1E2S01NVjNVRnQ3dmdTUGtRWUZCZHpXSFAzN3hZRzd3SVhhaUdiOTVEZWZDVV9wZzh5eGg2MExCVDNCc3dqQ29SaE16dGpqTFhfcUxMSDJhLWZubldSTFVmbm15SEVvOEpHaGE4ak9WUlZxUl9ITkw5QjdrZjJwYWZrelV6d3dOSXfSAeoBQVVfeXFMTlVHWmg3bXhkVk1TS0k3Q0V4RGpWZ01xYUVvNWNWZGUyVm1fbXBSSmV2WVk2d0FMVEloNnBXNGJJcnBsaGNadVJkUmhHLVJZTThRTGtQSjRRSVhvUjdGTmtEVFlnTW8xWjBFaUcxcFFRTk85THk4ZWlRRV9NNEVDS3p6TkU1VDFWYVhhYlE1dEV5cVZ5ZkVlbThkWVpxVE5udm5YM0hYMy1fZEQxVjJHREMwTzJWQWRKVExmTTdYMUZjRnlmOU10VDFfcG03YnVoeTNlS2hlMjJIaHZ2ZmlHN1FRcDJTNmtPM0Z3?oc=5",
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
+    },
+    {
+      "id": "auto-e5f040f156",
+      "nombre": "Acusan de agresión a 2 guardias de un centro de detención de migrantes en Florid",
+      "categoria": "Social",
+      "resumen": "Acusan de agresión a 2 guardias de un centro de detención de migrantes en Florida",
+      "motivo": "🔔 ALERTA — La detención de migrantes es la peor tragedia: Lazzeri",
+      "peso": 6.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/02/politica/003n2pol?partner=rss",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-6ab8ec4f03",
-      "nombre": "ICE tiene nuevas medidas para persecuciones en auto: Prohíbe la alta velocidad y",
+      "id": "auto-e45383a3b2",
+      "nombre": "Redadas migratorias: Trump niega pausa tras video viral de TikTok - Milenio",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/01/ice-tiene-nuevas-medidas-para-persecusiones-en-auto-prohibe-la-alta-velocidad-y-endurece-reglas-de-trafico/"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOZGl0cnhYeHRxQllhV1VaY1JnNUpWbHFPMGo2Q1c0QjAzSVY2YWxPQVVyZUM2bktNbE9fX2Z2WGVOeGxQTFo5MWQ1bGczckJMbFl1eDVNaHZLaV9DbkNGVHh5cjVDRDhtRkpiai1rYnQ4RzJPdzMxSmNnZmd1am9YbFFrel9ZV1pFWkxYaTRWWm9ZTWE2NWlxdzgzb3I3cWR2bUUyaWpFWDROZFpnNWx4Z2NrTGlYSzlJ0gG4AUFVX3lxTE5kaXRyeFh4dHFCWWFXVVpjUmc1SlZscU8wajZDVzRCMDNJVjZhbE9BVXJlQzZuS01sT19fZnZYZU54bFBMWjkxZDVsZzNyQkxsWXV4NU1odktpX0NuQ0ZUeHlyNUNEOG1GSmJqLWtidDhHMk93MzFKY2dmZ3Vqb1hsUWt6X1lXWkVaTFhpNFZab1lNYTY1aXF3ODNvcjdxZHZtRTJpakVYNE5kWmc1bHhnY2tMaVhLOUk?oc=5"
     },
     {
-      "id": "auto-3853465cd3",
-      "nombre": "\"Manifestaron idolatrar extranjeros que cometieron atentados similares en otros ",
-      "categoria": "Gobernabilidad",
-      "peso": 4.0,
+      "id": "auto-d7eaaa92fe",
+      "nombre": "¿Grok predijo la reacción de Venezuela ante la captura de Maduro? Esto preguntó ",
+      "categoria": "Relación Bilateral",
+      "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNcHdkOXpwWHB5SmlIYWN0RC1aWUFyeE9TMjVEWGxjdk1xVmxXZXRHMkpucHF6Wm5ucFVZOVM4OWFFWUVCUWlRZ3U5dVJoMVRMWVdySzlNbGVxZDdid0VBdy1TNXpZbjZ6MDV4eDFyWUlnc0NIVm12WTJJTWRWbVI1WEh2QlJPWHfSAYcBQVVfeXFMT3NUY2RIME9UZkN0WlhRT3RhMWkyYlZnTlZETVRQa1UyUzlhTVlQcWo3Ti1PMXdRVGRSbDRQNkFrWVp3UmhodnNuOWJiZHlldUNCbUZ2R0l0bk8xd0ExWVpqWE05bE5lTi05d3NtVnVTLVV5ZTNqNHlCUy1GNjBSRWZ2UlBBWDFN?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/02/grok-predijo-la-reaccion-de-venezuela-ante-la-captura-de-maduro-esto-pregunto-trump/"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-5017ab5430",
-      "nombre": "Trump va por políticos mexicanos que ‘ayuden’ a cárteles: ‘Traicionan la soberan",
+      "id": "auto-d289c839e6",
+      "nombre": "A sus órdenes, ‘Capitana’: ¿Quién fue Manuela Molina, mujer que lideró las tropa",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 19,
+      "motivo": "¿Quién era Fernanda Gastélum, la mujer embarazada que fue víctima de feminicidio?",
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/fernanda-gastelum-quien-era-la-maestra-embarazada-victima-de-feminicidio-en-los-mochis-20261002-0123.html",
+      "fecha_anterior": "2026-09-12",
+      "fuente_url_anterior": "https://www.elfinanciero.com.mx/nacional/2026/09/12/a-sus-ordenes-capitana-quien-fue-manuela-molina-mujer-que-lidero-las-tropas-en-la-independencia/"
+    },
+    {
+      "id": "auto-e44925e90d",
+      "nombre": "CFE interpone denuncia ante la FGR por el apagón en Yucatán",
       "categoria": "Seguridad Nacional",
       "dias_silencio": 14,
-      "motivo": "🔔 ALERTA — Con todo y pérdida de apoyo de hispanos: Trump defiende su política migratoria",
+      "motivo": "Alumnos denuncian en TikTok al gobernador de Yucatán porque no les construye una escuela digna - Proceso",
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/01/con-todo-y-perdida-de-apoyo-de-hispanos-trump-defiende-su-politica-migratoria/",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPdnk1YUJtQ0FZd0tRUFFqeEthVDE1aDNPTHJJd1htSzhGMTc2OEE0YmpXODM1ZW9rWFFFN0VCSUN6YWVROHdFY1NyVUJ1Q2ZKMkx6MU5OdTU1WjlNSVBTN2pXQ2hrdjM2cW9HNkhBSmdTcGUyalFrZWpkcGNUcHVwWC1ZVU0tNXRLQy1qbF8xMTFJRmJPWEp2TThwVTlOeENubFNnMWYyR01wUFlReWdhQmpLa0R1WS16aWJITkNVR2tRcVB5SGN3aWdlSjc4YjJXTUt5eEJTb0htNllVZk1uNU9rd2NMQVk?oc=5",
       "fecha_anterior": "2026-09-17",
-      "fuente_url_anterior": "https://www.elfinanciero.com.mx/mundo/2026/09/17/trump-va-por-politicos-mexicanos-que-ayuden-a-carteles-traicionan-la-soberania-de-su-propio-pais/"
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPZmota21aS21rWDgtYWxGVUEydjI5RTNhbW9PYmxPRjMybnFCQVdXaVpuVTl0bVJpc1Q2VWEtdm5PSFp1MlA3RXE0S3ZoUXltcnhVNVF3ajhQYzNqNXNGMFFjWGV2bDZDT3Iyc3NVLWtsbTFacmhpNnZaTldTMVc5cXpTWEtNX3hDYzhOUTZuX2VkYVF4TUhHWWhabnlaVGVjTDFyWF9obDFJU0RwZFRRSmxTclRfUUxtaVVFUnpOYWZQa2l3NzdMbtIByAFBVV95cUxPZmota21aS21rWDgtYWxGVUEydjI5RTNhbW9PYmxPRjMybnFCQVdXaVpuVTl0bVJpc1Q2VWEtdm5PSFp1MlA3RXE0S3ZoUXltcnhVNVF3ajhQYzNqNXNGMFFjWGV2bDZDT3Iyc3NVLWtsbTFacmhpNnZaTldTMVc5cXpTWEtNX3hDYzhOUTZuX2VkYVF4TUhHWWhabnlaVGVjTDFyWF9obDFJU0RwZFRRSmxTclRfUUxtaVVFUnpOYWZQa2l3NzdMbg?oc=5"
     },
     {
-      "id": "auto-b6e78f32e0",
-      "nombre": "La injerencia no, subordinación tampoco y entreguismo menos; México defiende sie",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 11,
-      "motivo": "Marcelo Ebrard defiende intereses de México en reunión comercial - milenio.com",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPTzREN3pGM05KOHlwWFU2QUxCOHpkNHc1TGlVMlR5NEpONjFNbVVXQ3ZFWTVuWHZ0OWpmMUVXOTkyOFdSZ0dFNHZkTDdFTzlfS2VrOWxWdC1MakRRTHdGbm81OHhVcmdaQ1ZpcjFBeVlOa0ZEVTJNbzVIVWRoMkpDQjhQTk5YMWR5MEVDNDdxcXpZc05NS0ZFdXc4RnpoZzVC0gGgAUFVX3lxTE5rMV9saXpQbm45dHZMbFV2UF9WQmdCaGpPVzhfdk8waFd2d3Fld2l4dF9pUjVCai1wX2hyUlpZMWVwa3VhTVZqSnRncWpyTjM1VkRzUGFvTUJmVUFhSElxQjZ4dTJDRF9JbHUxZlkyNkF1a2pvVTJELWg4YVVLQmxkOUE4U1VCZk9tUzBHcEU3OWZaMnBhdkc0MGZGRklKS18?oc=5",
-      "fecha_anterior": "2026-09-20",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQekk5VlN6ZnYzUjFlZWNMX1BnVmtqZE5xSzZMNVdGNG1DYjE0YS1CdE9sbW1aa2xLNlJOZEx3RkNHQU44OHhnMGppM0txaGNjOTE2aVhEOHBSUlBYRUtPVmxkRjVKdkhnTnYwR09Gakw5U1h1Qnc2dHE0VDctc3NDSVFSeTdRVkVIaS1nS1hicEY3eDJQamdwczkzbDZoLTRHendnQU91TWZGOU9vakVrLVY1eFp1Z3lZZE9uTFp4STh6RkZWSFpCelk5ckw3QjFvc0dvaDUybU1tdzZPV0E?oc=5"
-    },
-    {
-      "id": "auto-6a192375dd",
-      "nombre": "Avanza Sistema Integral de Movilidad para consolidar un estado más dentro en 203",
+      "id": "auto-801ea97efb",
+      "nombre": "¡DEPORTE QUE FORMA PARA LA VIDA!",
       "categoria": "Gobernabilidad",
       "dias_silencio": 10,
-      "motivo": "Delfina Gómez presenta avances en movilidad del Estado de México - MILENIO",
+      "motivo": "🔔 ALERTA — Deportación de migrantes - MILENIO",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQd1JDNWlpdWx6WkZodzdyX3dHdmFINXdlWnNrVzQxVkpvZW9POXAxbDcxZHZJUXpZSkNpeGNNcmU2bVgyS1ZabnVXd1hMOWY2OVZzQnNxa3VNVXR2M3F0emVMem1vM0FBZGc2SDI0dnNWdFA1SEFOYm1ldkNnTmhBajh1OXNTQW9OQVFKN3hCQzdjWXdGcHU5b1liMkdWVEdiSVdV0gGjAUFVX3lxTE5IUUU2eEtBZWVZejl5MGhTZHkzZDhHWm1HcVNhMEx3Nl9wVVZQbHZLN0ttdmMxN0R0a25BZURRbkxPTDJSS2JPSlRocEpZQWQ5bHJZTFIzZHB3aFhkVGFTbm41N3JUTjlScTRRY3ByWTU1eUxsVzVHUmhaVXhlNGM0RGJiMFVzOUtPSmVNSnpUYUJpMnduekZjdzBQaW1MLVVURTA?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNMVk3VEtLU1gxcTFMZ2pTa041Y1MtSUtqazJOM0hPTHNNYVd5MnRMNGVVZE5KdVVUaTAwVGZCeDVkMlNoVElCeFhGMzZLNUdQM2dQUHBDcHB4U1MwYmRqOG9FdTA5UEpjNUJ6cWRVcnR3T2ZtT1BSTll1eEJlSWFRNlFCVTVsZkxwY2FtSG15V0FhODTSAZMBQVVfeXFMUHBaNGdZQ1ZvQWZYcllpLUpNdHZfUThzUXpSZWp2T1NCem9hbXA5YmpJNURRRjhnYklxSHluV2xHLXhqOW1VWlUxdlZidjhwOHQ3WDdpYjM0TEo4NE9rTFQ1UGZxdFl6YVRBRlBENkZ2ZjRkcEl1SjhMQ0JRaDg5b25HdHkxMmU1VW00U2tHdmM4bjlJ?oc=5",
       "fecha_anterior": "2026-09-21",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNWGVsNy1CMTU0VXFuWGRlalBzZkxzTTBfYWMyeU93ZWlib2FWOXV0WnVMM0ZCU2FoSEh5bWxQQUdMMHUyMDd6VVpPZTJzaGdIVHpwRWNTVVUxdXFDRFVCa29iVFhqNlZjQ2lxWmM0RnpOZUtBVEhWQjlXZlhONktraQ?oc=5"
+      "fuente_url_anterior": "http://campechehoy.mx/2026/09/21/deporte-que-forma-para-la-vida/"
+    },
+    {
+      "id": "auto-4535b9ed95",
+      "nombre": "Kenia López Rabadán exige revisar definición de “mujer” en ley contra feminicidi",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 8,
+      "motivo": "Las familias merecen más: apoyos sociales y salud de calidad, escribe Kenia López Rabadán - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOYTYzTW1EcUNmS1FsempQRmxscWpDZXJwbGxwNVhKWWVkQVZhMnBiM0ZkcWgzeFNPbWM1Sm1reDhaYlZ6TTVtd3BPRlRDNmx2Snd6c3JweWkyY3JNbFlRd01wWkZkQWM2aDRNNVpITDBGQXo2T0F5S3huV25YX1BKTEFXSUd5R2Qzd1VBQjJ5VWxuNFllYkJUOVJpenRodjlFV2d4aXlCRVRIa1BBUVhYOWNZNlExdXlYUXM4?oc=5",
+      "fecha_anterior": "2026-09-23",
+      "fuente_url_anterior": "https://heraldodemexico.com.mx/nacional/2026/9/23/kenia-lopez-rabadan-exige-revisar-definicion-de-mujer-en-ley-contra-feminicidio-893709.html"
+    },
+    {
+      "id": "auto-f3769c926a",
+      "nombre": "Familiares de Miguel \"Quetu\" denuncian desconocer su paradero, acusan abandono d",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 8,
+      "motivo": "Pedro Miguel: Del descontento al linchamiento",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/02/politica/015a2pol?partner=rss",
+      "fecha_anterior": "2026-09-23",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPQ2xsZW9QUk1pQjhNTm8wUTBhMTRhcElMN0NiM1lQZ3ZyaWxwN3RsMUR5OHg3TWVJYUFQaWFqblB6anh1NTctYk5EX0VQWUJxODlPTzZqanZ4amhuVmN2X0ppOUJwRVRKdnBNTmVvUFYya0p1SXVUV0hKTTdUTG16dlg2T1V1YW1rNmNPVENhTWxLOTRnMzhZbEowRnBVcGNnaU1yZnc2WDVmTVlBR2FtN2JoVEo5aXVvMFYxVElsYjRoSmVVVXNHRHo0em0yVjJQdnJCZVNobVdGdHlGb0E?oc=5"
     }
   ],
   "actores_destacados": [
@@ -927,20 +976,31 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o",
-      "nota": "Claudia Sheinbaum anuncia acuerdos para aumentar la exportación de aguacate a EEUU: industria genera ingresos por más de 3 mil mdd - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNWVh6TER0d243dGMtdVAtOVZ5azlIZTJCSmFHMktEcE8wTkVKamJsenMzT2N3UzdOTWNFUmVxTnhSZ0s5Z21JcTRvMzl3RFRULUx6UTNZZDZEUmNmMzZjb0VaODRjWjRWY2REdzl2TEFxRUFxckhkcTY5QTh0UmRjUERCNEVJaTgxOE1kNnI1SkpZdUR0WGUxRTg2X2RXek04VXFSeTg1SU5vQkZ2VERnRW95Z29ydTl5S21SdkVqTW5XTUJWRjhLWmtYVndrMkY5dVZ2TjctSlZ3azAyNkRyWDgzMExEMmx0QWhj0gGGAkFVX3lxTE1jQ2JhS3VmQzJsYlVPMzQyYW5IaXpaUjAyNWhlWnhmdE1QVUxObEtZejZoR1dOTnZRd1k4ZDY4RVhlcHF2RkxOb2pJa2xKRXdTVzRMZUc0ME41SnloQzdGWjkwTjlpaHdQYS1JVjduLXhLcTBhNDBuRENheTdMSXlpTlNsaEp2cU5DNnN0QkZYUGpyRkhxMXR1RVZSS3lzdUNJSzFsQU9BWFI1Wm5KU2trTlduODB2MEk3bDQzQ0lTU1lESEE1QW5GLUk5cmpOT0s5VDdFektKa1pHZ1dQcTk0YXVKaHlNbHdubkVnOGpxRVNLbHhJamExSjFEQVIyVTJteFRLb3c?oc=5",
+      "tema": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel",
+      "nota": "La Mañanera del Pueblo de Claudia Sheinbaum en vivo hoy viernes 2 de octubre - Sin Embargo",
+      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNc3RUX3BHQjVJZmtXQWtGOG4yX1d2dVNZS29vV3JFM0FYWnFXaHB4ekM2d283ZHlwWWQ0NzhWWFN4V1RZTXFFUHdNQnh4bjZ2VmtlRWxZTmgxT3hwMmE1MnhMYjVrRDAyWTNFTFAxa3NLZjRpeV8xM2xuVmc2QkVpM2RNbXVBcV9HdkZkdzIwSlZxeXlPc0xSTzVZdUpsZHkwQ1hUWGpZRDZjMnFoUWZiOQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "amlo",
-      "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Reacción social/mediática",
-      "tema": "AMLO no llama; lo invocan",
-      "nota": "Morena respalda a Sheinbaum y llama a seguir profundizando la transformación iniciada por AMLO - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNR195NWRjaHI3S2xRalBFdHVtaFAyNDlqeUJwQmYydTk5ZlVGaUk4VUM0eVV0WjJpVWxVbG9YV1VHRnpfUmlrRjlmNnlESmZOZUZfNWFReEpTVTZoc25zVlQ5SVFqYVlZZjVfenlvaG9BbzNkWGZJMjlaOE5WR1QwcVgxWFlZNVdaZ0hQb1hLV2NZY3laV3NWRHBWbVVGWlpYdlAxem9iUWdjYmw2VFJVS2ltYUpHRUhNWGtXVEdlRVVvdTI4YjhaN3RKSWw3bk1lNTlB0gHuAUFVX3lxTE0yT0RrUVQxa2xaQm5Qdng5VjRRajg1aVBJODRCcW50WkRHX1R2STU2UVlNcFJmbnJTMWxLOGdhUFdBTGZ5RllJTlFzM1oyZnVBZlVuSEEtUlR4Xy1CVTh6aWs2eFE5YWVYZU91WW9zeUFCTms4alRNdFZCeVM4S1BSZk1xU2JOWW9tTnVicXlSb3VxRXJyRE5wT2o0azEwYTZpTUNqc3hoZWRhRGRHM1BiOFRCV2dIb0x2dC1YX1luaFhOUG5LbTIzZk1xdWNLVGVLOUZHN0prOE9tRzJPOXhYN0pJaThKT1A2ZVNqaVE?oc=5",
+      "id": "amilcar_olan_aparicio",
+      "nombre": "Amílcar Olán Aparicio",
+      "rol": "Red empresarial",
+      "tema": "Visa de Andy",
+      "nota": "\"La UIF investiga a Amílcar Olán\": Loret revela cuenta en Suiza con mil 433 MDP",
+      "fuente_url": "https://www.informador.mx/mexico/la-uif-investiga-a-amilcar-olan-carlos-loret-de-mola-revela-cuenta-en-suiza-con-mil-433-millones-de-pesos-20261002-0063.html",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "loret_de_mola",
+      "nombre": "Carlos Loret de Mola",
+      "rol": "Mencionado",
+      "tema": "Listo, el expediente contra Samuel, escribe Carlos Loret de Mola - El Universal",
+      "nota": "La UIF investiga a Amílcar Olán, escribe Carlos Loret de Mola - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOcTFJNExKRS1DbFBuckV1QkN0d3lkYlRaZHk3M2c5bWRnMmJxcXlocE43NUZlS0g2VGItLTVubV9COTBrSDU3akstQVFoUTExZzZlU1ZuNV9lbnc5NDVqbVZFY1paNlZYTGhkNElRN0hsczhnNWVUZ25tZDNwVEFfNDR1TXJ1aThpM0NxaHVNX2NlUC1mdXNv?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -949,34 +1009,30 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
-      "tema": "Trump amenaza con aniquilar a Irán ante la ONU",
-      "nota": "⚡ Posible presión de Donald Trump — Donald Trump amenaza a Irán con atacarlo \"muy fuerte\" si está detrás del incidente de Flydubai - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPQ3ZEWEV1TWI0WEx5RExoZFJpM0ZQak9nbVlTVHlvRk5DdmswTDFFVm5URkVzaXlvSEgyclNVS1d5UnAyZ2Y1bXpnMENOMUltc3l3YVo1ZC15cHZkTEZ0ckY0RC1yR2dNV0FUVUNqRktqek9lM2Q0NGV1cndwTHhySk84ejNtOHZfVTh5aFl0YVlyNEHSAZMBQVVfeXFMT0N2RFhFdU1iNFhMeURMaGRSaTNGUGpPZ21ZU1R5b0ZOQ3ZrMEwxRVZuVEZFc2l5b0hIMnJTVUtXeVJwMmdmNW16ZzBDTjFJbXN5d2FaNWQteXB2ZExGdHJGNEQtckdnTVdBVFVDakZLanpPZTNkNDRldXJ3cEx4ckpPOHozbTh2X1U4eWhZdGFZcjRB?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "rubio",
-      "nombre": "Marco Rubio",
-      "rol": "Responsable institucional",
-      "tema": "Carlos Fazio: Trump, el procónsul Rubio y sus yes men",
-      "nota": "\"Atentos a Cuba\": Trump delega el plan en Marco Rubio - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOazRPeUVPLVphWkRVUWpzZVhCM1lTRm9IaFF5U1hubkx5QnEtZXN2XzRoLWpzZXVBVW13WGVLZEw0WE1YdDY4NjNkUnB4eXB5bE1ZenVoeDc4UGstMFU3RTlEbmd5Um1RNVhMNUlwQmhhOFY5VnRDZnFJa3FiRUZ3UHZleTJlT0JGRFZlcy1KMHdvQnlfU1pvNmRxMHl6ZVXSAZ8BQVVfeXFMTXJaNkF1ekFLY095bGhoM0YtWmhHemM3WVBFMnM3MG9ma2d1OVZfRld6T1p1NUtET05kVzZ5VG11cnVSQnhUcTgySjNWT0VreVNyNnU3SjhSdEJWS3haZUl1QXY4WXBnSDlzcXA3WnpRbUpyNmdwdnVjQVplelZmUHpVS3Q3bUNWaFFSX2hQME1BdVcyaDRLdTVEZGlZMGNn?oc=5",
+      "tema": "Donald Trump y la doctrina del caos geopolítico",
+      "nota": "Donald Trump y la lógica del absurdo - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOYmVqb2dfNWRvNmVTNjlRM0VveGQta2RmUFo0N0JkVzF6UUgxMVoxRFFjTFA3ektITDlCSXl3YkVvZFdPSUNUQnVIUnh3TDdjX0lQcjdjRkRzdWJWNk1EOGZPLWVQMExHMG43MVpwQzdZZjRjNXZfZldncjJWeWlScWhncTFDenlSVHNkV1ctelhuRWpzWTRUWFhFbjNhRl9wZk81YWtNa1NTZ9IBqgFBVV95cUxNX01pZVNDazhNR1RUTnY3ZGpWNWwyek5LTnZab3VHNTBLRDljMlRieXFYWjlDVHUySVZNbHA2aER4UVpieGwwdXp1Ty1YMWJyU1Z3RXFPdjNSMlNrTFZHV0RFS2k3ZmktX1VXMlpJa0pGR1VsZ0kyR2ViZHkzZDJYeW8tLV96MzY0TjFXaFEySGdJQXI4WnZaN1FFV1dkX2JkdWtBOTF1YTZ5dw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     }
   ],
   "declaracion_presidenta": null,
-  "declaracion_otro": null,
+  "declaracion_otro": {
+    "actor": "Morena (partido político)",
+    "texto": "Morena: perdió la izquierda - El Informador",
+    "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQQ0tqOWpQRGJxRy00RkVrN0ZhRFZYT1FUMk9DVkJoVW01cG9BN1ZPN3FNSFJ0VjBjNGNnd3VCSHR2MmhETTA5UVNfQVBBWkl1ZHBydlRoYmxUV1BtbVFZZmU2LUJKMlNlTTFmUmo1SUZpcXFha3dwLXNYVGhzR01WQlNrbnB0eHVwWlBaR2pTd1F1N0NDVGlZVjd2Mkg3UdIBowFBVV95cUxOTW9mNTBWX1ZwT3lQTC1QZUJ3a2FEYmxGZmY2cVVuWW4ySktpVjJKYTRNVURtbXpqck9DU0JLRzBXVy1pelN1R0VUNS13dkx2ZEpQeXFLSDh6ZFdCS2lvektTS0ppdElSVWFTY2xoQVNmU3NGVFBXM09RTzFkb2NqaF9KX1J1dU10SlJFb1BXTVN0a0VEUmxDRVY4ZW9HREdlVnhN?oc=5",
+    "intensidad": 7.0,
+    "fecha": "2026-10-02",
+    "nivel_fuente": "ALTA"
+  },
   "patron_historico_4sem": [
     {
       "fecha": "2026-09-05",
-      "tension": 39,
-      "n_notas": 9,
+      "tension": 38,
+      "n_notas": 10,
       "n_alto_impacto": 6,
-      "n_medio_impacto": 3,
+      "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     },
     {
@@ -989,10 +1045,10 @@
     },
     {
       "fecha": "2026-09-07",
-      "tension": 29,
-      "n_notas": 23,
+      "tension": 28,
+      "n_notas": 24,
       "n_alto_impacto": 8,
-      "n_medio_impacto": 15,
+      "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     },
     {
@@ -1038,9 +1094,9 @@
     {
       "fecha": "2026-09-13",
       "tension": 14,
-      "n_notas": 19,
+      "n_notas": 20,
       "n_alto_impacto": 4,
-      "n_medio_impacto": 15,
+      "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     },
     {
@@ -1070,17 +1126,17 @@
     {
       "fecha": "2026-09-17",
       "tension": 24,
-      "n_notas": 43,
+      "n_notas": 45,
       "n_alto_impacto": 15,
-      "n_medio_impacto": 28,
+      "n_medio_impacto": 30,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-18",
-      "tension": 54,
-      "n_notas": 41,
+      "tension": 53,
+      "n_notas": 42,
       "n_alto_impacto": 33,
-      "n_medio_impacto": 8,
+      "n_medio_impacto": 9,
       "n_bajo_impacto": 0
     },
     {
@@ -1101,18 +1157,18 @@
     },
     {
       "fecha": "2026-09-21",
-      "tension": 51,
-      "n_notas": 44,
+      "tension": 50,
+      "n_notas": 45,
       "n_alto_impacto": 35,
-      "n_medio_impacto": 9,
+      "n_medio_impacto": 10,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-22",
       "tension": 50,
-      "n_notas": 56,
+      "n_notas": 57,
       "n_alto_impacto": 45,
-      "n_medio_impacto": 11,
+      "n_medio_impacto": 12,
       "n_bajo_impacto": 0
     },
     {
@@ -1173,10 +1229,10 @@
     },
     {
       "fecha": "2026-09-30",
-      "tension": 50,
-      "n_notas": 20,
+      "tension": 49,
+      "n_notas": 21,
       "n_alto_impacto": 16,
-      "n_medio_impacto": 4,
+      "n_medio_impacto": 5,
       "n_bajo_impacto": 0
     },
     {
@@ -1189,10 +1245,10 @@
     },
     {
       "fecha": "2026-10-02",
-      "tension": 50,
-      "n_notas": 1,
-      "n_alto_impacto": 1,
-      "n_medio_impacto": 0,
+      "tension": 39,
+      "n_notas": 9,
+      "n_alto_impacto": 5,
+      "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     }
   ],
@@ -1225,11 +1281,32 @@
       "iniciales": "AL",
       "x_lunes": 29,
       "y_lunes": 100,
-      "x_hoy": 33,
+      "x_hoy": 38,
+      "y_hoy": 100,
+      "delta_pts": 6,
+      "alcance": 7,
+      "n_alto": 8,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQLTZBd1hCbExKbmVSWUJwMV9KUklibGRXQk1JVkVRUW9IUGJnQ0VhVzB1a1N1bU9FMnNHRTV6YXZYXzQtWXg4SElCN1FQazMxbHQ5SGphZ2IzZHlfdHJSNHk5RGh5cTdSMzB4bVA3WjBJT1dyd2Y2VV8tUzFxUDR5YWtjRlQtRHMzaXVUNGxmN29maXJDUjZ6OFNENjNDSzJOaGV0OUdlQmUtRDJ5YkZVZjR6U2pBU09CVWNyZDBKZ3NQb0dhSUxjajNUa3F6RER4M1pSNE9pTVdSV0tIMVZKV1diTkJxdDF2M1BKbUliNjF4N01NaUE?oc=5",
+      "nota_texto": "🔴Andrés Manuel López Beltrán informa que se registró como aspirante a Coordinador de los Comités de la Defensa de la Cuarta Transformación y de la Soberanía Nacional del Distrito 6 de Tabasco. Señaló ",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 5
+    },
+    {
+      "id": "amilcar_olan_aparicio",
+      "nombre": "Amílcar Olán Aparicio",
+      "iniciales": "AO",
+      "x_lunes": 19,
+      "y_lunes": 100,
+      "x_hoy": 24,
       "y_hoy": 100,
       "delta_pts": 3,
-      "alcance": 6,
-      "n_alto": 7,
+      "alcance": 5,
+      "n_alto": 5,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
@@ -1237,31 +1314,9 @@
       "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
       "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 5,
+      "categoria": "Economía",
+      "dias_activo": 3,
       "fecha_reactivado": "2026-10-02"
-    },
-    {
-      "id": "amilcar_olan_aparicio",
-      "nombre": "Amílcar Olán Aparicio",
-      "iniciales": "AO",
-      "x_lunes": 10,
-      "y_lunes": 100,
-      "x_hoy": 19,
-      "y_hoy": 100,
-      "delta_pts": 6,
-      "alcance": 4,
-      "n_alto": 4,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
-      "es_nuevo": false,
-      "categoria": "Relación Bilateral",
-      "dias_activo": 2,
-      "fecha_apagado": "2026-09-30"
     },
     {
       "id": "morena_partido",
@@ -1463,13 +1518,58 @@
     }
   ],
   "tablero_semana_inicio": "2026-09-28",
-  "resumen_mananera": [],
-  "mananera_estado": "pendiente",
-  "a_vigilar": [],
+  "resumen_mananera": [
+    {
+      "texto": "Se informó sobre un episodio lamentable ocurrido en una escuela de Coahuila donde jóvenes atacaron a una maestra. La presidenta señaló que se han presentado tres o cuatro casos similares en el país en",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se anunció la creación de un grupo de trabajo multidisciplinario que incluye a la Secretaría de Seguridad, la Agencia de Transformación Digital, instituciones académicas y expertos. El objetivo princi",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "El secretario de Seguridad Omar Vázquez informó sobre los hechos graves ocurridos en la Escuela Secundaria General Número 13 de Torreón, Coahuila, donde dos jóvenes hermanos agredieron con armas blanc",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se presentó una estrategia integral de prevención que incluye el fortalecimiento del programa ABC de las emociones con asambleas con padres de familia, incorporación de buzones confidenciales en escue",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se anunció que para la próxima semana se trabajará en un decreto presidencial que establezca obligaciones para las plataformas digitales en materia de detección, reporte y remoción oportuna de conteni",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    }
+  ],
+  "mananera_estado": "ok",
+  "a_vigilar": [
+    {
+      "id": "auto-50851e4c1e",
+      "nombre": "Sin necesidad de separarse del cargo para participar en reelección de diputacion",
+      "categoria": "Gobernabilidad",
+      "resumen": "Sin necesidad de separarse del cargo para participar en reelección de diputaciones federales: Ariadna Montiel",
+      "fuente_url": "",
+      "actor_vinculado": null
+    }
+  ],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1497,6 +1597,14 @@
   ],
   "declaracion_otro_historial": [
     {
+      "actor": "Morena (partido político)",
+      "texto": "Morena: perdió la izquierda - El Informador",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQQ0tqOWpQRGJxRy00RkVrN0ZhRFZYT1FUMk9DVkJoVW01cG9BN1ZPN3FNSFJ0VjBjNGNnd3VCSHR2MmhETTA5UVNfQVBBWkl1ZHBydlRoYmxUV1BtbVFZZmU2LUJKMlNlTTFmUmo1SUZpcXFha3dwLXNYVGhzR01WQlNrbnB0eHVwWlBaR2pTd1F1N0NDVGlZVjd2Mkg3UdIBowFBVV95cUxOTW9mNTBWX1ZwT3lQTC1QZUJ3a2FEYmxGZmY2cVVuWW4ySktpVjJKYTRNVURtbXpqck9DU0JLRzBXVy1pelN1R0VUNS13dkx2ZEpQeXFLSDh6ZFdCS2lvektTS0ppdElSVWFTY2xoQVNmU3NGVFBXM09RTzFkb2NqaF9KX1J1dU10SlJFb1BXTVN0a0VEUmxDRVY4ZW9HREdlVnhN?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-10-02",
+      "nivel_fuente": "ALTA"
+    },
+    {
       "actor": "Delfina Gómez Álvarez",
       "texto": "‘Ofrecimos un cambio y lo estamos cumpliendo’: Delfina Gómez rinde su Tercer Informe de Gobierno",
       "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/10/01/ofrecimos-un-cambio-y-lo-estamos-cumpliendo-delfina-gomez-rinde-su-tercer-informe-de-gobierno/",
@@ -1511,15 +1619,13 @@
       "intensidad": 7.0,
       "fecha": "2026-09-30",
       "nivel_fuente": "ALTA"
-    },
-    {
-      "actor": "Morena (partido político)",
-      "texto": "Se logrará reforma  sobre doble nacionalidad: Morena",
-      "fuente_url": "https://www.jornada.com.mx/2026/09/29/politica/009n2pol?partner=rss",
-      "intensidad": 7.0,
-      "fecha": "2026-09-29"
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-02 09:29"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-10-02T09:29:51.578059-06:00",
+    "cambios": [
+      "Nueva declaración relevante (otro actor): Morena (partido político)"
+    ]
+  },
+  "hora_corte_publicada": "2026-10-02 14:39"
 }
