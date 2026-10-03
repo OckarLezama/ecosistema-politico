@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-03T09:14:06.306476-06:00",
+  "generado_en": "2026-10-03T12:48:43.471047-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 10,
+  "n_notas_ventana": 9,
   "baja_confianza": false,
-  "tension_nacional": 43,
+  "tension_nacional": 42,
   "tension_anomalia": {
-    "z": 0.44,
+    "z": 0.37,
     "nivel": "normal",
     "media_periodo": 36.5,
     "dias_base": 27
@@ -13,7 +13,7 @@
   "categorias_dia": [
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 42,
+      "peso_pct": 47,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 2,
@@ -47,18 +47,12 @@
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 30,
+      "peso_pct": 22,
       "tema_principal": "Presenta el gobierno de Yucatán proyectos en el foro Momento Mexicano: MUUK’ The",
       "tema_principal_id": "auto-849ce1462c",
       "n_temas": 2,
-      "n_notas": 3,
+      "n_notas": 2,
       "notas": [
-        {
-          "texto": "Andrés Manuel López Beltrán busca coordinar Morena en Tabasco mientras avanzan indagatorias sobre huachicol fiscal - sinaloahoy.com.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPLVg3RFhXbW1XTS1qMGJnVk5WekJMUXNlbEVjUUw4QURxRGxrb3JIZVhtdVBIZXI2VDhRY3dvWDU0ZEFrYlNZTUx1empWT0JjaVROX29Tblo2SkxRQ2RoRUNHSUZINTRKLUJaaDloS2hmemtpd256RUZyUlhreWE5dHJlMHByRXp2bERBSXFnTkFOM1dpNHJiQ2hJSnN5dy1oRmpVUHZBNUdWeUl2MlF0LW5xSFQyMEdNUVpINGxMN1VsaDZzTzFzWjlSU0t4bXRZdGVmeENFVUduX0FabklMb1FnWkIyUTQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "sinaloahoy.com.mx"
-        },
         {
           "texto": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
@@ -75,7 +69,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 18,
+      "peso_pct": 20,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -97,7 +91,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 10,
+      "peso_pct": 12,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -891,6 +885,14 @@
       "fuente_url": "https://www.jornada.com.mx/2026/10/03/politica/012a1pol?partner=rss"
     },
     {
+      "id": "auto-c9bfdea961",
+      "nombre": "Remesas sí, derechos políticos no, ¿así trata México a sus migrantes?, escribe E",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxORDQ5LWQ1OHAxMHRyMlA4WTJ0b1BhTUJtaEl0em1LTDRIS1ZwVE5NV0ZfSTVNS3FUS1BiMmx6NEVBbS15eVdzV20tX1RxVGI2VFp5WmxJRGthcFJOdHRnVkFwcEZteGVueVR1ZGY3M2puQmdZdEtEYVpkNkdjb0JEWTdfUC1kczhOVElUS3l4NDNlUHNwekZvWFBIeG85UlVSU01uLUhlelg3WHhucHMtU1ZOa2VjQzBuMlU0dnhLLWlTUVVl?oc=5"
+    },
+    {
       "id": "auto-5050385045",
       "nombre": "FGR sostiene que indagatoria contra Ernesto 'N' tiene 'pruebas sólidas'",
       "categoria": "Seguridad Nacional",
@@ -899,12 +901,12 @@
       "fuente_url": "https://www.informador.mx/mexico/fgr-sostiene-que-indagatoria-contra-ernesto-ruffo-por-huachicol-fiscal-tiene-pruebas-solidas-20261002-0206.html"
     },
     {
-      "id": "auto-9c9b9422d3",
-      "nombre": "Tecnificación del campo en Aguascalientes logra ahorrar 9 de cada 10 litros de a",
+      "id": "auto-e56ce3fb32",
+      "nombre": "¿Quiénes son Jorge Lorenzo Lara Cordero y Alexis Nucamendi Gómez, alcalde y exal",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNOUdDUVp4Ym43MVItNHNUZHFkaEtNc0NRb09xT2ZqM1ZCMXBXQXhiS3BsWEFiaWtNQU9MSUpqR0VPcHNaWFlOVjNNZTktQ0Qzemd4Y24xb1NjcExHeHNreTZLR1ZsR3VOOURXNld5YkRJcFZvQXBxM0kzLUM4Q2F5WGNiTUYzTlZ6VEhmRHpxSmt0b29WakpxYjJzamxUdk1PRTEtUWVBZ3dZMUFUbGFGV2FvejJFYW1WT3R3eTBqZTRocWJLTk5mQ1MxUGZPWE1oVUdrSGpBak1USnBSN0phWllTS19PaTk5TzZhZmdLNGJQb3I10gGIAkFVX3lxTFB0TXJodG4tdlRFOTJNZi1iaWUyUGdSMThDWTdXTHRVUUQzYlZIZ1hSSWlvTDBra2FRQzByREZsUnhIM3FWanBiN3g2OTBNLU9vVWRlM2pzMWVlbG9kOE5Pb1N1bWpxVFc0WFh3R0FKMDBKemlFVER0NHJoQlo5cGxoU19tM2NuQXJJcmxmc1FEVjBieDBtcmVZV2dXNjlPaFRYYlJZS2lHd1N4TGJvRURITTN1eUpIX3pZLThZaHltVldnblFwZTd4Wl8xYlRjTS1PcU1vNnNsck1UUFl3cXRLYlM3bGFMeGktQzZydno0NWRfQktNemNSd3Z1X2lIZEw4TXNDd0tTTQ?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPVTczQkdFR0pSVWRhakxzZE5veXZ6SFE4SmVFdHFoWlNlQnFOUE54OGM2NWgwbnBjUjdNVDhaSnoyWDQzT09lZWZ4Mjh6YnFBbFpoOXdUbGdSSHhraE1CTS1BWTZHM205b25uRkUzVGYtYlU3QkNrYVQ1cVctLUxXdy1Ec1ZrSmtVNmgxbkM5UW10N0M0QnhsczZsRdIBmwFBVV95cUxNRUZLQkRvekxtVUh1d2d1SC1aVmY3aWtYbkJpU09GU1dPSDBPckxQYm1NMFVBYXRZYnpUV21pZHZSNmZZV3JiaWJMNkZzZ3lqSHJ0Nkp0RlFrbXctOVV6UjMtdFNXZnFpMEJhWERXUEF4T2RkeFJuYVl0dlpBT3lMSWM3WTV4cWdCQ3BrekdZbUdOc1l2ckZ1UkRMcw?oc=5"
     }
   ],
   "temas_retomados": [
@@ -920,15 +922,15 @@
       "fuente_url_anterior": "https://www.yucatan.com.mx/mundo/2026/09/18/escandalo-en-peru-menores-abusan-en-grupo-de-un-adolescente-de-16-anos.html"
     },
     {
-      "id": "auto-f8081d6ba1",
-      "nombre": "Registra gobernador May 43.1 por ciento de aprobación y se posiciona en el lugar",
+      "id": "auto-9f8e802806",
+      "nombre": "Dos exalcaldes desaforados ya no aparecen; otro alcalde tampoco se presenta ante",
       "categoria": "Gobernabilidad",
       "dias_silencio": 10,
-      "motivo": "Gobernadora Delfina Gómez llega a mitad de gobierno con 65.7% de aprobación y ocupa sexto lugar nacional",
+      "motivo": "El Alcalde y exalcade se Suchiapan son detenidos en un mismo operativo en Chiapas - Sin Embargo",
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/02/gobernadora-delfina-gomez-llega-a-mitad-de-gobierno-con-657-de-aprobacion-y-ocupa-sexto-lugar-nacional/",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQUVYtMUFBNnBMeXNydk8wX3JpMVZXcXBONW1zYm9kMjFucDdGY1BuYWJEWVJ3T3QwU0dPRWtZQk9rSlhxc2NhX2t6UXQ4YnlNR1ozamk5TUtUdmRYeEg1dDB6UDEtQlo1NldueDF5dWVkOTNoN0wyTWR4UlZJa3ViV0JDR2VBWmhJckFyU0RpOTNQU0txM3pPeHlieVhVRnR6Uk5CamtWc1N6cHQ0M1dTUkE3M0U3S1k?oc=5",
       "fecha_anterior": "2026-09-22",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNMFdIdDMxVm9HNmRmUzA0TXJ2ejNuT0U3b2hJU0dtNjRNcFNCcTF4UE5adU5mVUd2cXZ3STRjZjBGUWJVa09RUGNsZ3ZPX1gxUVFsanRGQ3VtcEhaZWpyWVlSamF2MVFMdUFRRGxsZ00xYkhXV2h1UzBmZEE0ejhZelBpMkZQeWVkTExlaTZPRFJDS2s5YlVsYTJtdC1mRU9EcG4wNHlvMDByX2RjY3ZjazBtZXVxVmJYLUNTb3c3OVpFdFVEY3dYMEU1SkFwSWhBTk9sbkFhdUJhT29t?oc=5"
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE01bGdwei16bjMyMW8yT05jT1VPakhULW11a2FfbWZISFNvajd4S08wMnUyeEZCS2VFZnAwQ1lKTGxtNVd1WTljTkJmT015QQ?oc=5"
     },
     {
       "id": "auto-60edd74a19",
@@ -1250,8 +1252,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
-      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
+      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
       "es_nuevo": false,
       "categoria": "Economía",
       "dias_activo": 3,
@@ -1294,8 +1296,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
-      "nota_texto": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
+      "nota_url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxQaGc2RkJHeFZ6c1I0TXlfMGowWWdwSkdyVGZfVnZldy1kZGxaTmZXWmRMNl9zYVRmN0ZHYU5Uay1ONjlVd3dZMGZPcXV0ZXBDS004QzJFNllfTi1mUXNFYjZ1UVM4RXU5U0ExSVkzV3FkLWxwcEdsUmdKSFk4VjRYRk9fS29JMmc2V2NRWmg0Rjhuc0FsamZBNXZlMHhkTEFiX01kdEpRdGZFakxjclBQZWZvQmxRUVc4cXVzWnhVTnJ3Q2ZsTWFZSXFsRXRmRElQS2hSWjFsRklHeDM3V1dMRktXbERzck9LOUpsVHdwbmV4WjVOazgtazd2SWh4WW5LWlR1ZC1Tb21yWjFQMzBFTF84b2RqdG0zRk4weVB3eVNWZHVXaWotRjllR3N1alk2UHBXYTJKcHc3NVZLYjI2bWRkRTFxNXAzZVRBRzl30gHTAkFVX3lxTE53MmkzMXJYRHlFOVJxaGEzM2ZVbjVMMEQ4OVk2SDRIQUlkV2xYZ1U2eFN3M0NGRXZoQ1M5TG1oU2Q4MVVWd0ttSFJJUTg2NldKWC1UNFJVVGVhTW03emlFRHY0NWg0RUVuR3VUTjVickZfS0dHNmZjR2t5NDRHRkx3WW5fdEYtWTNGMVFKSDY3ZVQ1MGx3R0xOSWJqTTctS1pqRnd4Q1dxSTZHYVMwZDByRkdXTjljVWtvZGNrU1NycWh1WnJxd25vUi1NTG5weWlUUVFZUEJYWmRjMUhJM1lwYWdjc0FUTGhTNkZmMHk3UkhPZ0lNSktBSXc1WDNNVFpkUExsLU9IdXJqUURDcEkzQXpFRlFzQlFwRmdoYXNiR3ZEWVBmTzR0NHB1ZnpvcTJ4SFpOdTdibWtBcDVlejRoRXVDZmkwQXVlaUxSNjJrNkx0NA?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego, el multimillonario opositor a Claudia Sheinbaum, sobre cómo debe ser el salario en México: \"El sueldo fijo es una beca, la gente tiene que sentir que si se esfuerza gana más\" -",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1384,7 +1386,7 @@
       "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTm1sYkxrUWhTcExRUWF4MkM3M2pKUkxKZ3F5NHloVXRYZC10YkQzb0ptTHdtT3VObXJZSTlOOTJaN2lyajN3aXNLM3BvdGVoOUVaVzdDaDZtNEg4QmJLX2FSNEtZSklibjFmTmk1WmNLeW9pOGhrZS1IZXl6cmpDenRoUWhPaWxaWUpWQmlNLWxzVHV0VzRudk44NFh4S1hZUkNHR0RzazBwZGpTNmxDYzVjbTkwdW9X?oc=5",
       "nota_texto": "Visa de Andy y caso Rocha Moya ponen a prueba al gobierno de Sheinbaum: Roy Campos - emsavalles.com",
       "es_nuevo": false,
-      "categoria": "Relación Bilateral",
+      "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "fecha_apagado": "2026-10-01"
     },
@@ -1457,7 +1459,7 @@
   ],
   "tablero_semana_inicio": "2026-09-28",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "sin_mananera",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1515,5 +1517,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-03 09:14"
+  "hora_corte_publicada": "2026-10-03 12:48"
 }
