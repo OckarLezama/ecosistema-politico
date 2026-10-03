@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-02T14:39:55.958538-06:00",
+  "generado_en": "2026-10-02T18:25:12.837626-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 9,
+  "n_notas_ventana": 10,
   "baja_confianza": false,
-  "tension_nacional": 39,
+  "tension_nacional": 40,
   "tension_anomalia": {
-    "z": 0.16,
+    "z": 0.23,
     "nivel": "normal",
     "media_periodo": 36.6,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 66,
+      "peso_pct": 70,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 3,
-      "n_notas": 6,
+      "n_notas": 7,
       "notas": [
         {
           "texto": "🔴Andrés Manuel López Beltrán informa que se registró como aspirante a Coordinador de los Comités de la Defensa de la Cuarta Transformación y de la Soberanía Nacional del Distrito 6 de Tabasco. Señaló ",
@@ -36,6 +36,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOZkF3LUlVamxOTHdueEZydUd2Q3pDRUFwekFLV2htQmZXNVZYMEZvWlFKQ0p6VkZONnUzQ0V1YjFnTjZDbUdISXgwZmFyNXpBVEUzRkxpaUowS0dub2g3WmtTWGpENEtzR2F6a1lRMHViTFo0QjEwU1cyVEF6UDVvVXJHUnlrQkJBYTE4M1ZhMDVHMC1HbGNRTGlQMDZSSTBJWG5qbW94X0JXUkl1VTlBXw?oc=5",
           "intensidad": 7.0,
           "medio": "Aristegui Noticias"
+        },
+        {
+          "texto": "Andrés Manuel López Beltrán busca coordinar Morena en Tabasco mientras avanzan indagatorias sobre huachicol fiscal - sinaloahoy.com.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPLVg3RFhXbW1XTS1qMGJnVk5WekJMUXNlbEVjUUw4QURxRGxrb3JIZVhtdVBIZXI2VDhRY3dvWDU0ZEFrYlNZTUx1empWT0JjaVROX29Tblo2SkxRQ2RoRUNHSUZINTRKLUJaaDloS2hmemtpd256RUZyUlhreWE5dHJlMHByRXp2bERBSXFnTkFOM1dpNHJiQ2hJSnN5dy1oRmpVUHZBNUdWeUl2MlF0LW5xSFQyMEdNUVpINGxMN1VsaDZzTzFzWjlSU0t4bXRZdGVmeENFVUduX0FabklMb1FnWkIyUTQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "sinaloahoy.com.mx"
         },
         {
           "texto": "¿Quién es el Capitán Sol, detenido por huachicol fiscal? - Reforma",
@@ -59,7 +65,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 12,
+      "peso_pct": 11,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 1,
@@ -75,7 +81,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 12,
+      "peso_pct": 11,
       "tema_principal": "Visa de Andy",
       "tema_principal_id": "visa-de-andy",
       "n_temas": 1,
@@ -91,7 +97,7 @@
     },
     {
       "categoria": "Social",
-      "peso_pct": 10,
+      "peso_pct": 9,
       "tema_principal": "Acusan de agresión a 2 guardias de un centro de detención de migrantes en Florid",
       "tema_principal_id": "auto-e5f040f156",
       "n_temas": 1,
@@ -800,7 +806,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
@@ -808,7 +814,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -908,7 +914,7 @@
       "id": "auto-d289c839e6",
       "nombre": "A sus órdenes, ‘Capitana’: ¿Quién fue Manuela Molina, mujer que lideró las tropa",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 19,
+      "dias_silencio": 20,
       "motivo": "¿Quién era Fernanda Gastélum, la mujer embarazada que fue víctima de feminicidio?",
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/fernanda-gastelum-quien-era-la-maestra-embarazada-victima-de-feminicidio-en-los-mochis-20261002-0123.html",
@@ -919,7 +925,7 @@
       "id": "auto-e44925e90d",
       "nombre": "CFE interpone denuncia ante la FGR por el apagón en Yucatán",
       "categoria": "Seguridad Nacional",
-      "dias_silencio": 14,
+      "dias_silencio": 15,
       "motivo": "Alumnos denuncian en TikTok al gobernador de Yucatán porque no les construye una escuela digna - Proceso",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPdnk1YUJtQ0FZd0tRUFFqeEthVDE1aDNPTHJJd1htSzhGMTc2OEE0YmpXODM1ZW9rWFFFN0VCSUN6YWVROHdFY1NyVUJ1Q2ZKMkx6MU5OdTU1WjlNSVBTN2pXQ2hrdjM2cW9HNkhBSmdTcGUyalFrZWpkcGNUcHVwWC1ZVU0tNXRLQy1qbF8xMTFJRmJPWEp2TThwVTlOeENubFNnMWYyR01wUFlReWdhQmpLa0R1WS16aWJITkNVR2tRcVB5SGN3aWdlSjc4YjJXTUt5eEJTb0htNllVZk1uNU9rd2NMQVk?oc=5",
@@ -930,7 +936,7 @@
       "id": "auto-801ea97efb",
       "nombre": "¡DEPORTE QUE FORMA PARA LA VIDA!",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 10,
+      "dias_silencio": 11,
       "motivo": "🔔 ALERTA — Deportación de migrantes - MILENIO",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNMVk3VEtLU1gxcTFMZ2pTa041Y1MtSUtqazJOM0hPTHNNYVd5MnRMNGVVZE5KdVVUaTAwVGZCeDVkMlNoVElCeFhGMzZLNUdQM2dQUHBDcHB4U1MwYmRqOG9FdTA5UEpjNUJ6cWRVcnR3T2ZtT1BSTll1eEJlSWFRNlFCVTVsZkxwY2FtSG15V0FhODTSAZMBQVVfeXFMUHBaNGdZQ1ZvQWZYcllpLUpNdHZfUThzUXpSZWp2T1NCem9hbXA5YmpJNURRRjhnYklxSHluV2xHLXhqOW1VWlUxdlZidjhwOHQ3WDdpYjM0TEo4NE9rTFQ1UGZxdFl6YVRBRlBENkZ2ZjRkcEl1SjhMQ0JRaDg5b25HdHkxMmU1VW00U2tHdmM4bjlJ?oc=5",
@@ -938,26 +944,26 @@
       "fuente_url_anterior": "http://campechehoy.mx/2026/09/21/deporte-que-forma-para-la-vida/"
     },
     {
+      "id": "auto-f8081d6ba1",
+      "nombre": "Registra gobernador May 43.1 por ciento de aprobación y se posiciona en el lugar",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 10,
+      "motivo": "Gobernadora Delfina Gómez llega a mitad de gobierno con 65.7% de aprobación y ocupa sexto lugar nacional",
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/02/gobernadora-delfina-gomez-llega-a-mitad-de-gobierno-con-657-de-aprobacion-y-ocupa-sexto-lugar-nacional/",
+      "fecha_anterior": "2026-09-22",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNMFdIdDMxVm9HNmRmUzA0TXJ2ejNuT0U3b2hJU0dtNjRNcFNCcTF4UE5adU5mVUd2cXZ3STRjZjBGUWJVa09RUGNsZ3ZPX1gxUVFsanRGQ3VtcEhaZWpyWVlSamF2MVFMdUFRRGxsZ00xYkhXV2h1UzBmZEE0ejhZelBpMkZQeWVkTExlaTZPRFJDS2s5YlVsYTJtdC1mRU9EcG4wNHlvMDByX2RjY3ZjazBtZXVxVmJYLUNTb3c3OVpFdFVEY3dYMEU1SkFwSWhBTk9sbkFhdUJhT29t?oc=5"
+    },
+    {
       "id": "auto-4535b9ed95",
       "nombre": "Kenia López Rabadán exige revisar definición de “mujer” en ley contra feminicidi",
       "categoria": "Relación Bilateral",
-      "dias_silencio": 8,
+      "dias_silencio": 9,
       "motivo": "Las familias merecen más: apoyos sociales y salud de calidad, escribe Kenia López Rabadán - El Universal",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOYTYzTW1EcUNmS1FsempQRmxscWpDZXJwbGxwNVhKWWVkQVZhMnBiM0ZkcWgzeFNPbWM1Sm1reDhaYlZ6TTVtd3BPRlRDNmx2Snd6c3JweWkyY3JNbFlRd01wWkZkQWM2aDRNNVpITDBGQXo2T0F5S3huV25YX1BKTEFXSUd5R2Qzd1VBQjJ5VWxuNFllYkJUOVJpenRodjlFV2d4aXlCRVRIa1BBUVhYOWNZNlExdXlYUXM4?oc=5",
       "fecha_anterior": "2026-09-23",
       "fuente_url_anterior": "https://heraldodemexico.com.mx/nacional/2026/9/23/kenia-lopez-rabadan-exige-revisar-definicion-de-mujer-en-ley-contra-feminicidio-893709.html"
-    },
-    {
-      "id": "auto-f3769c926a",
-      "nombre": "Familiares de Miguel \"Quetu\" denuncian desconocer su paradero, acusan abandono d",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 8,
-      "motivo": "Pedro Miguel: Del descontento al linchamiento",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/02/politica/015a2pol?partner=rss",
-      "fecha_anterior": "2026-09-23",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPQ2xsZW9QUk1pQjhNTm8wUTBhMTRhcElMN0NiM1lQZ3ZyaWxwN3RsMUR5OHg3TWVJYUFQaWFqblB6anh1NTctYk5EX0VQWUJxODlPTzZqanZ4amhuVmN2X0ppOUJwRVRKdnBNTmVvUFYya0p1SXVUV0hKTTdUTG16dlg2T1V1YW1rNmNPVENhTWxLOTRnMzhZbEowRnBVcGNnaU1yZnc2WDVmTVlBR2FtN2JoVEo5aXVvMFYxVElsYjRoSmVVVXNHRHo0em0yVjJQdnJCZVNobVdGdHlGb0E?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1245,9 +1251,9 @@
     },
     {
       "fecha": "2026-10-02",
-      "tension": 39,
-      "n_notas": 9,
-      "n_alto_impacto": 5,
+      "tension": 40,
+      "n_notas": 10,
+      "n_alto_impacto": 6,
       "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     }
@@ -1268,8 +1274,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQVzd6UTM4MEJJcC1idWdxdjhtQVUwdXU4elp1V29Dc0o4SEdDZGo1cDh4MVkwNThBLVd5eHFTLUtyQ2tYM0NsU1JlYnJYU2szYWFsTzhJWmk3ZEZDWk1UcmRMRUVRZTBpVzNUYmkwc2RtdkYtZmFjMy1QWnBSajlsNmxWWlZDU3NvVldTWmhWTEd3ZFRnSWU3STI2N2lBUU9qdk4tcEYxbnVxbG1lVzF6MENtNEk5WWhNb18yUVM5cXY2dzlrQk5nVEtnNjdadnFCaGtXLVYzOWhlNXhzbFRISlRURDZHcTltNzJMcEJrOGIxWWs?oc=5",
-      "nota_texto": "“No se va a cerrar hasta que se llegue a la verdad”, Claudia Sheinbaum presenta nuevas líneas de investigación del caso Ayotzinapa - sprinforma.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
+      "nota_texto": "Claudia Sheinbaum cuestiona la actitud de la ONU ante tantas guerras… - Revista Fortuna",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1281,11 +1287,11 @@
       "iniciales": "AL",
       "x_lunes": 29,
       "y_lunes": 100,
-      "x_hoy": 38,
+      "x_hoy": 43,
       "y_hoy": 100,
-      "delta_pts": 6,
-      "alcance": 7,
-      "n_alto": 8,
+      "delta_pts": 9,
+      "alcance": 8,
+      "n_alto": 9,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
@@ -1315,8 +1321,7 @@
       "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false,
       "categoria": "Economía",
-      "dias_activo": 3,
-      "fecha_reactivado": "2026-10-02"
+      "dias_activo": 3
     },
     {
       "id": "morena_partido",
@@ -1621,11 +1626,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-02T09:29:51.578059-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Morena (partido político)"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-02 14:39"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-02 18:25"
 }
