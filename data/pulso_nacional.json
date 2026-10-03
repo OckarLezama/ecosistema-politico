@@ -1,65 +1,19 @@
 {
-  "generado_en": "2026-10-03T05:33:59.400330-06:00",
+  "generado_en": "2026-10-03T09:14:06.306476-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 12,
+  "n_notas_ventana": 10,
   "baja_confianza": false,
-  "tension_nacional": 40,
+  "tension_nacional": 43,
   "tension_anomalia": {
-    "z": 0.24,
+    "z": 0.44,
     "nivel": "normal",
     "media_periodo": 36.5,
     "dias_base": 27
   },
   "categorias_dia": [
     {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 48,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 4,
-      "n_notas": 6,
-      "notas": [
-        {
-          "texto": "¡Quieren seguir en el hueso! Hasta 150 diputados de morena buscan reelección en 2027",
-          "fuente_url": "https://imparcialoaxaca.mx/nacional/quieren-seguir-en-el-hueso-hasta-150-diputados-de-morena-buscan-reeleccion-en-2027/",
-          "intensidad": 7.0,
-          "medio": "imparcialoaxaca.mx"
-        },
-        {
-          "texto": "Miguel Ángel Solano llega al Altiplano por presunto huachicol fiscal - Aristegui Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOZkF3LUlVamxOTHdueEZydUd2Q3pDRUFwekFLV2htQmZXNVZYMEZvWlFKQ0p6VkZONnUzQ0V1YjFnTjZDbUdISXgwZmFyNXpBVEUzRkxpaUowS0dub2g3WmtTWGpENEtzR2F6a1lRMHViTFo0QjEwU1cyVEF6UDVvVXJHUnlrQkJBYTE4M1ZhMDVHMC1HbGNRTGlQMDZSSTBJWG5qbW94X0JXUkl1VTlBXw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Aristegui Noticias"
-        },
-        {
-          "texto": "Andrés Manuel López Beltrán busca coordinar Morena en Tabasco mientras avanzan indagatorias sobre huachicol fiscal - sinaloahoy.com.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPLVg3RFhXbW1XTS1qMGJnVk5WekJMUXNlbEVjUUw4QURxRGxrb3JIZVhtdVBIZXI2VDhRY3dvWDU0ZEFrYlNZTUx1empWT0JjaVROX29Tblo2SkxRQ2RoRUNHSUZINTRKLUJaaDloS2hmemtpd256RUZyUlhreWE5dHJlMHByRXp2bERBSXFnTkFOM1dpNHJiQ2hJSnN5dy1oRmpVUHZBNUdWeUl2MlF0LW5xSFQyMEdNUVpINGxMN1VsaDZzTzFzWjlSU0t4bXRZdGVmeENFVUduX0FabklMb1FnWkIyUTQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "sinaloahoy.com.mx"
-        },
-        {
-          "texto": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
-        },
-        {
-          "texto": "Huachicol fiscal: detienen a excoordinador externo de Aduanas vinculado a los hermanos Farías Laguna - Grupo Animal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNbkJ0TlFPTFFuNTFXbkNzTm1Lc19YeE16N0xoZmRZdnRUb2g0LTJzV2tYTzNSc05lOHY3ZGk0VFdmUjdsN3JURVRFR0J2aG1qdjZqb01vVXFZMW5JSmVZSWNfODFsaVpQWEt1S2hiblN4Rk5CRUNES2sySF9YYlNlUnJibGc0S3c?oc=5",
-          "intensidad": 6.0,
-          "medio": "Grupo Animal"
-        },
-        {
-          "texto": "Castigarán abandono de mujeres embarazadas.",
-          "fuente_url": "http://campechehoy.mx/2026/10/02/castigaran-abandono-de-mujeres-embarazadas/",
-          "intensidad": 4.0,
-          "medio": "campechehoy.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 35,
+      "peso_pct": 42,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 2,
@@ -92,8 +46,58 @@
       ]
     },
     {
+      "categoria": "Gobernabilidad",
+      "peso_pct": 30,
+      "tema_principal": "Presenta el gobierno de Yucatán proyectos en el foro Momento Mexicano: MUUK’ The",
+      "tema_principal_id": "auto-849ce1462c",
+      "n_temas": 2,
+      "n_notas": 3,
+      "notas": [
+        {
+          "texto": "Andrés Manuel López Beltrán busca coordinar Morena en Tabasco mientras avanzan indagatorias sobre huachicol fiscal - sinaloahoy.com.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPLVg3RFhXbW1XTS1qMGJnVk5WekJMUXNlbEVjUUw4QURxRGxrb3JIZVhtdVBIZXI2VDhRY3dvWDU0ZEFrYlNZTUx1empWT0JjaVROX29Tblo2SkxRQ2RoRUNHSUZINTRKLUJaaDloS2hmemtpd256RUZyUlhreWE5dHJlMHByRXp2bERBSXFnTkFOM1dpNHJiQ2hJSnN5dy1oRmpVUHZBNUdWeUl2MlF0LW5xSFQyMEdNUVpINGxMN1VsaDZzTzFzWjlSU0t4bXRZdGVmeENFVUduX0FabklMb1FnWkIyUTQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "sinaloahoy.com.mx"
+        },
+        {
+          "texto": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Universal"
+        },
+        {
+          "texto": "Puertos y aduanas, claves en la trama del huachicol fiscal",
+          "fuente_url": "https://www.informador.mx/mexico/combustible-puertos-y-aduanas-claves-enla-trama-del-huachicol-fiscal-20261003-0032.html",
+          "intensidad": 6.0,
+          "medio": "informador.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 18,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "EU abre consulta pública rumbo a revisión del T-MEC en 2027 - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNSjlOM3J0emJsLVV2bmFtVTExT3cyMEtxSWVLWTF0cDVodzJpejVGNTQwUlV2NlJRNk91X25rTzlEUGtycXZVZkRheEE4M3d6aHZITlBLSzl6aHdJNTl3RkozR21nbWtDMjhLX3BHMF9kSE5KNEo2NHhXcEY0Z0VlUkFITjhwUUE5ckHSAYoBQVVfeXFMTUo5TjNydHpibC1Vdm5hbVUxMU93MjBLcUllS1kxdHA1aHcyaXo1RjU0MFJVdjZSUTZPdV9ua085RFBrcnF2VWZEYXhBODN3emh2SE5QS0s5emh3STU5d0ZKM0dtZ21rQzI4S19wRzBfZEhOSjRKNjR4V3BGNGdFZVJBSE44cFFBOXJB?oc=5",
+          "intensidad": 6.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "Denuncian violaciones a la ley por la presa Mujer Solteca",
+          "fuente_url": "https://imparcialoaxaca.mx/oaxaca/denuncian-violaciones-a-la-ley-por-la-presa-mujer-solteca/",
+          "intensidad": 6.0,
+          "medio": "imparcialoaxaca.mx"
+        }
+      ]
+    },
+    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 9,
+      "peso_pct": 10,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -104,22 +108,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTm1sYkxrUWhTcExRUWF4MkM3M2pKUkxKZ3F5NHloVXRYZC10YkQzb0ptTHdtT3VObXJZSTlOOTJaN2lyajN3aXNLM3BvdGVoOUVaVzdDaDZtNEg4QmJLX2FSNEtZSklibjFmTmk1WmNLeW9pOGhrZS1IZXl6cmpDenRoUWhPaWxaWUpWQmlNLWxzVHV0VzRudk44NFh4S1hZUkNHR0RzazBwZGpTNmxDYzVjbTkwdW9X?oc=5",
           "intensidad": 7.0,
           "medio": "emsavalles.com"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 8,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "EU abre consulta pública rumbo a revisión del T-MEC en 2027 - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNSjlOM3J0emJsLVV2bmFtVTExT3cyMEtxSWVLWTF0cDVodzJpejVGNTQwUlV2NlJRNk91X25rTzlEUGtycXZVZkRheEE4M3d6aHZITlBLSzl6aHdJNTl3RkozR21nbWtDMjhLX3BHMF9kSE5KNEo2NHhXcEY0Z0VlUkFITjhwUUE5ckHSAYoBQVVfeXFMTUo5TjNydHpibC1Vdm5hbVUxMU93MjBLcUllS1kxdHA1aHcyaXo1RjU0MFJVdjZSUTZPdV9ua085RFBrcnF2VWZEYXhBODN3emh2SE5QS0s5emh3STU5d0ZKM0dtZ21rQzI4S19wRzBfZEhOSjRKNjR4V3BGNGdFZVJBSE44cFFBOXJB?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
         }
       ]
     },
@@ -826,7 +814,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -841,14 +829,14 @@
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "Miguel Ángel Solano llega al Altiplano por presunto huachicol fiscal - Aristegui Noticias",
-      "peso": 13.0,
+      "motivo": "Cae El Capitán Sol, operador logístico de los hermanos Farías en el huachicol",
+      "peso": 12.0,
       "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOZkF3LUlVamxOTHdueEZydUd2Q3pDRUFwekFLV2htQmZXNVZYMEZvWlFKQ0p6VkZONnUzQ0V1YjFnTjZDbUdISXgwZmFyNXpBVEUzRkxpaUowS0dub2g3WmtTWGpENEtzR2F6a1lRMHViTFo0QjEwU1cyVEF6UDVvVXJHUnlrQkJBYTE4M1ZhMDVHMC1HbGNRTGlQMDZSSTBJWG5qbW94X0JXUkl1VTlBXw?oc=5",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/03/politica/009n1pol?partner=rss",
       "actor_vinculado": {
         "id": "ernesto_ruffo",
         "nombre": "Ernesto Ruffo Appel"
@@ -921,28 +909,6 @@
   ],
   "temas_retomados": [
     {
-      "id": "auto-d289c839e6",
-      "nombre": "A sus órdenes, ‘Capitana’: ¿Quién fue Manuela Molina, mujer que lideró las tropa",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 20,
-      "motivo": "¿Quién era Fernanda Gastélum, la mujer embarazada que fue víctima de feminicidio?",
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/fernanda-gastelum-quien-era-la-maestra-embarazada-victima-de-feminicidio-en-los-mochis-20261002-0123.html",
-      "fecha_anterior": "2026-09-12",
-      "fuente_url_anterior": "https://www.elfinanciero.com.mx/nacional/2026/09/12/a-sus-ordenes-capitana-quien-fue-manuela-molina-mujer-que-lidero-las-tropas-en-la-independencia/"
-    },
-    {
-      "id": "auto-e44925e90d",
-      "nombre": "CFE interpone denuncia ante la FGR por el apagón en Yucatán",
-      "categoria": "Seguridad Nacional",
-      "dias_silencio": 15,
-      "motivo": "Alumnos denuncian en TikTok al gobernador de Yucatán porque no les construye una escuela digna - Proceso",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPdnk1YUJtQ0FZd0tRUFFqeEthVDE1aDNPTHJJd1htSzhGMTc2OEE0YmpXODM1ZW9rWFFFN0VCSUN6YWVROHdFY1NyVUJ1Q2ZKMkx6MU5OdTU1WjlNSVBTN2pXQ2hrdjM2cW9HNkhBSmdTcGUyalFrZWpkcGNUcHVwWC1ZVU0tNXRLQy1qbF8xMTFJRmJPWEp2TThwVTlOeENubFNnMWYyR01wUFlReWdhQmpLa0R1WS16aWJITkNVR2tRcVB5SGN3aWdlSjc4YjJXTUt5eEJTb0htNllVZk1uNU9rd2NMQVk?oc=5",
-      "fecha_anterior": "2026-09-17",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPZmota21aS21rWDgtYWxGVUEydjI5RTNhbW9PYmxPRjMybnFCQVdXaVpuVTl0bVJpc1Q2VWEtdm5PSFp1MlA3RXE0S3ZoUXltcnhVNVF3ajhQYzNqNXNGMFFjWGV2bDZDT3Iyc3NVLWtsbTFacmhpNnZaTldTMVc5cXpTWEtNX3hDYzhOUTZuX2VkYVF4TUhHWWhabnlaVGVjTDFyWF9obDFJU0RwZFRRSmxTclRfUUxtaVVFUnpOYWZQa2l3NzdMbtIByAFBVV95cUxPZmota21aS21rWDgtYWxGVUEydjI5RTNhbW9PYmxPRjMybnFCQVdXaVpuVTl0bVJpc1Q2VWEtdm5PSFp1MlA3RXE0S3ZoUXltcnhVNVF3ajhQYzNqNXNGMFFjWGV2bDZDT3Iyc3NVLWtsbTFacmhpNnZaTldTMVc5cXpTWEtNX3hDYzhOUTZuX2VkYVF4TUhHWWhabnlaVGVjTDFyWF9obDFJU0RwZFRRSmxTclRfUUxtaVVFUnpOYWZQa2l3NzdMbg?oc=5"
-    },
-    {
       "id": "auto-354cbc302d",
       "nombre": "Escándalo en Perú: menores abusan en grupo de un adolescente de 16 años",
       "categoria": "Gobernabilidad",
@@ -978,45 +944,12 @@
   ],
   "actores_destacados": [
     {
-      "id": "amilcar_olan_aparicio",
-      "nombre": "Amílcar Olán Aparicio",
-      "rol": "Investigado",
-      "tema": "Listo, el expediente contra Samuel, escribe Carlos Loret de Mola - El Universal",
-      "nota": "La UIF investiga a Amílcar Olán, escribe Carlos Loret de Mola - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOcTFJNExKRS1DbFBuckV1QkN0d3lkYlRaZHk3M2c5bWRnMmJxcXlocE43NUZlS0g2VGItLTVubV9COTBrSDU3akstQVFoUTExZzZlU1ZuNV9lbnc5NDVqbVZFY1paNlZYTGhkNElRN0hsczhnNWVUZ25tZDNwVEFfNDR1TXJ1aThpM0NxaHVNX2NlUC1mdXNv?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "loret_de_mola",
-      "nombre": "Carlos Loret de Mola",
-      "rol": "Mencionado",
-      "tema": "Listo, el expediente contra Samuel, escribe Carlos Loret de Mola - El Universal",
-      "nota": "La UIF investiga a Amílcar Olán, escribe Carlos Loret de Mola - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOcTFJNExKRS1DbFBuckV1QkN0d3lkYlRaZHk3M2c5bWRnMmJxcXlocE43NUZlS0g2VGItLTVubV9COTBrSDU3akstQVFoUTExZzZlU1ZuNV9lbnc5NDVqbVZFY1paNlZYTGhkNElRN0hsczhnNWVUZ25tZDNwVEFfNDR1TXJ1aThpM0NxaHVNX2NlUC1mdXNv?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "ricardo_salinas_pliego",
       "nombre": "Ricardo Salinas Pliego",
       "rol": "Responsable institucional",
       "tema": "Presenta el gobierno de Yucatán proyectos en el foro Momento Mexicano: MUUK’ The",
       "nota": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
       "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Mencionado",
-      "tema": "Morena da a conocer hoy a los últimos coordinadores de la 4T previo a elecciones",
-      "nota": "Bernardo Bosch, hermano de la Miss Universo Fátima Bosch, se registra para una coordinación de Morena",
-      "fuente_url": "https://www.elfinanciero.com.mx/espectaculos/2026/10/02/bernardo-bosch-hermano-de-la-miss-universo-fatima-bosch-se-registra-para-una-coordinacion-de-morena/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1250,10 +1183,10 @@
     },
     {
       "fecha": "2026-10-03",
-      "tension": 62,
-      "n_notas": 2,
+      "tension": 44,
+      "n_notas": 4,
       "n_alto_impacto": 1,
-      "n_medio_impacto": 1,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
@@ -1273,8 +1206,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQVzd6UTM4MEJJcC1idWdxdjhtQVUwdXU4elp1V29Dc0o4SEdDZGo1cDh4MVkwNThBLVd5eHFTLUtyQ2tYM0NsU1JlYnJYU2szYWFsTzhJWmk3ZEZDWk1UcmRMRUVRZTBpVzNUYmkwc2RtdkYtZmFjMy1QWnBSajlsNmxWWlZDU3NvVldTWmhWTEd3ZFRnSWU3STI2N2lBUU9qdk4tcEYxbnVxbG1lVzF6MENtNEk5WWhNb18yUVM5cXY2dzlrQk5nVEtnNjdadnFCaGtXLVYzOWhlNXhzbFRISlRURDZHcTltNzJMcEJrOGIxWWs?oc=5",
-      "nota_texto": "“No se va a cerrar hasta que se llegue a la verdad”, Claudia Sheinbaum presenta nuevas líneas de investigación del caso Ayotzinapa - sprinforma.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
+      "nota_texto": "Claudia Sheinbaum cuestiona la actitud de la ONU ante tantas guerras… - Revista Fortuna",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1317,8 +1250,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxObm5ZUG0zNXJMNGdEWG1MZEQwcXBvMVRWa0hOc3luamh0ZVNSeVA4Zk05dkp6Qi1WcldwOXlwXzR4alRTUU5aLVpkLVNsajZ3QUxndGQ2aXpHVWZCQTBCVi1mcmxRekxoMkdIdGh2aVlFQ1luNmx0NW03NDBJSGxhcHZBcllRbU1qaXAzNnVnSDNBZWJhUGFwR2ZmWTNBR2ZzVEtxUWhqNmlVWDNBOURxdXR0SGNFc0gxeGRGMVBDaUYtc1V1X29DVzNLSFFFd9IB6AFBVV95cUxPakVfb1NJaXh1WEZheURWZlRFcUJLSk81YndvLWpuRWdMTDVKTGx3ZGRobTJaWmZYUjdNYzJsWmMtRGtOWlQ2S3l1NnJGcWp0TGFsWUVqbm5hWTUwaWZKd21JeFVjME9SRjBDM1ZHWHEweFFGVl9jVmtNaGtHdXkyX2U2MmxxalE4M3VoZmR4eWRzWW5BWDJNVG1WWEE4X2hTbTFxZVNpSEN0VVVJZG0xRDRZZnJIRXBYZmo0VU96dHBaZmd3eG04cFFSVng2MTZUajZsTkp3akwxRXg4eU1ZOFFaeDcwWEli?oc=5",
-      "nota_texto": "Amílcar Olán debe ser investigado por huachicol fiscal si existen pruebas, afirma Sheinbaum - Infobae",
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNaExzNnRMbFcxMV9wNUhKdzRXQVBiS2xmeEx4LWNzMExES2VWUlJieEk3UDlwU1JDc2h6bnlKSE1uTklZVDZXWFB4aWpuTnNjS2ZtczNnZDN5TGV2ZndzZHhhT1BEMkNiWm9pT1cwcHpncjBTcHl1SElpMUh1bDRwcTFYYzc2eWZ2d2RqZmdzZUdQYzY5Rm9PVDZxUUEwdzNncXV1dHJJNDhKU2p0WElUdEJPcWJPYlFmLWFrNFJjZVhlTThL?oc=5",
+      "nota_texto": "VIDEO: Así vive la “mano derecha” de Andy López Beltrán, Amílcar Olán, escondido en Suiza - adn40.mx",
       "es_nuevo": false,
       "categoria": "Economía",
       "dias_activo": 3,
@@ -1361,8 +1294,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxQaGc2RkJHeFZ6c1I0TXlfMGowWWdwSkdyVGZfVnZldy1kZGxaTmZXWmRMNl9zYVRmN0ZHYU5Uay1ONjlVd3dZMGZPcXV0ZXBDS004QzJFNllfTi1mUXNFYjZ1UVM4RXU5U0ExSVkzV3FkLWxwcEdsUmdKSFk4VjRYRk9fS29JMmc2V2NRWmg0Rjhuc0FsamZBNXZlMHhkTEFiX01kdEpRdGZFakxjclBQZWZvQmxRUVc4cXVzWnhVTnJ3Q2ZsTWFZSXFsRXRmRElQS2hSWjFsRklHeDM3V1dMRktXbERzck9LOUpsVHdwbmV4WjVOazgtazd2SWh4WW5LWlR1ZC1Tb21yWjFQMzBFTF84b2RqdG0zRk4weVB3eVNWZHVXaWotRjllR3N1alk2UHBXYTJKcHc3NVZLYjI2bWRkRTFxNXAzZVRBRzl30gHTAkFVX3lxTE53MmkzMXJYRHlFOVJxaGEzM2ZVbjVMMEQ4OVk2SDRIQUlkV2xYZ1U2eFN3M0NGRXZoQ1M5TG1oU2Q4MVVWd0ttSFJJUTg2NldKWC1UNFJVVGVhTW03emlFRHY0NWg0RUVuR3VUTjVickZfS0dHNmZjR2t5NDRHRkx3WW5fdEYtWTNGMVFKSDY3ZVQ1MGx3R0xOSWJqTTctS1pqRnd4Q1dxSTZHYVMwZDByRkdXTjljVWtvZGNrU1NycWh1WnJxd25vUi1NTG5weWlUUVFZUEJYWmRjMUhJM1lwYWdjc0FUTGhTNkZmMHk3UkhPZ0lNSktBSXc1WDNNVFpkUExsLU9IdXJqUURDcEkzQXpFRlFzQlFwRmdoYXNiR3ZEWVBmTzR0NHB1ZnpvcTJ4SFpOdTdibWtBcDVlejRoRXVDZmkwQXVlaUxSNjJrNkx0NA?oc=5",
-      "nota_texto": "Ricardo Salinas Pliego, el multimillonario opositor a Claudia Sheinbaum, sobre cómo debe ser el salario en México: \"El sueldo fijo es una beca, la gente tiene que sentir que si se esfuerza gana más\" -",
+      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1431,8 +1364,7 @@
       "nota_texto": "FGR reafirma que tiene pruebas contra Ernesto Ruffo Appel por huachicol fiscal - Exilio periodismo binacional",
       "es_nuevo": false,
       "categoria": "Seguridad Nacional",
-      "dias_activo": 3,
-      "fecha_reactivado": "2026-10-03"
+      "dias_activo": 3
     },
     {
       "id": "rocha_moya",
@@ -1452,7 +1384,7 @@
       "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTm1sYkxrUWhTcExRUWF4MkM3M2pKUkxKZ3F5NHloVXRYZC10YkQzb0ptTHdtT3VObXJZSTlOOTJaN2lyajN3aXNLM3BvdGVoOUVaVzdDaDZtNEg4QmJLX2FSNEtZSklibjFmTmk1WmNLeW9pOGhrZS1IZXl6cmpDenRoUWhPaWxaWUpWQmlNLWxzVHV0VzRudk44NFh4S1hZUkNHR0RzazBwZGpTNmxDYzVjbTkwdW9X?oc=5",
       "nota_texto": "Visa de Andy y caso Rocha Moya ponen a prueba al gobierno de Sheinbaum: Roy Campos - emsavalles.com",
       "es_nuevo": false,
-      "categoria": "Gobernabilidad",
+      "categoria": "Relación Bilateral",
       "dias_activo": 3,
       "fecha_apagado": "2026-10-01"
     },
@@ -1582,11 +1514,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-02T18:25:12.837626-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Ricardo Salinas Pliego"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-03 05:33"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-03 09:14"
 }
