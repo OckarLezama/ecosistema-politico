@@ -1,19 +1,19 @@
 {
-  "generado_en": "2026-10-03T19:57:52.931649-06:00",
+  "generado_en": "2026-10-04T02:22:01.327150-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 6,
+  "n_notas_ventana": 4,
   "baja_confianza": false,
-  "tension_nacional": 42,
+  "tension_nacional": 31,
   "tension_anomalia": {
-    "z": 0.37,
+    "z": -0.4,
     "nivel": "normal",
-    "media_periodo": 36.5,
+    "media_periodo": 37.0,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 48,
+      "peso_pct": 76,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 2,
@@ -40,30 +40,8 @@
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 38,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 1,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "FGR reafirma que tiene pruebas contra Ernesto Ruffo Appel por huachicol fiscal - Exilio periodismo binacional",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPLVhvMWp2bTk5MGZySkh3UUFWbF9iUUNobm1iZmthTE9WSmFGUjJBUW5HekZMUGRwb0pzWHVzNlJTdnJBUnFFdHlLNndXdTB3dmY2aUF1QzY3X0lUSU1SSjhTTTYxS20ybGZkbmMxWWtCWnFBOU5sOUJCbHJiOFo0Z2VaYmFnTkZUM2tBN0FZY0hPd3M1NGVLSmFkS1Y4cEYwNmZhTDk4Y210X2hNZEJjdFdZaDE1V21zaFE?oc=5",
-          "intensidad": 9.0,
-          "medio": "Exilio periodismo binacional"
-        },
-        {
-          "texto": "Cae El Capitán Sol, operador logístico de los hermanos Farías en el huachicol",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/03/politica/009n1pol?partner=rss",
-          "intensidad": 6.0,
-          "medio": "jornada.com.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Economía",
-      "peso_pct": 15,
+      "peso_pct": 24,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -76,6 +54,15 @@
           "medio": "imparcialoaxaca.mx"
         }
       ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Relación Bilateral",
@@ -97,31 +84,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-06",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 61
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 21
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 6
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 4
-        }
-      ]
-    },
     {
       "fecha": "2026-09-07",
       "categorias": [
@@ -796,6 +758,31 @@
           "peso_pct": 2
         }
       ]
+    },
+    {
+      "fecha": "2026-10-04",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 15
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 64
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 11
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 2
+        }
+      ]
     }
   ],
   "top5_temas": [
@@ -804,29 +791,18 @@
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "Cae El Capitán Sol, operador logístico de los hermanos Farías en el huachicol",
-      "peso": 12.0,
+      "motivo": "Puertos y aduanas, claves en la trama del huachicol fiscal",
+      "peso": 6.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/03/politica/009n1pol?partner=rss",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.informador.mx/mexico/combustible-puertos-y-aduanas-claves-enla-trama-del-huachicol-fiscal-20261003-0032.html",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-96e3511ba0",
-      "nombre": "Beñat Zaldua: Pedro Sánchez, a un suspiro de las elecciones",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/03/politica/012a1pol?partner=rss"
-    },
     {
       "id": "auto-c9bfdea961",
       "nombre": "Remesas sí, derechos políticos no, ¿así trata México a sus migrantes?, escribe E",
@@ -882,17 +858,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQUVYtMUFBNnBMeXNydk8wX3JpMVZXcXBONW1zYm9kMjFucDdGY1BuYWJEWVJ3T3QwU0dPRWtZQk9rSlhxc2NhX2t6UXQ4YnlNR1ozamk5TUtUdmRYeEg1dDB6UDEtQlo1NldueDF5dWVkOTNoN0wyTWR4UlZJa3ViV0JDR2VBWmhJckFyU0RpOTNQU0txM3pPeHlieVhVRnR6Uk5CamtWc1N6cHQ0M1dTUkE3M0U3S1k?oc=5",
       "fecha_anterior": "2026-09-22",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE01bGdwei16bjMyMW8yT05jT1VPakhULW11a2FfbWZISFNvajd4S08wMnUyeEZCS2VFZnAwQ1lKTGxtNVd1WTljTkJmT015QQ?oc=5"
-    },
-    {
-      "id": "auto-60edd74a19",
-      "nombre": "Amaga PT con dejar la Cuarta Transformación si Morena no acepta sus errores - Qu",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 11,
-      "motivo": "Propone un magistrado dejar que el PRI llame narcopartido a Morena",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/03/politica/011n3pol?partner=rss",
-      "fecha_anterior": "2026-09-22",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQMDBlN3ZJT0ItTFZPdGlOQWdaLXlsbjRnM2VDWHprc2F6eC1vdkIyWnNuT1VZVmYwSUcwb1JkNG5pTk1TMm1tSjVrdkJiNU1sWFRMdkVFNXNpaEVYdTduWVJYVUNoUmRjMnA1UEJIOV9rbEIyd3hlZ0ZIVGw3OGxVakZJUXc4QzFWVzZBOVZDamZOWWxJT1U5ck93Rms?oc=5"
     }
   ],
   "actores_destacados": [
@@ -929,14 +894,6 @@
     "nivel_fuente": "ALTA"
   },
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-06",
-      "tension": 28,
-      "n_notas": 9,
-      "n_alto_impacto": 4,
-      "n_medio_impacto": 5,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-07",
       "tension": 28,
@@ -1152,6 +1109,14 @@
       "n_alto_impacto": 2,
       "n_medio_impacto": 4,
       "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-04",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
+      "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
@@ -1170,8 +1135,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
-      "nota_texto": "Claudia Sheinbaum cuestiona la actitud de la ONU ante tantas guerras… - Revista Fortuna",
+      "nota_url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQVzd6UTM4MEJJcC1idWdxdjhtQVUwdXU4elp1V29Dc0o4SEdDZGo1cDh4MVkwNThBLVd5eHFTLUtyQ2tYM0NsU1JlYnJYU2szYWFsTzhJWmk3ZEZDWk1UcmRMRUVRZTBpVzNUYmkwc2RtdkYtZmFjMy1QWnBSajlsNmxWWlZDU3NvVldTWmhWTEd3ZFRnSWU3STI2N2lBUU9qdk4tcEYxbnVxbG1lVzF6MENtNEk5WWhNb18yUVM5cXY2dzlrQk5nVEtnNjdadnFCaGtXLVYzOWhlNXhzbFRISlRURDZHcTltNzJMcEJrOGIxWWs?oc=5",
+      "nota_texto": "“No se va a cerrar hasta que se llegue a la verdad”, Claudia Sheinbaum presenta nuevas líneas de investigación del caso Ayotzinapa - sprinforma.mx",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1191,13 +1156,13 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQLTZBd1hCbExKbmVSWUJwMV9KUklibGRXQk1JVkVRUW9IUGJnQ0VhVzB1a1N1bU9FMnNHRTV6YXZYXzQtWXg4SElCN1FQazMxbHQ5SGphZ2IzZHlfdHJSNHk5RGh5cTdSMzB4bVA3WjBJT1dyd2Y2VV8tUzFxUDR5YWtjRlQtRHMzaXVUNGxmN29maXJDUjZ6OFNENjNDSzJOaGV0OUdlQmUtRDJ5YkZVZjR6U2pBU09CVWNyZDBKZ3NQb0dhSUxjajNUa3F6RER4M1pSNE9pTVdSV0tIMVZKV1diTkJxdDF2M1BKbUliNjF4N01NaUE?oc=5",
       "nota_texto": "🔴Andrés Manuel López Beltrán informa que se registró como aspirante a Coordinador de los Comités de la Defensa de la Cuarta Transformación y de la Soberanía Nacional del Distrito 6 de Tabasco. Señaló ",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
-      "fecha_reactivado": "2026-10-03"
+      "fecha_apagado": "2026-10-04"
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1258,8 +1223,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
-      "nota_texto": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
+      "nota_url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxQaGc2RkJHeFZ6c1I0TXlfMGowWWdwSkdyVGZfVnZldy1kZGxaTmZXWmRMNl9zYVRmN0ZHYU5Uay1ONjlVd3dZMGZPcXV0ZXBDS004QzJFNllfTi1mUXNFYjZ1UVM4RXU5U0ExSVkzV3FkLWxwcEdsUmdKSFk4VjRYRk9fS29JMmc2V2NRWmg0Rjhuc0FsamZBNXZlMHhkTEFiX01kdEpRdGZFakxjclBQZWZvQmxRUVc4cXVzWnhVTnJ3Q2ZsTWFZSXFsRXRmRElQS2hSWjFsRklHeDM3V1dMRktXbERzck9LOUpsVHdwbmV4WjVOazgtazd2SWh4WW5LWlR1ZC1Tb21yWjFQMzBFTF84b2RqdG0zRk4weVB3eVNWZHVXaWotRjllR3N1alk2UHBXYTJKcHc3NVZLYjI2bWRkRTFxNXAzZVRBRzl30gHTAkFVX3lxTE53MmkzMXJYRHlFOVJxaGEzM2ZVbjVMMEQ4OVk2SDRIQUlkV2xYZ1U2eFN3M0NGRXZoQ1M5TG1oU2Q4MVVWd0ttSFJJUTg2NldKWC1UNFJVVGVhTW03emlFRHY0NWg0RUVuR3VUTjVickZfS0dHNmZjR2t5NDRHRkx3WW5fdEYtWTNGMVFKSDY3ZVQ1MGx3R0xOSWJqTTctS1pqRnd4Q1dxSTZHYVMwZDByRkdXTjljVWtvZGNrU1NycWh1WnJxd25vUi1NTG5weWlUUVFZUEJYWmRjMUhJM1lwYWdjc0FUTGhTNkZmMHk3UkhPZ0lNSktBSXc1WDNNVFpkUExsLU9IdXJqUURDcEkzQXpFRlFzQlFwRmdoYXNiR3ZEWVBmTzR0NHB1ZnpvcTJ4SFpOdTdibWtBcDVlejRoRXVDZmkwQXVlaUxSNjJrNkx0NA?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego, el multimillonario opositor a Claudia Sheinbaum, sobre cómo debe ser el salario en México: \"El sueldo fijo es una beca, la gente tiene que sentir que si se esfuerza gana más\" -",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1323,12 +1288,13 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPLVhvMWp2bTk5MGZySkh3UUFWbF9iUUNobm1iZmthTE9WSmFGUjJBUW5HekZMUGRwb0pzWHVzNlJTdnJBUnFFdHlLNndXdTB3dmY2aUF1QzY3X0lUSU1SSjhTTTYxS20ybGZkbmMxWWtCWnFBOU5sOUJCbHJiOFo0Z2VaYmFnTkZUM2tBN0FZY0hPd3M1NGVLSmFkS1Y4cEYwNmZhTDk4Y210X2hNZEJjdFdZaDE1V21zaFE?oc=5",
       "nota_texto": "FGR reafirma que tiene pruebas contra Ernesto Ruffo Appel por huachicol fiscal - Exilio periodismo binacional",
       "es_nuevo": false,
       "categoria": "Seguridad Nacional",
-      "dias_activo": 3
+      "dias_activo": 3,
+      "fecha_apagado": "2026-10-04"
     },
     {
       "id": "rocha_moya",
@@ -1348,7 +1314,7 @@
       "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTm1sYkxrUWhTcExRUWF4MkM3M2pKUkxKZ3F5NHloVXRYZC10YkQzb0ptTHdtT3VObXJZSTlOOTJaN2lyajN3aXNLM3BvdGVoOUVaVzdDaDZtNEg4QmJLX2FSNEtZSklibjFmTmk1WmNLeW9pOGhrZS1IZXl6cmpDenRoUWhPaWxaWUpWQmlNLWxzVHV0VzRudk44NFh4S1hZUkNHR0RzazBwZGpTNmxDYzVjbTkwdW9X?oc=5",
       "nota_texto": "Visa de Andy y caso Rocha Moya ponen a prueba al gobierno de Sheinbaum: Roy Campos - emsavalles.com",
       "es_nuevo": false,
-      "categoria": "Relación Bilateral",
+      "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "fecha_apagado": "2026-10-01"
     },
@@ -1421,7 +1387,7 @@
   ],
   "tablero_semana_inicio": "2026-09-28",
   "resumen_mananera": [],
-  "mananera_estado": "sin_mananera",
+  "mananera_estado": "pendiente",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1478,11 +1444,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-03T12:48:43.471047-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Carlos Alberto Puente Salas"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-03 19:57"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-04 02:22"
 }
