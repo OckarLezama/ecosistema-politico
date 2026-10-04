@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-04T02:22:01.327150-06:00",
+  "generado_en": "2026-10-04T08:20:43.814865-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 4,
+  "n_notas_ventana": 3,
   "baja_confianza": false,
-  "tension_nacional": 31,
+  "tension_nacional": 42,
   "tension_anomalia": {
-    "z": -0.4,
+    "z": 0.34,
     "nivel": "normal",
     "media_periodo": 37.0,
     "dias_base": 27
@@ -13,23 +13,17 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 76,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal",
+      "peso_pct": 65,
+      "tema_principal": null,
+      "tema_principal_id": null,
       "n_temas": 2,
-      "n_notas": 3,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Andy López Beltrán da un paso rumbo a 2027; se registra en Morena por un distrito de Tabasco - Periódico La Voz",
           "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQd1RBR3pVRHNlaFhfWjJYOE9XUThaSFhNSzBGaGt6ZHVCU0FFUkdqWmdkZzd6U3RUbHluanloLTlabjFfa3lZc1BCMUhIeHc3S2loa0U3Si0tNWgxSndXMnpsZVRUUWdHWGFkOWtqd2g5c1k5MldaRUpDY0ZCRGtWbEJBdjM0YWhnUFhDMXY3UVRBREJvRlVjdV9R0gGfAUFVX3lxTE9GczI0RkhBS3BmcjNZNWtrdDFydzVCQjlwWjdiaGV0VXFuajNCcXQzdlZKeG8xellCdGNKeTZFVS11Nmhvdy1Eb1FQZ0J6cENuZHBteURhQWRUanhkQ3FsRDlqWlNEVWp1VmlvM1JDUm1nQ21yZjRoMlBha2dCY2FxR2hCc0I3Q1JwZVVoeHJSeUJHeWtBU0dqTFdXWjczWQ?oc=5",
           "intensidad": 7.0,
           "medio": "Periódico La Voz"
-        },
-        {
-          "texto": "Puertos y aduanas, claves en la trama del huachicol fiscal",
-          "fuente_url": "https://www.informador.mx/mexico/combustible-puertos-y-aduanas-claves-enla-trama-del-huachicol-fiscal-20261003-0032.html",
-          "intensidad": 6.0,
-          "medio": "informador.mx"
         },
         {
           "texto": "“Capitán Sol”: quién es el exmando naval detenido por huachicol fiscal en Zapopan - Grupo Animal",
@@ -40,23 +34,23 @@
       ]
     },
     {
-      "categoria": "Economía",
-      "peso_pct": 24,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 35,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Denuncian violaciones a la ley por la presa Mujer Solteca",
-          "fuente_url": "https://imparcialoaxaca.mx/oaxaca/denuncian-violaciones-a-la-ley-por-la-presa-mujer-solteca/",
-          "intensidad": 6.0,
-          "medio": "imparcialoaxaca.mx"
+          "texto": "Sirvió El Capitán Sol de enlace para huachicol fiscal",
+          "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/004n3pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
         }
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
+      "categoria": "Relación Bilateral",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -65,7 +59,7 @@
       "notas": []
     },
     {
-      "categoria": "Relación Bilateral",
+      "categoria": "Economía",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -791,33 +785,41 @@
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "Puertos y aduanas, claves en la trama del huachicol fiscal",
-      "peso": 6.0,
+      "motivo": "Sirvió El Capitán Sol de enlace para huachicol fiscal",
+      "peso": 7.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.informador.mx/mexico/combustible-puertos-y-aduanas-claves-enla-trama-del-huachicol-fiscal-20261003-0032.html",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/004n3pol?partner=rss",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-c9bfdea961",
-      "nombre": "Remesas sí, derechos políticos no, ¿así trata México a sus migrantes?, escribe E",
+      "id": "auto-39d68d999c",
+      "nombre": "Apoya el Acnur la nueva política para refugiados",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxORDQ5LWQ1OHAxMHRyMlA4WTJ0b1BhTUJtaEl0em1LTDRIS1ZwVE5NV0ZfSTVNS3FUS1BiMmx6NEVBbS15eVdzV20tX1RxVGI2VFp5WmxJRGthcFJOdHRnVkFwcEZteGVueVR1ZGY3M2puQmdZdEtEYVpkNkdjb0JEWTdfUC1kczhOVElUS3l4NDNlUHNwekZvWFBIeG85UlVSU01uLUhlelg3WHhucHMtU1ZOa2VjQzBuMlU0dnhLLWlTUVVl?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/008n1pol?partner=rss"
     },
     {
-      "id": "auto-e56ce3fb32",
-      "nombre": "¿Quiénes son Jorge Lorenzo Lara Cordero y Alexis Nucamendi Gómez, alcalde y exal",
+      "id": "auto-c65e3ca5e1",
+      "nombre": "Díaz-Canel felicita a Morena por 15 años de su fundación; diputados reciben a vi",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPVTczQkdFR0pSVWRhakxzZE5veXZ6SFE4SmVFdHFoWlNlQnFOUE54OGM2NWgwbnBjUjdNVDhaSnoyWDQzT09lZWZ4Mjh6YnFBbFpoOXdUbGdSSHhraE1CTS1BWTZHM205b25uRkUzVGYtYlU3QkNrYVQ1cVctLUxXdy1Ec1ZrSmtVNmgxbkM5UW10N0M0QnhsczZsRdIBmwFBVV95cUxNRUZLQkRvekxtVUh1d2d1SC1aVmY3aWtYbkJpU09GU1dPSDBPckxQYm1NMFVBYXRZYnpUV21pZHZSNmZZV3JiaWJMNkZzZ3lqSHJ0Nkp0RlFrbXctOVV6UjMtdFNXZnFpMEJhWERXUEF4T2RkeFJuYVl0dlpBT3lMSWM3WTV4cWdCQ3BrekdZbUdOc1l2ckZ1UkRMcw?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQQzhXSVpQMThkUzhzam11MXZPTUU3Z041aE96Z1dLYWM4c0wxQ2doYnFFMjZvdUdKOHBuVkNGQlRMU0pUOE1qN1RNeW81STNtTHg5aEdqZG1TRHd1ZG9UZ0Z1bk1jcWJ5czduOTVPV0hQNnp0cE1oYnRmdXNYTC1ybDhVd0UzT25QSXI5ZUFGZ2NBRlNyN1c3bTQtYVZuN3NDa2NxRkN3bWg1dEExUVROWEMzWEVCMk5vVFd5ZTdKYlJ5cTEwY2c5VExQNW1HcXJ3VnZmMzMtZ21xWUNHMmptLVdXZm1LZ9IB5gFBVV95cUxQQzhXSVpQMThkUzhzam11MXZPTUU3Z041aE96Z1dLYWM4c0wxQ2doYnFFMjZvdUdKOHBuVkNGQlRMU0pUOE1qN1RNeW81STNtTHg5aEdqZG1TRHd1ZG9UZ0Z1bk1jcWJ5czduOTVPV0hQNnp0cE1oYnRmdXNYTC1ybDhVd0UzT25QSXI5ZUFGZ2NBRlNyN1c3bTQtYVZuN3NDa2NxRkN3bWg1dEExUVROWEMzWEVCMk5vVFd5ZTdKYlJ5cTEwY2c5VExQNW1HcXJ3VnZmMzMtZ21xWUNHMmptLVdXZm1LZw?oc=5"
+    },
+    {
+      "id": "auto-d24761fcf0",
+      "nombre": "Feminicidio, uno de los delitos que necesita respuesta permanente del Estado: Ig",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTjA0T0wzekpmc3FpODAxRko1VENRQ2ZzUE9qRTBBWmRTUGs5YnJBNW44bjVBbFlpYi1FWjBXN3RzWnF0MnNTN0I2Z1dzRHlZRkFXbFA3dzBob1F2THlreng2YzEwZ0N6OEc5TkNheEpab1A2SWFkeWJfd09Falp5MEZtU3N0MlRpLVl6RWR1bFZ3amZHMHczSl9fdlk3S0Z0bVY40gGjAUFVX3lxTE5OMDRPTDN6SmZzcWk4MDFGSjVUQ1FDZnNQT2pFMEFaZFNQazlickE1bjhuNUFsWWliLUVaMFc3dHNacXQyc1M3QjZnV3NEeVlGQVdsUDd3MGhvUXZMeWt6eDZjMTBnQ3o4RzlOQ2F4SlpvUDZJYWR5Yl93T0VqWnkwRm1Tc3QyVGktWXpFZHVsVndqZkcwdzNKX192WTdLRnRtVjg?oc=5"
     },
     {
       "id": "auto-de2cd3c246",
@@ -826,17 +828,20 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOSmQ0bnpkeEhudG95QUJQaG5GS2pBZW9lTTRJOE1Pc3loOWtTMjVfNEpUZE5TeUtwT1ZvLWNhb2NCVXJoVGtnZ2RCZ2NId0E2Ym9XemRIVkJ5RFRBR2xvdGlaR3dBakFidFQzSjktWTZVVHFMNkdsT2FTOUtRa1Y3aW0xX3NQaWZpdnFBWmNnT0MwR0xTeFFnOVlTYTZmUF92QlFQMlB5VWNWWEw5WEV5aTBPVFIzQQ?oc=5"
-    },
-    {
-      "id": "auto-8c9b3e41cf",
-      "nombre": "Fiscalía de EAU confirma que el copiloto de Flydubai intentó un \"atentado terror",
-      "categoria": "Gobernabilidad",
-      "peso": 4.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPa1JYN2p0bXg5azZnbmhnbC1UU0hPZndXYkxNVVdrN1NUOEcxallORGs2cTUzd1BRckh3YTdKSnRGNVRPNThCRjVDVE9TbWpPV3l6YmV5Yy16S0lCMHR4VU1zcF8tQ29FTUJmNnhEWFQtR1VkTXdtV2lmc3FqVm9qbHBBRThZa3VXaXBCdC1qUGRIT2NqQVlNWVBvYm4zSml5V1Z4Ul9B0gGmAUFVX3lxTE9rUlg3anRteDlrNmduaGdsLVRTSE9md1diTE1VV2s3U1Q4RzFqWU5EazZxNTN3UFFySHdhN0pKdEY1VE81OEJGNUNUT1Ntak9XeXpiZXljLXpLSUIwdHhVTXNwXy1Db0VNQmY2eERYVC1HVWRNd21XaWZzcWpWb2pscEFFOFlrdVdpcEJ0LWpQZEhPY2pBWU1ZUG9ibjNKaXlXVnhSX0E?oc=5"
     }
   ],
   "temas_retomados": [
+    {
+      "id": "auto-cc44fee279",
+      "nombre": "Una casa sin esperar a heredar: Sheinbaum coloca la vivienda digna para jóvenes ",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 14,
+      "motivo": "Sheinbaum: alzas al sueldo mínimo capitalizaron al fondo de vivienda",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/005n1pol?partner=rss",
+      "fecha_anterior": "2026-09-19",
+      "fuente_url_anterior": "https://www.tabascohoy.com/atacan-vivienda-de-disenador-que-colaboro-en-vestido-de-sheinbaum/"
+    },
     {
       "id": "auto-376e2b355a",
       "nombre": "IAP Chiapas impulsa la capacitación municipal en seguridad pública, desarrollo u",
@@ -849,15 +854,15 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTUNVT0Z1bHFrVG1KLWlTRy04ZDZPb2lDV1RSZXhZakx5UVM2RDEwYXkzWDZlQ3FEZnl1MDliNjFQU2h1dDhHZ1Y5U2xBVnlmdFlpYVg2cE90c2o2eE5FQlpQeXQ4MWI2cmc2XzZBSlRzVmFCQUw4OGRGa1UyYzg4MUtFTzMzT2l5MmVFUUpadEhwWVd0amlocy1WdnRHTVN6M0pSY3Vwc1ZCZk1qUjJWWnlUWmF3TUxLaEJiTU5Xakw?oc=5"
     },
     {
-      "id": "auto-9f8e802806",
-      "nombre": "Dos exalcaldes desaforados ya no aparecen; otro alcalde tampoco se presenta ante",
+      "id": "auto-b7c490f01c",
+      "nombre": "Templo Mayor 2026-09-14 - Reforma",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 11,
-      "motivo": "El Alcalde y exalcade se Suchiapan son detenidos en un mismo operativo en Chiapas - Sin Embargo",
+      "dias_silencio": 7,
+      "motivo": "Templo Mayor 2026-10-04 - Reforma",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQUVYtMUFBNnBMeXNydk8wX3JpMVZXcXBONW1zYm9kMjFucDdGY1BuYWJEWVJ3T3QwU0dPRWtZQk9rSlhxc2NhX2t6UXQ4YnlNR1ozamk5TUtUdmRYeEg1dDB6UDEtQlo1NldueDF5dWVkOTNoN0wyTWR4UlZJa3ViV0JDR2VBWmhJckFyU0RpOTNQU0txM3pPeHlieVhVRnR6Uk5CamtWc1N6cHQ0M1dTUkE3M0U3S1k?oc=5",
-      "fecha_anterior": "2026-09-22",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE01bGdwei16bjMyMW8yT05jT1VPakhULW11a2FfbWZISFNvajd4S08wMnUyeEZCS2VFZnAwQ1lKTGxtNVd1WTljTkJmT015QQ?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82dVh3WnVYUnQzc3dEeU8ySlhZeE9WUGFhYS1EX09EbmJHZzFIVmlNUHo2R3ROdVV1REZxUTFTWm44SlNoeHo1U1U5bEpvempERlZoV3ZpVkZUbTVsckxxUl9VXzhrQlhnQndBc0VMNkwzWDdlWlk0?oc=5",
+      "fecha_anterior": "2026-09-26",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBQbk9kT0RPR2dIYmVfMWc1SFJUZ0dMaDdyMnhLY3lvQk9IdFdJUUoxaG5TUURZQi1YN3ZJYTdUODhhd3k4RmpHbzdhMGNVX0tTb0FiZFB6Vmh6d0VKTnozcThsZ2pIM2EyS2EzcmJFTVhGUklmTzlV?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1112,9 +1117,9 @@
     },
     {
       "fecha": "2026-10-04",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
+      "tension": 50,
+      "n_notas": 1,
+      "n_alto_impacto": 1,
       "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
@@ -1314,7 +1319,7 @@
       "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTm1sYkxrUWhTcExRUWF4MkM3M2pKUkxKZ3F5NHloVXRYZC10YkQzb0ptTHdtT3VObXJZSTlOOTJaN2lyajN3aXNLM3BvdGVoOUVaVzdDaDZtNEg4QmJLX2FSNEtZSklibjFmTmk1WmNLeW9pOGhrZS1IZXl6cmpDenRoUWhPaWxaWUpWQmlNLWxzVHV0VzRudk44NFh4S1hZUkNHR0RzazBwZGpTNmxDYzVjbTkwdW9X?oc=5",
       "nota_texto": "Visa de Andy y caso Rocha Moya ponen a prueba al gobierno de Sheinbaum: Roy Campos - emsavalles.com",
       "es_nuevo": false,
-      "categoria": "Gobernabilidad",
+      "categoria": "Relación Bilateral",
       "dias_activo": 3,
       "fecha_apagado": "2026-10-01"
     },
@@ -1445,5 +1450,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-04 02:22"
+  "hora_corte_publicada": "2026-10-04 08:20"
 }
