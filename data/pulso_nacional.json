@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-04T08:20:43.814865-06:00",
+  "generado_en": "2026-10-04T12:20:39.139142-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 3,
   "baja_confianza": false,
-  "tension_nacional": 42,
+  "tension_nacional": 25,
   "tension_anomalia": {
-    "z": 0.34,
+    "z": -0.81,
     "nivel": "normal",
     "media_periodo": 37.0,
     "dias_base": 27
@@ -13,29 +13,29 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 65,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "peso_pct": 61,
+      "tema_principal": "La Barredora",
+      "tema_principal_id": "la-barredora",
       "n_temas": 2,
       "n_notas": 2,
       "notas": [
         {
-          "texto": "Andy López Beltrán da un paso rumbo a 2027; se registra en Morena por un distrito de Tabasco - Periódico La Voz",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQd1RBR3pVRHNlaFhfWjJYOE9XUThaSFhNSzBGaGt6ZHVCU0FFUkdqWmdkZzd6U3RUbHluanloLTlabjFfa3lZc1BCMUhIeHc3S2loa0U3Si0tNWgxSndXMnpsZVRUUWdHWGFkOWtqd2g5c1k5MldaRUpDY0ZCRGtWbEJBdjM0YWhnUFhDMXY3UVRBREJvRlVjdV9R0gGfAUFVX3lxTE9GczI0RkhBS3BmcjNZNWtrdDFydzVCQjlwWjdiaGV0VXFuajNCcXQzdlZKeG8xellCdGNKeTZFVS11Nmhvdy1Eb1FQZ0J6cENuZHBteURhQWRUanhkQ3FsRDlqWlNEVWp1VmlvM1JDUm1nQ21yZjRoMlBha2dCY2FxR2hCc0I3Q1JwZVVoeHJSeUJHeWtBU0dqTFdXWjczWQ?oc=5",
+          "texto": "Andy López Beltrán formaliza su registro en Morena en medio de denuncias por posibles actos anticipados de campaña - adn40.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQNkd2MnlOQWN2MjNtbXNZanpzdUdrc0VNWFZtdEMxSXkwNE9FSk5FQ0Y4OWV2WlE4WmZYT2lWMVRBR0pKeGZfX2lmczNncTVhNElmeDdQdUpiV29KbGY2N1g2bkhwRDZYbjVNTEdrbnZtU1pyYmZuUzJRY1RfZ1VQdTNyUmx5QmIxTGpvV3g0czFpRXIyVWtEc3NZUVgwRFVFcW9zWXdQbnlkQlBSZGdLemlmUm9GQnFPeWcyTzJUTWVlcE1OTkVndW1DY1RRQkx3bFo3SjlVSmVwWU5WM2lNNzdyM2s5WTJiUEdDTWZnWG5JVzBtSXc?oc=5",
           "intensidad": 7.0,
-          "medio": "Periódico La Voz"
+          "medio": "adn40.mx"
         },
         {
-          "texto": "“Capitán Sol”: quién es el exmando naval detenido por huachicol fiscal en Zapopan - Grupo Animal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQa05oVF85Y0FlOWxfTGJlU3N0RzZsYWtVMEVDcFgxb3JzYkhMa3k5N1RmS1ppUHBfRkdyYXpaU0lIS29xcmNMQ0E4SU9jZE02UzBNTmZqeDFZNkRCMUlxY2N5NjNuTENaMUhPY0JKQUdKUHZFUTFiYWNVVUtRUG9pVnU2OGk?oc=5",
-          "intensidad": 6.0,
-          "medio": "Grupo Animal"
+          "texto": "Las huellas de La Barredora - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ubDRXd2RfOHotZnF3TkhERWdQc2RQZE5XanV0UXd0TThVbDEzOE9ZRlF4RmFuMzhabmptOE1LNkQ2NXdMNzFTcHhEa1pPX1F2aDltSTg0MDJDZ1RyeVFYM1pJaUJIWWlSSVBxbE1R?oc=5",
+          "intensidad": 4.0,
+          "medio": "Reforma"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 35,
+      "peso_pct": 39,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 1,
@@ -770,7 +770,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -781,19 +781,37 @@
   ],
   "top5_temas": [
     {
+      "id": "auto-02d8e54c89",
+      "nombre": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel",
+      "categoria": "Gobernabilidad",
+      "resumen": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguela aquí en vivo - El Financiero",
+      "motivo": "Claudia Sheinbaum inaugura puente en Veracruz antes de lo proyectado - Excélsior",
+      "peso": 21.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": true,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNcVo4eEszVGdTM1owd2hGR3oxR09ZTGRqbWpPVEJhVmhKai1pSzU2aGtnckpoX29GLVJqRDdCT1Z4aFhwXzlwakhCYk9mZW5MMDRlSG9TV2dLTXBWNWM0dzI0eF92OU1lcC1TaC1VRnNXUDNCMlBQRDJGdmd2WkFhYTVsbHM4T0nSAYwBQVVfeXFMT195bnZVa29BN18wZ2pZaGNWLTVQdi1Za05fVkV1TDNTNEdubVZDOGVXdzNuV2UxUGRpVktpeXhsQ29fTUdEMURkMXU1bGc4V3pOa05mWmdhTzZ3NGJYT0Vyb3hMc0Itd0FXRjZFaHlVLU5DOG5UM0lFdHNtWmpfTk9vcTExQXZGZ3pBNm8?oc=5",
+      "actor_vinculado": null
+    },
+    {
       "id": "huachicol-fiscal",
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
       "motivo": "Sirvió El Capitán Sol de enlace para huachicol fiscal",
-      "peso": 7.0,
-      "n_temas_agrupados": 1,
+      "peso": 11.0,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
+      "medios_corroborantes": 2,
+      "confianza": "media",
       "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/004n3pol?partner=rss",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
     }
   ],
   "temas_nuevos": [
@@ -806,28 +824,20 @@
       "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/008n1pol?partner=rss"
     },
     {
-      "id": "auto-c65e3ca5e1",
-      "nombre": "Díaz-Canel felicita a Morena por 15 años de su fundación; diputados reciben a vi",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQQzhXSVpQMThkUzhzam11MXZPTUU3Z041aE96Z1dLYWM4c0wxQ2doYnFFMjZvdUdKOHBuVkNGQlRMU0pUOE1qN1RNeW81STNtTHg5aEdqZG1TRHd1ZG9UZ0Z1bk1jcWJ5czduOTVPV0hQNnp0cE1oYnRmdXNYTC1ybDhVd0UzT25QSXI5ZUFGZ2NBRlNyN1c3bTQtYVZuN3NDa2NxRkN3bWg1dEExUVROWEMzWEVCMk5vVFd5ZTdKYlJ5cTEwY2c5VExQNW1HcXJ3VnZmMzMtZ21xWUNHMmptLVdXZm1LZ9IB5gFBVV95cUxQQzhXSVpQMThkUzhzam11MXZPTUU3Z041aE96Z1dLYWM4c0wxQ2doYnFFMjZvdUdKOHBuVkNGQlRMU0pUOE1qN1RNeW81STNtTHg5aEdqZG1TRHd1ZG9UZ0Z1bk1jcWJ5czduOTVPV0hQNnp0cE1oYnRmdXNYTC1ybDhVd0UzT25QSXI5ZUFGZ2NBRlNyN1c3bTQtYVZuN3NDa2NxRkN3bWg1dEExUVROWEMzWEVCMk5vVFd5ZTdKYlJ5cTEwY2c5VExQNW1HcXJ3VnZmMzMtZ21xWUNHMmptLVdXZm1LZw?oc=5"
-    },
-    {
-      "id": "auto-d24761fcf0",
-      "nombre": "Feminicidio, uno de los delitos que necesita respuesta permanente del Estado: Ig",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTjA0T0wzekpmc3FpODAxRko1VENRQ2ZzUE9qRTBBWmRTUGs5YnJBNW44bjVBbFlpYi1FWjBXN3RzWnF0MnNTN0I2Z1dzRHlZRkFXbFA3dzBob1F2THlreng2YzEwZ0N6OEc5TkNheEpab1A2SWFkeWJfd09Falp5MEZtU3N0MlRpLVl6RWR1bFZ3amZHMHczSl9fdlk3S0Z0bVY40gGjAUFVX3lxTE5OMDRPTDN6SmZzcWk4MDFGSjVUQ1FDZnNQT2pFMEFaZFNQazlickE1bjhuNUFsWWliLUVaMFc3dHNacXQyc1M3QjZnV3NEeVlGQVdsUDd3MGhvUXZMeWt6eDZjMTBnQ3o4RzlOQ2F4SlpvUDZJYWR5Yl93T0VqWnkwRm1Tc3QyVGktWXpFZHVsVndqZkcwdzNKX192WTdLRnRtVjg?oc=5"
-    },
-    {
       "id": "auto-de2cd3c246",
       "nombre": "AMLO autoriza “sólo a Morena” usar sus palabras e imagen, y pide apoyar a Sheinb",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOSmQ0bnpkeEhudG95QUJQaG5GS2pBZW9lTTRJOE1Pc3loOWtTMjVfNEpUZE5TeUtwT1ZvLWNhb2NCVXJoVGtnZ2RCZ2NId0E2Ym9XemRIVkJ5RFRBR2xvdGlaR3dBakFidFQzSjktWTZVVHFMNkdsT2FTOUtRa1Y3aW0xX3NQaWZpdnFBWmNnT0MwR0xTeFFnOVlTYTZmUF92QlFQMlB5VWNWWEw5WEV5aTBPVFIzQQ?oc=5"
+    },
+    {
+      "id": "auto-4cf43de5c3",
+      "nombre": "Los estados en que Morena tuvo que ceder ante el Verde para mantener la alianza ",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOU1VtanBqX0JDakM4V1I5WWw2WFl5MHFMaVcwbHdYZHdYS1A3QS1YZkQ3dEJYRVhDX0JzY0Vja1JXNENOMGxlUzhiVjM0R1Y1N0J6aEVxd3NzTlRybjE4YmtsVWd5NmpKSnR6SzhSUEEwY092Yk01ZlRaUFRiNU1HSXgwREs5THpRcFVTQTlMSjVqMkxqSDR6VVhIc3hWREFOeG5uNk42SWRub3FKVTdkYWJJTTNqOHRGT1BrQXRuYzItOWVxMWRBMkVIMjFKSkJFblZDSU4xd9IB8gFBVV95cUxNNVNtMDVXX1dyME1lZl9XX08ySHcyRlBEdkpESEtaRkdrZnpyQlh3Z0d1UnZ3aU9qM3JYOHVFTFdfd2tpdEl1WGRzbHZXbWZLYjR6dUM1UUFsOHVJeTdhdzZqeEUwOGZfdU42d1FtcnIwZ05WQ05wMzNhNmFCaFhtcjlfQjIxdjRxbG9RRGJrcE1fVXh1RElyM3lTYVluV0dkR1FRNzVya1ZRWVVDUlJmamNfOVB4LWZNNVRxSXFsdHVFUzZKN01iZ1B5dUxTZm5hOS1NSlU0MjNWaDNqQ3Q3UW9qRUgwTFZWT0p3bm1IOWxzZw?oc=5"
     }
   ],
   "temas_retomados": [
@@ -880,7 +890,7 @@
     {
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Reacción social/mediática",
+      "rol": "Mencionado",
       "tema": "AMLO autoriza “sólo a Morena” usar sus palabras e imagen, y pide apoyar a Sheinb",
       "nota": "AMLO autoriza “sólo a Morena” usar sus palabras e imagen, y pide apoyar a Sheinbaum - Sin Embargo",
       "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOSmQ0bnpkeEhudG95QUJQaG5GS2pBZW9lTTRJOE1Pc3loOWtTMjVfNEpUZE5TeUtwT1ZvLWNhb2NCVXJoVGtnZ2RCZ2NId0E2Ym9XemRIVkJ5RFRBR2xvdGlaR3dBakFidFQzSjktWTZVVHFMNkdsT2FTOUtRa1Y3aW0xX3NQaWZpdnFBWmNnT0MwR0xTeFFnOVlTYTZmUF92QlFQMlB5VWNWWEw5WEV5aTBPVFIzQQ?oc=5",
@@ -1117,10 +1127,10 @@
     },
     {
       "fecha": "2026-10-04",
-      "tension": 50,
-      "n_notas": 1,
-      "n_alto_impacto": 1,
-      "n_medio_impacto": 0,
+      "tension": 25,
+      "n_notas": 3,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
   ],
@@ -1151,23 +1161,23 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 43,
+      "x_lunes": 48,
       "y_lunes": 100,
-      "x_hoy": 48,
+      "x_hoy": 52,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 9,
-      "n_alto": 10,
+      "n_alto": 11,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQLTZBd1hCbExKbmVSWUJwMV9KUklibGRXQk1JVkVRUW9IUGJnQ0VhVzB1a1N1bU9FMnNHRTV6YXZYXzQtWXg4SElCN1FQazMxbHQ5SGphZ2IzZHlfdHJSNHk5RGh5cTdSMzB4bVA3WjBJT1dyd2Y2VV8tUzFxUDR5YWtjRlQtRHMzaXVUNGxmN29maXJDUjZ6OFNENjNDSzJOaGV0OUdlQmUtRDJ5YkZVZjR6U2pBU09CVWNyZDBKZ3NQb0dhSUxjajNUa3F6RER4M1pSNE9pTVdSV0tIMVZKV1diTkJxdDF2M1BKbUliNjF4N01NaUE?oc=5",
       "nota_texto": "🔴Andrés Manuel López Beltrán informa que se registró como aspirante a Coordinador de los Comités de la Defensa de la Cuarta Transformación y de la Soberanía Nacional del Distrito 6 de Tabasco. Señaló ",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 6,
-      "fecha_apagado": "2026-10-04"
+      "dias_activo": 7,
+      "fecha_reactivado": "2026-10-04"
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1228,8 +1238,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxQaGc2RkJHeFZ6c1I0TXlfMGowWWdwSkdyVGZfVnZldy1kZGxaTmZXWmRMNl9zYVRmN0ZHYU5Uay1ONjlVd3dZMGZPcXV0ZXBDS004QzJFNllfTi1mUXNFYjZ1UVM4RXU5U0ExSVkzV3FkLWxwcEdsUmdKSFk4VjRYRk9fS29JMmc2V2NRWmg0Rjhuc0FsamZBNXZlMHhkTEFiX01kdEpRdGZFakxjclBQZWZvQmxRUVc4cXVzWnhVTnJ3Q2ZsTWFZSXFsRXRmRElQS2hSWjFsRklHeDM3V1dMRktXbERzck9LOUpsVHdwbmV4WjVOazgtazd2SWh4WW5LWlR1ZC1Tb21yWjFQMzBFTF84b2RqdG0zRk4weVB3eVNWZHVXaWotRjllR3N1alk2UHBXYTJKcHc3NVZLYjI2bWRkRTFxNXAzZVRBRzl30gHTAkFVX3lxTE53MmkzMXJYRHlFOVJxaGEzM2ZVbjVMMEQ4OVk2SDRIQUlkV2xYZ1U2eFN3M0NGRXZoQ1M5TG1oU2Q4MVVWd0ttSFJJUTg2NldKWC1UNFJVVGVhTW03emlFRHY0NWg0RUVuR3VUTjVickZfS0dHNmZjR2t5NDRHRkx3WW5fdEYtWTNGMVFKSDY3ZVQ1MGx3R0xOSWJqTTctS1pqRnd4Q1dxSTZHYVMwZDByRkdXTjljVWtvZGNrU1NycWh1WnJxd25vUi1NTG5weWlUUVFZUEJYWmRjMUhJM1lwYWdjc0FUTGhTNkZmMHk3UkhPZ0lNSktBSXc1WDNNVFpkUExsLU9IdXJqUURDcEkzQXpFRlFzQlFwRmdoYXNiR3ZEWVBmTzR0NHB1ZnpvcTJ4SFpOdTdibWtBcDVlejRoRXVDZmkwQXVlaUxSNjJrNkx0NA?oc=5",
-      "nota_texto": "Ricardo Salinas Pliego, el multimillonario opositor a Claudia Sheinbaum, sobre cómo debe ser el salario en México: \"El sueldo fijo es una beca, la gente tiene que sentir que si se esfuerza gana más\" -",
+      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1319,7 +1329,7 @@
       "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTm1sYkxrUWhTcExRUWF4MkM3M2pKUkxKZ3F5NHloVXRYZC10YkQzb0ptTHdtT3VObXJZSTlOOTJaN2lyajN3aXNLM3BvdGVoOUVaVzdDaDZtNEg4QmJLX2FSNEtZSklibjFmTmk1WmNLeW9pOGhrZS1IZXl6cmpDenRoUWhPaWxaWUpWQmlNLWxzVHV0VzRudk44NFh4S1hZUkNHR0RzazBwZGpTNmxDYzVjbTkwdW9X?oc=5",
       "nota_texto": "Visa de Andy y caso Rocha Moya ponen a prueba al gobierno de Sheinbaum: Roy Campos - emsavalles.com",
       "es_nuevo": false,
-      "categoria": "Relación Bilateral",
+      "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "fecha_apagado": "2026-10-01"
     },
@@ -1392,7 +1402,7 @@
   ],
   "tablero_semana_inicio": "2026-09-28",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "sin_mananera",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1450,5 +1460,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-04 08:20"
+  "hora_corte_publicada": "2026-10-04 12:20"
 }
