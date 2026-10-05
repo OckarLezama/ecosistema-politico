@@ -463,7 +463,7 @@ function renderNotasAgenda(){
   // 'peso_politico' (congelado en el 98% de los temas reales) -- así el tema que
   // aparece por default al abrir Notas es el que de verdad tiene actividad ahora.
   const temasDisponibles = calcularDatosRadarAgenda(temasBase.filter(t=>Number(t.nivel_relevancia)===1))
-    .sort((a,b)=> (b.riesgoReal+b.veces) - (a.riesgoReal+a.veces))
+    .sort((a,b)=> (b.urgencia-a.urgencia) || ((b.riesgoReal+b.veces) - (a.riesgoReal+a.veces)))
     .map(d=>d.tema);
   if(!temaNotasSeleccionado || !temasDisponibles.find(t=>t.id===temaNotasSeleccionado)){
     temaNotasSeleccionado = temasDisponibles[0]?.id || null;
@@ -1166,6 +1166,92 @@ function separarPuntos(datos, minDist, iteracionesMax, limites){
 // ================================================================
 const VENTANA_RADAR_DIAS = 14;
 
+// ================================================================
+// IMPACTO POR CONTENIDO -- pedido explícito: "¿en verdad aporta como producto de
+// inteligencia?". El "riesgo" del radar venía de 'intensidad', que el robot calcula SIN leer
+// el contenido: 4 + 2 si el tema salió 2+ veces hoy + 2 si hubo actividad en 3 días + 1 si
+// el texto trae una palabra del nombre de un actor influyente. Era recurrencia y fama, no
+// gravedad -- por eso 62 de 461 notas eran "9/10" y 261 eran "7/10", y el eje de riesgo
+// y el de volumen medían casi lo mismo. Ahora el eje Y es el IMPACTO que sale del
+// contenido (tipo de hecho, con razones visibles) más el peso de actores sustantivos, y
+// el eje X es la ATENCIÓN real (medios distintos). Léxico y pesos viven aquí, a la vista,
+// para poder auditarlos y ajustarlos.
+// ================================================================
+const IMPACTO_GRUPOS = [
+  { id:'violencia',  nombre:'violencia grave',        peso:5, re:/masacre|asesinat|asesinan|asesinad|ejecutan a|feminicid|secuestr|desaparecid|ataque armado|balacera|emboscada|sicari|\bfosas?\b|linchamiento|terroris|multihomicidio|homicidio doloso|abatid|abatimiento/ },
+  { id:'emergencia', nombre:'emergencia / desastre',  peso:5, re:/huracan|sismo|terremoto|inundaci|explosi[oó]n|derrumbe|incendio forestal|fallecid|muertos|damnificad|deja \w+ muertos/ },
+  { id:'soberania',  nombre:'soberanía / relación EU',peso:5, re:/arancel|t-?mec|deportaci|remesas|sanci[oó]n|intervenci[oó]n|soberan|tropas|redadas|ice\b|aduana|extradici|entrega de narcos|designaci[oó]n.*terroris/ },
+  { id:'crimen',     nombre:'crimen organizado',      peso:4, re:/c[aá]rtel|cjng|sinaloa|huachicol|contrabando|lavado|extorsi|trata de|narco|crimen organizado|plagio|tr[aá]fico de/ },
+  { id:'institucional', nombre:'institucional',       peso:4, re:/reforma constitucional|nueva constituci|suprema corte|poder judicial|desafuero|juicio pol[ií]tico|golpe de estado|fiscal general|\bfgr\b|\bine\b|elecciones|proceso electoral|consulta popular|revocaci[oó]n de mandato|informe de gobierno|paquete econ[oó]mico|presupuesto de egresos|ley de ingresos|gabinete/ },
+  { id:'funcionarios', nombre:'detención / proceso a funcionarios', peso:4, re:/(detienen|detenido|detenci[oó]n|vinculan a proceso|vinculaci[oó]n a proceso|orden de aprehensi|procesad|arrest|captur)\w*.{0,60}(alcalde|presidente municipal|gobernador|exgobernador|senador|diputad|funcionari|secretari|almirante|general|juez|magistrad|fiscal|comisionad)|(alcalde|presidente municipal|gobernador|exgobernador|senador|diputad|funcionari|secretari|almirante|juez|magistrad).{0,60}(detenid|vinculad|procesad|arrestad|capturad)|desv[ií]o de|peculado|corrupci[oó]n/ },
+  { id:'economia',   nombre:'shock económico',        peso:3, re:/devaluaci|inflaci[oó]n|recesi[oó]n|deuda|pemex|calificaci[oó]n crediticia|quiebra|despidos masivos|crisis econ|d[eé]ficit|recorte presupuest/ },
+  { id:'crimen2', nombre:'proceso penal / seguridad', peso:3, re:/vinculan a proceso|vinculaci[oó]n a proceso|detienen a|detenido|prisi[oó]n|sentencia|cateo|operativo/ },
+  { id:'diplomacia', nombre:'relación con EU (alto nivel)', peso:3, re:/(trump|rubio|casa blanca|embajador johnson).{0,80}(llamada|telefon|reuni[oó]n|cumbre|acuerdo|presi[oó]n|amenaz|ultim[aá]tum)|(llamada|telefon|reuni[oó]n|cumbre).{0,80}(trump|rubio)/ },
+  { id:'salud',      nombre:'salud pública',          peso:3, re:/brote|sarampi|dengue|epidemia|pandemia|desabasto de medicin/ },
+];
+const IMPACTO_PENALIZA = [
+  { nombre:'entretenimiento / deportes', pen:3, re:/videojuego|futbol|f[uú]tbol|mundial|selecci[oó]n mexicana|concierto|pel[ií]cula|serie de|celebridad|chimoltrufia|trump tv|reality|tiktok|influencer/ },
+  { nombre:'declaración u opinión',      pen:1, re:/recrimina|critica a|opina|reacciona|reprocha|lamenta|exige que|pide a|llama a/ },
+  { nombre:'titular en pregunta',        pen:1, re:/^[^a-z0-9]*¿|\?\s*$/ },
+];
+function _normTxt(s){ return (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
+
+// impacto 0-10 de UNA nota, solo por su contenido -- con razones auditables
+function impactoDeNota(descripcion){
+  const txt = _normTxt(descripcion);
+  const hits = IMPACTO_GRUPOS.filter(g=>g.re.test(txt)).sort((a,b)=>b.peso-a.peso);
+  let score = 2;
+  const razones = [];
+  if(hits[0]){ score += hits[0].peso; razones.push(hits[0].nombre); }
+  if(hits[1]){ score += 0.5*hits[1].peso; razones.push(hits[1].nombre); }
+  IMPACTO_PENALIZA.forEach(p=>{ if(p.re.test(txt)){ score -= p.pen; razones.push('(−) '+p.nombre); } });
+  return { score: Math.max(0, Math.min(10, score)), razones };
+}
+
+// impacto 0-10 de un TEMA: sus mejores notas + peso real de los actores sustantivos
+// vinculados (rol Investigado / Red empresarial / Víctima / etc. con nivel_influencia alto)
+function impactoDeTema(evs, nivelActorMax){
+  if(!evs.length) return { score:0, razones:[] };
+  const notas = evs.map(e=>impactoDeNota(e.descripcion)).sort((a,b)=>b.score-a.score);
+  const top = notas.slice(0,3);
+  let score = 0.6*top[0].score + 0.4*(top.reduce((s,n)=>s+n.score,0)/top.length);
+  const razones = [...new Set(top[0].razones)];
+  if(nivelActorMax>=9){ score += 1.5; razones.push('actor de máxima influencia involucrado'); }
+  else if(nivelActorMax>=7){ score += 0.75; razones.push('actor de alta influencia involucrado'); }
+  return { score: Math.round(Math.max(0,Math.min(10,score))*10)/10, razones };
+}
+
+// ---- coherencia: un "tema" del robot agrupa notas que a veces ya no hablan de lo mismo
+// (ej. "Revisión del T-MEC" terminó con notas de Juchitán y de lluvias en Xalapa). Solo
+// cuentan para el impacto/atención las notas que comparten palabras clave con el nombre
+// del tema.
+const _GENERICAS = new Set(['claudia','sheinbaum','presidenta','presidente','mexico','mexicano','mexicana','nacional','gobierno','federal','nuevo','nueva','sobre','entre','desde','hasta','para','como','tras','ante','esta','este','pardo','alerta','estado','estados','unidos','hoy','dice','dijo']);
+function _tokensClave(txt){
+  return new Set((_normTxt(txt).replace(/\s[-|]\s[^-|]{2,40}$/,'').match(/[a-z0-9-]{4,}/g)||[]).filter(w=>!_GENERICAS.has(w)));
+}
+function notasCoherentes(evs, tema){
+  const nucleo = _tokensClave(tema.nombre);
+  if(!nucleo.size) return evs;
+  const coh = evs.filter(e=>{ const t=_tokensClave(e.descripcion); for(const w of nucleo) if(t.has(w)) return true; return false; });
+  return coh;
+}
+
+// medio de una nota: dominio, salvo agregadores (Google News) donde el medio real va al
+// final del titular (" - Milenio")
+function _medioDeEvento(e){
+  const dom = typeof _dominioDe==='function' ? _dominioDe(e.fuente_url) : null;
+  if(dom && /news\.google|msn\.com|yahoo\./.test(dom)){
+    const m = typeof extraerMedioDeDescripcion==='function' ? extraerMedioDeDescripcion(e.descripcion) : null;
+    return m ? m.toLowerCase() : dom;
+  }
+  return dom;
+}
+
+const IMPACTO_ALTO = 7;      // desde aquí el tema es de impacto alto
+const ATENCION_ALTA = 5;     // medios distintos en 14 días para considerarlo de atención amplia
+
+
+
 function _diasAtras(fechaStr){
   // 'fechaStr' en formato YYYY-MM-DD (mismo formato que usa todo el resto del archivo,
   // ej. e.fecha en ECOSISTEMA.eventos) -- entero de días transcurridos desde esa fecha.
@@ -1174,7 +1260,11 @@ function _diasAtras(fechaStr){
 
 function calcularDatosRadarAgenda(temasBase){
   return temasBase.map(t=>{
-    const evsTodos = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
+    const evsBrutos = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
+    // solo notas que de verdad hablan del tema (ver notasCoherentes); si ninguna coincide
+    // (tema renombrado, nombre atípico) se usan todas para no borrar el tema del radar
+    const evsCoh = notasCoherentes(evsBrutos, t);
+    const evsTodos = evsCoh.length ? evsCoh : evsBrutos;
     const evsHoy = evsTodos.filter(e=>{ const d=_diasAtras(e.fecha); return d>=0 && d<VENTANA_RADAR_DIAS; });
     const evsPrev = evsTodos.filter(e=>{ const d=_diasAtras(e.fecha); return d>=VENTANA_RADAR_DIAS && d<VENTANA_RADAR_DIAS*2; });
     const evsHistoricos = evsTodos.filter(e=> _diasAtras(e.fecha) >= VENTANA_RADAR_DIAS);
@@ -1190,9 +1280,16 @@ function calcularDatosRadarAgenda(temasBase){
     // siendo agenda nacional), pero se dibuja tenue y con el riesgo histórico, no uno
     // inventado -- mismo concepto que 'apagado' en el Tablero de Actores de Pulso.
     const apagado = evsHoy.length === 0;
-    const riesgoHistoricoMax = evsTodos.length ? Math.max(...evsTodos.map(e=>Number(e.intensidad))) : 3;
-    const riesgoReal = apagado ? riesgoHistoricoMax : Math.max(...evsHoy.map(e=>Number(e.intensidad)));
-    const riesgoAnterior = evsPrev.length ? Math.max(...evsPrev.map(e=>Number(e.intensidad))) : riesgoReal;
+    // IMPACTO (antes 'riesgo' = intensidad del robot): por contenido + actores sustantivos
+    const _rolesSust = ['Investigado','Red empresarial','Víctima del caso'];
+    const _nivelActorMax = Math.max(0, ...ECOSISTEMA.temaActores
+      .filter(ta=>ta.tema_id===t.id && _rolesSust.includes(ta.rol))
+      .map(ta=>{ const a = (ECOSISTEMA.actores||[]).find(x=>x.id===ta.actor_id); return a ? Number(a.nivel_influencia)||0 : 0; }));
+    const impHoy = impactoDeTema(evsHoy, _nivelActorMax);
+    const impHist = impactoDeTema(evsTodos, _nivelActorMax);
+    const riesgoReal = apagado ? impHist.score : impHoy.score;
+    const impactoRazones = apagado ? impHist.razones : impHoy.razones;
+    const riesgoAnterior = evsPrev.length ? impactoDeTema(evsPrev, _nivelActorMax).score : riesgoReal;
 
     // esNuevo -- actividad en las últimas ~48h, para el halo que se enciende una vez al
     // cargar la vista (ver dibujarMatrizRiesgo) -- señal real, no decorativa.
@@ -1202,7 +1299,7 @@ function calcularDatosRadarAgenda(temasBase){
     // que cubren el tema (en la ventana reciente si hay actividad, en todo el histórico
     // si está apagado -- para no decir "sin corroboración" de un tema viejo que sí la tuvo).
     const evsParaMedios = apagado ? evsTodos : evsHoy;
-    const medios = new Set(evsParaMedios.map(e=>{ try{ return typeof _dominioDe==='function' ? _dominioDe(e.fuente_url) : new URL(e.fuente_url).hostname.replace(/^www\./,''); }catch(err){ return null; } }).filter(Boolean));
+    const medios = new Set(evsParaMedios.map(_medioDeEvento).filter(Boolean));
 
     // actores vinculados -- para el cruce de señales entre temas del propio radar.
     // CORRECCIÓN -- bug real reportado y corroborado con datos: "INE instala Comisión de
@@ -1228,7 +1325,7 @@ function calcularDatosRadarAgenda(temasBase){
     // desviación da 0 (no hay variación real que comparar).
     let anomalia = null;
     if(!apagado && evsHistoricos.length >= 4){
-      const valores = evsHistoricos.map(e=>Number(e.intensidad));
+      const valores = evsHistoricos.map(e=>impactoDeNota(e.descripcion).score);
       const media = valores.reduce((s,v)=>s+v,0) / valores.length;
       const varianza = valores.reduce((s,v)=>s+(v-media)**2,0) / valores.length;
       const desv = Math.sqrt(varianza);
@@ -1264,7 +1361,7 @@ function calcularDatosRadarAgenda(temasBase){
         + 0.10*Math.min(1, Math.log1p(evsHoy.length)/Math.log1p(8));
 
     return {
-      tema: t, categoria: t.categoria, riesgoReal, riesgoAnterior, urgencia,
+      tema: t, categoria: t.categoria, riesgoReal, riesgoAnterior, urgencia, impactoRazones, atencion: medios.size,
       veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
       nMedios: medios.size, actorIds, actorIdsVinculo, anomalia,
       primeraMencion: evsTodos.length ? evsTodos.map(e=>e.fecha).sort()[0] : null,
@@ -1337,7 +1434,8 @@ function _nombreClaroTema(tema){
 // señales menos esenciales (anomalía estadística) se recortan si ya hay suficiente texto.
 function _tooltipRadar(d, datosVisibles){
   const ICONO_TENDENCIA = {subiendo:'↑ subiendo', bajando:'↓ bajando', estable:'→ estable'};
-  let html = `<strong>${_truncarEnPalabra(_nombreClaroTema(d.tema), 60)}</strong><br>Riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
+  let html = `<strong>${_truncarEnPalabra(_nombreClaroTema(d.tema), 60)}</strong><br>Impacto ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
+  if(d.impactoRazones && d.impactoRazones.length) html += `<br><span style="font-size:10px;opacity:.85;">por: ${d.impactoRazones.join(' · ')}</span>`;
   if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
   else if(d.esNuevo) html += ` <span style="color:var(--teal);">· 🆕 últimas 48h</span>`;
   else if(d.tendencia && d.tendencia!=='estable') html += ` <span style="color:${d.tendencia==='subiendo'?'var(--riesgo-alto)':'var(--riesgo-bajo)'};">· ${ICONO_TENDENCIA[d.tendencia]}</span>`;
@@ -1446,7 +1544,7 @@ function dibujarMatrizRiesgo(){
   // que permite calcular la clasificación (y con ella el resumen y la leyenda en HTML,
   // ver más abajo) ANTES de medir el <svg>, en vez de después.
   const nDatos = datos.length;
-  [...datos].sort((a,b)=> a.veces-b.veces || a.tema.id.localeCompare(b.tema.id))
+  [...datos].sort((a,b)=> a.atencion-b.atencion || a.veces-b.veces || a.tema.id.localeCompare(b.tema.id))
     .forEach((d,i)=> d._rankX = nDatos>1 ? i/(nDatos-1) : 0.5);
   [...datos].sort((a,b)=> b.riesgoReal-a.riesgoReal || a.tema.id.localeCompare(b.tema.id))
     .forEach((d,i)=> d._rankY = nDatos>1 ? i/(nDatos-1) : 0.5);
@@ -1459,10 +1557,20 @@ function dibujarMatrizRiesgo(){
   // de temas sin ninguna actividad. El umbral de cuadrante ahora se calcula SOLO sobre
   // los temas con actividad real -- la pregunta correcta es "¿está esto por encima de
   // la mitad de lo que de verdad está pasando hoy?", no "...de todo el archivo histórico".
-  const activosParaUmbral = datos.filter(d=>!d.apagado);
-  const _medianaDe = arr => { const s=[...arr].sort((a,b)=>a-b); return s.length ? s[Math.floor((s.length-1)/2)] : 0.5; };
-  const umbralRankX = activosParaUmbral.length ? _medianaDe(activosParaUmbral.map(d=>d._rankX)) : 0.5;
-  const umbralRankY = activosParaUmbral.length ? _medianaDe(activosParaUmbral.map(d=>d._rankY)) : 0.5;
+  // CORRECCIÓN -- los cuadrantes ya NO se parten por la mediana del día (eso garantizaba que
+  // siempre hubiera 25-40% "críticos", pase lo que pase: 18 de 45). Ahora los cortes son
+  // ABSOLUTOS y con significado fijo: impacto >= IMPACTO_ALTO y atención >= ATENCION_ALTA
+  // medios distintos. Las posiciones del lienzo siguen siendo por ranking (para repartir los
+  // puntos), así que cada corte se traduce a la posición de ranking donde cambia el valor.
+  const _corteRank = (arr, valor, umbral, descendente) => {
+    // arr ya ordenada como el ranking (menor rank primero); devuelve la posición (0..1) del límite
+    const n = arr.length;
+    if(n<2) return 0.5;
+    const k = arr.filter(v=> descendente ? v>=umbral : v<umbral).length; // cuántos quedan "de un lado"
+    return Math.min(0.97, Math.max(0.03, (k-0.5)/(n-1)));
+  };
+  const umbralRankX = _corteRank([...datos].sort((a,b)=>a.atencion-b.atencion).map(d=>d.atencion), null, ATENCION_ALTA, false);
+  const umbralRankY = _corteRank([...datos].sort((a,b)=>b.riesgoReal-a.riesgoReal).map(d=>d.riesgoReal), null, IMPACTO_ALTO, true);
 
   // ---- clasificación de cuadrante por RANKING (no por x/y ya con jitter de colisión,
   // para que la clasificación no cambie si dos puntos se empujan entre sí) -- se usa
@@ -1470,9 +1578,12 @@ function dibujarMatrizRiesgo(){
   // (ver "puntos" más abajo). Se calcula aquí, antes de medir el <svg>, porque solo
   // depende de los rankings de arriba -- no de márgenes ni del tamaño del lienzo. ----
   datos.forEach(d=>{
+    const impactoAlto = d.riesgoReal >= IMPACTO_ALTO, atencionAlta = d.atencion >= ATENCION_ALTA;
+    // 'vigilar' = señal anticipatoria: impacto alto, pocos medios y nota de los últimos 3 días
+    // (uno viejo y de pocos medios no es "anticipar", es un tema que ya pasó)
     d._cuadrante = d.apagado ? 'apagado'
-      : d._rankY<umbralRankY ? (d._rankX>=umbralRankX ? 'actuar' : 'vigilar')
-      : (d._rankX>=umbralRankX ? 'ruido' : 'bajoperfil');
+      : impactoAlto ? (atencionAlta ? 'actuar' : (d.diasDesdeUltima!=null && d.diasDesdeUltima<=3 ? 'vigilar' : 'bajoperfil'))
+      : (atencionAlta ? 'ruido' : 'bajoperfil');
   });
 
   // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
@@ -1486,9 +1597,9 @@ function dibujarMatrizRiesgo(){
   const chip = (svgInterno, texto) => `<span style="display:inline-flex;align-items:center;gap:3px;white-space:nowrap;">${svgInterno}${texto}</span>`;
   const chipsLeyenda = [
     ...categoriasPresentes.map(cat=> chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="4" fill="${colorCategoria(cat)}"/></svg>`, cat)),
-    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.alto}" stroke-width="1.6"/></svg>`, 'riesgo alto'),
-    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.medio}" stroke-width="1.6"/></svg>`, 'riesgo medio'),
-    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.bajo}" stroke-width="1.6"/></svg>`, 'riesgo bajo'),
+    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.alto}" stroke-width="1.6"/></svg>`, 'impacto alto'),
+    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.medio}" stroke-width="1.6"/></svg>`, 'impacto medio'),
+    chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3.2" fill="none" stroke="${COLOR_RIESGO.bajo}" stroke-width="1.6"/></svg>`, 'impacto bajo'),
     chip(`<svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="var(--ink-3)" fill-opacity="0.6"/></svg>`, 'sin actividad en 14d'),
     chip(`<span style="color:var(--riesgo-alto);font-weight:700;">▲</span>`, 'escalando'),
     chip(`<span style="color:var(--riesgo-bajo);font-weight:700;">▼</span>`, 'bajando'),
@@ -1508,7 +1619,8 @@ function dibujarMatrizRiesgo(){
   activos.forEach(d=> conteoCategoria[d.categoria] = (conteoCategoria[d.categoria]||0)+1);
   const catsOrdenadas = Object.entries(conteoCategoria).sort((a,b)=>b[1]-a[1]);
   const actuarCount = activos.filter(d=>d._cuadrante==='actuar').length;
-  const vigilarItems = activos.filter(d=>d._cuadrante==='vigilar').sort((a,b)=>b.riesgoReal-a.riesgoReal);
+  const vigilarItems = activos.filter(d=>d._cuadrante==='vigilar').sort((a,b)=>b.urgencia-a.urgencia);
+  const criticosItems = activos.filter(d=>d._cuadrante==='actuar').sort((a,b)=>b.urgencia-a.urgencia);
   if(resumenEl){
     if(!activos.length){
       resumenEl.innerHTML = '';
@@ -1520,9 +1632,13 @@ function dibujarMatrizRiesgo(){
       // "urgentes" no es triage. El conteo se queda (no hay que esconder que el día está
       // cargado), pero SIEMPRE se nombra el más urgente de todos (datos ya viene
       // ordenado por riesgo+volumen) para que haya un punto de partida concreto.
+      // CORRECCIÓN -- "zona crítica" ya no es la mitad de arriba-derecha del día: es impacto
+      // alto POR CONTENIDO + atención amplia (5+ medios). Se nombran hasta 3 temas con su
+      // motivo, para que sea triage y no un conteo.
+      const _linkTema = d => `<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema), 38)}</span>${d.impactoRazones && d.impactoRazones[0] ? `<span style="opacity:.6;font-weight:400;"> (${d.impactoRazones[0]} · ${d.atencion} medios)</span>` : ''}`;
       let headline = actuarCount>0
-        ? `${actuarCount} tema${actuarCount!==1?'s':''} en zona crítica · el más urgente: <span class="matriz-link" data-tema="${activos[0].tema.id}">${_truncarEnPalabra(_nombreClaroTema(activos[0].tema), 42)}</span>`
-        : `Ningún tema en zona crítica ahora mismo`;
+        ? `${actuarCount} tema${actuarCount!==1?'s':''} en zona crítica (impacto alto + amplia cobertura) · prioridad: ${criticosItems.slice(0,3).map(_linkTema).join(' · ')}`
+        : `Ningún tema combina impacto alto con amplia cobertura ahora mismo`;
       headline += ` · agenda concentrada en ${catDom} (${nCatDom} de ${activos.length})`;
       // CORRECCIÓN -- pedido explícito: análisis crítico de la matriz -- "los ejes son
       // un ranking del día, no un valor absoluto: el mismo tema puede caer en zona
@@ -1580,8 +1696,8 @@ function dibujarMatrizRiesgo(){
       }
       const callout = vigilarItems.length
         ? `<div style="margin-top:4px;font-size:10.5px;line-height:1.35;display:flex;gap:6px;align-items:flex-start;">
-            <span style="flex-shrink:0;font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:var(--riesgo-medio);border:1px solid var(--riesgo-medio);border-radius:99px;padding:1px 7px;margin-top:1px;">BAJO PERFIL MEDIÁTICO</span>
-            <span style="color:var(--ink-2);">riesgo alto con cobertura mediática todavía baja -- útil para anticipar antes de que escale en atención pública.${lecturaPatron} ${vigilarItems.slice(0,3).map(d=>`<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema),28)}</span><span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);"> (riesgo ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''})</span>`).join(' · ')}</span>
+            <span style="flex-shrink:0;font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:var(--riesgo-medio);border:1px solid var(--riesgo-medio);border-radius:99px;padding:1px 7px;margin-top:1px;">SEÑAL ANTICIPATORIA</span>
+            <span style="color:var(--ink-2);">impacto alto por su contenido, pero cubierto por menos de ${ATENCION_ALTA} medios y con notas de los últimos 3 días -- candidatos a escalar antes de que lleguen a la atención pública.${lecturaPatron} ${vigilarItems.slice(0,3).map(d=>`<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema),28)}</span><span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);"> (impacto ${d.riesgoReal}/10${d.impactoRazones&&d.impactoRazones[0]?' · '+d.impactoRazones[0]:''} · ${d.atencion} medio${d.atencion!==1?'s':''})</span>`).join(' · ')}</span>
           </div>`
         : '';
       resumenEl.innerHTML = `<div style="border-left:3px solid var(--riesgo-alto);padding:2px 10px;margin:6px 14px 0;">
@@ -1656,7 +1772,7 @@ function dibujarMatrizRiesgo(){
   const rotuloCuadrante = (x,y,anchor,color,texto) => svg.append('text').attr('x',x).attr('y',y).attr('text-anchor',anchor)
     .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('font-weight','700').attr('fill',color).attr('opacity',0.75).style('pointer-events','none')
     .text(texto);
-  rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+11, 'end', 'var(--riesgo-alto)', 'ACTUAR YA');
+  rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+11, 'end', 'var(--riesgo-alto)', 'ZONA CRÍTICA');
   rotuloCuadrante(margen.izq+4, margen.arriba+11, 'start', 'var(--riesgo-medio)', 'VIGILAR');
   rotuloCuadrante(margen.izq+anchoUtil-4, margen.arriba+altoUtil-6, 'end', 'var(--ink-3)', 'RUIDO');
   rotuloCuadrante(margen.izq+4, margen.arriba+altoUtil-6, 'start', 'var(--ink-3)', 'BAJO PERFIL');
@@ -1684,11 +1800,11 @@ function dibujarMatrizRiesgo(){
   // nativo (sin gastar espacio permanente del lienzo -- aparece solo al pasar el mouse).
   svg.append('text').attr('x',margen.izq+anchoUtil/2).attr('y',margen.arriba+altoUtil+22).attr('text-anchor','middle')
     .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
-    .text(`más notas recientes, ranking de hoy (${VENTANA_RADAR_DIAS}d) →`);
+    .text(`más medios distintos cubriéndolo (${VENTANA_RADAR_DIAS}d) →`);
   svg.append('text').attr('x',-(margen.arriba+altoUtil/2)).attr('y',17).attr('text-anchor','middle')
     .attr('transform','rotate(-90)')
     .attr('font-family','var(--f-mono)').attr('font-size','10px').attr('font-weight','600').attr('letter-spacing','.02em').attr('fill','var(--ink-2)')
-    .text(`↑ mayor riesgo relativo`);
+    .text(`↑ mayor impacto (por contenido)`);
   // CORRECCIÓN -- pedido explícito: "tiene formato genérico, darle el formato que ya
   // está establecido". El <title> nativo del navegador (tooltip gris del sistema
   // operativo) no es el formato del sitio -- el sitio ya tiene un tooltip propio
@@ -1838,7 +1954,7 @@ function dibujarMatrizRiesgo(){
   // Solo se marca si de verdad es urgente HOY (nota de los últimos 3 días y riesgo alto):
   // en un filtro con puros temas flojos o viejos (ej. Social), el "primero de la lista"
   // no es urgente solo por ser el primero -- mejor ningún anillo que uno engañoso.
-  const focoCritico = datos.find(d=>!d.apagado && d.diasDesdeUltima!=null && d.diasDesdeUltima<=3 && d.riesgoReal>=6);
+  const focoCritico = datos.find(d=>d._cuadrante==='actuar' && d.diasDesdeUltima!=null && d.diasDesdeUltima<=3);
   if(focoCritico){
     // CORRECCIÓN -- pedido explícito: "algo tipo sonar, sutil, limpio pero que se
     // logre notar". Aro fijo de referencia -- estático, sin animación propia. El
