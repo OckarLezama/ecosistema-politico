@@ -1280,6 +1280,43 @@ let _validacionRadar = null; // data/radar_validacion.json (lo genera radar_snap
   fetch('data/radar_validacion.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(j=>{ _validacionRadar = j; }).catch(()=>{});
 })();
 
+// calendario de hitos (criterio del analista): data/calendario_hitos.csv con columnas
+// fecha(YYYY-MM-DD),tema_id(opcional),hito,tipo,fuente_url,analista. Un hito es una fecha futura que
+// puede mover un tema (comparecencia, votación, plazo). Sin este archivo el radar solo detecta fechas
+// que ya vengan escritas en las notas.
+let _calendarioRadar = [];
+(function(){
+  if(typeof fetch !== 'function') return;
+  fetch('data/calendario_hitos.csv?t='+Date.now()).then(r=>r.ok?r.text():null).then(txt=>{
+    if(!txt) return;
+    const filas = txt.trim().split(/\r?\n/); const cab = (filas.shift()||'').split(',').map(x=>x.trim());
+    _calendarioRadar = filas.map(l=>{
+      const cols = l.match(/("([^"]|"")*"|[^,]*)(,|$)/g)||[];
+      const v = cols.map(c=>c.replace(/,$/,'').replace(/^"|"$/g,'').replace(/""/g,'"'));
+      const o = {}; cab.forEach((k,i)=>o[k]=(v[i]||'').trim()); return o;
+    }).filter(o=>/^\d{4}-\d{2}-\d{2}$/.test(o.fecha) && o.hito);
+  }).catch(()=>{});
+})();
+
+// alertas del radar: data/radar_alertas.json lo escribe radar_snapshot.js (robot) cuando un tema entra a
+// zona crítica, aparece una señal anticipatoria, un tema escala o un hito está a <=2 días.
+let _alertasRadar = [];
+function _ultimaVistaAlertas(){ try{ return localStorage.getItem('radarAlertasVistas') || ''; }catch(e){ return ''; } }
+function _marcarAlertasVistas(){ try{ if(_alertasRadar.length) localStorage.setItem('radarAlertasVistas', _alertasRadar[0].ts); }catch(e){} }
+function _alertasNuevas(){ const v = _ultimaVistaAlertas(); return _alertasRadar.filter(a=>a.ts > v); }
+function _pintarChipAlertas(){
+  const el = document.getElementById('radar-chip-alertas'); if(!el) return;
+  const n = _alertasNuevas().length;
+  el.innerHTML = n ? `<span style="color:var(--riesgo-alto);white-space:nowrap;">🔔 ${n} alerta${n!==1?'s':''} nueva${n!==1?'s':''}</span>` : '';
+}
+(function(){
+  if(typeof fetch !== 'function') return;
+  fetch('data/radar_alertas.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(j=>{
+    if(j && Array.isArray(j.alertas)){ _alertasRadar = j.alertas; _pintarChipAlertas(); if(typeof _refrescarLecturaRadar==='function') _refrescarLecturaRadar(); }
+  }).catch(()=>{});
+})();
+let _refrescarLecturaRadar = null;
+
 const IMPACTO_ALTO = 7;      // desde aquí el tema es de impacto alto
 const ATENCION_ALTA = 5;     // medios distintos en 14 días para considerarlo de atención amplia
 
@@ -1333,9 +1370,22 @@ function _actoresClaveDeTema(temaId){
 // próximo hito: primero el criterio del analista (data/radar_juicio.csv); si no hay,
 // una fecha FUTURA ("el 14 de octubre") que aparezca en las notas recientes -- verificable,
 // no inventada. Sin ninguna de las dos: null (se muestra "sin hito identificado").
+function _diasHasta(iso){
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  return Math.round((new Date(iso+'T00:00:00') - hoy)/86400000);
+}
+function _isoDe(y,m,d){ return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
 function _proximoHito(temaId, evsRecientes){
+  // 1) calendario del analista (la fecha futura más cercana de este tema)
+  const prop = (_calendarioRadar||[]).filter(h=>h.tema_id===temaId && _diasHasta(h.fecha)>=0).sort((a,b)=>a.fecha.localeCompare(b.fecha))[0];
+  if(prop) return { texto: prop.hito, fecha: prop.fecha, iso: prop.fecha, dias: _diasHasta(prop.fecha), fuente:'analista', tipo: prop.tipo||'', url: prop.fuente_url||'' };
+  // 2) criterio puntual en radar_juicio.csv
   const j = (typeof _juicioRadar!=='undefined' && _juicioRadar) ? _juicioRadar[temaId] : null;
-  if(j && (j.que_vigilar || j.fecha_hito)) return { texto: j.que_vigilar || '', fecha: j.fecha_hito || '', fuente:'analista' };
+  if(j && (j.que_vigilar || j.fecha_hito)){
+    const iso = /^\d{4}-\d{2}-\d{2}$/.test(j.fecha_hito||'') ? j.fecha_hito : null;
+    return { texto: j.que_vigilar || '', fecha: j.fecha_hito || '', iso, dias: iso ? _diasHasta(iso) : null, fuente:'analista' };
+  }
+  // 3) fechas escritas en las notas recientes ("el 15 de octubre")
   const hoy = new Date(); hoy.setHours(0,0,0,0);
   for(const e of [...evsRecientes].sort((a,b)=>b.fecha.localeCompare(a.fecha))){
     const txt = _normTxt(e.descripcion);
@@ -1346,7 +1396,7 @@ function _proximoHito(temaId, evsRecientes){
     if(dias>=0 && dias<=60){
       const i = txt.indexOf(m[0]);
       const frag = e.descripcion.slice(Math.max(0,i-30), i+m[0].length+30).replace(/\s+/g,' ').trim();
-      return { texto:`…${frag}…`, fecha:`${m[1]} de ${m[2]}`, fuente:'nota' };
+      return { texto:`…${frag}…`, fecha:`${m[1]} de ${m[2]}`, iso: _isoDe(f.getFullYear(), f.getMonth(), f.getDate()), dias, fuente:'nota' };
     }
   }
   return null;
@@ -1502,6 +1552,7 @@ function calcularDatosRadarAgenda(temasBase){
       actoresClave: _actoresClaveDeTema(t.id),
       hito: _proximoHito(t.id, apagado ? [] : evsHoy),
       sesgo: _sesgoDeMedios(medios),
+      coherencia: { coh: evsCoh.length, total: evsBrutos.length },
       territorio: _territorioDe(apagado ? evsTodos : evsHoy),
       veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
       nMedios: medios.size, actorIds, actorIdsVinculo, anomalia,
@@ -1582,6 +1633,7 @@ function _tooltipRadar(d, datosVisibles){
   let html = `<strong>${_truncarEnPalabra(_nombreClaroTema(d.tema), 60)}</strong><br>Impacto ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
   if(d.impactoRazones && d.impactoRazones.length) html += `<br><span style="font-size:10px;opacity:.85;">por: ${d.impactoRazones.join(' · ')}</span>`;
   html += `<br><span style="font-size:10px;opacity:.85;">alcance ${d.ambito} · confianza ${d.confianza.nivel}${d.confianza.motivos.length?' ('+d.confianza.motivos.join(', ')+')':''}</span>`;
+  if(d.hito && d.hito.dias!=null && d.hito.dias<=14) html += `<br><span style="font-size:10px;color:var(--teal);">◷ hito ${_cuandoTxt(d.hito.dias)}: ${_truncarEnPalabra(d.hito.texto,60)}</span>`;
   { const rob = _textoRobustez(d); if(rob) html += `<br><span style="font-size:10px;color:${rob.ok?'var(--riesgo-bajo)':'var(--riesgo-medio)'};">${rob.txt}</span>`; }
   { const te = Object.entries(d.territorio||{}).sort((a,b)=>b[1]-a[1]).slice(0,3); if(te.length) html += `<br><span style="font-size:10px;opacity:.85;">C3: ${te.map(([k,v])=>k+' '+v).join(' · ')}</span>`; }
   if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
@@ -1693,6 +1745,27 @@ function _sparkRadar(tray){
   return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="vertical-align:middle;"><polyline points="${pts(ya,'a')}" fill="none" stroke="var(--teal)" stroke-width="1.2" stroke-dasharray="2 2" opacity=".8"/><polyline points="${pts(yi,'i')}" fill="none" stroke="var(--riesgo-alto)" stroke-width="1.6"/><circle cx="${x(n-1)}" cy="${yi(u.i)}" r="2" fill="var(--riesgo-alto)"/></svg>`;
 }
 
+// hitos de los próximos N días: calendario del analista (con o sin tema) + fechas detectadas en
+// las notas de los temas activos. Ordenados por fecha.
+function _hitosProximos(datos, dias){
+  const out = []; const vistos = new Set();
+  const nombrePorId = id => { const d = datos.find(x=>x.tema.id===id); return d ? d : null; };
+  (_calendarioRadar||[]).forEach(h=>{
+    const n = _diasHasta(h.fecha); if(n<0 || n>dias) return;
+    const k = h.fecha+'|'+h.hito; if(vistos.has(k)) return; vistos.add(k);
+    out.push({ iso:h.fecha, dias:n, texto:h.hito, tipo:h.tipo||'', fuente:'analista', url:h.fuente_url||'', d: h.tema_id ? nombrePorId(h.tema_id) : null });
+  });
+  // las fechas detectadas en notas generan ruido: solo se listan las de temas prioritarios (crítico / anticipatoria)
+  datos.filter(d=>!d.apagado && d.hito && d.hito.iso && (d.hito.fuente==='analista' || ['actuar','vigilar'].includes(cuadranteDe(d)))).forEach(d=>{
+    if(d.hito.dias<0 || d.hito.dias>dias) return;
+    if((_calendarioRadar||[]).some(h=>h.tema_id===d.tema.id && h.fecha===d.hito.iso)) return;
+    const k = d.hito.iso+'|'+d.tema.id; if(vistos.has(k)) return; vistos.add(k);
+    out.push({ iso:d.hito.iso, dias:d.hito.dias, texto:d.hito.texto, tipo:'', fuente:d.hito.fuente, url:'', d });
+  });
+  return out.sort((a,b)=>a.dias-b.dias);
+}
+function _cuandoTxt(dias){ return dias===0?'hoy':dias===1?'mañana':`en ${dias} días`; }
+
 // cuadrante de un tema -- una sola definición para el radar, el resumen y "qué cambió"
 function cuadranteDe(d){
   if(d.apagado) return 'apagado';
@@ -1745,6 +1818,23 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
       <span style="color:var(--riesgo-bajo);">▼ salió de zona crítica</span><span>${lista(cambios.salieronCritica,'ninguno')}</span>
       <span style="color:var(--teal);">✦ tema nuevo</span><span>${lista(cambios.nuevos,'ninguno')}</span>
     </div>`;
+  const vistaAl = _ultimaVistaAlertas();
+  const alertasSec = opts.export ? '' : (`${sec('ALERTAS RECIENTES')}` + (_alertasRadar.length
+    ? `<div style="display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:10.5px;line-height:1.35;color:var(--ink-2);">` + _alertasRadar.slice(0,8).map(a=>{
+        const f = new Date(a.ts).toLocaleString('es-MX',{timeZone:'America/Mexico_City',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+        const nueva = a.ts > vistaAl ? '<span style="color:var(--riesgo-alto);font-weight:700;"> NUEVA</span>' : '';
+        return `<span style="font-family:var(--f-mono);color:var(--ink-3);">${_escHtml(f)}</span><span>${_escHtml(a.texto)}${nueva}</span>`;
+      }).join('') + `</div>`
+    : `<div style="font-size:10.5px;opacity:.6;">Sin alertas todavía: el robot las registra cuando un tema entra a zona crítica, aparece una señal anticipatoria, un tema escala o un hito está a 2 días o menos.</div>`)
+    + `<div style="margin-top:4px;font-size:10.5px;"><a href="data/radar_brief.html" target="_blank" rel="noopener" style="color:var(--teal);">Resumen del día (generado por el robot) ↗</a></div>`);
+  const hitos = _hitosProximos(datos||[], 21);
+  const calendario = `${sec('CALENDARIO · PRÓXIMOS 21 DÍAS')}` + (hitos.length
+    ? `<div style="display:grid;grid-template-columns:auto auto 1fr;gap:3px 10px;font-size:10.5px;line-height:1.35;color:var(--ink-2);">` + hitos.slice(0,10).map(h=>{
+        const f = new Date(h.iso+'T12:00:00').toLocaleDateString('es-MX',{weekday:'short',day:'numeric',month:'short'});
+        const col = h.dias<=3 ? 'var(--riesgo-alto)' : 'var(--ink-3)';
+        return `<span style="font-family:var(--f-mono);">${_escHtml(f)}</span><span style="font-family:var(--f-mono);color:${col};">${_cuandoTxt(h.dias)}</span><span>${h.d?link(h.d)+' — ':''}${h.url?`<a href="${_escHtml(h.url)}" target="_blank" rel="noopener" style="color:var(--teal);">${_escHtml(_truncarEnPalabra(h.texto,110))}</a>`:_escHtml(_truncarEnPalabra(h.texto,110))} <span style="opacity:.5;">[${h.fuente==='analista'?'analista':'detectado en notas'}]</span></span>`;
+      }).join('') + `</div>`
+    : `<div style="font-size:10.5px;opacity:.6;">Sin hitos en los próximos 21 días. Cárgalos en data/calendario_hitos.csv (fecha, tema_id, hito, tipo, fuente_url, analista).</div>`);
   const colorConf = {alta:'var(--riesgo-bajo)', media:'var(--riesgo-medio)', baja:'var(--riesgo-alto)'};
   const textoSesgo = d => {
     const s = d.sesgo; if(!s || !s.total) return '';
@@ -1758,7 +1848,7 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
     const j = (_juicioRadar && _juicioRadar[d.tema.id]) || null;
     const nota = d.notaAncla, esc = _escenariosDe(d), rob = _textoRobustez(d);
     const actores = (d.actoresClave||[]).map(a=>`${_escHtml(a.nombre)} <span style="opacity:.6;">(${_escHtml(a.rol)})</span>`).join(', ');
-    const hito = d.hito ? `${_escHtml(d.hito.fecha ? d.hito.fecha+' · ' : '')}${_escHtml(d.hito.texto)} <span style="opacity:.55;">[${d.hito.fuente==='analista'?'criterio del analista':'detectado en notas'}]</span>` : `<span style="opacity:.55;">sin hito identificado</span>`;
+    const hito = d.hito ? `${_escHtml(d.hito.fecha ? d.hito.fecha+(d.hito.dias!=null?' ('+_cuandoTxt(d.hito.dias)+')':'')+' · ' : '')}${_escHtml(d.hito.texto)} <span style="opacity:.55;">[${d.hito.fuente==='analista'?'criterio del analista':'detectado en notas'}]</span>` : `<span style="opacity:.55;">sin hito identificado</span>`;
     const t = d.tray; const tr = t && t.length ? `<div><b>7 días:</b> ${_sparkRadar(t)} <span style="${mono}">impacto ${t[0].i}→${t[t.length-1].i} · medios ${t[0].a}→${t[t.length-1].a}</span> <span style="opacity:.5;font-size:9px;">(— impacto, ┄ medios)</span></div>` : '';
     return `<div style="border-top:1px solid var(--line);padding:7px 0;">
       <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;">
@@ -1779,6 +1869,7 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
         ${esc.vigilar ? `<div><b>Vigilar:</b> ${_escHtml(esc.vigilar)} <span style="opacity:.55;">[analista]</span></div>` : ''}
         <div style="opacity:.55;font-size:9.5px;">escenarios [${esc.fuente}]</div>
         <div><b>Próximo hito:</b> ${hito}</div>
+        ${d.coherencia && d.coherencia.total>=3 && d.coherencia.coh/d.coherencia.total<0.7 ? `<div style="color:var(--riesgo-medio);">⚠ <b>Tema mezclado:</b> solo ${d.coherencia.coh} de ${d.coherencia.total} notas hablan de lo mismo; el resto se excluyó del cálculo.</div>` : ''}
         ${textoSesgo(d)}${textoTerr(d)}
       </div>
     </div>`;
@@ -1811,12 +1902,14 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
   const validacion = (v && v.n_anticipatorias_evaluadas>0)
     ? `De ${v.n_anticipatorias_evaluadas} señales anticipatorias evaluadas a ${v.horizonte_dias} días, ${v.n_escalaron} escalaron a zona crítica (${Math.round(v.tasa*100)}%)${v.base_n>0?` · base general: ${Math.round(v.base_tasa*100)}% de ${v.base_n} temas`:''}.`
     : `Acumulando historial${v && v.primer_snapshot ? ` desde ${_escHtml(v.primer_snapshot)}` : ''}: aún no hay señales con ${v?v.horizonte_dias:3} días de antigüedad para medir si el radar acierta.`;
-  const ahora = new Date().toLocaleString('es-MX', {timeZone:'America/Mexico_City', dateStyle:'medium', timeStyle:'short'});
+  const ahora = opts.corte || new Date().toLocaleString('es-MX', {timeZone:'America/Mexico_City', dateStyle:'medium', timeStyle:'short'});
   return `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;">
       <span style="font-family:var(--f-display);font-size:13px;font-weight:600;">Lectura del radar <span style="${mono}">· corte ${_escHtml(ahora)}</span></span>
       ${opts.export ? '' : '<button type="button" id="radar-exportar" style="background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:10.5px;cursor:pointer;padding:4px 2px;">Exportar ⇩</button>'}
     </div>
     ${bloqueCambios}
+    ${alertasSec}
+    ${calendario}
     ${sec('PRIORIDADES')}
     ${prioridades}
     ${robustez}
@@ -1824,15 +1917,17 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
     <div style="border-top:1px solid var(--line);margin-top:12px;padding-top:6px;font-size:10px;color:var(--ink-3);"><b>Validación:</b> ${validacion}<br><span style="opacity:.8;">Los pesos del léxico y la línea editorial de los medios son criterio del analista (editable en data/); la validación mide si el radar acierta.</span></div>`;
 }
 
-function _exportarLecturaRadar(criticos, anticipatorias, cambios, datos){
-  const cuerpo = _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, {export:true});
-  const fecha = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
-  const doc = `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lectura del radar ${fecha}</title><style>
+function _documentoLecturaRadar(cuerpo, fecha){
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lectura del radar ${fecha}</title><style>
     :root{--ink-1:#111;--ink-2:#333;--ink-3:#666;--bg-1:#fff;--line:#ddd;--teal:#0b7a75;--riesgo-alto:#c0392b;--riesgo-medio:#b9770e;--riesgo-bajo:#1e8449;--f-mono:ui-monospace,Menlo,monospace;--f-display:Georgia,serif}
     body{font:12px/1.4 system-ui,sans-serif;color:var(--ink-1);background:var(--bg-1);max-width:820px;margin:24px auto;padding:0 16px}
     @media print{body{margin:0}}</style></head><body>${cuerpo}</body></html>`;
+}
+function _exportarLecturaRadar(criticos, anticipatorias, cambios, datos){
+  const cuerpo = _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, {export:true});
+  const fecha = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([doc], {type:'text/html;charset=utf-8'}));
+  a.href = URL.createObjectURL(new Blob([_documentoLecturaRadar(cuerpo, fecha)], {type:'text/html;charset=utf-8'}));
   a.download = `lectura-radar-${fecha}.html`; document.body.appendChild(a); a.click();
   setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
@@ -1992,6 +2087,7 @@ function dibujarMatrizRiesgo(){
           ${chipB(`● ${criticosItems.length} crítico${criticosItems.length!==1?'s':''}`, 'var(--riesgo-alto)')}
           ${chipB(`◐ ${vigilarItems.length} señal${vigilarItems.length!==1?'es':''}`, 'var(--riesgo-medio)')}
           ${chipB(nCambios ? `↗ ${nCambios} nuevo${nCambios!==1?'s':''}` : '= igual que ayer', 'var(--ink-3)')}
+          <span id="radar-chip-alertas"></span>
           </span>
           <button type="button" id="radar-btn-lectura" style="margin-left:auto;flex:none;background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:11px;padding:0 4px;height:100%;cursor:pointer;white-space:nowrap;">Lectura ▾</button>
         </div>`;
@@ -2004,7 +2100,7 @@ function dibujarMatrizRiesgo(){
         panel.id = 'radar-panel-lectura'; panel.className = 'radar-lectura-scroll';
         panel.style.cssText = 'position:absolute;inset:0;z-index:30;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:'+(ARRIBA_RADAR+4)+'px 16px 20px 18px;font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
         zona.appendChild(panel);
-        const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; const ch = document.getElementById('radar-chips'); if(ch) ch.style.display = abrir?'none':'flex'; if(abrir){ _puntoFijadoRadar = null; ocultarTooltipAgenda(); } };
+        const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; const ch = document.getElementById('radar-chips'); if(ch) ch.style.display = abrir?'none':'flex'; if(abrir){ _puntoFijadoRadar = null; ocultarTooltipAgenda(); setTimeout(()=>{ _marcarAlertasVistas(); _pintarChipAlertas(); }, 800); } };
         document.getElementById('radar-btn-lectura').addEventListener('click', ()=> alternar(panel.style.display==='none'));
         const rellenar = ()=>{
           panel.innerHTML = _htmlLecturaRadar(criticosItems, vigilarItems, cambios, datosTodos);
@@ -2014,8 +2110,10 @@ function dibujarMatrizRiesgo(){
             el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema));
           });
         };
+        _refrescarLecturaRadar = ()=>{ if(document.getElementById('radar-panel-lectura')===panel) rellenar(); };
         rellenar();
         alternar(_lecturaRadarAbierta);
+        _pintarChipAlertas();
         if(!_enriqListo) setTimeout(()=>{ _enriquecerRadar(temasBase, datosTodos); if(document.getElementById('radar-panel-lectura')===panel) rellenar(); }, 60);
       }
     }
