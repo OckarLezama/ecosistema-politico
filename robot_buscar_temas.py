@@ -677,16 +677,38 @@ def cargar_temas_todos():
         return list(csv.DictReader(f))
 
 
-def buscar_tema_informativo_similar(titulo, actores_altos, umbral=0.15):
+# CORRECCIÓN DE FONDO -- los temas de agenda "mezclaban historias" (auditoría real: 75 de 759
+# temas con 3+ notas tenían menos de la mitad de sus notas hablando de lo mismo, 13 de ellos de
+# agenda nacional). Causa: este agrupador unía una nota nueva a un tema existente si compartían
+# CUALQUIER 15% de raíces de palabras (casi siempre "Sheinbaum", "gobierno", "México"...) o si
+# compartían 2 actores de influencia alta (Sheinbaum + Morena aparecen en media agenda).
+# Ahora cuentan solo raíces DISTINTIVAS (sin nombres/palabras omnipresentes) y se exigen al
+# menos 2 en común; la regla de actores exige además 1 raíz distintiva compartida.
+_GENERICAS_AGRUPACION = {'claudia','sheinbaum','presidenta','presidente','mexico','mexicano','mexicana',
+    'nacional','gobierno','federal','nuevo','nueva','sobre','entre','desde','hasta','para','como','tras',
+    'ante','esta','este','pardo','alerta','estado','estados','unidos','hoy','dice','dijo','morena',
+    'opinion','oficial','segun','anuncia','afirma','pide','exige','tras','contra','2026','2025'}
+
+def raices_distintivas(texto):
+    t = re.sub(r'\s[-|]\s[^-|]{2,40}$', '', sin_acentos(texto.lower())).replace('t-mec', 'tmec')
+    return {p[:6] for p in re.findall(r'[a-z0-9]{4,}', t) if p not in _GENERICAS_AGRUPACION}
+
+def mismo_hilo(titulo_a, titulo_b, umbral=0.20, minimo_comunes=2):
+    a, b = raices_distintivas(titulo_a), raices_distintivas(titulo_b)
+    comunes = a & b
+    return len(comunes) >= minimo_comunes and len(comunes) / max(1, len(a | b)) >= umbral
+
+def buscar_tema_informativo_similar(titulo, actores_altos, umbral=0.20):
     temas_todos = cargar_temas_todos()
     texto_nuevo = titulo.lower()
     actores_en_nuevo = {a['nombre'] for a in actores_altos if actorMencionadoEn(a['nombre'], texto_nuevo)}
+    nuevas_raices = raices_distintivas(titulo)
     for t in temas_todos:
         if t.get('tipo') != 'informativo': continue
-        if similitud_titulares(t['nombre'], titulo) >= umbral:
+        if mismo_hilo(t['nombre'], titulo, umbral):
             return t['id']
         actores_en_existente = {a['nombre'] for a in actores_altos if actorMencionadoEn(a['nombre'], t['nombre'].lower())}
-        if len(actores_en_nuevo & actores_en_existente) >= 2:
+        if len(actores_en_nuevo & actores_en_existente) >= 2 and (nuevas_raices & raices_distintivas(t['nombre'])):
             return t['id']
     return None
 

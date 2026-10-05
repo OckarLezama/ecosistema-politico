@@ -22,11 +22,20 @@ const ctx = { console, fetch: () => new Promise(()=>{}), Math, URL, Set, Map,
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/fuentes.js'),'utf8'), ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/agenda.js'),'utf8') +
-  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;', ctx);
+  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__html=_htmlLecturaRadar;globalThis.__doc=_documentoLecturaRadar;globalThis.__hitos=_hitosProximos;', ctx);
+
+// criterio del analista y calendario: el navegador los lee por fetch; aquí se cargan del disco
+const aCsv = n => R(n);
+ctx.__juicio = Object.fromEntries(aCsv('radar_juicio.csv').filter(o=>o.tema_id).map(o=>[o.tema_id,o]));
+ctx.__cal = aCsv('calendario_hitos.csv').filter(o=>/^\d{4}-\d{2}-\d{2}$/.test(o.fecha||'') && o.hito);
+vm.runInContext('_juicioRadar = globalThis.__juicio; _calendarioRadar = globalThis.__cal;', ctx);
+const lineas = {}; aCsv('medios_linea.csv').forEach(o=>{ if(o.medio && /^(oficial|cercano|critico)$/.test(o.linea)) lineas[o.medio.toLowerCase()] = o.linea; });
+ctx.__lineas = lineas; vm.runInContext('_lineaMedios = globalThis.__lineas;', ctx);
 
 const hoy = new Date().toLocaleDateString('en-CA', { timeZone:'America/Mexico_City' });
 const temas = ctx.ECOSISTEMA.temas.filter(t => Number(t.nivel_relevancia) === 1);
-const datos = ctx.__calc(temas).filter(d => !d.apagado);
+const datosAll = ctx.__calc(temas);
+const datos = datosAll.filter(d => !d.apagado);
 
 const CAB = 'fecha,tema_id,cuadrante,impacto,medios,ambito';
 let hist = fs.existsSync(D('radar_historial.csv')) ? fs.readFileSync(D('radar_historial.csv'),'utf8').trim().split('\n') : [];
@@ -55,3 +64,60 @@ const val = { generado: hoy, horizonte_dias: HORIZONTE, primer_snapshot: dias[0]
   base_n: nBase, base_tasa: nBase ? nBaseEsc/nBase : 0 };
 fs.writeFileSync(D('radar_validacion.json'), JSON.stringify(val, null, 1) + '\n');
 console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.stringify(val));
+
+// ============ alertas + resumen diario ============
+(async () => {
+  ctx.__val = val; vm.runInContext('_validacionRadar = globalThis.__val;', ctx);
+  ctx.__enr(temas, datosAll);
+  const cambios = ctx.__c24(temas, datosAll);
+  const crit = datos.filter(d => ctx.__cuad(d)==='actuar').sort((a,b)=>b.urgencia-a.urgencia);
+  const vig = datos.filter(d => ctx.__cuad(d)==='vigilar').sort((a,b)=>b.urgencia-a.urgencia);
+  const nm = d => String(d.tema.nombre).slice(0, 80);
+  const ahoraMX = new Date().toLocaleString('sv-SE', { timeZone:'America/Mexico_City' }).replace(' ', 'T') + '-06:00';
+  const nuevas = [];
+  const alerta = (tipo, d, texto) => nuevas.push({ id: `${hoy}|${tipo}|${d.tema.id}`, ts: ahoraMX, tipo, tema_id: d.tema.id, texto });
+  cambios.entraronCritica.forEach(d => alerta('entro_critica', d, `▲ ${nm(d)} entró a zona crítica (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
+  cambios.nuevasAnticipatorias.forEach(d => alerta('nueva_anticipatoria', d, `◐ Señal anticipatoria: ${nm(d)} (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
+  cambios.escalaron.forEach(d => alerta('escalo', d, `↗ ${nm(d)} escaló (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
+  [...crit, ...vig].forEach(d => { if (d.hito && d.hito.dias != null && d.hito.dias >= 0 && d.hito.dias <= 2)
+    alerta('hito_proximo', d, `◷ ${nm(d)}: hito ${d.hito.dias===0?'hoy':d.hito.dias===1?'mañana':'en 2 días'} — ${String(d.hito.texto).slice(0, 90)}`); });
+
+  // archivo de alertas (más recientes primero, sin duplicados por id)
+  let est = { generado: hoy, ultimo_brief_enviado: '', alertas: [] };
+  try { est = Object.assign(est, JSON.parse(fs.readFileSync(D('radar_alertas.json'), 'utf8'))); } catch (e) {}
+  const ids = new Set(est.alertas.map(a => a.id));
+  const agregadas = nuevas.filter(a => !ids.has(a.id));
+  est.alertas = [...agregadas, ...est.alertas].slice(0, 60);
+  est.generado = hoy;
+
+  // resumen del día (HTML autónomo, mismo cuerpo que el botón Exportar del dashboard)
+  const cuerpo = ctx.__html(crit, vig, cambios, datosAll, { export: true, corte: `${hoy} (último cálculo del robot)` });
+  const doc = ctx.__doc(cuerpo, hoy);
+  const rutaBrief = D('radar_brief.html');
+  if (!fs.existsSync(rutaBrief) || fs.readFileSync(rutaBrief, 'utf8') !== doc) fs.writeFileSync(rutaBrief, doc);
+
+  // envío opcional a Telegram (solo si hay credenciales; si no, se omite en silencio)
+  const TOKEN = process.env.TELEGRAM_BOT_TOKEN, CHAT = process.env.TELEGRAM_CHAT_ID;
+  const enviar = async texto => {
+    const r = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, { method:'POST', headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ chat_id: CHAT, text: texto.slice(0, 3900), disable_web_page_preview: true }) });
+    return r.ok;
+  };
+  if (TOKEN && CHAT) {
+    try {
+      if (agregadas.length) await enviar('🔔 Radar — ' + hoy + '\n' + agregadas.map(a => a.texto).join('\n'));
+      const horaMX = Number(new Date().toLocaleString('en-GB', { timeZone:'America/Mexico_City', hour:'2-digit', hour12:false }));
+      if (horaMX >= 7 && est.ultimo_brief_enviado !== hoy) {
+        const l = [`📋 Radar — resumen del ${hoy}`, `${crit.length} crítico(s) · ${vig.length} señal(es) anticipatoria(s)`, ''];
+        crit.slice(0, 5).forEach(d => l.push(`● ${nm(d)} — impacto ${d.riesgoReal}, ${d.atencion} medios` + (d.notaAncla && d.notaAncla.fuente_url ? `\n   ${d.notaAncla.fuente_url}` : '')));
+        vig.slice(0, 3).forEach(d => l.push(`◐ ${nm(d)} — impacto ${d.riesgoReal}, ${d.atencion} medios`));
+        const h = ctx.__hitos(datosAll, 3);
+        if (h.length) { l.push('', 'Hitos próximos:'); h.slice(0, 5).forEach(x => l.push(`◷ ${x.dias===0?'hoy':x.dias===1?'mañana':'en '+x.dias+' días'}: ${String(x.texto).slice(0, 100)}`)); }
+        if (await enviar(l.join('\n'))) est.ultimo_brief_enviado = hoy;
+      }
+    } catch (e) { console.log('Telegram no disponible:', e.message); }
+  }
+  const nuevoTxt = JSON.stringify(est, null, 1) + '\n';
+  if (!fs.existsSync(D('radar_alertas.json')) || fs.readFileSync(D('radar_alertas.json'), 'utf8') !== nuevoTxt) fs.writeFileSync(D('radar_alertas.json'), nuevoTxt);
+  console.log(`alertas nuevas: ${agregadas.length} · críticos ${crit.length} · anticipatorias ${vig.length} · brief ${doc.length} bytes`);
+})();
