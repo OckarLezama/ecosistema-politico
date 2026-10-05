@@ -78,11 +78,11 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
   const ahoraMX = new Date().toLocaleString('sv-SE', { timeZone:'America/Mexico_City' }).replace(' ', 'T') + '-06:00';
   const nuevas = [];
   const alerta = (tipo, d, texto) => nuevas.push({ id: `${hoy}|${tipo}|${d.tema.id}`, ts: ahoraMX, tipo, tema_id: d.tema.id, texto });
-  cambios.entraronCritica.forEach(d => alerta('entro_critica', d, `▲ ${nm(d)} entró a zona crítica (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
-  cambios.nuevasAnticipatorias.forEach(d => alerta('nueva_anticipatoria', d, `◐ Señal anticipatoria: ${nm(d)} (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
-  cambios.escalaron.forEach(d => alerta('escalo', d, `↗ ${nm(d)} escaló (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
+  cambios.entraronCritica.forEach(d => alerta('entro_critica', d, `▲ ${nm(d)} pasó a crítico (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
+  cambios.nuevasAnticipatorias.forEach(d => alerta('nueva_anticipatoria', d, `◐ Tema por vigilar: ${nm(d)} (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
+  cambios.escalaron.forEach(d => alerta('escalo', d, `↗ ${nm(d)} creció (impacto ${d.riesgoReal}, ${d.atencion} medios)`));
   [...crit, ...vig].forEach(d => { if (d.hito && d.hito.dias != null && d.hito.dias >= 0 && d.hito.dias <= 2)
-    alerta('hito_proximo', d, `◷ ${nm(d)}: hito ${d.hito.dias===0?'hoy':d.hito.dias===1?'mañana':'en 2 días'} — ${String(d.hito.texto).slice(0, 90)}`); });
+    alerta('hito_proximo', d, `◷ ${nm(d)}: fecha clave ${d.hito.dias===0?'hoy':d.hito.dias===1?'mañana':'en 2 días'} — ${String(d.hito.texto).slice(0, 90)}`); });
 
   // archivo de alertas (más recientes primero, sin duplicados por id)
   let est = { generado: hoy, ultimo_brief_enviado: '', alertas: [] };
@@ -104,11 +104,11 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
       if (agregadas.length) await enviar('🔔 Radar — ' + hoy + '\n' + agregadas.map(a => a.texto).join('\n'));
       const horaMX = Number(new Date().toLocaleString('en-GB', { timeZone:'America/Mexico_City', hour:'2-digit', hour12:false }));
       if (horaMX >= 7 && est.ultimo_brief_enviado !== hoy) {
-        const l = [`📋 Radar — resumen del ${hoy}`, `${crit.length} crítico(s) · ${vig.length} señal(es) anticipatoria(s)`, ''];
+        const l = [`📋 Radar — resumen del ${hoy}`, `${crit.length} crítico(s) · ${vig.length} por vigilar`, ''];
         crit.slice(0, 5).forEach(d => l.push(`● ${nm(d)} — impacto ${d.riesgoReal}, ${d.atencion} medios` + (d.notaAncla && d.notaAncla.fuente_url ? `\n   ${d.notaAncla.fuente_url}` : '')));
         vig.slice(0, 3).forEach(d => l.push(`◐ ${nm(d)} — impacto ${d.riesgoReal}, ${d.atencion} medios`));
         const h = ctx.__hitos(datosAll, 3);
-        if (h.length) { l.push('', 'Hitos próximos:'); h.slice(0, 5).forEach(x => l.push(`◷ ${x.dias===0?'hoy':x.dias===1?'mañana':'en '+x.dias+' días'}: ${String(x.texto).slice(0, 100)}`)); }
+        if (h.length) { l.push('', 'Fechas clave próximas:'); h.slice(0, 5).forEach(x => l.push(`◷ ${x.dias===0?'hoy':x.dias===1?'mañana':'en '+x.dias+' días'}: ${String(x.texto).slice(0, 100)}`)); }
         if (await enviar(l.join('\n'))) est.ultimo_brief_enviado = hoy;
       }
     } catch (e) { console.log('Telegram no disponible:', e.message); }
