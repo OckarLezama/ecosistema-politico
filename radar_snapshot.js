@@ -33,6 +33,7 @@ const lineas = {}; aCsv('medios_linea.csv').forEach(o=>{ if(o.medio && /^(oficia
 ctx.__lineas = lineas; vm.runInContext('_lineaMedios = globalThis.__lineas;', ctx);
 
 ctx.__pesos = aCsv('radar_pesos.csv'); vm.runInContext('_aplicarPesosRadar(globalThis.__pesos);', ctx);
+ctx.__rev = aCsv('revision_notas.csv'); vm.runInContext('_revisionCsv = globalThis.__rev;', ctx);
 
 const hoy = new Date().toLocaleDateString('en-CA', { timeZone:'America/Mexico_City' });
 const temas = ctx.ECOSISTEMA.temas.filter(t => Number(t.nivel_relevancia) === 1);
