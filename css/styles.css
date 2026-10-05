@@ -680,3 +680,10 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
   transition:opacity .12s ease; z-index:500;
 }
 #leg-tooltip-flotante.visible { opacity:1; visibility:visible; }
+
+/* panel "Lectura" del radar: mismo scroll delgado que el feed */
+.radar-lectura-scroll{ overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--line-strong) var(--bg-1); }
+.radar-lectura-scroll::-webkit-scrollbar{width:6px;}
+.radar-lectura-scroll::-webkit-scrollbar-track{background:var(--bg-1);}
+.radar-lectura-scroll::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:99px;}
+.radar-lectura-scroll::-webkit-scrollbar-thumb:hover{background:var(--teal);}
