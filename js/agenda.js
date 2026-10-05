@@ -1050,8 +1050,8 @@ function renderMatriz(){
   // de esa caja sin importar cuánto mida el margen interno del gráfico, y sin
   // depender de que el <svg> ya tenga su tamaño final calculado.
   document.getElementById('matriz-lista-zona').innerHTML =
-    `<div id="matriz-resumen-html" style="flex:none;"></div>
-     <div style="width:100%;flex:1;min-height:0;position:relative;">
+    `<div id="matriz-lienzo" style="width:100%;flex:1;min-height:0;position:relative;">
+       <div id="matriz-resumen-html" style="position:absolute;top:1px;left:0;right:26px;z-index:40;"></div>
        <svg id="matriz-riesgo-svg" style="width:100%;height:100%;display:block;"></svg>
        <span class="leg-tt" data-tt="El plano es un ranking del corte de hoy (percentil de riesgo y volumen entre los temas activos), no un valor absoluto -- no comparable directamente entre días distintos." style="position:absolute;top:4px;right:6px;width:16px;height:16px;cursor:help;display:flex;align-items:center;justify-content:center;">
          <svg width="16" height="16" viewBox="0 0 24 24" style="pointer-events:none;"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--ink-3)" stroke-width="2"/><line x1="12" y1="16" x2="12" y2="12" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round"/></svg>
@@ -1820,20 +1820,20 @@ function dibujarMatrizRiesgo(){
       const cambios = calcularCambios24h(temasBase, datosTodos);
       const nCambios = cambios.entraronCritica.length + cambios.nuevasAnticipatorias.length + cambios.escalaron.length;
       const chipB = (txt, color) => `<span style="color:${color};white-space:nowrap;">${txt}</span>`;
-      resumenEl.innerHTML = `<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:5px 14px 0;font-family:var(--f-mono);font-size:10.5px;">
+      resumenEl.innerHTML = `<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;overflow:hidden;padding:0 10px 0 28px;font-family:var(--f-mono);font-size:10px;">
           ${chipB(`● ${criticosItems.length} crítico${criticosItems.length!==1?'s':''}`, 'var(--riesgo-alto)')}
           ${chipB(`◐ ${vigilarItems.length} señal${vigilarItems.length!==1?'es':''} anticipatoria${vigilarItems.length!==1?'s':''}`, 'var(--riesgo-medio)')}
           ${chipB(nCambios ? `↗ ${nCambios} cambio${nCambios!==1?'s':''} vs ayer` : '= sin cambios de zona vs ayer', 'var(--ink-3)')}
-          <button type="button" id="radar-btn-lectura" style="margin-left:auto;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);font-family:var(--f-mono);font-size:10px;padding:2px 9px;cursor:pointer;">Lectura ▾</button>
+          <button type="button" id="radar-btn-lectura" style="margin-left:auto;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);font-family:var(--f-mono);font-size:10px;padding:1px 9px;cursor:pointer;">Lectura ▾</button>
         </div>`;
-      const zona = document.getElementById('matriz-lista-zona');
+      const zona = document.getElementById('matriz-lienzo');
       if(zona){
         zona.style.position = 'relative';
         let panel = document.getElementById('radar-panel-lectura');
         if(panel) panel.remove();
         panel = document.createElement('div');
-        panel.id = 'radar-panel-lectura';
-        panel.style.cssText = 'position:absolute;inset:0;z-index:30;overflow:auto;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px 18px;font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
+        panel.id = 'radar-panel-lectura'; panel.className = 'radar-lectura-scroll';
+        panel.style.cssText = 'position:absolute;inset:0;z-index:30;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:30px 16px 20px 18px;font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
         panel.innerHTML = _htmlLecturaRadar(criticosItems, vigilarItems, cambios);
         zona.appendChild(panel);
         const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; };
