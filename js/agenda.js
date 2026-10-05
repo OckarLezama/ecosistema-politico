@@ -1431,11 +1431,6 @@ function _sesgoDeMedios(medios){
   c.total = medios.size !== undefined ? medios.size : medios.length;
   return c;
 }
-const ESTADOS_C3 = ['Campeche','Chiapas','Oaxaca','Quintana Roo','Tabasco','Veracruz','Yucatán','Puebla'];
-function _territorioDe(evs){
-  const t = {}; evs.forEach(e=>{ const en = (e.entidad_c3||'').trim(); if(ESTADOS_C3.includes(en)) t[en] = (t[en]||0)+1; });
-  return t;
-}
 // interacción táctil: en touch no hay hover. 1er toque = tooltip fijo, 2º toque = ficha.
 let _ptrTipoRadar = (typeof matchMedia === 'function' && matchMedia('(hover: none)').matches) ? 'touch' : 'mouse';
 let _puntoFijadoRadar = null;
@@ -1554,7 +1549,6 @@ function calcularDatosRadarAgenda(temasBase){
       hito: _proximoHito(t.id, apagado ? [] : evsHoy),
       sesgo: _sesgoDeMedios(medios),
       coherencia: { coh: evsCoh.length, total: evsBrutos.length },
-      territorio: _territorioDe(apagado ? evsTodos : evsHoy),
       veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
       nMedios: medios.size, actorIds, actorIdsVinculo, anomalia,
       primeraMencion: evsTodos.length ? evsTodos.map(e=>e.fecha).sort()[0] : null,
@@ -1636,7 +1630,6 @@ function _tooltipRadar(d, datosVisibles){
   html += `<br><span style="font-size:10px;opacity:.85;">alcance ${d.ambito} · confianza ${d.confianza.nivel}${d.confianza.motivos.length?' ('+d.confianza.motivos.join(', ')+')':''}</span>`;
   if(d.hito && d.hito.dias!=null && d.hito.dias<=14) html += `<br><span style="font-size:10px;color:var(--teal);">◷ hito ${_cuandoTxt(d.hito.dias)}: ${_truncarEnPalabra(d.hito.texto,60)}</span>`;
   { const rob = _textoRobustez(d); if(rob) html += `<br><span style="font-size:10px;color:${rob.ok?'var(--riesgo-bajo)':'var(--riesgo-medio)'};">${rob.txt}</span>`; }
-  { const te = Object.entries(d.territorio||{}).sort((a,b)=>b[1]-a[1]).slice(0,3); if(te.length) html += `<br><span style="font-size:10px;opacity:.85;">C3: ${te.map(([k,v])=>k+' '+v).join(' · ')}</span>`; }
   if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
   else if(d.esNuevo) html += ` <span style="color:var(--teal);">· 🆕 últimas 48h</span>`;
   else if(d.tendencia && d.tendencia!=='estable') html += ` <span style="color:${d.tendencia==='subiendo'?'var(--riesgo-alto)':'var(--riesgo-bajo)'};">· ${ICONO_TENDENCIA[d.tendencia]}</span>`;
@@ -1844,7 +1837,6 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
     const alerta = s.unSoloLado ? ` <span style="color:var(--riesgo-medio);">⚠ cobertura de un solo lado (${s.unSoloLado==='gobierno'?'afín al gobierno':'crítica'})</span>` : '';
     return `<div><b>Fuentes:</b> ${partes.join(' · ')}${alerta}</div>`;
   };
-  const textoTerr = d => { const e = Object.entries(d.territorio||{}).sort((a,b)=>b[1]-a[1]); return e.length ? `<div><b>Territorio:</b> ${e.map(([k,v])=>`${_escHtml(k)} ${v}`).join(' · ')}</div>` : ''; };
   const tarjeta = (d, etiqueta, colorEt) => {
     const j = (_juicioRadar && _juicioRadar[d.tema.id]) || null;
     const nota = d.notaAncla, esc = _escenariosDe(d), rob = _textoRobustez(d);
@@ -1871,7 +1863,7 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
         <div style="opacity:.55;font-size:9.5px;">escenarios [${esc.fuente}]</div>
         <div><b>Próximo hito:</b> ${hito}</div>
         ${d.coherencia && d.coherencia.total>=3 && d.coherencia.coh/d.coherencia.total<0.7 ? `<div style="color:var(--riesgo-medio);">⚠ <b>Tema mezclado:</b> solo ${d.coherencia.coh} de ${d.coherencia.total} notas hablan de lo mismo; el resto se excluyó del cálculo.</div>` : ''}
-        ${textoSesgo(d)}${textoTerr(d)}
+        ${textoSesgo(d)}
       </div>
     </div>`;
   };
@@ -1889,16 +1881,6 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
       ${frag.length ? `<div>Frágiles: ${frag.map(link).join(' · ')}</div>` : ''}
       ${alLimite.length ? `<div>Al límite de entrar: ${alLimite.slice(0,4).map(link).join(' · ')}</div>` : ''}</div>`;
 
-  // territorio C3
-  const filasT = ['Campeche','Chiapas','Oaxaca','Quintana Roo','Tabasco','Veracruz','Yucatán','Puebla'].map(est=>{
-    const ts = (datos||[]).filter(d=>!d.apagado && d.territorio && d.territorio[est]).sort((a,b)=>(b.riesgoReal-a.riesgoReal)||(b.territorio[est]-a.territorio[est])).slice(0,3);
-    if(!ts.length) return '';
-    const col = d => ({actuar:'var(--riesgo-alto)',vigilar:'var(--riesgo-medio)'}[cuadranteDe(d)]||'var(--ink-3)');
-    return `<span style="color:var(--ink-1);font-weight:600;">${est}</span><span>${ts.map(d=>`<span style="color:${col(d)};">●</span> ${link(d)} <span style="opacity:.6;">(${d.territorio[est]} nota${d.territorio[est]!==1?'s':''} · imp. ${d.riesgoReal})</span>`).join('<br>')}</span>`;
-  }).join('');
-  const territorio = `${sec('COBERTURA TERRITORIAL C3 (14 d) -- un tema "local" para el país puede ser crítico para un estado')}
-    ${filasT ? `<div style="display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:10.5px;color:var(--ink-2);line-height:1.35;">${filasT}</div>` : '<div style="font-size:10.5px;opacity:.6;">Sin notas con entidad C3 en la ventana.</div>'}`;
-
   const v = _validacionRadar;
   const validacion = (v && v.n_anticipatorias_evaluadas>0)
     ? `De ${v.n_anticipatorias_evaluadas} señales anticipatorias evaluadas a ${v.horizonte_dias} días, ${v.n_escalaron} escalaron a zona crítica (${Math.round(v.tasa*100)}%)${v.base_n>0?` · base general: ${Math.round(v.base_tasa*100)}% de ${v.base_n} temas`:''}.`
@@ -1913,7 +1895,6 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
     ${sec('PRIORIDADES')}
     ${prioridades}
     ${robustez}
-    ${territorio}
     <div style="border-top:1px solid var(--line);margin-top:12px;padding-top:6px;font-size:10px;color:var(--ink-3);"><b>Validación:</b> ${validacion}<br><span style="opacity:.8;">Los pesos del léxico y la línea editorial de los medios son criterio del analista (editable en data/); la validación mide si el radar acierta.</span></div>`;
 }
 
