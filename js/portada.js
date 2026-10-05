@@ -77,10 +77,21 @@ const URL_OFICIAL_MEDIO = {
 // ECOSISTEMA.titulares (CSV aparte, cargado sin bloquear el resto de los datos).
 // Igual que "mapa de relación": un botón chico que abre una ventana dedicada, para
 // no competir por espacio con el Pulso del Día ni con las notas del panel principal.
+// Fecha cuyas portadas se muestran: HOY si el robot ya trajo alguna; si todavía no (primeras
+// horas del día, o GitHub retrasó el cron), la última fecha que sí tenga portadas -- así el
+// botón NUNCA desaparece y el modal avisa que son las más recientes disponibles.
+function fechaPortadasVigente(){
+  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const validas = (ECOSISTEMA.titulares||[]).filter(t=>t.medio && (t.titular || t.imagen_url));
+  if(validas.some(t=>t.fecha===hoy)) return hoy;
+  const fechas = validas.map(t=>t.fecha).filter(Boolean).sort();
+  return fechas.length ? fechas[fechas.length-1] : hoy;
+}
+
 function renderTitularesDelDia(){
   const cont = document.getElementById('portada-titulares');
   if(!cont) return;
-  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const hoy = fechaPortadasVigente();
   const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && (t.titular || t.imagen_url));
   if(!titulares.length){ cont.innerHTML = ''; return; }
   cont.innerHTML = `
@@ -92,8 +103,9 @@ function renderTitularesDelDia(){
 }
 
 function abrirTitularesModal(){
-  const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
-  const fechaTexto = new Date().toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long', timeZone:'America/Mexico_City'});
+  const hoy = fechaPortadasVigente();
+  const hoyReal = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const fechaTexto = new Date(hoy+'T12:00:00').toLocaleDateString('es-MX', {weekday:'long', day:'numeric', month:'long'}) + (hoy!==hoyReal ? ' · aún sin portadas de hoy, se muestran las más recientes' : '');
   const titulares = (ECOSISTEMA.titulares||[]).filter(t=>t.fecha===hoy && t.medio && (t.titular || t.imagen_url));
 
   // KPIs de clasificación -- mismo lenguaje de categorías que ya usa el resto del
