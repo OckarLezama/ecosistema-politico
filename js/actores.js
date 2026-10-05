@@ -351,6 +351,20 @@ function renderGrafo(svgId='graph-svg'){
         linksBase.push({origen:temaId, destino:ta.actor_id, nivelDestino:nivel, slot});
       });
     });
+    if(svgId==='notas-svg'){
+      if(typeof _actoresDeducidos==='function') coresElegidos.forEach((temaId, idx)=>{
+        const slot = ['nucleo','cruce1','cruce2'][idx];
+        _actoresDeducidos(temaId).forEach(x=>{
+          if(nodesMap.has(x.actor.id)) return;
+          nodesMap.set(x.actor.id, {...x.actor, nivelAnillo:3, coreId:temaId, slot, rolEnTema:'Deducido', deducido:true});
+          linksBase.push({origen:temaId, destino:x.actor.id, nivelDestino:3, slot, tipoVinculo:'deducido'});
+        });
+      });
+      (ECOSISTEMA.conexiones||[]).forEach(c=>{
+        if(nodesMap.has(c.origen) && nodesMap.has(c.destino) && !nodesMap.get(c.origen).esCentro && !nodesMap.get(c.destino).esCentro)
+          linksBase.push({origen:c.origen, destino:c.destino, nivelDestino:3, slot:'nucleo', tipoVinculo:'conexion'});
+      });
+    }
   } else if(modoRed==='actor'){
     const actorId = coresElegidos[0];
     const actor = getActor(actorId);
@@ -367,6 +381,7 @@ function renderGrafo(svgId='graph-svg'){
 
   const nodes = [...nodesMap.values()];
   if(svgId==='graph-svg') ultimosNodosRenderizados = nodes;
+  if(svgId==='notas-svg' && typeof _actorReciente==='function') nodes.forEach(n=>{ if(!n.esCentro && n.coreId && !n.esTema) n.reciente = _actorReciente(n.id, n.coreId); });
 
   const nucleoPrincipal = nodes.find(n=>n.esCentro) || {x:width/2, y:height/2};
   nodes.forEach(n=>{ if(!n.esCentro && n.x===undefined){ n.x = nucleoPrincipal.x; n.y = nucleoPrincipal.y; } });
@@ -437,27 +452,30 @@ function renderGrafo(svgId='graph-svg'){
     .attr('r', d=>RADIOS_ANILLO[d.nivel]).attr('fill','none')
     .attr('stroke', d=>colorDeCore(d.core.coreId, slotDeCore)).attr('stroke-dasharray','2 4').attr('stroke-opacity',0.3);
 
+  const opLink = l => l.tipoVinculo==='cruzado' ? 0.9 : l.tipoVinculo==='conexion' ? 0.6 : l.tipoVinculo==='deducido' ? 0.35 : opacidadPorNivel(l.nivelDestino)*0.8;
   const link = container.selectAll('line.link-line')
     .data(links).join('line')
     .attr('class','link-line')
     .attr('stroke', d=> {
-      if(d.tipoVinculo==='cruzado') return 'var(--teal)';
+      if(d.tipoVinculo==='cruzado' || d.tipoVinculo==='conexion') return 'var(--teal)';
+      if(d.tipoVinculo==='deducido') return 'var(--ink-3)';
       const destino = nodesMap.get(d.destino);
       if(destino && destino.categoriaHeredada && COLOR_POR_CATEGORIA[destino.categoriaHeredada]) return COLOR_POR_CATEGORIA[destino.categoriaHeredada];
       return colorDeCore(d.origen, slotDeCore);
     })
     .attr('stroke-width', d=>({1:1.8,2:1.4,3:1.1}[d.nivelDestino]||1.2))
-    .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : null)
+    .attr('stroke-dasharray', d=> d.tipoVinculo==='politica' ? '4 3' : d.tipoVinculo==='conexion' ? '2 3' : d.tipoVinculo==='deducido' ? '3 3' : null)
     .style('opacity', 0)
-    .call(sel=> sel.transition().duration(500).delay(150).style('opacity', d=> d.tipoVinculo==='cruzado' ? 0.9 : opacidadPorNivel(d.nivelDestino)*0.8));
+    .call(sel=> sel.transition().duration(500).delay(150).style('opacity', d=> opLink(d)));
 
   // Notas: al pasar el cursor/tocar un nodo se resalta con sus vínculos y el resto se atenúa
   function resaltarNotas(d){
-    link.style('opacity', l=> (l.source===d||l.target===d) ? 1 : 0.12).attr('stroke-width', l=> (l.source===d||l.target===d) ? 2.6 : 1.2);
-    node.style('opacity', n=> (n===d || n.esCentro || links.some(l=>(l.source===d&&l.target===n)||(l.target===d&&l.source===n))) ? 1 : 0.28);
+    const toca = l => l.source===d || l.target===d;
+    link.style('opacity', l=> toca(l) ? 1 : 0.1).style('filter', function(l){ return toca(l) ? 'drop-shadow(0 0 3px '+(this.getAttribute('stroke')||'#fff')+')' : null; });
+    node.style('opacity', n=> (n===d || n.esCentro || links.some(l=>(l.source===d&&l.target===n)||(l.target===d&&l.source===n))) ? 1 : 0.22);
   }
   function quitarResalteNotas(){
-    link.style('opacity', l=> l.tipoVinculo==='cruzado' ? 0.9 : opacidadPorNivel(l.nivelDestino)*0.8).attr('stroke-width', l=>({1:1.8,2:1.4,3:1.1}[l.nivelDestino]||1.2));
+    link.style('opacity', l=> opLink(l)).style('filter', null);
     node.style('opacity', 1);
   }
   const node = container.selectAll('g.node').data(nodes).join('g')
@@ -503,6 +521,10 @@ function renderGrafo(svgId='graph-svg'){
     .attr('fill-opacity', d=> d.esCategoria ? 0.95 : opacidadPorNivel(d.nivelAnillo)*0.85)
     .attr('stroke', d=> d.esCentro?'#fff':'var(--bg-0)')
     .attr('stroke-width', d=> d.esCentro?3.5:1.5);
+
+  node.filter(d=>svgId==='notas-svg' && d.reciente>0).append('circle')
+    .attr('r', d=>radioNodo(d)+5).attr('fill','none').attr('stroke','var(--teal)').attr('stroke-width',1.6).attr('stroke-opacity',0.95);
+  node.filter(d=>d.deducido).select('circle.node-circle').attr('stroke-dasharray','3 2').attr('fill','var(--ink-3)').attr('fill-opacity',0.45).attr('stroke','var(--ink-2)');
 
   node.filter(d=>d.esCentro).append('circle')
     .attr('r', d=>radioNodo(d)+6).attr('fill','none')
@@ -581,7 +603,8 @@ function renderGrafo(svgId='graph-svg'){
     .force('y', d3.forceY(height/2).strength(0.22))
     .on('tick', ()=>{
       const margen=30;
-      nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
+      const margenAbajo = svgId==='notas-svg' ? 56 : margen;   // en Notas queda libre la franja de la leyenda
+      nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margenAbajo,n.y)); });
       pintar(performance.now());
     });
   // Flotación suave de los actores (solo Notas): cada uno oscila unos pocos píxeles con su propio ritmo;
@@ -603,8 +626,10 @@ function renderGrafo(svgId='graph-svg'){
     d3.timer(()=>{ if(!svgEl.isConnected || svgEl.__genFlotar!==gen) return true; pintar(performance.now()); });
   }
   if(svgId==='notas-svg'){
-    svg.append('text').attr('x',12).attr('y',height-10).attr('font-size','9.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
-      .text('Toca el tema central para ver sus notas · toca un actor para ver su papel');
+    (width<640
+      ? [['Toca el tema: ver notas · ◌ activo en 48 h · punteado = deducido', height-10]]
+      : [['Toca el tema central para ver sus notas · toca un actor para ver su papel', height-23], ['◌ halo = mencionado en las últimas 48 h  ·  borde punteado = deducido de las notas, sin confirmar  ·  línea turquesa punteada = vínculo entre actores', height-10]])
+      .forEach(([t,y])=> svg.append('text').attr('x',12).attr('y',y).attr('font-size','9.5px').attr('fill','var(--ink-3)').style('pointer-events','none').text(t));
     svg.on('pointerdown.fuera', ev=>{ if(ev.target===svgEl){ if(typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda(); quitarResalteNotas(); } });
   }
 }

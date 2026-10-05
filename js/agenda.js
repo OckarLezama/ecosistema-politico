@@ -240,11 +240,38 @@ let temasDisponiblesActuales = [];
 
 
 
-// ---------- Notas (grafo): tarjetas al pasar el cursor / tocar ----------
+// ---------- Notas (grafo): tarjetas, actividad reciente, actores deducidos, franja del tema ----------
 const _normN = t => String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const _hoyMX = () => new Date().toLocaleDateString('en-CA',{timeZone:'America/Mexico_City'});
+const _diaMX = (desde) => { const d = new Date(_hoyMX()+'T12:00:00'); d.setDate(d.getDate()-desde); return d.toISOString().slice(0,10); };
+let _tokensActores = null;
+const _PALABRAS_GENERICAS_ACTOR = new Set(['mexico','mexicano','mexicana','mexicanos','nacional','federal','estados','unidos','republica','gobierno','partido','instituto','secretaria','secretario','consejo','comision','camara','senado','congreso','presidente','presidenta','general','estatal','municipal','justicia','seguridad','publica','fiscalia']);
+function _clavesActor(a){
+  if(!_tokensActores){
+    _tokensActores = new Map();
+    ECOSISTEMA.actores.forEach(x=>{ new Set(_normN(x.nombre.replace(/\(.*?\)/g,'')).split(/\s+/).filter(w=>w.length>=6)).forEach(w=>_tokensActores.set(w,(_tokensActores.get(w)||0)+1)); });
+  }
+  const limpio = _normN(a.nombre.replace(/\(.*?\)/g,'')).trim();
+  const alias = _normN(((a.nombre.match(/\(['"“]?([^)'"”]+)['"”]?\)/)||[])[1])||'');
+  const claves = [];
+  if(limpio.split(/\s+/).length>=2) claves.push(limpio);
+  limpio.split(/\s+/).filter(w=>w.length>=6 && _tokensActores.get(w)===1 && !_PALABRAS_GENERICAS_ACTOR.has(w)).forEach(w=>claves.push(w));   // apellido que identifica a UN solo actor
+  if(alias.length>=4) claves.push(alias);
+  return claves;
+}
+function _mencionesActor(a, evs){ const cl = _clavesActor(a); return cl.length ? evs.filter(e=>{ const t = _normN(e.descripcion); return cl.some(k=>t.includes(k)); }) : []; }
+function _eventosDeTema(temaId){ return ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).sort((a,b)=>(b.fecha+(b.hora_registro||'')).localeCompare(a.fecha+(a.hora_registro||''))); }
+function _actorReciente(actorId, temaId){ const a = getActor(actorId); if(!a) return 0; const d0 = _diaMX(1); return _mencionesActor(a, _eventosDeTema(temaId).filter(e=>e.fecha>=d0)).length; }
+// actores que NO están registrados en el tema pero aparecen por nombre en 2+ notas -- se dibujan con borde punteado hasta que un analista los confirme
+function _actoresDeducidos(temaId){
+  const ya = new Set(ECOSISTEMA.temaActores.filter(x=>x.tema_id===temaId).map(x=>x.actor_id));
+  const evs = _eventosDeTema(temaId); if(evs.length<2) return [];
+  return ECOSISTEMA.actores.filter(a=>!ya.has(a.id)).map(a=>{ const m = _mencionesActor(a, evs); return {actor:a, n:m.length, ultima:m[0]?m[0].fecha:''}; })
+    .filter(x=>x.n>=2).sort((x,y)=>y.n-x.n).slice(0,8);
+}
 function _fichaHoverNotas(d, svgTemaId){
   const tema = getTema(d.esTema ? d.id : svgTemaId); if(!tema) return '';
-  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===tema.id).sort((a,b)=>(b.fecha+(b.hora_registro||'')).localeCompare(a.fecha+(a.hora_registro||'')));
+  const evs = _eventosDeTema(tema.id);
   if(d.esTema){
     const col = colorCategoria(tema.categoria);
     const filas = evs.slice(0,3).map(e=>`<div style="margin-top:5px;"><span style="font-family:var(--f-mono);font-size:9px;opacity:.65;">${_escHtml(e.fecha)} · ${_escHtml(_medioDeEvento(e)||'')}</span><br>${_escHtml(_truncarEnPalabra(e.descripcion,95))}</div>`).join('');
@@ -252,17 +279,48 @@ function _fichaHoverNotas(d, svgTemaId){
   }
   const a = getActor(d.id); if(!a) return `<strong>${_escHtml(d.nombre)}</strong>`;
   const ta = ECOSISTEMA.temaActores.find(x=>x.tema_id===tema.id && x.actor_id===a.id) || {};
-  const alias = ((a.nombre.match(/\(['"“]?([^)'"”]+)['"”]?\)/)||[])[1]||'').toLowerCase();
-  const sig = _normN(a.nombre.replace(/\(.*?\)/g,'')).split(/\s+/).filter(w=>w.length>=4).sort((x,y)=>y.length-x.length)[0];
-  const claves = [sig, _normN(alias)].filter(k=>k && k.length>=4);
-  const menciona = evs.filter(e=>{ const t = _normN(e.descripcion); return claves.some(k=>t.includes(k)); });
+  const menciona = _mencionesActor(a, evs);
+  const reciente = menciona.filter(e=>e.fecha>=_diaMX(1)).length;
   const temas = new Set(ECOSISTEMA.temaActores.filter(x=>x.actor_id===a.id).map(x=>x.tema_id)); temas.delete(tema.id);
-  const colRol = (typeof COLOR_ROL_NOTAS!=='undefined' && COLOR_ROL_NOTAS[d.rolEnTema||d.rol]) || 'var(--ink-3)';
-  const txtRol = (typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[d.rolEnTema||d.rol]) || (d.rolEnTema||d.rol||'');
+  const colRol = d.deducido ? 'var(--ink-3)' : ((typeof COLOR_ROL_NOTAS!=='undefined' && COLOR_ROL_NOTAS[d.rolEnTema||d.rol]) || 'var(--ink-3)');
+  const txtRol = d.deducido ? 'Deducido de las notas · aún sin confirmar por un analista' : ((typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[d.rolEnTema||d.rol]) || (d.rolEnTema||d.rol||''));
+  const idsGrafo = new Set([...ECOSISTEMA.temaActores.filter(x=>x.tema_id===tema.id).map(x=>x.actor_id), ..._actoresDeducidos(tema.id).map(x=>x.actor.id)]);
+  const vinc = (ECOSISTEMA.conexiones||[]).filter(c=>(c.origen===a.id && idsGrafo.has(c.destino)) || (c.destino===a.id && idsGrafo.has(c.origen))).slice(0,3)
+    .map(c=>{ const otro = getActor(c.origen===a.id ? c.destino : c.origen); return otro ? `${_escHtml(otro.nombre.replace(/\(.*?\)/g,'').trim())}: ${_escHtml(c.tipo_vinculo)}${c.fuerza?' ('+_escHtml(c.fuerza)+')':''}` : ''; }).filter(Boolean);
   return `<div style="max-width:290px;"><strong>${_escHtml(a.nombre)}</strong>${a.cargo?`<br><span style="font-size:10px;opacity:.8;">${_escHtml(a.cargo)}</span>`:''}
     <br><span style="color:${colRol};font-size:10px;">${_escHtml(txtRol)}</span>
     ${ta.detalle?`<div style="margin-top:5px;font-size:10.5px;">${_escHtml(_truncarEnPalabra(ta.detalle,150))}</div>`:''}
-    <div style="margin-top:6px;font-size:10px;opacity:.8;">${menciona.length?`Mencionado en ${menciona.length} de ${evs.length} notas de este tema (última: ${_escHtml(menciona[0].fecha)})`:'No aparece por nombre en las notas de este tema'}${temas.size?`<br>También figura en ${temas.size} tema${temas.size!==1?'s':''} de agenda`:''}</div></div>`;
+    <div style="margin-top:6px;font-size:10px;opacity:.85;">${menciona.length?`Mencionado en ${menciona.length} de ${evs.length} notas de este tema (última: ${_escHtml(menciona[0].fecha)})`:'No aparece por nombre en las notas de este tema'}
+      ${reciente?`<br><span style="color:var(--teal);">◌ ${reciente} mención${reciente!==1?'es':''} en las últimas 48 h</span>`:''}
+      ${vinc.length?`<br>Vínculos aquí: ${vinc.join(' · ')}`:''}
+      ${temas.size?`<br>También figura en ${temas.size} tema${temas.size!==1?'s':''} de agenda`:''}</div></div>`;
+}
+// franja de contexto sobre el grafo: dónde cae el tema en la Matriz, qué cambió y de qué trata
+function _franjaTemaNotas(temaId){
+  const tema = getTema(temaId); if(!tema) return '';
+  const evs = _eventosDeTema(temaId), hoy = _hoyMX(), ayer = _diaMX(1), hace7 = _diaMX(6);
+  const nHoy = evs.filter(e=>e.fecha===hoy).length, nAyer = evs.filter(e=>e.fecha===ayer).length, n7 = evs.filter(e=>e.fecha>=hace7).length;
+  let etiqueta = '', color = 'var(--ink-3)', detalle = '';
+  try{
+    const d = calcularDatosRadarAgenda([tema])[0];
+    if(d){
+      const c = d.apagado ? 'apagado' : cuadranteDe(d);
+      const mapa = { actuar:['CRÍTICO','var(--riesgo-alto)'], vigilar:['POR VIGILAR','var(--riesgo-medio)'], ruido:['MUCHA COBERTURA, POCO IMPACTO','var(--ink-3)'], bajoperfil:['BAJO PERFIL','var(--ink-3)'], apagado:['SIN ACTIVIDAD RECIENTE','var(--ink-3)'] };
+      [etiqueta, color] = mapa[c] || ['',''];
+      if(!d.apagado) detalle = `impacto ${d.riesgoReal} de 10 · ${d.atencion} medio${d.atencion!==1?'s':''} en 14 días`;
+    }
+  }catch(e){}
+  const tend = nHoy>nAyer ? ['↗ más notas que ayer','var(--riesgo-medio)'] : nHoy<nAyer ? ['↘ menos notas que ayer','var(--teal)'] : ['= mismo ritmo que ayer','var(--ink-3)'];
+  const res = (tema.resumen||'').trim();
+  return `<div style="flex:none;padding:8px 14px 7px;border-bottom:1px solid var(--line);font-size:11px;line-height:1.4;">
+    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;">
+      ${etiqueta?`<span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${color};border:1px solid ${color};border-radius:99px;padding:0 7px;">${etiqueta}</span>`:''}
+      ${detalle?`<span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-2);">${detalle}</span>`:''}
+      <span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-2);">Notas: hoy ${nHoy} · ayer ${nAyer} · últimos 7 días ${n7}</span>
+      <span style="font-family:var(--f-mono);font-size:10px;color:${tend[1]};">${tend[0]}</span>
+    </div>
+    ${res?`<div title="${_escHtml(res)}" style="margin-top:4px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${_escHtml(res)}</div>`:''}
+  </div>`;
 }
 
 function conectarBuscadorTemaAgenda(select){
@@ -525,12 +583,15 @@ function renderNotasAgenda(){
 
   // Notas es solo el grafo -- pedido explícito: "no combines las notas con el grafo, se
   // ve espantoso, le quita todo el poder a los grafos".
-  cont.innerHTML = `<svg id="notas-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
+  cont.innerHTML = _franjaTemaNotas(temaNotasSeleccionado) + `<svg id="notas-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
 
   dibujarNotasConGrafoReal();
 }
 
 function dibujarNotasConGrafoReal(){
+  const franja = document.getElementById('notas-franja'); // (se reemplaza completa al cambiar de tema)
+  const _svg0 = document.getElementById('notas-svg');
+  if(_svg0 && _svg0.previousElementSibling && _svg0.previousElementSibling.tagName==='DIV') _svg0.previousElementSibling.outerHTML = _franjaTemaNotas(temaNotasSeleccionado);
   const modoPrevio = modoRed, seleccionPrevia = {...seleccion};
   modoRed = 'agenda';
   seleccion = { nucleo:temaNotasSeleccionado, cruce1:null, cruce2:null };
@@ -2347,11 +2408,12 @@ function dibujarMatrizRiesgo(){
   // NO van aquí -- esa lectura la da el resumen en HTML arriba del gráfico, con mejor
   // tipografía y sin pelear por espacio con los puntos. Aquí solo queda el nombre corto,
   // discreto, en la esquina -- referencia rápida para quien ya leyó el resumen.
-  svg.append('rect').attr('x',xMediana).attr('y',margen.arriba).attr('width',margen.izq+anchoUtil-xMediana).attr('height',yMediana-margen.arriba)
+  // el lienzo (cuadritos + tintes de cada zona) llega hasta los bordes del recuadro; las líneas de corte, los ejes y los puntos no cambian
+  svg.append('rect').attr('x',xMediana).attr('y',0).attr('width',width-xMediana).attr('height',yMediana)
     .attr('fill','var(--riesgo-alto)').attr('fill-opacity',0.08);
-  svg.append('rect').attr('x',margen.izq).attr('y',margen.arriba).attr('width',xMediana-margen.izq).attr('height',yMediana-margen.arriba)
+  svg.append('rect').attr('x',0).attr('y',0).attr('width',xMediana).attr('height',yMediana)
     .attr('fill','var(--riesgo-medio)').attr('fill-opacity',0.06);
-  svg.append('rect').attr('x',xMediana).attr('y',yMediana).attr('width',margen.izq+anchoUtil-xMediana).attr('height',margen.arriba+altoUtil-yMediana)
+  svg.append('rect').attr('x',xMediana).attr('y',yMediana).attr('width',width-xMediana).attr('height',height-yMediana)
     .attr('fill','var(--ink-3)').attr('fill-opacity',0.05);
   const rotuloCuadrante = (x,y,anchor,color,texto) => svg.append('text').attr('x',x).attr('y',y).attr('text-anchor',anchor)
     .attr('font-family','var(--f-mono)').attr('font-size','8px').attr('font-weight','700').attr('fill',color).attr('opacity',0.75).style('pointer-events','none')
