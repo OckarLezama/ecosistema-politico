@@ -161,7 +161,10 @@ def main():
     guardar_titulares(filas)
     print(f"Listo. {conseguidas} imagen(es) nueva(s) para {fecha_txt}.")
 
-    diagnosticar_titular_jornada()
+    # solo cuando hubo imagen nueva: con corridas cada 5 min, reescribir el HTML de La
+    # Jornada en cada una generaría un commit por corrida aunque no haya nada nuevo.
+    if conseguidas:
+        diagnosticar_titular_jornada()
 
 
 if __name__ == '__main__':
