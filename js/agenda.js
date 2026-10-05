@@ -1440,7 +1440,8 @@ function _territorioDe(evs){
 let _ptrTipoRadar = (typeof matchMedia === 'function' && matchMedia('(hover: none)').matches) ? 'touch' : 'mouse';
 let _puntoFijadoRadar = null;
 const _esTactilRadar = () => _ptrTipoRadar !== 'mouse';
-const ARRIBA_RADAR = (typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches) ? 36 : 30;
+const ARRIBA_RADAR = 18; // el radar ocupa todo el lienzo; la barra Lectura se superpone encima
+const BARRA_RADAR_H = (typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches) ? 34 : 24;
 
 function calcularDatosRadarAgenda(temasBase){
   return temasBase.map(t=>{
@@ -1738,11 +1739,12 @@ function _escenariosDe(d){
 }
 function _sparkRadar(tray){
   if(!tray || tray.length<2) return '';
-  const W=74,H=20,n=tray.length, x=i=>2+i*(W-4)/(n-1);
-  const yi=v=>H-2-(Math.max(0,Math.min(10,v))/10)*(H-4), ya=v=>H-2-(Math.min(15,v)/15)*(H-4);
-  const pts=(f,k)=>tray.map((t,i)=>x(i).toFixed(1)+','+f(t[k]).toFixed(1)).join(' ');
-  const u=tray[n-1];
-  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="vertical-align:middle;"><polyline points="${pts(ya,'a')}" fill="none" stroke="var(--teal)" stroke-width="1.2" stroke-dasharray="2 2" opacity=".8"/><polyline points="${pts(yi,'i')}" fill="none" stroke="var(--riesgo-alto)" stroke-width="1.6"/><circle cx="${x(n-1)}" cy="${yi(u.i)}" r="2" fill="var(--riesgo-alto)"/></svg>`;
+  const W=74,H=22,n=tray.length, x=i=>2+i*(W-4)/(n-1);
+  // cada línea a su propia escala (mín–máx de sus 7 valores) para que la tendencia se vea aunque el cambio sea pequeño
+  const serie = k=>{ const v=tray.map(t=>t[k]), mn=Math.min(...v), mx=Math.max(...v); return v.map(a=> mx===mn ? H/2 : (H-3) - ((a-mn)/(mx-mn))*(H-6)); };
+  const yi=serie('i'), ya=serie('a');
+  const pts=ys=>ys.map((y,i)=>x(i).toFixed(1)+','+y.toFixed(1)).join(' ');
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="vertical-align:middle;"><polyline points="${pts(ya)}" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-dasharray="2 2"/><polyline points="${pts(yi)}" fill="none" stroke="var(--riesgo-alto)" stroke-width="1.8"/><circle cx="${x(n-1)}" cy="${yi[n-1]}" r="2.2" fill="var(--riesgo-alto)"/></svg>`;
 }
 
 // hitos de los próximos N días: calendario del analista (con o sin tema) + fechas detectadas en
@@ -1825,8 +1827,7 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
         const nueva = a.ts > vistaAl ? '<span style="color:var(--riesgo-alto);font-weight:700;"> NUEVA</span>' : '';
         return `<span style="font-family:var(--f-mono);color:var(--ink-3);">${_escHtml(f)}</span><span>${_escHtml(a.texto)}${nueva}</span>`;
       }).join('') + `</div>`
-    : `<div style="font-size:10.5px;opacity:.6;">Sin alertas todavía: el robot las registra cuando un tema entra a zona crítica, aparece una señal anticipatoria, un tema escala o un hito está a 2 días o menos.</div>`)
-    + `<div style="margin-top:4px;font-size:10.5px;"><a href="data/radar_brief.html" target="_blank" rel="noopener" style="color:var(--teal);">Resumen del día (generado por el robot) ↗</a></div>`);
+    : `<div style="font-size:10.5px;opacity:.6;">Sin alertas todavía: el robot las registra cuando un tema entra a zona crítica, aparece una señal anticipatoria, un tema escala o un hito está a 2 días o menos.</div>`));
   const hitos = _hitosProximos(datos||[], 21);
   const calendario = `${sec('CALENDARIO · PRÓXIMOS 21 DÍAS')}` + (hitos.length
     ? `<div style="display:grid;grid-template-columns:auto auto 1fr;gap:3px 10px;font-size:10.5px;line-height:1.35;color:var(--ink-2);">` + hitos.slice(0,10).map(h=>{
@@ -1849,7 +1850,7 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
     const nota = d.notaAncla, esc = _escenariosDe(d), rob = _textoRobustez(d);
     const actores = (d.actoresClave||[]).map(a=>`${_escHtml(a.nombre)} <span style="opacity:.6;">(${_escHtml(a.rol)})</span>`).join(', ');
     const hito = d.hito ? `${_escHtml(d.hito.fecha ? d.hito.fecha+(d.hito.dias!=null?' ('+_cuandoTxt(d.hito.dias)+')':'')+' · ' : '')}${_escHtml(d.hito.texto)} <span style="opacity:.55;">[${d.hito.fuente==='analista'?'criterio del analista':'detectado en notas'}]</span>` : `<span style="opacity:.55;">sin hito identificado</span>`;
-    const t = d.tray; const tr = t && t.length ? `<div><b>7 días:</b> ${_sparkRadar(t)} <span style="${mono}">impacto ${t[0].i}→${t[t.length-1].i} · medios ${t[0].a}→${t[t.length-1].a}</span> <span style="opacity:.5;font-size:9px;">(— impacto, ┄ medios)</span></div>` : '';
+    const t = d.tray; const tr = t && t.length ? `<div><b>7 días:</b> ${_sparkRadar(t)} <span style="${mono}">impacto ${t[0].i}→${t[t.length-1].i} · medios ${t[0].a}→${t[t.length-1].a}</span> <span style="font-size:9px;"><span style="color:var(--riesgo-alto);font-weight:700;">━ impacto (0–10)</span> &nbsp;<span style="color:var(--teal);font-weight:700;">┅ medios distintos</span> &nbsp;<span style="opacity:.6;">● hoy · cada línea a su escala</span></span></div>` : '';
     return `<div style="border-top:1px solid var(--line);padding:7px 0;">
       <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;">
         <span style="font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:${colorEt};border:1px solid ${colorEt};border-radius:99px;padding:0 6px;">${etiqueta}</span>
@@ -1905,7 +1906,6 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
   const ahora = opts.corte || new Date().toLocaleString('es-MX', {timeZone:'America/Mexico_City', dateStyle:'medium', timeStyle:'short'});
   return `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;">
       <span style="font-family:var(--f-display);font-size:13px;font-weight:600;">Lectura del radar <span style="${mono}">· corte ${_escHtml(ahora)}</span></span>
-      ${opts.export ? '' : '<button type="button" id="radar-exportar" style="background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:10.5px;cursor:pointer;padding:4px 2px;">Exportar ⇩</button>'}
     </div>
     ${bloqueCambios}
     ${alertasSec}
@@ -1915,21 +1915,6 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
     ${robustez}
     ${territorio}
     <div style="border-top:1px solid var(--line);margin-top:12px;padding-top:6px;font-size:10px;color:var(--ink-3);"><b>Validación:</b> ${validacion}<br><span style="opacity:.8;">Los pesos del léxico y la línea editorial de los medios son criterio del analista (editable en data/); la validación mide si el radar acierta.</span></div>`;
-}
-
-function _documentoLecturaRadar(cuerpo, fecha){
-  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lectura del radar ${fecha}</title><style>
-    :root{--ink-1:#111;--ink-2:#333;--ink-3:#666;--bg-1:#fff;--line:#ddd;--teal:#0b7a75;--riesgo-alto:#c0392b;--riesgo-medio:#b9770e;--riesgo-bajo:#1e8449;--f-mono:ui-monospace,Menlo,monospace;--f-display:Georgia,serif}
-    body{font:12px/1.4 system-ui,sans-serif;color:var(--ink-1);background:var(--bg-1);max-width:820px;margin:24px auto;padding:0 16px}
-    @media print{body{margin:0}}</style></head><body>${cuerpo}</body></html>`;
-}
-function _exportarLecturaRadar(criticos, anticipatorias, cambios, datos){
-  const cuerpo = _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, {export:true});
-  const fecha = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([_documentoLecturaRadar(cuerpo, fecha)], {type:'text/html;charset=utf-8'}));
-  a.download = `lectura-radar-${fecha}.html`; document.body.appendChild(a); a.click();
-  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 
 function dibujarMatrizRiesgo(){
@@ -2082,7 +2067,7 @@ function dibujarMatrizRiesgo(){
       const cambios = calcularCambios24h(temasBase, datosTodos);
       const nCambios = cambios.entraronCritica.length + cambios.nuevasAnticipatorias.length + cambios.escalaron.length;
       const chipB = (txt, color) => `<span style="color:${color};white-space:nowrap;">${txt}</span>`;
-      resumenEl.innerHTML = `<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;height:${ARRIBA_RADAR-2}px;overflow:hidden;padding:0 4px 0 28px;font-family:var(--f-mono);font-size:10px;">
+      resumenEl.innerHTML = `<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;height:${BARRA_RADAR_H}px;overflow:hidden;padding:0 4px 0 28px;font-family:var(--f-mono);font-size:10px;">
           <span id="radar-chips" style="display:flex;gap:12px;white-space:nowrap;overflow:hidden;min-width:0;">
           ${chipB(`● ${criticosItems.length} crítico${criticosItems.length!==1?'s':''}`, 'var(--riesgo-alto)')}
           ${chipB(`◐ ${vigilarItems.length} señal${vigilarItems.length!==1?'es':''}`, 'var(--riesgo-medio)')}
@@ -2098,13 +2083,12 @@ function dibujarMatrizRiesgo(){
         if(panel) panel.remove();
         panel = document.createElement('div');
         panel.id = 'radar-panel-lectura'; panel.className = 'radar-lectura-scroll';
-        panel.style.cssText = 'position:absolute;inset:0;z-index:30;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:'+(ARRIBA_RADAR+4)+'px 16px 20px 18px;font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
+        panel.style.cssText = 'position:absolute;inset:0;z-index:30;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:'+(BARRA_RADAR_H+8)+'px 16px 20px 18px;font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
         zona.appendChild(panel);
         const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; const ch = document.getElementById('radar-chips'); if(ch) ch.style.display = abrir?'none':'flex'; if(abrir){ _puntoFijadoRadar = null; ocultarTooltipAgenda(); setTimeout(()=>{ _marcarAlertasVistas(); _pintarChipAlertas(); }, 800); } };
         document.getElementById('radar-btn-lectura').addEventListener('click', ()=> alternar(panel.style.display==='none'));
         const rellenar = ()=>{
           panel.innerHTML = _htmlLecturaRadar(criticosItems, vigilarItems, cambios, datosTodos);
-          const exp = panel.querySelector('#radar-exportar'); if(exp) exp.addEventListener('click', ()=> _exportarLecturaRadar(criticosItems, vigilarItems, cambios, datosTodos));
           panel.querySelectorAll('.matriz-link').forEach(el=>{
             el.style.cursor = 'pointer'; el.style.textDecoration = 'underline'; el.style.textUnderlineOffset = '2px';
             el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema));
@@ -2255,7 +2239,7 @@ function dibujarMatrizRiesgo(){
     // mantener los puntos dentro del área del gráfico tras la colisión
     datos.forEach(d=>{
       d.x = Math.max(margen.izq+13, Math.min(margen.izq+anchoUtil-13, d.x)); // 13 = radio máx. + borde: el punto no se recorta en el borde
-      d.y = Math.max(margen.arriba+13, Math.min(margen.arriba+altoUtil-4, d.y)); // 13 = radio máx. del punto + borde: nunca invade la franja del botón Lectura
+      d.y = Math.max(margen.arriba+4, Math.min(margen.arriba+altoUtil-4, d.y));
     });
   }
 
