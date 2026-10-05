@@ -13,54 +13,35 @@ name: Robot de portadas del día
     # tarde para una ventana que arranca a las 4am. Igual que los demás cron de este
     # repo, corría en minutos redondos (:00, :20, :40) -- la franja de más carga en
     # GitHub Actions en general. Se corre en minutos no redondos, misma frecuencia.
-    - cron: '4,24,44 10-16 * * *'
+    # CORRECCIÓN (lunes 05-oct: sin actualizar de 03:00 a 11:30 CDMX hasta correrlo a mano;
+    # las imágenes SÍ estaban disponibles, los cron de GitHub simplemente no dispararon).
+    # Los cron de GitHub no son confiables, así que ya no dependemos de que cada uno
+    # dispare: el cron solo ARRANCA/RELEVA un job que se queda en bucle ~5.5 h corriendo
+    # el robot cada 5 min (ver .github/scripts/robot_loop.sh). Cada 30 min hay un cron de
+    # relevo; basta con que UNO dispare por job para no tener huecos.
+    - cron: '7,37 8-23 * * *'
   workflow_dispatch: {}
 concurrency:
-  # Si una corrida se atrasa (falla temporal de GitHub Actions) y ya hay
-  # otra más nueva en cola o en curso, se cancela la vieja en vez de
-  # apilarla. Cada corrida solo llena huecos del día real (hora CDMX), así
-  # que una corrida vieja no aporta nada que la más reciente no vuelva a
-  # intentar; dejarla en cola solo atrasa que aparezcan las portadas de hoy.
-  group: robot-portadas-unico
-  cancel-in-progress: true
+  # SIN cancelar: el job en curso es el que hace el trabajo (bucle de ~5.5 h). Un cron
+  # nuevo queda en espera y arranca justo cuando el actual termina (relevo continuo).
+  # el boton manual (workflow_dispatch) va en OTRO grupo: corre UNA pasada de inmediato en
+  # vez de esperar detras del bucle de 5.5 h.
+  group: robot-portadas-${{ github.event_name == 'workflow_dispatch' && 'manual' || 'unico' }}
+  cancel-in-progress: false
+permissions:
+  contents: write
 jobs:
   capturar-portadas:
     runs-on: ubuntu-latest
+    timeout-minutes: 345
     steps:
       - uses: actions/checkout@v4
-      - name: Descargar portadas del día
-        run: python3 robot_portadas.py
-      - name: Guardar novedades
-        run: |
-          git config user.name "robot-portadas"
-          git config user.email "robot@ecosistema-politico.local"
-          git add data/titulares.csv data/portadas
-          [ -f data/_diagnostico_jornada.html ] && git add data/_diagnostico_jornada.html
-          if git diff --staged --quiet; then
-            echo "Sin cambios que publicar"
-          else
-            git commit -m "Robot: portadas del dia $(TZ=America/Mexico_City date +%Y-%m-%d)"
-            # Otros robots del repo (legislativo, temas, pulso, analisis-ia) tambien
-            # empujan commits a main y pueden caer justo en este hueco -- un
-            # "pull --rebase" sin reintentos truena si el remoto avanzo entre el commit
-            # y el push, y deja el workflow en rojo sin publicar nada. Como estos
-            # commits tocan archivos distintos, el rebase casi nunca choca de verdad;
-            # si llegara a chocar por algo real, se aborta y falla visiblemente en vez
-            # de perder datos en silencio.
-            for intento in 1 2 3 4 5; do
-              if git push; then
-                break
-              fi
-              git fetch origin main
-              if ! git rebase origin/main; then
-                echo "Conflicto real al reintegrar cambios -- requiere revision manual" >&2
-                git rebase --abort
-                exit 1
-              fi
-              if [ "$intento" = "5" ]; then
-                echo "No se pudo publicar tras 5 intentos" >&2
-                exit 1
-              fi
-              sleep $((RANDOM % 5 + 1))
-            done
-          fi
+      - name: Robot de portadas en bucle (cada 5 min)
+        env:
+          ROBOT_NAME: robot-portadas
+          ROBOT_EMAIL: robot@ecosistema-politico.local
+          ROBOT_CMD: python3 robot_portadas.py
+          ROBOT_FILES: data/titulares.csv data/portadas
+          COMMIT_MSG: "Robot: portadas del dia"
+          STOP_AT_UTC_HOUR: "0"   # 18:00 CDMX: fin de la ventana de portadas
+        run: bash .github/scripts/robot_loop.sh

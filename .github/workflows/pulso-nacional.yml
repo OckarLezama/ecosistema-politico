@@ -8,6 +8,10 @@ name: Pulso nacional - termometro politico
     # en la franja de mayor carga de todo GitHub Actions, no solo este repo. Correr en
     # minutos no redondos no cambia la lógica (sigue bastando con que UNA corrida caiga
     # después de las 06/12/18 en punto), solo evita competir con esa hora pico.
+    # CORRECCIÓN (lunes 05-oct: sin actualizar hasta correrlo a mano): los cron de GitHub
+    # no son confiables. El cron solo ARRANCA/RELEVA un job en bucle de ~5.5 h que corre el
+    # script cada 5 min (ver .github/scripts/robot_loop.sh); el script sigue decidiendo solo
+    # si PUBLICA (cortes 06/12/18 o excepción por tensión). Relevo cada 30 min.
     - cron: '6,36 * * * *'   # corre cada 30 min, pero el script decide si PUBLICA:
                               # solo en los 3 cortes fijos (06/12/18 CDMX) o si la
                               # tension se movio lo suficiente para ameritar excepcion
@@ -18,14 +22,11 @@ name: Pulso nacional - termometro politico
   # notara) y ya no hace falta ningun input para lograr lo mismo.
 
 concurrency:
-  group: pulso-nacional-unico
-  # antes en false: si UNA corrida se quedaba colgada (red, git esperando algo), las
-  # siguientes 48 corridas del dia (cada 30 min) se apilaban en cola detras de ella sin
-  # ejecutarse -- asi se explica un hueco de horas sin publicar pese al candado de 13h en
-  # el script. Con true, cada corrida nueva cancela la anterior si sigue viva; el calculo
-  # es barato y se puede repetir sin riesgo, asi que no hay nada que proteger de una
-  # cancelacion a medias.
-  cancel-in-progress: true
+  # SIN cancelar: el job en curso hace el trabajo (bucle ~5.5 h); un cron nuevo queda en
+  # espera y arranca cuando el actual termina. El boton manual va en OTRO grupo: corre una
+  # sola pasada de inmediato (y el script lo detecta y publica siempre).
+  group: pulso-nacional-${{ github.event_name == 'workflow_dispatch' && 'manual' || 'unico' }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -34,56 +35,22 @@ permissions:
 jobs:
   calcular-pulso:
     runs-on: ubuntu-latest
-    # limite duro: sin esto, el default de GitHub es 360 min -- una corrida colgada podia
-    # bloquear el candado de 13h del script por hasta 6 horas antes de que algo mas la
-    # interrumpiera. Este script tarda segundos; 5 min ya es generoso.
-    timeout-minutes: 5
+    timeout-minutes: 345
     steps:
       - uses: actions/checkout@v4
-      - name: Calcular pulso nacional (y publicar solo si corresponde)
-        run: python3 calcular_pulso_nacional.py
-      - name: Guardar snapshot si se publico
-        id: snapshot
-        run: |
-          git config user.name "robot-pulso"
-          git config user.email "robot@ecosistema-politico.local"
-          git add data/pulso_nacional.json
-          if git diff --staged --quiet; then
-            echo "publico=false" >> "$GITHUB_OUTPUT"
-          else
-            git commit -m "Pulso nacional: corte $(date -u +%Y-%m-%d\ %H:%M) UTC"
-            # data/pulso_nacional.json se recalcula COMPLETO en cada corrida (no es un
-            # archivo que acumula cambios linea por linea) -- si otra corrida ya
-            # publico un snapshot mas nuevo, "pull --rebase" intenta fusionar ese
-            # archivo como si fueran ediciones puntuales y truena con conflicto real,
-            # aunque no haya nada que perder: cualquiera de los dos snapshots es
-            # valido, y el siguiente ciclo lo vuelve a calcular de cero. Por eso aqui
-            # se reintenta con "merge -X ours" (se queda con el snapshot que esta
-            # corrida acaba de calcular) en vez de con rebase.
-            for intento in 1 2 3 4 5; do
-              if git push; then
-                break
-              fi
-              git fetch origin main
-              git merge origin/main -X ours --no-edit \
-                -m "Merge origin/main (snapshot regenerado, se conserva el mas reciente)"
-              if [ "$intento" = "5" ]; then
-                echo "No se pudo publicar el snapshot tras 5 intentos" >&2
-                exit 1
-              fi
-              sleep $((RANDOM % 5 + 1))
-            done
-            echo "publico=true" >> "$GITHUB_OUTPUT"
-          fi
-      - name: Forzar reconstruccion de GitHub Pages
-        # un push hecho con el GITHUB_TOKEN automatico NO dispara el workflow interno
-        # "pages build and deployment" (asi lo previene GitHub para evitar loops) -- por
-        # eso el commit del robot quedaba en el repo pero el sitio publicado nunca se
-        # actualizaba solo. Esta llamada pide un build de Pages de forma explicita,
-        # sin depender de ese evento de push.
-        if: steps.snapshot.outputs.publico == 'true'
-        run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
+      - name: Pulso nacional en bucle (cada 5 min; publica solo si corresponde)
+        env:
+          ROBOT_NAME: robot-pulso
+          ROBOT_EMAIL: robot@ecosistema-politico.local
+          ROBOT_CMD: python3 calcular_pulso_nacional.py
+          ROBOT_FILES: data/pulso_nacional.json
+          COMMIT_MSG: "Pulso nacional: corte"
+          PUSH_STRATEGY: ours
+          # un push con GITHUB_TOKEN no dispara "pages build and deployment": se pide el
+          # build de Pages explicitamente tras cada publicacion.
+          AFTER_PUSH_CMD: >-
+            curl -s -X POST
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
+            -H "Accept: application/vnd.github+json"
             "https://api.github.com/repos/${{ github.repository }}/pages/builds"
+        run: bash .github/scripts/robot_loop.sh
