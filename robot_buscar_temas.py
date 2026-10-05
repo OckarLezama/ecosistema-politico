@@ -63,6 +63,9 @@ FUENTES_RSS = [
     {'nombre': 'Reforma (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:reforma.com+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
     {'nombre': 'El Universal (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:eluniversal.com.mx+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
     {'nombre': 'Milenio (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=site:milenio.com+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    # Los dos actores que más marcan agenda nacional: se siguen por nombre en medios de primer nivel
+    {'nombre': 'Trump y México (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=Trump+(M%C3%A9xico+OR+Sheinbaum+OR+aranceles+OR+cartel+OR+frontera)+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
+    {'nombre': 'López Obrador (Google Noticias)', 'url': 'https://news.google.com/rss/search?q=%22L%C3%B3pez+Obrador%22+OR+AMLO+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},
     # Fuentes primarias (oficiales) vía Google Noticias acotado a dominio. Aportan el hecho original
     # (decreto, comunicado, sesión) antes que la nota periodística. Si alguna no devuelve nada, el robot la omite.
     {'nombre': 'Presidencia / gob.mx (fuente oficial)', 'url': 'https://news.google.com/rss/search?q=site:gob.mx/presidencia+when:1d&hl=es-419&gl=MX&ceid=MX:es-419'},

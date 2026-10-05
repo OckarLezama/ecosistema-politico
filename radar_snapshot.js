@@ -36,7 +36,7 @@ ctx.__pesos = aCsv('radar_pesos.csv'); vm.runInContext('_aplicarPesosRadar(globa
 ctx.__rev = aCsv('revision_notas.csv'); vm.runInContext('_revisionCsv = globalThis.__rev;', ctx);
 
 const hoy = new Date().toLocaleDateString('en-CA', { timeZone:'America/Mexico_City' });
-const temas = ctx.ECOSISTEMA.temas.filter(t => Number(t.nivel_relevancia) === 1);
+const temas = ctx.ECOSISTEMA.temas.filter(t => vm.runInContext('enMatriz', ctx)(t));
 const datosAll = ctx.__calc(temas);
 const datos = datosAll.filter(d => !d.apagado);
 
