@@ -39,7 +39,7 @@ jobs:
           ROBOT_NAME: robot-temas
           ROBOT_EMAIL: robot@ecosistema-politico.local
           ROBOT_CMD: python3 robot_buscar_temas.py; python3 auditar_temas.py; node radar_snapshot.js
-          ROBOT_FILES: data/eventos.csv data/candidatos_revision.csv data/temas.csv data/menciones_actores_c3.csv data/tema_actores.csv data/radar_historial.csv data/radar_validacion.json data/radar_alertas.json data/radar_brief.html data/auditoria_temas.csv
+          ROBOT_FILES: data/eventos.csv data/candidatos_revision.csv data/temas.csv data/menciones_actores_c3.csv data/tema_actores.csv data/radar_historial.csv data/radar_validacion.json data/radar_alertas.json data/auditoria_temas.csv
           COMMIT_MSG: "Robot: actualizacion automatica"
           # opcional: alertas y resumen diario por Telegram (Settings > Secrets and variables > Actions).
           # Si no existen, el robot simplemente no envía nada.
