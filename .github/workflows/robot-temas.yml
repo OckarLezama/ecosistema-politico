@@ -38,7 +38,7 @@ jobs:
         env:
           ROBOT_NAME: robot-temas
           ROBOT_EMAIL: robot@ecosistema-politico.local
-          ROBOT_CMD: python3 robot_buscar_temas.py
-          ROBOT_FILES: data/eventos.csv data/candidatos_revision.csv data/temas.csv data/menciones_actores_c3.csv data/tema_actores.csv
+          ROBOT_CMD: python3 robot_buscar_temas.py; node radar_snapshot.js
+          ROBOT_FILES: data/eventos.csv data/candidatos_revision.csv data/temas.csv data/menciones_actores_c3.csv data/tema_actores.csv data/radar_historial.csv data/radar_validacion.json
           COMMIT_MSG: "Robot: actualizacion automatica"
         run: bash .github/scripts/robot_loop.sh
