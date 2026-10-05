@@ -32,6 +32,8 @@ vm.runInContext('_juicioRadar = globalThis.__juicio; _calendarioRadar = globalTh
 const lineas = {}; aCsv('medios_linea.csv').forEach(o=>{ if(o.medio && /^(oficial|cercano|critico)$/.test(o.linea)) lineas[o.medio.toLowerCase()] = o.linea; });
 ctx.__lineas = lineas; vm.runInContext('_lineaMedios = globalThis.__lineas;', ctx);
 
+ctx.__pesos = aCsv('radar_pesos.csv'); vm.runInContext('_aplicarPesosRadar(globalThis.__pesos);', ctx);
+
 const hoy = new Date().toLocaleDateString('en-CA', { timeZone:'America/Mexico_City' });
 const temas = ctx.ECOSISTEMA.temas.filter(t => Number(t.nivel_relevancia) === 1);
 const datosAll = ctx.__calc(temas);
