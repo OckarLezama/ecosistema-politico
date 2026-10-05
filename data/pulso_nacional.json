@@ -1,24 +1,42 @@
 {
-  "generado_en": "2026-10-04T12:20:39.139142-06:00",
+  "generado_en": "2026-10-04T18:49:52.271736-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 3,
+  "n_notas_ventana": 9,
   "baja_confianza": false,
-  "tension_nacional": 25,
+  "tension_nacional": 42,
   "tension_anomalia": {
-    "z": -0.81,
+    "z": 0.31,
     "nivel": "normal",
-    "media_periodo": 37.0,
+    "media_periodo": 37.3,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 61,
-      "tema_principal": "La Barredora",
-      "tema_principal_id": "la-barredora",
-      "n_temas": 2,
-      "n_notas": 2,
+      "peso_pct": 67,
+      "tema_principal": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel",
+      "tema_principal_id": "auto-02d8e54c89",
+      "n_temas": 4,
+      "n_notas": 6,
       "notas": [
+        {
+          "texto": "REÚNE JOSÉ NARRO A SIMPATIZANTES EN RESPALDO A CLAUDIA SHEINBAUM - ECOdiario",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQWDJhSVE5MF8yRGNSUDBwaURIN1hkRFp6X1RIVTJfUWg2MFhfM1VKM3c4NzdyTlpsUHp3TXZFWTVJWVNXcTJocFBieVA3MjVSWE9DQVlpTXhzZmNNc1Zwell1Q1FJTERsOTk3SHRUakhVcmN1MzNfd1NoVlVhOHlWMWUtU0NDVVVQa1k4WHM1Mzh4aFNhYTBQcA?oc=5",
+          "intensidad": 9.0,
+          "medio": "ECOdiario"
+        },
+        {
+          "texto": "Claudia Sheinbaum cierra el programa Jóvenes Construyendo el Futuro, ¿por qué y qué pasará?",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/04/claudia-sheinbaum-cierra-programa-jovenes-construyendo-el-futuro-que-pasara.html",
+          "intensidad": 9.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "Claudia Sheinbaum preside aniversario Armada de México en Veracruz - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSFBfdDFoTkloVkEwLWRKQ1ZwY1kzSnlnTUN3eE9CQXdTeXRoRjV4Q1JzR1dKeWRuX1FoTGhMb056bHNfdGp5WW9udGZDd3haWkRpbDl4Z1NzTnowcTYwclQtMlQyVDFhT0VKUE1EWXF5Zk1rc0JsbkZTY1hjanJmTjVhRFBpR3hQUS1KTy14ZzlOalVSOHlIbjBzRTI4VXdXTFNGSGNVYmszSmZuVXVPSUdXa9IBswFBVV95cUxPNlliSDUtU2c4TnM3NkxnaG9oN0QwbXFWUlNGZW1wLVNkbGxYakZWNVkyT0xnQ2lvRnYwSzVqbUJFeWNxRjVDRlFjQjBFNGVyb24xMFhsbmI0Nnl4N1lPUVVqYkdlNzFMOElXNXptajl1cndrWjZxWExGc0c3d3V6WTk1ZEptRW0wRU1HcE5mN09wVnZtcWhpTTBKNXF5YVd0V0dkckFlR1pfOWU4LWlxeXZYdw?oc=5",
+          "intensidad": 7.0,
+          "medio": "MILENIO"
+        },
         {
           "texto": "Andy López Beltrán formaliza su registro en Morena en medio de denuncias por posibles actos anticipados de campaña - adn40.mx",
           "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQNkd2MnlOQWN2MjNtbXNZanpzdUdrc0VNWFZtdEMxSXkwNE9FSk5FQ0Y4OWV2WlE4WmZYT2lWMVRBR0pKeGZfX2lmczNncTVhNElmeDdQdUpiV29KbGY2N1g2bkhwRDZYbjVNTEdrbnZtU1pyYmZuUzJRY1RfZ1VQdTNyUmx5QmIxTGpvV3g0czFpRXIyVWtEc3NZUVgwRFVFcW9zWXdQbnlkQlBSZGdLemlmUm9GQnFPeWcyTzJUTWVlcE1OTkVndW1DY1RRQkx3bFo3SjlVSmVwWU5WM2lNNzdyM2s5WTJiUEdDTWZnWG5JVzBtSXc?oc=5",
@@ -30,33 +48,52 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ubDRXd2RfOHotZnF3TkhERWdQc2RQZE5XanV0UXd0TThVbDEzOE9ZRlF4RmFuMzhabmptOE1LNkQ2NXdMNzFTcHhEa1pPX1F2aDltSTg0MDJDZ1RyeVFYM1pJaUJIWWlSSVBxbE1R?oc=5",
           "intensidad": 4.0,
           "medio": "Reforma"
+        },
+        {
+          "texto": "Asesinan a estudiante de la UDLAP; Fiscalía detiene a feminicida - Sucesos Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNR0tSLTItTHdpLU9Pckc3RE1NRERONTNKOF9ZUTVoY0lMOWtsTUJELVNMSUU2YUFrZThMZmR4MW5GdHFmSTB1S1NPQnF1VmJWTEdEcV9pa21TRldqT01IVFhUMzlXend3RHpZb2RIVzljMHhRcWpPNnVGSldhTFhrZTI5clZueEg3eEFOVmk0bkpud1NC?oc=5",
+          "intensidad": 4.0,
+          "medio": "Sucesos Puebla"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 39,
+      "peso_pct": 22,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 1,
-      "n_notas": 1,
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Sirvió El Capitán Sol de enlace para huachicol fiscal",
           "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/004n3pol?partner=rss",
           "intensidad": 7.0,
           "medio": "jornada.com.mx"
+        },
+        {
+          "texto": "Continúa violencia en Sinaloa; bala perdida provoca muerte de adulta mayor - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOX3RSMGlPS3lkNXdsaVZJX1RsREYtUVh1d2NXQWVvanFHbnJHZEx1UkdhWkRBelYzc004dGJmekROTl95QkE2bndtQmw4OW9pNVRGS2Qtb19ZRGhhS1NpUTVqaDd6eGVZMWNXbDQ2aGtpYkRMeV9mbFR5WTgzWGRmZHFfdXpQNG1RWlY0dGpjb2VGR1QweV8zTU50djVHN1FrRlllMVlxNHFPc3B3Rlc5UHRPMA?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Universal"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
+      "peso_pct": 12,
+      "tema_principal": "Visa de Andy",
+      "tema_principal_id": "visa-de-andy",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "AMLO tacha de acto “canallesco” el retiro de la visa de su hijo, Andy López Beltrán - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPdjZrNXNWY20yY0dPMllFTVpmOEdhSGItNHIyTXhEREdpbHh5Y2I1MUlpYWtZZDEtb3hEZmVLNkdReDRzRFVvaGdsWmxibEVHa0ZJTHdITGFFQ0RwZFRleU9hVGtwSU5LUmd3ZXltYV9xVWhBYWo1SjZBODhMS0JZSVowa2Y5UUJqdmNXYzl1djJBR3AzdnN4NlY3R0doQ2Vqa21UdnFMOHhRU0J1dksycTNtYkFJZm50eE12UGQ0cDFfaWw1NXFqZzluYlg0SVllYWxNNjNtOXcwUlHSAdsBQVVfeXFMT3Y2azVzVmNtMmNHTzJZRU1aZjhHYUhiLTRyMk14RERHaWx4eWNiNTFJaWFrWWQxLW94RGZlSzZHUXg0c0RVb2hnbFpsYmxFR2tGSUx3SExhRUNEcGRUZXlPYVRrcElOS1Jnd2V5bWFfcVVoQWFqNUo2QTg4TEtCWUlaMGtmOVFCanZjV2M5dXYyQUdwM3ZzeDZWN0dHaENlamttVHZxTDh4UVNCdXZLMnEzbWJBSWZudHhNdlBkNHAxX2lsNTVxamc5bmJYNElZZWFsTTYzbTl3MFJR?oc=5",
+          "intensidad": 7.0,
+          "medio": "Infobae"
+        }
+      ]
     },
     {
       "categoria": "Economía",
@@ -362,11 +399,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 40
+          "peso_pct": 41
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
@@ -412,7 +449,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 49
+          "peso_pct": 50
         },
         {
           "categoria": "Relación Bilateral",
@@ -437,7 +474,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 54
+          "peso_pct": 55
         },
         {
           "categoria": "Relación Bilateral",
@@ -445,7 +482,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Social",
@@ -458,11 +495,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 25
+          "peso_pct": 24
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -487,7 +524,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -512,7 +549,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -537,11 +574,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 5
         },
         {
           "categoria": "Economía",
@@ -562,7 +599,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -587,7 +624,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -608,11 +645,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 21
+          "peso_pct": 20
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -633,15 +670,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 18
+          "peso_pct": 17
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
@@ -649,7 +686,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 1
+          "peso_pct": 2
         }
       ]
     },
@@ -658,115 +695,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 17
+          "peso_pct": 16
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 66
+          "peso_pct": 67
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 1
-        }
-      ]
-    },
-    {
-      "fecha": "2026-10-01",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 15
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 64
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 1
-        }
-      ]
-    },
-    {
-      "fecha": "2026-10-02",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 14
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 65
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 2
-        }
-      ]
-    },
-    {
-      "fecha": "2026-10-03",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 15
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 65
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 2
-        }
-      ]
-    },
-    {
-      "fecha": "2026-10-04",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 15
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 64
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 6
         },
         {
           "categoria": "Economía",
@@ -775,6 +712,106 @@
         {
           "categoria": "Social",
           "peso_pct": 2
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-01",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 14
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 66
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 2
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-02",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 13
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 67
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 3
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-03",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 13
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 68
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 3
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-04",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 13
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 67
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 7
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 3
         }
       ]
     }
@@ -785,15 +822,18 @@
       "nombre": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel",
       "categoria": "Gobernabilidad",
       "resumen": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguela aquí en vivo - El Financiero",
-      "motivo": "Claudia Sheinbaum inaugura puente en Veracruz antes de lo proyectado - Excélsior",
-      "peso": 21.0,
-      "n_temas_agrupados": 2,
+      "motivo": "Claudia Sheinbaum preside aniversario Armada de México en Veracruz - MILENIO",
+      "peso": 26.0,
+      "n_temas_agrupados": 4,
       "escalando": false,
-      "ultima_hora": true,
-      "medios_corroborantes": 3,
+      "ultima_hora": false,
+      "medios_corroborantes": 4,
       "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNcVo4eEszVGdTM1owd2hGR3oxR09ZTGRqbWpPVEJhVmhKai1pSzU2aGtnckpoX29GLVJqRDdCT1Z4aFhwXzlwakhCYk9mZW5MMDRlSG9TV2dLTXBWNWM0dzI0eF92OU1lcC1TaC1VRnNXUDNCMlBQRDJGdmd2WkFhYTVsbHM4T0nSAYwBQVVfeXFMT195bnZVa29BN18wZ2pZaGNWLTVQdi1Za05fVkV1TDNTNEdubVZDOGVXdzNuV2UxUGRpVktpeXhsQ29fTUdEMURkMXU1bGc4V3pOa05mWmdhTzZ3NGJYT0Vyb3hMc0Itd0FXRjZFaHlVLU5DOG5UM0lFdHNtWmpfTk9vcTExQXZGZ3pBNm8?oc=5",
-      "actor_vinculado": null
+      "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSFBfdDFoTkloVkEwLWRKQ1ZwY1kzSnlnTUN3eE9CQXdTeXRoRjV4Q1JzR1dKeWRuX1FoTGhMb056bHNfdGp5WW9udGZDd3haWkRpbDl4Z1NzTnowcTYwclQtMlQyVDFhT0VKUE1EWXF5Zk1rc0JsbkZTY1hjanJmTjVhRFBpR3hQUS1KTy14ZzlOalVSOHlIbjBzRTI4VXdXTFNGSGNVYmszSmZuVXVPSUdXa9IBswFBVV95cUxPNlliSDUtU2c4TnM3NkxnaG9oN0QwbXFWUlNGZW1wLVNkbGxYakZWNVkyT0xnQ2lvRnYwSzVqbUJFeWNxRjVDRlFjQjBFNGVyb24xMFhsbmI0Nnl4N1lPUVVqYkdlNzFMOElXNXptajl1cndrWjZxWExGc0c3d3V6WTk1ZEptRW0wRU1HcE5mN09wVnZtcWhpTTBKNXF5YVd0V0dkckFlR1pfOWU4LWlxeXZYdw?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
     },
     {
       "id": "huachicol-fiscal",
@@ -801,16 +841,34 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
       "motivo": "Sirvió El Capitán Sol de enlace para huachicol fiscal",
-      "peso": 11.0,
-      "n_temas_agrupados": 2,
+      "peso": 17.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/004n3pol?partner=rss",
       "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
+      "id": "visa-de-andy",
+      "nombre": "Visa de Andy",
+      "categoria": "Relación Bilateral",
+      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
+      "motivo": "AMLO tacha de acto “canallesco” el retiro de la visa de su hijo, Andy López Beltrán - Infobae",
+      "peso": 7.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPdjZrNXNWY20yY0dPMllFTVpmOEdhSGItNHIyTXhEREdpbHh5Y2I1MUlpYWtZZDEtb3hEZmVLNkdReDRzRFVvaGdsWmxibEVHa0ZJTHdITGFFQ0RwZFRleU9hVGtwSU5LUmd3ZXltYV9xVWhBYWo1SjZBODhMS0JZSVowa2Y5UUJqdmNXYzl1djJBR3AzdnN4NlY3R0doQ2Vqa21UdnFMOHhRU0J1dksycTNtYkFJZm50eE12UGQ0cDFfaWw1NXFqZzluYlg0SVllYWxNNjNtOXcwUlHSAdsBQVVfeXFMT3Y2azVzVmNtMmNHTzJZRU1aZjhHYUhiLTRyMk14RERHaWx4eWNiNTFJaWFrWWQxLW94RGZlSzZHUXg0c0RVb2hnbFpsYmxFR2tGSUx3SExhRUNEcGRUZXlPYVRrcElOS1Jnd2V5bWFfcVVoQWFqNUo2QTg4TEtCWUlaMGtmOVFCanZjV2M5dXYyQUdwM3ZzeDZWN0dHaENlamttVHZxTDh4UVNCdXZLMnEzbWJBSWZudHhNdlBkNHAxX2lsNTVxamc5bmJYNElZZWFsTTYzbTl3MFJR?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
       }
     }
   ],
@@ -824,28 +882,50 @@
       "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/008n1pol?partner=rss"
     },
     {
-      "id": "auto-de2cd3c246",
-      "nombre": "AMLO autoriza “sólo a Morena” usar sus palabras e imagen, y pide apoyar a Sheinb",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOSmQ0bnpkeEhudG95QUJQaG5GS2pBZW9lTTRJOE1Pc3loOWtTMjVfNEpUZE5TeUtwT1ZvLWNhb2NCVXJoVGtnZ2RCZ2NId0E2Ym9XemRIVkJ5RFRBR2xvdGlaR3dBakFidFQzSjktWTZVVHFMNkdsT2FTOUtRa1Y3aW0xX3NQaWZpdnFBWmNnT0MwR0xTeFFnOVlTYTZmUF92QlFQMlB5VWNWWEw5WEV5aTBPVFIzQQ?oc=5"
-    },
-    {
       "id": "auto-4cf43de5c3",
       "nombre": "Los estados en que Morena tuvo que ceder ante el Verde para mantener la alianza ",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOU1VtanBqX0JDakM4V1I5WWw2WFl5MHFMaVcwbHdYZHdYS1A3QS1YZkQ3dEJYRVhDX0JzY0Vja1JXNENOMGxlUzhiVjM0R1Y1N0J6aEVxd3NzTlRybjE4YmtsVWd5NmpKSnR6SzhSUEEwY092Yk01ZlRaUFRiNU1HSXgwREs5THpRcFVTQTlMSjVqMkxqSDR6VVhIc3hWREFOeG5uNk42SWRub3FKVTdkYWJJTTNqOHRGT1BrQXRuYzItOWVxMWRBMkVIMjFKSkJFblZDSU4xd9IB8gFBVV95cUxNNVNtMDVXX1dyME1lZl9XX08ySHcyRlBEdkpESEtaRkdrZnpyQlh3Z0d1UnZ3aU9qM3JYOHVFTFdfd2tpdEl1WGRzbHZXbWZLYjR6dUM1UUFsOHVJeTdhdzZqeEUwOGZfdU42d1FtcnIwZ05WQ05wMzNhNmFCaFhtcjlfQjIxdjRxbG9RRGJrcE1fVXh1RElyM3lTYVluV0dkR1FRNzVya1ZRWVVDUlJmamNfOVB4LWZNNVRxSXFsdHVFUzZKN01iZ1B5dUxTZm5hOS1NSlU0MjNWaDNqQ3Q3UW9qRUgwTFZWT0p3bm1IOWxzZw?oc=5"
+    },
+    {
+      "id": "auto-1b72d8e50b",
+      "nombre": "Magistrado propone revertir prohibición al PRI y a Alejandro Moreno: \"Narcoparti",
+      "categoria": "Seguridad Nacional",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPTzRwVlRFaXJmYk80T0wzVmRIWWd5ZU9ZellyMmhCcHJfLU5KNW5jOTNhMkVWLUVOMmpyVXBjM2oySnhUSDRIZGxWXzVqcVd4bWFYNnVCMENEc2M2M3JBaWhCWE9vRUtDRnhyQkNVVG9YbWlvZFh2dW8tcXd5LV9yV1p1Zjg4Nlk5ZHczQ3Q4RlViUk43NlAzWdIBmAFBVV95cUxPTzRwVlRFaXJmYk80T0wzVmRIWWd5ZU9ZellyMmhCcHJfLU5KNW5jOTNhMkVWLUVOMmpyVXBjM2oySnhUSDRIZGxWXzVqcVd4bWFYNnVCMENEc2M2M3JBaWhCWE9vRUtDRnhyQkNVVG9YbWlvZFh2dW8tcXd5LV9yV1p1Zjg4Nlk5ZHczQ3Q4RlViUk43NlAzWQ?oc=5"
     }
   ],
   "temas_retomados": [
     {
+      "id": "auto-840ab86127",
+      "nombre": "Fuerzas Armadas continuarán tareas de pacificación bajo la guía presidencial: Tr",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 20,
+      "motivo": "Reconoce Claudia Sheinbaum lealtad de las Fuerzas Armadas - Excélsior",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE50VlJiZUNrMC0wdFZWVUtIbzVyci1zZnRySlBuLXVLZ2VPZE5yZ2pzckZ6Uzc4WjJCWlItTDZka21GOHZYeWRibHp6LWpkcUFqY1dPcjJhelpyREgzemxUbUxBUE1ndkEwYXNUQ2F30gFzQVVfeXFMUEl5MFd5X194bTIxTWJFQ2h6N1dNV0JvSTdjZUtqMkE0QzlLYlFJQWxLc05rbGRLdnVveHlQT3ZoN05GeDBGNnZyOVExajRGQUZEZmFXS2RTM0hsS0d2MjdvYmtoMEpvbmdoOThsX29kLVBqYw?oc=5",
+      "fecha_anterior": "2026-09-14",
+      "fuente_url_anterior": "http://campechehoy.mx/2026/09/14/refuerzan-compromiso-con-fuerzas-armadas/"
+    },
+    {
+      "id": "auto-a26cd80d11",
+      "nombre": "Trump desata polémica por posible uniforme de la Fuerza Espacial de EU",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 15,
+      "motivo": "‘Son pueblo uniformado’: Sheinbaum destaca actuación de Fuerzas Armadas en su 205 aniversario",
+      "impacto": "alto",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/04/son-pueblo-uniformado-sheinbaum-destaca-actuacion-de-fuerzas-armadas-en-su-205-aniversario/",
+      "fecha_anterior": "2026-09-19",
+      "fuente_url_anterior": "https://www.elfinanciero.com.mx/mundo/2026/09/19/trump-anuncia-una-fuerza-ia-y-designara-a-un-zar-para-supervisar-su-avance-de-ninguna-manera-frenaremos/"
+    },
+    {
       "id": "auto-cc44fee279",
       "nombre": "Una casa sin esperar a heredar: Sheinbaum coloca la vivienda digna para jóvenes ",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 14,
+      "dias_silencio": 15,
       "motivo": "Sheinbaum: alzas al sueldo mínimo capitalizaron al fondo de vivienda",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/04/politica/005n1pol?partner=rss",
@@ -853,26 +933,26 @@
       "fuente_url_anterior": "https://www.tabascohoy.com/atacan-vivienda-de-disenador-que-colaboro-en-vestido-de-sheinbaum/"
     },
     {
-      "id": "auto-376e2b355a",
-      "nombre": "IAP Chiapas impulsa la capacitación municipal en seguridad pública, desarrollo u",
+      "id": "auto-15914cd38c",
+      "nombre": "Impulsa Mara Lezama productividad del campo con entrega de nuevo equipamiento ga",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 13,
-      "motivo": "Impulsa Seguritech uso de drones para incrementar rentabilidad del campo - Milenio",
+      "dias_silencio": 12,
+      "motivo": "Avanza gestión de Mara Lezama para nuevo Hospital General de Zona del IMSS en Chetumal - Gobierno del Estado de Quintana Roo",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxORjFzU082SmJlSmw5U3lWOTltNVZxREw0TTdjR1NsbWgydWRVS1VqLTNFemFkMzh1T05LNUI1U3ZhaUU1bnJmbVlWNnBwdUlmU2NrY2tPWGxDUkR2U0VXNUtfOUdocTAxVG54R0JMUkw0MHdXOWdpalc4elltcWZWUzQ0enhPdDV0Ynh2Qmc0RjNuRlIwdFh6TNIBmAFBVV95cUxORjFzU082SmJlSmw5U3lWOTltNVZxREw0TTdjR1NsbWgydWRVS1VqLTNFemFkMzh1T05LNUI1U3ZhaUU1bnJmbVlWNnBwdUlmU2NrY2tPWGxDUkR2U0VXNUtfOUdocTAxVG54R0JMUkw0MHdXOWdpalc4elltcWZWUzQ0enhPdDV0Ynh2Qmc0RjNuRlIwdFh6TA?oc=5",
-      "fecha_anterior": "2026-09-20",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTUNVT0Z1bHFrVG1KLWlTRy04ZDZPb2lDV1RSZXhZakx5UVM2RDEwYXkzWDZlQ3FEZnl1MDliNjFQU2h1dDhHZ1Y5U2xBVnlmdFlpYVg2cE90c2o2eE5FQlpQeXQ4MWI2cmc2XzZBSlRzVmFCQUw4OGRGa1UyYzg4MUtFTzMzT2l5MmVFUUpadEhwWVd0amlocy1WdnRHTVN6M0pSY3Vwc1ZCZk1qUjJWWnlUWmF3TUxLaEJiTU5Xakw?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNZkZORkNBd2RjU1lsSDNyeW95VE4zbnpHZUhvWVBZX3hLZ29IMllnbERMR3FLZ0c0VGpNY2FWR1ZBbDlkdXE1ZjJJRmx5OXpUcC1VN2xVSi1xbVFEcmI4eDBkNW44VVlDa1d4UlR6RkxoeE55a2dIdk1XNjk0bzk0a283Y1J4aE1VZFdtQ25NTVFXdjNaYnRMc1d4aXJac0FTYkZxNlB2VkgybEk?oc=5",
+      "fecha_anterior": "2026-09-22",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNeTFiYlZjNTR5OURkaVdKSkRWTllFdUZ0cHlpdjFvUGlOcEtTeFMxSUZvU0FmaWZqbTRLbUxIX2Fja1NJV0NDMFV2bExFbWNhYWk0b2d1Q0w3TENHck40Z3dJQ1pDLVQ5TF9mUFRvMWZzTnI2RUhhQXhQM0VvMXp5SGxnRjAyT290dmxObFBpYWk2b25mdXFVV0dYalpEZTZWZlFQX25NQmk3WFNqQW5CUUg0NWphOHY5RGx4VUN5ai12emRtQlJMM1hCLTZ2aklDM3ZJ?oc=5"
     },
     {
-      "id": "auto-b7c490f01c",
-      "nombre": "Templo Mayor 2026-09-14 - Reforma",
+      "id": "auto-5ac251969e",
+      "nombre": "Deben aprender a perder y a ganar: Higinio Martínez",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 7,
-      "motivo": "Templo Mayor 2026-10-04 - Reforma",
+      "dias_silencio": 9,
+      "motivo": "Aprobó el Senado 21 proyectos de decreto en septiembre, destaca Higinio Martínez - MILENIO",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82dVh3WnVYUnQzc3dEeU8ySlhZeE9WUGFhYS1EX09EbmJHZzFIVmlNUHo2R3ROdVV1REZxUTFTWm44SlNoeHo1U1U5bEpvempERlZoV3ZpVkZUbTVsckxxUl9VXzhrQlhnQndBc0VMNkwzWDdlWlk0?oc=5",
-      "fecha_anterior": "2026-09-26",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBQbk9kT0RPR2dIYmVfMWc1SFJUZ0dMaDdyMnhLY3lvQk9IdFdJUUoxaG5TUURZQi1YN3ZJYTdUODhhd3k4RmpHbzdhMGNVX0tTb0FiZFB6Vmh6d0VKTnozcThsZ2pIM2EyS2EzcmJFTVhGUklmTzlV?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPcmFHeW10bV9LMHAycEYzcGVGTFdiTVJJVjNGbkxpT01FSWxROTdJQURpSGU3UXU3eVZld1FQSEtTNTBSQXZNY0hWMGFLaFZqSG54d19mUGl4X1RnaDJRWjZoNC1BdEh4SEVfckhKUFg0UDVnSWh3QVNHRkFucDNXVmdXMnh0YTdLbW5Qc2pR0gGOAUFVX3lxTE9pNkZHVXpYRnNDREltSkY2S3J0QU5IQmJFS2hoaFUzSnd1TE9JR0c3UXJCc2hvWXM5cE9IZERnSlJqWVF4aHhHdGx0dTJiTU9kaTdCbkU0aHJzZTBhUzdmUVM1X0dUTDdPYWZkWHpUUk43UXd3cGx2aFR3OE9rLUJZc0VPRUI0cXRqY0JLcFE?oc=5",
+      "fecha_anterior": "2026-09-25",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOejJJZkZpRExmVDZLTXpTSGd3MHB4X1FCUDlFcW11aHJhVEdoSE5MWnNaaFg5U1lEOVE0QmZZWFFZcU9DTlk1M0ZKX0gtQVMyc3VpQjFPYWRtWTdqRDNhQmNGUURfSnU4d29xei1mbEdrX0s5UThkZkl6SW1rTHdfRHR0N1B1VkpKZFZXX0hhOElOQ09EWFVoRlM0dDA3V1BMaHJhQjc5QWswaDZnaTYtQ2xjQmg1MHA5ZDk1UVVlNXJmMHc?oc=5"
     }
   ],
   "actores_destacados": [
@@ -881,8 +961,19 @@
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
       "tema": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel",
-      "nota": "Claudia Sheinbaum inaugura puente en Veracruz antes de lo proyectado - Excélsior",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNcVo4eEszVGdTM1owd2hGR3oxR09ZTGRqbWpPVEJhVmhKai1pSzU2aGtnckpoX29GLVJqRDdCT1Z4aFhwXzlwakhCYk9mZW5MMDRlSG9TV2dLTXBWNWM0dzI0eF92OU1lcC1TaC1VRnNXUDNCMlBQRDJGdmd2WkFhYTVsbHM4T0nSAYwBQVVfeXFMT195bnZVa29BN18wZ2pZaGNWLTVQdi1Za05fVkV1TDNTNEdubVZDOGVXdzNuV2UxUGRpVktpeXhsQ29fTUdEMURkMXU1bGc4V3pOa05mWmdhTzZ3NGJYT0Vyb3hMc0Itd0FXRjZFaHlVLU5DOG5UM0lFdHNtWmpfTk9vcTExQXZGZ3pBNm8?oc=5",
+      "nota": "Claudia Sheinbaum preside aniversario Armada de México en Veracruz - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSFBfdDFoTkloVkEwLWRKQ1ZwY1kzSnlnTUN3eE9CQXdTeXRoRjV4Q1JzR1dKeWRuX1FoTGhMb056bHNfdGp5WW9udGZDd3haWkRpbDl4Z1NzTnowcTYwclQtMlQyVDFhT0VKUE1EWXF5Zk1rc0JsbkZTY1hjanJmTjVhRFBpR3hQUS1KTy14ZzlOalVSOHlIbjBzRTI4VXdXTFNGSGNVYmszSmZuVXVPSUdXa9IBswFBVV95cUxPNlliSDUtU2c4TnM3NkxnaG9oN0QwbXFWUlNGZW1wLVNkbGxYakZWNVkyT0xnQ2lvRnYwSzVqbUJFeWNxRjVDRlFjQjBFNGVyb24xMFhsbmI0Nnl4N1lPUVVqYkdlNzFMOElXNXptajl1cndrWjZxWExGc0c3d3V6WTk1ZEptRW0wRU1HcE5mN09wVnZtcWhpTTBKNXF5YVd0V0dkckFlR1pfOWU4LWlxeXZYdw?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "rol": "Mencionado",
+      "tema": "Visa de Andy",
+      "nota": "AMLO tacha de acto “canallesco” el retiro de la visa de su hijo, Andy López Beltrán - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPdjZrNXNWY20yY0dPMllFTVpmOEdhSGItNHIyTXhEREdpbHh5Y2I1MUlpYWtZZDEtb3hEZmVLNkdReDRzRFVvaGdsWmxibEVHa0ZJTHdITGFFQ0RwZFRleU9hVGtwSU5LUmd3ZXltYV9xVWhBYWo1SjZBODhMS0JZSVowa2Y5UUJqdmNXYzl1djJBR3AzdnN4NlY3R0doQ2Vqa21UdnFMOHhRU0J1dksycTNtYkFJZm50eE12UGQ0cDFfaWw1NXFqZzluYlg0SVllYWxNNjNtOXcwUlHSAdsBQVVfeXFMT3Y2azVzVmNtMmNHTzJZRU1aZjhHYUhiLTRyMk14RERHaWx4eWNiNTFJaWFrWWQxLW94RGZlSzZHUXg0c0RVb2hnbFpsYmxFR2tGSUx3SExhRUNEcGRUZXlPYVRrcElOS1Jnd2V5bWFfcVVoQWFqNUo2QTg4TEtCWUlaMGtmOVFCanZjV2M5dXYyQUdwM3ZzeDZWN0dHaENlamttVHZxTDh4UVNCdXZLMnEzbWJBSWZudHhNdlBkNHAxX2lsNTVxamc5bmJYNElZZWFsTTYzbTl3MFJR?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -891,23 +982,45 @@
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
       "rol": "Mencionado",
-      "tema": "AMLO autoriza “sólo a Morena” usar sus palabras e imagen, y pide apoyar a Sheinb",
-      "nota": "AMLO autoriza “sólo a Morena” usar sus palabras e imagen, y pide apoyar a Sheinbaum - Sin Embargo",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOSmQ0bnpkeEhudG95QUJQaG5GS2pBZW9lTTRJOE1Pc3loOWtTMjVfNEpUZE5TeUtwT1ZvLWNhb2NCVXJoVGtnZ2RCZ2NId0E2Ym9XemRIVkJ5RFRBR2xvdGlaR3dBakFidFQzSjktWTZVVHFMNkdsT2FTOUtRa1Y3aW0xX3NQaWZpdnFBWmNnT0MwR0xTeFFnOVlTYTZmUF92QlFQMlB5VWNWWEw5WEV5aTBPVFIzQQ?oc=5",
+      "tema": "Visa de Andy",
+      "nota": "AMLO tacha de acto “canallesco” el retiro de la visa de su hijo, Andy López Beltrán - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPdjZrNXNWY20yY0dPMllFTVpmOEdhSGItNHIyTXhEREdpbHh5Y2I1MUlpYWtZZDEtb3hEZmVLNkdReDRzRFVvaGdsWmxibEVHa0ZJTHdITGFFQ0RwZFRleU9hVGtwSU5LUmd3ZXltYV9xVWhBYWo1SjZBODhMS0JZSVowa2Y5UUJqdmNXYzl1djJBR3AzdnN4NlY3R0doQ2Vqa21UdnFMOHhRU0J1dksycTNtYkFJZm50eE12UGQ0cDFfaWw1NXFqZzluYlg0SVllYWxNNjNtOXcwUlHSAdsBQVVfeXFMT3Y2azVzVmNtMmNHTzJZRU1aZjhHYUhiLTRyMk14RERHaWx4eWNiNTFJaWFrWWQxLW94RGZlSzZHUXg0c0RVb2hnbFpsYmxFR2tGSUx3SExhRUNEcGRUZXlPYVRrcElOS1Jnd2V5bWFfcVVoQWFqNUo2QTg4TEtCWUlaMGtmOVFCanZjV2M5dXYyQUdwM3ZzeDZWN0dHaENlamttVHZxTDh4UVNCdXZLMnEzbWJBSWZudHhNdlBkNHAxX2lsNTVxamc5bmJYNElZZWFsTTYzbTl3MFJR?oc=5",
       "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "alito_moreno",
+      "nombre": "Alejandro Moreno Cárdenas",
+      "rol": "Responsable institucional",
+      "tema": "Magistrado propone revertir prohibición al PRI y a Alejandro Moreno: \"Narcoparti",
+      "nota": "Magistrado propone revertir prohibición al PRI y a Alejandro Moreno: \"Narcopartido es afirmación superficial\" - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPTzRwVlRFaXJmYk80T0wzVmRIWWd5ZU9ZellyMmhCcHJfLU5KNW5jOTNhMkVWLUVOMmpyVXBjM2oySnhUSDRIZGxWXzVqcVd4bWFYNnVCMENEc2M2M3JBaWhCWE9vRUtDRnhyQkNVVG9YbWlvZFh2dW8tcXd5LV9yV1p1Zjg4Nlk5ZHczQ3Q4RlViUk43NlAzWdIBmAFBVV95cUxPTzRwVlRFaXJmYk80T0wzVmRIWWd5ZU9ZellyMmhCcHJfLU5KNW5jOTNhMkVWLUVOMmpyVXBjM2oySnhUSDRIZGxWXzVqcVd4bWFYNnVCMENEc2M2M3JBaWhCWE9vRUtDRnhyQkNVVG9YbWlvZFh2dW8tcXd5LV9yV1p1Zjg4Nlk5ZHczQ3Q4RlViUk43NlAzWQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "higinio_martinez",
+      "nombre": "Higinio Martínez Miranda",
+      "rol": "Responsable institucional",
+      "tema": "Deben aprender a perder y a ganar: Higinio Martínez",
+      "nota": "Aprobó el Senado 21 proyectos de decreto en septiembre, destaca Higinio Martínez - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPcmFHeW10bV9LMHAycEYzcGVGTFdiTVJJVjNGbkxpT01FSWxROTdJQURpSGU3UXU3eVZld1FQSEtTNTBSQXZNY0hWMGFLaFZqSG54d19mUGl4X1RnaDJRWjZoNC1BdEh4SEVfckhKUFg0UDVnSWh3QVNHRkFucDNXVmdXMnh0YTdLbW5Qc2pR0gGOAUFVX3lxTE9pNkZHVXpYRnNDREltSkY2S3J0QU5IQmJFS2hoaFUzSnd1TE9JR0c3UXJCc2hvWXM5cE9IZERnSlJqWVF4aHhHdGx0dTJiTU9kaTdCbkU0aHJzZTBhUzdmUVM1X0dUTDdPYWZkWHpUUk43UXd3cGx2aFR3OE9rLUJZc0VPRUI0cXRqY0JLcFE?oc=5",
+      "reaparece": true,
       "tema_nuevo": false,
       "confianza": "media"
     }
   ],
-  "declaracion_presidenta": null,
-  "declaracion_otro": {
-    "actor": "Carlos Alberto Puente Salas",
-    "texto": "Carlos Alberto Vargas: ¿el nuevo ‘Marilyn Cote’? Esto sabemos del falso psiquiatra señalado por Mr. Doctor",
-    "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/03/carlos-alberto-vargas-el-nuevo-marilyn-cote-esto-sabemos-del-falso-psiquiatra-senalado-por-mr-doctor/",
+  "declaracion_presidenta": {
+    "actor": "Claudia Sheinbaum Pardo",
+    "texto": "\"Gracias por defender nuestra soberanía\": presidenta Claudia Sheinbaum - Excélsior",
+    "fuente_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5CTUtEZ05VdFhlbnZyUUlyX2lTVHB2NjJaU3M3ZVFVZVBkMV9RLWZEM1JjaDlzdGdRUUxKOGpSSVRmejVWZklldXZIU3BKLTJYUEIzaF82emVIejRHeEl4UVd3aVBHMDVZanBsSC1jRUFiUkZmTjA1SnhUc9IBe0FVX3lxTE5CTUtEZ05VdFhlbnZyUUlyX2lTVHB2NjJaU3M3ZVFVZVBkMV9RLWZEM1JjaDlzdGdRUUxKOGpSSVRmejVWZklldXZIU3BKLTJYUEIzaF82emVIejRHeEl4UVd3aVBHMDVZanBsSC1jRUFiUkZmTjA1SnhUcw?oc=5",
     "intensidad": 7.0,
-    "fecha": "2026-10-03",
+    "fecha": "2026-10-04",
     "nivel_fuente": "ALTA"
   },
+  "declaracion_otro": null,
   "patron_historico_4sem": [
     {
       "fecha": "2026-09-07",
@@ -999,10 +1112,10 @@
     },
     {
       "fecha": "2026-09-18",
-      "tension": 53,
-      "n_notas": 42,
+      "tension": 51,
+      "n_notas": 44,
       "n_alto_impacto": 33,
-      "n_medio_impacto": 9,
+      "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     },
     {
@@ -1015,57 +1128,57 @@
     },
     {
       "fecha": "2026-09-20",
-      "tension": 50,
-      "n_notas": 19,
+      "tension": 49,
+      "n_notas": 20,
       "n_alto_impacto": 16,
-      "n_medio_impacto": 3,
+      "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-21",
-      "tension": 50,
-      "n_notas": 45,
-      "n_alto_impacto": 35,
-      "n_medio_impacto": 10,
+      "tension": 49,
+      "n_notas": 47,
+      "n_alto_impacto": 36,
+      "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-22",
       "tension": 50,
-      "n_notas": 57,
-      "n_alto_impacto": 45,
+      "n_notas": 59,
+      "n_alto_impacto": 47,
       "n_medio_impacto": 12,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-23",
       "tension": 43,
-      "n_notas": 40,
-      "n_alto_impacto": 28,
+      "n_notas": 41,
+      "n_alto_impacto": 29,
       "n_medio_impacto": 12,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-24",
       "tension": 49,
-      "n_notas": 40,
-      "n_alto_impacto": 32,
+      "n_notas": 41,
+      "n_alto_impacto": 33,
       "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-25",
       "tension": 50,
-      "n_notas": 36,
-      "n_alto_impacto": 26,
+      "n_notas": 38,
+      "n_alto_impacto": 28,
       "n_medio_impacto": 10,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-26",
       "tension": 51,
-      "n_notas": 22,
-      "n_alto_impacto": 15,
+      "n_notas": 23,
+      "n_alto_impacto": 16,
       "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     },
@@ -1080,57 +1193,57 @@
     {
       "fecha": "2026-09-28",
       "tension": 48,
-      "n_notas": 32,
-      "n_alto_impacto": 25,
+      "n_notas": 33,
+      "n_alto_impacto": 26,
       "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-29",
       "tension": 53,
-      "n_notas": 40,
-      "n_alto_impacto": 29,
-      "n_medio_impacto": 11,
+      "n_notas": 47,
+      "n_alto_impacto": 33,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-30",
-      "tension": 49,
-      "n_notas": 22,
-      "n_alto_impacto": 17,
+      "tension": 51,
+      "n_notas": 24,
+      "n_alto_impacto": 19,
       "n_medio_impacto": 5,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-01",
-      "tension": 44,
-      "n_notas": 20,
-      "n_alto_impacto": 14,
+      "tension": 49,
+      "n_notas": 24,
+      "n_alto_impacto": 18,
       "n_medio_impacto": 6,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-02",
-      "tension": 41,
-      "n_notas": 16,
-      "n_alto_impacto": 10,
+      "tension": 45,
+      "n_notas": 19,
+      "n_alto_impacto": 13,
       "n_medio_impacto": 6,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-03",
-      "tension": 42,
-      "n_notas": 6,
-      "n_alto_impacto": 2,
+      "tension": 44,
+      "n_notas": 8,
+      "n_alto_impacto": 4,
       "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-04",
-      "tension": 25,
-      "n_notas": 3,
-      "n_alto_impacto": 2,
-      "n_medio_impacto": 1,
+      "tension": 42,
+      "n_notas": 9,
+      "n_alto_impacto": 6,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
@@ -1139,35 +1252,35 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 86,
+      "x_lunes": 92,
       "y_lunes": 100,
       "x_hoy": 100,
       "y_hoy": 100,
       "delta_pts": 9,
-      "alcance": 17,
-      "n_alto": 21,
+      "alcance": 22,
+      "n_alto": 40,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQVzd6UTM4MEJJcC1idWdxdjhtQVUwdXU4elp1V29Dc0o4SEdDZGo1cDh4MVkwNThBLVd5eHFTLUtyQ2tYM0NsU1JlYnJYU2szYWFsTzhJWmk3ZEZDWk1UcmRMRUVRZTBpVzNUYmkwc2RtdkYtZmFjMy1QWnBSajlsNmxWWlZDU3NvVldTWmhWTEd3ZFRnSWU3STI2N2lBUU9qdk4tcEYxbnVxbG1lVzF6MENtNEk5WWhNb18yUVM5cXY2dzlrQk5nVEtnNjdadnFCaGtXLVYzOWhlNXhzbFRISlRURDZHcTltNzJMcEJrOGIxWWs?oc=5",
-      "nota_texto": "“No se va a cerrar hasta que se llegue a la verdad”, Claudia Sheinbaum presenta nuevas líneas de investigación del caso Ayotzinapa - sprinforma.mx",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOSFN6bjk1ckFIYUVmT3dfektta1JSUFNYZE1vSHFiR3ZFVWFHOGpxOTRkRW55VWhjMFhsc1FrZ1liSVMxZjJ6Tzk1aC1oZ29ZbE9NWC1VZWpscjhzNHNGcG45ZzNxTElZbnQ5N2hIRFh0WEs0YlJacUJ6OWt0TDlPN1c0dTBUMXAtbV9aZVllQ3lOWHBYSHZ1MEdrQUg5T3lDanhHVEw4dzFwenpZSmRZ?oc=5",
+      "nota_texto": "Claudia Sheinbaum cuestiona la actitud de la ONU ante tantas guerras… - Revista Fortuna",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 4,
-      "fecha_apagado": "2026-10-02"
+      "dias_activo": 7,
+      "fecha_reactivado": "2026-10-04"
     },
     {
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 48,
+      "x_lunes": 25,
       "y_lunes": 100,
-      "x_hoy": 52,
+      "x_hoy": 30,
       "y_hoy": 100,
-      "delta_pts": 3,
+      "delta_pts": 6,
       "alcance": 9,
-      "n_alto": 11,
+      "n_alto": 12,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
@@ -1176,16 +1289,15 @@
       "nota_texto": "🔴Andrés Manuel López Beltrán informa que se registró como aspirante a Coordinador de los Comités de la Defensa de la Cuarta Transformación y de la Soberanía Nacional del Distrito 6 de Tabasco. Señaló ",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 7,
-      "fecha_reactivado": "2026-10-04"
+      "dias_activo": 7
     },
     {
       "id": "amilcar_olan_aparicio",
       "nombre": "Amílcar Olán Aparicio",
       "iniciales": "AO",
-      "x_lunes": 19,
+      "x_lunes": 10,
       "y_lunes": 100,
-      "x_hoy": 24,
+      "x_hoy": 12,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 5,
@@ -1202,34 +1314,12 @@
       "fecha_apagado": "2026-10-03"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "iniciales": "MO",
-      "x_lunes": 29,
-      "y_lunes": 83,
-      "x_hoy": 33,
-      "y_hoy": 86,
-      "delta_pts": 3.0,
-      "alcance": 7,
-      "n_alto": 5,
-      "n_medio": 2,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXRhRXFHa2tnQTFXOEJOSUZWdXZlQjNsTzhJLUpMYzk5UlJ6UjMydTNCaENTVU5lMWVubmlyZHdibE1wYU1SZS1abkZiR2ZsdlpDNnN2cDJDQ1lBRi1ZSDJLMXdVbTRtYk1IWms5MEdDa2xSSmVXbHJqd3VfdnF4MThhQkNYX2pueXhWWnJpckxLU2R2d3BGSDlZcVBiOTBrZnfSAacBQVVfeXFMT1NrRGtNVDlsenA2ZkVMeU5FMUxzUHlqNmtaMEIwd1VFY3Q1cmdQdWMxamlqTEhLMERvZW9OaHdMclJPM0FGM0FjTkhQcC1leDBoZnR1cWgwXzh4QTR6OHpYX1VCbHFRSnREdUwtWmQ4STh4NmozNHlsZ3JyUU1rbkgyR0RaN0t4SW1tRGtlSl9kWmxhb1J4QTdVbDJmTGxMU2k3SzFBRGc?oc=5",
-      "nota_texto": "Morena presentará a 7 defensores de la transformación este lunes - Uniradio Informa",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 4,
-      "fecha_apagado": "2026-10-02"
-    },
-    {
       "id": "ricardo_salinas_pliego",
       "nombre": "Ricardo Salinas Pliego",
       "iniciales": "RS",
-      "x_lunes": 5,
+      "x_lunes": 2,
       "y_lunes": 100,
-      "x_hoy": 10,
+      "x_hoy": 5,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 2,
@@ -1238,8 +1328,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNV2MtUWpuZl9HX2FsNllrOEFZaWpLS193U1VHYVpCWlFIWHFaM1daTmZOZ1JENGFoZTJHWVo5eVB2ekZyWW1wWFIwNGxhcTZ0VUZJRDkyMzVaUzdReFdqaUh2MHl1eGRTSVV5UkdMcnN1SzFYR2RuMDZiOUtWTlE1VGdlTzlRU0FqVjR3STlqYWlsMFBSb0g3ME41YWdFOUxsYjJ5TFpfSFN6QVNBSDlvRm1tV1ZYMDN4bDFqSS1uMnlmcUkyLWpLMVg0U3NQZ1FWM3A0SWhKc2FwMFVRZ1J4aQ?oc=5",
-      "nota_texto": "Ricardo Salinas Pliego presenta “Fortaleza Mexicana”; proyecto busca cambiar la visión sobre el mestizaje - El Universal",
+      "nota_url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxQaGc2RkJHeFZ6c1I0TXlfMGowWWdwSkdyVGZfVnZldy1kZGxaTmZXWmRMNl9zYVRmN0ZHYU5Uay1ONjlVd3dZMGZPcXV0ZXBDS004QzJFNllfTi1mUXNFYjZ1UVM4RXU5U0ExSVkzV3FkLWxwcEdsUmdKSFk4VjRYRk9fS29JMmc2V2NRWmg0Rjhuc0FsamZBNXZlMHhkTEFiX01kdEpRdGZFakxjclBQZWZvQmxRUVc4cXVzWnhVTnJ3Q2ZsTWFZSXFsRXRmRElQS2hSWjFsRklHeDM3V1dMRktXbERzck9LOUpsVHdwbmV4WjVOazgtazd2SWh4WW5LWlR1ZC1Tb21yWjFQMzBFTF84b2RqdG0zRk4weVB3eVNWZHVXaWotRjllR3N1alk2UHBXYTJKcHc3NVZLYjI2bWRkRTFxNXAzZVRBRzl30gHTAkFVX3lxTE53MmkzMXJYRHlFOVJxaGEzM2ZVbjVMMEQ4OVk2SDRIQUlkV2xYZ1U2eFN3M0NGRXZoQ1M5TG1oU2Q4MVVWd0ttSFJJUTg2NldKWC1UNFJVVGVhTW03emlFRHY0NWg0RUVuR3VUTjVickZfS0dHNmZjR2t5NDRHRkx3WW5fdEYtWTNGMVFKSDY3ZVQ1MGx3R0xOSWJqTTctS1pqRnd4Q1dxSTZHYVMwZDByRkdXTjljVWtvZGNrU1NycWh1WnJxd25vUi1NTG5weWlUUVFZUEJYWmRjMUhJM1lwYWdjc0FUTGhTNkZmMHk3UkhPZ0lNSktBSXc1WDNNVFpkUExsLU9IdXJqUURDcEkzQXpFRlFzQlFwRmdoYXNiR3ZEWVBmTzR0NHB1ZnpvcTJ4SFpOdTdibWtBcDVlejRoRXVDZmkwQXVlaUxSNjJrNkx0NA?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego, el multimillonario opositor a Claudia Sheinbaum, sobre cómo debe ser el salario en México: \"El sueldo fijo es una beca, la gente tiene que sentir que si se esfuerza gana más\" -",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1249,9 +1339,9 @@
       "id": "diaz_mena",
       "nombre": "Joaquín Jesús Díaz Mena ('Huacho')",
       "iniciales": "JD",
-      "x_lunes": 5,
+      "x_lunes": 2,
       "y_lunes": 100,
-      "x_hoy": 10,
+      "x_hoy": 5,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 2,
@@ -1268,12 +1358,34 @@
       "fecha_apagado": "2026-10-03"
     },
     {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
+      "x_lunes": 15,
+      "y_lunes": 83,
+      "x_hoy": 18,
+      "y_hoy": 86,
+      "delta_pts": 3.0,
+      "alcance": 7,
+      "n_alto": 5,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXRhRXFHa2tnQTFXOEJOSUZWdXZlQjNsTzhJLUpMYzk5UlJ6UjMydTNCaENTVU5lMWVubmlyZHdibE1wYU1SZS1abkZiR2ZsdlpDNnN2cDJDQ1lBRi1ZSDJLMXdVbTRtYk1IWms5MEdDa2xSSmVXbHJqd3VfdnF4MThhQkNYX2pueXhWWnJpckxLU2R2d3BGSDlZcVBiOTBrZnfSAacBQVVfeXFMT1NrRGtNVDlsenA2ZkVMeU5FMUxzUHlqNmtaMEIwd1VFY3Q1cmdQdWMxamlqTEhLMERvZW9OaHdMclJPM0FGM0FjTkhQcC1leDBoZnR1cWgwXzh4QTR6OHpYX1VCbHFRSnREdUwtWmQ4STh4NmozNHlsZ3JyUU1rbkgyR0RaN0t4SW1tRGtlSl9kWmxhb1J4QTdVbDJmTGxMU2k3SzFBRGc?oc=5",
+      "nota_texto": "Morena presentará a 7 defensores de la transformación este lunes - Uniradio Informa",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 4,
+      "fecha_apagado": "2026-10-02"
+    },
+    {
       "id": "monreal",
       "nombre": "Ricardo Monreal",
       "iniciales": "RM",
-      "x_lunes": 10,
+      "x_lunes": 5,
       "y_lunes": 100,
-      "x_hoy": 19,
+      "x_hoy": 10,
       "y_hoy": 88,
       "delta_pts": 4.5,
       "alcance": 4,
@@ -1293,9 +1405,9 @@
       "id": "ernesto_ruffo",
       "nombre": "Ernesto Ruffo Appel",
       "iniciales": "ER",
-      "x_lunes": 14,
+      "x_lunes": 8,
       "y_lunes": 67,
-      "x_hoy": 19,
+      "x_hoy": 10,
       "y_hoy": 75,
       "delta_pts": 3.0,
       "alcance": 4,
@@ -1315,9 +1427,9 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 10,
+      "x_lunes": 5,
       "y_lunes": 50,
-      "x_hoy": 14,
+      "x_hoy": 8,
       "y_hoy": 67,
       "delta_pts": 3.0,
       "alcance": 3,
@@ -1329,7 +1441,7 @@
       "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTm1sYkxrUWhTcExRUWF4MkM3M2pKUkxKZ3F5NHloVXRYZC10YkQzb0ptTHdtT3VObXJZSTlOOTJaN2lyajN3aXNLM3BvdGVoOUVaVzdDaDZtNEg4QmJLX2FSNEtZSklibjFmTmk1WmNLeW9pOGhrZS1IZXl6cmpDenRoUWhPaWxaWUpWQmlNLWxzVHV0VzRudk44NFh4S1hZUkNHR0RzazBwZGpTNmxDYzVjbTkwdW9X?oc=5",
       "nota_texto": "Visa de Andy y caso Rocha Moya ponen a prueba al gobierno de Sheinbaum: Roy Campos - emsavalles.com",
       "es_nuevo": false,
-      "categoria": "Gobernabilidad",
+      "categoria": "Relación Bilateral",
       "dias_activo": 3,
       "fecha_apagado": "2026-10-01"
     },
@@ -1412,6 +1524,14 @@
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
+      "texto": "\"Gracias por defender nuestra soberanía\": presidenta Claudia Sheinbaum - Excélsior",
+      "fuente_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5CTUtEZ05VdFhlbnZyUUlyX2lTVHB2NjJaU3M3ZVFVZVBkMV9RLWZEM1JjaDlzdGdRUUxKOGpSSVRmejVWZklldXZIU3BKLTJYUEIzaF82emVIejRHeEl4UVd3aVBHMDVZanBsSC1jRUFiUkZmTjA1SnhUc9IBe0FVX3lxTE5CTUtEZ05VdFhlbnZyUUlyX2lTVHB2NjJaU3M3ZVFVZVBkMV9RLWZEM1JjaDlzdGdRUUxKOGpSSVRmejVWZklldXZIU3BKLTJYUEIzaF82emVIejRHeEl4UVd3aVBHMDVZanBsSC1jRUFiUkZmTjA1SnhUcw?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-10-04",
+      "nivel_fuente": "ALTA"
+    },
+    {
+      "actor": "Claudia Sheinbaum Pardo",
       "texto": "Sheinbaum revisa constitución de Nayarit y detecta que Jasmine Bugarín no puede competir en elección de 2027: “Que lo aclare Morena” - Infobae",
       "fuente_url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQRi00aVM2TzRBeDB2bHowZFFRb19FZDFlRmZzQ2draUlBMkpBdEI5ZC0yWkxMNS1XZmQ4dUVfRVg3WDcxbE4xMHFpVjBXamVYWWhyM1NLbVFvMkRiQ3NNVHBLdWxfYWswWnNvdmx6WlRkZ1EyVmFVN2h0WTZ5d1gxaEZEVjhRRTVZdU9qV0w5cjFnTFFfTzRZRlNiUU04NE04QnRyYVVyek5jODNqb0NmMjQzenhzMlVHNXZmZV9YVk1JRkFiNVE0VEZBZlFBT1FxZ0t4M3c3dENxODY5Q1lWN2taZ0FyOU1jd3JDN3k3eDhfR3FkVmhwYzY0cDJ3T201ZEHSAZwCQVVfeXFMTVJOZkVpZ1pvZ09pXzFNdkpmRmtUckhpcWpJMzBabHJ6azZjaGZwRHpqMHp3dGQ2WUNZV3FQeGwzVHFzTzFzbkZpRlFjNDNGSVI1OFNfRnl1aW5NakpnQTNnZEFGVzFxVnJvQlJhdWV0TFBYOEI4S2xzYmVvYnFZUWstSlFEeHlKUmljVk9SdE9OWW1tbUpEM3dUMzJmTmNmZm4wOHNwaVBnYUNpdXdCSTBVbUh3cnpHRWFlaEJORFN1bVRTN2h1ckZLV3pOYkRjR3ZELTlGTkI5WktxWXo5RzB4SHZJaEhuVFhybGZRdEpSaFBkMERHTnlSRDJrSkk3QTFLT2xkYTVPV3JLSDBTMTNVdFpmQUJGLXUyUG8?oc=5",
       "intensidad": 7.0,
@@ -1424,13 +1544,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPS2V1NHdNZ05Pd1RlS24wX0J1eld2blVLNXRrYWZOTUdydzhiMjZ2bldvZEVWUkxRTUZXVlpWR29HeXM3TW1xWGRnWDNJUGVwcURqa0x3Wm9QVGJTZDJ0R0NraXdPckFLYkF4VGluanA3UnNiNjdQT3QxRkljVGtQeXV4TGhPQ2VNa0xTQkJQSWthWjdxc0g2WEJNZUJJZGVIS2lCQjVRZHEyUGU4OVdUcmQ5NFZfN1Y1TURRUHlkQ0dkdi0wQ0ZlUE5CWlFoTzBVcHQtdEVzeEhmajhSbVJDbmh3bjZ5MG1fRjdBN3ZQSEw?oc=5",
       "intensidad": 7.0,
       "fecha": "2026-09-29"
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
-      "texto": "Nueva Constitución blinda soberanía e igualdad: Claudia Sheinbaum - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSVpvMEZBRmhHYjN3c0s5QnB3OHo5UU5tU0Rzd1FwZkpyRGRnYjdMYmlwaHlFUnRlSUQ4UHBuTVR5Wk9kZTlEZFY4TEl6MHZjeXg2SmRaeWFiRGxUbmxUZmgwbUNtTHpvNVRtUHZFVDBEU01BNDlVM3lrMEVMTHBsS194dFRFNUZGS0VGbXVqTzjSAZABQVVfeXFMTnV2dWREQ3laem5hTk56OTNZZ25OMjBsV0NqdlNFLVRYZ3Z1RW1aVUEydWhQV2lqYWhOYUxPUUM0SDdlWE9DdFRJNEZyMHh6SnBXdGRXNXhya0E4cHJ6dGhQRFQyMC03OE5zTnI2ajJkSXFUcmRCNjRPSF9iQW42Q0ZBc1J2bGhvRDBFRGV6QlJV?oc=5",
-      "intensidad": 7.0,
-      "fecha": "2026-09-28"
     }
   ],
   "declaracion_otro_historial": [
@@ -1459,6 +1572,11 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-04 12:20"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-10-04T12:20:39.139142-06:00",
+    "cambios": [
+      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
+    ]
+  },
+  "hora_corte_publicada": "2026-10-04 18:49"
 }
