@@ -601,7 +601,12 @@ function tableroActoresPulso(actores){
     // chicas (11-16 en vez de 14-21; el tamaño de letra CS/AL no se toca) para que quepan
     // 9 sin apretarse tanto.
     const r = 11 + Math.min(5, (a.alcance||0));
-    return { a, i, color, esTenue, esApagado, x1, y1, x2: px(a.x_hoy), y2: py(a.y_hoy), r };
+    // Trayectoria de la semana (un punto por día con actividad, lunes -> hoy). Si el JSON
+    // es viejo y no la trae, se cae al único tramo que sí existía (antes de hoy -> hoy),
+    // pero solo si de verdad hubo un "antes": el lunes arranca de cero y no hay línea.
+    let trail = Array.isArray(a.trayectoria) ? a.trayectoria.map(t=>({x:px(t.x), y:py(t.y), fecha:t.fecha})) : null;
+    if(!trail) trail = (!a.es_nuevo && (a.x_lunes||a.y_lunes)) ? [{x:x1,y:y1,fecha:null},{x:px(a.x_hoy),y:py(a.y_hoy),fecha:null}] : [];
+    return { a, i, color, esTenue, esApagado, x1, y1, x2: px(a.x_hoy), y2: py(a.y_hoy), r, trail, ox2: px(a.x_hoy), oy2: py(a.y_hoy) };
   });
   // CORRECCIÓN -- pedido explícito repetido, con capturas de pantalla: "parece que todos
   // siguen la misma línea". La separación de arriba solo evita que las piezas de HOY
@@ -695,8 +700,14 @@ function tableroActoresPulso(actores){
     });
     if(!huboChoque) break;
   }
+  // La relajación de colisiones solo movió x2/y2 (y x1/y1): la trayectoria completa se
+  // traslada con el MISMO desplazamiento para que la línea siga pegada a su pieza.
+  datos.forEach(p=>{
+    const sx = p.x2 - p.ox2, sy = p.y2 - p.oy2;
+    p.trail.forEach(t=>{ t.x += sx; t.y += sy; });
+  });
   let piezas = '';
-  datos.forEach(({a,i,color,esTenue,esApagado,x1,y1,x2,y2,r})=>{
+  datos.forEach(({a,i,color,esTenue,esApagado,x1,y1,x2,y2,r,trail})=>{
     // Tooltip con lectura visual, no solo texto plano -- pedido explícito: la exposición
     // ponderada como barrita con signo/color, el impacto como franja de 3 tramos (alto/
     // medio/bajo) en vez de "2 alto, 1 medio", y el alcance como barrita también. El link
@@ -737,27 +748,27 @@ function tableroActoresPulso(actores){
           <span style="font-size:8.5px;color:var(--ink-2);font-family:var(--f-mono);white-space:nowrap;">${a.alcance} medio${a.alcance!==1?'s':''}</span>
         </div>
       </div>`.replace(/"/g, '&quot;');
-    if(!a.es_nuevo){
-      // La línea de "jugada" (lunes -> hoy) llega hasta el CENTRO de la pieza de hoy, pero
-      // la pieza se dibuja ENCIMA y la tapa por completo -- cualquier flecha en la punta
-      // quedaría escondida debajo. Se recorta la línea para que termine justo en el borde
-      // de la pieza (r + margen), y ahí sí se ve la punta de flecha marcando el sentido del
-      // movimiento (de lunes hacia hoy).
-      const dx = x2-x1, dy = y2-y1;
-      const distLinea = Math.sqrt(dx*dx+dy*dy) || 1;
-      const retroceso = Math.min(distLinea-1, r+5);
-      const xLineaFin = x2 - (dx/distLinea)*retroceso;
-      const yLineaFin = y2 - (dy/distLinea)*retroceso;
-      piezas += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="8" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="${esTenue?0.22:0.4}"/>`;
-      piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${xLineaFin.toFixed(1)}" y2="${yLineaFin.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="${esTenue?0.32:0.55}" marker-end="url(#pulso-flecha-jugada)" style="cursor:pointer;"/>`;
-      // Pedido explícito: que la línea hacia el punto de HOY se vea "pasar" hacia esa
-      // dirección -- un halo/destello que fluye, no solo una línea estática con flecha. Es
-      // la ÚNICA línea del tablero con movimiento (ninguna otra traza lo tiene). Se logra
-      // con un segundo trazo encimado, de guiones cortos, cuyo stroke-dashoffset se anima
-      // sin parar (ver @keyframes pulso-flujo-jugada en css/styles.css): visualmente son
-      // "cuentas de luz" del color del actor recorriendo la línea de lunes hacia hoy.
-      if(!esTenue){
-        piezas += `<line class="pulso-flujo-jugada" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${xLineaFin.toFixed(1)}" y2="${yLineaFin.toFixed(1)}" stroke="${color}" stroke-width="2.2" stroke-linecap="round"/>`;
+    // CORRECCIÓN -- pedido explícito: que cada movimiento de la semana quede pintado. Se
+    // dibuja la trayectoria COMPLETA (lunes -> hoy): un marcador hueco por cada día con
+    // actividad y un tramo de línea entre días consecutivos. Con un solo punto (el lunes, o
+    // un actor que solo figuró un día) no hay tramo que pintar. El último tramo se recorta
+    // en el borde de la pieza de hoy para que se vea la punta de flecha, igual que antes.
+    if(trail.length >= 2){
+      for(let k=0; k<trail.length-1; k++){
+        const ta = trail[k], tb = trail[k+1];
+        const esUltimo = k === trail.length-2;
+        let xf = tb.x, yf = tb.y;
+        if(esUltimo){
+          const dx = x2-ta.x, dy = y2-ta.y;
+          const distLinea = Math.sqrt(dx*dx+dy*dy) || 1;
+          const retroceso = Math.min(distLinea-1, r+5);
+          xf = x2 - (dx/distLinea)*retroceso; yf = y2 - (dy/distLinea)*retroceso;
+        }
+        piezas += `<circle cx="${ta.x.toFixed(1)}" cy="${ta.y.toFixed(1)}" r="${k===0?8:5}" fill="none" stroke="${color}" stroke-width="1.1" stroke-dasharray="2,2" opacity="${esTenue?0.22:0.4}"/>`;
+        piezas += `<line class="pulso-trazo-jugada pulso-tablero-pieza" data-info="${info}" x1="${ta.x.toFixed(1)}" y1="${ta.y.toFixed(1)}" x2="${xf.toFixed(1)}" y2="${yf.toFixed(1)}" stroke="var(--ink-3)" stroke-width="1.2" opacity="${esTenue?0.3:0.6}"${esUltimo?' marker-end="url(#pulso-flecha-jugada)"':''}/>`;
+        if(!esTenue){
+          piezas += `<line class="pulso-flujo-jugada" x1="${ta.x.toFixed(1)}" y1="${ta.y.toFixed(1)}" x2="${xf.toFixed(1)}" y2="${yf.toFixed(1)}" stroke="${color}" stroke-width="2.2" stroke-linecap="round"/>`;
+        }
       }
     }
     const opacidadPieza = esTenue ? 0.55 : 1;
