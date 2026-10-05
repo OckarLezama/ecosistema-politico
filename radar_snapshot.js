@@ -22,7 +22,7 @@ const ctx = { console, fetch: () => new Promise(()=>{}), Math, URL, Set, Map,
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/fuentes.js'),'utf8'), ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/agenda.js'),'utf8') +
-  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__html=_htmlLecturaRadar;globalThis.__doc=_documentoLecturaRadar;globalThis.__hitos=_hitosProximos;', ctx);
+  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;', ctx);
 
 // criterio del analista y calendario: el navegador los lee por fetch; aquí se cargan del disco
 const aCsv = n => R(n);
@@ -90,12 +90,6 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
   est.alertas = [...agregadas, ...est.alertas].slice(0, 60);
   est.generado = hoy;
 
-  // resumen del día (HTML autónomo, mismo cuerpo que el botón Exportar del dashboard)
-  const cuerpo = ctx.__html(crit, vig, cambios, datosAll, { export: true, corte: `${hoy} (último cálculo del robot)` });
-  const doc = ctx.__doc(cuerpo, hoy);
-  const rutaBrief = D('radar_brief.html');
-  if (!fs.existsSync(rutaBrief) || fs.readFileSync(rutaBrief, 'utf8') !== doc) fs.writeFileSync(rutaBrief, doc);
-
   // envío opcional a Telegram (solo si hay credenciales; si no, se omite en silencio)
   const TOKEN = process.env.TELEGRAM_BOT_TOKEN, CHAT = process.env.TELEGRAM_CHAT_ID;
   const enviar = async texto => {
@@ -119,5 +113,5 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
   }
   const nuevoTxt = JSON.stringify(est, null, 1) + '\n';
   if (!fs.existsSync(D('radar_alertas.json')) || fs.readFileSync(D('radar_alertas.json'), 'utf8') !== nuevoTxt) fs.writeFileSync(D('radar_alertas.json'), nuevoTxt);
-  console.log(`alertas nuevas: ${agregadas.length} · críticos ${crit.length} · anticipatorias ${vig.length} · brief ${doc.length} bytes`);
+  console.log(`alertas nuevas: ${agregadas.length} · críticos ${crit.length} · anticipatorias ${vig.length}`);
 })();
