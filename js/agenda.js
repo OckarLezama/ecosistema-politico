@@ -1190,9 +1190,9 @@ const IMPACTO_GRUPOS = [
   { id:'salud',      nombre:'salud pública',          peso:3, re:/brote|sarampi|dengue|epidemia|pandemia|desabasto de medicin/ },
 ];
 const IMPACTO_PENALIZA = [
-  { nombre:'entretenimiento / deportes', pen:3, re:/videojuego|futbol|f[uú]tbol|mundial|selecci[oó]n mexicana|concierto|pel[ií]cula|serie de|celebridad|chimoltrufia|trump tv|reality|tiktok|influencer/ },
-  { nombre:'declaración u opinión',      pen:1, re:/recrimina|critica a|opina|reacciona|reprocha|lamenta|exige que|pide a|llama a/ },
-  { nombre:'titular en pregunta',        pen:1, re:/^[^a-z0-9]*¿|\?\s*$/ },
+  { id:'entretenimiento', nombre:'entretenimiento / deportes', pen:3, re:/videojuego|futbol|f[uú]tbol|mundial|selecci[oó]n mexicana|concierto|pel[ií]cula|serie de|celebridad|chimoltrufia|trump tv|reality|tiktok|influencer/ },
+  { id:'opinion', nombre:'declaración u opinión',      pen:1, re:/recrimina|critica a|opina|reacciona|reprocha|lamenta|exige que|pide a|llama a/ },
+  { id:'pregunta', nombre:'titular en pregunta',        pen:1, re:/^[^a-z0-9]*¿|\?\s*$/ },
 ];
 function _normTxt(s){ return (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
 
@@ -1205,7 +1205,17 @@ const AMBITO_NACIONAL_RE = /federal|presidenta|sheinbaum|\bfgr\b|senado|camara d
 function esAmbitoNacional(descripcion){ return AMBITO_NACIONAL_RE.test(_normTxt(descripcion)); }
 
 let IMPACTO_MULT = {}; // solo para la prueba de sensibilidad (±20% a un peso); vacío = pesos reales
-const _pw = g => g.peso * (IMPACTO_MULT[g.id] || 1);
+// PESOS EDITABLES: data/radar_pesos.csv (tipo,id,valor,nombre,fecha,responsable,nota) sustituye a los valores
+// por defecto del código; cada cambio queda con fecha y responsable. Sin archivo, rigen los de abajo.
+let _PESOS_RADAR = {};
+const _peso = (id, def) => (_PESOS_RADAR[id] !== undefined ? _PESOS_RADAR[id] : def);
+function _aplicarPesosRadar(filas){
+  const o = {};
+  (filas||[]).forEach(f=>{ const v = Number(f.valor); if(f.id && isFinite(v)) o[f.id] = v; });
+  _PESOS_RADAR = o;
+  IMPACTO_ALTO = _peso('impacto_alto', 7); ATENCION_ALTA = _peso('atencion_alta', 5);
+}
+const _pw = g => _peso('g_'+g.id, g.peso) * (IMPACTO_MULT[g.id] || 1);
 function impactoDeNota(descripcion){
   const txt = _normTxt(descripcion);
   const hits = IMPACTO_GRUPOS.filter(g=>g.re.test(txt)).sort((a,b)=>_pw(b)-_pw(a));
@@ -1213,9 +1223,9 @@ function impactoDeNota(descripcion){
   const razones = [];
   if(hits[0]){ score += _pw(hits[0]); razones.push(hits[0].nombre); }
   if(hits[1]){ score += 0.5*_pw(hits[1]); razones.push(hits[1].nombre); }
-  IMPACTO_PENALIZA.forEach(p=>{ if(p.re.test(txt)){ score -= p.pen; razones.push('(−) '+p.nombre); } });
+  IMPACTO_PENALIZA.forEach(p=>{ if(p.re.test(txt)){ score -= _peso('p_'+p.id, p.pen); razones.push('(−) '+p.nombre); } });
   const nacional = AMBITO_NACIONAL_RE.test(txt);
-  if(!nacional && score > 3){ score -= 2; razones.push('(−) alcance local'); }
+  if(!nacional && score > 3){ score -= _peso('pen_local', 2); razones.push('(−) alcance local'); }
   return { score: Math.max(0, Math.min(10, score)), razones, nacional };
 }
 
@@ -1227,8 +1237,8 @@ function impactoDeTema(evs, nivelActorMax){
   const top = notas.slice(0,3);
   let score = 0.6*top[0].score + 0.4*(top.reduce((s,n)=>s+n.score,0)/top.length);
   const razones = [...new Set(top[0].razones)];
-  if(nivelActorMax>=9){ score += 1.5; razones.push('actor de máxima influencia involucrado'); }
-  else if(nivelActorMax>=7){ score += 0.75; razones.push('actor de alta influencia involucrado'); }
+  if(nivelActorMax>=9){ score += _peso('bonus_actor_9', 1.5); razones.push('actor de máxima influencia involucrado'); }
+  else if(nivelActorMax>=7){ score += _peso('bonus_actor_7', 0.75); razones.push('actor de alta influencia involucrado'); }
   const nNac = notas.filter(n=>n.nacional).length;
   return { score: Math.round(Math.max(0,Math.min(10,score))*10)/10, razones, ambito: (nNac/notas.length >= 0.5) ? 'nacional' : 'local' };
 }
@@ -1287,6 +1297,20 @@ let _validacionRadar = null; // data/radar_validacion.json (lo genera radar_snap
 let _calendarioRadar = [];
 (function(){
   if(typeof fetch !== 'function') return;
+  fetch('data/radar_pesos.csv?t='+Date.now()).then(r=>r.ok?r.text():null).then(txt=>{
+    if(!txt) return;
+    const filas = txt.trim().split(/\r?\n/); const cab = filas.shift().split(',').map(x=>x.trim());
+    _aplicarPesosRadar(filas.map(l=>{
+      const cols = l.match(/("([^"]|"")*"|[^,]*)(,|$)/g)||[];
+      const v = cols.map(c=>c.replace(/,$/,'').replace(/^"|"$/g,'').replace(/""/g,'"'));
+      const o = {}; cab.forEach((k,i)=>o[k]=(v[i]||'').trim()); return o;
+    }));
+    _cacheEnriq = null;
+    if(typeof dibujarMatrizRiesgo==='function' && document.getElementById('matriz-riesgo-svg')) dibujarMatrizRiesgo();
+  }).catch(()=>{});
+})();
+(function(){
+  if(typeof fetch !== 'function') return;
   fetch('data/calendario_hitos.csv?t='+Date.now()).then(r=>r.ok?r.text():null).then(txt=>{
     if(!txt) return;
     const filas = txt.trim().split(/\r?\n/); const cab = (filas.shift()||'').split(',').map(x=>x.trim());
@@ -1317,8 +1341,8 @@ function _pintarChipAlertas(){
 })();
 let _refrescarLecturaRadar = null;
 
-const IMPACTO_ALTO = 7;      // desde aquí el tema es de impacto alto
-const ATENCION_ALTA = 5;     // medios distintos en 14 días para considerarlo de atención amplia
+let IMPACTO_ALTO = 7;      // desde aquí el tema es de impacto alto (editable en data/radar_pesos.csv)
+let ATENCION_ALTA = 5;     // medios distintos en 14 días para considerarlo de atención amplia (editable)
 
 
 
@@ -1799,6 +1823,144 @@ function calcularCambios24h(temasBase, datosHoy){
 const _escHtml = t => String(t==null?'':t).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let _lecturaRadarAbierta = false;
 
+// ---------- calibración a ciegas de los pesos ----------
+// 2–3 analistas califican (0–10) la importancia nacional de la MISMA muestra de temas SIN ver el
+// resultado del radar. Sus calificaciones (data/radar_calibracion.csv: analista,tema_id,puntaje,fecha)
+// se comparan con el impacto que calcula el radar: correlación, error medio, sesgo y sugerencias de peso.
+let _modoPanelRadar = 'lectura';
+let _calibIdx = null;
+let _calibracionCsv = [];
+(function(){
+  if(typeof fetch !== 'function') return;
+  fetch('data/radar_calibracion.csv?t='+Date.now()).then(r=>r.ok?r.text():null).then(txt=>{
+    if(!txt) return;
+    const filas = txt.trim().split(/\r?\n/); const cab = filas.shift().split(',').map(x=>x.trim());
+    _calibracionCsv = filas.map(l=>{ const v = l.split(','); const o = {}; cab.forEach((k,i)=>o[k]=(v[i]||'').trim()); return o; })
+      .filter(o=>o.analista && o.tema_id && isFinite(Number(o.puntaje)) && o.puntaje!=='');
+    if(typeof _refrescarLecturaRadar==='function' && _refrescarLecturaRadar) _refrescarLecturaRadar();
+  }).catch(()=>{});
+})();
+const CALIB_N = 30;
+function _lsGet(k){ try{ return localStorage.getItem(k) || ''; }catch(e){ return ''; } }
+function _lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function _hashStr(str){ let h = 2166136261; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h,16777619); } return h>>>0; }
+function _muestraCalibracion(){
+  const n = {}; ECOSISTEMA.eventos.forEach(e=>{ n[e.tema_id] = (n[e.tema_id]||0)+1; });
+  return ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1 && (n[t.id]||0)>=3)
+    .sort((a,b)=>_hashStr(a.id)-_hashStr(b.id)).slice(0, CALIB_N);   // misma muestra para todos los analistas
+}
+function _misCalif(){ const nom = _lsGet('radarCalibAnalista'); if(!nom) return {}; try{ return JSON.parse(_lsGet('radarCalib_'+nom)||'{}'); }catch(e){ return {}; } }
+function _tabsPanelRadar(modo){
+  const b = (m,txt)=>`<button type="button" data-modo="${m}" style="background:none;border:none;padding:4px 2px;cursor:pointer;font-family:var(--f-mono);font-size:10.5px;color:${modo===m?'var(--teal)':'var(--ink-3)'};${modo===m?'text-decoration:underline;text-underline-offset:4px;':''}">${txt}</button>`;
+  return `<div style="display:flex;gap:14px;">${b('lectura','Lectura')}${b('calibrar','Calibrar pesos')}</div>`;
+}
+function _pearson(xs,ys){
+  const n = xs.length; if(n<3) return null;
+  const mx = xs.reduce((a,b)=>a+b,0)/n, my = ys.reduce((a,b)=>a+b,0)/n;
+  let sxy=0,sxx=0,syy=0; for(let i=0;i<n;i++){ sxy+=(xs[i]-mx)*(ys[i]-my); sxx+=(xs[i]-mx)**2; syy+=(ys[i]-my)**2; }
+  return sxx&&syy ? sxy/Math.sqrt(sxx*syy) : null;
+}
+function _rangos(v){ const o = v.map((x,i)=>[x,i]).sort((a,b)=>a[0]-b[0]); const r = new Array(v.length); let i=0;
+  while(i<o.length){ let j=i; while(j+1<o.length && o[j+1][0]===o[i][0]) j++; const rk=(i+j)/2+1; for(let k=i;k<=j;k++) r[o[k][1]]=rk; i=j+1; } return r; }
+
+function _htmlResultadosCalibracion(muestra){
+  const nombre = _lsGet('radarCalibAnalista'), mis = _misCalif();
+  const filas = _calibracionCsv.filter(f=>f.analista!==nombre).map(f=>({analista:f.analista, tema_id:f.tema_id, puntaje:Number(f.puntaje)}));
+  Object.entries(mis).forEach(([id,p])=>filas.push({analista:nombre+' (sin subir)', tema_id:id, puntaje:Number(p)}));
+  const analistas = [...new Set(filas.map(f=>f.analista))];
+  const porTema = {}; filas.forEach(f=>{ (porTema[f.tema_id]=porTema[f.tema_id]||[]).push(f.puntaje); });
+  const ids = Object.keys(porTema);
+  const mono = 'font-family:var(--f-mono);font-size:9px;color:var(--ink-3);';
+  const cab = `<div style="${mono}letter-spacing:.06em;margin:14px 0 4px;">RESULTADOS DE LA CALIBRACIÓN</div>`;
+  if(ids.length < 8) return cab + `<div style="font-size:10.5px;opacity:.7;line-height:1.4;">Muestra insuficiente: ${ids.length} tema(s) con calificación (mínimo 8). Hay ${analistas.length} analista(s). Cuando cada analista termine, pega sus filas en <b>data/radar_calibracion.csv</b> y aquí aparecerán la correlación, el error y las sugerencias de peso.</div>`;
+  const temas = muestra.filter(t=>porTema[t.id]);
+  const datos = calcularDatosRadarAgenda(temas);
+  const par = datos.map(d=>({d, radar:d.riesgoReal, humano: porTema[d.tema.id].reduce((a,b)=>a+b,0)/porTema[d.tema.id].length}));
+  const xs = par.map(p=>p.radar), ys = par.map(p=>p.humano);
+  const r = _pearson(xs,ys), rho = _pearson(_rangos(xs),_rangos(ys));
+  const mae = par.reduce((s,p)=>s+Math.abs(p.radar-p.humano),0)/par.length;
+  const sesgo = par.reduce((s,p)=>s+(p.radar-p.humano),0)/par.length;
+  let acuerdo = '';
+  if(analistas.length>=2){
+    const rs = [];
+    for(let i=0;i<analistas.length;i++) for(let j=i+1;j<analistas.length;j++){
+      const a = {}, b = {}; filas.forEach(f=>{ if(f.analista===analistas[i]) a[f.tema_id]=f.puntaje; if(f.analista===analistas[j]) b[f.tema_id]=f.puntaje; });
+      const com = Object.keys(a).filter(k=>b[k]!==undefined); if(com.length>=8){ const rr = _pearson(com.map(k=>a[k]),com.map(k=>b[k])); if(rr!==null) rs.push(rr); }
+    }
+    if(rs.length) acuerdo = `<div><b>Acuerdo entre analistas:</b> r = ${(rs.reduce((a,b)=>a+b,0)/rs.length).toFixed(2)} <span style="opacity:.6;">(si es bajo, los analistas no coinciden entre sí y los pesos no se pueden calibrar con ellos)</span></div>`;
+  }
+  const lectura = rho===null ? '' : rho>=0.7 ? 'coincidencia buena' : rho>=0.4 ? 'coincidencia moderada: conviene ajustar pesos' : 'coincidencia baja: los pesos no reflejan el criterio de los analistas';
+  const dif = [...par].sort((a,b)=>Math.abs(b.radar-b.humano)-Math.abs(a.radar-a.humano)).slice(0,5);
+  const sug = IMPACTO_GRUPOS.map(g=>{
+    const ps = par.filter(p=>(p.d.impactoRazones||[]).includes(g.nombre)); if(ps.length<3) return null;
+    const b = ps.reduce((s,p)=>s+(p.radar-p.humano),0)/ps.length; if(Math.abs(b)<1) return null;
+    const w = _peso('g_'+g.id, g.peso), nuevo = Math.max(1, Math.round((w - b*0.5)*2)/2);
+    return `«${_escHtml(g.nombre)}»: el radar ${b>0?'sobreestima':'subestima'} ${Math.abs(b).toFixed(1)} pts en ${ps.length} temas → considerar peso ${w} → ${nuevo}`;
+  }).filter(Boolean);
+  const lnk = d => `<span class="matriz-link" data-tema="${d.tema.id}">${_escHtml(_truncarEnPalabra(_nombreClaroTema(d.tema),50))}</span>`;
+  return cab + `<div style="font-size:10.5px;color:var(--ink-2);line-height:1.45;">
+    <div><b>${par.length} temas · ${analistas.length} analista(s)</b></div>
+    <div><b>Correlación radar vs analistas:</b> Spearman ρ = ${rho===null?'—':rho.toFixed(2)} · Pearson r = ${r===null?'—':r.toFixed(2)} — ${lectura}</div>
+    <div><b>Error medio:</b> ${mae.toFixed(1)} pts · <b>Sesgo:</b> ${sesgo>=0?'+':''}${sesgo.toFixed(1)} (${Math.abs(sesgo)<0.5?'sin sesgo claro':sesgo>0?'el radar sobreestima':'el radar subestima'})</div>
+    ${acuerdo}
+    <div style="margin-top:6px;"><b>Mayores diferencias</b> (radar / analistas):</div>
+    ${dif.map(p=>`<div>${lnk(p.d)} <span style="${mono}">${p.radar.toFixed(1)} / ${p.humano.toFixed(1)}</span></div>`).join('')}
+    <div style="margin-top:6px;"><b>Sugerencias de peso</b> <span style="opacity:.6;">(no se aplican solas: edita data/radar_pesos.csv con tu nombre y fecha)</span></div>
+    ${sug.length ? sug.map(x=>`<div>${x}</div>`).join('') : '<div style="opacity:.6;">Sin sesgos claros por grupo con esta muestra.</div>'}
+  </div>`;
+}
+
+function _htmlCalibracionRadar(){
+  const muestra = _muestraCalibracion();
+  const nombre = _lsGet('radarCalibAnalista');
+  const mono = 'font-family:var(--f-mono);font-size:9px;color:var(--ink-3);';
+  const cab = `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--f-display);font-size:13px;font-weight:600;">Calibración a ciegas</span>${_tabsPanelRadar('calibrar')}</div>
+    <div style="font-size:10.5px;opacity:.75;line-height:1.4;margin-top:4px;">Califica la importancia de cada tema para la <b>agenda nacional</b> (0 = irrelevante, 10 = máxima). No ves lo que dice el radar para no sesgarte. Todos los analistas califican la misma muestra de ${muestra.length} temas.</div>`;
+  if(!nombre) return cab + `<div style="margin-top:14px;font-size:11px;">Tu nombre o iniciales: <input id="calib-nombre" type="text" maxlength="30" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:4px 8px;font-size:11px;"> <button type="button" id="calib-empezar" style="background:none;border:none;color:var(--teal);cursor:pointer;font-family:var(--f-mono);font-size:11px;">Empezar ▸</button></div>` + _htmlResultadosCalibracion(muestra);
+  const mis = _misCalif(); const hechos = muestra.filter(t=>mis[t.id]!==undefined).length;
+  if(_calibIdx===null || _calibIdx>=muestra.length){ const i0 = muestra.findIndex(t=>mis[t.id]===undefined); _calibIdx = i0<0 ? 0 : i0; }
+  const t = muestra[_calibIdx];
+  const evs = notasCoherentes(ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id), t);
+  const notas = (evs.length?evs:ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id)).sort((a,b)=>b.fecha.localeCompare(a.fecha)).slice(0,4);
+  const actual = mis[t.id] !== undefined ? mis[t.id] : 5;
+  return cab + `<div style="${mono}margin:10px 0 4px;">${_escHtml(nombre)} · ${hechos}/${muestra.length} calificados · tema ${_calibIdx+1} de ${muestra.length}</div>
+    <div style="border:1px solid var(--line);border-radius:var(--radius-s);padding:10px 12px;">
+      <div style="font-size:12.5px;font-weight:600;margin-bottom:6px;">${_escHtml(_truncarEnPalabra(_nombreClaroTema(t),110))}</div>
+      ${notas.map(e=>`<div style="font-size:10.5px;color:var(--ink-2);line-height:1.35;margin-bottom:3px;"><span style="${mono}">${_escHtml(e.fecha)}</span> ${_escHtml(_truncarEnPalabra(e.descripcion,140))} <span style="opacity:.5;">· ${_escHtml(_medioDeEvento(e)||'')}</span></div>`).join('')}
+      <div style="margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="font-size:10.5px;">Importancia nacional:</span>
+        <input id="calib-slider" type="range" min="0" max="10" step="0.5" value="${actual}" style="flex:1;min-width:140px;accent-color:var(--teal);">
+        <b id="calib-valor" style="font-family:var(--f-mono);min-width:26px;">${actual}</b>
+      </div>
+      <div style="margin-top:8px;display:flex;gap:14px;flex-wrap:wrap;">
+        <button type="button" id="calib-ant" style="background:none;border:none;color:var(--ink-3);cursor:pointer;font-family:var(--f-mono);font-size:10.5px;">◂ Anterior</button>
+        <button type="button" id="calib-guardar" style="background:none;border:none;color:var(--teal);cursor:pointer;font-family:var(--f-mono);font-size:11px;font-weight:700;">Guardar y siguiente ▸</button>
+        <button type="button" id="calib-saltar" style="background:none;border:none;color:var(--ink-3);cursor:pointer;font-family:var(--f-mono);font-size:10.5px;">Saltar</button>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:10.5px;color:var(--ink-2);line-height:1.4;">Tus calificaciones se guardan en este navegador. Al terminar: <button type="button" id="calib-copiar" style="background:none;border:none;color:var(--teal);cursor:pointer;font-family:var(--f-mono);font-size:10.5px;padding:0;">copiar mis filas (CSV)</button> y pégalas al final de <b>data/radar_calibracion.csv</b> (encabezado: analista,tema_id,puntaje,fecha).
+      <span id="calib-msg" style="color:var(--riesgo-bajo);"></span></div>` + _htmlResultadosCalibracion(muestra);
+}
+function _wireCalibracionRadar(panel, rellenar){
+  const muestra = _muestraCalibracion();
+  const q = id => panel.querySelector('#'+id);
+  if(q('calib-empezar')) q('calib-empezar').addEventListener('click', ()=>{ const v = (q('calib-nombre').value||'').trim().replace(/[,\n]/g,' '); if(v){ _lsSet('radarCalibAnalista', v); _calibIdx = null; rellenar(); } });
+  const sl = q('calib-slider'); if(sl) sl.addEventListener('input', ()=>{ q('calib-valor').textContent = sl.value; });
+  const guardar = avanzar => { const mis = _misCalif(); const t = muestra[_calibIdx]; if(avanzar==='guardar') mis[t.id] = Number(sl.value);
+    _lsSet('radarCalib_'+_lsGet('radarCalibAnalista'), JSON.stringify(mis)); _calibIdx = Math.min(muestra.length-1, _calibIdx+1); rellenar(); panel.scrollTop = 0; };
+  if(q('calib-guardar')) q('calib-guardar').addEventListener('click', ()=>guardar('guardar'));
+  if(q('calib-saltar')) q('calib-saltar').addEventListener('click', ()=>guardar('saltar'));
+  if(q('calib-ant')) q('calib-ant').addEventListener('click', ()=>{ _calibIdx = Math.max(0,_calibIdx-1); rellenar(); panel.scrollTop = 0; });
+  if(q('calib-copiar')) q('calib-copiar').addEventListener('click', ()=>{
+    const nom = _lsGet('radarCalibAnalista'), mis = _misCalif(), f = new Date().toLocaleDateString('en-CA',{timeZone:'America/Mexico_City'});
+    const csv = Object.entries(mis).map(([id,p])=>`${nom},${id},${p},${f}`).join('\n');
+    const ok = () => { q('calib-msg').textContent = ' ✓ copiado'; };
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(csv).then(ok).catch(()=>{ q('calib-msg').textContent=' (no se pudo copiar)'; });
+    else { const ta = document.createElement('textarea'); ta.value = csv; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} ta.remove(); }
+  });
+}
+
 function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
   opts = opts || {};
   const link = d => opts.export ? `<span>${_escHtml(_truncarEnPalabra(_nombreClaroTema(d.tema), 52))}</span>` : `<span class="matriz-link" data-tema="${d.tema.id}">${_escHtml(_truncarEnPalabra(_nombreClaroTema(d.tema), 52))}</span>`;
@@ -1859,6 +2021,7 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
         <div><b>Escala si:</b> ${_escHtml(esc.escala)}</div>
         <div><b>Se contiene si:</b> ${_escHtml(esc.contiene)}</div>
         ${esc.desvia ? `<div><b>Se desvía si:</b> ${_escHtml(esc.desvia)}</div>` : ''}
+        ${j && j.implicacion ? `<div><b>Implicación para el decisor:</b> ${_escHtml(j.implicacion)} <span style="opacity:.55;">[analista]</span></div>` : ''}
         ${esc.vigilar ? `<div><b>Vigilar:</b> ${_escHtml(esc.vigilar)} <span style="opacity:.55;">[analista]</span></div>` : ''}
         <div style="opacity:.55;font-size:9.5px;">escenarios [${esc.fuente}]</div>
         <div><b>Próximo hito:</b> ${hito}</div>
@@ -1888,6 +2051,7 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
   const ahora = opts.corte || new Date().toLocaleString('es-MX', {timeZone:'America/Mexico_City', dateStyle:'medium', timeStyle:'short'});
   return `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;">
       <span style="font-family:var(--f-display);font-size:13px;font-weight:600;">Lectura del radar <span style="${mono}">· corte ${_escHtml(ahora)}</span></span>
+      ${opts.export ? '' : _tabsPanelRadar('lectura')}
     </div>
     ${bloqueCambios}
     ${alertasSec}
@@ -2069,7 +2233,9 @@ function dibujarMatrizRiesgo(){
         const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; const ch = document.getElementById('radar-chips'); if(ch) ch.style.display = abrir?'none':'flex'; if(abrir){ _puntoFijadoRadar = null; ocultarTooltipAgenda(); setTimeout(()=>{ _marcarAlertasVistas(); _pintarChipAlertas(); }, 800); } };
         document.getElementById('radar-btn-lectura').addEventListener('click', ()=> alternar(panel.style.display==='none'));
         const rellenar = ()=>{
-          panel.innerHTML = _htmlLecturaRadar(criticosItems, vigilarItems, cambios, datosTodos);
+          panel.innerHTML = _modoPanelRadar==='calibrar' ? _htmlCalibracionRadar() : _htmlLecturaRadar(criticosItems, vigilarItems, cambios, datosTodos);
+          panel.querySelectorAll('[data-modo]').forEach(b=>b.addEventListener('click', ()=>{ _modoPanelRadar = b.dataset.modo; rellenar(); panel.scrollTop = 0; }));
+          if(_modoPanelRadar==='calibrar') _wireCalibracionRadar(panel, rellenar);
           panel.querySelectorAll('.matriz-link').forEach(el=>{
             el.style.cursor = 'pointer'; el.style.textDecoration = 'underline'; el.style.textUnderlineOffset = '2px';
             el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema));
