@@ -312,7 +312,7 @@ function _franjaTemaNotas(temaId){
   }catch(e){}
   const tend = nHoy>nAyer ? ['↗ más notas que ayer','var(--riesgo-medio)'] : nHoy<nAyer ? ['↘ menos notas que ayer','var(--teal)'] : ['= mismo ritmo que ayer','var(--ink-3)'];
   const res = (tema.resumen||'').trim();
-  return `<div style="flex:none;padding:8px 14px 7px;border-bottom:1px solid var(--line);font-size:11px;line-height:1.4;">
+  return `<div style="flex:none;padding:8px 14px 7px;font-size:11px;line-height:1.4;">
     <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;">
       ${etiqueta?`<span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${color};border:1px solid ${color};border-radius:99px;padding:0 7px;">${etiqueta}</span>`:''}
       ${detalle?`<span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-2);">${detalle}</span>`:''}
