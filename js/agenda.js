@@ -1248,8 +1248,23 @@ function calcularDatosRadarAgenda(temasBase){
     // = el tema se apagó y se volvió a prender.
     const rachaInfo = _calcularRachasTema(evsTodos);
 
+    // CORRECCIÓN -- pedido explícito: "le diste mucho valor a un tema menor" (un 'Tetris' de
+    // la Casa Blanca, con su última nota hace 12 días, salía como el MÁS URGENTE del filtro
+    // Social). El orden era riesgoReal + veces: la intensidad MÁXIMA de una sola nota
+    // (0-10) sumada al CONTEO crudo de notas -- una sola nota alta de un tema viejo bastaba,
+    // y no pesaba nada la recencia ni si más de un medio lo corroboraba. 'urgencia' (0-1)
+    // combina: riesgo (45%), qué tan reciente es la última nota (25%: hoy/ayer=1, <=3d=.75,
+    // <=7d=.45, más viejo=.15), corroboración por medios distintos (20%, tope en 4) y
+    // volumen con rendimientos decrecientes (10%, log, tope en 8 notas). Así un tema de
+    // riesgo medio con notas de hoy en varios medios le gana a uno viejo de un solo medio.
+    const _dUlt = rachaInfo.diasDesdeUltima;
+    const _recencia = _dUlt==null ? 0 : _dUlt<=1 ? 1 : _dUlt<=3 ? 0.75 : _dUlt<=7 ? 0.45 : 0.15;
+    const urgencia = apagado ? 0
+      : 0.45*(riesgoReal/10) + 0.25*_recencia + 0.20*Math.min(1, medios.size/4)
+        + 0.10*Math.min(1, Math.log1p(evsHoy.length)/Math.log1p(8));
+
     return {
-      tema: t, categoria: t.categoria, riesgoReal, riesgoAnterior,
+      tema: t, categoria: t.categoria, riesgoReal, riesgoAnterior, urgencia,
       veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
       nMedios: medios.size, actorIds, actorIdsVinculo, anomalia,
       primeraMencion: evsTodos.length ? evsTodos.map(e=>e.fecha).sort()[0] : null,
@@ -1384,7 +1399,7 @@ function dibujarMatrizRiesgo(){
   // desplazar a los que sí la tienen solo por haber tenido un pico histórico alto.
   const LIMITE_PUNTOS_MATRIZ = 45;
   const totalAntesDeLimite = datosTodos.length;
-  datosTodos.sort((a,b)=> (a.apagado===b.apagado ? 0 : a.apagado ? 1 : -1) || ((b.riesgoReal+b.veces) - (a.riesgoReal+a.veces)));
+  datosTodos.sort((a,b)=> (a.apagado===b.apagado ? 0 : a.apagado ? 1 : -1) || (b.urgencia - a.urgencia) || ((b.riesgoReal+b.veces) - (a.riesgoReal+a.veces)));
   const datos = datosTodos.slice(0, LIMITE_PUNTOS_MATRIZ);
 
   const resumenEl = document.getElementById('matriz-resumen-html');
@@ -1820,7 +1835,10 @@ function dibujarMatrizRiesgo(){
   // es la ÚNICA animación continua de todo el gráfico (los puntos y el resto del plano
   // no se mueven nunca), así que no hay ambigüedad de "por qué ese sí y los demás no":
   // solo hay UN elemento con vida, y es siempre el mismo, siempre por la misma razón. ----
-  const focoCritico = datos.find(d=>!d.apagado);
+  // Solo se marca si de verdad es urgente HOY (nota de los últimos 3 días y riesgo alto):
+  // en un filtro con puros temas flojos o viejos (ej. Social), el "primero de la lista"
+  // no es urgente solo por ser el primero -- mejor ningún anillo que uno engañoso.
+  const focoCritico = datos.find(d=>!d.apagado && d.diasDesdeUltima!=null && d.diasDesdeUltima<=3 && d.riesgoReal>=6);
   if(focoCritico){
     // CORRECCIÓN -- pedido explícito: "algo tipo sonar, sutil, limpio pero que se
     // logre notar". Aro fijo de referencia -- estático, sin animación propia. El
@@ -1831,33 +1849,10 @@ function dibujarMatrizRiesgo(){
       .attr('cx',focoCritico.x).attr('cy',focoCritico.y).attr('r',_radioPrincipalRadar(focoCritico)+4)
       .attr('fill','none').attr('stroke','var(--riesgo-alto)').attr('stroke-width',1.6);
 
-    // CORRECCIÓN -- pedido explícito, verificado en captura real: "ya hay una línea,
-    // pero ¿eso qué significa? una línea no me dice nada... alguien que no tenga idea
-    // tendría que entenderle solo con verlo". La línea diagonal larga hacia una
-    // etiqueta flotante lejana no se leía como una explicación, se leía como una línea
-    // suelta sin contexto. Se quita esa línea larga y esa etiqueta lejana. En su lugar,
-    // la palabra que explica el anillo va PEGADA al propio punto (a unos px de su
-    // borde, no cruzando medio lienzo) -- y además la leyenda de abajo tiene su propia
-    // entrada para el anillo (ver chipsLeyenda más arriba). El significado ya no
-    // depende de adivinar qué conecta con qué: está escrito junto a lo que describe, y
-    // repetido en la leyenda para quien lo vea sin contexto.
-    const nombreFocoCorto = _truncarEnPalabra(_nombreClaroTema(focoCritico.tema), 22);
-    const rFoco = _radioPrincipalRadar(focoCritico) + 4;
-    const ladoDerecho = focoCritico.x > margen.izq + anchoUtil - 100;
-    const anchorTexto = ladoDerecho ? 'end' : 'start';
-    const xEtiqueta = ladoDerecho ? focoCritico.x - rFoco - 5 : focoCritico.x + rFoco + 5;
-    const yEtiqueta = Math.max(margen.arriba+9, focoCritico.y - rFoco - 5);
-    const textoFoco = `◉ MÁS URGENTE: ${nombreFocoCorto}`;
-    const anchoEstimado = textoFoco.length * 5.6;
-    svg.append('rect')
-      .attr('x', ladoDerecho ? xEtiqueta-anchoEstimado-3 : xEtiqueta-3).attr('y', yEtiqueta-9)
-      .attr('width', anchoEstimado+6).attr('height', 13)
-      .attr('fill','var(--bg-1)').attr('opacity',0.85).style('pointer-events','none');
-    svg.append('text')
-      .attr('x', xEtiqueta).attr('y', yEtiqueta).attr('text-anchor', anchorTexto)
-      .attr('font-family','var(--f-mono)').attr('font-size','9px').attr('font-weight','700')
-      .attr('fill','var(--riesgo-alto)').style('pointer-events','none')
-      .text(textoFoco);
+    // CORRECCIÓN -- pedido explícito: "¿por qué en el radar pone el texto MÁS URGENTE: ...? no
+    // debería ir en un círculo". La etiqueta de texto (larga, tapaba puntos vecinos) se
+    // quitó: el tema más urgente se marca SOLO con este anillo, y su significado está en
+    // la leyenda ("anillo = tema más urgente ahora") y en el nombre al pasar el cursor.
   }
 
   // ---- efecto de radar real -- pedido explícito, aclarado por el usuario: NO son los
