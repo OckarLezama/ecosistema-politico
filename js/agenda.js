@@ -1204,13 +1204,15 @@ function _normTxt(s){ return (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toL
 const AMBITO_NACIONAL_RE = /federal|presidenta|sheinbaum|\bfgr\b|senado|camara de diputados|nacional|\bel pais\b|\bmexico\b|mexicano|trump|estados unidos|\beu\b|\beua\b|t-?mec|suprema corte|\bsedena\b|\bsemar\b|guardia nacional|ejercito|marina|pemex|\bsat\b|\buif\b|\bine\b|morena|\bpan\b|\bpri\b|congreso de la union|harfuch|ebrard|onu\b|cjng|cartel|huachicol/;
 function esAmbitoNacional(descripcion){ return AMBITO_NACIONAL_RE.test(_normTxt(descripcion)); }
 
+let IMPACTO_MULT = {}; // solo para la prueba de sensibilidad (±20% a un peso); vacío = pesos reales
+const _pw = g => g.peso * (IMPACTO_MULT[g.id] || 1);
 function impactoDeNota(descripcion){
   const txt = _normTxt(descripcion);
-  const hits = IMPACTO_GRUPOS.filter(g=>g.re.test(txt)).sort((a,b)=>b.peso-a.peso);
+  const hits = IMPACTO_GRUPOS.filter(g=>g.re.test(txt)).sort((a,b)=>_pw(b)-_pw(a));
   let score = 2;
   const razones = [];
-  if(hits[0]){ score += hits[0].peso; razones.push(hits[0].nombre); }
-  if(hits[1]){ score += 0.5*hits[1].peso; razones.push(hits[1].nombre); }
+  if(hits[0]){ score += _pw(hits[0]); razones.push(hits[0].nombre); }
+  if(hits[1]){ score += 0.5*_pw(hits[1]); razones.push(hits[1].nombre); }
   IMPACTO_PENALIZA.forEach(p=>{ if(p.re.test(txt)){ score -= p.pen; razones.push('(−) '+p.nombre); } });
   const nacional = AMBITO_NACIONAL_RE.test(txt);
   if(!nacional && score > 3){ score -= 2; razones.push('(−) alcance local'); }
@@ -1350,6 +1352,46 @@ function _proximoHito(temaId, evsRecientes){
   return null;
 }
 
+
+// ---------- línea editorial de los medios (criterio del analista, editable) ----------
+// data/medios_linea.csv (medio,linea) con linea = oficial | cercano | critico. Es una
+// clasificación EDITORIAL, no un hecho: por eso vive en un archivo que el analista edita y se
+// muestra en el panel como "(clasificación del analista)". Lo no clasificado se cuenta aparte.
+const _LINEA_DEFAULT = { 'jornada':'cercano', 'gob.mx':'oficial', 'presidencia':'oficial', 'reforma':'critico', 'proceso':'critico', 'latinus':'critico' };
+let _lineaMedios = {};
+(function(){
+  if(typeof fetch !== 'function') return;
+  fetch('data/medios_linea.csv?t='+Date.now()).then(r=>r.ok?r.text():null).then(txt=>{
+    if(!txt) return;
+    const o = {}; txt.trim().split(/\r?\n/).slice(1).forEach(l=>{ const [m,li] = l.split(',').map(x=>x.trim().replace(/^"|"$/g,'')); if(m && /^(oficial|cercano|critico)$/.test(li)) o[_normTxt(m)] = li; });
+    _lineaMedios = o;
+  }).catch(()=>{});
+})();
+function _lineaDeMedio(m){
+  const k = _normTxt(m); const tabla = Object.assign({}, _LINEA_DEFAULT, _lineaMedios);
+  for(const clave in tabla) if(k.includes(clave)) return tabla[clave];
+  return null;
+}
+function _sesgoDeMedios(medios){
+  const c = {gobierno:0, critica:0, sinClasificar:0};
+  medios.forEach(m=>{ const l = _lineaDeMedio(m); if(l==='critico') c.critica++; else if(l) c.gobierno++; else c.sinClasificar++; });
+  const clasif = c.gobierno + c.critica;
+  const lado = c.gobierno >= c.critica ? 'gobierno' : 'critica';
+  c.unSoloLado = clasif >= 3 && Math.max(c.gobierno,c.critica)/clasif >= 0.8 ? lado : null;
+  c.total = medios.size !== undefined ? medios.size : medios.length;
+  return c;
+}
+const ESTADOS_C3 = ['Campeche','Chiapas','Oaxaca','Quintana Roo','Tabasco','Veracruz','Yucatán','Puebla'];
+function _territorioDe(evs){
+  const t = {}; evs.forEach(e=>{ const en = (e.entidad_c3||'').trim(); if(ESTADOS_C3.includes(en)) t[en] = (t[en]||0)+1; });
+  return t;
+}
+// interacción táctil: en touch no hay hover. 1er toque = tooltip fijo, 2º toque = ficha.
+let _ptrTipoRadar = (typeof matchMedia === 'function' && matchMedia('(hover: none)').matches) ? 'touch' : 'mouse';
+let _puntoFijadoRadar = null;
+const _esTactilRadar = () => _ptrTipoRadar !== 'mouse';
+const ARRIBA_RADAR = (typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches) ? 36 : 30;
+
 function calcularDatosRadarAgenda(temasBase){
   return temasBase.map(t=>{
     const evsBrutos = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id);
@@ -1459,6 +1501,8 @@ function calcularDatosRadarAgenda(temasBase){
       notaAncla: _notaAncla(apagado ? evsTodos : evsHoy),
       actoresClave: _actoresClaveDeTema(t.id),
       hito: _proximoHito(t.id, apagado ? [] : evsHoy),
+      sesgo: _sesgoDeMedios(medios),
+      territorio: _territorioDe(apagado ? evsTodos : evsHoy),
       veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
       nMedios: medios.size, actorIds, actorIdsVinculo, anomalia,
       primeraMencion: evsTodos.length ? evsTodos.map(e=>e.fecha).sort()[0] : null,
@@ -1538,6 +1582,8 @@ function _tooltipRadar(d, datosVisibles){
   let html = `<strong>${_truncarEnPalabra(_nombreClaroTema(d.tema), 60)}</strong><br>Impacto ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
   if(d.impactoRazones && d.impactoRazones.length) html += `<br><span style="font-size:10px;opacity:.85;">por: ${d.impactoRazones.join(' · ')}</span>`;
   html += `<br><span style="font-size:10px;opacity:.85;">alcance ${d.ambito} · confianza ${d.confianza.nivel}${d.confianza.motivos.length?' ('+d.confianza.motivos.join(', ')+')':''}</span>`;
+  { const rob = _textoRobustez(d); if(rob) html += `<br><span style="font-size:10px;color:${rob.ok?'var(--riesgo-bajo)':'var(--riesgo-medio)'};">${rob.txt}</span>`; }
+  { const te = Object.entries(d.territorio||{}).sort((a,b)=>b[1]-a[1]).slice(0,3); if(te.length) html += `<br><span style="font-size:10px;opacity:.85;">C3: ${te.map(([k,v])=>k+' '+v).join(' · ')}</span>`; }
   if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
   else if(d.esNuevo) html += ` <span style="color:var(--teal);">· 🆕 últimas 48h</span>`;
   else if(d.tendencia && d.tendencia!=='estable') html += ` <span style="color:${d.tendencia==='subiendo'?'var(--riesgo-alto)':'var(--riesgo-bajo)'};">· ${ICONO_TENDENCIA[d.tendencia]}</span>`;
@@ -1582,6 +1628,71 @@ function _tooltipRadar(d, datosVisibles){
 // pesaba igual que uno de hoy). Esto es lo que de verdad hacía que "la matriz no
 // dijera mucho o nada".
 
+
+// ---------- trayectoria 7 días, sensibilidad ±20% y escenarios ----------
+let _cacheEnriq = null;
+function _enriquecerRadar(temasBase, datos, soloCache){
+  const clave = temasBase.length+'|'+(temasBase[0]&&temasBase[0].id)+'|'+(temasBase[temasBase.length-1]&&temasBase[temasBase.length-1].id)+'|'+ECOSISTEMA.eventos.length+'|'+new Date().toDateString();
+  if(soloCache && (!_cacheEnriq || _cacheEnriq.clave !== clave)) return false;
+  if(!_cacheEnriq || _cacheEnriq.clave !== clave){
+    const sel = datos.filter(d=>!d.apagado && d.riesgoReal >= 5);
+    const ids = new Set(sel.map(d=>d.tema.id));
+    const temasSel = temasBase.filter(t=>ids.has(t.id));
+    const tray = new Map(sel.map(d=>[d.tema.id, []]));
+    // trayectoria: reconstruye el radar de hace 6..1 días con las mismas reglas y solo las notas de entonces
+    for(let k=6;k>=1;k--){
+      _refMsRadar = Date.now() - k*86400000;
+      try{ calcularDatosRadarAgenda(temasSel).forEach(r=> tray.get(r.tema.id).push({i:r.apagado?0:r.riesgoReal, a:r.apagado?0:r.atencion, c:cuadranteDe(r)})); }
+      finally{ _refMsRadar = null; }
+    }
+    sel.forEach(d=> tray.get(d.tema.id).push({i:d.riesgoReal, a:d.atencion, c:cuadranteDe(d)}));
+    // sensibilidad: ±20% a cada peso del léxico (y a todos a la vez); ¿cambia el cuadrante?
+    const base = new Map(sel.map(d=>[d.tema.id, cuadranteDe(d)]));
+    const sens = new Map(sel.map(d=>[d.tema.id, {cambios:[]}]));
+    const corre = (nombre, factorPorGrupo, signo) => {
+      IMPACTO_MULT = factorPorGrupo;
+      try{ calcularDatosRadarAgenda(temasSel).forEach(r=>{ const c = cuadranteDe(r); if(c !== base.get(r.tema.id)) sens.get(r.tema.id).cambios.push({grupo:nombre, signo, a:c}); }); }
+      finally{ IMPACTO_MULT = {}; }
+    };
+    IMPACTO_GRUPOS.forEach(g=>{ corre(g.nombre, {[g.id]:0.8}, -1); corre(g.nombre, {[g.id]:1.2}, +1); });
+    const todos = f => Object.fromEntries(IMPACTO_GRUPOS.map(g=>[g.id,f]));
+    corre('todos los pesos', todos(0.8), -1); corre('todos los pesos', todos(1.2), +1);
+    _cacheEnriq = { clave, tray, sens };
+  }
+  datos.forEach(d=>{ d.tray = _cacheEnriq.tray.get(d.tema.id) || null; d.sens = _cacheEnriq.sens.get(d.tema.id) || null; });
+  return true;
+}
+function _textoRobustez(d){
+  if(!d.sens) return null;
+  const c = cuadranteDe(d);
+  const relevantes = d.sens.cambios.filter(x=> c==='actuar' ? x.signo<0 : c==='vigilar' ? x.signo<0 : false);
+  if(c==='actuar' || c==='vigilar'){
+    if(!relevantes.length) return {ok:true, txt:'robusto: no cambia con ±20% a ningún peso'};
+    const gs = [...new Set(relevantes.map(x=>x.grupo))].filter(x=>x!=='todos los pesos');
+    return {ok:false, txt: gs.length ? `frágil: deja de serlo si baja 20% el peso de «${gs.slice(0,2).join('», «')}»` : 'frágil: deja de serlo si todos los pesos bajan 20%'};
+  }
+  const sube = d.sens.cambios.filter(x=>x.signo>0 && x.a==='actuar');
+  return sube.length ? {ok:false, txt:`al límite: sería crítico con +20% a «${sube[0].grupo}»`} : null;
+}
+function _escenariosDe(d){
+  const j = (_juicioRadar && _juicioRadar[d.tema.id]) || {};
+  const c = cuadranteDe(d);
+  const faltan = Math.max(1, ATENCION_ALTA - d.atencion);
+  const escala = j.escenario_escala || (c==='vigilar'
+    ? `llega a ${ATENCION_ALTA} medios distintos (hoy ${d.atencion}; faltan ${faltan}) y pasa a zona crítica`
+    : `se suman ${Math.max(3,Math.ceil(d.atencion*0.5))} medios distintos en 3 días o entra un actor de máxima influencia`);
+  const contiene = j.escenario_contiene || `3 días sin notas nuevas (${d.diasDesdeUltima===0?'hay notas de hoy':'la última fue hace '+d.diasDesdeUltima+' d'}) o baja de ${ATENCION_ALTA} medios en la ventana`;
+  return { escala, contiene, desvia: j.escenario_desvia||'', vigilar: j.que_vigilar||'', fuente: (j.escenario_escala||j.escenario_contiene)?'analista':'heurística' };
+}
+function _sparkRadar(tray){
+  if(!tray || tray.length<2) return '';
+  const W=74,H=20,n=tray.length, x=i=>2+i*(W-4)/(n-1);
+  const yi=v=>H-2-(Math.max(0,Math.min(10,v))/10)*(H-4), ya=v=>H-2-(Math.min(15,v)/15)*(H-4);
+  const pts=(f,k)=>tray.map((t,i)=>x(i).toFixed(1)+','+f(t[k]).toFixed(1)).join(' ');
+  const u=tray[n-1];
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="vertical-align:middle;"><polyline points="${pts(ya,'a')}" fill="none" stroke="var(--teal)" stroke-width="1.2" stroke-dasharray="2 2" opacity=".8"/><polyline points="${pts(yi,'i')}" fill="none" stroke="var(--riesgo-alto)" stroke-width="1.6"/><circle cx="${x(n-1)}" cy="${yi(u.i)}" r="2" fill="var(--riesgo-alto)"/></svg>`;
+}
+
 // cuadrante de un tema -- una sola definición para el radar, el resumen y "qué cambió"
 function cuadranteDe(d){
   if(d.apagado) return 'apagado';
@@ -1620,11 +1731,13 @@ function calcularCambios24h(temasBase, datosHoy){
 const _escHtml = t => String(t==null?'':t).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let _lecturaRadarAbierta = false;
 
-function _htmlLecturaRadar(criticos, anticipatorias, cambios){
-  const link = d => `<span class="matriz-link" data-tema="${d.tema.id}">${_escHtml(_truncarEnPalabra(_nombreClaroTema(d.tema), 52))}</span>`;
+function _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, opts){
+  opts = opts || {};
+  const link = d => opts.export ? `<span>${_escHtml(_truncarEnPalabra(_nombreClaroTema(d.tema), 52))}</span>` : `<span class="matriz-link" data-tema="${d.tema.id}">${_escHtml(_truncarEnPalabra(_nombreClaroTema(d.tema), 52))}</span>`;
+  const mono = 'font-family:var(--f-mono);font-size:9px;color:var(--ink-3);';
+  const sec = t => `<div style="${mono}letter-spacing:.06em;margin:12px 0 4px;">${t}</div>`;
   const lista = (arr, vacio) => arr.length ? arr.slice(0,4).map(link).join(' · ') + (arr.length>4?` · +${arr.length-4}`:'') : `<span style="opacity:.55;">${vacio}</span>`;
-  const bloqueCambios = `
-    <div style="font-size:9px;letter-spacing:.06em;color:var(--ink-3);font-family:var(--f-mono);margin:2px 0 4px;">QUÉ CAMBIÓ EN 24 H</div>
+  const bloqueCambios = `${sec('QUÉ CAMBIÓ EN 24 H')}
     <div style="display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:11px;line-height:1.35;">
       <span style="color:var(--riesgo-alto);">▲ entró a zona crítica</span><span>${lista(cambios.entraronCritica,'ninguno')}</span>
       <span style="color:var(--riesgo-medio);">◐ nueva señal anticipatoria</span><span>${lista(cambios.nuevasAnticipatorias,'ninguna')}</span>
@@ -1633,25 +1746,40 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios){
       <span style="color:var(--teal);">✦ tema nuevo</span><span>${lista(cambios.nuevos,'ninguno')}</span>
     </div>`;
   const colorConf = {alta:'var(--riesgo-bajo)', media:'var(--riesgo-medio)', baja:'var(--riesgo-alto)'};
+  const textoSesgo = d => {
+    const s = d.sesgo; if(!s || !s.total) return '';
+    const partes = [];
+    if(s.gobierno) partes.push(`${s.gobierno} afín/oficial`); if(s.critica) partes.push(`${s.critica} crítico${s.critica!==1?'s':''}`); partes.push(`${s.sinClasificar} sin clasificar`);
+    const alerta = s.unSoloLado ? ` <span style="color:var(--riesgo-medio);">⚠ cobertura de un solo lado (${s.unSoloLado==='gobierno'?'afín al gobierno':'crítica'})</span>` : '';
+    return `<div><b>Fuentes:</b> ${partes.join(' · ')}${alerta}</div>`;
+  };
+  const textoTerr = d => { const e = Object.entries(d.territorio||{}).sort((a,b)=>b[1]-a[1]); return e.length ? `<div><b>Territorio:</b> ${e.map(([k,v])=>`${_escHtml(k)} ${v}`).join(' · ')}</div>` : ''; };
   const tarjeta = (d, etiqueta, colorEt) => {
     const j = (_juicioRadar && _juicioRadar[d.tema.id]) || null;
-    const nota = d.notaAncla;
+    const nota = d.notaAncla, esc = _escenariosDe(d), rob = _textoRobustez(d);
     const actores = (d.actoresClave||[]).map(a=>`${_escHtml(a.nombre)} <span style="opacity:.6;">(${_escHtml(a.rol)})</span>`).join(', ');
-    const hito = d.hito
-      ? `${_escHtml(d.hito.fecha ? d.hito.fecha+' · ' : '')}${_escHtml(d.hito.texto)} <span style="opacity:.55;">[${d.hito.fuente==='analista'?'criterio del analista':'detectado en notas'}]</span>`
-      : `<span style="opacity:.55;">sin hito identificado</span>`;
-    return `<div style="border-top:1px solid var(--line);padding:6px 0;">
+    const hito = d.hito ? `${_escHtml(d.hito.fecha ? d.hito.fecha+' · ' : '')}${_escHtml(d.hito.texto)} <span style="opacity:.55;">[${d.hito.fuente==='analista'?'criterio del analista':'detectado en notas'}]</span>` : `<span style="opacity:.55;">sin hito identificado</span>`;
+    const t = d.tray; const tr = t && t.length ? `<div><b>7 días:</b> ${_sparkRadar(t)} <span style="${mono}">impacto ${t[0].i}→${t[t.length-1].i} · medios ${t[0].a}→${t[t.length-1].a}</span> <span style="opacity:.5;font-size:9px;">(— impacto, ┄ medios)</span></div>` : '';
+    return `<div style="border-top:1px solid var(--line);padding:7px 0;">
       <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;">
         <span style="font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:${colorEt};border:1px solid ${colorEt};border-radius:99px;padding:0 6px;">${etiqueta}</span>
         <strong style="font-size:11.5px;">${link(d)}</strong>
-        <span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);">impacto ${d.riesgoReal}/10 · ${d.atencion} medio${d.atencion!==1?'s':''} · ${_escHtml(d.ambito)}</span>
+        <span style="${mono}">impacto ${d.riesgoReal}/10 · ${d.atencion} medio${d.atencion!==1?'s':''} · ${_escHtml(d.ambito)}</span>
         <span style="font-family:var(--f-mono);font-size:9px;color:${colorConf[d.confianza.nivel]};" title="${_escHtml(d.confianza.motivos.join(' · ') || 'corroborado, fuente de primer nivel y tema coherente')}">confianza ${d.confianza.nivel}</span>
+        ${rob ? `<span style="font-family:var(--f-mono);font-size:9px;color:${rob.ok?'var(--riesgo-bajo)':'var(--riesgo-medio)'};">${_escHtml(rob.txt)}</span>` : ''}
       </div>
-      <div style="font-size:10.5px;color:var(--ink-2);margin-top:2px;line-height:1.35;">
+      <div style="font-size:10.5px;color:var(--ink-2);margin-top:3px;line-height:1.4;">
         ${j && j.por_que_importa ? `<div><b>Por qué importa:</b> ${_escHtml(j.por_que_importa)} <span style="opacity:.55;">[analista]</span></div>` : `<div><b>Por qué pesa:</b> ${_escHtml((d.impactoRazones||[]).join(' · ') || '—')}</div>`}
         ${nota ? `<div><b>Nota ancla:</b> ${nota.fuente_url?`<a href="${_escHtml(nota.fuente_url)}" target="_blank" rel="noopener" style="color:var(--teal);">${_escHtml(_truncarEnPalabra(nota.descripcion.replace(/^[^A-Za-zÁÉÍÓÚÑ0-9¿"“]*ALERTA\s*[—–-]\s*/i,''),90))}</a>`:_escHtml(_truncarEnPalabra(nota.descripcion,90))} <span style="opacity:.55;">· ${_escHtml(nota.fecha)}</span></div>` : ''}
         ${actores ? `<div><b>Toca a:</b> ${actores}</div>` : ''}
+        ${tr}
+        <div><b>Escala si:</b> ${_escHtml(esc.escala)}</div>
+        <div><b>Se contiene si:</b> ${_escHtml(esc.contiene)}</div>
+        ${esc.desvia ? `<div><b>Se desvía si:</b> ${_escHtml(esc.desvia)}</div>` : ''}
+        ${esc.vigilar ? `<div><b>Vigilar:</b> ${_escHtml(esc.vigilar)} <span style="opacity:.55;">[analista]</span></div>` : ''}
+        <div style="opacity:.55;font-size:9.5px;">escenarios [${esc.fuente}]</div>
         <div><b>Próximo hito:</b> ${hito}</div>
+        ${textoSesgo(d)}${textoTerr(d)}
       </div>
     </div>`;
   };
@@ -1659,18 +1787,54 @@ function _htmlLecturaRadar(criticos, anticipatorias, cambios){
     ...criticos.slice(0,5).map(d=>tarjeta(d,'CRÍTICO','var(--riesgo-alto)')),
     ...anticipatorias.slice(0,3).map(d=>tarjeta(d,'ANTICIPATORIA','var(--riesgo-medio)')),
   ].join('') || '<div style="font-size:11px;opacity:.6;padding:6px 0;">Ningún tema combina impacto alto con cobertura amplia, ni señales anticipatorias de alcance nacional.</div>';
+
+  // robustez global
+  const decis = [...criticos, ...anticipatorias];
+  const frag = decis.filter(d=>{ const r=_textoRobustez(d); return r && !r.ok; });
+  const alLimite = (datos||[]).filter(d=>!d.apagado && cuadranteDe(d)!=='actuar' && cuadranteDe(d)!=='vigilar').filter(d=>{ const r=_textoRobustez(d); return r && !r.ok; });
+  const robustez = `${sec('ROBUSTEZ DEL RESULTADO (±20% a cada peso del léxico)')}
+    <div style="font-size:10.5px;color:var(--ink-2);line-height:1.4;">${decis.length ? `<b>${decis.length-frag.length} de ${decis.length}</b> temas prioritarios se mantienen con cualquier ajuste.` : 'Sin temas prioritarios que evaluar.'}
+      ${frag.length ? `<div>Frágiles: ${frag.map(link).join(' · ')}</div>` : ''}
+      ${alLimite.length ? `<div>Al límite de entrar: ${alLimite.slice(0,4).map(link).join(' · ')}</div>` : ''}</div>`;
+
+  // territorio C3
+  const filasT = ['Campeche','Chiapas','Oaxaca','Quintana Roo','Tabasco','Veracruz','Yucatán','Puebla'].map(est=>{
+    const ts = (datos||[]).filter(d=>!d.apagado && d.territorio && d.territorio[est]).sort((a,b)=>(b.riesgoReal-a.riesgoReal)||(b.territorio[est]-a.territorio[est])).slice(0,3);
+    if(!ts.length) return '';
+    const col = d => ({actuar:'var(--riesgo-alto)',vigilar:'var(--riesgo-medio)'}[cuadranteDe(d)]||'var(--ink-3)');
+    return `<span style="color:var(--ink-1);font-weight:600;">${est}</span><span>${ts.map(d=>`<span style="color:${col(d)};">●</span> ${link(d)} <span style="opacity:.6;">(${d.territorio[est]} nota${d.territorio[est]!==1?'s':''} · imp. ${d.riesgoReal})</span>`).join('<br>')}</span>`;
+  }).join('');
+  const territorio = `${sec('COBERTURA TERRITORIAL C3 (14 d) -- un tema "local" para el país puede ser crítico para un estado')}
+    ${filasT ? `<div style="display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:10.5px;color:var(--ink-2);line-height:1.35;">${filasT}</div>` : '<div style="font-size:10.5px;opacity:.6;">Sin notas con entidad C3 en la ventana.</div>'}`;
+
   const v = _validacionRadar;
   const validacion = (v && v.n_anticipatorias_evaluadas>0)
     ? `De ${v.n_anticipatorias_evaluadas} señales anticipatorias evaluadas a ${v.horizonte_dias} días, ${v.n_escalaron} escalaron a zona crítica (${Math.round(v.tasa*100)}%)${v.base_n>0?` · base general: ${Math.round(v.base_tasa*100)}% de ${v.base_n} temas`:''}.`
     : `Acumulando historial${v && v.primer_snapshot ? ` desde ${_escHtml(v.primer_snapshot)}` : ''}: aún no hay señales con ${v?v.horizonte_dias:3} días de antigüedad para medir si el radar acierta.`;
-  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-      <span style="font-family:var(--f-display);font-size:12.5px;font-weight:600;">Lectura del radar</span>
-      <button type="button" id="radar-cerrar-lectura" style="background:none;border:none;color:var(--ink-3);cursor:pointer;font-size:14px;line-height:1;">✕</button>
+  const ahora = new Date().toLocaleString('es-MX', {timeZone:'America/Mexico_City', dateStyle:'medium', timeStyle:'short'});
+  return `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--f-display);font-size:13px;font-weight:600;">Lectura del radar <span style="${mono}">· corte ${_escHtml(ahora)}</span></span>
+      ${opts.export ? '' : '<button type="button" id="radar-exportar" style="background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:10.5px;cursor:pointer;padding:4px 2px;">Exportar ⇩</button>'}
     </div>
     ${bloqueCambios}
-    <div style="font-size:9px;letter-spacing:.06em;color:var(--ink-3);font-family:var(--f-mono);margin:10px 0 0;">PRIORIDADES</div>
+    ${sec('PRIORIDADES')}
     ${prioridades}
-    <div style="border-top:1px solid var(--line);margin-top:4px;padding-top:6px;font-size:10px;color:var(--ink-3);"><b>Validación:</b> ${validacion}</div>`;
+    ${robustez}
+    ${territorio}
+    <div style="border-top:1px solid var(--line);margin-top:12px;padding-top:6px;font-size:10px;color:var(--ink-3);"><b>Validación:</b> ${validacion}<br><span style="opacity:.8;">Los pesos del léxico y la línea editorial de los medios son criterio del analista (editable en data/); la validación mide si el radar acierta.</span></div>`;
+}
+
+function _exportarLecturaRadar(criticos, anticipatorias, cambios, datos){
+  const cuerpo = _htmlLecturaRadar(criticos, anticipatorias, cambios, datos, {export:true});
+  const fecha = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+  const doc = `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lectura del radar ${fecha}</title><style>
+    :root{--ink-1:#111;--ink-2:#333;--ink-3:#666;--bg-1:#fff;--line:#ddd;--teal:#0b7a75;--riesgo-alto:#c0392b;--riesgo-medio:#b9770e;--riesgo-bajo:#1e8449;--f-mono:ui-monospace,Menlo,monospace;--f-display:Georgia,serif}
+    body{font:12px/1.4 system-ui,sans-serif;color:var(--ink-1);background:var(--bg-1);max-width:820px;margin:24px auto;padding:0 16px}
+    @media print{body{margin:0}}</style></head><body>${cuerpo}</body></html>`;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([doc], {type:'text/html;charset=utf-8'}));
+  a.download = `lectura-radar-${fecha}.html`; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 
 function dibujarMatrizRiesgo(){
@@ -1686,6 +1850,9 @@ function dibujarMatrizRiesgo(){
   if(soloAgendaNacional) temasBase = temasBase.filter(t=>Number(t.nivel_relevancia)===1);
 
   const datosTodos = calcularDatosRadarAgenda(temasBase);
+  // trayectoria/sensibilidad cuestan ~1 s la primera vez del día: se calculan después de pintar (ver panel Lectura)
+  const _enriqListo = _enriquecerRadar(temasBase, datosTodos, true);
+  _puntoFijadoRadar = null;
 
   // PRIORIDAD -- los temas SIN actividad real en 14 días (apagados) no deben
   // desplazar a los que sí la tienen solo por haber tenido un pico histórico alto.
@@ -1820,11 +1987,13 @@ function dibujarMatrizRiesgo(){
       const cambios = calcularCambios24h(temasBase, datosTodos);
       const nCambios = cambios.entraronCritica.length + cambios.nuevasAnticipatorias.length + cambios.escalaron.length;
       const chipB = (txt, color) => `<span style="color:${color};white-space:nowrap;">${txt}</span>`;
-      resumenEl.innerHTML = `<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;overflow:hidden;padding:0 10px 0 28px;font-family:var(--f-mono);font-size:10px;">
+      resumenEl.innerHTML = `<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;height:${ARRIBA_RADAR-2}px;overflow:hidden;padding:0 4px 0 28px;font-family:var(--f-mono);font-size:10px;">
+          <span id="radar-chips" style="display:flex;gap:12px;white-space:nowrap;overflow:hidden;min-width:0;">
           ${chipB(`● ${criticosItems.length} crítico${criticosItems.length!==1?'s':''}`, 'var(--riesgo-alto)')}
-          ${chipB(`◐ ${vigilarItems.length} señal${vigilarItems.length!==1?'es':''} anticipatoria${vigilarItems.length!==1?'s':''}`, 'var(--riesgo-medio)')}
-          ${chipB(nCambios ? `↗ ${nCambios} cambio${nCambios!==1?'s':''} vs ayer` : '= sin cambios de zona vs ayer', 'var(--ink-3)')}
-          <button type="button" id="radar-btn-lectura" style="margin-left:auto;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);font-family:var(--f-mono);font-size:10px;padding:1px 9px;cursor:pointer;">Lectura ▾</button>
+          ${chipB(`◐ ${vigilarItems.length} señal${vigilarItems.length!==1?'es':''}`, 'var(--riesgo-medio)')}
+          ${chipB(nCambios ? `↗ ${nCambios} nuevo${nCambios!==1?'s':''}` : '= igual que ayer', 'var(--ink-3)')}
+          </span>
+          <button type="button" id="radar-btn-lectura" style="margin-left:auto;flex:none;background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:11px;padding:0 4px;height:100%;cursor:pointer;white-space:nowrap;">Lectura ▾</button>
         </div>`;
       const zona = document.getElementById('matriz-lienzo');
       if(zona){
@@ -1833,17 +2002,21 @@ function dibujarMatrizRiesgo(){
         if(panel) panel.remove();
         panel = document.createElement('div');
         panel.id = 'radar-panel-lectura'; panel.className = 'radar-lectura-scroll';
-        panel.style.cssText = 'position:absolute;inset:0;z-index:30;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:30px 16px 20px 18px;font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
-        panel.innerHTML = _htmlLecturaRadar(criticosItems, vigilarItems, cambios);
+        panel.style.cssText = 'position:absolute;inset:0;z-index:30;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:'+(ARRIBA_RADAR+4)+'px 16px 20px 18px;font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
         zona.appendChild(panel);
-        const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; };
+        const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; const ch = document.getElementById('radar-chips'); if(ch) ch.style.display = abrir?'none':'flex'; if(abrir){ _puntoFijadoRadar = null; ocultarTooltipAgenda(); } };
         document.getElementById('radar-btn-lectura').addEventListener('click', ()=> alternar(panel.style.display==='none'));
-        const cerrar = panel.querySelector('#radar-cerrar-lectura'); if(cerrar) cerrar.addEventListener('click', ()=> alternar(false));
+        const rellenar = ()=>{
+          panel.innerHTML = _htmlLecturaRadar(criticosItems, vigilarItems, cambios, datosTodos);
+          const exp = panel.querySelector('#radar-exportar'); if(exp) exp.addEventListener('click', ()=> _exportarLecturaRadar(criticosItems, vigilarItems, cambios, datosTodos));
+          panel.querySelectorAll('.matriz-link').forEach(el=>{
+            el.style.cursor = 'pointer'; el.style.textDecoration = 'underline'; el.style.textUnderlineOffset = '2px';
+            el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema));
+          });
+        };
+        rellenar();
         alternar(_lecturaRadarAbierta);
-        panel.querySelectorAll('.matriz-link').forEach(el=>{
-          el.style.cursor = 'pointer'; el.style.textDecoration = 'underline'; el.style.textUnderlineOffset = '2px';
-          el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema));
-        });
+        if(!_enriqListo) setTimeout(()=>{ _enriquecerRadar(temasBase, datosTodos); if(document.getElementById('radar-panel-lectura')===panel) rellenar(); }, 60);
       }
     }
   }
@@ -1875,7 +2048,7 @@ function dibujarMatrizRiesgo(){
   // abajo no baja de 24: el rótulo del eje X se dibuja a margen.abajo+22px bajo el eje
   // (ver más abajo, "más notas recientes...") -- con menos de eso, el texto queda fuera
   // del área visible del SVG y se corta.
-  const margen = {izq:26, der:8, arriba:18, abajo:24};
+  const margen = {izq:26, der:8, arriba:ARRIBA_RADAR, abajo:24};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
   // CORRECCIÓN -- pedido explícito: con los cortes ya absolutos (no la mediana), el cruce de
@@ -1983,8 +2156,8 @@ function dibujarMatrizRiesgo(){
     for(let i=0;i<220;i++) sim.tick();
     // mantener los puntos dentro del área del gráfico tras la colisión
     datos.forEach(d=>{
-      d.x = Math.max(margen.izq+4, Math.min(margen.izq+anchoUtil-4, d.x));
-      d.y = Math.max(margen.arriba+4, Math.min(margen.arriba+altoUtil-4, d.y));
+      d.x = Math.max(margen.izq+13, Math.min(margen.izq+anchoUtil-13, d.x)); // 13 = radio máx. + borde: el punto no se recorta en el borde
+      d.y = Math.max(margen.arriba+13, Math.min(margen.arriba+altoUtil-4, d.y)); // 13 = radio máx. del punto + borde: nunca invade la franja del botón Lectura
     });
   }
 
@@ -2026,10 +2199,22 @@ function dibujarMatrizRiesgo(){
   // puro).
   const g = svg.selectAll('g.punto-tema').data(datos).join('g')
     .attr('class','punto-tema').style('cursor','pointer')
-    .on('pointerenter', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); destelloEnPunto(d); })
-    .on('pointermove', function(ev,d){ mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); })
-    .on('pointerleave', function(ev,d){ ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
-    .on('click', (ev,d)=> abrirFichaTema(d.tema.id));
+    .on('pointerdown', ev=>{ _ptrTipoRadar = ev.pointerType || 'mouse'; })
+    .on('pointerenter', function(ev,d){ if(_esTactilRadar()) return; mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); destelloEnPunto(d); })
+    .on('pointermove', function(ev,d){ if(_esTactilRadar()) return; mostrarTooltipAgenda(_tooltipRadar(d, datos), ev); })
+    .on('pointerleave', function(ev,d){ if(_esTactilRadar()) return; ocultarTooltipAgenda(); d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)); })
+    // TOUCH: sin hover, el 1er toque fija el tooltip (para poder leerlo) y el 2º abre la ficha.
+    .on('click', function(ev,d){
+      if(!_esTactilRadar()){ abrirFichaTema(d.tema.id); return; }
+      ev.stopPropagation();
+      if(_puntoFijadoRadar === d.tema.id){ _puntoFijadoRadar = null; ocultarTooltipAgenda(); abrirFichaTema(d.tema.id); return; }
+      _puntoFijadoRadar = d.tema.id;
+      svg.selectAll('g.punto-tema').each(function(o){ d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(o)); });
+      d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(d)+4); destelloEnPunto(d);
+      mostrarTooltipAgenda(_tooltipRadar(d, datos) + '<br><b style="color:var(--teal);">Toca de nuevo para abrir la ficha ▸</b>', ev);
+    });
+  // tocar fuera de un punto suelta el tooltip fijado
+  svg.on('click.fuera', ()=>{ if(!_puntoFijadoRadar) return; _puntoFijadoRadar = null; ocultarTooltipAgenda(); svg.selectAll('g.punto-tema').each(function(o){ d3.select(this).select('circle.nodo-principal').attr('r', _radioPrincipalRadar(o)); }); });
 
   // CORRECCIÓN -- pedido explícito: "pensar la interacción en móviles, tablets y
   // pantallas touch". Varios puntos dibujan a radio 5-9px -- un objetivo cómodo con
