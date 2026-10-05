@@ -1743,9 +1743,18 @@ function dibujarMatrizRiesgo(){
   const margen = {izq:26, der:8, arriba:18, abajo:24};
   const anchoUtil = Math.max(80, width - margen.izq - margen.der);
   const altoUtil = Math.max(80, height - margen.arriba - margen.abajo);
-  const xDe = d => margen.izq + d._rankX * anchoUtil;
-  const yDe = d => margen.arriba + d._rankY * altoUtil;
-  const xMediana = margen.izq + umbralRankX*anchoUtil, yMediana = margen.arriba + umbralRankY*altoUtil;
+  // CORRECCIÓN -- pedido explícito: con los cortes ya absolutos (no la mediana), el cruce de
+  // ejes caía lejos del centro (5 críticos de 45 = cruce a ~10% del borde) y el radar giratorio
+  // se veía descuadrado. Con el filtro en "Todas" el cruce se CENTRA: las posiciones se
+  // reparten por tramos -- lo que queda de un lado del corte ocupa esa mitad del plano, lo del
+  // otro lado la otra mitad. El ORDEN y el significado de cada cuadrante no cambian (el corte
+  // sigue siendo impacto >= 7 / atención >= 5 medios); solo cambia el espacio que ocupa cada
+  // mitad. Con un filtro de categoría el cruce se queda en su posición real.
+  const _centrarCruce = !categoriaFiltroAgenda;
+  const _repartir = (r, corte) => !_centrarCruce ? r : (r < corte ? 0.5*(r/corte) : 0.5 + 0.5*((r-corte)/(1-corte)));
+  const xDe = d => margen.izq + _repartir(d._rankX, umbralRankX) * anchoUtil;
+  const yDe = d => margen.arriba + _repartir(d._rankY, umbralRankY) * altoUtil;
+  const xMediana = margen.izq + (_centrarCruce?0.5:umbralRankX)*anchoUtil, yMediana = margen.arriba + (_centrarCruce?0.5:umbralRankY)*altoUtil;
 
   // ---- fondo de cuadrícula, una sola escala -- mismo criterio que Genealogía
   // (#geneal-grid): un <pattern> dibujado directo en el SVG, sin envolver el gráfico
