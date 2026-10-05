@@ -1833,7 +1833,7 @@ function dibujarMatrizRiesgo(){
         if(panel) panel.remove();
         panel = document.createElement('div');
         panel.id = 'radar-panel-lectura';
-        panel.style.cssText = 'position:absolute;left:10px;right:10px;top:30px;z-index:30;max-height:78%;overflow:auto;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:10px 14px;box-shadow:0 8px 28px rgba(0,0,0,.45);font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
+        panel.style.cssText = 'position:absolute;inset:0;z-index:30;overflow:auto;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:14px 18px;font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
         panel.innerHTML = _htmlLecturaRadar(criticosItems, vigilarItems, cambios);
         zona.appendChild(panel);
         const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; };
