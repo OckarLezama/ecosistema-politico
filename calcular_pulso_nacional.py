@@ -336,6 +336,26 @@ def _similitud_titulares(a, b):
     return comunes / min(len(ta), len(tb))
 
 
+def _tokens_persona(nombre):
+    """Tokens del nombre sin acentos/paréntesis/partículas, para decidir si dos registros
+    de actores.csv son la misma persona."""
+    import unicodedata
+    n = re.sub(r'\([^)]*\)', '', nombre or '')
+    n = unicodedata.normalize('NFKD', n.lower())
+    n = ''.join(c for c in n if not unicodedata.combining(c))
+    return [w for w in re.findall(r'[a-z]+', n) if w not in ('de', 'del', 'la', 'las', 'los', 'y')]
+
+def _misma_persona(n1, n2):
+    """Mismo nombre, o uno es el otro con apellido(s) de más: 'Ariadna Montiel' y 'Ariadna
+    Montiel Reyes' son la misma persona. Exige 2+ palabras en el nombre corto para no
+    fusionar a quien solo comparte un nombre de pila o un apellido suelto."""
+    a, b = _tokens_persona(n1), _tokens_persona(n2)
+    if not a or not b:
+        return False
+    corto, largo = (a, b) if len(a) <= len(b) else (b, a)
+    return len(corto) >= 2 and corto == largo[:len(corto)]
+
+
 def calcular():
     temas = cargar_csv('temas.csv')
     eventos = cargar_csv('eventos.csv')
@@ -1054,7 +1074,7 @@ def calcular():
         if not actor:
             continue
         clave_nombre = actor['nombre'].strip().lower()
-        if clave_nombre in nombres_ya_usados:
+        if clave_nombre in nombres_ya_usados or any(_misma_persona(clave_nombre, n) for n in nombres_ya_usados):
             continue
         vinculos_ordenados = sorted(vinculos, key=lambda x: peso_tema.get(x['tema_id'], 0), reverse=True)
         v, nota, tema_v = None, None, None
@@ -1406,12 +1426,15 @@ def calcular():
     # Destacados ya se protegía de esto (nombres_ya_usados) pero el Tablero no, así que
     # podía salir la misma persona dos veces como si fueran dos actores distintos. Se
     # deduplica por nombre, quedándose con el registro de mayor peso semanal.
-    mejores_por_nombre = {}
-    for c in candidatos_tablero:
-        clave = c['nombre'].strip().lower()
-        if clave not in mejores_por_nombre or c['score_hoy'] > mejores_por_nombre[clave]['score_hoy']:
-            mejores_por_nombre[clave] = c
-    candidatos_tablero = list(mejores_por_nombre.values())
+    # CORRECCIÓN -- "Ariadna aparece dos veces": 'montiel' (Ariadna Montiel) y 'montiel_reyes'
+    # (Ariadna Montiel Reyes) son la misma persona pero el nombre no era IDÉNTICO, así que la
+    # comparación exacta no las juntaba. Ahora se agrupan también cuando un nombre es el
+    # otro con apellido(s) de más (ver _misma_persona); queda el registro de mayor peso.
+    unicos = []
+    for c in sorted(candidatos_tablero, key=lambda c: c['score_hoy'], reverse=True):
+        if not any(_misma_persona(c['nombre'], u['nombre']) for u in unicos):
+            unicos.append(c)
+    candidatos_tablero = unicos
 
     seleccionados = sorted(candidatos_tablero, key=lambda c: c['score_hoy'], reverse=True)[:9]
     max_vol = max([c['vol_hoy'] for c in seleccionados] + [1])
@@ -1810,10 +1833,16 @@ def _fusionar_tablero_con_apagados(anterior, tablero_nuevo, semana_iso):
 
     tablero_nuevo = [_con_transicion(a, anterior_por_id.get(a['id'])) for a in tablero_nuevo]
     ids_nuevos = {a['id'] for a in tablero_nuevo}
-    apagados = [
-        _con_transicion(dict(a, apagado=True), a)
-        for a in (anterior.get('tablero_actores') or []) if a['id'] not in ids_nuevos
-    ]
+    # un actor del corte anterior que ya no está en este no se vuelve a agregar "apagado" si
+    # es la MISMA persona que alguien ya presente (ej. 'Ariadna Montiel Reyes' del corte
+    # viejo contra 'Ariadna Montiel' de hoy) -- eso la duplicaba en el tablero.
+    apagados = []
+    for a in (anterior.get('tablero_actores') or []):
+        if a['id'] in ids_nuevos:
+            continue
+        if any(_misma_persona(a['nombre'], x['nombre']) for x in tablero_nuevo + apagados):
+            continue
+        apagados.append(_con_transicion(dict(a, apagado=True), a))
     return (tablero_nuevo + apagados)[:12]
 
 
