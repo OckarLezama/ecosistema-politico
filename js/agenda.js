@@ -272,12 +272,8 @@ function _hechosDeTema(temaId){
 }
 function _actorReciente(actorId, temaId){ const a = getActor(actorId); if(!a) return 0; const d0 = _diaMX(1); return _mencionesActor(a, _eventosDeTema(temaId).filter(e=>e.fecha>=d0)).length; }
 // actores que NO están registrados en el tema pero aparecen por nombre en 2+ notas -- se dibujan con borde punteado hasta que un analista los confirme
-function _actoresDeducidos(temaId){
-  const ya = new Set(ECOSISTEMA.temaActores.filter(x=>x.tema_id===temaId).map(x=>x.actor_id));
-  const evs = _eventosDeTema(temaId); if(evs.length<2) return [];
-  return ECOSISTEMA.actores.filter(a=>!ya.has(a.id)).map(a=>{ const m = _mencionesActor(a, evs); return {actor:a, n:m.length, ultima:m[0]?m[0].fecha:''}; })
-    .filter(x=>x.n>=2).sort((x,y)=>y.n-x.n).slice(0,8);
-}
+// (los actores 'deducidos' por coincidencia de nombre se eliminaron: en un producto de inteligencia solo van actores confirmados)
+function _actoresDeducidos(){ return []; }
 function _fichaHoverNotas(d, svgTemaId){
   const tema = getTema(d.esTema ? d.id : svgTemaId); if(!tema) return '';
   const evs = _eventosDeTema(tema.id); const hch = _hechosDeTema(tema.id).sort((a,b)=>b.fecha.localeCompare(a.fecha));
@@ -321,6 +317,8 @@ function _franjaTemaNotas(temaId){
   }catch(e){}
   const tend = nHoy>nAyer ? ['↗ más hechos que ayer','var(--riesgo-medio)'] : nHoy<nAyer ? ['↘ menos hechos que ayer','var(--teal)'] : ['= mismo ritmo que ayer','var(--ink-3)'];
   const res = (tema.resumen||'').trim();
+  const nAct = ECOSISTEMA.temaActores.filter(x=>x.tema_id===temaId).length;
+  const avisoAct = nAct<3 ? `<div style="margin-top:4px;font-size:10.5px;color:var(--riesgo-medio);">${nAct?'Solo '+nAct+' actor'+(nAct>1?'es':'')+' confirmado'+(nAct>1?'s':''):'Sin actores confirmados'} en este tema. Se agregan solo con respaldo en las notas; propón actores en «Revisión de notas».</div>` : '';
   return `<div id="notas-franja" style="flex:none;padding:8px 14px 7px;font-size:11px;line-height:1.4;">
     <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;">
       ${etiqueta?`<span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${color};border:1px solid ${color};border-radius:99px;padding:0 7px;">${etiqueta}</span>`:''}
@@ -329,6 +327,7 @@ function _franjaTemaNotas(temaId){
       <span style="font-family:var(--f-mono);font-size:10px;color:${tend[1]};">${tend[0]}</span>
       <button type="button" id="notas-btn-revision" title="Corregir notas mal clasificadas y proponer actores nuevos" style="margin-left:auto;background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:10.5px;cursor:pointer;padding:0;white-space:nowrap;">Revisión de notas ▾</button>
     </div>
+    ${avisoAct}
     ${res?`<div title="${_escHtml(res)}" style="margin-top:4px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${_escHtml(res)}</div>`:''}
   </div>`;
 }
@@ -663,9 +662,9 @@ const COLOR_ROL_NOTAS = {
 const TEXTO_ROL_NOTAS = {
   'Investigado':'Señalado / bajo investigación', 'Acusado':'Señalado / acusado formalmente',
   'Responsable institucional':'Responsable institucional (gobierno)', 'Autoridad':'Autoridad institucional',
-  'Reacción de oposición':'Reaccionó — postura de oposición', 'Reacción del gobierno':'Reaccionó — postura del gobierno',
-  'Reacción social/mediática':'Reaccionó — voz social o mediática', 'Operador':'Operador vinculado al caso', 'Red empresarial':'Vinculado — red empresarial señalada',
-  'Mencionado':'Solo mencionado — no señalado',
+  'Reacción de oposición':'Reacción de oposición', 'Reacción del gobierno':'Reacción del gobierno',
+  'Reacción social/mediática':'Voz social o mediática', 'Operador':'Operador vinculado al caso', 'Red empresarial':'Vinculado — red empresarial señalada',
+  'Mencionado':'Mencionado / no señalado',
 };
 // leyenda RESUMIDA para mostrar en el toolbar -- combina los 2 roles de "Reaccionó" en
 // una sola línea (antes ocupaban 2 renglones separados) y usa un color distinto para
@@ -673,9 +672,9 @@ const TEXTO_ROL_NOTAS = {
 const LEYENDA_ROLES_RESUMIDA = [
   {color:'var(--riesgo-alto)', texto:'Señalado / bajo investigación'},
   {color:'var(--familia-nucleo)', texto:'Responsable institucional'},
-  {color:'var(--riesgo-medio)', texto:'Reaccionó — postura de oposición / voz social o mediática'},
+  {color:'var(--riesgo-medio)', texto:'Reacción oposición / voz mediática'},
   {color:'var(--arena)', texto:'Vinculado — red empresarial señalada'},
-  {color:'var(--ink-3)', texto:'Mencionado — no señalado'},
+  {color:'var(--ink-3)', texto:'Mencionado / no señalado'},
 ];
 
 let temaNotasSeleccionado = null;
@@ -726,7 +725,7 @@ function renderNotasAgenda(){
     leyendaEl.style.display = 'flex';
     leyendaEl.innerHTML = LEYENDA_ROLES_RESUMIDA.map(({color,texto})=>
       `<span style="white-space:nowrap;"><span class="legend-dot" style="background:${color}"></span>${texto}</span>`).join('');
-    leyendaEl.innerHTML += `<span style="white-space:nowrap;" title="Anillo turquesa alrededor de un actor: lo mencionan notas de las últimas 48 horas"><span class="legend-dot" style="background:transparent;border:2px solid var(--teal);"></span>mencionado en 48 h</span><span style="white-space:nowrap;" title="Actor que aparece en las notas pero aún no está confirmado en este tema"><span class="legend-dot" style="background:transparent;border:1.5px dashed var(--ink-3);"></span>deducido, sin confirmar</span><span style="white-space:nowrap;" title="Línea turquesa punteada: vínculo conocido entre dos actores. El círculo central toma el color de la categoría del tema."><span style="display:inline-block;width:14px;border-top:2px dotted var(--teal);vertical-align:middle;margin-right:4px;"></span>vínculo entre actores</span>`;
+    leyendaEl.innerHTML += `<span style="white-space:nowrap;" title="Anillo turquesa alrededor de un actor: lo mencionan notas de las últimas 48 horas"><span class="legend-dot" style="background:transparent;border:2px solid var(--teal);"></span>mencionado en 48 h</span><span style="white-space:nowrap;" title="Línea turquesa punteada: vínculo conocido entre dos actores"><span style="display:inline-block;width:14px;border-top:2px dotted var(--teal);vertical-align:middle;margin-right:4px;"></span>vínculo</span>`;
   }
 
   // Notas es solo el grafo -- pedido explícito: "no combines las notas con el grafo, se

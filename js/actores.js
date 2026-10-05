@@ -627,8 +627,8 @@ function renderGrafo(svgId='graph-svg'){
   }
   if(svgId==='notas-svg'){
     (width<640
-      ? [['Toca el tema: ver notas · ◌ activo en 48 h · punteado = deducido', height-10]]
-      : [['Toca el tema central para ver sus notas · toca un actor para ver su papel', height-23], ['◌ halo = mencionado en las últimas 48 h  ·  borde punteado = deducido de las notas, sin confirmar  ·  línea turquesa punteada = vínculo entre actores', height-10]])
+      ? [['Toca el tema: ver notas · ◌ activo en 48 h', height-10]]
+      : [['Toca el tema central para ver sus notas · toca un actor para ver su papel', height-23], ['◌ halo = mencionado en las últimas 48 h  ·  línea turquesa punteada = vínculo entre actores', height-10]])
       .forEach(([t,y])=> svg.append('text').attr('x',12).attr('y',y).attr('font-size','9.5px').attr('fill','var(--ink-3)').style('pointer-events','none').text(t));
     svg.on('pointerdown.fuera', ev=>{ if(ev.target===svgEl){ if(typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda(); quitarResalteNotas(); } });
   }
