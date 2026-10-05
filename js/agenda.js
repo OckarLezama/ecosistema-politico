@@ -2210,19 +2210,31 @@ function dibujarMatrizRiesgo(){
     d.xAncla = xDe(d); d.yAncla = yDe(d);
     d.x = d.xAncla; d.y = d.yAncla;
   });
+  // la barra (chips + Lectura) va ENCIMA del lienzo: ningún punto debe quedar debajo de ella. Se miden sus
+  // cajas reales y, si un punto cae dentro, se baja lo justo hasta librarla.
+  const _svgR = svgEl.getBoundingClientRect();
+  const _evitar = ['radar-chips','radar-chip-alertas','radar-btn-lectura'].map(id=>document.getElementById(id)).filter(e=>e && e.offsetParent!==null && e.textContent.trim()).map(e=>{
+    const r = e.getBoundingClientRect();
+    return { x0:r.left-_svgR.left-5, x1:r.right-_svgR.left+5, y0:r.top-_svgR.top-3, y1:r.bottom-_svgR.top+3 };
+  });
+  const _librarBarra = () => datos.forEach(d=>{
+    const r = _radioPrincipalRadar(d) + 5;
+    _evitar.forEach(b=>{ if(d.x+r>b.x0 && d.x-r<b.x1 && d.y-r<b.y1 && d.y+r>b.y0) d.y = b.y1 + r; });
+  });
   if(datos.length > 1 && typeof d3.forceSimulation === 'function'){
     const sim = d3.forceSimulation(datos)
       .force('x', d3.forceX(d=>d.xAncla).strength(0.5))
       .force('y', d3.forceY(d=>d.yAncla).strength(0.5))
       .force('colision', d3.forceCollide(d=>(_radioPrincipalRadar(d)+3)).strength(0.9))
       .stop();
-    for(let i=0;i<220;i++) sim.tick();
+    for(let i=0;i<220;i++){ sim.tick(); _librarBarra(); }
     // mantener los puntos dentro del área del gráfico tras la colisión
     datos.forEach(d=>{
       d.x = Math.max(margen.izq+13, Math.min(margen.izq+anchoUtil-13, d.x)); // 13 = radio máx. + borde: el punto no se recorta en el borde
       d.y = Math.max(margen.arriba+4, Math.min(margen.arriba+altoUtil-4, d.y));
     });
   }
+  _librarBarra();
 
   // ---- puntos -- CORRECCIÓN de fondo, pedido explícito: "¿esto es un producto de
   // inteligencia real?". Antes TODOS los puntos llevaban su color de categoría a full
