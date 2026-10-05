@@ -552,6 +552,13 @@ function renderGrafo(svgId='graph-svg'){
   // verificado se queda exactamente igual).
   const escala = Math.max(1, Math.min(width/900, 2.2));
   if(simulacion) simulacion.stop();
+  // Notas (Agenda): el tema consultado se ancla SIEMPRE en el centro del lienzo; las fuerzas solo
+  // acomodan a los actores a su alrededor. Sin esto el núcleo se desplazaba (repulsión de los
+  // satélites + límites del recuadro) y quedaba en una esquina distinta con cada tema.
+  if(svgId==='notas-svg'){
+    const cs = nodes.filter(n=>n.esCentro);
+    cs.forEach((n,i)=>{ n.x = width/2 + (i-(cs.length-1)/2)*90; n.y = height/2; n.fx = n.x; n.fy = n.y; });
+  }
   simulacion = d3.forceSimulation(nodes)
     .alpha(0.5).velocityDecay(0.22)
     .force('orbita', forceOrbita(1.8))
