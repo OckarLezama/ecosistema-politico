@@ -1,0 +1,19 @@
+tipo,id,valor,nombre,fecha,responsable,nota
+grupo,g_violencia,5,violencia grave,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_emergencia,5,emergencia / desastre,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_soberania,5,soberanía / relación EU,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_crimen,4,crimen organizado,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_institucional,4,institucional,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_funcionarios,4,detención / proceso a funcionarios,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_economia,3,shock económico,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_crimen2,3,proceso penal / seguridad,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_diplomacia,3,relación con EU (alto nivel),2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+grupo,g_salud,3,salud pública,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+penalizacion,p_entretenimiento,3,penalización: entretenimiento / deportes,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+penalizacion,p_opinion,1,penalización: declaración u opinión,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+penalizacion,p_pregunta,1,penalización: titular en pregunta,2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+parametro,pen_local,2,penalización por alcance local (nota sin marcador nacional),2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+parametro,bonus_actor_9,1.5,bonus: actor de máxima influencia (nivel ≥ 9),2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+parametro,bonus_actor_7,0.75,bonus: actor de alta influencia (nivel ≥ 7),2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+parametro,impacto_alto,7,corte de impacto alto (0–10),2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
+parametro,atencion_alta,5,corte de atención amplia (medios distintos en 14 d),2026-10-05,valores iniciales (criterio de diseño),pendiente de calibración con analistas
