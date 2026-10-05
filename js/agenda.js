@@ -1,6 +1,6 @@
 /* ============================================================
    V2 — AGENDA & COYUNTURA
-   ============================================================ */
+   =========================================================== */
 
 // consolidación por similitud -- si varias notas del MISMO tema y MISMO día se parecen
 // mucho (mismo hecho real, cubierto por medios distintos con encabezados distintos), se
