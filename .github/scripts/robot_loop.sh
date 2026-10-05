@@ -51,8 +51,8 @@ while :; do
   echo "=== $(date -u +%FT%TZ) corrida ==="
   eval "$ROBOT_CMD" || echo "el robot fallo en esta vuelta (se reintenta en la siguiente)"
 
-  # shellcheck disable=SC2086
-  git add $ROBOT_FILES 2>/dev/null
+  # un archivo inexistente aborta TODO "git add": se agrega solo lo que exista, uno por uno
+  for f in $ROBOT_FILES; do [ -e "$f" ] && git add "$f" 2>/dev/null; done
   if ! git diff --staged --quiet; then
     git commit -q -m "$COMMIT_MSG"
     if publicar; then
