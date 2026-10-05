@@ -1197,6 +1197,13 @@ const IMPACTO_PENALIZA = [
 function _normTxt(s){ return (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
 
 // impacto 0-10 de UNA nota, solo por su contenido -- con razones auditables
+// ÁMBITO -- pedido explícito: un feminicidio o una detención local no es una señal NACIONAL
+// (era la única "señal anticipatoria" de ayer). Una nota se considera de alcance nacional
+// solo si trae algún marcador de escala federal/nacional/internacional; si no, es local y
+// pierde 2 puntos de impacto.
+const AMBITO_NACIONAL_RE = /federal|presidenta|sheinbaum|\bfgr\b|senado|camara de diputados|nacional|\bel pais\b|\bmexico\b|mexicano|trump|estados unidos|\beu\b|\beua\b|t-?mec|suprema corte|\bsedena\b|\bsemar\b|guardia nacional|ejercito|marina|pemex|\bsat\b|\buif\b|\bine\b|morena|\bpan\b|\bpri\b|congreso de la union|harfuch|ebrard|onu\b|cjng|cartel|huachicol/;
+function esAmbitoNacional(descripcion){ return AMBITO_NACIONAL_RE.test(_normTxt(descripcion)); }
+
 function impactoDeNota(descripcion){
   const txt = _normTxt(descripcion);
   const hits = IMPACTO_GRUPOS.filter(g=>g.re.test(txt)).sort((a,b)=>b.peso-a.peso);
@@ -1205,20 +1212,23 @@ function impactoDeNota(descripcion){
   if(hits[0]){ score += hits[0].peso; razones.push(hits[0].nombre); }
   if(hits[1]){ score += 0.5*hits[1].peso; razones.push(hits[1].nombre); }
   IMPACTO_PENALIZA.forEach(p=>{ if(p.re.test(txt)){ score -= p.pen; razones.push('(−) '+p.nombre); } });
-  return { score: Math.max(0, Math.min(10, score)), razones };
+  const nacional = AMBITO_NACIONAL_RE.test(txt);
+  if(!nacional && score > 3){ score -= 2; razones.push('(−) alcance local'); }
+  return { score: Math.max(0, Math.min(10, score)), razones, nacional };
 }
 
 // impacto 0-10 de un TEMA: sus mejores notas + peso real de los actores sustantivos
 // vinculados (rol Investigado / Red empresarial / Víctima / etc. con nivel_influencia alto)
 function impactoDeTema(evs, nivelActorMax){
-  if(!evs.length) return { score:0, razones:[] };
+  if(!evs.length) return { score:0, razones:[], ambito:'local' };
   const notas = evs.map(e=>impactoDeNota(e.descripcion)).sort((a,b)=>b.score-a.score);
   const top = notas.slice(0,3);
   let score = 0.6*top[0].score + 0.4*(top.reduce((s,n)=>s+n.score,0)/top.length);
   const razones = [...new Set(top[0].razones)];
   if(nivelActorMax>=9){ score += 1.5; razones.push('actor de máxima influencia involucrado'); }
   else if(nivelActorMax>=7){ score += 0.75; razones.push('actor de alta influencia involucrado'); }
-  return { score: Math.round(Math.max(0,Math.min(10,score))*10)/10, razones };
+  const nNac = notas.filter(n=>n.nacional).length;
+  return { score: Math.round(Math.max(0,Math.min(10,score))*10)/10, razones, ambito: (nNac/notas.length >= 0.5) ? 'nacional' : 'local' };
 }
 
 // ---- coherencia: un "tema" del robot agrupa notas que a veces ya no hablan de lo mismo
@@ -1247,15 +1257,97 @@ function _medioDeEvento(e){
   return dom;
 }
 
+// criterio del analista (opcional): data/radar_juicio.csv con columnas
+// tema_id,por_que_importa,que_vigilar,fecha_hito,analista,fecha -- si existe, manda sobre
+// las heurísticas del hito. Si el archivo no existe o está vacío, simplemente no se usa.
+let _juicioRadar = null;
+let _validacionRadar = null; // data/radar_validacion.json (lo genera radar_snapshot.js)
+(function _cargarJuicioYValidacion(){
+  if(typeof fetch !== 'function') return;
+  fetch('data/radar_juicio.csv?t='+Date.now()).then(r=>r.ok?r.text():null).then(txt=>{
+    if(!txt) return;
+    const filas = txt.trim().split(/\r?\n/); const cab = (filas.shift()||'').split(',').map(x=>x.trim());
+    const out = {};
+    filas.forEach(l=>{
+      const cols = l.match(/("([^"]|"")*"|[^,]*)(,|$)/g)||[];
+      const v = cols.map(c=>c.replace(/,$/,'').replace(/^"|"$/g,'').replace(/""/g,'"'));
+      const o = {}; cab.forEach((k,i)=>o[k]=v[i]||''); if(o.tema_id) out[o.tema_id]=o;
+    });
+    _juicioRadar = out;
+  }).catch(()=>{});
+  fetch('data/radar_validacion.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(j=>{ _validacionRadar = j; }).catch(()=>{});
+})();
+
 const IMPACTO_ALTO = 7;      // desde aquí el tema es de impacto alto
 const ATENCION_ALTA = 5;     // medios distintos en 14 días para considerarlo de atención amplia
 
 
 
+let _refMsRadar = null; // si no es null, "hoy" es ese instante (se usa para reconstruir cómo se veía el radar ayer)
 function _diasAtras(fechaStr){
   // 'fechaStr' en formato YYYY-MM-DD (mismo formato que usa todo el resto del archivo,
   // ej. e.fecha en ECOSISTEMA.eventos) -- entero de días transcurridos desde esa fecha.
-  return Math.floor((Date.now() - new Date(fechaStr+'T00:00:00').getTime()) / 86400000);
+  const ref = _refMsRadar!==null ? _refMsRadar : Date.now();
+  return Math.floor((ref - new Date(fechaStr+'T00:00:00').getTime()) / 86400000);
+}
+
+
+// ---------- datos de apoyo por tema: confianza, nota ancla, actores, próximo hito ----------
+const _MESES = {enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,setiembre:8,octubre:9,noviembre:10,diciembre:11};
+
+// Confianza del JUICIO sobre el tema (no del hecho): cuántos medios lo corroboran, si hay
+// fuente de primer nivel, y qué tanto de lo agrupado bajo el tema habla de lo mismo.
+function _confianzaDeTema(evsCoh, evsBrutos, nMedios){
+  let pts = 0; const motivos = [];
+  if(nMedios>=5){ pts+=2; } else if(nMedios>=3){ pts+=1; } else motivos.push(nMedios<=1?'1 solo medio':`${nMedios} medios`);
+  const altos = new Set();
+  evsCoh.forEach(e=>{
+    if(typeof confiabilidadFuente!=='function') return;
+    const c = confiabilidadFuente({fuenteUrl:e.fuente_url, descripcion:e.descripcion, cobertura:e.cobertura});
+    if(c.nivel==='ALTA' || c.nivel==='OFICIAL') altos.add(c.medio);
+  });
+  if(altos.size>=2) pts+=2; else if(altos.size===1) pts+=1; else motivos.push('sin fuente de primer nivel');
+  const coherencia = evsBrutos.length ? evsCoh.length/evsBrutos.length : 1;
+  if(coherencia>=0.7) pts+=1; else motivos.push(`el tema mezcla historias (${Math.round(coherencia*100)}% coherente)`);
+  return { nivel: pts>=4?'alta':pts>=2?'media':'baja', motivos };
+}
+
+// nota que mejor representa por qué el tema está donde está: la de mayor impacto de la
+// ventana reciente (desempata por la más nueva)
+function _notaAncla(evs){
+  if(!evs.length) return null;
+  const e = [...evs].sort((a,b)=> (impactoDeNota(b.descripcion).score - impactoDeNota(a.descripcion).score) || b.fecha.localeCompare(a.fecha))[0];
+  return { descripcion: e.descripcion, fuente_url: e.fuente_url, fecha: e.fecha };
+}
+
+// actores con más influencia ligados al tema (para "a quién toca")
+function _actoresClaveDeTema(temaId){
+  return ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===temaId).map(ta=>{
+    const a = (ECOSISTEMA.actores||[]).find(x=>x.id===ta.actor_id);
+    return a ? { nombre:a.nombre, rol:ta.rol, nivel:Number(a.nivel_influencia)||0 } : null;
+  }).filter(Boolean).sort((a,b)=>b.nivel-a.nivel).slice(0,3);
+}
+
+// próximo hito: primero el criterio del analista (data/radar_juicio.csv); si no hay,
+// una fecha FUTURA ("el 14 de octubre") que aparezca en las notas recientes -- verificable,
+// no inventada. Sin ninguna de las dos: null (se muestra "sin hito identificado").
+function _proximoHito(temaId, evsRecientes){
+  const j = (typeof _juicioRadar!=='undefined' && _juicioRadar) ? _juicioRadar[temaId] : null;
+  if(j && (j.que_vigilar || j.fecha_hito)) return { texto: j.que_vigilar || '', fecha: j.fecha_hito || '', fuente:'analista' };
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  for(const e of [...evsRecientes].sort((a,b)=>b.fecha.localeCompare(a.fecha))){
+    const txt = _normTxt(e.descripcion);
+    const m = txt.match(/\b(\d{1,2}) de (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre)\b/);
+    if(!m) continue;
+    const f = new Date(hoy.getFullYear(), _MESES[m[2]], Number(m[1]));
+    const dias = Math.round((f - hoy)/86400000);
+    if(dias>=0 && dias<=60){
+      const i = txt.indexOf(m[0]);
+      const frag = e.descripcion.slice(Math.max(0,i-30), i+m[0].length+30).replace(/\s+/g,' ').trim();
+      return { texto:`…${frag}…`, fecha:`${m[1]} de ${m[2]}`, fuente:'nota' };
+    }
+  }
+  return null;
 }
 
 function calcularDatosRadarAgenda(temasBase){
@@ -1362,6 +1454,11 @@ function calcularDatosRadarAgenda(temasBase){
 
     return {
       tema: t, categoria: t.categoria, riesgoReal, riesgoAnterior, urgencia, impactoRazones, atencion: medios.size,
+      ambito: apagado ? impHist.ambito : impHoy.ambito,
+      confianza: _confianzaDeTema(apagado ? evsTodos : evsHoy, evsBrutos, medios.size),
+      notaAncla: _notaAncla(apagado ? evsTodos : evsHoy),
+      actoresClave: _actoresClaveDeTema(t.id),
+      hito: _proximoHito(t.id, apagado ? [] : evsHoy),
       veces: evsHoy.length, vecesPrev: evsPrev.length, tendencia, apagado, esNuevo,
       nMedios: medios.size, actorIds, actorIdsVinculo, anomalia,
       primeraMencion: evsTodos.length ? evsTodos.map(e=>e.fecha).sort()[0] : null,
@@ -1422,7 +1519,11 @@ function _truncarEnPalabra(texto, max){
 function _nombreClaroTema(tema){
   let base = (tema.resumen && tema.resumen.length > tema.nombre.length) ? tema.resumen : tema.nombre;
   base = base.replace(/\s+[-–]\s+[^-–]{2,40}$/, ''); // quita "- Fuente" pegado al final
-  return base.trim();
+  // nombres que son un titular entero: se quitan prefijos que no dicen de qué trata
+  base = base.replace(/^[^A-Za-zÁÉÍÓÚÑ0-9¿"“]*ALERTA\s*[—–-]\s*/i, '')
+             .replace(/^Desde el \d{1,2} de [a-záéíóú]+ de \d{4},\s*/i, '');
+  base = base.trim();
+  return base ? base.charAt(0).toUpperCase()+base.slice(1) : base;
 }
 
 // CORRECCIÓN -- pedido explícito: "haz mucho texto... el hover se sale de la vista,
@@ -1436,6 +1537,7 @@ function _tooltipRadar(d, datosVisibles){
   const ICONO_TENDENCIA = {subiendo:'↑ subiendo', bajando:'↓ bajando', estable:'→ estable'};
   let html = `<strong>${_truncarEnPalabra(_nombreClaroTema(d.tema), 60)}</strong><br>Impacto ${d.riesgoReal}/10 · ${d.veces} nota${d.veces!==1?'s':''} en ${VENTANA_RADAR_DIAS} días`;
   if(d.impactoRazones && d.impactoRazones.length) html += `<br><span style="font-size:10px;opacity:.85;">por: ${d.impactoRazones.join(' · ')}</span>`;
+  html += `<br><span style="font-size:10px;opacity:.85;">alcance ${d.ambito} · confianza ${d.confianza.nivel}${d.confianza.motivos.length?' ('+d.confianza.motivos.join(', ')+')':''}</span>`;
   if(d.apagado) html += ` <span style="opacity:.7;">· sin actividad reciente</span>`;
   else if(d.esNuevo) html += ` <span style="color:var(--teal);">· 🆕 últimas 48h</span>`;
   else if(d.tendencia && d.tendencia!=='estable') html += ` <span style="color:${d.tendencia==='subiendo'?'var(--riesgo-alto)':'var(--riesgo-bajo)'};">· ${ICONO_TENDENCIA[d.tendencia]}</span>`;
@@ -1479,6 +1581,98 @@ function _tooltipRadar(d, datosVisibles){
 // para 98% de los temas) y riesgo histórico de todo el tiempo (un pico de hace meses
 // pesaba igual que uno de hoy). Esto es lo que de verdad hacía que "la matriz no
 // dijera mucho o nada".
+
+// cuadrante de un tema -- una sola definición para el radar, el resumen y "qué cambió"
+function cuadranteDe(d){
+  if(d.apagado) return 'apagado';
+  const impactoAlto = d.riesgoReal >= IMPACTO_ALTO, atencionAlta = d.atencion >= ATENCION_ALTA;
+  // 'vigilar' = señal anticipatoria: impacto alto, pocos medios, nota de los últimos 3 días
+  // y alcance NACIONAL (un hecho local no es señal anticipatoria de agenda nacional)
+  return impactoAlto
+    ? (atencionAlta ? 'actuar' : (d.diasDesdeUltima!=null && d.diasDesdeUltima<=3 && d.ambito==='nacional' ? 'vigilar' : 'bajoperfil'))
+    : (atencionAlta ? 'ruido' : 'bajoperfil');
+}
+
+// "qué cambió en 24 h": reconstruye cómo se veía el radar AYER (mismas reglas, solo con
+// las notas con fecha anterior a hoy) y lo compara con hoy. Sin esto el lector no distingue
+// lo que ya sabía de lo que acaba de pasar.
+function calcularCambios24h(temasBase, datosHoy){
+  let datosAyer = [];
+  _refMsRadar = Date.now() - 86400000;
+  try{ datosAyer = calcularDatosRadarAgenda(temasBase); } finally { _refMsRadar = null; }
+  const ayer = new Map(datosAyer.map(d=>[d.tema.id,d]));
+  const cambios = { entraronCritica:[], salieronCritica:[], nuevasAnticipatorias:[], escalaron:[], nuevos:[] };
+  datosHoy.filter(d=>!d.apagado).forEach(d=>{
+    const a = ayer.get(d.tema.id);
+    const cHoy = cuadranteDe(d), cAyer = a ? cuadranteDe(a) : 'sin_actividad';
+    if(cHoy==='actuar' && cAyer!=='actuar') cambios.entraronCritica.push(d);
+    else if(cHoy==='vigilar' && cAyer!=='vigilar') cambios.nuevasAnticipatorias.push(d);
+    else if(a && !a.apagado && ((d.riesgoReal - a.riesgoReal) >= 1 || (d.atencion - a.atencion) >= 4) && cHoy!=='bajoperfil') cambios.escalaron.push(d);
+    if(d.diasEnAgenda<=1) cambios.nuevos.push(d);
+  });
+  datosAyer.filter(a=>!a.apagado && cuadranteDe(a)==='actuar').forEach(a=>{
+    const d = datosHoy.find(x=>x.tema.id===a.tema.id);
+    if(d && cuadranteDe(d)!=='actuar') cambios.salieronCritica.push(d);
+  });
+  return cambios;
+}
+
+const _escHtml = t => String(t==null?'':t).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let _lecturaRadarAbierta = false;
+
+function _htmlLecturaRadar(criticos, anticipatorias, cambios){
+  const link = d => `<span class="matriz-link" data-tema="${d.tema.id}">${_escHtml(_truncarEnPalabra(_nombreClaroTema(d.tema), 52))}</span>`;
+  const lista = (arr, vacio) => arr.length ? arr.slice(0,4).map(link).join(' · ') + (arr.length>4?` · +${arr.length-4}`:'') : `<span style="opacity:.55;">${vacio}</span>`;
+  const bloqueCambios = `
+    <div style="font-size:9px;letter-spacing:.06em;color:var(--ink-3);font-family:var(--f-mono);margin:2px 0 4px;">QUÉ CAMBIÓ EN 24 H</div>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:11px;line-height:1.35;">
+      <span style="color:var(--riesgo-alto);">▲ entró a zona crítica</span><span>${lista(cambios.entraronCritica,'ninguno')}</span>
+      <span style="color:var(--riesgo-medio);">◐ nueva señal anticipatoria</span><span>${lista(cambios.nuevasAnticipatorias,'ninguna')}</span>
+      <span style="color:var(--riesgo-alto);">↗ escaló</span><span>${lista(cambios.escalaron,'ninguno')}</span>
+      <span style="color:var(--riesgo-bajo);">▼ salió de zona crítica</span><span>${lista(cambios.salieronCritica,'ninguno')}</span>
+      <span style="color:var(--teal);">✦ tema nuevo</span><span>${lista(cambios.nuevos,'ninguno')}</span>
+    </div>`;
+  const colorConf = {alta:'var(--riesgo-bajo)', media:'var(--riesgo-medio)', baja:'var(--riesgo-alto)'};
+  const tarjeta = (d, etiqueta, colorEt) => {
+    const j = (_juicioRadar && _juicioRadar[d.tema.id]) || null;
+    const nota = d.notaAncla;
+    const actores = (d.actoresClave||[]).map(a=>`${_escHtml(a.nombre)} <span style="opacity:.6;">(${_escHtml(a.rol)})</span>`).join(', ');
+    const hito = d.hito
+      ? `${_escHtml(d.hito.fecha ? d.hito.fecha+' · ' : '')}${_escHtml(d.hito.texto)} <span style="opacity:.55;">[${d.hito.fuente==='analista'?'criterio del analista':'detectado en notas'}]</span>`
+      : `<span style="opacity:.55;">sin hito identificado</span>`;
+    return `<div style="border-top:1px solid var(--line);padding:6px 0;">
+      <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;">
+        <span style="font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:${colorEt};border:1px solid ${colorEt};border-radius:99px;padding:0 6px;">${etiqueta}</span>
+        <strong style="font-size:11.5px;">${link(d)}</strong>
+        <span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);">impacto ${d.riesgoReal}/10 · ${d.atencion} medio${d.atencion!==1?'s':''} · ${_escHtml(d.ambito)}</span>
+        <span style="font-family:var(--f-mono);font-size:9px;color:${colorConf[d.confianza.nivel]};" title="${_escHtml(d.confianza.motivos.join(' · ') || 'corroborado, fuente de primer nivel y tema coherente')}">confianza ${d.confianza.nivel}</span>
+      </div>
+      <div style="font-size:10.5px;color:var(--ink-2);margin-top:2px;line-height:1.35;">
+        ${j && j.por_que_importa ? `<div><b>Por qué importa:</b> ${_escHtml(j.por_que_importa)} <span style="opacity:.55;">[analista]</span></div>` : `<div><b>Por qué pesa:</b> ${_escHtml((d.impactoRazones||[]).join(' · ') || '—')}</div>`}
+        ${nota ? `<div><b>Nota ancla:</b> ${nota.fuente_url?`<a href="${_escHtml(nota.fuente_url)}" target="_blank" rel="noopener" style="color:var(--teal);">${_escHtml(_truncarEnPalabra(nota.descripcion.replace(/^[^A-Za-zÁÉÍÓÚÑ0-9¿"“]*ALERTA\s*[—–-]\s*/i,''),90))}</a>`:_escHtml(_truncarEnPalabra(nota.descripcion,90))} <span style="opacity:.55;">· ${_escHtml(nota.fecha)}</span></div>` : ''}
+        ${actores ? `<div><b>Toca a:</b> ${actores}</div>` : ''}
+        <div><b>Próximo hito:</b> ${hito}</div>
+      </div>
+    </div>`;
+  };
+  const prioridades = [
+    ...criticos.slice(0,5).map(d=>tarjeta(d,'CRÍTICO','var(--riesgo-alto)')),
+    ...anticipatorias.slice(0,3).map(d=>tarjeta(d,'ANTICIPATORIA','var(--riesgo-medio)')),
+  ].join('') || '<div style="font-size:11px;opacity:.6;padding:6px 0;">Ningún tema combina impacto alto con cobertura amplia, ni señales anticipatorias de alcance nacional.</div>';
+  const v = _validacionRadar;
+  const validacion = (v && v.n_anticipatorias_evaluadas>0)
+    ? `De ${v.n_anticipatorias_evaluadas} señales anticipatorias evaluadas a ${v.horizonte_dias} días, ${v.n_escalaron} escalaron a zona crítica (${Math.round(v.tasa*100)}%)${v.base_n>0?` · base general: ${Math.round(v.base_tasa*100)}% de ${v.base_n} temas`:''}.`
+    : `Acumulando historial${v && v.primer_snapshot ? ` desde ${_escHtml(v.primer_snapshot)}` : ''}: aún no hay señales con ${v?v.horizonte_dias:3} días de antigüedad para medir si el radar acierta.`;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+      <span style="font-family:var(--f-display);font-size:12.5px;font-weight:600;">Lectura del radar</span>
+      <button type="button" id="radar-cerrar-lectura" style="background:none;border:none;color:var(--ink-3);cursor:pointer;font-size:14px;line-height:1;">✕</button>
+    </div>
+    ${bloqueCambios}
+    <div style="font-size:9px;letter-spacing:.06em;color:var(--ink-3);font-family:var(--f-mono);margin:10px 0 0;">PRIORIDADES</div>
+    ${prioridades}
+    <div style="border-top:1px solid var(--line);margin-top:4px;padding-top:6px;font-size:10px;color:var(--ink-3);"><b>Validación:</b> ${validacion}</div>`;
+}
+
 function dibujarMatrizRiesgo(){
   const svgEl = document.getElementById('matriz-riesgo-svg');
   const svg = d3.select(svgEl);
@@ -1577,14 +1771,7 @@ function dibujarMatrizRiesgo(){
   // para 1) el resumen en HTML de arriba, y 2) pintar con color solo lo que importa
   // (ver "puntos" más abajo). Se calcula aquí, antes de medir el <svg>, porque solo
   // depende de los rankings de arriba -- no de márgenes ni del tamaño del lienzo. ----
-  datos.forEach(d=>{
-    const impactoAlto = d.riesgoReal >= IMPACTO_ALTO, atencionAlta = d.atencion >= ATENCION_ALTA;
-    // 'vigilar' = señal anticipatoria: impacto alto, pocos medios y nota de los últimos 3 días
-    // (uno viejo y de pocos medios no es "anticipar", es un tema que ya pasó)
-    d._cuadrante = d.apagado ? 'apagado'
-      : impactoAlto ? (atencionAlta ? 'actuar' : (d.diasDesdeUltima!=null && d.diasDesdeUltima<=3 ? 'vigilar' : 'bajoperfil'))
-      : (atencionAlta ? 'ruido' : 'bajoperfil');
-  });
+  datos.forEach(d=>{ d._cuadrante = cuadranteDe(d); });
 
   // ---- leyenda real de colores -- pedido explícito: "no me queda claro lo de los
   // colores, no indicamos qué significa cada color". CORRECCIÓN de esta ronda:
@@ -1621,95 +1808,43 @@ function dibujarMatrizRiesgo(){
   const actuarCount = activos.filter(d=>d._cuadrante==='actuar').length;
   const vigilarItems = activos.filter(d=>d._cuadrante==='vigilar').sort((a,b)=>b.urgencia-a.urgencia);
   const criticosItems = activos.filter(d=>d._cuadrante==='actuar').sort((a,b)=>b.urgencia-a.urgencia);
+  // CORRECCIÓN -- pedido explícito: el resumen eran 2-3 líneas de texto sobre el radar que le
+  // quitaban vista y no aportaban. Arriba queda UNA barra compacta (conteos + cambio vs ayer)
+  // y la lectura completa -- qué cambió en 24 h, prioridades con nota ancla / a quién toca /
+  // próximo hito / confianza, y la validación del radar -- vive en un panel que se abre con
+  // el botón "Lectura" y se superpone al radar en vez de empujarlo.
   if(resumenEl){
     if(!activos.length){
       resumenEl.innerHTML = '';
     } else {
-      const [catDom, nCatDom] = catsOrdenadas[0];
-      // CORRECCIÓN -- verificado con captura real: en una semana con mucha actividad
-      // simultánea, "18 temas exigen acción inmediata" es honesto (así de cargada está
-      // la agenda) pero deja al lector sin saber por dónde empezar -- una lista de 18
-      // "urgentes" no es triage. El conteo se queda (no hay que esconder que el día está
-      // cargado), pero SIEMPRE se nombra el más urgente de todos (datos ya viene
-      // ordenado por riesgo+volumen) para que haya un punto de partida concreto.
-      // CORRECCIÓN -- "zona crítica" ya no es la mitad de arriba-derecha del día: es impacto
-      // alto POR CONTENIDO + atención amplia (5+ medios). Se nombran hasta 3 temas con su
-      // motivo, para que sea triage y no un conteo.
-      const _linkTema = d => `<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema), 38)}</span>${d.impactoRazones && d.impactoRazones[0] ? `<span style="opacity:.6;font-weight:400;"> (${d.impactoRazones[0]} · ${d.atencion} medios)</span>` : ''}`;
-      let headline = actuarCount>0
-        ? `${actuarCount} tema${actuarCount!==1?'s':''} en zona crítica (impacto alto + amplia cobertura) · prioridad: ${criticosItems.slice(0,3).map(_linkTema).join(' · ')}`
-        : `Ningún tema combina impacto alto con amplia cobertura ahora mismo`;
-      headline += ` · agenda concentrada en ${catDom} (${nCatDom} de ${activos.length})`;
-      // CORRECCIÓN -- pedido explícito: análisis crítico de la matriz -- "los ejes son
-      // un ranking del día, no un valor absoluto: el mismo tema puede caer en zona
-      // distinta de un día a otro solo porque el resto de la agenda cambió, no porque
-      // él haya cambiado". Eso no estaba dicho en ningún lado. Se agrega aquí, con
-      // datos que YA existen (veces/vecesPrev de cada tema, la misma ventana de 14 días
-      // contra la ventana de 14 días anterior) -- una lectura de qué tan cargada está
-      // HOY la agenda contra la quincena anterior, sin IA, pura aritmética.
-      const totalVecesHoy = datosTodos.reduce((s,d)=>s+d.veces,0);
-      const totalVecesPrev = datosTodos.reduce((s,d)=>s+d.vecesPrev,0);
-      if(totalVecesPrev > 0){
-        const cambioPct = Math.round((totalVecesHoy-totalVecesPrev)/totalVecesPrev*100);
-        const lecturaCambio = Math.abs(cambioPct) < 12
-          ? 'actividad similar a la quincena anterior'
-          : cambioPct > 0 ? `${cambioPct}% más activa que la quincena anterior` : `${Math.abs(cambioPct)}% más tranquila que la quincena anterior`;
-        headline += ` · <span style="opacity:0.65;">${lecturaCambio}</span>`;
+      const cambios = calcularCambios24h(temasBase, datosTodos);
+      const nCambios = cambios.entraronCritica.length + cambios.nuevasAnticipatorias.length + cambios.escalaron.length;
+      const chipB = (txt, color) => `<span style="color:${color};white-space:nowrap;">${txt}</span>`;
+      resumenEl.innerHTML = `<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:5px 14px 0;font-family:var(--f-mono);font-size:10.5px;">
+          ${chipB(`● ${criticosItems.length} crítico${criticosItems.length!==1?'s':''}`, 'var(--riesgo-alto)')}
+          ${chipB(`◐ ${vigilarItems.length} señal${vigilarItems.length!==1?'es':''} anticipatoria${vigilarItems.length!==1?'s':''}`, 'var(--riesgo-medio)')}
+          ${chipB(nCambios ? `↗ ${nCambios} cambio${nCambios!==1?'s':''} vs ayer` : '= sin cambios de zona vs ayer', 'var(--ink-3)')}
+          <button type="button" id="radar-btn-lectura" style="margin-left:auto;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);font-family:var(--f-mono);font-size:10px;padding:2px 9px;cursor:pointer;">Lectura ▾</button>
+        </div>`;
+      const zona = document.getElementById('matriz-lista-zona');
+      if(zona){
+        zona.style.position = 'relative';
+        let panel = document.getElementById('radar-panel-lectura');
+        if(panel) panel.remove();
+        panel = document.createElement('div');
+        panel.id = 'radar-panel-lectura';
+        panel.style.cssText = 'position:absolute;left:10px;right:10px;top:30px;z-index:30;max-height:78%;overflow:auto;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:10px 14px;box-shadow:0 8px 28px rgba(0,0,0,.45);font-size:11px;color:var(--ink-1);display:'+(_lecturaRadarAbierta?'block':'none');
+        panel.innerHTML = _htmlLecturaRadar(criticosItems, vigilarItems, cambios);
+        zona.appendChild(panel);
+        const alternar = abrir => { _lecturaRadarAbierta = abrir; panel.style.display = abrir?'block':'none'; const b = document.getElementById('radar-btn-lectura'); if(b) b.textContent = abrir?'Lectura ▴':'Lectura ▾'; };
+        document.getElementById('radar-btn-lectura').addEventListener('click', ()=> alternar(panel.style.display==='none'));
+        const cerrar = panel.querySelector('#radar-cerrar-lectura'); if(cerrar) cerrar.addEventListener('click', ()=> alternar(false));
+        alternar(_lecturaRadarAbierta);
+        panel.querySelectorAll('.matriz-link').forEach(el=>{
+          el.style.cursor = 'pointer'; el.style.textDecoration = 'underline'; el.style.textUnderlineOffset = '2px';
+          el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema));
+        });
       }
-      // CORRECCIÓN -- pedido explícito: "no se vería mejor... ahorita quita mucho
-      // espacio". La tarjeta completa (.contexto-tema-box: fondo propio + borde + label
-      // "LECTURA DE HOY" en su propia línea) pesaba más de lo que decía. Se queda solo
-      // una franja delgada con acento de color, sin fondo ni card, y sin la línea de
-      // eyebrow aparte -- el texto en negritas ya deja claro que es la lectura principal.
-      // CORRECCIÓN -- pedido explícito: "el titular y el aviso de riesgo silencioso no
-      // son clickeables, y son el texto más útil del gráfico". Ahora sí abren la ficha
-      // del tema (mismo mecanismo que ya usan los puntos y la vista de Lista).
-      // CORRECCIÓN -- pedido explícito: "para mi eso no sirve para tomar decisiones...
-      // debemos ser más claro". El texto anterior ("poca cobertura pese al riesgo")
-      // describía el dato pero no decía qué hacer con él ni por qué es una alerta y no
-      // un dato neutro.
-      // CORRECCIÓN -- pedido explícito, segunda vuelta: "al decir PUNTO CIEGO qué quiere
-      // decir? es como si el gobierno se tuviera que cuidar de algo, hay que tener
-      // cuidado con eso". "Punto ciego" sonaba a consejo defensivo hacia un actor
-      // concreto (el gobierno) -- este tablero es una lectura analítica de agenda
-      // mediática, no una recomendación de a quién proteger. La etiqueta y el texto
-      // ahora describen el HECHO medible (riesgo alto, cobertura baja) y su utilidad
-      // analítica (anticipar antes de que escale en atención pública) sin implicar de
-      // quién es la responsabilidad ni a quién conviene cuidarse.
-      // NUEVO -- pedido explícito ("que tiene de inteligencia? esto nos dice algo como
-      // gobernabilidad"): antes solo se listaban los 3 temas de bajo perfil, sin decir
-      // si comparten algo entre sí. Una lista de nombres sueltos no es un patrón. Ahora,
-      // si los de bajo perfil (TODOS los de la ventana, no solo los 3 mostrados)
-      // comparten la misma categoría, se dice explícitamente -- eso es lo que separa
-      // "aquí hay 3 notas con poca cobertura" de "esto es un patrón concentrado en un
-      // área, no ruido disperso".
-      let lecturaPatron = '';
-      if(vigilarItems.length>=2){
-        const catsVigilar = {};
-        vigilarItems.forEach(d=> catsVigilar[d.categoria] = (catsVigilar[d.categoria]||0)+1);
-        const [catDomVigilar, nDomVigilar] = Object.entries(catsVigilar).sort((a,b)=>b[1]-a[1])[0];
-        if(nDomVigilar === vigilarItems.length){
-          lecturaPatron = ` <strong style="color:var(--ink-1);">${nDomVigilar} de ${nDomVigilar} son de ${catDomVigilar}</strong> -- patrón concentrado en un área, no ruido disperso.`;
-        } else if(nDomVigilar/vigilarItems.length >= 0.6){
-          lecturaPatron = ` <strong style="color:var(--ink-1);">${nDomVigilar} de ${vigilarItems.length} son de ${catDomVigilar}</strong>.`;
-        }
-      }
-      const callout = vigilarItems.length
-        ? `<div style="margin-top:4px;font-size:10.5px;line-height:1.35;display:flex;gap:6px;align-items:flex-start;">
-            <span style="flex-shrink:0;font-family:var(--f-mono);font-size:8.5px;font-weight:700;color:var(--riesgo-medio);border:1px solid var(--riesgo-medio);border-radius:99px;padding:1px 7px;margin-top:1px;">SEÑAL ANTICIPATORIA</span>
-            <span style="color:var(--ink-2);">impacto alto por su contenido, pero cubierto por menos de ${ATENCION_ALTA} medios y con notas de los últimos 3 días -- candidatos a escalar antes de que lleguen a la atención pública.${lecturaPatron} ${vigilarItems.slice(0,3).map(d=>`<span class="matriz-link" data-tema="${d.tema.id}">${_truncarEnPalabra(_nombreClaroTema(d.tema),28)}</span><span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);"> (impacto ${d.riesgoReal}/10${d.impactoRazones&&d.impactoRazones[0]?' · '+d.impactoRazones[0]:''} · ${d.atencion} medio${d.atencion!==1?'s':''})</span>`).join(' · ')}</span>
-          </div>`
-        : '';
-      resumenEl.innerHTML = `<div style="border-left:3px solid var(--riesgo-alto);padding:2px 10px;margin:6px 14px 0;">
-        <div style="font-family:var(--f-display);font-size:12.5px;font-weight:600;color:var(--ink-1);line-height:1.25;">${headline}</div>
-        ${callout}
-      </div>`;
-      resumenEl.querySelectorAll('.matriz-link').forEach(el=>{
-        el.style.cursor = 'pointer';
-        el.style.textDecoration = 'underline';
-        el.style.textUnderlineOffset = '2px';
-        el.addEventListener('click', ()=> abrirFichaTema(el.dataset.tema));
-      });
     }
   }
 
