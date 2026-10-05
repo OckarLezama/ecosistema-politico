@@ -451,6 +451,15 @@ function renderGrafo(svgId='graph-svg'){
     .style('opacity', 0)
     .call(sel=> sel.transition().duration(500).delay(150).style('opacity', d=> d.tipoVinculo==='cruzado' ? 0.9 : opacidadPorNivel(d.nivelDestino)*0.8));
 
+  // Notas: al pasar el cursor/tocar un nodo se resalta con sus vínculos y el resto se atenúa
+  function resaltarNotas(d){
+    link.style('opacity', l=> (l.source===d||l.target===d) ? 1 : 0.12).attr('stroke-width', l=> (l.source===d||l.target===d) ? 2.6 : 1.2);
+    node.style('opacity', n=> (n===d || n.esCentro || links.some(l=>(l.source===d&&l.target===n)||(l.target===d&&l.source===n))) ? 1 : 0.28);
+  }
+  function quitarResalteNotas(){
+    link.style('opacity', l=> l.tipoVinculo==='cruzado' ? 0.9 : opacidadPorNivel(l.nivelDestino)*0.8).attr('stroke-width', l=>({1:1.8,2:1.4,3:1.1}[l.nivelDestino]||1.2));
+    node.style('opacity', 1);
+  }
   const node = container.selectAll('g.node').data(nodes).join('g')
     .attr('class','node').style('cursor', d=> (svgId==='notas-svg' && !d.esTema) ? 'default' : 'pointer')
     .style('opacity', 0)
@@ -463,15 +472,18 @@ function renderGrafo(svgId='graph-svg'){
     // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
     // touch" -- pointerenter/pointermove/pointerleave cubren mouse Y touch.
     .on('pointerenter', function(ev,d){
-      if(svgId!=='notas-svg' || d.esTema || !d.rolEnTema) return;
-      if(typeof mostrarTooltipAgenda==='function') mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${(typeof COLOR_ROL_NOTAS!=='undefined'&&COLOR_ROL_NOTAS[d.rolEnTema])||'var(--ink-3)'};">${(typeof TEXTO_ROL_NOTAS!=='undefined'&&TEXTO_ROL_NOTAS[d.rolEnTema])||d.rolEnTema}</span>`, ev);
+      if(svgId!=='notas-svg') return;
+      if(typeof _fichaHoverNotas==='function' && typeof mostrarTooltipAgenda==='function') mostrarTooltipAgenda(_fichaHoverNotas(d, d.coreId), ev);
+      resaltarNotas(d);
     })
     .on('pointermove', function(ev,d){
-      if(svgId!=='notas-svg' || d.esTema || !d.rolEnTema) return;
-      if(typeof mostrarTooltipAgenda==='function') mostrarTooltipAgenda(`<strong>${d.nombre}</strong><br><span style="color:${(typeof COLOR_ROL_NOTAS!=='undefined'&&COLOR_ROL_NOTAS[d.rolEnTema])||'var(--ink-3)'};">${(typeof TEXTO_ROL_NOTAS!=='undefined'&&TEXTO_ROL_NOTAS[d.rolEnTema])||d.rolEnTema}</span>`, ev);
+      if(svgId!=='notas-svg' || ev.pointerType==='touch') return;
+      if(typeof _fichaHoverNotas==='function' && typeof mostrarTooltipAgenda==='function') mostrarTooltipAgenda(_fichaHoverNotas(d, d.coreId), ev);
     })
     .on('pointerleave', function(ev,d){
-      if(svgId==='notas-svg' && typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda();
+      if(svgId!=='notas-svg' || ev.pointerType==='touch') return;   // en pantalla táctil la tarjeta se queda hasta tocar el fondo
+      if(typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda();
+      quitarResalteNotas();
     })
     .call(d3.drag()
       .on('start',(ev,d)=>{ if(!ev.active) simulacion.alphaTarget(0.12).restart(); d.fx=d.x; d.fy=d.y; })
@@ -570,10 +582,31 @@ function renderGrafo(svgId='graph-svg'){
     .on('tick', ()=>{
       const margen=30;
       nodes.forEach(n=>{ n.x=Math.max(margen,Math.min(width-margen,n.x)); n.y=Math.max(margen,Math.min(height-margen,n.y)); });
-      link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-      guias.attr('cx',d=>d.core.x).attr('cy',d=>d.core.y);
-      node.attr('transform', d=>`translate(${d.x},${d.y})`);
+      pintar(performance.now());
     });
+  // Flotación suave de los actores (solo Notas): cada uno oscila unos pocos píxeles con su propio ritmo;
+  // el tema central y los nodos que el usuario arrastra no se mueven. Respeta "reducir movimiento".
+  const flotar = svgId==='notas-svg' && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  nodes.forEach((n,i)=>{ n._ph = i*1.7; n._amp = 3 + (i%3); n._per = 4200 + (i*530)%2600; });
+  function pintar(t){
+    nodes.forEach(n=>{
+      const mueve = flotar && !n.esCentro && n.fx==null;
+      n._vx = n.x + (mueve ? Math.sin(t/n._per*6.2832 + n._ph)*n._amp : 0);
+      n._vy = n.y + (mueve ? Math.cos(t/(n._per*1.3)*6.2832 + n._ph)*n._amp : 0);
+    });
+    link.attr('x1',d=>d.source._vx).attr('y1',d=>d.source._vy).attr('x2',d=>d.target._vx).attr('y2',d=>d.target._vy);
+    guias.attr('cx',d=>d.core._vx).attr('cy',d=>d.core._vy);
+    node.attr('transform', d=>`translate(${d._vx},${d._vy})`);
+  }
+  if(flotar){
+    const gen = (svgEl.__genFlotar = (svgEl.__genFlotar||0) + 1);
+    d3.timer(()=>{ if(!svgEl.isConnected || svgEl.__genFlotar!==gen) return true; pintar(performance.now()); });
+  }
+  if(svgId==='notas-svg'){
+    svg.append('text').attr('x',12).attr('y',height-10).attr('font-size','9.5px').attr('fill','var(--ink-3)').style('pointer-events','none')
+      .text('Toca el tema central para ver sus notas · toca un actor para ver su papel');
+    svg.on('pointerdown.fuera', ev=>{ if(ev.target===svgEl){ if(typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda(); quitarResalteNotas(); } });
+  }
 }
 
 function calcularFortalezaGrupo(nucleoActor, satelites){

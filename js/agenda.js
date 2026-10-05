@@ -239,47 +239,31 @@ let vistaAgenda = 'matriz';
 let temasDisponiblesActuales = [];
 
 
-// ---------- Buscador único: palabras dentro de las notas + actores ----------
-// El campo "Tema" sigue funcionando igual (Enter con el nombre de un tema lo abre en el grafo).
-// Si lo escrito no coincide con ningún tema, o se pulsa la lupa, se busca en TODAS las notas y
-// en los actores, y los resultados aparecen en el panel Pulso de la derecha.
-const _norm = t => String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-function _buscarGlobalAgenda(q){
-  const toks = _norm(q).split(/\s+/).filter(x=>x.length>=2); if(!toks.length) return null;
-  const notas = ECOSISTEMA.eventos.filter(e=>{ const d = ' '+_norm(e.descripcion).replace(/[^a-z0-9ñ]+/g,' '); return toks.every(k=>d.includes(' '+k)); })   // la palabra debe EMPEZAR así ("visa" no encuentra "revisa")
-    .sort((a,b)=> (b.fecha+(b.hora_registro||'')).localeCompare(a.fecha+(a.hora_registro||'')));
-  const qn = _norm(q).trim();
-  const actores = ECOSISTEMA.actores.filter(a=>_norm(a.nombre).includes(qn)).slice(0,5).map(a=>{
-    const temas = [...new Set(ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===a.id).map(ta=>ta.tema_id))].map(getTema).filter(t=>t && Number(t.nivel_relevancia)===1);
-    return { a, temas };
-  }).filter(x=>x.temas.length);
-  return { q, notas, actores };
+
+// ---------- Notas (grafo): tarjetas al pasar el cursor / tocar ----------
+const _normN = t => String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+function _fichaHoverNotas(d, svgTemaId){
+  const tema = getTema(d.esTema ? d.id : svgTemaId); if(!tema) return '';
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===tema.id).sort((a,b)=>(b.fecha+(b.hora_registro||'')).localeCompare(a.fecha+(a.hora_registro||'')));
+  if(d.esTema){
+    const col = colorCategoria(tema.categoria);
+    const filas = evs.slice(0,3).map(e=>`<div style="margin-top:5px;"><span style="font-family:var(--f-mono);font-size:9px;opacity:.65;">${_escHtml(e.fecha)} · ${_escHtml(_medioDeEvento(e)||'')}</span><br>${_escHtml(_truncarEnPalabra(e.descripcion,95))}</div>`).join('');
+    return `<div style="max-width:300px;"><strong>${_escHtml(_truncarEnPalabra(tema.nombre,70))}</strong><br><span style="color:${col};font-size:10px;">${_escHtml(tema.categoria)}</span> <span style="font-size:10px;opacity:.75;">· ${evs.length} nota${evs.length!==1?'s':''}${evs[0]?' · última '+_escHtml(evs[0].fecha):''}</span>${filas}<div style="margin-top:7px;color:var(--teal);font-size:10px;">▸ Toca el círculo para ver todas las notas</div></div>`;
+  }
+  const a = getActor(d.id); if(!a) return `<strong>${_escHtml(d.nombre)}</strong>`;
+  const ta = ECOSISTEMA.temaActores.find(x=>x.tema_id===tema.id && x.actor_id===a.id) || {};
+  const alias = ((a.nombre.match(/\(['"“]?([^)'"”]+)['"”]?\)/)||[])[1]||'').toLowerCase();
+  const sig = _normN(a.nombre.replace(/\(.*?\)/g,'')).split(/\s+/).filter(w=>w.length>=4).sort((x,y)=>y.length-x.length)[0];
+  const claves = [sig, _normN(alias)].filter(k=>k && k.length>=4);
+  const menciona = evs.filter(e=>{ const t = _normN(e.descripcion); return claves.some(k=>t.includes(k)); });
+  const temas = new Set(ECOSISTEMA.temaActores.filter(x=>x.actor_id===a.id).map(x=>x.tema_id)); temas.delete(tema.id);
+  const colRol = (typeof COLOR_ROL_NOTAS!=='undefined' && COLOR_ROL_NOTAS[d.rolEnTema||d.rol]) || 'var(--ink-3)';
+  const txtRol = (typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[d.rolEnTema||d.rol]) || (d.rolEnTema||d.rol||'');
+  return `<div style="max-width:290px;"><strong>${_escHtml(a.nombre)}</strong>${a.cargo?`<br><span style="font-size:10px;opacity:.8;">${_escHtml(a.cargo)}</span>`:''}
+    <br><span style="color:${colRol};font-size:10px;">${_escHtml(txtRol)}</span>
+    ${ta.detalle?`<div style="margin-top:5px;font-size:10.5px;">${_escHtml(_truncarEnPalabra(ta.detalle,150))}</div>`:''}
+    <div style="margin-top:6px;font-size:10px;opacity:.8;">${menciona.length?`Mencionado en ${menciona.length} de ${evs.length} notas de este tema (última: ${_escHtml(menciona[0].fecha)})`:'No aparece por nombre en las notas de este tema'}${temas.size?`<br>También figura en ${temas.size} tema${temas.size!==1?'s':''} de agenda`:''}</div></div>`;
 }
-function _pintarBusquedaPulso(r){
-  const cont = document.getElementById('feed-lista'); if(!cont) return;
-  window._busquedaPulsoActiva = true;
-  const mono = 'font-family:var(--f-mono);font-size:10px;color:var(--ink-3);';
-  const chipTema = t => `<span class="busq-tema" data-tema="${t.id}" style="cursor:pointer;color:var(--teal);border:1px solid var(--line-strong);border-radius:99px;padding:0 7px;font-size:10px;margin:0 4px 4px 0;display:inline-block;">${_escHtml(_truncarEnPalabra(t.nombre,46))}</span>`;
-  const mostrar = r.notas.slice(0,80);
-  cont.innerHTML = `<div style="padding:8px 14px;position:sticky;top:0;background:var(--bg-1);z-index:2;border-bottom:1px solid var(--line);">
-      <div style="${mono}">Resultados para «${_escHtml(r.q)}» · ${r.notas.length} nota${r.notas.length!==1?'s':''}${r.notas.length>80?' (se muestran las 80 más recientes)':''}</div>
-      <button type="button" id="busq-limpiar" style="background:none;border:none;color:var(--teal);cursor:pointer;font-family:var(--f-mono);font-size:10.5px;padding:2px 0;">✕ Quitar búsqueda y volver al pulso de hoy</button></div>
-    ${r.actores.map(x=>`<div style="padding:8px 14px;font-size:11px;border-bottom:1px solid var(--line);"><b>${_escHtml(x.a.nombre)}</b> <span style="opacity:.6;">aparece en estos temas de agenda:</span><div style="margin-top:4px;">${x.temas.map(chipTema).join('')}</div></div>`).join('')}
-    ${mostrar.length ? mostrar.map(e=>{ const t = getTema(e.tema_id); return `<div class="feed-item" style="border-left-color:${t?colorCategoria(t.categoria):'var(--gris-2)'};">
-        <div class="feed-fecha">${_escHtml(e.fecha)}${e.hora_registro?' · '+_escHtml(e.hora_registro):''}</div>
-        <p class="feed-desc">${_escHtml(_truncarEnPalabra(e.descripcion,200))}</p>
-        ${t && Number(t.nivel_relevancia)===1 ? chipTema(t)+'<br>' : ''}
-        <a href="${_escHtml(e.fuente_url||'#')}" target="_blank" rel="noopener" class="feed-fuente">Ver fuente ↗</a>
-        <span style="font-size:10px;color:var(--ink-3);margin-left:8px;">${_escHtml(_medioDeEvento(e)||'')}</span></div>`; }).join('')
-      : `<div style="padding:20px;text-align:center;color:var(--ink-3);font-size:12px;">Ninguna nota contiene todas esas palabras. Prueba con menos palabras o con el apellido.</div>`}`;
-  cont.scrollTop = 0;
-  const lim = cont.querySelector('#busq-limpiar'); if(lim) lim.addEventListener('click', ()=>{ window._busquedaPulsoActiva = false; if(typeof renderFeed==='function') renderFeed(); });
-  cont.querySelectorAll('.busq-tema').forEach(el=>el.addEventListener('click', ()=>{
-    const id = el.dataset.tema; if(typeof vistaAgenda!=='undefined' && vistaAgenda==='notas'){ temaNotasSeleccionado = id; const t = getTema(id); const sel = document.getElementById('agenda-tema-select'); if(sel&&t) sel.value = t.nombre; dibujarNotasConGrafoReal(); }
-    else if(typeof abrirFichaTema==='function') abrirFichaTema(id);
-  }));
-}
-function _ejecutarBusquedaAgenda(q){ const r = _buscarGlobalAgenda(q); if(r) _pintarBusquedaPulso(r); }
 
 function conectarBuscadorTemaAgenda(select){
   // UN SOLO escuchador para todo el ciclo de vida del campo -- antes Notas y Genealogía
@@ -295,20 +279,13 @@ function conectarBuscadorTemaAgenda(select){
     const q = select.value.trim().toLowerCase();
     if(q.length<2) return;
     const encontrado = temasDisponiblesActuales.find(t=>t.nombre.toLowerCase()===q) || temasDisponiblesActuales.find(t=>t.nombre.toLowerCase().includes(q));
-    if(!encontrado){ _ejecutarBusquedaAgenda(select.value); return; }
+    if(!encontrado) return;
     if(vistaAgenda==='genealogia'){
       temaGenealogiaSeleccionado = encontrado.id; genealogiaRevelados = 1; renderGenealogiaAgenda();
     } else {
       temaNotasSeleccionado = encontrado.id; dibujarNotasConGrafoReal();
     }
   });
-  if(!document.getElementById('agenda-buscar-notas')){
-    const b = document.createElement('button'); b.type='button'; b.id='agenda-buscar-notas'; b.title='Buscar estas palabras dentro de todas las notas y actores'; b.textContent = '🔍 Buscar en notas';
-    b.style.cssText = 'margin-left:6px;background:none;border:1px solid var(--line-strong);color:var(--teal);border-radius:var(--radius-s);padding:5px 9px;font-size:11px;cursor:pointer;white-space:nowrap;';
-    b.addEventListener('click', ()=>{ if(select.value.trim().length>=2) _ejecutarBusquedaAgenda(select.value); else select.focus(); });
-    select.insertAdjacentElement('afterend', b);
-  }
-  select.placeholder = 'Tema, o palabra de una nota…';
   select.dataset.buscadorConectado = '1';
 }
 

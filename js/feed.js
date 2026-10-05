@@ -49,7 +49,6 @@ function insigniaFuenteFeed(e){
 }
 
 function renderFeed(){
-  if(window._busquedaPulsoActiva) return; // hay una búsqueda en pantalla: el refresco automático no la borra
   // fecha de HOY en hora de México, no en UTC del navegador (evitar el desfase de husos horarios)
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'}); // 'en-CA' da formato YYYY-MM-DD directo
   // CORRECCIÓN: antes ordenaba solo por "fecha", pero como ya se filtró a solo el día de
