@@ -310,6 +310,32 @@ def timestamp_evento(e):
             return None
 
 
+UMBRAL_SIMILITUD_RETOMA = 0.25
+
+def _tokens_titular(txt):
+    """Palabras clave de un titular para comparar si dos notas hablan de lo mismo: sin
+    acentos, sin el " - Medio" que agrega el RSS al final, sin palabras cortas/comunes."""
+    import unicodedata
+    t = re.sub(r'\s[-|–]\s[^-|–]{2,40}$', '', txt or '')
+    t = unicodedata.normalize('NFKD', t.lower())
+    t = ''.join(c for c in t if not unicodedata.combining(c))
+    parar = {'para', 'como', 'esta', 'este', 'estan', 'sobre', 'entre', 'desde', 'hasta', 'tras',
+             'ante', 'sus', 'por', 'que', 'con', 'una', 'uno', 'del', 'los', 'las', 'mas', 'pero',
+             'sin', 'ser', 'fue', 'hay', 'dijo', 'dice', 'asegura', 'sheinbaum', 'claudia',
+             'nuevo', 'nueva', 'mexico', 'gobierno', 'presidenta', 'federal', 'nacional',
+             'millones', 'anuncia', 'plan', 'estado', 'hoy', 'tras', 'contra'}
+    return {w for w in re.findall(r'[a-z0-9]{4,}', t) if w not in parar}
+
+def _similitud_titulares(a, b):
+    """0 si comparten menos de 2 palabras clave (una sola palabra suelta no basta para
+    decir que es la misma historia); si no, |compartidas| / |el titular más corto|."""
+    ta, tb = _tokens_titular(a), _tokens_titular(b)
+    comunes = len(ta & tb)
+    if comunes < 2:
+        return 0.0
+    return comunes / min(len(ta), len(tb))
+
+
 def calcular():
     temas = cargar_csv('temas.csv')
     eventos = cargar_csv('eventos.csv')
@@ -816,20 +842,38 @@ def calcular():
             continue  # sin cobertura previa -- eso es "Nuevo", no "Retomado"
         dias_silencio = (hace_24h.date() - fechas_previas[-1]).days
         if dias_silencio >= UMBRAL_RETOMA_DIAS:
-            motivo = max(evs_ventana_pn, key=lambda e: float(e['intensidad']))
-            # la nota de la última vez que se cubrió ANTES del silencio -- sin esto "7+
-            # días de silencio" era una cifra que había que creerle al script; con el
-            # enlace de esa nota anterior al lado del de hoy, se puede verificar el
-            # silencio real comparando las dos fechas con la fuente en la mano.
+            # CORRECCIÓN -- pedido explícito: "el enlace pasado lleva a otra nota, no
+            # precisamente a la nota que se retomó". Un tema agrupa varias notas, y antes se
+            # tomaba como "anterior" simplemente la MÁS RECIENTE del tema antes del silencio
+            # (y como "motivo" la de mayor intensidad hoy) -- sin comprobar que fueran la
+            # MISMA historia: podían ser dos notas distintas del mismo tema (ej. el tema habla
+            # de Lego y la nota anterior es de otra cosa). Ahora se elige el PAR (nota de hoy,
+            # nota previa) que más se parece en contenido -- mismas palabras clave en el
+            # titular --, desempatando por la nota previa más reciente y la de hoy más
+            # intensa. Si ninguna nota previa comparte contenido real con la de hoy, NO se
+            # inventa un enlace "anterior": se omite en vez de mandar a una nota ajena.
             evs_previos = [e for e in evs if e['_ts'] < hace_24h]
-            anterior = max(evs_previos, key=lambda e: e['_ts'])
+            _mejor = None
+            for _hoy_e in evs_ventana_pn:
+                for _prev_e in evs_previos:
+                    _sim = _similitud_titulares(_hoy_e['descripcion'], _prev_e['descripcion'])
+                    _clave = (_sim, _prev_e['_ts'], float(_hoy_e['intensidad']))
+                    if _mejor is None or _clave > _mejor[0]:
+                        _mejor = (_clave, _hoy_e, _prev_e)
+            if _mejor and _mejor[0][0] >= UMBRAL_SIMILITUD_RETOMA:
+                motivo, anterior = _mejor[1], _mejor[2]
+            else:
+                motivo = max(evs_ventana_pn, key=lambda e: float(e['intensidad']))
+                anterior = None
             retomados.append({'id': tid, 'nombre': t['nombre'], 'categoria': t['categoria'],
-                               'dias_silencio': dias_silencio,
+                               # si se encontró la nota previa de la MISMA historia, el silencio se mide contra ESA nota
+                               'dias_silencio': (hace_24h.date() - anterior['_ts'].date()).days if anterior else dias_silencio,
                                'motivo': motivo['descripcion'][:220],
                                'impacto': _impacto_de(float(motivo['intensidad'])),
-                               'fuente_url': motivo.get('fuente_url') or t.get('fuente_url') or '',
-                               'fecha_anterior': anterior['_ts'].date().isoformat(),
-                               'fuente_url_anterior': anterior.get('fuente_url') or '',
+                               # sin respaldo en el enlace del TEMA: ese puede ser de otra nota del mismo tema
+                               'fuente_url': motivo.get('fuente_url') or '',
+                               'fecha_anterior': (anterior['_ts'].date() if anterior else fechas_previas[-1]).isoformat(),
+                               'fuente_url_anterior': (anterior.get('fuente_url') or '') if anterior else '',
                                '_dominio_top': identidad_medio(motivo)})
 
     # mismo criterio de diversidad de medio que Nuevos/Top 5
@@ -1321,6 +1365,19 @@ def calcular():
         # círculo se marca "apagado" (se dibuja atenuado) en vez de que el actor
         # simplemente se esfume del panel.
         activo_hoy = any(e['_ts'] >= inicio_hoy for e in evs_semana)
+        # CORRECCIÓN -- pedido explícito: "cada uno de sus movimientos deberá quedar registrado
+        # (pintada la línea), solo deja pintada la del día anterior". El tablero guardaba solo
+        # DOS puntos (antes de hoy / hoy), así que de la semana solo se veía el último tramo.
+        # Aquí se calcula la posición ACUMULADA al cierre de cada día con actividad, de lunes
+        # a hoy (mismo vol/intensidad que usa la pieza de hoy, pero cortado por día) -- el
+        # frontend une esos puntos y la línea cuenta la semana completa. El lunes solo hay
+        # un punto (el de hoy): la semana arranca de cero y no hay ningún tramo que pintar.
+        _trayec = []
+        for _d in sorted({e['_ts'].date() for e in evs_semana}):
+            _hasta = [e for e in evs_semana if e['_ts'].date() <= _d]
+            _vol = len(_hasta)
+            _int = sum(_peso(e) for e in _hasta) / _vol
+            _trayec.append((_d.isoformat(), _vol, _int))
         candidatos_tablero.append({
             'id': actor['id'], 'nombre': actor['nombre'], 'iniciales': actor.get('iniciales') or '',
             'vol_hoy': vol_hoy, 'vol_ayer': vol_ayer,
@@ -1331,6 +1388,7 @@ def calcular():
             'nota_url': nota_top.get('fuente_url') or '', 'nota_texto': nota_top['descripcion'][:200],
             'es_nuevo': vol_ayer == 0 and not evs_previos_hay, 'apagado': not activo_hoy,
             'categoria': categoria_dominante, 'dias_activo': dias_activo,
+            'trayec': _trayec,
         })
 
     # CORRECCIÓN -- pedido explícito: "ya quitaste a unos y pusiste a otros... no sirve de
@@ -1371,6 +1429,7 @@ def calcular():
         'impacto_nivel': c['impacto_nivel'], 'apagado': c['apagado'],
         'nota_url': c['nota_url'], 'nota_texto': c['nota_texto'], 'es_nuevo': c['es_nuevo'],
         'categoria': c['categoria'], 'dias_activo': c['dias_activo'],
+        'trayectoria': [{'fecha': f, 'x': _norm(v, max_vol), 'y': _norm(i, max_intens)} for f, v, i in c['trayec']],
     } for c in seleccionados], key=lambda c: c['x_hoy'] + c['y_hoy'], reverse=True)
 
     # ================================================================
