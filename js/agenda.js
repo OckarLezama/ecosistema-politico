@@ -312,15 +312,157 @@ function _franjaTemaNotas(temaId){
   }catch(e){}
   const tend = nHoy>nAyer ? ['↗ más notas que ayer','var(--riesgo-medio)'] : nHoy<nAyer ? ['↘ menos notas que ayer','var(--teal)'] : ['= mismo ritmo que ayer','var(--ink-3)'];
   const res = (tema.resumen||'').trim();
-  return `<div style="flex:none;padding:8px 14px 7px;font-size:11px;line-height:1.4;">
+  return `<div id="notas-franja" style="flex:none;padding:8px 14px 7px;font-size:11px;line-height:1.4;">
     <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;">
       ${etiqueta?`<span style="font-family:var(--f-mono);font-size:9px;font-weight:700;color:${color};border:1px solid ${color};border-radius:99px;padding:0 7px;">${etiqueta}</span>`:''}
       ${detalle?`<span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-2);">${detalle}</span>`:''}
       <span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-2);">Notas: hoy ${nHoy} · ayer ${nAyer} · últimos 7 días ${n7}</span>
       <span style="font-family:var(--f-mono);font-size:10px;color:${tend[1]};">${tend[0]}</span>
+      <button type="button" id="notas-btn-revision" title="Corregir notas mal clasificadas y proponer actores nuevos" style="margin-left:auto;background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:10.5px;cursor:pointer;padding:0;white-space:nowrap;">Revisión de notas ▾</button>
     </div>
     ${res?`<div title="${_escHtml(res)}" style="margin-top:4px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${_escHtml(res)}</div>`:''}
   </div>`;
+}
+
+// ---------- Revisión de notas (botón en la franja de Notas) ----------
+// Un analista corrige lo que el robot no pudo clasificar: notas que quedaron fuera de un tema, notas de la semana
+// sin tema de agenda y personas que aparecen en las notas pero no están en la base de actores. Sus decisiones se
+// guardan en su navegador; al terminar las copia y las pega en data/revision_notas.csv, y el robot las aplica solo.
+let _revisionCsv = [];
+(function(){
+  if(typeof fetch !== 'function') return;
+  fetch('data/revision_notas.csv?t='+Date.now()).then(r=>r.ok?r.text():null).then(txt=>{
+    if(!txt) return;
+    const filas = txt.trim().split(/\r?\n/); const cab = filas.shift().split(',').map(x=>x.trim());
+    _revisionCsv = filas.filter(Boolean).map(l=>{ const v = l.split(','); const o = {}; cab.forEach((k,i)=>o[k]=(v[i]||'').trim()); return o; });
+  }).catch(()=>{});
+})();
+const ROLES_REV = ['Mencionado','Investigado','Acusado','Responsable institucional','Autoridad','Operador','Reacción de oposición','Reacción del gobierno','Reacción social/mediática','Red empresarial'];
+const _STOP_NOMBRE = new Set(['estados','unidos','gobierno','secretaria','fiscalia','policia','presidente','presidenta','senado','camara','partido','instituto','banco','guardia','nueva','nuevo','san','santa','ciudad','estado','republica','tribunal','suprema','corte','congreso','comision','consejo','universidad','hospital','centro','mexico','conferencia','ultima','hora','video','foto','cuando','como','segun','sheinbaum','opinion','mañanera','mananera','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre','lunes','martes','miercoles','jueves','viernes','sabado','domingo','dice','tras','ante','para','desde','hasta','este','esta','estos','sobre','entre']);
+function _revDecisiones(){ const n = _lsGet('radarCalibAnalista'); try{ return JSON.parse(_lsGet('revNotas_'+n)||'{}'); }catch(e){ return {}; } }
+function _revGuardar(o){ _lsSet('revNotas_'+_lsGet('radarCalibAnalista'), JSON.stringify(o)); }
+function _revCsvCampo(v){ v = String(v==null?'':v); return /[",\n]/.test(v) ? '"'+v.replace(/"/g,'""')+'"' : v; }
+let _tokensTemasRev = null;
+function _afinidadTemas(texto, soloIds){
+  if(!_tokensTemasRev){ _tokensTemasRev = ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1).map(t=>({t, tk:_tokensClave(t.nombre+' '+(t.resumen||'').slice(0,160))})); }
+  const tn = _tokensClave(texto); let mejor = null;
+  _tokensTemasRev.forEach(x=>{ if(soloIds && !soloIds.includes(x.t.id)) return; let c = 0; tn.forEach(w=>{ if(x.tk.has(w)) c++; }); if(c>=2 && (!mejor || c>mejor.c)) mejor = {tema:x.t, c}; });
+  return mejor;
+}
+function _revResueltas(){ const u = new Set(), a = new Set(); _revisionCsv.forEach(r=>{ if(r.tipo==='nota') u.add(r.fuente_url); if(r.tipo==='actor') a.add(_normN(r.nombre)+'|'+r.tema_id); }); return {u,a}; }
+function _notasSinTemaRev(){
+  const d0 = _diaMX(6), temas = new Map(ECOSISTEMA.temas.map(t=>[t.id,t])), res = _revResueltas(), vistos = new Set();
+  const cuenta = { 'opinión':0, 'entretenimiento':0, 'alcance local':0, 'sin tema que coincida':0 }, cand = [];
+  ECOSISTEMA.eventos.forEach(e=>{
+    const t = temas.get(e.tema_id); if(e.fecha<d0 || (t && Number(t.nivel_relevancia)===1)) return;
+    if(!e.fuente_url || vistos.has(e.fuente_url) || res.u.has(e.fuente_url)) return; vistos.add(e.fuente_url);
+    const imp = impactoDeNota(e.descripcion); let motivo;
+    if(String(e.descripcion).startsWith('[Opinión]')) motivo = 'opinión';
+    else if(imp.razones.some(r=>/entretenimiento/.test(r))) motivo = 'entretenimiento';
+    else if(!imp.nacional) motivo = 'alcance local';
+    else motivo = 'sin tema que coincida';
+    cuenta[motivo]++;
+    if(motivo==='sin tema que coincida'){ const af = _afinidadTemas(e.descripcion); cand.push({e, imp, af}); }
+  });
+  cand.sort((a,b)=> ((b.af?b.af.c:0)-(a.af?a.af.c:0)) || (b.imp.score-a.imp.score));
+  return { total: vistos.size, cuenta, cand: cand.slice(0,25) };
+}
+function _fueraDeEsteTema(temaId){
+  const tema = getTema(temaId), evs = _eventosDeTema(temaId), res = _revResueltas();
+  const coh = new Set(notasCoherentes(evs, tema).map(e=>e.fuente_url));
+  const excluidas = evs.filter(e=>!coh.has(e.fuente_url) && !res.u.has(e.fuente_url)).slice(0,8);
+  const d0 = _diaMX(13), temas = new Map(ECOSISTEMA.temas.map(t=>[t.id,t])), tk = _tokensClave(tema.nombre+' '+(tema.resumen||'').slice(0,160)), vistos = new Set(), parecidas = [];
+  ECOSISTEMA.eventos.forEach(e=>{
+    const t = temas.get(e.tema_id); if(e.fecha<d0 || e.tema_id===temaId || (t && Number(t.nivel_relevancia)===1) || !e.fuente_url || vistos.has(e.fuente_url) || res.u.has(e.fuente_url)) return;
+    let c = 0; _tokensClave(e.descripcion).forEach(w=>{ if(tk.has(w)) c++; }); if(c>=3){ vistos.add(e.fuente_url); parecidas.push({e,c}); }
+  });
+  parecidas.sort((a,b)=>b.c-a.c);
+  return { excluidas, parecidas: parecidas.slice(0,8).map(x=>x.e) };
+}
+function _actoresNuevosRev(temaId){
+  const evs = _eventosDeTema(temaId), res = _revResueltas(), nombresBase = ECOSISTEMA.actores.map(a=>_normN(a.nombre.replace(/\(.*?\)/g,'')));
+  const re = /[A-ZÁÉÍÓÚÑ][a-záéíóúñ]{2,}(?:\s+(?:de|del|la|y)\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+|\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]{2,}){1,2}/g;
+  const cu = new Map();
+  evs.forEach(e=>{ const vistos = new Set(); (String(e.descripcion).match(re)||[]).forEach(m=>{
+    const n = _normN(m), toks = n.split(/\s+/); if(_STOP_NOMBRE.has(toks[0]) || _STOP_NOMBRE.has(toks[toks.length-1]) || vistos.has(n)) return; vistos.add(n);
+    if(nombresBase.some(b=>b.includes(n) || n.includes(b))) return;
+    const o = cu.get(n) || {nombre:m, notas:0, ej:e}; o.notas++; cu.set(n,o); }); });
+  return [...cu.values()].filter(o=>o.notas>=3 && !res.a.has(_normN(o.nombre)+'|'+temaId)).sort((a,b)=>b.notas-a.notas).slice(0,8);
+}
+function _htmlRevisionNotas(){
+  const tid = temaNotasSeleccionado, tema = getTema(tid), nombre = _lsGet('radarCalibAnalista'), dec = _revDecisiones();
+  const mono = 'font-family:var(--f-mono);font-size:9px;color:var(--ink-3);', sec = t=>`<div style="${mono}letter-spacing:.06em;margin:14px 0 4px;">${t}</div>`;
+  const opciones = ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1).sort((a,b)=>(String(a.id).startsWith('auto-')-String(b.id).startsWith('auto-')) || a.nombre.localeCompare(b.nombre,'es')).map(t=>`<option value="${t.id}">${_escHtml(_truncarEnPalabra(t.nombre,60))}</option>`).join('') + '<option value="descartar">No es de agenda nacional</option>';
+  const btnS = 'background:none;border:none;color:var(--teal);cursor:pointer;font-family:var(--f-mono);font-size:10.5px;padding:0;';
+  const filaNota = (e, sugerido, extra) => {
+    const dnota = dec['n|'+e.fuente_url];
+    const nomT = id => id==='descartar' ? 'No es de agenda nacional' : (getTema(id)?_truncarEnPalabra(getTema(id).nombre,50):id);
+    return `<div style="border-top:1px solid var(--line);padding:6px 0;font-size:10.5px;line-height:1.4;">
+      <span style="${mono}">${_escHtml(e.fecha)} · ${_escHtml(_medioDeEvento(e)||'')}</span> ${extra||''}<br>
+      <a href="${_escHtml(e.fuente_url)}" target="_blank" rel="noopener" style="color:var(--ink-1);text-decoration:none;">${_escHtml(_truncarEnPalabra(e.descripcion,150))}</a><br>
+      ${dnota ? `<span style="color:var(--riesgo-bajo);">✓ decidido: ${_escHtml(nomT(dnota))}</span> <button type="button" class="rev-deshacer" data-k="n|${_escHtml(e.fuente_url)}" style="${btnS}opacity:.7;">deshacer</button>`
+        : `<select class="rev-sel" style="max-width:260px;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);font-size:10.5px;padding:2px 4px;">${sugerido?opciones.replace(`value="${sugerido}"`,`value="${sugerido}" selected`):'<option value="">Elegir tema…</option>'+opciones}</select>
+           <button type="button" class="rev-ok" data-url="${_escHtml(e.fuente_url)}" style="${btnS}">Guardar</button>`}
+    </div>`; };
+  const f = _fueraDeEsteTema(tid), sinTema = _notasSinTemaRev(), nuevos = _actoresNuevosRev(tid);
+  const nDec = Object.keys(dec).length;
+  const motivoTag = m => `<span style="font-family:var(--f-mono);font-size:8.5px;border:1px solid var(--line-strong);border-radius:99px;padding:0 6px;color:var(--ink-3);">${m}</span>`;
+  return `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--f-display);font-size:13px;font-weight:600;">Revisión de notas</span>
+      <button type="button" id="rev-cerrar" style="${btnS}">Cerrar ▴</button></div>
+    <div style="font-size:10.5px;color:var(--ink-2);line-height:1.5;margin-top:6px;border-left:2px solid var(--line-strong);padding-left:8px;">
+      <b>¿Para qué sirve?</b> El robot clasifica las notas solo y a veces se equivoca o deja notas sin tema. Aquí un analista corrige: asigna una nota a su tema, marca las que no son de agenda nacional y propone personas nuevas.<br>
+      <b>¿Qué pasa con lo que decido?</b> Se guarda en este navegador. Al terminar, pulsa «Copiar mis decisiones» y pégalas en <b>data/revision_notas.csv</b>; el robot las aplica solo en su siguiente corrida.</div>
+    ${nombre ? `<div style="${mono}margin-top:8px;">Analista: ${_escHtml(nombre)}</div>` : `<div style="margin-top:10px;font-size:11px;">Para empezar, escribe tu nombre o iniciales: <input id="rev-nombre" type="text" maxlength="30" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);padding:4px 8px;font-size:11px;"> <button type="button" id="rev-empezar" style="${btnS}font-size:11px;">Empezar ▸</button></div>`}
+    ${nombre ? `
+    ${sec('ESTE TEMA · '+_escHtml(_truncarEnPalabra(tema.nombre,50)).toUpperCase())}
+    ${f.excluidas.length ? `<div style="font-size:10.5px;opacity:.75;">Notas de este tema que el radar dejó fuera del cálculo porque no parecen hablar de lo mismo. Si SÍ son de este tema, deja el tema seleccionado y guarda: el radar las contará. Si no, elige el tema correcto.</div>${f.excluidas.map(e=>filaNota(e,tid,'')).join('')}` : ''}
+    ${f.parecidas.length ? `<div style="font-size:10.5px;opacity:.75;margin-top:6px;">Notas de otros temas de bajo nivel que se parecen a este. ¿Son de este tema?</div>${f.parecidas.map(e=>filaNota(e,tid,'')).join('')}` : ''}
+    ${!f.excluidas.length && !f.parecidas.length ? '<div style="font-size:10.5px;opacity:.6;">Sin notas por revisar para este tema.</div>' : ''}
+    ${sec('POSIBLES ACTORES NUEVOS EN ESTE TEMA')}
+    ${nuevos.length ? `<div style="font-size:10.5px;opacity:.75;">Nombres que aparecen en 3 o más notas y no están en la base. Revisa que sean personas; el detector puede equivocarse.</div>` + nuevos.map(o=>{ const k = 'a|'+_normN(o.nombre)+'|'+tid, d = dec[k];
+        return `<div style="border-top:1px solid var(--line);padding:6px 0;font-size:10.5px;line-height:1.4;"><b>${_escHtml(o.nombre)}</b> <span style="opacity:.6;">· ${o.notas} notas</span><br><span style="opacity:.7;">${_escHtml(_truncarEnPalabra(o.ej.descripcion,120))}</span><br>
+          ${d ? `<span style="color:var(--riesgo-bajo);">✓ se propone dar de alta como «${_escHtml(d.rol)}»</span> <button type="button" class="rev-deshacer" data-k="${_escHtml(k)}" style="${btnS}opacity:.7;">deshacer</button>`
+          : `<input class="rev-cargo" placeholder="Cargo (opcional)" maxlength="60" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);font-size:10.5px;padding:2px 6px;width:150px;"> <select class="rev-rol" style="background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:var(--radius-s);font-size:10.5px;padding:2px 4px;">${ROLES_REV.map(r=>`<option>${r}</option>`).join('')}</select> <button type="button" class="rev-actor" data-nombre="${_escHtml(o.nombre)}" style="${btnS}">Dar de alta</button>`}</div>`; }).join('')
+      : '<div style="font-size:10.5px;opacity:.6;">No se detectaron nombres nuevos recurrentes en este tema.</div>'}
+    ${sec('NOTAS DE LA SEMANA SIN TEMA DE AGENDA')}
+    <div style="font-size:10.5px;color:var(--ink-2);line-height:1.45;">${sinTema.total} notas de los últimos 7 días no pertenecen a ningún tema de agenda: ${sinTema.cuenta['alcance local']} de alcance local, ${sinTema.cuenta['opinión']} de opinión, ${sinTema.cuenta['entretenimiento']} de entretenimiento o deportes y <b>${sinTema.cuenta['sin tema que coincida']} nacionales sin tema que coincida</b>. Abajo, las 25 que más podrían merecer un tema.</div>
+    ${sinTema.cand.map(c=>filaNota(c.e, c.af?c.af.tema.id:'', motivoTag(c.af?'sugerido: '+_escHtml(_truncarEnPalabra(c.af.tema.nombre,30)):'sin sugerencia'))).join('')}
+    <div style="border-top:1px solid var(--line);margin-top:12px;padding-top:8px;font-size:10.5px;">Tus decisiones: <b>${nDec}</b> ·
+      <button type="button" id="rev-copiar" style="${btnS}">Copiar mis decisiones</button> · <button type="button" id="rev-borrar" style="${btnS}opacity:.7;">Borrar todas</button> <span id="rev-msg" style="color:var(--riesgo-bajo);"></span></div>` : ''}`;
+}
+function _montarRevisionNotas(){
+  const cont = document.getElementById('agenda-contenido'); if(!cont) return;
+  const viejo = document.getElementById('notas-panel-revision'); if(viejo) viejo.remove();
+  const btn = document.getElementById('notas-btn-revision'); if(!btn) return;
+  cont.style.position = 'relative';
+  const panel = document.createElement('div'); panel.id = 'notas-panel-revision'; panel.className = 'radar-lectura-scroll';
+  panel.style.cssText = 'position:absolute;left:0;right:0;bottom:0;z-index:30;background:var(--bg-1);padding:10px 16px 18px;font-size:11px;color:var(--ink-1);display:none;';
+  cont.appendChild(panel);
+  const rellenar = () => {
+    const y = panel.scrollTop; panel.innerHTML = _htmlRevisionNotas(); panel.scrollTop = y;
+    const q = s => panel.querySelector(s), qa = s => panel.querySelectorAll(s);
+    const cerrar = () => { panel.style.display = 'none'; btn.textContent = 'Revisión de notas ▾'; };
+    if(q('#rev-cerrar')) q('#rev-cerrar').addEventListener('click', cerrar);
+    if(q('#rev-empezar')) q('#rev-empezar').addEventListener('click', ()=>{ const v = (q('#rev-nombre').value||'').trim().replace(/[,\n]/g,' '); if(v){ _lsSet('radarCalibAnalista', v); rellenar(); } });
+    qa('.rev-ok').forEach(b=>b.addEventListener('click', ()=>{ const v = b.parentElement.querySelector('.rev-sel').value; if(!v) return; const d = _revDecisiones(); d['n|'+b.dataset.url] = v; _revGuardar(d); rellenar(); }));
+    qa('.rev-actor').forEach(b=>b.addEventListener('click', ()=>{ const d = _revDecisiones(); d['a|'+_normN(b.dataset.nombre)+'|'+temaNotasSeleccionado] = { nombre:b.dataset.nombre, tema:temaNotasSeleccionado, cargo:b.parentElement.querySelector('.rev-cargo').value.trim(), rol:b.parentElement.querySelector('.rev-rol').value }; _revGuardar(d); rellenar(); }));
+    qa('.rev-deshacer').forEach(b=>b.addEventListener('click', ()=>{ const d = _revDecisiones(); delete d[b.dataset.k]; _revGuardar(d); rellenar(); }));
+    if(q('#rev-borrar')) q('#rev-borrar').addEventListener('click', ()=>{ _revGuardar({}); rellenar(); });
+    if(q('#rev-copiar')) q('#rev-copiar').addEventListener('click', ()=>{
+      const nom = _lsGet('radarCalibAnalista'), f = _hoyMX();
+      const csv = Object.entries(_revDecisiones()).map(([k,v])=> k.startsWith('n|')
+        ? ['nota',k.slice(2),v,'','','',nom,f].map(_revCsvCampo).join(',')
+        : ['actor','',v.tema,v.nombre,v.cargo,v.rol,nom,f].map(_revCsvCampo).join(',')).join('\n');
+      const ok = ()=>{ q('#rev-msg').textContent = ' ✓ copiado; pégalo al final de data/revision_notas.csv'; };
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(csv).then(ok).catch(()=>{ q('#rev-msg').textContent = ' (no se pudo copiar)'; });
+      else { const ta = document.createElement('textarea'); ta.value = csv; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} ta.remove(); }
+    });
+  };
+  btn.addEventListener('click', ()=>{
+    if(panel.style.display==='none'){ const fr = document.getElementById('notas-franja'); panel.style.top = (fr?fr.offsetHeight:0)+'px'; rellenar(); panel.style.display = 'block'; btn.textContent = 'Revisión de notas ▴'; panel.scrollTop = 0; }
+    else { panel.style.display = 'none'; btn.textContent = 'Revisión de notas ▾'; }
+  });
 }
 
 function conectarBuscadorTemaAgenda(select){
@@ -597,6 +739,7 @@ function dibujarNotasConGrafoReal(){
   seleccion = { nucleo:temaNotasSeleccionado, cruce1:null, cruce2:null };
   renderGrafo('notas-svg');
   modoRed = modoPrevio; seleccion = seleccionPrevia;
+  _montarRevisionNotas();
 }
 
 function dibujarNotasAgenda(temaId){
@@ -1339,10 +1482,17 @@ const _GENERICAS = new Set(['claudia','sheinbaum','presidenta','presidente','mex
 function _tokensClave(txt){
   return new Set((_normTxt(txt).replace(/\s[-|]\s[^-|]{2,40}$/,'').match(/[a-z0-9-]{4,}/g)||[]).filter(w=>!_GENERICAS.has(w)));
 }
+// notas que un analista confirmó como pertenecientes a su tema (data/revision_notas.csv) cuentan aunque el filtro no las reconozca
+let _confirmadasRev = new Set(), _confirmadasLen = -1;
+function _revConfirmada(e, tema){
+  if(typeof _revisionCsv==='undefined') return false;
+  if(_confirmadasLen !== _revisionCsv.length){ _confirmadasLen = _revisionCsv.length; _confirmadasRev = new Set(_revisionCsv.filter(r=>r.tipo==='nota').map(r=>r.tema_id+'|'+r.fuente_url)); }
+  return _confirmadasRev.has(tema.id+'|'+e.fuente_url);
+}
 function notasCoherentes(evs, tema){
   const nucleo = _tokensClave(tema.nombre);
   if(!nucleo.size) return evs;
-  const coh = evs.filter(e=>{ const t=_tokensClave(e.descripcion); for(const w of nucleo) if(t.has(w)) return true; return false; });
+  const coh = evs.filter(e=>{ if(_revConfirmada(e,tema)) return true; const t=_tokensClave(e.descripcion); for(const w of nucleo) if(t.has(w)) return true; return false; });
   return coh;
 }
 
