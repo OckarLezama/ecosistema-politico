@@ -15,6 +15,15 @@ R_T, R_E, R_A, R_TA, R_LOG = 'data/temas.csv', 'data/eventos.csv', 'data/actores
 VENTANA = 21
 
 HISTORIAS = [
+    {'id': 'morena-coordinadores-distritales', 'nombre': 'Coordinaciones distritales federales de Morena 2027', 'categoria': 'Gobernabilidad',
+     'resumen': 'Convocatoria y registro de aspirantes a coordinadores distritales federales de Morena rumbo a las elecciones de 2027.',
+     're': r'coordinaci[oó]n(es)? distrital|coordinador(a|es|as)? distrital|distrito \w+ federal de morena', 'no_re': r'^$'},
+    {'id': 'ley-antimemes', 'nombre': 'Ley Antimemes y reforma de propiedad industrial', 'categoria': 'Gobernabilidad',
+     'resumen': 'Reforma sobre propiedad industrial/derechos de autor apodada «Ley Antimemes»: aprobación en comisiones y Senado, críticas por riesgo de censura y aclaraciones de la presidenta.',
+     're': r'antimeme|anti memes|anti-memes|cárcel por hacer memes|criminaliza la risa|prohibici[oó]n de memes|censura de memes|prohibir memes|no prohíbe memes', 'no_re': r'mejores memes'},
+    {'id': 'operacion-enjambre', 'nombre': 'Operación Enjambre: alcaldes y funcionarios detenidos', 'categoria': 'Seguridad Nacional',
+     'resumen': 'Operativos contra alcaldes, exalcaldes y funcionarios municipales por presuntos nexos con el crimen organizado.',
+     're': r'operaci[oó]n enjambre|operativo enjambre', 'no_re': r'^$'},
     {'id': 'morena-coordinadores-2027', 'nombre': 'Coordinadores estatales de Morena rumbo a 2027', 'categoria': 'Gobernabilidad',
      'resumen': 'Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.',
      're': r'coordinador(a|es|as)?\b.*(morena|4t|transformaci[oó]n|defensa de)|morena\b.*coordinador|clouthier|clara luz|cruz p[eé]rez cu[eé]llar|jasmine bugar|lorenia valles|ana lilia rivera|andrea ch[aá]vez',
@@ -42,6 +51,9 @@ COORD = [
 
 # actores ya existentes para temas curados que tenían 0-1 actores; solo entran si aparecen en las notas del tema
 SEMILLAS = {
+    'morena-coordinadores-distritales': [('morena_partido','Responsable institucional',r'morena'),('montiel','Responsable institucional',r'montiel'),('citlalli','Responsable institucional',r'citlalli'),('sheinbaum','Responsable institucional',r'sheinbaum'),('jesus_selvan_garcia','Reacción de oposición',r'selv[aá]n')],
+    'ley-antimemes': [('sheinbaum','Reacción del gobierno',r'sheinbaum'),('pan_partido','Reacción de oposición',r'\bpan\b'),('morena_partido','Responsable institucional',r'morena'),('mc_partido','Reacción de oposición',r'\bmc\b|movimiento ciudadano'),('monreal','Responsable institucional',r'monreal')],
+    'operacion-enjambre': [('godoy','Responsable institucional',r'godoy|fgr'),('garcia_harfuch','Responsable institucional',r'harfuch'),('sheinbaum','Reacción del gobierno',r'sheinbaum')],
     'intervencion-militar-eeuu': [('trump','Responsable institucional',r'trump'),('sheinbaum','Reacción del gobierno',r'sheinbaum'),('rubio','Responsable institucional',r'rubio'),('pete_hegseth','Responsable institucional',r'hegseth'),('landau','Responsable institucional',r'landau'),('garcia_harfuch','Reacción del gobierno',r'harfuch')],
     'aranceles-trump-mexico': [('trump','Responsable institucional',r'trump'),('sheinbaum','Reacción del gobierno',r'sheinbaum'),('ebrard','Responsable institucional',r'ebrard'),('howard_lutnick','Responsable institucional',r'lutnick'),('jamieson_greer','Responsable institucional',r'greer')],
     'visas-politicos-eeuu': [('rubio','Responsable institucional',r'rubio'),('landau','Responsable institucional',r'landau'),('sheinbaum','Reacción del gobierno',r'sheinbaum'),('trump','Responsable institucional',r'trump')],
@@ -116,10 +128,10 @@ def main():
                 fila.update({'id': aid, 'nombre': nombre, 'cargo': cargo, 'nucleo': 'C', 'nivel_riesgo': 'bajo', 'nivel_influencia': '4',
                              'iniciales': ''.join(w[0] for w in nombre.split()[:2]).upper(), 'descripcion': cargo + '.', 'fuente_nombre': 'Curaduría (notas del tema)'})
                 actores.append(fila); ids.add(aid); por_nombre[norm(nombre)] = aid; altas += 1
-        if aid in ids: vincular('morena-coordinadores-2027', aid, rol, clave, 'Aparece en las notas del tema con este papel.')
+        if aid in ids: vincular('morena-coordinadores-2027', aid, rol, clave, '')
     for tema, lista in SEMILLAS.items():
         for aid, rol, clave in lista:
-            if aid in ids: vincular(tema, aid, rol, clave, 'Aparece en las notas del tema.')
+            if aid in ids: vincular(tema, aid, rol, clave, '')
     print(f'curaduría: {altas} actor(es) nuevos · {vinc} vínculo(s) con certeza')
     if log:
         escribir(R_E, ce, ev); escribir(R_T, ct, temas)
