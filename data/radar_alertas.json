@@ -3,6 +3,20 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-10-06|entro_critica|el-mencho",
+   "ts": "2026-10-06T12:12:35-06:00",
+   "tipo": "entro_critica",
+   "tema_id": "el-mencho",
+   "texto": "▲ Abatimiento de \"El Mencho\" pasó a crítico (impacto 7, 5 medios)"
+  },
+  {
+   "id": "2026-10-06|inflexion|el-mencho|2026-10-06|trigger",
+   "ts": "2026-10-06T12:12:35-06:00",
+   "tipo": "inflexion",
+   "tema_id": "el-mencho",
+   "texto": "⚡ Posible trigger en «Abatimiento de \"El Mencho\"» (10-06): Lo normal del tema son ~0.3 notas al día; ese día fueron 3 (por azar eso pasaría en menos de 1 de cada 300 días)."
+  },
+  {
    "id": "2026-10-06|inflexion|morena-coordinadores-distritales|2026-10-04|trigger",
    "ts": "2026-10-06T11:57:34-06:00",
    "tipo": "inflexion",

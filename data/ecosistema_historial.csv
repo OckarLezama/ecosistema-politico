@@ -1,13 +1,13 @@
 fecha,tipo,id,nombre,temperatura,peso,hechos_48h,hechos_7d,impacto
-2026-10-06,tema,huachicol-fiscal,Huachicol Fiscal,fuego,100,6,12,9
+2026-10-06,tema,huachicol-fiscal,Huachicol Fiscal,fuego,100,7,13,9
 2026-10-06,tema,visa-de-andy,Visa de Andy,fuego,87,2,7,7.8
 2026-10-06,tema,visas-politicos-eeuu,Revocación de Visas a Políticos Mexicanos,apagado,8,0,0,2
 2026-10-06,tema,tmec-revision,Revisión del T-MEC,caliente,78,4,7,7
 2026-10-06,tema,carlos-manzo,Asesinato de Carlos Manzo,apagado,28,0,1,4.9
 2026-10-06,tema,rocha-moya-acusacion,Acusación de Narcotráfico contra Rocha Moya,tibio,41,1,2,5.5
 2026-10-06,tema,intervencion-militar-eeuu,Amenazas de Intervención Militar de Trump,apagado,21,0,0,5.4
-2026-10-06,tema,la-barredora,La Barredora,apagado,36,0,1,6.4
-2026-10-06,tema,el-mencho,"Abatimiento de ""El Mencho""",caliente,49,2,2,6.6
+2026-10-06,tema,la-barredora,La Barredora,tibio,48,1,2,6.4
+2026-10-06,tema,el-mencho,"Abatimiento de ""El Mencho""",fuego,65,3,3,7
 2026-10-06,tema,sinaloa-crisis,Crisis de Violencia en Sinaloa (Chapitos vs. Mayos),fuego,100,3,8,9
 2026-10-06,tema,segundo-informe-gobierno-2026,Segundo Informe de Gobierno de Claudia Sheinbaum,apagado,23,0,0,5.8
 2026-10-06,tema,auto-91a10c8965,Gobernador Salomón Jara condena el asesinato de Amy Navarrete en Oaxaca y refuer,apagado,25,0,0,6.4
@@ -20,14 +20,14 @@ fecha,tipo,id,nombre,temperatura,peso,hechos_48h,hechos_7d,impacto
 2026-10-06,tema,carlos-torres-ofac-mayiza,"Carlos Torres, exesposo de Marina del Pilar: sanciones OFAC y La Mayiza",apagado,49,0,1,8.6
 2026-10-06,tema,embajador-johnson-queretaro,Embajador Johnson en Querétaro: invitación del gobernador Kuri,caliente,15,2,2,2
 2026-10-06,actor,sheinbaum,Claudia Sheinbaum Pardo,,100,,,
-2026-10-06,actor,rocha_moya,Rubén Rocha Moya,,35,,,
+2026-10-06,actor,rocha_moya,Rubén Rocha Moya,,34,,,
 2026-10-06,actor,amilcar_olan_aparicio,Amílcar Olán Aparicio,,26,,,
 2026-10-06,actor,morena_partido,Morena (partido político),,17,,,
 2026-10-06,actor,alito_moreno,Alejandro Moreno Cárdenas,,16,,,
 2026-10-06,actor,montiel,Ariadna Montiel,,12,,,
 2026-10-06,actor,marina_pilar,Marina del Pilar Ávila,,12,,,
-2026-10-06,actor,pri_partido,Partido Revolucionario Institucional (PRI),,11,,,
-2026-10-06,actor,garcia_harfuch,Omar García Harfuch,,11,,,
+2026-10-06,actor,garcia_harfuch,Omar García Harfuch,,12,,,
+2026-10-06,actor,pri_partido,Partido Revolucionario Institucional (PRI),,10,,,
 2026-10-06,actor,jasmine_bugarin_rodriguez,Jasmine Bugarín Rodríguez,,10,,,
 2026-10-06,actor,farias_fernando,Fernando Farías Laguna,,10,,,
 2026-10-06,actor,farias_manuel,Manuel Roberto Farías Laguna,,10,,,
@@ -52,8 +52,8 @@ fecha,tipo,id,nombre,temperatura,peso,hechos_48h,hechos_7d,impacto
 2026-10-06,actor,andy,Andrés Manuel López Beltrán ('Andy'),,6,,,
 2026-10-06,actor,carlos_torres_exesposo_mp,Carlos Torres (exesposo de Marina del Pilar),,5,,,
 2026-10-06,actor,salgado_macedonio,José Félix Salgado Macedonio,,5,,,
+2026-10-06,actor,hernan_bermudez,Hernán Bermúdez Requena,,5,,,
 2026-10-06,actor,enrique_inzunza,Enrique Inzunza Cázarez,,4,,,
-2026-10-06,actor,hernan_bermudez,Hernán Bermúdez Requena,,4,,,
 2026-10-06,actor,manzo,Carlos Manzo Rodríguez,,3,,,
 2026-10-06,actor,octavio_romero_oropeza,Octavio Romero Oropeza,,3,,,
 2026-10-06,actor,julio_hernandez_lopez,Julio Hernández López,,3,,,
@@ -67,7 +67,7 @@ fecha,tipo,id,nombre,temperatura,peso,hechos_48h,hechos_7d,impacto
 2026-10-06,actor,silva_romo,Luis Alfonso Silva Romo,,2,,,
 2026-10-06,actor,adan_augusto,Adán Augusto López Hernández,,2,,,
 2026-10-06,actor,salomon_jara,Salomón Jara Cruz,,2,,,
-2026-10-06,actor,ronald_johnson,Ronald Johnson,,1,,,
 2026-10-06,actor,soto_picha,Juan Carlos Soto Picha,,1,,,
+2026-10-06,actor,ronald_johnson,Ronald Johnson,,1,,,
 2026-10-06,actor,sanchez_ramos,Paloma Sánchez Ramos,,1,,,
 2026-10-06,actor,alejandro_armenta,Alejandro Armenta Mier,,1,,,
