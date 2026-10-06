@@ -1299,59 +1299,167 @@ function poblarFiltroCategoriaAgenda(){
 }
 
 
-// ===== Vista ECOSISTEMA: todos los temas de agenda y sus actores en un solo grafo =====
-// Círculo grande = tema (color de su categoría, tamaño por impacto). Punto = actor confirmado. Un actor unido a varios temas es un
-// «puente»: une historias. Sirve para ver qué actores sostienen la agenda y qué tan concentrada o dispersa está.
+// ===== MODELO DEL ECOSISTEMA =====
+// Todo se calcula solo a partir de los temas que ya pasan el filtro de Notas, así que un tema nuevo entra solo.
+// Mide PESO EN LA AGENDA DE NOTICIAS (exposición y actividad), no poder político real ni aprobación.
+const ROL_PESO = {'Investigado':1,'Acusado':1,'Responsable institucional':0.8,'Autoridad':0.7,'Operador':0.7,'Red empresarial':0.7,'Reacción de oposición':0.5,'Reacción del gobierno':0.5,'Reacción social/mediática':0.4,'Mencionado':0.2};
+const TEMP_INFO = {
+  fuego:   { txt:'En llamas', color:'var(--riesgo-alto)',  expl:'2 o más hechos en 48 h, ritmo claramente mayor al de las últimas 2 semanas e impacto 7 o más' },
+  caliente:{ txt:'Caliente',  color:'var(--riesgo-medio)', expl:'al menos un hecho nuevo en las últimas 48 h' },
+  tibio:   { txt:'Tibio',     color:'var(--arena)',        expl:'hechos en la última semana, pero ninguno en 48 h' },
+  apagado: { txt:'Apagado',   color:'var(--ink-3)',        expl:'sin hechos nuevos en 7 días' },
+};
+function _tempTema(tema, d){
+  const hs = _hechosDeTema(tema.id), ayer = _diaMX(1), h7d = _diaMX(6), h14d = _diaMX(13);
+  const h48 = hs.filter(h=>h.fecha>=ayer).length, h7 = hs.filter(h=>h.fecha>=h7d).length, h14 = hs.filter(h=>h.fecha>=h14d).length;
+  const prom = h14/14, ritmo = h48/2, imp = d ? d.riesgoReal : 0;
+  const nivel = (h48>=2 && imp>=7 && (prom===0 || ritmo>=1.5*prom)) ? 'fuego' : h48>=1 ? 'caliente' : h7>=1 ? 'tibio' : 'apagado';
+  const tend = ritmo>prom*1.2 ? 'sube' : ritmo<prom*0.6 ? 'baja' : 'estable';
+  return { nivel, h48, h7, h14, tend, imp };
+}
+function modeloEcosistema(cat, sinActorId, filtroTemp){
+  const temasAg = ECOSISTEMA.temas.filter(t=>(!cat || t.categoria===cat) && enNotas(t));
+  const imp = new Map(calcularDatosRadarAgenda(temasAg).map(d=>[d.tema.id, d]));
+  let T = temasAg.map(t=>{
+    const d = imp.get(t.id), tm = _tempTema(t, d), evs = _eventosDeTema(t.id), links = []; let sinRespaldo = 0;
+    _actoresDeTema(t.id).forEach(x=>{ const a = getActor(x.actor_id); if(!a || a.id===sinActorId) return;
+      const men = _mencionesActor(a, evs); if(!men.length){ sinRespaldo++; return; }   // vínculo sin ninguna nota que mencione al actor: no se dibuja
+      links.push({ actor:a, rol:x.rol, n:men.length, n14:men.filter(e=>_diasAtras(e.fecha)<14).length }); });
+    const peso = (tm.imp/10) * (0.35 + 0.65*Math.min(1, tm.h7/4));
+    return { tema:t, d, ...tm, links, sinRespaldo, peso };
+  });
+  const sinRespaldoTotal = T.reduce((a,t)=>a+t.sinRespaldo, 0);
+  if(filtroTemp) T = T.filter(t=>t.nivel===filtroTemp);
+  const conteo = {fuego:0, caliente:0, tibio:0, apagado:0}; T.forEach(t=>conteo[t.nivel]++);
+  const M = new Map();
+  T.forEach(t=>t.links.forEach(l=>{ let o = M.get(l.actor.id); if(!o){ o = {actor:l.actor, lista:[], peso:0, n14:0}; M.set(l.actor.id, o); }
+    o.lista.push({tema:t.tema, rol:l.rol, t, n:l.n}); o.peso += t.peso*(ROL_PESO[l.rol]??0.3); o.n14 += l.n14; }));
+  M.forEach(o=>{ o.peso *= (1 + Math.min(0.5, o.n14/20)); });
+  const A = [...M.values()].sort((a,b)=>b.peso-a.peso), max = A[0] ? A[0].peso : 1;
+  A.forEach(o=>{ o.pct = Math.round(100*o.peso/max);
+    const principal = [...o.lista].sort((a,b)=>(ROL_PESO[b.rol]??0.3)*b.t.peso - (ROL_PESO[a.rol]??0.3)*a.t.peso)[0];
+    const calientes = o.lista.filter(x=>x.t.nivel==='fuego' || x.t.nivel==='caliente').length;
+    o.razon = `aparece en ${o.lista.length} tema${o.lista.length!==1?'s':''}` + (principal ? ` (su papel de mayor peso: ${((typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[principal.rol])||principal.rol).toLowerCase()} en «${_truncarEnPalabra(principal.tema.nombre,40)}»)` : '') + `, ${o.n14} ${o.n14!==1?'menciones':'mención'} en 14 días` + (calientes ? `, ${calientes} de sus temas calientes o en llamas` : ''); });
+  const total = A.reduce((a,o)=>a+o.peso, 0) || 1; let acum = 0, k50 = 0;
+  for(const o of A){ acum += o.peso; k50++; if(acum >= total*0.5) break; }
+  const top3 = Math.round(100*A.slice(0,3).reduce((a,o)=>a+o.peso,0)/total);
+  // bloques: temas que comparten actores (sin contar actores que están en casi todo, que unirían todo en uno solo)
+  const hub = o => o.lista.length >= Math.max(4, 0.4*T.length);
+  const idx = new Map(T.map((t,i)=>[t.tema.id,i])), W = T.map(()=>new Map());
+  A.filter(o=>!hub(o)).forEach(o=>{ const ids = o.lista.map(x=>idx.get(x.tema.id)); ids.forEach(a=>ids.forEach(b=>{ if(a!==b) W[a].set(b,(W[a].get(b)||0)+1); })); });
+  let lab = T.map((_,i)=>i);
+  for(let it=0; it<12; it++){ let cambio = false;
+    T.forEach((_,i)=>{ const sum = new Map(); W[i].forEach((w,j)=>sum.set(lab[j],(sum.get(lab[j])||0)+w)); if(!sum.size) return;
+      let mejor = lab[i], mw = sum.get(lab[i])||0; [...sum.entries()].sort((a,b)=>b[1]-a[1]||a[0]-b[0]).forEach(([l,w])=>{ if(w>mw){ mw = w; mejor = l; } });
+      if(mejor!==lab[i]){ lab[i] = mejor; cambio = true; } });
+    if(!cambio) break; }
+  const grupos = new Map(); T.forEach((t,i)=>{ if(!grupos.has(lab[i])) grupos.set(lab[i], []); grupos.get(lab[i]).push(t); });
+  const bloques = [...grupos.values()].filter(g=>g.length>=2).map(g=>{ const cats = {}; g.forEach(t=>cats[t.tema.categoria]=(cats[t.tema.categoria]||0)+1);
+    const cat = Object.entries(cats).sort((a,b)=>b[1]-a[1])[0][0], lider = [...g].sort((a,b)=>b.peso-a.peso)[0];
+    return { temas:g, cat, lider:lider.tema, peso:g.reduce((a,t)=>a+t.peso,0) }; }).sort((a,b)=>b.peso-a.peso);
+  const central = [...T].sort((a,b)=>b.peso-a.peso)[0] || null;
+  return { T, A, conteo, k50, top3, bloques, central, sinRespaldoTotal, hub };
+}
+let _ecoFiltroTemp = null, _ecoSinTop = false;
+function _lecturaEcosistema(m, sinNombre){
+  const L = [];
+  if(m.central) L.push(`La agenda gira hoy en torno a <b>«${_escHtml(_truncarEnPalabra(m.central.tema.nombre,60))}»</b> (${TEMP_INFO[m.central.nivel].txt.toLowerCase()}, impacto ${m.central.imp} de 10).`);
+  if(m.A[0]) L.push(`Actor de mayor peso${sinNombre?' (sin '+_escHtml(sinNombre)+')':''}: <b>${_escHtml(m.A[0].actor.nombre.replace(/\(.*?\)/g,'').trim())}</b> — ${_escHtml(m.A[0].razon)}.`);
+  if(m.A.length){ const niv = m.k50<=3 ? 'muy concentrada en pocas figuras' : m.k50<=6 ? 'concentrada' : 'repartida entre muchos actores'; L.push(`${m.k50} actor${m.k50!==1?'es':''} reúnen la mitad del peso (los 3 primeros, ${m.top3}%): la agenda está <b>${niv}</b>.`); }
+  return L;
+}
 function renderEcosistemaAgenda(){
   const cont = document.getElementById('agenda-contenido'); if(!cont) return;
   const sw = document.getElementById('agenda-tema-select-wrap'); if(sw) sw.style.display = 'none';
   const lg = document.getElementById('agenda-notas-leyenda'); if(lg) lg.style.display = 'none';
-  const temas = ECOSISTEMA.temas.filter(t=>(!categoriaFiltroAgenda || t.categoria===categoriaFiltroAgenda) && enNotas(t));
-  const datos = calcularDatosRadarAgenda(temas), imp = new Map(datos.map(d=>[d.tema.id, d]));
-  const porActor = new Map();
-  temas.forEach(t=>_actoresDeTema(t.id).forEach(x=>{ if(!getActor(x.actor_id)) return; if(!porActor.has(x.actor_id)) porActor.set(x.actor_id, []); porActor.get(x.actor_id).push({tema:t, rol:x.rol}); }));
-  const puentes = [...porActor.entries()].filter(([id,l])=>l.length>=2).sort((a,b)=>b[1].length-a[1].length);
-  const topPuentes = puentes.slice(0,5).map(([id,l])=>`${_escHtml(getActor(id).nombre.replace(/\(.*?\)/g,'').trim())} (${l.length} temas)`).join(' · ');
-  cont.innerHTML = `<div style="flex:none;padding:8px 14px 4px;font-size:11px;line-height:1.5;color:var(--ink-2);">
-      <b style="color:var(--ink-1);">${temas.length} temas de agenda · ${porActor.size} actores confirmados · ${puentes.length} actores puente</b> (aparecen en 2 o más temas).
-      ${puentes.length ? `<br><span style="font-family:var(--f-mono);font-size:10px;">Puentes principales: ${topPuentes}</span>` : ''}
-      <br>${[...new Set(temas.map(t=>t.categoria))].map(c=>`<span style="white-space:nowrap;margin-right:10px;font-size:10px;"><span class="legend-dot" style="background:${colorCategoria(c)}"></span>${_escHtml(c)}</span>`).join('')}<br><span style="font-size:10px;opacity:.75;">Círculo grande = tema (tamaño = impacto) · punto = actor · línea turquesa punteada = vínculo entre actores · clic en un tema para abrir sus notas · rueda del ratón para acercar o alejar.</span></div>
-    <svg id="eco-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
+  const base = modeloEcosistema(categoriaFiltroAgenda, null, null), topBase = base.A[0] ? base.A[0].actor : null;
+  const sinId = (_ecoSinTop && topBase) ? topBase.id : null;
+  const m = modeloEcosistema(categoriaFiltroAgenda, sinId, _ecoFiltroTemp);
+  const sinNombre = sinId ? topBase.nombre.replace(/\(.*?\)/g,'').trim() : '';
+  const chip = (k) => { const ti = TEMP_INFO[k], act = _ecoFiltroTemp===k; return `<button type="button" class="eco-chip-t" data-k="${k}" title="${_escHtml(ti.txt+': '+ti.expl)}" style="background:${act?'var(--bg-3,rgba(255,255,255,.08))':'none'};border:1px solid ${ti.color};color:var(--ink-1);border-radius:99px;padding:1px 9px;font-size:10.5px;cursor:pointer;"><span class="legend-dot" style="background:${ti.color}"></span>${ti.txt} ${base.conteo[k]}</button>`; };
+  const L = _lecturaEcosistema(m, sinNombre);
+  const bloquesTxt = m.bloques.length ? m.bloques.slice(0,4).map(b=>`${_escHtml(b.cat)}: «${_escHtml(_truncarEnPalabra(b.lider.nombre,32))}» y ${b.temas.length-1} más`).join(' · ') : 'sin bloques claros: los temas casi no comparten actores';
+  cont.innerHTML = `<div style="flex:none;padding:8px 14px 2px;font-size:11px;line-height:1.5;color:var(--ink-2);">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;"><span style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);">TEMPERATURA</span>${['fuego','caliente','tibio','apagado'].map(chip).join('')}
+        ${_ecoFiltroTemp?`<button type="button" id="eco-quitar" style="background:none;border:none;color:var(--teal);font-size:10.5px;cursor:pointer;">ver todos</button>`:''}
+        <span style="margin-left:auto;font-family:var(--f-mono);font-size:10px;">${m.T.length} temas · ${m.A.length} actores · ${m.A.filter(o=>o.lista.length>=2).length} puentes</span></div>
+      ${L.map(x=>`<div style="margin-top:3px;">${x}</div>`).join('')}
+      <details style="margin-top:3px;"><summary style="cursor:pointer;color:var(--teal);font-size:10.5px;">Bloques, método y límites</summary>
+        <div style="margin-top:4px;font-size:10.5px;"><b>Bloques de temas</b> (comparten actores): ${bloquesTxt}.<br>
+        <b>Cómo se calcula el peso:</b> peso del tema = impacto × actividad de la semana. Peso del actor = suma, en cada tema donde aparece, del peso del tema × la importancia de su papel (investigado o acusado 1.0 · responsable institucional 0.8 · autoridad, operador o red empresarial 0.7 · reacción 0.4 a 0.5 · mencionado 0.2), con un extra por menciones en 14 días.<br>
+        <b>Temperatura:</b> ${['fuego','caliente','tibio','apagado'].map(k=>`${TEMP_INFO[k].txt} = ${TEMP_INFO[k].expl}`).join(' · ')}.<br>
+        <b>Límites:</b> mide el peso en la agenda de noticias, no poder real ni aprobación. Los pesos de papeles y umbrales son criterio de diseño aún sin validar por analistas. ${m.sinRespaldoTotal?`Hay ${m.sinRespaldoTotal} vínculo${m.sinRespaldoTotal!==1?'s':''} actor-tema que no se dibujan porque ninguna nota del tema menciona al actor (ver data/auditoria_actores.csv).`:''}<br><b>Cómo leer el gráfico:</b> Anillo de color = temperatura del tema (pulsa si está en llamas) · tamaño del círculo = impacto · punto = actor, más grande cuanto más pesa · ★ dorado = los 3 actores de mayor peso · línea turquesa punteada = vínculo entre actores del mismo tema · rueda del ratón para acercar o alejar</div></details>
+      </div>
+    <div style="position:relative;flex:1;min-height:0;">
+      <svg id="eco-svg" style="position:absolute;inset:0;width:100%;height:100%;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>
+      <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+        <button type="button" id="eco-centrar" class="chip-btn" style="font-size:10.5px;padding:2px 9px;">Centrar</button>
+        <button type="button" id="eco-reacomodar" class="chip-btn" style="font-size:10.5px;padding:2px 9px;">Reacomodar</button>
+        ${topBase?`<button type="button" id="eco-sintop" class="chip-btn${_ecoSinTop?' active':''}" style="font-size:10.5px;padding:2px 9px;" title="Quita al actor de mayor peso para ver cómo queda el resto de la agenda">${_ecoSinTop?'Con':'Sin'} ${_escHtml(topBase.nombre.replace(/\(.*?\)/g,'').trim().split(' ').slice(0,2).join(' '))}</button>`:''}</div></div>`;
+  cont.querySelectorAll('.eco-chip-t').forEach(b=>b.addEventListener('click',()=>{ _ecoFiltroTemp = (_ecoFiltroTemp===b.dataset.k) ? null : b.dataset.k; renderEcosistemaAgenda(); }));
+  const q = cont.querySelector('#eco-quitar'); if(q) q.addEventListener('click',()=>{ _ecoFiltroTemp = null; renderEcosistemaAgenda(); });
+  const st = cont.querySelector('#eco-sintop'); if(st) st.addEventListener('click',()=>{ _ecoSinTop = !_ecoSinTop; renderEcosistemaAgenda(); });
   const svgEl = document.getElementById('eco-svg'); if(!svgEl) return;
   const W = svgEl.clientWidth || 900, H = svgEl.clientHeight || 520;
-  if(!temas.length){ svgEl.outerHTML = '<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>'; return; }
-  const nodes = [], links = [], ids = new Set();
-  temas.forEach(t=>{ const d = imp.get(t.id); nodes.push({id:'t:'+t.id, tipo:'tema', tema:t, r:11+Math.round((d?d.riesgoReal:5)*1.3), color:colorCategoria(t.categoria)}); ids.add('t:'+t.id); });
-  porActor.forEach((lista, aid)=>{ const a = getActor(aid); nodes.push({id:'a:'+aid, tipo:'actor', actor:a, lista, r:4+Math.min(8, lista.length*2), color:'var(--ink-3)'}); ids.add('a:'+aid);
-    lista.forEach(x=>links.push({source:'t:'+x.tema.id, target:'a:'+aid, k:'tema'})); });
-  (ECOSISTEMA.conexiones||[]).forEach(c=>{ if(ids.has('a:'+c.origen) && ids.has('a:'+c.destino)) links.push({source:'a:'+c.origen, target:'a:'+c.destino, k:'vinculo'}); });
+  if(!m.T.length){ svgEl.outerHTML = '<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>'; return; }
+  const nodes = [], links = [], ids = new Set(), top3 = new Set(m.A.slice(0,3).map(o=>o.actor.id)), maxPeso = m.A[0] ? m.A[0].peso : 1, maxTema = Math.max(...m.T.map(t=>t.peso), 0.01);
+  let sd = 7; const rnd = () => (sd = (sd*9301+49297)%233280)/233280;     // posiciones iniciales repartidas por toda el área (determinista)
+  m.T.forEach(t=>{ nodes.push({id:'t:'+t.tema.id, tipo:'tema', t, tema:t.tema, r:11+Math.round(t.imp*1.3), color:colorCategoria(t.tema.categoria), x:W*(0.1+0.8*rnd()), y:H*(0.1+0.8*rnd())}); ids.add('t:'+t.tema.id); });
+  m.A.forEach(o=>{ nodes.push({id:'a:'+o.actor.id, tipo:'actor', o, actor:o.actor, lista:o.lista, top:top3.has(o.actor.id), r:4+Math.round(9*Math.sqrt(o.peso/maxPeso)), color:'var(--ink-3)', x:W*(0.1+0.8*rnd()), y:H*(0.1+0.8*rnd())}); ids.add('a:'+o.actor.id);
+    o.lista.forEach(x=>links.push({source:'t:'+x.tema.id, target:'a:'+o.actor.id, k:'tema', n:x.n})); });
+  // vínculos entre actores: solo si comparten al menos un tema (si no, la línea cruzaría historias sin relación)
+  const temasDe = new Map(m.A.map(o=>[o.actor.id, new Set(o.lista.map(x=>x.tema.id))])), conexInfo = new Map();
+  (ECOSISTEMA.conexiones||[]).forEach(c=>{ const a = temasDe.get(c.origen), b = temasDe.get(c.destino); if(!a || !b || ![...a].some(t=>b.has(t))) return;
+    links.push({source:'a:'+c.origen, target:'a:'+c.destino, k:'vinculo'});
+    [[c.origen,c.destino],[c.destino,c.origen]].forEach(([x,y])=>{ if(!conexInfo.has(x)) conexInfo.set(x,[]); const oa = getActor(y); if(oa) conexInfo.get(x).push(`${oa.nombre.replace(/\(.*?\)/g,'').trim()}: ${c.tipo_vinculo}${c.fuerza?' ('+c.fuerza+')':''}`); }); });
   const svg = d3.select(svgEl).attr('viewBox',[0,0,W,H]); svg.selectAll('*').remove();
-  const g = svg.append('g');
-  svg.call(d3.zoom().scaleExtent([0.3,3]).on('zoom', ev=>g.attr('transform', ev.transform)));   // rueda = acercar/alejar · arrastrar el fondo = mover
-  const link = g.selectAll('line').data(links).join('line').attr('stroke', d=>d.k==='vinculo'?'var(--teal)':'var(--line-strong)').attr('stroke-opacity', d=>d.k==='vinculo'?0.7:0.4).attr('stroke-width',1.1).attr('stroke-dasharray', d=>d.k==='vinculo'?'2 3':null);
+  const g = svg.append('g'), zoomB = d3.zoom().scaleExtent([0.25,3]).on('zoom', ev=>g.attr('transform', ev.transform));
+  svg.call(zoomB);   // rueda = acercar/alejar · arrastrar el fondo = mover
+  const link = g.selectAll('line').data(links).join('line').attr('stroke', d=>d.k==='vinculo'?'var(--teal)':'var(--line-strong)').attr('stroke-opacity', d=>d.k==='vinculo'?0.8:0.4).attr('stroke-width', d=>d.k==='vinculo'?1.3:Math.min(2.4, 0.8+Math.log2(1+(d.n||1))*0.35)).attr('stroke-dasharray', d=>d.k==='vinculo'?'2 3':null);
   const node = g.selectAll('g.eco-n').data(nodes).join('g').attr('class','eco-n').style('cursor','pointer');
-  node.append('circle').attr('r',d=>d.r).attr('fill',d=>d.color).attr('fill-opacity',d=>d.tipo==='tema'?0.9:0.7).attr('stroke',d=>d.tipo==='tema'?'#fff':'none').attr('stroke-width',1.5);
-  node.filter(d=>d.tipo==='tema').append('text').attr('text-anchor','middle').attr('dy',d=>d.r+12).attr('font-size','9.5px').attr('fill','var(--ink-1)').style('pointer-events','none').text(d=>_truncarEnPalabra(d.tema.nombre,26));
-  node.filter(d=>d.tipo==='actor' && d.lista.length>=2).append('text').attr('text-anchor','middle').attr('dy',d=>d.r+11).attr('font-size','8.5px').attr('fill','var(--ink-2)').style('pointer-events','none').text(d=>d.actor.nombre.replace(/\(.*?\)/g,'').trim().split(' ').slice(0,2).join(' '));
-  const info = d=> d.tipo==='tema'
-    ? `<div style="max-width:300px;"><strong>${_escHtml(_truncarEnPalabra(d.tema.nombre,80))}</strong><br><span style="font-size:10px;opacity:.8;">${_escHtml(d.tema.categoria)} · impacto ${imp.get(d.tema.id)?imp.get(d.tema.id).riesgoReal:'—'} de 10 · ${_actoresDeTema(d.tema.id).length} actores · ${_hechosDeTema(d.tema.id).length} hechos</span><div style="margin-top:4px;font-size:10px;opacity:.7;">Clic para abrir sus notas</div></div>`
-    : `<div style="max-width:300px;"><strong>${_escHtml(d.actor.nombre)}</strong>${d.actor.cargo?`<br><span style="font-size:10px;opacity:.8;">${_escHtml(d.actor.cargo)}</span>`:''}<div style="margin-top:4px;font-size:10px;">${d.lista.map(x=>`· ${_escHtml(_truncarEnPalabra(x.tema.nombre,45))} — ${_escHtml((typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[x.rol])||x.rol)}`).join('<br>')}</div></div>`;
+  const ringT = node.filter(d=>d.tipo==='tema').append('circle').attr('fill','none').attr('stroke',d=>TEMP_INFO[d.t.nivel].color).attr('stroke-width',3).attr('stroke-dasharray',d=>d.t.nivel==='apagado'?'3 3':null).attr('stroke-opacity',d=>d.t.nivel==='apagado'?0.7:1);
+  const halo = node.filter(d=>d.tipo==='actor' && d.top).append('circle').attr('fill','none').attr('stroke','#F5B83D').attr('stroke-width',2);
+  node.append('circle').attr('class','eco-core').attr('r',d=>d.r).attr('fill',d=>d.tipo==='tema'?d.color:(d.top?'#F5B83D':d.color)).attr('fill-opacity',d=>d.tipo==='tema'?(d.t.nivel==='apagado'?0.35:0.9):(d.top?0.95:0.7)).attr('stroke',d=>d.tipo==='tema'?'#fff':'none').attr('stroke-width',1.5);
+  node.filter(d=>d.tipo==='actor' && d.top).append('text').attr('text-anchor','middle').attr('dy','0.35em').attr('font-size',d=>Math.max(8,d.r)+'px').attr('fill','#3a2a00').style('pointer-events','none').text('★');
+  node.filter(d=>d.tipo==='tema').append('text').attr('text-anchor','middle').attr('dy',d=>d.r+16).attr('font-size','9.5px').attr('fill','var(--ink-1)').style('pointer-events','none').text(d=>(d.t.tend==='sube'?'▲ ':d.t.tend==='baja'?'▼ ':'')+_truncarEnPalabra(d.tema.nombre,26));
+  node.filter(d=>d.tipo==='actor' && (d.top || d.lista.length>=2 || d.o.pct>=40)).append('text').attr('text-anchor','middle').attr('dy',d=>d.r+11).attr('font-size','8.5px').attr('fill','var(--ink-2)').style('pointer-events','none').text(d=>d.actor.nombre.replace(/\(.*?\)/g,'').trim().split(' ').slice(0,2).join(' '));
+  const info = d=>{
+    if(d.tipo==='tema'){ const t = d.t, ti = TEMP_INFO[t.nivel];
+      return `<div style="max-width:310px;"><strong>${_escHtml(_truncarEnPalabra(d.tema.nombre,80))}</strong><br><span style="font-size:10px;opacity:.8;">${_escHtml(d.tema.categoria)} · impacto ${t.imp} de 10</span>
+        <div style="margin-top:4px;font-size:10.5px;"><span style="color:${ti.color};font-weight:700;">${ti.txt}</span> — ${t.h48} hecho${t.h48!==1?'s':''} en 48 h · ${t.h7} en 7 días · tendencia: ${t.tend}<br>Peso en la agenda: ${Math.round(100*t.peso/maxTema)} de 100 · ${t.links.length} actor${t.links.length!==1?'es':''} respaldados por notas${m.central && m.central.tema.id===d.tema.id?'<br><b>Es el tema central de hoy</b>':''}</div><div style="margin-top:4px;font-size:10px;opacity:.7;">Clic para abrir sus notas</div></div>`; }
+    const v = conexInfo.get(d.actor.id) || [];
+    return `<div style="max-width:320px;"><strong>${_escHtml(d.actor.nombre)}</strong>${d.actor.cargo?`<br><span style="font-size:10px;opacity:.8;">${_escHtml(d.actor.cargo)}</span>`:''}
+      <div style="margin-top:4px;font-size:10.5px;">${d.top?'<span style="color:#F5B83D;font-weight:700;">★ Entre los 3 de mayor peso</span><br>':''}Peso en la agenda: <b>${d.o.pct}</b> de 100 — ${_escHtml(d.o.razon)}</div>
+      <div style="margin-top:4px;font-size:10px;">${d.lista.map(x=>`· ${_escHtml(_truncarEnPalabra(x.tema.nombre,42))} — ${_escHtml((typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[x.rol])||x.rol)} (${x.n} nota${x.n!==1?'s':''})`).join('<br>')}</div>${v.length?`<div style="margin-top:4px;font-size:10px;">Vínculos: ${_escHtml(v.slice(0,3).join(' · '))}</div>`:''}</div>`; };
   node.on('pointerenter',(ev,d)=>mostrarTooltipAgenda(info(d),ev)).on('pointermove',(ev,d)=>mostrarTooltipAgenda(info(d),ev)).on('pointerleave',ocultarTooltipAgenda)
     .on('click',(ev,d)=>{ ocultarTooltipAgenda(); if(d.tipo==='tema'){ temaNotasSeleccionado = d.tema.id; vistaAgenda = 'notas'; document.querySelectorAll('#agenda-vista-principal .chip-btn').forEach(b=>b.classList.toggle('active', b.dataset.vista==='notas')); renderAgendaGrid(); } });
-  const sim = d3.forceSimulation(nodes).force('link', d3.forceLink(links).id(d=>d.id).distance(d=>d.k==='vinculo'?70:105).strength(0.35)).force('charge', d3.forceManyBody().strength(d=>d.tipo==='tema'?-700:-70))
-    .force('center', d3.forceCenter(W/2,H/2)).force('x', d3.forceX(W/2).strength(0.025)).force('y', d3.forceY(H/2).strength(0.045)).force('collide', d3.forceCollide().radius(d=>d.r+(d.tipo==='tema'?24:6)));
-  // flotación: cada nodo oscila unos píxeles con su propio ritmo (como en Notas); los que se arrastran no flotan
+  const k = Math.sqrt(W*H)/700;
+  const sim = d3.forceSimulation(nodes).force('link', d3.forceLink(links).id(d=>d.id).distance(d=>(d.k==='vinculo'?70:105)*k).strength(0.35)).force('charge', d3.forceManyBody().strength(d=>(d.tipo==='tema'?-320:-35)*k*k))
+    .force('center', d3.forceCenter(W/2,H/2)).force('x', d3.forceX(W/2).strength(0.02)).force('y', d3.forceY(H/2).strength(0.02*W/H)).force('collide', d3.forceCollide().radius(d=>d.r+(d.tipo==='tema'?26:7)));
+  // flotación + pulsos; los nodos arrastrados no flotan
   const flotar = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   nodes.forEach((n,i)=>{ n._ph = i*1.7; n._amp = 3 + (i%3); n._per = 4200 + (i*530)%2600; });
   function pintar(t){
-    nodes.forEach(n=>{ const m = flotar && n.fx==null;
-      n._vx = n.x + (m ? Math.sin(t/n._per*6.2832 + n._ph)*n._amp : 0); n._vy = n.y + (m ? Math.cos(t/(n._per*1.3)*6.2832 + n._ph)*n._amp : 0); });
+    nodes.forEach(n=>{ const mv = flotar && n.fx==null; n._vx = n.x + (mv ? Math.sin(t/n._per*6.2832 + n._ph)*n._amp : 0); n._vy = n.y + (mv ? Math.cos(t/(n._per*1.3)*6.2832 + n._ph)*n._amp : 0); });
     link.attr('x1',d=>d.source._vx).attr('y1',d=>d.source._vy).attr('x2',d=>d.target._vx).attr('y2',d=>d.target._vy);
     node.attr('transform',d=>`translate(${d._vx},${d._vy})`);
+    ringT.attr('r',d=>d.r+4+(d.t.nivel==='fuego'&&flotar?2*Math.sin(t/330):0)).attr('stroke-opacity',d=>d.t.nivel==='fuego'&&flotar?0.65+0.35*Math.sin(t/330):(d.t.nivel==='apagado'?0.7:1));
+    halo.attr('r',d=>d.r+4+(flotar?3*Math.sin(t/420+d._ph):0)).attr('stroke-opacity',flotar?0.55+0.35*Math.sin(t/420):0.8);
   }
-  sim.on('tick',()=>{ nodes.forEach(n=>{ n.x = Math.max(n.r+8, Math.min(W-n.r-8, n.x)); n.y = Math.max(n.r+8, Math.min(H-n.r-22, n.y)); }); pintar(performance.now()); });
   const gen = (svgEl.__genEco = (svgEl.__genEco||0) + 1);
+  function ajustar(dur){   // encuadra todo el grafo en el área visible
+    if(svgEl.__genEco!==gen || !svgEl.isConnected) return;
+    const x0 = Math.min(...nodes.map(n=>n.x-n.r-10)), x1 = Math.max(...nodes.map(n=>n.x+n.r+10)), y0 = Math.min(...nodes.map(n=>n.y-n.r-10)), y1 = Math.max(...nodes.map(n=>n.y+n.r+24));
+    const bw = Math.max(1,x1-x0), bh = Math.max(1,y1-y0), kk = Math.max(0.25, Math.min(2.2, 0.95*Math.min(W/bw, H/bh)));
+    svg.transition().duration(dur).call(zoomB.transform, d3.zoomIdentity.translate(W/2-kk*(x0+bw/2), H/2-kk*(y0+bh/2)).scale(kk));
+  }
+  sim.on('tick',()=>pintar(performance.now()));
+  sim.on('end',()=>ajustar(600));
+  setTimeout(()=>ajustar(700), 1400);
   if(flotar) d3.timer(()=>{ if(!svgEl.isConnected || svgEl.__genEco!==gen) return true; pintar(performance.now()); });
+  cont.querySelector('#eco-centrar').addEventListener('click',()=>ajustar(500));
+  cont.querySelector('#eco-reacomodar').addEventListener('click',()=>{ nodes.forEach(n=>{ n.fx = null; n.fy = null; }); sim.alpha(0.9).restart(); setTimeout(()=>ajustar(700), 2200); });
+  if(typeof ResizeObserver==='function'){ let to = null; new ResizeObserver(()=>{ clearTimeout(to); to = setTimeout(()=>{ if(svgEl.isConnected && svgEl.__genEco===gen) ajustar(400); }, 250); }).observe(svgEl); }
   node.call(d3.drag().on('start',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0.2).restart(); d.fx=d.x; d.fy=d.y; }).on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; }).on('end',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
 }
 
