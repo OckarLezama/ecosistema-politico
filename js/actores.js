@@ -341,7 +341,7 @@ function renderGrafo(svgId='graph-svg'){
     });
     coresElegidos.forEach((temaId, idx)=>{
       const slot = ['nucleo','cruce1','cruce2'][idx];
-      ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===temaId).forEach(ta=>{
+      (typeof _actoresDeTema==='function' ? _actoresDeTema(temaId) : ECOSISTEMA.temaActores.filter(ta=>ta.tema_id===temaId)).forEach(ta=>{
         const sat = getActor(ta.actor_id);
         if(!sat) return;
         const nivel = ROL_A_NIVEL[ta.rol] || 3;

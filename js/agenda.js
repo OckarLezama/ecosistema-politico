@@ -256,7 +256,7 @@ function _clavesActor(a){
   const claves = [];
   if(limpio.split(/\s+/).length>=2) claves.push(limpio);
   limpio.split(/\s+/).filter(w=>w.length>=6 && _tokensActores.get(w)===1 && !_PALABRAS_GENERICAS_ACTOR.has(w)).forEach(w=>claves.push(w));   // apellido que identifica a UN solo actor
-  if(alias.length>=4) claves.push(alias);
+  if(alias.length>=3) claves.push(alias);
   return claves;
 }
 function _mencionesActor(a, evs){ const cl = _clavesActor(a); return cl.length ? evs.filter(e=>{ const t = _normN(e.descripcion); return cl.some(k=> k.length<=4 ? new RegExp('\\b'+k+'\\b').test(t) : t.includes(k)); }) : []; }
@@ -298,14 +298,14 @@ function _fichaHoverNotas(d, svgTemaId){
   const temas = new Set(ECOSISTEMA.temaActores.filter(x=>x.actor_id===a.id).map(x=>x.tema_id).filter(id=>{ const t=getTema(id); return t && enNotas(t); })); temas.delete(tema.id);
   const colRol = ((typeof COLOR_ROL_NOTAS!=='undefined' && COLOR_ROL_NOTAS[d.rolEnTema||d.rol]) || 'var(--ink-3)');
   const txtRol = ((typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[d.rolEnTema||d.rol]) || (d.rolEnTema||d.rol||''));
-  const idsGrafo = new Set([...ECOSISTEMA.temaActores.filter(x=>x.tema_id===tema.id).map(x=>x.actor_id), ..._actoresDeducidos(tema.id).map(x=>x.actor.id)]);
+  const idsGrafo = new Set(_actoresDeTema(tema.id).map(x=>x.actor_id));
   const vinc = (ECOSISTEMA.conexiones||[]).filter(c=>(c.origen===a.id && idsGrafo.has(c.destino)) || (c.destino===a.id && idsGrafo.has(c.origen))).slice(0,3)
     .map(c=>{ const otro = getActor(c.origen===a.id ? c.destino : c.origen); return otro ? `${_escHtml(otro.nombre.replace(/\(.*?\)/g,'').trim())}: ${_escHtml(c.tipo_vinculo)}${c.fuerza?' ('+_escHtml(c.fuerza)+')':''}` : ''; }).filter(Boolean);
   return `<div style="max-width:290px;"><strong>${_escHtml(a.nombre)}</strong>${a.cargo?`<br><span style="font-size:10px;opacity:.8;">${_escHtml(a.cargo)}</span>`:''}
     <br><span style="color:${colRol};font-size:10px;">${_escHtml(txtRol)}</span>
     ${ta.detalle?`<div style="margin-top:5px;font-size:10.5px;">${_escHtml(_truncarEnPalabra(ta.detalle,150))}</div>`:''}
     <div style="margin-top:6px;font-size:10px;opacity:.85;">${_fichaActividad(menciona, evs.length, _clavesActor(a))}
-       ${reciente?`<br><span style="color:var(--teal);">◌ ${reciente} mención${reciente!==1?'es':''} en las últimas 48 h</span>`:''}
+       ${reciente?`<div style="margin-top:3px;color:var(--teal);">◌ Mencionado en 48 h, en:${menciona.filter(e=>e.fecha>=_diaMX(1)).slice(0,2).map(e=>`<br>· ${_escHtml(_truncarEnPalabra(e.descripcion,100))}`).join('')}</div>`:''}
       ${vinc.length?`<br>Vínculos aquí: ${vinc.join(' · ')}`:''}
       ${temas.size?`<br>También figura en ${temas.size} tema${temas.size!==1?'s':''} de agenda`:''}</div></div>`;
 }
@@ -326,7 +326,7 @@ function _franjaTemaNotas(temaId){
   }catch(e){}
   const tend = nHoy>nAyer ? ['↗ más hechos que ayer','var(--riesgo-medio)'] : nHoy<nAyer ? ['↘ menos hechos que ayer','var(--teal)'] : ['= mismo ritmo que ayer','var(--ink-3)'];
   const res = (tema.resumen||'').trim();
-  const nAct = ECOSISTEMA.temaActores.filter(x=>x.tema_id===temaId).length;
+  const nAct = _actoresDeTema(temaId).length;
   const avisoAct = nAct<3 ? `<div style="margin-top:4px;font-size:10.5px;color:var(--riesgo-medio);">${nAct?'Solo '+nAct+' actor'+(nAct>1?'es':'')+' confirmado'+(nAct>1?'s':''):'Sin actores confirmados'} en este tema. Se agregan solo con respaldo en las notas; propón actores en «Revisión de notas».</div>` : '';
   return `<div id="notas-franja" style="flex:none;padding:8px 14px 7px;font-size:11px;line-height:1.4;">
     <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;">
@@ -1528,11 +1528,12 @@ function _nivelAgendaTemas(){
   if(_gateCache && _gateRef===ECOSISTEMA.eventos) return _gateCache;
   const porTema = new Map();
   ECOSISTEMA.eventos.forEach(e=>{ const d=_diasAtras(e.fecha); if(d>=0 && d<VENTANA_RADAR_DIAS){ if(!porTema.has(e.tema_id)) porTema.set(e.tema_id,[]); porTema.get(e.tema_id).push(e); } });
+  const ultima = {}; ECOSISTEMA.eventos.forEach(e=>{ if(!ultima[e.tema_id] || e.fecha>ultima[e.tema_id]) ultima[e.tema_id]=e.fecha; });
   const out = {};
   ECOSISTEMA.temas.forEach(t=>{
     const csv = Number(t.nivel_relevancia)||3;
     const curado = csv===1 && !String(t.id).startsWith('auto-');
-    if(curado){ out[t.id] = {nivel:1, curado:true}; return; }
+    if(curado){ out[t.id] = {nivel: (ultima[t.id] && _diasAtras(ultima[t.id])<=30) ? 1 : 3, curado:true, ultima:ultima[t.id]}; return; }
     const evs = porTema.get(t.id)||[];
     if(!evs.length){ out[t.id] = {nivel: csv===1?3:3, sinNotas:true}; return; }
     const coh = notasCoherentes(evs, t); const base = coh.length?coh:evs;
@@ -1548,7 +1549,17 @@ function _nivelAgendaTemas(){
   _gateCache = out; _gateRef = ECOSISTEMA.eventos; return out;
 }
 function nivelAgenda(t){ const g=_nivelAgendaTemas()[t.id]; return g?g.nivel:(Number(t.nivel_relevancia)||3); }
-function enNotas(t){ return nivelAgenda(t)===1; }
+// actores confirmados de un tema: en temas curados, los vinculados por analista/robot; en temas automáticos, solo los que
+// aparecen por nombre en sus notas (un actor sin mención no se muestra)
+function _actoresDeTema(temaId){
+  const t = getTema(temaId), ta = ECOSISTEMA.temaActores.filter(x=>x.tema_id===temaId);
+  if(!t) return [];
+  if(Number(t.nivel_relevancia)===1 && !String(t.id).startsWith('auto-')) return ta;
+  const ev = _eventosDeTema(temaId);
+  return ta.filter(x=>{ const a = getActor(x.actor_id); return a && _mencionesActor(a, ev).length; });
+}
+// Notas / Red de actores: nivel 1 y con actores confirmados (curados: al menos 1; automáticos: al menos 2)
+function enNotas(t){ if(nivelAgenda(t)!==1) return false; const n = _actoresDeTema(t.id).length; return (Number(t.nivel_relevancia)===1 && !String(t.id).startsWith('auto-')) ? n>=1 : n>=2; }
 function enMatriz(t){ return nivelAgenda(t)<=2; }
 
 // ===== HECHOS: misma noticia con otro titular/medio/día (±3 días) =====
