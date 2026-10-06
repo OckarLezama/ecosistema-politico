@@ -23,7 +23,7 @@ vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/fuentes.js'),'utf8'), ctx);
 vm.runInContext('const getTema=id=>ECOSISTEMA.temas.find(t=>t.id===id), getActor=id=>ECOSISTEMA.actores.find(a=>a.id===id);', ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/agenda.js'),'utf8') +
-  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;globalThis.__resN=resumenNotasDelDia;globalThis.__audA=auditoriaActoresNotas;', ctx);
+  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;globalThis.__resN=resumenNotasDelDia;globalThis.__audA=auditoriaActoresNotas;globalThis.__eco=modeloEcosistema;', ctx);
 
 // criterio del analista y calendario: el navegador los lee por fetch; aquí se cargan del disco
 const aCsv = n => R(n);
@@ -93,6 +93,21 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
     fs.writeFileSync(D('auditoria_actores.csv'), ['tema_id,tema,actor_id,actor,rol,notas_tema,accion_sugerida', ...aud.map(x => [x.tema_id, x.tema, x.actor_id, x.actor, x.rol, x.notas, 'revisar: quitar o respaldar con nota'].map(esc).join(','))].join('\n') + '\n');
     console.log('auditoría de actores:', aud.length, 'vínculo(s) sin menciones');
   } catch (e) { console.log('auditoría de actores no disponible:', e.message); }
+
+  // ---- historial diario del ecosistema (temperatura por tema y peso por actor); una fila por día y entidad, se reescribe la de hoy
+  try {
+    const m = ctx.__eco(null, null, null), hoy = new Date(Date.now() - 6 * 3600 * 1000).toISOString().slice(0, 10);
+    const esc = v => /[",\n]/.test(String(v)) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v);
+    const f = D('ecosistema_historial.csv'), cab = 'fecha,tipo,id,nombre,temperatura,peso,hechos_48h,hechos_7d,impacto';
+    let prev = fs.existsSync(f) ? fs.readFileSync(f, 'utf8').split('\n').slice(1).filter(l => l && !l.startsWith(hoy + ',')) : [];
+    const maxT = Math.max(...m.T.map(t => t.peso), 0.01), maxA = m.A[0] ? m.A[0].peso : 1;
+    const nuevas = [
+      ...m.T.map(t => [hoy, 'tema', t.tema.id, t.tema.nombre, t.nivel, Math.round(100 * t.peso / maxT), t.h48, t.h7, t.imp]),
+      ...m.A.map(o => [hoy, 'actor', o.actor.id, o.actor.nombre, '', Math.round(100 * o.peso / maxA), '', '', ''])
+    ].map(r => r.map(esc).join(','));
+    fs.writeFileSync(f, [cab, ...prev, ...nuevas].join('\n') + '\n');
+    console.log('historial ecosistema:', m.T.length, 'temas,', m.A.length, 'actores');
+  } catch (e) { console.log('historial ecosistema no disponible:', e.message); }
   // ---- Notas: actores de máxima influencia que aparecen por primera vez en un tema (estado en data/actor_tema_visto.json)
   let rn = { hechosHoy:[], enfriados:[], duplicados:[], actoresClave:[] };
   try { rn = ctx.__resN(); } catch (e) { console.log('resumen de Notas no disponible:', e.message); }
