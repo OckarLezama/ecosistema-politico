@@ -33,8 +33,6 @@ try {
   T('T4 el detector no marca más de 1 de cada 5 temas-día (' + det.length + ' marcas)', det.length <= Math.max(10, 0.2 * temas.length * Math.min(diasN, 60)));
   // T5 matemática
   T('T5 Poisson cola P(N≥3|λ=1)≈0.0803', Math.abs(ctx.__pc(3, 1) - 0.0803) < 0.0005);
-  // T6 señales de incertidumbres compilan
-  R('incertidumbres.csv').forEach(r => { try { new RegExp(r.senal || '', 'i'); if (r.actor_re) new RegExp(r.actor_re, 'i'); T('T6 regex ' + r.id + '/' + r.desenlace, true); } catch (e) { T('T6 regex inválida ' + r.id + '/' + r.desenlace, false); } });
 } catch (e) { total++; fallas.push('El arnés de pruebas falló: ' + e.message); }
 const out = { generado: new Date().toISOString(), total, ok: fallas.length === 0, fallas, advertencias: adv, bloqueante: fallas.length > 0 };
 fs.writeFileSync(D('pruebas_estado.json'), JSON.stringify(out, null, 1));

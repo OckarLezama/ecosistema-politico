@@ -23,7 +23,7 @@ vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/fuentes.js'),'utf8'), ctx);
 vm.runInContext('const getTema=id=>ECOSISTEMA.temas.find(t=>t.id===id), getActor=id=>ECOSISTEMA.actores.find(a=>a.id===id);', ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/agenda.js'),'utf8') +
-  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;globalThis.__resN=resumenNotasDelDia;globalThis.__audA=auditoriaActoresNotas;globalThis.__eco=modeloEcosistema;globalThis.__ecoCamb=_cambiosEcosistema;globalThis.__puntos=calcularPuntosInflexion;globalThis.__evinc=evaluarIncertidumbres;', ctx);
+  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;globalThis.__resN=resumenNotasDelDia;globalThis.__audA=auditoriaActoresNotas;globalThis.__eco=modeloEcosistema;globalThis.__ecoCamb=_cambiosEcosistema;globalThis.__puntos=calcularPuntosInflexion;', ctx);
 
 // criterio del analista y calendario: el navegador los lee por fetch; aquí se cargan del disco
 const aCsv = n => R(n);
@@ -114,7 +114,7 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
     fs.writeFileSync(f, [cab, ...prev, ...nuevas].join('\n') + '\n');
     console.log('historial ecosistema:', m.T.length, 'temas,', m.A.length, 'actores');
   } catch (e) { console.log('historial ecosistema no disponible:', e.message); }
-  // ---- puntos de inflexión: memoria compartida (data/puntos_inflexion.csv), alertas, calidad y señales de incertidumbres
+  // ---- puntos de inflexión: memoria compartida (data/puntos_inflexion.csv), alertas y calidad
   let prue = null; try { prue = JSON.parse(fs.readFileSync(D('pruebas_estado.json'), 'utf8')); } catch (e) {}
   if (prue && prue.bloqueante) {
     const id = `${hoy}|pruebas|${prue.fallas.length}`;
@@ -148,14 +148,6 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
       revisadas_relevantes: rev.filter(r => /^relevante$/i.test(r.veredicto)).length };
     fs.writeFileSync(D('inflexion_calidad.json'), JSON.stringify(cal, null, 1) + '\n');
     console.log('puntos de inflexión:', todos.length, 'registrados ·', det.length, 'vigentes · calidad', JSON.stringify(cal));
-    // incertidumbres: el robot cuenta las notas que cumplen la señal de cada desenlace y avisa cuando crece
-    const inc = ctx.__evinc(R('incertidumbres.csv'));
-    let est = null; try { est = JSON.parse(fs.readFileSync(D('incertidumbres_estado.json'), 'utf8')); } catch (e) {}
-    const nuevoEst = {};
-    inc.forEach(g => g.desenlaces.forEach(d => { const k = g.id + '|' + d.etiqueta; nuevoEst[k] = d.n;
-      if (est && d.n > (est[k] || 0)) nuevas.push({ id: `${hoy}|senal|${k}|${d.n}`, ts: ahoraMX, tipo: 'senal', tema_id: g.tema_id,
-        texto: `? Señal hacia «${d.etiqueta}» — ${String(g.pregunta).slice(0, 70)}: ${String((d.notas[0] && d.notas[0].descripcion) || '').slice(0, 100)}` }); }));
-    fs.writeFileSync(D('incertidumbres_estado.json'), JSON.stringify(nuevoEst, null, 1) + '\n');
   } catch (e) { console.log('puntos de inflexión no disponibles:', e.message); }
   // ---- Notas: actores de máxima influencia que aparecen por primera vez en un tema (estado en data/actor_tema_visto.json)
   (globalThis.__ecoAlertas || []).forEach(x => nuevas.push({ id: `${hoy}|eco|${x}`, ts: ahoraMX, tipo: 'ecosistema', tema_id: '', texto: '🌐 Ecosistema: ' + x }));
