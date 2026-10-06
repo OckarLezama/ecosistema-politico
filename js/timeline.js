@@ -32,7 +32,7 @@ const INICIO_SEXENIO_TL = '2024-10';
 let tlXScaleBase, tlPuntos, tlSvg, tlContainer, tlYLinea, tlWidth, tlHeight;
 
 let anioFiltroTL = '', catFiltroTL = '', periodoTL = '', _covTL = null, _idsPrincipalTL = new Set();
-function initTimeline(){ tlSvg = null; poblarFiltroAnioTL(); poblarFiltroCategoriaTL(); }
+function initTimeline(){ tlSvg = null; poblarFiltroAnioTL(); poblarFiltroCategoriaTL(); _initTipsTL(); }
 
 // ---------------- medición y datos (Timeline V4: solo mide lo que se puede comparar) ----------------
 // COBERTURA: el robot empezó a recolectar de forma continua en agosto de 2026; antes hay unas cuantas notas
@@ -84,6 +84,15 @@ function _puntosTL(){
   });
   return out;
 }
+// hover con el formato de la plataforma (el mismo cuadro oscuro del resto), nunca el title nativo del navegador
+function _tipAttr(html){ return 'data-tip="'+String(html).replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'"'; }
+function _tipSel(sel, html){ return sel.on('pointerenter',ev=>{ ev.stopPropagation(); mostrarTooltipAgenda(html,ev); }).on('pointermove',ev=>{ ev.stopPropagation(); mostrarTooltipAgenda(html,ev); }).on('pointerleave',ocultarTooltipAgenda); }
+function _initTipsTL(){
+  const pn = document.getElementById('panel-timeline'); if(!pn || pn.dataset.tips) return; pn.dataset.tips = '1';
+  const buscar = ev=>{ const t = ev.target; return t && t.closest ? t.closest('[data-tip]') : null; };
+  pn.addEventListener('pointermove', ev=>{ const el = buscar(ev); if(el && pn.contains(el)) mostrarTooltipAgenda(el.dataset.tip, ev); });
+  pn.addEventListener('pointerout', ev=>{ const el = buscar(ev); if(el && !(ev.relatedTarget && el.contains(ev.relatedTarget))) ocultarTooltipAgenda(); });
+}
 function poblarFiltroCategoriaTL(){
   const sel0 = document.getElementById('timeline-anio'); if(!sel0 || document.getElementById('timeline-cat')) return;
   const cats = [...new Set(ECOSISTEMA.temas.filter(t=>!String(t.id).startsWith('auto-')).map(t=>t.categoria).filter(Boolean))].sort();
@@ -91,12 +100,13 @@ function poblarFiltroCategoriaTL(){
   caja.innerHTML = '<label for="timeline-cat">Categoría</label><select id="timeline-cat"><option value="">Todas</option>'+cats.map(c=>`<option value="${c}">${c}</option>`).join('')+'</select>';
   sel0.parentElement.after(caja);
   caja.querySelector('select').addEventListener('change', e=>{ catFiltroTL = e.target.value; tlTransformGuardada = null; renderTimeline(); });
-  const zb = document.createElement('div'); zb.className = 'core-select'; zb.style.cssText = 'display:inline-flex;gap:3px;align-items:center;';
-  zb.innerHTML = '<label>Zoom</label><button type="button" class="chip-btn" id="tl-zoom-menos" title="Alejar (volver a ver todo el rango)" style="padding:3px 9px;font-size:12px;">−</button><button type="button" class="chip-btn" id="tl-zoom-mas" title="Acercar. También: Ctrl + rueda o pellizco; arrastra para moverte" style="padding:3px 9px;font-size:12px;">+</button>';
-  zb.querySelector('#tl-zoom-menos').addEventListener('click',()=>_zoomBotonTL(1/1.6)); zb.querySelector('#tl-zoom-mas').addEventListener('click',()=>_zoomBotonTL(1.6));
   const per = document.createElement('div'); per.className = 'core-select';
-  per.innerHTML = '<label for="timeline-per">Periodo</label><select id="timeline-per"><option value="">Todo el sexenio</option><option value="90">Últimos 90 días</option><option value="30">Últimos 30 días</option></select>';
-  caja.after(per); per.after(zb);
+  per.innerHTML = '<label for="timeline-per">Periodo</label><select id="timeline-per"><option value="">Sin filtro</option><option value="15">Últimos 15 días</option><option value="30">Últimos 30 días</option><option value="60">Últimos 60 días</option></select>';
+  caja.after(per);
+  const zb = document.createElement('span'); zb.style.cssText = 'display:inline-flex;align-items:center;gap:2px;margin-left:4px;';
+  zb.innerHTML = `<button type="button" class="chip-btn" id="tl-zoom-menos" ${_tipAttr('<strong>Alejar</strong><br><span style="font-size:10px;">Regresa a ver todo el rango</span>')} style="padding:3px 8px;font-size:12px;">−</button><span id="tl-zoom-txt" style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);min-width:34px;text-align:center;">100%</span><button type="button" class="chip-btn" id="tl-zoom-mas" ${_tipAttr('<strong>Acercar</strong><br><span style="font-size:10px;">También Ctrl + rueda o pellizco. Arrastra para moverte.</span>')} style="padding:3px 8px;font-size:12px;">+</button>`;
+  per.after(zb);
+  zb.querySelector('#tl-zoom-menos').addEventListener('click',()=>_zoomBotonTL(1/1.6)); zb.querySelector('#tl-zoom-mas').addEventListener('click',()=>_zoomBotonTL(1.6));
   per.querySelector('select').addEventListener('change', e=>{ periodoTL = e.target.value; tlTransformGuardada = null; renderTimeline(); });
 }
 
@@ -110,7 +120,7 @@ function poblarFiltroAnioTL(){
     sel.appendChild(opt);
   });
   sel.dataset.poblado = '1';
-  sel.addEventListener('change', (e)=>{ anioFiltroTL = e.target.value; tlTransformGuardada = null; const sp = document.getElementById('timeline-per'); if(sp){ if(anioFiltroTL){ periodoTL = ''; sp.value = ''; } sp.disabled = !!anioFiltroTL; sp.title = anioFiltroTL ? 'Con un año elegido, el periodo es ese año' : ''; } renderTimeline(); });
+  sel.addEventListener('change', (e)=>{ anioFiltroTL = e.target.value; tlTransformGuardada = null; const sp = document.getElementById('timeline-per'); if(sp){ if(anioFiltroTL){ periodoTL = ''; sp.value = ''; } sp.disabled = !!anioFiltroTL; } renderTimeline(); });
 }
 
 function mesesSexenioTL(){
@@ -256,14 +266,15 @@ function narrativaTimelineTL(){
   let t = `Últimos 14 días: <strong>${A.size}</strong> tema${A.size!==1?'s':''} de agenda activo${A.size!==1?'s':''}`;
   if(comparable) t += ` (los 14 previos: <strong>${P.size}</strong>) · agenda <strong style="color:${dir[1]}">${dir[0]}</strong> · entraron ${entran.length} · salieron ${salen.length}`;
   else t += _covTL ? ` · la comparación con el periodo previo se activa con 28 días de cobertura` : ` · cobertura insuficiente para comparar`;
-  const tip = [entran.length ? 'Entraron: '+entran.map(id=>{ const x = getTema(id); return x?x.nombre:id; }).join('; ') : '', salen.length ? 'Salieron: '+salen.map(id=>{ const x = getTema(id); return x?x.nombre:id; }).join('; ') : '',
-    _covTL ? `Cobertura completa desde ${_covTL.fecha} (${_covTL.dias} días); antes solo hay notas sembradas, no comparables.` : ''].filter(Boolean).join('\n');
-  cont.innerHTML = `<p title="${tip.replace(/"/g,'&quot;')}" style="font-size:12px;line-height:1.4;color:var(--ink-2);background:var(--bg-1);border-left:3px solid ${dir?dir[1]:'var(--line-strong)'};padding:4px 10px;border-radius:4px;margin:0 0 4px;cursor:help;">${t}</p>`;
+  const nm = id=>{ const x = getTema(id); return _escHtml(x?x.nombre:id); };
+  const tip = [entran.length ? `<strong>Entraron (${entran.length})</strong><br><span style="font-size:10px;">${entran.map(nm).join('<br>')}</span>` : '', salen.length ? `<strong>Salieron (${salen.length})</strong><br><span style="font-size:10px;">${salen.map(nm).join('<br>')}</span>` : '',
+    _covTL ? `<span style="font-size:10px;opacity:.8;">Cobertura completa desde ${_covTL.fecha} (${_covTL.dias} días); antes solo hay notas sembradas, no comparables.</span>` : ''].filter(Boolean).join('<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;">');
+  cont.innerHTML = `<p ${tip ? _tipAttr(tip) : ''} style="font-size:12px;line-height:1.4;color:var(--ink-2);background:var(--bg-1);border-left:3px solid ${dir?dir[1]:'var(--line-strong)'};padding:4px 10px;border-radius:4px;margin:0 0 4px;">${t}</p>`;
 }
 
 
 // ---------------- cabecera fija: tendencia + quién domina la agenda ----------------
-let tlSerieTend = [], tlEjeComprimido = false, tlPuntosBase = [], tlZoom = null, tlTransformGuardada = null;
+let tlSerieTend = [], tlEjeComprimido = false, tlPuntosBase = [], tlZoom = null, tlTransformGuardada = null, tlK = 1, tlKEmpaquetado = 1;
 // temas activos por día = temas de agenda con 3+ notas en los 7 días que terminan ese día (promedio móvil, no suma de intensidades)
 function _serieTendenciaTL(){
   if(!_covTL) return [];
@@ -277,10 +288,9 @@ function _serieTendenciaTL(){
   return out;
 }
 // al acercar, las tarjetas se reacomodan con las posiciones reales de pantalla: bajan hacia la línea y dejan de apilarse
-function _reempaquetarTL(xs){
-  const conX = tlPuntosBase.map(p=>({...p, xBase: xs(new Date(p.fecha+'T12:00:00'))}));
-  const dentro = conX.filter(p=>p.xBase>-120 && p.xBase<tlWidth+120), fuera = conX.filter(p=>!(p.xBase>-120 && p.xBase<tlWidth+120)).map(p=>({...p, lado:'up', tier:0}));
-  tlPuntos = [...empaquetarZigzagTL(dentro, 184), ...fuera];
+function _escalaKTL(k){ return d3.scaleTime().domain(tlXScaleBase.domain()).range(tlXScaleBase.range().map(r=>r*k)); }
+function _reempaquetarTL(xk){   // sobre TODOS los puntos: al desplazar no cambian de nivel, así no "saltan"
+  tlPuntos = empaquetarZigzagTL(tlPuntosBase.map(p=>({...p, xBase: xk(new Date(p.fecha+'T12:00:00'))})), 184);
 }
 function _zoomBotonTL(f){ if(tlSvg && tlZoom) tlSvg.transition().duration(220).call(tlZoom.scaleBy, f); }
 function _montarCabeceraTL(wrapEl, svgEl){
@@ -315,11 +325,11 @@ function _pintarTopsTL(){
   const v = _ventanaTopsTL(), cur = _cuotasTL(v.ini, v.fin, false), prev = v.prev ? _cuotasTL(v.prev.ini, v.prev.fin, true) : null;
   if(!cur.temas.length){ cont.innerHTML = `<span style="font-size:10px;color:var(--ink-3);">Sin notas de agenda en este periodo (${v.rotulo}).</span>`; return; }
   const flecha = (a,b)=>{ if(!prev) return ''; const d = (a-b)*100; return d>=2 ? ' <span style="color:var(--riesgo-alto)">▲</span>' : d<=-2 ? ' <span style="color:var(--riesgo-bajo)">▼</span>' : ''; };
-  const chip = (i,txt,pct,fl,tip,onclick)=>`<span title="${_escHtml(tip)}" ${onclick?`onclick="${onclick}" style="cursor:pointer;"`:''} style="white-space:nowrap;"><span style="color:var(--ink-3);">${i}</span> <strong style="color:var(--ink-1);">${_escHtml(txt)}</strong> <span style="color:var(--teal);">${pct}%</span>${fl}</span>`;
+  const chip = (i,txt,pct,fl,tip,onclick)=>`<span ${_tipAttr(`<strong>${_escHtml(txt)}</strong><br><span style="font-size:10px;">${_escHtml(tip)}</span>`)} ${onclick?`onclick="${onclick}"`:''} style="white-space:nowrap;${onclick?'cursor:pointer;':''}"><span style="color:var(--ink-3);">${i}</span> <strong style="color:var(--ink-1);">${_escHtml(txt)}</strong> <span style="color:var(--teal);">${pct}%</span>${fl}</span>`;
   const T = cur.temas.sort((a,b)=>b.n-a.n).slice(0,3).map((t,i)=>{ const pv = prev ? (prev.temas.find(x=>x.id===t.id)||{cuota:0}).cuota : 0; const tm = getTema(t.id);
     return chip(i+1, _truncarEnPalabra(tm?tm.nombre:t.id,26), Math.round(t.cuota*100), flecha(t.cuota,pv), `${t.n} notas consolidadas de ${cur.total} · impacto promedio ${t.imp.toFixed(1)}/10`, `abrirFichaTema('${t.id}')`); });
   const A = cur.actores.sort((a,b)=>b.n-a.n).slice(0,3).map((a,i)=>{ const pv = prev ? (prev.actores.find(x=>x.id===a.id)||{cuota:0}).cuota : 0; const ac = getActor(a.id);
-    return chip(i+1, _truncarEnPalabra(ac?((ac.nombre.match(/\(['"“]?([^)'"”]+)['"”]?\)/)||[])[1] || ac.nombre):a.id,26), Math.round(a.cuota*100), flecha(a.cuota,pv), `Mencionado en ${a.n} de ${cur.total} notas consolidadas`, `abrirFichaActorCompleta('${a.id}')`); });
+    return chip(i+1, _truncarEnPalabra(ac?((ac.nombre.match(/\(['"“]?([^)'"”]+)['"”]?\)/)||[])[1] || ac.nombre):a.id,26), Math.round(a.cuota*100), flecha(a.cuota,pv), `Mencionado en ${a.n} de ${cur.total} notas consolidadas`, null); });
   const sub = 'font-family:var(--f-mono);font-size:8px;text-transform:uppercase;color:var(--ink-3);';
   cont.innerHTML = `<div style="font-size:10.5px;line-height:1.5;display:flex;flex-wrap:wrap;gap:2px 14px;align-items:center;"><span style="${sub}">Temas que dominan · ${v.rotulo}</span>${T.join('')}</div>
     <div style="font-size:10.5px;line-height:1.5;display:flex;flex-wrap:wrap;gap:2px 14px;align-items:center;"><span style="${sub}">Actores más presentes (sin la presidenta ni partidos)</span>${A.join('') || '<span style="color:var(--ink-3);">—</span>'}</div>`;
@@ -378,18 +388,26 @@ function renderTimeline(){
 
   // el usuario puede alejar manualmente (rueda del mouse / gesto de pellizco) si hay mucha
   // densidad — el auto-alejado automático se intentó y rompió el zoom, se revirtió
-  // zoom: 1x = todo el rango (no se puede alejar más: no hay nada fuera); hasta 8x. La rueda sola desplaza el lienzo
-  // hacia arriba/abajo; Ctrl + rueda (o pellizco) acerca; arrastrar mueve a los lados; botones − / + en la barra.
+  // zoom: 1x = todo el rango (no se puede alejar más); hasta 8x. Arrastrar solo DESPLAZA el grupo (sin redibujar: fluido);
+  // al cambiar el zoom se redibuja y, al soltar, las tarjetas se reacomodan con fundido. La rueda sola baja/sube el lienzo;
+  // Ctrl + rueda o pellizco acerca; botones − / + en la barra.
+  tlK = 1; tlKEmpaquetado = 1;
   tlZoom = d3.zoom().scaleExtent([1,8]).extent([[0,0],[tlWidth,tlHeight]]).translateExtent([[0,-1e6],[tlWidth,1e6]])
     .filter(ev=> (ev.type!=='wheel' || ev.ctrlKey || ev.metaKey) && !ev.button)
-    .on('zoom', ev=>{ tlTransformGuardada = ev.transform; const xs = ev.transform.rescaleX(tlXScaleBase); _reempaquetarTL(xs); dibujarTL(xs); });
+    .on('zoom', ev=>{ tlTransformGuardada = ev.transform; const k = ev.transform.k;
+      if(Math.abs(k-tlK)>1e-6){ tlK = k; dibujarTL(_escalaKTL(k), false); const z = document.getElementById('tl-zoom-txt'); if(z) z.textContent = Math.round(k*100)+'%'; }
+      tlContainer.attr('transform', `translate(${ev.transform.x},0)`); })
+    .on('end', ()=>{ if(Math.abs(tlKEmpaquetado-tlK)>1e-6){ const xk = _escalaKTL(tlK); _reempaquetarTL(xk); tlKEmpaquetado = tlK; dibujarTL(xk, true); } });
   tlSvg.call(tlZoom);
-  if(tlTransformGuardada && tlTransformGuardada.k>1) tlSvg.call(tlZoom.transform, tlTransformGuardada); else dibujarTL(tlXScaleBase);
+  { const z = document.getElementById('tl-zoom-txt'); if(z) z.textContent = '100%'; }
+  dibujarTL(tlXScaleBase, true);
+  if(tlTransformGuardada && tlTransformGuardada.k>1) tlSvg.call(tlZoom.transform, tlTransformGuardada);
 
   _montarCabeceraTL(wrapEl, svgEl);
 }
 
-function dibujarTL(xScaleActual){
+function dibujarTL(xScaleActual, animar){
+  const K = tlK;   // coordenadas = base × K; el grupo se traslada con el arrastre
   tlContainer.selectAll('*').remove();
   const meses = mesesSexenioTL();
 
@@ -401,22 +419,23 @@ function dibujarTL(xScaleActual){
         .on('pointermove',ev=>{ const [mx] = d3.pointer(ev, tlContainer.node()); const fx = xScaleActual.invert(mx).toISOString().slice(0,10); const d = serie.reduce((a,b)=>Math.abs(new Date(b.fecha)-new Date(fx))<Math.abs(new Date(a.fecha)-new Date(fx))?b:a);
           mostrarTooltipAgenda(`<strong>${d.fecha}</strong><br><span style="font-size:10px;">Tendencia: ${d.n} tema${d.n!==1?'s':''} de agenda activo${d.n!==1?'s':''}</span>`, ev); })
         .on('pointerleave',ocultarTooltipAgenda);
-      const u = serie[serie.length-1]; tlContainer.append('text').attr('x',Math.min(tlWidth-30, X(u)+6)).attr('y',tlYLinea-k*u.n-4).attr('text-anchor',X(u)>tlWidth-60?'end':'start').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--teal)').attr('fill-opacity',0.8).text(`${u.n} temas activos`); } }
+      const u = serie[serie.length-1]; tlContainer.append('text').attr('x',Math.min((tlWidth-30)*K, X(u)+6)).attr('y',tlYLinea-k*u.n-4).attr('text-anchor',X(u)>(tlWidth-60)*K?'end':'start').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--teal)').attr('fill-opacity',0.8).text(`${u.n} temas activos`); } }
 
   // línea principal: punteada donde la cobertura es parcial (notas sembradas), continua desde la cobertura completa
-  const xCov = _covTL ? Math.min(Math.max(30, xScaleActual(new Date(_covTL.fecha+'T12:00:00'))), tlWidth-30) : tlWidth-30;
-  if(xCov>30) tlContainer.append('line').attr('x1',30).attr('x2',xCov).attr('y1',tlYLinea).attr('y2',tlYLinea).attr('stroke','var(--ink-3)').attr('stroke-width',2).attr('stroke-dasharray','3 5')
-    .append('title').text('Cobertura parcial: antes de esta fecha solo hay notas sembradas, no comparables con el periodo actual');
-  tlContainer.append('line').attr('x1',xCov).attr('x2',tlWidth-30).attr('y1',tlYLinea).attr('y2',tlYLinea).attr('stroke','var(--ink-2)').attr('stroke-width',2);
+  const xCov = _covTL ? Math.min(Math.max(30*K, xScaleActual(new Date(_covTL.fecha+'T12:00:00'))), (tlWidth-30)*K) : (tlWidth-30)*K;
+  if(xCov>30*K) { const lc = tlContainer.append('line').attr('x1',30*K).attr('x2',xCov).attr('y1',tlYLinea).attr('y2',tlYLinea).attr('stroke','var(--ink-3)').attr('stroke-width',2).attr('stroke-dasharray','3 5')
+    ; _tipSel(lc.style('pointer-events','stroke'), '<strong>Cobertura parcial</strong><br><span style="font-size:10px;">Antes de esta fecha solo hay notas sembradas a mano; no son comparables con el periodo actual.</span>'); }
+  tlContainer.append('line').attr('x1',xCov).attr('x2',(tlWidth-30)*K).attr('y1',tlYLinea).attr('y2',tlYLinea).attr('stroke','var(--ink-2)').attr('stroke-width',2);
   if(xCov>150) tlContainer.append('text').attr('x',xCov-6).attr('y',tlYLinea-10).attr('text-anchor','end').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(tlEjeComprimido ? 'cobertura parcial · escala comprimida' : 'cobertura parcial');
 
   const mesesVis = meses.filter(m=>m>=_inicioPeriodoTL().slice(0,7) && m<=_finPeriodoTL().slice(0,7));
   let _ultX = -1e9; const mesesEtiq = mesesVis.filter(m=>{ const xm = xScaleActual(new Date(m+'-15')); if(xm-_ultX>=58){ _ultX = xm; return true; } return false; });
+  mesesEtiq.forEach(m=>{ const xm = xScaleActual(new Date(m+'-01T00:00:00')); tlContainer.append('line').attr('class','tl-raya-mes').attr('x1',xm).attr('x2',xm).attr('y1',0).attr('y2',tlHeight).attr('stroke','var(--line-strong)').attr('stroke-opacity',0.45).attr('stroke-width',1).style('pointer-events','none'); });
   tlContainer.selectAll('text.tl-mes').data(mesesEtiq).join('text')
     .attr('class','tl-mes').attr('x', d=>xScaleActual(new Date(d+'-15'))).attr('y', tlYLinea+34)
     .attr('text-anchor','middle').attr('font-size','11px').attr('font-weight','600').attr('font-family','var(--f-mono)').attr('fill','var(--ink-1)')
     .text(d=>d);
-  if(periodoTL && !anioFiltroTL){ const d0 = new Date(_inicioPeriodoTL()+'T12:00:00'); for(let d = new Date(d0); d<=new Date(); d.setDate(d.getDate()+7)){ const fx = d.toISOString().slice(0,10);
+  if(periodoTL && !anioFiltroTL){ const d0 = new Date(_inicioPeriodoTL()+'T12:00:00'); for(let d = new Date(d0); d<=new Date(); d.setDate(d.getDate()+(Number(periodoTL)<=15?2:7))){ const fx = d.toISOString().slice(0,10);
       tlContainer.append('text').attr('x',xScaleActual(new Date(fx+'T12:00:00'))).attr('y',tlYLinea+54).attr('text-anchor','middle').attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(fx.slice(5));
       tlContainer.append('line').attr('x1',xScaleActual(new Date(fx+'T12:00:00'))).attr('x2',xScaleActual(new Date(fx+'T12:00:00'))).attr('y1',tlYLinea-4).attr('y2',tlYLinea+4).attr('stroke','var(--line-strong)'); } }
   meses.filter(m=>m.endsWith('-01')).forEach(m=>{
@@ -449,6 +468,7 @@ function dibujarTL(xScaleActual){
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
     const xc = x;   // la tarjeta va centrada en su fecha (sin pegarse a los bordes al mover el lienzo)
     const gg = d3.select(this).attr('opacity', esNivel1?1:0.7);
+    if(animar){ gg.attr('opacity',0).transition().duration(260).attr('opacity', esNivel1?1:0.7); }
 
     // FIX #1: tramo de actividad real del tema (primera a última nota) -- se dibuja detrás de
     // todo lo demás, como una barra semitransparente sobre la línea principal. Un tema activo
@@ -475,7 +495,7 @@ function dibujarTL(xScaleActual){
     if(reaccionesDelTema.length){
       gg.append('circle').attr('cx',xc+anchoTarjeta/2-8).attr('cy',yTarjeta+8).attr('r',4)
         .attr('fill','var(--coral)').attr('stroke','var(--bg-1)').attr('stroke-width',1.2)
-        .append('title').text(`${reaccionesDelTema.length} reacción${reaccionesDelTema.length!==1?'es':''} documentada${reaccionesDelTema.length!==1?'s':''}`);
+        .call(c=>_tipSel(c, `<strong>${reaccionesDelTema.length} reacción${reaccionesDelTema.length!==1?'es':''} documentada${reaccionesDelTema.length!==1?'s':''}</strong><br><span style="font-size:10px;">${reaccionesDelTema.map(_escHtml).join('<br>')}</span>`));
     }
 
     // CORRECCIÓN -- pedido explícito, confirmado: la etiqueta SIEMPRE visible de la
@@ -504,7 +524,7 @@ function dibujarTL(xScaleActual){
         const indice = calcularIndiceEscalamiento(d.tema);
         const colorIdx = {alto:'var(--riesgo-alto)', medio:'var(--riesgo-medio)', bajo:'var(--riesgo-bajo)'}[indice.nivel];
         const cxBadge = xc+anchoTarjeta/2-9, cyBadge = yTarjeta+9;
-        gg.append('circle').attr('cx',cxBadge).attr('cy',cyBadge).attr('r',9).attr('fill',colorIdx).attr('stroke','var(--bg-1)').attr('stroke-width',1.5).append('title').text('Índice de escalamiento del tema, a hoy (no al día de la tarjeta)');
+        gg.append('circle').attr('cx',cxBadge).attr('cy',cyBadge).attr('r',9).attr('fill',colorIdx).attr('stroke','var(--bg-1)').attr('stroke-width',1.5).call(c=>_tipSel(c, `<strong>Índice de escalamiento: ${indice.total}/100</strong><br><span style="font-size:10px;">Nivel ${indice.nivel}. Se calcula a hoy, no al día de la tarjeta.</span>`));
         gg.append('text').attr('x',cxBadge).attr('y',cyBadge+3).attr('text-anchor','middle').attr('font-size','7px').attr('font-weight','700').attr('font-family','var(--f-mono)').attr('fill','#0E1116').text(indice.total);
       }
     }
