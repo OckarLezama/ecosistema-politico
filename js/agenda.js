@@ -567,7 +567,7 @@ function abrirListaTemasAgenda(){
   const pintar = ()=>{
     const f = q.value.trim().toLowerCase();
     const ts = temasDisponiblesActuales.filter(t=>!f || t.nombre.toLowerCase().includes(f));
-    lista.innerHTML = ts.length ? ts.map(t=>`<button type="button" class="atp-item${t.id===actual?' sel':''}" data-id="${t.id}"><span class="atp-dot" style="background:${colorCategoria(t.categoria)}"></span><span class="atp-n">${t.nombre}</span><span class="atp-c">${t.categoria}</span></button>`).join('') : '<div class="atp-vacio">Sin coincidencias</div>';
+    lista.innerHTML = ts.length ? ts.map(t=>`<button type="button" class="atp-item${t.id===actual?' sel':''}" data-id="${t.id}"><span class="atp-dot" style="background:${colorCategoria(t.categoria)}"></span><span class="atp-n">${t.nombre}${_inflReciente(t.id)?' <span style="color:var(--riesgo-medio)" title="Punto de inflexión reciente">⚡</span>':''}</span><span class="atp-c">${t.categoria}</span></button>`).join('') : '<div class="atp-vacio">Sin coincidencias</div>';
   };
   pintar(); q.addEventListener('input', pintar); q.focus();
   lista.addEventListener('click', ev=>{ const b = ev.target.closest('.atp-item'); if(!b) return; cerrarListaTemasAgenda(); seleccionarTemaAgenda(b.dataset.id); });
@@ -953,6 +953,7 @@ let temaGenealogiaAnterior = null; // recuerda qué tema se dibujó la última v
 // desaparecía solo, porque cada redibujo -- incluso de fondo -- reiniciaba todo a 1)
 
 function renderGenealogiaAgenda(){
+  _cargarDatosInflexion();
   const cont = document.getElementById('agenda-contenido');
   const leyendaNotas0 = document.getElementById('agenda-notas-leyenda');
   if(leyendaNotas0) leyendaNotas0.style.display = 'none';
@@ -1004,22 +1005,15 @@ function renderGenealogiaAgenda(){
     </div>` : ''}
     <div style="position:relative;width:100%;flex:1;min-height:0;">
       <div id="geneal-barra" style="position:absolute;top:8px;right:10px;z-index:5;display:flex;align-items:center;gap:8px;">
-        <button type="button" id="geneal-registro-btn" class="chip-btn" style="padding:3px 10px;font-size:11px;display:none;" onclick="_copiarRegistroGeneal()" title="Copia las revisiones y la incertidumbre en formato CSV"></button>
-        <button type="button" id="geneal-inc-btn" class="chip-btn" style="padding:3px 10px;font-size:11px;" onclick="_abrirIncertidumbre()">+ Incertidumbre</button>
         <button type="button" id="geneal-metodo-btn" class="chip-btn" style="padding:3px 10px;font-size:11px;" onclick="document.getElementById('geneal-metodo').classList.toggle('abierto')">Método</button>
         <span style="display:inline-flex;align-items:center;gap:2px;"><button type="button" class="chip-btn" style="padding:3px 8px;font-size:12px;" title="Alejar" onclick="_zoomGenealogia(-1)">−</button><span id="geneal-zoom-txt" style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);min-width:34px;text-align:center;"></span><button type="button" class="chip-btn" style="padding:3px 8px;font-size:12px;" title="Acercar" onclick="_zoomGenealogia(1)">+</button></span>
         <div id="geneal-kpi" style="font-family:var(--f-mono);font-size:10.5px;background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;"></div>
         <div id="geneal-contador-flotante" style="font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;"></div>
       </div>
       <div id="geneal-metodo" style="display:none;max-height:70%;overflow:auto;position:absolute;top:42px;right:10px;z-index:5;width:380px;max-width:80vw;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--ink-2);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.4);">
-        <b style="color:var(--ink-1)">Puntos de inflexión (automáticos = «posibles»)</b><br>
-        <span style="color:var(--ink-1)">Evento</span>: lo que ocurrió (cada nota).<br>
-        <span style="color:var(--riesgo-medio)">Trigger</span>: hecho o actor que reactiva un tema que estaba latente. Se marca cuando el día se dispara (3+ notas y el doble del ritmo previo) o cuando un actor casi ausente entra con fuerza (ej. AMLO reaparece).<br>
-        <span style="color:var(--riesgo-alto)">Turning point</span>: el trigger cambia el rumbo: el ritmo se sostiene los días siguientes con impacto alto. Solo se confirma en retrospectiva.<br>
-        <span style="color:var(--ink-1)">Qué pasó después</span>: en cada marca, el ritmo, los actores que entran, las palabras nuevas y si el foco de la agenda se movió a otro tema. La línea de notas cambia de color y grosor los 3 días posteriores.<br>
-        <span style="color:var(--ink-1)">Incertidumbre crítica</span>: variable estructural aún abierta (no un hecho) de la que nacen las posibles ramas futuras. La define el analista, no se detecta sola; por eso hoy el contador marca 0.<br>
-        Todo lo automático es una señal por volumen y menciones, no una conclusión: el analista la confirma o la descarta.
+        ${_htmlMetodoGeneal()}
       </div>
+      <div id="geneal-hilos" style="position:absolute;bottom:8px;left:10px;z-index:5;display:none;flex-wrap:wrap;align-items:center;gap:6px;max-width:70%;font-size:10.5px;font-family:var(--f-mono);"></div>
       <div id="geneal-scroll" class="eco-scroll" style="width:100%;height:100%;overflow:auto;box-sizing:border-box;"><svg id="geneal-svg" style="display:block;"></svg></div>
 
     </div>`;
@@ -1091,14 +1085,14 @@ function dibujarGenealogia(temaId){
   // contenedor real, para que los círculos no se deformen
   const height = Math.max(scrollEl.clientHeight || 480, 780), y = height/2;   // lienzo más alto que la ventana: se recorre con la barra vertical
   _cajasGeneal = [];
-  const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150 + (_incGet(temaId) ? 360 : 0);
+  const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150 + (_incDeTema(temaId) ? 360 : 0);
   const width = Math.max(scrollEl.clientWidth||900, anchoNecesario);
   svgEl.dataset.w = width; svgEl.dataset.h = height;
   _aplicarZoomGenealogia(cambioDeTema);
 
   const posiciones = eventos.map((e,i)=>({x:xInicio+i*espacio, y}));
   _totalGeneal = eventos.length; _ramaCtx = {temaId, x:posiciones[posiciones.length-1].x, y};
-  if(_incGet(temaId)) _cajasGeneral_push(_ramaCtx.x+20, y-130, 330, 260);   // zona de las ramas: ninguna caja de notas se coloca encima
+  if(_incDeTema(temaId)) _cajasGeneral_push(_ramaCtx.x+20, y-130, 330, 260);   // zona de las ramas: ninguna caja de notas se coloca encima
 
   const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]).attr('preserveAspectRatio','none');
   svg.selectAll('*').remove();
@@ -1118,7 +1112,7 @@ function dibujarGenealogia(temaId){
   gFrecuencia.append('path').attr('d', lineaFrecuencia(puntosFrecuencia)).attr('fill','none').attr('stroke',colorTema).attr('stroke-width',1.5);
   puntosFrecuencia.forEach(p=> gFrecuencia.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2).attr('fill',colorTema));
 
-  _temaGenealActual = temaId; _inflGeneal = _detectarInflexiones(eventos, temaId); _inflPintados = 0; _actualizarKpiInflexion(); _actualizarBotonRegistro();
+  _temaGenealActual = temaId; _inflGeneal = _detectarInflexiones(eventos, temaId); _inflPintados = 0; _actualizarKpiInflexion();
   svg.append('g').attr('class','geneal-inflexion-capa');
   const lineaBase = svg.append('g').attr('class','geneal-linea-capa');
   const puntosBase = svg.append('g').attr('class','geneal-puntos-capa');
@@ -1186,6 +1180,7 @@ function dibujarGenealogia(temaId){
   toggleReproduccionGenealogiaVigente = toggleReproduccionGenealogia;
 
   if(genealogiaRevelados>=eventos.length) _dibujarRamasGeneal();
+  _pintarHilos(temaId);
   svg.append('text').attr('class','geneal-contador').attr('x',xInicio).attr('y',height-10).attr('text-anchor','middle')
     .attr('font-size','10px').attr('fill','var(--ink-3)')
     .text(genealogiaRevelados<=1 ? '' : genealogiaRevelados>=eventos.length ? `${eventos.length} de ${eventos.length} notas — recorrido completo` : `Pausado — ${genealogiaRevelados} de ${eventos.length} (clic para continuar)`);
@@ -1322,76 +1317,104 @@ function _detectarInflexiones(eventos, temaId){
       }
       efecto = l;
     }
+    const notaClave = [...e.notas].sort((u,v)=>(Number(v.intensidad)||0)-(Number(u.intensidad)||0))[0];
+    const detonante = entra ? _nomCortoActor(entra.x.a) : (prot[0] ? prot[0].replace(/\s*\(.*$/,'') : '');
+    const extra = { detonante, notaClave: notaClave ? notaClave.descripcion : '', n, base, post3, diasPost: Math.min(3, ultimoDia-d) };
     out.set(e.fecha, sostenido
-      ? { tipo:'turning', etiqueta:'POSIBLE TURNING POINT', def:'Cambio de rumbo: el tema sube de nivel y ya no regresa. Solo se confirma viendo lo que pasa después.', color:'var(--riesgo-alto)', razon:partes.join(' '), efecto }
-      : { tipo:'trigger', etiqueta:'POSIBLE TRIGGER', def:'Hecho o actor que reactiva un tema que estaba latente.', color:'var(--riesgo-medio)', razon:partes.join(' '), efecto });
+      ? { ...extra, tipo:'turning', etiqueta:'POSIBLE TURNING POINT', def:'Cambio de rumbo: el tema sube de nivel y ya no regresa. Solo se confirma viendo lo que pasa después.', color:'var(--riesgo-alto)', razon:partes.join(' '), efecto }
+      : { ...extra, tipo:'trigger', etiqueta:'POSIBLE TRIGGER', def:'Hecho o actor que reactiva un tema que estaba latente.', color:'var(--riesgo-medio)', razon:partes.join(' '), efecto });
   });
   return out;
 }
 function _cajasGeneral_push(x,y,w,h){ _cajasGeneal.push({x,y,w,h}); }
+function _eventosGenealogia(temaId){ return agruparEventosPorDia(consolidarNotasPorSimilitud(ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId)).sort((a,b)=>a.fecha.localeCompare(b.fecha))); }
+// todos los puntos de inflexión posibles de los temas de agenda (lo usa el robot para guardarlos en data/puntos_inflexion.csv)
+function calcularPuntosInflexion(){
+  const out = [];
+  ECOSISTEMA.temas.filter(enNotas).forEach(t=>{
+    const ev = _eventosGenealogia(t.id); if(ev.length<3) return;
+    _detectarInflexiones(ev, t.id).forEach((m,f)=> out.push({ tema_id:t.id, tema:t.nombre, fecha:f, tipo:m.tipo, detonante:m.detonante, nota_clave:m.notaClave, razon:m.razon,
+      efecto:(m.efecto||[]).map(x=>x[0]+': '+x[1]).join(' | '), n:m.n, base:m.base, post3:m.post3, dias_post:m.diasPost }));
+  });
+  return out;
+}
 function _segGeneal(fecha){
   let m = null; _inflGeneal.forEach((v,f)=>{ const k = _diaGen(fecha)-_diaGen(f); if(k>=0 && k<=3) m = v; });
   return {c:'var(--teal)', w: m ? 3.2 : 1.8};
 }
+// ---- datos compartidos: los escribe el robot (puntos, calidad, estado) o el analista en el repositorio (incertidumbres) ----
+let _dInfl = null, _dInflCargando = false, _temaGenealActual = null;
+function _cargarDatosInflexion(){
+  if(_dInfl!==null || _dInflCargando) return; _dInflCargando = true;
+  const csv = f=>fetch('data/'+f+'?t='+Date.now()).then(r=>r.ok?r.text():'').then(t=>t?Papa.parse(t,{header:true,skipEmptyLines:true}).data:[]).catch(()=>[]);
+  const json = f=>fetch('data/'+f+'?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  Promise.all([csv('puntos_inflexion.csv'), csv('incertidumbres.csv'), json('inflexion_calidad.json'), json('incertidumbres_estado.json')])
+    .then(([p,i,c])=>{ _dInfl = {puntos:new Map(p.map(r=>[r.tema_id+'|'+r.fecha,r])), lista:p, inc:i, calidad:c}; })
+    .catch(()=>{ _dInfl = {puntos:new Map(), lista:[], inc:[], calidad:null}; })
+    .then(()=>{ _dInflCargando = false; if(vistaAgenda==='genealogia' && !reproduciendoGenealogia) renderGenealogiaAgenda(); else if(vistaAgenda==='ecosistema') renderEcosistemaAgenda(); });
+}
+// inflexión registrada por el robot en los últimos días para un tema (marca "⚡" en Ecosistema y en el selector)
+function _inflReciente(temaId){
+  if(!_dInfl) return null; let mejor = null;
+  _dInfl.lista.forEach(r=>{ if(r.tema_id===temaId && _diasAtras(r.fecha)<=3 && (!mejor || r.fecha>mejor.fecha)) mejor = r; });
+  return mejor;
+}
+// señales de las incertidumbres: cuenta las notas del tema (desde que se definió) que cumplen la señal de cada desenlace
+function evaluarIncertidumbres(filas){
+  const grupos = new Map();
+  (filas||[]).filter(r=>r.id && r.tema_id && r.pregunta && r.desenlace).forEach(r=>{
+    if(!grupos.has(r.id)) grupos.set(r.id,{id:r.id, tema_id:r.tema_id, pregunta:r.pregunta, creada:r.creada||'', desenlaces:[]});
+    let rx = null; try{ rx = new RegExp(r.senal||'$^','i'); }catch(e){}
+    const g = grupos.get(r.id), evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===r.tema_id && (!g.creada || e.fecha>=g.creada));
+    const notas = rx ? evs.filter(e=>rx.test(_normN(e.descripcion))).sort((a,b)=>b.fecha.localeCompare(a.fecha)) : [];
+    g.desenlaces.push({etiqueta:r.desenlace, senal:r.senal, n:notas.length, notas:notas.slice(0,3)});
+  });
+  return [...grupos.values()];
+}
+const _incDeTema = tid=> _dInfl ? evaluarIncertidumbres(_dInfl.inc.filter(r=>r.tema_id===tid))[0] || null : null;
 function _actualizarKpiInflexion(){
   const el = document.getElementById('geneal-kpi'); if(!el) return;
-  let t=0, tp=0, c=0; _inflGeneal.forEach((m,f)=>{ const r = _revGet(_temaGenealActual,f); if(r && r.estado==='descartado') return; m.tipo==='turning' ? tp++ : t++; if(r) c++; });
-  const inc = _incGet(_temaGenealActual) ? 1 : 0;
-  el.innerHTML = `<span title="Hechos o actores que reactivan el tema (posibles, detectados automáticamente)" style="color:var(--riesgo-medio)">⚡ ${t} trigger${t===1?'':'s'}</span> · <span title="Cambios de rumbo sostenidos (posibles)" style="color:var(--riesgo-alto)">◉ ${tp} turning point${tp===1?'':'s'}</span> · <span title="Las define el analista; el sistema no las detecta" style="color:${inc?'var(--teal)':'var(--ink-3)'}">? ${inc} incertidumbre${inc===1?'':'s'} crítica${inc===1?'':'s'}</span>${c?` · <span style="color:var(--riesgo-bajo)" title="Revisadas por el analista">✓ ${c}</span>`:''}`;
-  const bi = document.getElementById('geneal-inc-btn'); if(bi) bi.textContent = inc ? '✎ Incertidumbre' : '+ Incertidumbre';
+  let t=0, tp=0; _inflGeneal.forEach(m=>{ m.tipo==='turning' ? tp++ : t++; });
+  const inc = _incDeTema(_temaGenealActual) ? 1 : 0;
+  el.innerHTML = `<span title="Hechos o actores que reactivan el tema (posibles, detectados por el robot)" style="color:var(--riesgo-medio)">⚡ ${t} trigger${t===1?'':'s'}</span> · <span title="Cambios de rumbo sostenidos (posibles)" style="color:var(--riesgo-alto)">◉ ${tp} turning point${tp===1?'':'s'}</span> · <span title="Preguntas abiertas con señales vigiladas por el robot (se definen en data/incertidumbres.csv)" style="color:${inc?'var(--teal)':'var(--ink-3)'}">? ${inc} incertidumbre${inc===1?'':'s'} crítica${inc===1?'':'s'}</span>`;
 }
-// ---- revisión del analista (se guarda en este navegador; "Copiar registro" lo saca a CSV) ----
-let _temaGenealActual = null;
-function _jsonLs(k){ try{ return JSON.parse(_lsGet(k)||'{}')||{}; }catch(e){ return {}; } }
-const _revGet = (t,f)=>_jsonLs('genealRev')[t+'|'+f] || null;
-function _revSet(t,f,v){ const o = _jsonLs('genealRev'); if(v) o[t+'|'+f] = v; else delete o[t+'|'+f]; _lsSet('genealRev', JSON.stringify(o)); _actualizarKpiInflexion(); _actualizarBotonRegistro(); }
-const _incGet = t=>_jsonLs('genealInc')[t] || null;
-function _incSet(t,v){ const o = _jsonLs('genealInc'); if(v) o[t]=v; else delete o[t]; _lsSet('genealInc', JSON.stringify(o)); }
-const _analistaGeneal = ()=> _lsGet('radarCalibAnalista') || 'Analista';
-function _copiarRegistroGeneal(){
-  const q = v=>'"'+String(v||'').replace(/"/g,'""')+'"';
-  const R = _jsonLs('genealRev'), I = _jsonLs('genealInc');
-  let t = 'tema_id,fecha,estado,analista,fecha_revision,motivo\n' + Object.entries(R).map(([k,v])=>{ const [tm,f]=k.split('|'); return [tm,f,v.estado,q(v.por),v.f,q(v.motivo)].join(','); }).join('\n');
-  t += '\n\ntema_id,pregunta,desenlaces,analista,fecha\n' + Object.entries(I).map(([tm,v])=>[tm,q(v.q),q(v.o.join(' | ')),q(v.por),v.f].join(',')).join('\n');
-  const fin = ()=>{ const b = document.getElementById('geneal-registro-btn'); if(b){ const x = b.textContent; b.textContent = 'Copiado ✓'; setTimeout(()=>_actualizarBotonRegistro(),1400); } };
-  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(fin).catch(()=>{ const ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} ta.remove(); fin(); });
+function _htmlMetodoGeneal(){
+  const c = _dInfl && _dInfl.calidad;
+  const cal = c ? `<br><span style="color:var(--ink-1)">Calidad (la mide el robot)</span>: ${c.detecciones_7d} marcas en 7 días · ${c.sostenidas_pct==null?'—':c.sostenidas_pct+'%'} se sostuvieron los días siguientes · casos conocidos detectados ${c.casos_detectados} de ${c.casos_total}${c.revisadas_total?` · revisiones del analista: ${c.revisadas_relevantes} de ${c.revisadas_total} relevantes`:''}.` : '<br><span style="color:var(--ink-3)">Calidad: aún sin medición del robot.</span>';
+  return `<b style="color:var(--ink-1)">Puntos de inflexión (automáticos = «posibles»)</b><br>
+        <span style="color:var(--ink-1)">Evento</span>: lo que ocurrió (cada nota).<br>
+        <span style="color:var(--riesgo-medio)">Trigger</span>: hecho o actor que reactiva un tema que estaba latente. Se marca cuando el día se dispara (3+ notas y el doble del ritmo previo) o cuando un actor casi ausente entra con fuerza (ej. AMLO reaparece).<br>
+        <span style="color:var(--riesgo-alto)">Turning point</span>: el trigger cambia el rumbo: el ritmo se sostiene los días siguientes con impacto alto. Solo se confirma en retrospectiva.<br>
+        <span style="color:var(--ink-1)">Qué pasó después</span>: ritmo, actores que entran, palabras nuevas y si el foco de la agenda se movió. La línea de notas se engrosa los 3 días posteriores.<br>
+        <span style="color:var(--ink-1)">Incertidumbre crítica</span>: variable estructural aún abierta (no un hecho) de la que nacen las posibles ramas futuras. Se define en <i>data/incertidumbres.csv</i> (pregunta, desenlaces y la señal de cada uno); el robot cuenta las notas que cumplen cada señal y avisa. No predice ni calcula probabilidades.<br>
+        <span style="color:var(--ink-1)">Hilos</span>: otros temas que comparten actores con éste (los actores que aparecen en todo pesan menos).<br>
+        El robot guarda cada marca en <i>data/puntos_inflexion.csv</i> (con fecha de primera detección) y avisa cuando aparece una nueva. Es una señal por volumen y menciones, no una conclusión.${cal}`;
 }
-function _actualizarBotonRegistro(){
-  const b = document.getElementById('geneal-registro-btn'); if(!b) return;
-  const n = Object.keys(_jsonLs('genealRev')).length + Object.keys(_jsonLs('genealInc')).length;
-  b.style.display = n ? '' : 'none'; b.textContent = `⧉ Copiar registro (${n})`;
+function _pintarHilos(temaId){
+  const el = document.getElementById('geneal-hilos'); if(!el) return;
+  const h = _hilosDeTema(temaId).filter(x=>temasDisponiblesActuales.find(t=>t.id===x.tema.id));
+  el.style.display = h.length ? 'flex' : 'none';
+  el.innerHTML = h.length ? '<span style="color:var(--ink-3);">Hilos:</span>'+h.map(x=>`<button type="button" class="chip-btn" data-id="${_escHtml(x.tema.id)}" title="Comparten: ${_escHtml(x.comp.join(', '))}" style="padding:2px 9px;font-size:10.5px;">⤷ ${_escHtml(_truncarEnPalabra(x.tema.nombre,34))}</button>`).join('') : '';
+  el.querySelectorAll('button').forEach(b=>b.onclick = ()=>seleccionarTemaAgenda(b.dataset.id));
 }
 function _marcarInflexionGenealogia(e, pos, g, width, height){
   const m = _inflGeneal.get(e.fecha); if(!m) return;
-  const tid = _temaGenealActual;
-  const halos = ['','h2'].map(c=> g.insert('circle',':first-child').attr('class','geneal-halo '+c).attr('r',16).attr('stroke',m.color));
+  ['','h2'].forEach(c=> g.insert('circle',':first-child').attr('class','geneal-halo '+c).attr('r',16).attr('stroke',m.color));
   const svg = d3.select('#geneal-svg');
-  const lineaV = svg.select('.geneal-inflexion-capa').append('line').attr('x1',pos.x).attr('x2',pos.x).attr('y1',0).attr('y2',height).attr('stroke',m.color).attr('stroke-width',0.9);
-  const ancho = 330, k = _inflPintados++;
-  const st = {dx:0, dy:0, abierto:false, pend:null};
+  svg.select('.geneal-inflexion-capa').append('line').attr('x1',pos.x).attr('x2',pos.x).attr('y1',0).attr('y2',height).attr('stroke',m.color).attr('stroke-width',0.9).attr('stroke-dasharray','6 4').attr('opacity',.75);
+  const ancho = 330, k = _inflPintados++, st = {dx:0, dy:0, abierto:false};
+  const reg = _dInfl && _dInfl.puntos.get(_temaGenealActual+'|'+e.fecha);
   const p = svg.append('g').attr('class','geneal-no-toggle geneal-pill');
   const x0 = Math.max(6, Math.min(width-ancho-6, pos.x-24)), y0 = 4 + (k%2)*14;
   _cajasGeneral_push(x0, y0, ancho, 96);
-  const guardar = (estado, motivo)=>{ _revSet(tid, e.fecha, {estado, por:_analistaGeneal(), f:new Date().toLocaleDateString('en-CA',{timeZone:'America/Mexico_City'}), motivo:(motivo||'').trim()}); st.pend = null; pintar(); };
   const pintar = ()=>{
-    const rev = _revGet(tid, e.fecha);
     p.selectAll('*').remove();
-    const desc = rev && rev.estado==='descartado', conf = rev && rev.estado==='confirmado';
-    halos.forEach(h=>h.style('display', desc?'none':null));
-    lineaV.attr('stroke-dasharray', conf?null:'6 4').attr('opacity', desc?0:(conf?.9:.75));
-    if(desc){   // marca descartada: queda como una pastilla discreta, con registro
-      p.append('rect').attr('x',x0).attr('y',y0).attr('width',230).attr('height',20).attr('rx',10).attr('fill','var(--bg-1)').attr('stroke','var(--line-strong)');
-      p.append('text').attr('x',x0+10).attr('y',y0+14).attr('font-size','9px').attr('fill','var(--ink-3)').text(`Descartado · ${m.etiqueta.replace('POSIBLE ','').toLowerCase()} ${e.fecha.slice(5)}`);
-      p.append('text').attr('x',x0+ancho-100).attr('y',y0+14).attr('font-size','9px').attr('fill','var(--teal)').style('cursor','pointer').text('deshacer').on('click',()=>{ _revSet(tid,e.fecha,null); pintar(); });
-      p.select('rect').attr('width',ancho-90);
-      return;
-    }
     const lr = partirEnLineas(m.razon, 62, 6), ld = partirEnLineas(m.def, 62, 3);
     const ef = st.abierto && m.efecto ? m.efecto.flatMap(([t,v])=>[[t,true],...partirEnLineas(v,60,3).map(z=>[z,false])]) : [];
-    const alto = 20 + ld.length*10 + 4 + lr.length*10 + 18 + ef.length*10 + (st.abierto&&m.efecto?4:0) + 18 + (st.pend?24:0) + (conf?10:0);
-    p.append('rect').attr('x',x0).attr('y',y0).attr('width',ancho).attr('height',alto).attr('rx',6).attr('fill','var(--bg-1)').attr('stroke',m.color).attr('stroke-width',conf?2:1.4).style('cursor','grab');
+    const alto = 20 + ld.length*10 + 4 + lr.length*10 + 18 + ef.length*10 + (st.abierto&&m.efecto?4:0) + 14;
+    p.append('rect').attr('x',x0).attr('y',y0).attr('width',ancho).attr('height',alto).attr('rx',6).attr('fill','var(--bg-1)').attr('stroke',m.color).attr('stroke-width',1.4).style('cursor','grab');
     let yy = y0+13;
-    p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','10px').attr('font-weight','700').attr('letter-spacing','.04em').attr('fill',m.color).text((conf?'✓ ':'')+(conf?m.etiqueta.replace('POSIBLE ','CONFIRMADO '):m.etiqueta)+' · '+e.fecha.slice(5));
+    p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','10px').attr('font-weight','700').attr('letter-spacing','.04em').attr('fill',m.color).text(m.etiqueta+' · '+e.fecha.slice(5));
     ld.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('font-style','italic').attr('fill','var(--ink-3)').text(l); });
     yy+=4; lr.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('fill','var(--ink-1)').text(l); });
     if(m.efecto){
@@ -1399,73 +1422,56 @@ function _marcarInflexionGenealogia(e, pos, g, width, height){
         .text(st.abierto?'▾ Ocultar qué pasó después':'▸ Ver qué pasó después').on('click',()=>{ st.abierto=!st.abierto; pintar(); });
       ef.forEach(([t,tit])=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size',tit?'8px':'8.5px').attr('font-weight',tit?'700':'400').attr('fill',tit?'var(--ink-3)':'var(--ink-1)').text(t); });
     } else { yy+=14; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('fill','var(--ink-3)').text('Aún sin días de seguimiento para medir el efecto.'); }
-    // acciones del analista (una sola fila, discreta)
-    yy+=16;
-    const btn = (x,t,c,fn)=> p.append('text').attr('class','geneal-no-toggle').attr('x',x).attr('y',yy).attr('font-size','9px').attr('font-weight','700').attr('fill',c).style('cursor','pointer').text(t).on('click',fn);
-    if(conf){
-      p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('fill','var(--ink-2)').text(`${rev.por} · ${rev.f}${rev.motivo?' · «'+rev.motivo.slice(0,40)+(rev.motivo.length>40?'…':'')+'»':''}`);
-      btn(x0+ancho-62,'deshacer','var(--teal)',()=>{ _revSet(tid,e.fecha,null); pintar(); });
-    } else {
-      p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('fill','var(--ink-3)').text('Automático · sin revisar');
-      btn(x0+ancho-150,'✓ Confirmar','var(--riesgo-bajo)',()=>{ st.pend = 'confirmado'; pintar(); });
-      btn(x0+ancho-70,'✕ Descartar','var(--riesgo-alto)',()=>{ st.pend = 'descartado'; pintar(); });
-    }
-    if(st.pend){
-      const fo = p.append('foreignObject').attr('class','geneal-no-toggle').attr('x',x0+6).attr('y',yy+4).attr('width',ancho-12).attr('height',22);
-      const inp = fo.append('xhtml:input').attr('type','text').attr('placeholder',`Motivo (opcional) — Enter para ${st.pend==='confirmado'?'confirmar':'descartar'}, Esc cancela`)
-        .attr('style','width:100%;box-sizing:border-box;font-size:10px;padding:3px 6px;background:var(--bg-2);color:var(--ink-1);border:1px solid var(--line-strong);border-radius:4px;');
-      inp.on('keydown',(ev)=>{ if(ev.key==='Enter') guardar(st.pend, ev.target.value); else if(ev.key==='Escape'){ st.pend=null; pintar(); } });
-      setTimeout(()=>{ const n = inp.node(); if(n) n.focus(); },0);
-    }
+    yy+=13; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','7.5px').attr('fill','var(--ink-3)').text(reg ? `Registrada por el robot el ${reg.primera_deteccion}${reg.historial&&reg.historial.includes(';')?' · '+reg.historial:''}` : 'Detección en vivo · aún sin registrar');
   };
   pintar();
-  p.call(d3.drag().filter(ev=>!ev.button && !(ev.target.closest && ev.target.closest('foreignObject'))).on('start',function(){ d3.select(this).raise(); }).on('drag',function(ev){ st.dx+=ev.dx; st.dy+=ev.dy; d3.select(this).attr('transform',`translate(${st.dx},${st.dy})`); }));
+  p.call(d3.drag().on('start',function(){ d3.select(this).raise(); }).on('drag',function(ev){ st.dx+=ev.dx; st.dy+=ev.dy; d3.select(this).attr('transform',`translate(${st.dx},${st.dy})`); }));
 }
 
-// ---- incertidumbre crítica: la define el analista; sus desenlaces salen como ramas al final de la línea ----
+// ---- incertidumbre crítica: se define en data/incertidumbres.csv (compartido); el robot vigila sus señales y aquí salen como ramas ----
 let _ramaCtx = null;
 function _dibujarRamasGeneal(){
-  const c = _ramaCtx; if(!c) return; const inc = _incGet(c.temaId); const svg = d3.select('#geneal-svg');
+  const c = _ramaCtx; if(!c) return; const inc = _incDeTema(c.temaId); const svg = d3.select('#geneal-svg');
   svg.select('.geneal-ramas-capa').remove(); if(!inc) return;
-  const g = svg.append('g').attr('class','geneal-ramas-capa geneal-no-toggle'), x0 = c.x, y = c.y, xn = x0+90, xf = x0+270;
-  const cols = ['var(--teal)','var(--riesgo-medio)','var(--riesgo-alto)'], off = inc.o.length===2 ? [-50,50] : [-85,0,85];
+  const g = svg.append('g').attr('class','geneal-ramas-capa geneal-no-toggle'), x0 = c.x, y = c.y, xn = x0+90, xf = x0+270, o = inc.desenlaces.slice(0,3);
+  const cols = ['var(--teal)','var(--riesgo-medio)','var(--riesgo-alto)'], off = o.length===2 ? [-50,50] : [-85,0,85], total = o.reduce((a,d)=>a+d.n,0), lider = total ? o.reduce((a,d,i)=>d.n>o[a].n?i:a,0) : -1;
   g.append('line').attr('x1',x0+16).attr('y1',y).attr('x2',xn-9).attr('y2',y).attr('stroke','var(--ink-3)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4');
-  const nodo = g.append('g').style('cursor','pointer').on('click',()=>_abrirIncertidumbre());
+  const nodo = g.append('g');
   nodo.append('circle').attr('cx',xn).attr('cy',y).attr('r',9).attr('fill','var(--bg-1)').attr('stroke','var(--riesgo-medio)').attr('stroke-width',1.8);
   nodo.append('text').attr('x',xn).attr('y',y).attr('dy','0.35em').attr('text-anchor','middle').attr('font-size','11px').attr('font-weight','700').attr('fill','var(--riesgo-medio)').text('?');
-  nodo.append('title').text('Clic para editar la incertidumbre');
-  partirEnLineas(inc.q, 34, 3).forEach((l,i)=> g.append('text').attr('x',xn).attr('y',y-24-(partirEnLineas(inc.q,34,3).length-1-i)*11).attr('text-anchor','middle').attr('font-size','9px').attr('font-weight','600').attr('fill','var(--ink-1)').text(l));
-  inc.o.forEach((t,i)=>{
-    const yf = y+off[i], col = cols[i], corto = t.split(/\s[—-]\s/)[0];
-    g.append('path').attr('d',`M${xn+9},${y} C${xn+70},${y} ${xf-70},${yf} ${xf},${yf}`).attr('fill','none').attr('stroke',col).attr('stroke-width',1.4).attr('stroke-dasharray','5 4');
-    g.append('circle').attr('cx',xf).attr('cy',yf).attr('r',3.5).attr('fill',col);
-    const tx = g.append('text').attr('x',xf+9).attr('y',yf).attr('dy','0.35em').attr('font-size','9.5px').attr('fill',col).text(String.fromCharCode(65+i)+' · '+(corto.length>30?corto.slice(0,28)+'…':corto));
-    tx.append('title').text(t);
+  nodo.append('title').text(`${inc.pregunta}\nSeñales vistas por el robot: ${total}`);
+  const lq = partirEnLineas(inc.pregunta, 34, 3);
+  lq.forEach((l,i)=> g.append('text').attr('x',xn).attr('y',y-24-(lq.length-1-i)*11).attr('text-anchor','middle').attr('font-size','9px').attr('font-weight','600').attr('fill','var(--ink-1)').text(l));
+  o.forEach((d,i)=>{
+    const yf = y+off[i], col = cols[i];
+    g.append('path').attr('d',`M${xn+9},${y} C${xn+70},${y} ${xf-70},${yf} ${xf},${yf}`).attr('fill','none').attr('stroke',col).attr('stroke-width',1.2+Math.min(d.n,5)*0.7).attr('stroke-dasharray',d.n?null:'5 4').attr('opacity',d.n?0.95:0.7);
+    g.append('circle').attr('cx',xf).attr('cy',yf).attr('r',i===lider?5:3.5).attr('fill',col);
+    const tx = g.append('text').attr('x',xf+10).attr('y',yf).attr('dy','0.35em').attr('font-size','9.5px').attr('font-weight',i===lider?'700':'400').attr('fill',col).text(`${String.fromCharCode(65+i)} · ${d.etiqueta.length>26?d.etiqueta.slice(0,24)+'…':d.etiqueta}${d.n?` (${d.n})`:''}`);
+    tx.append('title').text(`${d.etiqueta}\nSeñal vigilada: ${d.senal}\nNotas que la cumplen: ${d.n}${d.notas.map(n=>'\n· '+n.fecha.slice(5)+' '+n.descripcion.slice(0,90)).join('')}`);
   });
 }
-function _cerrarIncertidumbre(){ const p = document.getElementById('geneal-inc-pop'); if(p) p.remove(); }
-function _abrirIncertidumbre(){
-  if(document.getElementById('geneal-inc-pop')){ _cerrarIncertidumbre(); return; }
-  const tid = temaGenealogiaSeleccionado, host = document.getElementById('geneal-barra'); if(!host||!tid) return;
-  const inc = _incGet(tid), esc = x=>String(x||'').replace(/"/g,'&quot;');
-  const pop = document.createElement('div'); pop.id = 'geneal-inc-pop';
-  pop.style.cssText = 'position:absolute;top:34px;right:0;width:320px;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:8px;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.45);font-size:11px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px;';
-  const fld = 'width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:5px;padding:5px 8px;font-size:11.5px;';
-  pop.innerHTML = `<div style="color:var(--ink-1);font-weight:700;font-size:12px;">Incertidumbre crítica</div>
-    <input class="gi-q" style="${fld}" placeholder="Pregunta abierta (ej. ¿Respaldará la Presidencia a Andy?)" value="${esc(inc&&inc.q)}">
-    ${[0,1,2].map(i=>`<input class="gi-o" style="${fld}" placeholder="${String.fromCharCode(65+i)} · desenlace — señal que lo distingue${i==2?' (opcional)':''}" value="${esc(inc&&inc.o[i])}">`).join('')}
-    <div style="display:flex;gap:6px;align-items:center;"><button type="button" class="chip-btn gi-ok" style="padding:4px 12px;">Guardar</button>${inc?'<button type="button" class="chip-btn gi-del" style="padding:4px 10px;color:var(--riesgo-alto);">Quitar</button>':''}<span class="gi-msg" style="color:var(--riesgo-alto);font-size:10.5px;"></span></div>`;
-  host.appendChild(pop); pop.addEventListener('click',e=>e.stopPropagation());
-  pop.querySelector('.gi-ok').onclick = ()=>{
-    const q = pop.querySelector('.gi-q').value.trim(), o = [...pop.querySelectorAll('.gi-o')].map(i=>i.value.trim()).filter(Boolean);
-    if(!q || o.length<2){ pop.querySelector('.gi-msg').textContent = 'Pregunta y al menos 2 desenlaces'; return; }
-    _incSet(tid,{q,o,por:_analistaGeneal(),f:new Date().toLocaleDateString('en-CA',{timeZone:'America/Mexico_City'})});
-    _cerrarIncertidumbre(); _actualizarBotonRegistro(); genealogiaRevelados = _totalGeneal; renderGenealogiaAgenda();
-  };
-  const del = pop.querySelector('.gi-del'); if(del) del.onclick = ()=>{ _incSet(tid,null); _cerrarIncertidumbre(); _actualizarBotonRegistro(); renderGenealogiaAgenda(); };
-  pop.querySelector('.gi-q').focus();
+// ---- hilos entre temas: qué otros temas de agenda comparten actores/hechos con éste (automático) ----
+let _hilosCache = null, _hilosRef = null;
+function _hilosDeTema(temaId){
+  if(!_hilosCache || _hilosRef!==ECOSISTEMA.eventos){
+    _hilosRef = ECOSISTEMA.eventos;
+    const temas = ECOSISTEMA.temas.filter(enNotas), por = new Map(), df = new Map();
+    temas.forEach(t=>{
+      const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && _diasAtras(e.fecha)<21), ids = [...new Set([...ECO_REFERENCIA, ..._actoresDeTema(t.id).map(x=>x.actor_id)])], m = new Map();
+      ids.forEach(id=>{ const a = getActor(id); if(!a) return; const c = _mencionesActor(a, evs).length; if(c>=2){ m.set(id,c); df.set(id,(df.get(id)||0)+1); } });
+      por.set(t.id, m);
+    });
+    const ubic = new Set([...df.entries()].filter(([id,n])=>n>=Math.max(4,0.4*temas.length)).map(x=>x[0]));   // actores presentes en casi todos los temas (ej. la presidenta) no indican hilo
+    const res = new Map();
+    temas.forEach(a=>{ const lista = [];
+      temas.forEach(b=>{ if(a.id===b.id) return; let sc = 0; const comp = [];
+        por.get(a.id).forEach((ca,id)=>{ if(ubic.has(id) || /_partido$/.test(id)) return; const cb = por.get(b.id).get(id); if(!cb) return; const w = 1/Math.log(2+df.get(id)); sc += w*Math.min(ca,cb); comp.push({id, w:w*Math.min(ca,cb)}); });
+        if(sc>=0.9) lista.push({tema:b, sc, comp:comp.sort((x,y)=>y.w-x.w).slice(0,2).map(x=>_nomEco(getActor(x.id)))}); });
+      res.set(a.id, lista.sort((x,y)=>y.sc-x.sc).slice(0,3)); });
+    _hilosCache = res;
+  }
+  return _hilosCache.get(temaId) || [];
 }
-
 function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, height){
   const g = capa.append('g').attr('transform',`translate(${pos.x},${pos.y})`).style('opacity', animado?0:1);
   if(animado) g.transition().duration(200).style('opacity',1);
@@ -1704,7 +1710,7 @@ function _spark(serie, color){ const mx = Math.max(1,...serie), w = 56, h = 16, 
 function _tablaTemasEco(m, maxTema){
   const filas = [...m.T].sort((a,b)=>b.peso-a.peso).map(t=>{ const ti = TEMP_INFO[t.nivel], ac = [...t.links].sort((a,b)=>(ROL_PESO[b.rol]??0.3)*b.n-(ROL_PESO[a.rol]??0.3)*a.n).slice(0,3).map(l=>_nomEco(l.actor)).join(', ');
     return `<tr data-t="${_escHtml(t.tema.id)}" style="cursor:pointer;border-top:1px solid var(--line);"><td style="padding:6px 8px;white-space:nowrap;"><span class="legend-dot" style="background:${ti.color}"></span> ${ti.txt}</td>
-      <td style="padding:6px 8px;"><b>${_escHtml(_truncarEnPalabra(t.tema.nombre,56))}</b><div style="font-size:10px;color:var(--ink-3);">${_escHtml(t.tema.categoria)}</div></td>
+      <td style="padding:6px 8px;"><b>${_escHtml(_truncarEnPalabra(t.tema.nombre,56))}</b>${(()=>{const r=_inflReciente(t.tema.id);return r?` <span title="${_escHtml('Punto de inflexión '+r.fecha+': '+(r.razon||''))}" style="color:var(--riesgo-medio);">⚡ ${_escHtml(r.fecha.slice(5))}</span>`:'';})()}<div style="font-size:10px;color:var(--ink-3);">${_escHtml(t.tema.categoria)}</div></td>
       <td style="padding:6px 8px;width:90px;" title="Impacto ${t.imp} de 10">${_barra(t.imp*10, 'var(--riesgo-alto)')}<span style="font-size:10px;">${t.imp}/10</span></td>
       <td style="padding:6px 8px;white-space:nowrap;font-size:11px;">${t.h48} · ${t.h7}</td><td style="padding:6px 8px;">${_spark(_serie14(t.tema.id), ti.color)} <span style="font-size:11px;">${t.tend==='sube'?'▲':t.tend==='baja'?'▼':'–'}</span></td>
       <td style="padding:6px 8px;width:90px;">${_barra(100*t.peso/maxTema,'var(--teal)')}<span style="font-size:10px;">${Math.round(100*t.peso/maxTema)}</span></td><td style="padding:6px 8px;font-size:11px;color:var(--ink-2);">${_escHtml(ac)}</td></tr>`; }).join('');
@@ -1719,7 +1725,7 @@ function _tablaActoresEco(m, H, fPrev){
   return `<table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="text-align:left;font-size:10px;color:var(--ink-3);font-family:var(--f-mono);"><th style="padding:6px 8px;">#</th><th style="padding:6px 8px;">ACTOR</th><th style="padding:6px 8px;">PESO</th><th style="padding:6px 8px;">TEMAS</th><th style="padding:6px 8px;" title="Menciones en notas, últimos 14 días">MENC. 14D</th><th style="padding:6px 8px;">PAPEL PRINCIPAL</th></tr></thead><tbody>${filas}</tbody></table>`;
 }
 function renderEcosistemaAgenda(){
-  ocultarTooltipAgenda(); _cargarHistEco();
+  ocultarTooltipAgenda(); _cargarHistEco(); _cargarDatosInflexion();
   const cont = document.getElementById('agenda-contenido'); if(!cont) return;
   const sw = document.getElementById('agenda-tema-select-wrap'); if(sw) sw.style.display = 'none';
   const lg = document.getElementById('agenda-notas-leyenda'); if(lg) lg.style.display = 'none';
