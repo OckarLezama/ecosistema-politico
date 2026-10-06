@@ -115,9 +115,14 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
     console.log('historial ecosistema:', m.T.length, 'temas,', m.A.length, 'actores');
   } catch (e) { console.log('historial ecosistema no disponible:', e.message); }
   // ---- puntos de inflexión: memoria compartida (data/puntos_inflexion.csv), alertas, calidad y señales de incertidumbres
-  try {
+  let prue = null; try { prue = JSON.parse(fs.readFileSync(D('pruebas_estado.json'), 'utf8')); } catch (e) {}
+  if (prue && prue.bloqueante) {
+    const id = `${hoy}|pruebas|${prue.fallas.length}`;
+    nuevas.push({ id, ts: ahoraMX, tipo: 'senal', texto: `⚠ Fallan ${prue.fallas.length} pruebas del sistema; no se generaron marcas de inflexión: ${prue.fallas.slice(0, 3).join('; ').slice(0, 220)}` });
+    console.log('pruebas con fallas bloqueantes: se omiten las marcas de inflexión');
+  } else try {
     const esc = v => /[",\n]/.test(String(v)) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v);
-    const f = D('puntos_inflexion.csv'), cab = ['tema_id','tema','fecha','tipo','detonante','razon','efecto','primera_deteccion','ultima_deteccion','historial'];
+    const f = D('puntos_inflexion.csv'), cab = ['tema_id','tema','fecha','tipo','detonante','nota_clave','nota_url','razon','efecto','primera_deteccion','ultima_deteccion','historial'];
     const primera = !fs.existsSync(f);   // la primera corrida solo registra el pasado: no alerta
     const exist = new Map(R('puntos_inflexion.csv').filter(r => r.tema_id && r.fecha).map(r => [r.tema_id + '|' + r.fecha, r]));
     const det = ctx.__puntos();
