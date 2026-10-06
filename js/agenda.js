@@ -262,12 +262,12 @@ function _clavesActor(a){
 function _mencionesActor(a, evs){ const cl = _clavesActor(a); return cl.length ? evs.filter(e=>{ const t = _normN(e.descripcion); return cl.some(k=> k.length<=4 ? new RegExp('\\b'+k+'\\b').test(t) : t.includes(k)); }) : []; }
 const _VERBO_DECLARA = /\b(dijo|dice|afirm|acus|rechaz|pide|pidi|llam[oó]|defiend|respald|critic|anunci|exig|denunci|asegur|reconoc|advirt|amenaz|acept|sostien|descart|nieg|lanz[oó]|reaccion)/i;
 function _esDichoPor(e, cl){ const t=_normN(e.descripcion); return cl.some(k=>{ const i=t.indexOf(k); return i>=0 && i<45 && _VERBO_DECLARA.test(t.slice(i+k.length)); }); }
-function _fichaActividad(men, nTema, cl){
+function _fichaActividad(men, nTema, cl, links){
   if(!men.length) return 'No aparece por nombre en las notas de este tema';
-  const f = e => `${_escHtml(e.fecha)} · ${_escHtml(_medioDeEvento(e)||'')} — ${_escHtml(_truncarEnPalabra(e.descripcion,110))}`;
+  const f = e => `${_escHtml(e.fecha)} · ${_escHtml(_medioDeEvento(e)||'')} — ${links && e.fuente_url ? `<a href="${_escHtml(e.fuente_url)}" target="_blank" rel="noopener" style="color:var(--teal);">${_escHtml(_truncarEnPalabra(e.descripcion,130))} ↗</a>` : _escHtml(_truncarEnPalabra(e.descripcion,110))}`;
   const ult = men[0], dec = men.find(e=>_esDichoPor(e, cl));
   const d14 = men.filter(e=>_diasAtras(e.fecha)<14).length, dias = _diasAtras(ult.fecha);
-  return `<div><b>${men.length}</b> de ${nTema} notas lo mencionan · <b>${d14}</b> en 14 días${dias>30?' · <span style="color:var(--riesgo-medio);">sin menciones hace '+dias+' días</span>':''}</div><div style="margin-top:3px;"><span style="opacity:.65;">Última nota:</span> ${f(ult)}</div>${dec && dec!==ult ? `<div style="margin-top:3px;"><span style="opacity:.65;">Última declaración suya (titular):</span> ${f(dec)}</div>` : ''}`;
+  return `<div><b>${men.length}</b> de ${nTema} notas lo mencionan · <b>${d14}</b> en 14 días${dias>30?' · <span style="color:var(--riesgo-medio);">sin menciones hace '+dias+' días</span>':''}</div><div style="margin-top:3px;"><span style="opacity:.65;">Última nota:</span> ${f(ult)}</div>${dec && dec!==ult ? `<div style="margin-top:3px;"><span style="opacity:.65;">Última declaración suya (titular):</span> ${f(dec)}</div>` : ''}${links && men.length>1 ? `<div style="margin-top:6px;opacity:.65;">Todas sus notas en este tema:</div>`+men.slice(0,8).map(e=>`<div style="margin-top:2px;">· ${f(e)}</div>`).join('') : ''}`;
 }
 function _eventosDeTema(temaId){ return ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).sort((a,b)=>(b.fecha+(b.hora_registro||'')).localeCompare(a.fecha+(a.hora_registro||''))); }
 // hechos de un tema para Notas: notas coherentes con el tema, juntando las que cuentan lo mismo; en temas no curados solo
@@ -283,12 +283,12 @@ function _actorReciente(actorId, temaId){ const a = getActor(actorId); if(!a) re
 // actores que NO están registrados en el tema pero aparecen por nombre en 2+ notas -- se dibujan con borde punteado hasta que un analista los confirme
 // (los actores 'deducidos' por coincidencia de nombre se eliminaron: en un producto de inteligencia solo van actores confirmados)
 function _actoresDeducidos(){ return []; }
-function _fichaHoverNotas(d, svgTemaId){
+function _fichaHoverNotas(d, svgTemaId, links){
   const tema = getTema(d.esTema ? d.id : svgTemaId); if(!tema) return '';
   const evs = _eventosDeTema(tema.id); const hch = _hechosDeTema(tema.id).sort((a,b)=>b.fecha.localeCompare(a.fecha));
   if(d.esTema){
     const col = colorCategoria(tema.categoria);
-    const filas = hch.slice(0,3).map(e=>`<div style="margin-top:5px;"><span style="font-family:var(--f-mono);font-size:9px;opacity:.65;">${_escHtml(e.fecha)} · ${_escHtml(_medioDeEvento(e)||'')}${e._nNotas>1?' · '+e._nNotas+' notas, mismo hecho':''}</span><br>${_escHtml(_truncarEnPalabra(e.descripcion,95))}</div>`).join('');
+    const filas = hch.slice(0,links?8:3).map(e=>`<div style="margin-top:5px;"><span style="font-family:var(--f-mono);font-size:9px;opacity:.65;">${_escHtml(e.fecha)} · ${_escHtml(_medioDeEvento(e)||'')}${e._nNotas>1?' · '+e._nNotas+' notas, mismo hecho':''}</span><br>${links && e.fuente_url ? `<a href="${_escHtml(e.fuente_url)}" target="_blank" rel="noopener" style="color:var(--teal);">${_escHtml(_truncarEnPalabra(e.descripcion,120))} ↗</a>` : _escHtml(_truncarEnPalabra(e.descripcion,95))}</div>`).join('');
     return `<div style="max-width:300px;"><strong>${_escHtml(_truncarEnPalabra(tema.nombre,70))}</strong><br><span style="color:${col};font-size:10px;">${_escHtml(tema.categoria)}</span> <span style="font-size:10px;opacity:.75;">· ${hch.length} hecho${hch.length!==1?'s':''} (${evs.length} notas)${evs[0]?' · última '+_escHtml(evs[0].fecha):''}</span>${filas}<div style="margin-top:7px;color:var(--teal);font-size:10px;">▸ Toca el círculo para ver todas las notas</div></div>`;
   }
   const a = getActor(d.id); if(!a) return `<strong>${_escHtml(d.nombre)}</strong>`;
@@ -304,12 +304,22 @@ function _fichaHoverNotas(d, svgTemaId){
   return `<div style="max-width:290px;"><strong>${_escHtml(a.nombre)}</strong>${a.cargo?`<br><span style="font-size:10px;opacity:.8;">${_escHtml(a.cargo)}</span>`:''}
     <br><span style="color:${colRol};font-size:10px;">${_escHtml(txtRol)}</span>
     ${ta.detalle?`<div style="margin-top:5px;font-size:10.5px;">${_escHtml(_truncarEnPalabra(ta.detalle,150))}</div>`:''}
-    <div style="margin-top:6px;font-size:10px;opacity:.85;">${_fichaActividad(menciona, evs.length, _clavesActor(a))}
+    <div style="margin-top:6px;font-size:10px;opacity:.85;">${_fichaActividad(menciona, evs.length, _clavesActor(a), links)}
        ${reciente?`<div style="margin-top:3px;color:var(--teal);">◌ Mencionado en 48 h, en:${menciona.filter(e=>e.fecha>=_diaMX(1)).slice(0,2).map(e=>`<br>· ${_escHtml(_truncarEnPalabra(e.descripcion,100))}`).join('')}</div>`:''}
       ${vinc.length?`<br>Vínculos aquí: ${vinc.join(' · ')}`:''}
       ${temas.size?`<br>También figura en ${temas.size} tema${temas.size!==1?'s':''} de agenda`:''}</div></div>`;
 }
 // franja de contexto sobre el grafo: dónde cae el tema en la Matriz, qué cambió y de qué trata
+
+// panel fijo con ligas a las notas fuente (clic en un nodo; el hover no permite abrir ligas)
+function abrirFichaFijaNotas(d, temaId){
+  const cont = document.getElementById('agenda-contenido'); if(!cont) return;
+  let p = document.getElementById('notas-ficha-fija');
+  if(!p){ p = document.createElement('div'); p.id = 'notas-ficha-fija'; p.className = 'radar-lectura-scroll'; cont.style.position = 'relative'; cont.appendChild(p); }
+  p.style.cssText = 'position:absolute;top:8px;right:8px;width:min(360px,calc(100% - 16px));max-height:70%;overflow:auto;z-index:25;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:var(--radius-s);padding:10px 12px;font-size:11px;line-height:1.45;color:var(--ink-1);box-shadow:0 6px 24px rgba(0,0,0,.35);';
+  p.innerHTML = `<button type="button" id="notas-ficha-cerrar" aria-label="Cerrar" style="float:right;background:none;border:none;color:var(--ink-3);cursor:pointer;font-size:14px;line-height:1;">×</button>` + _fichaHoverNotas(d, temaId, true);
+  p.querySelector('#notas-ficha-cerrar').addEventListener('click', ()=>p.remove());
+}
 function _franjaTemaNotas(temaId){
   const tema = getTema(temaId); if(!tema) return '';
   const evs = _eventosDeTema(temaId), hoy = _hoyMX(), ayer = _diaMX(1), hace7 = _diaMX(6);
@@ -1430,6 +1440,7 @@ const IMPACTO_GRUPOS = [
   { id:'crimen',     nombre:'crimen organizado',      peso:4, re:/c[aá]rtel|cjng|sinaloa|huachicol|contrabando|lavado|extorsi|trata de|narco|crimen organizado|plagio|tr[aá]fico de/ },
   { id:'institucional', nombre:'institucional',       peso:4, re:/reforma constitucional|nueva constituci|suprema corte|poder judicial|desafuero|juicio pol[ií]tico|golpe de estado|fiscal general|\bfgr\b|\bine\b|elecciones|proceso electoral|consulta popular|revocaci[oó]n de mandato|informe de gobierno|paquete econ[oó]mico|presupuesto de egresos|ley de ingresos|gabinete/ },
   { id:'funcionarios', nombre:'detención / proceso a funcionarios', peso:4, re:/(detienen|detenido|detenci[oó]n|vinculan a proceso|vinculaci[oó]n a proceso|orden de aprehensi|procesad|arrest|captur)\w*.{0,60}(alcalde|presidente municipal|gobernador|exgobernador|senador|diputad|funcionari|secretari|almirante|general|juez|magistrad|fiscal|comisionad)|(alcalde|presidente municipal|gobernador|exgobernador|senador|diputad|funcionari|secretari|almirante|juez|magistrad).{0,60}(detenid|vinculad|procesad|arrestad|capturad)|desv[ií]o de|peculado|corrupci[oó]n/ },
+  { id:'electoral',  nombre:'disputa electoral / partidista', peso:4, re:/coordinador(a|es|as)? (estatal|de morena|de la 4t|distrital|de la defensa)|coordinaci[oó]n(es)? (estatal|distrital)|candidatur|gubernatura|proceso interno|inconformidad|ruptura (en|con|de) (morena|pan|pri)|dedazo|aspirantes? a|encuesta de morena|alianza (pan|pri|pvem|pt)|queja ante el ine|elecciones de 2027|elecciones 2027|renuncia a (morena|pan|pri)|cambio de partido/ },
   { id:'economia',   nombre:'shock económico',        peso:3, re:/devaluaci|inflaci[oó]n|recesi[oó]n|deuda|pemex|calificaci[oó]n crediticia|quiebra|despidos masivos|crisis econ|d[eé]ficit|recorte presupuest/ },
   { id:'crimen2', nombre:'proceso penal / seguridad', peso:3, re:/vinculan a proceso|vinculaci[oó]n a proceso|detienen a|detenido|prisi[oó]n|sentencia|cateo|operativo/ },
   { id:'diplomacia', nombre:'relación con EU (alto nivel)', peso:3, re:/(trump|rubio|casa blanca|embajador johnson).{0,80}(llamada|telefon|reuni[oó]n|cumbre|acuerdo|presi[oó]n|amenaz|ultim[aá]tum)|(llamada|telefon|reuni[oó]n|cumbre).{0,80}(trump|rubio)/ },
@@ -1539,12 +1550,13 @@ function _nivelAgendaTemas(){
     const coh = notasCoherentes(evs, t); const base = coh.length?coh:evs;
     const imp = impactoDeTema(base, 0);
     const medios = new Set(); base.forEach(e=>{ if(_esPrimerNivel(e)) medios.add(_medioDeEvento(e)); });
+    const sesgo = _sesgoDeMedios(medios); const mediosEf = medios.size - (sesgo.unSoloLado ? 1 : 0);   // si todos los medios son de un mismo bando, cuentan uno menos
     const hechos = typeof agruparHechos==='function' ? agruparHechos(base).length : base.length;
     const nac = imp.ambito==='nacional';
     let nivel = 3;
-    if(nac && imp.score>=GATE.N1_IMPACTO && ((medios.size>=GATE.N1_MEDIOS && hechos>=GATE.N1_HECHOS) || (medios.size>=2 && hechos>=5))) nivel = 1;
-    else if(nac && imp.score>=GATE.N2_IMPACTO && medios.size>=GATE.N2_MEDIOS) nivel = 2;
-    out[t.id] = {nivel, impacto:imp.score, medios:medios.size, hechos, nac};
+    if(nac && imp.score>=GATE.N1_IMPACTO && ((mediosEf>=GATE.N1_MEDIOS && hechos>=GATE.N1_HECHOS) || (mediosEf>=2 && hechos>=5))) nivel = 1;
+    else if(nac && imp.score>=GATE.N2_IMPACTO && mediosEf>=GATE.N2_MEDIOS) nivel = 2;
+    out[t.id] = {nivel, impacto:imp.score, medios:medios.size, mediosEf, hechos, nac};
   });
   _gateCache = out; _gateRef = ECOSISTEMA.eventos; return out;
 }
@@ -1561,6 +1573,27 @@ function _actoresDeTema(temaId){
 // Notas / Red de actores: nivel 1 y con actores confirmados (curados: al menos 1; automáticos: al menos 2)
 function enNotas(t){ if(nivelAgenda(t)!==1) return false; const n = _actoresDeTema(t.id).length; return (Number(t.nivel_relevancia)===1 && !String(t.id).startsWith('auto-')) ? n>=1 : n>=2; }
 function enMatriz(t){ return nivelAgenda(t)<=2; }
+
+
+// ===== Resumen diario de Notas (lo usa el robot para el brief y las alertas) =====
+// hechos nuevos por tema, temas curados que se enfriaron, posibles temas duplicados y actores de máxima influencia
+// mencionados hoy en un tema. No decide nada: ordena lo que ya está en los datos.
+function resumenNotasDelDia(){
+  const hoy = _hoyMX(), ayer = _diaMX(1), gate = _nivelAgendaTemas();
+  const temas = ECOSISTEMA.temas.filter(enNotas);
+  const hechosHoy = temas.map(t=>({tema:t, n:_hechosDeTema(t.id).filter(h=>h.fecha===hoy).length})).filter(x=>x.n>0).sort((a,b)=>b.n-a.n);
+  const enfriados = ECOSISTEMA.temas.filter(t=>{ const g=gate[t.id]; return g && g.curado && Number(t.nivel_relevancia)===1 && g.nivel!==1; });
+  const duplicados = [];
+  for(let i=0;i<temas.length;i++) for(let j=i+1;j<temas.length;j++){ const sim = similitudConsolidar(temas[i].nombre, temas[j].nombre); if(sim>=0.3) duplicados.push([temas[i], temas[j], Math.round(sim*100)/100]); }
+  const actoresClave = [];
+  temas.forEach(t=>{
+    const evs = _eventosDeTema(t.id).filter(e=>e.fecha>=ayer);
+    if(!evs.length) return;
+    _actoresDeTema(t.id).forEach(x=>{ const a = getActor(x.actor_id); if(!a || (Number(a.nivel_influencia)||0) < 8) return;
+      const m = _mencionesActor(a, evs); if(m.length) actoresClave.push({actor:a, tema:t, nota:m[0]}); });
+  });
+  return { hechosHoy, enfriados, duplicados, actoresClave };
+}
 
 // ===== HECHOS: misma noticia con otro titular/medio/día (±3 días) =====
 function agruparHechos(eventos){

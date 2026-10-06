@@ -479,12 +479,12 @@ function renderGrafo(svgId='graph-svg'){
     node.style('opacity', 1);
   }
   const node = container.selectAll('g.node').data(nodes).join('g')
-    .attr('class','node').style('cursor', d=> (svgId==='notas-svg' && !d.esTema) ? 'default' : 'pointer')
+    .attr('class','node').style('cursor','pointer')
     .style('opacity', 0)
     .call(sel=> sel.transition().duration(450).delay((d,i)=>d.esCentro?0:i*8).style('opacity',1))
     .on('click', (ev,d)=>{
-      if(d.esTema){ if(typeof abrirFichaTema==='function') abrirFichaTema(d.id); return; }
-      if(svgId==='notas-svg') return;
+      if(d.esTema && svgId!=='notas-svg'){ if(typeof abrirFichaTema==='function') abrirFichaTema(d.id); return; }
+      if(svgId==='notas-svg'){ if(typeof abrirFichaFijaNotas==='function'){ if(typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda(); abrirFichaFijaNotas(d, d.coreId); } return; }
       mostrarFicha(d.id, d, nodes);
     })
     // pedido explícito: "el hover deberá de funcionar para móviles/tablets y pantallas
@@ -628,7 +628,7 @@ function renderGrafo(svgId='graph-svg'){
   if(svgId==='notas-svg'){
     (width<640
       ? [['Toca el tema: ver notas · ◌ activo en 48 h', height-10]]
-      : [['Toca el tema central para ver sus notas · toca un actor para ver su papel', height-23], ['◌ halo = mencionado en las últimas 48 h  ·  línea turquesa punteada = vínculo entre actores', height-10]])
+      : [['Pasa el cursor o toca un nodo para ver su ficha; haz clic para abrir las notas fuente', height-23], ['◌ halo = mencionado en las últimas 48 h  ·  línea turquesa punteada = vínculo entre actores', height-10]])
       .forEach(([t,y])=> svg.append('text').attr('x',12).attr('y',y).attr('font-size','9.5px').attr('fill','var(--ink-3)').style('pointer-events','none').text(t));
     svg.on('pointerdown.fuera', ev=>{ if(ev.target===svgEl){ if(typeof ocultarTooltipAgenda==='function') ocultarTooltipAgenda(); quitarResalteNotas(); } });
   }
