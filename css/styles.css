@@ -687,3 +687,10 @@ html,body{margin:0;padding:0;background:var(--bg-0);color:var(--ink-1);font-fami
 .radar-lectura-scroll::-webkit-scrollbar-track{background:var(--bg-1);}
 .radar-lectura-scroll::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:99px;}
 .radar-lectura-scroll::-webkit-scrollbar-thumb:hover{background:var(--teal);}
+
+/* scroll fino, igual al del feed */
+.eco-scroll{overflow:auto;scrollbar-width:thin;scrollbar-color:var(--line-strong) var(--bg-1);}
+.eco-scroll::-webkit-scrollbar{width:6px;height:6px;}
+.eco-scroll::-webkit-scrollbar-track{background:var(--bg-1);}
+.eco-scroll::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:99px;}
+.eco-scroll::-webkit-scrollbar-thumb:hover{background:var(--teal);}
