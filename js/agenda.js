@@ -1004,6 +1004,8 @@ function renderGenealogiaAgenda(){
     </div>` : ''}
     <div style="position:relative;width:100%;flex:1;min-height:0;">
       <div id="geneal-barra" style="position:absolute;top:8px;right:10px;z-index:5;display:flex;align-items:center;gap:8px;">
+        <button type="button" id="geneal-registro-btn" class="chip-btn" style="padding:3px 10px;font-size:11px;display:none;" onclick="_copiarRegistroGeneal()" title="Copia las revisiones y la incertidumbre en formato CSV"></button>
+        <button type="button" id="geneal-inc-btn" class="chip-btn" style="padding:3px 10px;font-size:11px;" onclick="_abrirIncertidumbre()">+ Incertidumbre</button>
         <button type="button" id="geneal-metodo-btn" class="chip-btn" style="padding:3px 10px;font-size:11px;" onclick="document.getElementById('geneal-metodo').classList.toggle('abierto')">Método</button>
         <span style="display:inline-flex;align-items:center;gap:2px;"><button type="button" class="chip-btn" style="padding:3px 8px;font-size:12px;" title="Alejar" onclick="_zoomGenealogia(-1)">−</button><span id="geneal-zoom-txt" style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);min-width:34px;text-align:center;"></span><button type="button" class="chip-btn" style="padding:3px 8px;font-size:12px;" title="Acercar" onclick="_zoomGenealogia(1)">+</button></span>
         <div id="geneal-kpi" style="font-family:var(--f-mono);font-size:10.5px;background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;"></div>
@@ -1089,12 +1091,14 @@ function dibujarGenealogia(temaId){
   // contenedor real, para que los círculos no se deformen
   const height = Math.max(scrollEl.clientHeight || 480, 780), y = height/2;   // lienzo más alto que la ventana: se recorre con la barra vertical
   _cajasGeneal = [];
-  const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150;
+  const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150 + (_incGet(temaId) ? 360 : 0);
   const width = Math.max(scrollEl.clientWidth||900, anchoNecesario);
   svgEl.dataset.w = width; svgEl.dataset.h = height;
   _aplicarZoomGenealogia(cambioDeTema);
 
   const posiciones = eventos.map((e,i)=>({x:xInicio+i*espacio, y}));
+  _totalGeneal = eventos.length; _ramaCtx = {temaId, x:posiciones[posiciones.length-1].x, y};
+  if(_incGet(temaId)) _cajasGeneral_push(_ramaCtx.x+20, y-130, 330, 260);   // zona de las ramas: ninguna caja de notas se coloca encima
 
   const svg = d3.select(svgEl).attr('viewBox',[0,0,width,height]).attr('preserveAspectRatio','none');
   svg.selectAll('*').remove();
@@ -1114,7 +1118,7 @@ function dibujarGenealogia(temaId){
   gFrecuencia.append('path').attr('d', lineaFrecuencia(puntosFrecuencia)).attr('fill','none').attr('stroke',colorTema).attr('stroke-width',1.5);
   puntosFrecuencia.forEach(p=> gFrecuencia.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2).attr('fill',colorTema));
 
-  _inflGeneal = _detectarInflexiones(eventos, temaId); _inflPintados = 0; _actualizarKpiInflexion();
+  _temaGenealActual = temaId; _inflGeneal = _detectarInflexiones(eventos, temaId); _inflPintados = 0; _actualizarKpiInflexion(); _actualizarBotonRegistro();
   svg.append('g').attr('class','geneal-inflexion-capa');
   const lineaBase = svg.append('g').attr('class','geneal-linea-capa');
   const puntosBase = svg.append('g').attr('class','geneal-puntos-capa');
@@ -1181,6 +1185,7 @@ function dibujarGenealogia(temaId){
   // listener de una sola vez nunca actúa sobre datos de un dibujo ya reemplazado.
   toggleReproduccionGenealogiaVigente = toggleReproduccionGenealogia;
 
+  if(genealogiaRevelados>=eventos.length) _dibujarRamasGeneal();
   svg.append('text').attr('class','geneal-contador').attr('x',xInicio).attr('y',height-10).attr('text-anchor','middle')
     .attr('font-size','10px').attr('fill','var(--ink-3)')
     .text(genealogiaRevelados<=1 ? '' : genealogiaRevelados>=eventos.length ? `${eventos.length} de ${eventos.length} notas — recorrido completo` : `Pausado — ${genealogiaRevelados} de ${eventos.length} (clic para continuar)`);
@@ -1214,7 +1219,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
   _actualizarContadorGenealogia(`Reproduciendo — ${desde||1} de ${eventos.length}`, desde||1, eventos.length);
   function siguienteTramo(i){
     if(generacionGenealogiaActual !== miGeneracion){ return; }
-    if(i>=eventos.length){ genealogiaRevelados = eventos.length; reproduciendoGenealogia = false; return; }
+    if(i>=eventos.length){ genealogiaRevelados = eventos.length; reproduciendoGenealogia = false; _dibujarRamasGeneal(); return; }
     scrollEl.scrollTo({left: Math.max(0, posiciones[i].x*_zGen-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
       .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y).attr('x2',posiciones[i-1].x).attr('y2',posiciones[i-1].y)
@@ -1248,7 +1253,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
 // ---- Posibles puntos de inflexión (capa sobre la línea de tiempo; NO cambia el dibujo base) ----
 // Detección automática = solo "posible". Dos pistas: (1) volumen: el día se dispara frente a la semana previa;
 // (2) actor: alguien que casi no aparecía en el tema entra con fuerza (ej. AMLO reaparece). Luego se mide qué pasó después.
-let _inflGeneal = new Map(), _inflPintados = 0, _inflClip = 0, _cajasGeneal = [], _zGen = 0.85;
+let _totalGeneal = 1; let _inflGeneal = new Map(), _inflPintados = 0, _inflClip = 0, _cajasGeneal = [], _zGen = 0.85;
 const _ZOOMS_GEN = [0.5,0.65,0.75,0.85,1];
 function _aplicarZoomGenealogia(centrar){
   const svgEl = document.getElementById('geneal-svg'), sc = document.getElementById('geneal-scroll'); if(!svgEl||!svgEl.dataset.w) return;
@@ -1330,28 +1335,63 @@ function _segGeneal(fecha){
 }
 function _actualizarKpiInflexion(){
   const el = document.getElementById('geneal-kpi'); if(!el) return;
-  let t=0, tp=0; _inflGeneal.forEach(m=>{ m.tipo==='turning' ? tp++ : t++; });
-  el.innerHTML = `<span title="Hechos o actores que reactivan el tema (posibles, detectados automáticamente)" style="color:var(--riesgo-medio)">⚡ ${t} trigger${t===1?'':'s'}</span> · <span title="Cambios de rumbo sostenidos (posibles)" style="color:var(--riesgo-alto)">◉ ${tp} turning point${tp===1?'':'s'}</span> · <span title="Las define el analista; el sistema no las detecta" style="color:var(--ink-3)">? 0 incertidumbres críticas</span>`;
+  let t=0, tp=0, c=0; _inflGeneal.forEach((m,f)=>{ const r = _revGet(_temaGenealActual,f); if(r && r.estado==='descartado') return; m.tipo==='turning' ? tp++ : t++; if(r) c++; });
+  const inc = _incGet(_temaGenealActual) ? 1 : 0;
+  el.innerHTML = `<span title="Hechos o actores que reactivan el tema (posibles, detectados automáticamente)" style="color:var(--riesgo-medio)">⚡ ${t} trigger${t===1?'':'s'}</span> · <span title="Cambios de rumbo sostenidos (posibles)" style="color:var(--riesgo-alto)">◉ ${tp} turning point${tp===1?'':'s'}</span> · <span title="Las define el analista; el sistema no las detecta" style="color:${inc?'var(--teal)':'var(--ink-3)'}">? ${inc} incertidumbre${inc===1?'':'s'} crítica${inc===1?'':'s'}</span>${c?` · <span style="color:var(--riesgo-bajo)" title="Revisadas por el analista">✓ ${c}</span>`:''}`;
+  const bi = document.getElementById('geneal-inc-btn'); if(bi) bi.textContent = inc ? '✎ Incertidumbre' : '+ Incertidumbre';
+}
+// ---- revisión del analista (se guarda en este navegador; "Copiar registro" lo saca a CSV) ----
+let _temaGenealActual = null;
+function _jsonLs(k){ try{ return JSON.parse(_lsGet(k)||'{}')||{}; }catch(e){ return {}; } }
+const _revGet = (t,f)=>_jsonLs('genealRev')[t+'|'+f] || null;
+function _revSet(t,f,v){ const o = _jsonLs('genealRev'); if(v) o[t+'|'+f] = v; else delete o[t+'|'+f]; _lsSet('genealRev', JSON.stringify(o)); _actualizarKpiInflexion(); _actualizarBotonRegistro(); }
+const _incGet = t=>_jsonLs('genealInc')[t] || null;
+function _incSet(t,v){ const o = _jsonLs('genealInc'); if(v) o[t]=v; else delete o[t]; _lsSet('genealInc', JSON.stringify(o)); }
+const _analistaGeneal = ()=> _lsGet('radarCalibAnalista') || 'Analista';
+function _copiarRegistroGeneal(){
+  const q = v=>'"'+String(v||'').replace(/"/g,'""')+'"';
+  const R = _jsonLs('genealRev'), I = _jsonLs('genealInc');
+  let t = 'tema_id,fecha,estado,analista,fecha_revision,motivo\n' + Object.entries(R).map(([k,v])=>{ const [tm,f]=k.split('|'); return [tm,f,v.estado,q(v.por),v.f,q(v.motivo)].join(','); }).join('\n');
+  t += '\n\ntema_id,pregunta,desenlaces,analista,fecha\n' + Object.entries(I).map(([tm,v])=>[tm,q(v.q),q(v.o.join(' | ')),q(v.por),v.f].join(',')).join('\n');
+  const fin = ()=>{ const b = document.getElementById('geneal-registro-btn'); if(b){ const x = b.textContent; b.textContent = 'Copiado ✓'; setTimeout(()=>_actualizarBotonRegistro(),1400); } };
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(fin).catch(()=>{ const ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} ta.remove(); fin(); });
+}
+function _actualizarBotonRegistro(){
+  const b = document.getElementById('geneal-registro-btn'); if(!b) return;
+  const n = Object.keys(_jsonLs('genealRev')).length + Object.keys(_jsonLs('genealInc')).length;
+  b.style.display = n ? '' : 'none'; b.textContent = `⧉ Copiar registro (${n})`;
 }
 function _marcarInflexionGenealogia(e, pos, g, width, height){
   const m = _inflGeneal.get(e.fecha); if(!m) return;
-  ['','h2'].forEach(c=> g.insert('circle',':first-child').attr('class','geneal-halo '+c).attr('r',16).attr('stroke',m.color));
+  const tid = _temaGenealActual;
+  const halos = ['','h2'].map(c=> g.insert('circle',':first-child').attr('class','geneal-halo '+c).attr('r',16).attr('stroke',m.color));
   const svg = d3.select('#geneal-svg');
-  svg.select('.geneal-inflexion-capa').append('line').attr('x1',pos.x).attr('x2',pos.x).attr('y1',0).attr('y2',height)
-    .attr('stroke',m.color).attr('stroke-width',0.9).attr('stroke-dasharray','6 4').attr('opacity',.75);
+  const lineaV = svg.select('.geneal-inflexion-capa').append('line').attr('x1',pos.x).attr('x2',pos.x).attr('y1',0).attr('y2',height).attr('stroke',m.color).attr('stroke-width',0.9);
   const ancho = 330, k = _inflPintados++;
-  const st = {dx:0, dy:0, abierto:false};
+  const st = {dx:0, dy:0, abierto:false, pend:null};
   const p = svg.append('g').attr('class','geneal-no-toggle geneal-pill');
   const x0 = Math.max(6, Math.min(width-ancho-6, pos.x-24)), y0 = 4 + (k%2)*14;
   _cajasGeneral_push(x0, y0, ancho, 96);
+  const guardar = (estado, motivo)=>{ _revSet(tid, e.fecha, {estado, por:_analistaGeneal(), f:new Date().toLocaleDateString('en-CA',{timeZone:'America/Mexico_City'}), motivo:(motivo||'').trim()}); st.pend = null; pintar(); };
   const pintar = ()=>{
+    const rev = _revGet(tid, e.fecha);
     p.selectAll('*').remove();
+    const desc = rev && rev.estado==='descartado', conf = rev && rev.estado==='confirmado';
+    halos.forEach(h=>h.style('display', desc?'none':null));
+    lineaV.attr('stroke-dasharray', conf?null:'6 4').attr('opacity', desc?0:(conf?.9:.75));
+    if(desc){   // marca descartada: queda como una pastilla discreta, con registro
+      p.append('rect').attr('x',x0).attr('y',y0).attr('width',230).attr('height',20).attr('rx',10).attr('fill','var(--bg-1)').attr('stroke','var(--line-strong)');
+      p.append('text').attr('x',x0+10).attr('y',y0+14).attr('font-size','9px').attr('fill','var(--ink-3)').text(`Descartado · ${m.etiqueta.replace('POSIBLE ','').toLowerCase()} ${e.fecha.slice(5)}`);
+      p.append('text').attr('x',x0+ancho-100).attr('y',y0+14).attr('font-size','9px').attr('fill','var(--teal)').style('cursor','pointer').text('deshacer').on('click',()=>{ _revSet(tid,e.fecha,null); pintar(); });
+      p.select('rect').attr('width',ancho-90);
+      return;
+    }
     const lr = partirEnLineas(m.razon, 62, 6), ld = partirEnLineas(m.def, 62, 3);
     const ef = st.abierto && m.efecto ? m.efecto.flatMap(([t,v])=>[[t,true],...partirEnLineas(v,60,3).map(z=>[z,false])]) : [];
-    const alto = 20 + ld.length*10 + 4 + lr.length*10 + 18 + ef.length*10 + (st.abierto&&m.efecto?4:0);
-    p.append('rect').attr('x',x0).attr('y',y0).attr('width',ancho).attr('height',alto).attr('rx',6).attr('fill','var(--bg-1)').attr('stroke',m.color).attr('stroke-width',1.6).style('cursor','grab');
+    const alto = 20 + ld.length*10 + 4 + lr.length*10 + 18 + ef.length*10 + (st.abierto&&m.efecto?4:0) + 18 + (st.pend?24:0) + (conf?10:0);
+    p.append('rect').attr('x',x0).attr('y',y0).attr('width',ancho).attr('height',alto).attr('rx',6).attr('fill','var(--bg-1)').attr('stroke',m.color).attr('stroke-width',conf?2:1.4).style('cursor','grab');
     let yy = y0+13;
-    p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','10px').attr('font-weight','700').attr('letter-spacing','.04em').attr('fill',m.color).text(m.etiqueta+' · '+e.fecha.slice(5));
+    p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','10px').attr('font-weight','700').attr('letter-spacing','.04em').attr('fill',m.color).text((conf?'✓ ':'')+(conf?m.etiqueta.replace('POSIBLE ','CONFIRMADO '):m.etiqueta)+' · '+e.fecha.slice(5));
     ld.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('font-style','italic').attr('fill','var(--ink-3)').text(l); });
     yy+=4; lr.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('fill','var(--ink-1)').text(l); });
     if(m.efecto){
@@ -1359,9 +1399,71 @@ function _marcarInflexionGenealogia(e, pos, g, width, height){
         .text(st.abierto?'▾ Ocultar qué pasó después':'▸ Ver qué pasó después').on('click',()=>{ st.abierto=!st.abierto; pintar(); });
       ef.forEach(([t,tit])=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size',tit?'8px':'8.5px').attr('font-weight',tit?'700':'400').attr('fill',tit?'var(--ink-3)':'var(--ink-1)').text(t); });
     } else { yy+=14; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('fill','var(--ink-3)').text('Aún sin días de seguimiento para medir el efecto.'); }
+    // acciones del analista (una sola fila, discreta)
+    yy+=16;
+    const btn = (x,t,c,fn)=> p.append('text').attr('class','geneal-no-toggle').attr('x',x).attr('y',yy).attr('font-size','9px').attr('font-weight','700').attr('fill',c).style('cursor','pointer').text(t).on('click',fn);
+    if(conf){
+      p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('fill','var(--ink-2)').text(`${rev.por} · ${rev.f}${rev.motivo?' · «'+rev.motivo.slice(0,40)+(rev.motivo.length>40?'…':'')+'»':''}`);
+      btn(x0+ancho-62,'deshacer','var(--teal)',()=>{ _revSet(tid,e.fecha,null); pintar(); });
+    } else {
+      p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('fill','var(--ink-3)').text('Automático · sin revisar');
+      btn(x0+ancho-150,'✓ Confirmar','var(--riesgo-bajo)',()=>{ st.pend = 'confirmado'; pintar(); });
+      btn(x0+ancho-70,'✕ Descartar','var(--riesgo-alto)',()=>{ st.pend = 'descartado'; pintar(); });
+    }
+    if(st.pend){
+      const fo = p.append('foreignObject').attr('class','geneal-no-toggle').attr('x',x0+6).attr('y',yy+4).attr('width',ancho-12).attr('height',22);
+      const inp = fo.append('xhtml:input').attr('type','text').attr('placeholder',`Motivo (opcional) — Enter para ${st.pend==='confirmado'?'confirmar':'descartar'}, Esc cancela`)
+        .attr('style','width:100%;box-sizing:border-box;font-size:10px;padding:3px 6px;background:var(--bg-2);color:var(--ink-1);border:1px solid var(--line-strong);border-radius:4px;');
+      inp.on('keydown',(ev)=>{ if(ev.key==='Enter') guardar(st.pend, ev.target.value); else if(ev.key==='Escape'){ st.pend=null; pintar(); } });
+      setTimeout(()=>{ const n = inp.node(); if(n) n.focus(); },0);
+    }
   };
   pintar();
-  p.call(d3.drag().on('start',function(){ d3.select(this).raise(); }).on('drag',function(ev){ st.dx+=ev.dx; st.dy+=ev.dy; d3.select(this).attr('transform',`translate(${st.dx},${st.dy})`); }));
+  p.call(d3.drag().filter(ev=>!ev.button && !(ev.target.closest && ev.target.closest('foreignObject'))).on('start',function(){ d3.select(this).raise(); }).on('drag',function(ev){ st.dx+=ev.dx; st.dy+=ev.dy; d3.select(this).attr('transform',`translate(${st.dx},${st.dy})`); }));
+}
+
+// ---- incertidumbre crítica: la define el analista; sus desenlaces salen como ramas al final de la línea ----
+let _ramaCtx = null;
+function _dibujarRamasGeneal(){
+  const c = _ramaCtx; if(!c) return; const inc = _incGet(c.temaId); const svg = d3.select('#geneal-svg');
+  svg.select('.geneal-ramas-capa').remove(); if(!inc) return;
+  const g = svg.append('g').attr('class','geneal-ramas-capa geneal-no-toggle'), x0 = c.x, y = c.y, xn = x0+90, xf = x0+270;
+  const cols = ['var(--teal)','var(--riesgo-medio)','var(--riesgo-alto)'], off = inc.o.length===2 ? [-50,50] : [-85,0,85];
+  g.append('line').attr('x1',x0+16).attr('y1',y).attr('x2',xn-9).attr('y2',y).attr('stroke','var(--ink-3)').attr('stroke-width',1.4).attr('stroke-dasharray','5 4');
+  const nodo = g.append('g').style('cursor','pointer').on('click',()=>_abrirIncertidumbre());
+  nodo.append('circle').attr('cx',xn).attr('cy',y).attr('r',9).attr('fill','var(--bg-1)').attr('stroke','var(--riesgo-medio)').attr('stroke-width',1.8);
+  nodo.append('text').attr('x',xn).attr('y',y).attr('dy','0.35em').attr('text-anchor','middle').attr('font-size','11px').attr('font-weight','700').attr('fill','var(--riesgo-medio)').text('?');
+  nodo.append('title').text('Clic para editar la incertidumbre');
+  partirEnLineas(inc.q, 34, 3).forEach((l,i)=> g.append('text').attr('x',xn).attr('y',y-24-(partirEnLineas(inc.q,34,3).length-1-i)*11).attr('text-anchor','middle').attr('font-size','9px').attr('font-weight','600').attr('fill','var(--ink-1)').text(l));
+  inc.o.forEach((t,i)=>{
+    const yf = y+off[i], col = cols[i], corto = t.split(/\s[—-]\s/)[0];
+    g.append('path').attr('d',`M${xn+9},${y} C${xn+70},${y} ${xf-70},${yf} ${xf},${yf}`).attr('fill','none').attr('stroke',col).attr('stroke-width',1.4).attr('stroke-dasharray','5 4');
+    g.append('circle').attr('cx',xf).attr('cy',yf).attr('r',3.5).attr('fill',col);
+    const tx = g.append('text').attr('x',xf+9).attr('y',yf).attr('dy','0.35em').attr('font-size','9.5px').attr('fill',col).text(String.fromCharCode(65+i)+' · '+(corto.length>30?corto.slice(0,28)+'…':corto));
+    tx.append('title').text(t);
+  });
+}
+function _cerrarIncertidumbre(){ const p = document.getElementById('geneal-inc-pop'); if(p) p.remove(); }
+function _abrirIncertidumbre(){
+  if(document.getElementById('geneal-inc-pop')){ _cerrarIncertidumbre(); return; }
+  const tid = temaGenealogiaSeleccionado, host = document.getElementById('geneal-barra'); if(!host||!tid) return;
+  const inc = _incGet(tid), esc = x=>String(x||'').replace(/"/g,'&quot;');
+  const pop = document.createElement('div'); pop.id = 'geneal-inc-pop';
+  pop.style.cssText = 'position:absolute;top:34px;right:0;width:320px;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:8px;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.45);font-size:11px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px;';
+  const fld = 'width:100%;box-sizing:border-box;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--ink-1);border-radius:5px;padding:5px 8px;font-size:11.5px;';
+  pop.innerHTML = `<div style="color:var(--ink-1);font-weight:700;font-size:12px;">Incertidumbre crítica</div>
+    <input class="gi-q" style="${fld}" placeholder="Pregunta abierta (ej. ¿Respaldará la Presidencia a Andy?)" value="${esc(inc&&inc.q)}">
+    ${[0,1,2].map(i=>`<input class="gi-o" style="${fld}" placeholder="${String.fromCharCode(65+i)} · desenlace — señal que lo distingue${i==2?' (opcional)':''}" value="${esc(inc&&inc.o[i])}">`).join('')}
+    <div style="display:flex;gap:6px;align-items:center;"><button type="button" class="chip-btn gi-ok" style="padding:4px 12px;">Guardar</button>${inc?'<button type="button" class="chip-btn gi-del" style="padding:4px 10px;color:var(--riesgo-alto);">Quitar</button>':''}<span class="gi-msg" style="color:var(--riesgo-alto);font-size:10.5px;"></span></div>`;
+  host.appendChild(pop); pop.addEventListener('click',e=>e.stopPropagation());
+  pop.querySelector('.gi-ok').onclick = ()=>{
+    const q = pop.querySelector('.gi-q').value.trim(), o = [...pop.querySelectorAll('.gi-o')].map(i=>i.value.trim()).filter(Boolean);
+    if(!q || o.length<2){ pop.querySelector('.gi-msg').textContent = 'Pregunta y al menos 2 desenlaces'; return; }
+    _incSet(tid,{q,o,por:_analistaGeneal(),f:new Date().toLocaleDateString('en-CA',{timeZone:'America/Mexico_City'})});
+    _cerrarIncertidumbre(); _actualizarBotonRegistro(); genealogiaRevelados = _totalGeneal; renderGenealogiaAgenda();
+  };
+  const del = pop.querySelector('.gi-del'); if(del) del.onclick = ()=>{ _incSet(tid,null); _cerrarIncertidumbre(); _actualizarBotonRegistro(); renderGenealogiaAgenda(); };
+  pop.querySelector('.gi-q').focus();
 }
 
 function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, height){
