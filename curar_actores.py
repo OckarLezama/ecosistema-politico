@@ -26,7 +26,7 @@ HISTORIAS = [
      're': r'operaci[oó]n enjambre|operativo enjambre', 'no_re': r'^$'},
     {'id': 'morena-coordinadores-2027', 'nombre': 'Coordinadores estatales de Morena rumbo a 2027', 'categoria': 'Gobernabilidad',
      'resumen': 'Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.',
-     're': r'coordinador(a|es|as)?\b.*(morena|4t|transformaci[oó]n|defensa de)|morena\b.*coordinador|clouthier|clara luz|cruz p[eé]rez cu[eé]llar|jasmine bugar|lorenia valles|ana lilia rivera|andrea ch[aá]vez',
+     're': r'coordinador(a|es|as)?\b.*(morena|4t|transformaci[oó]n|defensa de)|morena\b.*coordinador|clouthier|clara luz|cruz p[eé]rez cu[eé]llar|jasmine bugar|lorenia valles|ana lilia rivera|andrea ch[aá]vez|encuestas? de morena|alteraci[oó]n de encuestas|tribus (de|en) morena|pugnas internas de morena|corcholata',
      'no_re': r'grupo parlamentario|coordinador(a)? (de la )?(bancada|gabinete)|coordinadora? nacional de (protecci|comunicaci)'},
 ]
 

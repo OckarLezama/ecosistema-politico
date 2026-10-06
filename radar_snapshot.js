@@ -23,7 +23,7 @@ vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/fuentes.js'),'utf8'), ctx);
 vm.runInContext('const getTema=id=>ECOSISTEMA.temas.find(t=>t.id===id), getActor=id=>ECOSISTEMA.actores.find(a=>a.id===id);', ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/agenda.js'),'utf8') +
-  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;globalThis.__resN=resumenNotasDelDia;', ctx);
+  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;globalThis.__resN=resumenNotasDelDia;globalThis.__audA=auditoriaActoresNotas;', ctx);
 
 // criterio del analista y calendario: el navegador los lee por fetch; aquí se cargan del disco
 const aCsv = n => R(n);
@@ -86,6 +86,13 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
   [...crit, ...vig].forEach(d => { if (d.hito && d.hito.dias != null && d.hito.dias >= 0 && d.hito.dias <= 2)
     alerta('hito_proximo', d, `◷ ${nm(d)}: fecha clave ${d.hito.dias===0?'hoy':d.hito.dias===1?'mañana':'en 2 días'} — ${String(d.hito.texto).slice(0, 90)}`); });
 
+  // ---- auditoría de actores: vínculos sin ninguna mención por nombre (misma regla que el hover del navegador)
+  try {
+    const aud = ctx.__audA();
+    const esc = v => /[",\n]/.test(String(v)) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v);
+    fs.writeFileSync(D('auditoria_actores.csv'), ['tema_id,tema,actor_id,actor,rol,notas_tema,accion_sugerida', ...aud.map(x => [x.tema_id, x.tema, x.actor_id, x.actor, x.rol, x.notas, 'revisar: quitar o respaldar con nota'].map(esc).join(','))].join('\n') + '\n');
+    console.log('auditoría de actores:', aud.length, 'vínculo(s) sin menciones');
+  } catch (e) { console.log('auditoría de actores no disponible:', e.message); }
   // ---- Notas: actores de máxima influencia que aparecen por primera vez en un tema (estado en data/actor_tema_visto.json)
   let rn = { hechosHoy:[], enfriados:[], duplicados:[], actoresClave:[] };
   try { rn = ctx.__resN(); } catch (e) { console.log('resumen de Notas no disponible:', e.message); }
