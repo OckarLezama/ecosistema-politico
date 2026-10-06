@@ -246,36 +246,13 @@ function mostrarTooltipTL(d, ev){
 
 // Lectura automática: últimos 14 días contra los 14 anteriores, SOLO si hay cobertura completa en ambos periodos.
 // Cuenta temas activos (3+ notas en la ventana), no suma intensidades: así no depende de cuántas notas se recolectaron.
-function narrativaTimelineTL(){
-  const cont = document.getElementById('timeline-narrativa');
-  if(!cont) return;
-  const temas = _temasTL().filter(x=>x.principal), ids = new Set(temas.map(x=>x.t.id));
-  const f = d=>d.toISOString().slice(0,10), hoy = new Date(f(new Date())+'T12:00:00');
-  const atras = n=>{ const d = new Date(hoy); d.setDate(d.getDate()-n); return f(d); };
-  const h14 = atras(14), h28 = atras(28), hoyS = f(hoy);
-  const cuenta = (a,b)=>{ const m = new Map(); ECOSISTEMA.eventos.forEach(e=>{ if(ids.has(e.tema_id) && e.fecha>a && e.fecha<=b) m.set(e.tema_id,(m.get(e.tema_id)||0)+1); }); return m; };
-  const act = cuenta(h14,hoyS), prev = cuenta(h28,h14);
-  const A = new Set([...act].filter(([,n])=>n>=3).map(x=>x[0])), P = new Set([...prev].filter(([,n])=>n>=3).map(x=>x[0]));
-  const comparable = !!(_covTL && _covTL.fecha<=h28);
-  const nom = id=>{ const t = getTema(id); return t ? _truncarEnPalabra(t.nombre,28) : id; };
-  const lista = a=>a.length ? ' ('+a.slice(0,3).map(nom).join(', ')+(a.length>3?'…':'')+')' : '';
-  const entran = [...A].filter(id=>!P.has(id)), salen = [...P].filter(id=>!A.has(id));
-  const dif = A.size-P.size;
-  const dir = !comparable ? null : dif>=3 ? ['ampliándose','var(--riesgo-alto)'] : dif<=-3 ? ['reduciéndose','var(--riesgo-bajo)'] : ['estable','var(--riesgo-medio)'];
-  const top = [...act].sort((a,b)=>b[1]-a[1])[0];
-  let t = `Últimos 14 días: <strong>${A.size}</strong> tema${A.size!==1?'s':''} de agenda activo${A.size!==1?'s':''}`;
-  if(comparable) t += ` (los 14 previos: <strong>${P.size}</strong>) · agenda <strong style="color:${dir[1]}">${dir[0]}</strong> · entraron ${entran.length} · salieron ${salen.length}`;
-  else t += _covTL ? ` · la comparación con el periodo previo se activa con 28 días de cobertura` : ` · cobertura insuficiente para comparar`;
-  const nm = id=>{ const x = getTema(id); return _escHtml(x?x.nombre:id); };
-  const tip = [entran.length ? `<strong>Entraron (${entran.length})</strong><br><span style="font-size:10px;">${entran.map(nm).join('<br>')}</span>` : '', salen.length ? `<strong>Salieron (${salen.length})</strong><br><span style="font-size:10px;">${salen.map(nm).join('<br>')}</span>` : '',
-    _covTL ? `<span style="font-size:10px;opacity:.8;">Cobertura completa desde ${_covTL.fecha} (${_covTL.dias} días); antes solo hay notas sembradas, no comparables.</span>` : ''].filter(Boolean).join('<hr style="border-color:rgba(255,255,255,.15);margin:4px 0;">');
-  cont.innerHTML = `<p ${tip ? _tipAttr(tip) : ''} style="font-size:12px;line-height:1.4;color:var(--ink-2);background:var(--bg-1);border-left:3px solid ${dir?dir[1]:'var(--line-strong)'};padding:4px 10px;border-radius:4px;margin:0 0 4px;">${t}</p>`;
+function narrativaTimelineTL(){   // la línea de lectura de 14 días se quitó (duplicaba la tendencia y las cifras no coincidían)
+  const cont = document.getElementById('timeline-narrativa'); if(cont){ cont.innerHTML = ''; cont.style.display = 'none'; }
 }
-
-
-// ---------------- cabecera fija: tendencia + quién domina la agenda ----------------
-let tlSerieTend = [], tlEjeComprimido = false, tlPuntosBase = [], tlZoom = null, tlTransformGuardada = null, tlK = 1, tlKEmpaquetado = 1;
 // temas activos por día = temas de agenda con 3+ notas en los 7 días que terminan ese día (promedio móvil, no suma de intensidades)
+// ---------------- tendencia y quién domina la agenda ----------------
+let tlSerieTend = [], tlEjeComprimido = false, tlPuntosBase = [], tlZoom = null, tlTransformGuardada = null, tlK = 1, tlKEmpaquetado = 1;
+// temas activos por día = temas de agenda con 3+ notas en los 7 días que terminan ese día (promedio móvil)
 function _serieTendenciaTL(){
   if(!_covTL) return [];
   const f = d=>d.toISOString().slice(0,10), hoy = new Date(f(new Date())+'T12:00:00');
