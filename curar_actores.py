@@ -28,6 +28,15 @@ HISTORIAS = [
      'resumen': 'Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.',
      're': r'coordinador(a|es|as)?\b.*(morena|4t|transformaci[oó]n|defensa de)|morena\b.*coordinador|clouthier|clara luz|cruz p[eé]rez cu[eé]llar|jasmine bugar|lorenia valles|ana lilia rivera|andrea ch[aá]vez|encuestas? de morena|alteraci[oó]n de encuestas|tribus (de|en) morena|pugnas internas de morena|corcholata',
      'no_re': r'grupo parlamentario|coordinador(a)? (de la )?(bancada|gabinete)|coordinadora? nacional de (protecci|comunicaci)'},
+    {'id': 'reforma-doble-nacionalidad', 'nombre': 'Reforma constitucional contra la doble nacionalidad en candidaturas', 'categoria': 'Gobernabilidad',
+     'resumen': 'Reforma que impide la doble nacionalidad a quienes aspiren a la Presidencia y gubernaturas: aprobación en Diputados y Senado, ratificación de congresos estatales, reacciones de migrantes y oposición, y el caso Bugarín.',
+     're': r'doble nacionalidad|doble ciudadan', 'no_re': r'bugar[ií]n no tiene'},
+    {'id': 'carlos-torres-ofac-mayiza', 'nombre': 'Carlos Torres, exesposo de Marina del Pilar: sanciones OFAC y La Mayiza', 'categoria': 'Seguridad Nacional',
+     'resumen': 'EU sanciona a 21 personas ligadas al Cártel de Sinaloa, entre ellas el exesposo de la gobernadora de Baja California, señalado como engranaje de la red de Los Mayitos / La Mayiza; respuesta de Sheinbaum y de la gobernadora.',
+     're': r'exesposo de (la gobernadora |marina)|ex ?esposo.*marina del pilar|carlos torres.*(marina|ofac|mayiza|mayitos)|(ofac|sanciona|sanciones).*(marina del pilar|exesposo)|marina del pilar.*(ofac|exesposo|mayiza)', 'no_re': r'torres pi[ñn]a'},
+    {'id': 'embajador-johnson-queretaro', 'nombre': 'Embajador Johnson en Querétaro: invitación del gobernador Kuri', 'categoria': 'Relación Bilateral',
+     'resumen': 'Visita del embajador de EU, Ronald Johnson, a Querétaro por invitación del gobernador Kuri; Sheinbaum pide explicaciones y ordena a la SRE llamar a ambos.',
+     're': r'johnson.*(quer[eé]taro|kuri)|(quer[eé]taro|kuri).*(johnson|embajador)|invitaci[oó]n.*embajador.*quer', 'no_re': r'^$'},
 ]
 
 # (id existente | None, nombre, cargo, rol, regex de certeza)
@@ -49,6 +58,12 @@ COORD = [
     (None, 'Marybel Villegas', 'Denunció irregularidades en la elección de Morena en Quintana Roo', 'Reacción de oposición', r'marybel villegas'),
 ]
 
+# actores nuevos: (id, nombre, cargo, tema, rol, regex de certeza en titulares del tema)
+NUEVOS = [
+    ('carlos_torres_exesposo_mp', 'Carlos Torres (exesposo de Marina del Pilar)', 'Sancionado por OFAC; EU lo liga a La Mayiza', 'carlos-torres-ofac-mayiza', 'Acusado', r'exesposo|carlos torres'),
+    ('mauricio_kuri', 'Mauricio Kuri González', 'Gobernador de Querétaro (PAN)', 'embajador-johnson-queretaro', 'Responsable institucional', r'kuri'),
+]
+
 # actores ya existentes para temas curados que tenían 0-1 actores; solo entran si aparecen en las notas del tema
 SEMILLAS = {
     'morena-coordinadores-distritales': [('morena_partido','Responsable institucional',r'morena'),('montiel','Responsable institucional',r'montiel'),('citlalli','Responsable institucional',r'citlalli'),('sheinbaum','Responsable institucional',r'sheinbaum'),('jesus_selvan_garcia','Reacción de oposición',r'selv[aá]n')],
@@ -61,6 +76,8 @@ SEMILLAS = {
     'gusano-barrenador': [('julio_berdegue','Responsable institucional',r'berdegu'),('sheinbaum','Reacción del gobierno',r'sheinbaum')],
     'el-mencho': [('garcia_harfuch','Responsable institucional',r'harfuch'),('sheinbaum','Reacción del gobierno',r'sheinbaum'),('ricardo_trevilla_trejo','Responsable institucional',r'trevilla')],
     'rancho-izaguirre-teuchitlan': [('godoy','Responsable institucional',r'godoy'),('garcia_harfuch','Responsable institucional',r'harfuch'),('sheinbaum','Reacción del gobierno',r'sheinbaum')],
+    'carlos-torres-ofac-mayiza': [('marina_pilar','Autoridad',r'marina del pilar|gobernadora'),('sheinbaum','Reacción del gobierno',r'sheinbaum')],
+    'embajador-johnson-queretaro': [('ronald_johnson','Responsable institucional',r'johnson|embajador'),('sheinbaum','Reacción del gobierno',r'sheinbaum'),('velasco','Responsable institucional',r'sre|velasco|relaciones exteriores'),('rosa_icela','Responsable institucional',r'rosa icela')],
     'carlos-manzo': [('sheinbaum','Reacción del gobierno',r'sheinbaum'),('garcia_harfuch','Responsable institucional',r'harfuch'),('alfredo_ramirez_bedolla','Responsable institucional',r'bedolla')],
     'reforma-judicial-jueces': [('sheinbaum','Responsable institucional',r'sheinbaum'),('arturo_zaldivar_lelo_de_larrea','Autoridad',r'zald[ií]var'),('monreal','Responsable institucional',r'monreal'),('pan_partido','Reacción de oposición',r'\bpan\b'),('pri_partido','Reacción de oposición',r'\bpri\b')],
     'eleccion-judicial-2025': [('sheinbaum','Responsable institucional',r'sheinbaum'),('arturo_zaldivar_lelo_de_larrea','Autoridad',r'zald[ií]var'),('monreal','Responsable institucional',r'monreal'),('pan_partido','Reacción de oposición',r'\bpan\b')],
@@ -129,6 +146,13 @@ def main():
                              'iniciales': ''.join(w[0] for w in nombre.split()[:2]).upper(), 'descripcion': cargo + '.', 'fuente_nombre': 'Curaduría (notas del tema)'})
                 actores.append(fila); ids.add(aid); por_nombre[norm(nombre)] = aid; altas += 1
         if aid in ids: vincular('morena-coordinadores-2027', aid, rol, clave, '')
+    for aid, nombre, cargo, tema, rol, clave in NUEVOS:
+        if aid not in ids and tema in tm and any(re.search(clave, t) for t in titulos.get(tema, [])):
+            fila = {c: '' for c in ca}
+            fila.update({'id': aid, 'nombre': nombre, 'cargo': cargo, 'nucleo': 'C', 'nivel_riesgo': 'bajo', 'nivel_influencia': '4',
+                         'iniciales': ''.join(w[0] for w in re.sub(r'\(.*?\)', '', nombre).split()[:2]).upper(), 'descripcion': cargo + '.', 'fuente_nombre': 'Curaduría (notas del tema)'})
+            actores.append(fila); ids.add(aid); altas += 1
+        if aid in ids: vincular(tema, aid, rol, clave, '')
     for tema, lista in SEMILLAS.items():
         for aid, rol, clave in lista:
             if aid in ids: vincular(tema, aid, rol, clave, '')
