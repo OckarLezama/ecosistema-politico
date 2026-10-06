@@ -76,6 +76,7 @@ auto-8c95067d18,"Nuestra presidenta Claudia Sheinbaum Pardo quiere mucho a Verac
 auto-03ec973294,BITACORÁ POLÍTICA | La redacción quedó en silencio - Formato Siete,3,informativo,7,3,0.43,mezcla historias
 auto-a8878973bc,Localizan sin vida a dos jóvenes reportados como desaparecidos en Suchiate,3,informativo,7,3,0.43,mezcla historias
 auto-fb871d8278,Justicia ambiental en zonas históricamente relegadas: Se presentaron inversiones,3,informativo,7,3,0.43,mezcla historias
+auto-cf2ebbe6da,La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso,1,completo,18,9,0.5,revisar
 auto-726ae9441f,"Claudia Sheinbaum refrenda respaldo a Tlaxcala con inversión en vivienda, salud ",1,completo,18,9,0.5,revisar
 auto-1e57057d28,"VIDEO ¡Juchitán, sin gobierno! Jara pide desaparecer el ayuntamiento tras captur",3,informativo,10,5,0.5,revisar
 auto-58c4fa9e35,"¿Terry Cole “promueve” a Harfuch? EU siempre ha buscado dividirnos, dice Sheinba",3,informativo,6,3,0.5,revisar
@@ -96,7 +97,6 @@ auto-e0744d9d51,Presidenta Sheinbaum defiende el modelo educativo mexicano - ANS
 auto-bc5881c5b5,Sheinbaum pide regular la IA ante difusión de información falsa - Buzos de la no,3,completo,4,2,0.5,revisar
 auto-c42133bff0,"“Queremos Medicinas, No Otro Teatro”: Reclaman a Sheinbaum por Megaproyecto de L",3,informativo,4,2,0.5,revisar
 auto-c164f763ce,Ni los morenistas ganan sin Morena - Radio Fórmula,3,informativo,4,2,0.5,revisar
-auto-cf2ebbe6da,La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso,1,completo,17,9,0.53,revisar
 auto-dbb17568d7,Noé Jara acusa “fuego político” contra él y el gobernador; se pone a disposición,3,informativo,13,7,0.54,revisar
 auto-e2608a5a56,Dan prisión preventiva a 16 integrantes de Los Ardillos,3,informativo,9,5,0.56,revisar
 auto-c1ffc0d291,Elecciones intermedias en EE. UU.: cada vez más estadounidenses se identifican c,3,completo,7,4,0.57,revisar
@@ -266,8 +266,8 @@ auto-e6d3ffeac8,Puso de rodillas al Gobernador - Sol Yucatán,3,informativo,8,7,
 auto-bf1807be4e,Señalan a funcionario del IEEPO por altercado durante informe de Sheinbaum - El ,1,completo,8,7,0.88,ok
 auto-d2b483c639,La reforma que le puso género al mapa de Chiapas - Diario de Chiapas,3,informativo,8,7,0.88,ok
 auto-29e97c07ab,Morena Puebla conmemora 15 años de transformación y convoca a celebrar el aniver,1,completo,8,7,0.88,ok
+morena-coordinadores-2027,Coordinadores estatales de Morena rumbo a 2027,1,completo,184,164,0.89,ok
 auto-82d951817d,CRÓNICA POLÍTICA: Congreso va por formalizar cambios en el gabinete de Salomón J,3,informativo,9,8,0.89,ok
-morena-coordinadores-2027,Coordinadores estatales de Morena rumbo a 2027,1,completo,183,164,0.9,ok
 auto-dacd2cd4d0,"Informe desde Estocolmo: la migración, en el centro de la jornada electoral en S",3,informativo,10,9,0.9,ok
 auto-8983512cec,Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o,1,completo,10,9,0.9,ok
 auto-af35577f9d,"Nuevo informe sobre normalistas de Ayotzinapa: 1,931 predios revisados y 17 nuev",3,informativo,10,9,0.9,ok
@@ -291,9 +291,9 @@ auto-3520faacac,Programas sociales benefician a más de 1.6 millones en Guerrero
 auto-da01a6cae3,"En octubre concretará el gobernador May, el incremento de una hora el consumo de",3,informativo,40,40,1.0,ok
 auto-9294ecc850,En el monitoreo de precios de la canasta básica PASIC de 24 productos que no deb,3,informativo,39,39,1.0,ok
 auto-140c183067,"Se presentó un homenaje al Consejo Estudiantil Universitario (CEU) de 1986, movi",3,informativo,39,39,1.0,ok
+auto-3de5902549,La presidenta Claudia Sheinbaum abordó el tema de la intervención de la embajada,3,informativo,29,29,1.0,ok
 auto-823a9617e3,Comisión del Congreso de Puebla avala acuerdo para fortalecer apoyos a productor,3,informativo,28,28,1.0,ok
 auto-8ec13057e3,Se informó sobre la Estrategia Nacional para Promover la Estabilización del Prec,3,informativo,27,27,1.0,ok
-auto-3de5902549,La presidenta Claudia Sheinbaum abordó el tema de la intervención de la embajada,3,informativo,27,27,1.0,ok
 auto-5b0830cd07,"Respecto a las elecciones en Brasil, la presidenta Sheinbaum indicó que esperarí",3,informativo,27,27,1.0,ok
 auto-507721e8e8,Delfina Pozos acusa bloqueo legislativo de Morena en Congreso de Puebla - Reto D,3,informativo,24,24,1.0,ok
 auto-b11bb033dd,Concesionarios de verificentros entregan a gobernadora Rocío Nahle evidencias de,3,informativo,20,20,1.0,ok
@@ -627,6 +627,7 @@ auto-54f641a19d,Sheinbaum auxilia a mujer tras caída; permanece hospitalizada b
 auto-d6bf3ce68d,"Desigualdad, migración y nostalgia: las claves del auge de la extrema derecha en",3,informativo,3,3,1.0,ok
 auto-309009e11f,"Sheinbaum destaca apoyos en Colima; critica encuentro entre Fox y 'Alito': ""¿El ",3,completo,3,3,1.0,ok
 auto-d3871cf176,Así fue la noche del homicidio de Jonathan Meléndez y su familia; estas son las ,3,informativo,3,3,1.0,ok
+auto-b6de8facd5,INE informa que más de 100 mil yucatecos deberán renovar su credencial para vota,3,informativo,3,3,1.0,ok
 auto-e026d143ec,DEA se da crédito por decomiso histórico de metanfetamina,3,completo,3,3,1.0,ok
 auto-e1c20eda58,Políticos mexicanos convierten a España en destino preferido,3,completo,3,3,1.0,ok
 auto-2a30753573,Herencia al comal,3,informativo,3,3,1.0,ok
@@ -736,6 +737,7 @@ auto-80ca4d56b6,"Proyectos ferroviarios generan desarrollo económico, asegura l
 auto-d9396b9e07,Jara lamenta que funcionarios “caigan en la tentación”; alcalde de Juchitán es e,3,informativo,3,3,1.0,ok
 auto-5a0b8c2bec,INE define Consejo Local de Quintana Roo para elección federal de 2027 - Grupo A,3,informativo,3,3,1.0,ok
 auto-68c5207df8,Interpone queja PRI ante INE contra coordinadores estatales de Morena; pide susp,1,completo,3,3,1.0,ok
+auto-821abb5ba4,Gustavo Leal F.*: Servicio Universal de Salud: ¿12 mil 750 consultorios “nuevos”,3,informativo,3,3,1.0,ok
 auto-af89c7ea3f,Deslaves podrían dejar incomunicado a Moloacán; alcalde pide ayuda a Rocío Nahle,3,informativo,3,3,1.0,ok
 auto-7762610fe8,“Morena es un poema y lo estamos escribiendo juntos”: Layda,3,informativo,3,3,1.0,ok
 auto-ded5ff6eee,TEPJF ve inconstitucional reducción de regidurías en Puebla capital; SCJN analiz,3,informativo,3,3,1.0,ok
