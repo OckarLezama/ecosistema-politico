@@ -1315,7 +1315,7 @@ function renderEcosistemaAgenda(){
   cont.innerHTML = `<div style="flex:none;padding:8px 14px 4px;font-size:11px;line-height:1.5;color:var(--ink-2);">
       <b style="color:var(--ink-1);">${temas.length} temas de agenda · ${porActor.size} actores confirmados · ${puentes.length} actores puente</b> (aparecen en 2 o más temas).
       ${puentes.length ? `<br><span style="font-family:var(--f-mono);font-size:10px;">Puentes principales: ${topPuentes}</span>` : ''}
-      <br>${[...new Set(temas.map(t=>t.categoria))].map(c=>`<span style="white-space:nowrap;margin-right:10px;font-size:10px;"><span class="legend-dot" style="background:${colorCategoria(c)}"></span>${_escHtml(c)}</span>`).join('')}<br><span style="font-size:10px;opacity:.75;">Círculo grande = tema (tamaño = impacto) · punto = actor · línea turquesa punteada = vínculo entre actores · clic en un tema para abrir sus notas.</span></div>
+      <br>${[...new Set(temas.map(t=>t.categoria))].map(c=>`<span style="white-space:nowrap;margin-right:10px;font-size:10px;"><span class="legend-dot" style="background:${colorCategoria(c)}"></span>${_escHtml(c)}</span>`).join('')}<br><span style="font-size:10px;opacity:.75;">Círculo grande = tema (tamaño = impacto) · punto = actor · línea turquesa punteada = vínculo entre actores · clic en un tema para abrir sus notas · rueda del ratón para acercar o alejar.</span></div>
     <svg id="eco-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
   const svgEl = document.getElementById('eco-svg'); if(!svgEl) return;
   const W = svgEl.clientWidth || 900, H = svgEl.clientHeight || 520;
@@ -1327,6 +1327,7 @@ function renderEcosistemaAgenda(){
   (ECOSISTEMA.conexiones||[]).forEach(c=>{ if(ids.has('a:'+c.origen) && ids.has('a:'+c.destino)) links.push({source:'a:'+c.origen, target:'a:'+c.destino, k:'vinculo'}); });
   const svg = d3.select(svgEl).attr('viewBox',[0,0,W,H]); svg.selectAll('*').remove();
   const g = svg.append('g');
+  svg.call(d3.zoom().scaleExtent([0.3,3]).on('zoom', ev=>g.attr('transform', ev.transform)));   // rueda = acercar/alejar · arrastrar el fondo = mover
   const link = g.selectAll('line').data(links).join('line').attr('stroke', d=>d.k==='vinculo'?'var(--teal)':'var(--line-strong)').attr('stroke-opacity', d=>d.k==='vinculo'?0.7:0.4).attr('stroke-width',1.1).attr('stroke-dasharray', d=>d.k==='vinculo'?'2 3':null);
   const node = g.selectAll('g.eco-n').data(nodes).join('g').attr('class','eco-n').style('cursor','pointer');
   node.append('circle').attr('r',d=>d.r).attr('fill',d=>d.color).attr('fill-opacity',d=>d.tipo==='tema'?0.9:0.7).attr('stroke',d=>d.tipo==='tema'?'#fff':'none').attr('stroke-width',1.5);
@@ -1339,8 +1340,18 @@ function renderEcosistemaAgenda(){
     .on('click',(ev,d)=>{ ocultarTooltipAgenda(); if(d.tipo==='tema'){ temaNotasSeleccionado = d.tema.id; vistaAgenda = 'notas'; document.querySelectorAll('#agenda-vista-principal .chip-btn').forEach(b=>b.classList.toggle('active', b.dataset.vista==='notas')); renderAgendaGrid(); } });
   const sim = d3.forceSimulation(nodes).force('link', d3.forceLink(links).id(d=>d.id).distance(d=>d.k==='vinculo'?70:105).strength(0.35)).force('charge', d3.forceManyBody().strength(d=>d.tipo==='tema'?-700:-70))
     .force('center', d3.forceCenter(W/2,H/2)).force('x', d3.forceX(W/2).strength(0.025)).force('y', d3.forceY(H/2).strength(0.045)).force('collide', d3.forceCollide().radius(d=>d.r+(d.tipo==='tema'?24:6)));
-  sim.on('tick',()=>{ nodes.forEach(n=>{ n.x = Math.max(n.r+8, Math.min(W-n.r-8, n.x)); n.y = Math.max(n.r+8, Math.min(H-n.r-22, n.y)); });
-    link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y); node.attr('transform',d=>`translate(${d.x},${d.y})`); });
+  // flotación: cada nodo oscila unos píxeles con su propio ritmo (como en Notas); los que se arrastran no flotan
+  const flotar = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  nodes.forEach((n,i)=>{ n._ph = i*1.7; n._amp = 3 + (i%3); n._per = 4200 + (i*530)%2600; });
+  function pintar(t){
+    nodes.forEach(n=>{ const m = flotar && n.fx==null;
+      n._vx = n.x + (m ? Math.sin(t/n._per*6.2832 + n._ph)*n._amp : 0); n._vy = n.y + (m ? Math.cos(t/(n._per*1.3)*6.2832 + n._ph)*n._amp : 0); });
+    link.attr('x1',d=>d.source._vx).attr('y1',d=>d.source._vy).attr('x2',d=>d.target._vx).attr('y2',d=>d.target._vy);
+    node.attr('transform',d=>`translate(${d._vx},${d._vy})`);
+  }
+  sim.on('tick',()=>{ nodes.forEach(n=>{ n.x = Math.max(n.r+8, Math.min(W-n.r-8, n.x)); n.y = Math.max(n.r+8, Math.min(H-n.r-22, n.y)); }); pintar(performance.now()); });
+  const gen = (svgEl.__genEco = (svgEl.__genEco||0) + 1);
+  if(flotar) d3.timer(()=>{ if(!svgEl.isConnected || svgEl.__genEco!==gen) return true; pintar(performance.now()); });
   node.call(d3.drag().on('start',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0.2).restart(); d.fx=d.x; d.fy=d.y; }).on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; }).on('end',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
 }
 
