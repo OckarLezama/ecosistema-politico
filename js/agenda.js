@@ -249,13 +249,15 @@ const _PALABRAS_GENERICAS_ACTOR = new Set(['mexico','mexicano','mexicana','mexic
 function _clavesActor(a){
   if(!_tokensActores){
     _tokensActores = new Map();
-    ECOSISTEMA.actores.forEach(x=>{ new Set(_normN(x.nombre.replace(/\(.*?\)/g,'')).split(/\s+/).filter(w=>w.length>=6)).forEach(w=>_tokensActores.set(w,(_tokensActores.get(w)||0)+1)); });
+    ECOSISTEMA.actores.forEach(x=>{ const ws = _normN(x.nombre.replace(/\(.*?\)/g,'')).split(/\s+/); new Set(ws.filter(w=>w.length>=6)).forEach(w=>_tokensActores.set(w,(_tokensActores.get(w)||0)+1));
+      new Set(ws.slice(0,-1).map((w,i)=>w+' '+ws[i+1]).filter(b=>b.length>=9)).forEach(b=>_tokensActores.set(b,(_tokensActores.get(b)||0)+1)); });
   }
   const limpio = _normN(a.nombre.replace(/\(.*?\)/g,'')).trim();
   const alias = _normN(((a.nombre.match(/\(['"“]?([^)'"”]+)['"”]?\)/)||[])[1])||'');
   const claves = [];
   if(limpio.split(/\s+/).length>=2) claves.push(limpio);
   limpio.split(/\s+/).filter(w=>w.length>=6 && _tokensActores.get(w)===1 && !_PALABRAS_GENERICAS_ACTOR.has(w)).forEach(w=>claves.push(w));   // apellido que identifica a UN solo actor
+  { const ws = limpio.split(/\s+/); ws.slice(0,-1).map((w,i)=>w+' '+ws[i+1]).filter(b=>b.length>=9 && _tokensActores.get(b)===1 && !claves.includes(b) && !b.split(' ').every(x=>_PALABRAS_GENERICAS_ACTOR.has(x))).forEach(b=>claves.push(b)); }   // 'fernando farias': par de palabras que identifica a UN solo actor
   if(alias.length>=3) claves.push(alias);
   return claves;
 }
@@ -1229,6 +1231,52 @@ function poblarFiltroCategoriaAgenda(){
   sel.addEventListener('change', (e)=>{ categoriaFiltroAgenda = e.target.value; renderAgendaGrid(); });
 }
 
+
+// ===== Vista ECOSISTEMA: todos los temas de agenda y sus actores en un solo grafo =====
+// Círculo grande = tema (color de su categoría, tamaño por impacto). Punto = actor confirmado. Un actor unido a varios temas es un
+// «puente»: une historias. Sirve para ver qué actores sostienen la agenda y qué tan concentrada o dispersa está.
+function renderEcosistemaAgenda(){
+  const cont = document.getElementById('agenda-contenido'); if(!cont) return;
+  const sw = document.getElementById('agenda-tema-select-wrap'); if(sw) sw.style.display = 'none';
+  const lg = document.getElementById('agenda-notas-leyenda'); if(lg) lg.style.display = 'none';
+  const temas = ECOSISTEMA.temas.filter(t=>(!categoriaFiltroAgenda || t.categoria===categoriaFiltroAgenda) && enNotas(t));
+  const datos = calcularDatosRadarAgenda(temas), imp = new Map(datos.map(d=>[d.tema.id, d]));
+  const porActor = new Map();
+  temas.forEach(t=>_actoresDeTema(t.id).forEach(x=>{ if(!getActor(x.actor_id)) return; if(!porActor.has(x.actor_id)) porActor.set(x.actor_id, []); porActor.get(x.actor_id).push({tema:t, rol:x.rol}); }));
+  const puentes = [...porActor.entries()].filter(([id,l])=>l.length>=2).sort((a,b)=>b[1].length-a[1].length);
+  const topPuentes = puentes.slice(0,5).map(([id,l])=>`${_escHtml(getActor(id).nombre.replace(/\(.*?\)/g,'').trim())} (${l.length} temas)`).join(' · ');
+  cont.innerHTML = `<div style="flex:none;padding:8px 14px 4px;font-size:11px;line-height:1.5;color:var(--ink-2);">
+      <b style="color:var(--ink-1);">${temas.length} temas de agenda · ${porActor.size} actores confirmados · ${puentes.length} actores puente</b> (aparecen en 2 o más temas).
+      ${puentes.length ? `<br><span style="font-family:var(--f-mono);font-size:10px;">Puentes principales: ${topPuentes}</span>` : ''}
+      <br>${[...new Set(temas.map(t=>t.categoria))].map(c=>`<span style="white-space:nowrap;margin-right:10px;font-size:10px;"><span class="legend-dot" style="background:${colorCategoria(c)}"></span>${_escHtml(c)}</span>`).join('')}<br><span style="font-size:10px;opacity:.75;">Círculo grande = tema (tamaño = impacto) · punto = actor · línea turquesa punteada = vínculo entre actores · clic en un tema para abrir sus notas.</span></div>
+    <svg id="eco-svg" style="width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 15% 10%, rgba(76,193,186,.06), transparent 45%),radial-gradient(circle at 85% 85%, rgba(244,104,131,.05), transparent 45%),var(--bg-0);"></svg>`;
+  const svgEl = document.getElementById('eco-svg'); if(!svgEl) return;
+  const W = svgEl.clientWidth || 900, H = svgEl.clientHeight || 520;
+  if(!temas.length){ svgEl.outerHTML = '<div style="padding:20px;text-align:center;color:var(--ink-3);">Sin temas con este filtro</div>'; return; }
+  const nodes = [], links = [], ids = new Set();
+  temas.forEach(t=>{ const d = imp.get(t.id); nodes.push({id:'t:'+t.id, tipo:'tema', tema:t, r:11+Math.round((d?d.riesgoReal:5)*1.3), color:colorCategoria(t.categoria)}); ids.add('t:'+t.id); });
+  porActor.forEach((lista, aid)=>{ const a = getActor(aid); nodes.push({id:'a:'+aid, tipo:'actor', actor:a, lista, r:4+Math.min(8, lista.length*2), color:'var(--ink-3)'}); ids.add('a:'+aid);
+    lista.forEach(x=>links.push({source:'t:'+x.tema.id, target:'a:'+aid, k:'tema'})); });
+  (ECOSISTEMA.conexiones||[]).forEach(c=>{ if(ids.has('a:'+c.origen) && ids.has('a:'+c.destino)) links.push({source:'a:'+c.origen, target:'a:'+c.destino, k:'vinculo'}); });
+  const svg = d3.select(svgEl).attr('viewBox',[0,0,W,H]); svg.selectAll('*').remove();
+  const g = svg.append('g');
+  const link = g.selectAll('line').data(links).join('line').attr('stroke', d=>d.k==='vinculo'?'var(--teal)':'var(--line-strong)').attr('stroke-opacity', d=>d.k==='vinculo'?0.7:0.4).attr('stroke-width',1.1).attr('stroke-dasharray', d=>d.k==='vinculo'?'2 3':null);
+  const node = g.selectAll('g.eco-n').data(nodes).join('g').attr('class','eco-n').style('cursor','pointer');
+  node.append('circle').attr('r',d=>d.r).attr('fill',d=>d.color).attr('fill-opacity',d=>d.tipo==='tema'?0.9:0.7).attr('stroke',d=>d.tipo==='tema'?'#fff':'none').attr('stroke-width',1.5);
+  node.filter(d=>d.tipo==='tema').append('text').attr('text-anchor','middle').attr('dy',d=>d.r+12).attr('font-size','9.5px').attr('fill','var(--ink-1)').style('pointer-events','none').text(d=>_truncarEnPalabra(d.tema.nombre,26));
+  node.filter(d=>d.tipo==='actor' && d.lista.length>=2).append('text').attr('text-anchor','middle').attr('dy',d=>d.r+11).attr('font-size','8.5px').attr('fill','var(--ink-2)').style('pointer-events','none').text(d=>d.actor.nombre.replace(/\(.*?\)/g,'').trim().split(' ').slice(0,2).join(' '));
+  const info = d=> d.tipo==='tema'
+    ? `<div style="max-width:300px;"><strong>${_escHtml(_truncarEnPalabra(d.tema.nombre,80))}</strong><br><span style="font-size:10px;opacity:.8;">${_escHtml(d.tema.categoria)} · impacto ${imp.get(d.tema.id)?imp.get(d.tema.id).riesgoReal:'—'} de 10 · ${_actoresDeTema(d.tema.id).length} actores · ${_hechosDeTema(d.tema.id).length} hechos</span><div style="margin-top:4px;font-size:10px;opacity:.7;">Clic para abrir sus notas</div></div>`
+    : `<div style="max-width:300px;"><strong>${_escHtml(d.actor.nombre)}</strong>${d.actor.cargo?`<br><span style="font-size:10px;opacity:.8;">${_escHtml(d.actor.cargo)}</span>`:''}<div style="margin-top:4px;font-size:10px;">${d.lista.map(x=>`· ${_escHtml(_truncarEnPalabra(x.tema.nombre,45))} — ${_escHtml((typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[x.rol])||x.rol)}`).join('<br>')}</div></div>`;
+  node.on('pointerenter',(ev,d)=>mostrarTooltipAgenda(info(d),ev)).on('pointermove',(ev,d)=>mostrarTooltipAgenda(info(d),ev)).on('pointerleave',ocultarTooltipAgenda)
+    .on('click',(ev,d)=>{ ocultarTooltipAgenda(); if(d.tipo==='tema'){ temaNotasSeleccionado = d.tema.id; vistaAgenda = 'notas'; document.querySelectorAll('#agenda-vista-principal .chip-btn').forEach(b=>b.classList.toggle('active', b.dataset.vista==='notas')); renderAgendaGrid(); } });
+  const sim = d3.forceSimulation(nodes).force('link', d3.forceLink(links).id(d=>d.id).distance(d=>d.k==='vinculo'?70:105).strength(0.35)).force('charge', d3.forceManyBody().strength(d=>d.tipo==='tema'?-700:-70))
+    .force('center', d3.forceCenter(W/2,H/2)).force('x', d3.forceX(W/2).strength(0.025)).force('y', d3.forceY(H/2).strength(0.045)).force('collide', d3.forceCollide().radius(d=>d.r+(d.tipo==='tema'?24:6)));
+  sim.on('tick',()=>{ nodes.forEach(n=>{ n.x = Math.max(n.r+8, Math.min(W-n.r-8, n.x)); n.y = Math.max(n.r+8, Math.min(H-n.r-22, n.y)); });
+    link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y); node.attr('transform',d=>`translate(${d.x},${d.y})`); });
+  node.call(d3.drag().on('start',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0.2).restart(); d.fx=d.x; d.fy=d.y; }).on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; }).on('end',(ev,d)=>{ if(!ev.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+}
+
 function renderAgendaGrid(){
   const cont = document.getElementById('agenda-contenido');
   if(!cont) return;
@@ -1246,6 +1294,7 @@ function renderAgendaGrid(){
   if(vistaAgenda==='matriz'){ renderMatriz(); return; }
   if(vistaAgenda==='notas'){ renderNotasAgenda(); return; }
   if(vistaAgenda==='genealogia'){ renderGenealogiaAgenda(); return; }
+  if(vistaAgenda==='ecosistema'){ renderEcosistemaAgenda(); return; }
 }
 
 function renderMatriz(){
@@ -1528,7 +1577,7 @@ function notasCoherentes(evs, tema){
 // Temas curados (id sin 'auto-' y nivel 1 en el CSV) pasan siempre. Los 'auto-' y los informativos
 // deben demostrarlo: alcance nacional + impacto + medios de PRIMER NIVEL (ALTA/OFICIAL) + hechos distintos.
 // Medios medios/bajos/sin clasificar NO cuentan para este criterio.
-const GATE = { N1_IMPACTO:5, N1_MEDIOS:3, N1_HECHOS:3, N2_IMPACTO:4, N2_MEDIOS:1 };
+const GATE = { N1_IMPACTO:5, N1_MEDIOS:3, N1_HECHOS:3, N2_IMPACTO:5, N2_MEDIOS:2 };
 let _gateCache = null, _gateRef = null;
 function _esPrimerNivel(e){
   if(typeof confiabilidadFuente!=='function') return false;
@@ -1555,7 +1604,7 @@ function _nivelAgendaTemas(){
     const nac = imp.ambito==='nacional';
     let nivel = 3;
     if(nac && imp.score>=GATE.N1_IMPACTO && ((mediosEf>=GATE.N1_MEDIOS && hechos>=GATE.N1_HECHOS) || (mediosEf>=2 && hechos>=5))) nivel = 1;
-    else if(nac && imp.score>=GATE.N2_IMPACTO && mediosEf>=GATE.N2_MEDIOS) nivel = 2;
+    else if(nac && imp.score>=GATE.N2_IMPACTO && (mediosEf>=GATE.N2_MEDIOS || (mediosEf>=1 && hechos>=3))) nivel = 2;   // una sola nota de un solo medio no entra a la Matriz
     out[t.id] = {nivel, impacto:imp.score, medios:medios.size, mediosEf, hechos, nac};
   });
   _gateCache = out; _gateRef = ECOSISTEMA.eventos; return out;
@@ -1593,6 +1642,18 @@ function resumenNotasDelDia(){
       const m = _mencionesActor(a, evs); if(m.length) actoresClave.push({actor:a, tema:t, nota:m[0]}); });
   });
   return { hechosHoy, enfriados, duplicados, actoresClave };
+}
+
+
+// auditoría: vínculos tema-actor de temas de agenda sin ninguna mención por nombre en las notas del tema
+function auditoriaActoresNotas(){
+  const out = [];
+  ECOSISTEMA.temas.filter(t=>Number(t.nivel_relevancia)===1 || enNotas(t)).forEach(t=>{
+    const evs = _eventosDeTema(t.id); if(evs.length<3) return;
+    ECOSISTEMA.temaActores.filter(x=>x.tema_id===t.id).forEach(x=>{ const a = getActor(x.actor_id);
+      if(a && !_mencionesActor(a, evs).length) out.push({tema_id:t.id, tema:String(t.nombre).slice(0,70), actor_id:a.id, actor:String(a.nombre).slice(0,60), rol:x.rol, notas:evs.length}); });
+  });
+  return out;
 }
 
 // ===== HECHOS: misma noticia con otro titular/medio/día (±3 días) =====

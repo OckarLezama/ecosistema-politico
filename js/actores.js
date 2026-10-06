@@ -370,10 +370,10 @@ function renderGrafo(svgId='graph-svg'){
     const actor = getActor(actorId);
     if(!actor) return;
     nodesMap.set(actorId, {...actor, nivelAnillo:0, coreId:actorId, slot:'nucleo', esCentro:true, x:width/2, y:height/2});
-    ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId).forEach(ta=>{
+    _contextosAgendaDeActor(actorId).forEach(ta=>{
       const tema = getTema(ta.tema_id);
       if(!tema) return;
-      const nivel = Number(tema.nivel_relevancia)||3;
+      const nivel = 1;
       nodesMap.set(tema.id, {id:tema.id, nombre:tema.nombre, nivelAnillo:nivel, coreId:actorId, slot:'nucleo', esCentro:false, esTema:true, nivel_riesgo:null});
       linksBase.push({origen:actorId, destino:tema.id, nivelDestino:nivel, slot:'nucleo'});
     });
@@ -658,20 +658,25 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
   return { nivel, explicacion };
 }
 
+// Red de Actores: solo cuentan los temas de agenda de primer nivel (los demás son ruido informativo)
+function _contextosAgendaDeActor(actorId){
+  return ECOSISTEMA.temaActores.filter(ta=>{ if(ta.actor_id!==actorId) return false; const t = getTema(ta.tema_id); return t && (typeof enNotas!=='function' || enNotas(t)); });
+}
 function notasDelActorHTML(actorId){
-  const temaIds = new Set(ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId).map(ta=>ta.tema_id));
-  const notas = ECOSISTEMA.eventos
-    .filter(e=>temaIds.has(e.tema_id))
-    .sort((a,b)=> b.fecha.localeCompare(a.fecha))
-    .slice(0,5);
-  if(!notas.length) return '';
+  const act = getActor(actorId); if(!act) return '';
+  const temas = _contextosAgendaDeActor(actorId).map(c=>getTema(c.tema_id));
+  let notas = [];
+  temas.forEach(t=>{ const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id); _mencionesActor(act, evs).filter(_esPrimerNivel).forEach(e=>notas.push(e)); });
+  const hechos = agruparHechos(notas).sort((x,y)=>y.fecha.localeCompare(x.fecha)).slice(0,6);
+  const vacio = '<div class="eyebrow" style="margin-top:10px;">Notas relevantes</div><div style="font-size:11px;opacity:.7;">Sin notas de medios de primer nivel que lo mencionen por nombre en temas de agenda.</div>';
+  if(!hechos.length) return vacio;
   return `
-    <div class="eyebrow" style="margin-top:10px;">Notas y menciones relevantes</div>
-    <div class="ficha-notas-scroll" style="max-height:160px;">
-      ${notas.map(n=>{
+    <div class="eyebrow" style="margin-top:10px;">Notas relevantes (medios de primer nivel · ${hechos.length} hecho${hechos.length!==1?'s':''})</div>
+    <div class="ficha-notas-scroll" style="max-height:200px;">
+      ${hechos.map(n=>{
         const tema = getTema(n.tema_id);
         return `<div style="font-size:11px;padding:6px 0;border-top:1px solid var(--line);">
-          <strong style="font-family:var(--f-mono);color:var(--ink-3);">${n.fecha}</strong> · ${tema?tema.nombre:n.tema_id}<br>
+          <strong style="font-family:var(--f-mono);color:var(--ink-3);">${n.fecha}</strong> · ${tema?tema.nombre:n.tema_id}${n._nNotas>1?` · ${n._nNotas} notas, mismo hecho`:''}<br>
           ${n.descripcion} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}
         </div>`;
       }).join('')}
@@ -679,7 +684,7 @@ function notasDelActorHTML(actorId){
 }
 
 function temasDelActorHTML(actorId){
-  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId);
+  const contextos = _contextosAgendaDeActor(actorId);
   if(!contextos.length) return '';
   const filas = contextos.map(c=>{
     const tema = getTema(c.tema_id);
@@ -743,7 +748,7 @@ function renderGrafoTemasActorV2(actorId){
   const svgEl = document.getElementById('ficha-actor-grafo-temas');
   if(!svgEl) return;
   svgEl.innerHTML = '';
-  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId);
+  const contextos = _contextosAgendaDeActor(actorId);
   if(!contextos.length){ svgEl.style.display='none'; return; }
   svgEl.style.display='block';
 
@@ -884,7 +889,7 @@ function mostrarTemasPorRolDeActor(actorId){
   const panel = document.getElementById('detail-panel');
   const actor = getActor(actorId);
   if(!actor){ panel.innerHTML = '<div class="detail-empty">Escribe un nombre para ver su red.</div>'; return; }
-  const contextos = ECOSISTEMA.temaActores.filter(ta=>ta.actor_id===actorId);
+  const contextos = _contextosAgendaDeActor(actorId);
   const colorNivelRiesgo = colorRiesgo(actor.nivel_riesgo);
   // el modo Actor no mostraba riesgo ni el escenario prospectivo -- se agregan aquí, igual
   // que ya se muestran al hacer clic en un satélite dentro del modo Red
