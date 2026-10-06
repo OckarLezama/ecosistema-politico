@@ -11,7 +11,8 @@ try {
   const ctx = { console, fetch: () => new Promise(() => {}), Math, URL, Set, Map, ECOSISTEMA: { eventos, temas, temaActores: R('tema_actores.csv'), actores }, document: { getElementById: () => null, addEventListener() {} }, window: {}, d3: {} };
   vm.createContext(ctx); vm.runInContext(fs.readFileSync(path.join(root, 'js/fuentes.js'), 'utf8'), ctx);
   vm.runInContext('const getTema=id=>ECOSISTEMA.temas.find(t=>t.id===id), getActor=id=>ECOSISTEMA.actores.find(a=>a.id===id);', ctx);
-  vm.runInContext(fs.readFileSync(path.join(root, 'js/agenda.js'), 'utf8') + ';globalThis.__p=calcularPuntosInflexion;globalThis.__pc=_poissonCola;globalThis.__m=_mencionesActor;', ctx);
+  vm.runInContext(fs.readFileSync(path.join(root, 'js/agenda.js'), 'utf8') + ';globalThis.__p=calcularPuntosInflexion;globalThis.__pc=_poissonCola;globalThis.__m=_mencionesActor;globalThis.__en=enNotas;', ctx);
+  vm.runInContext(fs.readFileSync(path.join(root, 'js/timeline.js'), 'utf8') + ';globalThis.__cov=coberturaTL;globalThis.__ptl=_puntosTL;', ctx);
   // T1 datos
   T('T1 hay eventos y temas', eventos.length > 50 && temas.length > 5);
   const ids = new Set(temas.map(t => t.id)), ok = eventos.filter(e => ids.has(e.tema_id)).length / Math.max(1, eventos.length);
@@ -33,6 +34,11 @@ try {
   T('T4 el detector no marca más de 1 de cada 5 temas-día (' + det.length + ' marcas)', det.length <= Math.max(10, 0.2 * temas.length * Math.min(diasN, 60)));
   // T5 matemática
   T('T5 Poisson cola P(N≥3|λ=1)≈0.0803', Math.abs(ctx.__pc(3, 1) - 0.0803) < 0.0005);
+  // T7 Timeline (no bloquean el robot: solo avisan)
+  const cov = ctx.__cov(), ptl = ctx.__ptl(), ini = '2024-10-01';
+  T('T7 Timeline: se detecta la fecha de cobertura completa', !!cov, false);
+  T('T7 Timeline: todo tema de Agenda aparece en el Timeline', temas.filter(t => ctx.__en(t)).every(t => ptl.some(p => p.tema.id === t.id)), false);
+  T('T7 Timeline: ningún punto fuera del eje de fechas', ptl.every(p => p.fecha >= ini && p.fecha <= new Date(Date.now() + 864e5).toISOString().slice(0, 10)), false);
 } catch (e) { total++; fallas.push('El arnés de pruebas falló: ' + e.message); }
 const out = { generado: new Date().toISOString(), total, ok: fallas.length === 0, fallas, advertencias: adv, bloqueante: fallas.length > 0 };
 fs.writeFileSync(D('pruebas_estado.json'), JSON.stringify(out, null, 1));
