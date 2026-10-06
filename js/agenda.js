@@ -1338,7 +1338,7 @@ function _marcarInflexionGenealogia(e, pos, g, width, height){
   ['','h2'].forEach(c=> g.insert('circle',':first-child').attr('class','geneal-halo '+c).attr('r',16).attr('stroke',m.color));
   const svg = d3.select('#geneal-svg');
   svg.select('.geneal-inflexion-capa').append('line').attr('x1',pos.x).attr('x2',pos.x).attr('y1',0).attr('y2',height)
-    .attr('stroke',m.color).attr('stroke-width',1.6).attr('stroke-dasharray','6 4').attr('opacity',.9);
+    .attr('stroke',m.color).attr('stroke-width',0.9).attr('stroke-dasharray','6 4').attr('opacity',.75);
   const ancho = 330, k = _inflPintados++;
   const st = {dx:0, dy:0, abierto:false};
   const p = svg.append('g').attr('class','geneal-no-toggle geneal-pill');
