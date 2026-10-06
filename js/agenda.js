@@ -259,7 +259,16 @@ function _clavesActor(a){
   if(alias.length>=4) claves.push(alias);
   return claves;
 }
-function _mencionesActor(a, evs){ const cl = _clavesActor(a); return cl.length ? evs.filter(e=>{ const t = _normN(e.descripcion); return cl.some(k=>t.includes(k)); }) : []; }
+function _mencionesActor(a, evs){ const cl = _clavesActor(a); return cl.length ? evs.filter(e=>{ const t = _normN(e.descripcion); return cl.some(k=> k.length<=4 ? new RegExp('\\b'+k+'\\b').test(t) : t.includes(k)); }) : []; }
+const _VERBO_DECLARA = /\b(dijo|dice|afirm|acus|rechaz|pide|pidi|llam[oó]|defiend|respald|critic|anunci|exig|denunci|asegur|reconoc|advirt|amenaz|acept|sostien|descart|nieg|lanz[oó]|reaccion)/i;
+function _esDichoPor(e, cl){ const t=_normN(e.descripcion); return cl.some(k=>{ const i=t.indexOf(k); return i>=0 && i<45 && _VERBO_DECLARA.test(t.slice(i+k.length)); }); }
+function _fichaActividad(men, nTema, cl){
+  if(!men.length) return 'No aparece por nombre en las notas de este tema';
+  const f = e => `${_escHtml(e.fecha)} · ${_escHtml(_medioDeEvento(e)||'')} — ${_escHtml(_truncarEnPalabra(e.descripcion,110))}`;
+  const ult = men[0], dec = men.find(e=>_esDichoPor(e, cl));
+  const d14 = men.filter(e=>_diasAtras(e.fecha)<14).length, dias = _diasAtras(ult.fecha);
+  return `<div><b>${men.length}</b> de ${nTema} notas lo mencionan · <b>${d14}</b> en 14 días${dias>30?' · <span style="color:var(--riesgo-medio);">sin menciones hace '+dias+' días</span>':''}</div><div style="margin-top:3px;"><span style="opacity:.65;">Última nota:</span> ${f(ult)}</div>${dec && dec!==ult ? `<div style="margin-top:3px;"><span style="opacity:.65;">Última declaración suya (titular):</span> ${f(dec)}</div>` : ''}`;
+}
 function _eventosDeTema(temaId){ return ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId).sort((a,b)=>(b.fecha+(b.hora_registro||'')).localeCompare(a.fecha+(a.hora_registro||''))); }
 // hechos de un tema para Notas: notas coherentes con el tema, juntando las que cuentan lo mismo; en temas no curados solo
 // cuentan hechos respaldados por medio de primer nivel (o por 3+ notas)
@@ -286,17 +295,17 @@ function _fichaHoverNotas(d, svgTemaId){
   const ta = ECOSISTEMA.temaActores.find(x=>x.tema_id===tema.id && x.actor_id===a.id) || {};
   const menciona = _mencionesActor(a, evs);
   const reciente = menciona.filter(e=>e.fecha>=_diaMX(1)).length;
-  const temas = new Set(ECOSISTEMA.temaActores.filter(x=>x.actor_id===a.id).map(x=>x.tema_id)); temas.delete(tema.id);
-  const colRol = d.deducido ? 'var(--ink-3)' : ((typeof COLOR_ROL_NOTAS!=='undefined' && COLOR_ROL_NOTAS[d.rolEnTema||d.rol]) || 'var(--ink-3)');
-  const txtRol = d.deducido ? 'Deducido de las notas · aún sin confirmar por un analista' : ((typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[d.rolEnTema||d.rol]) || (d.rolEnTema||d.rol||''));
+  const temas = new Set(ECOSISTEMA.temaActores.filter(x=>x.actor_id===a.id).map(x=>x.tema_id).filter(id=>{ const t=getTema(id); return t && enNotas(t); })); temas.delete(tema.id);
+  const colRol = ((typeof COLOR_ROL_NOTAS!=='undefined' && COLOR_ROL_NOTAS[d.rolEnTema||d.rol]) || 'var(--ink-3)');
+  const txtRol = ((typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[d.rolEnTema||d.rol]) || (d.rolEnTema||d.rol||''));
   const idsGrafo = new Set([...ECOSISTEMA.temaActores.filter(x=>x.tema_id===tema.id).map(x=>x.actor_id), ..._actoresDeducidos(tema.id).map(x=>x.actor.id)]);
   const vinc = (ECOSISTEMA.conexiones||[]).filter(c=>(c.origen===a.id && idsGrafo.has(c.destino)) || (c.destino===a.id && idsGrafo.has(c.origen))).slice(0,3)
     .map(c=>{ const otro = getActor(c.origen===a.id ? c.destino : c.origen); return otro ? `${_escHtml(otro.nombre.replace(/\(.*?\)/g,'').trim())}: ${_escHtml(c.tipo_vinculo)}${c.fuerza?' ('+_escHtml(c.fuerza)+')':''}` : ''; }).filter(Boolean);
   return `<div style="max-width:290px;"><strong>${_escHtml(a.nombre)}</strong>${a.cargo?`<br><span style="font-size:10px;opacity:.8;">${_escHtml(a.cargo)}</span>`:''}
     <br><span style="color:${colRol};font-size:10px;">${_escHtml(txtRol)}</span>
     ${ta.detalle?`<div style="margin-top:5px;font-size:10.5px;">${_escHtml(_truncarEnPalabra(ta.detalle,150))}</div>`:''}
-    <div style="margin-top:6px;font-size:10px;opacity:.85;">${menciona.length?`Mencionado en ${menciona.length} de ${evs.length} notas de este tema (última: ${_escHtml(menciona[0].fecha)})`:'No aparece por nombre en las notas de este tema'}
-      ${reciente?`<br><span style="color:var(--teal);">◌ ${reciente} mención${reciente!==1?'es':''} en las últimas 48 h</span>`:''}
+    <div style="margin-top:6px;font-size:10px;opacity:.85;">${_fichaActividad(menciona, evs.length, _clavesActor(a))}
+       ${reciente?`<br><span style="color:var(--teal);">◌ ${reciente} mención${reciente!==1?'es':''} en las últimas 48 h</span>`:''}
       ${vinc.length?`<br>Vínculos aquí: ${vinc.join(' · ')}`:''}
       ${temas.size?`<br>También figura en ${temas.size} tema${temas.size!==1?'s':''} de agenda`:''}</div></div>`;
 }
