@@ -1003,14 +1003,18 @@ function renderGenealogiaAgenda(){
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
     </div>` : ''}
     <div style="position:relative;width:100%;flex:1;min-height:0;">
-      <button type="button" id="geneal-metodo-btn" class="chip-btn" style="position:absolute;top:8px;left:10px;z-index:5;padding:3px 10px;font-size:11px;" onclick="document.getElementById('geneal-metodo').classList.toggle('abierto')">Método</button>
-      <div id="geneal-metodo" style="display:none;position:absolute;top:36px;left:10px;z-index:5;width:340px;max-width:80vw;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--ink-2);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.4);">
+      <button type="button" id="geneal-metodo-btn" class="chip-btn" style="position:absolute;bottom:8px;left:10px;z-index:5;padding:3px 10px;font-size:11px;" onclick="document.getElementById('geneal-metodo').classList.toggle('abierto')">Método</button>
+      <div id="geneal-metodo" style="display:none;max-height:70%;overflow:auto;position:absolute;bottom:38px;left:10px;z-index:5;width:380px;max-width:80vw;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--ink-2);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.4);">
         <b style="color:var(--ink-1)">Puntos de inflexión (automáticos = «posibles»)</b><br>
-        <span style="color:var(--riesgo-medio)">Trigger</span>: un día con 3+ notas y al menos el doble del ritmo de la semana previa; pudo activar algo latente.<br>
-        <span style="color:var(--riesgo-alto)">Turning point</span>: un trigger cuyo ritmo se sostiene en los 3 días siguientes con impacto alto; solo se confirma en retrospectiva.<br>
-        El halo en la fecha y la línea vertical marcan el día. Es una señal por volumen de notas, no una conclusión: el análisis del analista la confirma o la descarta.
+        <span style="color:var(--ink-1)">Evento</span>: lo que ocurrió (cada nota).<br>
+        <span style="color:var(--riesgo-medio)">Trigger</span>: hecho o actor que reactiva un tema que estaba latente. Se marca cuando el día se dispara (3+ notas y el doble del ritmo previo) o cuando un actor casi ausente entra con fuerza (ej. AMLO reaparece).<br>
+        <span style="color:var(--riesgo-alto)">Turning point</span>: el trigger cambia el rumbo: el ritmo se sostiene los días siguientes con impacto alto. Solo se confirma en retrospectiva.<br>
+        <span style="color:var(--ink-1)">Qué pasó después</span>: en cada marca, el ritmo, los actores que entran, las palabras nuevas y si el foco de la agenda se movió a otro tema. La línea de notas cambia de color y grosor los 3 días posteriores.<br>
+        <span style="color:var(--ink-1)">Incertidumbre crítica</span>: variable estructural aún abierta (no un hecho) de la que nacen las posibles ramas futuras. La define el analista, no se detecta sola; por eso hoy el contador marca 0.<br>
+        Todo lo automático es una señal por volumen y menciones, no una conclusión: el analista la confirma o la descarta.
       </div>
       <div id="geneal-scroll" style="width:100%;height:100%;overflow-x:auto;overflow-y:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>
+      <div id="geneal-kpi" style="position:absolute;top:8px;right:76px;z-index:4;font-family:var(--f-mono);font-size:10.5px;background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;"></div>
       <div id="geneal-contador-flotante" style="position:absolute;top:8px;right:10px;font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;pointer-events:none;"></div>
     </div>`;
 
@@ -1104,7 +1108,7 @@ function dibujarGenealogia(temaId){
   gFrecuencia.append('path').attr('d', lineaFrecuencia(puntosFrecuencia)).attr('fill','none').attr('stroke',colorTema).attr('stroke-width',1.5);
   puntosFrecuencia.forEach(p=> gFrecuencia.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2).attr('fill',colorTema));
 
-  _inflGeneal = _detectarInflexiones(eventos); _inflPintados = 0;
+  _inflGeneal = _detectarInflexiones(eventos, temaId); _inflPintados = 0; _actualizarKpiInflexion();
   svg.append('g').attr('class','geneal-inflexion-capa');
   const lineaBase = svg.append('g').attr('class','geneal-linea-capa');
   const puntosBase = svg.append('g').attr('class','geneal-puntos-capa');
@@ -1125,7 +1129,7 @@ function dibujarGenealogia(temaId){
 
   if(genealogiaRevelados>1){
     for(let i=1;i<genealogiaRevelados;i++){
-      lineaBase.append('line').attr('x1',posiciones[i-1].x).attr('y1',y).attr('x2',posiciones[i].x).attr('y2',y).attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
+      lineaBase.append('line').attr('x1',posiciones[i-1].x).attr('y1',y).attr('x2',posiciones[i].x).attr('y2',y).attr('stroke',_segGeneal(eventos[i].fecha).c).attr('stroke-width',_segGeneal(eventos[i].fecha).w).attr('marker-end','url(#flecha-geneal)');
       dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, false, width, height);
     }
     scrollEl.scrollLeft = width;
@@ -1208,7 +1212,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
     scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
       .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y).attr('x2',posiciones[i-1].x).attr('y2',posiciones[i-1].y)
-      .attr('stroke','var(--teal)').attr('stroke-width',1.8).attr('marker-end','url(#flecha-geneal)');
+      .attr('stroke',_segGeneal(eventos[i].fecha).c).attr('stroke-width',_segGeneal(eventos[i].fecha).w).attr('marker-end','url(#flecha-geneal)');
     linea.transition().duration(600).ease(d3.easeLinear)
       .attr('x2',posiciones[i].x).attr('y2',posiciones[i].y)
       .on('end', ()=>{
@@ -1236,40 +1240,112 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
 
 
 // ---- Posibles puntos de inflexión (capa sobre la línea de tiempo; NO cambia el dibujo base) ----
-// Detección automática = solo "posible": se sustenta en volumen de notas del propio tema.
-let _inflGeneal = new Map(), _inflPintados = 0;
-function _detectarInflexiones(eventos){
+// Detección automática = solo "posible". Dos pistas: (1) volumen: el día se dispara frente a la semana previa;
+// (2) actor: alguien que casi no aparecía en el tema entra con fuerza (ej. AMLO reaparece). Luego se mide qué pasó después.
+let _inflGeneal = new Map(), _inflPintados = 0, _inflClip = 0;
+const _STOP_INFL = new Set('sobre entre desde hasta tras ante para como pero sino este esta estos estas esto aqui alli donde cuando porque aunque durante segun cada todo todos toda todas otro otra otros otras ellos ellas mismo misma mas menos muy tambien tiene tienen hacer hace dice dicen dijo seria sera fueron hubo sigue siguen nuevo nueva nuevos nuevas primer primera parte desde quien quienes cual cuales mexico mexicano mexicana gobierno presidente presidenta claudia sheinbaum noticias'.split(' '));
+const _diaGen = f=>new Date(f+'T12:00:00Z').getTime()/86400000;
+function _nomCortoActor(a){ return _NOM_REF[a.id] || a.nombre.replace(/\(.*?\)/g,'').trim().split(/\s+/).slice(0,3).join(' '); }
+function _detectarInflexiones(eventos, temaId){
   const out = new Map(); if(eventos.length<3) return out;
-  const dia = f=>new Date(f+'T12:00:00Z').getTime()/86400000;
+  const dia = _diaGen, todas = eventos.flatMap(e=>e.notas);
   const cuenta = new Map(eventos.map(e=>[dia(e.fecha), e.notas.length]));
   const suma = (a,b)=>{ let t=0; for(let d=a; d<=b; d++) t += cuenta.get(d)||0; return t; };
+  const ultimoDia = dia(eventos[eventos.length-1].fecha);
+  // actores candidatos y sus menciones por día
+  const ids = [...new Set([...ECO_REFERENCIA, ..._actoresDeTema(temaId).map(x=>x.actor_id)])];
+  const act = ids.map(id=>getActor(id)).filter(Boolean).map(a=>{
+    const m = new Map(); _mencionesActor(a, todas).forEach(e=>{ const d = dia(e.fecha); m.set(d,(m.get(d)||0)+1); }); return {a, m};
+  }).filter(x=>x.m.size);
+  const menAct = (x,a,b)=>{ let t=0; for(let d=a; d<=b; d++) t += x.m.get(d)||0; return t; };
+  const idsAg = new Set(ECOSISTEMA.temas.filter(enNotas).map(t=>t.id));
+  const tema = getTema(temaId), nomTema = _normN(tema?tema.nombre:'');
+  const limpia = d=>_normN((d||'').replace(/\s+-\s+[^-]+$/,'')).replace(/[^a-z0-9ñ ]/g,' ');
+  const palabras = notas=>{ const c = new Map(); notas.forEach(n=>new Set(limpia(n.descripcion).split(/\s+/).filter(w=>w.length>=5 && !_STOP_INFL.has(w) && !nomTema.includes(w) && !_nomAct.has(w) && !['lopez','obrador','beltran'].includes(w))).forEach(w=>c.set(w,(c.get(w)||0)+1))); return c; };
+  const _nomAct = new Set(act.flatMap(x=>_normN(x.a.nombre.replace(/\(.*?\)/g,'')).split(/\s+/)));
   let ultimo = -99;
   eventos.forEach((e,i)=>{
     if(i===0) return;
     const d = dia(e.fecha), n = e.notas.length, base = suma(d-7,d-1)/7, ayer = cuenta.get(d-1)||0;
-    if(n<3 || n < 2*Math.max(base,1) || ayer*2 > n || d-ultimo < 5) return;
+    const volumen = n>=3 && n >= 2*Math.max(base,1) && ayer*2 <= n;
+    let entra = null;
+    act.forEach(x=>{ const c = x.m.get(d)||0, previo = menAct(x,d-7,d-1);
+      if(n>=3 && c>=2 && c>=0.4*n && previo<=1 && (!entra || c>entra.c)) entra = {x, c, previo}; });
+    if(!(volumen||entra) || d-ultimo<2) return;
     ultimo = d;
-    const post = suma(d+1,d+3), imp = Math.max(...e.notas.map(x=>Number(x.intensidad)||0));
-    const sostenido = n>=4 && imp>=7 && d+3 <= dia(eventos[eventos.length-1].fecha) && post >= Math.max(4, 2*Math.max(base,1)*3);
+    const post3 = suma(d+1,d+3), imp = Math.max(...e.notas.map(z=>Number(z.intensidad)||0));
+    const sostenido = n>=4 && imp>=7 && d+3 <= ultimoDia && post3 >= Math.max(4, 2*Math.max(base,1)*3);
+    const prot = act.map(x=>({x,c:x.m.get(d)||0})).filter(z=>z.c>=2).sort((u,v)=>v.c-u.c).slice(0,2).map(z=>`${_nomCortoActor(z.x.a)} (${z.c} de ${n} notas)`);
+    const partes = [];
+    if(entra) partes.push(`${_nomCortoActor(entra.x.a)} entra con fuerza al tema: lo mencionan ${entra.c} de las ${n} notas del día y en la semana previa casi no aparecía (${entra.previo}).`);
+    if(volumen) partes.push(`El tema pasó de ${base.toFixed(1)} notas al día a ${n}.`);
+    if(!entra && prot.length) partes.push(`Quién lo protagoniza: ${prot.join(' y ')}.`);
+    if(sostenido) partes.push(`Y se sostuvo: ${post3} notas en los 3 días siguientes.`);
+    // ---- qué pasó después
+    const dias = Math.min(5, ultimoDia-d); let efecto = null;
+    if(dias>=1){
+      const pre = todas.filter(z=>{const k=dia(z.fecha); return k>=d-7 && k<d;}), pos = todas.filter(z=>{const k=dia(z.fecha); return k>=d && k<=d+dias;});
+      const l = [];
+      l.push(['Ritmo', `de ${base.toFixed(1)} a ${(suma(d+1,d+dias)/dias).toFixed(1)} notas al día (${dias} día${dias>1?'s':''} de seguimiento)`]);
+      const nuevos = act.filter(x=>menAct(x,d,d+dias)>=2 && menAct(x,d-7,d-1)===0).map(x=>_nomCortoActor(x.a)).slice(0,3);
+      l.push(['Quién entra', nuevos.length ? nuevos.join(', ') : 'ningún actor nuevo de peso']);
+      const wp = palabras(pos), wa = palabras(pre);
+      const nuevas = [...wp.entries()].filter(([w,c])=>c>=3 && c>=3*((wa.get(w)||0)+0.5)).sort((u,v)=>v[1]-u[1]).slice(0,4).map(z=>z[0]);
+      l.push(['De qué se habla ahora', nuevas.length ? nuevas.join(', ')+' (palabras que antes casi no estaban)' : 'la conversación sigue en los mismos términos']);
+      // peso del tema y movimiento del foco en la agenda nacional
+      const cnt = (a,b)=>{ const t = new Map(); let tot = 0; ECOSISTEMA.eventos.forEach(z=>{ if(!idsAg.has(z.tema_id)) return; const k = dia(z.fecha); if(k<a||k>b) return; t.set(z.tema_id,(t.get(z.tema_id)||0)+1); tot++; }); return {t,tot}; };
+      const A = cnt(d-7,d-1), P = cnt(d,d+dias);
+      if(A.tot && P.tot){
+        const sa = (A.t.get(temaId)||0)/A.tot, sp = (P.t.get(temaId)||0)/P.tot;
+        l.push(['Peso en la agenda', `${Math.round(sa*100)}% → ${Math.round(sp*100)}% de las notas de agenda nacional`]);
+        let mej = null; P.t.forEach((c,id)=>{ if(id===temaId) return; const g = c/P.tot - (A.t.get(id)||0)/A.tot; if(g>=0.03 && (!mej || g>mej.g)) mej = {id,g}; });
+        l.push(['Hacia dónde se mueve el foco', mej ? `también ganó espacio «${getTema(mej.id).nombre}» (+${Math.round(mej.g*100)} pts)` : 'no se movió a otro tema de forma clara']);
+      }
+      efecto = l;
+    }
     out.set(e.fecha, sostenido
-      ? { tipo:'turning', etiqueta:'POSIBLE TURNING POINT', color:'var(--riesgo-alto)', razon:`${n} notas ese día y ${post} en los 3 siguientes, frente a ${base.toFixed(1)} diarias en la semana previa: el tema subió de nivel y se sostuvo (solo se confirma en retrospectiva).` }
-      : { tipo:'trigger', etiqueta:'POSIBLE TRIGGER', color:'var(--riesgo-medio)', razon:`${n} notas en un día frente a ${base.toFixed(1)} diarias en la semana previa: pudo activar algo que estaba latente.` });
+      ? { tipo:'turning', etiqueta:'POSIBLE TURNING POINT', def:'Cambio de rumbo: el tema sube de nivel y ya no regresa. Solo se confirma viendo lo que pasa después.', color:'var(--riesgo-alto)', razon:partes.join(' '), efecto }
+      : { tipo:'trigger', etiqueta:'POSIBLE TRIGGER', def:'Hecho o actor que reactiva un tema que estaba latente.', color:'var(--riesgo-medio)', razon:partes.join(' '), efecto });
   });
   return out;
+}
+function _segGeneal(fecha){
+  let m = null; _inflGeneal.forEach((v,f)=>{ const k = _diaGen(fecha)-_diaGen(f); if(k>=0 && k<=3) m = v; });
+  return m ? {c:m.color, w:3.2} : {c:'var(--teal)', w:1.8};
+}
+function _actualizarKpiInflexion(){
+  const el = document.getElementById('geneal-kpi'); if(!el) return;
+  let t=0, tp=0; _inflGeneal.forEach(m=>{ m.tipo==='turning' ? tp++ : t++; });
+  el.innerHTML = `<span title="Hechos o actores que reactivan el tema (posibles, detectados automáticamente)" style="color:var(--riesgo-medio)">⚡ ${t} trigger${t===1?'':'s'}</span> · <span title="Cambios de rumbo sostenidos (posibles)" style="color:var(--riesgo-alto)">◉ ${tp} turning point${tp===1?'':'s'}</span> · <span title="Las define el analista; el sistema no las detecta" style="color:var(--ink-3)">? 0 incertidumbres críticas</span>`;
 }
 function _marcarInflexionGenealogia(e, pos, g, width, height){
   const m = _inflGeneal.get(e.fecha); if(!m) return;
   ['','h2'].forEach(c=> g.insert('circle',':first-child').attr('class','geneal-halo '+c).attr('r',16).attr('stroke',m.color));
   const svg = d3.select('#geneal-svg');
   svg.select('.geneal-inflexion-capa').append('line').attr('x1',pos.x).attr('x2',pos.x).attr('y1',0).attr('y2',height)
-    .attr('stroke',m.color).attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',.8);
-  const ancho = 250, lineas = partirEnLineas(m.razon, 50, 3), alto = 22 + lineas.length*10;
-  const x = Math.max(6, Math.min(width-ancho-6, pos.x-ancho/2)), y = 4 + (_inflPintados++ % 2)*(alto+4);
-  const p = svg.append('g').attr('class','geneal-no-toggle').style('cursor','help');
-  p.append('title').text(m.etiqueta+' — '+m.razon);
-  p.append('rect').attr('x',x).attr('y',y).attr('width',ancho).attr('height',alto).attr('rx',5).attr('fill','var(--bg-1)').attr('stroke',m.color).attr('stroke-width',1.4);
-  p.append('text').attr('x',x+8).attr('y',y+13).attr('font-size','9.5px').attr('font-weight','700').attr('letter-spacing','.04em').attr('fill',m.color).text(m.etiqueta+' · '+e.fecha.slice(5));
-  lineas.forEach((l,li)=> p.append('text').attr('x',x+8).attr('y',y+25+li*10).attr('font-size','8px').attr('fill','var(--ink-2)').text(l));
+    .attr('stroke',m.color).attr('stroke-width',1.6).attr('stroke-dasharray','6 4').attr('opacity',.9);
+  const ancho = 330, k = _inflPintados++;
+  const st = {dx:0, dy:0, abierto:false};
+  const p = svg.append('g').attr('class','geneal-no-toggle geneal-pill');
+  const x0 = Math.max(6, Math.min(width-ancho-6, pos.x-24)), y0 = 4 + (k%2)*14;
+  const pintar = ()=>{
+    p.selectAll('*').remove();
+    const lr = partirEnLineas(m.razon, 62, 6), ld = partirEnLineas(m.def, 62, 3);
+    const ef = st.abierto && m.efecto ? m.efecto.flatMap(([t,v])=>[[t,true],...partirEnLineas(v,60,3).map(z=>[z,false])]) : [];
+    const alto = 20 + ld.length*10 + 4 + lr.length*10 + 18 + ef.length*10 + (st.abierto&&m.efecto?4:0);
+    p.append('rect').attr('x',x0).attr('y',y0).attr('width',ancho).attr('height',alto).attr('rx',6).attr('fill','var(--bg-1)').attr('stroke',m.color).attr('stroke-width',1.6).style('cursor','grab');
+    let yy = y0+13;
+    p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','10px').attr('font-weight','700').attr('letter-spacing','.04em').attr('fill',m.color).text(m.etiqueta+' · '+e.fecha.slice(5));
+    ld.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('font-style','italic').attr('fill','var(--ink-3)').text(l); });
+    yy+=4; lr.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('fill','var(--ink-1)').text(l); });
+    if(m.efecto){
+      yy+=14; p.append('text').attr('class','geneal-no-toggle').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('font-weight','700').attr('fill','var(--teal)').style('cursor','pointer')
+        .text(st.abierto?'▾ Ocultar qué pasó después':'▸ Ver qué pasó después').on('click',()=>{ st.abierto=!st.abierto; pintar(); });
+      ef.forEach(([t,tit])=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size',tit?'8px':'8.5px').attr('font-weight',tit?'700':'400').attr('fill',tit?'var(--ink-3)':'var(--ink-1)').text(t); });
+    } else { yy+=14; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('fill','var(--ink-3)').text('Aún sin días de seguimiento para medir el efecto.'); }
+  };
+  pintar();
+  p.call(d3.drag().on('start',function(){ d3.select(this).raise(); }).on('drag',function(ev){ st.dx+=ev.dx; st.dy+=ev.dy; d3.select(this).attr('transform',`translate(${st.dx},${st.dy})`); }));
 }
 
 function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, height){
@@ -1286,6 +1362,7 @@ function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, heigh
   }
   mostrarResumenGenealogiaFijo(e, pos, i%2===0, width, height, i);
   _marcarInflexionGenealogia(e, pos, g, width, height);
+  d3.selectAll('#geneal-svg .geneal-pill').raise();
 }
 
 
@@ -1304,55 +1381,65 @@ function partirEnLineas(texto, maxPorLinea, maxLineas){
 function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
   const svg = d3.select('#geneal-svg');
   const notasDelDia = evento.notas && evento.notas.length ? evento.notas : [evento];
-  const anchoCaja = 235;
-  const altoUnaNota = 34;
-  const altoCaja = Math.min(24 + notasDelDia.length*altoUnaNota, 280); // tope de alto -- si hay muchísimas ese día, se corta con scroll interno, no crece sin límite
-  const distancia = 26 + (i%3)*24;
-  const y = arriba ? pos.y-distancia-altoCaja : pos.y+distancia;
-  const x = Math.max(6, Math.min(width-anchoCaja-6, pos.x-anchoCaja/2));
+  const m = _inflGeneal.get(evento.fecha);
+  const ancho = 250, alto1 = 42, distancia = 26 + (i%3)*24;
+  const altoFull = 28 + notasDelDia.length*alto1 + 4;
+  const disp = arriba ? pos.y-distancia-100 : height-pos.y-distancia-8;
+  const st = {dx:0, dy:0, exp:false, off:0};
+  const x = m ? Math.min(width-ancho-6, pos.x+12) : Math.max(6, Math.min(width-ancho-6, pos.x-ancho/2));   // en un punto de inflexión la caja se corre a la derecha para dejar libre la línea vertical
+  const con = svg.append('line').attr('class','geneal-resumen-capa').attr('stroke','var(--line-strong)').attr('stroke-width',1).attr('stroke-dasharray','2 3');
   const g = svg.append('g').attr('class','geneal-resumen-capa');
-
-  g.append('line').attr('x1',pos.x).attr('y1',pos.y).attr('x2',pos.x).attr('y2', arriba?y+altoCaja:y)
-    .attr('stroke','var(--line-strong)').attr('stroke-width',1).attr('stroke-dasharray','2 3');
-  g.append('rect').attr('x',x).attr('y',y).attr('width',anchoCaja).attr('height',altoCaja).attr('rx',5)
-    .attr('fill','var(--bg-2)').attr('stroke','var(--line-strong)').attr('stroke-width',1);
-  g.append('text').attr('x',x+9).attr('y',y+13).attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
-    .text(notasDelDia.length>1 ? `${evento.fecha} — ${notasDelDia.length} notas` : evento.fecha);
-
-  // clip -- si el día tiene muchas notas y se llegó al tope de alto, el resto se ve con
-  // scroll interno de la caja en vez de desbordarse sobre el resto del dibujo
-  const idClip = `clip-geneal-${x}-${y}`.replace(/\./g,'');
-  svg.select('defs').append('clipPath').attr('id',idClip).append('rect').attr('x',x).attr('y',y+18).attr('width',anchoCaja).attr('height',altoCaja-20);
-  const contenido = g.append('g').attr('clip-path',`url(#${idClip})`);
-
-  notasDelDia.forEach((n, ni)=>{
-    const yBase = y+22+ni*altoUnaNota;
-    const n_intensidad = Number(n.intensidad);
-    const colorSemaforo = n_intensidad>=8 ? 'var(--riesgo-alto)' : n_intensidad>=6 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
-    contenido.append('circle').attr('cx',x+anchoCaja-12).attr('cy',yBase+4).attr('r',3.5).attr('fill',colorSemaforo);
-
-    const match = n.descripcion.match(/^(.*?)\s*-\s*([^-]+)$/);
-    const textoNota = match ? match[1] : n.descripcion;
-    const fuente = match ? match[2] : '';
-    const lineas = partirEnLineas(textoNota, 40, 2);
-    lineas.forEach((linea,li)=>{
-      contenido.append('text').attr('x',x+9).attr('y',yBase+li*11).attr('font-size','8.5px').attr('font-weight','600').attr('fill','var(--ink-1)').text(linea);
+  let alto = 0, y = 0;
+  const conector = ()=>{
+    if(m){ con.attr('opacity',0); return; }
+    const bx = x+st.dx, cx = Math.max(bx, Math.min(bx+ancho, pos.x));
+    con.attr('opacity',1).attr('x1',pos.x).attr('y1',pos.y).attr('x2',cx).attr('y2',(arriba? y+alto : y)+st.dy);
+  };
+  const pintar = ()=>{
+    g.selectAll('*').remove();
+    alto = st.exp ? altoFull : Math.min(altoFull, Math.max(110, disp));
+    y = arriba ? pos.y-distancia-alto : pos.y+distancia;
+    const desborda = altoFull>alto, visible = alto-22-(desborda?12:0), maxOff = Math.max(0, altoFull-22-visible);
+    st.off = Math.min(st.off, maxOff);
+    g.attr('transform',`translate(${st.dx},${st.dy})`);
+    g.append('rect').attr('x',x).attr('y',y).attr('width',ancho).attr('height',alto).attr('rx',5).attr('fill','var(--bg-2)').attr('stroke',m?m.color:'var(--line-strong)').attr('stroke-width',m?1.5:1);
+    g.append('rect').attr('x',x).attr('y',y).attr('width',ancho).attr('height',18).attr('rx',5).attr('fill','rgba(255,255,255,.03)').style('cursor','grab');
+    g.append('text').attr('x',x+9).attr('y',y+13).attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
+      .text(notasDelDia.length>1 ? `${evento.fecha} — ${notasDelDia.length} notas` : evento.fecha);
+    if(desborda || st.exp){
+      g.append('text').attr('class','geneal-no-toggle').attr('x',x+ancho-10).attr('y',y+13).attr('text-anchor','end').attr('font-size','11px').attr('fill','var(--teal)').style('cursor','pointer')
+        .text(st.exp?'⤡':'⤢').on('click',()=>{ st.exp=!st.exp; st.off=0; pintar(); }).append('title').text(st.exp?'Reducir':'Ver completo');
+    }
+    const idClip = `clip-geneal-${++_inflClip}`;
+    svg.select('defs').append('clipPath').attr('id',idClip).append('rect').attr('x',x).attr('y',y+20).attr('width',ancho).attr('height',visible);
+    const clip = g.append('g').attr('clip-path',`url(#${idClip})`), contenido = clip.append('g').attr('transform',`translate(0,${-st.off})`);
+    notasDelDia.forEach((n, ni)=>{
+      const yBase = y+32+ni*alto1;
+      const ni8 = Number(n.intensidad);
+      const colorSemaforo = ni8>=8 ? 'var(--riesgo-alto)' : ni8>=6 ? 'var(--riesgo-medio)' : 'var(--riesgo-bajo)';
+      contenido.append('circle').attr('cx',x+ancho-12).attr('cy',yBase+2).attr('r',3.5).attr('fill',colorSemaforo);
+      const match = n.descripcion.match(/^(.*?)\s*-\s*([^-]+)$/);
+      const textoNota = match ? match[1] : n.descripcion, fuente = match ? match[2] : '';
+      const lineas = partirEnLineas(textoNota, 40, 2);
+      lineas.forEach((linea,li)=> contenido.append('text').attr('x',x+9).attr('y',yBase+li*11).attr('font-size','8.5px').attr('font-weight','600').attr('fill','var(--ink-1)').text(linea));
+      if(fuente) contenido.append('text').attr('x',x+9).attr('y',yBase+lineas.length*11).attr('font-size','7.5px').attr('font-style','italic').attr('fill','var(--teal)').text(fuente.length>26?fuente.slice(0,24)+'…':fuente);
+      if(n.fuente_url){
+        contenido.append('rect').attr('class','geneal-no-toggle').attr('x',x).attr('y',yBase-9).attr('width',ancho-22).attr('height',alto1-4).attr('fill','transparent').style('cursor','pointer')
+          .on('click', ()=> window.open(n.fuente_url, '_blank', 'noopener'))
+          .on('pointerenter', function(){ d3.select(this).attr('fill','rgba(76,193,186,.08)'); })
+          .on('pointerleave', function(){ d3.select(this).attr('fill','transparent'); });
+      }
     });
-    if(fuente){
-      contenido.append('text').attr('x',x+9).attr('y',yBase+lineas.length*11).attr('font-size','7.5px').attr('font-style','italic').attr('fill','var(--teal)').text(fuente.length>26?fuente.slice(0,24)+'…':fuente);
+    if(desborda){
+      g.append('rect').attr('x',x).attr('y',y+alto-12).attr('width',ancho).attr('height',12).attr('rx',5).attr('fill','var(--bg-1)');
+      g.append('text').attr('x',x+ancho/2).attr('y',y+alto-3).attr('text-anchor','middle').attr('font-size','8px').attr('fill','var(--ink-3)').text('▾ rueda del mouse para ver más · ⤢ para ver todo');
     }
-    if(n.fuente_url){
-      // .geneal-no-toggle -- este rect ya tiene su propia acción de click (abrir la
-      // fuente); sin esta marca, el listener de pausa/reproducción del contenedor
-      // (delegado, ver dibujarGenealogia) también reaccionaría al mismo click.
-      contenido.append('rect').attr('class','geneal-no-toggle').attr('x',x).attr('y',yBase-9).attr('width',anchoCaja).attr('height',altoUnaNota-2).attr('fill','transparent').style('cursor','pointer')
-        .on('click', ()=> window.open(n.fuente_url, '_blank', 'noopener'))
-        // pointerenter/pointerleave en vez de mouseenter/mouseleave -- cubren mouse Y touch
-        // con el mismo listener (igual que el resto de los tooltips del sitio).
-        .on('pointerenter', function(){ d3.select(this).attr('fill','rgba(76,193,186,.08)'); })
-        .on('pointerleave', function(){ d3.select(this).attr('fill','transparent'); });
-    }
-  });
+    g.on('wheel', desborda ? (ev)=>{ ev.preventDefault(); ev.stopPropagation(); st.off = Math.max(0, Math.min(maxOff, st.off + ev.deltaY*0.5)); contenido.attr('transform',`translate(0,${-st.off})`); } : null);
+    conector();
+  };
+  pintar();
+  g.call(d3.drag().on('start',function(){ d3.select(this).raise(); }).on('drag',function(ev){ st.dx+=ev.dx; st.dy+=ev.dy; d3.select(this).attr('transform',`translate(${st.dx},${st.dy})`); conector(); }));
+  g.style('cursor','grab');
 }
 
 
