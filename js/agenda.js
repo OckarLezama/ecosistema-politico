@@ -929,223 +929,62 @@ let temaGenealogiaAnterior = null; // recuerda qué tema se dibujó la última v
 // el mismo tema (bug real: al dejar Genealogía abierta un rato, el recorrido revelado
 // desaparecía solo, porque cada redibujo -- incluso de fondo -- reiniciaba todo a 1)
 
-// ===== GENEALOGÍA: trayectoria de un tema con triggers y puntos de inflexión =====
-// Marco: evento -> trigger (activa algo latente) -> turning point (cambia la trayectoria) -> incertidumbre crítica (variable abierta).
-// Lo automático solo PROPONE ("posible"); confirmar un punto de inflexión o definir una incertidumbre crítica es juicio del analista.
-const GEN = { BASE:14, POST:3, RATIO:2, MIN_POST:6, SOSTEN:7, SOSTEN_RATIO:1.5, MIN_OBS:5, REFRACT:2, PISO_BASE:0.2 };
-let _genVentana = 30, _genMetodo = false, _genRevision = false, _genCSV = null, _genCargando = false;
-const _dnum = f => Math.round(Date.parse(f+'T12:00:00Z')/86400000);
-const _fnum = n => new Date(n*86400000).toISOString().slice(0,10);
-const _fcorta = f => { const m = f.slice(5).split('-'); return `${+m[1]} ${['','ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][+m[0]]}`; };
-function _cargarGenCSV(){
-  if(_genCSV!==null || _genCargando) return; _genCargando = true;
-  const pedir = f => fetch('data/'+f+'?t='+Date.now()).then(r=>r.ok?r.text():'').then(t=>t?Papa.parse(t,{header:true,skipEmptyLines:true}).data:[]).catch(()=>[]);
-  Promise.all([pedir('puntos_inflexion.csv'), pedir('incertidumbres.csv')]).then(([p,i])=>{ _genCSV = {puntos:p, incert:i}; _genCargando = false; if(vistaAgenda==='genealogia') renderGenealogiaAgenda(); });
-}
-const _genAnalista = () => _lsGet('radarCalibAnalista') || '';
-function _genLocal(){ try{ return JSON.parse(_lsGet('revGen_'+_genAnalista())||'{"dec":{},"inc":{}}'); }catch(e){ return {dec:{},inc:{}}; } }
-function _genGuardar(o){ _lsSet('revGen_'+_genAnalista(), JSON.stringify(o)); }
-function _genDecision(temaId, fecha, tipo){
-  const k = `${temaId}|${fecha}|${tipo}`, l = _genLocal().dec[k]; if(l) return l;
-  const r = ((_genCSV&&_genCSV.puntos)||[]).filter(x=>x.tema_id===temaId && x.fecha===fecha && x.tipo===tipo).pop();
-  return r ? {estado:r.estado, analista:r.analista, fecha:r.fecha_revision, motivo:r.motivo} : null;
-}
-function _genIncert(temaId){
-  const l = _genLocal().inc[temaId]; if(l && l.pregunta) return l;
-  const rows = ((_genCSV&&_genCSV.incert)||[]).filter(x=>x.tema_id===temaId); if(!rows.length) return null;
-  return { pregunta:rows[0].pregunta, analista:rows[0].analista, fecha:rows[0].fecha, desenlaces:rows.map(x=>({t:x.desenlace, ind:x.indicador})) };
-}
-function _trayectoriaTema(temaId){
-  const hs = _hechosDeTema(temaId).slice().sort((a,b)=>a.fecha.localeCompare(b.fecha)); if(!hs.length) return null;
-  const evs = _eventosDeTema(temaId), hoy = _dnum(_hoyMX()), n0 = _dnum(hs[0].fecha), cnt = new Map(), pnDia = new Map();
-  // el ritmo se mide en NOTAS por día (no en hechos): un hecho agrupa varias notas y aplanaría los picos
-  evs.forEach(e=>{ const k = _dnum(e.fecha); cnt.set(k,(cnt.get(k)||0)+1); if(_esPrimerNivel(e)) pnDia.set(k,(pnDia.get(k)||0)+1); });
-  const suma = (a,b,m)=>{ let s = 0; for(let k=a;k<=b;k++) s += (m||cnt).get(k)||0; return s; };
-  const menc = new Map();   // actor -> días con notas que lo mencionan por nombre
-  _actoresDeTema(temaId).forEach(x=>{ const a = getActor(x.actor_id); if(!a) return; const ds = _mencionesActor(a, evs).map(e=>_dnum(e.fecha)); if(ds.length) menc.set(a.id,{a, ds}); });
-  // umbral de agenda nacional: primer día en que el tema suma >=3 hechos y >=3 medios de primer nivel distintos
-  let umbral = null; { const medios = new Set(); let n = 0;
-    for(const h of hs){ n++; (h._notas||[h]).filter(_esPrimerNivel).forEach(e=>medios.add(_medioClave(_medioDeEvento(e)))); if(n>=GATE.N1_HECHOS && medios.size>=GATE.N1_MEDIOS){ umbral = h.fecha; break; } } }
-  const marcas = []; let ultimo = -99, ritmoPrev = 0;
-  for(let k=n0+7; k<=hoy; k++){
-    if(k-ultimo < GEN.REFRACT || !(cnt.get(k)>0)) continue;
-    const dias = Math.min(k+GEN.POST-1, hoy)-k+1, post = suma(k, k+GEN.POST-1);
-    const base = suma(k-GEN.BASE, k-1)/GEN.BASE, ritmo = post/dias;
-    if(post<GEN.MIN_POST || ritmo < GEN.RATIO*Math.max(base, GEN.PISO_BASE) || !suma(k, k+GEN.POST-1, pnDia)) continue;
-    if(k-ultimo<7 && ritmo<ritmoPrev) continue;   // dentro de la misma semana solo cuenta un repunte MAYOR al anterior (evita marcas en cadena)
-    // actor que ENTRA: lo mencionan en la ventana y no lo mencionaban en los 14 días previos
-    const nuevos = [...menc.values()].filter(p=>p.ds.some(d=>d>=k && d<=k+GEN.POST-1) && !p.ds.some(d=>d>=k-GEN.BASE && d<k)).map(p=>p.a);
-    const enVent = hs.filter(h=>{ const d = _dnum(h.fecha); return d>=k && d<=k+GEN.POST-1; }).sort((a,b)=>((b._notas||[b]).some(_esPrimerNivel)-(a._notas||[a]).some(_esPrimerNivel)) || (b._nNotas-a._nNotas));
-    const dispon = hoy-(k+GEN.POST)+1, finS = Math.min(hoy, k+GEN.POST+GEN.SOSTEN-1);
-    const sost = dispon>=GEN.MIN_OBS ? suma(k+GEN.POST, finS)/(finS-(k+GEN.POST)+1) : null;
-    const sostenido = sost!==null && sost >= GEN.SOSTEN_RATIO*Math.max(base, GEN.PISO_BASE);
-    const giro = (sostenido && nuevos.length>=1) ? 'posible' : (sost===null && (nuevos.length>=1 || ritmo>=4*Math.max(base,GEN.PISO_BASE))) ? 'observacion' : null;
-    let pico = 0; for(let j=k; j<=Math.min(k+GEN.POST-1,hoy); j++) pico = Math.max(pico, cnt.get(j)||0);
-    let kp = k; for(let j=k; j<=Math.min(k+GEN.POST-1,hoy); j++){ if((cnt.get(j)||0) >= 0.4*pico){ kp = j; break; } }   // primer día del repunte: el primero que alcanza 40% del día más fuerte de la ventana
-    marcas.push({ fecha:_fnum(kp), k:kp, base, ritmo, post, ratio:ritmo/Math.max(base,GEN.PISO_BASE), nuevos, hechos:enVent, sost, sostenido, giro, contenido: sost!==null && !sostenido });
-    ultimo = kp; ritmoPrev = ritmo;
-  }
-  const w0 = suma(hoy-6,hoy), w1 = suma(hoy-13,hoy-7); let wmax = 0; for(let k=Math.max(n0,hoy-90)+6; k<=hoy; k++) wmax = Math.max(wmax, suma(k-6,k));
-  const fase = w0===0 ? 'Inactivo' : (w0>=0.8*wmax && w0>=w1 && wmax>=3) ? 'Pico' : w0>1.3*w1 ? 'Escalada' : w0<0.7*w1 ? 'Enfriamiento' : 'Sostenido';
-  return { hs, cnt, pnDia, n0, hoy, umbral, marcas, fase, w0, w1 };
-}
-function _genEtiqueta(m){
-  const d1 = _genDecision(m.tema, m.fecha, 'trigger'), d2 = m.giro ? _genDecision(m.tema, m.fecha, 'giro') : null;
-  let gEst = d2 ? d2.estado : (m.giro==='posible' ? 'posible' : m.giro==='observacion' ? 'observacion' : null);
-  return { trigger: d1 ? d1.estado : 'posible', giro: gEst, d1, d2 };
-}
-function _genTextoMarca(tr, m, tipo){
-  const et = _genEtiqueta(m), nuevos = m.nuevos.map(a=>_nomEco(a)).join(', ');
-  if(tipo==='trigger'){
-    const est = et.d1 ? (et.d1.estado==='confirmado' ? `Confirmado por ${et.d1.analista} (${et.d1.fecha})` : `Descartado por ${et.d1.analista} (${et.d1.fecha})`) : 'Automático, sin revisión';
-    return `<div style="width:250px;"><b>⚡ ${et.d1?(et.d1.estado==='confirmado'?'Trigger':'Trigger descartado'):'Posible trigger'}</b> · ${_fcorta(m.fecha)}<div style="font-size:10.5px;margin-top:3px;">Un hecho que parece haber activado el proceso.</div>
-      <div style="font-size:10.5px;margin-top:3px;">Ritmo: de ${m.base.toFixed(1)} a ${m.ritmo.toFixed(1)} notas/día (${m.ratio.toFixed(1)}×)${m.contenido?' · luego se contuvo':''}${nuevos?`<br>Actores que entran: ${_escHtml(nuevos)}`:''}</div>
-      <div style="font-size:10px;opacity:.75;margin-top:3px;">${_escHtml(est)}</div></div>`;
-  }
-  const e = et.d2, ti = e ? (e.estado==='confirmado' ? `Punto de inflexión confirmado` : 'Punto de inflexión descartado') : (m.giro==='observacion' ? 'Posible punto de inflexión (en observación)' : 'Posible punto de inflexión');
-  const est = e ? `${e.estado==='confirmado'?'Confirmado':'Descartado'} por ${e.analista} (${e.fecha})${e.motivo?': '+e.motivo:''}` : (m.giro==='observacion' ? 'Aún no hay días suficientes para saber si el cambio persiste' : 'Automático, por confirmar por un analista');
-  return `<div style="width:260px;"><b>◆ ${ti}</b> · ${_fcorta(m.fecha)}<div style="font-size:10.5px;margin-top:3px;">${m.sost!==null?`El ritmo se mantuvo en ${m.sost.toFixed(1)} notas/día después del trigger (antes: ${m.base.toFixed(1)}).`:'El ritmo subió con fuerza tras el trigger.'}${nuevos?`<br>Actores nuevos en el tema: ${_escHtml(nuevos)}`:''}</div>
-    <div style="font-size:10px;opacity:.75;margin-top:3px;">${_escHtml(est)}</div></div>`;
-}
-function _genMetodoHtml(){
-  return `<div style="font-size:11.5px;line-height:1.6;color:var(--ink-2);max-width:880px;">
-    <div class="eyebrow">Para qué sirve</div>Cuenta cómo evolucionó un tema: qué ocurrió, qué lo activó, qué cambió su rumbo y qué puede pasar después. Adapta el marco de prospectiva de eventos, triggers, puntos de inflexión e incertidumbres críticas.
-    <div class="eyebrow" style="margin-top:10px;">Los cinco conceptos</div>
-    <b>Evento</b> — ¿qué ocurrió? Es cada hecho (notas repetidas ya agrupadas en uno).<br>
-    <b>Trigger</b> — ¿qué activó el proceso? Un evento que pone en marcha algo latente. Se detecta casi de inmediato.<br>
-    <b>Punto de inflexión</b> — ¿qué cambió la trayectoria? Un cambio que persiste: hay un «antes» y un «después». Muchas veces solo se confirma mirando atrás.<br>
-    <b>Umbral</b> — el momento en que la acumulación cambia la naturaleza del tema. Aquí: cuando alcanzó la agenda nacional (3 hechos y 3 medios de primer nivel distintos).<br>
-    <b>Incertidumbre crítica</b> — una pregunta decisiva que sigue abierta y puede resolverse en sentidos distintos. No es un hecho: es una variable. De ella nacen las ramas hacia el futuro.
-    <div class="eyebrow" style="margin-top:10px;">Cómo los detecta la plataforma (y solo propone)</div>
-    <b>Posible trigger:</b> un día con notas en que, en ese día y los 2 siguientes, hay al menos 6 notas, con ritmo de al menos el doble del habitual (promedio de notas por día de los 14 días previos, con un piso de 0.2) y con al menos una nota de medio de primer nivel. Se marca el primer día del repunte. Si hay otro dentro de los 7 días siguientes, solo cuenta si es mayor al anterior.<br>
-    <b>Posible punto de inflexión:</b> un trigger cuyo ritmo sigue al menos 1.5× el habitual en los 7 días siguientes <i>y</i> en el que entra al menos un actor nuevo (mencionado por nombre en las notas). Si aún no hay 5 días para comprobarlo, se marca «en observación». Si el ritmo se apaga, queda como trigger contenido, sin cambio estructural.<br>
-    <b>Fase:</b> pico, escalada, enfriamiento, sostenido o inactivo, según los hechos de la última semana frente a la anterior y al máximo de los últimos 90 días.
-    <div class="eyebrow" style="margin-top:10px;">Qué es automático y qué es juicio</div>
-    Automático: eventos, triggers, puntos de inflexión posibles, umbral y fase. <b>Juicio del analista:</b> confirmar o descartar cada marca (con su motivo) y definir la incertidumbre crítica de cada tema con sus desenlaces posibles. Sin eso, las ramas hacia el futuro quedan vacías: la plataforma no las inventa.
-    <div class="eyebrow" style="margin-top:10px;">Estados de una marca</div>
-    <b>Posible</b> (ícono hueco, automática) → <b>Confirmada</b> (ícono sólido, con nombre del analista, fecha y motivo) o <b>Descartada</b> (tachada; se conserva el registro).
-    <div class="eyebrow" style="margin-top:10px;">Límites</div>
-    El ritmo mide coincidencia en el tiempo, no causalidad: un trigger «posible» no prueba que ese hecho causara lo que vino después. Los umbrales (2×, 1.5×, 6 notas, 7 y 14 días) son criterio de diseño aún sin calibrar; la calibración saldrá de las confirmaciones y descartes de los analistas. Un punto de inflexión casi siempre se confirma tarde.</div>`;
-}
-function _genPanelRevision(tr, tema){
-  const an = _genAnalista(); if(!an) return `<div id="gen-rev" class="eco-scroll" style="position:absolute;top:8px;right:8px;bottom:8px;width:min(360px,94%);background:var(--bg-1);border:1px solid var(--line-strong);border-radius:8px;padding:12px 14px;z-index:6;"><div class="eyebrow">Revisión del analista</div><div style="font-size:11px;margin:8px 0;">Escribe tu nombre para registrar tus revisiones:</div><input id="gen-nombre" style="width:100%;background:var(--bg-2);color:var(--ink-1);border:1px solid var(--line-strong);border-radius:6px;padding:5px 8px;"><button type="button" id="gen-nombre-ok" class="chip-btn" style="margin-top:8px;font-size:10.5px;padding:2px 10px;">Guardar</button></div>`;
-  const loc = _genLocal(), pend = [];
-  tr.marcas.forEach(m=>{ const et = _genEtiqueta(m); if(!et.d1) pend.push({m, tipo:'trigger'}); if(m.giro && !et.d2) pend.push({m, tipo:'giro'}); });
-  const fila = (p,i)=>`<div style="border-top:1px solid var(--line);padding:8px 0;font-size:11px;"><b>${p.tipo==='trigger'?'⚡ ¿Este hecho activó el proceso?':'◆ ¿Cambió la trayectoria del tema?'}</b> <span style="opacity:.7;">${_fcorta(p.m.fecha)}</span><div style="opacity:.85;margin:3px 0;">${_escHtml(_truncarEnPalabra((p.m.hechos[0]||{}).descripcion||'',110))}</div>
-    ${p.tipo==='giro'?`<input class="gen-motivo" data-i="${i}" placeholder="Motivo en una línea (opcional)" style="width:100%;background:var(--bg-2);color:var(--ink-1);border:1px solid var(--line-strong);border-radius:6px;padding:3px 7px;font-size:10.5px;margin-bottom:5px;">`:''}
-    <button type="button" class="chip-btn gen-dec" data-i="${i}" data-e="confirmado" style="font-size:10.5px;padding:2px 10px;">Sí</button> <button type="button" class="chip-btn gen-dec" data-i="${i}" data-e="revocado" style="font-size:10.5px;padding:2px 10px;">No</button></div>`;
-  const inc = _genIncert(tema.id) || {pregunta:'', desenlaces:[]}, d = [0,1,2].map(i=>inc.desenlaces[i]||{t:'',ind:''});
-  const inp = (id,ph,v) => `<input id="${id}" value="${_escHtml(v||'')}" placeholder="${ph}" style="width:100%;background:var(--bg-2);color:var(--ink-1);border:1px solid var(--line-strong);border-radius:6px;padding:3px 7px;font-size:10.5px;margin-top:4px;">`;
-  return `<div id="gen-rev" class="eco-scroll" style="position:absolute;top:8px;right:8px;bottom:8px;width:min(380px,94%);background:var(--bg-1);border:1px solid var(--line-strong);border-radius:8px;padding:12px 14px;z-index:6;box-shadow:var(--shadow-card);">
-    <button type="button" id="gen-rev-x" style="position:absolute;top:6px;right:8px;background:none;border:none;color:var(--ink-2);font-size:16px;cursor:pointer;">×</button>
-    <div class="eyebrow">Revisión del analista · ${_escHtml(an)}</div>
-    <div style="font-size:10.5px;opacity:.75;margin:4px 0 6px;">Tu respuesta pasa la marca de «posible» a confirmada o descartada, con tu nombre.</div>
-    ${pend.length ? pend.slice(0,5).map(fila).join('') : '<div style="font-size:11px;opacity:.7;padding:6px 0;">Sin marcas pendientes en este tema.</div>'}
-    <div class="eyebrow" style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px;">Incertidumbre crítica de este tema</div>
-    <div style="font-size:10.5px;opacity:.75;">Una pregunta decisiva que sigue abierta y 2 o 3 desenlaces posibles, cada uno con la señal que indicaría que va por ahí.</div>
-    ${inp('gen-preg','Pregunta (¿habrá orden de aprehensión?)',inc.pregunta)}
-    ${d.map((x,i)=>inp('gen-d'+i,'Desenlace '+(i+1),x.t)+inp('gen-i'+i,'Señal que lo indicaría',x.ind)).join('')}
-    <div style="margin-top:8px;display:flex;gap:6px;"><button type="button" id="gen-inc-ok" class="chip-btn" style="font-size:10.5px;padding:2px 10px;">Guardar</button><button type="button" id="gen-copiar" class="chip-btn" style="font-size:10.5px;padding:2px 10px;">Copiar para el repositorio</button></div>
-    <div id="gen-aviso" style="font-size:10px;opacity:.75;margin-top:6px;"></div></div>`;
-}
 function renderGenealogiaAgenda(){
-  ocultarTooltipAgenda(); _cargarGenCSV();
-  const cont = document.getElementById('agenda-contenido'); if(!cont) return;
-  const leyendaNotas0 = document.getElementById('agenda-notas-leyenda'); if(leyendaNotas0) leyendaNotas0.style.display = 'none';
+  const cont = document.getElementById('agenda-contenido');
+  const leyendaNotas0 = document.getElementById('agenda-notas-leyenda');
+  if(leyendaNotas0) leyendaNotas0.style.display = 'none';
   const temasBase = categoriaFiltroAgenda ? ECOSISTEMA.temas.filter(t=>t.categoria===categoriaFiltroAgenda) : ECOSISTEMA.temas;
-  const dRad = new Map(calcularDatosRadarAgenda(temasBase.filter(enNotas)).map(d=>[d.tema.id,d]));
-  const temasDisponibles = temasBase.filter(enNotas).filter(t=>_hechosDeTema(t.id).length>1)
-    .map(t=>({t, tm:_tempTema(t, dRad.get(t.id))})).sort((a,b)=>TEMP_INFO[b.tm.nivel].rank-TEMP_INFO[a.tm.nivel].rank || b.tm.imp-a.tm.imp).map(x=>x.t);
-  const selectWrap = document.getElementById('agenda-tema-select-wrap'), select = document.getElementById('agenda-tema-select');
-  if(!temasDisponibles.length){ selectWrap.style.display = 'none'; cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ hechos para armar su trayectoria.</div>`; return; }
-  if(!temaGenealogiaSeleccionado || !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)) temaGenealogiaSeleccionado = temasDisponibles[0].id;
+  const temasDisponibles = temasBase.filter(enNotas)
+    .filter(t=> ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id).length>1)
+    .slice().sort((a,b)=>b.peso_politico-a.peso_politico);
+
+  const selectWrap = document.getElementById('agenda-tema-select-wrap');
+  const select = document.getElementById('agenda-tema-select');
+
+  if(!temasDisponibles.length){
+    selectWrap.style.display = 'none';
+    cont.innerHTML = `<div style="padding:30px;text-align:center;color:var(--ink-3);">Ningún tema de agenda tiene todavía 2+ notas para armar una genealogía.</div>`;
+    return;
+  }
+  if(!temaGenealogiaSeleccionado || !temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado)){ temaGenealogiaSeleccionado = temasDisponibles[0].id; genealogiaRevelados = 1; }
+
+  // CORRECCIÓN -- pedido explícito, verificado: "empieza a correr pero no es líneas, el
+  // movimiento se ve que adelante y regresa". Causa real: el refresco automático de
+  // datos (cada 3 minutos, ver iniciarActualizacionAutomatica en data-loader.js) llama a
+  // renderAgendaGrid() -> renderGenealogiaAgenda() sin importar si hay una reproducción
+  // en curso. dibujarGenealogia() ya se protegía con 'if(reproduciendoGenealogia) return'
+  // -- pero esa protección no servía de nada porque ESTA función, la que lo llama,
+  // reconstruía #geneal-scroll/#geneal-svg DESDE CERO (cont.innerHTML) un renglón antes
+  // de invocarla. El SVG visible quedaba vacío (el nuevo, recién creado) mientras la
+  // animación en curso seguía corriendo sola sobre el árbol de nodos VIEJO, ya
+  // desconectado del documento -- invisible. El scroll horizontal, que sí había avanzado
+  // antes del refresco, volvía a 0 de golpe en el nuevo contenedor: eso es lo que se veía
+  // como "avanza y luego regresa". La solución es no destruir el DOM mientras haya una
+  // reproducción activa del MISMO tema -- se deja que termine sola (dibujarGenealogia ya
+  // sabe conservar el progreso revelado cuando el tema no cambió).
+  if(reproduciendoGenealogia && temaGenealogiaSeleccionado === temaGenealogiaAnterior){
+    return;
+  }
+
+  // mismo selector estático que Notas -- una sola fila junto a Categoría e íconos
   selectWrap.style.display = 'flex';
-  document.getElementById('agenda-tema-lista-nombres').innerHTML = temasDisponibles.map(t=>`<option value="${_escHtml(t.nombre)}">`).join('');
-  const tema = temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado); select.value = tema.nombre;
-  temasDisponiblesActuales = temasDisponibles; conectarBuscadorTemaAgenda(select);
-  const tr = _trayectoriaTema(tema.id), d = dRad.get(tema.id), tm = _tempTema(tema, d), ti = TEMP_INFO[tm.nivel], inc = _genIncert(tema.id);
-  const pill = h => `<span style="border:1px solid var(--line-strong);border-radius:99px;padding:1px 9px;font-size:10.5px;white-space:nowrap;">${h}</span>`;
-  const nTrig = tr.marcas.length, nGiro = tr.marcas.filter(m=>m.giro).length, ult = tr.marcas[tr.marcas.length-1];
-  const pills = [pill(`<span style="color:${ti.color}">●</span> <b>${ti.txt}</b>${tm.tend==='sube'?' ▲':tm.tend==='baja'?' ▼':''}`), pill(`Fase: <b>${tr.fase}</b>`), pill(`Impacto <b>${tm.imp}</b>/10`),
-    pill(`Primer hecho: ${_fcorta(tr.hs[0].fecha)} · ${tr.hs.length} hechos`), tr.umbral?pill(`Umbral de agenda nacional: <b>${_fcorta(tr.umbral)}</b>`):'',
-    pill(`⚡ ${nTrig} posible${nTrig!==1?'s':''} trigger${nTrig!==1?'s':''}${nGiro?` · ◆ ${nGiro} posible${nGiro!==1?'s':''} giro${nGiro!==1?'s':''}`:''}`)].join('');
-  const vb = (v,t) => `<button type="button" class="chip-btn gen-vent${_genVentana===v?' active':''}" data-v="${v}" style="font-size:10.5px;padding:2px 9px;">${t}</button>`;
-  const cuerpo = _genMetodo ? `<div class="eco-scroll" style="position:absolute;inset:0;padding:10px 16px;">${_genMetodoHtml()}</div>`
-    : `<div style="position:absolute;inset:0;display:flex;flex-direction:column;"><svg id="gen-svg" style="flex:none;width:100%;height:230px;display:block;"></svg><div id="gen-lista" class="eco-scroll" style="flex:1;min-height:0;padding:0 14px 10px;"></div></div>${_genRevision?_genPanelRevision(tr, tema):''}`;
-  cont.innerHTML = `<div style="flex:none;padding:8px 14px 4px;display:flex;flex-direction:column;gap:6px;">
-      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;">${pills}<span style="margin-left:auto;display:flex;gap:6px;align-items:center;">${vb(30,'30 días')}${vb(90,'90 días')}${vb(0,'Todo')}
-        <button type="button" id="gen-btn-rev" class="chip-btn${_genRevision?' active':''}" style="font-size:10.5px;padding:2px 9px;">Revisión del analista</button>
-        <button type="button" id="gen-btn-met" class="chip-btn${_genMetodo?' active':''}" style="font-size:10.5px;padding:2px 9px;">ⓘ Método</button></span></div></div>
-    <div style="position:relative;flex:1;min-height:0;">${cuerpo}</div>`;
-  cont.querySelectorAll('.gen-vent').forEach(b=>b.addEventListener('click',()=>{ _genVentana = +b.dataset.v; renderGenealogiaAgenda(); }));
-  cont.querySelector('#gen-btn-met').addEventListener('click',()=>{ _genMetodo = !_genMetodo; renderGenealogiaAgenda(); });
-  cont.querySelector('#gen-btn-rev').addEventListener('click',()=>{ _genRevision = !_genRevision; _genMetodo = false; renderGenealogiaAgenda(); });
-  if(_genMetodo) return;
-  // ---- panel de revisión
-  const px = cont.querySelector('#gen-rev-x'); if(px) px.addEventListener('click',()=>{ _genRevision = false; renderGenealogiaAgenda(); });
-  const nok = cont.querySelector('#gen-nombre-ok'); if(nok) nok.addEventListener('click',()=>{ const v = (cont.querySelector('#gen-nombre').value||'').trim(); if(v){ _lsSet('radarCalibAnalista', v); renderGenealogiaAgenda(); } });
-  const pendientes = []; tr.marcas.forEach(m=>{ const et = _genEtiqueta(m); if(!et.d1) pendientes.push({m, tipo:'trigger'}); if(m.giro && !et.d2) pendientes.push({m, tipo:'giro'}); });
-  cont.querySelectorAll('.gen-dec').forEach(b=>b.addEventListener('click',()=>{ const p = pendientes[+b.dataset.i]; if(!p) return; const o = _genLocal(), mot = cont.querySelector(`.gen-motivo[data-i="${b.dataset.i}"]`);
-    o.dec[`${tema.id}|${p.m.fecha}|${p.tipo}`] = { estado:b.dataset.e, analista:_genAnalista(), fecha:_hoyMX(), motivo: mot ? mot.value.trim() : '' }; _genGuardar(o); renderGenealogiaAgenda(); }));
-  const iok = cont.querySelector('#gen-inc-ok'); if(iok) iok.addEventListener('click',()=>{ const o = _genLocal(), v = id => (cont.querySelector('#'+id).value||'').trim();
-    const des = [0,1,2].map(i=>({t:v('gen-d'+i), ind:v('gen-i'+i)})).filter(x=>x.t);
-    if(v('gen-preg') && des.length>=2){ o.inc[tema.id] = {pregunta:v('gen-preg'), desenlaces:des, analista:_genAnalista(), fecha:_hoyMX()}; _genGuardar(o); renderGenealogiaAgenda(); }
-    else cont.querySelector('#gen-aviso').textContent = 'Escribe la pregunta y al menos 2 desenlaces.'; });
-  const cop = cont.querySelector('#gen-copiar'); if(cop) cop.addEventListener('click',()=>{ const o = _genLocal(), q = s => /[",\n]/.test(s||'') ? '"'+String(s).replace(/"/g,'""')+'"' : (s||'');
-    const p = Object.entries(o.dec).map(([k,v])=>{ const [t,f,ti2] = k.split('|'); return [t,f,ti2,v.estado,v.analista,v.fecha,v.motivo].map(q).join(','); });
-    const i = []; Object.entries(o.inc).forEach(([t,v])=>v.desenlaces.forEach(x=>i.push([t,v.pregunta,x.t,x.ind,v.analista,v.fecha].map(q).join(','))));
-    const txt = `# data/puntos_inflexion.csv (tema_id,fecha,tipo,estado,analista,fecha_revision,motivo)\n${p.join('\n')}\n\n# data/incertidumbres.csv (tema_id,pregunta,desenlace,indicador,analista,fecha)\n${i.join('\n')}\n`;
-    (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(()=>{ cont.querySelector('#gen-aviso').textContent = 'Copiado. Pega cada bloque en su archivo del repositorio.'; }).catch(()=>{ cont.querySelector('#gen-aviso').textContent = 'No se pudo copiar; revisa los permisos del navegador.'; }); });
-  // ---- gráfico: actividad diaria + marcas + futuro con ramas
-  const svgEl = cont.querySelector('#gen-svg'), W = svgEl.clientWidth || 900, H = 230, ml = 30, mr = 14, mt = 30, mb = 22, color = colorCategoria(tema.categoria);
-  const ini = _genVentana ? Math.max(tr.n0, tr.hoy-_genVentana+1) : tr.n0, hitos = (typeof _calendarioRadar!=='undefined' ? _calendarioRadar : []).filter(h=>h.tema_id===tema.id && _dnum(h.fecha)>tr.hoy);
-  const fut = (inc || hitos.length) ? 14 : 5, fin = tr.hoy+fut, x = d3.scaleLinear().domain([ini-0.5, fin+0.5]).range([ml, W-mr]), bw = Math.max(2, (W-ml-mr)/(fin-ini+1)-1.5);
-  let mx = 1; for(let k=ini;k<=tr.hoy;k++) mx = Math.max(mx, tr.cnt.get(k)||0);
-  const y = d3.scaleLinear().domain([0,mx]).range([H-mb, mt+34]), svg = d3.select(svgEl).attr('viewBox',[0,0,W,H]); svg.selectAll('*').remove();
-  svg.append('rect').attr('x',x(tr.hoy+0.5)).attr('y',mt-10).attr('width',x(fin+0.5)-x(tr.hoy+0.5)).attr('height',H-mb-mt+10).attr('fill','rgba(255,255,255,.035)');
-  const paso = Math.max(1, Math.round((fin-ini)/8)); for(let k=ini;k<=fin;k+=paso) svg.append('text').attr('x',x(k)).attr('y',H-6).attr('text-anchor','middle').attr('font-size','9px').attr('fill','var(--ink-3)').text(_fcorta(_fnum(k)));
-  svg.append('line').attr('x1',ml).attr('x2',x(tr.hoy+0.5)).attr('y1',H-mb).attr('y2',H-mb).attr('stroke','var(--line-strong)');
-  svg.append('text').attr('x',x(tr.hoy+0.5)+4).attr('y',mt-14).attr('font-size','9px').attr('fill','var(--ink-3)').text('hoy →');
-  svg.append('line').attr('x1',x(tr.hoy+0.5)).attr('x2',x(tr.hoy+0.5)).attr('y1',mt-10).attr('y2',H-mb).attr('stroke','var(--ink-3)').attr('stroke-dasharray','3 3');
-  for(let k=ini;k<=tr.hoy;k++){ const n = tr.cnt.get(k)||0; if(!n) continue; const pn = tr.pnDia.get(k)||0;
-    svg.append('rect').attr('x',x(k)-bw/2).attr('y',y(n)).attr('width',bw).attr('height',y(0)-y(n)).attr('fill',color).attr('fill-opacity',pn?0.9:0.4).style('cursor','default')
-      .on('pointerenter',ev=>mostrarTooltipAgenda(`<b>${_fcorta(_fnum(k))}</b> · ${n} nota${n!==1?'s':''}${pn?` · ${pn} de primer nivel`:''}`,ev)).on('pointerleave',ocultarTooltipAgenda); }
-  if(tr.umbral && _dnum(tr.umbral)>=ini){ const ux = x(_dnum(tr.umbral)); svg.append('line').attr('x1',ux).attr('x2',ux).attr('y1',mt+4).attr('y2',H-mb).attr('stroke','var(--teal)').attr('stroke-dasharray','2 3');
-    svg.append('text').attr('x',ux+3).attr('y',mt+12).attr('font-size','9px').attr('fill','var(--teal)').text('umbral agenda nacional'); }
-  tr.marcas.filter(m=>m.k>=ini).forEach(m=>{ const et = _genEtiqueta(m), mxk = x(m.k), top = y(tr.cnt.get(m.k)||0)-8;
-    const g = svg.append('g').style('cursor','pointer').on('pointerenter',ev=>mostrarTooltipAgenda(_genTextoMarca(tr,m,'trigger'),ev)).on('pointerleave',ocultarTooltipAgenda).on('click',()=>{ const el = document.getElementById('gen-m-'+m.fecha); if(el) el.scrollIntoView({block:'center',behavior:'smooth'}); });
-    const rev = et.d1 && et.d1.estado==='revocado', conf = et.d1 && et.d1.estado==='confirmado';
-    g.append('text').attr('x',mxk).attr('y',top).attr('text-anchor','middle').attr('font-size','15px').attr('opacity',rev?0.35:1).attr('fill',conf?'var(--riesgo-medio)':'var(--ink-1)').text('⚡');
-    if(rev) g.append('line').attr('x1',mxk-7).attr('x2',mxk+7).attr('y1',top-4).attr('y2',top-4).attr('stroke','var(--ink-2)');
-    if(!conf && !rev) g.append('text').attr('x',mxk+10).attr('y',top-3).attr('font-size','8px').attr('fill','var(--ink-3)').text('posible');
-    if(m.giro){ const e2 = et.d2, r2 = e2 && e2.estado==='revocado', c2 = e2 && e2.estado==='confirmado', gx = mxk;
-      const g2 = svg.append('g').style('cursor','pointer').on('pointerenter',ev=>mostrarTooltipAgenda(_genTextoMarca(tr,m,'giro'),ev)).on('pointerleave',ocultarTooltipAgenda);
-      g2.append('text').attr('x',gx).attr('y',top-20).attr('text-anchor','middle').attr('font-size','15px').attr('opacity',r2?0.35:1).attr('fill',c2?'var(--riesgo-alto)':'none').attr('stroke',c2?'none':'var(--riesgo-alto)').attr('stroke-width',1.2).text('◆');
-      g2.append('text').attr('x',gx+10).attr('y',top-23).attr('font-size','8px').attr('fill','var(--ink-3)').text(c2?'confirmado':r2?'descartado':m.giro==='observacion'?'en observación':'posible'); } });
-  // futuro: ramas de la incertidumbre crítica, o aviso si nadie la definió
-  const x0 = x(tr.hoy+0.5), yM = (y(0)+y(mx))/2;
-  hitos.slice(0,4).forEach(h=>{ const hx = x(_dnum(h.fecha)); svg.append('line').attr('x1',hx).attr('x2',hx).attr('y1',mt).attr('y2',H-mb).attr('stroke','var(--arena)').attr('stroke-dasharray','1 3');
-    svg.append('text').attr('x',hx).attr('y',mt-2).attr('text-anchor','middle').attr('font-size','8.5px').attr('fill','var(--arena)').text('⚑ '+_fcorta(h.fecha)).append('title').text(h.hito); });
-  if(inc){ const n = inc.desenlaces.length, span = Math.min(H-mb-mt-50, 38*n);
-    svg.append('text').attr('x',x0+6).attr('y',mt+24).attr('font-size','9.5px').attr('font-weight',700).attr('fill','var(--ink-1)').text(_truncarEnPalabra(inc.pregunta, Math.max(18, Math.floor((x(fin)-x0)/6))));
-    inc.desenlaces.forEach((dz,i)=>{ const ye = yM + (i-(n-1)/2)*(span/Math.max(1,n-1)), xe = x(fin)-4;
-      svg.append('path').attr('d',`M${x0},${yM} C${x0+(xe-x0)*0.5},${yM} ${x0+(xe-x0)*0.5},${ye} ${xe},${ye}`).attr('fill','none').attr('stroke','var(--teal)').attr('stroke-width',1.6).attr('stroke-dasharray','5 4')
-        .on('pointerenter',ev=>mostrarTooltipAgenda(`<div style="width:230px;"><b>${_escHtml(dz.t)}</b>${dz.ind?`<div style="font-size:10.5px;margin-top:3px;">Señal: ${_escHtml(dz.ind)}</div>`:''}<div style="font-size:10px;opacity:.7;margin-top:3px;">Definido por ${_escHtml(inc.analista||'analista')} (${_escHtml(inc.fecha||'')})</div></div>`,ev)).on('pointerleave',ocultarTooltipAgenda);
-      svg.append('text').attr('x',xe).attr('y',ye-4).attr('text-anchor','end').attr('font-size','9px').attr('fill','var(--ink-2)').text(_truncarEnPalabra(dz.t, Math.max(12, Math.floor((xe-x0)/6)))); });
-  } else { const t = svg.append('text').attr('x',x0+6).attr('y',yM-4).attr('font-size','9.5px').attr('fill','var(--ink-3)'); t.append('tspan').attr('x',x0+6).text('Sin incertidumbre'); t.append('tspan').attr('x',x0+6).attr('dy','1.2em').text('crítica definida'); t.append('title').text('El analista puede registrarla en «Revisión del analista»'); }
-  svg.append('text').attr('x',ml).attr('y',12).attr('font-size','9px').attr('fill','var(--ink-3)').text('Notas por día · ⚡ posible trigger · ◆ posible punto de inflexión (hueco = por confirmar, sólido = confirmado) · barra clara = hay medio de primer nivel');
-  // ---- lista de hechos (lo más reciente primero), con las marcas intercaladas
-  const lista = cont.querySelector('#gen-lista'), act = _actoresDeTema(tema.id).map(a=>getActor(a.actor_id)).filter(Boolean);
-  const marcaPorDia = new Map(tr.marcas.map(m=>[m.fecha,m])), filas = [];
-  [...tr.hs].filter(h=>_dnum(h.fecha)>=ini).reverse().forEach((h,i,arr)=>{
-    const chips = act.filter(a=>_mencionesActor(a,[h]).length).slice(0,4).map(a=>`<span style="border:1px solid var(--line);border-radius:99px;padding:0 6px;font-size:9.5px;color:var(--ink-2);">${_escHtml(_nomEco(a))}</span>`).join(' ');
-    const pn = (h._notas||[h]).some(_esPrimerNivel);
-    filas.push(`<div style="padding:5px 0;border-top:1px solid var(--line);font-size:11.5px;line-height:1.4;"><span style="font-family:var(--f-mono);font-size:9.5px;color:var(--ink-3);">${_escHtml(h.fecha)} · ${_escHtml(_medioDeEvento(h)||'')}${pn?' · 1er nivel':''}${h._nNotas>1?` · ${h._nNotas} notas`:''}</span><br>${_escHtml(_truncarEnPalabra(h.descripcion||'',150))} ${h.fuente_url?`<a href="${_escHtml(h.fuente_url)}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''} ${chips}</div>`);
-    const sig = arr[i+1], m = marcaPorDia.get(h.fecha);
-    if(m && (!sig || sig.fecha!==h.fecha)){ const et = _genEtiqueta(m);
-      filas.push(`<div id="gen-m-${m.fecha}" style="margin:6px 0;padding:5px 9px;border-left:3px solid var(--riesgo-medio);background:rgba(255,255,255,.04);font-size:11px;">⚡ <b>${et.d1?(et.d1.estado==='confirmado'?'Trigger confirmado':'Trigger descartado'):'Posible trigger'}</b> · ${_fcorta(m.fecha)} — ritmo ${m.ratio.toFixed(1)}× el habitual${m.nuevos.length?` · entran: ${_escHtml(m.nuevos.map(_nomEco).join(', '))}`:''}${m.giro?` · ◆ <b>${et.d2?(et.d2.estado==='confirmado'?'punto de inflexión confirmado':'punto de inflexión descartado'):m.giro==='observacion'?'posible punto de inflexión (en observación)':'posible punto de inflexión'}</b>`:m.contenido?' · luego se contuvo':''}</div>`); }
-  });
-  lista.innerHTML = filas.join('') || '<div style="padding:12px;font-size:11px;opacity:.7;">Sin hechos en esta ventana.</div>';
+  document.getElementById('agenda-tema-lista-nombres').innerHTML = temasDisponibles.map(t=>`<option value="${t.nombre}">`).join('');
+  const temaActualGeneal = temasDisponibles.find(t=>t.id===temaGenealogiaSeleccionado);
+  select.value = temaActualGeneal ? temaActualGeneal.nombre : '';
+  temasDisponiblesActuales = temasDisponibles;
+  conectarBuscadorTemaAgenda(select);
+
+  cont.innerHTML = `
+    ${comportamientoGenealogiaIA[temaGenealogiaSeleccionado] ? `<div class="contexto-tema-box" style="border-left-color:var(--teal);margin:8px 14px 0;">
+      <div class="eyebrow" style="color:var(--teal);">Patrón de comportamiento (IA)</div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
+    </div>` : ''}
+    <div style="position:relative;width:100%;flex:1;min-height:0;">
+      <div id="geneal-scroll" style="width:100%;height:100%;overflow-x:auto;overflow-y:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>
+      <div id="geneal-contador-flotante" style="position:absolute;top:8px;right:10px;font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;pointer-events:none;"></div>
+    </div>`;
+
+  dibujarGenealogia(temaGenealogiaSeleccionado);
 }
 
 function agruparEventosPorDia(notas){
