@@ -549,6 +549,32 @@ function _montarRevisionNotas(){
   });
 }
 
+function seleccionarTemaAgenda(id){
+  const t = temasDisponiblesActuales.find(x=>x.id===id); if(!t) return;
+  const sel = document.getElementById('agenda-tema-select'); if(sel) sel.value = t.nombre;
+  if(vistaAgenda==='genealogia'){ temaGenealogiaSeleccionado = id; genealogiaRevelados = 1; renderGenealogiaAgenda(); }
+  else { temaNotasSeleccionado = id; dibujarNotasConGrafoReal(); }
+}
+function cerrarListaTemasAgenda(){ const p = document.getElementById('agenda-tema-popover'); if(p) p.remove(); }
+function abrirListaTemasAgenda(){
+  if(document.getElementById('agenda-tema-popover')){ cerrarListaTemasAgenda(); return; }
+  const wrap = document.getElementById('agenda-tema-select-wrap'); if(!wrap) return;
+  const actual = vistaAgenda==='genealogia' ? temaGenealogiaSeleccionado : temaNotasSeleccionado;
+  const pop = document.createElement('div'); pop.id = 'agenda-tema-popover';
+  pop.innerHTML = `<input type="text" class="atp-q" placeholder="Filtrar temas…"><div class="atp-lista eco-scroll"></div>`;
+  wrap.style.position = 'relative'; wrap.appendChild(pop);
+  const lista = pop.querySelector('.atp-lista'), q = pop.querySelector('.atp-q');
+  const pintar = ()=>{
+    const f = q.value.trim().toLowerCase();
+    const ts = temasDisponiblesActuales.filter(t=>!f || t.nombre.toLowerCase().includes(f));
+    lista.innerHTML = ts.length ? ts.map(t=>`<button type="button" class="atp-item${t.id===actual?' sel':''}" data-id="${t.id}"><span class="atp-dot" style="background:${colorCategoria(t.categoria)}"></span><span class="atp-n">${t.nombre}</span><span class="atp-c">${t.categoria}</span></button>`).join('') : '<div class="atp-vacio">Sin coincidencias</div>';
+  };
+  pintar(); q.addEventListener('input', pintar); q.focus();
+  lista.addEventListener('click', ev=>{ const b = ev.target.closest('.atp-item'); if(!b) return; cerrarListaTemasAgenda(); seleccionarTemaAgenda(b.dataset.id); });
+  pop.addEventListener('click', ev=>ev.stopPropagation());
+  setTimeout(()=>{ document.addEventListener('click', cerrarListaTemasAgenda, {once:true}); }, 0);
+  document.addEventListener('keydown', function esc(ev){ if(ev.key==='Escape'){ cerrarListaTemasAgenda(); document.removeEventListener('keydown', esc); } });
+}
 function conectarBuscadorTemaAgenda(select){
   // UN SOLO escuchador para todo el ciclo de vida del campo -- antes Notas y Genealogía
   // agregaban cada uno el suyo por separado (con dataset.conectadoNotas /
@@ -563,13 +589,10 @@ function conectarBuscadorTemaAgenda(select){
     const q = select.value.trim().toLowerCase();
     if(q.length<2) return;
     const encontrado = temasDisponiblesActuales.find(t=>t.nombre.toLowerCase()===q) || temasDisponiblesActuales.find(t=>t.nombre.toLowerCase().includes(q));
-    if(!encontrado) return;
-    if(vistaAgenda==='genealogia'){
-      temaGenealogiaSeleccionado = encontrado.id; genealogiaRevelados = 1; renderGenealogiaAgenda();
-    } else {
-      temaNotasSeleccionado = encontrado.id; dibujarNotasConGrafoReal();
-    }
+    if(encontrado) seleccionarTemaAgenda(encontrado.id);
   });
+  const btn = document.getElementById('agenda-tema-lista-btn');
+  if(btn) btn.addEventListener('click', (e)=>{ e.stopPropagation(); abrirListaTemasAgenda(); });
   select.dataset.buscadorConectado = '1';
 }
 
@@ -980,6 +1003,13 @@ function renderGenealogiaAgenda(){
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
     </div>` : ''}
     <div style="position:relative;width:100%;flex:1;min-height:0;">
+      <button type="button" id="geneal-metodo-btn" class="chip-btn" style="position:absolute;top:8px;left:10px;z-index:5;padding:3px 10px;font-size:11px;" onclick="document.getElementById('geneal-metodo').classList.toggle('abierto')">Método</button>
+      <div id="geneal-metodo" style="display:none;position:absolute;top:36px;left:10px;z-index:5;width:340px;max-width:80vw;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--ink-2);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.4);">
+        <b style="color:var(--ink-1)">Puntos de inflexión (automáticos = «posibles»)</b><br>
+        <span style="color:var(--riesgo-medio)">Trigger</span>: un día con 3+ notas y al menos el doble del ritmo de la semana previa; pudo activar algo latente.<br>
+        <span style="color:var(--riesgo-alto)">Turning point</span>: un trigger cuyo ritmo se sostiene en los 3 días siguientes con impacto alto; solo se confirma en retrospectiva.<br>
+        El halo en la fecha y la línea vertical marcan el día. Es una señal por volumen de notas, no una conclusión: el análisis del analista la confirma o la descarta.
+      </div>
       <div id="geneal-scroll" style="width:100%;height:100%;overflow-x:auto;overflow-y:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>
       <div id="geneal-contador-flotante" style="position:absolute;top:8px;right:10px;font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;pointer-events:none;"></div>
     </div>`;
@@ -1074,6 +1104,8 @@ function dibujarGenealogia(temaId){
   gFrecuencia.append('path').attr('d', lineaFrecuencia(puntosFrecuencia)).attr('fill','none').attr('stroke',colorTema).attr('stroke-width',1.5);
   puntosFrecuencia.forEach(p=> gFrecuencia.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2).attr('fill',colorTema));
 
+  _inflGeneal = _detectarInflexiones(eventos); _inflPintados = 0;
+  svg.append('g').attr('class','geneal-inflexion-capa');
   const lineaBase = svg.append('g').attr('class','geneal-linea-capa');
   const puntosBase = svg.append('g').attr('class','geneal-puntos-capa');
 
@@ -1202,6 +1234,44 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
   siguienteTramo(desde || 1);
 }
 
+
+// ---- Posibles puntos de inflexión (capa sobre la línea de tiempo; NO cambia el dibujo base) ----
+// Detección automática = solo "posible": se sustenta en volumen de notas del propio tema.
+let _inflGeneal = new Map(), _inflPintados = 0;
+function _detectarInflexiones(eventos){
+  const out = new Map(); if(eventos.length<3) return out;
+  const dia = f=>new Date(f+'T12:00:00Z').getTime()/86400000;
+  const cuenta = new Map(eventos.map(e=>[dia(e.fecha), e.notas.length]));
+  const suma = (a,b)=>{ let t=0; for(let d=a; d<=b; d++) t += cuenta.get(d)||0; return t; };
+  let ultimo = -99;
+  eventos.forEach((e,i)=>{
+    if(i===0) return;
+    const d = dia(e.fecha), n = e.notas.length, base = suma(d-7,d-1)/7, ayer = cuenta.get(d-1)||0;
+    if(n<3 || n < 2*Math.max(base,1) || ayer*2 > n || d-ultimo < 5) return;
+    ultimo = d;
+    const post = suma(d+1,d+3), imp = Math.max(...e.notas.map(x=>Number(x.intensidad)||0));
+    const sostenido = n>=4 && imp>=7 && d+3 <= dia(eventos[eventos.length-1].fecha) && post >= Math.max(4, 2*Math.max(base,1)*3);
+    out.set(e.fecha, sostenido
+      ? { tipo:'turning', etiqueta:'POSIBLE TURNING POINT', color:'var(--riesgo-alto)', razon:`${n} notas ese día y ${post} en los 3 siguientes, frente a ${base.toFixed(1)} diarias en la semana previa: el tema subió de nivel y se sostuvo (solo se confirma en retrospectiva).` }
+      : { tipo:'trigger', etiqueta:'POSIBLE TRIGGER', color:'var(--riesgo-medio)', razon:`${n} notas en un día frente a ${base.toFixed(1)} diarias en la semana previa: pudo activar algo que estaba latente.` });
+  });
+  return out;
+}
+function _marcarInflexionGenealogia(e, pos, g, width, height){
+  const m = _inflGeneal.get(e.fecha); if(!m) return;
+  ['','h2'].forEach(c=> g.insert('circle',':first-child').attr('class','geneal-halo '+c).attr('r',16).attr('stroke',m.color));
+  const svg = d3.select('#geneal-svg');
+  svg.select('.geneal-inflexion-capa').append('line').attr('x1',pos.x).attr('x2',pos.x).attr('y1',0).attr('y2',height)
+    .attr('stroke',m.color).attr('stroke-width',1.4).attr('stroke-dasharray','5 4').attr('opacity',.8);
+  const ancho = 250, lineas = partirEnLineas(m.razon, 50, 3), alto = 22 + lineas.length*10;
+  const x = Math.max(6, Math.min(width-ancho-6, pos.x-ancho/2)), y = 4 + (_inflPintados++ % 2)*(alto+4);
+  const p = svg.append('g').attr('class','geneal-no-toggle').style('cursor','help');
+  p.append('title').text(m.etiqueta+' — '+m.razon);
+  p.append('rect').attr('x',x).attr('y',y).attr('width',ancho).attr('height',alto).attr('rx',5).attr('fill','var(--bg-1)').attr('stroke',m.color).attr('stroke-width',1.4);
+  p.append('text').attr('x',x+8).attr('y',y+13).attr('font-size','9.5px').attr('font-weight','700').attr('letter-spacing','.04em').attr('fill',m.color).text(m.etiqueta+' · '+e.fecha.slice(5));
+  lineas.forEach((l,li)=> p.append('text').attr('x',x+8).attr('y',y+25+li*10).attr('font-size','8px').attr('fill','var(--ink-2)').text(l));
+}
+
 function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, height){
   const g = capa.append('g').attr('transform',`translate(${pos.x},${pos.y})`).style('opacity', animado?0:1);
   if(animado) g.transition().duration(200).style('opacity',1);
@@ -1215,6 +1285,7 @@ function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, heigh
     g.append('text').attr('x',12).attr('y',-12).attr('text-anchor','middle').attr('dy','0.32em').attr('font-size','8px').attr('font-weight','700').attr('fill','#0E1116').text(e.notas.length);
   }
   mostrarResumenGenealogiaFijo(e, pos, i%2===0, width, height, i);
+  _marcarInflexionGenealogia(e, pos, g, width, height);
 }
 
 
@@ -1306,16 +1377,16 @@ const ROL_PESO = {'Investigado':1,'Acusado':1,'Responsable institucional':0.8,'A
 const ECO_REFERENCIA = ['sheinbaum','amlo','trump','andy'];   // figuras que siempre se marcan y se rotulan
 const TEMP_INFO = {
   fuego:   { txt:'Alta actividad', corto:'Alta', color:'var(--riesgo-alto)',  rank:3, expl:'2 o más hechos en 48 h, ritmo claramente mayor al de las últimas 2 semanas e impacto 7 o más' },
-  caliente:{ txt:'Activo',         corto:'Activo', color:'var(--riesgo-medio)', rank:2, expl:'al menos un hecho nuevo en las últimas 48 h' },
-  tibio:   { txt:'Latente',        corto:'Latente', color:'var(--arena)',       rank:1, expl:'hechos en la última semana, pero ninguno en 48 h' },
-  apagado: { txt:'Inactivo',       corto:'Inactivo', color:'var(--ink-3)',      rank:0, expl:'sin hechos nuevos en 7 días' },
+  caliente:{ txt:'Activo',         corto:'Activo', color:'var(--riesgo-medio)', rank:2, expl:'2 o más hechos en 48 h, o 1 en 48 h con 3 o más en la semana (un hecho aislado no basta)' },
+  tibio:   { txt:'Latente',        corto:'Latente', color:'var(--arena)',       rank:1, expl:'2 o más hechos en los últimos 7 días sin llegar a Activo' },
+  apagado: { txt:'Inactivo',       corto:'Inactivo', color:'var(--ink-3)',      rank:0, expl:'menos de 2 hechos en 7 días' },
 };
 function _tempTema(tema, d, off){
   off = off||0;
   const hoy = _diaMX(off), hs = _hechosDeTema(tema.id).filter(h=>h.fecha<=hoy), ayer = _diaMX(off+1), h7d = _diaMX(off+6), h14d = _diaMX(off+13);
   const h48 = hs.filter(h=>h.fecha>=ayer).length, h7 = hs.filter(h=>h.fecha>=h7d).length, h14 = hs.filter(h=>h.fecha>=h14d).length;
   const prom = h14/14, ritmo = h48/2, imp = d ? d.riesgoReal : 0;
-  const nivel = (h48>=2 && imp>=7 && (prom===0 || ritmo>=1.5*prom)) ? 'fuego' : h48>=1 ? 'caliente' : h7>=1 ? 'tibio' : 'apagado';
+  const nivel = (h48>=2 && imp>=7 && (prom===0 || ritmo>=1.5*prom)) ? 'fuego' : (h48>=2 || (h48>=1 && h7>=3)) ? 'caliente' : h7>=2 ? 'tibio' : 'apagado';
   const tend = ritmo>prom*1.2 ? 'sube' : ritmo<prom*0.6 ? 'baja' : 'estable';
   return { nivel, h48, h7, h14, tend, imp };
 }
