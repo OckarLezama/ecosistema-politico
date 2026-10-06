@@ -1003,8 +1003,13 @@ function renderGenealogiaAgenda(){
       <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${comportamientoGenealogiaIA[temaGenealogiaSeleccionado]}</p>
     </div>` : ''}
     <div style="position:relative;width:100%;flex:1;min-height:0;">
-      <button type="button" id="geneal-metodo-btn" class="chip-btn" style="position:absolute;bottom:8px;left:10px;z-index:5;padding:3px 10px;font-size:11px;" onclick="document.getElementById('geneal-metodo').classList.toggle('abierto')">Método</button>
-      <div id="geneal-metodo" style="display:none;max-height:70%;overflow:auto;position:absolute;bottom:38px;left:10px;z-index:5;width:380px;max-width:80vw;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--ink-2);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.4);">
+      <div id="geneal-barra" style="position:absolute;top:8px;right:10px;z-index:5;display:flex;align-items:center;gap:8px;">
+        <button type="button" id="geneal-metodo-btn" class="chip-btn" style="padding:3px 10px;font-size:11px;" onclick="document.getElementById('geneal-metodo').classList.toggle('abierto')">Método</button>
+        <span style="display:inline-flex;align-items:center;gap:2px;"><button type="button" class="chip-btn" style="padding:3px 8px;font-size:12px;" title="Alejar" onclick="_zoomGenealogia(-1)">−</button><span id="geneal-zoom-txt" style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);min-width:34px;text-align:center;"></span><button type="button" class="chip-btn" style="padding:3px 8px;font-size:12px;" title="Acercar" onclick="_zoomGenealogia(1)">+</button></span>
+        <div id="geneal-kpi" style="font-family:var(--f-mono);font-size:10.5px;background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;"></div>
+        <div id="geneal-contador-flotante" style="font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;"></div>
+      </div>
+      <div id="geneal-metodo" style="display:none;max-height:70%;overflow:auto;position:absolute;top:42px;right:10px;z-index:5;width:380px;max-width:80vw;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--ink-2);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.4);">
         <b style="color:var(--ink-1)">Puntos de inflexión (automáticos = «posibles»)</b><br>
         <span style="color:var(--ink-1)">Evento</span>: lo que ocurrió (cada nota).<br>
         <span style="color:var(--riesgo-medio)">Trigger</span>: hecho o actor que reactiva un tema que estaba latente. Se marca cuando el día se dispara (3+ notas y el doble del ritmo previo) o cuando un actor casi ausente entra con fuerza (ej. AMLO reaparece).<br>
@@ -1013,9 +1018,8 @@ function renderGenealogiaAgenda(){
         <span style="color:var(--ink-1)">Incertidumbre crítica</span>: variable estructural aún abierta (no un hecho) de la que nacen las posibles ramas futuras. La define el analista, no se detecta sola; por eso hoy el contador marca 0.<br>
         Todo lo automático es una señal por volumen y menciones, no una conclusión: el analista la confirma o la descarta.
       </div>
-      <div id="geneal-scroll" style="width:100%;height:100%;overflow-x:auto;overflow-y:hidden;box-sizing:border-box;"><svg id="geneal-svg" style="height:100%;display:block;"></svg></div>
-      <div id="geneal-kpi" style="position:absolute;top:8px;right:76px;z-index:4;font-family:var(--f-mono);font-size:10.5px;background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;"></div>
-      <div id="geneal-contador-flotante" style="position:absolute;top:8px;right:10px;font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;pointer-events:none;"></div>
+      <div id="geneal-scroll" class="eco-scroll" style="width:100%;height:100%;overflow:auto;box-sizing:border-box;"><svg id="geneal-svg" style="display:block;"></svg></div>
+
     </div>`;
 
   dibujarGenealogia(temaGenealogiaSeleccionado);
@@ -1083,10 +1087,12 @@ function dibujarGenealogia(temaId){
   // scroll nativo del navegador, como estaba antes de intentar el zoom estilo Timeline
   // (no aportó y complicó la reproducción) -- el alto sí se queda dinámico, tomado del
   // contenedor real, para que los círculos no se deformen
-  const height = scrollEl.clientHeight || 480, y = height/2;
+  const height = Math.max(scrollEl.clientHeight || 480, 780), y = height/2;   // lienzo más alto que la ventana: se recorre con la barra vertical
+  _cajasGeneal = [];
   const anchoNecesario = xInicio + (eventos.length-1)*espacio + 150;
   const width = Math.max(scrollEl.clientWidth||900, anchoNecesario);
-  svgEl.style.width = width+'px';
+  svgEl.dataset.w = width; svgEl.dataset.h = height;
+  _aplicarZoomGenealogia(cambioDeTema);
 
   const posiciones = eventos.map((e,i)=>({x:xInicio+i*espacio, y}));
 
@@ -1132,7 +1138,7 @@ function dibujarGenealogia(temaId){
       lineaBase.append('line').attr('x1',posiciones[i-1].x).attr('y1',y).attr('x2',posiciones[i].x).attr('y2',y).attr('stroke',_segGeneal(eventos[i].fecha).c).attr('stroke-width',_segGeneal(eventos[i].fecha).w).attr('marker-end','url(#flecha-geneal)');
       dibujarNodoGenealogia(puntosBase, eventos[i], posiciones[i], i, colorTema, false, width, height);
     }
-    scrollEl.scrollLeft = width;
+    scrollEl.scrollLeft = width*_zGen;
   }
 
   // pedido explícito: "poder pausar dando click a cualquier parte del div, o poner un
@@ -1209,7 +1215,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
   function siguienteTramo(i){
     if(generacionGenealogiaActual !== miGeneracion){ return; }
     if(i>=eventos.length){ genealogiaRevelados = eventos.length; reproduciendoGenealogia = false; return; }
-    scrollEl.scrollTo({left: Math.max(0, posiciones[i].x-scrollEl.clientWidth/2), behavior:'smooth'});
+    scrollEl.scrollTo({left: Math.max(0, posiciones[i].x*_zGen-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
       .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y).attr('x2',posiciones[i-1].x).attr('y2',posiciones[i-1].y)
       .attr('stroke',_segGeneal(eventos[i].fecha).c).attr('stroke-width',_segGeneal(eventos[i].fecha).w).attr('marker-end','url(#flecha-geneal)');
@@ -1242,7 +1248,15 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
 // ---- Posibles puntos de inflexión (capa sobre la línea de tiempo; NO cambia el dibujo base) ----
 // Detección automática = solo "posible". Dos pistas: (1) volumen: el día se dispara frente a la semana previa;
 // (2) actor: alguien que casi no aparecía en el tema entra con fuerza (ej. AMLO reaparece). Luego se mide qué pasó después.
-let _inflGeneal = new Map(), _inflPintados = 0, _inflClip = 0;
+let _inflGeneal = new Map(), _inflPintados = 0, _inflClip = 0, _cajasGeneal = [], _zGen = 0.85;
+const _ZOOMS_GEN = [0.5,0.65,0.75,0.85,1];
+function _aplicarZoomGenealogia(centrar){
+  const svgEl = document.getElementById('geneal-svg'), sc = document.getElementById('geneal-scroll'); if(!svgEl||!svgEl.dataset.w) return;
+  svgEl.style.width = (svgEl.dataset.w*_zGen)+'px'; svgEl.style.height = (svgEl.dataset.h*_zGen)+'px';
+  const t = document.getElementById('geneal-zoom-txt'); if(t) t.textContent = Math.round(_zGen*100)+'%';
+  if(centrar && sc) sc.scrollTop = Math.max(0, (svgEl.dataset.h*_zGen - sc.clientHeight)/2);
+}
+function _zoomGenealogia(d){ const k = Math.max(0, Math.min(_ZOOMS_GEN.length-1, _ZOOMS_GEN.indexOf(_zGen)+d)); _zGen = _ZOOMS_GEN[k]; _aplicarZoomGenealogia(true); }
 const _STOP_INFL = new Set('sobre entre desde hasta tras ante para como pero sino este esta estos estas esto aqui alli donde cuando porque aunque durante segun cada todo todos toda todas otro otra otros otras ellos ellas mismo misma mas menos muy tambien tiene tienen hacer hace dice dicen dijo seria sera fueron hubo sigue siguen nuevo nueva nuevos nuevas primer primera parte desde quien quienes cual cuales mexico mexicano mexicana gobierno presidente presidenta claudia sheinbaum noticias'.split(' '));
 const _diaGen = f=>new Date(f+'T12:00:00Z').getTime()/86400000;
 function _nomCortoActor(a){ return _NOM_REF[a.id] || a.nombre.replace(/\(.*?\)/g,'').trim().split(/\s+/).slice(0,3).join(' '); }
@@ -1309,9 +1323,10 @@ function _detectarInflexiones(eventos, temaId){
   });
   return out;
 }
+function _cajasGeneral_push(x,y,w,h){ _cajasGeneal.push({x,y,w,h}); }
 function _segGeneal(fecha){
   let m = null; _inflGeneal.forEach((v,f)=>{ const k = _diaGen(fecha)-_diaGen(f); if(k>=0 && k<=3) m = v; });
-  return m ? {c:m.color, w:3.2} : {c:'var(--teal)', w:1.8};
+  return {c:'var(--teal)', w: m ? 3.2 : 1.8};
 }
 function _actualizarKpiInflexion(){
   const el = document.getElementById('geneal-kpi'); if(!el) return;
@@ -1328,6 +1343,7 @@ function _marcarInflexionGenealogia(e, pos, g, width, height){
   const st = {dx:0, dy:0, abierto:false};
   const p = svg.append('g').attr('class','geneal-no-toggle geneal-pill');
   const x0 = Math.max(6, Math.min(width-ancho-6, pos.x-24)), y0 = 4 + (k%2)*14;
+  _cajasGeneral_push(x0, y0, ancho, 96);
   const pintar = ()=>{
     p.selectAll('*').remove();
     const lr = partirEnLineas(m.razon, 62, 6), ld = partirEnLineas(m.def, 62, 3);
@@ -1360,8 +1376,8 @@ function dibujarNodoGenealogia(capa, e, pos, i, colorTema, animado, width, heigh
     g.append('circle').attr('cx',12).attr('cy',-12).attr('r',8).attr('fill','var(--riesgo-medio)').attr('stroke','var(--bg-1)').attr('stroke-width',1.5);
     g.append('text').attr('x',12).attr('y',-12).attr('text-anchor','middle').attr('dy','0.32em').attr('font-size','8px').attr('font-weight','700').attr('fill','#0E1116').text(e.notas.length);
   }
-  mostrarResumenGenealogiaFijo(e, pos, i%2===0, width, height, i);
   _marcarInflexionGenealogia(e, pos, g, width, height);
+  mostrarResumenGenealogiaFijo(e, pos, i%2===0, width, height, i);
   d3.selectAll('#geneal-svg .geneal-pill').raise();
 }
 
@@ -1382,27 +1398,35 @@ function mostrarResumenGenealogiaFijo(evento, pos, arriba, width, height, i){
   const svg = d3.select('#geneal-svg');
   const notasDelDia = evento.notas && evento.notas.length ? evento.notas : [evento];
   const m = _inflGeneal.get(evento.fecha);
-  const ancho = 250, alto1 = 42, distancia = 26 + (i%3)*24;
+  const ancho = 225, alto1 = 42;
   const altoFull = 28 + notasDelDia.length*alto1 + 4;
-  const disp = arriba ? pos.y-distancia-100 : height-pos.y-distancia-8;
   const st = {dx:0, dy:0, exp:false, off:0};
-  const x = m ? Math.min(width-ancho-6, pos.x+12) : Math.max(6, Math.min(width-ancho-6, pos.x-ancho/2));   // en un punto de inflexión la caja se corre a la derecha para dejar libre la línea vertical
+  const choca = (r)=>_cajasGeneal.reduce((t,c)=>{ const ox = Math.min(r.x+r.w,c.x+c.w)-Math.max(r.x,c.x), oy = Math.min(r.y+r.h,c.y+c.h)-Math.max(r.y,c.y); return t + (ox>-6 && oy>-6 ? (ox+6)*(oy+6) : 0); },0);
+  // coloca la caja donde no se encime con las ya puestas: prueba lado preferido, lado opuesto y varias alturas
+  const xBase = m ? Math.min(width-ancho-6, pos.x+14) : Math.max(6, Math.min(width-ancho-6, pos.x-ancho/2));
+  let mejor = null;
+  [arriba, !arriba].forEach(lado=>{ [0,1,2,3].forEach(nv=>{ [0, 1, -1].forEach(dxm=>{
+    const dist = 26 + nv*34, disp = lado ? pos.y-dist-100 : height-pos.y-dist-10, alto = Math.min(altoFull, Math.max(110, disp));
+    const xx = Math.max(6, Math.min(width-ancho-6, xBase + dxm*(ancho+10)));
+    const r = {x:xx, y: lado ? pos.y-dist-alto : pos.y+dist, w:ancho, h:alto}, c = choca(r) + nv*3 + (lado===arriba?0:2) + Math.abs(dxm)*6;
+    if(!mejor || c<mejor.c) mejor = {c, r, lado, dist};
+  }); }); });
+  const R = mejor.r; arriba = mejor.lado; _cajasGeneal.push(R);
+  const x = R.x;
   const con = svg.append('line').attr('class','geneal-resumen-capa').attr('stroke','var(--line-strong)').attr('stroke-width',1).attr('stroke-dasharray','2 3');
   const g = svg.append('g').attr('class','geneal-resumen-capa');
   let alto = 0, y = 0;
   const conector = ()=>{
-    if(m){ con.attr('opacity',0); return; }
     const bx = x+st.dx, cx = Math.max(bx, Math.min(bx+ancho, pos.x));
     con.attr('opacity',1).attr('x1',pos.x).attr('y1',pos.y).attr('x2',cx).attr('y2',(arriba? y+alto : y)+st.dy);
   };
   const pintar = ()=>{
     g.selectAll('*').remove();
-    alto = st.exp ? altoFull : Math.min(altoFull, Math.max(110, disp));
-    y = arriba ? pos.y-distancia-alto : pos.y+distancia;
+    alto = st.exp ? altoFull : R.h; y = R.y - (arriba && st.exp ? altoFull-R.h : 0);
     const desborda = altoFull>alto, visible = alto-22-(desborda?12:0), maxOff = Math.max(0, altoFull-22-visible);
     st.off = Math.min(st.off, maxOff);
     g.attr('transform',`translate(${st.dx},${st.dy})`);
-    g.append('rect').attr('x',x).attr('y',y).attr('width',ancho).attr('height',alto).attr('rx',5).attr('fill','var(--bg-2)').attr('stroke',m?m.color:'var(--line-strong)').attr('stroke-width',m?1.5:1);
+    g.append('rect').attr('x',x).attr('y',y).attr('width',ancho).attr('height',alto).attr('rx',5).attr('fill','var(--bg-2)').attr('stroke','var(--line-strong)').attr('stroke-width',1);
     g.append('rect').attr('x',x).attr('y',y).attr('width',ancho).attr('height',18).attr('rx',5).attr('fill','rgba(255,255,255,.03)').style('cursor','grab');
     g.append('text').attr('x',x+9).attr('y',y+13).attr('font-size','8.5px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)')
       .text(notasDelDia.length>1 ? `${evento.fecha} — ${notasDelDia.length} notas` : evento.fecha);
