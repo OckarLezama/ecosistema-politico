@@ -1010,7 +1010,7 @@ function renderGenealogiaAgenda(){
         <div id="geneal-kpi" style="font-family:var(--f-mono);font-size:10.5px;background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;"></div>
         <div id="geneal-contador-flotante" style="font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;"></div>
       </div>
-      <div id="geneal-metodo" style="display:none;max-height:70%;overflow:auto;position:absolute;top:42px;right:10px;z-index:5;width:380px;max-width:80vw;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--ink-2);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.4);">
+      <div id="geneal-metodo" class="eco-scroll" style="display:none;max-height:70%;position:absolute;top:42px;right:10px;z-index:5;width:380px;max-width:80vw;background:var(--bg-1);border:1px solid var(--line-strong);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--ink-2);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.4);">
         ${_htmlMetodoGeneal()}
       </div>
       <div id="geneal-hilos" style="position:absolute;bottom:8px;left:10px;z-index:5;display:none;flex-wrap:wrap;align-items:center;gap:6px;max-width:70%;font-size:10.5px;font-family:var(--f-mono);"></div>
@@ -1260,12 +1260,33 @@ function _zoomGenealogia(d){ const k = Math.max(0, Math.min(_ZOOMS_GEN.length-1,
 const _STOP_INFL = new Set('sobre entre desde hasta tras ante para como pero sino este esta estos estas esto aqui alli donde cuando porque aunque durante segun cada todo todos toda todas otro otra otros otras ellos ellas mismo misma mas menos muy tambien tiene tienen hacer hace dice dicen dijo seria sera fueron hubo sigue siguen nuevo nueva nuevos nuevas primer primera parte desde quien quienes cual cuales mexico mexicano mexicana gobierno presidente presidenta claudia sheinbaum noticias'.split(' '));
 const _diaGen = f=>new Date(f+'T12:00:00Z').getTime()/86400000;
 function _nomCortoActor(a){ return _NOM_REF[a.id] || a.nombre.replace(/\(.*?\)/g,'').trim().split(/\s+/).slice(0,3).join(' '); }
+// Detección estadística de aumentos de volumen (método estándar de vigilancia epidemiológica y control de procesos):
+//  · línea base robusta = media de los 14 días previos con cada día acotado, para que un pico viejo no la infle (piso 0.3 notas/día);
+//  · PICO: probabilidad (Poisson) de ver n o más notas ese día si todo siguiera normal < alfa;
+//  · ACUMULADO: CUSUM de Poisson (acumula el exceso diario sobre el valor de referencia para detectar duplicar el ritmo) supera h.
+// Los parámetros son valores de diseño calibrables con data/casos_conocidos.csv.
+const INFL_PARAM = {modo:'poisson', lam1:2, h:4, alfa:0.01, minN:3, ventana:14, piso:0.3, sepAcum:3};
+function _poissonCola(n, lam){ let t = Math.exp(-lam), c = t; for(let k=1;k<n;k++){ t *= lam/k; c += t; } return Math.max(0, 1-c); }
+function _alarmasConteo(cuenta, d0, d1){
+  const P = INFL_PARAM, out = new Map(); let S = 0, ultAcum = -99;
+  for(let d=d0; d<=d1; d++){
+    const v = []; for(let k=1;k<=P.ventana;k++) v.push(cuenta.get(d-k)||0);
+    const med = [...v].sort((a,b)=>a-b)[Math.floor(v.length/2)], tope = 2*med+2;
+    const lam0 = Math.max(P.piso, v.reduce((a,x)=>a+Math.min(x,tope),0)/v.length);
+    const n = cuenta.get(d)||0, lam1 = P.lam1*lam0, kref = (lam1-lam0)/Math.log(lam1/lam0), p = _poissonCola(n, lam0);
+    S = Math.max(0, S + n - kref);
+    const pico = n>=P.minN && p<P.alfa, acum = n>=2 && S>P.h && d-ultAcum>=P.sepAcum;
+    if(acum){ S = 0; ultAcum = d; }
+    if(pico||acum) out.set(d,{n, lam0, p, via: pico?'pico':'acumulado'});
+  }
+  return out;
+}
 function _detectarInflexiones(eventos, temaId){
   const out = new Map(); if(eventos.length<3) return out;
   const dia = _diaGen, todas = eventos.flatMap(e=>e.notas);
   const cuenta = new Map(eventos.map(e=>[dia(e.fecha), e.notas.length]));
   const suma = (a,b)=>{ let t=0; for(let d=a; d<=b; d++) t += cuenta.get(d)||0; return t; };
-  const ultimoDia = dia(eventos[eventos.length-1].fecha);
+  const ultimoDia = dia(eventos[eventos.length-1].fecha), alarmas = INFL_PARAM.modo==='poisson' ? _alarmasConteo(cuenta, dia(eventos[0].fecha)+2, ultimoDia) : new Map();
   // actores candidatos y sus menciones por día
   const ids = [...new Set([...ECO_REFERENCIA, ..._actoresDeTema(temaId).map(x=>x.actor_id)])];
   const act = ids.map(id=>getActor(id)).filter(Boolean).map(a=>{
@@ -1280,8 +1301,8 @@ function _detectarInflexiones(eventos, temaId){
   let ultimo = -99;
   eventos.forEach((e,i)=>{
     if(i===0) return;
-    const d = dia(e.fecha), n = e.notas.length, base = suma(d-7,d-1)/7, ayer = cuenta.get(d-1)||0;
-    const volumen = n>=3 && n >= 2*Math.max(base,1) && ayer*2 <= n;
+    const d = dia(e.fecha), n = e.notas.length, al = alarmas.get(d), base = al ? al.lam0 : suma(d-7,d-1)/7, ayer = cuenta.get(d-1)||0;
+    const volumen = INFL_PARAM.modo==='poisson' ? !!al : (n>=3 && n >= 2*Math.max(base,1) && ayer*2 <= n);
     let entra = null;
     act.forEach(x=>{ const c = x.m.get(d)||0, previo = menAct(x,d-7,d-1);
       if(n>=3 && c>=2 && c>=0.4*n && previo<=1 && (!entra || c>entra.c)) entra = {x, c, previo}; });
@@ -1292,7 +1313,11 @@ function _detectarInflexiones(eventos, temaId){
     const prot = act.map(x=>({x,c:x.m.get(d)||0})).filter(z=>z.c>=2).sort((u,v)=>v.c-u.c).slice(0,2).map(z=>`${_nomCortoActor(z.x.a)} (${z.c} de ${n} notas)`);
     const partes = [];
     if(entra) partes.push(`${_nomCortoActor(entra.x.a)} entra con fuerza al tema: lo mencionan ${entra.c} de las ${n} notas del día y en la semana previa casi no aparecía (${entra.previo}).`);
-    if(volumen) partes.push(`El tema pasó de ${base.toFixed(1)} notas al día a ${n}.`);
+    if(volumen){
+      if(al && al.via==='pico'){ const x = al.p>0 ? Math.max(100, Math.round(1/al.p/100)*100) : 10000; partes.push(`Lo normal del tema son ~${base.toFixed(1)} notas al día; ese día fueron ${n} (por azar eso pasaría en menos de 1 de cada ${x.toLocaleString('es-MX')} días).`); }
+      else if(al) partes.push(`Varios días seguidos por encima de lo normal (~${base.toFixed(1)} notas al día) acumularon un aumento sostenido; ese día fueron ${n}.`);
+      else partes.push(`El tema pasó de ${base.toFixed(1)} notas al día a ${n}.`);
+    }
     if(!entra && prot.length) partes.push(`Quién lo protagoniza: ${prot.join(' y ')}.`);
     if(sostenido) partes.push(`Y se sostuvo: ${post3} notas en los 3 días siguientes.`);
     // ---- qué pasó después
@@ -1383,7 +1408,7 @@ function _htmlMetodoGeneal(){
   const cal = c ? `<br><span style="color:var(--ink-1)">Calidad (la mide el robot)</span>: ${c.detecciones_7d} marcas en 7 días · ${c.sostenidas_pct==null?'—':c.sostenidas_pct+'%'} se sostuvieron los días siguientes · casos conocidos detectados ${c.casos_detectados} de ${c.casos_total}${c.revisadas_total?` · revisiones del analista: ${c.revisadas_relevantes} de ${c.revisadas_total} relevantes`:''}.` : '<br><span style="color:var(--ink-3)">Calidad: aún sin medición del robot.</span>';
   return `<b style="color:var(--ink-1)">Puntos de inflexión (automáticos = «posibles»)</b><br>
         <span style="color:var(--ink-1)">Evento</span>: lo que ocurrió (cada nota).<br>
-        <span style="color:var(--riesgo-medio)">Trigger</span>: hecho o actor que reactiva un tema que estaba latente. Se marca cuando el día se dispara (3+ notas y el doble del ritmo previo) o cuando un actor casi ausente entra con fuerza (ej. AMLO reaparece).<br>
+        <span style="color:var(--riesgo-medio)">Trigger</span>: hecho o actor que reactiva un tema que estaba latente. Se marca por estadística, no a ojo: (1) un día con tantas notas que, frente al ritmo normal del tema (promedio robusto de 14 días), por azar pasaría en menos de 1 de cada 100 días; (2) varios días seguidos por encima de lo normal que se acumulan (CUSUM de Poisson); o (3) un actor casi ausente que entra con fuerza (ej. AMLO reaparece).<br>
         <span style="color:var(--riesgo-alto)">Turning point</span>: el trigger cambia el rumbo: el ritmo se sostiene los días siguientes con impacto alto. Solo se confirma en retrospectiva.<br>
         <span style="color:var(--ink-1)">Qué pasó después</span>: ritmo, actores que entran, palabras nuevas y si el foco de la agenda se movió. La línea de notas se engrosa los 3 días posteriores.<br>
         <span style="color:var(--ink-1)">Incertidumbre crítica</span>: variable estructural aún abierta (no un hecho) de la que nacen las posibles ramas futuras. Se define en <i>data/incertidumbres.csv</i> (pregunta, desenlaces y la señal de cada uno); el robot cuenta las notas que cumplen cada señal y avisa. No predice ni calcula probabilidades.<br>
