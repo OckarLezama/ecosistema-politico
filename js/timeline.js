@@ -90,11 +90,14 @@ function poblarFiltroCategoriaTL(){
   const caja = document.createElement('div'); caja.className = 'core-select';
   caja.innerHTML = '<label for="timeline-cat">Categoría</label><select id="timeline-cat"><option value="">Todas</option>'+cats.map(c=>`<option value="${c}">${c}</option>`).join('')+'</select>';
   sel0.parentElement.after(caja);
-  caja.querySelector('select').addEventListener('change', e=>{ catFiltroTL = e.target.value; renderTimeline(); });
+  caja.querySelector('select').addEventListener('change', e=>{ catFiltroTL = e.target.value; tlTransformGuardada = null; renderTimeline(); });
+  const zb = document.createElement('div'); zb.className = 'core-select'; zb.style.cssText = 'display:inline-flex;gap:3px;align-items:center;';
+  zb.innerHTML = '<label>Zoom</label><button type="button" class="chip-btn" id="tl-zoom-menos" title="Alejar (volver a ver todo el rango)" style="padding:3px 9px;font-size:12px;">−</button><button type="button" class="chip-btn" id="tl-zoom-mas" title="Acercar. También: Ctrl + rueda o pellizco; arrastra para moverte" style="padding:3px 9px;font-size:12px;">+</button>';
+  zb.querySelector('#tl-zoom-menos').addEventListener('click',()=>_zoomBotonTL(1/1.6)); zb.querySelector('#tl-zoom-mas').addEventListener('click',()=>_zoomBotonTL(1.6));
   const per = document.createElement('div'); per.className = 'core-select';
   per.innerHTML = '<label for="timeline-per">Periodo</label><select id="timeline-per"><option value="">Todo el sexenio</option><option value="90">Últimos 90 días</option><option value="30">Últimos 30 días</option></select>';
-  caja.after(per);
-  per.querySelector('select').addEventListener('change', e=>{ periodoTL = e.target.value; renderTimeline(); });
+  caja.after(per); per.after(zb);
+  per.querySelector('select').addEventListener('change', e=>{ periodoTL = e.target.value; tlTransformGuardada = null; renderTimeline(); });
 }
 
 function poblarFiltroAnioTL(){
@@ -107,7 +110,7 @@ function poblarFiltroAnioTL(){
     sel.appendChild(opt);
   });
   sel.dataset.poblado = '1';
-  sel.addEventListener('change', (e)=>{ anioFiltroTL = e.target.value; const sp = document.getElementById('timeline-per'); if(sp){ if(anioFiltroTL){ periodoTL = ''; sp.value = ''; } sp.disabled = !!anioFiltroTL; sp.title = anioFiltroTL ? 'Con un año elegido, el periodo es ese año' : ''; } renderTimeline(); });
+  sel.addEventListener('change', (e)=>{ anioFiltroTL = e.target.value; tlTransformGuardada = null; const sp = document.getElementById('timeline-per'); if(sp){ if(anioFiltroTL){ periodoTL = ''; sp.value = ''; } sp.disabled = !!anioFiltroTL; sp.title = anioFiltroTL ? 'Con un año elegido, el periodo es ese año' : ''; } renderTimeline(); });
 }
 
 function mesesSexenioTL(){
@@ -260,7 +263,7 @@ function narrativaTimelineTL(){
 
 
 // ---------------- cabecera fija: tendencia + quién domina la agenda ----------------
-let tlSerieTend = [], tlEjeComprimido = false;
+let tlSerieTend = [], tlEjeComprimido = false, tlPuntosBase = [], tlZoom = null, tlTransformGuardada = null;
 // temas activos por día = temas de agenda con 3+ notas en los 7 días que terminan ese día (promedio móvil, no suma de intensidades)
 function _serieTendenciaTL(){
   if(!_covTL) return [];
@@ -273,6 +276,13 @@ function _serieTendenciaTL(){
   }
   return out;
 }
+// al acercar, las tarjetas se reacomodan con las posiciones reales de pantalla: bajan hacia la línea y dejan de apilarse
+function _reempaquetarTL(xs){
+  const conX = tlPuntosBase.map(p=>({...p, xBase: xs(new Date(p.fecha+'T12:00:00'))}));
+  const dentro = conX.filter(p=>p.xBase>-120 && p.xBase<tlWidth+120), fuera = conX.filter(p=>!(p.xBase>-120 && p.xBase<tlWidth+120)).map(p=>({...p, lado:'up', tier:0}));
+  tlPuntos = [...empaquetarZigzagTL(dentro, 184), ...fuera];
+}
+function _zoomBotonTL(f){ if(tlSvg && tlZoom) tlSvg.transition().duration(220).call(tlZoom.scaleBy, f); }
 function _montarCabeceraTL(wrapEl, svgEl){
   const viejo = document.getElementById('tl-cabecera'); if(viejo) viejo.remove();
   tlSerieTend = _serieTendenciaTL();
@@ -324,7 +334,7 @@ function renderTimeline(){
 
   const anchoReal = (wrapEl && wrapEl.clientWidth>200) ? wrapEl.clientWidth : (wrapEl && wrapEl.parentElement ? wrapEl.parentElement.clientWidth : 1100); // >200: si el navegador aún no terminó el layout, clientWidth da un valor chico falso — se usa el contenedor padre como respaldo
   tlWidth = anchoReal-28;
-  const padX = 30;
+  const padX = 96;   // margen = media tarjeta + holgura: ninguna tarjeta del borde se corta (antes se desplazaba y se pegaban al borde al mover)
 
   _covTL = coberturaTL();
   const meses = mesesSexenioTL();
@@ -340,7 +350,7 @@ function renderTimeline(){
   _idsPrincipalTL = new Set(_temasTL().filter(x=>x.principal).map(x=>x.t.id));
   const puntosTL = _puntosTL().map(p=>({...p, xBase: tlXScaleBase(new Date(p.fecha+'T12:00:00'))}));
 
-  tlPuntos = empaquetarZigzagTL(puntosTL, 184);
+  tlPuntosBase = puntosTL; tlPuntos = empaquetarZigzagTL(puntosTL, 184);
 
   // alto DINÁMICO según cuántos niveles hagan falta de verdad — antes era fijo (470px) y con
   // muchos puntos cercanos en fecha, las tarjetas de los niveles más altos se salían del cuadro
@@ -368,11 +378,13 @@ function renderTimeline(){
 
   // el usuario puede alejar manualmente (rueda del mouse / gesto de pellizco) si hay mucha
   // densidad — el auto-alejado automático se intentó y rompió el zoom, se revirtió
-  tlSvg.call(d3.zoom().scaleExtent([0.3,4]).on('zoom', ev=>{
-    dibujarTL(ev.transform.rescaleX(tlXScaleBase));
-  }));
-
-  dibujarTL(tlXScaleBase);
+  // zoom: 1x = todo el rango (no se puede alejar más: no hay nada fuera); hasta 8x. La rueda sola desplaza el lienzo
+  // hacia arriba/abajo; Ctrl + rueda (o pellizco) acerca; arrastrar mueve a los lados; botones − / + en la barra.
+  tlZoom = d3.zoom().scaleExtent([1,8]).extent([[0,0],[tlWidth,tlHeight]]).translateExtent([[0,-1e6],[tlWidth,1e6]])
+    .filter(ev=> (ev.type!=='wheel' || ev.ctrlKey || ev.metaKey) && !ev.button)
+    .on('zoom', ev=>{ tlTransformGuardada = ev.transform; const xs = ev.transform.rescaleX(tlXScaleBase); _reempaquetarTL(xs); dibujarTL(xs); });
+  tlSvg.call(tlZoom);
+  if(tlTransformGuardada && tlTransformGuardada.k>1) tlSvg.call(tlZoom.transform, tlTransformGuardada); else dibujarTL(tlXScaleBase);
 
   _montarCabeceraTL(wrapEl, svgEl);
 }
@@ -435,7 +447,7 @@ function dibujarTL(xScaleActual){
     const largo = altoBase + d.tier*altoPorTier;
     const yFin = d.lado==='up' ? tlYLinea-largo-14 : tlYLinea+largo+14;
     const yTarjeta = d.lado==='up' ? yFin-altoTarjeta : yFin;
-    const xc = Math.max(anchoTarjeta/2+4, Math.min(tlWidth-anchoTarjeta/2-4, x));   // la tarjeta no se sale del cuadro; el tallo sigue en la fecha real
+    const xc = x;   // la tarjeta va centrada en su fecha (sin pegarse a los bordes al mover el lienzo)
     const gg = d3.select(this).attr('opacity', esNivel1?1:0.7);
 
     // FIX #1: tramo de actividad real del tema (primera a última nota) -- se dibuja detrás de
