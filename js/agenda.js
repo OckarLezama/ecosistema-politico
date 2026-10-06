@@ -338,7 +338,7 @@ function _franjaTemaNotas(temaId){
   }catch(e){}
   const tend = nHoy>nAyer ? ['↗ más hechos que ayer','var(--riesgo-medio)'] : nHoy<nAyer ? ['↘ menos hechos que ayer','var(--teal)'] : ['= mismo ritmo que ayer','var(--ink-3)'];
   const res = (tema.resumen||'').trim();
-  const nAct = _actoresDeTema(temaId).length;
+  const nAct = _actoresDeTema(temaId).length; const _cf = _confianzaTema(temaId);
   const avisoAct = nAct<3 ? `<div style="margin-top:4px;font-size:10.5px;color:var(--riesgo-medio);">${nAct?'Solo '+nAct+' actor'+(nAct>1?'es':'')+' confirmado'+(nAct>1?'s':''):'Sin actores confirmados'} en este tema. Se agregan solo con respaldo en las notas; propón actores en «Revisión de notas».</div>` : '';
   return `<div id="notas-franja" style="flex:none;padding:8px 14px 7px;font-size:11px;line-height:1.4;">
     <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;">
@@ -346,7 +346,9 @@ function _franjaTemaNotas(temaId){
       ${detalle?`<span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-2);">${detalle}</span>`:''}
       <span style="font-family:var(--f-mono);font-size:10px;color:var(--ink-2);">Hechos: hoy ${nHoy} · ayer ${nAyer} · 7 días ${n7} <span title=\"Varias notas que cuentan lo mismo (otro titular u otro medio) se juntan en un solo hecho\" style=\"opacity:.75;\">(${nNotas7} notas)</span></span>
       <span style="font-family:var(--f-mono);font-size:10px;color:${tend[1]};">${tend[0]}</span>
-      <button type="button" id="notas-btn-revision" title="Corregir notas mal clasificadas y proponer actores nuevos" style="margin-left:auto;background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:10.5px;cursor:pointer;padding:0;white-space:nowrap;">Revisión de notas ▾</button>
+      <span title="${_escHtml('Qué tan sólido es el respaldo: medios de primer nivel, hechos distintos y si todos los medios son de una misma línea editorial')}" style="font-family:var(--f-mono);font-size:10px;color:${_cf.nivel==='sólida'?'var(--riesgo-bajo)':_cf.nivel==='regular'?'var(--riesgo-medio)':'var(--riesgo-alto)'};">Confianza ${_cf.nivel}</span>
+      <button type="button" id="notas-btn-hechos" title="Ver los hechos clave del tema, con ligas, y copiar un resumen" style="margin-left:auto;background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:10.5px;cursor:pointer;padding:0;white-space:nowrap;">Hechos clave ▾</button>
+      <button type="button" id="notas-btn-revision" title="Corregir notas mal clasificadas y proponer actores nuevos" style="background:none;border:none;color:var(--teal);font-family:var(--f-mono);font-size:10.5px;cursor:pointer;padding:0;white-space:nowrap;">Revisión de notas ▾</button>
     </div>
     ${avisoAct}
     ${res?`<div title="${_escHtml(res)}" style="margin-top:4px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${_escHtml(res)}</div>`:''}
@@ -448,6 +450,70 @@ function _htmlRevisionNotas(){
       <button type="button" id="rev-copiar" style="${bSi}">Copiar para enviar</button> <button type="button" id="rev-borrar" style="background:none;border:none;color:var(--ink-3);cursor:pointer;font-size:10.5px;">borrar</button> <span id="rev-msg" style="color:var(--riesgo-bajo);"></span>
       <div style="opacity:.65;margin-top:3px;">Las decisiones se guardan en tu navegador. «Copiar para enviar» y pégalas en data/revision_notas.csv.</div></div>` : ''}`;
 }
+
+// ===== Confianza del tema, hechos clave y resumen exportable =====
+function _confianzaTema(temaId){
+  const hs = _hechosDeTema(temaId).filter(h=>_diasAtras(h.fecha)<30);
+  const notas = hs.flatMap(h=>h._notas);
+  const medios = new Set(notas.filter(_esPrimerNivel).map(e=>_medioClave(_medioDeEvento(e))));
+  const todos = new Set(notas.map(e=>_medioClave(_medioDeEvento(e))));
+  const sesgo = _sesgoDeMedios(medios.size?medios:todos);
+  const nivel = (medios.size>=3 && hs.length>=3 && !sesgo.unSoloLado) ? 'sólida' : (medios.size>=2 && hs.length>=2) ? 'regular' : 'débil';
+  const sinClasif = [...todos].filter(m=>!_lineaDeMedio(m)).length;
+  const partes = [`${medios.size} medio${medios.size!==1?'s':''} de primer nivel`, `${hs.length} hecho${hs.length!==1?'s':''} en 30 días`];
+  if(sesgo.unSoloLado) partes.push('todos de una misma línea editorial');
+  return { nivel, partes, sesgo, sinClasif, nMedios:medios.size, nHechos:hs.length };
+}
+function _hechosClave(temaId, n){
+  return _hechosDeTema(temaId).slice().sort((a,b)=> b.fecha.localeCompare(a.fecha) || (b._nNotas-a._nNotas)).slice(0, n||8);
+}
+function _resumenTextoTema(temaId){
+  const t = getTema(temaId); if(!t) return '';
+  let estado = '';
+  try{ const d = calcularDatosRadarAgenda([t])[0]; if(d) estado = (d.apagado?'SIN ACTIVIDAD RECIENTE':({actuar:'CRÍTICO',vigilar:'POR VIGILAR',ruido:'MUCHA COBERTURA, POCO IMPACTO',bajoperfil:'BAJO PERFIL'})[cuadranteDe(d)]||'') + (d.apagado?'':` · impacto ${d.riesgoReal} de 10 · ${d.atencion} medios en 14 días`); }catch(e){}
+  const c = _confianzaTema(temaId);
+  const act = _actoresDeTema(temaId).map(x=>{ const a = getActor(x.actor_id); return a ? `${a.nombre.replace(/\(.*?\)/g,'').trim()} (${(typeof TEXTO_ROL_NOTAS!=='undefined' && TEXTO_ROL_NOTAS[x.rol])||x.rol})` : ''; }).filter(Boolean);
+  const hs = _hechosClave(temaId, 8);
+  return [`TEMA: ${t.nombre} (${t.categoria})`, estado ? `ESTADO: ${estado}` : '', `CONFIANZA: ${c.nivel} — ${c.partes.join(' · ')}`, '',
+    'HECHOS CLAVE:', ...hs.map(h=>`- ${h.fecha} · ${_medioDeEvento(h)||''} — ${h.descripcion}${h._nNotas>1?` (${h._nNotas} notas)`:''}${h.fuente_url?'\n  '+h.fuente_url:''}`), '',
+    act.length ? 'ACTORES: ' + act.join('; ') : 'ACTORES: sin actores confirmados', '', `Generado el ${_hoyMX()} · Ecosistema de Inteligencia Política`].filter((x,i,a)=>x!==''||a[i-1]!=='').join('\n');
+}
+function _htmlHechosPanel(temaId){
+  const t = getTema(temaId), c = _confianzaTema(temaId), hs = _hechosClave(temaId, 8);
+  const colC = {sólida:'var(--riesgo-bajo)', regular:'var(--riesgo-medio)', débil:'var(--riesgo-alto)'}[c.nivel];
+  const mono = 'font-family:var(--f-mono);font-size:9px;color:var(--ink-3);';
+  const bSi = 'background:var(--teal);color:#fff;border:none;border-radius:99px;padding:2px 10px;font-size:10.5px;cursor:pointer;';
+  return `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;"><span style="font-family:var(--f-display);font-size:13px;font-weight:600;">Hechos clave · ${_escHtml(_truncarEnPalabra(t.nombre,44))}</span>
+      <span><button type="button" id="hch-copiar" style="${bSi}">Copiar resumen</button> <button type="button" id="hch-cerrar" style="background:none;border:none;color:var(--teal);cursor:pointer;font-family:var(--f-mono);font-size:10.5px;">Cerrar ▴</button> <span id="hch-msg" style="color:var(--riesgo-bajo);font-size:10.5px;"></span></span></div>
+    <div style="margin-top:6px;font-size:10.5px;color:var(--ink-2);"><b style="color:${colC};">Confianza ${c.nivel}</b> — ${_escHtml(c.partes.join(' · '))}${c.sinClasif?` · ${c.sinClasif} medio${c.sinClasif!==1?'s':''} sin clasificar`:''}. <span style="opacity:.75;">Cada hecho junta las notas que cuentan lo mismo; el titular es el del medio de mayor nivel.</span></div>
+    ${hs.length ? hs.map(h=>`<div style="border-top:1px solid var(--line);padding:7px 0;font-size:11px;line-height:1.4;"><div style="${mono}">${_escHtml(h.fecha)} · ${_escHtml(_medioDeEvento(h)||'')}${_esPrimerNivel(h)?' · primer nivel':''}${h._nNotas>1?` · ${h._nNotas} notas, mismo hecho`:''}</div>
+      ${h.fuente_url?`<a href="${_escHtml(h.fuente_url)}" target="_blank" rel="noopener" style="color:var(--ink-1);text-decoration:none;">${_escHtml(h.descripcion)} <span style="color:var(--teal);">↗</span></a>`:_escHtml(h.descripcion)}</div>`).join('') : '<div style="margin-top:8px;opacity:.7;">Sin hechos con respaldo suficiente en este tema.</div>'}`;
+}
+function _montarHechosNotas(){
+  const cont = document.getElementById('agenda-contenido'); if(!cont) return;
+  const viejo = document.getElementById('notas-panel-hechos'); if(viejo) viejo.remove();
+  const btn = document.getElementById('notas-btn-hechos'); if(!btn) return;
+  cont.style.position = 'relative';
+  const panel = document.createElement('div'); panel.id = 'notas-panel-hechos'; panel.className = 'radar-lectura-scroll';
+  panel.style.cssText = 'position:absolute;left:0;right:0;bottom:0;z-index:31;background:var(--bg-1);padding:10px 16px 18px;font-size:11px;color:var(--ink-1);display:none;';
+  cont.appendChild(panel);
+  const cerrar = ()=>{ panel.style.display = 'none'; btn.textContent = 'Hechos clave ▾'; };
+  const abrir = ()=>{
+    const rev = document.getElementById('notas-panel-revision'), brev = document.getElementById('notas-btn-revision');
+    if(rev){ rev.style.display = 'none'; if(brev) brev.textContent = 'Revisión de notas ▾'; }
+    const fr = document.getElementById('notas-franja'); panel.style.top = (fr ? fr.offsetTop + fr.offsetHeight : 0) + 'px';
+    panel.innerHTML = _htmlHechosPanel(temaNotasSeleccionado); panel.style.display = 'block'; panel.scrollTop = 0; btn.textContent = 'Hechos clave ▴';
+    panel.querySelector('#hch-cerrar').addEventListener('click', cerrar);
+    panel.querySelector('#hch-copiar').addEventListener('click', ()=>{
+      const txt = _resumenTextoTema(temaNotasSeleccionado), msg = panel.querySelector('#hch-msg');
+      const ok = ()=>{ msg.textContent = ' ✓ copiado'; };
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok).catch(()=>{ msg.textContent = ' (no se pudo copiar)'; });
+      else { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} ta.remove(); }
+    });
+  };
+  btn.addEventListener('click', ()=> panel.style.display==='none' ? abrir() : cerrar());
+}
+
 function _montarRevisionNotas(){
   const cont = document.getElementById('agenda-contenido'); if(!cont) return;
   const viejo = document.getElementById('notas-panel-revision'); if(viejo) viejo.remove();
@@ -478,7 +544,7 @@ function _montarRevisionNotas(){
     });
   };
   btn.addEventListener('click', ()=>{
-    if(panel.style.display==='none'){ const fr = document.getElementById('notas-franja'); panel.style.top = (fr?fr.offsetHeight:0)+'px'; rellenar(); panel.style.display = 'block'; btn.textContent = 'Revisión de notas ▴'; panel.scrollTop = 0; }
+    if(panel.style.display==='none'){ const fr = document.getElementById('notas-franja'); panel.style.top = (fr?fr.offsetTop+fr.offsetHeight:0)+'px'; const _h = document.getElementById('notas-panel-hechos'); if(_h){ _h.style.display='none'; const _bh = document.getElementById('notas-btn-hechos'); if(_bh) _bh.textContent='Hechos clave ▾'; } rellenar(); panel.style.display = 'block'; btn.textContent = 'Revisión de notas ▴'; panel.scrollTop = 0; }
     else { panel.style.display = 'none'; btn.textContent = 'Revisión de notas ▾'; }
   });
 }
@@ -767,6 +833,7 @@ function dibujarNotasConGrafoReal(){
   renderGrafo('notas-svg');
   modoRed = modoPrevio; seleccion = seleccionPrevia;
   _montarRevisionNotas();
+  _montarHechosNotas();
 }
 
 function dibujarNotasAgenda(temaId){
@@ -1598,7 +1665,7 @@ function _nivelAgendaTemas(){
     if(!evs.length){ out[t.id] = {nivel: csv===1?3:3, sinNotas:true}; return; }
     const coh = notasCoherentes(evs, t); const base = coh.length?coh:evs;
     const imp = impactoDeTema(base, 0);
-    const medios = new Set(); base.forEach(e=>{ if(_esPrimerNivel(e)) medios.add(_medioDeEvento(e)); });
+    const medios = new Set(); base.forEach(e=>{ if(_esPrimerNivel(e)) medios.add(_medioClave(_medioDeEvento(e))); });
     const sesgo = _sesgoDeMedios(medios); const mediosEf = medios.size - (sesgo.unSoloLado ? 1 : 0);   // si todos los medios son de un mismo bando, cuentan uno menos
     const hechos = typeof agruparHechos==='function' ? agruparHechos(base).length : base.length;
     const nac = imp.ambito==='nacional';
@@ -1661,8 +1728,14 @@ function agruparHechos(eventos){
   const evs = [...eventos].sort((a,b)=>a.fecha.localeCompare(b.fecha));
   const grupos = [];
   evs.forEach(ev=>{
-    const g = grupos.find(g=> Math.abs(_diasAtras(ev.fecha)-_diasAtras(g[0].fecha))<=3 && similitudConsolidar(ev.descripcion, g[0].descripcion) >= 0.2);
-    if(g) g.push(ev); else grupos.push([ev]);
+    // el grupo MÁS parecido (no el primero que pase el umbral): así un mismo titular no se reparte en dos hechos
+    let mejor = null, mejorSim = 0;
+    grupos.forEach(g=>{
+      if(Math.abs(_diasAtras(ev.fecha)-_diasAtras(g[0].fecha))>3) return;
+      const sim = Math.max(...g.slice(0,6).map(x=>similitudConsolidar(ev.descripcion, x.descripcion)));
+      if(sim>mejorSim){ mejorSim = sim; mejor = g; }
+    });
+    if(mejor && mejorSim>=0.2) mejor.push(ev); else grupos.push([ev]);
   });
   return grupos.map(g=>{
     const rep = [...g].sort((a,b)=>(_esPrimerNivel(b)-_esPrimerNivel(a)) || (Number(b.intensidad)-Number(a.intensidad)))[0];
@@ -1672,6 +1745,7 @@ function agruparHechos(eventos){
 
 // medio de una nota: dominio, salvo agregadores (Google News) donde el medio real va al
 // final del titular (" - Milenio")
+function _medioClave(m){ return _normTxt(m||'').replace(/^www\./,'').replace(/\.(com\.mx|com|mx|org|net|gob\.mx)\b/g,'').replace(/[^a-z0-9]/g,''); }
 function _medioDeEvento(e){
   const dom = typeof _dominioDe==='function' ? _dominioDe(e.fuente_url) : null;
   if(dom && /news\.google|msn\.com|yahoo\./.test(dom)){
