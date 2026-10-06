@@ -940,7 +940,8 @@ function dibujarNotasAgenda(temaId){
     });
 }
 
-let genealogiaRevelados = 1;
+let genealogiaRevelados = 1, _nEvGeneal = 0;
+function _verTodaGenealogia(){ if(!_nEvGeneal) return; generacionGenealogiaActual++; reproduciendoGenealogia = false; genealogiaRevelados = _nEvGeneal; renderGenealogiaAgenda(); }
 let reproduciendoGenealogia = false; // true mientras el botón "reproducir" está animando el
 // recorrido -- necesario para que el auto-refresco de datos (cada 3 minutos) NUNCA
 // interrumpa una reproducción en curso. Bug real: dibujarGenealogia() se llamaba de nuevo
@@ -1005,6 +1006,7 @@ function renderGenealogiaAgenda(){
     </div>` : ''}
     <div style="position:relative;width:100%;flex:1;min-height:0;">
       <div id="geneal-barra" style="position:absolute;top:8px;right:10px;z-index:5;display:flex;align-items:center;gap:8px;">
+        <button type="button" id="geneal-todo-btn" class="chip-btn" style="display:none;padding:3px 10px;font-size:11px;" title="Mostrar todas las notas de golpe, sin la reproducción paso a paso" onclick="_verTodaGenealogia()">Ver todo</button>
         <button type="button" id="geneal-metodo-btn" class="chip-btn" style="padding:3px 10px;font-size:11px;" onclick="document.getElementById('geneal-metodo').classList.toggle('abierto')">Método</button>
         <span style="display:inline-flex;align-items:center;gap:2px;"><button type="button" class="chip-btn" style="padding:3px 8px;font-size:12px;" title="Alejar" onclick="_zoomGenealogia(-1)">−</button><span id="geneal-zoom-txt" style="font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);min-width:34px;text-align:center;"></span><button type="button" class="chip-btn" style="padding:3px 8px;font-size:12px;" title="Acercar" onclick="_zoomGenealogia(1)">+</button></span>
         <div id="geneal-kpi" style="font-family:var(--f-mono);font-size:10.5px;background:rgba(14,17,22,0.55);border:1px solid var(--line-strong);border-radius:99px;padding:4px 10px;"></div>
@@ -1124,6 +1126,7 @@ function dibujarGenealogia(temaId){
   // Ahora siempre es clickeable, y el propio click decide qué hacer según el estado
   // vigente EN ESE MOMENTO (no el que tenía al dibujarse): si está reproduciendo, pausa;
   // si está pausada o nunca empezó, reproduce/continúa desde donde se quedó.
+  _nEvGeneal = eventos.length; { const bt = document.getElementById('geneal-todo-btn'); if(bt) bt.style.display = (eventos.length>10 && genealogiaRevelados<eventos.length) ? '' : 'none'; }
   const puedeAccionar = reproduciendoGenealogia || genealogiaRevelados < eventos.length;
   const gOrigen = puntosBase.append('g').attr('transform',`translate(${posiciones[0].x},${posiciones[0].y})`).style('cursor', puedeAccionar?'pointer':'default');
   gOrigen.append('circle').attr('r',26).attr('fill',colorTema).attr('stroke','#fff').attr('stroke-width',3);
@@ -1214,7 +1217,7 @@ function reproducirGenealogia(temaId, eventos, posiciones, colorTema, lineaBase,
   _actualizarContadorGenealogia(`Reproduciendo — ${desde||1} de ${eventos.length}`, desde||1, eventos.length);
   function siguienteTramo(i){
     if(generacionGenealogiaActual !== miGeneracion){ return; }
-    if(i>=eventos.length){ genealogiaRevelados = eventos.length; reproduciendoGenealogia = false; _dibujarRamasGeneal(); return; }
+    if(i>=eventos.length){ genealogiaRevelados = eventos.length; reproduciendoGenealogia = false; { const bt = document.getElementById('geneal-todo-btn'); if(bt) bt.style.display = 'none'; } _dibujarRamasGeneal(); return; }
     scrollEl.scrollTo({left: Math.max(0, posiciones[i].x*_zGen-scrollEl.clientWidth/2), behavior:'smooth'});
     const linea = lineaBase.append('line')
       .attr('x1',posiciones[i-1].x).attr('y1',posiciones[i-1].y).attr('x2',posiciones[i-1].x).attr('y2',posiciones[i-1].y)
