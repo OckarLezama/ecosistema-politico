@@ -1342,9 +1342,11 @@ function _detectarInflexiones(eventos, temaId){
       }
       efecto = l;
     }
-    const notaClave = [...e.notas].sort((u,v)=>(Number(v.intensidad)||0)-(Number(u.intensidad)||0))[0];
+    const actorDia = entra ? entra.x.a : (act.map(x=>({x,c:x.m.get(d)||0})).filter(z=>z.c>=2).sort((u,v)=>v.c-u.c)[0]||{x:null}).x?.a || null;
+    const punt = z=>(Number(z.intensidad)||0) + (_esPrimerNivel(z)?2:0) + (actorDia && _mencionesActor(actorDia,[z]).length ? 1 : 0);
+    const notaClave = [...e.notas].sort((u,v)=>punt(v)-punt(u))[0];
     const detonante = entra ? _nomCortoActor(entra.x.a) : (prot[0] ? prot[0].replace(/\s*\(.*$/,'') : '');
-    const extra = { detonante, notaClave: notaClave ? notaClave.descripcion : '', n, base, post3, diasPost: Math.min(3, ultimoDia-d) };
+    const extra = { detonante, notaClave: notaClave ? notaClave.descripcion : '', notaUrl: notaClave ? (notaClave.fuente_url||'') : '', n, base, post3, diasPost: Math.min(3, ultimoDia-d) };
     out.set(e.fecha, sostenido
       ? { ...extra, tipo:'turning', etiqueta:'POSIBLE TURNING POINT', def:'Cambio de rumbo: el tema sube de nivel y ya no regresa. Solo se confirma viendo lo que pasa después.', color:'var(--riesgo-alto)', razon:partes.join(' '), efecto }
       : { ...extra, tipo:'trigger', etiqueta:'POSIBLE TRIGGER', def:'Hecho o actor que reactiva un tema que estaba latente.', color:'var(--riesgo-medio)', razon:partes.join(' '), efecto });
@@ -1358,7 +1360,7 @@ function calcularPuntosInflexion(){
   const out = [];
   ECOSISTEMA.temas.filter(enNotas).forEach(t=>{
     const ev = _eventosGenealogia(t.id); if(ev.length<3) return;
-    _detectarInflexiones(ev, t.id).forEach((m,f)=> out.push({ tema_id:t.id, tema:t.nombre, fecha:f, tipo:m.tipo, detonante:m.detonante, nota_clave:m.notaClave, razon:m.razon,
+    _detectarInflexiones(ev, t.id).forEach((m,f)=> out.push({ tema_id:t.id, tema:t.nombre, fecha:f, tipo:m.tipo, detonante:m.detonante, nota_clave:m.notaClave, nota_url:m.notaUrl, razon:m.razon,
       efecto:(m.efecto||[]).map(x=>x[0]+': '+x[1]).join(' | '), n:m.n, base:m.base, post3:m.post3, dias_post:m.diasPost }));
   });
   return out;
@@ -1373,9 +1375,9 @@ function _cargarDatosInflexion(){
   if(_dInfl!==null || _dInflCargando) return; _dInflCargando = true;
   const csv = f=>fetch('data/'+f+'?t='+Date.now()).then(r=>r.ok?r.text():'').then(t=>t?Papa.parse(t,{header:true,skipEmptyLines:true}).data:[]).catch(()=>[]);
   const json = f=>fetch('data/'+f+'?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
-  Promise.all([csv('puntos_inflexion.csv'), csv('incertidumbres.csv'), json('inflexion_calidad.json'), json('incertidumbres_estado.json')])
-    .then(([p,i,c])=>{ _dInfl = {puntos:new Map(p.map(r=>[r.tema_id+'|'+r.fecha,r])), lista:p, inc:i, calidad:c}; })
-    .catch(()=>{ _dInfl = {puntos:new Map(), lista:[], inc:[], calidad:null}; })
+  Promise.all([csv('puntos_inflexion.csv'), csv('incertidumbres.csv'), json('inflexion_calidad.json'), csv('inflexion_revision.csv'), json('pruebas_estado.json')])
+    .then(([p,i,c,rv,pr])=>{ _dInfl = {puntos:new Map(p.map(r=>[r.tema_id+'|'+r.fecha,r])), lista:p, inc:i, calidad:c, rev:new Map(rv.filter(r=>r.tema_id).map(r=>[r.tema_id+'|'+r.fecha,r])), pruebas:pr}; })
+    .catch(()=>{ _dInfl = {puntos:new Map(), lista:[], inc:[], calidad:null, rev:new Map(), pruebas:null}; })
     .then(()=>{ _dInflCargando = false; if(vistaAgenda==='genealogia' && !reproduciendoGenealogia) renderGenealogiaAgenda(); else if(vistaAgenda==='ecosistema') renderEcosistemaAgenda(); });
 }
 // inflexión registrada por el robot en los últimos días para un tema (marca "⚡" en Ecosistema y en el selector)
@@ -1391,7 +1393,8 @@ function evaluarIncertidumbres(filas){
     if(!grupos.has(r.id)) grupos.set(r.id,{id:r.id, tema_id:r.tema_id, pregunta:r.pregunta, creada:r.creada||'', desenlaces:[]});
     let rx = null; try{ rx = new RegExp(r.senal||'$^','i'); }catch(e){}
     const g = grupos.get(r.id), evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===r.tema_id && (!g.creada || e.fecha>=g.creada));
-    const notas = rx ? evs.filter(e=>rx.test(_normN(e.descripcion))).sort((a,b)=>b.fecha.localeCompare(a.fecha)) : [];
+    let rxa = null; try{ rxa = r.actor_re ? new RegExp(r.actor_re,'i') : null; }catch(e){}
+    const notas = rx ? evs.filter(e=>{ const t = _normN(e.descripcion); return rx.test(t) && (!rxa || rxa.test(t)); }).sort((a,b)=>b.fecha.localeCompare(a.fecha)) : [];   // si hay actor_re, el actor y la señal deben coincidir en el MISMO titular
     g.desenlaces.push({etiqueta:r.desenlace, senal:r.senal, n:notas.length, notas:notas.slice(0,3)});
   });
   return [...grupos.values()];
@@ -1406,14 +1409,15 @@ function _actualizarKpiInflexion(){
 function _htmlMetodoGeneal(){
   const c = _dInfl && _dInfl.calidad;
   const cal = c ? `<br><span style="color:var(--ink-1)">Calidad (la mide el robot)</span>: ${c.detecciones_7d} marcas en 7 días · ${c.sostenidas_pct==null?'—':c.sostenidas_pct+'%'} se sostuvieron los días siguientes · casos conocidos detectados ${c.casos_detectados} de ${c.casos_total}${c.revisadas_total?` · revisiones del analista: ${c.revisadas_relevantes} de ${c.revisadas_total} relevantes`:''}.` : '<br><span style="color:var(--ink-3)">Calidad: aún sin medición del robot.</span>';
+  const pr = _dInfl && _dInfl.pruebas, prx = pr ? `<br><span style="color:var(--ink-1)">Pruebas del sistema</span>: ${pr.fallas.length ? '<span style="color:var(--riesgo-alto)">fallan '+pr.fallas.length+' ('+pr.fallas.map(x=>x.replace(/</g,'&lt;')).join('; ')+')</span>' : '✓ '+pr.total+' de '+pr.total+' pasan'}${pr.advertencias.length?' · '+pr.advertencias.length+' advertencia(s)':''}.` : '';
   return `<b style="color:var(--ink-1)">Puntos de inflexión (automáticos = «posibles»)</b><br>
         <span style="color:var(--ink-1)">Evento</span>: lo que ocurrió (cada nota).<br>
         <span style="color:var(--riesgo-medio)">Trigger</span>: hecho o actor que reactiva un tema que estaba latente. Se marca por estadística, no a ojo: (1) un día con tantas notas que, frente al ritmo normal del tema (promedio robusto de 14 días), por azar pasaría en menos de 1 de cada 100 días; (2) varios días seguidos por encima de lo normal que se acumulan (CUSUM de Poisson); o (3) un actor casi ausente que entra con fuerza (ej. AMLO reaparece).<br>
         <span style="color:var(--riesgo-alto)">Turning point</span>: el trigger cambia el rumbo: el ritmo se sostiene los días siguientes con impacto alto. Solo se confirma en retrospectiva.<br>
         <span style="color:var(--ink-1)">Qué pasó después</span>: ritmo, actores que entran, palabras nuevas y si el foco de la agenda se movió. La línea de notas se engrosa los 3 días posteriores.<br>
         <span style="color:var(--ink-1)">Incertidumbre crítica</span>: variable estructural aún abierta (no un hecho) de la que nacen las posibles ramas futuras. Se define en <i>data/incertidumbres.csv</i> (pregunta, desenlaces y la señal de cada uno); el robot cuenta las notas que cumplen cada señal y avisa. No predice ni calcula probabilidades.<br>
-        <span style="color:var(--ink-1)">Hilos</span>: otros temas que comparten actores con éste (los actores que aparecen en todo pesan menos).<br>
-        El robot guarda cada marca en <i>data/puntos_inflexion.csv</i> (con fecha de primera detección) y avisa cuando aparece una nueva. Es una señal por volumen y menciones, no una conclusión.${cal}`;
+        <span style="color:var(--ink-1)">Hilos</span>: otros temas que comparten actores o nombres propios repetidos en varias notas y medios (lo que aparece en todos los temas pesa menos).<br>
+        El robot guarda cada marca en <i>data/puntos_inflexion.csv</i> (con fecha de primera detección) y avisa cuando aparece una nueva. Es una señal por volumen y menciones, no una conclusión. «Nota que abrió el día» es la más relevante de ese día (impacto, medio de primer nivel, actor principal); no afirma causa: la causa solo aparece si el analista la escribe en <i>data/inflexion_revision.csv</i>.${cal}${prx}`;
 }
 function _pintarHilos(temaId){
   const el = document.getElementById('geneal-hilos'); if(!el) return;
@@ -1436,12 +1440,16 @@ function _marcarInflexionGenealogia(e, pos, g, width, height){
     p.selectAll('*').remove();
     const lr = partirEnLineas(m.razon, 62, 6), ld = partirEnLineas(m.def, 62, 3);
     const ef = st.abierto && m.efecto ? m.efecto.flatMap(([t,v])=>[[t,true],...partirEnLineas(v,60,3).map(z=>[z,false])]) : [];
-    const alto = 20 + ld.length*10 + 4 + lr.length*10 + 18 + ef.length*10 + (st.abierto&&m.efecto?4:0) + 14;
+    const lnota = m.notaClave ? partirEnLineas('«'+m.notaClave.replace(/\s+-\s+[^-]+$/,'')+'»', 60, 2) : [], rv = _dInfl && _dInfl.rev.get(_temaGenealActual+'|'+e.fecha), lcau = rv && rv.detonante_analista ? partirEnLineas('Causa según el analista: '+rv.detonante_analista, 62, 3) : [];
+    const alto = 20 + ld.length*10 + 4 + lr.length*10 + (lnota.length?12+lnota.length*10:0) + lcau.length*10 + 18 + ef.length*10 + (st.abierto&&m.efecto?4:0) + 14;
     p.append('rect').attr('x',x0).attr('y',y0).attr('width',ancho).attr('height',alto).attr('rx',6).attr('fill','var(--bg-1)').attr('stroke',m.color).attr('stroke-width',1.4).style('cursor','grab');
     let yy = y0+13;
     p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','10px').attr('font-weight','700').attr('letter-spacing','.04em').attr('fill',m.color).text(m.etiqueta+' · '+e.fecha.slice(5));
     ld.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8px').attr('font-style','italic').attr('fill','var(--ink-3)').text(l); });
     yy+=4; lr.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('fill','var(--ink-1)').text(l); });
+    if(lnota.length){ yy+=12; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','7.5px').attr('fill','var(--ink-3)').text('Nota que abrió el día (no implica causa):');
+      lnota.forEach(l=>{ yy+=10; p.append('text').attr('class','geneal-no-toggle').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('fill','var(--teal)').style('cursor',m.notaUrl?'pointer':'default').text(l).on('click',()=>{ if(m.notaUrl) window.open(m.notaUrl,'_blank','noopener'); }); }); }
+    lcau.forEach(l=>{ yy+=10; p.append('text').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('font-weight','600').attr('fill','var(--ink-1)').text(l); });
     if(m.efecto){
       yy+=14; p.append('text').attr('class','geneal-no-toggle').attr('x',x0+9).attr('y',yy).attr('font-size','8.5px').attr('font-weight','700').attr('fill','var(--teal)').style('cursor','pointer')
         .text(st.abierto?'▾ Ocultar qué pasó después':'▸ Ver qué pasó después').on('click',()=>{ st.abierto=!st.abierto; pintar(); });
@@ -1475,6 +1483,26 @@ function _dibujarRamasGeneal(){
     tx.append('title').text(`${d.etiqueta}\nSeñal vigilada: ${d.senal}\nNotas que la cumplen: ${d.n}${d.notas.map(n=>'\n· '+n.fecha.slice(5)+' '+n.descripcion.slice(0,90)).join('')}`);
   });
 }
+// nombres propios (personas) que se repiten en las notas de un tema, aunque no estén dados de alta como actores.
+// Controles contra falsos positivos: 2-3 palabras capitalizadas, sin instituciones/meses/lugares comunes, en 3+ notas y 2+ medios distintos del tema,
+// y al menos una vez fuera del inicio del titular (donde todo va en mayúscula).
+const _NOMBRES_DISP = new Map();
+['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre','lunes','martes','miercoles','jueves','viernes','sabado','domingo','poder','judicial','federal','nacional','reforma','ley','plan','programa','tras','sobre','contra','alerta','urgente','exclusiva','informe','noticias','municipio','ayuntamiento'].forEach(w=>_STOP_NOMBRE.add(w));
+const _RX_NOMBRE = /[A-ZÁÉÍÓÚÑ][a-záéíóúñü]{2,}(?:\s(?:de|del|la|los|las))?(?:\s[A-ZÁÉÍÓÚÑ][a-záéíóúñü]{2,}){1,2}/g;
+function _nombresDeTema(evs){
+  const cnt = new Map(), medios = new Map(), medioFuera = new Set();
+  evs.forEach(e=>{
+    const t = String(e.descripcion||'').replace(/\s+-\s+[^-]+$/,''), vistos = new Set(), med = _medioClave(_medioDeEvento(e)||'');
+    let mt; _RX_NOMBRE.lastIndex = 0;
+    while((mt = _RX_NOMBRE.exec(t))){
+      const toks = mt[0].split(/\s+/).filter(w=>!/^(de|del|la|los|las)$/.test(w));
+      if(toks.length<2 || toks.some(w=>_STOP_NOMBRE.has(_normN(w)))) continue;
+      const k = _normN(mt[0]); if(vistos.has(k)) continue; vistos.add(k); _NOMBRES_DISP.set(k, mt[0]);
+      cnt.set(k,(cnt.get(k)||0)+1); if(!medios.has(k)) medios.set(k,new Set()); medios.get(k).add(med||'?'); if(mt.index>0) medioFuera.add(k);
+    }
+  });
+  const out = new Map(); cnt.forEach((c,k)=>{ if(c>=3 && medios.get(k).size>=2 && medioFuera.has(k)) out.set(k,c); }); return out;
+}
 // ---- hilos entre temas: qué otros temas de agenda comparten actores/hechos con éste (automático) ----
 let _hilosCache = null, _hilosRef = null;
 function _hilosDeTema(temaId){
@@ -1484,6 +1512,7 @@ function _hilosDeTema(temaId){
     temas.forEach(t=>{
       const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===t.id && _diasAtras(e.fecha)<21), ids = [...new Set([...ECO_REFERENCIA, ..._actoresDeTema(t.id).map(x=>x.actor_id)])], m = new Map();
       ids.forEach(id=>{ const a = getActor(id); if(!a) return; const c = _mencionesActor(a, evs).length; if(c>=2){ m.set(id,c); df.set(id,(df.get(id)||0)+1); } });
+      _nombresDeTema(evs).forEach((c,k)=>{ m.set('n:'+k,c); df.set('n:'+k,(df.get('n:'+k)||0)+1); });
       por.set(t.id, m);
     });
     const ubic = new Set([...df.entries()].filter(([id,n])=>n>=Math.max(4,0.4*temas.length)).map(x=>x[0]));   // actores presentes en casi todos los temas (ej. la presidenta) no indican hilo
@@ -1491,7 +1520,7 @@ function _hilosDeTema(temaId){
     temas.forEach(a=>{ const lista = [];
       temas.forEach(b=>{ if(a.id===b.id) return; let sc = 0; const comp = [];
         por.get(a.id).forEach((ca,id)=>{ if(ubic.has(id) || /_partido$/.test(id)) return; const cb = por.get(b.id).get(id); if(!cb) return; const w = 1/Math.log(2+df.get(id)); sc += w*Math.min(ca,cb); comp.push({id, w:w*Math.min(ca,cb)}); });
-        if(sc>=0.9) lista.push({tema:b, sc, comp:comp.sort((x,y)=>y.w-x.w).slice(0,2).map(x=>_nomEco(getActor(x.id)))}); });
+        if(sc>=0.9) lista.push({tema:b, sc, comp:comp.sort((x,y)=>y.w-x.w).slice(0,2).map(x=>x.id.startsWith('n:') ? (_NOMBRES_DISP.get(x.id.slice(2))||x.id.slice(2)) : _nomEco(getActor(x.id)))}); });
       res.set(a.id, lista.sort((x,y)=>y.sc-x.sc).slice(0,3)); });
     _hilosCache = res;
   }
