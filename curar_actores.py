@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 
 R_T, R_E, R_A, R_TA, R_LOG = 'data/temas.csv', 'data/eventos.csv', 'data/actores.csv', 'data/tema_actores.csv', 'data/agrupacion_log.csv'
 VENTANA = 21
+VENTANA_HIST = 60   # las notas de una historia pueden estar repartidas en temas automáticos más viejos
 
 HISTORIAS = [
     {'id': 'morena-coordinadores-distritales', 'nombre': 'Coordinaciones distritales federales de Morena 2027', 'categoria': 'Gobernabilidad',
@@ -102,7 +103,7 @@ def norm(t):
 
 
 def main():
-    hoy = datetime.now(ZoneInfo('America/Mexico_City')).date(); corte = (hoy - timedelta(days=VENTANA)).isoformat()
+    hoy = datetime.now(ZoneInfo('America/Mexico_City')).date(); corte = (hoy - timedelta(days=VENTANA_HIST)).isoformat()
     ct, temas = leer(R_T); ce, ev = leer(R_E); ca, actores = leer(R_A); cta, ta = leer(R_TA)
     tm = {t['id']: t for t in temas}; log = []
     # ---- 1. historias con tema propio
@@ -115,13 +116,26 @@ def main():
             temas.append(fila); tm[h['id']] = fila
         rx, nx = re.compile(h['re'], re.I | re.S), re.compile(h['no_re'], re.I)
         mov = 0
+        # un tema automático cuyo NOMBRE ya cuenta esta historia es el mismo tema: pasa completo (no solo las notas que repiten la frase)
+        por_nombre = {i for i, t in tm.items() if i.startswith('auto-') and rx.search(t['nombre'] or '') and not nx.search(t['nombre'] or '')}
         for e in ev:
-            if e['fecha'] < corte or e['tema_id'] == h['id']: continue
+            if e['tema_id'] == h['id']: continue
+            if e['tema_id'] in por_nombre:
+                log.append((e['fuente_url'], e['tema_id'], h['id'], 'historia (mismo tema por nombre)')); e['tema_id'] = h['id']; mov += 1; continue
+            if e['fecha'] < corte: continue
             t = tm.get(e['tema_id'])
             if t is None or not t['id'].startswith('auto-'): continue
             d = e.get('descripcion') or ''
             if rx.search(d) and not nx.search(d):
                 log.append((e['fuente_url'], e['tema_id'], h['id'], 'historia')); e['tema_id'] = h['id']; mov += 1
+        # un tema automático cuyo titular ancla ya se mudó a la historia no puede seguir llamándose igual:
+        # se renombra con su nota más reciente (si no quedan notas, lo elimina agrupar_historias.py)
+        for t in temas:
+            if not t['id'].startswith('auto-') or not rx.search(t['nombre']) or nx.search(t['nombre']): continue
+            resto = sorted((e for e in ev if e['tema_id'] == t['id']), key=lambda e: e['fecha'])
+            if resto and not any(rx.search(e.get('descripcion') or '') for e in resto):
+                nuevo = re.sub(r'\s+[-|]\s+[^-|]{2,40}$', '', resto[-1].get('descripcion') or '').strip()
+                if nuevo and nuevo != t['nombre']: log.append(('', t['id'], t['id'], 'renombrado: su titular ancla pasó a ' + h['id'])); t['nombre'] = nuevo
         print(f"historia {h['id']}: {mov} nota(s) movidas")
     # ---- 2. actores con certeza
     ids = {a['id'] for a in actores}; por_nombre = {norm(re.sub(r'\(.*?\)', '', a['nombre'])): a['id'] for a in actores}
