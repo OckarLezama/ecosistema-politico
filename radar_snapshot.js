@@ -21,8 +21,9 @@ const ctx = { console, fetch: () => new Promise(()=>{}), Math, URL, Set, Map,
   document:{ getElementById:()=>null, addEventListener(){} }, window:{}, d3:{} };
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/fuentes.js'),'utf8'), ctx);
+vm.runInContext('const getTema=id=>ECOSISTEMA.temas.find(t=>t.id===id), getActor=id=>ECOSISTEMA.actores.find(a=>a.id===id);', ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/agenda.js'),'utf8') +
-  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;', ctx);
+  ';globalThis.__calc=calcularDatosRadarAgenda;globalThis.__cuad=cuadranteDe;globalThis.__c24=calcularCambios24h;globalThis.__enr=_enriquecerRadar;globalThis.__hitos=_hitosProximos;globalThis.__resN=resumenNotasDelDia;', ctx);
 
 // criterio del analista y calendario: el navegador los lee por fetch; aquí se cargan del disco
 const aCsv = n => R(n);
@@ -85,6 +86,16 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
   [...crit, ...vig].forEach(d => { if (d.hito && d.hito.dias != null && d.hito.dias >= 0 && d.hito.dias <= 2)
     alerta('hito_proximo', d, `◷ ${nm(d)}: fecha clave ${d.hito.dias===0?'hoy':d.hito.dias===1?'mañana':'en 2 días'} — ${String(d.hito.texto).slice(0, 90)}`); });
 
+  // ---- Notas: actores de máxima influencia que aparecen por primera vez en un tema (estado en data/actor_tema_visto.json)
+  let rn = { hechosHoy:[], enfriados:[], duplicados:[], actoresClave:[] };
+  try { rn = ctx.__resN(); } catch (e) { console.log('resumen de Notas no disponible:', e.message); }
+  let visto = null; try { visto = new Set(JSON.parse(fs.readFileSync(D('actor_tema_visto.json'), 'utf8'))); } catch (e) {}
+  const primeraVez = visto === null; if (primeraVez) visto = new Set();
+  rn.actoresClave.forEach(x => { const k = x.actor.id + '|' + x.tema.id;
+    if (!visto.has(k)) { visto.add(k); if (!primeraVez) nuevas.push({ id: `${hoy}|actor_clave|${k}`, ts: ahoraMX, tipo: 'actor_clave', tema_id: x.tema.id,
+      texto: `◉ ${String(x.actor.nombre).replace(/\(.*?\)/g,'').trim()} aparece por primera vez en «${nm({tema:x.tema})}»: ${String(x.nota.descripcion).slice(0, 90)}` }); } });
+  fs.writeFileSync(D('actor_tema_visto.json'), JSON.stringify([...visto].sort(), null, 0) + '\n');
+
   // archivo de alertas (más recientes primero, sin duplicados por id)
   let est = { generado: hoy, ultimo_brief_enviado: '', alertas: [] };
   try { est = Object.assign(est, JSON.parse(fs.readFileSync(D('radar_alertas.json'), 'utf8'))); } catch (e) {}
@@ -108,6 +119,10 @@ console.log(`radar_snapshot ${hoy}: ${datos.length} temas, validación`, JSON.st
         const l = [`📋 Radar — resumen del ${hoy}`, `${crit.length} crítico(s) · ${vig.length} por vigilar`, ''];
         crit.slice(0, 5).forEach(d => l.push(`● ${nm(d)} — impacto ${d.riesgoReal}, ${d.atencion} medios` + (d.notaAncla && d.notaAncla.fuente_url ? `\n   ${d.notaAncla.fuente_url}` : '')));
         vig.slice(0, 3).forEach(d => l.push(`◐ ${nm(d)} — impacto ${d.riesgoReal}, ${d.atencion} medios`));
+        l.push('', `Notas de hoy: ${rn.hechosHoy.reduce((a, x) => a + x.n, 0)} hecho(s) nuevo(s) en ${rn.hechosHoy.length} tema(s)`);
+        rn.hechosHoy.slice(0, 3).forEach(x => l.push(`  · ${nm({tema:x.tema})}: ${x.n}`));
+        if (rn.enfriados.length) l.push(`Sin notas en 30 días (salen de Notas): ${rn.enfriados.slice(0, 4).map(t => String(t.nombre).slice(0, 40)).join('; ')}`);
+        if (rn.duplicados.length) l.push(`Posibles temas duplicados: ${rn.duplicados.slice(0, 3).map(x => String(x[0].nombre).slice(0, 30) + ' ≈ ' + String(x[1].nombre).slice(0, 30)).join('; ')}`);
         const h = ctx.__hitos(datosAll, 3);
         if (h.length) { l.push('', 'Fechas clave próximas:'); h.slice(0, 5).forEach(x => l.push(`◷ ${x.dias===0?'hoy':x.dias===1?'mañana':'en '+x.dias+' días'}: ${String(x.texto).slice(0, 100)}`)); }
         if (await enviar(l.join('\n'))) est.ultimo_brief_enviado = hoy;
