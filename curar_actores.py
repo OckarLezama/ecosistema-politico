@@ -28,10 +28,6 @@ HISTORIAS = [
      'resumen': 'Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.',
      're': r'coordinador(a|es|as)?\b.*(morena|4t|transformaci[oó]n|defensa de)|morena\b.*coordinador|clouthier|clara luz|cruz p[eé]rez cu[eé]llar|jasmine bugar|lorenia valles|ana lilia rivera|andrea ch[aá]vez|encuestas? de morena|alteraci[oó]n de encuestas|tribus (de|en) morena|pugnas internas de morena|corcholata',
      'no_re': r'grupo parlamentario|coordinador(a)? (de la )?(bancada|gabinete)|coordinadora? nacional de (protecci|comunicaci)'},
-    {'id': 'visa-de-andy', 'nombre': 'Visa de Andy', 'categoria': 'Relación Bilateral',
-     'resumen': 'Revocación de la visa de Andy López Beltrán y su derivación: reportes de EU, caso Amílcar Olán y reaparición de AMLO.',
-     're': r'am[ií]lcar ol[aá]n|(andy|l[oó]pez beltr[aá]n).{0,90}(new york times|nyt|agencias|investig|acusaci|visa|fuero|diputaci)|(new york times|nyt).{0,90}(andy|l[oó]pez beltr[aá]n)|(l[oó]pez obrador|amlo).{0,90}(libro|pueblo|canallesc|visa)|libro.{0,30}[«"“]?pueblo|canallesc',
-     'no_re': r'zapata|ideario|cervera'},
 ]
 
 # (id existente | None, nombre, cargo, rol, regex de certeza)
