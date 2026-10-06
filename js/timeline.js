@@ -185,14 +185,15 @@ function actoresDeTemaTL(tema){
 }
 
 function empaquetarZigzagTL(puntos, minEspacio){
+  // cada tarjeta va en el lado (arriba/abajo) y nivel MÁS BAJO donde no choque con otra; antes alternaba lado a ciegas y
+  // en zonas densas apilaba torres de 15 niveles de un solo lado
   const tiersUp=[], tiersDown=[];
-  const ord = puntos.slice().sort((a,b)=>a.xBase-b.xBase);
-  return ord.map((p,i)=>{
-    const arriba = i%2===0;
-    function colocar(tiers){ for(let t=0;t<tiers.length;t++){ if(p.xBase-tiers[t]>=minEspacio){tiers[t]=p.xBase;return t;} } tiers.push(p.xBase); return tiers.length-1; }
-    const lado = arriba?'up':'down';
-    const tier = colocar(lado==='up'?tiersUp:tiersDown);
-    return {...p, lado, tier};
+  const libre = (tiers,x)=>{ for(let t=0;t<tiers.length;t++) if(x-tiers[t]>=minEspacio) return t; return tiers.length; };
+  return puntos.slice().sort((a,b)=>a.xBase-b.xBase).map((p,i)=>{
+    const tu = libre(tiersUp,p.xBase), td = libre(tiersDown,p.xBase);
+    const arriba = tu<td || (tu===td && i%2===0), tier = arriba ? tu : td, tiers = arriba ? tiersUp : tiersDown;
+    tiers[tier] = p.xBase;
+    return {...p, lado: arriba?'up':'down', tier};
   });
 }
 
@@ -250,15 +251,16 @@ function narrativaTimelineTL(){
   const dir = !comparable ? null : dif>=3 ? ['ampliándose','var(--riesgo-alto)'] : dif<=-3 ? ['reduciéndose','var(--riesgo-bajo)'] : ['estable','var(--riesgo-medio)'];
   const top = [...act].sort((a,b)=>b[1]-a[1])[0];
   let t = `Últimos 14 días: <strong>${A.size}</strong> tema${A.size!==1?'s':''} de agenda activo${A.size!==1?'s':''}`;
-  if(comparable) t += ` (los 14 previos: <strong>${P.size}</strong>) — agenda <strong style="color:${dir[1]}">${dir[0]}</strong>; entraron ${entran.length}${lista(entran)} y salieron ${salen.length}${lista(salen)}.`; else t += '.';
-  if(top) t += ` Mayor volumen: <strong>${nom(top[0])}</strong> (${top[1]} notas).`;
-  t += _covTL ? ` <span style="color:var(--ink-3);">Cobertura completa desde ${_covTL.fecha} (${_covTL.dias} días); antes hay solo notas sembradas, no comparables.${comparable?'':' La comparación se activa al cumplirse 28 días de cobertura.'}</span>` : ` <span style="color:var(--ink-3);">Cobertura insuficiente para comparar periodos.</span>`;
-  cont.innerHTML = `<p style="font-size:12.5px;line-height:1.5;color:var(--ink-2);background:var(--bg-1);border-left:3px solid ${dir?dir[1]:'var(--line-strong)'};padding:8px 12px;border-radius:4px;margin:0 0 10px;">${t}</p>`;
+  if(comparable) t += ` (los 14 previos: <strong>${P.size}</strong>) · agenda <strong style="color:${dir[1]}">${dir[0]}</strong> · entraron ${entran.length} · salieron ${salen.length}`;
+  else t += _covTL ? ` · la comparación con el periodo previo se activa con 28 días de cobertura` : ` · cobertura insuficiente para comparar`;
+  const tip = [entran.length ? 'Entraron: '+entran.map(id=>{ const x = getTema(id); return x?x.nombre:id; }).join('; ') : '', salen.length ? 'Salieron: '+salen.map(id=>{ const x = getTema(id); return x?x.nombre:id; }).join('; ') : '',
+    _covTL ? `Cobertura completa desde ${_covTL.fecha} (${_covTL.dias} días); antes solo hay notas sembradas, no comparables.` : ''].filter(Boolean).join('\n');
+  cont.innerHTML = `<p title="${tip.replace(/"/g,'&quot;')}" style="font-size:12px;line-height:1.4;color:var(--ink-2);background:var(--bg-1);border-left:3px solid ${dir?dir[1]:'var(--line-strong)'};padding:4px 10px;border-radius:4px;margin:0 0 4px;cursor:help;">${t}</p>`;
 }
 
 
 // ---------------- cabecera fija: tendencia + quién domina la agenda ----------------
-let tlSerieTend = [];
+let tlSerieTend = [], tlEjeComprimido = false;
 // temas activos por día = temas de agenda con 3+ notas en los 7 días que terminan ese día (promedio móvil, no suma de intensidades)
 function _serieTendenciaTL(){
   if(!_covTL) return [];
@@ -272,29 +274,11 @@ function _serieTendenciaTL(){
   return out;
 }
 function _montarCabeceraTL(wrapEl, svgEl){
-  if(!wrapEl) return;
-  let cab = document.getElementById('tl-cabecera');
-  if(!cab){ cab = document.createElement('div'); cab.id = 'tl-cabecera'; wrapEl.insertBefore(cab, svgEl); }
-  cab.style.cssText = 'position:sticky;top:-14px;z-index:4;background:var(--bg-1);margin:-14px -14px 4px;padding:8px 14px 4px;border-bottom:1px solid var(--line);';
+  const viejo = document.getElementById('tl-cabecera'); if(viejo) viejo.remove();
   tlSerieTend = _serieTendenciaTL();
-  cab.innerHTML = `<svg id="tl-tend" viewBox="0 0 ${tlWidth} 30" style="display:block;width:100%;height:30px;"></svg><div id="tl-tops" style="margin-top:3px;"></div>`;
+  let cont = document.getElementById('timeline-tops');
+  if(!cont){ const nar = document.getElementById('timeline-narrativa'); if(!nar) return; cont = document.createElement('div'); cont.id = 'timeline-tops'; cont.style.cssText = 'padding:0 14px 6px;'; nar.after(cont); }
   _pintarTopsTL();
-}
-function _dibujarTendenciaTL(xs){
-  const svg = d3.select('#tl-tend'); if(svg.empty()) return; svg.selectAll('*').remove();
-  const ini = _inicioPeriodoTL(), fin = _finPeriodoTL();
-  const serie = tlSerieTend.filter(d=>d.fecha>=ini && d.fecha<=fin);
-  svg.append('text').attr('x',30).attr('y',9).attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('TENDENCIA · temas de agenda activos por día (7 días móviles)');
-  if(serie.length<2){ svg.append('text').attr('x',30).attr('y',23).attr('font-size','9px').attr('fill','var(--ink-3)').text('Sin cobertura completa en este periodo: no hay tendencia comparable.'); return; }
-  const max = Math.max(...serie.map(d=>d.n), 1), X = d=>xs(new Date(d.fecha+'T12:00:00')), Y = d=>27-(d.n/max)*15;
-  svg.append('path').datum(serie).attr('d',d3.area().x(X).y0(27).y1(Y).curve(d3.curveMonotoneX)).attr('fill','var(--teal)').attr('fill-opacity',0.14);
-  svg.append('path').datum(serie).attr('d',d3.line().x(X).y(Y).curve(d3.curveMonotoneX)).attr('fill','none').attr('stroke','var(--teal)').attr('stroke-width',1.6);
-  const u = serie[serie.length-1]; svg.append('text').attr('x',Math.min(tlWidth-4,X(u)+4)).attr('y',Y(u)+3).attr('font-size','9px').attr('font-family','var(--f-mono)').attr('fill','var(--teal)').attr('text-anchor',X(u)>tlWidth-30?'end':'start').text(u.n);
-  const guia = svg.append('line').attr('y1',10).attr('y2',27).attr('stroke','var(--ink-3)').attr('stroke-dasharray','2 2').style('display','none');
-  svg.append('rect').attr('x',0).attr('y',0).attr('width',tlWidth).attr('height',30).attr('fill','transparent')
-    .on('pointermove',ev=>{ const [mx] = d3.pointer(ev); const fx = xs.invert(mx).toISOString().slice(0,10); const d = serie.reduce((a,b)=>Math.abs(new Date(b.fecha)-new Date(fx))<Math.abs(new Date(a.fecha)-new Date(fx))?b:a);
-      guia.style('display',null).attr('x1',X(d)).attr('x2',X(d)); mostrarTooltipAgenda(`<strong>${d.fecha}</strong><br><span style="font-size:10px;">${d.n} tema${d.n!==1?'s':''} de agenda activo${d.n!==1?'s':''}</span>`, ev); })
-    .on('pointerleave',()=>{ guia.style('display','none'); ocultarTooltipAgenda(); });
 }
 // Top 3 de temas y de actores que dominan la agenda. Cuota de NOTAS CONSOLIDADAS (un hecho cubierto por varios medios cuenta una vez).
 function _ventanaTopsTL(){
@@ -317,7 +301,7 @@ function _cuotasTL(ini, fin, excl){   // excl: fecha de inicio exclusiva (ventan
   return {temas, actores, total};
 }
 function _pintarTopsTL(){
-  const cont = document.getElementById('tl-tops'); if(!cont) return;
+  const cont = document.getElementById('timeline-tops'); if(!cont) return;
   const v = _ventanaTopsTL(), cur = _cuotasTL(v.ini, v.fin, false), prev = v.prev ? _cuotasTL(v.prev.ini, v.prev.fin, true) : null;
   if(!cur.temas.length){ cont.innerHTML = `<span style="font-size:10px;color:var(--ink-3);">Sin notas de agenda en este periodo (${v.rotulo}).</span>`; return; }
   const flecha = (a,b)=>{ if(!prev) return ''; const d = (a-b)*100; return d>=2 ? ' <span style="color:var(--riesgo-alto)">▲</span>' : d<=-2 ? ' <span style="color:var(--riesgo-bajo)">▼</span>' : ''; };
@@ -342,17 +326,21 @@ function renderTimeline(){
   tlWidth = anchoReal-28;
   const padX = 30;
 
+  _covTL = coberturaTL();
   const meses = mesesSexenioTL();
   const fechaIni = new Date(_inicioPeriodoTL()+'T00:00:00');
   let fechaFin; if(anioFiltroTL){ fechaFin = new Date(anioFiltroTL+'-12-31T23:59:00'); const tope = new Date(Date.now()+2*864e5); if(fechaFin>tope) fechaFin = tope; }
   else if(periodoTL) fechaFin = new Date(Date.now()+2*864e5); else { fechaFin = new Date(meses[meses.length-1]+'-01T00:00:00'); fechaFin.setMonth(fechaFin.getMonth()+1); }
-  tlXScaleBase = d3.scaleTime().domain([fechaIni, fechaFin]).range([padX, tlWidth-padX]);
+  // vista completa: el tramo SIN cobertura (notas sembradas) se comprime al 20 % del ancho para que lo reciente, donde está
+  // el 99 % de la actividad, no quede apilado en unos pocos píxeles. Se avisa en el eje.
+  let dom = [fechaIni, fechaFin], rng = [padX, tlWidth-padX]; tlEjeComprimido = false;
+  if(!anioFiltroTL && !periodoTL && _covTL){ const dc = new Date(_covTL.fecha+'T12:00:00'); if(dc>fechaIni && dc<fechaFin){ dom = [fechaIni, dc, fechaFin]; rng = [padX, padX+0.2*(tlWidth-2*padX), tlWidth-padX]; tlEjeComprimido = true; } }
+  tlXScaleBase = d3.scaleTime().domain(dom).range(rng);
 
-  _covTL = coberturaTL();
   _idsPrincipalTL = new Set(_temasTL().filter(x=>x.principal).map(x=>x.t.id));
   const puntosTL = _puntosTL().map(p=>({...p, xBase: tlXScaleBase(new Date(p.fecha+'T12:00:00'))}));
 
-  tlPuntos = empaquetarZigzagTL(puntosTL, 190);
+  tlPuntos = empaquetarZigzagTL(puntosTL, 184);
 
   // alto DINÁMICO según cuántos niveles hagan falta de verdad — antes era fijo (470px) y con
   // muchos puntos cercanos en fecha, las tarjetas de los niveles más altos se salían del cuadro
@@ -381,29 +369,38 @@ function renderTimeline(){
   // el usuario puede alejar manualmente (rueda del mouse / gesto de pellizco) si hay mucha
   // densidad — el auto-alejado automático se intentó y rompió el zoom, se revirtió
   tlSvg.call(d3.zoom().scaleExtent([0.3,4]).on('zoom', ev=>{
-    const xs = ev.transform.rescaleX(tlXScaleBase); dibujarTL(xs); _dibujarTendenciaTL(xs);
+    dibujarTL(ev.transform.rescaleX(tlXScaleBase));
   }));
 
   dibujarTL(tlXScaleBase);
 
   _montarCabeceraTL(wrapEl, svgEl);
-  _dibujarTendenciaTL(tlXScaleBase);
 }
 
 function dibujarTL(xScaleActual){
   tlContainer.selectAll('*').remove();
   const meses = mesesSexenioTL();
 
+  // tendencia: banda sutil detrás de la línea; su grosor = temas de agenda activos ese día (7 días móviles)
+  { const ini = _inicioPeriodoTL(), fin = _finPeriodoTL(), serie = tlSerieTend.filter(d=>d.fecha>=ini && d.fecha<=fin);
+    if(serie.length>1){ const max = Math.max(...serie.map(d=>d.n),1), k = 26/max, X = d=>xScaleActual(new Date(d.fecha+'T12:00:00'));
+      tlContainer.append('path').datum(serie).attr('d',d3.area().x(X).y0(d=>tlYLinea-k*d.n).y1(d=>tlYLinea+k*d.n).curve(d3.curveMonotoneX))
+        .attr('fill','var(--teal)').attr('fill-opacity',0.17)
+        .on('pointermove',ev=>{ const [mx] = d3.pointer(ev, tlContainer.node()); const fx = xScaleActual.invert(mx).toISOString().slice(0,10); const d = serie.reduce((a,b)=>Math.abs(new Date(b.fecha)-new Date(fx))<Math.abs(new Date(a.fecha)-new Date(fx))?b:a);
+          mostrarTooltipAgenda(`<strong>${d.fecha}</strong><br><span style="font-size:10px;">Tendencia: ${d.n} tema${d.n!==1?'s':''} de agenda activo${d.n!==1?'s':''}</span>`, ev); })
+        .on('pointerleave',ocultarTooltipAgenda);
+      const u = serie[serie.length-1]; tlContainer.append('text').attr('x',Math.min(tlWidth-30, X(u)+6)).attr('y',tlYLinea-k*u.n-4).attr('text-anchor',X(u)>tlWidth-60?'end':'start').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--teal)').attr('fill-opacity',0.8).text(`${u.n} temas activos`); } }
+
   // línea principal: punteada donde la cobertura es parcial (notas sembradas), continua desde la cobertura completa
   const xCov = _covTL ? Math.min(Math.max(30, xScaleActual(new Date(_covTL.fecha+'T12:00:00'))), tlWidth-30) : tlWidth-30;
   if(xCov>30) tlContainer.append('line').attr('x1',30).attr('x2',xCov).attr('y1',tlYLinea).attr('y2',tlYLinea).attr('stroke','var(--ink-3)').attr('stroke-width',2).attr('stroke-dasharray','3 5')
     .append('title').text('Cobertura parcial: antes de esta fecha solo hay notas sembradas, no comparables con el periodo actual');
   tlContainer.append('line').attr('x1',xCov).attr('x2',tlWidth-30).attr('y1',tlYLinea).attr('y2',tlYLinea).attr('stroke','var(--ink-2)').attr('stroke-width',2);
-  if(xCov>140) tlContainer.append('text').attr('x',xCov-6).attr('y',tlYLinea-10).attr('text-anchor','end').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text('cobertura parcial');
+  if(xCov>150) tlContainer.append('text').attr('x',xCov-6).attr('y',tlYLinea-10).attr('text-anchor','end').attr('font-size','8px').attr('font-family','var(--f-mono)').attr('fill','var(--ink-3)').text(tlEjeComprimido ? 'cobertura parcial · escala comprimida' : 'cobertura parcial');
 
   const mesesVis = meses.filter(m=>m>=_inicioPeriodoTL().slice(0,7) && m<=_finPeriodoTL().slice(0,7));
-  const stepMeses = mesesVis.length>16 ? 2 : 1;
-  tlContainer.selectAll('text.tl-mes').data(mesesVis.filter((d,i)=>i%stepMeses===0)).join('text')
+  let _ultX = -1e9; const mesesEtiq = mesesVis.filter(m=>{ const xm = xScaleActual(new Date(m+'-15')); if(xm-_ultX>=58){ _ultX = xm; return true; } return false; });
+  tlContainer.selectAll('text.tl-mes').data(mesesEtiq).join('text')
     .attr('class','tl-mes').attr('x', d=>xScaleActual(new Date(d+'-15'))).attr('y', tlYLinea+34)
     .attr('text-anchor','middle').attr('font-size','11px').attr('font-weight','600').attr('font-family','var(--f-mono)').attr('fill','var(--ink-1)')
     .text(d=>d);
