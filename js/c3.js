@@ -147,32 +147,66 @@ const ACTORES_SIEMPRE_VISIBLES_C3 = {
   'Puebla': ['Alejandro Armenta Mier', 'Sergio Salomón Céspedes Peregrina', 'Ignacio Mier Bañuelos', 'José Chedraui Budib', 'José Luis García Parra'],
 };
 
-function pulsoDeNotasC3(notas){
-  if(!notas.length) return 0;
-  const prom = notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length;
-  return Math.round(prom*10*Math.min(1, notas.length/2));
+// ===== PULSO POR PERCENTIL =====
+// Antes el pulso era el promedio de intensidad del día: siempre caía cerca de 50 en todos los
+// estados y no distinguía un día tranquilo de uno caliente. Ahora el pulso es la posición de la
+// CARGA de hoy dentro de los últimos 30 días de ese mismo estado (50 = día normal, 90+ = de los
+// más fuertes del mes). La carga pondera la intensidad (alta 3, media 1,5, baja 0,5) y el
+// volumen, y las notas sin mención local clara (confianza media) cuentan a la mitad. Opinión y
+// mañanera no cuentan. Comparar cada estado consigo mismo evita que Puebla (muchas notas)
+// aplaste a Campeche (pocas).
+let LOCALIDADES_C3_JS = null;
+function esFinDeSemanaC3(fechaISO){ const g = new Date(fechaISO+'T12:00:00').getDay(); return g===0 || g===6; }
+function _reEscC3(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function confianzaNotaC3(n, estado){
+  if(!LOCALIDADES_C3_JS) return 1;
+  const t = sinAcentos((n.descripcion||'').toLowerCase());
+  if((LOCALIDADES_C3_JS[estado]||[]).some(l=> new RegExp('\\b'+_reEscC3(l)+'\\b').test(t))) return 1;
+  if((ACTORES_C3_JS[estado]||[]).some(([nom,c,ap])=> generarVariantesActorC3(nom,ap).some(v=> t.includes(v)))) return 1;
+  return 0.5;
 }
-
-// Contexto del pulso: hoy contra la propia semana del estado (7 días previos). Un pulso solo
-// no dice si es normal; esto marca cuándo hoy se sale de lo habitual. Con menos de 4 días de
-// datos previos no se afirma nada.
-function contextoPulsoC3(nombre, pulsoHoy, nHoy){
-  const pulsos = [], conteos = [];
-  for(let d=1; d<=7; d++){
+function _cuentaParaPulsoC3(n){
+  const d = n.descripcion||'';
+  if(d.startsWith('[Opinión]')) return false;
+  if(d.startsWith('[Mañanera]') && !d.includes('🔔')) return false;
+  return true;
+}
+const PESO_IMPACTO_C3 = {alto:3, medio:1.5, bajo:0.5};
+function cargaNotasC3(notas, estado){
+  return notas.filter(_cuentaParaPulsoC3).reduce((s,n)=> s + PESO_IMPACTO_C3[clasificarImpacto(n.intensidad)] * confianzaNotaC3(n, estado), 0);
+}
+function pulsoPercentilC3(nombre, notasHoy){
+  const nMedia = notasHoy.filter(n=> confianzaNotaC3(n, nombre) < 1).length;
+  if(!notasHoy.length) return {pulso:0, base:'sin notas', nMedia:0, nHist:0, tipo:'normal', texto:''};
+  const cargaHoy = cargaNotasC3(notasHoy, nombre);
+  const hist = [], histMismoTipo = [], histOtro = [];
+  const hoyFinDeSemana = esFinDeSemanaC3(new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'}));
+  // hoy el día va a medias: se compara contra lo que cada día anterior llevaba A LA MISMA HORA
+  // (hora_registro), no contra el día completo -- si no, de mañana todo saldría "tranquilo".
+  // Los días sin hora_registro (anteriores al 10-sep) no sirven para esta comparación y se omiten.
+  const ahora = new Date().toLocaleTimeString('en-GB', {timeZone:'America/Mexico_City', hour:'2-digit', minute:'2-digit'});
+  for(let d=1; d<=30; d++){
     const dia = new Date(Date.now()-d*864e5).toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
-    const notas = ECOSISTEMA.eventos.filter(e=> e.entidad_c3===nombre && e.fecha===dia);
-    conteos.push(notas.length);
-    if(notas.length) pulsos.push(pulsoDeNotasC3(notas));
+    const delDia = ECOSISTEMA.eventos.filter(e=> e.entidad_c3===nombre && e.fecha===dia);
+    if(!delDia.length || delDia.some(e=> !e.hora_registro)) continue;
+    const c = cargaNotasC3(delDia.filter(e=> e.hora_registro <= ahora), nombre);
+    if(c>0) (esFinDeSemanaC3(dia) === hoyFinDeSemana ? histMismoTipo : histOtro).push(c);
   }
-  if(pulsos.length < 4) return null;
-  const p7 = Math.round(pulsos.reduce((a,b)=>a+b,0)/pulsos.length);
-  const n7 = Math.round(conteos.reduce((a,b)=>a+b,0)/7);
-  const delta = pulsoHoy - p7;
+  // un martes se compara con martes, un domingo con fines de semana: el ritmo noticioso es
+  // distinto. Si no hay al menos 7 días del mismo tipo, se usan todos.
+  hist.push(...(histMismoTipo.length >= 7 ? histMismoTipo : histMismoTipo.concat(histOtro)));
+  if(hist.length < 7){
+    // sin base suficiente: se conserva la fórmula anterior y se avisa que es provisional
+    const prom = notasHoy.reduce((s,n)=>s+Number(n.intensidad),0)/notasHoy.length;
+    return {pulso:Math.round(prom*10*Math.min(1, notasHoy.length/2)), base:'provisional', nMedia, nHist:hist.length, tipo:'normal', texto:''};
+  }
+  const menores = hist.filter(c=>c<cargaHoy).length, iguales = hist.filter(c=>c===cargaHoy).length;
+  const p = Math.round(100*(menores+0.5*iguales)/hist.length);
+  const orden = [...hist].sort((a,b)=>a-b), mediana = orden[Math.floor(orden.length/2)];
   let tipo = 'normal', texto = '';
-  if(nHoy>=2 && delta>=15){ tipo='sube'; texto = '▲ por encima de su semana (+'+delta+')'; }
-  else if(nHoy>=2 && delta<=-15){ tipo='baja'; texto = '▼ por debajo de su semana ('+delta+')'; }
-  else if(nHoy>=6 && nHoy>=n7*1.8){ tipo='volumen'; texto = '▲ más notas de lo habitual (hoy '+nHoy+', semana '+n7+')'; }
-  return {p7, n7, delta, tipo, texto};
+  if(p>=90){ tipo='sube'; texto='▲ de los días más fuertes del mes'; }
+  else if(p<=10){ tipo='baja'; texto='▼ de los más tranquilos del mes'; }
+  return {pulso:p, p, cargaHoy:Math.round(cargaHoy*10)/10, mediana:Math.round(mediana*10)/10, nHist:hist.length, nMedia, tipo, texto, base:'percentil'};
 }
 
 function calcularDatosC3(){
@@ -188,7 +222,8 @@ function calcularDatosC3(){
     // 25 (BAJO), contradiciendo la propia clasificación de esas notas. Con 2 como piso
     // de confianza plena, 2 notas "medio" ahora sí dan un pulso "medio" real y coherente.
     const factorConfianza = Math.min(1, notas.length/2);
-    const pulso = Math.round(promedioIntensidad*10*factorConfianza);
+    const contexto = pulsoPercentilC3(nombre, notas);
+    const pulso = contexto.pulso;
 
     const actoresDelEstado = ACTORES_C3_JS[nombre] || [];
     const conteoActores = {};
@@ -262,7 +297,6 @@ function calcularDatosC3(){
     // forzar contenido de bajo peso a verse como si fuera destacado
     const temasRelevantes = [...notas].filter(n=>Number(n.intensidad)>=6).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,4);
 
-    const contexto = contextoPulsoC3(nombre, pulso, notas.length);
     return { nombre, notas, desglose, pulso, contexto, actoresConMencion, conteoCategoria, temasRelevantes };
   });
 }
@@ -305,7 +339,7 @@ function renderC3(){
             </div>
           </div>
           <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;"><strong style="color:var(--ink-1);">${ent.notas.length}</strong> nota${ent.notas.length!==1?'s':''} · <strong style="color:var(--ink-1);">${ent.actoresConMencion.filter(a=>a.total>0).length}</strong> actor${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'es':''} mencionado${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'s':''}</div>
-          ${ent.contexto ? `<div style="font-family:var(--f-mono);font-size:8.5px;margin:0 0 5px;color:${ent.contexto.tipo==='normal'?'var(--ink-3)':(ent.contexto.tipo==='baja'?'var(--riesgo-bajo)':'var(--riesgo-alto)')};">${ent.contexto.texto || ('semana: '+ent.contexto.p7+' · normal')}</div>` : ''}
+          ${ent.contexto && ent.contexto.base!=='sin notas' ? `<div style="font-family:var(--f-mono);font-size:8.5px;margin:0 0 5px;color:${ent.contexto.tipo==='normal'?'var(--ink-3)':(ent.contexto.tipo==='baja'?'var(--riesgo-bajo)':'var(--riesgo-alto)')};">${ent.contexto.base==='provisional' ? ('provisional · '+ent.contexto.nHist+' días de base') : (ent.contexto.texto || 'frente a su mes: normal')}</div>` : ''}
           <div style="display:flex;gap:3px;height:6px;border-radius:99px;overflow:hidden;background:var(--bg-1);">
             <div style="width:${ent.notas.length?ent.desglose.alto/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-alto);flex-shrink:0;" title="Alto: ${ent.desglose.alto}"></div>
             <div style="width:${ent.notas.length?ent.desglose.medio/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-medio);flex-shrink:0;" title="Medio: ${ent.desglose.medio}"></div>
@@ -479,7 +513,7 @@ function termometroC3(pulso, colorPulso, etiquetaPulso, ctx){
     <div>
       <div style="font-family:var(--f-display);font-size:22px;font-weight:700;color:${colorPulso};line-height:1;">${pulso}</div>
       <div style="font-family:var(--f-mono);font-size:9px;color:${colorPulso};letter-spacing:.03em;margin-top:2px;">PULSO ${etiquetaPulso}</div>
-      ${ctx ? `<div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);margin-top:3px;">Promedio 7 días: ${ctx.p7}${ctx.texto?' · '+ctx.texto:''}</div>` : ''}
+      ${ctx && ctx.base==='percentil' ? `<div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);margin-top:3px;line-height:1.5;">Percentil ${ctx.p} de su último mes · carga ${ctx.cargaHoy} (mediana ${ctx.mediana})${ctx.texto?'<br>'+ctx.texto:''}${ctx.nMedia?'<br>'+ctx.nMedia+' nota'+(ctx.nMedia!==1?'s':'')+' de confianza media (cuentan a la mitad)':''}</div>` : (ctx && ctx.base==='provisional' ? `<div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);margin-top:3px;">Provisional: solo ${ctx.nHist} días de historia</div>` : '')}
     </div>
   </div>`;
 }
@@ -820,5 +854,11 @@ fetch('data/actores_c3.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(j=>
       ACTORES_C3_JS[ent] = j[ent].map(a=> a[2] ? [a[0], a[1], a[2]] : [a[0], a[1]]);
     }
   });
+  if(typeof renderC3==='function' && typeof ECOSISTEMA!=='undefined' && ECOSISTEMA.eventos && document.getElementById('c3-grid-entidades')) renderC3();
+}).catch(()=>{});
+
+fetch('data/localidades_c3.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(j=>{
+  if(!j) return;
+  LOCALIDADES_C3_JS = j;
   if(typeof renderC3==='function' && typeof ECOSISTEMA!=='undefined' && ECOSISTEMA.eventos && document.getElementById('c3-grid-entidades')) renderC3();
 }).catch(()=>{});
