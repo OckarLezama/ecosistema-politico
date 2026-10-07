@@ -147,6 +147,34 @@ const ACTORES_SIEMPRE_VISIBLES_C3 = {
   'Puebla': ['Alejandro Armenta Mier', 'Sergio Salomón Céspedes Peregrina', 'Ignacio Mier Bañuelos', 'José Chedraui Budib', 'José Luis García Parra'],
 };
 
+function pulsoDeNotasC3(notas){
+  if(!notas.length) return 0;
+  const prom = notas.reduce((s,n)=>s+Number(n.intensidad),0)/notas.length;
+  return Math.round(prom*10*Math.min(1, notas.length/2));
+}
+
+// Contexto del pulso: hoy contra la propia semana del estado (7 días previos). Un pulso solo
+// no dice si es normal; esto marca cuándo hoy se sale de lo habitual. Con menos de 4 días de
+// datos previos no se afirma nada.
+function contextoPulsoC3(nombre, pulsoHoy, nHoy){
+  const pulsos = [], conteos = [];
+  for(let d=1; d<=7; d++){
+    const dia = new Date(Date.now()-d*864e5).toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
+    const notas = ECOSISTEMA.eventos.filter(e=> e.entidad_c3===nombre && e.fecha===dia);
+    conteos.push(notas.length);
+    if(notas.length) pulsos.push(pulsoDeNotasC3(notas));
+  }
+  if(pulsos.length < 4) return null;
+  const p7 = Math.round(pulsos.reduce((a,b)=>a+b,0)/pulsos.length);
+  const n7 = Math.round(conteos.reduce((a,b)=>a+b,0)/7);
+  const delta = pulsoHoy - p7;
+  let tipo = 'normal', texto = '';
+  if(nHoy>=2 && delta>=15){ tipo='sube'; texto = '▲ por encima de su semana (+'+delta+')'; }
+  else if(nHoy>=2 && delta<=-15){ tipo='baja'; texto = '▼ por debajo de su semana ('+delta+')'; }
+  else if(nHoy>=6 && nHoy>=n7*1.8){ tipo='volumen'; texto = '▲ más notas de lo habitual (hoy '+nHoy+', semana '+n7+')'; }
+  return {p7, n7, delta, tipo, texto};
+}
+
 function calcularDatosC3(){
   const hoy = new Date().toLocaleDateString('en-CA', {timeZone:'America/Mexico_City'});
   return ORDEN_ENTIDADES_C3.map(nombre=>{
@@ -234,7 +262,8 @@ function calcularDatosC3(){
     // forzar contenido de bajo peso a verse como si fuera destacado
     const temasRelevantes = [...notas].filter(n=>Number(n.intensidad)>=6).sort((a,b)=>Number(b.intensidad)-Number(a.intensidad)).slice(0,4);
 
-    return { nombre, notas, desglose, pulso, actoresConMencion, conteoCategoria, temasRelevantes };
+    const contexto = contextoPulsoC3(nombre, pulso, notas.length);
+    return { nombre, notas, desglose, pulso, contexto, actoresConMencion, conteoCategoria, temasRelevantes };
   });
 }
 
@@ -276,6 +305,7 @@ function renderC3(){
             </div>
           </div>
           <div style="font-size:10.5px;color:var(--ink-3);margin-bottom:6px;"><strong style="color:var(--ink-1);">${ent.notas.length}</strong> nota${ent.notas.length!==1?'s':''} · <strong style="color:var(--ink-1);">${ent.actoresConMencion.filter(a=>a.total>0).length}</strong> actor${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'es':''} mencionado${ent.actoresConMencion.filter(a=>a.total>0).length!==1?'s':''}</div>
+          ${ent.contexto ? `<div style="font-family:var(--f-mono);font-size:8.5px;margin:0 0 5px;color:${ent.contexto.tipo==='normal'?'var(--ink-3)':(ent.contexto.tipo==='baja'?'var(--riesgo-bajo)':'var(--riesgo-alto)')};">${ent.contexto.texto || ('semana: '+ent.contexto.p7+' · normal')}</div>` : ''}
           <div style="display:flex;gap:3px;height:6px;border-radius:99px;overflow:hidden;background:var(--bg-1);">
             <div style="width:${ent.notas.length?ent.desglose.alto/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-alto);flex-shrink:0;" title="Alto: ${ent.desglose.alto}"></div>
             <div style="width:${ent.notas.length?ent.desglose.medio/ent.notas.length*100:0}%;height:100%;background:var(--riesgo-medio);flex-shrink:0;" title="Medio: ${ent.desglose.medio}"></div>
@@ -432,7 +462,7 @@ function colorYEtiquetaPulso(pulso){
   return {color:'var(--riesgo-bajo)', etiqueta:'BAJO'};
 }
 
-function termometroC3(pulso, colorPulso, etiquetaPulso){
+function termometroC3(pulso, colorPulso, etiquetaPulso, ctx){
   // velocímetro tipo arco -- se anima llenándose desde 0 hasta el valor real cada vez que
   // se abre el estado (efecto de "vivo"), usando stroke-dasharray animado. Un arco es más
   // fácil de acertar visualmente que una aguja con física propia, y transmite lo mismo.
@@ -449,6 +479,7 @@ function termometroC3(pulso, colorPulso, etiquetaPulso){
     <div>
       <div style="font-family:var(--f-display);font-size:22px;font-weight:700;color:${colorPulso};line-height:1;">${pulso}</div>
       <div style="font-family:var(--f-mono);font-size:9px;color:${colorPulso};letter-spacing:.03em;margin-top:2px;">PULSO ${etiquetaPulso}</div>
+      ${ctx ? `<div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);margin-top:3px;">Promedio 7 días: ${ctx.p7}${ctx.texto?' · '+ctx.texto:''}</div>` : ''}
     </div>
   </div>`;
 }
@@ -604,7 +635,7 @@ function pintarDetalleC3(ent){
       <div style="font-family:var(--f-display);font-size:16px;font-weight:700;margin-bottom:10px;">${ent.nombre} — pulso de hoy</div>
       <div style="display:flex;height:${ALTURA_PANEL_C3}px;">
         <div style="flex:0 0 22%;background:var(--bg-1);border-radius:var(--radius-s) 0 0 var(--radius-s);padding:10px;overflow-y:auto;box-sizing:border-box;">
-          ${(() => { const {color,etiqueta} = colorYEtiquetaPulso(ent.pulso); return termometroC3(ent.pulso, color, etiqueta); })()}
+          ${(() => { const {color,etiqueta} = colorYEtiquetaPulso(ent.pulso); return termometroC3(ent.pulso, color, etiqueta, ent.contexto); })()}
           <div class="eyebrow" style="margin-bottom:6px;">Categorías de hoy</div>
           ${miniGraficaCategoriaC3(ent.conteoCategoria)}
           <div class="eyebrow" style="margin:14px 0 6px;">Temas relevantes</div>
@@ -717,7 +748,8 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
         <div style="width:${conteoPos/totalParaBarra*100}%;background:var(--riesgo-bajo);"></div>
         <div style="width:${conteoNeu/totalParaBarra*100}%;background:var(--ink-3);"></div>
         <div style="width:${conteoNeg/totalParaBarra*100}%;background:var(--riesgo-alto);"></div>
-      </div>` : '';
+      </div>
+      <div style="font-size:9px;color:var(--ink-3);margin-bottom:2px;">Sentimiento indicativo: se deduce de palabras clave, no es una valoración editorial.</div>` : '';
 
     const filasHoy = notasDeHoySinDuplicar.map(n=>{
       const texto = n.descripcion.replace(/^\[Mañanera\]\s*/,'').replace(/^\[Opinión\]\s*/,'');
@@ -776,3 +808,17 @@ function abrirHistorialActorC3(nombreActor, notasDeHoy){
 }
 
 document.addEventListener('ecosistema:datos-listos', renderC3);
+
+
+// Lista única de actores: el robot escribe data/actores_c3.json desde su propia lista y la
+// página la usa; antes estaban duplicadas en dos archivos y se desfasaban. Si el JSON no
+// carga, se usan las constantes de arriba como respaldo.
+fetch('data/actores_c3.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(j=>{
+  if(!j) return;
+  Object.keys(j).forEach(ent=>{
+    if(ACTORES_C3_JS[ent] !== undefined || ORDEN_ENTIDADES_C3.includes(ent)){
+      ACTORES_C3_JS[ent] = j[ent].map(a=> a[2] ? [a[0], a[1], a[2]] : [a[0], a[1]]);
+    }
+  });
+  if(typeof renderC3==='function' && typeof ECOSISTEMA!=='undefined' && ECOSISTEMA.eventos && document.getElementById('c3-grid-entidades')) renderC3();
+}).catch(()=>{});
