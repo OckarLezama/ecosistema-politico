@@ -1285,6 +1285,7 @@ function vistaReformaHTML(r, todasLasReformas){
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0;margin-top:1px;">
         <span class="riesgo-badge" style="background:${colorEtapa}22;color:${colorEtapa};">${r.etapa_actual}</span>
+        ${r.alta_automatica ? `<span style="font-family:var(--f-mono);font-size:8.5px;color:var(--ink-3);text-align:right;line-height:1.4;">Ficha automática<br>${String(r.alta_automatica).split('|')[1]||''}</span>` : ''}
         ${r.impacto_c3==='1' || r.impacto_c3==='true' ? `<span style="font-family:var(--f-mono);font-size:8.5px;color:var(--riesgo-medio);">Impacto C3</span>` : ''}
         ${dias!==null ? badgeEstancamientoHTML(dias) : ''}
       </div>
