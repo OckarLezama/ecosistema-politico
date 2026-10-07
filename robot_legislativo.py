@@ -490,6 +490,116 @@ def actualizar_reforma(reforma_id, nueva_etapa, actores_clasificados, campos):
             w.writerow(r)
 
 
+
+# ===== ALTA AUTOMÁTICA de reformas nuevas (2026-10-06) =====
+# Solo reformas de peso nacional, con criterio ESTRICTO (precisión sobre cobertura):
+#   1. el titular dice claramente que se PRESENTA/ENVÍA una iniciativa o reforma (no "prepara",
+#      "alista", "propondrá", "anuncia que enviará"),
+#   2. viene del Ejecutivo federal o es reforma constitucional,
+#   3. Agenda ya trata el asunto como tema relevante (tema curado nivel 1 o con actividad
+#      reciente) -- ese es el filtro de agenda nacional del propio sistema,
+#   4. no existe ya en reformas.csv, y pasa el filtro de ruido (federal, no extranjero/local).
+# Máximo 2 altas por semana. Cada alta queda marcada en la columna alta_automatica con la
+# razón y la nota de origen; la página la muestra como "ficha automática".
+VERBOS_PRESENTA_LEG = ['envía iniciativa', 'envió iniciativa', 'envía una iniciativa', 'envió una iniciativa',
+    'presenta iniciativa', 'presentó iniciativa', 'presenta una iniciativa', 'presentó una iniciativa',
+    'envía reforma', 'envió reforma', 'presenta reforma', 'presentó reforma', 'envía al congreso', 'envió al congreso',
+    'envía la reforma', 'envió la reforma', 'presenta la reforma', 'presentó la reforma', 'envía proyecto de reforma',
+    'envía paquete de reformas', 'presenta paquete de reformas']
+FRENOS_PRESENTA_LEG = ['prepara', 'alista', 'propondrá', 'enviará', 'presentará', 'planea', 'analiza', 'podría', 'anunció que']
+ORIGEN_EJECUTIVO_LEG = ['sheinbaum', 'presidenta', 'ejecutivo federal', 'poder ejecutivo']
+TOPE_ALTAS_SEMANA_LEG = 2
+_STOP_ALTA = {'iniciativa', 'reforma', 'presenta', 'presentó', 'envía', 'envió', 'congreso', 'senado', 'diputados',
+    'sheinbaum', 'presidenta', 'federal', 'ley', 'para', 'sobre', 'contra', 'nueva', 'nuevo', 'cámara', 'república'}
+
+def _tokensAlta(txt):
+    return {w for w in re.findall(r'[a-záéíóúñ]{5,}', (txt or '').lower()) if w not in _STOP_ALTA}
+
+_AGENDA_CACHE = None
+def _temasAgendaActivos():
+    """Temas de Agenda con peso: curados nivel 1 o con >=3 eventos en los últimos 14 días."""
+    global _AGENDA_CACHE
+    if _AGENDA_CACHE is not None:
+        return _AGENDA_CACHE
+    activos = []
+    try:
+        with open('data/temas.csv', encoding='utf-8-sig') as f:
+            temas = list(csv.DictReader(f))
+        with open('data/eventos.csv', encoding='utf-8-sig') as f:
+            eventos = list(csv.DictReader(f))
+        limite = (datetime.now(ZONA_MX) - timedelta(days=14)).strftime('%Y-%m-%d')
+        n14 = {}
+        for e in eventos:
+            if (e.get('fecha') or '') >= limite:
+                n14[e['tema_id']] = n14.get(e['tema_id'], 0) + 1
+        for t in temas:
+            if (str(t.get('nivel_relevancia')) == '1' and not t['id'].startswith('auto-')) or n14.get(t['id'], 0) >= 3:
+                activos.append((t['id'], _tokensAlta(t['nombre'] + ' ' + (t.get('resumen') or '')[:200])))
+    except Exception as e:
+        print(f'  (alta automática: no se pudo leer Agenda: {e})')
+    _AGENDA_CACHE = activos
+    return activos
+
+def _temaAgendaDe(titulo):
+    tk = _tokensAlta(titulo)
+    mejor, n_mejor = None, 0
+    for tid, tt in _temasAgendaActivos():
+        n = len(tk & tt)
+        if n > n_mejor:
+            mejor, n_mejor = tid, n
+    return mejor if n_mejor >= 2 else None
+
+def evaluarAltaAutomatica(titulo, texto, reformas):
+    """Devuelve (ok, motivo, tema_id, tipo). No escribe nada."""
+    t = (titulo or '').lower()
+    if not pasaFiltroRuidoLeg(texto):
+        return False, 'ruido/no federal', None, None
+    if not any(v in t for v in VERBOS_PRESENTA_LEG) or any(f in t for f in FRENOS_PRESENTA_LEG):
+        return False, 'no es una presentación clara', None, None
+    ejecutivo = any(o in t for o in ORIGEN_EJECUTIVO_LEG)
+    constitucional = 'constitucional' in t
+    if not (ejecutivo or constitucional):
+        return False, 'ni Ejecutivo ni constitucional', None, None
+    tema = _temaAgendaDe(titulo)
+    if not tema:
+        return False, 'sin tema relevante en Agenda', None, None
+    tk = _tokensAlta(titulo)
+    for r in reformas:
+        if r.get('tema_id_relacionado') == tema or _calzaConReforma(t, r) or \
+                (len(tk) and len(tk & _tokensAlta(r['nombre'])) / len(tk) >= 0.5):
+            return False, 'ya existe en reformas.csv', None, None
+    partes = []
+    if ejecutivo: partes.append('envío del Ejecutivo')
+    if constitucional: partes.append('reforma constitucional')
+    return True, 'tema en Agenda + ' + ' + '.join(partes), tema, ('Reforma constitucional' if constitucional else 'Reforma de ley')
+
+def altasRecientesSemana(reformas):
+    lim = (datetime.now(ZONA_MX) - timedelta(days=7)).strftime('%Y-%m-%d')
+    return sum(1 for r in reformas if (r.get('alta_automatica') or '') and (r.get('fecha_presentacion') or '') >= lim)
+
+def darDeAltaAutomatica(titulo, enlace, fuente_nombre, motivo, tema_id, tipo, campos):
+    reformas = cargar_reformas()
+    hoy = datetime.now(ZONA_MX).strftime('%Y-%m-%d')
+    nombre = re.sub(r'\s+[-–|]\s+[^-–|]{2,40}$', '', titulo).strip()[:170]
+    import unicodedata
+    slug = re.sub(r'[^a-z0-9]+', '-', unicodedata.normalize('NFKD', nombre.lower()).encode('ascii', 'ignore').decode())[:48].strip('-')
+    nuevo = {c: '' for c in campos}
+    nuevo.update({'id': f'auto-{slug}', 'nombre': nombre, 'tipo': tipo, 'etapa_actual': 'Presentada',
+        'fecha_presentacion': hoy, 'fecha_ultima_actualizacion': hoy,
+        'resumen': 'Ficha automática: el robot la detectó por este titular y por el peso del tema en Agenda; falta el detalle del análisis.',
+        'fuente_url': enlace, 'tema_id_relacionado': tema_id, 'historial_etapas': f'Presentada:{hoy}',
+        'alta_automatica': f'{hoy}|{motivo}|{fuente_nombre}'})
+    if 'alta_automatica' not in campos:
+        campos = campos + ['alta_automatica']
+        for r in reformas: r.setdefault('alta_automatica', '')
+    reformas.append(nuevo)
+    with open(RUTA_REFORMAS, 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, extrasaction='ignore', restval='')
+        w.writeheader()
+        for r in reformas: w.writerow(r)
+    return nuevo['id'], campos
+
+
 def procesar():
     reformas = cargar_reformas()
     if not reformas:
@@ -516,6 +626,10 @@ def procesar():
     dirigidas = []
     for r in reformas:
         a = ALIAS_REFORMAS.get(r['id'])
+        if not a and (r.get('alta_automatica') or '') and r.get('etapa_actual') not in ('Publicada', 'Rechazada'):
+            ks = sorted(_tokensAlta(r['nombre']), key=len, reverse=True)[:3]
+            if len(ks) >= 2:
+                a = {'busqueda': ' '.join(ks)}
         if a and r.get('etapa_actual') not in ('Publicada', 'Rechazada'):
             q = urllib.parse.quote(f"({a['busqueda']}) when:7d")
             dirigidas.append({'nombre': f"Búsqueda dirigida: {r['id']}", 'reforma_id': r['id'],
@@ -523,6 +637,7 @@ def procesar():
     stats_fuentes = []
     stats_reformas = {}  # id -> {'notas': n, 'ultima': 'YYYY-MM-DD'}
     descartadas_ruido = 0
+    altas_auto = []
 
     for fuente in FUENTES_OFICIALES_LEG + dirigidas:
         try:
@@ -570,6 +685,14 @@ def procesar():
                 if not pasaFiltroRuidoLeg(texto_completo):
                     ya_vistos.add(enlace)
                     descartadas_ruido += 1
+                    continue
+                ok_alta, motivo_alta, tema_alta, tipo_alta = evaluarAltaAutomatica(titulo, texto_completo, reformas)
+                if ok_alta and altasRecientesSemana(reformas) < TOPE_ALTAS_SEMANA_LEG:
+                    nid, campos = darDeAltaAutomatica(titulo, enlace, fuente['nombre'], motivo_alta, tema_alta, tipo_alta, campos)
+                    reformas = cargar_reformas()
+                    altas_auto.append({'id': nid, 'titular': titulo[:150], 'motivo': motivo_alta, 'url': enlace})
+                    ya_vistos.add(enlace)
+                    print(f'  -> ALTA AUTOMÁTICA: {titulo[:100]} ({motivo_alta})')
                     continue
                 # Solo este caso (no reconocemos a qué reforma corresponde) es
                 # candidato real a REFORMA NUEVA -- aquí sí tiene sentido el
@@ -701,7 +824,7 @@ def procesar():
     estado = {'actualizado': datetime.now(ZONA_MX).strftime('%Y-%m-%d %H:%M'), 'fuentes': stats_fuentes,
               'reformas_vigiladas': vigiladas, 'actualizaciones_etapa': actualizaciones,
               'votos_actualizados': votos_actualizados, 'candidatos_nuevos': candidatos_generados,
-              'candidatos_podados': podadas, 'ruido_descartado': descartadas_ruido, 'alertas': alertas}
+              'candidatos_podados': podadas, 'altas_automaticas': altas_auto, 'ruido_descartado': descartadas_ruido, 'alertas': alertas}
     with open('data/legislativo_estado.json', 'w', encoding='utf-8') as f:
         json.dump(estado, f, ensure_ascii=False, indent=1)
     if sum(f['entradas'] for f in stats_fuentes) == 0:
