@@ -1370,14 +1370,13 @@ function pintarEstadoRobotLeg(cont){
     el.style.cssText = 'font-size:11px;color:var(--ink-3);padding:0 14px 6px;';
     cont.parentNode.insertBefore(el, cont);
   }
+  // solo se muestra cuando hay un problema: si todo va bien, no ocupa espacio
   fetch('data/legislativo_estado.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(e=>{
     if(!e){ el.textContent=''; return; }
-    const notas = (e.reformas_vigiladas||[]).reduce((a,r)=>a+(r.notas_recientes||0),0);
     const sinNotas = (e.fuentes||[]).every(f=>!f.entradas);
-    const alerta = (e.alertas||[]).length;
-    el.innerHTML = 'Robot: vigila '+(e.reformas_vigiladas||[]).length+' reformas en trámite · '+notas+' notas recientes · revisado '+e.actualizado+
-      (sinNotas?' · <b style="color:#b45309">sin notas de ninguna fuente</b>':'')+
-      (alerta && !sinNotas?' · <span style="color:#b45309">'+alerta+' alerta(s): '+(e.alertas||[]).join('; ').replace(/</g,'&lt;')+'</span>':'');
+    el.innerHTML = sinNotas
+      ? '<span style="color:#b45309">Robot sin notas de ninguna fuente (revisado '+e.actualizado+'): puede estar caído o bloqueado.</span>'
+      : '';
   }).catch(()=>{ el.textContent=''; });
 }
 
