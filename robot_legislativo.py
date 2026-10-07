@@ -117,8 +117,8 @@ PALABRAS_POR_ETAPA = {
     ],
     'Publicada': [
         'se publica en el diario oficial', 'publicado en el diario oficial',
-        'publicada en el diario oficial', 'decreto publicado', 'entra en vigor',
-        'dof publica', 'publica decreto', 'ya es ley', 'entró en vigor',
+        'publicada en el diario oficial', 'decreto publicado',
+        'dof publica', 'publica decreto', 'ya es ley',
     ],
     'Rechazada': [
         'desechado por el pleno', 'desechada por el pleno', 'se desecha la iniciativa',
@@ -310,7 +310,7 @@ ALIAS_REFORMAS = {
     'reforma-doble-nacionalidad': {'busqueda': '"doble nacionalidad" OR "nacionalidad única" candidatos reforma',
         'claves': ['doble nacionalidad', 'nacionalidad única', 'nacionalidad unica', 'una sola nacionalidad']},
     'reforma-ley-aduanera-2026': {'busqueda': '"Ley Aduanera" reforma 2026',
-        'claves': ['ley aduanera']},
+        'claves': ['ley aduanera'], 'ademas': ['2026', 'segunda fase', 'fiscalizaci']},
     'ley-catastral-2026': {'busqueda': 'ley catastral OR catastro registral Senado OR Diputados',
         'claves': ['catastral', 'catastro']},
     'reforma-propiedad-industrial-antimemes-2026': {'busqueda': '"ley antimemes" OR "propiedad industrial" Diputados Senado',
@@ -332,7 +332,10 @@ def _clavesDeReforma(r):
 def _calzaConReforma(texto_norm, r):
     claves = _clavesDeReforma(r)
     if r['id'] in ALIAS_REFORMAS:
-        return any(c in texto_norm for c in claves)
+        if not any(c in texto_norm for c in claves):
+            return False
+        ademas = ALIAS_REFORMAS[r['id']].get('ademas')
+        return (not ademas) or any(x in texto_norm for x in ademas)
     return len(claves) >= 2 and sum(1 for c in claves if c in texto_norm) >= 2
 
 def identificar_reforma(texto_completo, reformas):
@@ -606,6 +609,24 @@ def procesar():
                 votos = extraerVotos(texto_completo)
                 if votos:
                     votos_detectados.setdefault(reforma['id'], []).append((votos, fuente['nombre'], enlace))
+
+            # FIX 2026-10-06 (falsos avances reales: "Publicada" por un "entrará en vigor 2028" y
+            # "Pleno" por notas de la reforma aduanera 2025): la prensa NO puede declarar
+            # Aprobada/Publicada, y desde prensa solo se avanza UNA etapa a la vez; lo demás
+            # va a revisión. Solo los feeds con site: oficial cuentan como fuente oficial.
+            es_oficial = fuente['nombre'] in ('Google Noticias DOF', 'Google Noticias Gaceta Parlamentaria', 'Google Noticias Senado')
+            salto = indice_etapa(etapa_detectada) - indice_etapa(reforma['etapa_actual'])
+            if esAvanceValido(reforma['etapa_actual'], etapa_detectada) and not es_oficial and \
+                    (etapa_detectada in ('Aprobada', 'Publicada') or salto > 1):
+                guardar_candidato_legislativo({
+                    'fecha_detectado': hoy_mx.strftime('%Y-%m-%d'), 'nombre_reforma_o_texto': reforma['nombre'],
+                    'etapa_sugerida': etapa_detectada, 'fuente_url': enlace, 'fuente_nombre': fuente['nombre'],
+                    'motivo_revision': f'Avance a {etapa_detectada} detectado solo en prensa (salto de {salto} etapa(s)) -- requiere fuente oficial o confirmación',
+                    'puntaje_prioridad': 0,
+                })
+                ya_vistos.add(enlace)
+                candidatos_generados += 1
+                continue
 
             if not esAvanceValido(reforma['etapa_actual'], etapa_detectada):
                 guardar_candidato_legislativo({
