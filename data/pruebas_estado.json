@@ -1,10 +1,11 @@
 {
- "generado": "2026-10-07T03:00:25.093Z",
- "total": 14,
+ "generado": "2026-10-07T03:12:56.675Z",
+ "total": 32,
  "ok": true,
  "fallas": [],
  "advertencias": [
-  "T1 eventos huérfanos (tema ya fusionado) ≤5% (16%)"
+  "T1 eventos huérfanos (tema ya fusionado) ≤5% (16%)",
+  "T8 Estados: todas las menciones tienen fecha AAAA-MM-DD"
  ],
  "bloqueante": false
 }
