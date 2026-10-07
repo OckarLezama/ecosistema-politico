@@ -11,7 +11,7 @@ try {
   const ctx = { console, fetch: () => new Promise(() => {}), Math, URL, Set, Map, ECOSISTEMA: { eventos, temas, temaActores: R('tema_actores.csv'), actores }, document: { getElementById: () => null, addEventListener() {} }, window: {}, d3: {} };
   vm.createContext(ctx); vm.runInContext(fs.readFileSync(path.join(root, 'js/fuentes.js'), 'utf8'), ctx);
   vm.runInContext('const getTema=id=>ECOSISTEMA.temas.find(t=>t.id===id), getActor=id=>ECOSISTEMA.actores.find(a=>a.id===id);', ctx);
-  vm.runInContext(fs.readFileSync(path.join(root, 'js/agenda.js'), 'utf8') + ';globalThis.__p=calcularPuntosInflexion;globalThis.__pc=_poissonCola;globalThis.__m=_mencionesActor;globalThis.__en=enNotas;', ctx);
+  vm.runInContext(fs.readFileSync(path.join(root, 'js/agenda.js'), 'utf8') + ';globalThis.__p=calcularPuntosInflexion;globalThis.__pc=_poissonCola;globalThis.__m=_mencionesActor;globalThis.__en=enNotas;globalThis.__ev=_eventosQueMencionanActor;globalThis.__fus=_mapaFusionActores;', ctx);
   vm.runInContext(fs.readFileSync(path.join(root, 'js/timeline.js'), 'utf8') + ';globalThis.__cov=coberturaTL;globalThis.__ptl=_puntosTL;', ctx);
   // T1 datos
   T('T1 hay eventos y temas', eventos.length > 50 && temas.length > 5);
@@ -71,6 +71,18 @@ try {
     const sinNotas = ESTADOS.filter(es => { const fs_ = Object.values(sal).filter(f => (f.entidades || []).length === 1 && f.entidades[0] === es && Object.keys(f.dias).length >= 5); return fs_.length > 0 && fs_.every(f => Object.keys(f.dias).sort().slice(-7).every(k => f.dias[k].aceptadas === 0)); });
     T('T10 Fuentes: cada estado tiene alguna fuente propia que aportó notas esta semana (' + sinNotas.join(', ') + ')', sinNotas.length === 0, false);
   } catch (e) { /* todavía no existe fuentes_salud.json: se crea en la primera vuelta del robot */ }
+  // T11 Actores: la ficha debe mostrar TODAS las notas que nombran al actor (no solo las de temas ligados)
+  const sa = x => String(x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const limpio = n => sa(n.replace(/\(.*?\)/g, ' ').replace(/['"“”‘’][^'"“”‘’]+['"“”‘’]/g, ' ')).replace(/\s+/g, ' ').trim();
+  const textos = eventos.map(e => sa(e.descripcion));
+  const vacios = actores.filter(a => { const n = limpio(a.nombre); return n.split(' ').length >= 2 && textos.some(t => t.includes(n)) && ctx.__ev(a.id).length === 0; }).map(a => a.id);
+  T('T11 Actores: ningún actor nombrado completo en las notas sale con ficha vacía (' + vacios.slice(0, 6).join(', ') + (vacios.length > 6 ? '…' : '') + ')', vacios.length === 0, false);
+  const alito = actores.find(a => a.id === 'alito');
+  if (alito && textos.some(t => /\balito\b/.test(t))) T('T11 Actores: «Alito» encuentra sus notas', ctx.__ev('alito').length > 0, false);
+  const evOrig = ctx.ECOSISTEMA.eventos;
+  ctx.ECOSISTEMA.eventos = [{ descripcion: 'Pío López Obrador visita Palenque' }, { descripcion: 'López Obrador reaparece' }];
+  const nA = ctx.__ev('amlo').length; ctx.ECOSISTEMA.eventos = evOrig;
+  T('T11 Actores: «López Obrador» es AMLO y «Pío López Obrador» no (' + nA + ')', nA === 1);
 } catch (e) { total++; fallas.push('El arnés de pruebas falló: ' + e.message); }
 const out = { generado: new Date().toISOString(), total, ok: fallas.length === 0, fallas, advertencias: adv, bloqueante: fallas.length > 0 };
 fs.writeFileSync(D('pruebas_estado.json'), JSON.stringify(out, null, 1));
