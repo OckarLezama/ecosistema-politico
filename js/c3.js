@@ -64,6 +64,7 @@ const ACTORES_C3_JS = {
     ['Xitlalic Ceja','Diputada local'],
     ['Rodrigo Abdala Dartigues','Morena'], ['Sergio Salomón Céspedes Peregrina','Exgobernador'],
     ['Mario Riestra Piña','PAN'],
+    ['Eduardo Castillo López','Operador político de Morena',['Lalo Castillo','Eduardo Castillo']], ['Carlos Evangelista','Operador político de Morena'],
   ],
 };
 
