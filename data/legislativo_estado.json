@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-06 18:57",
+ "actualizado": "2026-10-06 19:08",
  "fuentes": [
   {
    "nombre": "Google Noticias DOF",
@@ -13,27 +13,27 @@
   },
   {
    "nombre": "Google Noticias Senado",
-   "entradas": 7,
+   "entradas": 8,
    "error": ""
   },
   {
    "nombre": "Google Noticias Congreso (prensa)",
-   "entradas": 88,
+   "entradas": 89,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: ley-egresos-2027",
-   "entradas": 42,
+   "entradas": 43,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-doble-nacionalidad",
-   "entradas": 90,
+   "entradas": 89,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-aduanera-2026",
-   "entradas": 45,
+   "entradas": 46,
    "error": ""
   },
   {
@@ -65,8 +65,8 @@
    "id": "reforma-doble-nacionalidad",
    "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas a Presidencia y gubernaturas",
    "etapa": "Aprobada",
-   "notas_recientes": 0,
-   "ultima_nota": "",
+   "notas_recientes": 3,
+   "ultima_nota": "2026-10-06",
    "dias_sin_actualizar": 0
   },
   {
@@ -104,8 +104,9 @@
  ],
  "actualizaciones_etapa": 0,
  "votos_actualizados": 0,
- "candidatos_nuevos": 2,
+ "candidatos_nuevos": 4,
  "candidatos_podados": 0,
- "ruido_descartado": 59,
+ "altas_automaticas": [],
+ "ruido_descartado": 60,
  "alertas": []
 }
