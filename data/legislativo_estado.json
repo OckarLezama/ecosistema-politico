@@ -1,54 +1,54 @@
 {
- "actualizado": "2026-10-06 19:08",
+ "actualizado": "2026-10-07 14:01",
  "fuentes": [
   {
    "nombre": "Google Noticias DOF",
-   "entradas": 73,
+   "entradas": 62,
    "error": ""
   },
   {
    "nombre": "Google Noticias Gaceta Parlamentaria",
-   "entradas": 0,
+   "entradas": 1,
    "error": ""
   },
   {
    "nombre": "Google Noticias Senado",
-   "entradas": 8,
+   "entradas": 14,
    "error": ""
   },
   {
    "nombre": "Google Noticias Congreso (prensa)",
-   "entradas": 89,
+   "entradas": 100,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: ley-egresos-2027",
-   "entradas": 43,
+   "entradas": 44,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-doble-nacionalidad",
-   "entradas": 89,
+   "entradas": 85,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-aduanera-2026",
-   "entradas": 46,
-   "error": ""
-  },
-  {
-   "nombre": "Búsqueda dirigida: ley-catastral-2026",
-   "entradas": 21,
-   "error": ""
-  },
-  {
-   "nombre": "Búsqueda dirigida: reforma-propiedad-industrial-antimemes-2026",
    "entradas": 51,
    "error": ""
   },
   {
+   "nombre": "Búsqueda dirigida: ley-catastral-2026",
+   "entradas": 46,
+   "error": ""
+  },
+  {
+   "nombre": "Búsqueda dirigida: reforma-propiedad-industrial-antimemes-2026",
+   "entradas": 50,
+   "error": ""
+  },
+  {
    "nombre": "Búsqueda dirigida: reforma-ley-educacion-celulares-escuelas-2025",
-   "entradas": 7,
+   "entradas": 8,
    "error": ""
   }
  ],
@@ -57,41 +57,41 @@
    "id": "ley-egresos-2027",
    "nombre": "Ley de Egresos de la Federación 2027",
    "etapa": "Presentada",
-   "notas_recientes": 0,
-   "ultima_nota": "",
-   "dias_sin_actualizar": 28
+   "notas_recientes": 1,
+   "ultima_nota": "2026-10-07",
+   "dias_sin_actualizar": 29
   },
   {
    "id": "reforma-doble-nacionalidad",
    "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas a Presidencia y gubernaturas",
    "etapa": "Aprobada",
-   "notas_recientes": 3,
-   "ultima_nota": "2026-10-06",
-   "dias_sin_actualizar": 0
+   "notas_recientes": 53,
+   "ultima_nota": "2026-10-07",
+   "dias_sin_actualizar": 1
   },
   {
    "id": "reforma-ley-aduanera-2026",
    "nombre": "Reforma a la Ley Aduanera 2026 (segunda fase, esquemas de fiscalización)",
    "etapa": "Presentada",
-   "notas_recientes": 0,
-   "ultima_nota": "",
-   "dias_sin_actualizar": 28
+   "notas_recientes": 1,
+   "ultima_nota": "2026-10-07",
+   "dias_sin_actualizar": 29
   },
   {
    "id": "ley-catastral-2026",
    "nombre": "Ley General para el Fortalecimiento y Armonización Catastral y Registral",
    "etapa": "Pleno",
-   "notas_recientes": 0,
-   "ultima_nota": "",
-   "dias_sin_actualizar": 11
+   "notas_recientes": 41,
+   "ultima_nota": "2026-10-07",
+   "dias_sin_actualizar": 12
   },
   {
    "id": "reforma-propiedad-industrial-antimemes-2026",
    "nombre": "Reforma al Código Penal Federal y a la Ley Federal de Protección a la Propiedad Industrial (\"Ley Antimemes\")",
    "etapa": "Pleno",
-   "notas_recientes": 0,
-   "ultima_nota": "",
-   "dias_sin_actualizar": 6
+   "notas_recientes": 4,
+   "ultima_nota": "2026-10-07",
+   "dias_sin_actualizar": 7
   },
   {
    "id": "reforma-ley-educacion-celulares-escuelas-2025",
@@ -99,14 +99,14 @@
    "etapa": "Presentada",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 15
+   "dias_sin_actualizar": 16
   }
  ],
  "actualizaciones_etapa": 0,
  "votos_actualizados": 0,
- "candidatos_nuevos": 4,
- "candidatos_podados": 0,
+ "candidatos_nuevos": 164,
+ "candidatos_podados": 50,
  "altas_automaticas": [],
- "ruido_descartado": 60,
+ "ruido_descartado": 52,
  "alertas": []
 }
