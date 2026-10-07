@@ -25,7 +25,7 @@ jobs:
         run: |
           git config user.name "robot-legislativo"
           git config user.email "robot@ecosistema-politico.local"
-          git add data/reformas.csv data/candidatos_legislativos.csv
+          git add data/reformas.csv data/candidatos_legislativos.csv data/legislativo_estado.json
           if git diff --staged --quiet; then
             echo "Sin cambios que publicar"
           else
