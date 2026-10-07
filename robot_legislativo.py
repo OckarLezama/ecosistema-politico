@@ -696,8 +696,6 @@ def procesar():
             dias = None
         vigiladas.append({'id': r['id'], 'nombre': r['nombre'], 'etapa': r['etapa_actual'], 'notas_recientes': st['notas'],
                           'ultima_nota': st['ultima'], 'dias_sin_actualizar': dias})
-        if dias is not None and dias >= 21:
-            alertas.append(f'{r["nombre"]}: {dias} días sin actualización de etapa')
     if sum(f['entradas'] for f in stats_fuentes) == 0:
         alertas.append('Ninguna fuente devolvió notas: el robot no está viendo noticias (feeds caídos o bloqueados)')
     estado = {'actualizado': datetime.now(ZONA_MX).strftime('%Y-%m-%d %H:%M'), 'fuentes': stats_fuentes,
