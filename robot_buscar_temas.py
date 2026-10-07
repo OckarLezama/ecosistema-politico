@@ -11,7 +11,7 @@ proponer, no decidir solo.
 Cómo correrlo: python3 robot_buscar_temas.py
 Requiere: pip install feedparser --break-system-packages
 """
-from entidades_c3 import validar_entidad, es_medio_local_titulo, LOCALIDADES_C3
+from entidades_c3 import validar_entidad, es_medio_local_titulo, LOCALIDADES_C3, mejor_entidad
 import csv
 import feedparser
 import hashlib
@@ -141,6 +141,9 @@ _SITIOS_LOCALES = [
     ('presente.mx', ['Tabasco']),
     ('diariocambio.com.mx', ['Puebla']), ('intoleranciadiario.com', ['Puebla']), ('retodiario.mx', ['Puebla']),
     ('e-consulta.com', ['Puebla']),
+    ('oem.com.mx/elsoldepuebla', ['Puebla']), ('elpopular.mx', ['Puebla']),
+    ('lajornadadeoriente.com.mx', ['Puebla']), ('municipiospuebla.mx', ['Puebla']),
+    ('periodicocentral.mx', ['Puebla']),
 ]
 _ACTORES_2O_NIVEL = [
     ('Pablo Gutiérrez Lazarus', 'Campeche'), ('Aníbal Ostoa', 'Campeche'), ('Biby Rabelo', 'Campeche'),
@@ -408,6 +411,8 @@ ACTORES_C3 = {
         ('Rodrigo Abdala Dartigues', 'Morena', None),
         ('Sergio Salomón Céspedes Peregrina', 'Exgobernador', None),
         ('Mario Riestra Piña', 'PAN', None),
+        ('Eduardo Castillo López', 'Operador político de Morena', ['Lalo Castillo', 'Eduardo Castillo']),
+        ('Carlos Evangelista', 'Operador político de Morena', None),
     ],
 }
 
@@ -446,12 +451,10 @@ def guardarActoresC3JSON():
 
 
 def buscarEntidadC3PorActorMencionado(texto_completo):
+    """Estado con más evidencia (localidades/gentilicios + actores); '' si hay empate."""
     texto_sin_acentos = sin_acentos(texto_completo)
-    for entidad, actores in ACTORES_C3.items():
-        for nombre, cargo, apodo in actores:
-            if any(v in texto_sin_acentos for v in variantes_actor_c3(nombre, apodo)):
-                return entidad
-    return ''
+    por_ent = {ent: [variantes_actor_c3(n, ap) for n, c, ap in actores] for ent, actores in ACTORES_C3.items()}
+    return mejor_entidad(texto_sin_acentos, por_ent)
 
 
 PALABRAS_CLAVE = {
