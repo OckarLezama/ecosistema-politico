@@ -11,7 +11,7 @@ proponer, no decidir solo.
 Cómo correrlo: python3 robot_buscar_temas.py
 Requiere: pip install feedparser --break-system-packages
 """
-from entidades_c3 import validar_entidad
+from entidades_c3 import validar_entidad, es_medio_local_titulo, LOCALIDADES_C3
 import csv
 import feedparser
 import hashlib
@@ -116,6 +116,77 @@ FUENTES_RSS = [
     {'nombre': 'Google Noticias Carlos Ulloa', 'url': 'https://news.google.com/rss/search?q=%22Carlos+Ulloa%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Quintana Roo']},
     {'nombre': 'Google Noticias Alejandro Armenta', 'url': 'https://news.google.com/rss/search?q=%22Alejandro+Armenta%22+when:1d&hl=es-419&gl=MX&ceid=MX:es-419', 'entidades_c3': ['Puebla']},
 ]
+
+# ===== FUENTES LOCALES ADICIONALES (2026-10-07) =====
+# Diagnóstico de 14 días: solo 6 medios locales aportaban notas (Oaxaca: Imparcial; Tabasco:
+# Tabasco Hoy; Campeche: Campeche Hoy; Yucatán: Diario de Yucatán; Puebla: Angulo 7; Veracruz:
+# Diario de Xalapa/OEM). Quintana Roo y Chiapas dependían casi 100% de Google Noticias, y
+# Por Esto, NVI, Notiver, Cuarto Poder, Presente y e-consulta no aportaron nada. Google Noticias
+# acepta "site:" aunque el medio no tenga RSS, así que se consulta cada medio por esa vía.
+# Estas consultas van cada 30 min (cada_min) para no saturar a Google Noticias.
+def _gn(q):
+    return 'https://news.google.com/rss/search?q=' + urllib.parse.quote(q, safe=':()') + '&hl=es-419&gl=MX&ceid=MX:es-419'
+
+_SITIOS_LOCALES = [
+    ('tribunacampeche.com', ['Campeche']), ('cronicacampeche.com', ['Campeche']),
+    ('lajornadamaya.mx', ['Yucatán', 'Campeche', 'Quintana Roo']), ('poresto.com', ['Yucatán', 'Campeche', 'Quintana Roo']),
+    ('reporteroshoy.mx', ['Yucatán']), ('larevista.com.mx', ['Yucatán']), ('yucatanahora.mx', ['Yucatán']),
+    ('sipse.com', ['Yucatán', 'Quintana Roo']),
+    ('quequi.com.mx', ['Quintana Roo']), ('noticaribe.com.mx', ['Quintana Roo']),
+    ('quintanaroo.quadratin.com.mx', ['Quintana Roo']),
+    ('chiapasparalelo.com', ['Chiapas']), ('elheraldodechiapas.com.mx', ['Chiapas']),
+    ('cuartopoder.mx', ['Chiapas']), ('diariodelsur.com.mx', ['Chiapas']),
+    ('nvinoticias.com', ['Oaxaca']), ('pagina3.mx', ['Oaxaca']), ('oaxaca.quadratin.com.mx', ['Oaxaca']),
+    ('alcalorpolitico.com', ['Veracruz']), ('notiver.com.mx', ['Veracruz']),
+    ('presente.mx', ['Tabasco']),
+    ('diariocambio.com.mx', ['Puebla']), ('intoleranciadiario.com', ['Puebla']), ('retodiario.mx', ['Puebla']),
+    ('e-consulta.com', ['Puebla']),
+]
+_ACTORES_2O_NIVEL = [
+    ('Pablo Gutiérrez Lazarus', 'Campeche'), ('Aníbal Ostoa', 'Campeche'), ('Biby Rabelo', 'Campeche'),
+    ('Eliseo Fernández Montúfar', 'Campeche'), ('Cecilia Patrón', 'Yucatán'), ('Mauricio Vila', 'Yucatán'),
+    ('Sasil de León', 'Chiapas'), ('Susana Harp', 'Oaxaca'), ('Adán Augusto López', 'Tabasco'),
+    ('Ignacio Mier', 'Puebla'), ('Pepe Chedraui', 'Puebla'), ('Miguel Ángel Yunes', 'Veracruz'),
+]
+FUENTES_RSS += [
+    {'nombre': 'GN site:' + d, 'url': _gn('site:' + d + ' when:1d'), 'entidades_c3': ents, 'medio_local': True, 'cada_min': 30}
+    for d, ents in _SITIOS_LOCALES
+] + [
+    {'nombre': 'GN actor: ' + a, 'url': _gn('"' + a + '" when:1d'), 'entidades_c3': [e], 'cada_min': 30}
+    for a, e in _ACTORES_2O_NIVEL
+]
+
+# ===== SALUD DE FUENTES =====
+RUTA_SALUD = 'data/fuentes_salud.json'
+
+def cargarSaludFuentes():
+    import json
+    try:
+        with open(RUTA_SALUD, encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def guardarSaludFuentes(salud, stats_run, aceptadas_run, fuentes, hoy):
+    """Por fuente y día: entradas leídas, notas de hoy y notas aceptadas. Sirve para detectar
+    feeds muertos (0 notas durante días) en vez de enterarse meses después."""
+    import json
+    dia = hoy.strftime('%Y-%m-%d')
+    for f in fuentes:
+        n = f['nombre']
+        if n not in stats_run:
+            continue
+        reg = salud.setdefault(n, {'entidades': f.get('entidades_c3') or [], 'dias': {}})
+        reg['entidades'] = f.get('entidades_c3') or []
+        reg['ultima_consulta'] = datetime.now(ZONA_MX).isoformat(timespec='minutes')
+        d = reg['dias'].setdefault(dia, {'entradas': 0, 'hoy': 0, 'aceptadas': 0})
+        d['entradas'] = max(d['entradas'], stats_run[n]['entradas'])
+        d['hoy'] = max(d['hoy'], stats_run[n]['hoy'])
+        d['aceptadas'] += aceptadas_run.get(n, 0)
+        for viejo in sorted(reg['dias'])[:-21]:
+            del reg['dias'][viejo]
+    with open(RUTA_SALUD, 'w', encoding='utf-8') as fh:
+        json.dump(salud, fh, ensure_ascii=False, indent=0)
 
 def noCuentaParaEscalar(descripcion):
     if descripcion.startswith('[Opinión]'):
@@ -347,6 +418,18 @@ INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estad
     'fiscalía general del estado', 'fiscalia general del estado', 'poder judicial',
     'secretaría de seguridad', 'secretaria de seguridad', 'ayuntamiento', 'cabildo',
     'universidad autónoma', 'universidad autonoma']
+
+def guardarLocalidadesC3JSON():
+    import json
+    try:
+        with open('data/localidades_c3.json', encoding='utf-8') as f:
+            if json.load(f) == LOCALIDADES_C3:
+                return
+    except Exception:
+        pass
+    with open('data/localidades_c3.json', 'w', encoding='utf-8') as f:
+        json.dump(LOCALIDADES_C3, f, ensure_ascii=False, indent=1)
+
 
 def guardarActoresC3JSON():
     """Escribe data/actores_c3.json: la página usa esta misma lista (una sola fuente)."""
@@ -997,8 +1080,18 @@ def buscar_candidatos():
     incrementos_cobertura_existente = {}
     LIMITE_POR_FUENTE = 20
 
+    salud_fuentes = cargarSaludFuentes()
+    stats_run = {}
     for fuente in FUENTES_RSS:
+        if fuente.get('cada_min'):
+            _ult = (salud_fuentes.get(fuente['nombre']) or {}).get('ultima_consulta')
+            try:
+                if _ult and (datetime.now(ZONA_MX) - datetime.fromisoformat(_ult)).total_seconds() < fuente['cada_min'] * 60:
+                    continue
+            except Exception:
+                pass
         feed = feedparser.parse(fuente['url'])
+        stats_run[fuente['nombre']] = {'entradas': len(feed.entries), 'hoy': 0}
         for entrada in feed.entries:
             if conteo_hoy_por_fuente.get(fuente['nombre'], 0) >= LIMITE_POR_FUENTE:
                 continue
@@ -1012,6 +1105,7 @@ def buscar_candidatos():
                 fecha_pub_dt = datetime(*fecha_pub[:6], tzinfo=timezone.utc).astimezone(ZONA_MX).date()
             if fecha_pub_dt != hoy_mx:
                 continue
+            stats_run[fuente['nombre']]['hoy'] += 1
 
             titulo_original = entrada.get('title', '')
             texto_completo = (titulo_original + ' ' + (entrada.get('description') or '')).lower()
@@ -1038,7 +1132,7 @@ def buscar_candidatos():
             if entidad_c3_nota:
                 _vars = [v for n, c, ap in ACTORES_C3.get(entidad_c3_nota, []) for v in variantes_actor_c3(n, ap)]
                 entidad_c3_nota = validar_entidad(entidad_c3_nota, titulo_original + ' ' + (entrada.get('description') or ''),
-                                                  'news.google.com' not in fuente['url'], _vars)
+                                                  ('news.google.com' not in fuente['url']) or fuente.get('medio_local') or es_medio_local_titulo(titulo_original), _vars)
             if enlace in ya_procesados_eventos:
                 continue
             titulo_normalizado = titulo_original.strip().lower()
@@ -1212,6 +1306,7 @@ def buscar_candidatos():
                 puntos_incluidos += 1
         print(f'  Mañanera de Hoy: {puntos_incluidos}/{len(puntos_manan)} puntos guardados como evento.')
 
+    guardarSaludFuentes(salud_fuentes, stats_run, conteo_hoy_por_fuente, FUENTES_RSS, hoy_mx)
     return eventos_nuevos, candidatos_sin_tema, incrementos_cobertura_existente
 
 
@@ -1254,6 +1349,7 @@ def guardar_candidatos(nuevos):
 if __name__ == '__main__':
     reparar_encabezado_eventos()
     guardarActoresC3JSON()
+    guardarLocalidadesC3JSON()
     eventos_nuevos, candidatos_sin_tema, incrementos_cobertura_existente = buscar_candidatos()
 
     for ev in eventos_nuevos:

@@ -63,6 +63,14 @@ try {
   } catch (e) { adv.push('T9 Legislativo: no se pudo leer data/legislativo_estado.json'); total++; }
   const altas7 = ref.filter(r => r.alta_automatica && r.fecha_presentacion >= hace(7)).length;
   T('T9 Legislativo: altas automáticas de la semana ≤ 2 (' + altas7 + ')', altas7 <= 2, false);
+  // T10 Salud de fuentes (no bloquea): una fuente que devuelve 0 entradas 3 días seguidos está caída
+  try {
+    const sal = JSON.parse(fs.readFileSync(D('fuentes_salud.json'), 'utf8'));
+    const muertas = Object.entries(sal).filter(([n, f]) => { const d = Object.keys(f.dias).sort().slice(-3); return d.length >= 3 && d.every(k => f.dias[k].entradas === 0); }).map(([n]) => n);
+    T('T10 Fuentes: ninguna caída 3 días seguidos (caídas: ' + muertas.slice(0, 6).join(', ') + (muertas.length > 6 ? '…' : '') + ')', muertas.length === 0, false);
+    const sinNotas = ESTADOS.filter(es => { const fs_ = Object.values(sal).filter(f => (f.entidades || []).length === 1 && f.entidades[0] === es && Object.keys(f.dias).length >= 5); return fs_.length > 0 && fs_.every(f => Object.keys(f.dias).sort().slice(-7).every(k => f.dias[k].aceptadas === 0)); });
+    T('T10 Fuentes: cada estado tiene alguna fuente propia que aportó notas esta semana (' + sinNotas.join(', ') + ')', sinNotas.length === 0, false);
+  } catch (e) { /* todavía no existe fuentes_salud.json: se crea en la primera vuelta del robot */ }
 } catch (e) { total++; fallas.push('El arnés de pruebas falló: ' + e.message); }
 const out = { generado: new Date().toISOString(), total, ok: fallas.length === 0, fallas, advertencias: adv, bloqueante: fallas.length > 0 };
 fs.writeFileSync(D('pruebas_estado.json'), JSON.stringify(out, null, 1));

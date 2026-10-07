@@ -12,7 +12,7 @@ Uso: python3 corregir_entidades_c3.py
 import csv
 import json
 from datetime import datetime, timedelta, timezone
-from entidades_c3 import validar_entidad, es_dominio_local
+from entidades_c3 import validar_entidad, es_dominio_local, es_medio_local_titulo
 
 try:
     from robot_buscar_temas import ACTORES_C3, variantes_actor_c3
@@ -37,7 +37,7 @@ def main():
         ent = ev.get('entidad_c3') or ''
         if not ent or (ev.get('fecha') or '') < lim:
             continue
-        ok = validar_entidad(ent, ev.get('descripcion', ''), es_dominio_local(ev.get('fuente_url')), vars_por_ent.get(ent, []))
+        ok = validar_entidad(ent, ev.get('descripcion', ''), es_dominio_local(ev.get('fuente_url')) or es_medio_local_titulo(ev.get('descripcion')), vars_por_ent.get(ent, []))
         if not ok:
             ev['entidad_c3'] = ''
             limpiados.add(ev['id'])
