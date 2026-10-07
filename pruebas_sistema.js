@@ -39,6 +39,30 @@ try {
   T('T7 Timeline: se detecta la fecha de cobertura completa', !!cov, false);
   T('T7 Timeline: todo tema de Agenda aparece en el Timeline', temas.filter(t => ctx.__en(t)).every(t => ptl.some(p => p.tema.id === t.id)), false);
   T('T7 Timeline: ningún punto fuera del eje de fechas', ptl.every(p => p.fecha >= ini && p.fecha <= new Date(Date.now() + 864e5).toISOString().slice(0, 10)), false);
+  // T8 Estados (no bloquean: solo avisan)
+  const ESTADOS = ['Veracruz', 'Oaxaca', 'Chiapas', 'Tabasco', 'Campeche', 'Yucatán', 'Quintana Roo', 'Puebla'];
+  const hace = n => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
+  ESTADOS.forEach(es => T('T8 Estados: ' + es + ' tiene notas en los últimos 3 días', eventos.some(e => e.entidad_c3 === es && e.fecha >= hace(3)), false));
+  try {
+    const ac = JSON.parse(fs.readFileSync(D('actores_c3.json'), 'utf8'));
+    T('T8 Estados: lista única de actores con los 8 estados', ESTADOS.every(es => (ac[es] || []).length > 0), false);
+    T('T8 Estados: sin actores duplicados dentro de un estado', Object.values(ac).every(l => new Set(l.map(a => a[0])).size === l.length), false);
+  } catch (e) { adv.push('T8 Estados: no se pudo leer data/actores_c3.json'); total++; }
+  const men = R('menciones_actores_c3.csv');
+  T('T8 Estados: todas las menciones tienen fecha AAAA-MM-DD', men.every(m => /^\d{4}-\d{2}-\d{2}$/.test(m.fecha)), false);
+  // T9 Legislativo (no bloquean)
+  const ref = R('reformas.csv'), ETAPAS = ['Presentada', 'Comisión', 'Pleno', 'Aprobada', 'Publicada', 'Rechazada'];
+  T('T9 Legislativo: ids de reformas únicos', new Set(ref.map(r => r.id)).size === ref.length, false);
+  T('T9 Legislativo: toda reforma tiene una etapa válida', ref.every(r => ETAPAS.includes(r.etapa_actual)), false);
+  T('T9 Legislativo: el historial va en orden de fechas', ref.every(r => { const f = (r.historial_etapas || '').split('|').map(x => x.split(':').pop()).filter(x => /^\d{4}-/.test(x)); return f.every((x, i) => i === 0 || x >= f[i - 1]); }), false);
+  T('T9 Legislativo: el historial incluye la etapa actual', ref.every(r => { const h = (r.historial_etapas || '').split('|').filter(Boolean); return !h.length || h.some(x => x.trim().startsWith(r.etapa_actual)); }), false);
+  try {
+    const le = JSON.parse(fs.readFileSync(D('legislativo_estado.json'), 'utf8'));
+    T('T9 Legislativo: el robot corrió en las últimas 36 h (' + le.actualizado + ')', (Date.now() - new Date(le.actualizado.replace(' ', 'T') + '-06:00')) < 36 * 36e5, false);
+    T('T9 Legislativo: alguna fuente devolvió notas', (le.fuentes || []).some(f => f.entradas > 0), false);
+  } catch (e) { adv.push('T9 Legislativo: no se pudo leer data/legislativo_estado.json'); total++; }
+  const altas7 = ref.filter(r => r.alta_automatica && r.fecha_presentacion >= hace(7)).length;
+  T('T9 Legislativo: altas automáticas de la semana ≤ 2 (' + altas7 + ')', altas7 <= 2, false);
 } catch (e) { total++; fallas.push('El arnés de pruebas falló: ' + e.message); }
 const out = { generado: new Date().toISOString(), total, ok: fallas.length === 0, fallas, advertencias: adv, bloqueante: fallas.length > 0 };
 fs.writeFileSync(D('pruebas_estado.json'), JSON.stringify(out, null, 1));

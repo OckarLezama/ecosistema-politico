@@ -11,6 +11,7 @@ proponer, no decidir solo.
 Cómo correrlo: python3 robot_buscar_temas.py
 Requiere: pip install feedparser --break-system-packages
 """
+from entidades_c3 import validar_entidad
 import csv
 import feedparser
 import hashlib
@@ -346,6 +347,20 @@ INSTITUCIONES_C3 = ['gobierno del estado', 'congreso local', 'congreso del estad
     'fiscalía general del estado', 'fiscalia general del estado', 'poder judicial',
     'secretaría de seguridad', 'secretaria de seguridad', 'ayuntamiento', 'cabildo',
     'universidad autónoma', 'universidad autonoma']
+
+def guardarActoresC3JSON():
+    """Escribe data/actores_c3.json: la página usa esta misma lista (una sola fuente)."""
+    import json
+    data = {ent: [[n, c, ap] for n, c, ap in lista] for ent, lista in ACTORES_C3.items()}
+    try:
+        with open('data/actores_c3.json', encoding='utf-8') as f:
+            if json.load(f) == data:
+                return
+    except Exception:
+        pass
+    with open('data/actores_c3.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+
 
 def buscarEntidadC3PorActorMencionado(texto_completo):
     texto_sin_acentos = sin_acentos(texto_completo)
@@ -965,6 +980,12 @@ def buscar_candidatos():
     ya_vistos = cargar_candidatos_existentes()
     eventos_existentes = cargar_eventos_existentes()
     ya_procesados_eventos = {e['fuente_url'] for e in eventos_existentes}
+    # los eventos huérfanos archivados (limpiar_eventos_huerfanos.py) también cuentan como ya procesados
+    try:
+        with open('data/eventos_archivo.csv', encoding='utf-8-sig', newline='') as _f:
+            ya_procesados_eventos |= {r['fuente_url'] for r in csv.DictReader(_f) if r.get('fuente_url')}
+    except FileNotFoundError:
+        pass
     actores_altos = cargar_actores_alta_influencia()
     hoy_mx = datetime.now(ZONA_MX).date()
     titulos_ya_agregados_hoy = {e['descripcion'].strip().lower() for e in eventos_existentes if e['fecha']==hoy_mx.strftime('%Y-%m-%d')}
@@ -1012,6 +1033,12 @@ def buscar_candidatos():
                     entidad_c3_nota = ''
             else:
                 entidad_c3_nota = buscarEntidadC3PorActorMencionado(texto_completo)
+            # FIX 2026-10-06: la asignación debe tener evidencia local (estado, localidad o
+            # actor) o venir de un medio local sin señales de nota nacional/extranjera
+            if entidad_c3_nota:
+                _vars = [v for n, c, ap in ACTORES_C3.get(entidad_c3_nota, []) for v in variantes_actor_c3(n, ap)]
+                entidad_c3_nota = validar_entidad(entidad_c3_nota, titulo_original + ' ' + (entrada.get('description') or ''),
+                                                  'news.google.com' not in fuente['url'], _vars)
             if enlace in ya_procesados_eventos:
                 continue
             titulo_normalizado = titulo_original.strip().lower()
@@ -1226,6 +1253,7 @@ def guardar_candidatos(nuevos):
 
 if __name__ == '__main__':
     reparar_encabezado_eventos()
+    guardarActoresC3JSON()
     eventos_nuevos, candidatos_sin_tema, incrementos_cobertura_existente = buscar_candidatos()
 
     for ev in eventos_nuevos:
