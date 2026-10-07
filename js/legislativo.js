@@ -1360,6 +1360,27 @@ function cerrarModalLeg(){
   if(overlay) overlay.classList.remove('abierto');
 }
 
+// Estado del robot (data/legislativo_estado.json): una línea discreta que dice si de verdad
+// está vigilando las reformas; si algo falla (feeds sin notas, reformas sin movimiento) se ve aquí.
+function pintarEstadoRobotLeg(cont){
+  let el = document.getElementById('leg-estado-robot');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'leg-estado-robot';
+    el.style.cssText = 'font-size:11px;color:var(--ink-3);padding:0 14px 6px;';
+    cont.parentNode.insertBefore(el, cont);
+  }
+  fetch('data/legislativo_estado.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(e=>{
+    if(!e){ el.textContent=''; return; }
+    const notas = (e.reformas_vigiladas||[]).reduce((a,r)=>a+(r.notas_recientes||0),0);
+    const sinNotas = (e.fuentes||[]).every(f=>!f.entradas);
+    const alerta = (e.alertas||[]).length;
+    el.innerHTML = 'Robot: vigila '+(e.reformas_vigiladas||[]).length+' reformas en trámite · '+notas+' notas recientes · revisado '+e.actualizado+
+      (sinNotas?' · <b style="color:#b45309">sin notas de ninguna fuente</b>':'')+
+      (alerta && !sinNotas?' · <span style="color:#b45309">'+alerta+' alerta(s): '+(e.alertas||[]).join('; ').replace(/</g,'&lt;')+'</span>':'');
+  }).catch(()=>{ el.textContent=''; });
+}
+
 function renderLegislativo(){
   const cont = document.getElementById('legislativo-contenido');
   const selector = document.getElementById('legislativo-selector-reforma');
@@ -1367,6 +1388,7 @@ function renderLegislativo(){
   inyectarEstilosLegV3();
   cargarReformas((reformas)=>{
     renderKpisLeg(reformas);
+    pintarEstadoRobotLeg(cont);
 
     if(!reformas.length){
       cont.innerHTML = `<p style="font-size:13px;color:var(--ink-3);text-align:center;padding:40px 0;">Sin reformas registradas todavía. Se agregan a mano en <code>data/reformas.csv</code>.</p>`;
