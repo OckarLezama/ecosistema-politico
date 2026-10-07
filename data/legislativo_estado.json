@@ -1,9 +1,9 @@
 {
- "actualizado": "2026-10-06 18:47",
+ "actualizado": "2026-10-06 18:57",
  "fuentes": [
   {
    "nombre": "Google Noticias DOF",
-   "entradas": 78,
+   "entradas": 73,
    "error": ""
   },
   {
@@ -18,12 +18,12 @@
   },
   {
    "nombre": "Google Noticias Congreso (prensa)",
-   "entradas": 86,
+   "entradas": 88,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: ley-egresos-2027",
-   "entradas": 43,
+   "entradas": 42,
    "error": ""
   },
   {
@@ -33,17 +33,17 @@
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-aduanera-2026",
-   "entradas": 44,
+   "entradas": 45,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: ley-catastral-2026",
-   "entradas": 20,
+   "entradas": 21,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-propiedad-industrial-antimemes-2026",
-   "entradas": 52,
+   "entradas": 51,
    "error": ""
   },
   {
@@ -65,8 +65,8 @@
    "id": "reforma-doble-nacionalidad",
    "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas a Presidencia y gubernaturas",
    "etapa": "Aprobada",
-   "notas_recientes": 1,
-   "ultima_nota": "2026-10-05",
+   "notas_recientes": 0,
+   "ultima_nota": "",
    "dias_sin_actualizar": 0
   },
   {
@@ -107,8 +107,5 @@
  "candidatos_nuevos": 2,
  "candidatos_podados": 0,
  "ruido_descartado": 59,
- "alertas": [
-  "Ley de Egresos de la Federación 2027: 28 días sin actualización de etapa",
-  "Reforma a la Ley Aduanera 2026 (segunda fase, esquemas de fiscalización): 28 días sin actualización de etapa"
- ]
+ "alertas": []
 }
