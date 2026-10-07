@@ -255,6 +255,36 @@ def cargar_candidatos_ya_vistos():
         return set()
 
 
+def podar_candidatos(dias_max=30):
+    """Mantiene solo candidatos recientes y no-ruido; el CSV dejó de crecer sin control."""
+    try:
+        with open(RUTA_CANDIDATOS_LEG, encoding='utf-8') as f:
+            filas = list(csv.DictReader(f))
+    except FileNotFoundError:
+        return 0
+    if not filas:
+        return 0
+    limite = (datetime.now(ZONA_MX) - timedelta(days=dias_max)).strftime('%Y-%m-%d')
+    limite_corto = (datetime.now(ZONA_MX) - timedelta(days=14)).strftime('%Y-%m-%d')
+    campos = ['fecha_detectado', 'nombre_reforma_o_texto', 'etapa_sugerida', 'fuente_url',
+              'fuente_nombre', 'motivo_revision', 'puntaje_prioridad']
+    mant = []
+    for r in filas:
+        if (r.get('fecha_detectado') or '') < limite:
+            continue
+        if not (r.get('motivo_revision') or '').startswith('No se identificó') and (r.get('fecha_detectado') or '') < limite_corto:
+            continue  # ambiguos / avances inválidos: valen poco, se conservan solo 14 días
+        if (r.get('motivo_revision') or '').startswith('No se identificó') and not pasaFiltroRuidoLeg(r.get('nombre_reforma_o_texto')):
+            continue
+        mant.append(r)
+    with open(RUTA_CANDIDATOS_LEG, 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=campos, quoting=csv.QUOTE_MINIMAL, extrasaction='ignore')
+        w.writeheader()
+        for r in mant:
+            w.writerow({k: r.get(k, '') for k in campos})
+    return len(filas) - len(mant)
+
+
 def indice_etapa(etapa):
     try:
         return ETAPAS_ORDEN.index(etapa)
@@ -268,13 +298,66 @@ def esAvanceValido(etapa_actual, etapa_nueva):
     return indice_etapa(etapa_nueva) > indice_etapa(etapa_actual)
 
 
+# NUEVO 2026-10-06 -- antes una reforma "calzaba" si el texto contenía CUALQUIER palabra de
+# más de 6 letras de su nombre (p. ej. "reforma", "federal", "constitucional"), lo que
+# provocaba coincidencias falsas y dejaba sin vigilancia real a las reformas que sí
+# importan. Ahora cada reforma en trámite tiene frases propias (ALIAS_REFORMAS): el texto
+# debe contener al menos una. Una reforma nueva dada de alta a mano sin alias usa un
+# respaldo: al menos 2 palabras distintivas de su nombre (no genéricas).
+ALIAS_REFORMAS = {
+    'ley-egresos-2027': {'busqueda': '"Ley de Egresos" OR "Presupuesto de Egresos" 2027 Diputados',
+        'claves': ['ley de egresos', 'presupuesto de egresos', 'paquete económico 2027', 'paquete economico 2027']},
+    'reforma-doble-nacionalidad': {'busqueda': '"doble nacionalidad" OR "nacionalidad única" candidatos reforma',
+        'claves': ['doble nacionalidad', 'nacionalidad única', 'nacionalidad unica', 'una sola nacionalidad']},
+    'reforma-ley-aduanera-2026': {'busqueda': '"Ley Aduanera" reforma 2026',
+        'claves': ['ley aduanera']},
+    'ley-catastral-2026': {'busqueda': 'ley catastral OR catastro registral Senado OR Diputados',
+        'claves': ['catastral', 'catastro']},
+    'reforma-propiedad-industrial-antimemes-2026': {'busqueda': '"ley antimemes" OR "propiedad industrial" Diputados Senado',
+        'claves': ['antimemes', 'propiedad industrial']},
+    'reforma-ley-educacion-celulares-escuelas-2025': {'busqueda': 'celulares escuelas "Ley General de Educación" México',
+        'claves': ['celulares en escuelas', 'celulares en las escuelas', 'celulares en el aula', 'celulares en horario escolar',
+                   'prohibir celulares', 'prohibición de celulares', 'uso de celulares en']},
+}
+PALABRAS_GENERICAS_LEG = {'reforma', 'federal', 'general', 'constitucional', 'nacional', 'código', 'articulo', 'artículo',
+    'segunda', 'fiscalización', 'esquemas', 'protección', 'horario', 'escolar', 'ley', 'decreto', 'fortalecimiento', 'armonización'}
+
+def _clavesDeReforma(r):
+    a = ALIAS_REFORMAS.get(r['id'])
+    if a:
+        return a['claves']
+    palabras = [w for w in re.findall(r'[a-záéíóúñ]+', r['nombre'].lower()) if len(w) > 6 and w not in PALABRAS_GENERICAS_LEG]
+    return palabras
+
+def _calzaConReforma(texto_norm, r):
+    claves = _clavesDeReforma(r)
+    if r['id'] in ALIAS_REFORMAS:
+        return any(c in texto_norm for c in claves)
+    return len(claves) >= 2 and sum(1 for c in claves if c in texto_norm) >= 2
+
 def identificar_reforma(texto_completo, reformas):
     texto_norm = texto_completo.lower()
-    for r in reformas:
-        nombre_norm = r['nombre'].lower()
-        if nombre_norm in texto_norm or any(palabra in texto_norm for palabra in nombre_norm.split() if len(palabra) > 6):
+    # primero las reformas en trámite; las concluidas solo si ninguna activa calza
+    ordenadas = sorted(reformas, key=lambda r: r.get('etapa_actual') in ('Publicada', 'Rechazada'))
+    for r in ordenadas:
+        if _calzaConReforma(texto_norm, r):
             return r
     return None
+
+
+# Filtro de ruido para candidatos a reforma NUEVA: el feed trae mucha nota extranjera o
+# local (Ceuta, Madrid, congresos estatales, municipales). Solo pasa lo que ancla en el
+# Congreso federal / Ejecutivo federal y no huele a otro país.
+ANCLAS_MX_LEG = ['senado de la república', 'cámara de diputados', 'congreso de la unión', 'diputados federales',
+    'senadores', 'sheinbaum', 'morena', 'diario oficial', 'comisión permanente', 'gaceta parlamentaria',
+    'pleno del senado', 'pleno de la cámara', 'dof ', 'méxico', 'mexicano', 'mexicana']
+RUIDO_LEG = ['madrid', 'ceuta', 'españa', 'argentin', 'chile', 'colombia', 'perú', 'venezuela', 'paraguay', 'uruguay',
+    'bolivia', 'ecuador', 'brasil', 'costa rica', 'guatemala', 'honduras', 'salvador', 'panamá', 'congreso de los diputados',
+    'cortes generales', 'parlamento europeo', 'congreso del estado', 'congreso local', 'ayuntamiento', 'cabildo',
+    'concejo', 'eeuu', 'estados unidos', 'capitolio', 'house of representatives']
+def pasaFiltroRuidoLeg(texto):
+    t = (texto or '').lower()
+    return any(a in t for a in ANCLAS_MX_LEG) and not any(x in t for x in RUIDO_LEG)
 
 
 def _mencionadoDeFormaSegura(nombre_actor, clausula_lower):
@@ -416,6 +499,7 @@ def procesar():
         actores_conocidos += [a.strip() for a in (r.get('actor_opone') or '').split(';') if a.strip()]
     actores_conocidos = list(set(actores_conocidos))
 
+    podadas = podar_candidatos()
     ya_vistos = cargar_candidatos_ya_vistos()
     hoy_mx = datetime.now(ZONA_MX).date()
     actualizaciones = 0
@@ -423,12 +507,29 @@ def procesar():
     saltados_por_duplicado = 0
     votos_detectados = {}  # reforma_id -> [(triple, fuente_nombre, enlace), ...] de TODA la corrida
 
-    for fuente in FUENTES_OFICIALES_LEG:
+    # búsquedas DIRIGIDAS: una por cada reforma aún en trámite, con sus propios términos
+    # (ventana de 7 días) -- así cada reforma vigilada se busca por nombre, no solo cuando
+    # aparece de casualidad en las búsquedas generales.
+    dirigidas = []
+    for r in reformas:
+        a = ALIAS_REFORMAS.get(r['id'])
+        if a and r.get('etapa_actual') not in ('Publicada', 'Rechazada'):
+            q = urllib.parse.quote(f"({a['busqueda']}) when:7d")
+            dirigidas.append({'nombre': f"Búsqueda dirigida: {r['id']}", 'reforma_id': r['id'],
+                'url': f'https://news.google.com/rss/search?q={q}&hl=es-419&gl=MX&ceid=MX:es-419'})
+    stats_fuentes = []
+    stats_reformas = {}  # id -> {'notas': n, 'ultima': 'YYYY-MM-DD'}
+    descartadas_ruido = 0
+
+    for fuente in FUENTES_OFICIALES_LEG + dirigidas:
         try:
             feed = feedparser.parse(fuente['url'])
         except Exception as e:
             print(f'  {fuente["nombre"]}: error de conexión: {e}')
+            stats_fuentes.append({'nombre': fuente['nombre'], 'entradas': 0, 'error': str(e)[:120]})
             continue
+        stats_fuentes.append({'nombre': fuente['nombre'], 'entradas': len(feed.entries),
+                              'error': '' if feed.entries or not getattr(feed, 'bozo', 0) else 'feed inválido'})
         for entrada in feed.entries:
             enlace = entrada.get('link') or ''
             titulo = entrada.get('title', '')
@@ -445,9 +546,28 @@ def procesar():
                 continue
 
             etapa_detectada = detectarEtapa(texto_completo)
-            reforma = identificar_reforma(texto_completo, reformas)
+            if fuente.get('reforma_id'):
+                reforma = next((r for r in reformas if r['id'] == fuente['reforma_id']), None)
+                if not reforma or not _calzaConReforma(texto_completo, reforma) \
+                        or any(x in texto_completo for x in RUIDO_LEG):
+                    continue  # la búsqueda trajo algo que no habla de esta reforma
+            else:
+                reforma = identificar_reforma(texto_completo, reformas)
+            if reforma:
+                st = stats_reformas.setdefault(reforma['id'], {'notas': 0, 'ultima': '', 'enlaces': set()})
+                if enlace not in st['enlaces']:
+                    st['enlaces'].add(enlace)
+                    st['notas'] += 1
+                    pp = entrada.get('published_parsed')
+                    if pp:
+                        f_ = datetime(*pp[:3]).strftime('%Y-%m-%d')
+                        st['ultima'] = max(st['ultima'], f_)
 
             if not reforma:
+                if not pasaFiltroRuidoLeg(texto_completo):
+                    ya_vistos.add(enlace)
+                    descartadas_ruido += 1
+                    continue
                 # Solo este caso (no reconocemos a qué reforma corresponde) es
                 # candidato real a REFORMA NUEVA -- aquí sí tiene sentido el
                 # puntaje de prioridad y el aviso por Issue. Las otras dos
@@ -539,6 +659,34 @@ def procesar():
             })
             candidatos_generados += 1
             print(f'  -> {reforma["nombre"]}: cifras de votación en conflicto entre fuentes, enviado a revisión manual ({detalle})')
+
+    # ---- latido: estado del robot, visible en la página y auditable ----
+    import json
+    reformas_fin = cargar_reformas()
+    vigiladas = []
+    alertas = []
+    for r in reformas_fin:
+        if r.get('etapa_actual') in ('Publicada', 'Rechazada'):
+            continue
+        st = stats_reformas.get(r['id'], {'notas': 0, 'ultima': ''})
+        try:
+            dias = (hoy_mx - datetime.strptime(r.get('fecha_ultima_actualizacion') or '', '%Y-%m-%d').date()).days
+        except ValueError:
+            dias = None
+        vigiladas.append({'id': r['id'], 'nombre': r['nombre'], 'etapa': r['etapa_actual'], 'notas_recientes': st['notas'],
+                          'ultima_nota': st['ultima'], 'dias_sin_actualizar': dias})
+        if dias is not None and dias >= 21:
+            alertas.append(f'{r["nombre"]}: {dias} días sin actualización de etapa')
+    if sum(f['entradas'] for f in stats_fuentes) == 0:
+        alertas.append('Ninguna fuente devolvió notas: el robot no está viendo noticias (feeds caídos o bloqueados)')
+    estado = {'actualizado': datetime.now(ZONA_MX).strftime('%Y-%m-%d %H:%M'), 'fuentes': stats_fuentes,
+              'reformas_vigiladas': vigiladas, 'actualizaciones_etapa': actualizaciones,
+              'votos_actualizados': votos_actualizados, 'candidatos_nuevos': candidatos_generados,
+              'candidatos_podados': podadas, 'ruido_descartado': descartadas_ruido, 'alertas': alertas}
+    with open('data/legislativo_estado.json', 'w', encoding='utf-8') as f:
+        json.dump(estado, f, ensure_ascii=False, indent=1)
+    if sum(f['entradas'] for f in stats_fuentes) == 0:
+        print('ALERTA: ninguna fuente devolvió notas')
 
     print(f'\n{actualizaciones} reforma(s) actualizada(s) automáticamente.')
     print(f'{votos_actualizados} reforma(s) con votos actualizados automáticamente (todas las fuentes coincidían).')
