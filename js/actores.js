@@ -662,6 +662,33 @@ function calcularFortalezaGrupo(nucleoActor, satelites){
 function _contextosAgendaDeActor(actorId){
   return ECOSISTEMA.temaActores.filter(ta=>{ if(ta.actor_id!==actorId) return false; const t = getTema(ta.tema_id); return t && (typeof enNotas!=='function' || enNotas(t)); });
 }
+// Notas que lo mencionan por nombre (TODAS, de cualquier tema y medio) + con quién aparece. Se calcula al abrir,
+// así que siempre refleja los datos más recientes, para cualquier actor.
+function _bloqueNotasYRelacionadosActor(actorId, compacto){
+  const act = getActor(actorId); if(!act) return '';
+  const evs = _eventosQueMencionanActor(actorId).sort((a,b)=>((b.fecha||'')+(b.hora_registro||'')).localeCompare((a.fecha||'')+(a.hora_registro||'')));
+  if(!evs.length) return '<div class="eyebrow" style="margin-top:10px;">Notas que lo mencionan</div><div style="font-size:11px;opacity:.7;">Ninguna nota de los datos actuales lo nombra.</div>';
+  const n7 = evs.filter(e=>_diasAtras(e.fecha)<7).length, n30 = evs.filter(e=>_diasAtras(e.fecha)<30).length;
+  const hechos = agruparHechos(evs.slice(0,150)).sort((x,y)=>(y.fecha+(y.hora_registro||'')).localeCompare(x.fecha+(x.hora_registro||''))).slice(0, compacto?6:40);
+  const rel = _actoresRelacionados(actorId, evs, compacto?6:10);
+  const chips = rel.length ? `<div class="eyebrow" style="margin-top:10px;">Aparece junto a (en las mismas notas)</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;">${rel.map(x=>`<span class="rel-actor" data-actor="${x.actor.id}" style="cursor:pointer;font-size:11px;border:1px solid var(--line-strong);border-radius:99px;padding:1px 9px;">${x.actor.nombre.replace(/\(.*?\)/g,'').trim()} <span style="color:var(--ink-3);font-family:var(--f-mono);font-size:10px;">×${x.n}</span></span>`).join('')}</div>` : '';
+  return `${chips}
+    <div class="eyebrow" style="margin-top:10px;">Notas que lo mencionan · ${evs.length} en total · ${n30} en 30 días · ${n7} en 7 días</div>
+    <div class="ficha-notas-scroll" style="max-height:${compacto?170:260}px;">
+      ${hechos.map(n=>{
+        const medio = (typeof _medioDeEvento==='function' ? _medioDeEvento(n) : '') || '';
+        const p1 = (typeof _esPrimerNivel==='function' && _esPrimerNivel(n)) ? ' <span title="Medio de primer nivel" style="color:var(--teal);">★</span>' : '';
+        return `<div style="font-size:11px;padding:6px 0;border-top:1px solid var(--line);">
+          <strong style="font-family:var(--f-mono);color:var(--ink-3);">${n.fecha}</strong>${medio?` · <span style="color:var(--ink-3);">${medio}</span>`:''}${p1}${n._nNotas>1?` · ${n._nNotas} notas, mismo hecho`:''}<br>
+          ${n.descripcion} ${n.fuente_url?`<a href="${n.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">↗</a>`:''}
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+function _conectarRelacionadosActor(raiz){
+  raiz.querySelectorAll('.rel-actor').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirFichaActorCompleta==='function') abrirFichaActorCompleta(el.dataset.actor); }));
+}
+
 function notasDelActorHTML(actorId){
   const act = getActor(actorId); if(!act) return '';
   const temas = _contextosAgendaDeActor(actorId).map(c=>getTema(c.tema_id));
@@ -873,10 +900,11 @@ function abrirFichaActorCompleta(id){
         <div class="foda-cuad" style="border-color:var(--riesgo-medio);"><div class="foda-titulo" style="color:var(--riesgo-medio);">Debilidades</div><p>${actor.foda_debilidades}</p></div>
         <div class="foda-cuad" style="border-color:var(--riesgo-alto);"><div class="foda-titulo" style="color:var(--riesgo-alto);">Amenazas</div><p>${actor.foda_amenazas}</p></div>
       </div>` : ''}
-      ${notasDelActorHTML(id)}
+      ${_bloqueNotasYRelacionadosActor(id,false)}
       ${actor.fuente_url ? `<div class="eyebrow" style="margin-top:10px;">Fuente</div><p style="font-size:11px;"><a href="${actor.fuente_url}" target="_blank" rel="noopener" style="color:var(--teal);">${actor.fuente_nombre||'Ver fuente'} ↗</a> · ${actor.fecha_corte||''}</p>` : ''}
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  _conectarRelacionadosActor(modal);
   modal.querySelectorAll('.tema-actor-item').forEach(el=>{
     el.style.cursor='pointer';
     el.addEventListener('click', ()=>{ if(typeof abrirFichaTema==='function') abrirFichaTema(el.dataset.tema); });
@@ -906,7 +934,7 @@ function mostrarTemasPorRolDeActor(actorId){
     </div>`;
   }
   if(!contextos.length){
-    html += `<p style="font-size:12px;color:var(--ink-3);margin-top:10px;">Sin temas de agenda documentados para este actor por ahora.</p>`;
+    html += `<p style="font-size:12px;color:var(--ink-3);margin-top:10px;">Sin temas de agenda propios por ahora; abajo, las notas que lo mencionan.</p>`;
   } else {
     html += `<div class="eyebrow" style="margin-top:10px;">Aparece en ${contextos.length} tema${contextos.length!==1?'s':''} de agenda</div>`;
     html += contextos.map(ctx=>{
@@ -924,7 +952,9 @@ function mostrarTemasPorRolDeActor(actorId){
       </div>`;
     }).join('');
   }
+  html += _bloqueNotasYRelacionadosActor(actorId, true);
   panel.innerHTML = html;
+  _conectarRelacionadosActor(panel);
 }
 
 function mostrarVinculosEntreActores(coresElegidos){

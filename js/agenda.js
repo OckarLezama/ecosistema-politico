@@ -215,6 +215,7 @@ function abrirFichaTema(temaId){
         <p style="font-size:11.5px;color:var(--ink-2);margin-top:3px;">${interpretacionMatrizIA[temaId]}</p>
       </div>` : ''}
       ${bloquesActores}
+      ${(()=>{ const nm = _nombresEnTema(temaId); return nm.length ? `<div class="eyebrow" style="margin-top:10px;">Nombres que aparecen en sus notas (${nm.length})</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;">${nm.slice(0,14).map(x=>`<span class="rel-actor" data-actor="${x.actor.id}" style="cursor:pointer;font-size:11px;border:1px solid var(--line-strong);border-radius:99px;padding:1px 9px;">${x.actor.nombre.replace(/\(.*?\)/g,'').trim()} <span style="color:var(--ink-3);font-family:var(--f-mono);font-size:10px;">×${x.n}</span></span>`).join('')}</div>` : ''; })()}
       <div class="eyebrow" style="margin-top:10px;">Notas (${evs.length})</div>
       <div class="ficha-notas-scroll">
         ${evs.map(e=>{
@@ -228,6 +229,7 @@ function abrirFichaTema(temaId){
       </div>
     </div>`;
   modal.querySelector('.ficha-modal-close').addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.querySelectorAll('.rel-actor').forEach(el=> el.addEventListener('click', ()=>{ if(typeof abrirFichaActorCompleta==='function') abrirFichaActorCompleta(el.dataset.actor); }));
   modal.classList.add('open');
 }
 
@@ -246,14 +248,24 @@ const _hoyMX = () => new Date().toLocaleDateString('en-CA',{timeZone:'America/Me
 const _diaMX = (desde) => { const d = new Date(_hoyMX()+'T12:00:00'); d.setDate(d.getDate()-desde); return d.toISOString().slice(0,10); };
 let _tokensActores = null;
 const _PALABRAS_GENERICAS_ACTOR = new Set(['mexico','mexicano','mexicana','mexicanos','nacional','federal','estados','unidos','republica','gobierno','partido','instituto','secretaria','secretario','consejo','comision','camara','senado','congreso','presidente','presidenta','general','estatal','municipal','justicia','seguridad','publica','fiscalia']);
+// nombre sin paréntesis ni apodo entre comillas ("Alejandro 'Alito' Moreno" -> "alejandro moreno", apodo "alito")
+function _nombreYApodoActor(nombre){
+  let n = String(nombre||''), apodo = '';
+  const mp = n.match(/\(['"“‘]?([^)'"”’]+)['"”’]?\)/); if(mp) apodo = mp[1];
+  n = n.replace(/\(.*?\)/g,' ');
+  const mq = n.match(/['"“‘]([^'"”’]+)['"”’]/); if(mq){ if(!apodo) apodo = mq[1]; n = n.replace(/['"“‘][^'"”’]+['"”’]/g,' '); }
+  return {limpio:_normN(n).replace(/\s+/g,' ').trim(), alias:_normN(apodo).trim()};
+}
 function _clavesActor(a){
   if(!_tokensActores){
-    _tokensActores = new Map();
-    ECOSISTEMA.actores.forEach(x=>{ const ws = _normN(x.nombre.replace(/\(.*?\)/g,'')).split(/\s+/); new Set(ws.filter(w=>w.length>=6)).forEach(w=>_tokensActores.set(w,(_tokensActores.get(w)||0)+1));
-      new Set(ws.slice(0,-1).map((w,i)=>w+' '+ws[i+1]).filter(b=>b.length>=9)).forEach(b=>_tokensActores.set(b,(_tokensActores.get(b)||0)+1)); });
+    // un token cuenta una vez por ACTOR PRINCIPAL (los duplicados del mismo político no lo vuelven ambiguo)
+    const tmp = new Map(), add = (k,p)=>{ if(!tmp.has(k)) tmp.set(k,new Set()); tmp.get(k).add(p); };
+    ECOSISTEMA.actores.forEach(x=>{ const p = _idPrincipalActor(x.id); const ws = _nombreYApodoActor(x.nombre).limpio.split(/\s+/);
+      new Set(ws.filter(w=>w.length>=6)).forEach(w=>add(w,p));
+      new Set(ws.slice(0,-1).map((w,i)=>w+' '+ws[i+1]).filter(b=>b.length>=9)).forEach(b=>add(b,p)); });
+    _tokensActores = new Map(); tmp.forEach((v,k)=>_tokensActores.set(k,v.size));
   }
-  const limpio = _normN(a.nombre.replace(/\(.*?\)/g,'')).trim();
-  const alias = _normN(((a.nombre.match(/\(['"“]?([^)'"”]+)['"”]?\)/)||[])[1])||'');
+  const {limpio, alias} = _nombreYApodoActor(a.nombre);
   const claves = [];
   if(limpio.split(/\s+/).length>=2) claves.push(limpio);
   limpio.split(/\s+/).filter(w=>w.length>=6 && _tokensActores.get(w)===1 && !_PALABRAS_GENERICAS_ACTOR.has(w)).forEach(w=>claves.push(w));   // apellido que identifica a UN solo actor
@@ -262,6 +274,60 @@ function _clavesActor(a){
   return claves;
 }
 function _mencionesActor(a, evs){ const cl = _clavesActor(a); return cl.length ? evs.filter(e=>{ const t = _normN(e.descripcion); return cl.some(k=> k.length<=4 ? new RegExp('\\b'+k+'\\b').test(t) : t.includes(k)); }) : []; }
+// ---- Menciones directas por actor: TODAS las notas que lo nombran, de cualquier tema y medio, y
+// duplicados del mismo actor fusionados (antes la ficha solo veía temas ligados al actor: "Alito" salía vacío
+// porque sus vínculos estaban en otro registro del mismo político). Se calcula al abrir, así siempre está al día.
+const _FUSION_ACTORES_MANUAL = {alito_moreno:'alito', monreal_avila:'monreal', montiel_reyes:'montiel', mier_velazco:'ignacio_mier_velazco', ortega_pacheco:'ivon_ortega', castaneda_hoeflich:'clemente_castaneda'};
+const _CLAVES_EXTRA_ACTOR = { amlo:{claves:['lopez obrador'], excluye:['pio lopez obrador','jose ramiro lopez obrador','ramiro lopez obrador']} };
+let _fusionMap = null, _fusionRef = null;
+function _mapaFusionActores(){
+  if(_fusionMap && _fusionRef===ECOSISTEMA.actores) return _fusionMap;
+  const m = {}, porNombre = new Map(), ids = new Set(ECOSISTEMA.actores.map(a=>a.id));
+  ECOSISTEMA.actores.forEach(a=>{ const k = _normN(a.nombre.replace(/\(.*?\)/g,'')).replace(/\s+/g,' ').trim(); if(!porNombre.has(k)) porNombre.set(k,a.id); else if(porNombre.get(k)!==a.id) m[a.id] = porNombre.get(k); });
+  Object.entries(_FUSION_ACTORES_MANUAL).forEach(([dup,pri])=>{ if(ids.has(dup) && ids.has(pri)) m[dup] = pri; });
+  _fusionMap = m; _fusionRef = ECOSISTEMA.actores; return m;
+}
+function _idPrincipalActor(id){ return _mapaFusionActores()[id] || id; }
+function _gruposDeActor(id){ const p = _idPrincipalActor(id); return ECOSISTEMA.actores.filter(a=>_idPrincipalActor(a.id)===p).map(a=>a.id); }
+const _clavesGrupoCache = new Map(); let _clavesGrupoRef = null;
+function _clavesDeGrupo(id){
+  if(_clavesGrupoRef!==ECOSISTEMA.actores){ _clavesGrupoCache.clear(); _clavesGrupoRef = ECOSISTEMA.actores; }
+  const p = _idPrincipalActor(id); if(_clavesGrupoCache.has(p)) return _clavesGrupoCache.get(p);
+  const cl = []; _gruposDeActor(p).forEach(i=>{ const a = getActor(i); if(a) _clavesActor(a).forEach(k=>{ if(!cl.includes(k)) cl.push(k); }); });
+  const extra = _CLAVES_EXTRA_ACTOR[p]; if(extra) extra.claves.forEach(k=>{ if(!cl.includes(k)) cl.push(k); });
+  const r = {largas:cl.filter(k=>k.length>4), cortas:cl.filter(k=>k.length<=4).map(k=>new RegExp('\\b'+k+'\\b')), excluye:(extra&&extra.excluye)||[]};
+  _clavesGrupoCache.set(p,r); return r;
+}
+function _eventoMencionaGrupo(e, r){
+  let t = e._tn || (e._tn = _normN(e.descripcion));
+  r.excluye.forEach(x=>{ if(t.includes(x)) t = t.split(x).join(' '); });
+  return r.largas.some(k=>t.includes(k)) || r.cortas.some(x=>x.test(t));
+}
+function _eventosQueMencionanActor(id){
+  const r = _clavesDeGrupo(id); if(!r.largas.length && !r.cortas.length) return [];
+  return ECOSISTEMA.eventos.filter(e=>_eventoMencionaGrupo(e,r));
+}
+// actores que aparecen JUNTO a este en las mismas notas (y cuántas veces)
+function _actoresRelacionados(id, evs, max){
+  const p = _idPrincipalActor(id), base = evs.slice(0,300), out = [];
+  ECOSISTEMA.actores.forEach(a=>{
+    if(_idPrincipalActor(a.id)!==a.id || a.id===p) return;
+    const r = _clavesDeGrupo(a.id); if(!r.largas.length && !r.cortas.length) return;
+    let n = 0; base.forEach(e=>{ if(_eventoMencionaGrupo(e,r)) n++; });
+    if(n>=2) out.push({actor:a, n});
+  });
+  return out.sort((x,y)=>y.n-x.n).slice(0, max||8);
+}
+// nombres que aparecen en las notas de un tema (vinculados o no)
+function _nombresEnTema(temaId){
+  const evs = ECOSISTEMA.eventos.filter(e=>e.tema_id===temaId), out = [];
+  ECOSISTEMA.actores.forEach(a=>{
+    if(_idPrincipalActor(a.id)!==a.id) return;
+    const r = _clavesDeGrupo(a.id); if(!r.largas.length && !r.cortas.length) return;
+    const n = evs.filter(e=>_eventoMencionaGrupo(e,r)).length; if(n>0) out.push({actor:a, n});
+  });
+  return out.sort((x,y)=>y.n-x.n);
+}
 const _VERBO_DECLARA = /\b(dijo|dice|afirm|acus|rechaz|pide|pidi|llam[oó]|defiend|respald|critic|anunci|exig|denunci|asegur|reconoc|advirt|amenaz|acept|sostien|descart|nieg|lanz[oó]|reaccion)/i;
 function _esDichoPor(e, cl){ const t=_normN(e.descripcion); return cl.some(k=>{ const i=t.indexOf(k); return i>=0 && i<45 && _VERBO_DECLARA.test(t.slice(i+k.length)); }); }
 function _fichaActividad(men, nTema, cl, links){
