@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-08T00:01:20.417736-06:00",
+  "generado_en": "2026-10-08T06:02:39.397895-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 54,
+  "n_notas_ventana": 55,
   "baja_confianza": false,
-  "tension_nacional": 20,
+  "tension_nacional": 22,
   "tension_anomalia": {
-    "z": -0.94,
+    "z": -0.8,
     "nivel": "normal",
-    "media_periodo": 32.7,
+    "media_periodo": 32.8,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 78,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 11,
-      "n_notas": 43,
+      "peso_pct": 82,
+      "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
+      "tema_principal_id": "morena-coordinadores-2027",
+      "n_temas": 15,
+      "n_notas": 46,
       "notas": [
         {
           "texto": "Detienen a presunto cómplice de Rocha Cantú, copropietario de Miss Universo, en red de huachicol",
@@ -26,28 +26,16 @@
           "medio": "elfinanciero.com.mx"
         },
         {
+          "texto": "Pío López Obrador se registra en Morena para buscar diputación federal por Chiapas - MAGMA Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdXJDTzFCSVo4dHY4TUtGbXEwNUU0cnZHaFFoQTRIaEs5dnJYVjllRVdrMEdELTZKcFMtWmhuWXdCZm5oM0NvVTBjMjZObjhnWkVnMUlJUkxVOFBoMGhJYTdzWnRGbnhteDk2UEdaTUszMnZLbnlibGxtYVBMQ19jLVZGcnppQmtxbTVqVnBXQ3NrY1k?oc=5",
+          "intensidad": 9.0,
+          "medio": "MAGMA Noticias"
+        },
+        {
           "texto": "El movimiento político de Andrés Manuel López Beltrán - MVS Noticias",
           "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYzNudllLXzNqa2c3MHhGdE1IMF80SWpvc2NGTGQyYnpZRFlJVjBRMWI4eHRoNlg5aWFBeXhTREIwRnpidmNPejlTZnh6YlJRbnVBNmpvaGV4OS1GV1gtVG1QU0tIbnN1aDgzUUdCdHplYWhMdm94NVNzZ1RMaVl0c21NMERZdDB2OEN6NXE0c0JUWnBpSE5TRWhPQjBHZnpVSGVHT3lrdlI?oc=5",
           "intensidad": 9.0,
           "medio": "MVS Noticias"
-        },
-        {
-          "texto": "Morena cumple 15 años; AMLO no acudirá al festejo",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/07/politica/012n1pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
-        },
-        {
-          "texto": "Senado declara constitucionalidad de reforma para prohibir doble nacionalidad a presidentes y gobernadores - La Jornada Maya",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQZjVqSDYwRC1DZmFHaDdIc1B3STRQLWNTRFFhOHpIYTFjS1Qyc01lRldPaUt6N1RNT0pwQ0pHT1gyNnI3YzlEenRkTGp6V1NiUWdFUVlTVC12T1pjMDdQSVFKVG1xakVqRF9WYURpajh6dGpGVXNSQ1ZjQ1NqdEhCM0kzbFlEcGFHMi1Mb3NMdXJ2WFc4UHRqODF2NnM1Mml6d3pCMzlhU0NqSDM2SGhVLWNrQ0ZUTFpuSXZfanVNbWQ5NDBjOGJsdHhlbTI3QkNkdjZtSzJ1YWJUQjJqUnZ3UE9hQ1hNZw?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Jornada Maya"
-        },
-        {
-          "texto": "Ejecutivo federal firma Reforma sobre doble nacionalidad para que sea publicada en el DOF - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOZkpaNnFQRE1SNVU5cTlZTlRvRjBWdU1Lb2tQa0FJdFh1WmJRc1lIdXRjTTZ4TnBqQTdWRlBKdFV3YnFLT0M4cnBSYWpHRFQwaVZlV0JaemxZUjNKVHpoTmdEZFNsOWxMVlMtRVBHVkNvS0dSTTltNE9oaTVpM0ZGNkVoTU1sVFV3dzlKVkdyNWlQWXFYVmlSNG9YRlJQN1J5UWlJZXduVmxhRDVicGQ00gG0AUFVX3lxTFBZakN5akNwdDFfbHhwdnFSQWlNU1JuZ3kxZTFFV1VJd0ZVWGZRckVlMmZ1eUNBYUhNalpadUF4ajgtakhoQml2WlY5MXFCQ0FuUFgtMVJmeWtUREIwVkpWb21xZGtHMkY2WUJvQmt4d1RFendGR3ZiQXkzTHRjRjZBbFNTdEtjWnlqNGVRNnc2Q3MzNzU2WnpNVWhDbDUzaFlvbDBFNHd5eEdqcVVIRENlSVNPNw?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
         },
         {
           "texto": "Diputados aprueban Ley Antimemes entre acusaciones de censura por casos como los de Andy López Beltrán y Rubén Rocha Moya - Infobae",
@@ -66,6 +54,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNaDFHVnIxNEFhcU1WTF9QSS0xcjJ5aVlnbDBoaWVlaUk5MVVuNUZwQ3Q2MV9pdjV0eFh0TEExTnRCak4wN1RITEdhdXlWSFdlU3YzTXdEZHRPWVhzU0FFd1RxUUd3bE14bExpZ3QwckxPRE1zRWRITVEzeUtMeFJQVDlPTTlUc1BDT1RBNDAzUU5pY0FZc0xLMTJvQkJza0pTNHlGbWItRzlDNUxDbk1pVXhNSQ?oc=5",
           "intensidad": 7.0,
           "medio": "Almomento.mx"
+        },
+        {
+          "texto": "La presidenta Sheinbaum pide cautela al hablar del libro de López Obrador sobre agencias estadounidenses - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOMmZ2NzFpNUdDYkNrOGF3dzMzWXNic2FTZVBjMFZTdnVMVzVsVlJBaUJ2WWswWjUyQ3JfNmd2RXRwUmRZdFFpSkNaSGFvWjZBbXNLOVJ4dlhXdWV4VG9yQnNmT1ROWFA3azZyVlRkTUxtQ2tkYmVKRWlzcVlkVHpFR0VuQjRyTUlkT2lCaFRaTnQ2TEVveWIwXy1rWHAwXzJURDRTSFFXc1EzUEZmN1hlMDJaaWdOaU1FWEtaMXBBTDRveERDRFBrTVQzMU16cnFiaUpPcmJDNVBJMzJRNVJEaHp3UV9scnQ0YmV1clV2Tm9pZFVR?oc=5",
+          "intensidad": 7.0,
+          "medio": "Infobae"
         },
         {
           "texto": "Bonita Sánchez imita a Rocky tras destaparse como corcholata de Morena a la alcaldía de Puebla - Proceso",
@@ -92,6 +86,12 @@
           "medio": "Diario de Yucatán"
         },
         {
+          "texto": "Ricardo Monreal respalda Verónica Díaz por críticas en Zacatecas - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQS290cXhSOXpkVnhEakFsM240cGp4N2dDNXZITUtSV0Nlbzdhcm1ZaE56ZWVNT0lmQUxrcUwyNnNaQ0pidzNGTjhCRDNpcUgxeUJpNVpTa0o0a3ZRTTkxUGluUjdQMzFaN2ZWZFhEWHJPSHpVeFdDbDItOFBLVUlSLUowTlpOOGxtZE1Pam9nMmpSRS15eVI3Rnp4d09XQdIBngFBVV95cUxOYXdQODdfUERuN1NpbE5LcUlkckFoYzg3bC1nZ1lKNFlhZlJIUFAwUHZ5UDA2RkJ5ZEZTR1NxU0tack1FVGtkOG5WNmRzZ3pTR1RyVU1hQXVMMGh1MWFmQkJ3UVY2ZG1tV3FNTmJyZ1BPOEV4TlpwaDBCVUVndThUbHlxRllnMXlZQ3hiTkhnZjRiYnYyWHROOUxLQ191QQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "Milenio"
+        },
+        {
           "texto": "Publican en el DOF el decreto sobre doble nacionalidad para candidaturas",
           "fuente_url": "https://www.informador.mx/mexico/publican-en-el-dof-el-decreto-sobre-doble-nacionalidad-para-candidaturas-20261007-0214.html",
           "intensidad": 7.0,
@@ -104,20 +104,20 @@
           "medio": "sipse.com"
         },
         {
-          "texto": "Más de 10 años con 'El Mencho' - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9lV0RhckpUN0xDWlpJU05SNlhUWlhubGhVSkRtUlRRZGlCajVZWnNVbkFNTXYwQVM1cTRrelJlWDEzRzZqRFlhSFJ2d21IRjlqeWlncXhfVWpZVTBOZlpmRmhidVlrZHoxbjNaZXhDUQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "Reforma"
+          "texto": "🔴 Andrés Manuel López Beltrán acude al evento de los 15 años de Morena en el Auditorio Nacional El aspirante a la diputación federal del sexto distrito de Tabasco, Andrés Manuel López Beltrán, se pres",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOTVBSTmtkay1BSW4wcDNjRnNPaUFuZUg1Q1hOczJGeHQyMU8tbzRHX3NTUTZyYXRaek9hd25UZmRkZDdmN1c4R3cxQnFRMVhKZ1I0SGxzOEpZSEFvUVQwMzM5TDhqMnp5U3NwMTM4ZXd4X1pCWWllQ280X0RWVDA2WlFtVFBXRWpjbVRKZW1Sa1lwX0dRWlNhdU1HZXlWVkE1aG15V0lBNW5ENzlUaFdfSkJYNE41TGpKeHJQWC0yX1VmejZMOEp1YWlTOHd6V3F4bUNaSi1lMlU3UTkxOFRpcFc2ZUNEaUZaS2pNSnk3RUZuTEl6eUE?oc=5",
+          "intensidad": 7.0,
+          "medio": "Facebook"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 13,
-      "tema_principal": "Abatimiento de \"El Mencho\"",
-      "tema_principal_id": "el-mencho",
-      "n_temas": 5,
-      "n_notas": 7,
+      "peso_pct": 11,
+      "tema_principal": "Asesinato de Carlos Manzo",
+      "tema_principal_id": "carlos-manzo",
+      "n_temas": 4,
+      "n_notas": 6,
       "notas": [
         {
           "texto": "Sale del hospital “El Marce”, ligado a Los Chapitos, tras ser baleado en Mérida",
@@ -130,12 +130,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOQ3JvajBkOTBKdFRwN2twUXJvQnk0S1RIeW1xclJwcHlBQWhDZHE5SnY1R2ZLOHJUUGNYa2JxNFY3VzFMa0QzM2Q0WlhRQUIwLTg5eHZVWGJ6ZFlHVjdPbzhBWDFjWWxWOExJeFFVUF9ZOExMSFpobWg4TjBrTEJ2STZDTmx5Um82eDhtOHRSR2NIUQ?oc=5",
           "intensidad": 7.0,
           "medio": "news.google.com"
-        },
-        {
-          "texto": "Cae El Tanque, operador del CJNG en 4 entidades y aliado de El Mencho",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/07/politica/004n1pol?partner=rss",
-          "intensidad": 6.0,
-          "medio": "jornada.com.mx"
         },
         {
           "texto": "Exagente de la DEA pide al gobierno mexicano enviar a Rocha Moya a EU por presuntos nexos con cárteles - TV Azteca",
@@ -166,9 +160,9 @@
     {
       "categoria": "Relación Bilateral",
       "peso_pct": 5,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
+      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
+      "tema_principal_id": "rocha-moya-acusacion",
+      "n_temas": 1,
       "n_notas": 2,
       "notas": [
         {
@@ -178,32 +172,26 @@
           "medio": "Palabra de Veracruzano"
         },
         {
-          "texto": "La “Doctrina Donroe” congela a México: El pacto de Trump sobre Groenlandia militariza el T-MEC y asfixia el nearshoring - DiarioNoticiasWeb.Com",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOQ01RbU5mMEkzUXJESmVZaHlwYzBhOEFCNDJ3V3B2T0Y1aUt6V09zSl84VEFINE9LbnFMV2NfUlVWSG5PLTFyd2VvQmtuU192RjE0UXBXdVhLbGRxV2txU1ZyY0xjNGgtRU05SkhqTlQ2VUdybkNJdzhYNXZkQkNtNHdoN096VTlmazcyRGtZQzdud185MzkwNUtUUk9yZlJ1SnBJVUh5Tm9qZExYV24tYU44REkwZmx0bGlqZjREbThZcjduMk9vZ2gxTU5veUxvZmpoRUdjVko3VE45cmNzTdIB5gFBVV95cUxNWGZwVTRrenBWbGM5NFBkNGVEVGxuRzVheTM0SUZyRXZURGNyQXg1UlFESjM0LVVGN1duNTVjeUZKanRvZDVmWWhsR1ZBWUJmYk8yOUx3d1ptSElBMzRyWDNnTEc4WEJBNU9ublhzNFNOOW0wZ0JwelJXeC13MFhfNmtYazZDUEVjV3pMbnZjRDNoMW5ZeE1jekNrTlgwUVRkR1RyaGdOWHY1X2NnaUtNZWR4dWZTbE5GWTVoSFRpc3Nvb2k3amxSYk0zbzJ3RlhPUk5TeUtnN1pEdnEwQTFRY0NIU2ozQQ?oc=5",
+          "texto": "Exjefe de la DEA elogia a García Harfuch por captura de ‘El Tanque’, pero pide enviar a Rocha Moya a EEUU: “Sería un gran logro” - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQNXAtN09KaDNnMzRWWFpCM3hwSmhGaWlRX3NSM25welcyZThKWHNqYjczNTR1QmZ3VHFPc1ZlcExmQm9TbkFlQi13YjZVSmRfY1I1NzhFRVU5YUZXU3hlTmVEdzRLNm5tNHl2UjV0a3E3Vzhsb054WTZsZHZyTUtlY05zWFgwMlYwcThXV1hGWXRaeWNvVDVJa1MyNE9aTGpSd0xqLWdaOEtlQWtRc2lUMVpNbXRUOVFHODA3N0kzVWZoUU5GSGVrNnFWVHQ5dGxSUjFybXVtdGtYSW1pelVmbkM2Z3V5S2xkR2J1RmRIVThuM2FNMnlUStIBkwJBVV95cUxPeXBTTUszNzliNHJOc0JyQnlPTlY1UEtnTEtZWDU1eGJHZ1dVbzhlY2tWaVlSVThCNk1mY1U0UFRzNFloVUFMd1lFTzRXS0NyQjJfX2VWWV9jX25tRTNWcndkSUJvVU5GMU9meEZQY1FaWk01bHB6THBZVWowcnhEVEFkSDZtVHI1VDNTNVloVnIxTGR2dWdrY1ZWMkZheTVVWkg4LU5hMFBIalIwUVJ1QUtMeGlmU1k1ekVGOVBGdV8yVV9lUXdHRzhndEZiVWpJYlF0dEJRZXlDRjRhd0hlUHNNVEpBeXpCa2dmenBUNnF6eUlVc1htZUFmbzZoaGNtV04tNXVqOXVRSzk3ZXRsRGlPOA?oc=5",
           "intensidad": 7.0,
-          "medio": "DiarioNoticiasWeb.Com"
+          "medio": "Infobae"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 4,
+      "peso_pct": 2,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 2,
+      "n_temas": 1,
+      "n_notas": 1,
       "notas": [
         {
           "texto": "Nuevos audios revelan que Amílcar Olán planeaba ganar $240 millones mensuales",
           "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/07/nuevos-audios-revelan-que-amilcar-olan-planeaba-ganar-240-millones-mensuales.html",
           "intensidad": 7.0,
           "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "Claudia Sheinbaum firma decreto que establece nacionalidad única para gobernadores y presidentes - Reporte Indigo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQaUJqVTJoZ2Etb1k0QWhQQkItdDVZNHZ3TUJfN1Fib0ppYmpxZjY1U0dZV1JCX1BXUUw2YXpibF81U1hTVXVrblJVLUthTUJMeFFQTE8xMU9SQVQ0SWhicldDZnFtRERrNVowNndEdzJfLTMzbng3RHdSMWhWSk0taDFKYmZRc1FmNnhham1PTTZCSzVuakVHN0Z6bHF4REdsR3J6QmtPM0VEeXp3OVYwTVd5cmNwZC1TZDRLYUdmRmxsRVRkRmhZUUljTVhpYUtpUk1QQmlqUGhLUElkUExDRk11MFN3YzZxcHc?oc=5",
-          "intensidad": 5.0,
-          "medio": "Reporte Indigo"
         }
       ]
     },
@@ -827,7 +815,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 77
+          "peso_pct": 78
         },
         {
           "categoria": "Relación Bilateral",
@@ -839,7 +827,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 3
         }
       ]
     },
@@ -852,7 +840,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 76
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
@@ -873,7 +861,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
@@ -902,7 +890,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 76
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
@@ -910,7 +898,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 5
+          "peso_pct": 4
         },
         {
           "categoria": "Social",
@@ -926,14 +914,17 @@
       "categoria": "Gobernabilidad",
       "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
       "motivo": "Publican en el DOF el decreto sobre doble nacionalidad para candidaturas",
-      "peso": 51.0,
-      "n_temas_agrupados": 8,
+      "peso": 65.0,
+      "n_temas_agrupados": 11,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 5,
+      "medios_corroborantes": 7,
       "confianza": "alta",
       "fuente_url": "https://www.informador.mx/mexico/publican-en-el-dof-el-decreto-sobre-doble-nacionalidad-para-candidaturas-20261007-0214.html",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
     },
     {
       "id": "huachicol-fiscal",
@@ -941,14 +932,17 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
       "motivo": "Detienen a presunto cómplice de Rocha Cantú, copropietario de Miss Universo, en red de huachicol",
-      "peso": 41.0,
-      "n_temas_agrupados": 6,
-      "escalando": true,
+      "peso": 50.0,
+      "n_temas_agrupados": 7,
+      "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 6,
+      "medios_corroborantes": 5,
       "confianza": "alta",
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/07/detienen-a-presunto-complice-de-rocha-cantu-copropietario-de-miss-universo-en-red-de-huachicol/",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     },
     {
       "id": "visa-de-andy",
@@ -963,22 +957,10 @@
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQeE5kSXY1dDVETWI3eHptVmpwck9DTi1CY2YzUjF1RUJEUWQzSUU5TzZpSWh2TzZwNHZ4Rmd4VXQzOXVZb2NBdTBGdlhiRzJuZzlVVDFUaEIwSk94S21aWWxWTE1jcEtSRmFZM3R1MDhLb1dmbWhLd3pKQ3BYb0lBVzlRTGZYMGl5dk56dFNWYXJfanRha0lwRnNyNXB3TVlIZHZxbkRiSm5Fdlp3MDVlcmdwX0VaOGZFSTJ3aVpnWTFSSFFFT0JVUG9uejd6cHRJMGtkU2hUMXFQTFVZMDdxSzd2d19LcGd2bEtkMVF6OTV4SG1LYXFB0gGSAkFVX3lxTE12NlhZZmI2bXd3Q3FzYmZlTjVFZ2FPUG0wMEJyQ1JBRnlhS3otU2RSOUVOZDVIMWNUeVp3eXpkZWRNVmpuNkd5NjZBUWhtdkJaaTlGV3lpNkg4MTlpNWsxaV96RF9uMTNNZHVqMHdjZ3JxQ3FNd2VwalJvVXdsQmE0Vm9GOTNyUWR6R3BWdVl1TmJwOF9MWHpiQ25zSzFlbGlwQkVNc2h3a3RiclBHQWxlSFFzWXQ2NUY0ZVBWU3hrSzJnZ0tqa1d6N0V5aU9KR1M4YkQzMENVSWVDNUlCeUhJSjBJNW51YjdzdVJxTExyeHl0ZTVmUHZObm9DZDBBVVQ4a09ObmV4X2JtMmY0YWQzNUE?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "amlo-agenda",
-      "nombre": "López Obrador: reaparición y declaraciones",
-      "categoria": "Gobernabilidad",
-      "resumen": "Declaraciones, apariciones y señalamientos que involucran al expresidente Andrés Manuel López Obrador y su influencia en el gobierno y en Morena.",
-      "motivo": "Morena cumple 15 años; AMLO no acudirá al festejo",
-      "peso": 12.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/07/politica/012n1pol?partner=rss",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     }
   ],
   "temas_nuevos": [
@@ -1015,26 +997,15 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQeVZ5Smg0SWxtTHpwWUpUdGljS2N2VEM0YndxTnBNcmYyUlRXTzlOREVlVFd6WGxWY3ZhMDA3LWlKQlRLcWFBNW0wTG1qTlZpWVVvUGM0S3B3RXpyZUZvaFQ4bEYzY0tqdkhWX3J3dnJGSWYyN0xNSk9yemVRNGJiZHdPMjNUalB4UzZGM2pMSjF6RjhVbF9uZkRB?oc=5"
     },
     {
-      "id": "auto-771f66e09b",
-      "nombre": "Música y Pueblo en el Senado",
+      "id": "auto-5acecb2fbb",
+      "nombre": "Tensión en Palacio Nacional: Sheinbaum habría cuestionado a García Harfuch por c",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/07/politica/010n2pol?partner=rss"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNTmFjQjIweUZFZ3JDQmtoM2EtLWZVelBQbkhTNEpwYzlyVVZGTWc0WFhvR1JMZGtRb2pzYkhsTWRha3QwZjYzTy1oMmhGSkxZWGdxLTdQWTNHN3dpckkzNHA1Y0xSUzZBMHJwR0xCX05DRXkzZ25Yb0RNeUVuVDI3RXRtOGlMd0JRZS03VDE3a2pCMTBnaDFQWlZHZTZhTFBuQ2x3V1FoaC1FMHFiNjJFWDhYcjJsZFI1R3haS1ZJNm0wYVM2Ym1MdHRfaWRLVFI4YnF1eWlNbUdQQzBoTEtpN2hsRG51ZEo5SENSTHYtVFRlM25tdHdSOW9jWQ?oc=5"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-3af2094284",
-      "nombre": "Anuncia SNTE reunión con Sefiplan para revisar pagos de pensiones pendientes des",
-      "categoria": "Relación Bilateral",
-      "dias_silencio": 30,
-      "motivo": "Revisar pensiones “inmorales” de ex funcionarios, pide Sheinbaum al BdeM",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/07/politica/005n2pol?partner=rss",
-      "fecha_anterior": "2026-09-07",
-      "fuente_url_anterior": "https://oem.com.mx/diariodexalapa/local/anuncia-snte-reunion-con-sefiplan-para-revisar-pagos-de-pensiones-pendientes-desde-enero-31946009"
-    },
     {
       "id": "auto-6f3f3b14de",
       "nombre": "[#VIDEO] Lilly Téllez acusa a Sheinbaum de promover la “mediocridad escolar\" al ",
@@ -1067,6 +1038,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQZjJFOWNhUUxYQjVUTkN0all0Z1Jhc3kyeU84NzJXWmtTMmRNdTRKTzhUMW9fcUl2S1VOM1hESTZDdGhDZ0JLQ2M3bTZGM0dIMGlzeUdzZVUybVl3UDJ2NTZveDdlOWJ4OWxvb185YnlYLTU4a3hQRVhadUprVWtERUpwbHo0ZHdDWVNtWk1rOHE2bHRPejV6N2FBaUwxY1RTcEFmanhKSVBYd1lnRTdCTTdhTzdPMnNmeWhnTnh3Y0NMOXp4aVdoajIwLXFwSW51RTJrMkR5TWs0dExNMEtpZ0tlTEt4V2J1MHI1czJJTm5qcUd3TE5XZFBJNNIBjwJBVV95cUxPUThkOWpPb3NIOUxMSHJkV3l0NTUwLWdKMmt0eDlqdlRuS0pSTEpFODhJdERKRnNLalZ4SmVCRFpORWgxRHdtQ3U0Ul9wQUJkei1vUHdfajh5YWNBQmctVml5X0xzVDFMWWFoUVFyM05LS2JYOEp4N0EzNTQzSDg5anFidmgtUVRmTVBCcGZVV2d5V3dadE9LM0U5N1VIWm9mRzZfcFpFZmQwTXAtc2loRkRyNHBJUS1pU3E1TDRaeGRUQnJVQ3M2U2ZXam0tSFczUjlUS1BCVEc1eGt2Qi0xSTVPX0oySXBtWGZBUVZFdWZsVEluXzFPcFFCcXhDZUZmTnNQeWtxcHpxT2xlNFlN?oc=5",
       "fecha_anterior": "2026-09-23",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQdjkxN2U1ZWY2M0NYTHNQbjJGNVFMV3VLRjJQRnVTdHVtNnhSeWc0anJNQm9rTWw0MktRa2tUWXJZWTdhanhWVUtUX3g2TVQzdGxkcjBNVkJ1WXdneVVwWDIyRVVzSVY4TG9CU21BajdnUklFRVFDZTg5Yno5VEtkSld4eUk?oc=5"
+    },
+    {
+      "id": "auto-8ca0b2f1c3",
+      "nombre": "Rosa Miriam Elizalde: “Matonismo” en la ONU",
+      "categoria": "Seguridad Nacional",
+      "dias_silencio": 13,
+      "motivo": "Rosa Miriam Elizalde: Silvio, la belleza",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/08/politica/015a2pol?partner=rss",
+      "fecha_anterior": "2026-09-24",
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/24/politica/014a2pol?partner=rss"
     }
   ],
   "actores_destacados": [
@@ -1082,45 +1064,45 @@
       "confianza": "media"
     },
     {
-      "id": "pri_partido",
-      "nombre": "Partido Revolucionario Institucional (PRI)",
-      "rol": "Reacción de oposición",
-      "tema": "PAN y PRI promueven la injerencia contra el país: Morena",
-      "nota": "PAN y PRI promueven la injerencia contra el país: Morena",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/07/politica/003n3pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "monreal",
-      "nombre": "Ricardo Monreal",
-      "rol": "Responsable institucional",
-      "tema": "Ley Antimemes y reforma de propiedad industrial",
-      "nota": "⚡ Posible presión de Ricardo Monreal — Monreal advierte a diputados que no irán a fiesta de Morena hasta discutir punto por punto de Ley Antimemes",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/07/monreal-advierte-a-diputados-que-no-iran-a-fiesta-de-morena-hasta-discutir-punto-por-punto-de-ley-antimemes/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "pan_partido",
-      "nombre": "Partido Acción Nacional (PAN)",
-      "rol": "Reacción de oposición",
-      "tema": "PAN y PRI promueven la injerencia contra el país: Morena",
-      "nota": "PAN y PRI promueven la injerencia contra el país: Morena",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/07/politica/003n3pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "rol": "Responsable institucional",
       "tema": "Ariadna Montiel se reunirá con morenistas perdedores para pedir unidad tras encu",
       "nota": "Ariadna Montiel llama a la unidad, a actuar con austeridad y sin frivolidades - El Universal",
       "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQZjJFOWNhUUxYQjVUTkN0all0Z1Jhc3kyeU84NzJXWmtTMmRNdTRKTzhUMW9fcUl2S1VOM1hESTZDdGhDZ0JLQ2M3bTZGM0dIMGlzeUdzZVUybVl3UDJ2NTZveDdlOWJ4OWxvb185YnlYLTU4a3hQRVhadUprVWtERUpwbHo0ZHdDWVNtWk1rOHE2bHRPejV6N2FBaUwxY1RTcEFmanhKSVBYd1lnRTdCTTdhTzdPMnNmeWhnTnh3Y0NMOXp4aVdoajIwLXFwSW51RTJrMkR5TWs0dExNMEtpZ0tlTEt4V2J1MHI1czJJTm5qcUd3TE5XZFBJNNIBjwJBVV95cUxPUThkOWpPb3NIOUxMSHJkV3l0NTUwLWdKMmt0eDlqdlRuS0pSTEpFODhJdERKRnNLalZ4SmVCRFpORWgxRHdtQ3U0Ul9wQUJkei1vUHdfajh5YWNBQmctVml5X0xzVDFMWWFoUVFyM05LS2JYOEp4N0EzNTQzSDg5anFidmgtUVRmTVBCcGZVV2d5V3dadE9LM0U5N1VIWm9mRzZfcFpFZmQwTXAtc2loRkRyNHBJUS1pU3E1TDRaeGRUQnJVQ3M2U2ZXam0tSFczUjlUS1BCVEc1eGt2Qi0xSTVPX0oySXBtWGZBUVZFdWZsVEluXzFPcFFCcXhDZUZmTnNQeWtxcHpxT2xlNFlN?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "pri_partido",
+      "nombre": "Partido Revolucionario Institucional (PRI)",
+      "rol": "Reacción de oposición",
+      "tema": "PRI aprovechará disputa interna de Morena para ganar mayoría: 'Alito' Moreno",
+      "nota": "PRI aprovechará disputa interna de Morena para ganar mayoría: 'Alito' Moreno",
+      "fuente_url": "https://www.informador.mx/mexico/elecciones-2027-pri-aprovechara-disputa-interna-de-morena-para-ganar-mayoria-dice-alito-20261007-0190.html",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "pt_partido",
+      "nombre": "Partido del Trabajo (PT)",
+      "rol": "Reacción de oposición",
+      "tema": "IMSS- Bienestar está funcionando: Sheinbaum defiende a coordinador estatal en Ve",
+      "nota": "PT acusa que Morena cedió a presiones de EU para definir coordinaciones estatales - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQM0RsUWhVSkhXX2tyM1g5SDFuQVhiUDJtMnJBM0otNjV1dERFMmNVT0hRRC1rUkdHZkc1R0ZmTXRZRFdqN0p0N0J3UDFGSTR5RkROZG9HUzdxaUFSY2NBN0FycDFtYWQxemxVYTU2Z0J1T2dTRU5uOXd1RkllNDBSVUt2TEk2Y3NpMGpfNG02b3NKRTJLYkNib0RLZTlGNDh4X1hWcHZYS3QxUEo3QW1NcFFRQThROHM1YUZ6aDlYWGNyOWZQbHdsNmJzMXNoMVVoTms4azVjenRtNnZwLVUxWjFkWFRuUFphUEE?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "tatiana_clouthier",
+      "nombre": "Tatiana Clouthier",
+      "rol": "Reacción de oposición",
+      "tema": "Coordinadores estatales de Morena rumbo a 2027",
+      "nota": "⚡ Posible presión de Morena (partido político) — Tatiana Clouthier exige a Morena el retiro de Clara Luz Flores de la coordinación - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNRUhQOFY0aUdTSFMwYkdnbkdDV1lELVQwRUwxbXRvRHdkcTdxV1dWRC15LWFFaUNpbkVodWg1bW9fTWZ4azJIdTBCRlZtNlFXUzVmOTI5LURieWtpdVROUm9TbWVsYnkzb08ya1dHMVNQcEszT0Rhd0czUHBvdFBIME5hblk3TjNyLTdvUThrV25VOWZReGZYUV92V0xJV3NWZHBuZHdudVRyTldoSU55UWdONFR3SkIwLTZIb1RMM1otQkMtTF9sYk5iQ3p3aGxuc0pnYXlFOUhHeXVzZURVMnBxTmVZcUd4V2ZDMGhLcFFud9IBhgJBVV95cUxNSlZoVThTNl90X0I0b1IzM3FqemNaNGNueFByTVBCaW8yTjljM2pYMFdwVTBTUmhYWGc3WWpEZndrdHdZY2RCQ2MzZm1vMEEyblNMSHdNaXk0cUwxMEsyN1BnTi1aVGxwSWxDanRRSWVHU2ptTEpMOTZFVlE1SFpfcnNkeS0tNlNzUGhBVzlrXzFXemVrREQwWVYxNXZ5Y3FfZHFtbXliSVo5cmxlLXZKU19IRGg2cEh0aFZHU3k2aF9CRDhPaXE2YnZTalVLZ216WDE5ejVQMVBVWFBiNUoybDFjN3B5Y0dJbElTOGt2NG01b3AwS2N5RGVvSk9KMzRscGhubTF3?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1275,9 +1257,9 @@
     {
       "fecha": "2026-09-28",
       "tension": 40,
-      "n_notas": 64,
+      "n_notas": 65,
       "n_alto_impacto": 43,
-      "n_medio_impacto": 21,
+      "n_medio_impacto": 22,
       "n_bajo_impacto": 0
     },
     {
@@ -1298,18 +1280,18 @@
     },
     {
       "fecha": "2026-10-01",
-      "tension": 38,
-      "n_notas": 60,
-      "n_alto_impacto": 40,
+      "tension": 39,
+      "n_notas": 61,
+      "n_alto_impacto": 41,
       "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-02",
-      "tension": 41,
-      "n_notas": 39,
+      "tension": 40,
+      "n_notas": 40,
       "n_alto_impacto": 27,
-      "n_medio_impacto": 12,
+      "n_medio_impacto": 13,
       "n_bajo_impacto": 0
     },
     {
@@ -1330,34 +1312,34 @@
     },
     {
       "fecha": "2026-10-05",
-      "tension": 23,
-      "n_notas": 70,
+      "tension": 22,
+      "n_notas": 71,
       "n_alto_impacto": 26,
-      "n_medio_impacto": 44,
+      "n_medio_impacto": 45,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-06",
-      "tension": 13,
-      "n_notas": 86,
-      "n_alto_impacto": 15,
-      "n_medio_impacto": 71,
+      "tension": 14,
+      "n_notas": 90,
+      "n_alto_impacto": 18,
+      "n_medio_impacto": 72,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-07",
-      "tension": 21,
-      "n_notas": 59,
-      "n_alto_impacto": 21,
-      "n_medio_impacto": 38,
+      "tension": 23,
+      "n_notas": 63,
+      "n_alto_impacto": 24,
+      "n_medio_impacto": 39,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-08",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 25,
+      "n_notas": 6,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     }
   ],
@@ -1367,9 +1349,9 @@
       "nombre": "Tatiana Clouthier",
       "iniciales": "TC",
       "x_lunes": 94,
-      "y_lunes": 73,
+      "y_lunes": 72,
       "x_hoy": 100,
-      "y_hoy": 72,
+      "y_hoy": 71,
       "delta_pts": 3.0,
       "alcance": 21,
       "n_alto": 8,
@@ -1386,17 +1368,17 @@
         {
           "fecha": "2026-10-05",
           "x": 48,
-          "y": 80
+          "y": 79
         },
         {
           "fecha": "2026-10-06",
           "x": 94,
-          "y": 73
+          "y": 72
         },
         {
           "fecha": "2026-10-07",
           "x": 100,
-          "y": 72
+          "y": 71
         }
       ],
       "fecha_apagado": "2026-10-08"
@@ -1406,9 +1388,9 @@
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
       "x_lunes": 26,
-      "y_lunes": 93,
+      "y_lunes": 91,
       "x_hoy": 58,
-      "y_hoy": 79,
+      "y_hoy": 78,
       "delta_pts": 18.0,
       "alcance": 16,
       "n_alto": 7,
@@ -1425,56 +1407,17 @@
         {
           "fecha": "2026-10-05",
           "x": 19,
-          "y": 95
+          "y": 94
         },
         {
           "fecha": "2026-10-06",
           "x": 26,
-          "y": 93
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 58,
-          "y": 79
-        }
-      ],
-      "fecha_apagado": "2026-10-08"
-    },
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "iniciales": "AL",
-      "x_lunes": 16,
-      "y_lunes": 91,
-      "x_hoy": 26,
-      "y_hoy": 100,
-      "delta_pts": 9.0,
-      "alcance": 8,
-      "n_alto": 6,
-      "n_medio": 2,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYzNudllLXzNqa2c3MHhGdE1IMF80SWpvc2NGTGQyYnpZRFlJVjBRMWI4eHRoNlg5aWFBeXhTREIwRnpidmNPejlTZnh6YlJRbnVBNmpvaGV4OS1GV1gtVG1QU0tIbnN1aDgzUUdCdHplYWhMdm94NVNzZ1RMaVl0c21NMERZdDB2OEN6NXE0c0JUWnBpSE5TRWhPQjBHZnpVSGVHT3lrdlI?oc=5",
-      "nota_texto": "El movimiento político de Andrés Manuel López Beltrán - MVS Noticias",
-      "es_nuevo": false,
-      "categoria": "Relación Bilateral",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 13,
-          "y": 86
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 16,
           "y": 91
         },
         {
           "fecha": "2026-10-07",
-          "x": 26,
-          "y": 100
+          "x": 58,
+          "y": 78
         }
       ],
       "fecha_apagado": "2026-10-08"
@@ -1483,49 +1426,93 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 19,
-      "y_lunes": 95,
-      "x_hoy": 35,
-      "y_hoy": 88,
-      "delta_pts": 10.5,
-      "alcance": 11,
-      "n_alto": 6,
-      "n_medio": 5,
+      "x_lunes": 26,
+      "y_lunes": 91,
+      "x_hoy": 48,
+      "y_hoy": 86,
+      "delta_pts": 15.0,
+      "alcance": 14,
+      "n_alto": 8,
+      "n_medio": 7,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNQkFuNVJoRnByendDN2FNSGJ5a29GcDFmN2d2cjVublo2SmZYXzFlODY4d1kxU2tZSFk4Y3VFNC0zanUwRWZGWE5IN25LcFlsS2ZoN2JoQnJuOGlZU3NpYUFPVXJxekd3Q3pTNl96RlJwMUpYV2FSbGFNSk4wZW01d29qM1N5MF9HM1lZczFPR1U?oc=5",
-      "nota_texto": "Cinco diputados locales de Morena buscan llegar a San Lázaro - Sucesos Puebla",
+      "nota_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdXJDTzFCSVo4dHY4TUtGbXEwNUU0cnZHaFFoQTRIaEs5dnJYVjllRVdrMEdELTZKcFMtWmhuWXdCZm5oM0NvVTBjMjZObjhnWkVnMUlJUkxVOFBoMGhJYTdzWnRGbnhteDk2UEdaTUszMnZLbnlibGxtYVBMQ19jLVZGcnppQmtxbTVqVnBXQ3NrY1k?oc=5",
+      "nota_texto": "Pío López Obrador se registra en Morena para buscar diputación federal por Chiapas - MAGMA Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-10-05",
-          "x": 16,
-          "y": 100
+          "x": 19,
+          "y": 94
         },
         {
           "fecha": "2026-10-06",
-          "x": 19,
-          "y": 95
+          "x": 26,
+          "y": 91
         },
         {
           "fecha": "2026-10-07",
-          "x": 35,
-          "y": 88
+          "x": 48,
+          "y": 86
         }
       ],
       "fecha_apagado": "2026-10-08"
+    },
+    {
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "iniciales": "AL",
+      "x_lunes": 26,
+      "y_lunes": 98,
+      "x_hoy": 29,
+      "y_hoy": 100,
+      "delta_pts": 3.0,
+      "alcance": 9,
+      "n_alto": 7,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOMGhEZkV6cDQ4UUw1UkpDMVltVWRTVlVWV2FtdWQyTXNjQjJjTWszN3Bsc1lJdEFWWEdlaXR6OS1qN1c5cTdvSVZXbndYLThnMDBFczBzcnpBWktDWkhTRV9VeWxURmE2WG5KcGFEbFlVMTdMTXpGVzVtaEdYazR2UXRvcmk1eEI5d1pObEZZVW4zMkxpUHhrbWQ5RUtDek9tc19Cc3M0M1NhRGR0MVpGQ1Q2RjUzMWh1N0NN?oc=5",
+      "nota_texto": "Huachicol fiscal: las reglas que no aplicaron para el amigo de Andy López Beltrán - Petróleo y Energía",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 4,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-05",
+          "x": 13,
+          "y": 84
+        },
+        {
+          "fecha": "2026-10-06",
+          "x": 16,
+          "y": 90
+        },
+        {
+          "fecha": "2026-10-07",
+          "x": 26,
+          "y": 98
+        },
+        {
+          "fecha": "2026-10-08",
+          "x": 29,
+          "y": 100
+        }
+      ],
+      "fecha_reactivado": "2026-10-08"
     },
     {
       "id": "andrea_chavez",
       "nombre": "Andrea Chávez",
       "iniciales": "AC",
       "x_lunes": 23,
-      "y_lunes": 73,
+      "y_lunes": 72,
       "x_hoy": 45,
-      "y_hoy": 73,
+      "y_hoy": 72,
       "delta_pts": 13.5,
       "alcance": 9,
       "n_alto": 4,
@@ -1542,24 +1529,107 @@
         {
           "fecha": "2026-10-05",
           "x": 23,
-          "y": 73
+          "y": 72
         },
         {
           "fecha": "2026-10-06",
           "x": 45,
-          "y": 73
+          "y": 72
         }
       ],
       "fecha_apagado": "2026-10-07"
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 16,
+      "y_lunes": 79,
+      "x_hoy": 23,
+      "y_hoy": 80,
+      "delta_pts": 4.5,
+      "alcance": 6,
+      "n_alto": 3,
+      "n_medio": 4,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPZDBIc0NHZHo1elFaUE9aNk9xb09aZlk4aGNHeDJnQzktRkFZVjhObjZ6cXd4OTJiWnNtTFgzc0lIMlppVVZJOGQ3Y0tScUdiU0hCU200UHlqMmhMS0piNjVXRGJNaDBfVjFHRnozWFh2ZUhwVzYyU1lIUnUxRlNsQjByME1yWk8tbG11UEtkMHFPSEJNaEJ3OUxTZkpRVlRkUEo2b3RhcklJTVdnQUo5QVNDX2pfMlNja3VpVHliVldiM1pLVm5vdDNSUlkzX211aHRuVll5VkVCUU9WdnZEckRB?oc=5",
+      "nota_texto": "Acusa AMLO a Estados Unidos de fabricar expedientes contra el gobernador de Sinaloa, Rubén Rocha Moya - Palabra de Veracruzano",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 4,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-05",
+          "x": 3,
+          "y": 56
+        },
+        {
+          "fecha": "2026-10-06",
+          "x": 6,
+          "y": 56
+        },
+        {
+          "fecha": "2026-10-07",
+          "x": 16,
+          "y": 79
+        },
+        {
+          "fecha": "2026-10-08",
+          "x": 23,
+          "y": 80
+        }
+      ],
+      "fecha_reactivado": "2026-10-08"
+    },
+    {
+      "id": "monreal",
+      "nombre": "Ricardo Monreal",
+      "iniciales": "RM",
+      "x_lunes": 6,
+      "y_lunes": 84,
+      "x_hoy": 13,
+      "y_hoy": 84,
+      "delta_pts": 4.5,
+      "alcance": 3,
+      "n_alto": 2,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://www.elfinanciero.com.mx/nacional/2026/10/06/el-retiro-de-ricardo-monreal-que-quiere-hacer-despues-de-dejar-la-politica/",
+      "nota_texto": "El ‘retiro’ de Ricardo Monreal: ¿Qué quiere hacer después de dejar la política?",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-05",
+          "x": 3,
+          "y": 56
+        },
+        {
+          "fecha": "2026-10-06",
+          "x": 6,
+          "y": 84
+        },
+        {
+          "fecha": "2026-10-07",
+          "x": 13,
+          "y": 84
+        }
+      ],
+      "fecha_apagado": "2026-10-08"
     },
     {
       "id": "rubio",
       "nombre": "Marco Rubio",
       "iniciales": "MR",
       "x_lunes": 13,
-      "y_lunes": 71,
+      "y_lunes": 70,
       "x_hoy": 16,
-      "y_hoy": 80,
+      "y_hoy": 79,
       "delta_pts": 3.0,
       "alcance": 5,
       "n_alto": 2,
@@ -1576,63 +1646,24 @@
         {
           "fecha": "2026-10-05",
           "x": 13,
-          "y": 71
+          "y": 70
         },
         {
           "fecha": "2026-10-06",
           "x": 16,
-          "y": 80
+          "y": 79
         }
       ],
       "fecha_apagado": "2026-10-07"
-    },
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 6,
-      "y_lunes": 57,
-      "x_hoy": 16,
-      "y_hoy": 80,
-      "delta_pts": 7.5,
-      "alcance": 5,
-      "n_alto": 2,
-      "n_medio": 3,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPZDBIc0NHZHo1elFaUE9aNk9xb09aZlk4aGNHeDJnQzktRkFZVjhObjZ6cXd4OTJiWnNtTFgzc0lIMlppVVZJOGQ3Y0tScUdiU0hCU200UHlqMmhMS0piNjVXRGJNaDBfVjFHRnozWFh2ZUhwVzYyU1lIUnUxRlNsQjByME1yWk8tbG11UEtkMHFPSEJNaEJ3OUxTZkpRVlRkUEo2b3RhcklJTVdnQUo5QVNDX2pfMlNja3VpVHliVldiM1pLVm5vdDNSUlkzX211aHRuVll5VkVCUU9WdnZEckRB?oc=5",
-      "nota_texto": "Acusa AMLO a Estados Unidos de fabricar expedientes contra el gobernador de Sinaloa, Rubén Rocha Moya - Palabra de Veracruzano",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 3,
-          "y": 57
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 6,
-          "y": 57
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 16,
-          "y": 80
-        }
-      ],
-      "fecha_apagado": "2026-10-08"
     },
     {
       "id": "clara_luz_flores",
       "nombre": "Clara Luz Flores",
       "iniciales": "CL",
       "x_lunes": 16,
-      "y_lunes": 69,
+      "y_lunes": 68,
       "x_hoy": 23,
-      "y_hoy": 65,
+      "y_hoy": 64,
       "delta_pts": 3.0,
       "alcance": 6,
       "n_alto": 1,
@@ -1649,12 +1680,12 @@
         {
           "fecha": "2026-10-05",
           "x": 16,
-          "y": 69
+          "y": 68
         },
         {
           "fecha": "2026-10-07",
           "x": 23,
-          "y": 65
+          "y": 64
         }
       ],
       "fecha_apagado": "2026-10-06"
@@ -1745,35 +1776,6 @@
         }
       ],
       "fecha_apagado": "2026-10-06"
-    },
-    {
-      "id": "amlo",
-      "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "iniciales": "AM",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 4,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNclZ3dU1NTXo0dDRBYmdDLW9EeDh6WThmdV9VYkRKYXRfWnVNamJNd2dGU1JDcTlDdUp2RGlkamtTeGtyQjNJM3IxdG8wVkpZNDFoOEJ6cWlFbi1Gb0ZrQ3NMMUppaE9BczZTTlc0VDBXdGptTWNhVmRfQUh3eDdfVnc5WGxPUzRnSkdTV2lsUVlFYkNKRjhtZEE3TWNzMmw4eVhFWFpXWHZzX2lJdWR5cHFQanNocXROZVBIZFNqa1VMMU9RTERFZXdsd09zOFdlU1RodkNpS0FJMkZBeUQ3V0diSGRXdGZBaFBF?oc=5",
-      "nota_texto": "Qué gusto volver a ver a nuestro querido expresidente Andrés Manuel López Obrador, presentando su nuevo libro PUEBLO y reafirmando el cariño y reconocimiento hacia nuestra presidenta Claudia Sheinbaum",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 4,
-          "y": 50
-        }
-      ],
-      "fecha_apagado": "2026-10-06"
     }
   ],
   "tablero_semana_inicio": "2026-10-05",
@@ -1781,26 +1783,10 @@
   "mananera_estado": "pendiente",
   "a_vigilar": [
     {
-      "id": "auto-620154193b",
-      "nombre": "Llama Brugada a la unidad en tres materias en torno a la Presidenta",
+      "id": "auto-506050e11d",
+      "nombre": "Manuel Velasco compara a Harfuch con Pedro Infante - Tabasco HOY",
       "categoria": "Gobernabilidad",
-      "resumen": "Llama Brugada a la unidad en tres materias en torno a la Presidenta",
-      "fuente_url": "",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-9bc65c6223",
-      "nombre": "Sheinbaum, sobre López Obrador y su nuevo libro: “Se dedica a reflexionar y escr",
-      "categoria": "Gobernabilidad",
-      "resumen": "Sheinbaum, sobre López Obrador y su nuevo libro: “Se dedica a reflexionar y escribir que también es una forma de hacer política” - EL PAÍS",
-      "fuente_url": "",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-c1ddb26466",
-      "nombre": "Ricardo Monreal deja en manos de Morena decisión sobre su continuidad política -",
-      "categoria": "Gobernabilidad",
-      "resumen": "Ricardo Monreal deja en manos de Morena decisión sobre su continuidad política - InformaOriente",
+      "resumen": "Manuel Velasco compara a Harfuch con Pedro Infante - Tabasco HOY",
       "fuente_url": "",
       "actor_vinculado": null
     }
@@ -1808,7 +1794,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 5
+    "pendientes": 2
   },
   "declaracion_presidenta_historial": [
     {
@@ -1863,5 +1849,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-08 00:01"
+  "hora_corte_publicada": "2026-10-08 06:02"
 }
