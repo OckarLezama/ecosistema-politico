@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-08T11:22:50.996965-06:00",
+  "generado_en": "2026-10-08T12:03:01.894641-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 53,
+  "n_notas_ventana": 51,
   "baja_confianza": false,
-  "tension_nacional": 16,
+  "tension_nacional": 17,
   "tension_anomalia": {
-    "z": -1.25,
+    "z": -1.17,
     "nivel": "normal",
     "media_periodo": 32.7,
     "dias_base": 27
@@ -13,18 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 80,
+      "peso_pct": 79,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
-      "n_temas": 16,
-      "n_notas": 43,
+      "n_temas": 14,
+      "n_notas": 41,
       "notas": [
-        {
-          "texto": "Diputados se quedan en San Lázaro; no llegarán a festejo de 15 años de Morena",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/7/diputados-se-quedan-en-san-lazaro-no-llegaran-festejo-de-15-anos-de-morena-903398.html",
-          "intensidad": 7.0,
-          "medio": "heraldodemexico.com.mx"
-        },
         {
           "texto": "Andy López Beltrán acude a los XV años de Morena; se sienta en las primeras filas del Auditorio Nacional - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNWDkzOW9jeTgyMk96RmN0blhWYXNLcDBZYS1lQVJVSkstUUZ5QWpaMVdpQkxtYm9FUzFUVDJ4U0szLS03Z0hCRzdhVzUtQ0xyazhQMG5waUt0ZE1aalJEMUxjOVQ1M2FGMS1hM1dpelRJcjZ3cVNqaUtfcHA1QU9NV1p5TW4ySnJfVnBtZjR2OUg0MF9zR3JXVmpLTUsyVWVhRFF1Zk9TOEJ5eDhnUUZBazcza2txbDNZbWlF0gHPAUFVX3lxTE9LSHBNajJIdkx2QXhKVC1sX1h3a1oyUldWYUt6YjF2ZGtpbE8tYUNfY2lMZXVIcE1aT0NjeVFYckRVenMxc1dreERqUjFhWTZWWjE4ZXR6MEtVOHdOb1I5TldLYUFvdEc3Q0hLUkZQcjJpYXJ4bVhUYm1BZDZDRm5CQ3lSZ2lwemRyNUM3UHdLZHlRY3lyV0RsM3VueGZxMUs1ODZIQ1pDQ1JzXzhCZGtZQlJhVGd5ZGZFVUJWbzJkVjRHY1NmWW42UnZuNTNWcw?oc=5",
@@ -108,12 +102,18 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPckk3Mm1aZVVjOU1jTGlTdEdlNENrSXpDMnlaSm5KZTJCekRHVE1CUDhXN1JybUhUcVlVWWdBeE5iLUNFRldyMS1oUlRhb3AzbEtyU3VBZVJRd0lqQjU4RkxVYk5OUlh0XzZCNFc2R1l3TzhNeUR4VExtN3F2NXcxT3I5RWpkdFFncUZiMHRxRUtkQkxwN1lVSk1WaUE1bjdKajRxeVAtcUk?oc=5",
           "intensidad": 6.0,
           "medio": "renegado"
+        },
+        {
+          "texto": "🚨 #AlMomento | Vinculan a proceso a Miguel Ángel 'N' alias 'El Capitán Sol', por presunto huachicol fiscal - Facebook",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQNVJzbkM4N3NjNWRVSGoyaHptQ2s3TVA3VjU0cTNKSmdmaExVZlhrWEVnbnlXanVwNTd0V1pWTmwxVXBtWThLTE0tbW42aHdrR0hULXRlazk0SFk5b3RiOGxOT0wxaGgtZ25WdUY3N29KZk1nMU1QbDE2UFFqMWlSdTFMQWtsWHBKR0RLUmFIcjl0cDRvT2E0dmdzZl83S05pajV0d01BZkpHUGVrYW15MW4wV0NJeHFnenVranJaSTdLeUxHMVU5Tldjd2s1WlQtTHU2TnZVZWxWOF9tN0JBdXlINjZnQUFh?oc=5",
+          "intensidad": 6.0,
+          "medio": "Facebook"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 10,
+      "peso_pct": 11,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
       "n_temas": 3,
@@ -922,15 +922,15 @@
       "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
       "motivo": "Ricardo Monreal respalda Verónica Díaz por críticas en Zacatecas - Milenio",
       "peso": 73.0,
-      "n_temas_agrupados": 10,
+      "n_temas_agrupados": 9,
       "escalando": true,
       "ultima_hora": false,
       "medios_corroborantes": 7,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQS290cXhSOXpkVnhEakFsM240cGp4N2dDNXZITUtSV0Nlbzdhcm1ZaE56ZWVNT0lmQUxrcUwyNnNaQ0pidzNGTjhCRDNpcUgxeUJpNVpTa0o0a3ZRTTkxUGluUjdQMzFaN2ZWZFhEWHJPSHpVeFdDbDItOFBLVUlSLUowTlpOOGxtZE1Pam9nMmpSRS15eVI3Rnp4d09XQdIBngFBVV95cUxOYXdQODdfUERuN1NpbE5LcUlkckFoYzg3bC1nZ1lKNFlhZlJIUFAwUHZ5UDA2RkJ5ZEZTR1NxU0tack1FVGtkOG5WNmRzZ3pTR1RyVU1hQXVMMGh1MWFmQkJ3UVY2ZG1tV3FNTmJyZ1BPOEV4TlpwaDBCVUVndThUbHlxRllnMXlZQ3hiTkhnZjRiYnYyWHROOUxLQ191QQ?oc=5",
       "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
       }
     },
     {
@@ -1011,20 +1011,20 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQeVZ5Smg0SWxtTHpwWUpUdGljS2N2VEM0YndxTnBNcmYyUlRXTzlOREVlVFd6WGxWY3ZhMDA3LWlKQlRLcWFBNW0wTG1qTlZpWVVvUGM0S3B3RXpyZUZvaFQ4bEYzY0tqdkhWX3J3dnJGSWYyN0xNSk9yemVRNGJiZHdPMjNUalB4UzZGM2pMSjF6RjhVbF9uZkRB?oc=5"
     },
     {
-      "id": "auto-2acafdd2a8",
-      "nombre": "15 datos para festejar los XV de Morena: rupturas, supuestos vínculos con el nar",
-      "categoria": "Seguridad Nacional",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPeHJocjVwRFJ5OXFSQlV0UDQxRERZb0V4MjVwc0hUUjRYa2lGbEV0emNqVVdQMlJFZjlwODhINUlMQ2lDcllKYk84dE5VRjVIYm9CVm15LTZpWnV0NER3d0VIaEo3MDVPc25wNXpnV2dyQlRkT09HcEYxRnpKTnM2MFpEOUM1dzJUcWRBcERoRU3SAZ4BQVVfeXFMTUdVc3F6dnZWNDJ4eWQ0dmphSlFzM3dZbTFKSmVzRllWMFlfOWpNMVV0Y2x6NjVzR0ROVDEtNTlmQUpZZXN1LWx2SHVPOG5udktZMzNVbExJano3cVV6WlE4VG9WR2NUa1NzdUREUHRKMXpIc1BFcm9PbjZpYkZRSkptY21Ua2U1Znp0dlpwWjc1UzdkUXg0WmNFREI0U0E?oc=5"
-    },
-    {
       "id": "auto-bc587665cd",
       "nombre": "Amlitos, toallas de Harfuch y bolsas con frases de apoyo a Sheinbaum; esta es la",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNdEtPUW03MklFeEJURVJxTC1mV0w2eHIzXzc0dU1ILW1UZnZpT2dJYTNsUzRvZHdjOWFlU2ZJaUpuOWtVTlJtZWJaT3o5bU5WeE1hRXhMMGpEY19TbWY2Z3FYX1Fzd0dlZ1o1WTh0VVNDT1VhUENaQ0lNRFI5N2MzRFJ4cTVoTkg2OUIzejFfS1QxXzZEcThGMmdiNml6LU5lak1LbWJ6UVZ2Vm9hRTFhQzB6RFBxV25rU29PNmlKSFhMZjU2VThtb1ltVHhRS0xId1hSRWZGMjB4RDRnTmxYb05PYjVHdXht0gH8AUFVX3lxTE9MYnl1ZWdfT1VZVTA1aTh4cVBqdC1jNEQ2U3ZLNnhXOW1iMVh1Q2gxS0Jib1hkTFlCME5ldmJNT2VDRnhNN1g4QUU0blAwbU5IUlJzcXpSQXNwNDlxRFFqSWV5WHF2a3NKNlJpQ2piNnF0VEdZTUNkbUw3T3BXencxZnhLQzJ3MUJmSmhXVHVBcWhuX05icTZRS1JRcTdzYm9OcTVwS1FLRm1PdEZwWGRYZnZwaXhrMkhNZUdFVXFaaC1WSHNVTWd1S1hZaDBYdmFUbm5WS01ENkU4aUFvcFBLVWVqRGVyd0ZfRWxsdlk0Z3NwOUlQVVhmWjZzMw?oc=5"
+    },
+    {
+      "id": "auto-15f8658649",
+      "nombre": "PRI aprovechará disputa interna de Morena para ganar mayoría: 'Alito' Moreno",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/elecciones-2027-pri-aprovechara-disputa-interna-de-morena-para-ganar-mayoria-dice-alito-20261007-0190.html"
     }
   ],
   "temas_retomados": [
@@ -1348,9 +1348,9 @@
     {
       "fecha": "2026-10-08",
       "tension": 20,
-      "n_notas": 30,
+      "n_notas": 31,
       "n_alto_impacto": 9,
-      "n_medio_impacto": 21,
+      "n_medio_impacto": 22,
       "n_bajo_impacto": 0
     }
   ],
@@ -1396,8 +1396,7 @@
           "x": 100,
           "y": 69
         }
-      ],
-      "fecha_reactivado": "2026-10-08"
+      ]
     },
     {
       "id": "morena_partido",
@@ -1440,8 +1439,7 @@
           "x": 53,
           "y": 84
         }
-      ],
-      "fecha_reactivado": "2026-10-08"
+      ]
     },
     {
       "id": "sheinbaum",
@@ -1484,8 +1482,7 @@
           "x": 62,
           "y": 74
         }
-      ],
-      "fecha_reactivado": "2026-10-08"
+      ]
     },
     {
       "id": "andy",
@@ -1903,11 +1900,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-08T06:02:39.397895-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-08 11:22"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-08 12:03"
 }
