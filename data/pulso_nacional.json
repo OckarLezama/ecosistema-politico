@@ -1,7 +1,7 @@
 {
-  "generado_en": "2026-10-09T11:50:05.562122-06:00",
+  "generado_en": "2026-10-09T12:00:11.427483-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 31,
+  "n_notas_ventana": 30,
   "baja_confianza": false,
   "tension_nacional": 27,
   "tension_anomalia": {
@@ -13,18 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 59,
+      "peso_pct": 58,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 8,
-      "n_notas": 19,
+      "n_temas": 7,
+      "n_notas": 18,
       "notas": [
-        {
-          "texto": "Manuel Huerta cuestiona gestión de Roberto Ramos Alor como coordinador del IMSS-Bienestar",
-          "fuente_url": "https://oem.com.mx/diariodexalapa/local/senador-manuel-huerta-cuestiona-gestion-de-roberto-ramos-alor-como-coordinador-del-imss-bienestar-en-veracruz-32501749",
-          "intensidad": 7.0,
-          "medio": "oem.com.mx"
-        },
         {
           "texto": "Asesinato de Carlos Manzo: Harfuch confirma que van 33 detenidos y mantiene contacto con Grecia Quiroz",
           "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/08/asesinato-de-carlos-manzo-harfuch-confirma-que-van-33-detenidos-y-mantiene-contacto-con-grecia-quiroz/",
@@ -108,12 +102,18 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZU9oYmtqeHBNQUttOWJJeHMtTU5JSW1iNElSTDYxSFR6VXRzQUo3NGNOMnVaUmt4ZXROMFBDRkdWVDdaQTAxMlNXR01MNDlIdGNhNlpmRU1JcVZyemtzeHJkZGk5aFJHT2RVTWhQNXFsRl9LeVkwZHNkZ1JYODlvWVI3dThTSFNodjVOdC1MYnNBbTdnUm0tdDc1X2ZQS21NOTg40gGjAUFVX3lxTFBlT2hia2p4cE1BS205Ykl4cy1NTklJbWI0SVJMNjFIVHpVdHNBSjc0Y04ydVpSa3hldE4wUENGR1ZUN1pBMDEyU1dHTUw0OUh0Y2E2WmZFTUlxVnJ6a3N4cmRkaTloUkdPZFVNaFA1cWxGX0t5WTBkc2RnUlg4OW9ZUjd1OFNIU2h2NU50LUxic0FtN2dSbS10NzVfZlBLbU05ODg?oc=5",
           "intensidad": 5.0,
           "medio": "Milenio"
+        },
+        {
+          "texto": "Ariadna Montiel reúne a Coordinadores Estatales de Morena para fortalecer la organización y formación política - El Soberano",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNM09wTWU4aTU2djhpREFVWVc0Zm9TZGZLSjJaWU5oR1BFaDBXSzdGa3RmV0RBRjVPeEItSFRfNVhTVFdwME55NXpnZ0dKMDEtc21jUFp1TGJVNUt5eTNEd0dQNEo0Z3AxLWN1bWppdlI0cll5NUdfUzBHRmZLQ0t5VWRqZEdZTHd3b2lYTmp5Qmhyc3BLa1YwSE5DTEw4aWlLMkxERTRFbDA4R1lQOENxSHRfNk55WE8xcWh0bHZrLUF5TzRLMmVtTmFFd0V0ajNaRkg5Z1Ezc1dYa1Ax?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Soberano"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 20,
+      "peso_pct": 21,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 5,
@@ -159,7 +159,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 13,
+      "peso_pct": 14,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
@@ -193,7 +193,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 7,
+      "peso_pct": 8,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
@@ -969,7 +969,7 @@
       "resumen": "Con coordinación e inteligencia, gobierno estatal registra resultados contundentes en seguridad - contraparte.mx",
       "motivo": "Citlalli Hernández rechaza dichos del PT sobre coordinaciones estatales - El Universal",
       "peso": 19.0,
-      "n_temas_agrupados": 6,
+      "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
@@ -1611,8 +1611,7 @@
           "x": 24,
           "y": 82
         }
-      ],
-      "fecha_reactivado": "2026-10-09"
+      ]
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1927,5 +1926,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-09 11:50"
+  "hora_corte_publicada": "2026-10-09 12:00"
 }
