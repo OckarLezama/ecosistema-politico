@@ -1,7 +1,7 @@
 tema_id,nombre,nivel,tipo,notas,coherentes,pct,estado
 reconfiguracion-gabinete-2026,Reconfiguración del Gabinete 2026,3,completo,3,0,0.0,mezcla historias
-auto-a17ab6a268,"Informe de la gobernadora, INEGI y desplazamiento - Marcaje Legislativo",3,informativo,35,1,0.03,mezcla historias
-auto-2f8fa2feda,Segundo Informe de Gobierno de Ana Paty Peralta: esto destacó la alcaldesa de Ca,3,informativo,38,3,0.08,mezcla historias
+auto-a17ab6a268,"Informe de la gobernadora, INEGI y desplazamiento - Marcaje Legislativo",3,informativo,36,1,0.03,mezcla historias
+auto-2f8fa2feda,Segundo Informe de Gobierno de Ana Paty Peralta: esto destacó la alcaldesa de Ca,3,informativo,39,3,0.08,mezcla historias
 auto-bfeea789a9,Gobierno del estado acompaña y protege a migrantes poblanos en Estados Unidos - ,3,completo,9,1,0.11,mezcla historias
 auto-f3c7c3cb43,El futbol mexicano será investigado por el Gobierno de Sheinbaum tras acusacione,3,informativo,9,1,0.11,mezcla historias
 auto-a2f712b838,MILENIO. . La presidenta Claudia Sheinbaum rechazó aumentar el IVA y sostuvo que,1,completo,17,2,0.12,mezcla historias
@@ -102,6 +102,7 @@ auto-e0744d9d51,Presidenta Sheinbaum defiende el modelo educativo mexicano - ANS
 auto-bc5881c5b5,Sheinbaum pide regular la IA ante difusión de información falsa - Buzos de la no,3,completo,4,2,0.5,revisar
 auto-c42133bff0,"“Queremos Medicinas, No Otro Teatro”: Reclaman a Sheinbaum por Megaproyecto de L",3,informativo,4,2,0.5,revisar
 operacion-enjambre,Operación Enjambre: alcaldes y funcionarios detenidos,1,completo,27,14,0.52,revisar
+auto-043bf7b202,"Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",1,completo,23,12,0.52,revisar
 auto-dbb17568d7,Noé Jara acusa “fuego político” contra él y el gobernador; se pone a disposición,3,informativo,13,7,0.54,revisar
 auto-e2608a5a56,Dan prisión preventiva a 16 integrantes de Los Ardillos,3,informativo,9,5,0.56,revisar
 auto-c1ffc0d291,Elecciones intermedias en EE. UU.: cada vez más estadounidenses se identifican c,3,completo,7,4,0.57,revisar
@@ -226,7 +227,6 @@ auto-f517e64944,"En dos semanas, Morena podría publicar convocatoria para coord
 tmec-revision,Revisión del T-MEC,1,completo,102,78,0.76,ok
 carlos-manzo,Asesinato de Carlos Manzo,1,completo,21,16,0.76,ok
 ley-egresos-2027,Paquete Económico y Ley de Egresos de la Federación 2027,1,completo,17,13,0.76,ok
-auto-043bf7b202,"Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",1,completo,13,10,0.77,ok
 auto-4ba9fa9ee8,BLINDA A 43 MILLONES DE MEXICANOS,3,informativo,9,7,0.78,ok
 auto-cae542e3f7,Sheinbaum visitará Culiacán este domingo 20 de septiembre; encabezará evento en ,3,completo,9,7,0.78,ok
 auto-1183a7b0c4,"Candidaturas no las decide un gobernador, aclara Sheinbaum tras polémica de Arme",3,completo,9,7,0.78,ok
@@ -290,7 +290,6 @@ auto-12044f2311,Conferencia presidencial de Claudia Sheinbaum de este martes 06 
 auto-82d951817d,CRÓNICA POLÍTICA: Congreso va por formalizar cambios en el gabinete de Salomón J,3,informativo,9,8,0.89,ok
 auto-708f865cd2,Fiscal Ernestina Godoy galardona a miembros de la policía ministerial,3,informativo,10,9,0.9,ok
 auto-dacd2cd4d0,"Informe desde Estocolmo: la migración, en el centro de la jornada electoral en S",3,informativo,10,9,0.9,ok
-auto-8983512cec,Sheinbaum y Delfina Gómez acuerdan tapar todos los baches del Edomex: anuncian o,1,completo,10,9,0.9,ok
 auto-af35577f9d,"Nuevo informe sobre normalistas de Ayotzinapa: 1,931 predios revisados y 17 nuev",3,informativo,10,9,0.9,ok
 auto-1fd312da6e,"Morena avanza, pero se fractura - 24 HORAS | El Diario sin Límites",3,informativo,23,21,0.91,ok
 auto-1cd82e22dd,"Detienen a 'El amarillo', líder de una célula criminal vinculada con 'Los Rusos'",3,informativo,11,10,0.91,ok
@@ -319,7 +318,7 @@ auto-b6de8facd5,INE informa que más de 100 mil yucatecos deberán renovar su cr
 auto-69a1927adc,"Se informó sobre la entrega de viviendas en Durango, específicamente en Lerdo, d",3,informativo,83,83,1.0,ok
 auto-991ada61bf,Se explicó el procedimiento legal que deben seguir los gobiernos estatales para ,3,informativo,83,83,1.0,ok
 auto-27799e98e2,Se informó sobre las investigaciones en curso respecto a los casos de bebés fall,3,informativo,83,83,1.0,ok
-auto-32fd0aa34b,"Se informó sobre la recuperación de la Comisión Federal de Electricidad, que fue",3,informativo,80,80,1.0,ok
+auto-32fd0aa34b,"Se informó sobre la recuperación de la Comisión Federal de Electricidad, que fue",3,informativo,81,81,1.0,ok
 auto-db389de134,Disputan en San Lázaro por la crisis del agua en Jalisco,3,informativo,74,74,1.0,ok
 auto-04ca20983d,Detectan un millón de personas con hipertensión o diabetes,3,informativo,73,73,1.0,ok
 auto-db2524c67b,México investiga la posible presencia de cárteles mexicanos en la guerra de Ucra,3,informativo,73,73,1.0,ok
@@ -339,13 +338,13 @@ auto-3520faacac,Programas sociales benefician a más de 1.6 millones en Guerrero
 auto-da01a6cae3,"En octubre concretará el gobernador May, el incremento de una hora el consumo de",3,informativo,40,40,1.0,ok
 auto-9294ecc850,En el monitoreo de precios de la canasta básica PASIC de 24 productos que no deb,3,informativo,39,39,1.0,ok
 auto-140c183067,"Se presentó un homenaje al Consejo Estudiantil Universitario (CEU) de 1986, movi",3,informativo,39,39,1.0,ok
-auto-b3f998443a,"Para “reafirmar la soberanía”, Macron y Carney se reúnen en una isla de Francia ",3,informativo,35,35,1.0,ok
-auto-e3a5e87d85,Gobierno de Yucatán reporta saldo blanco tras el alejamiento del huracán Isaías ,3,informativo,35,35,1.0,ok
-auto-408b3ab015,Gobierno del Estado presenta el Sistema Empresarial de Inspección Digital - Cana,3,informativo,34,34,1.0,ok
-auto-1703fe0013,La consejera jurídica Luisa María Alcalde presentó un decreto presidencial para ,3,informativo,33,33,1.0,ok
-auto-97f1f6934c,"El director de la Agencia de Transformación Digital, Pepe Merino, explicó que el",3,informativo,33,33,1.0,ok
-auto-001e5da65f,Se reportó que al 30 de septiembre de 2026 hay registrados ante el IMSS más de 2,3,informativo,33,33,1.0,ok
-auto-ba602ec6c5,"En la sección ""Suave Patria"", se presentó un segmento sobre la danza conchera, u",3,informativo,33,33,1.0,ok
+auto-b3f998443a,"Para “reafirmar la soberanía”, Macron y Carney se reúnen en una isla de Francia ",3,informativo,36,36,1.0,ok
+auto-e3a5e87d85,Gobierno de Yucatán reporta saldo blanco tras el alejamiento del huracán Isaías ,3,informativo,36,36,1.0,ok
+auto-408b3ab015,Gobierno del Estado presenta el Sistema Empresarial de Inspección Digital - Cana,3,informativo,35,35,1.0,ok
+auto-1703fe0013,La consejera jurídica Luisa María Alcalde presentó un decreto presidencial para ,3,informativo,34,34,1.0,ok
+auto-97f1f6934c,"El director de la Agencia de Transformación Digital, Pepe Merino, explicó que el",3,informativo,34,34,1.0,ok
+auto-001e5da65f,Se reportó que al 30 de septiembre de 2026 hay registrados ante el IMSS más de 2,3,informativo,34,34,1.0,ok
+auto-ba602ec6c5,"En la sección ""Suave Patria"", se presentó un segmento sobre la danza conchera, u",3,informativo,34,34,1.0,ok
 auto-823a9617e3,Comisión del Congreso de Puebla avala acuerdo para fortalecer apoyos a productor,3,informativo,31,31,1.0,ok
 auto-507721e8e8,Delfina Pozos acusa bloqueo legislativo de Morena en Congreso de Puebla - Reto D,3,informativo,27,27,1.0,ok
 auto-8ec13057e3,Se informó sobre la Estrategia Nacional para Promover la Estabilización del Prec,3,informativo,27,27,1.0,ok
@@ -357,11 +356,11 @@ auto-8239f55705,¡CRISIS en #Yucatán! 🆘 El gobernador Joaquín Díaz Mena ma
 auto-3164666da8,"Tras señalamientos, Morena en Puebla exige a PAN ser autocrítico con nepotismo",1,completo,19,19,1.0,ok
 auto-9331c54edc,Gino Segura asume coordinación de Morena y recorrerá los 11 municipios de Q. Roo,3,completo,19,19,1.0,ok
 auto-8b5c731512,En Oaxaca capturaron a cuatro integrantes de la Asaeo; hermano del gobernador de,3,informativo,17,17,1.0,ok
+auto-fdf5a8cbd8,Julio Hernández López: Astillero,3,completo,17,17,1.0,ok
 auto-f23ced8b4e,CON LA MIRA EN LA ELECCIÓN DE 2027: Determina Tercera Sala del TSJ archivar como,3,informativo,16,16,1.0,ok
 auto-49721c498b,Fiscalía de Oaxaca obtiene vinculación a proceso por tentativa de robo y contra ,1,completo,15,15,1.0,ok
 auto-f9721ddfeb,Rocío Nahle envía iniciativa al Congreso de Veracruz para eliminar declaración d,3,informativo,15,15,1.0,ok
 auto-ea5a0e5da2,Estrategia Nacional de Seguridad en Tabasco contribuye a reducir 54% el homicidi,3,informativo,15,15,1.0,ok
-auto-fdf5a8cbd8,Julio Hernández López: Astillero,3,completo,14,14,1.0,ok
 auto-951f36a51e,Reforma para reconocer infancias trans en Puebla no se heredará a la próxima leg,3,informativo,14,14,1.0,ok
 auto-dda509b8ea,Detienen a Luis de Llano por presunto incumplimiento de sentencia en caso Sasha ,1,completo,12,12,1.0,ok
 auto-ead3ec111e,Congreso definirá el 26 de septiembre a nuevo titular del Orfis: “proceso de sel,3,informativo,12,12,1.0,ok
@@ -538,6 +537,7 @@ auto-b739bf9715,Beatriz Mojica se reúne con Ariadna Montiel en Guerrero; acusa 
 auto-5488826575,Anuncia Claudia Sheinbaum ampliación de subsidio eléctrico para Sinaloa por un m,3,informativo,5,5,1.0,ok
 auto-450cb80895,El Ayuntamiento de Mérida presenta su convocatoria para la entrega de becas de e,1,completo,5,5,1.0,ok
 auto-bc4191972b,"Buscan a Mateo Hernández, hijo del alcalde de Tecamachalco; trasciende presunto ",3,informativo,5,5,1.0,ok
+auto-c14a5e79db,Gobernador Jara lanza ultimátum a autoridades municipales y Gabinete de Segurida,3,informativo,5,5,1.0,ok
 auto-19f6ec5b78,Advierte gobernadora a funcionarios que aspiren a participar en proceso electora,3,informativo,5,5,1.0,ok
 auto-062b15e740,Edgar Amador responde a Guillermo Ortiz: “política social fue sacrificada en per,3,informativo,5,5,1.0,ok
 auto-cda850a77f,Congreso de Quintana Roo abre debate sobre salud integral y endurecimiento de pe,3,informativo,5,5,1.0,ok
@@ -549,6 +549,7 @@ auto-db6a3aaf66,Aprobación de la Ley de Bienestar Animal: Se informó sobre la 
 auto-9bc65c6223,"Sheinbaum, sobre López Obrador y su nuevo libro: “Se dedica a reflexionar y escr",1,completo,5,5,1.0,ok
 auto-8c60a74868,"Luego del video del miércoles del ex mandatario Andrés Manuel López Obrador, la ",3,informativo,5,5,1.0,ok
 auto-e6b3b54ab1,Firman convenio el Congreso local y la UVP para fortalecer la vinculación labora,3,informativo,5,5,1.0,ok
+auto-4a411a1701,"Con Trump, el ICE impone récord de muertes; 31%, connacionales",3,informativo,5,5,1.0,ok
 auto-42f6186085,"🚨 ¿Alejandro Armenta, Gobernador de Puebla, usa granjas de bots pagadas con recu",3,informativo,5,5,1.0,ok
 auto-05b4bf90bf,"Gobernador de Nayarit, posible blanco de atentado tras caída de avioneta: FGE",3,informativo,5,5,1.0,ok
 auto-c572abea68,Mañanera de la presidenta Claudia Sheinbaum minuto a minuto | 5 de octubre - Gru,3,informativo,5,5,1.0,ok
@@ -653,7 +654,6 @@ auto-6fc144d43d,"Balean casa de Elvis Guerra, diseñador del vestido de Sheinbau
 auto-981a579b6b,"¿El veto de Trump a CNN, MS NOW y Politico viola la Primera Enmienda? Esto dice ",3,informativo,4,4,1.0,ok
 auto-c284ff239a,"Llega Claudia Sheinbaum a La Paz: ""No podíamos estar haciendo lo que hacemos, si",3,informativo,4,4,1.0,ok
 auto-c443efe1ff,Lerma exige atención municipal.,3,informativo,4,4,1.0,ok
-auto-c14a5e79db,Gobernador Jara lanza ultimátum a autoridades municipales y Gabinete de Segurida,3,informativo,4,4,1.0,ok
 auto-2e8dd79af4,Gobierno de Puebla adelanta que habrá movimientos en el gabinete por la elección,3,informativo,4,4,1.0,ok
 auto-eba6e3043c,El agua es un derecho y un asunto demasiado importante para convertirlo en una d,3,informativo,4,4,1.0,ok
 auto-bce18ca66d,"Por las tensiones nacionales, el PT amenaza romper la alianza con Morena en la C",3,informativo,4,4,1.0,ok
@@ -682,7 +682,6 @@ auto-1e019f35d9,Se presentaron aclaraciones sobre los requisitos constitucionale
 auto-7d9abcab58,Se informó sobre un episodio lamentable ocurrido en una escuela de Coahuila dond,3,informativo,4,4,1.0,ok
 auto-4a853516da,"Los apoyos a la creación artística aumentaron 45 por ciento, pasando de mil 840 ",3,informativo,4,4,1.0,ok
 auto-66b200615c,Video: Gobernadora de Veracruz atiende denuncia contra el alcalde José Luis Pére,3,informativo,4,4,1.0,ok
-auto-4a411a1701,"Con Trump, el ICE impone récord de muertes; 31%, connacionales",3,informativo,4,4,1.0,ok
 auto-96d2fdb2ce,Reaparición de López Obrador genera acontecimiento político digital disruptivo c,3,informativo,4,4,1.0,ok
 auto-c1ddb26466,Ricardo Monreal deja en manos de Morena decisión sobre su continuidad política -,1,completo,4,4,1.0,ok
 auto-a8e5fb94bf,Avioneta usada por gobernador se desploma - Cuarto Poder - Tu Diario Vivir,3,informativo,4,4,1.0,ok
@@ -853,7 +852,6 @@ auto-82a42e7999,Claudia Sheinbaum confirma inversión histórica de un billón d
 auto-17c7b1bf45,Presidenta Sheinbaum aborda temas de la agenda nacional: nepotismo y aniversario,3,informativo,3,3,1.0,ok
 auto-914ea02b55,Destaca Mara Lezama mayor prosperidad con proyecto eólico en el sur de Quintana ,3,informativo,3,3,1.0,ok
 auto-551a10a031,Ayuntamiento de Teziutlán condena feminicidio de la quinceañera Dariana y exige ,3,informativo,3,3,1.0,ok
-auto-1ab8fa1ce6,Cynthia López destapa a Citlalli Hernández para coordinar la 4T en Cuauhtémoc - ,3,informativo,3,3,1.0,ok
 auto-3de20956e4,"Andy López, el chambelán de honor de los XV años de Morena; se reúnen militantes",3,informativo,3,3,1.0,ok
 auto-162d4044dd,Olga Arellano asume el Archivo del Congreso - Crónica Puebla,3,informativo,3,3,1.0,ok
 auto-c1ecf6fd32,Sheinbaum descarta futurismos sobre Harfuch y rechaza críticas del PT a Morena -,3,informativo,3,3,1.0,ok
