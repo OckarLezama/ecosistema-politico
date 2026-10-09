@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-09T06:04:06.898661-06:00",
+  "generado_en": "2026-10-09T11:50:05.562122-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 38,
+  "n_notas_ventana": 31,
   "baja_confianza": false,
-  "tension_nacional": 28,
+  "tension_nacional": 27,
   "tension_anomalia": {
-    "z": -0.4,
+    "z": -0.48,
     "nivel": "normal",
     "media_periodo": 33.0,
     "dias_base": 27
@@ -13,36 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 69,
+      "peso_pct": 59,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 12,
-      "n_notas": 27,
+      "n_temas": 8,
+      "n_notas": 19,
       "notas": [
-        {
-          "texto": "Subsidio al IEPS frenó el huachicol fiscal de diésel en julio: Barnés de Castro - Onexpo Nacional",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxObGJCVnZ1UnFzTkJDdFdQRlRPTkJSM3ZVdm1YSDFUeFlGUXg1WUk3dTJZeklVTFA3bXZraEZTdHZkbmVRd0Y2UDRtY21Fa19qVHFidkpiMWRXb0hZTWZNR05tMUp4d3VkWnVyb3BsLU9KdXFPWUVDUDBScnd0S29KUkJMWWFDVlljTWRNaUQ0cjNuTUtJZGtr?oc=5",
-          "intensidad": 7.0,
-          "medio": "Onexpo Nacional"
-        },
-        {
-          "texto": "Mientras crecen los cuestionamientos por contratos millonarios otorgados a Amílcar Olán, el diputado Daniel Asaf, señalado como cercano a Andy López Beltrán, evitó a la prensa en San Lázaro. Andy tamb",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rMmwyNE4wMFR2VjI1bkpZN21uX2tEcUJ3alVETG41NUFGU0RjeUROX1ZjSm55SWxrOE5QWEUzWUpTX0h6LS01TmNNM0VSNmQ0RXFZMFpR?oc=5",
-          "intensidad": 7.0,
-          "medio": "Instagram"
-        },
-        {
-          "texto": "Morena lanza convocatoria para coordinadores en municipios y alcaldías - La Silla Rota",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQaGhaM0NiQkRwNlBON0xmLU1fZi1QeUpwX2JoSWVCb3R4WHNYUlZQTjBEUDRYbEFTQUxPSnlyQ183Q2Zaa1FucWJDUUJUMjVLZjFhc2FiUnJ1YWRYaXhXTU04MEhWTmF0VWhIczlwRmdtQjlncXdUOXBnT0RSMzU2OEZqdGszVWxFMzZSWmphVFBTR1ZGaWQyY2h3YVF5SlhfMDB3ZUFMZmkwQU5nRzZBLXZTTVJEdkJIbkdOSV9hOXo?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Silla Rota"
-        },
-        {
-          "texto": "Coordinadores estatales se reúnen con dirigencia nacional de Morena en la CDMX - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQRVVwb1lmcWR1bHhuWnV1S2ZTaDl5T2F3bkV0RFVaNTA5MFFST2swYklfNUcwSzFIQmZJLVRLZFJuS0V2NVRrdWFKTEpoWTRiNnpXU1VvUVlXZ1haeWlCU2kxOEhHY2k2Tk9VSWV1RVA3WFdma24tUTlLWmRLUExpc3BCQ01YT05CM2xyN0g3NDZOZ3ZuMUVqaGhfN3h3d3d6NDJlVUFScEo4bDN5UExhOVZ3czg3Wi05NFFCR29RM3VQUy1maW44SUlPSkpsd2lFSXdRUHh0eHhHQW1QbGpv0gHzAUFVX3lxTE9vaGtvSlFUdmpWUTVmbE1pOEVIZF9BT01YVTdlR1hyVXVLMVZDMWRETk5xNEk0Uy1Halk3THBfenpLXy1kYWxILTRDZk84SlhjT1Njd3h2OUlxMU9YWG9TTzNOdGZxdEF4R0w4aHhZYjRKRXVvTHBtbmlQSElwZEh1LU5QSzV2cnJfZHNEM3YwT1dVMjlsMDdEUENQQjFYZnpWUDM3ck5wM2xUcldJM1QxbEI4eFJnTWhZWUtId2dSZkd6bTlkRUd4akUyT2taT0Y2WGI4Q29uX3JFVXpmUF9tVHJPZWdjem5LaldscXBIYXVDQQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
-        },
         {
           "texto": "Manuel Huerta cuestiona gestión de Roberto Ramos Alor como coordinador del IMSS-Bienestar",
           "fuente_url": "https://oem.com.mx/diariodexalapa/local/senador-manuel-huerta-cuestiona-gestion-de-roberto-ramos-alor-como-coordinador-del-imss-bienestar-en-veracruz-32501749",
@@ -80,22 +56,10 @@
           "medio": "Milenio"
         },
         {
-          "texto": "“LA BARREDORA” EXTENDIÓ SUS TENTÁCULOS AL INE Y AL IEPCT - Sin Fronteras Agencias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5NR0xsUURROTNxX09Wam1SVlcwdHFXVUFtQTM4R19USXgtY1ptOUVtM3JrZm14Zk5jOWJOUkJmZ1BPQU1jVTREeTNhRVVNY0Z2em15b3RYRXk?oc=5",
-          "intensidad": 6.0,
-          "medio": "Sin Fronteras Agencias"
-        },
-        {
-          "texto": "México defiende su política contra el contrabando de combustibles y la corrupción aduanera - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNQ3JLQVpmWHpBU3ZTcGd1ZmhTLVFjdWJfSGh2aG1HYi04SFpISDYyejIweUpvd21TSENZeW91WXpjbWVZdXVjcHFVZkt1N3hhVndua3FsWVBqZkxIMTBJd0E2R25MazF0UWpxNmVySlNFYUdJeU5QZTQtVUlERjMtcTNWUzg5b3BWU1VZVlhHVExFNkRZcjY5R1pQQ0VLTjFBZXREeV9NLS1pSWFoTF9nX0dVcVhGcE1zcFoxUGpQeG5wNlA5ZE9sUHhWSmtTTmJTcWVBNmpvcUVEaGPSAfYBQVVfeXFMUGh2OVlnWUxUcjdFS3FWOEZ4TWFpcDNURGg1ZGx5d1NYck56Q0tUbTNUUkx2RFdQS0pzeGxlOE85X0MtUzhNWHJpQUpsQkxadVNWdnU5WW4yLVBnWFNXQjRhTGJodUFObnI5bFFnMXFzWU5vdkpBanJLaG9yakpRRWVMNFFGN0Q1QnlQSlF1Mk4wbW4xV0t4TXZWU2ZQdjhTUGF3WXpCMFRSY2x4LXd1SW4tM05iNEJhQnZyTzFCYVNWMmlwbnExejFoYkR6ZlM5RERfdV9tcVVidmthOHZNSjlSQnRnZnRLclNqSEJpTlRhTjMta0Fn?oc=5",
-          "intensidad": 6.0,
-          "medio": "Infobae"
-        },
-        {
-          "texto": "'El Tanque', cercano a 'El Mencho', fue imputado por presunta delincuencia organizada y delitos contra la salud - La Jornada",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOQ3hnbC0yVEVMM0oyOUJ2Yk5wY0JNYlNYQk10Tm9SdHg3MHlhRHF2ZUtqZUJfQlFibDdKMllaeEEyRTB2b0ZyRjlhSWctUzd2OUNoaFBCZnV6andNcFI1V3dWRnBvOWZaUFNCQVRuNUZQel9TWTcxaTFKLUxVSTE1TG1ZNE42UlBodzBGcXpBbnRLWHU1Y1lKaXlqeXVicjlKWDZMSlZGWVdEam1CRjk5U3Q4d09MUFJzbGtOVmNvLUM1cHI0QTJqMHRSUnRaZw?oc=5",
-          "intensidad": 6.0,
-          "medio": "La Jornada"
+          "texto": "Ana Lilia Rivera llama a fortalecer la organización territorial de Morena en Tlaxcala - El Popular, periodismo con causa",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5ta3RVRHFLa1ozajBQMnNYV19lTXM1M2doQmNreTZZV0E5aWxIVllST3VkTTRuMld4UnJvMFQwZTJDZEVBdnFYUlpSYnQ1c3lKd0xXd2NfYlpQeWxDLXV3?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
         },
         {
           "texto": "Comisión de Hacienda cuestionan a la SHCP por deuda, recaudación y huachicol fiscal - News Hidalgo",
@@ -108,62 +72,52 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQNGw3Yy1rODJBZEhqbHRfeHp1UUZqWUpZQ2FMeklFQzk5VzhNTU9GYmxfeXZabHRfLVRxYzdldXR6dzFyeUlpeEVQNzcwRTZNQVpZb29zTEhzR2pNaXVscTl1V012REpESGxjZkdKTDdNTTFCNVliYUxnLWdac0pHTnhUODN4a3NDQjVMNm9JN0FERDB0NS1OSndnTU5abktHWl9JQ1JBWUNiX3hvVzZUdVJZSHQ3MlNVcWJHUElFWUF2RVRIOHFUNA?oc=5",
           "intensidad": 6.0,
           "medio": "Talla Politica"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 16,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 2,
-      "n_notas": 6,
-      "notas": [
-        {
-          "texto": "Sheinbaum recibe a empresarios estadounidenses ante revisión del TMEC - La Silla Rota",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQUWNpN3NjMFd5dkRBaXZvSVBYMzY0dElOOWhPdWlZNEF0ejJvN3RiRVF1VXRpQnR0X29ITlA0NUllYkdWa082UHRuRWkxWXZwQjFMZk5HUDBteUx3dnlwSm0tQ1JCNE5IVDIxd1B5OVlyOGw2RFp4bVlhb0FfZTFtTnhuWHQtZ1lSOGpoYndwV1JrRThGZk43UmxGckEzZEEydlBXd3B2WENOSUJoQU5ydDJfcXZYdmREMVJJck5iZw?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Silla Rota"
         },
         {
-          "texto": "Sheinbaum y Johnson tratan seguridad y T-MEC - El Porvenir - Portada",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOcFBYVmtya1hHa0xsVVlHZ09BZkFiYWJoaEFyQmVfYXdZNmctQXBkUENZeEVIQ0RMQjFmam9TRWduQmhMVjh3NG80c1E4cENCTkF2b2VTdi1PLUYxZ3pLSXpzU2RyVVlJY0JRNEtZZEowY281b0V1bW5Xc2JlcTZTZTltakhmV1RPNlNN?oc=5",
-          "intensidad": 7.0,
-          "medio": "Portada"
-        },
-        {
-          "texto": "Principal preocupación de IP es renovar T-MEC.- Medina Mora - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNb2ZyYnY2c3Vzc0tVY3pzanFsem02VmZhWTJ0eVRoMFVEU3BTeVhBdmtLdTk3LWVqZHQ3V01yazlqRmowTTVQUG5GUzdsVzNjTFEza3hsR0lleGlkQ2FYNzBpREtISmJDM0puc2gwcHF4UXdJUHhNOWVudkQyMVo1aGY5M0I1SEljcUxuYTNDRUI3NV91UXc?oc=5",
-          "intensidad": 7.0,
-          "medio": "Reforma"
-        },
-        {
-          "texto": "Prevé AmCham acuerdo parcial sobre T-MEC antes de cerrar año - El Diario",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOSTBPSUR0eFBBT0s5czBxOE5DbDJMblZ6MEVCWFdIdTZ4NGo1cUdYWjRkd1VXZkdHRGRNY1BKejlpVGRXSzNTQzYxb1ExQk9mWXY0dVFLbmV2TzFVczFfb3pBQWdncVotcERJdzRLOG9sTzJ2X190UEFCd2pLNHVzSnFmczdJdnhXRDZ3bG9CMmN2Y1MtRXdRdXBtSEFJQjNNdl9ucnNzb1lLU3RPWTdOTG4yTHZGV2Jm0gG-AUFVX3lxTE5HTlR4dS0taTZFTUhyTnZGOU5tQ2NPeWVTZE9ZOXk2Q1VEaWREUlppeHVMQXpUQ0FrTzZVclJHM3ZZV243TEVIaUowak5RSWNuamdIN3VTNTBKX3M0Nks3c05KdjBtTTlISk43WDBZYmdGTUxCX0prdHllOEphdHRpcmQ1Y3hEaWlXOHhUak5DMFBVSjNuQWZyTG5SWG1KeVp1NlRNNzA4djJhNjBSX1RRRUhNYzFWcGs5NUJobGc?oc=5",
+          "texto": "Alista Senado aprobación de reformas clave sobre huachicol fiscal, pagos digitales y catastros - Excélsior",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNU0ZIaGlqam9uTGZuMXdDeWhGRnFpcTItMXQwa2JoUWtBSklnQVNhaUc3OGc3Y1BoM2MxcGw4bGZWQW9lZWpnbllzNF9CY1cySmxMdUFlamxoVktOdG9pVzVvZ20tMklTaGNQSUtIYUdBS1U4QU1QUlpjS0ZjTVhrQ3hKNEN5RjRQWlZZUnF2a2xMX29hUG9IcWM2dUxyQTc0bkN3dW1jSVZwT01DcjZuT1VsVGtxdHNaUWsxMG5vSkxPbV9jN1FJ0gHMAUFVX3lxTE41R1B3YTJXS2NaUHh3RVBnbW1uLXlJekYwSi1MT0pCVldHSy1ndlozQXNLeW1oRHNRcTVsN09TaEtrem80ZFF1dkloNV9Zd3RUY2ZrMGtnZENLR21zeHVyOEpTSlRFQy05OWdzMExNRXEyQlBEMk51RGhYZUt4cllleXZXSlBOV25fdWFuelpDaFlhbEpHQ2pJb2hHNUZWNWpLMlN5Y25HUEpxZDhsRXBVY2xVWnQxeXlkZnpLT3BwVjlNT3YwbzRUOWRDNA?oc=5",
           "intensidad": 6.0,
-          "medio": "El Diario"
+          "medio": "Excélsior"
         },
         {
-          "texto": "Renovación del TMEC, principal preocupación del empresariado • Economía y finanzas - Forbes México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNM25KYk83Yk1NY1hUaFA4U3ZmYU52TVB2N1luT2R4LTFlcC1rMDFvZWhBV3U4aEtYVWdnWmtUTVV0UDZZTkpjazNJMXRFUS1SMjNkUzJYV2wyXzlpczh3ejFkS2xFZVk0dTQ0U0FXOXd6U1RQT082clJVVU9FeEpfWnhpQkNmbVV2aFE?oc=5",
-          "intensidad": 6.0,
-          "medio": "Forbes México"
-        },
-        {
-          "texto": "Morena emite convocatoria para candidatos a ediles: los que van por su reelección no tienen que separarse del cargo - Diario Cambio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOeElHX1J5YnRKajAwSXhJc2tndnE5QlZzVlNKUnUtMEhfV3hBa1ZfSlNEVkY0OXdZeTZQQ095QlJYRWNGaUE4T2c1d2wtZzJXekpsUVNiZTVZeE1xWEduWkt2S2VsX09HSWk0U0xQS3ZLdXNWX05oTmN5cTJ1QWtmaThBdWE1Q2doVkxMaU9ybHRUaFVYd1l5dzlSdEs2bkI5d2hzQ1RTVkk1UGxGbW95d2RHRjRLQjh3anpma095RUk5Y3p2ZC1tdHo5RzJpS0FXc2RIOXFFVkVYeHkxRmw3eEFfaFpIb3h1YmM4MVRHX2xsQmhab3VCMVFmY2Y?oc=5",
+          "texto": "Sheinbaum recibe a Ronald Johnson tras diferencias por academia policial en Querétaro; ¿de qué hablaron?",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/08/sheinbaum-recibe-a-ronald-johnson-tras-diferencias-por-academia-policial-en-queretaro-de-que-hablaron/",
           "intensidad": 5.0,
-          "medio": "Diario Cambio"
+          "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "Ricardo Salinas Pliego, el multimillonario opositor a Claudia Sheinbaum, da guiño a posible candidatura a 2030: \"Yo no tengo doble nacionalidad\" - Ambito",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxPMWxVNDFLRnpNMTlPdWViSkRLSWQ3RjdGZ3Ywal9kalRKeEJxVUNTUGR2YlJzZS1vVEI0RmZTUVprU1VXVVk0VlNIUlhudGd4S2FVNHFTaWVad2YtUWsxZS11dVNLclJKb0R3bVFIcTJJZy1Wakp1bE16elBjTFFGWGtXbDA2eW0zeldkUjZ2bjEyZFRuVmNMWTlQVWlWVVM2dmwtWE80TlRJazlZNEpGTjJkdms2TjY1Q0w5N052QmQ4emtncUV3Mjl0ZGY1MzhJQnRpeVZvUVBkdFVZcjV2SlAxLTRUV0piaTBNb3dSbWxsMjAyMW1oMlRNc3ZjbkNJdDJIeEJUNjBrdFY2Q3fSAZMCQVVfeXFMTUZMQjNZQ2xEZFY1YmotMHZESHVIS0RRUDBvWThNYzRoeFg1WjZGZ011aUpWeXRQTmxfLXFQX0RmVHI0SEJoemIyU1JwZFFqX2E4OGNCaHpOWjc1emtnbVBOODBBdFlQM3oxUi1Uck82VGZQeDVBYmNEWkt6U25hU29qeTBoWW0wLUNubHRWQlNaM3BCM3VEVGE0VFNtZS12ZjRseW5HOW5vRnNya3dWbjhhOXpzVHRoMjI0aHBGbmtQTE5kSXBDYzc1Mjl1cUd0SkdEc1VxcERqNDBzWWxWUGhWdk94SmRlRmNHdkNGSHVJSkhFTHl6Rm82SGotS2htR0xfWXlTMUROZkhENWF5V1hxcVU?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ambito"
+        },
+        {
+          "texto": "Ana Lilia Rivera llama a Morena a cerrar filas rumbo a una nueva etapa del movimiento - El Popular, periodismo con causa",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPLTExY0djbEQ3Y29VdHlYVjNDNjlyOWFvNmpobmZGYnNxY2RETlFZbGJGMklnZXRTS3pPTWRyUG9qS0ZpUS05elVvX09VakZTOFJzektnY3E3Q1UyMlMzdFJFaXJmVldKbmp5ZEdqajJkM0ZpMXh5THpZR2twM1F5b1U0d1U2bjhPcG92bDBZaHZ0WTV1NW9PVERVSjAwX3ZES2tVQ1JoNHNkQzVHMUMxMm1HN1Q0VWNHdkllLVpJdnRtcGczV3RGTklJbXJOOHUwQ1E?oc=5",
+          "intensidad": 5.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Morena reúne a coordinadores estatales en Ciudad de México - Pulso Diario San Luis",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTVNHQ18zVU9JUkhIUlNaNnVQNG9waVJCRFFTZWJSNFZfV1RvM3pLOVZCUVh6Yl9SQi1IVmtEUXFTWXFqNi16WmhxSlNCUGNmaHZIOVhyak5ZWVJOeDhVUVpSOHpoeG9SV1B4LTRGeUIxUGZxTWpvelBUZTJUU3pqUVRGb3JmZWdnMFh1c3EzemvSAZYBQVVfeXFMUEc0c01JTDR1LWFDbGlsZmxhMThKRkJMSERhUTJTR1hQdGNPX1JMRjNaYy11ZEUtWkVuWUtyT0l3Qi1MNVZob19UYVVocG1CajUtRjdtTHJ6V3MwNUtLN2RQNExibXlaUFZkV3IyT2l0TWY5N1phVV9GYWZSTTBEd3YyVXJrX1AwdWJSZ3RKQjRZSDhSVDJR?oc=5",
+          "intensidad": 5.0,
+          "medio": "Pulso Diario San Luis"
+        },
+        {
+          "texto": "Delfina Gómez reconoce papel de los mazahuas en la transformación del Edomex - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZU9oYmtqeHBNQUttOWJJeHMtTU5JSW1iNElSTDYxSFR6VXRzQUo3NGNOMnVaUmt4ZXROMFBDRkdWVDdaQTAxMlNXR01MNDlIdGNhNlpmRU1JcVZyemtzeHJkZGk5aFJHT2RVTWhQNXFsRl9LeVkwZHNkZ1JYODlvWVI3dThTSFNodjVOdC1MYnNBbTdnUm0tdDc1X2ZQS21NOTg40gGjAUFVX3lxTFBlT2hia2p4cE1BS205Ykl4cy1NTklJbWI0SVJMNjFIVHpVdHNBSjc0Y04ydVpSa3hldE4wUENGR1ZUN1pBMDEyU1dHTUw0OUh0Y2E2WmZFTUlxVnJ6a3N4cmRkaTloUkdPZFVNaFA1cWxGX0t5WTBkc2RnUlg4OW9ZUjd1OFNIU2h2NU50LUxic0FtN2dSbS10NzVfZlBLbU05ODg?oc=5",
+          "intensidad": 5.0,
+          "medio": "Milenio"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 11,
+      "peso_pct": 20,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 3,
-      "n_notas": 4,
+      "n_temas": 5,
+      "n_notas": 6,
       "notas": [
         {
           "texto": "Harfuch reporta más de 20 detenidos por huachicol fiscal y descarta aspiraciones presidenciales para 2030 - https://www.elexpres.com/",
@@ -184,26 +138,78 @@
           "medio": "yucatan.com.mx"
         },
         {
+          "texto": "Balacera en penal de Mazatlán: El objetivo era asesinar a ‘El Owen’, integrante de ‘Los Chapitos’",
+          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/09/balacera-en-penal-de-mazatlan-el-objetivo-era-asesinar-a-el-owen-integrante-de-los-chapitos/",
+          "intensidad": 7.0,
+          "medio": "elfinanciero.com.mx"
+        },
+        {
           "texto": "¿Qué pasó con los 10 millones de litros de huachicol asegurados? Harfuch revela quién los resguarda",
           "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/08/que-paso-con-los-10-millones-de-litros-de-huachicol-asegurados-harfuch-revela-quien-los-resguarda/",
           "intensidad": 5.0,
           "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "Clama Máynez justicia para Carlos Manzo a un año del homicidio - Quadratin Oaxaca",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNNVktUnlRdTFNNmg5TEZsbmJ5Y0VVQmI4MTg1QWpNMVZxOWFXRC04MUlvRjJtZzNJRG5RRHkxYXAzYzZmeEVPeURtZVI2MVdvWFVIaXF6MmpoQ25hNVpJTS1yYkhzYm1XTVg1aUFTR3ZNLU5uLW82LVNYS2dTeXY0U1B2NUp0UHNJamNKbkRMSkZHLTVYRVMyT0ZZOA?oc=5",
+          "intensidad": 5.0,
+          "medio": "Quadratin Oaxaca"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 13,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 2,
+      "n_notas": 4,
+      "notas": [
+        {
+          "texto": "Sheinbaum y Johnson tratan seguridad y T-MEC - El Porvenir - Portada",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOcFBYVmtya1hHa0xsVVlHZ09BZkFiYWJoaEFyQmVfYXdZNmctQXBkUENZeEVIQ0RMQjFmam9TRWduQmhMVjh3NG80c1E4cENCTkF2b2VTdi1PLUYxZ3pLSXpzU2RyVVlJY0JRNEtZZEowY281b0V1bW5Xc2JlcTZTZTltakhmV1RPNlNN?oc=5",
+          "intensidad": 7.0,
+          "medio": "Portada"
+        },
+        {
+          "texto": "Principal preocupación de IP es renovar T-MEC.- Medina Mora - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNb2ZyYnY2c3Vzc0tVY3pzanFsem02VmZhWTJ0eVRoMFVEU3BTeVhBdmtLdTk3LWVqZHQ3V01yazlqRmowTTVQUG5GUzdsVzNjTFEza3hsR0lleGlkQ2FYNzBpREtISmJDM0puc2gwcHF4UXdJUHhNOWVudkQyMVo1aGY5M0I1SEljcUxuYTNDRUI3NV91UXc?oc=5",
+          "intensidad": 7.0,
+          "medio": "Reforma"
+        },
+        {
+          "texto": "Renovación del TMEC, principal preocupación del empresariado • Economía y finanzas - Forbes México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNM25KYk83Yk1NY1hUaFA4U3ZmYU52TVB2N1luT2R4LTFlcC1rMDFvZWhBV3U4aEtYVWdnWmtUTVV0UDZZTkpjazNJMXRFUS1SMjNkUzJYV2wyXzlpczh3ejFkS2xFZVk0dTQ0U0FXOXd6U1RQT082clJVVU9FeEpfWnhpQkNmbVV2aFE?oc=5",
+          "intensidad": 6.0,
+          "medio": "Forbes México"
+        },
+        {
+          "texto": "Morena emite convocatoria para candidatos a ediles: los que van por su reelección no tienen que separarse del cargo - Diario Cambio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOeElHX1J5YnRKajAwSXhJc2tndnE5QlZzVlNKUnUtMEhfV3hBa1ZfSlNEVkY0OXdZeTZQQ095QlJYRWNGaUE4T2c1d2wtZzJXekpsUVNiZTVZeE1xWEduWkt2S2VsX09HSWk0U0xQS3ZLdXNWX05oTmN5cTJ1QWtmaThBdWE1Q2doVkxMaU9ybHRUaFVYd1l5dzlSdEs2bkI5d2hzQ1RTVkk1UGxGbW95d2RHRjRLQjh3anpma095RUk5Y3p2ZC1tdHo5RzJpS0FXc2RIOXFFVkVYeHkxRmw3eEFfaFpIb3h1YmM4MVRHX2xsQmhab3VCMVFmY2Y?oc=5",
+          "intensidad": 5.0,
+          "medio": "Diario Cambio"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 3,
+      "peso_pct": 7,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 1,
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Sheinbaum y Ronald Johnson abordan seguridad, frontera y T-MEC en Palacio Nacional",
           "fuente_url": "https://www.informador.mx/mexico/sheinbaum-y-ronald-johnson-abordan-seguridad-frontera-y-t-mec-en-palacio-nacional-20261008-0208.html",
           "intensidad": 7.0,
           "medio": "informador.mx"
+        },
+        {
+          "texto": "⚡ Posible presión de Omar García Harfuch — Derek Maltz, exjefe de la DEA, felicita a Omar García Harfuch por capturar a “El Tanque”, pero exige enviar a Rubén Rocha Moya a Estados Unidos: “Sería un gr",
+          "fuente_url": "https://news.google.com/rss/articles/CBMipwJBVV95cUxPdkstSkdWMjlqUUtLRllGQmt2T1RZU1doeU40dS12aURBZlNPM3gwQmVnMEtHck9zdEREeE5RQXltZVN3eUxpWnp3dXU0UmF3LVQzSmlNdS1QdTNaZ1RLMUpRMVl3WGZfOWpKOUF6RzEzRGt3b3N1dFJubm9rMFlaOFluYWVacWJNQURMR09vM3ZCb3JWLUJEb0kxZG1vbngtdmU2clFWSjFQMi1CLXdVM3RiY3F0V3ktZlh2b0s1cUZqYjlSTUpYN1RwRjdfbUZnQkgzaUpPR0NId3BwQllYVG90bERoWmlGdGhqN1dqNjEySElvNFhDUWhPSTYwNUliLVpiTXloVjIybXZKZEdhWUM0UGtEUVNVTW9KMmN4dG4tcHRpUlNn0gHCAkFVX3lxTE9qWUlRaFJOVXhyZmN5NWxnNzZiM3dFRnlSdTZIMFhUb2RDZi1NWVRtUERsdFlwX3ZjT3AtYlR1V3pvQW40TzlDMmJNSU5vR0lkTXh2YUZqZGVITVl5OFdRc0xRMWlvR1l0NjZ4YTE1XzFxZVZYdWtKbEFad0ZiRlAxOURNSmIxQ2hkMFRDMmRpanQ0TERSVHdDTmNFam5aNndwcG9XRFUxemNqMC1CYTdwY1RVNFVqSEVfaUo5N0sxblpBZVAxb19QX3h5VHZVbTFLVFJmenRQZzh5cmkyVnBGdVBlc0FHWUVfWEtyWWZDNThVRG04UXFiSjI3NTQ0NkNJS2JuQjVQaXpRaGVYbGZMdEFOVlMya3EzVU9NdkZjOG5jZ2xUNzBpZTlJSHozTFJvRnBsdWxLNm5UeGRwU3hndnc?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Imparcial"
         }
       ]
     },
@@ -898,15 +904,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 76
+          "peso_pct": 75
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 7
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
@@ -925,32 +931,17 @@
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "Defiende Harfuch acciones tomadas por huachicol fiscal - El Economista",
-      "peso": 44.0,
+      "motivo": "Asesinato de Carlos Manzo: Harfuch confirma que van 33 detenidos y mantiene contacto con Grecia Quiroz",
+      "peso": 39.0,
       "n_temas_agrupados": 5,
-      "escalando": true,
-      "ultima_hora": false,
-      "medios_corroborantes": 6,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQS2gwTTZ1MkNCckxrR0RaSFVXZEpQV0s4RHdpaFVHVV9LR0tCQmc3c29UTGZHbDk5TEVJVTVKUmZvUmlsdHAwOUpFVHZFclNTTERqQk8zd2UzRWY0VGdBbmVoUWNTUDFiX2lXc3ZZaF9sQk1GUWlYb2k1V0lDaDZnYXdGZVBoenJWRHVaT2tLeHMwQWxGVzRFNXpDaENVTU9BR3RBdjZESTh4WjQyc3EtcDl30gG3AUFVX3lxTE5lZHRwbkg4WkVMSnFmZjJINXZhbENXMDFJcnI5VXZ1V3hfT1YxaW9rVVZtdkpiNk5rT2pGd2ZfT1Z6cW82b0RqdG1OQ0dhTkxCSE80X00tRlNwZzFybVRIdkVhNkc0bU45eG1mSkgtdlJBV2RWMzFzNTJURmZ3MWFCbUNqX1hNR0xDMVl2U3ZTbWFxMjJLUTBPcjBHOHE4ZzhSaWlQSkV6eGlRUGNsMFVsb2VwNXN4WQ?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "morena-coordinadores-2027",
-      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
-      "categoria": "Gobernabilidad",
-      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
-      "motivo": "Coordinadores estatales se reúnen con dirigencia nacional de Morena en la CDMX - El Universal",
-      "peso": 26.0,
-      "n_temas_agrupados": 7,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQRVVwb1lmcWR1bHhuWnV1S2ZTaDl5T2F3bkV0RFVaNTA5MFFST2swYklfNUcwSzFIQmZJLVRLZFJuS0V2NVRrdWFKTEpoWTRiNnpXU1VvUVlXZ1haeWlCU2kxOEhHY2k2Tk9VSWV1RVA3WFdma24tUTlLWmRLUExpc3BCQ01YT05CM2xyN0g3NDZOZ3ZuMUVqaGhfN3h3d3d6NDJlVUFScEo4bDN5UExhOVZ3czg3Wi05NFFCR29RM3VQUy1maW44SUlPSkpsd2lFSXdRUHh0eHhHQW1QbGpv0gHzAUFVX3lxTE9vaGtvSlFUdmpWUTVmbE1pOEVIZF9BT01YVTdlR1hyVXVLMVZDMWRETk5xNEk0Uy1Halk3THBfenpLXy1kYWxILTRDZk84SlhjT1Njd3h2OUlxMU9YWG9TTzNOdGZxdEF4R0w4aHhZYjRKRXVvTHBtbmlQSElwZEh1LU5QSzV2cnJfZHNEM3YwT1dVMjlsMDdEUENQQjFYZnpWUDM3ck5wM2xUcldJM1QxbEI4eFJnTWhZWUtId2dSZkd6bTlkRUd4akUyT2taT0Y2WGI4Q29uX3JFVXpmUF9tVHJPZWdjem5LaldscXBIYXVDQQ?oc=5",
+      "medios_corroborantes": 4,
+      "confianza": "alta",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/08/asesinato-de-carlos-manzo-harfuch-confirma-que-van-33-detenidos-y-mantiene-contacto-con-grecia-quiroz/",
       "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
       }
     },
     {
@@ -966,78 +957,73 @@
       "medios_corroborantes": 3,
       "confianza": "alta",
       "fuente_url": "https://www.informador.mx/mexico/sheinbaum-y-ronald-johnson-abordan-seguridad-frontera-y-t-mec-en-palacio-nacional-20261008-0208.html",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     },
     {
-      "id": "embajador-johnson-queretaro",
-      "nombre": "Embajador Johnson en Querétaro: invitación del gobernador Kuri",
-      "categoria": "Relación Bilateral",
-      "resumen": "Visita del embajador de EU, Ronald Johnson, a Querétaro por invitación del gobernador Kuri; Sheinbaum pide explicaciones y ordena a la SRE llamar a ambos.",
-      "motivo": "Sheinbaum recibe a Ronald Johnson tras diferencias por academia policial en Querétaro; ¿de qué hablaron?",
-      "peso": 5.0,
-      "n_temas_agrupados": 2,
+      "id": "auto-071957561c",
+      "nombre": "Con coordinación e inteligencia, gobierno estatal registra resultados contundent",
+      "categoria": "Gobernabilidad",
+      "resumen": "Con coordinación e inteligencia, gobierno estatal registra resultados contundentes en seguridad - contraparte.mx",
+      "motivo": "Citlalli Hernández rechaza dichos del PT sobre coordinaciones estatales - El Universal",
+      "peso": 19.0,
+      "n_temas_agrupados": 6,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/08/sheinbaum-recibe-a-ronald-johnson-tras-diferencias-por-academia-policial-en-queretaro-de-que-hablaron/",
-      "actor_vinculado": null
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQOU9SLTMzQXM0LU1LOGU3V1BUS0FaX0Fqc3dibU1VNW5RUjlsRFA5Qm53UHJyb3JUYzNkM3l6ZW11X3lKaG01QTFrZ2x4VUJBNFVyUEVlTzg5VDd0QmtKenhqeTNQYWVNQ2s2THZEQXZ5b1hodENPNEQ4aXlZS2FqVUh4R0hZWGhtNFA1bGtSOW5KWUZWSXVSQk56bUZJRXVqVW9EM2hGVkJ4d2pQemxIWUVSdzgzdnRkWV9pQ0htcnlncjQyMF9vc3FtQV9HTnptLUhLSXhBVkdNaXo0Q2ZqNk9sMNIB9wFBVV95cUxPWHQzdUY3dDJDMDdYZTJDUVRvMEVPS2lYdFBxMGxsNjNHeEZBdTd0LVM1Y0hZVzI4R1NTTS1VdnNTczhuTmwydHhUbU50am9TbGJlbV9ubDQ3RTJjb0dGZ1VVc25MWjM3TXg2RFp4cG5lUDlmbXBMX2lNNGRDeDBmUEJpdTBuckN1U3MzWXU3TVZlcEJMLTZOYklNNXNacVVDbDJSeUVQczBfbER5QnhteUFMUHduaFFyMGh3YjNKam5VOWdRaUhlaVFCblRIMmxSVE5SV1VfR1JiYW03M0FySjk1MjMyS1doUVdodUd4WTBIcXcxdTUw?oc=5",
+      "actor_vinculado": {
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
+      }
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-0e1d86aac0",
-      "nombre": "García Harfuch aclara cómo es la coordinación con EU en materia de seguridad: \"N",
+      "id": "auto-95e85b8af5",
+      "nombre": "García Harfuch confirma ingreso a México de colombianos provenientes de Ucrania ",
       "categoria": "Gobernabilidad",
       "peso": 12.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUTFKTGN2TDZHbFBYVmx6ZjVXNVNndnpLdHVuOHhZVkxWc256Y1FxNU5pV21WQWg5YXB5QXo3cDhhQzNoQThGMzVabmo5R09KUEhGSWxtTFFROFF5dGlwcjlsaENoemJEQzhYdG5tQUxvMG1keDBrcUdrQ3hTbHFUODc5a9IBgwFBVV95cUxNRFl0eG1VZ1o2YUY3dEJseFpucnE5Mm1iS1VFWWUtSUZ0U1VtNUpTSV9URC0yQkt0b3hsZERUdUVrbTFueFRQazU0bkdGal9uME9GZFQ2QjUtaW1RM0JWSUtNdjBuaXFWaFZuT1dPazM5d0ZKVVFtUkcydUE3WlFWRExaTQ?oc=5"
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbENRal84QmdScmtmQXJWS0RTTnpKM2xFSkpzcHVKb0dSZGp3NG1JZFJ5OVl6b0diVThIRzROOVBBWlBlejliOEN5eTJfczZnclQ5MUoyX2RGT2puaDZtWU1uNExEanpvRFRIU2xCLV9rZUVsSUY2WnpPUnhaT1ZkSHVxVkZLeGxialBWMm9YMXNiVW9fRy1pbXp30gGaAUFVX3lxTE5sWXFYMUc4TUgzQWFuTm5ScnRMcXJ2eURNa0J3ZnYtRlRGV2c5aS1kbXhuNkFpZGZFQjdHeDE4el9VWnZ1S1FZVFBWOEMyZFk1bzZkV0JhYlFKOHBtWGVrdzJRejZiZXU0TnhTQTFfTVZVUTJOSGFGRTgyZFZpTGEtRHFndUxITGNlOWg2RVhjQzl1NzdfVXBYcmc?oc=5"
     },
     {
-      "id": "auto-b07e9fe306",
-      "nombre": "Redadas del ICE impactan en \"Animales\"; se trata de la nueva película dirigida p",
+      "id": "auto-4371cdd883",
+      "nombre": "DHS llama \"criminal dominicano\" a hombre herido por ICE en Nueva York - El Unive",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNdGJhRllRZTlqNjJGN1JnMFRFRUdpSTJTdS0tWWdjMGRwTG4zckRuTktLeTNHdUJRdUF5empLUTBSYV8wN2tfNnNMX19Jd2RpblF3eTUxa3lDSGwyX0lQNW5nMXZXWDRKdzdjdDlGQTRSSkxPdUtmSlNwM2VEbFQxY2hpdkk0RGtm?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPX3R1djN0R0lrTVpJV2tfN2Q5YmVXcjk0OG9LNDg1T0JwWVowLUhtRW1vSDd3N2RsRnJBT3pGaC1yZXhIUEoyZTFuUGI5OUZvd3hBbV81bC1aRmppY0FhQmszZ2FTem9HakZnVUJDbnM0N1BtSk1lQTVDSlBJVGdnYWo1S0g0Y1lpNEtHZUZBN1FqMU5LRURtOE9vWndHVG5TejMyWjRzUzJ1WWp3czJjNlZwZkJESTdHS0RDYVQ4T3VpS2RpdHl4Nm1URWctNHVQVDAxeE1KWWpGcVl1Q0k2SlJtYm5taFk4cFE?oc=5"
     },
     {
-      "id": "auto-572c96b504",
-      "nombre": "CONOCER promueve campaña de capacitación laboral para migrantes",
+      "id": "auto-024ecfaffa",
+      "nombre": "De la migración al budismo: Proof revela los detalles de su álbum 'Periquitos au",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/conocer-promueve-campana-de-capacitacion-laboral-para-migrantes-20261008-0143.html"
+      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNLURleXRFbEFXNUJyVFVtZ3NYOXN1OWFxNGhISnFhNUZTclhuVUM4YUtpbHQ1SG9XWTVxWjBrU1ZIQTBqX3BzUTZ1RHlCSlFfSlA5SmpRb2NMNWtIdWtjSERab0Z1Ykw3dHFRNFZCS2xvWThzdFlHYmpQcWFOVDJWa1hxUURVTjYzV1dxUXVsN2lkemZLN3lnMlQxNnd1OEdIcTZtZ3dvT3ZkbWhzYlBGZ9IBtgFBVV95cUxOQ2pYd2VoTVNxWkU1UnZDaExmWEtmSnVEVzdWUzBHaUdTMzB4LVNQMFZxSEhCeXVnLUsxaGx3Q2JlWGstYm1BblluMTI1Z3dWSVpJd3FIWWRlTUVkaHVBaVhESjMxNDN2Z3RaZFdsczlVY0hBU29xdlJUWDN0RjVVMWYtVDlsdVA3aWFxaDFZZWQ3UF9IaW9KTURyUDhyTEVEbWpKYTdManlKWXUwZVhwY0V6VklHUQ?oc=5"
     },
     {
-      "id": "auto-b5600da9ba",
-      "nombre": "Sheinbaum, Johnson y empresarios abordan temas de comercio, seguridad, inteligen",
+      "id": "auto-3866f98b92",
+      "nombre": "Secretario de Seguridad de EU culpa a políticas demócratas sobre migración de ti",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQdTRqeXU0UXJUOWtRNXQySk9aZm5mdEFrY1BpZ0JYeDNwazdvV1pIZ3o2M05zWEJIb1RwelBJZmNrcnQ5eDVDb3FNQVVGbjVqUHR4VTAxbk1nRHp1OHdYNjV5Uzc0b1Q5SFNkR1hKd2FDc1BJZmNjTTRITFhjYk00UWlwUEdLcUZWWTNIU1BOa3VyaUUzOUg1aml1RGczYU9OeFNTYmJvWmxVekwxWUFLcVVnLTR2QmtFSHlTbFAyeGtMb0htamI0Nl9wY9IB0AFBVV95cUxPUl9GRm8tN0VjaGNWWFcxWnpQSnJNNWgzaXFOYmpuaVlfWEl4bjc3aW5VY2tSY2xqU1c2ZmljQVZXRmFIY3hYSTZLWjY5ek96WDdsZlpBY2d5Ukc1WHlJcE11Qm1ZZTdDU0dYUXZrYkE0UEhsa2lsZFlMX19mMG1wY0MwRkM4UGFROUlKdjNYZTl0TFZNNmxEcWlKX0xrVmxHV1gwT1gxWmNMcloxWjJWYWNWVlFhM3RfX2JiNW9IZndFSWp5cWs0aHdEa3czQ3RT?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQaEhsd0ZGeHZwd0ZZNDlWYkpxMzM2Q1lEU3ZXclhQSEtMZ0JBRXQ5eXhFUlBPdkdGdW1tTURKODZsOWpxTVktMTJ1NTZ6VG9vQTZ0YkJBM0lERFFXSkRJbVNGS2VoM1hLc2hkM3VuUjVmQ1kxNlpuNWRjRTlnbzBQeW1VOV9vVjhleW9MdVc1TEZFMlN3cWNlaWlSNGNtSUZqNWh2dXJabnU2OC0ycXMwZV9ONVViTDdZWThMVzZ5MzJZR1pnNVA5cHEtbm5TdDRfaEVxdVg1SVRpREpTdXVRR2ZiRnd4VGF2TXfSAe8BQVVfeXFMTnhSMHRBUkR3TTJUUmJQOTJZSkFrblo1T2dneGdXTjhkX2VUNjhkaGNvYkhpMTZqOXViRGtkQmt6SXBUOGM0RmR0TThsREFfYnVya0RndFJVcUtSU3hGXzhSbzlXaUxpRlY4N0stQUFYREdUc1E5SDgxYklCb19ONXRfV0JORDh3TVM5LVFNQlJnYzRkX3JPM1FvVFdxUEZiaXVtTzZ1X0lrbUpzTEx3M3VBLTAtV2tPMHJGY3lVd25CMExIVmtrODNvREM4b0Q2ZVFiZmtLamdfdE42YmlYa3ZtSkdhZ21CNGZ5NFpzbHc?oc=5"
     },
     {
-      "id": "auto-ce01ea6902",
-      "nombre": "Donald Trump suspende la emisión de visas de EU: ¿Para quiénes aplica esta medid",
-      "categoria": "Relación Bilateral",
+      "id": "auto-3cce2e0677",
+      "nombre": "VIDEO: Harfuch, entre aplausos y canciones; así sonó ‘Amorcito corazón’ en San L",
+      "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/08/donald-trump-suspende-la-emision-de-visas-de-eu-para-quienes-aplica-esta-medida/"
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/08/video-harfuch-entre-aplausos-y-canciones-asi-sono-amorcito-corazon-en-san-lazaro/"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-58eee73144",
-      "nombre": "Militares capturan a ‘La Pepa’, líder de La Línea en Chihuahua; EU proporcionó i",
-      "categoria": "Social",
-      "dias_silencio": 30,
-      "motivo": "Difunde líder panista ventaja de Morena ¡en Chihuahua! - Reforma",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxObWJQYS01Z0NhcE10bTBpc1ZWNVBqOTREeEZxQndBYTlXeWoyanBheG9JS2dDQUNma3ZpWmh1MEU3Z1B6NkkwbXNvSElfbnJDbk1RTDg3N3ROczVTR3J2SWRTdkM1eU4wZHYtN0tINF8zUVRZWnowZDF0N0I3WlNkQUtSUUlVdDVFNkVMTGUwcw?oc=5",
-      "fecha_anterior": "2026-09-08",
-      "fuente_url_anterior": "https://www.elfinanciero.com.mx/estados/2026/09/08/militares-capturan-a-la-pepa-lider-de-la-linea-en-chihuahua-eu-proporciono-informacion/"
-    },
     {
       "id": "auto-46a3beeefa",
       "nombre": "Migrantes de la caravana “Sueños sin fronteras” piden documentos para seguir su ",
@@ -1070,20 +1056,20 @@
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/08/trump-afirma-que-estados-unidos-no-atacara-a-iran-antes-de-las-elecciones-de-novimebre/",
       "fecha_anterior": "2026-09-23",
       "fuente_url_anterior": "https://www.yucatan.com.mx/mundo/2026/09/23/trump-amenaza-con-aniquilar-a-iran-ante-la-onu.html"
-    },
-    {
-      "id": "auto-afe6a252c5",
-      "nombre": "¿Quién es el peor gobernador? - El Universal Querétaro",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 10,
-      "motivo": "Desaparece el Ayuntamiento de Juchitán: ¿quién gobernará hasta las elecciones de 2027? - Expansión Política",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPUGw4U1QtaFJ5ak1mSVNHWEtoV3FCMGJ2c3VURzZ2MEgzQVptUkpzaWh0cXNKZVNBUGRpV1puSzhOVk0zTFBncTAyMlIxZmhWSjFmLVUwTlFLcjZOSkpOYkVLWE5iNmVlN1NndEdLTTZqXy1mQmJWZ0p0TS11eThUT2txMkFfdHJBX3BKY2pHazEzS2VoRkozLXZ30gGnAUFVX3lxTE9WUUJnaFJDMHhXZGFOdGhOZ1k4UTBQMzlobGlVdDlvR3F5NGVJcW1yek5xZEJ0SXJxLTRPNXk1ckNHVkpEWENNUkRJZ3p5TWxYMGdSdmR4Z25WWnltc0l2dllLM1hCTnAxZlV0VG1xMEZKZ1FMYmhYQ2hiby1RZmlHb1ZST2dEZlRjZGNJa01CeE9GOVhJcnNyeTkwZDJySTI0Yk9RdF9v?oc=5",
-      "fecha_anterior": "2026-09-28",
-      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "rol": "Responsable institucional",
+      "tema": "Mañanera de la presidenta Claudia Sheinbaum minuto a minuto | 5 de octubre - Gru",
+      "nota": "La Mañanera del Pueblo de Claudia Sheinbaum en vivo hoy viernes 9 de octubre - Sin Embargo",
+      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQY1FMOC1PcUhnNmhFRWk0QlZEbjFTRkhFZUFna1FGZVg4eUltQmdYbDA4dU1QTUJicVFuUzA4RjNyZGtFb2lQVmMySk55VmZxeU5EdHNMS1RlaGFfNXFDLTFTTG85TjR6TWVBNUw3NEo4UGY0MnBueGFiaUFCRTlnUDlpcVdFOTVmaVI1YlZJbjRVZTNPVTU3WF9kVk5mbm9lQXZ0QWY2QnRyeHVIdFhVZQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
     {
       "id": "pt_partido",
       "nombre": "Partido del Trabajo (PT)",
@@ -1099,9 +1085,9 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
-      "tema": "Donald Trump suspende la emisión de visas de EU: ¿Para quiénes aplica esta medid",
-      "nota": "Donald Trump suspende la emisión de visas de EU: ¿Para quiénes aplica esta medida?",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/08/donald-trump-suspende-la-emision-de-visas-de-eu-para-quienes-aplica-esta-medida/",
+      "tema": "Ana María Aragonés: Fortalezas ante regresiones políticas en Latinoamérica",
+      "nota": "⚡ Posible presión de Donald Trump — Ana María Aragonés: Fortalezas ante regresiones políticas en Latinoamérica",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/09/politica/015a1pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1113,17 +1099,6 @@
       "tema": "Asesinato de Carlos Manzo",
       "nota": "Asesinato de Carlos Manzo: Harfuch confirma que van 33 detenidos y mantiene contacto con Grecia Quiroz",
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/08/asesinato-de-carlos-manzo-harfuch-confirma-que-van-33-detenidos-y-mantiene-contacto-con-grecia-quiroz/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "Coordinadores estatales de Morena rumbo a 2027",
-      "nota": "Coordinadores estatales se reúnen con dirigencia nacional de Morena en la CDMX - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQRVVwb1lmcWR1bHhuWnV1S2ZTaDl5T2F3bkV0RFVaNTA5MFFST2swYklfNUcwSzFIQmZJLVRLZFJuS0V2NVRrdWFKTEpoWTRiNnpXU1VvUVlXZ1haeWlCU2kxOEhHY2k2Tk9VSWV1RVA3WFdma24tUTlLWmRLUExpc3BCQ01YT05CM2xyN0g3NDZOZ3ZuMUVqaGhfN3h3d3d6NDJlVUFScEo4bDN5UExhOVZ3czg3Wi05NFFCR29RM3VQUy1maW44SUlPSkpsd2lFSXdRUHh0eHhHQW1QbGpv0gHzAUFVX3lxTE9vaGtvSlFUdmpWUTVmbE1pOEVIZF9BT01YVTdlR1hyVXVLMVZDMWRETk5xNEk0Uy1Halk3THBfenpLXy1kYWxILTRDZk84SlhjT1Njd3h2OUlxMU9YWG9TTzNOdGZxdEF4R0w4aHhZYjRKRXVvTHBtbmlQSElwZEh1LU5QSzV2cnJfZHNEM3YwT1dVMjlsMDdEUENQQjFYZnpWUDM3ck5wM2xUcldJM1QxbEI4eFJnTWhZWUtId2dSZkd6bTlkRUd4akUyT2taT0Y2WGI4Q29uX3JFVXpmUF9tVHJPZWdjem5LaldscXBIYXVDQQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1368,10 +1343,10 @@
     },
     {
       "fecha": "2026-10-09",
-      "tension": 39,
-      "n_notas": 9,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 3,
+      "tension": 29,
+      "n_notas": 17,
+      "n_alto_impacto": 9,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
   ],
@@ -1466,8 +1441,7 @@
           "x": 70,
           "y": 83
         }
-      ],
-      "fecha_reactivado": "2026-10-09"
+      ]
     },
     {
       "id": "sheinbaum",
@@ -1528,8 +1502,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOMGhEZkV6cDQ4UUw1UkpDMVltVWRTVlVWV2FtdWQyTXNjQjJjTWszN3Bsc1lJdEFWWEdlaXR6OS1qN1c5cTdvSVZXbndYLThnMDBFczBzcnpBWktDWkhTRV9VeWxURmE2WG5KcGFEbFlVMTdMTXpGVzVtaEdYazR2UXRvcmk1eEI5d1pObEZZVW4zMkxpUHhrbWQ5RUtDek9tc19Cc3M0M1NhRGR0MVpGQ1Q2RjUzMWh1N0NN?oc=5",
-      "nota_texto": "Huachicol fiscal: las reglas que no aplicaron para el amigo de Andy López Beltrán - Petróleo y Energía",
+      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYzNudllLXzNqa2c3MHhGdE1IMF80SWpvc2NGTGQyYnpZRFlJVjBRMWI4eHRoNlg5aWFBeXhTREIwRnpidmNPejlTZnh6YlJRbnVBNmpvaGV4OS1GV1gtVG1QU0tIbnN1aDgzUUdCdHplYWhMdm94NVNzZ1RMaVl0c21NMERZdDB2OEN6NXE0c0JUWnBpSE5TRWhPQjBHZnpVSGVHT3lrdlI?oc=5",
+      "nota_texto": "El movimiento político de Andrés Manuel López Beltrán - MVS Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1595,22 +1569,22 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 15,
-      "y_lunes": 76,
-      "x_hoy": 21,
-      "y_hoy": 78,
-      "delta_pts": 4.5,
-      "alcance": 6,
-      "n_alto": 3,
+      "x_lunes": 21,
+      "y_lunes": 78,
+      "x_hoy": 24,
+      "y_hoy": 82,
+      "delta_pts": 3.0,
+      "alcance": 7,
+      "n_alto": 4,
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPZDBIc0NHZHo1elFaUE9aNk9xb09aZlk4aGNHeDJnQzktRkFZVjhObjZ6cXd4OTJiWnNtTFgzc0lIMlppVVZJOGQ3Y0tScUdiU0hCU200UHlqMmhMS0piNjVXRGJNaDBfVjFHRnozWFh2ZUhwVzYyU1lIUnUxRlNsQjByME1yWk8tbG11UEtkMHFPSEJNaEJ3OUxTZkpRVlRkUEo2b3RhcklJTVdnQUo5QVNDX2pfMlNja3VpVHliVldiM1pLVm5vdDNSUlkzX211aHRuVll5VkVCUU9WdnZEckRB?oc=5",
       "nota_texto": "Acusa AMLO a Estados Unidos de fabricar expedientes contra el gobernador de Sinaloa, Rubén Rocha Moya - Palabra de Veracruzano",
       "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 4,
+      "categoria": "Relación Bilateral",
+      "dias_activo": 5,
       "trayectoria": [
         {
           "fecha": "2026-10-05",
@@ -1631,9 +1605,14 @@
           "fecha": "2026-10-08",
           "x": 21,
           "y": 78
+        },
+        {
+          "fecha": "2026-10-09",
+          "x": 24,
+          "y": 82
         }
       ],
-      "fecha_apagado": "2026-10-09"
+      "fecha_reactivado": "2026-10-09"
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1851,13 +1830,49 @@
     }
   ],
   "tablero_semana_inicio": "2026-10-05",
-  "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "resumen_mananera": [
+    {
+      "texto": "Se reportó un saldo blanco en Guerrero tras las lluvias provocadas por el huracán Simón. La gobernadora Eveli Salgado informó que no hay personas fallecidas ni desaparecidas, aunqu",
+      "categoria": "Social",
+      "intensidad": 6.0,
+      "alerta": true,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "La Comisión Federal de Electricidad reportó que el huracán Simón causó la inundación de la subestación Puerto Marqués en Guerrero, afectando el suministro de energía a 65 mil 78 usuarios. Sin embargo,",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se informó que el huracán Simón se encuentra en categoría 1 y se desplaza hacia el noreste, aproximándose a las costas de Jalisco y Colima durante el fin de semana. Se prevé que podría intensificarse",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "La consejera jurídica Luisa María Alcalde presentó un decreto presidencial para garantizar entornos digitales seguros para niñas, niños y adolescentes. El decreto obliga a las plataformas digitales a",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "El director de la Agencia de Transformación Digital, Pepe Merino, explicó que el decreto es obligatorio pero no punitivo en esta primera fase. Se establecerá coordinación permanente con las plataforma",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    }
+  ],
+  "mananera_estado": "ok",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1911,11 +1926,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-09T00:02:46.191893-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Omar García Harfuch"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-09 06:04"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-09 11:50"
 }
