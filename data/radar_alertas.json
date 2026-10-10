@@ -3,6 +3,20 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-10-10|escalo|auto-5acecb2fbb",
+   "ts": "2026-10-10T10:03:20-06:00",
+   "tipo": "escalo",
+   "tema_id": "auto-5acecb2fbb",
+   "texto": "↗ Tensión en Palacio Nacional: Sheinbaum habría cuestionado a García Harfuch por c creció (impacto 5.3, 5 medios)"
+  },
+  {
+   "id": "2026-10-10|actor_clave|garcia_harfuch|auto-5acecb2fbb",
+   "ts": "2026-10-10T10:03:20-06:00",
+   "tipo": "actor_clave",
+   "tema_id": "auto-5acecb2fbb",
+   "texto": "◉ Omar García Harfuch aparece por primera vez en «Tensión en Palacio Nacional: Sheinbaum habría cuestionado a García Harfuch por c»: García Harfuch anuncia construcción de nuevo centro penitenciario en Sinaloa"
+  },
+  {
    "id": "2026-10-10|actor_clave|amlo|huachicol-fiscal",
    "ts": "2026-10-10T07:08:27-06:00",
    "tipo": "actor_clave",
