@@ -1,7 +1,7 @@
 tema_id,nombre,nivel,tipo,notas,coherentes,pct,estado
 reconfiguracion-gabinete-2026,Reconfiguración del Gabinete 2026,3,completo,3,0,0.0,mezcla historias
-auto-a17ab6a268,"Informe de la gobernadora, INEGI y desplazamiento - Marcaje Legislativo",3,informativo,66,1,0.02,mezcla historias
-auto-2f8fa2feda,Segundo Informe de Gobierno de Ana Paty Peralta: esto destacó la alcaldesa de Ca,3,informativo,69,3,0.04,mezcla historias
+auto-a17ab6a268,"Informe de la gobernadora, INEGI y desplazamiento - Marcaje Legislativo",3,informativo,67,1,0.01,mezcla historias
+auto-2f8fa2feda,Segundo Informe de Gobierno de Ana Paty Peralta: esto destacó la alcaldesa de Ca,3,informativo,70,3,0.04,mezcla historias
 auto-bfeea789a9,Gobierno del estado acompaña y protege a migrantes poblanos en Estados Unidos - ,3,completo,9,1,0.11,mezcla historias
 auto-f3c7c3cb43,El futbol mexicano será investigado por el Gobierno de Sheinbaum tras acusacione,3,informativo,9,1,0.11,mezcla historias
 auto-a2f712b838,MILENIO. . La presidenta Claudia Sheinbaum rechazó aumentar el IVA y sostuvo que,1,completo,17,2,0.12,mezcla historias
@@ -79,6 +79,7 @@ auto-2dcc78062c,Involucrados funcionarios municipales en ilícitos,3,informativo
 auto-fb871d8278,Justicia ambiental en zonas históricamente relegadas: Se presentaron inversiones,3,informativo,7,3,0.43,mezcla historias
 auto-a7761b0ff1,"MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó q",3,informativo,18,8,0.44,mezcla historias
 auto-cf2ebbe6da,La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso,1,completo,19,9,0.47,mezcla historias
+auto-043bf7b202,"Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",1,completo,24,12,0.5,revisar
 auto-726ae9441f,"Claudia Sheinbaum refrenda respaldo a Tlaxcala con inversión en vivienda, salud ",1,completo,18,9,0.5,revisar
 auto-5666b8f6a7,Nuevo dirigente de Morena Tabasco lo definirá el Consejo Estatal o el CEN: Jesús,3,informativo,12,6,0.5,revisar
 auto-1e57057d28,"VIDEO ¡Juchitán, sin gobierno! Jara pide desaparecer el ayuntamiento tras captur",3,informativo,10,5,0.5,revisar
@@ -102,9 +103,9 @@ auto-e0744d9d51,Presidenta Sheinbaum defiende el modelo educativo mexicano - ANS
 auto-bc5881c5b5,Sheinbaum pide regular la IA ante difusión de información falsa - Buzos de la no,3,completo,4,2,0.5,revisar
 auto-c42133bff0,"“Queremos Medicinas, No Otro Teatro”: Reclaman a Sheinbaum por Megaproyecto de L",3,informativo,4,2,0.5,revisar
 operacion-enjambre,Operación Enjambre: alcaldes y funcionarios detenidos,1,completo,27,14,0.52,revisar
-auto-043bf7b202,"Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",1,completo,23,12,0.52,revisar
 auto-dbb17568d7,Noé Jara acusa “fuego político” contra él y el gobernador; se pone a disposición,3,informativo,13,7,0.54,revisar
 auto-e2608a5a56,Dan prisión preventiva a 16 integrantes de Los Ardillos,3,informativo,9,5,0.56,revisar
+auto-570a47e018,Participa UT San Juan en Congreso Internacional de Turismo - hoysanjuandelrio.co,3,informativo,9,5,0.56,revisar
 auto-c1ffc0d291,Elecciones intermedias en EE. UU.: cada vez más estadounidenses se identifican c,3,completo,7,4,0.57,revisar
 auto-cb244abac1,Sheinbaum acusa seis sexenios de empobrecimiento previos a AMLO,3,completo,7,4,0.57,revisar
 auto-250b711ca8,"Congreso del Estado, en conjunto con universidades, impulsa los Foros “Juventude",3,informativo,7,4,0.57,revisar
@@ -133,7 +134,6 @@ auto-88f1d051f2,Chedraui ante la oportunidad de ser el primer alcalde de Puebla 
 auto-1bcc3af65c,Para visita de Sheinbaum intervendrán los tres niveles de gobierno: Alcalde de C,3,informativo,16,10,0.62,revisar
 auto-8108d66665,La presidenta Claudia Sheinbaum y el secretario de Seguridad y Protección Ciudad,1,completo,8,5,0.62,revisar
 auto-7eeca57db5,🇲🇽 Claudia Sheinbaum concluirá este fin de semana la gira nacional que realiza c,3,informativo,8,5,0.62,revisar
-auto-570a47e018,Participa UT San Juan en Congreso Internacional de Turismo - hoysanjuandelrio.co,3,informativo,8,5,0.62,revisar
 auto-c86c133062,"Noticias para el fin de semana: Alerta de posible huracán, Claudia Sheinbaum, IC",3,informativo,11,7,0.64,revisar
 auto-e8dd6ecd11,"""¿Qué pasa del otro lado?"": Claudia Sheinbaum responde al informe de la administ",3,informativo,17,11,0.65,revisar
 auto-5cee60d226,"Claudia Sheinbaum le deposita $1,900 a miles de hombres y mujeres que habían que",3,informativo,12,8,0.67,revisar
@@ -314,7 +314,7 @@ auto-3de5902549,La presidenta Claudia Sheinbaum abordó el tema de la intervenci
 auto-821abb5ba4,Gustavo Leal F.*: Servicio Universal de Salud: ¿12 mil 750 consultorios “nuevos”,3,informativo,168,168,1.0,ok
 auto-dbb585f509,"Se presentó la estrategia de enfermedad cardiorrenal metabólica, que reconoce qu",3,informativo,166,166,1.0,ok
 auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,121,121,1.0,ok
-auto-32fd0aa34b,"Se informó sobre la recuperación de la Comisión Federal de Electricidad, que fue",3,informativo,111,111,1.0,ok
+auto-32fd0aa34b,"Se informó sobre la recuperación de la Comisión Federal de Electricidad, que fue",3,informativo,112,112,1.0,ok
 auto-b6de8facd5,INE informa que más de 100 mil yucatecos deberán renovar su credencial para vota,3,informativo,85,85,1.0,ok
 auto-69a1927adc,"Se informó sobre la entrega de viviendas en Durango, específicamente en Lerdo, d",3,informativo,83,83,1.0,ok
 auto-991ada61bf,Se explicó el procedimiento legal que deben seguir los gobiernos estatales para ,3,informativo,83,83,1.0,ok
@@ -327,13 +327,13 @@ auto-686b26a047,"Mexicana de Aviación ha abierto cinco nuevas rutas en 2026: Ac
 auto-3911f464ef,El Aeropuerto Internacional Felipe Ángeles ha alcanzado logros significativos de,3,informativo,72,72,1.0,ok
 auto-01ad5a117f,El Grupo Mundo Maya (GAPSACOM) integra 43 unidades de negocio incluyendo 2 aerop,3,informativo,72,72,1.0,ok
 auto-d5cad1036f,Tren Maya ha incorporado nuevas líneas de negocio que han duplicado sus ingresos,3,informativo,72,72,1.0,ok
-auto-b3f998443a,"Para “reafirmar la soberanía”, Macron y Carney se reúnen en una isla de Francia ",3,informativo,66,66,1.0,ok
-auto-e3a5e87d85,Gobierno de Yucatán reporta saldo blanco tras el alejamiento del huracán Isaías ,3,informativo,66,66,1.0,ok
-auto-408b3ab015,Gobierno del Estado presenta el Sistema Empresarial de Inspección Digital - Cana,3,informativo,65,65,1.0,ok
-auto-1703fe0013,La consejera jurídica Luisa María Alcalde presentó un decreto presidencial para ,3,informativo,64,64,1.0,ok
-auto-97f1f6934c,"El director de la Agencia de Transformación Digital, Pepe Merino, explicó que el",3,informativo,64,64,1.0,ok
-auto-001e5da65f,Se reportó que al 30 de septiembre de 2026 hay registrados ante el IMSS más de 2,3,informativo,64,64,1.0,ok
-auto-ba602ec6c5,"En la sección ""Suave Patria"", se presentó un segmento sobre la danza conchera, u",3,informativo,64,64,1.0,ok
+auto-b3f998443a,"Para “reafirmar la soberanía”, Macron y Carney se reúnen en una isla de Francia ",3,informativo,67,67,1.0,ok
+auto-e3a5e87d85,Gobierno de Yucatán reporta saldo blanco tras el alejamiento del huracán Isaías ,3,informativo,67,67,1.0,ok
+auto-408b3ab015,Gobierno del Estado presenta el Sistema Empresarial de Inspección Digital - Cana,3,informativo,66,66,1.0,ok
+auto-1703fe0013,La consejera jurídica Luisa María Alcalde presentó un decreto presidencial para ,3,informativo,65,65,1.0,ok
+auto-97f1f6934c,"El director de la Agencia de Transformación Digital, Pepe Merino, explicó que el",3,informativo,65,65,1.0,ok
+auto-001e5da65f,Se reportó que al 30 de septiembre de 2026 hay registrados ante el IMSS más de 2,3,informativo,65,65,1.0,ok
+auto-ba602ec6c5,"En la sección ""Suave Patria"", se presentó un segmento sobre la danza conchera, u",3,informativo,65,65,1.0,ok
 auto-f4bff265ab,Reporta SICT avance de más de 560 obras viales en primeros dos años del gobierno,3,informativo,53,53,1.0,ok
 auto-cd49aa949b,Se informó sobre la rehabilitación y modernización de 650 quirófanos en las inst,3,informativo,51,51,1.0,ok
 auto-48a528c42b,Xalapa prevé entregar 110 obras con una inversión cercana a 500 millones de peso,3,informativo,48,48,1.0,ok
@@ -524,6 +524,7 @@ auto-90b7e9e44e,"Tras altercado en Oaxaca entre maestros de la CNTE y simpatizan
 auto-b056bd5bf8,Sheinbaum: “es absurda” la supuesta encuesta de EU sobre apoyo de mexicanos a un,1,completo,5,5,1.0,ok
 auto-76581f32b3,AMENAZAS Y NARCOMANTA CONTRA ALCALDE DE TEMPOAL VERACRUZ APUNTA A SANCHEZ ZUMAYA,3,informativo,5,5,1.0,ok
 auto-8b1d9f44c2,Claudia Tacoronte: Universidad de Granada suspende intercambios a la UAEM,3,completo,5,5,1.0,ok
+auto-4236154efe,Diputado Miguel Márquez promueve exhorto para fortalecer difusión sobre tarifas ,3,informativo,5,5,1.0,ok
 auto-04cf34cf84,"Que viva la vida, la verdad y la libertad: Maru Campos",3,completo,5,5,1.0,ok
 auto-1a131301d3,"MÉXICO, UN PAÍS LIBRE E INDEPENDIENTE",3,informativo,5,5,1.0,ok
 auto-32b3d896f7,Maru Campos envía carta a Sheinbaum y la invita a una mesa de Seguridad en Chihu,3,informativo,5,5,1.0,ok
@@ -549,6 +550,7 @@ auto-db6a3aaf66,Aprobación de la Ley de Bienestar Animal: Se informó sobre la 
 auto-9bc65c6223,"Sheinbaum, sobre López Obrador y su nuevo libro: “Se dedica a reflexionar y escr",1,completo,5,5,1.0,ok
 auto-8c60a74868,"Luego del video del miércoles del ex mandatario Andrés Manuel López Obrador, la ",3,informativo,5,5,1.0,ok
 auto-e6b3b54ab1,Firman convenio el Congreso local y la UVP para fortalecer la vinculación labora,3,informativo,5,5,1.0,ok
+auto-4cf43de5c3,Los estados en que Morena tuvo que ceder ante el Verde para mantener la alianza ,3,informativo,5,5,1.0,ok
 auto-4a411a1701,"Con Trump, el ICE impone récord de muertes; 31%, connacionales",3,informativo,5,5,1.0,ok
 auto-42f6186085,"🚨 ¿Alejandro Armenta, Gobernador de Puebla, usa granjas de bots pagadas con recu",3,informativo,5,5,1.0,ok
 auto-05b4bf90bf,"Gobernador de Nayarit, posible blanco de atentado tras caída de avioneta: FGE",3,informativo,5,5,1.0,ok
@@ -635,7 +637,6 @@ auto-5f2f4c8c21,Claudia Tacoronte: un crimen que deja preguntas sobre seguridad 
 auto-f2cd6e2037,Ministro en retiro alerta de cooptación de jueces tras la reforma judicial - yuc,3,informativo,4,4,1.0,ok
 auto-b31166b259,Presenta diputada Tania Caballero iniciativa para reestructurar la Administració,3,informativo,4,4,1.0,ok
 auto-9965a6c899,IEEPCO aplicará “8 de 8” a candidaturas en Oaxaca; sentenciados por violencia y ,3,informativo,4,4,1.0,ok
-auto-4236154efe,Diputado Miguel Márquez promueve exhorto para fortalecer difusión sobre tarifas ,3,informativo,4,4,1.0,ok
 auto-40bd63a8c7,MORENA: Rafael Marín acepta tercer lugar y señala que empezó tarde - Caribe Peni,3,informativo,4,4,1.0,ok
 auto-515ab28a5a,Kimberly Flores reaparece y presume cómo celebró el Grito de Independencia tras ,3,completo,4,4,1.0,ok
 auto-f0c01ee0f4,Liberan a 43 personas privadas de su libertad.,3,informativo,4,4,1.0,ok
@@ -655,6 +656,7 @@ auto-6fc144d43d,"Balean casa de Elvis Guerra, diseñador del vestido de Sheinbau
 auto-981a579b6b,"¿El veto de Trump a CNN, MS NOW y Politico viola la Primera Enmienda? Esto dice ",3,informativo,4,4,1.0,ok
 auto-c284ff239a,"Llega Claudia Sheinbaum a La Paz: ""No podíamos estar haciendo lo que hacemos, si",3,informativo,4,4,1.0,ok
 auto-c443efe1ff,Lerma exige atención municipal.,3,informativo,4,4,1.0,ok
+auto-a09c86e019,PRI acusa que eliminar fuero municipal en Veracruz busca perseguir a la oposició,3,informativo,4,4,1.0,ok
 auto-2e8dd79af4,Gobierno de Puebla adelanta que habrá movimientos en el gabinete por la elección,3,informativo,4,4,1.0,ok
 auto-eba6e3043c,El agua es un derecho y un asunto demasiado importante para convertirlo en una d,3,informativo,4,4,1.0,ok
 auto-bce18ca66d,"Por las tensiones nacionales, el PT amenaza romper la alianza con Morena en la C",3,informativo,4,4,1.0,ok
@@ -800,7 +802,6 @@ auto-0b8a90a032,Rechaza Sánchez Cabrales interés por dirigir Morena; asegura q
 auto-3e19726171,En ocho secretarías de Armenta suman 18 cambios en un año y 10 meses,3,informativo,3,3,1.0,ok
 auto-d555c3ea88,Morena pagará muy caro el despojo a jubilados y pensionados | COLUMNA de Héctor ,3,informativo,3,3,1.0,ok
 auto-d1098b9096,Instituto del Congreso de Puebla suma solo cinco publicaciones en casi 15 años -,3,informativo,3,3,1.0,ok
-auto-a09c86e019,PRI acusa que eliminar fuero municipal en Veracruz busca perseguir a la oposició,3,informativo,3,3,1.0,ok
 auto-385f5e4775,Armenta descarta movimientos inmediatos en su gabinete y garantiza la operativid,3,informativo,3,3,1.0,ok
 auto-8e1b5cb00c,Citlalli Hernández responde en defensa de Sheinbaum: “La injerencia extranjera t,3,informativo,3,3,1.0,ok
 auto-b7cbe736e6,Mauricio Vila encabezará coordinación nacional del PAN,3,informativo,3,3,1.0,ok
@@ -840,7 +841,6 @@ auto-8e3b2ad436,Jasmín Bugarín admite que aún tiene ciudadanía estadounidens
 auto-071718fd5d,Ayuntamiento de Puebla destina 9.4 mdp a mejorar unidades habitacionales - El Po,3,informativo,3,3,1.0,ok
 auto-c65e3ca5e1,Díaz-Canel felicita a Morena por 15 años de su fundación; diputados reciben a vi,3,informativo,3,3,1.0,ok
 auto-c5dc51b750,Exedil de Pinotepa Nacional enfrenta proceso por corrupción - todotexcoco.com,3,informativo,3,3,1.0,ok
-auto-4cf43de5c3,Los estados en que Morena tuvo que ceder ante el Verde para mantener la alianza ,3,informativo,3,3,1.0,ok
 auto-0d57532b8e,La visita de Claudia Sheinbaum a Veracruz y la reaparición de AMLO - La Silla Ro,3,informativo,3,3,1.0,ok
 auto-850ec63051,Iván Herrera se registra en Morena para buscar diputación federal por el Distrit,3,informativo,3,3,1.0,ok
 auto-63e6dc9681,Antón Bojórquez se separa de su cargo en el Ayuntamiento de Playa del Carmen - Q,3,informativo,3,3,1.0,ok
