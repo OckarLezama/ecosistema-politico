@@ -1,5 +1,5 @@
 {
-  "generado_en": "2026-10-10T11:35:52.268779-06:00",
+  "generado_en": "2026-10-10T12:01:09.371763-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 18,
   "baja_confianza": false,
@@ -915,6 +915,14 @@
       "fuente_url": "https://www.informador.mx/mexico/huracan-simon-se-intensifica-a-categoria-3-en-el-pacifico-y-activa-respuesta-federal-de-emergencia-20261009-0189.html"
     },
     {
+      "id": "auto-15ec2b27a6",
+      "nombre": "Pone Morena filtros a políticos que buscan competir en 2027 - Quadratin Quintana",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/10/politica/004n3pol?partner=rss"
+    },
+    {
       "id": "auto-3950920ff3",
       "nombre": "Asesinan a Hamurabi Huesca, director de Pinotepa Comunica: Fiscalía de Oaxaca re",
       "categoria": "Gobernabilidad",
@@ -929,14 +937,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/09/ice-baleo-a-hombre-frente-a-su-hijo-de-5-anos-en-nueva-york-policia-revela-videos-del-operativo/"
-    },
-    {
-      "id": "auto-91f794d2f4",
-      "nombre": "En Migración, 537.6 mdp sin reportar",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/10/politica/003n2pol?partner=rss"
     },
     {
       "id": "auto-d7708b4809",
@@ -984,6 +984,17 @@
       "confianza": "media"
     },
     {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "rol": "Responsable institucional",
+      "tema": "Díaz-Canel felicita a Morena por 15 años de su fundación; diputados reciben a vi",
+      "nota": "Claudia Sheinbaum felicita al Teletón por sus 29 años de labor - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPclpqQXZUclIycDZUTFUyblQ3ZWdxWEh0dUJ6ekthUjIwRHFTczFkampiSXBBbmNnVDBTckNlcWNkRFd6U25MODBBTFZVVUVweHRYbk9tYnZWN09VdXo0V0dnRV9kU0hidzYxaW9KOEJnWmQxUEh1cWl6Y0xuU0dTcHNnVTVyMmVhOEZEemphR3NDdnhRQURKbnRQNFdPUnBqUFdXYW50QVoxSko0UlHSAa4BQVVfeXFMTWZMdjdjcjBXMHprTElIOW9NbGIwUnhIVVQ0OXNITTJsaWRYSVdibVhJY2VSYmVFTnVUdEhFanppQUZ5Ulo2b1d5bFRyWE1aNGMwYVZ2NHk5UUZYdFFCWnJJazFRaHBzSl9IR0pBeW1xeTZuYTVfSGZPWDZYOGJkVlVKbGRRZWxVQzZ6VXJXYVQwczZKMVJ3aXBQTVR2M05MeFdxYVJXME1aWXNxTHNn?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "ebrard",
       "nombre": "Marcelo Ebrard",
       "rol": "Responsable institucional",
@@ -1012,17 +1023,6 @@
       "tema": "PAN Puebla definirá en noviembre a su candidato para la alcaldía en 2027 - Perió",
       "nota": "Tras tensiones con PT, Morena definirá estrategia de alianzas rumbo a 2027 - MILENIO",
       "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPanlaQkVyMHFIUzhuOHd0MVgxb0xVRXhBX0F1dWhsU2E4WGswdFJZbi1NTTFlS0FHMFF0Zmd5Ri1OY2lEZ3l2LXRTNV92RWxRcmNERGYwQUJiT0JQVXVBWk9kSzkyZlFNSVFUbUhsZUpJclVodmh0VklUVmx1eW9BaHVMczRqVERtSUNRZzJjdEd5eG1JUUxKVE1Gd3RuQ3FjajZjTw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "rol": "Mencionado",
-      "tema": "Andy Manuel López Beltrán se registra como aspirante a diputado en Tabasco - fom",
-      "nota": "Daniel Casasús, amigo de \"Andy\" López Beltrán, busca la coordinación de Morena en Centro, Tabasco - Proceso",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQYTZvZ3FDZ3JiYzdnMm92ZkhXY0VLSVlCdzZ6WEVkWk12ZmgwSUFqQ0hrYTg1WU5zTklFcjZBaHZMTDlZVkFvVzFTNmROSjMtUUR6Z216ZllPdDhuRGxiVjlPbXBxdVZOMFBpRVB2RS1rVGZlbGZ3aE5JNlZRSG45Y3lhampRMVl6V3RRME5Gc2NQWVFjaldVYzR6OWtCMERqT2ZqVzZUNXZXVEtGdXV0TEN1ZDRScUFpNnJaX3hCSE1BdlkybUNzUDhvR21JeDZ3TWVUdzM0UVVsUnhPSFRoSTNYcnNDMlZHemhOYUJrMA?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1315,8 +1315,7 @@
           "x": 100,
           "y": 89
         }
-      ],
-      "fecha_reactivado": "2026-10-10"
+      ]
     },
     {
       "id": "tatiana_clouthier",
@@ -1426,8 +1425,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOMGhEZkV6cDQ4UUw1UkpDMVltVWRTVlVWV2FtdWQyTXNjQjJjTWszN3Bsc1lJdEFWWEdlaXR6OS1qN1c5cTdvSVZXbndYLThnMDBFczBzcnpBWktDWkhTRV9VeWxURmE2WG5KcGFEbFlVMTdMTXpGVzVtaEdYazR2UXRvcmk1eEI5d1pObEZZVW4zMkxpUHhrbWQ5RUtDek9tc19Cc3M0M1NhRGR0MVpGQ1Q2RjUzMWh1N0NN?oc=5",
-      "nota_texto": "Huachicol fiscal: las reglas que no aplicaron para el amigo de Andy López Beltrán - Petróleo y Energía",
+      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYzNudllLXzNqa2c3MHhGdE1IMF80SWpvc2NGTGQyYnpZRFlJVjBRMWI4eHRoNlg5aWFBeXhTREIwRnpidmNPejlTZnh6YlJRbnVBNmpvaGV4OS1GV1gtVG1QU0tIbnN1aDgzUUdCdHplYWhMdm94NVNzZ1RMaVl0c21NMERZdDB2OEN6NXE0c0JUWnBpSE5TRWhPQjBHZnpVSGVHT3lrdlI?oc=5",
+      "nota_texto": "El movimiento político de Andrés Manuel López Beltrán - MVS Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1475,8 +1474,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOT1Jmcl8yaG1WV3Etd2VRWG1OX3hxbVpkUjlYM2FDNThNNWs5SHQtWkMzV3F2ZGduZUtfdTk5RngyRVBPRXRkV1NlTWhLYzdmVWlqeUw1SHJqR3pvRDAtMGpVUVlhbi1GeS1nOGlSekcyaEx6VDl4M1RNeVltb1RNa0hNZkVkaUNua1RUX3hJVGVpMTRsOWhySlhaUQ?oc=5",
-      "nota_texto": "Confirma García Harfuch 33 detenidos por caso Manzo - Quadratin Chiapas",
+      "nota_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQNXAtN09KaDNnMzRWWFpCM3hwSmhGaWlRX3NSM25welcyZThKWHNqYjczNTR1QmZ3VHFPc1ZlcExmQm9TbkFlQi13YjZVSmRfY1I1NzhFRVU5YUZXU3hlTmVEdzRLNm5tNHl2UjV0a3E3Vzhsb054WTZsZHZyTUtlY05zWFgwMlYwcThXV1hGWXRaeWNvVDVJa1MyNE9aTGpSd0xqLWdaOEtlQWtRc2lUMVpNbXRUOVFHODA3N0kzVWZoUU5GSGVrNnFWVHQ5dGxSUjFybXVtdGtYSW1pelVmbkM2Z3V5S2xkR2J1RmRIVThuM2FNMnlUStIBkwJBVV95cUxPeXBTTUszNzliNHJOc0JyQnlPTlY1UEtnTEtZWDU1eGJHZ1dVbzhlY2tWaVlSVThCNk1mY1U0UFRzNFloVUFMd1lFTzRXS0NyQjJfX2VWWV9jX25tRTNWcndkSUJvVU5GMU9meEZQY1FaWk01bHB6THBZVWowcnhEVEFkSDZtVHI1VDNTNVloVnIxTGR2dWdrY1ZWMkZheTVVWkg4LU5hMFBIalIwUVJ1QUtMeGlmU1k1ekVGOVBGdV8yVV9lUXdHRzhndEZiVWpJYlF0dEJRZXlDRjRhd0hlUHNNVEpBeXpCa2dmenBUNnF6eUlVc1htZUFmbzZoaGNtV04tNXVqOXVRSzk3ZXRsRGlPOA?oc=5",
+      "nota_texto": "Exjefe de la DEA elogia a García Harfuch por captura de ‘El Tanque’, pero pide enviar a Rocha Moya a EEUU: “Sería un gran logro” - Infobae",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1853,5 +1852,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-10 11:35"
+  "hora_corte_publicada": "2026-10-10 12:01"
 }
