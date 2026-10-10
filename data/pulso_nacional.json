@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-09T20:57:28.418876-06:00",
+  "generado_en": "2026-10-10T00:03:00.405973-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 36,
+  "n_notas_ventana": 32,
   "baja_confianza": false,
-  "tension_nacional": 31,
+  "tension_nacional": 28,
   "tension_anomalia": {
-    "z": -0.16,
+    "z": -0.48,
     "nivel": "normal",
-    "media_periodo": 33.0,
+    "media_periodo": 33.7,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 51,
-      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
-      "tema_principal_id": "rocha-moya-acusacion",
+      "peso_pct": 60,
+      "tema_principal": "Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",
+      "tema_principal_id": "auto-043bf7b202",
       "n_temas": 7,
-      "n_notas": 19,
+      "n_notas": 20,
       "notas": [
         {
           "texto": "Ana Lilia Rivera llama a fortalecer la organización territorial de Morena en Tlaxcala - El Popular, periodismo con causa",
@@ -74,12 +74,6 @@
           "medio": "Quadratin Quintana Roo"
         },
         {
-          "texto": "Alista Senado aprobación de reformas clave sobre huachicol fiscal, pagos digitales y catastros - Excélsior",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNU0ZIaGlqam9uTGZuMXdDeWhGRnFpcTItMXQwa2JoUWtBSklnQVNhaUc3OGc3Y1BoM2MxcGw4bGZWQW9lZWpnbllzNF9CY1cySmxMdUFlamxoVktOdG9pVzVvZ20tMklTaGNQSUtIYUdBS1U4QU1QUlpjS0ZjTVhrQ3hKNEN5RjRQWlZZUnF2a2xMX29hUG9IcWM2dUxyQTc0bkN3dW1jSVZwT01DcjZuT1VsVGtxdHNaUWsxMG5vSkxPbV9jN1FJ0gHMAUFVX3lxTE41R1B3YTJXS2NaUHh3RVBnbW1uLXlJekYwSi1MT0pCVldHSy1ndlozQXNLeW1oRHNRcTVsN09TaEtrem80ZFF1dkloNV9Zd3RUY2ZrMGtnZENLR21zeHVyOEpTSlRFQy05OWdzMExNRXEyQlBEMk51RGhYZUt4cllleXZXSlBOV25fdWFuelpDaFlhbEpHQ2pJb2hHNUZWNWpLMlN5Y25HUEpxZDhsRXBVY2xVWnQxeXlkZnpLT3BwVjlNT3YwbzRUOWRDNA?oc=5",
-          "intensidad": 6.0,
-          "medio": "Excélsior"
-        },
-        {
           "texto": "Ariadna Montiel reúne a Coordinadores Estatales de Morena para fortalecer la organización y formación política - El Soberano",
           "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNM09wTWU4aTU2djhpREFVWVc0Zm9TZGZLSjJaWU5oR1BFaDBXSzdGa3RmV0RBRjVPeEItSFRfNVhTVFdwME55NXpnZ0dKMDEtc21jUFp1TGJVNUt5eTNEd0dQNEo0Z3AxLWN1bWppdlI0cll5NUdfUzBHRmZLQ0t5VWRqZEdZTHd3b2lYTmp5Qmhyc3BLa1YwSE5DTEw4aWlLMkxERTRFbDA4R1lQOENxSHRfNk55WE8xcWh0bHZrLUF5TzRLMmVtTmFFd0V0ajNaRkg5Z1Ezc1dYa1Ax?oc=5",
           "intensidad": 5.0,
@@ -108,34 +102,28 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQdHR6TDVEM0pxc3dXbkxweXo2bnBkalF5b0xHMjBEWFJEX0lvdlZRbDFZOC14aFBSMnBlbGF4OWlWenh2YVR0NnVJd1hhZ3RjXzJWc2hhSzZQRzB1ZXhMbnRHdE9MYXJhTFRxV2diZHMyRWpVa2Q3OGllbnVKUHVWRnZRNEdXUkxKZXhWbHQ0eEllMVVnSGhLWVN5VktmdEJYRlN0NGV0WWtTQlk?oc=5",
           "intensidad": 5.0,
           "medio": "El Universal"
+        },
+        {
+          "texto": "LOS “COORDINADORES” SON CAMPAÑA ADELANTADA DE MORENA, Y LA AUTORIDAD NO HACE NADA: MIGUEL POOL - Tribuna Campeche",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPNVc4WkdlVzNwUUVROTB3RVlLUi1fRW04cHRfdF8yNXBEaXdnLVJIM05yc2xJWVNob1VEM252YWplNGRWekFLQkFHTWdaMFlUTFR4WW1nOVhBaWVhSHp3bU1hMnphUGtDTmtPWXlSbVZoblRGb1pPZkJ5TFRBSnYtaldrM1FwVkk2blVHX1QyWkhTaVR1QjZQYmhDM1hDWms0QkNYbW5Yc3k3WWgwRDNJRzVKeWVBU3kxY3FfV2h1MEZYZmtra3EzbQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "Tribuna Campeche"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 24,
+      "peso_pct": 18,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 2,
-      "n_notas": 8,
+      "n_temas": 1,
+      "n_notas": 5,
       "notas": [
         {
           "texto": "Marcelo Ebrard comparecerá el viernes ante diputados por el T-MEC - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVDk4RzBDcFJWbnZMOU8wTUV0RU9mUVBCQ1lvNnVid1ZHengzSERuSmhQbEdyVFJJUkFfaFFETUtLZ2xoZFhaSGpoOTVWTHA3SGpLNUJlQmt0dWh3NHRBYjRqaDVzS1dMcVlwdHZBV3ZfMUVzek9SdG5UQU4yZ1NSMU53UVlnMXB4WWRDajdxc0F4Y0VKZnd4QzZaMFgzbnJ3dlY0M1Q1MNIBpwFBVV95cUxPaTc1NTBlOHM0N1NXc2J0cWc5VC1wX0FFT1N1ZlZqYVViY1NQYnRFRV9fT2d2WnQxVGFyeGo1T09hUzIwVmVUbm16bkYwLTJDaVEzS0M5OExoa2FDYnRpcklMUkcwLUs1UmJrVDN2X24yNDA1YnRkaE54N1BxQkdVYm1OYVBhb1cxQjB0WkQ4V3I2X3dnSk51dUtuOVkxdVNvcDBXTWJiVQ?oc=5",
           "intensidad": 9.0,
           "medio": "Milenio"
-        },
-        {
-          "texto": "Sheinbaum y Johnson tratan seguridad y T-MEC - El Porvenir - Portada",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOcFBYVmtya1hHa0xsVVlHZ09BZkFiYWJoaEFyQmVfYXdZNmctQXBkUENZeEVIQ0RMQjFmam9TRWduQmhMVjh3NG80c1E4cENCTkF2b2VTdi1PLUYxZ3pLSXpzU2RyVVlJY0JRNEtZZEowY281b0V1bW5Xc2JlcTZTZTltakhmV1RPNlNN?oc=5",
-          "intensidad": 7.0,
-          "medio": "Portada"
-        },
-        {
-          "texto": "Principal preocupación de IP es renovar T-MEC.- Medina Mora - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNb2ZyYnY2c3Vzc0tVY3pzanFsem02VmZhWTJ0eVRoMFVEU3BTeVhBdmtLdTk3LWVqZHQ3V01yazlqRmowTTVQUG5GUzdsVzNjTFEza3hsR0lleGlkQ2FYNzBpREtISmJDM0puc2gwcHF4UXdJUHhNOWVudkQyMVo1aGY5M0I1SEljcUxuYTNDRUI3NV91UXc?oc=5",
-          "intensidad": 7.0,
-          "medio": "Reforma"
         },
         {
           "texto": "2o. DÍA DE PARO ESCALONADO DE LABORES: Denuncia secretaria general del Sauqroo violación a los derechos laborales de los trabajadores de la Uqroo - Noticaribe",
@@ -160,35 +148,17 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPNW5VZF9lUndNcm1MMkdfSWZISTNiMWNJS3JWVWRKbnlJTklBZzdzRE1aR21ad21TLWxzQWE4bUYwZ014ZHpISmZHQkI4aE9UMWJCMnBTT1d2YU9NT0gwanVwNFpwbk05d05FVUNhSnBFeFd0aDJidW1MakMwV2hyRWg3WjFCanZLek5FNEJqUHZ0RVViblQzS25RWEVCOGxBTGZvOTNuZ2ZXNTNGNXBkSmVadDJmM0wzMVdoa1d1aDJYV1dLYXRRZ01mMnNPZno2V0E?oc=5",
           "intensidad": 6.0,
           "medio": "El Sol de México"
-        },
-        {
-          "texto": "Morena emite convocatoria para candidatos a ediles: los que van por su reelección no tienen que separarse del cargo - Diario Cambio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOeElHX1J5YnRKajAwSXhJc2tndnE5QlZzVlNKUnUtMEhfV3hBa1ZfSlNEVkY0OXdZeTZQQ095QlJYRWNGaUE4T2c1d2wtZzJXekpsUVNiZTVZeE1xWEduWkt2S2VsX09HSWk0U0xQS3ZLdXNWX05oTmN5cTJ1QWtmaThBdWE1Q2doVkxMaU9ybHRUaFVYd1l5dzlSdEs2bkI5d2hzQ1RTVkk1UGxGbW95d2RHRjRLQjh3anpma095RUk5Y3p2ZC1tdHo5RzJpS0FXc2RIOXFFVkVYeHkxRmw3eEFfaFpIb3h1YmM4MVRHX2xsQmhab3VCMVFmY2Y?oc=5",
-          "intensidad": 5.0,
-          "medio": "Diario Cambio"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 20,
+      "peso_pct": 16,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 5,
-      "n_notas": 7,
+      "n_temas": 3,
+      "n_notas": 5,
       "notas": [
-        {
-          "texto": "Vinculan a proceso a El Capitán Sol",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/09/politica/005n4pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
-        },
-        {
-          "texto": "Denuncian a “Andy” López y a Amílcar por irregularidades en unos medicamentos",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/09/denuncian-a-andy-lopez-y-a-amilcar-por-irregularidades-en-unos-medicamentos.html",
-          "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
-        },
         {
           "texto": "Balacera en penal de Mazatlán: El objetivo era asesinar a ‘El Owen’, integrante de ‘Los Chapitos’",
           "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/09/balacera-en-penal-de-mazatlan-el-objetivo-era-asesinar-a-el-owen-integrante-de-los-chapitos/",
@@ -223,7 +193,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 5,
+      "peso_pct": 6,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 2,
@@ -254,31 +224,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-12",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 36
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 41
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 13
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 1
-        }
-      ]
-    },
     {
       "fecha": "2026-09-13",
       "categorias": [
@@ -953,26 +898,48 @@
           "peso_pct": 1
         }
       ]
+    },
+    {
+      "fecha": "2026-10-10",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 74
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 1
+        }
+      ]
     }
   ],
   "top5_temas": [
     {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
+      "id": "sinaloa-crisis",
+      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "Vinculan a proceso a El Capitán Sol",
-      "peso": 40.0,
-      "n_temas_agrupados": 5,
+      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
+      "motivo": "Balacera en penal de Mazatlán: El objetivo era asesinar a ‘El Owen’, integrante de ‘Los Chapitos’",
+      "peso": 27.0,
+      "n_temas_agrupados": 4,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 6,
+      "medios_corroborantes": 4,
       "confianza": "alta",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/09/politica/005n4pol?partner=rss",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/09/balacera-en-penal-de-mazatlan-el-objetivo-era-asesinar-a-el-owen-integrante-de-los-chapitos/",
+      "actor_vinculado": null
     },
     {
       "id": "tmec-revision",
@@ -980,53 +947,40 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Marcelo Ebrard comparecerá el viernes ante diputados por el T-MEC - Milenio",
-      "peso": 28.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVDk4RzBDcFJWbnZMOU8wTUV0RU9mUVBCQ1lvNnVid1ZHengzSERuSmhQbEdyVFJJUkFfaFFETUtLZ2xoZFhaSGpoOTVWTHA3SGpLNUJlQmt0dWh3NHRBYjRqaDVzS1dMcVlwdHZBV3ZfMUVzek9SdG5UQU4yZ1NSMU53UVlnMXB4WWRDajdxc0F4Y0VKZnd4QzZaMFgzbnJ3dlY0M1Q1MNIBpwFBVV95cUxPaTc1NTBlOHM0N1NXc2J0cWc5VC1wX0FFT1N1ZlZqYVViY1NQYnRFRV9fT2d2WnQxVGFyeGo1T09hUzIwVmVUbm16bkYwLTJDaVEzS0M5OExoa2FDYnRpcklMUkcwLUs1UmJrVDN2X24yNDA1YnRkaE54N1BxQkdVYm1OYVBhb1cxQjB0WkQ4V3I2X3dnSk51dUtuOVkxdVNvcDBXTWJiVQ?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
-    },
-    {
-      "id": "ley-antimemes",
-      "nombre": "Ley Antimemes y reforma de propiedad industrial",
-      "categoria": "Gobernabilidad",
-      "resumen": "Reforma sobre propiedad industrial/derechos de autor apodada «Ley Antimemes»: aprobación en comisiones y Senado, críticas por riesgo de censura y aclaraciones de la presidenta.",
-      "motivo": "Leyes antimemes contra la libertad de expresión, escribe Kenia López Rabadán - El Universal",
-      "peso": 10.0,
-      "n_temas_agrupados": 4,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQdHR6TDVEM0pxc3dXbkxweXo2bnBkalF5b0xHMjBEWFJEX0lvdlZRbDFZOC14aFBSMnBlbGF4OWlWenh2YVR0NnVJd1hhZ3RjXzJWc2hhSzZQRzB1ZXhMbnRHdE9MYXJhTFRxV2diZHMyRWpVa2Q3OGllbnVKUHVWRnZRNEdXUkxKZXhWbHQ0eEllMVVnSGhLWVN5VktmdEJYRlN0NGV0WWtTQlk?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
-    {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "‘Trump es Hitler a la décima potencia’: Gustavo Petro lanza dura crítica durante gira en México",
-      "peso": 5.0,
+      "peso": 21.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/09/trump-es-hitler-a-la-decima-potencia-gustavo-petro-lanza-dura-critica-durante-gira-en-mexico/",
+      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVDk4RzBDcFJWbnZMOU8wTUV0RU9mUVBCQ1lvNnVid1ZHengzSERuSmhQbEdyVFJJUkFfaFFETUtLZ2xoZFhaSGpoOTVWTHA3SGpLNUJlQmt0dWh3NHRBYjRqaDVzS1dMcVlwdHZBV3ZfMUVzek9SdG5UQU4yZ1NSMU53UVlnMXB4WWRDajdxc0F4Y0VKZnd4QzZaMFgzbnJ3dlY0M1Q1MNIBpwFBVV95cUxPaTc1NTBlOHM0N1NXc2J0cWc5VC1wX0FFT1N1ZlZqYVViY1NQYnRFRV9fT2d2WnQxVGFyeGo1T09hUzIwVmVUbm16bkYwLTJDaVEzS0M5OExoa2FDYnRpcklMUkcwLUs1UmJrVDN2X24yNDA1YnRkaE54N1BxQkdVYm1OYVBhb1cxQjB0WkQ4V3I2X3dnSk51dUtuOVkxdVNvcDBXTWJiVQ?oc=5",
+      "actor_vinculado": null
+    },
+    {
+      "id": "auto-043bf7b202",
+      "nombre": "Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",
+      "categoria": "Gobernabilidad",
+      "resumen": "Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para incentivar a las Pymes - La Jornada",
+      "motivo": "Leyes antimemes contra la libertad de expresión, escribe Kenia López Rabadán - El Universal",
+      "peso": 15.0,
+      "n_temas_agrupados": 4,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQdHR6TDVEM0pxc3dXbkxweXo2bnBkalF5b0xHMjBEWFJEX0lvdlZRbDFZOC14aFBSMnBlbGF4OWlWenh2YVR0NnVJd1hhZ3RjXzJWc2hhSzZQRzB1ZXhMbnRHdE9MYXJhTFRxV2diZHMyRWpVa2Q3OGllbnVKUHVWRnZRNEdXUkxKZXhWbHQ0eEllMVVnSGhLWVN5VktmdEJYRlN0NGV0WWtTQlk?oc=5",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
+    {
+      "id": "auto-fdfb322ed6",
+      "nombre": "Refugios por huracán 'Simón' en Jalisco | Ubicaciones y todo lo que debes saber ",
+      "categoria": "Social",
+      "peso": 13.0,
+      "impacto": "alto",
+      "fuente_url": "https://www.informador.mx/mexico/huracan-simon-se-intensifica-a-categoria-3-en-el-pacifico-y-activa-respuesta-federal-de-emergencia-20261009-0189.html"
+    },
     {
       "id": "auto-b698d9ce01",
       "nombre": "Huracán Simon: Claudia sheinbaum llama a la población a mantenerse alerta y segu",
@@ -1052,14 +1006,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPaThaeU5vUC0wUWQzb1ZkQTdCRWtCTWNMbTEtOUNRdllIZVlrTzBvc01kLUVpQzlYZi1xdDNoQ0xWcWhBSUtPM05Eb1lGNjZQMnVkRnJjQmh5Yl82MXppUlBxNkNHbXJJZzJIVGtVaGoxZXFZejZodXJPZUE3TlFOcDhoSjdrNG41WWNwSmpzRFZsOUhYbEFmY2VRYWpnU0VKRmF5Sm5xSnlKOEs2VlgyanROTWxMRHFoWkpoNk5zcjRjNURTelVqX1ozWmVwNkZVZjZMa1FmTnpRR1duNkRkV3JfZzBGTHfSAfsBQVVfeXFMTXZNYlpOMllUTDNONTh0ZDlfT1R6TENhWEFYdVFPczlkS1A0MDFYSjhaZllMbGpvYkNvZHhVeGpLVVBGLXdBbUhIZ1phcDh0MFpDRFp0MHZ6MTktQVA0eFMtMVdUY1psYUVZdGJuZ1ZVWWgzVVlLSjdmQWM3dVV2TGhORjBMMEhYZ00tUUpqRG5oUWVsNjQ5b2NZMVBWOGJib2tzaDVNMHJMQ3ZpbVZMc0NkTDZMVnNPa3FKNGZSQ0FQMzlyYWJYWVM3S0N2X2tsMV9PYnM2b1NpODNQZjRTSE85OXBoRGJEYlNDNjNNN3FKMlRLS0g4VklRc28?oc=5"
     },
     {
-      "id": "auto-0fa9eae3cb",
-      "nombre": "Huracán 'Simón' dejará acumulados de lluvia superiores a 350 litros en estos Est",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/simon-pegara-el-fin-de-semana-con-lluvias-extraordinarias-superiores-a-350-litros-en-estos-estados-20261009-0134.html"
-    },
-    {
       "id": "auto-daf5ba4799",
       "nombre": "ICE baleó a hombre frente a su hijo de 5 años en Nueva York: Policía revela vide",
       "categoria": "Social",
@@ -1069,17 +1015,6 @@
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-46a3beeefa",
-      "nombre": "Migrantes de la caravana “Sueños sin fronteras” piden documentos para seguir su ",
-      "categoria": "Social",
-      "dias_silencio": 26,
-      "motivo": "🔔 ALERTA — Piden más recursos en el PEF 2027 para proteger a migrantes",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/09/politica/009n2pol?partner=rss",
-      "fecha_anterior": "2026-09-13",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOM0NVZ2doS1VxaEZPVTUyRVBuS21mSWFFOHNXNkc3Mllxc25OemQzYXRYQmtVeUxBSHpXS0NfTkVPT3J1NzNsdERDams3bDJYcVU2WDRIVUI5OE1CSUtCX3VxRTNNd3N0YmJzSFJUQ3U5ZEh3S3Y2RDRiUHkzVVdqbHJQZl9wVjZhdUJjdDlJTmxVUDTSAZMBQVVfeXFMTjNDVWdnaEtVcWhGT1U1MkVQbkttZklhRThzVzZHNzJZcXNuTnpkM2F0WEJrVXlMQUh6V0tDX05FT09ydTczbHREQ2prN2wyWHFVNlg0SFVCOThNQklLQl91cUUzTXdzdGJic0hSVEN1OWRId0t2NkQ0YlB5M1VXamxyUGZfcFY2YXVCY3Q5SU5sVVA0?oc=5"
-    },
     {
       "id": "auto-0f5deb1940",
       "nombre": "Trabajadores del IMSS marchan en Puebla; protestan en el SNTSS por salarios e in",
@@ -1108,9 +1043,9 @@
       "id": "pt_partido",
       "nombre": "Partido del Trabajo (PT)",
       "rol": "Reacción de oposición",
-      "tema": "El PT rompió con Morena - Milenio",
-      "nota": "El PT rompió con Morena - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOU3BpYXdlcTliMjd5U0xseFJfTTlvYVp0TzczcVNUa1RVd0ozTkt0SkItQnI0SVlmYnlUUFJfT3JJdWpLaHBCaVFfUEpUM2U3ekVJeGlscXFKaW42M25jVmlBMG4xVFFKd3cwcDdRWTk1aVdpQTV0WWdleVZQWnVOOFVzTzBiWG5HS2QwaUVLMXk1blNqYWxOZjR30gGaAUFVX3lxTE5ZNzBRYnZSNlAwclljM0ZrUW5tMlhJazVoX21pR21jYXl1M1hhTTlXblJoeWczemUtbm5wVUJIOFQ1el9mQXFBZDl5OUVTcDQxQVdHZk56clVnUzJDaGYyVkVvQlJSb2YweXNvTmZReU9VQnd6V2xMaFNmMEN2dkMtZkVUZTJ2SE8wejRIeV9xZlpIbVhNMnZ5eHc?oc=5",
+      "tema": "Alcalde aprovecha escenario de afectaciones para presumir apoyo - El Universal",
+      "nota": "Alcalde del PT de Ixtapa, Chiapas; presume vehículo Audi RS3 - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNeUJFbzNDMVRiZFgwNWVXS1ZUNklPN0Z5T3pQS1d3SG4yb0lMenM0dS04a2JWel9iNkNRQWltelVPb3BoYVdTRDRnSjRYMEhuSDFxMlRzN1B3WDN1ZHpTOE9xaWloVGd0NThDSjlwUm5lQzB0TjBTWi1Keldud25Gcl93emVNd1VteTR3akVaYWVaNEZNaGs0Ml9kcmM5b2JNeERhOFlpWUlRei1obVdVREY0M0RJdlFHdFlnN1lCc2FZcEZDTmtOX3VzVzIzbE8yUVQ4SDlSUkXSAewBQVVfeXFMUExJVDZVcWVaVEhaTlQxT3FwQkhRejBNMjhlcWMwTldxd242T0IyR1B3dV9uZVJzT3NwQUE4SEY3b2pxYjJKZWM4LUIteWJBU0MtLVBZczM4SUpvc2JtTDBSSzhmbDdJRVZUSnV6MXRRclc0VVlDVGZrZVJyU0lkQWVaUGRuTUpMRHRFelNHYXpveUM0QkRlWkpxN0E2RlY1SzJxU3FWZDlNWE9BQW1RMlJ6VXN2em5FbVFnZGdPWWI1dXZuaWJ6RHdFeWRpa0xpa3VLbXFqOTlDQ0NJWXA0QWszQmJ6MjBGUWl2dkU?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1141,9 +1076,9 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
-      "tema": "Ana María Aragonés: Fortalezas ante regresiones políticas en Latinoamérica",
-      "nota": "⚡ Posible presión de Donald Trump — Ana María Aragonés: Fortalezas ante regresiones políticas en Latinoamérica",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/09/politica/015a1pol?partner=rss",
+      "tema": "Sheinbaum minimiza el crecimiento económico y prioriza la redistribución social ",
+      "nota": "Economía en crecimiento no ayuda a Donald Trump - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPRlREY0hmck96Q3FNUHlZZnpkaFJ4MGtSbFd2SmxOcThERWdfeXZqWGVLRnFWS0RicE9mc0RnQ0p5akFQeDZ0bGlMUENoZzgwOWZtQ0xxam90amV1QTc1MTdsN3h1ckpROG1JeUljUXpHUXJKVi15OXZPdm9BaHVsejBjZC00a0YwQ2VzY2dVbVZOUHNzVlZ6S1g0cVk?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1151,22 +1086,14 @@
   ],
   "declaracion_presidenta": null,
   "declaracion_otro": {
-    "actor": "Omar García Harfuch",
-    "texto": "Cooperación con EU tiene límites: Omar García Harfuch",
-    "fuente_url": "https://www.informador.mx/mexico/seguridad-cooperacion-con-eu-tiene-limites-omar-garcia-harfuch-20261009-0026.html",
+    "actor": "Morena (partido político)",
+    "texto": "Aquí sí van juntos: Morena y PVEM concretan alianza estratégica en Querétaro rumbo al 2027",
+    "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/09/elecciones-2027-morena-y-pvem-formalizan-su-alianza-rumbo-a-la-gubernatura-de-queretaro/",
     "intensidad": 7.0,
     "fecha": "2026-10-09",
     "nivel_fuente": "ALTA"
   },
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-12",
-      "tension": 12,
-      "n_notas": 17,
-      "n_alto_impacto": 3,
-      "n_medio_impacto": 14,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-13",
       "tension": 13,
@@ -1377,10 +1304,18 @@
     },
     {
       "fecha": "2026-10-09",
-      "tension": 32,
-      "n_notas": 39,
+      "tension": 30,
+      "n_notas": 41,
       "n_alto_impacto": 21,
-      "n_medio_impacto": 18,
+      "n_medio_impacto": 20,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-10",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1435,15 +1370,15 @@
       "iniciales": "MO",
       "x_lunes": 67,
       "y_lunes": 84,
-      "x_hoy": 70,
-      "y_hoy": 82,
-      "delta_pts": 1.5,
-      "alcance": 19,
+      "x_hoy": 73,
+      "y_hoy": 81,
+      "delta_pts": 3.0,
+      "alcance": 20,
       "n_alto": 12,
-      "n_medio": 11,
+      "n_medio": 12,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdXJDTzFCSVo4dHY4TUtGbXEwNUU0cnZHaFFoQTRIaEs5dnJYVjllRVdrMEdELTZKcFMtWmhuWXdCZm5oM0NvVTBjMjZObjhnWkVnMUlJUkxVOFBoMGhJYTdzWnRGbnhteDk2UEdaTUszMnZLbnlibGxtYVBMQ19jLVZGcnppQmtxbTVqVnBXQ3NrY1k?oc=5",
       "nota_texto": "Pío López Obrador se registra en Morena para buscar diputación federal por Chiapas - MAGMA Noticias",
       "es_nuevo": false,
@@ -1472,10 +1407,11 @@
         },
         {
           "fecha": "2026-10-09",
-          "x": 70,
-          "y": 82
+          "x": 73,
+          "y": 81
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-10"
     },
     {
       "id": "sheinbaum",
@@ -1491,7 +1427,7 @@
       "n_medio": 16,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPU0dFV0RqUlg3cm5qODBIQlhWc0x6d1FhYjhjUGNoT2NSSjdmX002aHRyaExfNXpTRnRpa0k4UEZJd2tLalBsdV9DdnVFNkdRaXhvaTdJYWZuUlYxa2NZWTVWYW16empnMHNjVEdwTHdKMHVNNjJNbzEwaW9PMlR0enhmbUF3d0FQY3VESDljc0VrY1QtWGF4bGpVTDhLS0xablFkU2VWVXZMWllzWEtkOEgyamNXUzBUQjVmV1lVSQ?oc=5",
       "nota_texto": "Claudia Sheinbaum habla sobre el movimiento de Tatiana Clouthier - Infobae",
       "es_nuevo": false,
@@ -1524,7 +1460,7 @@
           "y": 72
         }
       ],
-      "fecha_reactivado": "2026-10-09"
+      "fecha_apagado": "2026-10-10"
     },
     {
       "id": "andy",
@@ -1540,9 +1476,9 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOMGhEZkV6cDQ4UUw1UkpDMVltVWRTVlVWV2FtdWQyTXNjQjJjTWszN3Bsc1lJdEFWWEdlaXR6OS1qN1c5cTdvSVZXbndYLThnMDBFczBzcnpBWktDWkhTRV9VeWxURmE2WG5KcGFEbFlVMTdMTXpGVzVtaEdYazR2UXRvcmk1eEI5d1pObEZZVW4zMkxpUHhrbWQ5RUtDek9tc19Cc3M0M1NhRGR0MVpGQ1Q2RjUzMWh1N0NN?oc=5",
-      "nota_texto": "Huachicol fiscal: las reglas que no aplicaron para el amigo de Andy López Beltrán - Petróleo y Energía",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYzNudllLXzNqa2c3MHhGdE1IMF80SWpvc2NGTGQyYnpZRFlJVjBRMWI4eHRoNlg5aWFBeXhTREIwRnpidmNPejlTZnh6YlJRbnVBNmpvaGV4OS1GV1gtVG1QU0tIbnN1aDgzUUdCdHplYWhMdm94NVNzZ1RMaVl0c21NMERZdDB2OEN6NXE0c0JUWnBpSE5TRWhPQjBHZnpVSGVHT3lrdlI?oc=5",
+      "nota_texto": "El movimiento político de Andrés Manuel López Beltrán - MVS Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1572,7 +1508,8 @@
           "x": 39,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-10"
     },
     {
       "id": "andrea_chavez",
@@ -1622,7 +1559,7 @@
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPZDBIc0NHZHo1elFaUE9aNk9xb09aZlk4aGNHeDJnQzktRkFZVjhObjZ6cXd4OTJiWnNtTFgzc0lIMlppVVZJOGQ3Y0tScUdiU0hCU200UHlqMmhMS0piNjVXRGJNaDBfVjFHRnozWFh2ZUhwVzYyU1lIUnUxRlNsQjByME1yWk8tbG11UEtkMHFPSEJNaEJ3OUxTZkpRVlRkUEo2b3RhcklJTVdnQUo5QVNDX2pfMlNja3VpVHliVldiM1pLVm5vdDNSUlkzX211aHRuVll5VkVCUU9WdnZEckRB?oc=5",
       "nota_texto": "Acusa AMLO a Estados Unidos de fabricar expedientes contra el gobernador de Sinaloa, Rubén Rocha Moya - Palabra de Veracruzano",
       "es_nuevo": false,
@@ -1654,7 +1591,8 @@
           "x": 27,
           "y": 84
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-10"
     },
     {
       "id": "clara_luz_flores",
@@ -1670,7 +1608,7 @@
       "n_medio": 7,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOaFVrRy04YkV3SktycVdVaUt4SVR5UW8ydzRJVHByVzgtem1IbW9wNzczLVEtdmtCNkVSeElNWVpHV3FsS1ZlVGxkaVJocFpabzQ3M2I5blExcUdtWktfYjdYaTNCaDBsY3BjQ0NTTFlsOEpRNks0ODFka2FpTEpHZFdHVHp1VkkwMFcyTDdSUFJDcWo3dU9TdXNKeGV1S0gwdl84c0VEYWF2S0xZWXRIWkhOQm9iaXFEN3BYUVYyUmdWVW8yeHFrWUJmTXY2Z0hNNmlVRQ?oc=5",
       "nota_texto": "¿Qué opina Sheinbaum de Clara Luz Flores, coordinadora de Morena en Nuevo León? - El Heraldo de México",
       "es_nuevo": false,
@@ -1697,7 +1635,8 @@
           "x": 27,
           "y": 66
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-10"
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1876,44 +1815,8 @@
     }
   ],
   "tablero_semana_inicio": "2026-10-05",
-  "resumen_mananera": [
-    {
-      "texto": "Se reportó un saldo blanco en Guerrero tras las lluvias provocadas por el huracán Simón. La gobernadora Eveli Salgado informó que no hay personas fallecidas ni desaparecidas, aunqu",
-      "categoria": "Social",
-      "intensidad": 6.0,
-      "alerta": true,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "La Comisión Federal de Electricidad reportó que el huracán Simón causó la inundación de la subestación Puerto Marqués en Guerrero, afectando el suministro de energía a 65 mil 78 usuarios. Sin embargo,",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se informó que el huracán Simón se encuentra en categoría 1 y se desplaza hacia el noreste, aproximándose a las costas de Jalisco y Colima durante el fin de semana. Se prevé que podría intensificarse",
-      "categoria": "Seguridad Nacional",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "La consejera jurídica Luisa María Alcalde presentó un decreto presidencial para garantizar entornos digitales seguros para niñas, niños y adolescentes. El decreto obliga a las plataformas digitales a",
-      "categoria": "Seguridad Nacional",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "El director de la Agencia de Transformación Digital, Pepe Merino, explicó que el decreto es obligatorio pero no punitivo en esta primera fase. Se establecerá coordinación permanente con las plataforma",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
+  "resumen_mananera": [],
+  "mananera_estado": "pendiente",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1948,6 +1851,14 @@
   ],
   "declaracion_otro_historial": [
     {
+      "actor": "Morena (partido político)",
+      "texto": "Aquí sí van juntos: Morena y PVEM concretan alianza estratégica en Querétaro rumbo al 2027",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/09/elecciones-2027-morena-y-pvem-formalizan-su-alianza-rumbo-a-la-gubernatura-de-queretaro/",
+      "intensidad": 7.0,
+      "fecha": "2026-10-09",
+      "nivel_fuente": "ALTA"
+    },
+    {
       "actor": "Omar García Harfuch",
       "texto": "Cooperación con EU tiene límites: Omar García Harfuch",
       "fuente_url": "https://www.informador.mx/mexico/seguridad-cooperacion-con-eu-tiene-limites-omar-garcia-harfuch-20261009-0026.html",
@@ -1962,16 +1873,13 @@
       "intensidad": 7.0,
       "fecha": "2026-10-07",
       "nivel_fuente": "ALTA"
-    },
-    {
-      "actor": "Andrés Manuel López Obrador ('AMLO')",
-      "texto": "López Obrador: La política y la historia - Sin Embargo",
-      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBsV2hQMEFGRUdLQ1JLenJ6a3FWSmF0QnNfV21ZTGNjVThRalN1NDFsV3Q5U2pUWkhJOW5TX054c01Fdkl5eTZhWXdpVDJTZjBKZzBpSTdqbldpWGg0dkZ4dWdUUUJ3dUdVMUpMeUZBSjRuZ0JDTE9RTEhiUzNzUUk?oc=5",
-      "intensidad": 7.0,
-      "fecha": "2026-10-06",
-      "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-09 20:57"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-10-09T20:57:28.418876-06:00",
+    "cambios": [
+      "Nueva declaración relevante (otro actor): Morena (partido político)"
+    ]
+  },
+  "hora_corte_publicada": "2026-10-10 00:03"
 }
