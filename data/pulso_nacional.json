@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-11T18:03:16.051885-06:00",
+  "generado_en": "2026-10-12T00:04:42.169115-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 13,
+  "n_notas_ventana": 16,
   "baja_confianza": false,
-  "tension_nacional": 25,
+  "tension_nacional": 31,
   "tension_anomalia": {
-    "z": -0.79,
+    "z": -0.31,
     "nivel": "normal",
-    "media_periodo": 33.9,
+    "media_periodo": 34.3,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 51,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 6,
-      "n_notas": 7,
+      "peso_pct": 55,
+      "tema_principal": "Reginaldo Sandoval del PT respalda a Raúl Morón como coordinador para Michoacán",
+      "tema_principal_id": "auto-43b8c169eb",
+      "n_temas": 9,
+      "n_notas": 9,
       "notas": [
         {
           "texto": "Dirigente del PRI Tamaulipas envía \"regalito\" a Andy López Beltrán ante escándalos de huachicol fiscal - XEVT",
@@ -26,22 +26,34 @@
           "medio": "XEVT"
         },
         {
-          "texto": "Mordaza para tapar la crítica y el huachicol fiscal - El Heraldo de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNS0RiSkZEX2hiYWNZN2U2WVR2QVZZbE5ibnA1S0JLZjRPYWR5YlA3S00ycGZoQ182OURkcExzc1IycmZmMW5yUXd0czFmcWxXOVpqR3YzZElLTjdDTHhiOWM2dkFCSVlUYkFxaV9veGFmSGtPYTIyYXdmTlUxSkUwdk5FSUhvT2p1VWxybXRJdzNaVkdsdE5mTGp1bnFRM1BOSkozUFJPSVRvNzZTZWlHaA?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Heraldo de México"
+          "texto": "Reginaldo Sandoval reitera respaldo a Raúl Morón en Michoacán; \"el proceso aún no concluye\", asegura - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOWFppMldneERDeHlucXhzbDNkOUhieGpXZ05ZZHMtVW5mdGhVdDZ2ekd1VmNSa3djTmRTR0dpQjZVVkI2aEM2WC1MeFNkWXFpT3F6Y3duZDFwN0puRnV2eG1haVg0SXVjR1NzTE1WQWF3b0xpRWVfSmtDUUFoNExSdXBsUzQ5Z18wYm9MdUZkRHRzSzVYUjJORnJzckJGNXVXeEJOWlNnMVBaQmtvXzdJOVZRX0Zjb0YxemlEODFJYTRjb2tiRm1NYXZRVm50RDNu0gHkAUFVX3lxTFBWR3l4WDZmWU9GZXFtV2VHYmduVEhfdnRwYk9fZnh1RFpoZktYMFhRU2puaTRETnB3Y0x4NWJ1Q19NWjVpRGdCb3pzN0R6WWlvQWdvaWttN25aRW9Vc25NNWw0LVlDbXBhcEQ4S2R4aXRySVJTWXVmeGl6YnBUczZSajFXYTctOXBmWVZDZFZPWXFCb0lTNnNfeXA2aVdPQTJleDdmekhuNnZQUU05RW5pZ2Q0VXYwQ1ljQ0hSRFZlQTgzQ0hHeUt3WGZpWnpRMWp5NkxsalB6UWYyMFA4WmloU3BxdA?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Universal"
         },
         {
-          "texto": "Américo Villarreal niega investigación de EU por presuntos nexos con Rocha Moya - Super Channel 12",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQcGxRUWFhTmxPS01Xa01uVFJPWXB2dy1JUnVNTi1TUERHdzhOVmREaGJPM3RyMldrY1ZOR1hJWDh4clhvWWtxVmkxQW5HWUZHLW5Kb01mZEMwSWFsTzJOaFZBcmtFenB2dlJ4R0lNX3k1YlRtemVCRW9lQWFfLXBLcFZfSkVOUTM4dXJiX1hxM0xWSEd5UVV3TS1kYS10WUlSWUM5eGdlUlg2SHp6b3A0MkU5TQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "Super Channel 12"
+          "texto": "VIDEO | “Transportes Andy” para el “bebé de 400 meses”: el irónico regalo del PRI a Andy López Beltrán - TV Azteca",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOd1huYkhTX2pmV0ZRYmJRbmhPT29PXzNVX2E4aWlEUkZVcGVkNFpuaFZ1M0wwemwzVFJ5NnJkVUlYQ3lrMVZzdmxnN0Q1dUFkQ3A1RU50RGtDblROYXFORVJudTVvZ1VNYl9LQThnZEhGSVJtQjZ1QV9QamJPN05aZjB4WWlCeGl5TDEwV1NvVHRTeGpQd3FBWV9Ec0VoY29HT2tQWTBuZ1dsdmIyRzVmVlJ3S3d3T3NNN1HSAccBQVVfeXFMTTRmZ1Zsb2owcVFrRUQ5d29mVFRFVFZWSlZRaVJmRzNEdkxadzJXSFdjZUQxUjA1bXhfYWx6UWd2SGhic3BEb1Z5NlBkXzZMUUNIUFc4b3psdlJ1SGlha3FQN0FvYTlnNkRkY2ZndUJDX0psUGUwU3dHLWF6ZXE0ZlNaY0x4dER0czVsOW11UGJzcUQ5ZF9vWjhnR2tTOHRSMHFuSnYxdlNWdTZOdDFHWU9TbkRFSjBBQkVvTTdBaFJjYzhMc2o1Yw?oc=5",
+          "intensidad": 7.0,
+          "medio": "TV Azteca"
+        },
+        {
+          "texto": "A un año del asesinato de Carlos Manzo: Grecia Quiroz convoca a marcha nacional por la justicia y la paz",
+          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/11/a-un-ano-del-asesinato-de-carlos-manzo-grecia-quiroz-convoca-a-marcha-nacional-por-la-justicia-y-la-paz/",
+          "intensidad": 7.0,
+          "medio": "elfinanciero.com.mx"
         },
         {
           "texto": "Habitantes de Monte Sinaí II, Chiapas, reportan hombres armados y piden intervención militar. - El Congresista",
           "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUFUycUN3TFBxTHkxaXZKZ01IbTh4UVFtaXFkU3h4NXo4aWtRQ3FTY0lmZFllZzNDWUloMy1KaGluNUp5ZVZ6eHFsUHhEamplWDFSRHYwUkRoVzhJWUE5cC1VSUI2a3V3d1hrYnQ0NnJOeXFPT3FYZTVrcHFyeTlqQ09rVmdUdVdTNkJaazZGOVhHNDJyWUgzNkxEQ2dER1U?oc=5",
           "intensidad": 6.0,
           "medio": "El Congresista"
+        },
+        {
+          "texto": "Detienen a 'El Cara de Cochi' miembro de La Barredora 24 - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPUUlneFdnb1dsUElZcG90c2E5RVE3NER6ZUpDWVlMc1V6bW1TSi1GUGk4Zk1KeVVMblZVeHRFd1VxX0ctQzBwNXg2YlJXcXB6bHp6bEI1dk1nYXlLWldnODRwU2l3N19ETS1nVWtuOGd3MjZfMGc1cExLaW1GRkRQdldJdGFmOTJkZVRWc18xVQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
         },
         {
           "texto": "Alfonso Sánchez descarta reelegirse en Tlaxcala capital y va por el Distrito 2 Federal de Morena - Intolerancia Diario",
@@ -65,11 +77,11 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 15,
+      "peso_pct": 18,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 2,
-      "n_notas": 2,
+      "n_temas": 3,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "Los excéntricos lujos del ‘Capitán Sol’: 12 inmuebles, un penthouse en Tulum y gastos en  casinos",
@@ -82,50 +94,56 @@
           "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/11/sinaloa-feminicidio-escuinapa-mujer-puesto-tacos-joven-baleada-culiacan.html",
           "intensidad": 6.0,
           "medio": "yucatan.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 15,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Trump presiona a México por el gas y tensa la negociación del T-MEC - América Económica",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPak53QUtNTV9JUWJzZzNWSGQ3ZWlkVVJRRlc1OW12a3BkQ0ptTjNUaG9nQTFPdnM2bVFCd1A2a0REbEp5elpiYm9Yazd3czlFclhocXc3bEhtejgxNEpWMFpXVENnQmVjZ2QzTXU5djZuZGJOZW1scHo3MEtST0N1ZXQ1YlRzcEpxTmJCWnBBNjMtTXdvLTdCNXlTYk1jVnJtRG1SR1NmaEg2R1FTQ1BLS0dQakZmQlBVbW9PWtIBvAFBVV95cUxPak53QUtNTV9JUWJzZzNWSGQ3ZWlkVVJRRlc1OW12a3BkQ0ptTjNUaG9nQTFPdnM2bVFCd1A2a0REbEp5elpiYm9Yazd3czlFclhocXc3bEhtejgxNEpWMFpXVENnQmVjZ2QzTXU5djZuZGJOZW1scHo3MEtST0N1ZXQ1YlRzcEpxTmJCWnBBNjMtTXdvLTdCNXlTYk1jVnJtRG1SR1NmaEg2R1FTQ1BLS0dQakZmQlBVbW9PWg?oc=5",
-          "intensidad": 7.0,
-          "medio": "América Económica"
         },
         {
-          "texto": "Donald Trump propone cambiar el nombre del Atlántico o el Pacífico por “océano Trump” - Teletrece",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOc1RtNXZsLVpXU1UycGZPRE5rYzUwenBMQjlPN1ZINUtKZFF4LTJZOXZUSUxyWVZmeVQ3aF9RSF9DSzVHR3NSODdRaDFwYm1GVWxCYWVMbVVvOTlHMWxZYVlNZlRwMUxRLXFmaWpXYlVlQVgyUDZ4QUQ1MHVVRGU5OUtwZF92QkZUUnE0VzNRUlNCdFpIYkxJSDU0X3JfR2tHS2xCdHVuTm12MTFFSFV2SHMwVEctQU03M3hj?oc=5",
-          "intensidad": 5.0,
-          "medio": "Teletrece"
+          "texto": "Detienen a Jesús Darío “N”, integrante de “La Barredora 24/7”; es señalado como generador de violencia en Sonora - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaE9FcWlpN2twYWhISnczWDd3TVV5ckRIWEIzaVh4enJNMGFGcDFBVUl4NEdxNW81VG1kc2hKZ0FLdmdFbk1uLWRGZWM3UkVjdHludnQwQ0RpZVV4WmRXajZJdlBIdlBUTVV6VUVRTzJfWGhIOUowUkhUM0l0Szdid0NTdDN4cXlwM1NYNUEwc3dzZWNYVkdKeUtGSDY5eHQyTzlMeC1FSnd5bnZad1VzTmlXVEs1YWdmcjZuX0VlNGgyZ1dRNGJIZks5Z2d2Wk94V0JhM0dTcmJmZnVO0gHwAUFVX3lxTFBiSWdkYmRQMFFzZWF5MUlHdWF0azY4RVdBMGJMckFsS0JHREtyOWM0a0kzcURhNmVkbDh4RHoyZFlqX0EyalRJTkxRXzRzUjJrcmxDNWVDVkRfdE13cnB1WTN3RkZ4RVBjOFg4QlZLbXJGQ2R2TWZxVUIwZlJoRHdjcDVNb0hOWFIyaF92T2ZOaTliNlB6bHhMTzdsSTZQdjd1cEU0S2tfR0RlTzJXbmdla2RqZmxfWlF5WENrYkp5T1dueGlPNlp1OGR0WmxwM3RsWm5ibmNSa2tVdmg2SkxROEtfQmc0LXY0eHM2QUVEWA?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Universal"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 9,
+      "peso_pct": 13,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 1,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Sheinbaum llama a la población de cuatro estados a resguardarse por huracán Simón categoría 4 - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxONVIzNElObDFMSGdaSHd5Z290R3RIM2ZUaTFXNjkyZ0daVm5kWjZmUmpla1RST1lYQUEzTkxNeExXdWtsNzh3Yk9McVEtTWlvekhfS1BiRmhYcExVMlkyTlEwVE5WcVlSSGcwTXNHTWtYRFZvOU5JUFY4MXdTWDlnU0Y2WFhOVkFtR1NuUEU5eUxlYUxnTkNURVlLbjhtRnVGa09VTTBJdkgxV0hpd29Ja0lyTGhZeXhNa3dJenp4STV1cVIwV3Nhcl96clJ0SEgyUWxwSmI0SmE3b3BEbW9wa2N2SUZWTkHSAfsBQVVfeXFMUGhsZHZuTE44THhsR0hHQWVMMlJvMzl0cEh5bDQ2VC1WMDk2SW9lMGFiRlRIQmxhd1YwUE45aHFBcVZXMXF5clYtRkZjYUttYnBDak5lcVppa216RDJqZnNDaUd0S1lFYm1pX1ZWalpqb3dmZTJubXhQTjk4RzhpZDlPblNWSkJmMlNSZFpSdWxGSW93Y0RiaTdEUkJLMDB0TXhmeVpUcXk1X0JQUkR4MUNPbERyRVVyekJVUG9GS29VNjNJQmZtR0RnZXFycjItMEc2SHlyb2JqX2E5amd1aDhwTDlCZVFXTnVhbzg1ZHVyb2V6N0tETHZLVEk?oc=5",
           "intensidad": 7.0,
           "medio": "El Universal"
+        },
+        {
+          "texto": "Guanajuato busca diversificar su economía ante cambios en T-MEC - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQUUxFb2had09PQ2UyRGVQbTdoUEIzbWpOYklydVlEb2pkVHpYU0lIcUJFVFN4ZF9YX1Y2R1NOd1ZzTkIzR0V5SE9pNlV3U1RWRFFYVDVDNFkwM0k5YW0wZVJuNkIzQzd4U3NwVVNDcVd0UEdraHFQaV9XTHhmLWR5QjFhWkkyS1VtdnFYcjBzcTRGSFQ4eXh4ZXczN0pQMjIwcWI1dkJLU0FMelhxQ0JfYWxvN3BLZ9IBtgFBVV95cUxNQURkaUhFbHQwUEhmeGxrcGVWYXpSdHhwaGctZXgyTkFVTHU5cWk5YkYwS1Z0VkZoTnMxdURGcnJfVThDWWJkZHJXUzBsWWo5azdxakFGUm1oOG9MQkVTQkJ0VTZrT0dVZWw4b05zOThUa3dST1M1R2VzMWw0cmpTR0RaMlJFVEpSVlcwRXUxd3RIX016enhMUm15ZUNGbjZIeFlLQjF5ZFN6SFp4MnNqSmRZaVF2dw?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 7,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Trump presiona a México por el gas y tensa la negociación del T-MEC - América Económica",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPak53QUtNTV9JUWJzZzNWSGQ3ZWlkVVJRRlc1OW12a3BkQ0ptTjNUaG9nQTFPdnM2bVFCd1A2a0REbEp5elpiYm9Yazd3czlFclhocXc3bEhtejgxNEpWMFpXVENnQmVjZ2QzTXU5djZuZGJOZW1scHo3MEtST0N1ZXQ1YlRzcEpxTmJCWnBBNjMtTXdvLTdCNXlTYk1jVnJtRG1SR1NmaEg2R1FTQ1BLS0dQakZmQlBVbW9PWtIBvAFBVV95cUxPak53QUtNTV9JUWJzZzNWSGQ3ZWlkVVJRRlc1OW12a3BkQ0ptTjNUaG9nQTFPdnM2bVFCd1A2a0REbEp5elpiYm9Yazd3czlFclhocXc3bEhtejgxNEpWMFpXVENnQmVjZ2QzTXU5djZuZGJOZW1scHo3MEtST0N1ZXQ1YlRzcEpxTmJCWnBBNjMtTXdvLTdCNXlTYk1jVnJtRG1SR1NmaEg2R1FTQ1BLS0dQakZmQlBVbW9PWg?oc=5",
+          "intensidad": 7.0,
+          "medio": "América Económica"
         }
       ]
     },
     {
       "categoria": "Social",
-      "peso_pct": 9,
+      "peso_pct": 7,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -141,31 +159,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-14",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 34
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 40
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 11
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 14
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 1
-        }
-      ]
-    },
     {
       "fecha": "2026-09-15",
       "categorias": [
@@ -808,7 +801,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 7
+          "peso_pct": 6
         },
         {
           "categoria": "Social",
@@ -825,7 +818,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 72
+          "peso_pct": 73
         },
         {
           "categoria": "Relación Bilateral",
@@ -840,44 +833,63 @@
           "peso_pct": 3
         }
       ]
+    },
+    {
+      "fecha": "2026-10-12",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 11
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 72
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 7
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 7
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 3
+        }
+      ]
     }
   ],
   "top5_temas": [
+    {
+      "id": "la-barredora",
+      "nombre": "La Barredora",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Grupo criminal de Tabasco -según reportes de inteligencia militar de la Sedena, consultados por Mexicanos Contra la Corrupción y la Impunidad (MCCI)- presuntamente liderado por Hernán Bermúdez Requena, exsecretario de Seguridad Pública de Tabasco con Adán Augusto López. La red operó robo de combustible en el puerto de Dos Bocas desde al menos 2025. Bermúdez huyó de México en febrero de 2025 con ficha roja de Interpol vigente; la UIF bloqueó sus cuentas y las de empresas de familiares y socios en julio de 2025.",
+      "motivo": "A un año del asesinato de Carlos Manzo: Grecia Quiroz convoca a marcha nacional por la justicia y la paz",
+      "peso": 25.0,
+      "n_temas_agrupados": 4,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/11/a-un-ano-del-asesinato-de-carlos-manzo-grecia-quiroz-convoca-a-marcha-nacional-por-la-justicia-y-la-paz/",
+      "actor_vinculado": null
+    },
     {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Sheinbaum llama a la población de cuatro estados a resguardarse por huracán Simón categoría 4 - El Universal",
-      "peso": 7.0,
+      "peso": 13.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
+      "medios_corroborantes": 2,
+      "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxONVIzNElObDFMSGdaSHd5Z290R3RIM2ZUaTFXNjkyZ0daVm5kWjZmUmpla1RST1lYQUEzTkxNeExXdWtsNzh3Yk9McVEtTWlvekhfS1BiRmhYcExVMlkyTlEwVE5WcVlSSGcwTXNHTWtYRFZvOU5JUFY4MXdTWDlnU0Y2WFhOVkFtR1NuUEU5eUxlYUxnTkNURVlLbjhtRnVGa09VTTBJdkgxV0hpd29Ja0lyTGhZeXhNa3dJenp4STV1cVIwV3Nhcl96clJ0SEgyUWxwSmI0SmE3b3BEbW9wa2N2SUZWTkHSAfsBQVVfeXFMUGhsZHZuTE44THhsR0hHQWVMMlJvMzl0cEh5bDQ2VC1WMDk2SW9lMGFiRlRIQmxhd1YwUE45aHFBcVZXMXF5clYtRkZjYUttYnBDak5lcVppa216RDJqZnNDaUd0S1lFYm1pX1ZWalpqb3dmZTJubXhQTjk4RzhpZDlPblNWSkJmMlNSZFpSdWxGSW93Y0RiaTdEUkJLMDB0TXhmeVpUcXk1X0JQUkR4MUNPbERyRVVyekJVUG9GS29VNjNJQmZtR0RnZXFycjItMEc2SHlyb2JqX2E5amd1aDhwTDlCZVFXTnVhbzg1ZHVyb2V6N0tETHZLVEk?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
-    {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "Los excéntricos lujos del ‘Capitán Sol’: 12 inmuebles, un penthouse en Tulum y gastos en  casinos",
-      "peso": 6.0,
-      "n_temas_agrupados": 3,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/11/los-excentricos-lujos-del-capitan-sol-12-inmuebles-un-penthouse-en-tulum-y-gastos-en-casinos/",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -898,14 +910,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOb0Y1T2xWczBPZjRnQ2ZBbUJsMW56TGdmejlFSUFERGY5QTRKVlBNWTFUTkZTYVEydmFBTkxtYUpZYi00UXFOaEdxNTR3eEVJRnhLX0ZRdjBjek5nbG9XZk16THlxRWRFQVUtbEhFeTZSTGw0enphbm5HZ0FlRVVmQVhmMVU1cXlYWDZ4cHVCcFZXZGNaOUhrSjVIZ3VnRGp5WVNRd0pwVG1qVlVMbm9JcEZjNThXR292dm1XcWhvd0doUEFacEJpSDVObzQyc09JV2tiYThQTFNFaUNiZGRUeTRyWmF1d2dGMEZqN3Y2bU5Fd9IBhgJBVV95cUxNMkdUQWZkdmRvN3V2OXprbElxcmtWOG9SaUF2a1BIT0d1UlBJRGZmVTBjRllhRTVqQlBFeVlFNUV5ZHpySTJBSVQ2WmpnNFBVY2NvVzh5YlV2UFN1UWpEeDBmanRPdjlqT0ZKd2xpS2dvZ3BsLUNpY0dNTTduNXBKTW1vZGJBc3FjbTFXbnRIMW9rZ2J4cmsxMmROYlo4Z2tSRWR5RzY4aUhfcHJVUC1IZnphYUkzLS1wSDJHcnNDY0hTazNsWE5fb2VqVUFJRVV2MzZUV3JwMkNpc0Ffdl9aRXY1dTU2UFlITHAwZUdDUU51TlhBdWVEX2NORHB2ZUM4MWpRc2RR?oc=5"
     },
     {
-      "id": "auto-cc3c428b66",
-      "nombre": "Anuncia la Presidenta contratación de médicos e inversión en infraestructura",
-      "categoria": "Social",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/11/politica/009n3pol?partner=rss"
-    },
-    {
       "id": "auto-6e8aba8172",
       "nombre": "Detienen a ‘El Junior’ en Acapulco: Es parte de ‘Los Rusos’ que atacaron a agent",
       "categoria": "Gobernabilidad",
@@ -920,30 +924,27 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQWHJSZkhadjh0ZWFfMm1vOE1VOFpCenBkd2ZHanpkblNDY3ZiM3RleF9Gd1lqMU9oMFVWdHA4bmZoZTRWck1zT2tySWtiMXpUdHczdTBqZHNPN200VXpqOG1JbXJOWFIwNEt4Q3B0V1RTYjZNbFMxbWE5Q3g1bjJ5NXdkSzFNMVhtX1hkMXc0Y25kMDgyRmpfOGpSUUhsSXNlNUx5WUZyOWJtQmhYR2NnT29EdUF4cnJibkFRRTQwMHJJSlV1OFQzTHJJd25yd2hmQm4wQVU2OXZvOXVE0gH3AUFVX3lxTE1Fc0djUk9OQmdXSjF6b1c2MGY3eEM4SnN3UlRVNk1YYl9IUG9jbHFHWlJUeTZWMXZOU1lRRndsaHVCcE9FVTFfUDRVTVdOT01KUm9kenBKR3hQLXlyc2pfczZQUUdmMGNnQUlGT1g4UHA0UnpDTzJEVWhEY2prTGRJQl9IZU1LUC16UFI1dmdzVnBzMkx3bEZ4cVRNckJJb211aHlCa2JyanlPVjNQd0tXMzFCblp2OEpKbEVtemY0Qjd5VXdHcm1faldrbVZnNFp1Zi04bnVRNUF2R0RIVFVxMWUtTDFiQ2tiNnZjNkhBN3JBekZ1M00?oc=5"
+    },
+    {
+      "id": "auto-b7f3f86256",
+      "nombre": "Ariadna a Morena: La lucha social nos mantendrá en el poder, no la batalla elect",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPVk1oMDA5eHVNQXNHa1VtZWhnaEVIZ3FGZG16ZXhFcDBYemhZNVRDMzhjQ0lWTC03SVBFTGt0ZTh1TTZ1blBZd1RyQV9QWjNRZk0wX1RBYVkxQTUxZzY2Rkc4Q0YxM0szalRYb0MyNVNvSzRrTmxJNDZRUUpHLXc4bHJ5MEpyUjFMSXNwY3d3ajh3VndzVmF6SXZNa3pHdmFOWWVLQVdwcmFYVzJMMk5iMmdpdGF4c01o?oc=5"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-3d55b135f0",
-      "nombre": "Condenan a 47 años a hombre por feminicidio contra su madre en Tehuacán",
+      "id": "auto-c8c249756b",
+      "nombre": "Propone diputado Julio Huerta ampliar el enfoque de atención al cáncer en la ent",
       "categoria": "Gobernabilidad",
       "dias_silencio": 19,
-      "motivo": "🔔 ALERTA — ICE-dispara a hombre en Nueva York: Alcalde condena acción - Milenio",
+      "motivo": "La presidenta Claudia Sheinbaum y el gobernador Julio Menchaca amplían atención médica en Hidalgo - Milenio",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNdVAyeThxNXMwYUZyVmpsd09HeGQ0NHFwcGRKNjEyTm9mSTVvTVFMY010amhndXR4XzRfUjdpc0pBVENycXcxekJOZWEwcnJoN2QwNWtVclg0RHU0WHozYXQxVXFMZTZaeFFfZ0JOdnN2LVpLSEttS1c3azVPUjBqMXk3Ukh0QQ?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNQVFvdnRJYUdISDJqVzZFbmRJOE1qMl9xOGpod2Q5ZURGU2cwVC02UlU1OG5BeGE0dEVlODhRY1BuQnl6am1VXzlzT3J5U05mbWU5cVZJRVVqTU83WGZvWk9sRHp6TmQ3bXhfeTFOQnM5bkc1em14Q2pSR0QxRzBlUm5NU3dfQlRrWHIzUzRLbVlvbmgwQW9UTFRGN1RuQdIBngFBVV95cUxNQVFvdnRJYUdISDJqVzZFbmRJOE1qMl9xOGpod2Q5ZURGU2cwVC02UlU1OG5BeGE0dEVlODhRY1BuQnl6am1VXzlzT3J5U05mbWU5cVZJRVVqTU83WGZvWk9sRHp6TmQ3bXhfeTFOQnM5bkc1em14Q2pSR0QxRzBlUm5NU3dfQlRrWHIzUzRLbVlvbmgwQW9UTFRGN1RuQQ?oc=5",
       "fecha_anterior": "2026-09-22",
-      "fuente_url_anterior": ""
-    },
-    {
-      "id": "auto-809fc0c419",
-      "nombre": "Paraíso tendrá una planta potabilizadora de agua, adelanta gobernador - XEVA",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 7,
-      "motivo": "Presidenta Claudia Sheinbaum encabeza inicio de la Jornada Nacional de Reforestación 2026 - Gob MX",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNLUdxa0txVWxvVEYzMWlwcWlrZlB3bUN1VmNXUmF0MEJ3V3BXRS1qQnkzaklqQzNBcjU5SWJzT182c1luLW5iMHdjV0lUQ1Z6U1hHWVlFLUZ5ck9WYjlWTmpVc1Rya05XcUt4R01zZXNic1hVWWFXb1doYmRJQVVEVGhxVFI0TTlIY2lzakxLblZvbHpCZzRHdExpRUZEUDFiODJMWGdmQWNvRzA3OTBLNklTcElhbWJBY0h5aFVHSGw2SC1yV1pnR2FST0Q5TnRkQmpfd2hDXzN0QQ?oc=5",
-      "fecha_anterior": "2026-10-04",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOOFNnc0hKaHk0OFMtUjRUWWp4akZpb2ctbTlWbHgyT25iRWlfM1Q1cjdUMEZmZ1Zrc1N1emlKTXVPN0pjYzJXWERYUW4wQWRGSnFMOW9sT3d1YjNpa2RFQUVDOWd4S0lna1RFekszbUlWN181YzZIckRBZXVTTVRTMUV5d3VRRms2Z3FZWEhWZ0JOZWxmd0IzSWlnenBSZjZyWUdZ?oc=5"
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQR0xKWmRiSllaNkFXVWpQazJBcVh1VFpfUnZmVDhLLWgyUXJ5dXU4WjI4UFFXTlFyWlU4ZVVRY3Q4ZUlfZjZoX1Y1Z2U5NlBmdTBOOExydVYyOFZoV2N3Z3llaEtma2lvaGpaVEpPN1dVZEQzbHBjYzRoR254c0JLbjdmTQ?oc=5"
     }
   ],
   "actores_destacados": [
@@ -951,9 +952,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Dice Nahle que IMSS-Bienestar sabía desde mayo de desabasto - Reforma",
-      "nota": "Claudia Sheinbaum y Delfina Gómez se reúnen con directores de IMSS-Bienestar en el Estado de México - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPWmJfZWZVdUEwcU95UzA0clJoMVRQRkpBM0JxV2tfSF9XR1VwbE9zT29FMF9KbERXR0VzcFZleWVKWk1ldTQ5cDlEQ0k4UmwyMUw4WS1pRzNLZmYyVjRpZjIybHl6aEtlTEl2c3M0RTJPVmx3c2JJOGowdDlrRWY3ZjFiTmxxTm01STYwUEFsNWw1ZTktREI1ZjdRM2laMGJraTNUQ0NsZG9tZUxWLV82VzNBS2QtbEJWSjZma0YwMEo3VEczeDRpaThhMDRCOW5oeF9iNmVrMXZlSWFhcnFB?oc=5",
+      "tema": "Claudia Sheinbaum inaugura Universidad Rosario Castellanos en Nicolás Romero, Es",
+      "nota": "Claudia Sheinbaum inaugura Universidad Rosario Castellanos en Nicolás Romero, Estado de México - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPbFl2b0pzeVE4c0hEMnpzdDg2WXU3eU9STERBaVVwM0ZVTDA2ZllvS3lpV3kxUmE5UmppVmJDQkZBcFozMHpHNlZGZmRjaVV6YVk0VE5oUHVWN2dwUGx6REl6UmZIUjUyZnozZVJfNzdNV3dxakFUU0Y5SENsR3BLUjZOWG9zbkdOMGd0bm1jakhFVlJma3hTTmwzQ2prNkQyazRQRHNxR2cteVlyUzdrRktoTGNjU2NnRFVYcg?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -970,12 +971,34 @@
       "confianza": "media"
     },
     {
+      "id": "manzo",
+      "nombre": "Carlos Manzo Rodríguez",
+      "rol": "Investigado",
+      "tema": "Asesinato de Carlos Manzo",
+      "nota": "A un año del asesinato de Carlos Manzo: Grecia Quiroz convoca a marcha nacional por la justicia y la paz",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/11/a-un-ano-del-asesinato-de-carlos-manzo-grecia-quiroz-convoca-a-marcha-nacional-por-la-justicia-y-la-paz/",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
-      "rol": "Responsable institucional",
-      "tema": "Los valientes de Morena por Tamaulipas - MILENIO",
-      "nota": "Los valientes de Morena por Tamaulipas - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNUWU0aEpOaF95YnRsZ0h1aER6YS1wZXpER2UtWG5qSGxQam9TTE16M1BtdTZaOW9JMl9wS0htcTRWWVdjOG9hSzhBLXZMbml1QzdvaE9lVTJFNDcwQzZIb0dlWHVvbUg2SFZGZzdlVVZtdnplRVZpWC1lRkNTNW1ZRklqN2hFWlcxME9yaVA0MFlBWFQxZHNQSHJwYlBaQXlR0gGgAUFVX3lxTFBDalBxNTdKc0RoczQwZEZqZHQ1MU5KMzVPdTByTXlNckdYaDZQMUlPdU5KZ3FUYlBTQWl0em5WbVdDandRdmdDNHlQOHFBajdLaU5IcHdVYmk2Q1M0N056cWIxMlhSWG14djJ0QV9ZNkNiTGJfVkgzeTZHQW9INUhvV0taTUlMTm9tWUJMTG0zYmF5NTFHT3JfWFhreEJ2alI?oc=5",
+      "rol": "Mencionado",
+      "tema": "Cinco diputados de Morena se registraron por candidaturas federales rumbo a 2027",
+      "nota": "Cinco (¿o seis?) gubernaturas en riesgo para Morena en 2027 - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPSy1iWFNsV0xBeHJaQWtza3NwSDMtMk5BT290YXV5Wk01Z2dqU1JWQlFWQ3FmYTR3Zk9lbmNqQWxCalY0TkpmQWZreXc1YmhVZ3o4MEZhby1MaV81bHZwZVB1VHZ6OFB3TjdxbFBUQ21kVVFlRl9UWTFabk9kaTd3RlV5MXd2Q042WDFxN1NXX0J0M3dOR0dCLWlRX09TYUpTWGpZUzNWVUlBaGdadFJJQ3FRNW1qY1HSAcsBQVVfeXFMUFBNWV82LTQ4QmRjRmhWa0FpWmcwdlhWNGRjNVVWQk54RXpHMzRHRlgtQkN1QXZpTFhqeUlaeHBpTkFJNThFNXF4OERZdUhOaGhtMVVjekliN2hURmhFTFpkT2xEMThkN3VmUXhfU2hQU2N5dVFTSGk0R3FabjVtRXhsZl9vVTh6S2xZY2IzRGczeDhwR0FiV3VXZ0RXT09GamxUTVdEeFBYdFRwaWJldG5hWWMweHQybjVEVER6WDRlSDVWTmNRQldWTnc?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "reginaldo_sandoval",
+      "nombre": "Reginaldo Sandoval Flores",
+      "rol": "Mencionado",
+      "tema": "Reginaldo Sandoval del PT respalda a Raúl Morón como coordinador para Michoacán",
+      "nota": "Reginaldo Sandoval reitera respaldo a Raúl Morón en Michoacán; \"el proceso aún no concluye\", asegura - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOWFppMldneERDeHlucXhzbDNkOUhieGpXZ05ZZHMtVW5mdGhVdDZ2ekd1VmNSa3djTmRTR0dpQjZVVkI2aEM2WC1MeFNkWXFpT3F6Y3duZDFwN0puRnV2eG1haVg0SXVjR1NzTE1WQWF3b0xpRWVfSmtDUUFoNExSdXBsUzQ5Z18wYm9MdUZkRHRzSzVYUjJORnJzckJGNXVXeEJOWlNnMVBaQmtvXzdJOVZRX0Zjb0YxemlEODFJYTRjb2tiRm1NYXZRVm50RDNu0gHkAUFVX3lxTFBWR3l4WDZmWU9GZXFtV2VHYmduVEhfdnRwYk9fZnh1RFpoZktYMFhRU2puaTRETnB3Y0x4NWJ1Q19NWjVpRGdCb3pzN0R6WWlvQWdvaWttN25aRW9Vc25NNWw0LVlDbXBhcEQ4S2R4aXRySVJTWXVmeGl6YnBUczZSajFXYTctOXBmWVZDZFZPWXFCb0lTNnNfeXA2aVdPQTJleDdmekhuNnZQUU05RW5pZ2Q0VXYwQ1ljQ0hSRFZlQTgzQ0hHeUt3WGZpWnpRMWp5NkxsalB6UWYyMFA4WmloU3BxdA?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -984,14 +1007,6 @@
   "declaracion_presidenta": null,
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-14",
-      "tension": 17,
-      "n_notas": 28,
-      "n_alto_impacto": 5,
-      "n_medio_impacto": 23,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-15",
       "tension": 15,
@@ -1178,17 +1193,17 @@
     },
     {
       "fecha": "2026-10-08",
-      "tension": 26,
-      "n_notas": 67,
+      "tension": 25,
+      "n_notas": 68,
       "n_alto_impacto": 25,
-      "n_medio_impacto": 42,
+      "n_medio_impacto": 43,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-09",
-      "tension": 31,
-      "n_notas": 47,
-      "n_alto_impacto": 25,
+      "tension": 33,
+      "n_notas": 49,
+      "n_alto_impacto": 27,
       "n_medio_impacto": 22,
       "n_bajo_impacto": 0
     },
@@ -1202,575 +1217,26 @@
     },
     {
       "fecha": "2026-10-11",
-      "tension": 25,
-      "n_notas": 13,
-      "n_alto_impacto": 4,
-      "n_medio_impacto": 9,
+      "tension": 29,
+      "n_notas": 19,
+      "n_alto_impacto": 7,
+      "n_medio_impacto": 12,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-12",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
-  "tablero_actores": [
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "iniciales": "MO",
-      "x_lunes": 97,
-      "y_lunes": 87,
-      "x_hoy": 100,
-      "y_hoy": 86,
-      "delta_pts": 1.5,
-      "alcance": 27,
-      "n_alto": 21,
-      "n_medio": 14,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdXJDTzFCSVo4dHY4TUtGbXEwNUU0cnZHaFFoQTRIaEs5dnJYVjllRVdrMEdELTZKcFMtWmhuWXdCZm5oM0NvVTBjMjZObjhnWkVnMUlJUkxVOFBoMGhJYTdzWnRGbnhteDk2UEdaTUszMnZLbnlibGxtYVBMQ19jLVZGcnppQmtxbTVqVnBXQ3NrY1k?oc=5",
-      "nota_texto": "Pío López Obrador se registra en Morena para buscar diputación federal por Chiapas - MAGMA Noticias",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 7,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 20,
-          "y": 85
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 34,
-          "y": 90
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 63,
-          "y": 88
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 77,
-          "y": 88
-        },
-        {
-          "fecha": "2026-10-09",
-          "x": 91,
-          "y": 86
-        },
-        {
-          "fecha": "2026-10-10",
-          "x": 97,
-          "y": 87
-        },
-        {
-          "fecha": "2026-10-11",
-          "x": 100,
-          "y": 86
-        }
-      ],
-      "fecha_reactivado": "2026-10-11"
-    },
-    {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 86,
-      "y_lunes": 74,
-      "x_hoy": 89,
-      "y_hoy": 73,
-      "delta_pts": 1.5,
-      "alcance": 27,
-      "n_alto": 11,
-      "n_medio": 20,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPU0dFV0RqUlg3cm5qODBIQlhWc0x6d1FhYjhjUGNoT2NSSjdmX002aHRyaExfNXpTRnRpa0k4UEZJd2tLalBsdV9DdnVFNkdRaXhvaTdJYWZuUlYxa2NZWTVWYW16empnMHNjVEdwTHdKMHVNNjJNbzEwaW9PMlR0enhmbUF3d0FQY3VESDljc0VrY1QtWGF4bGpVTDhLS0xablFkU2VWVXZMWllzWEtkOEgyamNXUzBUQjVmV1lVSQ?oc=5",
-      "nota_texto": "Claudia Sheinbaum habla sobre el movimiento de Tatiana Clouthier - Infobae",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 7,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 17,
-          "y": 90
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 23,
-          "y": 88
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 54,
-          "y": 74
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 69,
-          "y": 72
-        },
-        {
-          "fecha": "2026-10-09",
-          "x": 77,
-          "y": 74
-        },
-        {
-          "fecha": "2026-10-10",
-          "x": 86,
-          "y": 74
-        },
-        {
-          "fecha": "2026-10-11",
-          "x": 89,
-          "y": 73
-        }
-      ],
-      "fecha_reactivado": "2026-10-11"
-    },
-    {
-      "id": "tatiana_clouthier",
-      "nombre": "Tatiana Clouthier",
-      "iniciales": "TC",
-      "x_lunes": 89,
-      "y_lunes": 68,
-      "x_hoy": 94,
-      "y_hoy": 67,
-      "delta_pts": 3.0,
-      "alcance": 22,
-      "n_alto": 8,
-      "n_medio": 25,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPU0dFV0RqUlg3cm5qODBIQlhWc0x6d1FhYjhjUGNoT2NSSjdmX002aHRyaExfNXpTRnRpa0k4UEZJd2tLalBsdV9DdnVFNkdRaXhvaTdJYWZuUlYxa2NZWTVWYW16empnMHNjVEdwTHdKMHVNNjJNbzEwaW9PMlR0enhmbUF3d0FQY3VESDljc0VrY1QtWGF4bGpVTDhLS0xablFkU2VWVXZMWllzWEtkOEgyamNXUzBUQjVmV1lVSQ?oc=5",
-      "nota_texto": "Claudia Sheinbaum habla sobre el movimiento de Tatiana Clouthier - Infobae",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 4,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 43,
-          "y": 75
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 83,
-          "y": 69
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 89,
-          "y": 68
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 94,
-          "y": 67
-        }
-      ],
-      "fecha_apagado": "2026-10-09"
-    },
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "iniciales": "AL",
-      "x_lunes": 37,
-      "y_lunes": 99,
-      "x_hoy": 40,
-      "y_hoy": 100,
-      "delta_pts": 3.0,
-      "alcance": 13,
-      "n_alto": 12,
-      "n_medio": 2,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYzNudllLXzNqa2c3MHhGdE1IMF80SWpvc2NGTGQyYnpZRFlJVjBRMWI4eHRoNlg5aWFBeXhTREIwRnpidmNPejlTZnh6YlJRbnVBNmpvaGV4OS1GV1gtVG1QU0tIbnN1aDgzUUdCdHplYWhMdm94NVNzZ1RMaVl0c21NMERZdDB2OEN6NXE0c0JUWnBpSE5TRWhPQjBHZnpVSGVHT3lrdlI?oc=5",
-      "nota_texto": "El movimiento político de Andrés Manuel López Beltrán - MVS Noticias",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 6,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 11,
-          "y": 81
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 14,
-          "y": 86
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 23,
-          "y": 94
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 34,
-          "y": 99
-        },
-        {
-          "fecha": "2026-10-09",
-          "x": 37,
-          "y": 99
-        },
-        {
-          "fecha": "2026-10-11",
-          "x": 40,
-          "y": 100
-        }
-      ],
-      "fecha_reactivado": "2026-10-11"
-    },
-    {
-      "id": "garcia_harfuch",
-      "nombre": "Omar García Harfuch",
-      "iniciales": "OG",
-      "x_lunes": 20,
-      "y_lunes": 92,
-      "x_hoy": 23,
-      "y_hoy": 94,
-      "delta_pts": 3.0,
-      "alcance": 7,
-      "n_alto": 6,
-      "n_medio": 2,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQNXAtN09KaDNnMzRWWFpCM3hwSmhGaWlRX3NSM25welcyZThKWHNqYjczNTR1QmZ3VHFPc1ZlcExmQm9TbkFlQi13YjZVSmRfY1I1NzhFRVU5YUZXU3hlTmVEdzRLNm5tNHl2UjV0a3E3Vzhsb054WTZsZHZyTUtlY05zWFgwMlYwcThXV1hGWXRaeWNvVDVJa1MyNE9aTGpSd0xqLWdaOEtlQWtRc2lUMVpNbXRUOVFHODA3N0kzVWZoUU5GSGVrNnFWVHQ5dGxSUjFybXVtdGtYSW1pelVmbkM2Z3V5S2xkR2J1RmRIVThuM2FNMnlUStIBkwJBVV95cUxPeXBTTUszNzliNHJOc0JyQnlPTlY1UEtnTEtZWDU1eGJHZ1dVbzhlY2tWaVlSVThCNk1mY1U0UFRzNFloVUFMd1lFTzRXS0NyQjJfX2VWWV9jX25tRTNWcndkSUJvVU5GMU9meEZQY1FaWk01bHB6THBZVWowcnhEVEFkSDZtVHI1VDNTNVloVnIxTGR2dWdrY1ZWMkZheTVVWkg4LU5hMFBIalIwUVJ1QUtMeGlmU1k1ekVGOVBGdV8yVV9lUXdHRzhndEZiVWpJYlF0dEJRZXlDRjRhd0hlUHNNVEpBeXpCa2dmenBUNnF6eUlVc1htZUFmbzZoaGNtV04tNXVqOXVRSzk3ZXRsRGlPOA?oc=5",
-      "nota_texto": "Exjefe de la DEA elogia a García Harfuch por captura de ‘El Tanque’, pero pide enviar a Rocha Moya a EEUU: “Sería un gran logro” - Infobae",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 5,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-06",
-          "x": 6,
-          "y": 81
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 9,
-          "y": 72
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 14,
-          "y": 86
-        },
-        {
-          "fecha": "2026-10-09",
-          "x": 20,
-          "y": 92
-        },
-        {
-          "fecha": "2026-10-10",
-          "x": 23,
-          "y": 94
-        }
-      ],
-      "fecha_apagado": "2026-10-11"
-    },
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 26,
-      "y_lunes": 84,
-      "x_hoy": 29,
-      "y_hoy": 81,
-      "delta_pts": 1.5,
-      "alcance": 8,
-      "n_alto": 5,
-      "n_medio": 5,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPZDBIc0NHZHo1elFaUE9aNk9xb09aZlk4aGNHeDJnQzktRkFZVjhObjZ6cXd4OTJiWnNtTFgzc0lIMlppVVZJOGQ3Y0tScUdiU0hCU200UHlqMmhMS0piNjVXRGJNaDBfVjFHRnozWFh2ZUhwVzYyU1lIUnUxRlNsQjByME1yWk8tbG11UEtkMHFPSEJNaEJ3OUxTZkpRVlRkUEo2b3RhcklJTVdnQUo5QVNDX2pfMlNja3VpVHliVldiM1pLVm5vdDNSUlkzX211aHRuVll5VkVCUU9WdnZEckRB?oc=5",
-      "nota_texto": "Acusa AMLO a Estados Unidos de fabricar expedientes contra el gobernador de Sinaloa, Rubén Rocha Moya - Palabra de Veracruzano",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 6,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 3,
-          "y": 54
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 6,
-          "y": 54
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 14,
-          "y": 75
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 20,
-          "y": 77
-        },
-        {
-          "fecha": "2026-10-09",
-          "x": 26,
-          "y": 84
-        },
-        {
-          "fecha": "2026-10-11",
-          "x": 29,
-          "y": 81
-        }
-      ]
-    },
-    {
-      "id": "andrea_chavez",
-      "nombre": "Andrea Chávez",
-      "iniciales": "AC",
-      "x_lunes": 20,
-      "y_lunes": 69,
-      "x_hoy": 40,
-      "y_hoy": 69,
-      "delta_pts": 13.5,
-      "alcance": 9,
-      "n_alto": 4,
-      "n_medio": 10,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTlQ3b1JRaWFiSEpzWTJTUWI1VUJvV0FUamlJS25QcDZXdkQtNFdGclVKcHJFLWQwU2pCZGFGUkNiVDhiMERadFZnRThZc25UcnlycGp2V19OTVAwMjk1cWNmQXgyRHc4RmZfdExkWnJfZWlkZUgzdkduY0NVMlJjdTBZcGFqLVVLR0FCem5URjdkQkc3MHZxZkZVMTF4ZzJuaHFjamVRRzhhVEhXTVdBbGNHLTdLQmMzTFZzOTNPTWl1UG9FMS1pVjcxOExyUkZXLVM0bFVB0gHqAUFVX3lxTE4wcndSdXRFbDdDRjJFc040ZDkzUGxMeG9aYzhJTlpjV3BJV0wySnZ6REs2Zm1KaC1ZOE5SbTZ6bGVNVktrY29EYlR6TUYybGRfcXMxdE5LQ3FrN01TeDBNLVptODR0SzJVVVE0THBkOVFHTHdsTU04WmRlY09BekZfZ3pTQjZZNzdXbFZKS0ZZbUduUVJDS1g2YmhTX2taRzdNdU5HdXIya01SUXppMFZLb1NsUjZMem8wTGN0TjZtdk45UXZRdDRaNXhCZllPS0lvanF4ZXU0M1BBeHBUeEFVMzNtYWhpNEJMdw?oc=5",
-      "nota_texto": "Morena define a Andrea Chávez como coordinadora municipal en Ciudad Juárez - El Universal",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 20,
-          "y": 69
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 40,
-          "y": 69
-        }
-      ],
-      "fecha_apagado": "2026-10-07"
-    },
-    {
-      "id": "clara_luz_flores",
-      "nombre": "Clara Luz Flores",
-      "iniciales": "CL",
-      "x_lunes": 23,
-      "y_lunes": 61,
-      "x_hoy": 26,
-      "y_hoy": 66,
-      "delta_pts": 3.0,
-      "alcance": 8,
-      "n_alto": 2,
-      "n_medio": 7,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOaFVrRy04YkV3SktycVdVaUt4SVR5UW8ydzRJVHByVzgtem1IbW9wNzczLVEtdmtCNkVSeElNWVpHV3FsS1ZlVGxkaVJocFpabzQ3M2I5blExcUdtWktfYjdYaTNCaDBsY3BjQ0NTTFlsOEpRNks0ODFka2FpTEpHZFdHVHp1VkkwMFcyTDdSUFJDcWo3dU9TdXNKeGV1S0gwdl84c0VEYWF2S0xZWXRIWkhOQm9iaXFEN3BYUVYyUmdWVW8yeHFrWUJmTXY2Z0hNNmlVRQ?oc=5",
-      "nota_texto": "¿Qué opina Sheinbaum de Clara Luz Flores, coordinadora de Morena en Nuevo León? - El Heraldo de México",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 4,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 14,
-          "y": 65
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 20,
-          "y": 62
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 23,
-          "y": 61
-        },
-        {
-          "fecha": "2026-10-09",
-          "x": 26,
-          "y": 66
-        }
-      ],
-      "fecha_apagado": "2026-10-10"
-    },
-    {
-      "id": "lorenia_valles_sampedro",
-      "nombre": "Lorenia Valles Sampedro",
-      "iniciales": "LV",
-      "x_lunes": 20,
-      "y_lunes": 62,
-      "x_hoy": 23,
-      "y_hoy": 61,
-      "delta_pts": 1.5,
-      "alcance": 8,
-      "n_alto": 1,
-      "n_medio": 7,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNejdPdHJMU1FrQU5NcDdkS0FIUUt4dldrMF9GV2RyRWNiRUd1NDRvLW1UcDQyYWEtTzktU05lRUU2NjNwWHhoME1XYmphTWFwRkVQb21UVDJEUXVPTGRQRUF0NDRJRko4VlRBQW5NVkk1eEphTTdFOFVlSExkZENubzFuNkxPY3hNcFdlbURZZTdLaUJYWW9FSFZGZHZqbEtzTmpNaG1KVE9yUUpuVW5YVElUU0VpQ1V1dGc?oc=5",
-      "nota_texto": "Lorenia Valles destaca legado de AMLO y Sheinbaum durante aniversario de Morena - Nuevo Día - El Periódico de Nogales",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-07",
-          "x": 11,
-          "y": 54
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 20,
-          "y": 62
-        },
-        {
-          "fecha": "2026-10-10",
-          "x": 23,
-          "y": 61
-        }
-      ],
-      "fecha_apagado": "2026-10-09"
-    },
-    {
-      "id": "amilcar_olan_aparicio",
-      "nombre": "Amílcar Olán Aparicio",
-      "iniciales": "AO",
-      "x_lunes": 15,
-      "y_lunes": 65,
-      "x_hoy": 18,
-      "y_hoy": 72,
-      "delta_pts": 3.0,
-      "alcance": 6,
-      "n_alto": 2,
-      "n_medio": 4,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://www.yucatan.com.mx/mexico/2026/10/07/nuevos-audios-revelan-que-amilcar-olan-planeaba-ganar-240-millones-mensuales.html",
-      "nota_texto": "Nuevos audios revelan que Amílcar Olán planeaba ganar $240 millones mensuales",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-06",
-          "x": 6,
-          "y": 54
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 15,
-          "y": 65
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 18,
-          "y": 72
-        }
-      ],
-      "fecha_apagado": "2026-10-09"
-    },
-    {
-      "id": "rubio",
-      "nombre": "Marco Rubio",
-      "iniciales": "MR",
-      "x_lunes": 12,
-      "y_lunes": 69,
-      "x_hoy": 16,
-      "y_hoy": 77,
-      "delta_pts": 3.0,
-      "alcance": 5,
-      "n_alto": 2,
-      "n_medio": 3,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQY0ZuSWZVVUJTbGFjZXB5eVBKMXdHMUxlNlgtNHRlZnR6SmtyZlRFZ3o1c1hraVI2cjlabGp6VDN0LW1fM2E0Rmw3VmVnUURjcDVrWFVFVjljUlJOZ3QydWtvTTlvSEtCV2R3ZndfeGg5anRoNDJlUlpMM01rMUt6ZTJuZ1prTGNqenB4TnBDb2ZJd0RW?oc=5",
-      "nota_texto": "AMLO acusa a Marco Rubio por cancelación de visa de su hijo - El Buen Tono",
-      "es_nuevo": false,
-      "categoria": "Relación Bilateral",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 12,
-          "y": 69
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 16,
-          "y": 77
-        }
-      ],
-      "fecha_apagado": "2026-10-07"
-    },
-    {
-      "id": "monreal",
-      "nombre": "Ricardo Monreal",
-      "iniciales": "RM",
-      "x_lunes": 6,
-      "y_lunes": 84,
-      "x_hoy": 13,
-      "y_hoy": 84,
-      "delta_pts": 4.5,
-      "alcance": 3,
-      "n_alto": 2,
-      "n_medio": 2,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://www.elfinanciero.com.mx/nacional/2026/10/06/el-retiro-de-ricardo-monreal-que-quiere-hacer-despues-de-dejar-la-politica/",
-      "nota_texto": "El ‘retiro’ de Ricardo Monreal: ¿Qué quiere hacer después de dejar la política?",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 3,
-          "y": 56
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 6,
-          "y": 84
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 13,
-          "y": 84
-        }
-      ],
-      "fecha_apagado": "2026-10-08"
-    }
-  ],
-  "tablero_semana_inicio": "2026-10-05",
+  "tablero_actores": [],
+  "tablero_semana_inicio": "2026-10-12",
   "resumen_mananera": [],
-  "mananera_estado": "sin_mananera",
-  "a_vigilar": [
-    {
-      "id": "auto-43b8c169eb",
-      "nombre": "Reginaldo Sandoval del PT respalda a Raúl Morón como coordinador para Michoacán",
-      "categoria": "Gobernabilidad",
-      "resumen": "Reginaldo Sandoval del PT respalda a Raúl Morón como coordinador para Michoacán",
-      "fuente_url": "",
-      "actor_vinculado": null
-    }
-  ],
+  "mananera_estado": "pendiente",
+  "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
@@ -1829,5 +1295,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-11 18:03"
+  "hora_corte_publicada": "2026-10-12 00:04"
 }
