@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-12T00:04:42.169115-06:00",
+  "generado_en": "2026-10-12T06:01:08.400225-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 16,
   "baja_confianza": false,
-  "tension_nacional": 31,
+  "tension_nacional": 25,
   "tension_anomalia": {
-    "z": -0.31,
+    "z": -0.88,
     "nivel": "normal",
     "media_periodo": 34.3,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 55,
+      "peso_pct": 80,
       "tema_principal": "Reginaldo Sandoval del PT respalda a Raúl Morón como coordinador para Michoacán",
       "tema_principal_id": "auto-43b8c169eb",
-      "n_temas": 9,
-      "n_notas": 9,
+      "n_temas": 11,
+      "n_notas": 13,
       "notas": [
         {
           "texto": "Dirigente del PRI Tamaulipas envía \"regalito\" a Andy López Beltrán ante escándalos de huachicol fiscal - XEVT",
@@ -42,6 +42,12 @@
           "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/11/a-un-ano-del-asesinato-de-carlos-manzo-grecia-quiroz-convoca-a-marcha-nacional-por-la-justicia-y-la-paz/",
           "intensidad": 7.0,
           "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "Coincidencia y compromiso con la 4T, eje para alianzas, define Consejo de Morena",
+          "fuente_url": "https://www.jornada.com.mx/2026/10/12/politica/006n2pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
         },
         {
           "texto": "Habitantes de Monte Sinaí II, Chiapas, reportan hombres armados y piden intervención militar. - El Congresista",
@@ -72,56 +78,24 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQRVg3dVZhQ3liUzU2OVFVdTJfV2c0bXVzUVlvdFFuTXhoNXU4eVFVUGxFLWd6d0hjS0RURXZYNEQ2a0h3RWtCcFJrclMzTm02RjJlc25uRENLckNWbkRlc0hHOHJQN1FXZ0dnVzM0Wk0yZUdMdjdmR3l2LUkzaVI0RVZWaHFUb1NYYWxYYTFacDVsdXkwZFZMU0hGVDZfQXhTMThr?oc=5",
           "intensidad": 5.0,
           "medio": "MetropoliMx"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 18,
-      "tema_principal": "Huachicol Fiscal",
-      "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 3,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Los excéntricos lujos del ‘Capitán Sol’: 12 inmuebles, un penthouse en Tulum y gastos en  casinos",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/11/los-excentricos-lujos-del-capitan-sol-12-inmuebles-un-penthouse-en-tulum-y-gastos-en-casinos/",
-          "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
         },
         {
-          "texto": "Violencia en Sinaloa: feminicidio en puesto de tacos en Escuinapa y balean a una joven en Culiacán",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/11/sinaloa-feminicidio-escuinapa-mujer-puesto-tacos-joven-baleada-culiacan.html",
-          "intensidad": 6.0,
-          "medio": "yucatan.com.mx"
+          "texto": "Premio de consolación a senadores que perdieron coordinaciones estatales",
+          "fuente_url": "https://www.jornada.com.mx/2026/10/12/politica/006n1pol?partner=rss",
+          "intensidad": 5.0,
+          "medio": "jornada.com.mx"
         },
         {
-          "texto": "Detienen a Jesús Darío “N”, integrante de “La Barredora 24/7”; es señalado como generador de violencia en Sonora - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaE9FcWlpN2twYWhISnczWDd3TVV5ckRIWEIzaVh4enJNMGFGcDFBVUl4NEdxNW81VG1kc2hKZ0FLdmdFbk1uLWRGZWM3UkVjdHludnQwQ0RpZVV4WmRXajZJdlBIdlBUTVV6VUVRTzJfWGhIOUowUkhUM0l0Szdid0NTdDN4cXlwM1NYNUEwc3dzZWNYVkdKeUtGSDY5eHQyTzlMeC1FSnd5bnZad1VzTmlXVEs1YWdmcjZuX0VlNGgyZ1dRNGJIZks5Z2d2Wk94V0JhM0dTcmJmZnVO0gHwAUFVX3lxTFBiSWdkYmRQMFFzZWF5MUlHdWF0azY4RVdBMGJMckFsS0JHREtyOWM0a0kzcURhNmVkbDh4RHoyZFlqX0EyalRJTkxRXzRzUjJrcmxDNWVDVkRfdE13cnB1WTN3RkZ4RVBjOFg4QlZLbXJGQ2R2TWZxVUIwZlJoRHdjcDVNb0hOWFIyaF92T2ZOaTliNlB6bHhMTzdsSTZQdjd1cEU0S2tfR0RlTzJXbmdla2RqZmxfWlF5WENrYkp5T1dueGlPNlp1OGR0WmxwM3RsWm5ibmNSa2tVdmg2SkxROEtfQmc0LXY0eHM2QUVEWA?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 13,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Sheinbaum llama a la población de cuatro estados a resguardarse por huracán Simón categoría 4 - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxONVIzNElObDFMSGdaSHd5Z290R3RIM2ZUaTFXNjkyZ0daVm5kWjZmUmpla1RST1lYQUEzTkxNeExXdWtsNzh3Yk9McVEtTWlvekhfS1BiRmhYcExVMlkyTlEwVE5WcVlSSGcwTXNHTWtYRFZvOU5JUFY4MXdTWDlnU0Y2WFhOVkFtR1NuUEU5eUxlYUxnTkNURVlLbjhtRnVGa09VTTBJdkgxV0hpd29Ja0lyTGhZeXhNa3dJenp4STV1cVIwV3Nhcl96clJ0SEgyUWxwSmI0SmE3b3BEbW9wa2N2SUZWTkHSAfsBQVVfeXFMUGhsZHZuTE44THhsR0hHQWVMMlJvMzl0cEh5bDQ2VC1WMDk2SW9lMGFiRlRIQmxhd1YwUE45aHFBcVZXMXF5clYtRkZjYUttYnBDak5lcVppa216RDJqZnNDaUd0S1lFYm1pX1ZWalpqb3dmZTJubXhQTjk4RzhpZDlPblNWSkJmMlNSZFpSdWxGSW93Y0RiaTdEUkJLMDB0TXhmeVpUcXk1X0JQUkR4MUNPbERyRVVyekJVUG9GS29VNjNJQmZtR0RnZXFycjItMEc2SHlyb2JqX2E5amd1aDhwTDlCZVFXTnVhbzg1ZHVyb2V6N0tETHZLVEk?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
+          "texto": "Avala Morena a sus 17 coordinadores estatales - NVI Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOVjlsc2ZpN2NLUkxqZU1uOWhzRjg1dzMyQkdGa1Y1UHg1RzBfeHJWWU5tVkFrVExCYloxTDY1SEp0Y05Dam90d0R0WTUyZHA3YUtTNnd4N2tQcFJOLTVDbUlQNEV3YjhFeFB4Ym9acWtySUdtVlF3SHhySzB0Y2lpdHBKZ3BBc2NERGRlbUNpTS0?oc=5",
+          "intensidad": 5.0,
+          "medio": "NVI Noticias"
         },
         {
-          "texto": "Guanajuato busca diversificar su economía ante cambios en T-MEC - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQUUxFb2had09PQ2UyRGVQbTdoUEIzbWpOYklydVlEb2pkVHpYU0lIcUJFVFN4ZF9YX1Y2R1NOd1ZzTkIzR0V5SE9pNlV3U1RWRFFYVDVDNFkwM0k5YW0wZVJuNkIzQzd4U3NwVVNDcVd0UEdraHFQaV9XTHhmLWR5QjFhWkkyS1VtdnFYcjBzcTRGSFQ4eXh4ZXczN0pQMjIwcWI1dkJLU0FMelhxQ0JfYWxvN3BLZ9IBtgFBVV95cUxNQURkaUhFbHQwUEhmeGxrcGVWYXpSdHhwaGctZXgyTkFVTHU5cWk5YkYwS1Z0VkZoTnMxdURGcnJfVThDWWJkZHJXUzBsWWo5azdxakFGUm1oOG9MQkVTQkJ0VTZrT0dVZWw4b05zOThUa3dST1M1R2VzMWw0cmpTR0RaMlJFVEpSVlcwRXUxd3RIX016enhMUm15ZUNGbjZIeFlLQjF5ZFN6SFp4MnNqSmRZaVF2dw?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
+          "texto": "La herencia del PRD y PRIAN: 11 de los 17 coordinadores de Morena vienen de otros partidos - Proceso",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxONEp3dzFBdFk1UVlia3ZtMHd5MXE1eDFsbmt6VGtzcUZwMmJhMmd2MFY4NGRFeWwyQUdiWEwyOG9pZlpzWWJNaEpFZFN3ZTIxdi1tQkxmWHpONWcxT2l3N2ZuR1dWMXQtQ0tGd1Q1ZHVuQXdaNUVPN2N1R1IyMkF1QlduUVRLV3pDbWpaZ1Z4Rkg4RFEwQ1RjTGZOOVp5QUM5azdaNTBFRllfRjRYb0p3emNBRGRuWUZVMnB0NW4xUTcyV3ZSRjBoTUtmYnRXYThnd1RfNXhoM21ZSnRiSkQ1REFn?oc=5",
+          "intensidad": 5.0,
+          "medio": "Proceso"
         }
       ]
     },
@@ -142,20 +116,45 @@
       ]
     },
     {
-      "categoria": "Social",
-      "peso_pct": 7,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 6,
+      "tema_principal": "La Barredora",
+      "tema_principal_id": "la-barredora",
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Morena toma protesta a 17 coordinadores estatales, asiste Alejandro Armenta - MTP Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOQzAzdTNMLU1kZXlyWGhaOUcyN3BSUEhRQWM2VFI5dUczekdITGxqNVRfUlhaeFl4OWJjRzZTSGZDSlYyUnQtUkRmblhRM0VBYndLT0E1UWM1MWVncVpwdDJfbmlyMFRHNUJRQnZkUHVUak9aMXJsbk1YQzlnY1g5cEZkWG5fUjFUTU9fRkxGdnpSMjM4VERSbVc5WXFKcDBSZXRpVkY4NzhJQnpNaE9ZOEtRQV9Uel8zWmc?oc=5",
-          "intensidad": 7.0,
-          "medio": "MTP Noticias"
+          "texto": "Detienen a Jesús Darío “N”, integrante de “La Barredora 24/7”; es señalado como generador de violencia en Sonora - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaE9FcWlpN2twYWhISnczWDd3TVV5ckRIWEIzaVh4enJNMGFGcDFBVUl4NEdxNW81VG1kc2hKZ0FLdmdFbk1uLWRGZWM3UkVjdHludnQwQ0RpZVV4WmRXajZJdlBIdlBUTVV6VUVRTzJfWGhIOUowUkhUM0l0Szdid0NTdDN4cXlwM1NYNUEwc3dzZWNYVkdKeUtGSDY5eHQyTzlMeC1FSnd5bnZad1VzTmlXVEs1YWdmcjZuX0VlNGgyZ1dRNGJIZks5Z2d2Wk94V0JhM0dTcmJmZnVO0gHwAUFVX3lxTFBiSWdkYmRQMFFzZWF5MUlHdWF0azY4RVdBMGJMckFsS0JHREtyOWM0a0kzcURhNmVkbDh4RHoyZFlqX0EyalRJTkxRXzRzUjJrcmxDNWVDVkRfdE13cnB1WTN3RkZ4RVBjOFg4QlZLbXJGQ2R2TWZxVUIwZlJoRHdjcDVNb0hOWFIyaF92T2ZOaTliNlB6bHhMTzdsSTZQdjd1cEU0S2tfR0RlTzJXbmdla2RqZmxfWlF5WENrYkp5T1dueGlPNlp1OGR0WmxwM3RsWm5ibmNSa2tVdmg2SkxROEtfQmc0LXY0eHM2QUVEWA?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Universal"
         }
       ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 6,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Guanajuato busca diversificar su economía ante cambios en T-MEC - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQUUxFb2had09PQ2UyRGVQbTdoUEIzbWpOYklydVlEb2pkVHpYU0lIcUJFVFN4ZF9YX1Y2R1NOd1ZzTkIzR0V5SE9pNlV3U1RWRFFYVDVDNFkwM0k5YW0wZVJuNkIzQzd4U3NwVVNDcVd0UEdraHFQaV9XTHhmLWR5QjFhWkkyS1VtdnFYcjBzcTRGSFQ4eXh4ZXczN0pQMjIwcWI1dkJLU0FMelhxQ0JfYWxvN3BLZ9IBtgFBVV95cUxNQURkaUhFbHQwUEhmeGxrcGVWYXpSdHhwaGctZXgyTkFVTHU5cWk5YkYwS1Z0VkZoTnMxdURGcnJfVThDWWJkZHJXUzBsWWo5azdxakFGUm1oOG9MQkVTQkJ0VTZrT0dVZWw4b05zOThUa3dST1M1R2VzMWw0cmpTR0RaMlJFVEpSVlcwRXUxd3RIX016enhMUm15ZUNGbjZIeFlLQjF5ZFN6SFp4MnNqSmRZaVF2dw?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
+        }
+      ]
+    },
+    {
+      "categoria": "Social",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     }
   ],
   "categorias_tendencia_4sem": [
@@ -318,7 +317,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -326,7 +325,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 7
+          "peso_pct": 6
         },
         {
           "categoria": "Social",
@@ -397,7 +396,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
@@ -418,7 +417,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 66
+          "peso_pct": 67
         },
         {
           "categoria": "Relación Bilateral",
@@ -439,7 +438,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 19
+          "peso_pct": 18
         },
         {
           "categoria": "Gobernabilidad",
@@ -464,7 +463,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 18
+          "peso_pct": 17
         },
         {
           "categoria": "Gobernabilidad",
@@ -489,7 +488,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 17
+          "peso_pct": 16
         },
         {
           "categoria": "Gobernabilidad",
@@ -514,7 +513,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Gobernabilidad",
@@ -593,7 +592,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 76
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
@@ -622,7 +621,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 5
         },
         {
           "categoria": "Economía",
@@ -768,7 +767,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 75
+          "peso_pct": 76
         },
         {
           "categoria": "Relación Bilateral",
@@ -793,7 +792,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 74
+          "peso_pct": 75
         },
         {
           "categoria": "Relación Bilateral",
@@ -843,7 +842,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 72
+          "peso_pct": 73
         },
         {
           "categoria": "Relación Bilateral",
@@ -867,7 +866,7 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Grupo criminal de Tabasco -según reportes de inteligencia militar de la Sedena, consultados por Mexicanos Contra la Corrupción y la Impunidad (MCCI)- presuntamente liderado por Hernán Bermúdez Requena, exsecretario de Seguridad Pública de Tabasco con Adán Augusto López. La red operó robo de combustible en el puerto de Dos Bocas desde al menos 2025. Bermúdez huyó de México en febrero de 2025 con ficha roja de Interpol vigente; la UIF bloqueó sus cuentas y las de empresas de familiares y socios en julio de 2025.",
       "motivo": "A un año del asesinato de Carlos Manzo: Grecia Quiroz convoca a marcha nacional por la justicia y la paz",
-      "peso": 25.0,
+      "peso": 19.0,
       "n_temas_agrupados": 4,
       "escalando": false,
       "ultima_hora": false,
@@ -877,37 +876,70 @@
       "actor_vinculado": null
     },
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Sheinbaum llama a la población de cuatro estados a resguardarse por huracán Simón categoría 4 - El Universal",
-      "peso": 13.0,
-      "n_temas_agrupados": 1,
+      "id": "auto-43b8c169eb",
+      "nombre": "Reginaldo Sandoval del PT respalda a Raúl Morón como coordinador para Michoacán",
+      "categoria": "Gobernabilidad",
+      "resumen": "Reginaldo Sandoval del PT respalda a Raúl Morón como coordinador para Michoacán",
+      "motivo": "Reginaldo Sandoval reitera respaldo a Raúl Morón en Michoacán; \"el proceso aún no concluye\", asegura - El Universal",
+      "peso": 19.0,
+      "n_temas_agrupados": 4,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxONVIzNElObDFMSGdaSHd5Z290R3RIM2ZUaTFXNjkyZ0daVm5kWjZmUmpla1RST1lYQUEzTkxNeExXdWtsNzh3Yk9McVEtTWlvekhfS1BiRmhYcExVMlkyTlEwVE5WcVlSSGcwTXNHTWtYRFZvOU5JUFY4MXdTWDlnU0Y2WFhOVkFtR1NuUEU5eUxlYUxnTkNURVlLbjhtRnVGa09VTTBJdkgxV0hpd29Ja0lyTGhZeXhNa3dJenp4STV1cVIwV3Nhcl96clJ0SEgyUWxwSmI0SmE3b3BEbW9wa2N2SUZWTkHSAfsBQVVfeXFMUGhsZHZuTE44THhsR0hHQWVMMlJvMzl0cEh5bDQ2VC1WMDk2SW9lMGFiRlRIQmxhd1YwUE45aHFBcVZXMXF5clYtRkZjYUttYnBDak5lcVppa216RDJqZnNDaUd0S1lFYm1pX1ZWalpqb3dmZTJubXhQTjk4RzhpZDlPblNWSkJmMlNSZFpSdWxGSW93Y0RiaTdEUkJLMDB0TXhmeVpUcXk1X0JQUkR4MUNPbERyRVVyekJVUG9GS29VNjNJQmZtR0RnZXFycjItMEc2SHlyb2JqX2E5amd1aDhwTDlCZVFXTnVhbzg1ZHVyb2V6N0tETHZLVEk?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOWFppMldneERDeHlucXhzbDNkOUhieGpXZ05ZZHMtVW5mdGhVdDZ2ekd1VmNSa3djTmRTR0dpQjZVVkI2aEM2WC1MeFNkWXFpT3F6Y3duZDFwN0puRnV2eG1haVg0SXVjR1NzTE1WQWF3b0xpRWVfSmtDUUFoNExSdXBsUzQ5Z18wYm9MdUZkRHRzSzVYUjJORnJzckJGNXVXeEJOWlNnMVBaQmtvXzdJOVZRX0Zjb0YxemlEODFJYTRjb2tiRm1NYXZRVm50RDNu0gHkAUFVX3lxTFBWR3l4WDZmWU9GZXFtV2VHYmduVEhfdnRwYk9fZnh1RFpoZktYMFhRU2puaTRETnB3Y0x4NWJ1Q19NWjVpRGdCb3pzN0R6WWlvQWdvaWttN25aRW9Vc25NNWw0LVlDbXBhcEQ4S2R4aXRySVJTWXVmeGl6YnBUczZSajFXYTctOXBmWVZDZFZPWXFCb0lTNnNfeXA2aVdPQTJleDdmekhuNnZQUU05RW5pZ2Q0VXYwQ1ljQ0hSRFZlQTgzQ0hHeUt3WGZpWnpRMWp5NkxsalB6UWYyMFA4WmloU3BxdA?oc=5",
+      "actor_vinculado": {
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
+      }
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Guanajuato busca diversificar su economía ante cambios en T-MEC - Milenio",
+      "peso": 6.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQUUxFb2had09PQ2UyRGVQbTdoUEIzbWpOYklydVlEb2pkVHpYU0lIcUJFVFN4ZF9YX1Y2R1NOd1ZzTkIzR0V5SE9pNlV3U1RWRFFYVDVDNFkwM0k5YW0wZVJuNkIzQzd4U3NwVVNDcVd0UEdraHFQaV9XTHhmLWR5QjFhWkkyS1VtdnFYcjBzcTRGSFQ4eXh4ZXczN0pQMjIwcWI1dkJLU0FMelhxQ0JfYWxvN3BLZ9IBtgFBVV95cUxNQURkaUhFbHQwUEhmeGxrcGVWYXpSdHhwaGctZXgyTkFVTHU5cWk5YkYwS1Z0VkZoTnMxdURGcnJfVThDWWJkZHJXUzBsWWo5azdxakFGUm1oOG9MQkVTQkJ0VTZrT0dVZWw4b05zOThUa3dST1M1R2VzMWw0cmpTR0RaMlJFVEpSVlcwRXUxd3RIX016enhMUm15ZUNGbjZIeFlLQjF5ZFN6SFp4MnNqSmRZaVF2dw?oc=5",
+      "actor_vinculado": null
+    },
+    {
+      "id": "morena-coordinadores-2027",
+      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
+      "categoria": "Gobernabilidad",
+      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
+      "motivo": "La herencia del PRD y PRIAN: 11 de los 17 coordinadores de Morena vienen de otros partidos - Proceso",
+      "peso": 5.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxONEp3dzFBdFk1UVlia3ZtMHd5MXE1eDFsbmt6VGtzcUZwMmJhMmd2MFY4NGRFeWwyQUdiWEwyOG9pZlpzWWJNaEpFZFN3ZTIxdi1tQkxmWHpONWcxT2l3N2ZuR1dWMXQtQ0tGd1Q1ZHVuQXdaNUVPN2N1R1IyMkF1QlduUVRLV3pDbWpaZ1Z4Rkg4RFEwQ1RjTGZOOVp5QUM5azdaNTBFRllfRjRYb0p3emNBRGRuWUZVMnB0NW4xUTcyV3ZSRjBoTUtmYnRXYThnd1RfNXhoM21ZSnRiSkQ1REFn?oc=5",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-ca5aa83bb0",
-      "nombre": "Pide Zainos Flores un presupuesto “posible y real” para 2027; Congreso espera pa",
+      "id": "auto-a025e6486d",
+      "nombre": "Claudia Sheinbaum inaugura Universidad Rosario Castellanos en Nicolás Romero, Es",
       "categoria": "Gobernabilidad",
       "peso": 12.0,
-      "impacto": "alto",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPTV82TG1tNVh2ZFFXMmx0d1g3bXl6Q2ZVUkZ3dU84Z09ITUJHVUc4ZXBGUnM5ZHBwSTFYVXlIeDhnUjJZXzVmbjJjVjNQb3AydnAtV1h4eGRicTNEaFU0X19jNTlNc01HdUR4QWNzMjdSRldMSXZTU3hNTGxOSkM4NUt6NEZEYjlxRDBmTk9MS3FDenUxZGc4bjZB0gGaAUFVX3lxTE5UMnNHbFZpT0MxZWk0Sll5czlFeDVrWnZQTE9ELVVGX3dvVTBoTXZqZWFPVjZIWFRCNy1GemtvQUNmaVFhWmp0ZVgxa3Vsb085VHNEc21Wd01zSWpMRm9nSU1DaDI3SnRQemZQbkxkaXdiTXZCaUVQOTJZT3Ayclg2V05HTmVUNzhoaVAwZkdBYjJ1Q1U4YU0xZXc?oc=5"
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPbFl2b0pzeVE4c0hEMnpzdDg2WXU3eU9STERBaVVwM0ZVTDA2ZllvS3lpV3kxUmE5UmppVmJDQkZBcFozMHpHNlZGZmRjaVV6YVk0VE5oUHVWN2dwUGx6REl6UmZIUjUyZnozZVJfNzdNV3dxakFUU0Y5SENsR3BLUjZOWG9zbkdOMGd0bm1jakhFVlJma3hTTmwzQ2prNkQyazRQRHNxR2cteVlyUzdrRktoTGNjU2NnRFVYcg?oc=5"
     },
     {
-      "id": "auto-33fc7bc859",
-      "nombre": "Se reportan al menos 109 muertos y 116 desaparecidos al volcar un barco de migra",
+      "id": "auto-ac37da9fdf",
+      "nombre": "Paz y seguridad siguen siendo ejes  de la agenda estatal",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOb0Y1T2xWczBPZjRnQ2ZBbUJsMW56TGdmejlFSUFERGY5QTRKVlBNWTFUTkZTYVEydmFBTkxtYUpZYi00UXFOaEdxNTR3eEVJRnhLX0ZRdjBjek5nbG9XZk16THlxRWRFQVUtbEhFeTZSTGw0enphbm5HZ0FlRVVmQVhmMVU1cXlYWDZ4cHVCcFZXZGNaOUhrSjVIZ3VnRGp5WVNRd0pwVG1qVlVMbm9JcEZjNThXR292dm1XcWhvd0doUEFacEJpSDVObzQyc09JV2tiYThQTFNFaUNiZGRUeTRyWmF1d2dGMEZqN3Y2bU5Fd9IBhgJBVV95cUxNMkdUQWZkdmRvN3V2OXprbElxcmtWOG9SaUF2a1BIT0d1UlBJRGZmVTBjRllhRTVqQlBFeVlFNUV5ZHpySTJBSVQ2WmpnNFBVY2NvVzh5YlV2UFN1UWpEeDBmanRPdjlqT0ZKd2xpS2dvZ3BsLUNpY0dNTTduNXBKTW1vZGJBc3FjbTFXbnRIMW9rZ2J4cmsxMmROYlo4Z2tSRWR5RzY4aUhfcHJVUC1IZnphYUkzLS1wSDJHcnNDY0hTazNsWE5fb2VqVUFJRVV2MzZUV3JwMkNpc0Ffdl9aRXY1dTU2UFlITHAwZUdDUU51TlhBdWVEX2NORHB2ZUM4MWpRc2RR?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/10/12/politica/005e1pol?partner=rss"
     },
     {
       "id": "auto-6e8aba8172",
@@ -926,12 +958,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQWHJSZkhadjh0ZWFfMm1vOE1VOFpCenBkd2ZHanpkblNDY3ZiM3RleF9Gd1lqMU9oMFVWdHA4bmZoZTRWck1zT2tySWtiMXpUdHczdTBqZHNPN200VXpqOG1JbXJOWFIwNEt4Q3B0V1RTYjZNbFMxbWE5Q3g1bjJ5NXdkSzFNMVhtX1hkMXc0Y25kMDgyRmpfOGpSUUhsSXNlNUx5WUZyOWJtQmhYR2NnT29EdUF4cnJibkFRRTQwMHJJSlV1OFQzTHJJd25yd2hmQm4wQVU2OXZvOXVE0gH3AUFVX3lxTE1Fc0djUk9OQmdXSjF6b1c2MGY3eEM4SnN3UlRVNk1YYl9IUG9jbHFHWlJUeTZWMXZOU1lRRndsaHVCcE9FVTFfUDRVTVdOT01KUm9kenBKR3hQLXlyc2pfczZQUUdmMGNnQUlGT1g4UHA0UnpDTzJEVWhEY2prTGRJQl9IZU1LUC16UFI1dmdzVnBzMkx3bEZ4cVRNckJJb211aHlCa2JyanlPVjNQd0tXMzFCblp2OEpKbEVtemY0Qjd5VXdHcm1faldrbVZnNFp1Zi04bnVRNUF2R0RIVFVxMWUtTDFiQ2tiNnZjNkhBN3JBekZ1M00?oc=5"
     },
     {
-      "id": "auto-b7f3f86256",
-      "nombre": "Ariadna a Morena: La lucha social nos mantendrá en el poder, no la batalla elect",
+      "id": "auto-4b7c63af2b",
+      "nombre": "Morena CDMX reitera que no habrá “predialazo” y critica campaña del PAN para cau",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPVk1oMDA5eHVNQXNHa1VtZWhnaEVIZ3FGZG16ZXhFcDBYemhZNVRDMzhjQ0lWTC03SVBFTGt0ZTh1TTZ1blBZd1RyQV9QWjNRZk0wX1RBYVkxQTUxZzY2Rkc4Q0YxM0szalRYb0MyNVNvSzRrTmxJNDZRUUpHLXc4bHJ5MEpyUjFMSXNwY3d3ajh3VndzVmF6SXZNa3pHdmFOWWVLQVdwcmFYVzJMMk5iMmdpdGF4c01o?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQQWo0VlhvX1Nqc2RtbWxsRzdFSy1nYjhyRzdIbUg4dDBvYjNlY3VfQ1QyMmtlR2sxTUdYcXFJdTVMSEtVWXRLSkVYakxHYnBNYkkxNnR6SHhuSzFfNjNjRkktVkl6RmVOVWNnbjRDX0lnQ3ZKZ21fMFltNkJ5aUJnakZ6QlN6b3B3R19zcUszeEFwNnRDZzJ0dzNaSFVEMk1DdWdPSTZmb0ZQQkExMnIzUXpwcW9uQmhVVVZTUWlRSmYxTDlfVmpFeWtqYUR2UdIB4gFBVV95cUxQRW16NG1QMG9wUjRNNVBDRnVKVFhtSXFlNWJFNGZxTG9OY2xxR05lV19zU3ZhMjhTelVLOThjNk81QkstTEN5U01sWVNxc2RIXzVNa2RIRU5iMzlvNkdEdGNENFZWYjNoMGY3QzZnTjBxMmdSUnc3ZnJPU0JpODM0ZXRuZ08xM2V0bkxxX2ZCX0F6ZnExdGJ0a1haeEEzVWtreFRncnhFRUZiaGliclotbnBORFdoN19Oak5xMlNGQVJiUWcxOGNLVE9ZWFZMQVVlTU4tSU5LUG5zZEJ1T3FhNnpR?oc=5"
     }
   ],
   "temas_retomados": [
@@ -960,12 +992,12 @@
       "confianza": "media"
     },
     {
-      "id": "amlo",
-      "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Reacción social/mediática",
-      "tema": "AMLO reabre frentes - Reforma",
-      "nota": "AMLO reabre frentes - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE4tZ1A5dUJabmg0RlFrTjRIM3U2bVNCUi1tazA1cHFGQ0FxcTQ4WWhQU1dyZ1ZzOUJINEE3a0dMa0FOSkl6OGtqdG4wdG5yTHBZZE9YUkVDTEkydTVaS0g3T1Jraw?oc=5",
+      "id": "pt_partido",
+      "nombre": "Partido del Trabajo (PT)",
+      "rol": "Reacción de oposición",
+      "tema": "Exige PT a Morena repetir 17 encuestas, o en Michoacán irá con Morón, advierte",
+      "nota": "⚡ Posible presión de Morena (partido político) — Exige PT a Morena repetir 17 encuestas, o en Michoacán irá con Morón, advierte",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/12/politica/008n1pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -985,9 +1017,9 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Mencionado",
-      "tema": "Cinco diputados de Morena se registraron por candidaturas federales rumbo a 2027",
-      "nota": "Cinco (¿o seis?) gubernaturas en riesgo para Morena en 2027 - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPSy1iWFNsV0xBeHJaQWtza3NwSDMtMk5BT290YXV5Wk01Z2dqU1JWQlFWQ3FmYTR3Zk9lbmNqQWxCalY0TkpmQWZreXc1YmhVZ3o4MEZhby1MaV81bHZwZVB1VHZ6OFB3TjdxbFBUQ21kVVFlRl9UWTFabk9kaTd3RlV5MXd2Q042WDFxN1NXX0J0M3dOR0dCLWlRX09TYUpTWGpZUzNWVUlBaGdadFJJQ3FRNW1qY1HSAcsBQVVfeXFMUFBNWV82LTQ4QmRjRmhWa0FpWmcwdlhWNGRjNVVWQk54RXpHMzRHRlgtQkN1QXZpTFhqeUlaeHBpTkFJNThFNXF4OERZdUhOaGhtMVVjekliN2hURmhFTFpkT2xEMThkN3VmUXhfU2hQU2N5dVFTSGk0R3FabjVtRXhsZl9vVTh6S2xZY2IzRGczeDhwR0FiV3VXZ0RXT09GamxUTVdEeFBYdFRwaWJldG5hWWMweHQybjVEVER6WDRlSDVWTmNRQldWTnc?oc=5",
+      "tema": "INE define Consejo Local de Quintana Roo para elección federal de 2027 - Grupo A",
+      "nota": "Coincidencia y compromiso con la 4T, eje para alianzas, define Consejo de Morena",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/12/politica/006n2pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1026,9 +1058,9 @@
     {
       "fecha": "2026-09-17",
       "tension": 20,
-      "n_notas": 63,
+      "n_notas": 64,
       "n_alto_impacto": 19,
-      "n_medio_impacto": 44,
+      "n_medio_impacto": 45,
       "n_bajo_impacto": 0
     },
     {
@@ -1057,10 +1089,10 @@
     },
     {
       "fecha": "2026-09-21",
-      "tension": 43,
-      "n_notas": 61,
+      "tension": 42,
+      "n_notas": 63,
       "n_alto_impacto": 42,
-      "n_medio_impacto": 19,
+      "n_medio_impacto": 21,
       "n_bajo_impacto": 0
     },
     {
@@ -1074,25 +1106,25 @@
     {
       "fecha": "2026-09-23",
       "tension": 35,
-      "n_notas": 54,
-      "n_alto_impacto": 30,
+      "n_notas": 55,
+      "n_alto_impacto": 31,
       "n_medio_impacto": 24,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-24",
-      "tension": 46,
-      "n_notas": 57,
-      "n_alto_impacto": 41,
-      "n_medio_impacto": 16,
+      "tension": 44,
+      "n_notas": 59,
+      "n_alto_impacto": 42,
+      "n_medio_impacto": 17,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-25",
       "tension": 42,
-      "n_notas": 53,
+      "n_notas": 54,
       "n_alto_impacto": 35,
-      "n_medio_impacto": 18,
+      "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
     {
@@ -1106,8 +1138,8 @@
     {
       "fecha": "2026-09-27",
       "tension": 38,
-      "n_notas": 32,
-      "n_alto_impacto": 21,
+      "n_notas": 34,
+      "n_alto_impacto": 23,
       "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     },
@@ -1121,25 +1153,25 @@
     },
     {
       "fecha": "2026-09-29",
-      "tension": 38,
-      "n_notas": 106,
-      "n_alto_impacto": 58,
+      "tension": 39,
+      "n_notas": 108,
+      "n_alto_impacto": 60,
       "n_medio_impacto": 48,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-30",
-      "tension": 41,
-      "n_notas": 59,
+      "tension": 40,
+      "n_notas": 60,
       "n_alto_impacto": 40,
-      "n_medio_impacto": 19,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-01",
       "tension": 38,
-      "n_notas": 68,
-      "n_alto_impacto": 44,
+      "n_notas": 69,
+      "n_alto_impacto": 45,
       "n_medio_impacto": 24,
       "n_bajo_impacto": 0
     },
@@ -1170,16 +1202,16 @@
     {
       "fecha": "2026-10-05",
       "tension": 21,
-      "n_notas": 74,
+      "n_notas": 75,
       "n_alto_impacto": 26,
-      "n_medio_impacto": 48,
+      "n_medio_impacto": 49,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-06",
-      "tension": 15,
-      "n_notas": 97,
-      "n_alto_impacto": 22,
+      "tension": 16,
+      "n_notas": 98,
+      "n_alto_impacto": 23,
       "n_medio_impacto": 75,
       "n_bajo_impacto": 0
     },
@@ -1193,9 +1225,9 @@
     },
     {
       "fecha": "2026-10-08",
-      "tension": 25,
-      "n_notas": 68,
-      "n_alto_impacto": 25,
+      "tension": 26,
+      "n_notas": 69,
+      "n_alto_impacto": 26,
       "n_medio_impacto": 43,
       "n_bajo_impacto": 0
     },
@@ -1210,9 +1242,9 @@
     {
       "fecha": "2026-10-10",
       "tension": 24,
-      "n_notas": 33,
-      "n_alto_impacto": 14,
-      "n_medio_impacto": 19,
+      "n_notas": 35,
+      "n_alto_impacto": 15,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
@@ -1225,14 +1257,43 @@
     },
     {
       "fecha": "2026-10-12",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 12,
+      "n_notas": 4,
+      "n_alto_impacto": 1,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
-  "tablero_actores": [],
+  "tablero_actores": [
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 100,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 1,
+      "n_alto": 1,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://www.jornada.com.mx/2026/10/12/politica/006n2pol?partner=rss",
+      "nota_texto": "Coincidencia y compromiso con la 4T, eje para alianzas, define Consejo de Morena",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 100,
+          "y": 100
+        }
+      ]
+    }
+  ],
   "tablero_semana_inicio": "2026-10-12",
   "resumen_mananera": [],
   "mananera_estado": "pendiente",
@@ -1240,7 +1301,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 0
   },
   "declaracion_presidenta_historial": [
     {
@@ -1295,5 +1356,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-12 00:04"
+  "hora_corte_publicada": "2026-10-12 06:01"
 }
