@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-11T12:01:33.217739-06:00",
+  "generado_en": "2026-10-11T18:03:16.051885-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 20,
+  "n_notas_ventana": 13,
   "baja_confianza": false,
-  "tension_nacional": 20,
+  "tension_nacional": 25,
   "tension_anomalia": {
-    "z": -1.24,
+    "z": -0.79,
     "nivel": "normal",
     "media_periodo": 33.9,
     "dias_base": 27
@@ -13,29 +13,17 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 50,
+      "peso_pct": 51,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 5,
-      "n_notas": 10,
+      "n_temas": 6,
+      "n_notas": 7,
       "notas": [
         {
-          "texto": "RUMBO A 2027: Ratifica Consejo Nacional de Morena a “Gino” Segura como coordinador estatal en QR - Caribe Peninsular",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNTEhaOEdjN1VXNTBlTVhlYV9HZEhZUEZ1R1dadzFzV3FVZUtpelMxdTBwQUZOeUNjM3lkS3FobGhQZmRfdVBiY2ItTzZ2eUhlUzIzeklvRC01VHQyNV8zUmdZUDFIM2tyZUlTNmZiclB3bEN3dUFES1RyN0xzNW1WclpxMC1fZ2UxeWliXy1wMkpTQUFRUEJ5RTYzNUl6SWlNR2tOa1JVSUgtd20wWFBjUWxuU1hXdTczcDJ0TlhQRQ?oc=5",
+          "texto": "Dirigente del PRI Tamaulipas envía \"regalito\" a Andy López Beltrán ante escándalos de huachicol fiscal - XEVT",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPLUZoWGFhUk9KV2YzMHY1OFhYYzEzYzNySjB0QkpZb3lORWFGY2hXbDlSc0xjZ1F1UWdCazdtOFRXMjZ0dEFkSUlveURNWGRrSXNScXRUY1NMVnotVHVKd2hnaS1nS2EzZ0JmVk52Uk1IZERHb1haMVJRTGtQaFliM1RPUlgwMHdncmo3WnNCb1JqdDFhdDRTeHpMZDNLcmFRNEZCSGZCTVdoT0gweFhXcy0yMUkxZVNIYy1BeDE4RHY0Z1pPY0R2MGZnT0lHbG15UVFv?oc=5",
           "intensidad": 7.0,
-          "medio": "Caribe Peninsular"
-        },
-        {
-          "texto": "Morena pide a sus coordinadores trabajar con el pueblo y respaldar a Sheinbaum - Ríodoce",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNWkpzOHVLbFpTUVhiTFpkLUtFMkM5WFVILVl2cWtNUkcxVXVYd0c4MlNqQnZwLTFwVVZqWEdTbENoUTg0MWxFckdLVmpOMk53Rzh4ZHlNODBIZXVZaTFvVG92OWtOb0M3MHU5WEk0VWZucHVsT3VtOUg0NFVORU0yZm4tTlFnbDRZZTJDSnhDeTlsV3pmS2dWWHNVQlgtX1hqdXdMV2FVN0c1NjNHM3c?oc=5",
-          "intensidad": 7.0,
-          "medio": "Ríodoce"
-        },
-        {
-          "texto": "Morena oficializa nombramiento de coordinadores electorales rumbo al 2027 - 24 HORAS | El Diario sin Límites",
-          "fuente_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPN0ZaaFRrUlRNcmpEUGVsT1EteVhkTXFXek5ESktpT3hqbjVUYzZEd3RvY0stcG5ZdGVqN1lVWXVWVTdSTEdTRFUxN2tXbThDRjFJVUliLXZXSHl5UGpfQjhGeWtqVTNPdXpVUDF4aGgwNVh3SGdvTEJ0T3hIUW54cw?oc=5",
-          "intensidad": 7.0,
-          "medio": "24 HORAS | El Diario sin Límites"
+          "medio": "XEVT"
         },
         {
           "texto": "Mordaza para tapar la crítica y el huachicol fiscal - El Heraldo de México",
@@ -50,102 +38,34 @@
           "medio": "Super Channel 12"
         },
         {
-          "texto": "Morena ratifica a Gino Segura como coordinador en Quintana Roo - sipse.com",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPWkNUX2NZM3A5VHdjMTNVZDREbWtLQ2FiUTBUVmRuYXF6dWRRdU5PS0hBOUJMd1hYa1ozZEMzamZNZUtJSG9WMEhUMHdVWnpGQXh5R1dSdUtXakpxRlJRYm1va1E5eVg1bGt4OGxkcF82UF83Nm41RnNtVlZCWWpNY3ZsVi1lUHdOSThXdzd3LThNT05kYWpnZmI1LVNYNkdZWXMtTy14a1V0QdIBqgFBVV95cUxPWkNUX2NZM3A5VHdjMTNVZDREbWtLQ2FiUTBUVmRuYXF6dWRRdU5PS0hBOUJMd1hYa1ozZEMzamZNZUtJSG9WMEhUMHdVWnpGQXh5R1dSdUtXakpxRlJRYm1va1E5eVg1bGt4OGxkcF82UF83Nm41RnNtVlZCWWpNY3ZsVi1lUHdOSThXdzd3LThNT05kYWpnZmI1LVNYNkdZWXMtTy14a1V0QQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "sipse.com"
+          "texto": "Habitantes de Monte Sinaí II, Chiapas, reportan hombres armados y piden intervención militar. - El Congresista",
+          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUFUycUN3TFBxTHkxaXZKZ01IbTh4UVFtaXFkU3h4NXo4aWtRQ3FTY0lmZFllZzNDWUloMy1KaGluNUp5ZVZ6eHFsUHhEamplWDFSRHYwUkRoVzhJWUE5cC1VSUI2a3V3d1hrYnQ0NnJOeXFPT3FYZTVrcHFyeTlqQ09rVmdUdVdTNkJaazZGOVhHNDJyWUgzNkxEQ2dER1U?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Congresista"
         },
         {
-          "texto": "Ariadna Montiel llama a no utilizar la imagen de AMLO en las elecciones 2027 - sdpnoticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQakJmdzliRW5nbnpaclh1cnNtSkptYlpZNFAtUkZtUkY4dkJXVXlrQi1xek1KVm5NRmhha1NjeER4cHhZajhlQ2Vmdmh0ejZaY0huLVlHTXhObk5iV1RVMzlnX0pFa1Y0RUVZLXVjQmkxNDVGdUI5cS02OTM0eVlROHRFX25BMHhfVWxVUlZGNEV4aDlsT3I5d0ZiV3hDMHZkVDBPcjA4b2taOUxkdV9rZEFB?oc=5",
+          "texto": "Alfonso Sánchez descarta reelegirse en Tlaxcala capital y va por el Distrito 2 Federal de Morena - Intolerancia Diario",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQZWJnblRRZ0NhNlZieGJETUdjX3lickFha0RiLTI3NjcxcjJOQ05MNXJtM1JuV2FkVEFjLWdxdWFHdTBRdk9mS29nem5iZldpY3dfVEthZWFyTVFWeFdBOGR2c3IycHl4UjVtaFJha21STmxaSmdiN3NDaWI1VEVRdVVTYVZDMEduTWFzb0d0TDFhTTRKdWdQWmdLODVlb2hSWXdzNkRvRmJUalV2RnRnaVM3cFZUa0tzSklaYUJpbVNVM1NBMjNlQkh1cHRoYlhBQzgwMmJpYXJHNDBLLW1YN2UxU0JFVE95VzRVcmlaSHVuejZ0YUhVdg?oc=5",
           "intensidad": 5.0,
-          "medio": "sdpnoticias"
+          "medio": "Intolerancia Diario"
         },
         {
-          "texto": "Morena ratifica a Gino Segura como coordinador en Quintana Roo - Quintana Roo Hoy",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQSThvS2wyY05TQVFxOU1mVER5NFppTmQ1X2M0UUEydll1YmxyRWpTbG54ZFc3U3Q4d1NPSjA3VVp3NFdMTEMyR1ZHWnhOZUpyMXVsbVJwMXEzZnRuTEV5NGQ5Y2VjUzFZY3RONjhpOGJ4dEFuSXI3OEgyd3Brd2V1QVplZ19Na1Z4NjhncQ?oc=5",
+          "texto": "Claudia Sheinbaum confirma nuevo penal en Sinaloa tras 12 muertes en Mazatlán - Quinta Fuerza",
+          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNY25CNzIzOHI4dkYyeWZZM3R4WW1rRnVRRnkwdHlOaGF4T1VvY041TURibFNZSmc3d1hITXZ0MVRfenlmclFIU1RLT2VOWEFrcmg1YTd3VGczYVZlV0NwUEFOMWN5RDB3TlgxWHcyY0dkcWc2M01nOElabjlGSEtpOGk4Uk54WUhYdzFOWWI2YXZqLWJyak5JQTFKUlRLZw?oc=5",
           "intensidad": 5.0,
-          "medio": "Quintana Roo Hoy"
+          "medio": "Quinta Fuerza"
         },
         {
-          "texto": "Tras balacera en el penal de Mazatlán, Gobierno federal construirá nueva cárcel en Sinaloa",
-          "fuente_url": "https://imparcialoaxaca.mx/nacional/tras-balacera-en-el-penal-de-mazatlan-gobierno-federal-construira-nueva-carcel-en-sinaloa/",
+          "texto": "Manuel Cota enfrenta 62.6% de inconformidad como coordinador de MORENA en BCS - MetropoliMx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQRVg3dVZhQ3liUzU2OVFVdTJfV2c0bXVzUVlvdFFuTXhoNXU4eVFVUGxFLWd6d0hjS0RURXZYNEQ2a0h3RWtCcFJrclMzTm02RjJlc25uRENLckNWbkRlc0hHOHJQN1FXZ0dnVzM0Wk0yZUdMdjdmR3l2LUkzaVI0RVZWaHFUb1NYYWxYYTFacDVsdXkwZFZMU0hGVDZfQXhTMThr?oc=5",
           "intensidad": 5.0,
-          "medio": "imparcialoaxaca.mx"
-        },
-        {
-          "texto": "PVEM respalda coordinadores de Morena en Colima, Campeche y Querétaro - sdpnoticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNNzlEWXkzLTIwTUhmMC0ySDgyZFh4WUhkMnk0aEhVRnN6dGlCU1BnZmt6UzRwT2pKMmdjS01qU0xBMmIwTXBkdTJQREd2bWFLdjlXRUY0cnV3NTRxUnhfd2dzdEk3WURjU0dhbjQydjVsQ0VZbUFzRzd1allLM3NQR0t5MkIwakVwOE14cl9FQ3gwQVo0RzVnVWF5RGo5M2thZzR0NnNSbw?oc=5",
-          "intensidad": 5.0,
-          "medio": "sdpnoticias"
-        }
-      ]
-    },
-    {
-      "categoria": "Social",
-      "peso_pct": 19,
-      "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
-      "tema_principal_id": "morena-coordinadores-2027",
-      "n_temas": 1,
-      "n_notas": 4,
-      "notas": [
-        {
-          "texto": "Morena toma protesta a 17 coordinadores estatales, asiste Alejandro Armenta - MTP Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOQzAzdTNMLU1kZXlyWGhaOUcyN3BSUEhRQWM2VFI5dUczekdITGxqNVRfUlhaeFl4OWJjRzZTSGZDSlYyUnQtUkRmblhRM0VBYndLT0E1UWM1MWVncVpwdDJfbmlyMFRHNUJRQnZkUHVUak9aMXJsbk1YQzlnY1g5cEZkWG5fUjFUTU9fRkxGdnpSMjM4VERSbVc5WXFKcDBSZXRpVkY4NzhJQnpNaE9ZOEtRQV9Uel8zWmc?oc=5",
-          "intensidad": 7.0,
-          "medio": "MTP Noticias"
-        },
-        {
-          "texto": "Descarta Morena impacto de protestas de Clouthier - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPeHFiY1gxSllzdF9xc2YtRUx1clV5ZEVZR0VuSnppR2xPX3dZZERUdVJrT2l5REpETk5GcC1pa0dvSzdBcy1SbVRGbU9uRjdqQnB1WThkX3MyaU9WMXpzV3M2SWFHLTV1a194WWd0NjFUdkxBeGFjTkJnZTNKcHpVYm84ZmQ4OFVQWDNn?oc=5",
-          "intensidad": 5.0,
-          "medio": "Reforma"
-        },
-        {
-          "texto": "Lorenia Valles rinde protesta como coordinadora estatal de Morena - Expreso",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOdmR2UXpOWkRoZ2RvQlBYaTRPVFRkVjVxOGFiYl9xd0RmM21MZmFDVkE2QkNobUthZjFFTmVjaGFFeXd6QkJaUFYtTmRaU2ZFOElUSmhSTnVYMDRBRnhyMzBlbC1aSl8yQm82dWt0V1BiQ0h1b3Q4a0dXWVB3MW52TGdid3UwbkoyNm1JdGxjeW9WMkR4blNjV3NWb3l6VXNLZndQcndEY3JoYknSAbABQVVfeXFMTy1mdmNlZ055SEMwbE5xMjRYT2tLV0ZLSUtiNmkyX0RhUGR2dm9DMWhkbWt3LUVraURFdUZtTm1iNl95eTFWeWJVOVpocURBUkhyVVRZSkZBYXhaazBDWi1sWHNxVkNodzNIdDVvTTdtaDVVNnRRYlNObElhR0xUYU9kNWhFZG8xQVRZREpScS1UN2JqbjlxQ29VcW03dGNlX242T2R0VDVvRURuMTRWZ3c?oc=5",
-          "intensidad": 5.0,
-          "medio": "Expreso"
-        },
-        {
-          "texto": "Morena toma protesta a los 17 coordinadores estatales para defender la transformación rumbo a 2027 - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOVVp2RTlManBRM1J2NHNmemo5b1ZiYnE1NjFiQjVFNWIwT1Y5aDZ3X280TDNZUlJyT1Z4RnRrV0dBcExVUFE4SWJuUmZtM29lM1dCWDBEREtuN2FpdVM4NXFObG4wbWNSclFKVmxrMllRTVBJSmZGM1NKQnZDMldGR1ZoRFFCejRHWlpPQXFzNjE5RS1xcUVzNVNSeEdDRUxUNUtZdENpMlRnX3NLOEd1Z21RYmZJYmRsWXp1NUR30gHDAUFVX3lxTE1ORVRnNjFqTHpTeEV0Rl93OUdLY1lMb2EwTnVjZWFKS2lUZlZvY0NyZWtWS3lSNi1ZNXp5Y1dUOHR6RzVMYnVkZUt1OUgydnMwLVptNjlubGdlRHhNc1JaRGZzY0oyMFRENkgzYUIweE9MZ2RoRU5oR3lNZFJMY0dRYUliYTRSc05ULWlydGtvdzhiNGJjV2NTTDRHU0hYbTk4ZnJCSWJVdDNjZnRZa0JMVVItRWpOTzRlT0s0NVIzSks3OA?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 15,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 3,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Sheinbaum y Delfina Gómez supervisan hospitales en Edomex - La Octava",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOTGFFbDJsZkQ4eGNyd04yTW1FcHJBSm9QNGF2TWx3ZEZ2NnI4OEVsOXNNVzZFNllqcERkSlNWMy1MRU1kU0h0UjNuWTlQXzVxOHRTRUs5ZU5pMFNaa1c2cUxZcWZlbXY0N3JuRVI2SEpNXzk5WW9fVnZPeGprdW5rYXRLWDhCTHZSaWllVjFOa3I2YXRGMGNFdGJmMnM0YUE?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Octava"
-        },
-        {
-          "texto": "Revisan Presidenta Claudia Sheinbaum y Gobernadora Delfina Gómez avances de IMSS Bienestar para ampliar atención médica gratuita en EdoMéx - NDL Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPUUxOZDJ3LWpCS0cyOWNINDh1M29TVXUxOC1ybnlUUElvZU5OdWhnMDd3eHFjR1FKUWRzb2UwYzV1VU5BOE1XZnZkYVgwTTZOSjRTZ3ZvVDAtRjFXU2FnejBRY19VdE5CQncxNmswamZ5YUdORXkwLTZueUNEQUhBem9uTHlBTVpOWW5ZSE5fR19FOEwzUlVHd1YwUzgyTElQUUZVVGZKbVdvNzJ3d0JLdkRpak13NWhRbm5vVmpCWF9FMkp3eWtwaDZjVzRQUUxaTXV6RVpyNmhvUVdmZjdUT2lva3VwVDItMzh3QmpHTHdFUV9DaTdTQnM4TGpLRjZ6?oc=5",
-          "intensidad": 5.0,
-          "medio": "NDL Noticias"
-        },
-        {
-          "texto": "Donald Trump propone cambiar el nombre del Atlántico o el Pacífico por “océano Trump” - Teletrece",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOc1RtNXZsLVpXU1UycGZPRE5rYzUwenBMQjlPN1ZINUtKZFF4LTJZOXZUSUxyWVZmeVQ3aF9RSF9DSzVHR3NSODdRaDFwYm1GVWxCYWVMbVVvOTlHMWxZYVlNZlRwMUxRLXFmaWpXYlVlQVgyUDZ4QUQ1MHVVRGU5OUtwZF92QkZUUnE0VzNRUlNCdFpIYkxJSDU0X3JfR2tHS2xCdHVuTm12MTFFSFV2SHMwVEctQU03M3hj?oc=5",
-          "intensidad": 5.0,
-          "medio": "Teletrece"
+          "medio": "MetropoliMx"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 10,
+      "peso_pct": 15,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 2,
@@ -166,8 +86,30 @@
       ]
     },
     {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 15,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 2,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "Trump presiona a México por el gas y tensa la negociación del T-MEC - América Económica",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPak53QUtNTV9JUWJzZzNWSGQ3ZWlkVVJRRlc1OW12a3BkQ0ptTjNUaG9nQTFPdnM2bVFCd1A2a0REbEp5elpiYm9Yazd3czlFclhocXc3bEhtejgxNEpWMFpXVENnQmVjZ2QzTXU5djZuZGJOZW1scHo3MEtST0N1ZXQ1YlRzcEpxTmJCWnBBNjMtTXdvLTdCNXlTYk1jVnJtRG1SR1NmaEg2R1FTQ1BLS0dQakZmQlBVbW9PWtIBvAFBVV95cUxPak53QUtNTV9JUWJzZzNWSGQ3ZWlkVVJRRlc1OW12a3BkQ0ptTjNUaG9nQTFPdnM2bVFCd1A2a0REbEp5elpiYm9Yazd3czlFclhocXc3bEhtejgxNEpWMFpXVENnQmVjZ2QzTXU5djZuZGJOZW1scHo3MEtST0N1ZXQ1YlRzcEpxTmJCWnBBNjMtTXdvLTdCNXlTYk1jVnJtRG1SR1NmaEg2R1FTQ1BLS0dQakZmQlBVbW9PWg?oc=5",
+          "intensidad": 7.0,
+          "medio": "América Económica"
+        },
+        {
+          "texto": "Donald Trump propone cambiar el nombre del Atlántico o el Pacífico por “océano Trump” - Teletrece",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOc1RtNXZsLVpXU1UycGZPRE5rYzUwenBMQjlPN1ZINUtKZFF4LTJZOXZUSUxyWVZmeVQ3aF9RSF9DSzVHR3NSODdRaDFwYm1GVWxCYWVMbVVvOTlHMWxZYVlNZlRwMUxRLXFmaWpXYlVlQVgyUDZ4QUQ1MHVVRGU5OUtwZF92QkZUUnE0VzNRUlNCdFpIYkxJSDU0X3JfR2tHS2xCdHVuTm12MTFFSFV2SHMwVEctQU03M3hj?oc=5",
+          "intensidad": 5.0,
+          "medio": "Teletrece"
+        }
+      ]
+    },
+    {
       "categoria": "Economía",
-      "peso_pct": 6,
+      "peso_pct": 9,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -178,6 +120,22 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxONVIzNElObDFMSGdaSHd5Z290R3RIM2ZUaTFXNjkyZ0daVm5kWjZmUmpla1RST1lYQUEzTkxNeExXdWtsNzh3Yk9McVEtTWlvekhfS1BiRmhYcExVMlkyTlEwVE5WcVlSSGcwTXNHTWtYRFZvOU5JUFY4MXdTWDlnU0Y2WFhOVkFtR1NuUEU5eUxlYUxnTkNURVlLbjhtRnVGa09VTTBJdkgxV0hpd29Ja0lyTGhZeXhNa3dJenp4STV1cVIwV3Nhcl96clJ0SEgyUWxwSmI0SmE3b3BEbW9wa2N2SUZWTkHSAfsBQVVfeXFMUGhsZHZuTE44THhsR0hHQWVMMlJvMzl0cEh5bDQ2VC1WMDk2SW9lMGFiRlRIQmxhd1YwUE45aHFBcVZXMXF5clYtRkZjYUttYnBDak5lcVppa216RDJqZnNDaUd0S1lFYm1pX1ZWalpqb3dmZTJubXhQTjk4RzhpZDlPblNWSkJmMlNSZFpSdWxGSW93Y0RiaTdEUkJLMDB0TXhmeVpUcXk1X0JQUkR4MUNPbERyRVVyekJVUG9GS29VNjNJQmZtR0RnZXFycjItMEc2SHlyb2JqX2E5amd1aDhwTDlCZVFXTnVhbzg1ZHVyb2V6N0tETHZLVEk?oc=5",
           "intensidad": 7.0,
           "medio": "El Universal"
+        }
+      ]
+    },
+    {
+      "categoria": "Social",
+      "peso_pct": 9,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Morena toma protesta a 17 coordinadores estatales, asiste Alejandro Armenta - MTP Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOQzAzdTNMLU1kZXlyWGhaOUcyN3BSUEhRQWM2VFI5dUczekdITGxqNVRfUlhaeFl4OWJjRzZTSGZDSlYyUnQtUkRmblhRM0VBYndLT0E1UWM1MWVncVpwdDJfbmlyMFRHNUJRQnZkUHVUak9aMXJsbk1YQzlnY1g5cEZkWG5fUjFUTU9fRkxGdnpSMjM4VERSbVc5WXFKcDBSZXRpVkY4NzhJQnpNaE9ZOEtRQV9Uel8zWmc?oc=5",
+          "intensidad": 7.0,
+          "medio": "MTP Noticias"
         }
       ]
     }
@@ -867,7 +825,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 73
+          "peso_pct": 72
         },
         {
           "categoria": "Relación Bilateral",
@@ -899,8 +857,8 @@
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxONVIzNElObDFMSGdaSHd5Z290R3RIM2ZUaTFXNjkyZ0daVm5kWjZmUmpla1RST1lYQUEzTkxNeExXdWtsNzh3Yk9McVEtTWlvekhfS1BiRmhYcExVMlkyTlEwVE5WcVlSSGcwTXNHTWtYRFZvOU5JUFY4MXdTWDlnU0Y2WFhOVkFtR1NuUEU5eUxlYUxnTkNURVlLbjhtRnVGa09VTTBJdkgxV0hpd29Ja0lyTGhZeXhNa3dJenp4STV1cVIwV3Nhcl96clJ0SEgyUWxwSmI0SmE3b3BEbW9wa2N2SUZWTkHSAfsBQVVfeXFMUGhsZHZuTE44THhsR0hHQWVMMlJvMzl0cEh5bDQ2VC1WMDk2SW9lMGFiRlRIQmxhd1YwUE45aHFBcVZXMXF5clYtRkZjYUttYnBDak5lcVppa216RDJqZnNDaUd0S1lFYm1pX1ZWalpqb3dmZTJubXhQTjk4RzhpZDlPblNWSkJmMlNSZFpSdWxGSW93Y0RiaTdEUkJLMDB0TXhmeVpUcXk1X0JQUkR4MUNPbERyRVVyekJVUG9GS29VNjNJQmZtR0RnZXFycjItMEc2SHlyb2JqX2E5amd1aDhwTDlCZVFXTnVhbzg1ZHVyb2V6N0tETHZLVEk?oc=5",
       "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
       }
     },
     {
@@ -917,27 +875,20 @@
       "confianza": "baja",
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/11/los-excentricos-lujos-del-capitan-sol-12-inmuebles-un-penthouse-en-tulum-y-gastos-en-casinos/",
       "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
       }
-    },
-    {
-      "id": "morena-coordinadores-2027",
-      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
-      "categoria": "Gobernabilidad",
-      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
-      "motivo": "Descarta Morena impacto de protestas de Clouthier - Reforma",
-      "peso": 5.0,
-      "n_temas_agrupados": 4,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPeHFiY1gxSllzdF9xc2YtRUx1clV5ZEVZR0VuSnppR2xPX3dZZERUdVJrT2l5REpETk5GcC1pa0dvSzdBcy1SbVRGbU9uRjdqQnB1WThkX3MyaU9WMXpzV3M2SWFHLTV1a194WWd0NjFUdkxBeGFjTkJnZTNKcHpVYm84ZmQ4OFVQWDNn?oc=5",
-      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
+    {
+      "id": "auto-ca5aa83bb0",
+      "nombre": "Pide Zainos Flores un presupuesto “posible y real” para 2027; Congreso espera pa",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPTV82TG1tNVh2ZFFXMmx0d1g3bXl6Q2ZVUkZ3dU84Z09ITUJHVUc4ZXBGUnM5ZHBwSTFYVXlIeDhnUjJZXzVmbjJjVjNQb3AydnAtV1h4eGRicTNEaFU0X19jNTlNc01HdUR4QWNzMjdSRldMSXZTU3hNTGxOSkM4NUt6NEZEYjlxRDBmTk9MS3FDenUxZGc4bjZB0gGaAUFVX3lxTE5UMnNHbFZpT0MxZWk0Sll5czlFeDVrWnZQTE9ELVVGX3dvVTBoTXZqZWFPVjZIWFRCNy1GemtvQUNmaVFhWmp0ZVgxa3Vsb085VHNEc21Wd01zSWpMRm9nSU1DaDI3SnRQemZQbkxkaXdiTXZCaUVQOTJZT3Ayclg2V05HTmVUNzhoaVAwZkdBYjJ1Q1U4YU0xZXc?oc=5"
+    },
     {
       "id": "auto-33fc7bc859",
       "nombre": "Se reportan al menos 109 muertos y 116 desaparecidos al volcar un barco de migra",
@@ -947,28 +898,28 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOb0Y1T2xWczBPZjRnQ2ZBbUJsMW56TGdmejlFSUFERGY5QTRKVlBNWTFUTkZTYVEydmFBTkxtYUpZYi00UXFOaEdxNTR3eEVJRnhLX0ZRdjBjek5nbG9XZk16THlxRWRFQVUtbEhFeTZSTGw0enphbm5HZ0FlRVVmQVhmMVU1cXlYWDZ4cHVCcFZXZGNaOUhrSjVIZ3VnRGp5WVNRd0pwVG1qVlVMbm9JcEZjNThXR292dm1XcWhvd0doUEFacEJpSDVObzQyc09JV2tiYThQTFNFaUNiZGRUeTRyWmF1d2dGMEZqN3Y2bU5Fd9IBhgJBVV95cUxNMkdUQWZkdmRvN3V2OXprbElxcmtWOG9SaUF2a1BIT0d1UlBJRGZmVTBjRllhRTVqQlBFeVlFNUV5ZHpySTJBSVQ2WmpnNFBVY2NvVzh5YlV2UFN1UWpEeDBmanRPdjlqT0ZKd2xpS2dvZ3BsLUNpY0dNTTduNXBKTW1vZGJBc3FjbTFXbnRIMW9rZ2J4cmsxMmROYlo4Z2tSRWR5RzY4aUhfcHJVUC1IZnphYUkzLS1wSDJHcnNDY0hTazNsWE5fb2VqVUFJRVV2MzZUV3JwMkNpc0Ffdl9aRXY1dTU2UFlITHAwZUdDUU51TlhBdWVEX2NORHB2ZUM4MWpRc2RR?oc=5"
     },
     {
-      "id": "auto-6419a474ef",
-      "nombre": "Reconoce Morena fracturas en Zacatecas y Michoacán - Reforma",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNVWV2QkpnX1NaMEN6NFBHWW00OGRSNmZ1TnNRal9ITzdUTmFxaWJjaS15bVFDWnRndFUtOF93Q0hTU1ZpLUtvVk1GTWVRTnNaZTlEVm1KU1VrNmZVMFdoOTcyTXFMLUJlUTd2V2R5VXAzX2Zpb2J1REJ1V1ZrTkt4V1pkdGdMWTB2NXVtdg?oc=5"
-    },
-    {
-      "id": "auto-6c78fb7284",
-      "nombre": "Américo Villarreal participa en reunión nacional de Morena rumbo a 2027 - Mileni",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNMWlldzdneUZZem9kWm9XeG11azJ2QWp1WFQtZVRMVjZ3NW1pTzlCa2trbGdIQVh3T3p0TVBEb2UtNGNxZkVYbUxNbnU5TzVvU3JlbHlkazBubXlBam9seUtPNXpmaUFHQzdVaWZDQ3dCSVNqQy1WS3otU2NUZlhVbVpuUDduaE1Ga3JsSmdn0gGOAUFVX3lxTE0xaWV3N2d5Rll6b2Rab1d4bXVrMnZBanVYVC1lVExWNnc1bWlPOUJra2tsZ0hBWHdPenRNUERvZS00Y3FmRVhtTE1udTlPNW9TcmVseWRrMG5teUFqb2x5S081emZpQUdDN1VpZkNDd0JJU2pDLVZLei1TY1RmWFVtWm5QN25oTUZrcmxKZ2c?oc=5"
-    },
-    {
       "id": "auto-cc3c428b66",
       "nombre": "Anuncia la Presidenta contratación de médicos e inversión en infraestructura",
       "categoria": "Social",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/11/politica/009n3pol?partner=rss"
+    },
+    {
+      "id": "auto-6e8aba8172",
+      "nombre": "Detienen a ‘El Junior’ en Acapulco: Es parte de ‘Los Rusos’ que atacaron a agent",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/11/detienen-a-el-junior-en-acapulco-es-parte-de-los-rusos-que-atacaron-a-agentes-federales/"
+    },
+    {
+      "id": "auto-77af5d0d88",
+      "nombre": "Se viraliza el parecido de una cantante argentina con Claudia Sheinbaum: así rea",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQWHJSZkhadjh0ZWFfMm1vOE1VOFpCenBkd2ZHanpkblNDY3ZiM3RleF9Gd1lqMU9oMFVWdHA4bmZoZTRWck1zT2tySWtiMXpUdHczdTBqZHNPN200VXpqOG1JbXJOWFIwNEt4Q3B0V1RTYjZNbFMxbWE5Q3g1bjJ5NXdkSzFNMVhtX1hkMXc0Y25kMDgyRmpfOGpSUUhsSXNlNUx5WUZyOWJtQmhYR2NnT29EdUF4cnJibkFRRTQwMHJJSlV1OFQzTHJJd25yd2hmQm4wQVU2OXZvOXVE0gH3AUFVX3lxTE1Fc0djUk9OQmdXSjF6b1c2MGY3eEM4SnN3UlRVNk1YYl9IUG9jbHFHWlJUeTZWMXZOU1lRRndsaHVCcE9FVTFfUDRVTVdOT01KUm9kenBKR3hQLXlyc2pfczZQUUdmMGNnQUlGT1g4UHA0UnpDTzJEVWhEY2prTGRJQl9IZU1LUC16UFI1dmdzVnBzMkx3bEZ4cVRNckJJb211aHlCa2JyanlPVjNQd0tXMzFCblp2OEpKbEVtemY0Qjd5VXdHcm1faldrbVZnNFp1Zi04bnVRNUF2R0RIVFVxMWUtTDFiQ2tiNnZjNkhBN3JBekZ1M00?oc=5"
     }
   ],
   "temas_retomados": [
@@ -976,7 +927,7 @@
       "id": "auto-3d55b135f0",
       "nombre": "Condenan a 47 años a hombre por feminicidio contra su madre en Tehuacán",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 18,
+      "dias_silencio": 19,
       "motivo": "🔔 ALERTA — ICE-dispara a hombre en Nueva York: Alcalde condena acción - Milenio",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNdVAyeThxNXMwYUZyVmpsd09HeGQ0NHFwcGRKNjEyTm9mSTVvTVFMY010amhndXR4XzRfUjdpc0pBVENycXcxekJOZWEwcnJoN2QwNWtVclg0RHU0WHozYXQxVXFMZTZaeFFfZ0JOdnN2LVpLSEttS1c3azVPUjBqMXk3Ukh0QQ?oc=5",
@@ -984,15 +935,15 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-82b37c80a0",
-      "nombre": "La alcaldesa de Cancún propone mejorar estándares en nuevos desarrollos para evi",
+      "id": "auto-809fc0c419",
+      "nombre": "Paraíso tendrá una planta potabilizadora de agua, adelanta gobernador - XEVA",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 8,
-      "motivo": "Va Marín Mollinedo por Alcaldía de Cancún, QRoo - Reforma",
+      "dias_silencio": 7,
+      "motivo": "Presidenta Claudia Sheinbaum encabeza inicio de la Jornada Nacional de Reforestación 2026 - Gob MX",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxON0hBOVh4RjlHa01LNERUSkpOWElxd0lKbkRFejhQU2dMTGZIRnNJMUJSeUNGOTFnM0VRSUtVZnVIREtoM2JQNlBTOHppcDFjRV96azYwZElMU194dmNiSjVuOXdxWndna3g3Z0ZLNWNFT05NR3VUTjg1ZlN5Y0ZjNjZmZnEteEk?oc=5",
-      "fecha_anterior": "2026-10-02",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNLUdxa0txVWxvVEYzMWlwcWlrZlB3bUN1VmNXUmF0MEJ3V3BXRS1qQnkzaklqQzNBcjU5SWJzT182c1luLW5iMHdjV0lUQ1Z6U1hHWVlFLUZ5ck9WYjlWTmpVc1Rya05XcUt4R01zZXNic1hVWWFXb1doYmRJQVVEVGhxVFI0TTlIY2lzakxLblZvbHpCZzRHdExpRUZEUDFiODJMWGdmQWNvRzA3OTBLNklTcElhbWJBY0h5aFVHSGw2SC1yV1pnR2FST0Q5TnRkQmpfd2hDXzN0QQ?oc=5",
+      "fecha_anterior": "2026-10-04",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOOFNnc0hKaHk0OFMtUjRUWWp4akZpb2ctbTlWbHgyT25iRWlfM1Q1cjdUMEZmZ1Zrc1N1emlKTXVPN0pjYzJXWERYUW4wQWRGSnFMOW9sT3d1YjNpa2RFQUVDOWd4S0lna1RFekszbUlWN181YzZIckRBZXVTTVRTMUV5d3VRRms2Z3FZWEhWZ0JOZWxmd0IzSWlnenBSZjZyWUdZ?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1008,34 +959,12 @@
       "confianza": "media"
     },
     {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "rol": "Responsable institucional",
-      "tema": "Morena busca contener inconformidades rumbo a 2027; Ariadna Montiel confirma reu",
-      "nota": "“Todos tienen la oportunidad de participar”; Ariadna Montiel responde sobre “premios de consolación” en Morena - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOQWRJd0VjclBvZUJ1cDljRmcwYnEteV92eGpkcTU0d0lIRWhTYXhySHpXV2FnYm5TdWlIM3h1X2lTa0w4ZEZpRUNMeTRIT0MwaTZ4eVRQNW8xVW1XV1RmWnZaQ1k4djBabW1WR0VVc0s2YUp1N2U1Z0c4SzJIeFVaelBkRnYtVXJMeXl5MzJiZ0NPaUJZdEZMX3RadzF2amJlOFIzMkdqQTVWdlRFZ0RWNGp0dWdMWWNzU2Z3clBZaUdkVkpnWmFBT2NFb1VpRVFrMW1SQW5wbnNyajF50gHwAUFVX3lxTE5TY2R5WUVZaHhlQzYyX2E3bzBzUVdXenVDdEZkd1VSYWthWHpaUTMyNU44TVNuX1k2bFhKOXFHbTRzWXoyTUY5UE9aczJmSnNFa2h5WFNlUjBwVzFWcmZHSGZ3VHVqTE5nZUFkNjFTYjhIcnFBY0p5a3lDMDVGd1ctRFR4RXN6TkF0QVFxaEN3SW1pemw4dWNWWlM5MzltcWNlbERyR1R5QTB2R0J1aVRKYUdjNDNNeUF6ODRCNkZDZUJtSGhTZ1dlZmtHYWc2bnViUDBZTmNwSDNYcHVPOGh3SXcyMTUtdUlEYkxuLUlpWQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
       "rol": "Reacción social/mediática",
-      "tema": "\"¡Llévele, llévele!\", aprovechan Consejo de Morena para vender merch; desde el n",
-      "nota": "\"¡Llévele, llévele!\", aprovechan Consejo de Morena para vender merch; desde el nuevo libro de AMLO y hasta tazas de Harfuch - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQOGtIRXNQZHVTdlRER2EyMjhScC1ENUhWTXNiSDBiaTNNZzlKcWVrbzdrbGFHVnBYNjdyRkFCNngyS2YzNFRRZnh3TmdsWkp3a24xNl9Sc01NRDUxcVhvRVprYVljRVpQMmcwVGRQTkNadkVyN3NkU1czNFhTVm9vcVEtRHRxUmtBWE9aYjEtOE1lR2h3RzFlUzFEQXdaYld1UFE3aVd3eVpvTENJSmhoYm5OeUFSbWJVWWg3ODFuSVdRS2wxd1Y2V2I5a1A4akhwcExmYU5ZMlFROUY5UXkzcmZNQXg5Skc3M3ZJ0gH_AUFVX3lxTE1POF8zX0dYTlJMRHFHVTdmMUY0dndNY25tUlJ5Wkt6RHNWdEdMT1BWWG5xb1g0Z0VjcUJ1bjA2dTBYNFpvMzcyUFRzRy1vUVRueXlxN2NiUVlhaGJUZXhKeUkxNWtRQlJGRXJXNUYzV1VBTVFGQjRsX2FpaGUybFFEX0xjMnUzckhYcFVKV081LVE4Y0k3cUd4N3BZZC1CaVR5U21tZXc1SUVDaTlJeHRGVVBxcFhSUXhYMjc5cll0Ync0aUJiYld1SHlkckxvcU5WSnRXVEE5N3Z0NjhIQXQ4RDVmSFEtMmdialFjdlJ6M0tIbm94RVFVYjhGN0hpaw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "higinio_martinez",
-      "nombre": "Higinio Martínez Miranda",
-      "rol": "Responsable institucional",
-      "tema": "Deben aprender a perder y a ganar: Higinio Martínez",
-      "nota": "Edil acusada de autosecuestro visita a Higinio Martínez - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOSV9ST1FZcWV1SnpRbVM0TnBFMmdUMVJPUTlaOThWQVZKQ09DRzg3SlNVdThGNzVFXzdJZEpKdW9memNUcUFycEdOMDh0WlpPR2xqTnpPV1JOY0E1ZW5pZHFfdVFzS3hYcERtVGM3OW9XSDN1em9lNzQ3QmFpdW1oWUtmc09rLTJkU0ttOTNWV0o0TTVfdTVOYjNmOVBnSV9zOGJMajN3emczV0ls?oc=5",
+      "tema": "AMLO reabre frentes - Reforma",
+      "nota": "AMLO reabre frentes - Reforma",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE4tZ1A5dUJabmg0RlFrTjRIM3U2bVNCUi1tazA1cHFGQ0FxcTQ4WWhQU1dyZ1ZzOUJINEE3a0dMa0FOSkl6OGtqdG4wdG5yTHBZZE9YUkVDTEkydTVaS0g3T1Jraw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1043,10 +972,10 @@
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
-      "rol": "Mencionado",
-      "tema": "INE define Consejo Local de Quintana Roo para elección federal de 2027 - Grupo A",
-      "nota": "Morena aprueba política de alianzas rumbo a elecciones 2027 - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNNGM2OFZXMTc3N09id2l6cVZfcE1sWlFkaEhsOFhzNlA5dU1ENEdVa1pLZlpfRGpGT2JrZjJPR3VvcDFDUWRDYm9naW15VGVKaHNwR2czWnNHREE2RFp4V0txb0VmNHdSaEpfQjFJYk5QeVJFMFNCUmFIVl9lVTdCOGhNQmd2VkNWSHNQX1RHNnN3UU9RZnlEQjVPcjBZN0VY?oc=5",
+      "rol": "Responsable institucional",
+      "tema": "Los valientes de Morena por Tamaulipas - MILENIO",
+      "nota": "Los valientes de Morena por Tamaulipas - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNUWU0aEpOaF95YnRsZ0h1aER6YS1wZXpER2UtWG5qSGxQam9TTE16M1BtdTZaOW9JMl9wS0htcTRWWVdjOG9hSzhBLXZMbml1QzdvaE9lVTJFNDcwQzZIb0dlWHVvbUg2SFZGZzdlVVZtdnplRVZpWC1lRkNTNW1ZRklqN2hFWlcxME9yaVA0MFlBWFQxZHNQSHJwYlBaQXlR0gGgAUFVX3lxTFBDalBxNTdKc0RoczQwZEZqZHQ1MU5KMzVPdTByTXlNckdYaDZQMUlPdU5KZ3FUYlBTQWl0em5WbVdDandRdmdDNHlQOHFBajdLaU5IcHdVYmk2Q1M0N056cWIxMlhSWG14djJ0QV9ZNkNiTGJfVkgzeTZHQW9INUhvV0taTUlMTm9tWUJMTG0zYmF5NTFHT3JfWFhreEJ2alI?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1257,10 +1186,10 @@
     },
     {
       "fecha": "2026-10-09",
-      "tension": 32,
-      "n_notas": 46,
+      "tension": 31,
+      "n_notas": 47,
       "n_alto_impacto": 25,
-      "n_medio_impacto": 21,
+      "n_medio_impacto": 22,
       "n_bajo_impacto": 0
     },
     {
@@ -1273,10 +1202,10 @@
     },
     {
       "fecha": "2026-10-11",
-      "tension": 29,
-      "n_notas": 7,
-      "n_alto_impacto": 2,
-      "n_medio_impacto": 5,
+      "tension": 25,
+      "n_notas": 13,
+      "n_alto_impacto": 4,
+      "n_medio_impacto": 9,
       "n_bajo_impacto": 0
     }
   ],
@@ -1285,63 +1214,127 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 94,
-      "y_lunes": 86,
+      "x_lunes": 97,
+      "y_lunes": 87,
       "x_hoy": 100,
-      "y_hoy": 88,
-      "delta_pts": 6.0,
-      "alcance": 26,
+      "y_hoy": 86,
+      "delta_pts": 1.5,
+      "alcance": 27,
       "n_alto": 21,
-      "n_medio": 13,
+      "n_medio": 14,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNUFNxaGFzT1BQYVViY0MxckxCR2hSTWQ5ZTZMdFBkN0tKZDczN1M2VnYteTBvTzdDVmlMYkM4NV8zOFF0blk2anNNYi1ZX2tZakpSc3U3SGNpRHhOZ0xLV3lXNkhhdUVfdnc4UUEtcVJaY3dyRU5LRlRucWFmOXRObkJ0eGgxemdPWDlhcmEtOUhWQWczS05kTlVn0gGaAUFVX3lxTE4yNkhfYkpKMFJqWmRIbkNjYUljcjdhOG4wSTRfV1k5S2REWno3ZFBIV3RGWjZ3OUV4bWhyQ1Z4RmJDVkhvNUFOZ09zdUFzUjVwTzlEQmoyR01hWnFIQmlDb1paYUgzQjh0T2MxRmVtdDJ1b1NkUUJqa3hwM2J5T2c5eTBBMTF5OXlmMWFHaG1qRmRKRGJ6U0Q4dkE?oc=5",
-      "nota_texto": "La presidenta de Morena en Puebla descarta renunciar para contender por la alcaldía de Tehuacán - Telediario",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdXJDTzFCSVo4dHY4TUtGbXEwNUU0cnZHaFFoQTRIaEs5dnJYVjllRVdrMEdELTZKcFMtWmhuWXdCZm5oM0NvVTBjMjZObjhnWkVnMUlJUkxVOFBoMGhJYTdzWnRGbnhteDk2UEdaTUszMnZLbnlibGxtYVBMQ19jLVZGcnppQmtxbTVqVnBXQ3NrY1k?oc=5",
+      "nota_texto": "Pío López Obrador se registra en Morena para buscar diputación federal por Chiapas - MAGMA Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 6,
+      "dias_activo": 7,
       "trayectoria": [
         {
           "fecha": "2026-10-05",
-          "x": 21,
+          "x": 20,
           "y": 85
         },
         {
           "fecha": "2026-10-06",
-          "x": 35,
+          "x": 34,
           "y": 90
         },
         {
           "fecha": "2026-10-07",
-          "x": 65,
-          "y": 89
+          "x": 63,
+          "y": 88
         },
         {
           "fecha": "2026-10-08",
-          "x": 79,
+          "x": 77,
           "y": 88
         },
         {
           "fecha": "2026-10-09",
-          "x": 94,
+          "x": 91,
           "y": 86
         },
         {
           "fecha": "2026-10-10",
+          "x": 97,
+          "y": 87
+        },
+        {
+          "fecha": "2026-10-11",
           "x": 100,
-          "y": 88
+          "y": 86
         }
       ],
-      "fecha_apagado": "2026-10-11"
+      "fecha_reactivado": "2026-10-11"
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 86,
+      "y_lunes": 74,
+      "x_hoy": 89,
+      "y_hoy": 73,
+      "delta_pts": 1.5,
+      "alcance": 27,
+      "n_alto": 11,
+      "n_medio": 20,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPU0dFV0RqUlg3cm5qODBIQlhWc0x6d1FhYjhjUGNoT2NSSjdmX002aHRyaExfNXpTRnRpa0k4UEZJd2tLalBsdV9DdnVFNkdRaXhvaTdJYWZuUlYxa2NZWTVWYW16empnMHNjVEdwTHdKMHVNNjJNbzEwaW9PMlR0enhmbUF3d0FQY3VESDljc0VrY1QtWGF4bGpVTDhLS0xablFkU2VWVXZMWllzWEtkOEgyamNXUzBUQjVmV1lVSQ?oc=5",
+      "nota_texto": "Claudia Sheinbaum habla sobre el movimiento de Tatiana Clouthier - Infobae",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 7,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-05",
+          "x": 17,
+          "y": 90
+        },
+        {
+          "fecha": "2026-10-06",
+          "x": 23,
+          "y": 88
+        },
+        {
+          "fecha": "2026-10-07",
+          "x": 54,
+          "y": 74
+        },
+        {
+          "fecha": "2026-10-08",
+          "x": 69,
+          "y": 72
+        },
+        {
+          "fecha": "2026-10-09",
+          "x": 77,
+          "y": 74
+        },
+        {
+          "fecha": "2026-10-10",
+          "x": 86,
+          "y": 74
+        },
+        {
+          "fecha": "2026-10-11",
+          "x": 89,
+          "y": 73
+        }
+      ],
+      "fecha_reactivado": "2026-10-11"
     },
     {
       "id": "tatiana_clouthier",
       "nombre": "Tatiana Clouthier",
       "iniciales": "TC",
-      "x_lunes": 91,
+      "x_lunes": 89,
       "y_lunes": 68,
-      "x_hoy": 97,
+      "x_hoy": 94,
       "y_hoy": 67,
       "delta_pts": 3.0,
       "alcance": 22,
@@ -1358,138 +1351,89 @@
       "trayectoria": [
         {
           "fecha": "2026-10-05",
-          "x": 44,
-          "y": 76
+          "x": 43,
+          "y": 75
         },
         {
           "fecha": "2026-10-06",
-          "x": 85,
+          "x": 83,
           "y": 69
         },
         {
           "fecha": "2026-10-07",
-          "x": 91,
+          "x": 89,
           "y": 68
         },
         {
           "fecha": "2026-10-08",
-          "x": 97,
+          "x": 94,
           "y": 67
         }
       ],
       "fecha_apagado": "2026-10-09"
     },
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 76,
-      "y_lunes": 75,
-      "x_hoy": 85,
-      "y_hoy": 75,
-      "delta_pts": 6.0,
-      "alcance": 25,
-      "n_alto": 11,
-      "n_medio": 18,
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "iniciales": "AL",
+      "x_lunes": 37,
+      "y_lunes": 99,
+      "x_hoy": 40,
+      "y_hoy": 100,
+      "delta_pts": 3.0,
+      "alcance": 13,
+      "n_alto": 12,
+      "n_medio": 2,
       "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPU0dFV0RqUlg3cm5qODBIQlhWc0x6d1FhYjhjUGNoT2NSSjdmX002aHRyaExfNXpTRnRpa0k4UEZJd2tLalBsdV9DdnVFNkdRaXhvaTdJYWZuUlYxa2NZWTVWYW16empnMHNjVEdwTHdKMHVNNjJNbzEwaW9PMlR0enhmbUF3d0FQY3VESDljc0VrY1QtWGF4bGpVTDhLS0xablFkU2VWVXZMWllzWEtkOEgyamNXUzBUQjVmV1lVSQ?oc=5",
-      "nota_texto": "Claudia Sheinbaum habla sobre el movimiento de Tatiana Clouthier - Infobae",
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYzNudllLXzNqa2c3MHhGdE1IMF80SWpvc2NGTGQyYnpZRFlJVjBRMWI4eHRoNlg5aWFBeXhTREIwRnpidmNPejlTZnh6YlJRbnVBNmpvaGV4OS1GV1gtVG1QU0tIbnN1aDgzUUdCdHplYWhMdm94NVNzZ1RMaVl0c21NMERZdDB2OEN6NXE0c0JUWnBpSE5TRWhPQjBHZnpVSGVHT3lrdlI?oc=5",
+      "nota_texto": "El movimiento político de Andrés Manuel López Beltrán - MVS Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
       "trayectoria": [
         {
           "fecha": "2026-10-05",
-          "x": 18,
-          "y": 90
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 24,
-          "y": 88
-        },
-        {
-          "fecha": "2026-10-07",
-          "x": 56,
-          "y": 74
-        },
-        {
-          "fecha": "2026-10-08",
-          "x": 71,
-          "y": 72
-        },
-        {
-          "fecha": "2026-10-09",
-          "x": 76,
-          "y": 75
-        },
-        {
-          "fecha": "2026-10-10",
-          "x": 85,
-          "y": 75
-        }
-      ],
-      "fecha_apagado": "2026-10-11"
-    },
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "iniciales": "AL",
-      "x_lunes": 35,
-      "y_lunes": 99,
-      "x_hoy": 38,
-      "y_hoy": 100,
-      "delta_pts": 3.0,
-      "alcance": 12,
-      "n_alto": 11,
-      "n_medio": 2,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYzNudllLXzNqa2c3MHhGdE1IMF80SWpvc2NGTGQyYnpZRFlJVjBRMWI4eHRoNlg5aWFBeXhTREIwRnpidmNPejlTZnh6YlJRbnVBNmpvaGV4OS1GV1gtVG1QU0tIbnN1aDgzUUdCdHplYWhMdm94NVNzZ1RMaVl0c21NMERZdDB2OEN6NXE0c0JUWnBpSE5TRWhPQjBHZnpVSGVHT3lrdlI?oc=5",
-      "nota_texto": "El movimiento político de Andrés Manuel López Beltrán - MVS Noticias",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 5,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 12,
+          "x": 11,
           "y": 81
         },
         {
           "fecha": "2026-10-06",
-          "x": 15,
-          "y": 87
+          "x": 14,
+          "y": 86
         },
         {
           "fecha": "2026-10-07",
-          "x": 24,
-          "y": 95
+          "x": 23,
+          "y": 94
         },
         {
           "fecha": "2026-10-08",
-          "x": 35,
+          "x": 34,
           "y": 99
         },
         {
           "fecha": "2026-10-09",
-          "x": 38,
+          "x": 37,
+          "y": 99
+        },
+        {
+          "fecha": "2026-10-11",
+          "x": 40,
           "y": 100
         }
       ],
-      "fecha_apagado": "2026-10-10"
+      "fecha_reactivado": "2026-10-11"
     },
     {
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "iniciales": "OG",
-      "x_lunes": 21,
-      "y_lunes": 93,
-      "x_hoy": 24,
-      "y_hoy": 95,
+      "x_lunes": 20,
+      "y_lunes": 92,
+      "x_hoy": 23,
+      "y_hoy": 94,
       "delta_pts": 3.0,
       "alcance": 7,
       "n_alto": 6,
@@ -1497,8 +1441,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://www.elfinanciero.com.mx/nacional/2026/10/06/es-como-pedro-infante-manuel-velasco-elogia-popularidad-de-garcia-harfuch-rumbo-a-2030/",
-      "nota_texto": "‘Es como Pedro Infante’: Manuel Velasco elogia popularidad de García Harfuch rumbo a 2030",
+      "nota_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQNXAtN09KaDNnMzRWWFpCM3hwSmhGaWlRX3NSM25welcyZThKWHNqYjczNTR1QmZ3VHFPc1ZlcExmQm9TbkFlQi13YjZVSmRfY1I1NzhFRVU5YUZXU3hlTmVEdzRLNm5tNHl2UjV0a3E3Vzhsb054WTZsZHZyTUtlY05zWFgwMlYwcThXV1hGWXRaeWNvVDVJa1MyNE9aTGpSd0xqLWdaOEtlQWtRc2lUMVpNbXRUOVFHODA3N0kzVWZoUU5GSGVrNnFWVHQ5dGxSUjFybXVtdGtYSW1pelVmbkM2Z3V5S2xkR2J1RmRIVThuM2FNMnlUStIBkwJBVV95cUxPeXBTTUszNzliNHJOc0JyQnlPTlY1UEtnTEtZWDU1eGJHZ1dVbzhlY2tWaVlSVThCNk1mY1U0UFRzNFloVUFMd1lFTzRXS0NyQjJfX2VWWV9jX25tRTNWcndkSUJvVU5GMU9meEZQY1FaWk01bHB6THBZVWowcnhEVEFkSDZtVHI1VDNTNVloVnIxTGR2dWdrY1ZWMkZheTVVWkg4LU5hMFBIalIwUVJ1QUtMeGlmU1k1ekVGOVBGdV8yVV9lUXdHRzhndEZiVWpJYlF0dEJRZXlDRjRhd0hlUHNNVEpBeXpCa2dmenBUNnF6eUlVc1htZUFmbzZoaGNtV04tNXVqOXVRSzk3ZXRsRGlPOA?oc=5",
+      "nota_texto": "Exjefe de la DEA elogia a García Harfuch por captura de ‘El Tanque’, pero pide enviar a Rocha Moya a EEUU: “Sería un gran logro” - Infobae",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1515,55 +1459,21 @@
         },
         {
           "fecha": "2026-10-08",
-          "x": 15,
-          "y": 87
+          "x": 14,
+          "y": 86
         },
         {
           "fecha": "2026-10-09",
-          "x": 21,
-          "y": 93
+          "x": 20,
+          "y": 92
         },
         {
           "fecha": "2026-10-10",
-          "x": 24,
-          "y": 95
+          "x": 23,
+          "y": 94
         }
       ],
       "fecha_apagado": "2026-10-11"
-    },
-    {
-      "id": "andrea_chavez",
-      "nombre": "Andrea Chávez",
-      "iniciales": "AC",
-      "x_lunes": 21,
-      "y_lunes": 70,
-      "x_hoy": 41,
-      "y_hoy": 70,
-      "delta_pts": 13.5,
-      "alcance": 9,
-      "n_alto": 4,
-      "n_medio": 10,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTlQ3b1JRaWFiSEpzWTJTUWI1VUJvV0FUamlJS25QcDZXdkQtNFdGclVKcHJFLWQwU2pCZGFGUkNiVDhiMERadFZnRThZc25UcnlycGp2V19OTVAwMjk1cWNmQXgyRHc4RmZfdExkWnJfZWlkZUgzdkduY0NVMlJjdTBZcGFqLVVLR0FCem5URjdkQkc3MHZxZkZVMTF4ZzJuaHFjamVRRzhhVEhXTVdBbGNHLTdLQmMzTFZzOTNPTWl1UG9FMS1pVjcxOExyUkZXLVM0bFVB0gHqAUFVX3lxTE4wcndSdXRFbDdDRjJFc040ZDkzUGxMeG9aYzhJTlpjV3BJV0wySnZ6REs2Zm1KaC1ZOE5SbTZ6bGVNVktrY29EYlR6TUYybGRfcXMxdE5LQ3FrN01TeDBNLVptODR0SzJVVVE0THBkOVFHTHdsTU04WmRlY09BekZfZ3pTQjZZNzdXbFZKS0ZZbUduUVJDS1g2YmhTX2taRzdNdU5HdXIya01SUXppMFZLb1NsUjZMem8wTGN0TjZtdk45UXZRdDRaNXhCZllPS0lvanF4ZXU0M1BBeHBUeEFVMzNtYWhpNEJMdw?oc=5",
-      "nota_texto": "Morena define a Andrea Chávez como coordinadora municipal en Ciudad Juárez - El Universal",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-05",
-          "x": 21,
-          "y": 70
-        },
-        {
-          "fecha": "2026-10-06",
-          "x": 41,
-          "y": 70
-        }
-      ],
-      "fecha_apagado": "2026-10-07"
     },
     {
       "id": "rocha_moya",
@@ -1598,12 +1508,12 @@
         },
         {
           "fecha": "2026-10-07",
-          "x": 15,
-          "y": 76
+          "x": 14,
+          "y": 75
         },
         {
           "fecha": "2026-10-08",
-          "x": 21,
+          "x": 20,
           "y": 77
         },
         {
@@ -1619,10 +1529,44 @@
       ]
     },
     {
+      "id": "andrea_chavez",
+      "nombre": "Andrea Chávez",
+      "iniciales": "AC",
+      "x_lunes": 20,
+      "y_lunes": 69,
+      "x_hoy": 40,
+      "y_hoy": 69,
+      "delta_pts": 13.5,
+      "alcance": 9,
+      "n_alto": 4,
+      "n_medio": 10,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTlQ3b1JRaWFiSEpzWTJTUWI1VUJvV0FUamlJS25QcDZXdkQtNFdGclVKcHJFLWQwU2pCZGFGUkNiVDhiMERadFZnRThZc25UcnlycGp2V19OTVAwMjk1cWNmQXgyRHc4RmZfdExkWnJfZWlkZUgzdkduY0NVMlJjdTBZcGFqLVVLR0FCem5URjdkQkc3MHZxZkZVMTF4ZzJuaHFjamVRRzhhVEhXTVdBbGNHLTdLQmMzTFZzOTNPTWl1UG9FMS1pVjcxOExyUkZXLVM0bFVB0gHqAUFVX3lxTE4wcndSdXRFbDdDRjJFc040ZDkzUGxMeG9aYzhJTlpjV3BJV0wySnZ6REs2Zm1KaC1ZOE5SbTZ6bGVNVktrY29EYlR6TUYybGRfcXMxdE5LQ3FrN01TeDBNLVptODR0SzJVVVE0THBkOVFHTHdsTU04WmRlY09BekZfZ3pTQjZZNzdXbFZKS0ZZbUduUVJDS1g2YmhTX2taRzdNdU5HdXIya01SUXppMFZLb1NsUjZMem8wTGN0TjZtdk45UXZRdDRaNXhCZllPS0lvanF4ZXU0M1BBeHBUeEFVMzNtYWhpNEJMdw?oc=5",
+      "nota_texto": "Morena define a Andrea Chávez como coordinadora municipal en Ciudad Juárez - El Universal",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-05",
+          "x": 20,
+          "y": 69
+        },
+        {
+          "fecha": "2026-10-06",
+          "x": 40,
+          "y": 69
+        }
+      ],
+      "fecha_apagado": "2026-10-07"
+    },
+    {
       "id": "clara_luz_flores",
       "nombre": "Clara Luz Flores",
       "iniciales": "CL",
-      "x_lunes": 24,
+      "x_lunes": 23,
       "y_lunes": 61,
       "x_hoy": 26,
       "y_hoy": 66,
@@ -1641,17 +1585,17 @@
       "trayectoria": [
         {
           "fecha": "2026-10-05",
-          "x": 15,
+          "x": 14,
           "y": 65
         },
         {
           "fecha": "2026-10-07",
-          "x": 21,
+          "x": 20,
           "y": 62
         },
         {
           "fecha": "2026-10-08",
-          "x": 24,
+          "x": 23,
           "y": 61
         },
         {
@@ -1666,9 +1610,9 @@
       "id": "lorenia_valles_sampedro",
       "nombre": "Lorenia Valles Sampedro",
       "iniciales": "LV",
-      "x_lunes": 21,
+      "x_lunes": 20,
       "y_lunes": 62,
-      "x_hoy": 24,
+      "x_hoy": 23,
       "y_hoy": 61,
       "delta_pts": 1.5,
       "alcance": 8,
@@ -1685,17 +1629,17 @@
       "trayectoria": [
         {
           "fecha": "2026-10-07",
-          "x": 12,
+          "x": 11,
           "y": 54
         },
         {
           "fecha": "2026-10-08",
-          "x": 21,
+          "x": 20,
           "y": 62
         },
         {
           "fecha": "2026-10-10",
-          "x": 24,
+          "x": 23,
           "y": 61
         }
       ],
@@ -1830,7 +1774,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1885,5 +1829,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-11 12:01"
+  "hora_corte_publicada": "2026-10-11 18:03"
 }
