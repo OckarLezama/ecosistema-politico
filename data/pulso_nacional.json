@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-10-12T12:59:26.841134-06:00",
+  "generado_en": "2026-10-12T18:00:34.416793-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 25,
+  "n_notas_ventana": 39,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 21,
   "tension_anomalia": {
-    "z": -0.78,
+    "z": -1.25,
     "nivel": "normal",
-    "media_periodo": 34.1,
+    "media_periodo": 34.0,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 47,
-      "tema_principal": "La Barredora",
-      "tema_principal_id": "la-barredora",
-      "n_temas": 8,
-      "n_notas": 13,
+      "peso_pct": 62,
+      "tema_principal": "Personal del CAE en Xalapa convoca a concentración ante desabasto de medicamento",
+      "tema_principal_id": "auto-71e483207a",
+      "n_temas": 11,
+      "n_notas": 26,
       "notas": [
-        {
-          "texto": "A un año del asesinato de Carlos Manzo: Grecia Quiroz convoca a marcha nacional por la justicia y la paz",
-          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/11/a-un-ano-del-asesinato-de-carlos-manzo-grecia-quiroz-convoca-a-marcha-nacional-por-la-justicia-y-la-paz/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
-        },
         {
           "texto": "Coincidencia y compromiso con la 4T, eje para alianzas, define Consejo de Morena",
           "fuente_url": "https://www.jornada.com.mx/2026/10/12/politica/006n2pol?partner=rss",
@@ -38,16 +32,40 @@
           "medio": "news.google.com"
         },
         {
-          "texto": "Detienen a 'El Cara de Cochi' miembro de La Barredora 24 - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPUUlneFdnb1dsUElZcG90c2E5RVE3NER6ZUpDWVlMc1V6bW1TSi1GUGk4Zk1KeVVMblZVeHRFd1VxX0ctQzBwNXg2YlJXcXB6bHp6bEI1dk1nYXlLWldnODRwU2l3N19ETS1nVWtuOGd3MjZfMGc1cExLaW1GRkRQdldJdGFmOTJkZVRWc18xVQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
+          "texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "Infobae"
+        },
+        {
+          "texto": "Gobernador Javier May al margen del proceso interno de MORENA para elegir coordinadores - XEVA",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWVJ3WFpOeHZ0dE55RlNRbzU1UURRS3B5cWZzZ3RBdFFodXNpdS1XdXl5NmQ0cVpDb0xqMnFXcnhDeElJdkx4cmE2SXVQWlNpRjVjS2QxNkk4N3EyNWo2YS1LWXRSU3hMX0dmZ0I3enJhbGltU3NNcmR2TkVnUFZacFQ3OWhfVG5Pb3p1dlhQS1JrZzBzQjhKWXRLclU3S3RNMXZHSzd1T2dldFYzSDVPOWQyNW11WWdXOWNVdENvRQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "XEVA"
+        },
+        {
+          "texto": "En resguardo domiciliario enfrentará su proceso por huachicol fiscal el empresario Ricardo Thompson - Semanario ZETA",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQYzIzVlZPMTdtcG9mZk9hNDhfUDBtNHpwQzlhZkFEb2VaVGVleWsybWc0RmVEMTV6YUgtaS0wY19kTVRvTGlPWFA3bGRlc1ZsdllCajZOUmp6Yy1pT2d0WVVlSXNmeXZkLW5OZTktYjZrYzlaMFBETnpHS3N0aVpQZkl5RGloelVLRjlXQ3lpX0hJcGY2OHlpdy11SEJqMkxRTW9yZnhDa0tVbjBpS24yTDZ1Ni1sTy05eGo2NXFicGhDQ2xoSkZuZU1Hd08?oc=5",
+          "intensidad": 7.0,
+          "medio": "Semanario ZETA"
         },
         {
           "texto": "¿Quién es 'El Cara de Cochi', miembro de La Barredora 24/7 y cercano a Los Rugrats que fue detenido en el Edomex? - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNTUZ6ZGxLdVNsQ3NVZXI5MWkzeFZGcmZzRjBsLXVLTVMzT2g5NDgxSkpLZVZ4WlJWN2pmV0xEc0lSQVVVNTJPelo0MGtkQ0tueXpsbm1EY0NveDVoV0d1bC1EYWIzMmpRa0E0VzgwcmtqQUJzX21YX3MwMlQyR1hGTERRSkVRcExjVjlxc0NIUHNVc2lXWktVVVMxNA?oc=5",
           "intensidad": 6.0,
           "medio": "MILENIO"
+        },
+        {
+          "texto": "Cae en Edoméx Jesús Darío «N», señalado como integrante de «La Barredora 24/7» en Sonora - EDOMEX AHORA NOTICIAS",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPV1pKZ3pBR21MN25MLTVjSTZ3OGJ3Zk1oZzYydEdyOF9oTTJCZEtYc2hBUTlaTjNCSGhpdkpNY1dlNnMtMUNSU0RTNUxzYW9pLWNsbkFpWUU5Z3JVb19kaXUxTkFBRjZvM2hpNXBRUEN1bnFwM3BmMlZqUWtsbGM2dFQ3dFZWdS16VWxqczBZbU5sUFV5UFdFTnpMV3RhcmlYT21HUk4xN2Yta05STmZOSkZ0dldFSFhLUE1V?oc=5",
+          "intensidad": 6.0,
+          "medio": "EDOMEX AHORA NOTICIAS"
+        },
+        {
+          "texto": "Naviera Ultramar y filiales acumulan alertas de la UIF por huachicol fiscal y marítimo - vanguardia.com.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNdjF4bEg5ZmRFX0tVRjFDTDJTWWVRbllNTmpLQmY4aTZEdUV3b2R2ck5hbXZnRXg4WTFna3Zub1pHNklEbl83R0dkcU5UTXlwM21KZnlPakQ2eUVDYU5wUVc4bUVuZHhuWklOdENfMlZkMDlXYlUtbVBGM01nUjdpVUVJNFYyX3JGUUJKZUp1c2ZxZktDSmFhLTc5ZjdIV2pwMHlqNllmY1FjdVBZSUtiWFlKczhPMHZtSHYzYmprUlNhUFpXUm1jUVNHRWk3NUxmblJjN3N3?oc=5",
+          "intensidad": 6.0,
+          "medio": "vanguardia.com.mx"
         },
         {
           "texto": "Premio de consolación a senadores que perdieron coordinaciones estatales",
@@ -86,24 +104,58 @@
           "medio": "Al Calor Político"
         },
         {
-          "texto": "Presidenta rechaza que reforma contra fraudes con IA sea “ley antimemes”",
-          "fuente_url": "https://www.tabascohoy.com/presidenta-rechaza-que-reforma-contra-fraudes-con-ia-sea-ley-antimemes/",
-          "intensidad": 4.0,
-          "medio": "tabascohoy.com"
+          "texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas “legítimas” del personal: desabasto y falta de prestaciones - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNSnlBa3cyVmh6VFlmaS0zLXdJTUt4bUozeTl1VnZBQWdQZm1TYks4alFTcXk3ZE9GTDg4NjVGaWVKYnFjLW4xcGpfRmgwTHRHNDk2MkRTclM2d0xWRWRiZHVDWlhMZms3MS0wMl9KLXR6bWJwVzZod0VNaXdIUzdLOEs3MUlnVVV2OXlWcXJPMDNwcjVfMTZWRDJDeFd0ZmNhb1BUSkxVQzBhTFJFQkZ3RXRucy1aazk0bHNKSzhyUW1BT2FiT3ZmSjFkS0N0eloyUllQSkpYX3gxdy1vWml1LTZKLUMyRXJITGVTSWZ3cEU1U1NvMWVxLdIBkwJBVV95cUxQMkFhMjMzZHNMTXZEeVVRTnJfR29SZzRNS21Jd3M2WGRQQWxkcE9yWmdyX1pIQ3pGaUtYalRZdXlYWHlnNFFadndnSi13NDZ2RTN4T2F2QzE0Z0g1MThLcy1SQzBORU0zbENvbE5JckdmUDZkanh4S21SZWpsc21iWlBPS2g1Nlh1UDVVWEg4VU50X3R1cTRhOGRaUFhaZG5GdjYxbGZpT1k3elJnaFo2VUFRWkMzcEJIRTlXZnFzX205dkZDZnp6Ry1memxUdG5WWEgyM0ZxdC1CcDhLRVdnR19mbk5qZUNhTzBIamtwMWU4bGdXVDRxVVE2cTVyRDlvclI0X3FJaTEwMlI3VTc5a3p0UQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "Infobae"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 15,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 2,
+      "n_notas": 5,
+      "notas": [
+        {
+          "texto": "Presidenta Sheinbaum descarta fin del T-MEC tras declaraciones de Trump; México busca reducir aranceles - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQQk5VYVd2Snp0b0JuZlJGay1fTVcxc2lmRDlzMEFYU3ktbmxGY291NTNSdFVCaXJfNU9FamZxVkNMLS0zRU5ZOWNFSzcteEhnQmh6eFhkTGszYV90X0xPM2dBa1Q2TTVnRGFHcVFqZmxfZFgtXzlDcUs5aHcwY0EzMUtGcmczZmU3ZmhfS3hkVkd6WVNWcXRPUXJRTXZHdzRjS3BXOUczTWpBQ2dFWEVMaFdOc05TV2xGOTVzXzNuZTQyR2gxeFI1S1lFZERjQdIB0wFBVV95cUxOOVhsRktMWHozN3FGZzU3OV9ObjFLeUJEbVUyRUNhRWp1ZGs3bzJheEJQaTl1TU5RRnVMbnRIeEotMi1YLTQxRDRRSWVIOFlSRXVGTC05cjRpYWxQUkZ4STNyOFRzOUtLM2hvNFhuWVF1SjlPdEM5d2pnRWFRSUpFdU1fdXJieGszLVZtenlIQ0FpZzJSV1BmOFQ1cGUxd056SzlvTFZoeVZKa2FaR3RYa202SUZMOGgyZmpBbkU1eEVFd3RDTUs3aVRUQWc0cEJLT2ZZ?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
         },
         {
-          "texto": "Presidenta rechaza que reforma contra fraudes con IA sea “ley antimemes” - Tabasco HOY",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQU1lZcTI3dmVHOFdJLWhyV3B0QWRjbmpRVkx6T1Z4Q2IzSFNaSTB6d1Y4OVhBMFotS3pfSi13MWxSMzdkRE8tdGFJRnhJc0JsY1M4RjJjLWVLOGRGRUxzT3VqeWpPbUJUSUZWYnpweWhrSzRzWkZxUVhYQ0FBaGlPOGpqUDJOMlBUdFhVTjBxM2pwSnZ6VHdvOWhacE9ZQVE?oc=5",
-          "intensidad": 4.0,
-          "medio": "Tabasco HOY"
+          "texto": "Sheinbaum reacciona a plan de Trump de ‘dejar fuera’ a Canadá del T-MEC: ‘EU decidió negociar aparte’",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/12/claudia-sheinbaum-mananera-temas-hoy-12-de-octubre-de-2026-en-vivo/",
+          "intensidad": 7.0,
+          "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "Sheinbaum mantiene diálogo con Estados Unidos sobre el T-MEC tras dichos de Trump - voxpopulinoticias.com.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNR004MS0tZmYxVnBzdTBLMlBnbWdybXVxWC0zRzI0YkhiNjdpdElyZVZvM1c3aV9qRWJONFFURWNzTlRKVkNOUjBiaGNwdVNMU1V3Z0VJSXVtSU1VU0JwajFfdVktY1drNUdRamNZeTgtLW1yc2lmNzAtY29wZ2FwSFctdWJTM0Zxem5BUTFQbFVxVGl2QURpTFU1YnB3a0dLaHdiSkQ0V2VWLXdEM2xiTm52SS1IZkNMRUxMRGFiSHg?oc=5",
+          "intensidad": 7.0,
+          "medio": "voxpopulinoticias.com.mx"
+        },
+        {
+          "texto": "Continúa diálogo del T-MEC para eliminar aranceles, afirma Sheinbaum - Quadratín Tabasco",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMFk2NU4tQVA1SGhTeGlScUdLVmhReF9rZEstQW83ay1PQlhaUUIxZlM4S1NLZVBYOS1HZVUzM3RwbGlSVFRYcERvRDNIam5CeG10MWZqbWxNLWhNTkRteG5OWTB3cUk5OFNURlB6cHEzb2o3RlNBQVNtYmZ5VUZDWWtDSW9rMFpWMTBacC1YRWQyUFpuZExsbDNZZ0ZyZDFFZFZsdkd0R3lhekNqUWRuUXc2bXh1dw?oc=5",
+          "intensidad": 7.0,
+          "medio": "Quadratín Tabasco"
+        },
+        {
+          "texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
+          "intensidad": 5.0,
+          "medio": "heraldodemexico.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 23,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
+      "peso_pct": 15,
+      "tema_principal": null,
+      "tema_principal_id": null,
       "n_temas": 1,
       "n_notas": 5,
       "notas": [
@@ -132,60 +184,26 @@
           "medio": "XEVA"
         },
         {
-          "texto": "Guanajuato busca diversificar su economía ante cambios en T-MEC - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQUUxFb2had09PQ2UyRGVQbTdoUEIzbWpOYklydVlEb2pkVHpYU0lIcUJFVFN4ZF9YX1Y2R1NOd1ZzTkIzR0V5SE9pNlV3U1RWRFFYVDVDNFkwM0k5YW0wZVJuNkIzQzd4U3NwVVNDcVd0UEdraHFQaV9XTHhmLWR5QjFhWkkyS1VtdnFYcjBzcTRGSFQ4eXh4ZXczN0pQMjIwcWI1dkJLU0FMelhxQ0JfYWxvN3BLZ9IBtgFBVV95cUxNQURkaUhFbHQwUEhmeGxrcGVWYXpSdHhwaGctZXgyTkFVTHU5cWk5YkYwS1Z0VkZoTnMxdURGcnJfVThDWWJkZHJXUzBsWWo5azdxakFGUm1oOG9MQkVTQkJ0VTZrT0dVZWw4b05zOThUa3dST1M1R2VzMWw0cmpTR0RaMlJFVEpSVlcwRXUxd3RIX016enhMUm15ZUNGbjZIeFlLQjF5ZFN6SFp4MnNqSmRZaVF2dw?oc=5",
+          "texto": "Ken Salazar pide alianza norteamericana ante revisión del T-MEC - Expreso",
+          "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNQndXSG5TRVY4N0hDcGdTTFdYWk5KNWNVSFh5anU5ZmsydlRkU3JocEpfd1FoTGxPb0RQcEx6a0Mwa05PSDctMTVQN3Y3WEhaaHVtVDgzdjlRbDZPQXNuRlc3QkhTdzcyUjlBMUNyZlJSWlV2ZDFTanFESl81bEduOXVSaExPSHlMelNxdjgxVC1DVGVqUE44QnZ5RFN6SmRzS0hoYjlqNNIBrAFBVV95cUxPbEkwQzVZRlNsOHBLbWxmV0JqUURzUk9LVG9GeFAtclhuYzFldlI4T1lBWFYyYnFQV0JGbWVTUlV5ajRzb2dyeDFCaWNOUEY0TzUtYm9USU9zeVRsc3p5d1F4YmprZTJ4X2prUTRyMGI2czV5cHRueHBtcXdVRW1PbmlZN08wMlpqQUo0OXBsMW1LOHF3Tnh2S2hGbmVpZTZvdjMxV2lpWWVYNWpo?oc=5",
           "intensidad": 6.0,
-          "medio": "Milenio"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 19,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 4,
-      "notas": [
-        {
-          "texto": "Presidenta Sheinbaum descarta fin del T-MEC tras declaraciones de Trump; México busca reducir aranceles - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQQk5VYVd2Snp0b0JuZlJGay1fTVcxc2lmRDlzMEFYU3ktbmxGY291NTNSdFVCaXJfNU9FamZxVkNMLS0zRU5ZOWNFSzcteEhnQmh6eFhkTGszYV90X0xPM2dBa1Q2TTVnRGFHcVFqZmxfZFgtXzlDcUs5aHcwY0EzMUtGcmczZmU3ZmhfS3hkVkd6WVNWcXRPUXJRTXZHdzRjS3BXOUczTWpBQ2dFWEVMaFdOc05TV2xGOTVzXzNuZTQyR2gxeFI1S1lFZERjQdIB0wFBVV95cUxOOVhsRktMWHozN3FGZzU3OV9ObjFLeUJEbVUyRUNhRWp1ZGs3bzJheEJQaTl1TU5RRnVMbnRIeEotMi1YLTQxRDRRSWVIOFlSRXVGTC05cjRpYWxQUkZ4STNyOFRzOUtLM2hvNFhuWVF1SjlPdEM5d2pnRWFRSUpFdU1fdXJieGszLVZtenlIQ0FpZzJSV1BmOFQ1cGUxd056SzlvTFZoeVZKa2FaR3RYa202SUZMOGgyZmpBbkU1eEVFd3RDTUs3aVRUQWc0cEJLT2ZZ?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Sheinbaum reacciona a plan de Trump de ‘dejar fuera’ a Canadá del T-MEC: ‘EU decidió negociar aparte’",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/12/claudia-sheinbaum-mananera-temas-hoy-12-de-octubre-de-2026-en-vivo/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "Sheinbaum mantiene diálogo con Estados Unidos sobre el T-MEC tras dichos de Trump - voxpopulinoticias.com.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNR004MS0tZmYxVnBzdTBLMlBnbWdybXVxWC0zRzI0YkhiNjdpdElyZVZvM1c3aV9qRWJONFFURWNzTlRKVkNOUjBiaGNwdVNMU1V3Z0VJSXVtSU1VU0JwajFfdVktY1drNUdRamNZeTgtLW1yc2lmNzAtY29wZ2FwSFctdWJTM0Zxem5BUTFQbFVxVGl2QURpTFU1YnB3a0dLaHdiSkQ0V2VWLXdEM2xiTm52SS1IZkNMRUxMRGFiSHg?oc=5",
-          "intensidad": 7.0,
-          "medio": "voxpopulinoticias.com.mx"
-        },
-        {
-          "texto": "Continúa diálogo del T-MEC para eliminar aranceles, afirma Sheinbaum - Quadratín Tabasco",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMFk2NU4tQVA1SGhTeGlScUdLVmhReF9rZEstQW83ay1PQlhaUUIxZlM4S1NLZVBYOS1HZVUzM3RwbGlSVFRYcERvRDNIam5CeG10MWZqbWxNLWhNTkRteG5OWTB3cUk5OFNURlB6cHEzb2o3RlNBQVNtYmZ5VUZDWWtDSW9rMFpWMTBacC1YRWQyUFpuZExsbDNZZ0ZyZDFFZFZsdkd0R3lhekNqUWRuUXc2bXh1dw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Quadratín Tabasco"
+          "medio": "Expreso"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 12,
-      "tema_principal": "La Barredora",
-      "tema_principal_id": "la-barredora",
-      "n_temas": 3,
+      "peso_pct": 8,
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis",
+      "n_temas": 2,
       "n_notas": 3,
       "notas": [
         {
-          "texto": "Detienen a Jesús Darío “N”, integrante de “La Barredora 24/7”; es señalado como generador de violencia en Sonora - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaE9FcWlpN2twYWhISnczWDd3TVV5ckRIWEIzaVh4enJNMGFGcDFBVUl4NEdxNW81VG1kc2hKZ0FLdmdFbk1uLWRGZWM3UkVjdHludnQwQ0RpZVV4WmRXajZJdlBIdlBUTVV6VUVRTzJfWGhIOUowUkhUM0l0Szdid0NTdDN4cXlwM1NYNUEwc3dzZWNYVkdKeUtGSDY5eHQyTzlMeC1FSnd5bnZad1VzTmlXVEs1YWdmcjZuX0VlNGgyZ1dRNGJIZks5Z2d2Wk94V0JhM0dTcmJmZnVO0gHwAUFVX3lxTFBiSWdkYmRQMFFzZWF5MUlHdWF0azY4RVdBMGJMckFsS0JHREtyOWM0a0kzcURhNmVkbDh4RHoyZFlqX0EyalRJTkxRXzRzUjJrcmxDNWVDVkRfdE13cnB1WTN3RkZ4RVBjOFg4QlZLbXJGQ2R2TWZxVUIwZlJoRHdjcDVNb0hOWFIyaF92T2ZOaTliNlB6bHhMTzdsSTZQdjd1cEU0S2tfR0RlTzJXbmdla2RqZmxfWlF5WENrYkp5T1dueGlPNlp1OGR0WmxwM3RsWm5ibmNSa2tVdmg2SkxROEtfQmc0LXY0eHM2QUVEWA?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
+          "texto": "Ricardo Salinas Pliego critica a Andrés Manuel López Obrador y vincula violencia en Sinaloa con su estrategia - Sinaloahoy",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPTmdTb1NjV0ZnbV8xS2Z6QnVqUGRXOUVaRTRaalhIQ3o0UFRGM0ZTUHJ4cFRPNTVkNmpKRFZBNG9WWkhCbW9rM3JLanNMVVFyMFlWVGdrVGpTMFJpU0RoQjBBSGVRODVMX0o3MkRHLUJPQVpHY2lvbVc2dnNqSWVPa2c2d01qeWFiUmRNQUR2RmpnTUN1eXlIWEdtc0JBTzRpbmdLNk1UV2IyMUwyenYtOUIyZUJaS3RvUnd6V1Fpalk1RnV4bllKclE1RlF5b3d3TFF2UWxUX2F0NmlyTFNoXw?oc=5",
+          "intensidad": 7.0,
+          "medio": "Sinaloahoy"
         },
         {
           "texto": "Los Chapitos: miembros de su red de tráfico de fentanilo neutralizados - Milenio",
@@ -225,7 +243,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
@@ -250,7 +268,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
@@ -258,7 +276,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 2
+          "peso_pct": 3
         }
       ]
     },
@@ -267,7 +285,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 31
+          "peso_pct": 30
         },
         {
           "categoria": "Gobernabilidad",
@@ -621,7 +639,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 76
+          "peso_pct": 75
         },
         {
           "categoria": "Relación Bilateral",
@@ -671,7 +689,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 78
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
@@ -892,11 +910,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 72
         },
         {
           "categoria": "Relación Bilateral",
@@ -915,51 +933,79 @@
   ],
   "top5_temas": [
     {
-      "id": "la-barredora",
-      "nombre": "La Barredora",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Grupo criminal de Tabasco -según reportes de inteligencia militar de la Sedena, consultados por Mexicanos Contra la Corrupción y la Impunidad (MCCI)- presuntamente liderado por Hernán Bermúdez Requena, exsecretario de Seguridad Pública de Tabasco con Adán Augusto López. La red operó robo de combustible en el puerto de Dos Bocas desde al menos 2025. Bermúdez huyó de México en febrero de 2025 con ficha roja de Interpol vigente; la UIF bloqueó sus cuentas y las de empresas de familiares y socios en julio de 2025.",
-      "motivo": "A un año del asesinato de Carlos Manzo: Grecia Quiroz convoca a marcha nacional por la justicia y la paz",
-      "peso": 31.0,
-      "n_temas_agrupados": 4,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/11/a-un-ano-del-asesinato-de-carlos-manzo-grecia-quiroz-convoca-a-marcha-nacional-por-la-justicia-y-la-paz/",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
-    },
-    {
       "id": "auto-5a0b8c2bec",
       "nombre": "INE define Consejo Local de Quintana Roo para elección federal de 2027 - Grupo A",
       "categoria": "Gobernabilidad",
       "resumen": "INE define Consejo Local de Quintana Roo para elección federal de 2027 - Grupo Animal",
       "motivo": "Coincidencia y compromiso con la 4T, eje para alianzas, define Consejo de Morena",
       "peso": 17.0,
-      "n_temas_agrupados": 5,
+      "n_temas_agrupados": 7,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://www.jornada.com.mx/2026/10/12/politica/006n2pol?partner=rss",
       "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Sheinbaum reacciona a plan de Trump de ‘dejar fuera’ a Canadá del T-MEC: ‘EU decidió negociar aparte’",
+      "peso": 12.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/12/claudia-sheinbaum-mananera-temas-hoy-12-de-octubre-de-2026-en-vivo/",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
+      "id": "la-barredora",
+      "nombre": "La Barredora",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Grupo criminal de Tabasco -según reportes de inteligencia militar de la Sedena, consultados por Mexicanos Contra la Corrupción y la Impunidad (MCCI)- presuntamente liderado por Hernán Bermúdez Requena, exsecretario de Seguridad Pública de Tabasco con Adán Augusto López. La red operó robo de combustible en el puerto de Dos Bocas desde al menos 2025. Bermúdez huyó de México en febrero de 2025 con ficha roja de Interpol vigente; la UIF bloqueó sus cuentas y las de empresas de familiares y socios en julio de 2025.",
+      "motivo": "¿Quién es 'El Cara de Cochi', miembro de La Barredora 24/7 y cercano a Los Rugrats que fue detenido en el Edomex? - MILENIO",
+      "peso": 12.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNTUZ6ZGxLdVNsQ3NVZXI5MWkzeFZGcmZzRjBsLXVLTVMzT2g5NDgxSkpLZVZ4WlJWN2pmV0xEc0lSQVVVNTJPelo0MGtkQ0tueXpsbm1EY0NveDVoV0d1bC1EYWIzMmpRa0E0VzgwcmtqQUJzX21YX3MwMlQyR1hGTERRSkVRcExjVjlxc0NIUHNVc2lXWktVVVMxNA?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
+      "id": "auto-71e483207a",
+      "nombre": "Personal del CAE en Xalapa convoca a concentración ante desabasto de medicamento",
+      "categoria": "Social",
+      "resumen": "Personal del CAE en Xalapa convoca a concentración ante desabasto de medicamentos: “las cirugías siguen suspendidas, no ha llegado material”",
+      "motivo": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
+      "peso": 12.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
       }
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-ff048fceb2",
-      "nombre": "Morena exige la liberación de detenidos tras marcha por el agua en Guadalajara; ",
-      "categoria": "Gobernabilidad",
-      "peso": 12.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQSU9NdEtZR2tuVXJVTDJFRjlJaG8zT3ZVekVqYWUtcHR3ZGJpelZKZi1PMUtnM0lHNl9Td2FiNWdya1dvZ25VcDhvT0hET3d1TzdKMWsxRS1tMU5hWFdfbHlsZ2NwcGcyekxhaWczMmFQVW1oMzNLdmViaGdQZzViT9IBgAFBVV95cUxQUERfMGotUXRPbFo1dVFIemhLT19iSmdORElMcWJVOEtpaEFxTXA0NUZJYTVRczhnR0tGaEpmaDVZenpZRUtnOVUzZzBNYzFyamhtR3BLNGFpY0dLUHNFb1kyNGhMSzJVU0h4ck5oZmpGVFdrUEYzY2hzYVZsdWFUUw?oc=5"
-    },
     {
       "id": "auto-ac37da9fdf",
       "nombre": "Paz y seguridad siguen siendo ejes  de la agenda estatal",
@@ -977,12 +1023,12 @@
       "fuente_url": "https://www.informador.mx/mexico/huracan-simon-amenaza-a-7-estados-de-mexico-la-peligrosa-realidad-nacional-20261012-0054.html"
     },
     {
-      "id": "auto-b7f3f86256",
-      "nombre": "Ariadna a Morena: La lucha social nos mantendrá en el poder, no la batalla elect",
+      "id": "auto-2f4d1c4841",
+      "nombre": "Morena, quinceañera vetusta - Sin Embargo",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPVk1oMDA5eHVNQXNHa1VtZWhnaEVIZ3FGZG16ZXhFcDBYemhZNVRDMzhjQ0lWTC03SVBFTGt0ZTh1TTZ1blBZd1RyQV9QWjNRZk0wX1RBYVkxQTUxZzY2Rkc4Q0YxM0szalRYb0MyNVNvSzRrTmxJNDZRUUpHLXc4bHJ5MEpyUjFMSXNwY3d3ajh3VndzVmF6SXZNa3pHdmFOWWVLQVdwcmFYVzJMMk5iMmdpdGF4c01o?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5QeWYxRklLZGNwSHZ6MzdKS2U5MXNEZjNubmxHMi1fTTRwc0hRUjZUUWlIcDcyWExOaDRzYzFnZ0VTQTVFcl92dVhIWXN6ZzZtX1Q2dV9JdlV2Ri03aGl3SVhPcnlVcUdjSFRhTWR3?oc=5"
     },
     {
       "id": "auto-a38152c9ca",
@@ -991,9 +1037,40 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQQ0h4Q2RES0RId1RuZWExN19GeDZNM2YxYmVRRU9tZHNndl9jRDhNWHZZdEJ2VElEZ2lzaHc5YWppOHBWbk04ZnphY0Qxay1wcENhTzg0azFGeVRLaDJ2RTQzUnlSdGNaT2NpTWFkMl9SZXZocmlaR01GRXotOFpBNC1zeWtzLVBoSGlPazFSUUhsTmE5WWV0MdIBngFBVV95cUxQUGpWcDM2U0pLR0dpN1dNMGlSLWE1QkVsYWZ0UGxCcDNlWEhNM1IyNWxJYmpWbWtmZ0F1NjJLLWg5M3RTa3V1UUk0cEJjNGtwNDZjMWVGckNYdWZJUVU2cERFNUxBeGhFZVZoNTQ4eTdSZ1AzOFFsOUNtanZZank0djY0Zl9YZlNrSzRFc0ZNRGVsTnZtM1dIeVRqWUJCdw?oc=5"
+    },
+    {
+      "id": "auto-3d01f989fc",
+      "nombre": "Partido Verde ‘pone a temblar’ a la mayoría calificada de la 4T en el Senado: ¿P",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/12/partido-verde-pone-a-temblar-a-la-mayoria-calificada-de-la-4t-en-el-senado-por-que-estan-en-peligro/"
     }
   ],
-  "temas_retomados": [],
+  "temas_retomados": [
+    {
+      "id": "auto-217238227e",
+      "nombre": "Ruptura Morena-PT podría afectar aprobación de Sheinbaum, amaga Reginaldo Sandov",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 15,
+      "motivo": "PT descarta ruptura inmediata con Morena; Reginaldo Sandoval pide respetar la identidad de izquierda de la alianza - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxORk9qaURNNkxvU0ZsWjhKaGFRZkNEbHNCTWN1TVl5R0ZQejV4bjZZMV9LS0xLYWt4Y0ZaTlpfQm90U3FBUDFQX09CVVdPU3hfYzJQVGZ0SE1lVF9QZDFDb25PWnhiejNYRlZmOWt6RGFEVFBFQnoxNmVhd0l5c055Wlp6RHQyOWZKQVpzNW9DR0FKUHI1WUVYMzR3dlIxX3cxSTNMdkJtMmYxS0ZqUFVJd2NPc29ZdUtKdWlBQ2R6T21lanlQZzVxTjRQREFjRDdrQ00wQVUteFlsRVF4TEZtOUhVRW1FcjjSAfsBQVVfeXFMTXJLV09nR3BPbTFXQ0l0RW1mTDB5QnVNUFpzY3Nlb3p0SS12T1VqTHlTcGdod210bEJaMmVBZHJoZ0NEODhpenFyVlVTcldnZ2VoaE96NTBpUkVwVm0yc0dpTXVoR0JRYVp2bzM4eUVtYkxSWDBFS1pUYWFFZzBaZDRURGhoZDNUZ0REUUNsUHVaV2dCTUxNTnZiTWptRDZCR29ZZlhMLXM2eHRRamtNUVNwWEdZUTNMVTc5eHd5MkN5RW9aN1JDY3I5c2pDd0kzRFVxYVExV1JGR2NoTDYxc3p6MWJMdDQ1SmllVHpKaVBkb1NmSnk0TTRoRHM?oc=5",
+      "fecha_anterior": "2026-09-27",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPbjF0elg3eXJuRW55eDdCUGJCTzBwMkI1NUpsaWZmR1lqWXJzZ0tUZVRhOWNubVNRaUdndzdiTWdGMmNQVUNQRmRlQXNCSTRteTZFWnVFalphdXktbFFGa0xaWS1ob3o4R1BUZ0taR1ljLTdKV0V2SXlGcU92Q3NzY252Qy1rY3ZIajJPc2xlUDMyYVJ1a01hOENJakpHUExYeS1Vc205U196Z3dPRnBQMHV5VG1vVFdRY2VDcDFmVU9GRjh0ZElKTjlR?oc=5"
+    },
+    {
+      "id": "auto-6e2c691a8e",
+      "nombre": "¿Qué pasará con las consultas para la homologación de pueblos indígenas? Esto re",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 11,
+      "motivo": "Morena reconoce resistencia y dignidad de pueblos indígenas - Milenio",
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNMHBNRVdTeDFFXzhoQnhEQTQ2aW5ibnIxcW5OanFVSFg1bzlDQ1pNWE1pZmZwMVVobEplbXU4MlZLZUxQX3lzTGlQX3FWOVU3cG5xbkZhYjJLb2VZTjdEZVlKSW9UVWpqWDJXRndGd2d3djB0Uzd6Ny10M1VES1lPRWR3WGJ6RDBCVlhDTmxmbWYwU0VrT3Rj0gGXAUFVX3lxTE0wcE1FV1N4MUVfOGhCeERBNDZpbmJucjFxbk5qcVVIWDVvOUNDWk1YTWlmZnAxVWhsSmVtdTgyVktlTFBfeXNMaVBfcVY5VTdwbnFuRmFiMktvZVlON0RlWUpJb1RVampYMldGd0Z3Z3d2MHRTN3o3LXQzVURLWU9FZHdYYnpEMEJWWENObGZtZjBTRWtPdGM?oc=5",
+      "fecha_anterior": "2026-10-01",
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/01/politica/014a1pol?partner=rss"
+    }
+  ],
   "actores_destacados": [
     {
       "id": "sheinbaum",
@@ -1002,6 +1079,17 @@
       "tema": "Personal del CAE en Xalapa convoca a concentración ante desabasto de medicamento",
       "nota": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
       "fuente_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "pri_partido",
+      "nombre": "Partido Revolucionario Institucional (PRI)",
+      "rol": "Reacción de oposición",
+      "tema": "Diputada del PRI confronta a Jacinto González: “El dirigente de Morena habla esp",
+      "nota": "Diputada del PRI confronta a Jacinto González: “El dirigente de Morena habla español y pendejadas” - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNcXMtVGJlQ0l3UHlsMlg3R2F3bW9KeERZVGRxeTB4SXJFZkNoTnYxNWVYZGtmNVhDbjJOOWhsMGl5cGVFZTFhZ0xTNnc1YlBtRkF6NDliTnJMNFJFZHBwUC1ncWFMU25NRlp3ZkdWQ3RqVl9kM2RFUEo2cjhKbG5LM1V4QmJiRnI4NWJibzlNUXpPWS1pWm1NMNIBmAFBVV95cUxNcXMtVGJlQ0l3UHlsMlg3R2F3bW9KeERZVGRxeTB4SXJFZkNoTnYxNWVYZGtmNVhDbjJOOWhsMGl5cGVFZTFhZ0xTNnc1YlBtRkF6NDliTnJMNFJFZHBwUC1ncWFMU25NRlp3ZkdWQ3RqVl9kM2RFUEo2cjhKbG5LM1V4QmJiRnI4NWJibzlNUXpPWS1pWm1NMA?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1018,17 +1106,6 @@
       "confianza": "media"
     },
     {
-      "id": "pan_partido",
-      "nombre": "Partido Acción Nacional (PAN)",
-      "rol": "Reacción de oposición",
-      "tema": "Morena, UdeG y PAN fijan postura tras marcha por el agua; reclaman detenciones y",
-      "nota": "Morena, UdeG y PAN fijan postura tras marcha por el agua; reclaman detenciones y el uso de la fuerza pública - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNbjJpc2FrR2huQzdrWkFYSk4xOFZ3VHR0M0FqbG1NdHpFYXBLTWRGRzVDV2hZXzZvUURpcTVOSFpkS2h4T1BNeFlJenktM3dqaWVhMndHRXV2bTUzcVZYMmh2UUlZYmVhMHBNcGE1VnZuZUVDVVFsSFhPZTJxQzJCZXJGWC15Z1B1MG5JZNIBjAFBVV95cUxNbjJpc2FrR2huQzdrWkFYSk4xOFZ3VHR0M0FqbG1NdHpFYXBLTWRGRzVDV2hZXzZvUURpcTVOSFpkS2h4T1BNeFlJenktM3dqaWVhMndHRXV2bTUzcVZYMmh2UUlZYmVhMHBNcGE1VnZuZUVDVVFsSFhPZTJxQzJCZXJGWC15Z1B1MG5JZA?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Mencionado",
@@ -1040,12 +1117,12 @@
       "confianza": "media"
     },
     {
-      "id": "manzo",
-      "nombre": "Carlos Manzo Rodríguez",
-      "rol": "Investigado",
-      "tema": "Asesinato de Carlos Manzo",
-      "nota": "A un año del asesinato de Carlos Manzo: Grecia Quiroz convoca a marcha nacional por la justicia y la paz",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/11/a-un-ano-del-asesinato-de-carlos-manzo-grecia-quiroz-convoca-a-marcha-nacional-por-la-justicia-y-la-paz/",
+      "id": "pan_partido",
+      "nombre": "Partido Acción Nacional (PAN)",
+      "rol": "Reacción de oposición",
+      "tema": "La reforma que le puso género al mapa de Chiapas - Diario de Chiapas",
+      "nota": "Colectivas clausuran simbólicamente oficinas del PAN en Chiapas; rechazan impugnación a reforma a la paridad de género - La Jornada",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNbFhhZUNSc08xWFFBZjFkTjd2b0VoWkdWbVZ5NUl0Umt2UVZkT1NWZlphSFdwcG1NRXVQVmlpUUREbmxna2RXY0lGNFRWbHNsblh6djRYdWI4V01KdkE3YTB4S0Jrc1pHS0tRZU13REtvb1ViZkg4NUdDemdKaE9oVW91cmswV2NyZnlQUDAxYXVxNGhIOE1UUEk5a3ZOdHBaTVJRaHFMVnQtQkNKVFE3N01YOWxXNEE0M0VUWm9CQWVwUWpFVTNYOFlVYmV4SGhuRGVEM2hja0tZZ29iSmVmb09HOHJqMFU0ZFlkRVZR?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1167,10 +1244,10 @@
     },
     {
       "fecha": "2026-09-28",
-      "tension": 39,
-      "n_notas": 70,
+      "tension": 38,
+      "n_notas": 71,
       "n_alto_impacto": 46,
-      "n_medio_impacto": 24,
+      "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
@@ -1192,17 +1269,17 @@
     {
       "fecha": "2026-10-01",
       "tension": 38,
-      "n_notas": 69,
+      "n_notas": 70,
       "n_alto_impacto": 45,
-      "n_medio_impacto": 24,
+      "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-02",
-      "tension": 40,
-      "n_notas": 41,
+      "tension": 39,
+      "n_notas": 42,
       "n_alto_impacto": 28,
-      "n_medio_impacto": 13,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
     {
@@ -1224,8 +1301,8 @@
     {
       "fecha": "2026-10-05",
       "tension": 21,
-      "n_notas": 75,
-      "n_alto_impacto": 26,
+      "n_notas": 76,
+      "n_alto_impacto": 27,
       "n_medio_impacto": 49,
       "n_bajo_impacto": 0
     },
@@ -1248,17 +1325,17 @@
     {
       "fecha": "2026-10-08",
       "tension": 25,
-      "n_notas": 70,
+      "n_notas": 71,
       "n_alto_impacto": 26,
-      "n_medio_impacto": 44,
+      "n_medio_impacto": 45,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-09",
-      "tension": 33,
-      "n_notas": 49,
+      "tension": 32,
+      "n_notas": 50,
       "n_alto_impacto": 27,
-      "n_medio_impacto": 22,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
@@ -1279,21 +1356,49 @@
     },
     {
       "fecha": "2026-10-12",
-      "tension": 25,
-      "n_notas": 21,
-      "n_alto_impacto": 10,
-      "n_medio_impacto": 11,
+      "tension": 21,
+      "n_notas": 39,
+      "n_alto_impacto": 14,
+      "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 100,
+      "y_hoy": 58,
+      "delta_pts": 10.5,
+      "alcance": 5,
+      "n_alto": 1,
+      "n_medio": 5,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
+      "nota_texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 100,
+          "y": 58
+        }
+      ]
+    },
     {
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 17,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1310,7 +1415,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 100,
+          "x": 17,
           "y": 100
         }
       ]
@@ -1321,7 +1426,7 @@
       "iniciales": "AO",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 17,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1338,7 +1443,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 100,
+          "x": 17,
           "y": 100
         }
       ]
@@ -1349,7 +1454,7 @@
       "iniciales": "MO",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 17,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1366,18 +1471,18 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 100,
+          "x": 17,
           "y": 100
         }
       ]
     },
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "iniciales": "RI",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 17,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1386,15 +1491,43 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQcUlRalZpeXdLak05dFpTLVZoejRGeTlKc2VvNDdpMXByWWxDMVB6UFBHRlRPcHdGTXB4Nl92UjEtNG9jMXFNcERpMVZESU13ekwxbXA4NzVULTlBVzRJV3Fqa0RMVU9tYV9SZzRSUV8tLUJycUhUM2xvWHlEQ0tKbjRTYUN1cXBtQi1sOExlbFFmOFlpQUkyX0RxNWRSdG1JSUZlemRQVWZCbWZOU3U0dy1neXpRVmhWdTZIVGZfX214TWtjMzV1aGRJX294UEhvaXE5dU9XQUhJemRMQmw4dDlQTFRDdw?oc=5",
-      "nota_texto": "▶️ #AlMomento | Comunidad de Oaxaca entrega reconocimientos a la presidenta Claudia Sheinbaum durante evento con pueblos originarios por el Día de la Nación Pluricultural - Facebook",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
+      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
+      "es_nuevo": false,
+      "categoria": "Relación Bilateral",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 17,
+          "y": 50
+        }
+      ]
+    },
+    {
+      "id": "ana_lilia_rivera",
+      "nombre": "Ana Lilia Rivera",
+      "iniciales": "AL",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 17,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBNVDJuWkRJcFpZVllrRmJ4RzFrZU1sS1hKY1g4MmZvUU9xaW5UYi1LUHZPNzRnZngtaVBJUURFcGE2RnozWUNZbEs0QlJ4SXh3Uml3MjJ1SFo4dy13XzQxSzdNQzFINTJ6QktkTVdncVFuQlNXQnhiUg?oc=5",
+      "nota_texto": "Raymundo Vázquez llama a Morena a cerrar filas con Ana Lilia Rivera - Intolerancia Diario",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 100,
+          "x": 17,
           "y": 50
         }
       ]
@@ -1403,17 +1536,17 @@
   "tablero_semana_inicio": "2026-10-12",
   "resumen_mananera": [
     {
+      "texto": "Respecto al T-MEC, la presidenta aclaró que no se trata de terminar el tratado, sino de una revisión contemplada en el mismo acuerdo. Explicó que después de seis años se define si continúa por diez añ",
+      "categoria": "Relación Bilateral",
+      "intensidad": 8.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
       "texto": "La gobernadora de Baja California reportó diez personas no localizadas y una menor fallecida tras el paso de la tormenta tropical Rachel. Ocho de las personas desaparecidas se encu",
       "categoria": "Social",
       "intensidad": 6.0,
       "alerta": true,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Respecto al T-MEC, la presidenta aclaró que no se trata de terminar el tratado, sino de una revisión contemplada en el mismo acuerdo. Explicó que después de seis años se define si continúa por diez añ",
-      "categoria": "Relación Bilateral",
-      "intensidad": 6.0,
-      "alerta": false,
       "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
     },
     {
@@ -1497,11 +1630,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-12T06:01:08.400225-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-12 12:59"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-12 18:00"
 }
