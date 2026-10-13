@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-13T10:28:44.836387-06:00",
+  "generado_en": "2026-10-13T11:29:04.775744-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 23,
+  "n_notas_ventana": 27,
   "baja_confianza": false,
   "tension_nacional": 25,
   "tension_anomalia": {
-    "z": -0.89,
+    "z": -0.9,
     "nivel": "normal",
-    "media_periodo": 34.1,
+    "media_periodo": 34.2,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 33,
+      "peso_pct": 34,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
-      "n_temas": 2,
-      "n_notas": 8,
+      "n_temas": 3,
+      "n_notas": 9,
       "notas": [
         {
           "texto": "Trump no puede terminar unilateralmente el T-MEC afirma CSP; aunque reconoce que sí conversan cambios - El Independiente",
@@ -32,10 +32,16 @@
           "medio": "Pulzo"
         },
         {
-          "texto": "Donald Trump evalúa eliminar aranceles del 12,5% a las exportaciones de Colombia - Primicias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPejJBb3JDSlQ0WFQzcGl3dmpmUGJtSVB6U2NhUHhkcE5zaVhxMExLb3RQZkhfZmN2b3lfV0ZTUW5lMjZvN1ZPYTVwd1dFcXRGRm5CTGVKTTI3TzlIRHlsd2RHZWlTM0hfVGZJS0h3bUxiTlc2MmVYdmMzQU1nY29fWGRMS3FhamVJUS1vbmxET2IxRjRFTm5wQ3NjT28yY3Z0MzQ4R2pDeVU3bVEyMEhVNjhkQnNYcm9reGpRWWRSZ2pudw?oc=5",
-          "intensidad": 5.0,
-          "medio": "Primicias"
+          "texto": "Donald Trump y amigos son más ricos que hace 20 meses - La Jornada Maya",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOaGhQZ3RmaVgyNENfcmN6elBqYmo1ZngwcV9VQzZjVnRVM2hpVnljU0RqMzMwMXNCbGlLamZ4LW44WUZvam01b0NXenBwMVlJWVAyNG1meGlBbHBQUjNvZWxOaS16aUNNT0d4blI2NnpPeTFucW4taUg0QW5nNkRyLTFtbGRIM09HdVhfQzM0WXN6aFd5WDFJMFZPTnJQLW1WekkyekwzUDVYYS1nM1ZsbkFFRGtNS1p3WDdiUXRn?oc=5",
+          "intensidad": 7.0,
+          "medio": "La Jornada Maya"
+        },
+        {
+          "texto": "Claudia Sheinbaum valora comprar más gas a EE.UU. y reducir el déficit que preocupa a Donald Trump",
+          "fuente_url": "https://www.yucatan.com.mx/economia-2/2026/10/13/claudia-sheinbaum-valora-comprar-mas-gas-a-ee-uu-y-reducir-el-deficit-que-preocupa-a-donald-trump.html",
+          "intensidad": 7.0,
+          "medio": "yucatan.com.mx"
         },
         {
           "texto": "Donald Trump abrió la puerta a retirar aranceles a varios productos colombianos - LaRepublica.co",
@@ -71,11 +77,11 @@
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 24,
+      "peso_pct": 30,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 5,
-      "n_notas": 6,
+      "n_temas": 7,
+      "n_notas": 9,
       "notas": [
         {
           "texto": "Pío López Obrador recorre colonias de Tuxtla Gutiérrez rumbo a coordinación distrital de Morena - www.sinaloahoy.com.mx",
@@ -112,12 +118,30 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQTDhRcHllT2xoZjVJUnFlcUhjZmVGS0F4MEVyRGcza1ZxNFlPTy1QdzExWmpPZkpmOHlvLTJuODNQS3U5Umptd2gtMXpEWHFNb0xJSm8xbDVJdWpEeXRMZkVRb2VTazBvWkphc29XTko5OWM3eENoQkdmMHFwQThvY2ZUZEVHcGM0LV9YalNUdm0weDBOTTVUUjc3dVRTdkMyRzVRZWltRkFtdnJ1Qi1WVUlUbFBpNkxLWjltUjB4R2xMMDM4TE5OcHROSEp5bnZwS2w1aldHN3dBX0VIYnpqTFFfSQ?oc=5",
           "intensidad": 5.0,
           "medio": "La Jornada Maya"
+        },
+        {
+          "texto": "Ricardo Salinas Pliego, multimillonario opositor a Claudia Sheinbaum, se opone a las pensiones del IMSS e ISSSTE: \"No es gratis\" - Ambito",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPallyZ093R1hSTUJEeE9HTnRyZzBYNDRIcE5MOVY2UGU1NmlyYnlobmxKT1JVclpTTGpYWEw5N3RTdEFaeGo0WUZ5WHp6VmtkOW16VDd3RjVXdzIxSEkxOFB6eGdNdlI4dmVvXzBObHVUaW1OSngweElmay1vZlEyU3ZGVk9XVU8wazNOdFFFcHlwc0dFNFhLQzZTNGpYcjVmWC1TdjV6OEtiSmJNU0NBLXNRVnU2YzVuMjBYb2FVdHpSeVZQclhEbGJ2cFFzU1Z1blBLZXdFT3hPZ0tIMThwLURPNzlOVjh5VnRuR1ZOYXpkeGZvdkVybG9Ob9IBgAJBVV95cUxPYWllRVN6WkZ1LVJkcF9mZ1dEdVNZRWlyWUxPQkxRblJNd19XNE0wY2pMYjByRi0xNVBFTEJ6M0g2ZF9ZaEo5LXJWbThqUmZlV0xUQ2x3Z0V5aUdxUERqNDNnYi1MbmNfTEtJaUJvZkZ6R3IxcGRCLUxMLVhXdkVJakZ6NGNrdkVUeGtheVNsNEVoNTlfWjFRTjg0bzV5NVQtajdsSXlOWnFETTFNbFk4RVVSdzdlWW1ySjNoYVY4VC1kRU80cHNTWGRFek5CSFpKTlJ5SFVpX29UREE2c3RraUZISlp6QnR3RHdGbjVjYUdpM2hlVC1EN3NUWjM0ZHFD?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ambito"
+        },
+        {
+          "texto": "Gaspar Córdoba se registra para coordinación distrital de Morena - Tabasco HOY",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOV2FVQ05MTTV2N3Y3UVNDMlJpM0p4NE1FVV85cl9RWWhoM3JPM2RKRGNuMlZTN19tUFFYUkZGTENkVVhIYjFNalJLTG5mUDJzQXVtZGlYSTV5S3lzQzctWFJNT194Q0tDZW9va1N3aUt1WUEzUmJ0WEgyd05uWUFNdzBSeVFVaG1jNER4TWJLeWR3MlFjakxR?oc=5",
+          "intensidad": 5.0,
+          "medio": "Tabasco HOY"
+        },
+        {
+          "texto": "García Harfuch anuncia 6 nuevas cárceles en México; crearán Unidad de Reacción Penitenciaria",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/13/garcia-harfuch-anuncia-6-nuevas-carceles-en-mexico-crearan-unidad-de-reaccion-penitenciaria/",
+          "intensidad": 5.0,
+          "medio": "elfinanciero.com.mx"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 20,
+      "peso_pct": 17,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 2,
@@ -130,10 +154,10 @@
           "medio": "news.google.com"
         },
         {
-          "texto": "Ricardo Salinas Pliego critica a Andrés Manuel López Obrador y vincula violencia en Sinaloa con su estrategia - Sinaloahoy",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPTmdTb1NjV0ZnbV8xS2Z6QnVqUGRXOUVaRTRaalhIQ3o0UFRGM0ZTUHJ4cFRPNTVkNmpKRFZBNG9WWkhCbW9rM3JLanNMVVFyMFlWVGdrVGpTMFJpU0RoQjBBSGVRODVMX0o3MkRHLUJPQVpHY2lvbVc2dnNqSWVPa2c2d01qeWFiUmRNQUR2RmpnTUN1eXlIWEdtc0JBTzRpbmdLNk1UV2IyMUwyenYtOUIyZUJaS3RvUnd6V1Fpalk1RnV4bllKclE1RlF5b3d3TFF2UWxUX2F0NmlyTFNoXw?oc=5",
+          "texto": "Tras riñas en penal de Sinaloa, Harfuch anuncia construcción de nuevos penales",
+          "fuente_url": "https://www.informador.mx/mexico/harfuch-rinas-en-penal-de-sinaloa-impulsan-construccion-de-seis-nuevos-centros-penitenciarios-en-mexico-20261013-0055.html",
           "intensidad": 7.0,
-          "medio": "Sinaloahoy"
+          "medio": "informador.mx"
         },
         {
           "texto": "‘El Benny 17’: las pistas del discreto operador de Los Chapitos en el sur de Sinaloa - Milenio",
@@ -151,7 +175,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 19,
+      "peso_pct": 16,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -410,7 +434,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 67
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
@@ -435,11 +459,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 67
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
@@ -460,11 +484,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 67
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
@@ -489,11 +513,11 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
-          "peso_pct": 7
+          "peso_pct": 6
         },
         {
           "categoria": "Social",
@@ -510,11 +534,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 69
+          "peso_pct": 68
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
@@ -535,7 +559,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 72
+          "peso_pct": 71
         },
         {
           "categoria": "Relación Bilateral",
@@ -564,7 +588,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 5
+          "peso_pct": 6
         },
         {
           "categoria": "Economía",
@@ -639,7 +663,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 5
+          "peso_pct": 6
         },
         {
           "categoria": "Economía",
@@ -710,11 +734,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 77
+          "peso_pct": 76
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -735,11 +759,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 78
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -760,11 +784,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 78
+          "peso_pct": 76
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 7
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
@@ -781,15 +805,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 76
+          "peso_pct": 75
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 7
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
@@ -810,11 +834,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 75
+          "peso_pct": 73
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 7
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -835,11 +859,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 73
+          "peso_pct": 71
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -860,11 +884,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 69
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
@@ -881,19 +905,19 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 67
+          "peso_pct": 65
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 9
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -903,6 +927,24 @@
     }
   ],
   "top5_temas": [
+    {
+      "id": "sinaloa-crisis",
+      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
+      "motivo": "Tras riñas en penal de Sinaloa, Harfuch anuncia construcción de nuevos penales",
+      "peso": 19.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://www.informador.mx/mexico/harfuch-rinas-en-penal-de-sinaloa-impulsan-construccion-de-seis-nuevos-centros-penitenciarios-en-mexico-20261013-0055.html",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
     {
       "id": "trump-agenda",
       "nombre": "Trump y México: declaraciones y presión",
@@ -931,22 +973,28 @@
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPWUt3TDl6ZlhPZHlxTVpRamM0bWE4bzBKYzFKZkdrdXlLMUN5aXVNUDAyTlJkRURIeWFZYkVVQ2d2cHo1ODBjTDIwd2V5a0o3bUcxQXhScHh6MThucGtSRmV3QXZCcV9ibXdtdEs5QXhxYVJDbjdNbXJRNlZhXy1GOUFvYzRCdl9objhsQjJ6TWRSa0l6UjdOVGF2MXd4cXVSdGp3Y0RJWTJJZzJwZDl6OFBCc3YwdGRfVUgzOV9kRV80RkZRX0RuNzBjZVk1SkNqWjVqaHdVOUHSAd4BQVVfeXFMTVlhYkQ3M2dzZU5qNVdmVzJrT2dZZmZzcU1ZNGdoaVUzdUxjVTlIYUpwdXMtWENpbVN2b3VDZEdPcFFOemp5cTBvLXNEQXVVVFAwTVdrU2NUR0ZJUFBoQVRRb3dTaE41dUZobmxEbG9zTE5pZ2I0cFFkM2ZnbGgwaFZEVUw0WmVYZlA2UE5IQ2JXUEFEajFMaUoyc2laaFJnZ1hueXNLaDZVVEhuS2V6S2gxQng5c0s3X2x4eVVaMHlNblRHdkhZMFdDTlE2dDBRemJIN3BxZXVydllwRU93?oc=5",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "trump",
+        "nombre": "Donald Trump"
+      }
     },
     {
-      "id": "sinaloa-crisis",
-      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
-      "motivo": "‘El Benny 17’: las pistas del discreto operador de Los Chapitos en el sur de Sinaloa - Milenio",
-      "peso": 12.0,
-      "n_temas_agrupados": 2,
-      "escalando": true,
+      "id": "auto-5acecb2fbb",
+      "nombre": "Tensión en Palacio Nacional: Sheinbaum habría cuestionado a García Harfuch por c",
+      "categoria": "Gobernabilidad",
+      "resumen": "Tensión en Palacio Nacional: Sheinbaum habría cuestionado a García Harfuch por congelar cuentas, según The Wall Street Journal - Infobae",
+      "motivo": "García Harfuch detalla nuevo modelo de centros penitenciarios en 6 estados: \"No sólo se limita a la infraestru - Milenio",
+      "peso": 10.0,
+      "n_temas_agrupados": 5,
+      "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOSkM0TUJVbEp4cGNuaDdjV0VxYzM2OUdKN2tZSVJyMWlUZnUzcDBvV2NKNXpTR3FpZmdvcGZ0N2xpS1dGS0MwbElvZkdYUDdjYkMzVE94THZaQk5VSjZTMmlGazRoaXBTZjQ0dXBUNTJHQVBXUF81X1cxMnY0ZmItOGt2TW5XbHRzTUhrZWZHYVBYZW5kM0pFTGZ0ZXLSAZwBQVVfeXFMT1p2dG8wWkZGYUlOZ2hFYzMxRHZRdHVuSmdDX1JtNXpJQzVZQ0JOX2J0cXFqOC1ibTFFZjZWNkM2NEdJbEFZRE5WbzNMSVpXeGl6UHVpbExCbk1xNUtLYk1TajE2cUVNeUQyQjRKVm55MlZkbExZT1VBYVpsYXVMb0lXRWw1aFpPTnlCN3YzY19lOEk0bFV3eXNKNnlk?oc=5",
-      "actor_vinculado": null
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSWNoajlVN3cwdlhhUmp2UTZyMTJuMVhULWZVT2tSSHBnbXdfNHRodll1SzJVRGpGOW9zOXp1N1I5M2w5WS11WUxWb3JfX0lLUnZlalVUYmNhcWwzVnAyT2gtTDVOdzV6c2c4Zjg0ckF0M2tUNzV4eVlSRGhZcU43T085WUhLdUdRWEFGR1JYOWtaR25h0gGUAUFVX3lxTE14MHpOZ3JqMHQyckVLT0oweWRqOFJQVkUxLXVRdXpybHNzUWlqcms2NWZ6bDI0Nmx6UEVzcFhhVHBwMkNaVjF6M2d6emJfTnNPTGxGSmdaLUpZRWdyclBmX2llaHc3UjVBODJ1cFpkck1MdVh5RHdoaHg5OGJKQWNvMUtUYVBTMU1GNGxGQS00cV82Ync?oc=5",
+      "actor_vinculado": {
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
+      }
     },
     {
       "id": "auto-cf2ebbe6da",
@@ -1020,17 +1068,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOcmt1a3ZIenZjb0xUajA1TUdwZ3JkMV9PaU5mc0I3WnAxbEc5Q3hJdExvckVRZktsNVY5MDRiVXFINUs1YVpuYTJvYmpBME80ZUdNRE1PWHZ1aVBKM0ZGS05pXzF2eFFGc0owWjhibkY4YlRJUzNySnZvQ0ItdjhmNW8tUE5ZR01weHFWWU1SOXJ0VXgw0gGUAUFVX3lxTE5ya3Vrdkh6dmNvTFRqMDVNR3BncmQxX09pTmZzQjdacDFsRzlDeEl0TG9yRVFmS2w1VjkwNGJVcUg1SzVhWm5hMm9iakEwTzRlR01ETU9YdnVpUEozRkZLTmlfMXZ4UUZzSjBaOGJuRjhiVElTM3JKdm9DQi12OGY1by1QTllHTXB4cVZZTVI5cnRVeDA?oc=5",
       "fecha_anterior": "2026-09-21",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVlVJMnVFR1BXU2RPQ0kwdUJiLU9wUGlGUEtHTVpfZENUVEtIbUhzZDI2RUlucGRCbkgyZ29weVRKT2h4ZlMxWW95VHgxTDlhX3hZSXk3MWV6V2FwZU9Za1c0UVlnM0tKSWdTQTc3WEthUGhsOFlkT0FwbUFZYWVwTXhEajVGWnRUamhqRklXM2NQZ3JIaU5uZEpBZEtHOUZpbUJZZ0hnYw?oc=5"
-    },
-    {
-      "id": "auto-217238227e",
-      "nombre": "Ruptura Morena-PT podría afectar aprobación de Sheinbaum, amaga Reginaldo Sandov",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 15,
-      "motivo": "PT descarta ruptura inmediata con Morena; Reginaldo Sandoval pide respetar la identidad de izquierda de la alianza - El Universal",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxORk9qaURNNkxvU0ZsWjhKaGFRZkNEbHNCTWN1TVl5R0ZQejV4bjZZMV9LS0xLYWt4Y0ZaTlpfQm90U3FBUDFQX09CVVdPU3hfYzJQVGZ0SE1lVF9QZDFDb25PWnhiejNYRlZmOWt6RGFEVFBFQnoxNmVhd0l5c055Wlp6RHQyOWZKQVpzNW9DR0FKUHI1WUVYMzR3dlIxX3cxSTNMdkJtMmYxS0ZqUFVJd2NPc29ZdUtKdWlBQ2R6T21lanlQZzVxTjRQREFjRDdrQ00wQVUteFlsRVF4TEZtOUhVRW1FcjjSAfsBQVVfeXFMTXJLV09nR3BPbTFXQ0l0RW1mTDB5QnVNUFpzY3Nlb3p0SS12T1VqTHlTcGdod210bEJaMmVBZHJoZ0NEODhpenFyVlVTcldnZ2VoaE96NTBpUkVwVm0yc0dpTXVoR0JRYVp2bzM4eUVtYkxSWDBFS1pUYWFFZzBaZDRURGhoZDNUZ0REUUNsUHVaV2dCTUxNTnZiTWptRDZCR29ZZlhMLXM2eHRRamtNUVNwWEdZUTNMVTc5eHd5MkN5RW9aN1JDY3I5c2pDd0kzRFVxYVExV1JGR2NoTDYxc3p6MWJMdDQ1SmllVHpKaVBkb1NmSnk0TTRoRHM?oc=5",
-      "fecha_anterior": "2026-09-27",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPbjF0elg3eXJuRW55eDdCUGJCTzBwMkI1NUpsaWZmR1lqWXJzZ0tUZVRhOWNubVNRaUdndzdiTWdGMmNQVUNQRmRlQXNCSTRteTZFWnVFalphdXktbFFGa0xaWS1ob3o4R1BUZ0taR1ljLTdKV0V2SXlGcU92Q3NzY252Qy1rY3ZIajJPc2xlUDMyYVJ1a01hOENJakpHUExYeS1Vc205U196Z3dPRnBQMHV5VG1vVFdRY2VDcDFmVU9GRjh0ZElKTjlR?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1068,23 +1105,23 @@
       "confianza": "media"
     },
     {
+      "id": "garcia_harfuch",
+      "nombre": "Omar García Harfuch",
+      "rol": "Reacción social/mediática",
+      "tema": "Tensión en Palacio Nacional: Sheinbaum habría cuestionado a García Harfuch por c",
+      "nota": "García Harfuch detalla nuevo modelo de centros penitenciarios en 6 estados: \"No sólo se limita a la infraestru - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSWNoajlVN3cwdlhhUmp2UTZyMTJuMVhULWZVT2tSSHBnbXdfNHRodll1SzJVRGpGOW9zOXp1N1I5M2w5WS11WUxWb3JfX0lLUnZlalVUYmNhcWwzVnAyT2gtTDVOdzV6c2c4Zjg0ckF0M2tUNzV4eVlSRGhZcU43T085WUhLdUdRWEFGR1JYOWtaR25h0gGUAUFVX3lxTE14MHpOZ3JqMHQyckVLT0oweWRqOFJQVkUxLXVRdXpybHNzUWlqcms2NWZ6bDI0Nmx6UEVzcFhhVHBwMkNaVjF6M2d6emJfTnNPTGxGSmdaLUpZRWdyclBmX2llaHc3UjVBODJ1cFpkck1MdVh5RHdoaHg5OGJKQWNvMUtUYVBTMU1GNGxGQS00cV82Ync?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "pio_lopez_obrador",
       "nombre": "Pío López Obrador",
       "rol": "Reacción social/mediática",
       "tema": "Pío López Obrador va por diputación en Chiapas; asegura que se someterá a los re",
       "nota": "Pío López Obrador inicia recorridos en Tuxtla tras anunciar candidatura a diputación federal; destaca recepción ciudadana - El Universal",
       "fuente_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOa0JpN0ZwNWdpU0dqdHVqWnlQYW5FS0dNTGNmQmZudTRIazh2SDlVN3htQzF0d3p1MFUtUDAzUDFZc21aVXdwbWQ1R21HaWlyREk4dW1URC1rRk9FV2xMTnhnMnkxY1NCd1NHN0Z3TG82NmNJeFlNUG9COHNkTkZXOTlMM3pfU2plelJqcDR5WHB2WTU3Q3BqWFdubUhPem9GaW1td3hpcDRVV0tMbkpjVW1yY1V0UGZ1M2lHZGZCZFdjYWNqNjNFR2ZiUU1FZnIxbzJaajd0Q0FsX19DMnfSAfIBQVVfeXFMTlpZT2ZOcnpsUkZPc2ZBd1VfNkZkQnZoVVJKMzUwQVRRc09YRzZfVzUzZmhXdUZDOHNzTFgxVGZtMmlZRHE0ZnQyemRuWkswSzNvbTVhd3lBbk5EcE4tai1pclI5dlNVU3ZQV3FKSHlBTDduUEJUcEFJa2NkRW9VbTlLczV1aHRqNzBHMU9kS2tjeEZSRlllT2c5c0U5Q21NVDhGSWpaWnZ6R0w4bEdmXzY5Z0hSOE04cXJsMS05ZzJ1ZExNNFNvbERsdEtidXF4RHQ5SXd4Rk9CM0tKVGswaTVOM1JCd25MQWpsNzdBZFk4S3c?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "loret_de_mola",
-      "nombre": "Carlos Loret de Mola",
-      "rol": "Mencionado",
-      "tema": "La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso",
-      "nota": "Los “chismosos” volvemos a tener la razón, escribe Carlos Loret de Mola - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOLUU0M0VtU3M1MmZxVE1wT1FMN0tGdDE3TW4zdVU5dm9mOC05Wks1U2JHbmR5eld5THJNTnZBZ0NpeFBxSTV1QTJydEN3UEw0NUlFcnF5N1VGSHFCbnc4WUpKejBFcjYyWmZCTzBRWXZoNlBlY01nUDM2Y1hROU5qTGltb3FMQWlnLWJuXzZwdnJmNlQ0clJnYzY2b0kyRmp3WkE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1152,16 +1189,16 @@
     {
       "fecha": "2026-09-23",
       "tension": 35,
-      "n_notas": 55,
+      "n_notas": 56,
       "n_alto_impacto": 31,
-      "n_medio_impacto": 24,
+      "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-24",
-      "tension": 44,
-      "n_notas": 59,
-      "n_alto_impacto": 42,
+      "tension": 45,
+      "n_notas": 61,
+      "n_alto_impacto": 44,
       "n_medio_impacto": 17,
       "n_bajo_impacto": 0
     },
@@ -1223,10 +1260,10 @@
     },
     {
       "fecha": "2026-10-02",
-      "tension": 39,
-      "n_notas": 42,
+      "tension": 38,
+      "n_notas": 43,
       "n_alto_impacto": 28,
-      "n_medio_impacto": 14,
+      "n_medio_impacto": 15,
       "n_bajo_impacto": 0
     },
     {
@@ -1248,57 +1285,57 @@
     {
       "fecha": "2026-10-05",
       "tension": 21,
-      "n_notas": 76,
-      "n_alto_impacto": 27,
+      "n_notas": 77,
+      "n_alto_impacto": 28,
       "n_medio_impacto": 49,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-06",
-      "tension": 16,
-      "n_notas": 98,
-      "n_alto_impacto": 23,
+      "tension": 17,
+      "n_notas": 100,
+      "n_alto_impacto": 25,
       "n_medio_impacto": 75,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-07",
       "tension": 23,
-      "n_notas": 71,
-      "n_alto_impacto": 28,
+      "n_notas": 72,
+      "n_alto_impacto": 29,
       "n_medio_impacto": 43,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-08",
       "tension": 25,
-      "n_notas": 71,
-      "n_alto_impacto": 26,
+      "n_notas": 72,
+      "n_alto_impacto": 27,
       "n_medio_impacto": 45,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-09",
       "tension": 32,
-      "n_notas": 50,
-      "n_alto_impacto": 27,
+      "n_notas": 51,
+      "n_alto_impacto": 28,
       "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-10",
-      "tension": 24,
-      "n_notas": 35,
-      "n_alto_impacto": 15,
+      "tension": 25,
+      "n_notas": 36,
+      "n_alto_impacto": 16,
       "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-11",
-      "tension": 29,
-      "n_notas": 19,
-      "n_alto_impacto": 7,
-      "n_medio_impacto": 12,
+      "tension": 28,
+      "n_notas": 23,
+      "n_alto_impacto": 9,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
     {
@@ -1311,10 +1348,10 @@
     },
     {
       "fecha": "2026-10-13",
-      "tension": 34,
-      "n_notas": 14,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 8,
+      "tension": 31,
+      "n_notas": 20,
+      "n_alto_impacto": 9,
+      "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     }
   ],
@@ -1323,43 +1360,76 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 0,
-      "y_lunes": 0,
+      "x_lunes": 78,
+      "y_lunes": 57,
       "x_hoy": 100,
-      "y_hoy": 57,
-      "delta_pts": 12.0,
-      "alcance": 5,
-      "n_alto": 1,
-      "n_medio": 6,
+      "y_hoy": 61,
+      "delta_pts": 4.5,
+      "alcance": 6,
+      "n_alto": 2,
+      "n_medio": 7,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
       "nota_texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 1,
+      "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 100,
+          "x": 78,
           "y": 57
+        },
+        {
+          "fecha": "2026-10-13",
+          "x": 100,
+          "y": 61
         }
       ],
-      "fecha_apagado": "2026-10-13"
+      "fecha_reactivado": "2026-10-13"
+    },
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "iniciales": "DT",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 22,
+      "y_hoy": 100,
+      "delta_pts": 6,
+      "alcance": 2,
+      "n_alto": 2,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOaGhQZ3RmaVgyNENfcmN6elBqYmo1ZngwcV9VQzZjVnRVM2hpVnljU0RqMzMwMXNCbGlLamZ4LW44WUZvam01b0NXenBwMVlJWVAyNG1meGlBbHBQUjNvZWxOaS16aUNNT0d4blI2NnpPeTFucW4taUg0QW5nNkRyLTFtbGRIM09HdVhfQzM0WXN6aFd5WDFJMFZPTnJQLW1WekkyekwzUDVYYS1nM1ZsbkFFRGtNS1p3WDdiUXRn?oc=5",
+      "nota_texto": "Donald Trump y amigos son más ricos que hace 20 meses - La Jornada Maya",
+      "es_nuevo": false,
+      "categoria": "Relación Bilateral",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-13",
+          "x": 22,
+          "y": 100
+        }
+      ]
     },
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 14,
+      "x_lunes": 11,
       "y_lunes": 100,
-      "x_hoy": 43,
-      "y_hoy": 83,
-      "delta_pts": 4.5,
-      "alcance": 3,
+      "x_hoy": 44,
+      "y_hoy": 75,
+      "delta_pts": 6.0,
+      "alcance": 4,
       "n_alto": 2,
-      "n_medio": 1,
+      "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
@@ -1371,16 +1441,15 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 14,
+          "x": 11,
           "y": 100
         },
         {
           "fecha": "2026-10-13",
-          "x": 43,
-          "y": 83
+          "x": 44,
+          "y": 75
         }
-      ],
-      "fecha_reactivado": "2026-10-13"
+      ]
     },
     {
       "id": "andy",
@@ -1388,7 +1457,7 @@
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 11,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1405,7 +1474,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 14,
+          "x": 11,
           "y": 100
         }
       ],
@@ -1417,7 +1486,7 @@
       "iniciales": "AO",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 11,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1434,19 +1503,47 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 14,
+          "x": 11,
           "y": 100
         }
       ],
       "fecha_apagado": "2026-10-13"
     },
     {
+      "id": "garcia_harfuch",
+      "nombre": "Omar García Harfuch",
+      "iniciales": "OG",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 22,
+      "y_hoy": 50,
+      "delta_pts": 3.0,
+      "alcance": 2,
+      "n_alto": 0,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSWNoajlVN3cwdlhhUmp2UTZyMTJuMVhULWZVT2tSSHBnbXdfNHRodll1SzJVRGpGOW9zOXp1N1I5M2w5WS11WUxWb3JfX0lLUnZlalVUYmNhcWwzVnAyT2gtTDVOdzV6c2c4Zjg0ckF0M2tUNzV4eVlSRGhZcU43T085WUhLdUdRWEFGR1JYOWtaR25h0gGUAUFVX3lxTE14MHpOZ3JqMHQyckVLT0oweWRqOFJQVkUxLXVRdXpybHNzUWlqcms2NWZ6bDI0Nmx6UEVzcFhhVHBwMkNaVjF6M2d6emJfTnNPTGxGSmdaLUpZRWdyclBmX2llaHc3UjVBODJ1cFpkck1MdVh5RHdoaHg5OGJKQWNvMUtUYVBTMU1GNGxGQS00cV82Ync?oc=5",
+      "nota_texto": "García Harfuch detalla nuevo modelo de centros penitenciarios en 6 estados: \"No sólo se limita a la infraestru - Milenio",
+      "es_nuevo": false,
+      "categoria": "Seguridad Nacional",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-13",
+          "x": 22,
+          "y": 50
+        }
+      ]
+    },
+    {
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
-      "x_lunes": 14,
+      "x_lunes": 11,
       "y_lunes": 50,
-      "x_hoy": 29,
+      "x_hoy": 22,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 2,
@@ -1463,41 +1560,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 14,
+          "x": 11,
           "y": 50
         },
         {
           "fecha": "2026-10-13",
-          "x": 29,
-          "y": 50
-        }
-      ],
-      "fecha_reactivado": "2026-10-13"
-    },
-    {
-      "id": "garcia_harfuch",
-      "nombre": "Omar García Harfuch",
-      "iniciales": "OG",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 14,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSWNoajlVN3cwdlhhUmp2UTZyMTJuMVhULWZVT2tSSHBnbXdfNHRodll1SzJVRGpGOW9zOXp1N1I5M2w5WS11WUxWb3JfX0lLUnZlalVUYmNhcWwzVnAyT2gtTDVOdzV6c2c4Zjg0ckF0M2tUNzV4eVlSRGhZcU43T085WUhLdUdRWEFGR1JYOWtaR25h0gGUAUFVX3lxTE14MHpOZ3JqMHQyckVLT0oweWRqOFJQVkUxLXVRdXpybHNzUWlqcms2NWZ6bDI0Nmx6UEVzcFhhVHBwMkNaVjF6M2d6emJfTnNPTGxGSmdaLUpZRWdyclBmX2llaHc3UjVBODJ1cFpkck1MdVh5RHdoaHg5OGJKQWNvMUtUYVBTMU1GNGxGQS00cV82Ync?oc=5",
-      "nota_texto": "García Harfuch detalla nuevo modelo de centros penitenciarios en 6 estados: \"No sólo se limita a la infraestru - Milenio",
-      "es_nuevo": false,
-      "categoria": "Seguridad Nacional",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-13",
-          "x": 14,
+          "x": 22,
           "y": 50
         }
       ]
@@ -1508,7 +1576,7 @@
       "iniciales": "CL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 11,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1525,7 +1593,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-13",
-          "x": 14,
+          "x": 11,
           "y": 50
         }
       ]
@@ -1536,7 +1604,7 @@
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 11,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1553,7 +1621,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 14,
+          "x": 11,
           "y": 50
         }
       ],
@@ -1561,8 +1629,44 @@
     }
   ],
   "tablero_semana_inicio": "2026-10-12",
-  "resumen_mananera": [],
-  "mananera_estado": "fuente_retrasada",
+  "resumen_mananera": [
+    {
+      "texto": "Se informó sobre la distribución geográfica de homicidios, donde siete entidades federativas concentran el 50% del total nacional. Baja California y Guanajuato lideran con 8.5% cada una, seguidas por",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Los delitos de alto impacto registraron una reducción del 36% entre septiembre de 2024 y septiembre de 2026, pasando de 636.6 a 408.8 delitos diarios. El robo de vehículo con violencia disminuyó 55%,",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se presentó el programa \"Jóvenes Unen al Barrio\" como parte de la estrategia de atención a las causas de la violencia. El programa busca a jóvenes de 12 a 29 años en situación de vulnerabilidad a trav",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se informó sobre operativos exitosos de detención de líderes criminales, incluyendo a Eliseo N. \"El Junior\" en Acapulco, responsable de extorsiones en el mercado central; Óscar Ariel N., líder de la M",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se anunció la construcción de seis nuevos centros penitenciarios en Chiapas, Estado de México, Nayarit, Sinaloa, Sonora y Veracruz, con capacidad total de 18 mil 480 espacios. Estos centros contarán c",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    }
+  ],
+  "mananera_estado": "ok",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1622,5 +1726,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-13 10:28"
+  "hora_corte_publicada": "2026-10-13 11:29"
 }
