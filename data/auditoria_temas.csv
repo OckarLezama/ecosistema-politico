@@ -40,7 +40,6 @@ auto-9cdea0ad45,Guatemala reabre cruces fronterizos con México tras bloqueos po
 auto-6df9b2e237,La presidenta Claudia Sheinbaum confirmó que no asistirá este año a la Asamblea ,1,completo,7,2,0.29,mezcla historias
 auto-08b061e1fe,"""Nosotros no compramos votos”, dice Claudia Sheinbaum en su visita a La Paz, Baj",1,completo,10,3,0.3,mezcla historias
 auto-44250cb339,Esposa de locutor Iván Michel Atilano pide a Presidenta de México y Gobernador d,3,informativo,13,4,0.31,mezcla historias
-auto-450eac718d,Claudia Sheinbaum destacó la presencia que ha ganado el K-pop entre los jóvenes ,3,informativo,30,10,0.33,mezcla historias
 auto-af03748273,Claudia Sheinbaum Pardo. . Presentamos resultados en rehabilitación y construcci,1,completo,24,8,0.33,mezcla historias
 auto-10cc6a1112,Claudia Sheinbaum lo confirmó: se evalúa nuevo aumento para pensionados y jubila,1,completo,15,5,0.33,mezcla historias
 auto-9523390fbd,Gobierno del Estado invita a votar por Puebla en Ángel del Turismo - Primera Pla,3,informativo,12,4,0.33,mezcla historias
@@ -54,6 +53,7 @@ auto-c04b30a748,“Quiero justicia para mi hija”: padre peruano busca ser escu
 auto-fea887a68b,Senado propone a Claudia Sheinbaum DETENER iniciativa sobre jueces sin rostro - ,3,informativo,3,1,0.33,mezcla historias
 auto-81b36d96e2,"Claudia Sheinbaum negocia con Estados Unidos una baja de aranceles: ""Nos interes",3,informativo,3,1,0.33,mezcla historias
 auto-5a783c7ea9,Gobierno de Claudia Sheinbaum se apropia del dinero de Afores no reclamadas en e,3,informativo,3,1,0.33,mezcla historias
+auto-450eac718d,Claudia Sheinbaum destacó la presencia que ha ganado el K-pop entre los jóvenes ,3,informativo,32,11,0.34,mezcla historias
 auto-db83bd3ced,"Delfina Gómez presenta hoy su Tercer Informe de Gobierno: infraestructura, emple",3,informativo,11,4,0.36,mezcla historias
 auto-88859caeb0,Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que ,1,completo,24,9,0.38,mezcla historias
 auto-2dcc78062c,Involucrados funcionarios municipales en ilícitos,3,informativo,8,3,0.38,mezcla historias
@@ -299,7 +299,7 @@ auto-f66c5a4c05,PT pone pausa a proceso de Morena; cuestiona rumbo de la 4T - Ca
 auto-538d99c148,"Van al Congreso predios de la Juárez, Amalucan y Parque Biblioteca para el Cable",3,informativo,8,7,0.88,ok
 auto-f987b5010b,Investiga Fiscalía a seis autoridades municipales de Oaxaca por presuntos nexos ,3,informativo,8,7,0.88,ok
 auto-29e97c07ab,Morena Puebla conmemora 15 años de transformación y convoca a celebrar el aniver,3,completo,8,7,0.88,ok
-morena-coordinadores-2027,Coordinadores estatales de Morena rumbo a 2027,1,completo,395,352,0.89,ok
+morena-coordinadores-2027,Coordinadores estatales de Morena rumbo a 2027,1,completo,396,353,0.89,ok
 auto-ee6efd9cf7,"Sheinbaum y Rosa Icela sostienen primera reunión con gobernadora de Sinaloa, Gra",1,completo,18,16,0.89,ok
 auto-82d951817d,CRÓNICA POLÍTICA: Congreso va por formalizar cambios en el gabinete de Salomón J,3,informativo,9,8,0.89,ok
 auto-2790d16615,Eugenio Segura sería el primer gobernador de Quintana Roo nacido en Cancún - Pal,3,informativo,9,8,0.89,ok
@@ -339,8 +339,8 @@ auto-5cbd3ffc2f,Se anunció que para la próxima semana se trabajará en un decr
 auto-3de5902549,La presidenta Claudia Sheinbaum abordó el tema de la intervención de la embajada,3,informativo,254,254,1.0,ok
 auto-821abb5ba4,Gustavo Leal F.*: Servicio Universal de Salud: ¿12 mil 750 consultorios “nuevos”,3,informativo,169,169,1.0,ok
 auto-dbb585f509,"Se presentó la estrategia de enfermedad cardiorrenal metabólica, que reconoce qu",3,informativo,166,166,1.0,ok
-auto-db389de134,Disputan en San Lázaro por la crisis del agua en Jalisco,3,informativo,135,135,1.0,ok
-auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,129,129,1.0,ok
+auto-db389de134,Disputan en San Lázaro por la crisis del agua en Jalisco,1,completo,136,136,1.0,ok
+auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,130,130,1.0,ok
 auto-32fd0aa34b,"Se informó sobre la recuperación de la Comisión Federal de Electricidad, que fue",3,informativo,123,123,1.0,ok
 auto-3520faacac,Programas sociales benefician a más de 1.6 millones en Guerrero: Presidenta,3,informativo,104,104,1.0,ok
 auto-9294ecc850,En el monitoreo de precios de la canasta básica PASIC de 24 productos que no deb,3,informativo,99,99,1.0,ok
@@ -407,21 +407,22 @@ auto-796ebb5b06,Lo que dijo ayer el gobernador Alejandro Armenta en su Mañanera
 auto-444faadc89,Diputada de Morena acusa “encuesta amañada” en proceso interno de Quintana Roo -,3,informativo,12,12,1.0,ok
 auto-6c66c4f554,"PAZ irá solo en 2027 y marca distancia de Morena, afirma su dirigente - Imagen d",3,informativo,11,11,1.0,ok
 auto-15914cd38c,Impulsa Mara Lezama productividad del campo con entrega de nuevo equipamiento ga,3,informativo,11,11,1.0,ok
+auto-684ea982ed,Fortalece FGEO combate a delitos de alto impacto con el grupo de élite “Binnizá”,3,informativo,11,11,1.0,ok
 auto-0ab49cdc5e,"¿Quién era Miguel Sánchez Altamirano,el alcalde de Juchitán detenido por fuerzas",3,informativo,11,11,1.0,ok
 auto-6b039edaef,Alcalde de Juchitán es acusado de integrar red de extorsión ligada al CJNG; cobr,3,informativo,11,11,1.0,ok
 auto-a00ea963de,"Con llantos, tensiones y consensos, Morena concreta 17 perfiles rumbo al 2027 - ",3,informativo,11,11,1.0,ok
+auto-b5600da9ba,"Sheinbaum, Johnson y empresarios abordan temas de comercio, seguridad, inteligen",3,informativo,11,11,1.0,ok
 auto-a34275f96e,Ataque con arma blanca deja un herido; vecinos piden mayor vigilancia por casa “,1,completo,10,10,1.0,ok
 auto-6f0ffe12e8,Congreso local descarta intervención política en situación de Paraíso,1,completo,10,10,1.0,ok
 auto-0e7f079f97,#HuayNius 📲 | En el gobierno de ‘Huacho’ Díaz Mena puedes ser lo que quieras ser,3,informativo,10,10,1.0,ok
 auto-641d6ee9f0,Morena se toma su tiempo porque no quiere sorpresas: Marybel Villegas - grupopir,3,informativo,10,10,1.0,ok
 auto-93956bd174,"Morena rumbo a 2027: Zacatecas y Guerrero, estados donde enfrenta divisiones int",1,completo,10,10,1.0,ok
 auto-14e90f3ff5,Diputado José Luis Figueroa propone fortalecer educación en historia y civismo -,3,informativo,10,10,1.0,ok
-auto-684ea982ed,Fortalece FGEO combate a delitos de alto impacto con el grupo de élite “Binnizá”,3,informativo,10,10,1.0,ok
 auto-551636d43e,¡Se confirma la caída de “Quetu”! Harfuch revela que el alcalde de Juchitán tení,3,informativo,10,10,1.0,ok
 auto-973ac0b81b,Sheinbaum llama a protestas pacíficas por 12 años de Ayotzinapa; informe de inve,1,completo,10,10,1.0,ok
 auto-efff65116c,Chedraui y Armenta abordarán con representantes de Carlos Slim el proyecto en Pa,3,informativo,10,10,1.0,ok
 auto-114acb3463,Andy Manuel López Beltrán se registra como aspirante a diputado en Tabasco - fom,3,informativo,10,10,1.0,ok
-auto-b5600da9ba,"Sheinbaum, Johnson y empresarios abordan temas de comercio, seguridad, inteligen",3,informativo,10,10,1.0,ok
+auto-207865baaa,"Veracruz, entre seis estados donde se construirán nuevos centros penitenciarios ",3,informativo,10,10,1.0,ok
 auto-995d1fce6a,“Son tiempos de zopilotes”: May acusa aprovechamiento político por falta de agua,3,informativo,9,9,1.0,ok
 auto-83129c6f41,Veracruz registra 204 casos de extorsión en 2026; Coparmex exige mayores accione,3,informativo,9,9,1.0,ok
 auto-e0fea45fdb,"PRI analiza no ponerle contrincante a Morena en Tabasco: ""Que juegue solo 'Andy'",3,informativo,9,9,1.0,ok
@@ -437,7 +438,9 @@ auto-280d4466cb,El secretario de Seguridad Pública del Estado participó en el 
 auto-d1618757e6,Manuel Velasco pide mantener unido al bloque oficialista rumbo a 2027 - Capital ,1,completo,9,9,1.0,ok
 auto-f32641d2ff,"Dirigente de Morena en Puebla, Olga Lucía Romero Garci-Crespo, intentó JUSTIFICA",3,informativo,9,9,1.0,ok
 auto-2e8df6b4f9,Cinco diputados de Morena se registraron por candidaturas federales rumbo a 2027,3,informativo,9,9,1.0,ok
-auto-207865baaa,"Veracruz, entre seis estados donde se construirán nuevos centros penitenciarios ",3,informativo,9,9,1.0,ok
+auto-6dc2bf344e,"Se informó sobre la distribución geográfica de homicidios, donde siete entidades",3,informativo,9,9,1.0,ok
+auto-131ccbf1f7,"Se informó sobre operativos exitosos de detención de líderes criminales, incluye",3,informativo,9,9,1.0,ok
+auto-9c916cadce,"Se presentaron logros en educación superior, con 401 nuevos bachilleratos constr",3,informativo,9,9,1.0,ok
 auto-c23661b683,Fuerte operativo se mantiene en Puebla tras la captura de “El Amarillo”,3,informativo,8,8,1.0,ok
 auto-e1e0f1db38,Videojuego Maga: Casa Blanca lanza ‘Tetris’ sobre construir muro fronterizo cont,1,completo,8,8,1.0,ok
 auto-614379801c,Destaca informe despliegue de seguridad en el AICM,3,completo,8,8,1.0,ok
@@ -462,9 +465,6 @@ auto-2c1ca15871,García Harfuch se reúne con representantes de Business Council
 auto-73a08896f9,Suchiapa propone a Daniela Flores como alcaldesa tras detención de edil y exalca,3,informativo,8,8,1.0,ok
 auto-5acecb2fbb,Tensión en Palacio Nacional: Sheinbaum habría cuestionado a García Harfuch por c,1,completo,8,8,1.0,ok
 auto-3a87904492,Claudia Sheinbaum desmiente regaño a Omar García Harfuch publicado en medios de ,3,informativo,8,8,1.0,ok
-auto-6dc2bf344e,"Se informó sobre la distribución geográfica de homicidios, donde siete entidades",3,informativo,8,8,1.0,ok
-auto-131ccbf1f7,"Se informó sobre operativos exitosos de detención de líderes criminales, incluye",3,informativo,8,8,1.0,ok
-auto-9c916cadce,"Se presentaron logros en educación superior, con 401 nuevos bachilleratos constr",3,informativo,8,8,1.0,ok
 auto-7539214bf2,Sheinbaum acusa a EE.UU. de usar tácticas de 'injerencia' para dividir a su Gobi,1,completo,7,7,1.0,ok
 auto-ddddfbc34d,Rosa Icela Rodríguez: con diálogo dimos atención prioritaria a 8 mil 38 grupos,3,completo,7,7,1.0,ok
 auto-8f28d41742,Afores apuntalan obras públicas,3,informativo,7,7,1.0,ok
@@ -485,6 +485,7 @@ auto-42fdb6febe,Avalan en Comisión del Congreso iniciativa para garantizar el p
 auto-d3c4441a5a,Comparecencias sobre seguridad no llegarán al pleno en San Lázaro,1,completo,7,7,1.0,ok
 auto-3f8fcf6275,"Sheinbaum reacciona a dichos machistas del gobernador de Puebla, Alejandro Armen",3,informativo,7,7,1.0,ok
 auto-fcc9a86393,Luis Gamero concluye sanción por violencia política de género y va por candidatu,3,informativo,7,7,1.0,ok
+auto-a9d89ee4b5,Morena Puebla alista recibimiento a Sheinbaum y respalda a Armenta ante críticas,3,informativo,7,7,1.0,ok
 auto-1925c582a4,Trump amenaza con aniquilar a Irán ante la ONU,3,informativo,7,7,1.0,ok
 auto-ac8686d30d,"El gobernador de Puebla, Alejandro Armenta, repite viejas fórmulas y ERRORES: po",3,informativo,7,7,1.0,ok
 auto-d13bab47a4,Congreso de Yucatán aprueba reformas para blindar salud mental y combatir violen,3,informativo,7,7,1.0,ok
@@ -531,7 +532,6 @@ auto-430c87247c,Fortalece Protección Civil refugios temporales ante temporal ll
 auto-7413be01c2,Senador Antonio Morales impulsa reforma para eliminar juicios mercantiles extrat,3,informativo,6,6,1.0,ok
 auto-9d6bedadf8,“YO NUNCA ME VOY A SALIR DE MORENA” | Rafa Marín descarta ser candidato de otro ,3,informativo,6,6,1.0,ok
 auto-cda850a77f,Congreso de Quintana Roo abre debate sobre salud integral y endurecimiento de pe,3,informativo,6,6,1.0,ok
-auto-a9d89ee4b5,Morena Puebla alista recibimiento a Sheinbaum y respalda a Armenta ante críticas,3,informativo,6,6,1.0,ok
 auto-c8fbd586e0,¡Cero tolerancia a Morena! PRI va con todo ante INE por campaña anticipada - Gru,3,informativo,6,6,1.0,ok
 auto-f6a337ec0d,"""Nadie estará por encima de la ley"": Salomón Jara tras detención del alcalde de ",3,informativo,6,6,1.0,ok
 auto-88567fb1d2,Catean domicilio de Guillermo Pamuce tras homicidio en Coatzacoalcos; autoridade,3,informativo,6,6,1.0,ok
