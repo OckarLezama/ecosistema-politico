@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-13T18:00:44.068945-06:00",
+  "generado_en": "2026-10-14T00:02:04.590998-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 44,
+  "n_notas_ventana": 45,
   "baja_confianza": false,
-  "tension_nacional": 28,
+  "tension_nacional": 23,
   "tension_anomalia": {
-    "z": -0.6,
+    "z": -1.19,
     "nivel": "normal",
-    "media_periodo": 34.1,
+    "media_periodo": 34.4,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 47,
+      "peso_pct": 54,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 10,
-      "n_notas": 22,
+      "n_temas": 12,
+      "n_notas": 26,
       "notas": [
         {
           "texto": "“Defiendo a mis amigos\": Adán Augusto mete las manos al fuego por Andy López Beltrán por relación con Amílcar - TV Azteca",
@@ -62,12 +62,6 @@
           "medio": "Claudia Guerrero Noticias"
         },
         {
-          "texto": "Alistan aval sin cambios de ley contra el huachicol fiscal - Excélsior",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQRlNMdno5aV9DQXdTMGZpQ3JNY0pIU3NJX1BiUy10bWNCOUJyZS1fdzFCTGtQQjdDMGtKcDduQ1E5SmE0YktFNnQtakx1a3VNVTZvbkxTbDlBV3g1NEw1QnBaUDkxMUR2QTZLMy1OenNWUUVWeUN5T3JZTTViVm5aXzNjZmpwSkx3RlpRQm9BRXM3dk5l0gGaAUFVX3lxTE5uQTJGcXJBbWZDWVpzcDVueG1ZZDY4UHRBeGNEN19qNlVScjBuLWJVRDRCTU9sMUZkc0s5a3QyalJsZE92QnNZcHJSQUZsRlY2UTZMSG9jdTZzM1l2NWxSWXo2SzJPOXNiNTVpeUhULXZfTDlnTDFLa0RSU2ZJVTlIbzBrakNxMkd2Wmt5WURXbFoyX09ublFCbEE?oc=5",
-          "intensidad": 6.0,
-          "medio": "Excélsior"
-        },
-        {
           "texto": "En fast track, Senado avala reforma a Ley Aduanera; endurece penas a huachicol fiscal - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQa3U4azdGWjRNTGtaQkg5R2VGRWprMXZGU0pGemd6b1gxeEM1bDB1ajk1cWlpTFlNVVRobklFZlVTcDNWdWNWUzBZZnVJVWZlVDBtV010WDVuTDNNVmtCY205TDk5a1ZKSmFEaFg4aE9sc190Qnk2YVloSlBHVHJRYmRHWkJ2X2oxTzFvdi02VWJmMFdLUWtNMDZzZm1wN3JhWDRHZk9JWGJXX2g0TEhFejk3eFc3NWllZlVEM01QSdIB0wFBVV95cUxNamowbFN4a0NlWDhRVGpaMDdPM3dJZTRKa1N2LTlJbWppNXpiTE1vZElscnBJRU9YaExxT3JaYTJHVmE1MkI2dS1tbWp5R2w4YlNaNklaZldYaF9LTnVnNTVnc1owTFdrM1djdlctUW0tTVh1ZjA1b2dqeUdKWFBETWlUUkd0bVk0SXhLc1JHTHhtV1hmZlQwRkFVSUVCeVM0Qk1UbFVPdGNvT3JXMlY4MlpnN2lrUTR1cVpTMmJMVldpWnZ4SW1YeTVKZXY4aTFRVUxR?oc=5",
           "intensidad": 6.0,
@@ -108,86 +102,28 @@
           "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/13/garcia-harfuch-anuncia-6-nuevas-carceles-en-mexico-crearan-unidad-de-reaccion-penitenciaria/",
           "intensidad": 5.0,
           "medio": "elfinanciero.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 20,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 8,
-      "notas": [
-        {
-          "texto": "T-MEC no se termina, sostiene Sheinbaum - La Razón de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOalF0UlNMOVhCVVNxc0ZpbVlkMjlhN0NBV3Z3WmNJQlh0d3dzYWNVMXNSc0JmbVg0ZDF1QlR0VHAtU1FrWlZTLWJtR1VIX0FnUkFzc3h2QXR6ZXBsZVBZWE5WQlUzRkdSMGJrTERQTTM5THRpRllkelkwaHJVLThCaFBBaFBXeEZfTDZnbtIBpwFBVV95cUxNdWRub1gwTmQ4bFdrMlZhb2FYa1lBdl9meFZHSldoYWI3aWItbk5jR0hnSlR2MnIwNThOS2pRaUcyMUJfQjh0N3hPd1Z4aE5Na0RTb3AyT3FJWHpLOHlqYkVjN2lidmhPQTFwclJEWWQ0UGlxdGx4VlNqbzRCR3ZxeDdyT3NnN0lDbjdrZVVxSW9NNG55ZGFEeHNrV3JHb3hvaHBqMzVTdw?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Razón de México"
         },
         {
-          "texto": "Industria crece, IA impulsa el PIB, IMSS escucha a trabajadores y Sheinbaum defiende el T-MEC - El Economista",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPWUt3TDl6ZlhPZHlxTVpRamM0bWE4bzBKYzFKZkdrdXlLMUN5aXVNUDAyTlJkRURIeWFZYkVVQ2d2cHo1ODBjTDIwd2V5a0o3bUcxQXhScHh6MThucGtSRmV3QXZCcV9ibXdtdEs5QXhxYVJDbjdNbXJRNlZhXy1GOUFvYzRCdl9objhsQjJ6TWRSa0l6UjdOVGF2MXd4cXVSdGp3Y0RJWTJJZzJwZDl6OFBCc3YwdGRfVUgzOV9kRV80RkZRX0RuNzBjZVk1SkNqWjVqaHdVOUHSAd4BQVVfeXFMTVlhYkQ3M2dzZU5qNVdmVzJrT2dZZmZzcU1ZNGdoaVUzdUxjVTlIYUpwdXMtWENpbVN2b3VDZEdPcFFOemp5cTBvLXNEQXVVVFAwTVdrU2NUR0ZJUFBoQVRRb3dTaE41dUZobmxEbG9zTE5pZ2I0cFFkM2ZnbGgwaFZEVUw0WmVYZlA2UE5IQ2JXUEFEajFMaUoyc2laaFJnZ1hueXNLaDZVVEhuS2V6S2gxQng5c0s3X2x4eVVaMHlNblRHdkhZMFdDTlE2dDBRemJIN3BxZXVydllwRU93?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Economista"
-        },
-        {
-          "texto": "Negociación del T-MEC se ha estancado por déficit comercial con EU, reconoce Sheinbaum - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPYU5yS3llTExtYVZMMlZFR2xtOEoyd2hiTDNsbVZ1RTlQbFhrOHgwT0ZaZ2dhTkZwVXdaQWpLN0N5a2F0QVRjYXZzTVZXaUgycXFha1pxMkFwaGtWOWthRU5BQWd3TmNYNnp4ekROdm9pamcxbVlfcGpDY2pCN1VJUUUyVjF1a0pRbkM5Zlg0MDJhX2lxTXNibXlTbF90MXlqdXpEZzRVckxlVU5uMXV0YWdmNk5BMFFMdlFZejc3U2JTenBPWUpxMFVHZzF6VmFBWEZoSXotV1ZvaFdQdGh0M3NaTWN4WHk40gH8AUFVX3lxTFBRNDlHZWJHZzJHM0U5YUVIYjJyRFBpdnNFenppMko4OWJmRGJvWERDS2hhNkxQd3pmd2J2VXZMeGg3WlJpYmtVNlJWUl9WSEtDOEtRTnp6cmNtQzZHM2JXbVRhQVNJY0dsYUlScGtvOElDUGY3Y2lGNEtTaDF5VnZENjROb0NWRExmSHJoVzFIQUg2WEQyOEpsT2ZPSktFVHFXMUNyWkc0c09SSXl6NnFMMkZMTXg4SlBDTkltOXd6TGZ0N0txZWJSZVB3RTlrMDZKTUJsTzFOak40akhrSHlnVGtRMEx0al9aYkNDYmhocUEtdFJXTjRGYWtPWA?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
-        },
-        {
-          "texto": "Marcelo Ebrard aseguró que el T-MEC está “blindado” - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNd1IycFIweDJ0UHdhOC04NW42TS05X1ZfZWx0ajEwRGN5bzJWWTBEZldlZ0dHNHk1OTdXY2t2R09zV0owbWNtSUtJSFNoT2JYYXBwZEp6ODZ3SVpQU3FjWWs3TXV5ZGFVRTlKNUJhNmxNUU5BT1hyNDJCRGhwekRBNS03cTBhaDJubDZDalpyRzgzLTdQ0gGaAUFVX3lxTE1WVWFnM0doeE9pS1ZvQVFmc3RrMS1YS084QmZCZ2x5YUtfY2YzY09RYlR5SmlXZkJrNFIydHVWNlhkeGRHSlZseWpQSWZsMk00MF9yZFg4X3d6blBPVjNIUmVIcTh4SlRjNXhQdTFiMlEtb29YN3A4U2dHNG5veXc5RmpjaFFZNHhvbFJnNnhrRTRBUTJYOVNTRnc?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Ebrard comparecerá ante diputados; revisión del T-MEC será el tema central - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRzVvRmpMWGx1YllfR3UwU3lUVTc2RHJ4SHdLSUlsZEV0aWg5VVdDRUhwbTF1dGNHRVAyOVNZbkJ1MWNCcVlYYWR1ZnRicW5FOWdGVnZpVGtfSjlnb0xUeWZTdUEwaUZDc0hWaE51cU54Z1V3aDJsNVBSVjBZNFFWdXBPOUlUQ1dmdi00Rm5XcEZNYjDSAZMBQVVfeXFMT2RwQVd2UEJLdHMwdzZScE1zTTZsZmRnbW9KcnVLel84ZFRROTJvU3E3WjBQOWFISS16Z3JtTzYxaG81T3A1ZjBVWWs2d253T0NmSHlsbTRwd0hVbFdzUENQNE1jMnpwTjZWenVjdVpfTjk1S3NCM0ZPUmppdUxOc0hlT282c1VsaGZIZktJWjZSekVV?oc=5",
-          "intensidad": 7.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "CONTRA NAHLE, YA NI A UN BEBÉ RESPETAN - Política al Día",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxON2p5enRRdWM1TVdkM0NMUHJoaDZ6bVhfWjZWQkZPcmV0VFJwMFFoYlJSdE5TMi1vaC13Sl8yZHRSMDUtaElEUEM0c281YktXSXI5cy1aU3lyUTl2TVJIeTlvbENacVNCY3RzcDBlYzZoQU5jODNLOE9NUkF6aGVEWlctMEc1ZEkyclZzci1XTGQwUEMzUVZxTkVB?oc=5",
-          "intensidad": 6.0,
-          "medio": "Política al Día"
-        },
-        {
-          "texto": "Secretaría de Economía descarta cambios en el T-MEC",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/13/secretaria-de-economia-descarta-cambios-en-el-t-mec-907389.html",
-          "intensidad": 6.0,
-          "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "EU activa mecanismo del T-MEC por presuntas violaciones laborales en Guanajuato - Municipios Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOekRPUHZtZDdNRE5NR2ZzSjJvelhKV2c0TGg3eUU2alFtaHdnMXg4NWVDaEd1eHdyaFV2aTluSXpkdXdGVnhlQzg2RmxmLU1oY2VnbUswdkpJd1RIeWtpVjh0NTNlczNMLW1oY3U4bXJKbGZyb2xnblI1U2lJN3hwQ2lMNEJ2NndSS2tuM190Y0ttWmt5ekZtXzRPdElNamYxUFdsc2hvNGs2WWFWTGZiS29VVU1PbFBab19V?oc=5",
-          "intensidad": 6.0,
-          "medio": "Municipios Puebla"
+          "texto": "García Harfuch anuncia 6 nuevas cárceles en México; crearán Unidad de Reacción Penitenciaria - El Financiero",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNbVo2Y3d2VTNSa0R6YkxNeWh6ZW9XN1F2ZmlZT2xYdk5QVnNseE5jMEtVOVhmZWpHVkN3MXdoRlF3WkZ3N1lqTTZtMmltV1Y0V1c1YzRyb3huSkVfWE1uajdVVG94SnBrTWl0X1g5cjFMM09GU3Q1RmI0My1yMmkzOXlrVFFkbUlkRzJWczNObHBjTjduUm5uUnFGd2V4S0UyY19kTDFHYjhWZ2FPMFREOWxuaEhqUUpHTXU4czZadkp3MG5NN2ptSlh3UzRGNFl1RGl2Vy10X2tfU2xS?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Financiero"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 17,
+      "peso_pct": 15,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 3,
-      "n_notas": 7,
+      "n_notas": 6,
       "notas": [
         {
           "texto": "Trump no puede terminar unilateralmente el T-MEC afirma CSP; aunque reconoce que sí conversan cambios - El Independiente",
           "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQWmdHTW1HcU9IcVBmV196UXdDZHNBb01MbDNrYUhCdllIQ0dycWpELXZVRHh4c1NJSXNrTF9NdmIzTG9va01HNVBUYXVSOU0wMG1uV09iMms3Z3lMemoyZmZ6ZzBFM1B2eUR1QW1helMtbnpGdVc2QVFGX0ZkclZqQVE5dWJlTFNDSkdycjZ1ZEJ0TUNrNEZ2eHNicnh6Y210SElnTFZ0R1MwamJhQ1lILUpQcEd5WjktY1oyX2otcDhhRTVSOXFwdWVVbTE1RTJJTDZVQU5CMGhoZFRqa0VVOEpB?oc=5",
           "intensidad": 9.0,
           "medio": "El Independiente"
-        },
-        {
-          "texto": "\"Puede que lo haga\": Donald Trump abre la puerta a eliminar aranceles a productos colombianos - Pulzo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPVmZuUFo4NmsyMEprc3BwMjVfNm1aN1FMVzljRWlSdEtLYnBDYno0SlpHT3BXaUpmUmhKUkZYZjlEN2dTdWdMWXlkcEJOSW9mOUFsYnVTd2JDQ3dGOGdnaEdyOXRRd1VUVjlveWJ4MURyM1N0aTh3N2xiQkc4N09lc0xfMFZtaGpPZXZaZzZJeUNEWThCU0ZfRUFRakFJTktCUy1Wb0dHOXQ0UGNpbjBVcEkzeVpjZEFmaXFXNm5jNVfSAcABQVVfeXFMT1ZmblBaODZrMjBKa3NwcDI1XzZtWjdRTFc5Y0VpUnRLS2JwQ2J6NEpaR09wV2lKZlJoSlJGWGY5RDdnU3VnTFl5ZHBCTklvZjlBbGJ1U3diQ0N3RjhnZ2hHcjl0UXdVVFY5b3lieDFEcjNTdGk4dzdsYkJHODdPZXNMXzBWbWhqT2V2Wmc2SXlDRFk4QlNGX0VBUWpBSU5LQlMtVm9HRzl0NFBjaW4wVXBJM3laY2RBZmlxVzZuYzVX?oc=5",
-          "intensidad": 7.0,
-          "medio": "Pulzo"
         },
         {
           "texto": "Donald Trump y amigos son más ricos que hace 20 meses - La Jornada Maya",
@@ -222,8 +158,54 @@
       ]
     },
     {
+      "categoria": "Economía",
+      "peso_pct": 15,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 6,
+      "notas": [
+        {
+          "texto": "Industria crece, IA impulsa el PIB, IMSS escucha a trabajadores y Sheinbaum defiende el T-MEC - El Economista",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPWUt3TDl6ZlhPZHlxTVpRamM0bWE4bzBKYzFKZkdrdXlLMUN5aXVNUDAyTlJkRURIeWFZYkVVQ2d2cHo1ODBjTDIwd2V5a0o3bUcxQXhScHh6MThucGtSRmV3QXZCcV9ibXdtdEs5QXhxYVJDbjdNbXJRNlZhXy1GOUFvYzRCdl9objhsQjJ6TWRSa0l6UjdOVGF2MXd4cXVSdGp3Y0RJWTJJZzJwZDl6OFBCc3YwdGRfVUgzOV9kRV80RkZRX0RuNzBjZVk1SkNqWjVqaHdVOUHSAd4BQVVfeXFMTVlhYkQ3M2dzZU5qNVdmVzJrT2dZZmZzcU1ZNGdoaVUzdUxjVTlIYUpwdXMtWENpbVN2b3VDZEdPcFFOemp5cTBvLXNEQXVVVFAwTVdrU2NUR0ZJUFBoQVRRb3dTaE41dUZobmxEbG9zTE5pZ2I0cFFkM2ZnbGgwaFZEVUw0WmVYZlA2UE5IQ2JXUEFEajFMaUoyc2laaFJnZ1hueXNLaDZVVEhuS2V6S2gxQng5c0s3X2x4eVVaMHlNblRHdkhZMFdDTlE2dDBRemJIN3BxZXVydllwRU93?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Economista"
+        },
+        {
+          "texto": "Negociación del T-MEC se ha estancado por déficit comercial con EU, reconoce Sheinbaum - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPYU5yS3llTExtYVZMMlZFR2xtOEoyd2hiTDNsbVZ1RTlQbFhrOHgwT0ZaZ2dhTkZwVXdaQWpLN0N5a2F0QVRjYXZzTVZXaUgycXFha1pxMkFwaGtWOWthRU5BQWd3TmNYNnp4ekROdm9pamcxbVlfcGpDY2pCN1VJUUUyVjF1a0pRbkM5Zlg0MDJhX2lxTXNibXlTbF90MXlqdXpEZzRVckxlVU5uMXV0YWdmNk5BMFFMdlFZejc3U2JTenBPWUpxMFVHZzF6VmFBWEZoSXotV1ZvaFdQdGh0M3NaTWN4WHk40gH8AUFVX3lxTFBRNDlHZWJHZzJHM0U5YUVIYjJyRFBpdnNFenppMko4OWJmRGJvWERDS2hhNkxQd3pmd2J2VXZMeGg3WlJpYmtVNlJWUl9WSEtDOEtRTnp6cmNtQzZHM2JXbVRhQVNJY0dsYUlScGtvOElDUGY3Y2lGNEtTaDF5VnZENjROb0NWRExmSHJoVzFIQUg2WEQyOEpsT2ZPSktFVHFXMUNyWkc0c09SSXl6NnFMMkZMTXg4SlBDTkltOXd6TGZ0N0txZWJSZVB3RTlrMDZKTUJsTzFOak40akhrSHlnVGtRMEx0al9aYkNDYmhocUEtdFJXTjRGYWtPWA?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Universal"
+        },
+        {
+          "texto": "Marcelo Ebrard aseguró que el T-MEC está “blindado” - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNd1IycFIweDJ0UHdhOC04NW42TS05X1ZfZWx0ajEwRGN5bzJWWTBEZldlZ0dHNHk1OTdXY2t2R09zV0owbWNtSUtJSFNoT2JYYXBwZEp6ODZ3SVpQU3FjWWs3TXV5ZGFVRTlKNUJhNmxNUU5BT1hyNDJCRGhwekRBNS03cTBhaDJubDZDalpyRzgzLTdQ0gGaAUFVX3lxTE1WVWFnM0doeE9pS1ZvQVFmc3RrMS1YS084QmZCZ2x5YUtfY2YzY09RYlR5SmlXZkJrNFIydHVWNlhkeGRHSlZseWpQSWZsMk00MF9yZFg4X3d6blBPVjNIUmVIcTh4SlRjNXhQdTFiMlEtb29YN3A4U2dHNG5veXc5RmpjaFFZNHhvbFJnNnhrRTRBUTJYOVNTRnc?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Ebrard comparecerá ante diputados; revisión del T-MEC será el tema central - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRzVvRmpMWGx1YllfR3UwU3lUVTc2RHJ4SHdLSUlsZEV0aWg5VVdDRUhwbTF1dGNHRVAyOVNZbkJ1MWNCcVlYYWR1ZnRicW5FOWdGVnZpVGtfSjlnb0xUeWZTdUEwaUZDc0hWaE51cU54Z1V3aDJsNVBSVjBZNFFWdXBPOUlUQ1dmdi00Rm5XcEZNYjDSAZMBQVVfeXFMT2RwQVd2UEJLdHMwdzZScE1zTTZsZmRnbW9KcnVLel84ZFRROTJvU3E3WjBQOWFISS16Z3JtTzYxaG81T3A1ZjBVWWs2d253T0NmSHlsbTRwd0hVbFdzUENQNE1jMnpwTjZWenVjdVpfTjk1S3NCM0ZPUmppdUxOc0hlT282c1VsaGZIZktJWjZSekVV?oc=5",
+          "intensidad": 7.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "Secretaría de Economía descarta cambios en el T-MEC",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/13/secretaria-de-economia-descarta-cambios-en-el-t-mec-907389.html",
+          "intensidad": 6.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "EU activa mecanismo del T-MEC por presuntas violaciones laborales en Guanajuato - Municipios Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOekRPUHZtZDdNRE5NR2ZzSjJvelhKV2c0TGg3eUU2alFtaHdnMXg4NWVDaEd1eHdyaFV2aTluSXpkdXdGVnhlQzg2RmxmLU1oY2VnbUswdkpJd1RIeWtpVjh0NTNlczNMLW1oY3U4bXJKbGZyb2xnblI1U2lJN3hwQ2lMNEJ2NndSS2tuM190Y0ttWmt5ekZtXzRPdElNamYxUFdsc2hvNGs2WWFWTGZiS29VVU1PbFBab19V?oc=5",
+          "intensidad": 6.0,
+          "medio": "Municipios Puebla"
+        }
+      ]
+    },
+    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 11,
+      "peso_pct": 12,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 3,
@@ -285,31 +267,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-16",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 31
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 44
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 13
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 3
-        }
-      ]
-    },
     {
       "fecha": "2026-09-17",
       "categorias": [
@@ -984,6 +941,31 @@
           "peso_pct": 3
         }
       ]
+    },
+    {
+      "fecha": "2026-10-14",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 62
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 13
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 12
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 4
+        }
+      ]
     }
   ],
   "top5_temas": [
@@ -1000,28 +982,22 @@
       "medios_corroborantes": 4,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSWNoajlVN3cwdlhhUmp2UTZyMTJuMVhULWZVT2tSSHBnbXdfNHRodll1SzJVRGpGOW9zOXp1N1I5M2w5WS11WUxWb3JfX0lLUnZlalVUYmNhcWwzVnAyT2gtTDVOdzV6c2c4Zjg0ckF0M2tUNzV4eVlSRGhZcU43T085WUhLdUdRWEFGR1JYOWtaR25h0gGUAUFVX3lxTE14MHpOZ3JqMHQyckVLT0oweWRqOFJQVkUxLXVRdXpybHNzUWlqcms2NWZ6bDI0Nmx6UEVzcFhhVHBwMkNaVjF6M2d6emJfTnNPTGxGSmdaLUpZRWdyclBmX2llaHc3UjVBODJ1cFpkck1MdVh5RHdoaHg5OGJKQWNvMUtUYVBTMU1GNGxGQS00cV82Ync?oc=5",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "actor_vinculado": null
     },
     {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
+      "id": "sinaloa-crisis",
+      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "En 120 minutos y sin mover una sola coma: Comisión de Diputados aprueba Ley de Ingresos 2027",
-      "peso": 32.0,
+      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
+      "motivo": "Tras riñas en penal de Sinaloa, Harfuch anuncia construcción de nuevos penales",
+      "peso": 26.0,
       "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 5,
+      "medios_corroborantes": 4,
       "confianza": "alta",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/13/comision-diputados-aprueba-ley-de-ingresos-2027-cuando-se-votara-en-el-pleno/",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
+      "fuente_url": "https://www.informador.mx/mexico/harfuch-rinas-en-penal-de-sinaloa-impulsan-construccion-de-seis-nuevos-centros-penitenciarios-en-mexico-20261013-0055.html",
+      "actor_vinculado": null
     },
     {
       "id": "tmec-revision",
@@ -1036,10 +1012,22 @@
       "medios_corroborantes": 3,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPWUt3TDl6ZlhPZHlxTVpRamM0bWE4bzBKYzFKZkdrdXlLMUN5aXVNUDAyTlJkRURIeWFZYkVVQ2d2cHo1ODBjTDIwd2V5a0o3bUcxQXhScHh6MThucGtSRmV3QXZCcV9ibXdtdEs5QXhxYVJDbjdNbXJRNlZhXy1GOUFvYzRCdl9objhsQjJ6TWRSa0l6UjdOVGF2MXd4cXVSdGp3Y0RJWTJJZzJwZDl6OFBCc3YwdGRfVUgzOV9kRV80RkZRX0RuNzBjZVk1SkNqWjVqaHdVOUHSAd4BQVVfeXFMTVlhYkQ3M2dzZU5qNVdmVzJrT2dZZmZzcU1ZNGdoaVUzdUxjVTlIYUpwdXMtWENpbVN2b3VDZEdPcFFOemp5cTBvLXNEQXVVVFAwTVdrU2NUR0ZJUFBoQVRRb3dTaE41dUZobmxEbG9zTE5pZ2I0cFFkM2ZnbGgwaFZEVUw0WmVYZlA2UE5IQ2JXUEFEajFMaUoyc2laaFJnZ1hueXNLaDZVVEhuS2V6S2gxQng5c0s3X2x4eVVaMHlNblRHdkhZMFdDTlE2dDBRemJIN3BxZXVydllwRU93?oc=5",
-      "actor_vinculado": {
-        "id": "trump",
-        "nombre": "Donald Trump"
-      }
+      "actor_vinculado": null
+    },
+    {
+      "id": "trump-agenda",
+      "nombre": "Trump y México: declaraciones y presión",
+      "categoria": "Relación Bilateral",
+      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
+      "motivo": "🔔 ALERTA — Trump acorta plazo para que refugiados impugnen el fin de su estatus migratorio",
+      "peso": 6.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/13/trump-acorta-plazo-para-que-refugiados-impugnen-el-fin-de-su-estatus-migratorio/",
+      "actor_vinculado": null
     },
     {
       "id": "auto-cf2ebbe6da",
@@ -1054,28 +1042,25 @@
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOLUU0M0VtU3M1MmZxVE1wT1FMN0tGdDE3TW4zdVU5dm9mOC05Wks1U2JHbmR5eld5THJNTnZBZ0NpeFBxSTV1QTJydEN3UEw0NUlFcnF5N1VGSHFCbnc4WUpKejBFcjYyWmZCTzBRWXZoNlBlY01nUDM2Y1hROU5qTGltb3FMQWlnLWJuXzZwdnJmNlQ0clJnYzY2b0kyRmp3WkE?oc=5",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-8206bdbe1a",
-      "nombre": "ICE mantiene bajo custodia a Miguel Parra tras atropellarlo - MILENIO",
+      "id": "auto-b035b3c6e7",
+      "nombre": "“No estoy a favor de ICE”: Danny Trejo responde a críticas por 'Pawn Shop', pelí",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdmcyd2Y3R29KaFpKX0x0Wmx3cTdFN0pNVjFCT080a1hta3lWbTBTSzA3VnBPTVdDQkJKazBnMUl5NWFCdktjVVFkYjQzbU9sSkM4VVQyMzdMcU9rV1BEQnVOUWU4QVBiYjR6bmVvMGFleW90X3RVY19TbXQ1SE9wOVpfemNPaDJLWUlMelF0RmNXUzI4TjdlRnlKekJ3N3JIVWVKRNIBpAFBVV95cUxQT2g0NERDZW94bUZZNGlaS2pRYUVGdVZ5RS1WS3hOaUtpN2tkT0REM3BBaW9SYjk1dDZGMVFsQW4zeVphV2phWlc1UUVhUEx5NGZMdURReWxHdUtYc1UyT2RiNnJHMlFPSEVINmprRE10RkpubkJGVHJLVGk1Y1BSMkdUZ3EzWk9LTUtaU0FPWk11U2tPOGM1NjkwTjR2cE1iRmpfdg?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOYVlvVVdCTUFKU0VsdURnV1NpYnpPRmtzbEMxdnU4ZTFXd0hQMmpydzk5eW1rYUlfbzVqTXdWMnJRc21DNUdSRUg5TEt3STZhZ1VvTDBNY1F6WjZNMm9pdlN0MWZTRlpNMmZ6QUdlcFlkeXR2YTNveVUzWE9OeDVKZEoxU1V3SkdJWU5hWGtNMU1FQdIBkgFBVV95cUxPeF8tNk1tWGVMTl9rN0kyYXJrWVZOLUJEdVpBcXBhNjhORWZaQnE1dnR2YUx3Z2Ywc0hpNGNkenY4aFcySlpKX0MwN2pNekE3LWp1UjVVZzlXajNlc2NxRjM0cUt5bEJqT0hoZnMxcU5NLUktSjhHZ1FIX1kzZXhaY2NnYmxLSjJwQzBZbE1xTkFyZw?oc=5"
     },
     {
-      "id": "auto-47187c56a0",
-      "nombre": "Sin definir, itinerarios de los contingentes  de la marcha nacional",
+      "id": "auto-ea5cb6683e",
+      "nombre": "Diputados aprueban Ley de Derechos y contribuciones irán a la Defensa, Migración",
       "categoria": "Social",
-      "peso": 5.0,
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/13/politica/005n2pol?partner=rss"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQNmhIT2dfbnY4NlVLTDZPbU5wZXdsN19RYkE0U1dnSVRJLUE3bm1od09VSTBpX0RsWF9ZY2ltUDUwVEFMWUhZMU1LM0JuWEJaaGxFbEwwa05TR1U0cmZWbHUwcjBHSDNzaHRZeEttNHpOcGt2ODZ2ZUp5REhTbE9TWDB5UWRCLUhwaUlrVXNxSnE3aFU3V0FnMWI4Z1JyNlU4S1Rxb1F5TUNkUm1ScWlkM0tERFA3ckJFWklZaGVEOEtMb2dmSDFmS0JHem5UWldILUlxRXU3TGZUQnNuVlFIb9IB9AFBVV95cUxOeENfVGZVaHlhZHRrUlRhTG8wTEhDbEtHR0l2V2cxLUNTQXQ3Mk83YW9INkxxUDYzZDFmdGJVR08tTGZHTEl0VnI3YVBwMEEyd2NkUG5TQ3dfdkNiSnltVFlNdnppajdBMVdIalcwNmlDS05rMmQ5aGRQN3pJQmxYQWlLWWlaTGRSeEVfZzd6S1dMU2Y5T3hxYzctWExiRnVOcUNweEtaOUhERFhrU0tENmxJZEMtYkZhQ1hqdVN4WmRsMUNKNldxcVhybFFhZENydlFmYktBT200QTMyRC1GRS03OU55RUEyR05RUEVEY0ZhdnFU?oc=5"
     },
     {
       "id": "auto-b7e700956b",
@@ -1104,6 +1089,17 @@
   ],
   "temas_retomados": [
     {
+      "id": "auto-9478ddbee9",
+      "nombre": "¿Subirá la cerveza en México? Diputados analizan aumentar el IEPS",
+      "categoria": "Economía",
+      "dias_silencio": 40,
+      "motivo": "Diputados avalan en lo general aumento a tarifas para extranjeros",
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/diputados-avalan-en-lo-general-aumento-a-tarifas-para-extranjeros-en-que-consiste-la-ley-federal-de-derechos-20261013-0138.html",
+      "fecha_anterior": "2026-09-03",
+      "fuente_url_anterior": "https://www.tabascohoy.com/diputados-frenan-versiones-sobre-aumento-de-ieps-a-cerveza-y-alimentos-con-sodio/"
+    },
+    {
       "id": "auto-58dd95cf8e",
       "nombre": "Farid Rentería coincide con liderazgos de Morena y respalda llamado a la congrue",
       "categoria": "Gobernabilidad",
@@ -1113,6 +1109,17 @@
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/13/ariadna-montiel-exige-al-gober-de-jalisco-dejar-su-cargo-por-crisis-de-agua-si-no-puede-que-renuncie/",
       "fecha_anterior": "2026-09-27",
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/27/politica/003n4pol?partner=rss"
+    },
+    {
+      "id": "auto-0bbc723252",
+      "nombre": "Cómo las redes sociales de Trump reflejan su versión de la realidad",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 10,
+      "motivo": "Claudia Sheinbaum aclara que no busca prohibir redes sociales - Milenio",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQYjNxbzNFaXpYdm1xZEk3MExXa3B0U1BnZFlPZk5MbThtUGx1RERjQnBNNHpKdlVyMEVGRlJSTEVFRXFEY2FDUVNZRTkyR1h4MU9kNlgzQ0xqcHBVQ1dYbG5SNllZMVlRZjVyamluUWZFVFFlSThVS0VVanB3QXZCY0JFNURFTzZsOW9xeUJoelhVX2ZHMmNpeUtBOXBWdE84ZG8tai1lX0hXMG1UV20zRWkzbW_SAbQBQVVfeXFMUGIzcW8zRWl6WHZtcWRJNzBMV2twdFNQZ2RZT2ZOTG04bVBsdUREY0JwTTR6SnZVcjBFRkZSUkxFRUVxRGNhQ1FTWUU5MkdYeDFPZDZYM0NManBwVUNXWGxuUjZZWTFZUWY1cmppblFmRVRRZUk4VUtFVWpwd0F2QmNCRTVERU82bDlvcXlCaHpYVV9mRzJjaXlLQTlwVnRPOGRvLWotZV9IVzBtVFdtM0VpM21v?oc=5",
+      "fecha_anterior": "2026-10-03",
+      "fuente_url_anterior": "http://campechehoy.mx/2026/10/03/redes-sociales-deben-bajar-contenido-violento/"
     },
     {
       "id": "auto-b32d5a6e84",
@@ -1134,6 +1141,17 @@
       "tema": "Mañanera de la presidenta Claudia Sheinbaum minuto a minuto | 5 de octubre - Gru",
       "nota": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 13 de octubre: Síguela aquí en vivo - El Financiero",
       "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNbmNreHI5VVEyOEN0MExWWEpYNzNrbi02ekdFeDZycDVGaV93OWJIV0g2MmNwV0U4SDdDb3NVU1hoaE16cjdYV2NHREJDTENkS2stcWpHd2E3NjN4a3RBa3ZBcHBEclRoRGRFM2JEZXVTYnB1T2Y0UlkwSGd5ZFRiZC1BNzRtdGFZR3liWGxuaTVvVE9QNUNIek54cWEzN3YxSWxXdUdLYWsxaEQwQm01WG9uWEtGN2VrWGl3?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "ebrard",
+      "nombre": "Marcelo Ebrard",
+      "rol": "Responsable institucional",
+      "tema": "Marcelo Ebrard destaca que México paga menos aranceles que otros países a EEUU y",
+      "nota": "Marcelo Ebrard destaca que México paga menos aranceles que otros países a EEUU y somos uno de sus principales socios comerciales - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxONEdJSlZLNnlXdEhXY1VIem01Vkh2WkZKZEFfc0IxV2tsbHEyRFl2bEVLNW1yeTk2Si13bDBVekpNd2JiNlF6OXhyaWZxeDNtUV95NWhONGppNHBmUUpGM3JMdjRPdlBrR1VxTHNZbE4yYjNPLXNVUTFZWHF1bnVLMXM5WE5Ua21YSkJ1UmJGTXdpNGo2bnZhNlFKVGo4d1A0Qi03cWhJakF1RXZVOG1CMTRhMkh0NTlSZ0w5NUY0SkJtMnZKeHRIQW1IcTNIYkFzN1MtR3pINkJxTHotU2FFdm5obzM0VHhITTZTMjlIR0w5RUZ1WHhDSFRhRkJBOGRR0gGbAkFVX3lxTE10eEh1X3F6bWZlUFdiaGtBWnprUElEYnNyU21qOHRWUV9iaFJSSXVkTGNZNkFpV1V5TXJkekhjZGtpSWlqRWJNWTh2TU11eHBrUURZeUhyY3BqMV9BM3VPMkJmM3pSb0M4dFRjUmludjN3NmZDX2dpeVJqMUlIQkpZQnByaEo4Ym9qeUlRV1p2cnhKQTh5NjdCWURwdEgwa1hVTncySEwtYWZKZjR2R01zWUFTMzdTU3dnY1lIY2EwOU1kYkpCY2x6ZmthZnlUZEstSkIzLXBSV1NOOVJsMmhsc3p6ak1qWktoMDgwN0FFdEhqUUptVFhUenpLN2tHd1BzYXB4NktENnl3Y2JLX21sengzTV9LTUNYcHM?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1170,17 +1188,6 @@
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
-    },
-    {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "rol": "Reacción social/mediática",
-      "tema": "Farid Rentería coincide con liderazgos de Morena y respalda llamado a la congrue",
-      "nota": "⚡ Posible presión de Ariadna Montiel Reyes — Ariadna Montiel exige al ‘góber’ de Jalisco dejar su cargo por crisis de agua: ‘Si no puede que renuncie’",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/13/ariadna-montiel-exige-al-gober-de-jalisco-dejar-su-cargo-por-crisis-de-agua-si-no-puede-que-renuncie/",
-      "reaparece": true,
-      "tema_nuevo": false,
-      "confianza": "media"
     }
   ],
   "declaracion_presidenta": {
@@ -1200,14 +1207,6 @@
     "nivel_fuente": "ALTA"
   },
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-16",
-      "tension": 14,
-      "n_notas": 22,
-      "n_alto_impacto": 3,
-      "n_medio_impacto": 19,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-17",
       "tension": 20,
@@ -1418,10 +1417,18 @@
     },
     {
       "fecha": "2026-10-13",
-      "tension": 28,
-      "n_notas": 44,
+      "tension": 24,
+      "n_notas": 49,
       "n_alto_impacto": 19,
-      "n_medio_impacto": 25,
+      "n_medio_impacto": 30,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-14",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1440,7 +1447,7 @@
       "n_medio": 8,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/13/claudia-sheinbaum-valora-comprar-mas-gas-a-ee-uu-y-reducir-el-deficit-que-preocupa-a-donald-trump.html",
       "nota_texto": "Claudia Sheinbaum valora comprar más gas a EE.UU. y reducir el déficit que preocupa a Donald Trump",
       "es_nuevo": false,
@@ -1457,7 +1464,8 @@
           "x": 100,
           "y": 60
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-14"
     },
     {
       "id": "andy",
@@ -1473,7 +1481,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOSVBYYkwxTmQ0a1d3ZzlrUmJ5cktJRVFsRTQ4YlAybDBvbmM5QUtYdWZwSGNRakVLdi01aGtFYUdKaExaVkQyUHk0bXFSSDNYekxXSklkc3F5ZkVHSzVRbHZSOUtyd1NScmt1QklDVjZ2cTNxSU1NUVhxcjVEVXRVU0lEWlpuMWJjWTlzemRMOGdLTWt6bmo4ZDZ1b0ZVS3ZCYnVaclBJT3h4aHB5LXhPajFmb2Z6WDJFNHBF0gHIAUFVX3lxTE1uSVh2MzVmZGJIcnk5VzBfY3h1N2lULWp5VmRmX3I0OF9OUllwV3ZWR0I0QVV0SU8wR0lmNUd1SnVLSnNXNjlYVnNlVWtPaGVwTWp3SE1rTkx4X1plbXRaZTloZ2NOd1E1X2JEOUxRdjJpbllYMWI5RVlHVDdnYkZKcTBMQTZuNGE1UjRsLXRUV0p5ZDcwamQ5YWk1NUdFZmZULWFhQ0NxUnFHeUloQThhbERoMm5MU0ZhekJ0djJqZGRqbTZKblRY?oc=5",
       "nota_texto": "“Defiendo a mis amigos\": Adán Augusto mete las manos al fuego por Andy López Beltrán por relación con Amílcar - TV Azteca",
       "es_nuevo": false,
@@ -1490,7 +1498,8 @@
           "x": 40,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-14"
     },
     {
       "id": "trump",
@@ -1506,7 +1515,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOaGhQZ3RmaVgyNENfcmN6elBqYmo1ZngwcV9VQzZjVnRVM2hpVnljU0RqMzMwMXNCbGlLamZ4LW44WUZvam01b0NXenBwMVlJWVAyNG1meGlBbHBQUjNvZWxOaS16aUNNT0d4blI2NnpPeTFucW4taUg0QW5nNkRyLTFtbGRIM09HdVhfQzM0WXN6aFd5WDFJMFZPTnJQLW1WekkyekwzUDVYYS1nM1ZsbkFFRGtNS1p3WDdiUXRn?oc=5",
       "nota_texto": "Donald Trump y amigos son más ricos que hace 20 meses - La Jornada Maya",
       "es_nuevo": false,
@@ -1518,7 +1527,8 @@
           "x": 20,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-14"
     },
     {
       "id": "morena_partido",
@@ -1534,7 +1544,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNOEdJNmxjdEdHUGM0RkxmYi1DZnoyR0dPMGgtb3YwdjhkQ3lfTXBLT0s2SjFMZ1JhOFNsUnZTZGFQaXg3VjNrT0trbGExMG8zNjhtajItYTJrVnZ1dkpNZE5hbkV0NHVtdmtVOFdBcm5Pb09nN0IyQ05SeFBKUkdCZFdoNTB2VXFjZEdnVDJFdXVKWmVOS2RzVDR0UTVVRF9CeTVNMVFOeXlyclRUU2FJaWVJYUs4VjMxWi11NW1pZy16cDl1dk9wV3hiXzhzZw?oc=5",
       "nota_texto": "Pío López Obrador recorre colonias de Tuxtla Gutiérrez rumbo a coordinación distrital de Morena - www.sinaloahoy.com.mx",
       "es_nuevo": false,
@@ -1551,7 +1561,8 @@
           "x": 40,
           "y": 75
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-14"
     },
     {
       "id": "ebrard",
@@ -1567,7 +1578,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNd1IycFIweDJ0UHdhOC04NW42TS05X1ZfZWx0ajEwRGN5bzJWWTBEZldlZ0dHNHk1OTdXY2t2R09zV0owbWNtSUtJSFNoT2JYYXBwZEp6ODZ3SVpQU3FjWWs3TXV5ZGFVRTlKNUJhNmxNUU5BT1hyNDJCRGhwekRBNS03cTBhaDJubDZDalpyRzgzLTdQ0gGaAUFVX3lxTE1WVWFnM0doeE9pS1ZvQVFmc3RrMS1YS084QmZCZ2x5YUtfY2YzY09RYlR5SmlXZkJrNFIydHVWNlhkeGRHSlZseWpQSWZsMk00MF9yZFg4X3d6blBPVjNIUmVIcTh4SlRjNXhQdTFiMlEtb29YN3A4U2dHNG5veXc5RmpjaFFZNHhvbFJnNnhrRTRBUTJYOVNTRnc?oc=5",
       "nota_texto": "Marcelo Ebrard aseguró que el T-MEC está “blindado” - Por Esto!",
       "es_nuevo": false,
@@ -1579,7 +1590,129 @@
           "x": 10,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-14"
+    },
+    {
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "iniciales": "RI",
+      "x_lunes": 10,
+      "y_lunes": 50,
+      "x_hoy": 50,
+      "y_hoy": 50,
+      "delta_pts": 6.0,
+      "alcance": 4,
+      "n_alto": 0,
+      "n_medio": 5,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
+      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 10,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-13",
+          "x": 50,
+          "y": 50
+        }
+      ],
+      "fecha_apagado": "2026-10-14"
+    },
+    {
+      "id": "montiel",
+      "nombre": "Ariadna Montiel",
+      "iniciales": "AM",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 20,
+      "y_hoy": 75,
+      "delta_pts": 4.5,
+      "alcance": 2,
+      "n_alto": 1,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/13/ariadna-montiel-pide-la-renuncia-de-pablo-lemus-por-la-crisis-de-agua-en-jalisco-907377.html",
+      "nota_texto": "Ariadna Montiel pide la renuncia de Pablo Lemus por la crisis de agua en Jalisco",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-13",
+          "x": 20,
+          "y": 75
+        }
+      ],
+      "fecha_apagado": "2026-10-14"
+    },
+    {
+      "id": "garcia_harfuch",
+      "nombre": "Omar García Harfuch",
+      "iniciales": "OG",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 30,
+      "y_hoy": 50,
+      "delta_pts": 4.5,
+      "alcance": 3,
+      "n_alto": 0,
+      "n_medio": 3,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSWNoajlVN3cwdlhhUmp2UTZyMTJuMVhULWZVT2tSSHBnbXdfNHRodll1SzJVRGpGOW9zOXp1N1I5M2w5WS11WUxWb3JfX0lLUnZlalVUYmNhcWwzVnAyT2gtTDVOdzV6c2c4Zjg0ckF0M2tUNzV4eVlSRGhZcU43T085WUhLdUdRWEFGR1JYOWtaR25h0gGUAUFVX3lxTE14MHpOZ3JqMHQyckVLT0oweWRqOFJQVkUxLXVRdXpybHNzUWlqcms2NWZ6bDI0Nmx6UEVzcFhhVHBwMkNaVjF6M2d6emJfTnNPTGxGSmdaLUpZRWdyclBmX2llaHc3UjVBODJ1cFpkck1MdVh5RHdoaHg5OGJKQWNvMUtUYVBTMU1GNGxGQS00cV82Ync?oc=5",
+      "nota_texto": "García Harfuch detalla nuevo modelo de centros penitenciarios en 6 estados: \"No sólo se limita a la infraestru - Milenio",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-13",
+          "x": 30,
+          "y": 50
+        }
+      ],
+      "fecha_apagado": "2026-10-14"
+    },
+    {
+      "id": "clara_luz_flores",
+      "nombre": "Clara Luz Flores",
+      "iniciales": "CL",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 30,
+      "y_hoy": 50,
+      "delta_pts": 4.5,
+      "alcance": 2,
+      "n_alto": 0,
+      "n_medio": 3,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOOEFodlFILWFFQk96bS03Z1JQbHhJN2tyLW0yeURVeTl0X1JRQm1aSzBYTFhqZDJvWXpwdnozUnRnM2RHZ0EzVUpmSy05WWFEc05XSnNEc0JXdGw5WUlndDMxZFZiRW9ocDNmZmNIbkZiZlpPdmVyenZCMjVZS1ppSzREQkdKMXZYWG1OQjQwM1ZFTlQ2YWt5ZG1fWTd2bjZx0gGgAUFVX3lxTE44QWh2UUgtYUVCT3ptLTdnUlBseEk3a3ItbTJ5RFV5OXRfUlFCbVpLMFhMWGpkMm9ZenB2ejNSdGczZEdnQTNVSmZLLTlZYURzTldKc0RzQld0bDlZSWd0MzFkVmJFb2hwM2ZmY0huRmJmWk92ZXJ6dkIyNVlLWmlLNERCR0oxdlhYbU5CNDAzVkVOVDZha3lkbV9ZN3ZuNnE?oc=5",
+      "nota_texto": "Ex 'corcholatas' de Morena rechazan nombramiento de Clara Luz Flores rumbo a 2027 - Milenio",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-13",
+          "x": 30,
+          "y": 50
+        }
+      ],
+      "fecha_apagado": "2026-10-14"
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1609,95 +1742,6 @@
         }
       ],
       "fecha_apagado": "2026-10-13"
-    },
-    {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "iniciales": "AM",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 20,
-      "y_hoy": 75,
-      "delta_pts": 4.5,
-      "alcance": 2,
-      "n_alto": 1,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/13/ariadna-montiel-pide-la-renuncia-de-pablo-lemus-por-la-crisis-de-agua-en-jalisco-907377.html",
-      "nota_texto": "Ariadna Montiel pide la renuncia de Pablo Lemus por la crisis de agua en Jalisco",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-13",
-          "x": 20,
-          "y": 75
-        }
-      ]
-    },
-    {
-      "id": "rosa_icela",
-      "nombre": "Rosa Icela Rodríguez",
-      "iniciales": "RI",
-      "x_lunes": 10,
-      "y_lunes": 50,
-      "x_hoy": 40,
-      "y_hoy": 50,
-      "delta_pts": 4.5,
-      "alcance": 4,
-      "n_alto": 0,
-      "n_medio": 4,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
-      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-12",
-          "x": 10,
-          "y": 50
-        },
-        {
-          "fecha": "2026-10-13",
-          "x": 40,
-          "y": 50
-        }
-      ]
-    },
-    {
-      "id": "garcia_harfuch",
-      "nombre": "Omar García Harfuch",
-      "iniciales": "OG",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 30,
-      "y_hoy": 50,
-      "delta_pts": 4.5,
-      "alcance": 3,
-      "n_alto": 0,
-      "n_medio": 3,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSWNoajlVN3cwdlhhUmp2UTZyMTJuMVhULWZVT2tSSHBnbXdfNHRodll1SzJVRGpGOW9zOXp1N1I5M2w5WS11WUxWb3JfX0lLUnZlalVUYmNhcWwzVnAyT2gtTDVOdzV6c2c4Zjg0ckF0M2tUNzV4eVlSRGhZcU43T085WUhLdUdRWEFGR1JYOWtaR25h0gGUAUFVX3lxTE14MHpOZ3JqMHQyckVLT0oweWRqOFJQVkUxLXVRdXpybHNzUWlqcms2NWZ6bDI0Nmx6UEVzcFhhVHBwMkNaVjF6M2d6emJfTnNPTGxGSmdaLUpZRWdyclBmX2llaHc3UjVBODJ1cFpkck1MdVh5RHdoaHg5OGJKQWNvMUtUYVBTMU1GNGxGQS00cV82Ync?oc=5",
-      "nota_texto": "García Harfuch detalla nuevo modelo de centros penitenciarios en 6 estados: \"No sólo se limita a la infraestru - Milenio",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-13",
-          "x": 30,
-          "y": 50
-        }
-      ]
     },
     {
       "id": "loret_de_mola",
@@ -1759,44 +1803,8 @@
     }
   ],
   "tablero_semana_inicio": "2026-10-12",
-  "resumen_mananera": [
-    {
-      "texto": "Se informó sobre la distribución geográfica de homicidios, donde siete entidades federativas concentran el 50% del total nacional. Baja California y Guanajuato lideran con 8.5% cada una, seguidas por",
-      "categoria": "Seguridad Nacional",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Los delitos de alto impacto registraron una reducción del 36% entre septiembre de 2024 y septiembre de 2026, pasando de 636.6 a 408.8 delitos diarios. El robo de vehículo con violencia disminuyó 55%,",
-      "categoria": "Seguridad Nacional",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se presentó el programa \"Jóvenes Unen al Barrio\" como parte de la estrategia de atención a las causas de la violencia. El programa busca a jóvenes de 12 a 29 años en situación de vulnerabilidad a trav",
-      "categoria": "Seguridad Nacional",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se informó sobre operativos exitosos de detención de líderes criminales, incluyendo a Eliseo N. \"El Junior\" en Acapulco, responsable de extorsiones en el mercado central; Óscar Ariel N., líder de la M",
-      "categoria": "Seguridad Nacional",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se anunció la construcción de seis nuevos centros penitenciarios en Chiapas, Estado de México, Nayarit, Sinaloa, Sonora y Veracruz, con capacidad total de 18 mil 480 espacios. Estos centros contarán c",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
+  "resumen_mananera": [],
+  "mananera_estado": "pendiente",
   "a_vigilar": [
     {
       "id": "auto-520b7b6fa3",
@@ -1864,12 +1872,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-13T13:24:38.208492-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo",
-      "Nueva declaración relevante (otro actor): Ariadna Montiel Reyes"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-13 18:00"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-14 00:02"
 }
