@@ -1,7 +1,7 @@
 {
-  "generado_en": "2026-10-14T11:34:46.843286-06:00",
+  "generado_en": "2026-10-14T12:04:56.096157-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 19,
+  "n_notas_ventana": 18,
   "baja_confianza": false,
   "tension_nacional": 17,
   "tension_anomalia": {
@@ -13,7 +13,7 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 82,
+      "peso_pct": 87,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
       "n_temas": 10,
@@ -113,23 +113,17 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 12,
+      "peso_pct": 7,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 2,
+      "n_notas": 1,
       "notas": [
         {
           "texto": "T-MEC continuará por 10 años más con revisiones anuales, asegura Marcelo Ebrard",
           "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/14/t-mec-continuara-por-10-anos-mas-con-revisiones-anuales-asegura-marcelo-ebrard/",
           "intensidad": 7.0,
           "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "EU activa mecanismo del T-MEC por presuntas violaciones laborales en Guanajuato - Municipios Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOekRPUHZtZDdNRE5NR2ZzSjJvelhKV2c0TGg3eUU2alFtaHdnMXg4NWVDaEd1eHdyaFV2aTluSXpkdXdGVnhlQzg2RmxmLU1oY2VnbUswdkpJd1RIeWtpVjh0NTNlczNMLW1oY3U4bXJKbGZyb2xnblI1U2lJN3hwQ2lMNEJ2NndSS2tuM190Y0ttWmt5ekZtXzRPdElNamYxUFdsc2hvNGs2WWFWTGZiS29VVU1PbFBab19V?oc=5",
-          "intensidad": 6.0,
-          "medio": "Municipios Puebla"
         }
       ]
     },
@@ -999,17 +993,6 @@
       "fuente_url_anterior": "https://www.angulo7.com.mx/2026/nacional/francisco-garduno-falta-a-audiencia-por-incendio-del-inm-juez-difiere-caso-sin-nueva-fecha/719993/"
     },
     {
-      "id": "auto-9478ddbee9",
-      "nombre": "¿Subirá la cerveza en México? Diputados analizan aumentar el IEPS",
-      "categoria": "Economía",
-      "dias_silencio": 40,
-      "motivo": "Diputados avalan en lo general aumento a tarifas para extranjeros",
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/diputados-avalan-en-lo-general-aumento-a-tarifas-para-extranjeros-en-que-consiste-la-ley-federal-de-derechos-20261013-0138.html",
-      "fecha_anterior": "2026-09-03",
-      "fuente_url_anterior": "https://www.tabascohoy.com/diputados-frenan-versiones-sobre-aumento-de-ieps-a-cerveza-y-alimentos-con-sodio/"
-    },
-    {
       "id": "auto-bbaa4a7b46",
       "nombre": "Policía Estatal asume seguridad de Juchitán tras detención del alcalde - La Sill",
       "categoria": "Gobernabilidad",
@@ -1356,8 +1339,7 @@
           "x": 91,
           "y": 80
         }
-      ],
-      "fecha_reactivado": "2026-10-14"
+      ]
     },
     {
       "id": "sheinbaum",
@@ -1467,8 +1449,7 @@
           "x": 55,
           "y": 83
         }
-      ],
-      "fecha_reactivado": "2026-10-14"
+      ]
     },
     {
       "id": "ebrard",
@@ -1597,8 +1578,7 @@
           "x": 45,
           "y": 50
         }
-      ],
-      "fecha_reactivado": "2026-10-14"
+      ]
     },
     {
       "id": "montiel",
@@ -1814,11 +1794,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-14T06:03:30.111904-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Andrés Manuel López Obrador ('AMLO')"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-14 11:34"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-14 12:04"
 }
