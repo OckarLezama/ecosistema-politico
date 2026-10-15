@@ -1,7 +1,7 @@
 tema_id,nombre,nivel,tipo,notas,coherentes,pct,estado
 reconfiguracion-gabinete-2026,Reconfiguración del Gabinete 2026,3,completo,3,0,0.0,mezcla historias
 auto-a17ab6a268,"Informe de la gobernadora, INEGI y desplazamiento - Marcaje Legislativo",3,informativo,78,1,0.01,mezcla historias
-auto-db83bd3ced,"Delfina Gómez presenta hoy su Tercer Informe de Gobierno: infraestructura, emple",3,informativo,104,6,0.06,mezcla historias
+auto-db83bd3ced,"Delfina Gómez presenta hoy su Tercer Informe de Gobierno: infraestructura, emple",3,informativo,105,6,0.06,mezcla historias
 auto-2f8fa2feda,Segundo Informe de Gobierno de Ana Paty Peralta: esto destacó la alcaldesa de Ca,3,informativo,83,5,0.06,mezcla historias
 auto-bfeea789a9,Gobierno del estado acompaña y protege a migrantes poblanos en Estados Unidos - ,3,completo,9,1,0.11,mezcla historias
 auto-f3c7c3cb43,El futbol mexicano será investigado por el Gobierno de Sheinbaum tras acusacione,3,informativo,9,1,0.11,mezcla historias
@@ -171,7 +171,6 @@ auto-495da41b79,Bateador emergente / Distrito 12: la frontera que el Congreso ab
 auto-9d82107569,"Alito, la embocada del padrinazgo",3,informativo,3,2,0.67,revisar
 auto-3ef3182f28,Polémica en Tabasco: secretario del Instituto Electoral habría compartido video ,3,informativo,3,2,0.67,revisar
 auto-6bf4854309,Putin llama a rusos a votar en elecciones legislativas y reivindica respaldo a R,3,informativo,3,2,0.67,revisar
-auto-5017ab5430,Trump va por políticos mexicanos que ‘ayuden’ a cárteles: ‘Traicionan la soberan,3,informativo,3,2,0.67,revisar
 auto-17b8db9dd3,"Estos son los 5 municipios de Michoacán donde operaba ""El Señor de la T""",3,informativo,3,2,0.67,revisar
 auto-827a1010b1,Honran a la primera diputada indígena de Yucatán - Sol Yucatán,3,informativo,3,2,0.67,revisar
 auto-865e32191c,Cuautlancingo separa a tres policías por hechos delictivos; FGE investiga,3,informativo,3,2,0.67,revisar
@@ -209,7 +208,6 @@ auto-708f865cd2,Fiscal Ernestina Godoy galardona a miembros de la policía minis
 auto-9478ddbee9,¿Subirá la cerveza en México? Diputados analizan aumentar el IEPS,3,informativo,8,6,0.75,ok
 auto-b480e1b6cb,Diputada del PAN exige que gobernador de Puebla ofrezca una disculpa pública por,3,informativo,8,6,0.75,ok
 auto-502a234977,"Ante próxima temporada de lluvias, Gobierno del Estado refuerza prevención con a",3,informativo,8,6,0.75,ok
-auto-bbaa4a7b46,Policía Estatal asume seguridad de Juchitán tras detención del alcalde - La Sill,3,informativo,8,6,0.75,ok
 auto-0f5deb1940,Trabajadores del IMSS marchan en Puebla; protestan en el SNTSS por salarios e in,1,completo,8,6,0.75,ok
 auto-d1f2a7f7b3,Detecta Anticorrupción fraude en becas Benito Juárez por 592.3 mdp,3,informativo,8,6,0.75,ok
 auto-4a4ddad935,"Con protesta en escuela de Momoxpan, despiden a conserje acusado de trabajar ebr",3,completo,4,3,0.75,ok
@@ -233,6 +231,7 @@ auto-ceb5c795e3,"Sin estudio ni consulta, ofrecieron a Totimehuacán ser el muni
 auto-b7c490f01c,Templo Mayor 2026-09-14 - Reforma,3,informativo,4,3,0.75,ok
 auto-ee0a657646,La bandera de México a través del tiempo,3,informativo,4,3,0.75,ok
 auto-c9737a6f4d,¿Por qué Europa está tan obsesionada con la migración? - milenio.com,3,informativo,4,3,0.75,ok
+auto-5017ab5430,Trump va por políticos mexicanos que ‘ayuden’ a cárteles: ‘Traicionan la soberan,3,informativo,4,3,0.75,ok
 auto-86a0afb23b,Emprendedores serían los más beneficiados con reforma fiscal: experto - Grupo An,3,informativo,4,3,0.75,ok
 auto-ffb1bc3143,Caso del niño Daniel Maximiliano en Xalapa: Fiscalía acusa a un detenido de homi,3,informativo,4,3,0.75,ok
 auto-afe6a252c5,¿Quién es el peor gobernador? - El Universal Querétaro,3,informativo,4,3,0.75,ok
@@ -248,6 +247,7 @@ ley-egresos-2027,Paquete Económico y Ley de Egresos de la Federación 2027,1,co
 carlos-manzo,Asesinato de Carlos Manzo,1,completo,22,17,0.77,ok
 auto-818c1d18d1,Fiscalía de Puebla presenta plataforma digital de identificación humana - Diario,3,informativo,9,7,0.78,ok
 auto-1183a7b0c4,"Candidaturas no las decide un gobernador, aclara Sheinbaum tras polémica de Arme",3,completo,9,7,0.78,ok
+auto-bbaa4a7b46,Policía Estatal asume seguridad de Juchitán tras detención del alcalde - La Sill,3,informativo,9,7,0.78,ok
 auto-02d8e54c89,Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel,1,completo,29,23,0.79,ok
 auto-f82dd57434,Congreso reconoce nuevas agencias municipales y de policía en Costa e Istmo - Me,3,informativo,15,12,0.8,ok
 auto-4ba9fa9ee8,BLINDA A 43 MILLONES DE MEXICANOS,3,informativo,10,8,0.8,ok
@@ -324,8 +324,8 @@ auto-49e358a46c,Imputan a dos abogados por fraude y fraude procesal ligados al �
 auto-05ae8399b1,Buscan a estudiante de la BUAP: Fiscalía suma 23 actos de investigación - Periód,3,informativo,10,9,0.9,ok
 auto-2790d16615,Eugenio Segura sería el primer gobernador de Quintana Roo nacido en Cancún - Pal,3,informativo,10,9,0.9,ok
 auto-af35577f9d,"Nuevo informe sobre normalistas de Ayotzinapa: 1,931 predios revisados y 17 nuev",3,informativo,10,9,0.9,ok
+auto-c092a6fca7,Sheinbaum minimiza el crecimiento económico y prioriza la redistribución social ,3,informativo,23,21,0.91,ok
 auto-1fd312da6e,"Morena avanza, pero se fractura - 24 HORAS | El Diario sin Límites",3,informativo,23,21,0.91,ok
-auto-c092a6fca7,Sheinbaum minimiza el crecimiento económico y prioriza la redistribución social ,3,informativo,22,20,0.91,ok
 auto-1cd82e22dd,"Detienen a 'El amarillo', líder de una célula criminal vinculada con 'Los Rusos'",3,informativo,11,10,0.91,ok
 auto-4729269584,Aurelio Nuño responsabiliza a Morena del colapso educativo en México,3,informativo,11,10,0.91,ok
 auto-d96d7cfc94,PT Campeche abre posibilidad para no ir en coalición con Morena - La Jornada May,1,completo,13,12,0.92,ok
@@ -354,7 +354,7 @@ auto-5cbd3ffc2f,Se anunció que para la próxima semana se trabajará en un decr
 auto-fb7a7b4ab7,El diputado federal Daniel Asaf evitó responder a los cuestionamientos de la rep,3,informativo,80,79,0.99,ok
 auto-3de5902549,La presidenta Claudia Sheinbaum abordó el tema de la intervención de la embajada,3,informativo,332,332,1.0,ok
 auto-36ae9b3a24,"“Sembrando Vida, una bendición para el campo”: Javier May",3,informativo,237,237,1.0,ok
-auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,208,208,1.0,ok
+auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,209,209,1.0,ok
 auto-821abb5ba4,Gustavo Leal F.*: Servicio Universal de Salud: ¿12 mil 750 consultorios “nuevos”,3,informativo,169,169,1.0,ok
 auto-dbb585f509,"Se presentó la estrategia de enfermedad cardiorrenal metabólica, que reconoce qu",3,informativo,166,166,1.0,ok
 auto-b21cc3d7b8,Mexicana de Aviación presenta su plan estratégico en tres fases: la primera fase,3,informativo,150,150,1.0,ok
@@ -420,24 +420,24 @@ auto-da2a6b5bf0,Pío López Obrador tramita amparo contra la FGR: ¿Qué busca s
 auto-de48c7d209,Donald Trump y la doctrina del caos geopolítico,1,completo,17,17,1.0,ok
 auto-dda509b8ea,Detienen a Luis de Llano por presunto incumplimiento de sentencia en caso Sasha ,1,completo,16,16,1.0,ok
 auto-ea5a0e5da2,Estrategia Nacional de Seguridad en Tabasco contribuye a reducir 54% el homicidi,3,informativo,16,16,1.0,ok
+auto-507541cef1,Saneamiento de ríos contaminados: Se presentó un plan integral de saneamiento de,3,informativo,16,16,1.0,ok
 auto-49721c498b,Fiscalía de Oaxaca obtiene vinculación a proceso por tentativa de robo y contra ,1,completo,15,15,1.0,ok
 auto-5ac251969e,Deben aprender a perder y a ganar: Higinio Martínez,1,completo,15,15,1.0,ok
-auto-507541cef1,Saneamiento de ríos contaminados: Se presentó un plan integral de saneamiento de,3,informativo,15,15,1.0,ok
+auto-ba979e22f0,Alejandro Carvajal evita confrontación con Morena tras criticar su método de sel,3,informativo,14,14,1.0,ok
 auto-1660f5abbf,"Rocío Nahle García, gobernadora, inició el recorrido por los 61 hospitales de Ve",3,informativo,13,13,1.0,ok
 auto-796ebb5b06,Lo que dijo ayer el gobernador Alejandro Armenta en su Mañanera - Hipócrita Lect,3,informativo,13,13,1.0,ok
 auto-444faadc89,Diputada de Morena acusa “encuesta amañada” en proceso interno de Quintana Roo -,3,informativo,13,13,1.0,ok
-auto-ba979e22f0,Alejandro Carvajal evita confrontación con Morena tras criticar su método de sel,3,informativo,13,13,1.0,ok
+auto-b2713b6c96,"Se presentaron datos históricos del turismo en México de enero a agosto de 2026,",3,informativo,13,13,1.0,ok
+auto-fd1a395844,"Se aprobó una actualización del derecho de no residente para 2027, con una reduc",3,informativo,13,13,1.0,ok
+auto-3b740fcdae,Se abordó la problemática de Tijuana relacionada con deslaves y zonas de riesgo.,3,informativo,13,13,1.0,ok
+auto-4770ddb2ad,"Se explicó la reducción de la zona de protección del Golfo de California, que ha",3,informativo,13,13,1.0,ok
+auto-75bf58dc44,Se informó sobre avances en la búsqueda de justicia para desaparecidos de la Gue,3,informativo,13,13,1.0,ok
 auto-ead3ec111e,Congreso definirá el 26 de septiembre a nuevo titular del Orfis: “proceso de sel,3,informativo,12,12,1.0,ok
 auto-cfdc17a54a,“Morena deberá definir incorporación de exdirigente al partido” - opinionciudada,3,informativo,12,12,1.0,ok
 auto-79a33a0b5e,Impulsa Gobernador Javier May obras en Villahermosa y anuncia rehabilitación int,3,informativo,12,12,1.0,ok
 auto-cfab498458,Lo que Guadalajara entiende y Morena no,3,informativo,12,12,1.0,ok
 auto-15914cd38c,Impulsa Mara Lezama productividad del campo con entrega de nuevo equipamiento ga,3,informativo,12,12,1.0,ok
 auto-a00ea963de,"Con llantos, tensiones y consensos, Morena concreta 17 perfiles rumbo al 2027 - ",3,informativo,12,12,1.0,ok
-auto-b2713b6c96,"Se presentaron datos históricos del turismo en México de enero a agosto de 2026,",3,informativo,12,12,1.0,ok
-auto-fd1a395844,"Se aprobó una actualización del derecho de no residente para 2027, con una reduc",3,informativo,12,12,1.0,ok
-auto-3b740fcdae,Se abordó la problemática de Tijuana relacionada con deslaves y zonas de riesgo.,3,informativo,12,12,1.0,ok
-auto-4770ddb2ad,"Se explicó la reducción de la zona de protección del Golfo de California, que ha",3,informativo,12,12,1.0,ok
-auto-75bf58dc44,Se informó sobre avances en la búsqueda de justicia para desaparecidos de la Gue,3,informativo,12,12,1.0,ok
 auto-6c66c4f554,"PAZ irá solo en 2027 y marca distancia de Morena, afirma su dirigente - Imagen d",3,informativo,11,11,1.0,ok
 auto-a5e3c47f56,Aprueban en el Poder Legislativo reforma para incorporar el Programa Especializa,3,informativo,11,11,1.0,ok
 auto-14e90f3ff5,Diputado José Luis Figueroa propone fortalecer educación en historia y civismo -,3,informativo,11,11,1.0,ok
