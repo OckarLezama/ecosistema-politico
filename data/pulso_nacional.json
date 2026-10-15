@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-15T11:21:17.707342-06:00",
+  "generado_en": "2026-10-15T12:01:32.718548-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 19,
   "baja_confianza": false,
-  "tension_nacional": 18,
+  "tension_nacional": 20,
   "tension_anomalia": {
-    "z": -1.81,
+    "z": -1.59,
     "nivel": "normal",
     "media_periodo": 34.6,
     "dias_base": 27
@@ -38,10 +38,10 @@
           "medio": "TV Azteca"
         },
         {
-          "texto": "Senado avala reforma a la Ley Aduanera para endurecer combate a la subvaluación y huachicol fiscal - Cúspide México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQOFZjWm85R2g0Z1V2NkRQYnNkX2o5TUNuTnItVUZNZjh5amIwLWZsV3YyOXZmUzhoZ1ZCR29rQnRmbTFuR1BxcFViZkFwVkpWT0g4bVo0N1dYbTNZc0tnc0RwNXdjX3pRVHNZSGQ0OVBFRHZSRk1HMHlWeHZma1FPOTdEWVBqNllYdTBCaXhwczV3U05aSTROc1YxaTdiTDF5T096MEVvQlFuazhqaFBDMU94SEdvcU1YakxXUlg3bFF1QWFBMEl6cHNkQTJDeFRlZ0E?oc=5",
-          "intensidad": 6.0,
-          "medio": "Cúspide México"
+          "texto": "Avala Senado reforma a la Ley Aduanera para endurecer combate a la subvaluación y huachicol fiscal - Onexpo Nacional",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOZ25DQlUwbkVZODhJZ25adHJ0TUppcEVPZzZvS2tkSzhMUHRtT3NHbEdSZVJKMkF5TUhjM3p4YWljUEdPZE5qQTNIeUpNUXJrOUZGeEd5NllWRExSUkFrMng1X24xbTAyM0hyN2p2WFBEc2NLVWV0azZ0azMyQ01YTTR5SWNSR0hVZWE4TC1mc1pmcDFSOXZv?oc=5",
+          "intensidad": 7.0,
+          "medio": "Onexpo Nacional"
         },
         {
           "texto": "Van por diálogo entre personal médico e IMSS-Bienestar tras bloqueos",
@@ -974,17 +974,6 @@
   ],
   "temas_retomados": [
     {
-      "id": "auto-8800ed0bbf",
-      "nombre": "Atenea se suma a búsquedas de personas.",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 24,
-      "motivo": "Segob presume su Estrategia Nacional de Búsqueda: van 16 mil personas localizadas",
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/segob-presume-resultados-de-la-estrategia-nacional-de-busqueda-van-16-mil-personas-localizadas-20261014-0176.html",
-      "fecha_anterior": "2026-09-20",
-      "fuente_url_anterior": ""
-    },
-    {
       "id": "auto-865e32191c",
       "nombre": "Cuautlancingo separa a tres policías por hechos delictivos; FGE investiga",
       "categoria": "Gobernabilidad",
@@ -993,6 +982,17 @@
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPVU9zUExRa3dqRWFqY1diLVdYZ3ZrRC1NY2FVcGFuUnFxSFkyV3ctV01mbERST0E3WEF6c29kMjh1eUFFQzRWdjF0ZzQ2Zm5oZFJJczBJZHUzRVYxeWlOdUN3TzdlSnBxSjZVWTBVd1NqVUZGOE5rWlRMVkk0Nnl4Q2NmWUprRVJfQWFobUVTY21ROXhZeWkxd2ozOFBtVXktVjhFWl9B0gGmAUFVX3lxTE42QjVjWEwxSzZjWnQ0a2xDUkdwNEZ4TDNITExzYlhRVE5RN3FYU2FteTQtdV9zZ1Y3allYSTVpWk5aVVZFcUU3MEttVmZwX21uVzVFWVc0dUwzOVp3dmhCaVVkQTlnOWlfLTRobUJYZ0tlb2RrNFlDek1FZjNpRkRTbWtxZlVFaDJ4YTN4Zzh4WVVGY0RTRjFIeWM2THNLNGdvNjFJMXc?oc=5",
       "fecha_anterior": "2026-09-23",
+      "fuente_url_anterior": ""
+    },
+    {
+      "id": "auto-f8081d6ba1",
+      "nombre": "Registra gobernador May 43.1 por ciento de aprobación y se posiciona en el lugar",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 12,
+      "motivo": "¿Qué establece la Ley de Armonización Catastral y Registral aprobada por el Senado?",
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/que-establece-la-ley-de-armonizacion-catastral-y-registral-aprobada-por-el-senado-20261014-0213.html",
+      "fecha_anterior": "2026-10-02",
       "fuente_url_anterior": ""
     },
     {
@@ -1015,17 +1015,6 @@
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/15/politica/013n4pol?partner=rss",
       "fecha_anterior": "2026-10-06",
-      "fuente_url_anterior": ""
-    },
-    {
-      "id": "auto-e18c9198f7",
-      "nombre": "Suman 10 las renuncias al Gobierno de Puebla para buscar candidaturas de Morena;",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 7,
-      "motivo": "Citlalli Hernández descarta buscar candidatura en alcaldía Cuauhtémoc - El Universal",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNUlRLeVhPcjdUQkM5TlBRdmNBTTFrUzB2Q3ZXQjBfdEo4d3FFczdtblVaN25yNmhuTXhSRUJPZ3RZeXhUUnltX25zblJLcTlpNVNTZmxwMjQ3bEh2bnMxQnNBRzNmd1dfRWZGc0t5QmlWdm9GY2R3cDFLNkxRWkFKVDZNR1NReWgyc21LLUhxYXgzdHZGZVVGSmtuQUxjaUJEYXFia2tmOXFxM0F5YlpWejg1LXU3RmtzYW9PUjhUT3NLVjFkcy1iTkhDR05wZGZhYjZVZGEwb3gtME03UGZ6R2lMZkN3RFJ1WUszT29zeUVrcWUxbGVVNE85RUtjdnfSAZMCQVVfeXFMTmZRV3dMOWotdno4VlZuMjNtb1NmUjVWUGpEUzVPNjlXVkwySGpJcS1EVFBCT18xc2I0elVYMF9pWVpCTGNid05UMTJtVlE1YTNBUXd2T0swaXNFeXFJZ3ZJRXlZbC1hSFJFQTBpc3dWdjMweXA5a1A4RW85MFAxdExaTkhtLUl1SlJMOFloVHQwd1p5aHRueFp1bTBXRENud1N4b1phcTRwaWE2QnRqT0J5ejYwR3hieDd2Z0J1YnlucDJPLVdzNExZejhfc0RYTzcyTkJjOUVHVjVkYUw0MUI0X1ZCMExmbGg2VW80cUk1QVEzRWpJZ3FiV21HQlY2QUlIcGkwTEVhSUtLMUd2blVBcEk?oc=5",
-      "fecha_anterior": "2026-10-07",
       "fuente_url_anterior": ""
     }
   ],
@@ -1307,9 +1296,9 @@
     },
     {
       "fecha": "2026-10-15",
-      "tension": 27,
-      "n_notas": 10,
-      "n_alto_impacto": 5,
+      "tension": 30,
+      "n_notas": 11,
+      "n_alto_impacto": 6,
       "n_medio_impacto": 5,
       "n_bajo_impacto": 0
     }
@@ -1399,8 +1388,7 @@
           "x": 50,
           "y": 100
         }
-      ],
-      "fecha_reactivado": "2026-10-15"
+      ]
     },
     {
       "id": "garcia_harfuch",
@@ -1830,5 +1818,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-15 11:21"
+  "hora_corte_publicada": "2026-10-15 12:01"
 }
