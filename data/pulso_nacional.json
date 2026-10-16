@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-15T18:03:22.688043-06:00",
+  "generado_en": "2026-10-15T18:58:36.057750-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 19,
+  "n_notas_ventana": 22,
   "baja_confianza": false,
-  "tension_nacional": 20,
+  "tension_nacional": 24,
   "tension_anomalia": {
-    "z": -1.57,
+    "z": -1.13,
     "nivel": "normal",
     "media_periodo": 34.4,
     "dias_base": 27
@@ -13,12 +13,18 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 52,
+      "peso_pct": 60,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 10,
-      "n_notas": 10,
+      "n_temas": 11,
+      "n_notas": 13,
       "notas": [
+        {
+          "texto": "Diputada morenista acusa a Citlalli Hernández de encuestas amañadas en Quintana Roo (18:34 h) - ADN – Agencia Digital de Noticias Sureste",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQXzlNSG80eWZVa1Q0WTQ3aVNaNkdTRmZDdFU1bV9FVUxXcWd4a1N1eFpEcHBZSmtkSEc4ZUNzbU84VVdJN2lUanJmdjczbnU1OTFwNzJjYUxNS0JzU0JlRFd5M2s5RXJucDFYSEFsbDRvSEw1M1pKb1lvcEpNdTRMRVV3OHJsaXRETzlxRWhzS2pubHpvTzlMeDBhQWFxMHljTFRaR1lHbFlucGQ2OVRrS2hXMzVUcUdBRGR3?oc=5",
+          "intensidad": 9.0,
+          "medio": "news.google.com"
+        },
         {
           "texto": "Armenta puede ser el próximo Rocha Moya, escribe Luis Cárdenas - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNZzNnTF9LWVFzMmFEMG9lVFFjU3BIUXRWRDhLd0VHRHpFUFJKN2Yxa1lnaUVPZ0dIQ1I2X2FvcjRBTlB6cmlDTU5fR0M5UHQyMU1KQmZKR2FvcDlDOUxkT3lpQVNVU0ZGYUZEbUF3MlZRSk16akVseE00bl9LeGVObHpnYzNIZWgzdTNjYWlIVWNvaC1TRmhDUg?oc=5",
@@ -36,6 +42,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOZ25DQlUwbkVZODhJZ25adHJ0TUppcEVPZzZvS2tkSzhMUHRtT3NHbEdSZVJKMkF5TUhjM3p4YWljUEdPZE5qQTNIeUpNUXJrOUZGeEd5NllWRExSUkFrMng1X24xbTAyM0hyN2p2WFBEc2NLVWV0azZ0azMyQ01YTTR5SWNSR0hVZWE4TC1mc1pmcDFSOXZv?oc=5",
           "intensidad": 7.0,
           "medio": "Onexpo Nacional"
+        },
+        {
+          "texto": "La diputada María Félix García da su confianza al proceso interno de Morena - Quadratín Tabasco",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQSm51YmVMbUU5ajRuUTBPeW9RMjEyYlQ1NW1qektiQklSQU56SGNyUEZWWU5uYXBpZ0NMZTJTZURXM0VKOUlXYjREMWlHaTF4ZnBuWWxVMjNRNFBkMUlOQ2kzNTRpdXdETnp1WGxCaVpUOVBRY0NxcXZhRHdrZ3h2aUZOUDRFMlVoTlF6MUgzMlc1dW43aXpUS1hjbE5tRkhnQ3NWN2NybW1ILTdDdnRGVUR6emxsbzUzTlE?oc=5",
+          "intensidad": 7.0,
+          "medio": "Quadratín Tabasco"
         },
         {
           "texto": "Van por diálogo entre personal médico e IMSS-Bienestar tras bloqueos",
@@ -74,6 +86,12 @@
           "medio": "Noticaribe"
         },
         {
+          "texto": "Fiscalía todavía desconoce el móvil de las 10 muertes en penal de El Castillo en Mazatlán",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/15/fiscalia-todavia-desconoce-el-movil-de-las-10-muertes-en-penal-de-el-castillo-en-mazatlan.html",
+          "intensidad": 5.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
           "texto": "Fiscalía de Sinaloa no identifica móvil de riña en penal de Mazatlán que dejó 10 muertos - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOREpwVzFCWlp5SDdtM3F2cVBLZUZkUTF4cUQtYTZ0TGc3Z3Y1NGxHd0piUEhjSGpvSUZSMnVRU3l1c19sczZLRWQ5MFQ4aFlmb3k5VGEyamNJYXZRcWxkcUpzbjF0bGRzaDMxZlg0ckE0Tnl2UjRzQWNFdTQ3aDF2SFVmQ0NpRzhRLTRVaWphVEJHQmt1SmY1bDZPOXlZM1UzWU92VGF4ZEk3TXZQSF91UUVVcEZORDhVSXBIaGZkbjl3cHR2d2c2SVZlbk51S21ma2phVEdfY2FnU2dJMnJCbVZDLWhTR05qTTF6bE84MVlaZlBLejBTV1dpdzZuNUVmT3ltX2xn0gGaAkFVX3lxTE1lQ19HdWR5T0ZRRk1XcEljaXBCWTFfVEZ0Vng4ZVdRRE1RTDVVZzhrYl9uNGw2Qk41enp3SEVGREdhTGYyQmt5dmp6MTIzamNvTjFEbDU2cUxzU1B2a1Q3OTNvQWUxR2pQbndQeFJxVzlJN3BVemFJZ3IzQjZhaW5QUHBtanlWZUZyLXJ0SGV5dFV3U0RFcXlBSEpCaS1xZWhMY2xkMHZlbWpIOHZSS2NGdk1kcmVJQ0J2TU8xeWRnWUtDNlRDemU5bDNvX0RWWVh6dFpjckJ5LTJxNFVzanFmMDBuR2c3UkNUeF9KeTdDMFlrT2RPNXk5MlJiZnVfbEdubVBMSmYzb1hFNzJlYWlFQlRJOUE2cE9MUQ?oc=5",
           "intensidad": 4.0,
@@ -83,7 +101,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 25,
+      "peso_pct": 21,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 5,
@@ -123,7 +141,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 12,
+      "peso_pct": 10,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -145,7 +163,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 11,
+      "peso_pct": 9,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
       "n_temas": 2,
@@ -510,7 +528,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 75
+          "peso_pct": 76
         },
         {
           "categoria": "Relación Bilateral",
@@ -535,7 +553,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 76
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
@@ -585,7 +603,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 77
+          "peso_pct": 78
         },
         {
           "categoria": "Relación Bilateral",
@@ -639,7 +657,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
@@ -660,7 +678,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 77
+          "peso_pct": 78
         },
         {
           "categoria": "Relación Bilateral",
@@ -685,11 +703,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 77
+          "peso_pct": 78
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Economía",
@@ -735,7 +753,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 74
+          "peso_pct": 75
         },
         {
           "categoria": "Relación Bilateral",
@@ -814,7 +832,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -831,11 +849,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 67
+          "peso_pct": 68
         },
         {
           "categoria": "Relación Bilateral",
@@ -860,7 +878,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -921,15 +939,15 @@
       "resumen": "Buscan frenar infiltración del crimen en candidaturas",
       "motivo": "⚡ Posible presión de Claudia Sheinbaum Pardo — Sheinbaum exige a EU probar que crimen se infiltró en municipios",
       "peso": 5.0,
-      "n_temas_agrupados": 5,
+      "n_temas_agrupados": 6,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://www.jornada.com.mx/2026/10/15/politica/013n3pol?partner=rss",
       "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
       }
     }
   ],
@@ -1045,6 +1063,17 @@
       "confianza": "media"
     },
     {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Investigado",
+      "tema": "CON LA MIRA EN LA ELECCIÓN DE 2027: Determina Tercera Sala del TSJ archivar como",
+      "nota": "Morena tiene un voto potencial de 38% de a la elección de 2027 - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVDRXc0NMQ1FOS291YXVnWDBwcXlwRU1SZUhFVDhocWZkVThtTFdnRGJrdS1rQkFpSVd5V0VGLUtCOE5YN2dObkFZVnQ4cXJZSFliM1FzdWxDZ2VEbERqUHJ0eFM4cEdXNlk2Vmp1ZVRQRUZ1VDJDMDNRdDM2eFdPcHB5Sk9zb3h5cmhWbVVCUEVVQQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "trump",
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
@@ -1062,17 +1091,6 @@
       "tema": "Ernestina Godoy promete frenar acosos sexual en la FGR; busca acabar con represa",
       "nota": "Ernestina Godoy promete frenar acosos sexual en la FGR; busca acabar con represalias por denuncias - Milenio",
       "fuente_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQOW9zUENCVmhHN3gtLU1DRWhqcmNnNjVjd2xUTWRubzZuSzBIX01uM1NvSXl1WHd3QzZ6VmtTT2dYLVFyazQ0WjNuVUgyVHdrRXFQTVQ1U0JWVzZoRmRpSWdOUmxKalIxUnRmcXd0N09YTjkwbU9wXzhBZXdkSi1jeWdFY9IBgwFBVV95cUxOc3h1Z2hXME9PbkdJVXZrdjg2YnRmY0RCSjBlbVhkUGtrZFRPbGNUUDZ4ZjdxQmctSWhBTFpIRkhZZ2dPQ3daZHcwcldQdWJTcTRHdGc3TUx0ZC1Qa29RN2Fzd1V5YmVDNGV1ck85QXhfd21uNmI2N1NUODNZa0xkaXpwTQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "loret_de_mola",
-      "nombre": "Carlos Loret de Mola",
-      "rol": "Mencionado",
-      "tema": "La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso",
-      "nota": "La presidenta más trumpista del mundo, escribe Carlos Loret de Mola - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOejMwMTkwTnp2ZFFRNkFFUzN3RElCemQxLW1CelpDanBYM3dQbUhXUDFSLUFQeWJCemo2SDM0c01vZ2ZGTXVvNGgzbkR5bW9BOWZId3IzX1hCRUJyRXVMdHFJQVpMUkVnR3d1Sm5fYUtyRkQ2ZHV3RjhKdFJWTjd3eVlrRjFwa3VTdDRpSmlQM1poMW1idmJpSlZ2VENHOXc?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1131,10 +1149,10 @@
     },
     {
       "fecha": "2026-09-24",
-      "tension": 44,
-      "n_notas": 63,
+      "tension": 43,
+      "n_notas": 64,
       "n_alto_impacto": 45,
-      "n_medio_impacto": 18,
+      "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
     {
@@ -1156,16 +1174,16 @@
     {
       "fecha": "2026-09-27",
       "tension": 37,
-      "n_notas": 37,
+      "n_notas": 38,
       "n_alto_impacto": 24,
-      "n_medio_impacto": 13,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-28",
       "tension": 38,
-      "n_notas": 71,
-      "n_alto_impacto": 46,
+      "n_notas": 73,
+      "n_alto_impacto": 48,
       "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
@@ -1203,33 +1221,33 @@
     },
     {
       "fecha": "2026-10-03",
-      "tension": 36,
-      "n_notas": 21,
-      "n_alto_impacto": 13,
+      "tension": 37,
+      "n_notas": 23,
+      "n_alto_impacto": 15,
       "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-04",
-      "tension": 38,
-      "n_notas": 35,
-      "n_alto_impacto": 22,
+      "tension": 39,
+      "n_notas": 37,
+      "n_alto_impacto": 24,
       "n_medio_impacto": 13,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-05",
       "tension": 21,
-      "n_notas": 83,
-      "n_alto_impacto": 29,
+      "n_notas": 84,
+      "n_alto_impacto": 30,
       "n_medio_impacto": 54,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-06",
       "tension": 16,
-      "n_notas": 105,
-      "n_alto_impacto": 25,
+      "n_notas": 106,
+      "n_alto_impacto": 26,
       "n_medio_impacto": 80,
       "n_bajo_impacto": 0
     },
@@ -1244,8 +1262,8 @@
     {
       "fecha": "2026-10-08",
       "tension": 25,
-      "n_notas": 79,
-      "n_alto_impacto": 31,
+      "n_notas": 80,
+      "n_alto_impacto": 32,
       "n_medio_impacto": 48,
       "n_bajo_impacto": 0
     },
@@ -1275,10 +1293,10 @@
     },
     {
       "fecha": "2026-10-12",
-      "tension": 18,
-      "n_notas": 53,
+      "tension": 17,
+      "n_notas": 55,
       "n_alto_impacto": 16,
-      "n_medio_impacto": 37,
+      "n_medio_impacto": 39,
       "n_bajo_impacto": 0
     },
     {
@@ -1299,14 +1317,58 @@
     },
     {
       "fecha": "2026-10-15",
-      "tension": 20,
-      "n_notas": 19,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 13,
+      "tension": 24,
+      "n_notas": 22,
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
+      "x_lunes": 81,
+      "y_lunes": 73,
+      "x_hoy": 88,
+      "y_hoy": 75,
+      "delta_pts": 3.0,
+      "alcance": 10,
+      "n_alto": 7,
+      "n_medio": 7,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://www.tabascohoy.com/morena-puede-ganar-solo-pero-coalicion-fortalece-triunfos-higinio-martinez/",
+      "nota_texto": "Morena puede ganar solo, pero coalición fortalece triunfos: Higinio Martínez",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 4,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 25,
+          "y": 75
+        },
+        {
+          "fecha": "2026-10-13",
+          "x": 50,
+          "y": 75
+        },
+        {
+          "fecha": "2026-10-14",
+          "x": 81,
+          "y": 73
+        },
+        {
+          "fecha": "2026-10-15",
+          "x": 88,
+          "y": 75
+        }
+      ],
+      "fecha_reactivado": "2026-10-15"
+    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -1428,45 +1490,6 @@
       "fecha_apagado": "2026-10-15"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "iniciales": "MO",
-      "x_lunes": 38,
-      "y_lunes": 83,
-      "x_hoy": 69,
-      "y_hoy": 77,
-      "delta_pts": 10.5,
-      "alcance": 8,
-      "n_alto": 6,
-      "n_medio": 5,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5oNlFRSGwxRUxIa185NGhXS2h0QVFCU25OaEYzNTVjSjJjNG9FLWZ0eHNxcUZGY0w1d01yVF9oWU1yUXZrT3IyNEZzQmVidEFDSmh1MHZOUWppOHZ2RnFqMFZVR2ticnA2Tmg4QWRYMXBocWp4NS0tNUhLTQ?oc=5",
-      "nota_texto": "Morena reúne a representantes: ¿Qué pasó en Campeche? - La Chispa",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-12",
-          "x": 12,
-          "y": 100
-        },
-        {
-          "fecha": "2026-10-13",
-          "x": 38,
-          "y": 83
-        },
-        {
-          "fecha": "2026-10-14",
-          "x": 69,
-          "y": 77
-        }
-      ],
-      "fecha_apagado": "2026-10-15"
-    },
-    {
       "id": "trump",
       "nombre": "Donald Trump",
       "iniciales": "DT",
@@ -1497,8 +1520,7 @@
           "x": 19,
           "y": 83
         }
-      ],
-      "fecha_reactivado": "2026-10-15"
+      ]
     },
     {
       "id": "rocha_moya",
@@ -1569,8 +1591,7 @@
           "x": 38,
           "y": 50
         }
-      ],
-      "fecha_reactivado": "2026-10-15"
+      ]
     },
     {
       "id": "clara_luz_flores",
@@ -1831,5 +1852,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-15 18:03"
+  "hora_corte_publicada": "2026-10-15 18:58"
 }
