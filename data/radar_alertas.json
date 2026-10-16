@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-10-15|inflexion|tmec-revision|2026-10-15|trigger",
+   "ts": "2026-10-15T20:48:07-06:00",
+   "tipo": "inflexion",
+   "tema_id": "tmec-revision",
+   "texto": "⚡ Posible trigger en «Revisión del T-MEC» (10-15): Varios días seguidos por encima de lo normal (~3.7 notas al día) acumularon un aumento sostenido; ese día fueron 4."
+  },
+  {
    "id": "2026-10-15|actor_clave|trump|intervencion-militar-eeuu",
    "ts": "2026-10-15T13:21:25-06:00",
    "tipo": "actor_clave",
