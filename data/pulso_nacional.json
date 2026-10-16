@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-10-15T12:01:32.718548-06:00",
+  "generado_en": "2026-10-15T18:03:22.688043-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 19,
   "baja_confianza": false,
   "tension_nacional": 20,
   "tension_anomalia": {
-    "z": -1.59,
+    "z": -1.57,
     "nivel": "normal",
-    "media_periodo": 34.6,
+    "media_periodo": 34.4,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 66,
-      "tema_principal": "Visa de Andy",
-      "tema_principal_id": "visa-de-andy",
-      "n_temas": 8,
-      "n_notas": 13,
+      "peso_pct": 52,
+      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
+      "tema_principal_id": "rocha-moya-acusacion",
+      "n_temas": 10,
+      "n_notas": 10,
       "notas": [
-        {
-          "texto": "Andrés Manuel López Beltrán cuenta con curso de formación política aprobado: INFP de Morena - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOa09ZYjM1UXYyMHMxazVhei1zcHdwODMzOUpZMUd6XzNCemV3NTBsWnFsSzd5d2V1MF8ta0JiZkFJM1NJRmRhZmttTzhabmRnejk1am94d3lzdElSbnljZ2ZXM0xPdkRfZFdmSmtCUVVxR0IxcFJGRXJRbGdjNDJ2QW5oOWZaMjV6TjNTZUVERDZZaFo3RzBWeUJKUkRlb0HSAZ8BQVVfeXFMTmlmSlJEN2JNY29PVWstdlAtR2gxcXZiWVFEZzQ2bDQtTE5EWmRWWEQ0aXN2dDBkb25HMjUxMjdXeUJuQU1kTkxmamRlNzJZbEhhR2l3cW9VeWwwVDV1YzZ4OVN1cm9yN0xEcFNJeE1nVXJQZ1dKN0NXQWpHR2pLR3o2aXczU3U3RDZ3R1QxVEpYWHpmaERFOGlfcDBITnAw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Milenio"
-        },
         {
           "texto": "Armenta puede ser el próximo Rocha Moya, escribe Luis Cárdenas - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNZzNnTF9LWVFzMmFEMG9lVFFjU3BIUXRWRDhLd0VHRHpFUFJKN2Yxa1lnaUVPZ0dIQ1I2X2FvcjRBTlB6cmlDTU5fR0M5UHQyMU1KQmZKR2FvcDlDOUxkT3lpQVNVU0ZGYUZEbUF3MlZRSk16akVseE00bl9LeGVObHpnYzNIZWgzdTNjYWlIVWNvaC1TRmhDUg?oc=5",
@@ -50,34 +44,10 @@
           "medio": "tabascohoy.com"
         },
         {
-          "texto": "Citlalli Hernández habla sobre posible candidatura en alcaldía Cuauhtémoc; esto dijo",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/14/citlalli-hernandez-habla-sobre-posible-candidatura-en-alcaldia-cuauhtemoc-esto-dijo.html",
-          "intensidad": 5.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "¿Qué morenista disputará la Cuauhtémoc? Citlalli Hernández descarta competir por la alcaldía",
-          "fuente_url": "https://www.elfinanciero.com.mx/cdmx/2026/10/14/que-morenista-disputara-la-cuauhtemoc-citlalli-hernandez-descarta-competir-por-la-alcaldia/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "PT y PVEM perfilan respaldo a Morena con Lorenia Valles en Sonora - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPejJodlZsdVo1ekN4TlZ5UE1sTUphcngtcHlybmxVd0ktTWpQaVRVejJ4LWlYS3c4eDRuOWtObDJtVWZiNnFXbjE2WGhJdlR2T1JkclVGX19wcDVSRDV3am1SdXJ2c1NYY3Y4WWxjdlJLNWhZb3d4ZXdBZkRFSGVEbXlkX0R2WnZhaW45VkhCejFXX0MzcGRHMWNsVXM2VmFnekVaMEFQMkt4UHBjTm43azVPcV96cks0Zk9lZFBNeUd0VkFWSG8yalVtYmFXcnAyZXfSAeYBQVVfeXFMT3lEeDVmQ2Z6QndrQnlQdURUb1JHMk9Bc2x0Y2Etdm4taXFhNk9TNWt0T2hUbGZ4LU01am9GMnh1bjJ6aXJQcWdzd3B4RkFCYUFqMkN4SnJHN293YkI1QnROMlpCX1NDSW5KeE9CQmZSZzFpZFZfMXhIMWJseFN4ejRwZHEtSjUtQnR0WHh6MzZWZEFwZVN1UlhjZU9yeTJxR1Q5X2QzMWt0SWNlRkRfbEhOQzNNaTd2YTUwcThrR21jTHFFQUk5QXNsWnpPVUNEY2hXa1htcjM2NTRIS2Y2RzVlX2VxbEE?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Universal"
-        },
-        {
-          "texto": "Citlalli Hernández descarta contender por la candidatura alcaldía Cuauhtémoc - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPSjk3cTktTzBqN3dlb3pnSU1IUXppaUhyeHh5RmxhWGVxSDZ4YzA3X3FjLWhib3dxeHB3VXJGVkxxbTBvRkhwUldURld5OTM2cnFYbHpUWUFFQWg0bGs0LWp6Ukt2by1JZVZwWlNDSVlCRGhjN0VNalloR0dDeDZ4WnRvRWlZNUZDZjNlZGE5OXJETW5CQ1VuY19PM1E2NnBmRGwyemdrUDdsWDVCbURFNlNPREpwZTZnY2fSAb8BQVVfeXFMT2Z6aTR6Z0p0ems2SXJhSW9rb09QQUVMMVdwc3dCNTRnU0VqUUV3c0JhM1hNdE5hbUVXc2xRTVhTOFFQZG81bkNlRDE4c19pYVJ3ME9mdVdwNncxeEdBSGZ6RnU4dVNHMy1YckFmRUFnSGI0SEFlQnY5OXRNdlM1SXdkRkVTWHJVVWZJa1kzZnhWMEN0T1lxTXVFck1ZVG1za1ZUOEJNbS11LUlyNHJpSEVxZzVidVJibHVYNkFTM0U?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Preparan registro de Gaby “La Bonita” Sánchez como coordinadora municipal de Morena para Puebla capital - Periódico Central",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPOTA2MVNFSWNMX1Bzb0pNYVg1ZGZrMm9SN0U0TXpUM0JGTHExUTBkbVhYTVA1bFVqTDl0VGNzeHl2RWRzenVsRmUxenN3S01WY0diZkJpZFZYc0I1VHZ5ajE0MTZGbEc2VEM0cHdmTVZNY3lCZDVJNFhhWmdiRjc5ZjRpS1YxOGpNMHNHUGQyU0lCQ0V5alpHMzhzM3Jqa2RQSlIxX1BFNjZWdEFJYmhnM3BWLVY4LW1wenN5N09UNkpTcmZLTUI5bWNTeFJaNnJ2eEszT2ZFSmRPQVB6SGZoZHFvWTQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "Periódico Central"
+          "texto": "¿Cómo fue entrar al refugio de 'El Mencho' - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOOFJQcDFydjd5bVpjMEpJQzZPQ2ZTelVDelRaaVRYR0JrYk1SUG85c0xqUmxkbGtIMDdULVZBSXFNLVAwbVdQRUhMczVpc3pVODZCam8tY0pZcG1fbHJlNnRzc0JqMHJwa1B3Mm1MTFNmSTVCZU1uVnNSMHF2aXluS1hlV0htc0d0YlFtOV9iMUQxd9IBkgFBVV95cUxQZkZKU3pkMzVUTjh6X2xOYXgwR0laNnJmM3NrM1pzQ3VVTGNPM1QycFZ5TXdneWc0MnAwejd3RVRmZzJvM29rNjRIQVJ5R0J1dnNkMnYxYml0VUFvd0VQcDV2UDB2d3dGOVMtMXRJNi1RbDZoUmVST2cwWlZnZndqb0Zfc3JpZzRjd28xaGQ4UzcxUQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
         },
         {
           "texto": "Plan Nacional Catastral: Senado aprueba dictamen y oposición advierte sobre “predialazo”",
@@ -92,18 +62,70 @@
           "medio": "Ambito"
         },
         {
-          "texto": "Reforma a la Ley Aduanera recibe luz verde: endurece medidas contra la subvaluación - Revista TyT",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTEx4SHBCTXBkVWZFbGJYOHh3cExMWWJITS1ZMmFpOEgxOTdLbTljT0hUZGYwd0Z1R0dZQU13THVndDNoemdYbW9UZ3djblJMVUVkbGVvM3hWMkFENTIxR2RFMldIUWRIR3JSby1rYVpaWUhIQklJVFF2d2JUcGx4aHZuY2h5ZUhxUk9kX0tqZk1fUmo5Skp0ZGdMUVR0VWJBWmJUVHNzQ0Q5TUVqbllj?oc=5",
+          "texto": "Nahle niega conocer a Amílcar Olán, amigo de los hijos del ex presidente López Obrador - AVC Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPbFVhcUtaUFRIaEVCcFI0eUxSMlpTWEdNQ0NsR0s2T1p5azFXUHZtSGRZUXFVZzQtTll2emJ4RFlkZmJJUFp1UnJNdl9IQ2lReHdHek5ua3U2UjBKeWs3Nmk1RTBiMUVaMlIxRS1yZFVLUC1PNzFESGRsWUFiZmJValFHLU1JaUM3Tk9tT2F3OU9qR1VlR05wbk1rdGN5RDlrTUhwT2dJVnhidHFfX2pYRWlmdWc0R3AwOWs1OHZ2dnZINDh1QlRlNHBFWFNldW5ESWVYVmtzdkVzNHlkRHpiNy1JUFNQSUg1M21IeW53?oc=5",
+          "intensidad": 5.0,
+          "medio": "AVC Noticias"
+        },
+        {
+          "texto": "Estefanía Mercado participa en reunión con Rosa Icela Rodríguez para impulsar la paz y la seguridad en Playa del Carmen - Noticaribe",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNaWtDeDdaaUdOenpPMFQ1RThwdld1aFJ1NDhUUHJmX0ZFbl9wdUh6djBDMHNPcm5ualpJNXNLMmMzWUdLT3dlRTNYS3FscmVsVG1pZFBFV0Q0WlJjaV9KLWh0SUtJdUdvTThfUl9LWEVtcElLNDlhN0RkZ1ctZ3FzVjcxRmJROTVKVjVBUkxQSm5iSTF2Q19vcnp5aVNyOXFEQURtT2RDRjdPOWJwVmwyZmluS2tJOVgwczNsZENVNkZaVkM3RHJodzFQSURIMnlCVFpIelU2WjVqWUJBcGs3Z3NOOTZRN0dxcjEzSGJ3?oc=5",
+          "intensidad": 5.0,
+          "medio": "Noticaribe"
+        },
+        {
+          "texto": "Fiscalía de Sinaloa no identifica móvil de riña en penal de Mazatlán que dejó 10 muertos - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOREpwVzFCWlp5SDdtM3F2cVBLZUZkUTF4cUQtYTZ0TGc3Z3Y1NGxHd0piUEhjSGpvSUZSMnVRU3l1c19sczZLRWQ5MFQ4aFlmb3k5VGEyamNJYXZRcWxkcUpzbjF0bGRzaDMxZlg0ckE0Tnl2UjRzQWNFdTQ3aDF2SFVmQ0NpRzhRLTRVaWphVEJHQmt1SmY1bDZPOXlZM1UzWU92VGF4ZEk3TXZQSF91UUVVcEZORDhVSXBIaGZkbjl3cHR2d2c2SVZlbk51S21ma2phVEdfY2FnU2dJMnJCbVZDLWhTR05qTTF6bE84MVlaZlBLejBTV1dpdzZuNUVmT3ltX2xn0gGaAkFVX3lxTE1lQ19HdWR5T0ZRRk1XcEljaXBCWTFfVEZ0Vng4ZVdRRE1RTDVVZzhrYl9uNGw2Qk41enp3SEVGREdhTGYyQmt5dmp6MTIzamNvTjFEbDU2cUxzU1B2a1Q3OTNvQWUxR2pQbndQeFJxVzlJN3BVemFJZ3IzQjZhaW5QUHBtanlWZUZyLXJ0SGV5dFV3U0RFcXlBSEpCaS1xZWhMY2xkMHZlbWpIOHZSS2NGdk1kcmVJQ0J2TU8xeWRnWUtDNlRDemU5bDNvX0RWWVh6dFpjckJ5LTJxNFVzanFmMDBuR2c3UkNUeF9KeTdDMFlrT2RPNXk5MlJiZnVfbEdubVBMSmYzb1hFNzJlYWlFQlRJOUE2cE9MUQ?oc=5",
           "intensidad": 4.0,
-          "medio": "Revista TyT"
+          "medio": "El Universal"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 25,
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis",
+      "n_temas": 5,
+      "n_notas": 5,
+      "notas": [
+        {
+          "texto": "Egresado de la escuela de Morena, acusado de narco por EU; Juan de Dios Gámez fue imputado por presuntos vínculos con “Los Chapitos” - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNUUppZ2kzMjVPMUQwM2ZrdXVVTEdoMHNrZ3JrRUN1UXFCb1JrbXRzX0libWFLN2FBcmszMGFjUjBMWURMZXJfOUhfa0dSVnpiSThSMl9MbVVQdU9YbHg1ZGluUnpuQWFFUnB0STIwcTlRNXhrUmJiaVpVYXA2Y0JyVzBpX1hMMGlJV2JKVzE3OWxLbGx4WnR1cWw0OE9TQ2d1MExBLU9wVVc3QUh5VlA1M1I5SjBjZWxoV1hFcHFHOXA1RjRURDZIRndpUGZ6R1RaNG4yczF1UGdxVnlfM1cyMTlYQnJMUVNNRTZicW9EZzB1NnZHUzhYQUYxZ9IBjwJBVV95cUxNb1lLNWNpZGRXVUJ6SmRsUHNTX1IzczBkXzRaRDFfYldlbXFYLTNCS2dSeEZqUTFZNGlUc1ExbFo3Mkg4LWFNeC1TT1FjQXh3aWZLUjh3RC1hbkJzaFhSd1pHM3czaHhvbmNTVHBIZ0dySUxCbE05YUVXZEZrNFdBT3UzLXRrNEYtWGM2dmV5OE80Zm92b1ZyOTJWQlpQY3pzcno5VWh2YWtuN1hUOEdKQVdFLXNBSlNiTjdXbnV5bWNtYkk1OUlhSnQ4UnVsakJqWldGVmxtMkRVMDVBcHo1aHFOSG1PblNQaUtlZjdvSkkyaGZoekdPNHVvZ2pJbl9wUGdFM0x6SUZsWWxTTDZZ?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Universal"
+        },
+        {
+          "texto": "XV años de lujo en Nuevo Laredo: la fiesta del exdelegado de la FGR en el epicentro del huachicol fiscal - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQanNxaU1VR2NwdHZLN2Y5SFlDMzNhUk5EX1F5cXJ1U3p6OEZWeDhRckREWDJlTDR5ckh1eFZNckxXRUpnM1RaRERHX1BQbThRMTdCTzFYTWZKRkhDWE5UVTdNV2VnQVkzWkhSRGxjSnZScnJIMm9MNm9QaGRhX2ZVajhsWjI1X1AxVmtUNdIBjAFBVV95cUxQRE82TnVmSzg2M0RPdF95WnI1Ym9SU0djck1QYmZYTGhudklTWUlFVWhWT3lETnVxUFY0MWxxS3BJU2VSUzVJNHZBR05XRVRBSFAxeDVyWUNmZ3pTZjQ5WS1pc2lLRl9UR1RhQ2NUQWZEUG9hRVRWaFIzWWdFcWYzaXU5cFVsb2otWlVIWQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
+        },
+        {
+          "texto": "⚡ Posible presión de Claudia Sheinbaum Pardo — Sheinbaum exige a EU probar que crimen se infiltró en municipios",
+          "fuente_url": "https://www.jornada.com.mx/2026/10/15/politica/013n3pol?partner=rss",
+          "intensidad": 5.0,
+          "medio": "jornada.com.mx"
+        },
+        {
+          "texto": "⚡ Posible presión de Donald Trump — Donald Trump reitera que los cárteles controlan México y presiona por intervención militar - Debate",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNQlNJc1ZoSHRLaDUxYVpnZ3FyUnFlMWtxb0QxYkprLUZGWkZsODY5aE9vZ0lPWnhCeU5yQjQ4YzZERm9SSmNlblhQckpYdDJyS05nRjV2UzdJRnUyU1gxam1sMVBPZmNvSkwwUXItZUhIS21mSVlkMGxPQ3lGaTFzT3Byb0l2eGo2NTl1UnY0aHpXV1d0RXdBMHByVk9Jakt6M1FyUlVVY0ZDQjRDM0had1c5QnhiOXVIUnNlQU5ybU52OXNUTzhPRHU5dnJuMWZZQTJhN3hYajE?oc=5",
+          "intensidad": 5.0,
+          "medio": "Debate"
+        },
+        {
+          "texto": "Prisión preventiva para mujer acusada de tentativa de homicidio en la colonia México, Mérida",
+          "fuente_url": "https://www.yucatan.com.mx/merida/2026/10/15/prision-preventiva-para-mujer-acusada-de-tentativa-de-homicidio-en-la-colonia-mexico-merida.html",
+          "intensidad": 5.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
       "peso_pct": 12,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
       "n_temas": 1,
       "n_notas": 2,
       "notas": [
@@ -114,32 +136,10 @@
           "medio": "Noticaribe"
         },
         {
-          "texto": "México descarta que caso Rocha influya en el T-MEC - Enfoque Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPVjFmbGZaYlJuMzhYaWpyZmtmQndmX2pHb1dmczZqUDBmNjdSd190dTNqb05QazZPNDQyUHdsdV9OeExMSGdkd1o2SzhYMUxfOGs3RUFoZmctSWI1M2pZR2lUVGJTS09UMWNxU1dwdjRHNFVfY0RBSEZEdWR6MmFrZXZNY3cwd0pKcFd1emROakN0M0thVjdtZnRJQWxSQlpCTkZiZUxodk5peTZnV0YyMmhCZw?oc=5",
+          "texto": "México fortalece su comercio con EU, pero aumenta su exposición a cambios del T-MEC: Cepal - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQbmFsa1UwLWFaSmNVcDV0dGExU21MWXd6T1VyTW95MjA1SGQ2eWIwVVRrSktUSThPbkV6dkNuSXk4NnhNc2JpaFhlSmV4eThyT0N4UWZMMUlJRV96VmxDQ1g4SzYwWGw2bHBvY2FIUFJpSWJWREZkMTBDSHhUZ0dmNzh2aXdsRmxXY2RabHBnZ9IBjwFBVV95cUxONmoxTlhSU2tDbXlrdm9zcjE1MHpZS2RQeE1pM3JZUUYwNndrS0MwMnlGRjZVR1BPeFlISmJob2lYS19uQ3ExUHJqV0VxREZJX2Q0Nm10TlVzb3Z4M3RHVEYtWHV5TVdlUi1meExkMFF5ODVWWktMNTNYZ3hnOVBCNkxHTXR2NDVxakIwc1hJdw?oc=5",
           "intensidad": 6.0,
-          "medio": "Enfoque Noticias"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 11,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Egresado de la escuela de Morena, acusado de narco por EU; Juan de Dios Gámez fue imputado por presuntos vínculos con “Los Chapitos” - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNUUppZ2kzMjVPMUQwM2ZrdXVVTEdoMHNrZ3JrRUN1UXFCb1JrbXRzX0libWFLN2FBcmszMGFjUjBMWURMZXJfOUhfa0dSVnpiSThSMl9MbVVQdU9YbHg1ZGluUnpuQWFFUnB0STIwcTlRNXhrUmJiaVpVYXA2Y0JyVzBpX1hMMGlJV2JKVzE3OWxLbGx4WnR1cWw0OE9TQ2d1MExBLU9wVVc3QUh5VlA1M1I5SjBjZWxoV1hFcHFHOXA1RjRURDZIRndpUGZ6R1RaNG4yczF1UGdxVnlfM1cyMTlYQnJMUVNNRTZicW9EZzB1NnZHUzhYQUYxZ9IBjwJBVV95cUxNb1lLNWNpZGRXVUJ6SmRsUHNTX1IzczBkXzRaRDFfYldlbXFYLTNCS2dSeEZqUTFZNGlUc1ExbFo3Mkg4LWFNeC1TT1FjQXh3aWZLUjh3RC1hbkJzaFhSd1pHM3czaHhvbmNTVHBIZ0dySUxCbE05YUVXZEZrNFdBT3UzLXRrNEYtWGM2dmV5OE80Zm92b1ZyOTJWQlpQY3pzcno5VWh2YWtuN1hUOEdKQVdFLXNBSlNiTjdXbnV5bWNtYkk1OUlhSnQ4UnVsakJqWldGVmxtMkRVMDVBcHo1aHFOSG1PblNQaUtlZjdvSkkyaGZoekdPNHVvZ2pJbl9wUGdFM0x6SUZsWWxTTDZZ?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
-        },
-        {
-          "texto": "⚡ Posible presión de Claudia Sheinbaum Pardo — Sheinbaum exige a EU probar que crimen se infiltró en municipios",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/15/politica/013n3pol?partner=rss",
-          "intensidad": 5.0,
-          "medio": "jornada.com.mx"
+          "medio": "Milenio"
         }
       ]
     },
@@ -181,7 +181,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 26
+          "peso_pct": 27
         },
         {
           "categoria": "Gobernabilidad",
@@ -210,7 +210,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 54
+          "peso_pct": 55
         },
         {
           "categoria": "Relación Bilateral",
@@ -310,7 +310,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 65
         },
         {
           "categoria": "Relación Bilateral",
@@ -418,7 +418,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 7
+          "peso_pct": 6
         },
         {
           "categoria": "Social",
@@ -460,7 +460,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 72
         },
         {
           "categoria": "Relación Bilateral",
@@ -485,7 +485,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 73
+          "peso_pct": 74
         },
         {
           "categoria": "Relación Bilateral",
@@ -660,7 +660,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 78
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
@@ -681,11 +681,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 78
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
@@ -735,7 +735,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 75
+          "peso_pct": 74
         },
         {
           "categoria": "Relación Bilateral",
@@ -756,7 +756,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
@@ -764,7 +764,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -810,7 +810,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 68
+          "peso_pct": 69
         },
         {
           "categoria": "Relación Bilateral",
@@ -856,7 +856,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
@@ -884,12 +884,12 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
       "motivo": "Armenta puede ser el próximo Rocha Moya, escribe Luis Cárdenas - El Universal",
-      "peso": 21.0,
-      "n_temas_agrupados": 3,
+      "peso": 37.0,
+      "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNZzNnTF9LWVFzMmFEMG9lVFFjU3BIUXRWRDhLd0VHRHpFUFJKN2Yxa1lnaUVPZ0dIQ1I2X2FvcjRBTlB6cmlDTU5fR0M5UHQyMU1KQmZKR2FvcDlDOUxkT3lpQVNVU0ZGYUZEbUF3MlZRSk16akVseE00bl9LeGVObHpnYzNIZWgzdTNjYWlIVWNvaC1TRmhDUg?oc=5",
       "actor_vinculado": {
         "id": "sheinbaum",
@@ -897,37 +897,40 @@
       }
     },
     {
-      "id": "visa-de-andy",
-      "nombre": "Visa de Andy",
-      "categoria": "Relación Bilateral",
-      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
-      "motivo": "Andrés Manuel López Beltrán cuenta con curso de formación política aprobado: INFP de Morena - Milenio",
-      "peso": 7.0,
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "México fortalece su comercio con EU, pero aumenta su exposición a cambios del T-MEC: Cepal - Milenio",
+      "peso": 6.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOa09ZYjM1UXYyMHMxazVhei1zcHdwODMzOUpZMUd6XzNCemV3NTBsWnFsSzd5d2V1MF8ta0JiZkFJM1NJRmRhZmttTzhabmRnejk1am94d3lzdElSbnljZ2ZXM0xPdkRfZFdmSmtCUVVxR0IxcFJGRXJRbGdjNDJ2QW5oOWZaMjV6TjNTZUVERDZZaFo3RzBWeUJKUkRlb0HSAZ8BQVVfeXFMTmlmSlJEN2JNY29PVWstdlAtR2gxcXZiWVFEZzQ2bDQtTE5EWmRWWEQ0aXN2dDBkb25HMjUxMjdXeUJuQU1kTkxmamRlNzJZbEhhR2l3cW9VeWwwVDV1YzZ4OVN1cm9yN0xEcFNJeE1nVXJQZ1dKN0NXQWpHR2pLR3o2aXczU3U3RDZ3R1QxVEpYWHpmaERFOGlfcDBITnAw?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQbmFsa1UwLWFaSmNVcDV0dGExU21MWXd6T1VyTW95MjA1SGQ2eWIwVVRrSktUSThPbkV6dkNuSXk4NnhNc2JpaFhlSmV4eThyT0N4UWZMMUlJRV96VmxDQ1g4SzYwWGw2bHBvY2FIUFJpSWJWREZkMTBDSHhUZ0dmNzh2aXdsRmxXY2RabHBnZ9IBjwFBVV95cUxONmoxTlhSU2tDbXlrdm9zcjE1MHpZS2RQeE1pM3JZUUYwNndrS0MwMnlGRjZVR1BPeFlISmJob2lYS19uQ3ExUHJqV0VxREZJX2Q0Nm10TlVzb3Z4M3RHVEYtWHV5TVdlUi1meExkMFF5ODVWWktMNTNYZ3hnOVBCNkxHTXR2NDVxakIwc1hJdw?oc=5",
       "actor_vinculado": {
         "id": "sheinbaum",
         "nombre": "Claudia Sheinbaum Pardo"
       }
     },
     {
-      "id": "auto-fdf5a8cbd8",
-      "nombre": "Julio Hernández López: Astillero",
+      "id": "auto-e92552b366",
+      "nombre": "Buscan frenar infiltración del crimen en candidaturas",
       "categoria": "Gobernabilidad",
-      "resumen": "Julio Hernández López: Astillero",
-      "motivo": "¿Qué morenista disputará la Cuauhtémoc? Citlalli Hernández descarta competir por la alcaldía",
+      "resumen": "Buscan frenar infiltración del crimen en candidaturas",
+      "motivo": "⚡ Posible presión de Claudia Sheinbaum Pardo — Sheinbaum exige a EU probar que crimen se infiltró en municipios",
       "peso": 5.0,
-      "n_temas_agrupados": 1,
+      "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/cdmx/2026/10/14/que-morenista-disputara-la-cuauhtemoc-citlalli-hernandez-descarta-competir-por-la-alcaldia/",
-      "actor_vinculado": null
+      "fuente_url": "https://www.jornada.com.mx/2026/10/15/politica/013n3pol?partner=rss",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
     }
   ],
   "temas_nuevos": [
@@ -956,20 +959,20 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQX1MxNmlIZEZ2YnJjcVFmaTZpSnpkd3VVdXpfVUdndXVfc05YXzI2RlRHV0lMNFNJZ0xtMk4zZWx0cGtlTlVOS0hWYjUzUWtBWTdXemZ4emZldmZ4dU44bTJsOGV0Wlp1MEItaVRFUF9FN3JheVFudzkxNGJOUnVORmJwaTBnNmV1TFhRZkZOdmFVR2NRS1RLOEFza0RhN1hFN2Q0VnRWbE5xeVR5T2ZXV3JDQlFQTUdGZ3oyWU9YSkhBTXphUnlfYmtqN3Q2UzAt0gHkAUFVX3lxTE9yb0JFbmZlajBKdFFmN3hCdy1RZ1VqRnNFZXdYVjZ5dThicVFwZDI3M21sekZBSW41VTVqVUx6VS0wUGlTVG5udF9mbkNGWFJWcTBWVTZ2RUlPTmwtU3lDeXVQdUxXRlpjU3Q1YWo4WGJuTWQ5ajlvb3RMRlZ6alZDZ3d4SnR4ekdVMWlvVFI3YjVuR2I0M1Z6dWxHX29uOG1tOWl4R3dIbFdwWXhsbmpYRjBIVXdNYThiMG1Zd3Y5RTNYYWpPelU4YVkwaEY2NHozcWhLZmozQ2dHaWNqM3dNM3l5aA?oc=5"
     },
     {
-      "id": "auto-9d47ba729d",
-      "nombre": "Hilda Salazar destaca visión de Delfina Gómez ante el Congreso del EdoMex; repor",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-890929091e",
+      "nombre": "Menos filas y más tecnología: Sheinbaum explica cómo el pago a turistas fortalec",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOQ3NFbUZ6Rndpc2RaV1VoS0t0WWZmTzJUZVJTdURuUzJWTFNGcFJ2VzNyN2t6TFlaTGlmemJlVmtxaFN5QjNEQUhCQ3pmMXp6QkRrc0FsdXBQVElOWFBLT0pzN2lpZG5CN0hZc1llbnFyYm1tYkdNczMwS1ROZVktR3NpbUh4aUg3bUc2NTNTcHVZR3RDZWZLNF9ONEw0ZEnSAZ8BQVVfeXFMUHVtSnluaC10WUZ3SDR0VncxOU5NS1pza0dxQmdodm5rUUgyYkhIUHhQWFRmVGxlR1FLNkhvSzVoemJMbmc0Z3ZRVjNhY19WeVljQUlLZ0t3bXl5eWtIQWRYT3JYaWhRRnAzN05TRjA3N2lzSFB3X25PVjNQSFZRck53V19oNnppYXhTVVpTakxDM1BPeEJFTWFXUEFIRFA0?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxObjhyVmxqTmQ5UzNraTNzbzUwdlI3UWJ3RkRYOW5qT0M5TDBPU2lEQTJzQ0RFOUVhMGtJUXRmWXdQdTN3SjduVUp5UlYwRjk0RHBTSnVKai16SWwxUU9CSWpaQUk3MEVVN1FmSDdhb0FuSGxqcDkzQ1NkVllVQ3NOWFhvZlhsRUZJWHN2eWxrbDEzS0ZMRWRzYkQxQ1JYQVRFbG1iRUNUZlpEZkFZNS1hdnZR0gG_AUFVX3lxTE9YamNRYTdoUXl6U3lqSnNiMWdRSEdiTE1XN216cG0tU2hwVlk4QTV5aUJJM056d0h2T3ZXYmlVdnFSaGxVdC1MVzRCdzgxLWhsX3N0ZFN6T25KOEpBTENjbEZxd0xBb3A1NjVvUV9OMjQ0b0R2ekhLa1drbHNoMXpZY2gwWnhrQWtrSmtiWEVJeTdnSEZ2VjJFVEtvMmxYa1cyT3JFMFk5UlVNZk0yRzBwNm91cEpnNDNLQUNUdk1F?oc=5"
     },
     {
-      "id": "auto-f15c84aca8",
-      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-87b2b4a1a9",
+      "nombre": "Los Tigres del Norte llegan al Tiny Desk con mensaje en defensa de los migrantes",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNdFk2UnA0TDRrV2t5T0M2ekFPNmY1S091X1BXNU5MeXRPbDlEa0ZCSXNOZlVVREtITlUxZEZydUxfcUl1M244RzNNV1k0VVBNUHdza3o2aUdnTmdScG9EVlJ6VTVvcnE5WHAwTFFVeDMtSmZMSVRrV3EtdjR1eEpyaGVDUVpRR01SXzI3QXNKM1A1QjJnRmgtMTRqX256TFFRNk9ORmp3OUJSNU1N?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQUVZxRWZNNFlMUWR1ZkxYaV93cGVsZUVYX0ljTzlTdjBXcVN2VzdFOEZOQ2lIS01QVGJuRFFtTWJHbmNzUzFmbjV3dkU3dnVoOFZiR2FhYzdLVTduUDh5VThCZlA1Y3dxSnlXMzh5aUpRZmFnQ2NyMmtlQnNDSEozRkN4cXhnUE95ZlFpVXl5Mmt1NnRYV3JJ0gGXAUFVX3lxTFBRVnFFZk00WUxRZHVmTFhpX3dwZWxlRVhfSWNPOVN2MFdxU3ZXN0U4Rk5DaUhLTVBUYm5EUW1NYkduY3NTMWZuNXd2RTd2dWg4VmJHYWFjN0tVN25QOHlVOEJmUDVjd3FKeVczOHlpSlFmYWdDY3Iya2VCc0NISjNGQ3hxeGdQT3lmUWlVeXkya3U2dFhXckk?oc=5"
     }
   ],
   "temas_retomados": [
@@ -977,7 +980,7 @@
       "id": "auto-865e32191c",
       "nombre": "Cuautlancingo separa a tres policías por hechos delictivos; FGE investiga",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 21,
+      "dias_silencio": 22,
       "motivo": "⚡ Posible presión de Claudia Sheinbaum Pardo — Claudia Sheinbaum exige investigar y sancionar abusos policiales en Guanajuato - MILENIO",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPVU9zUExRa3dqRWFqY1diLVdYZ3ZrRC1NY2FVcGFuUnFxSFkyV3ctV01mbERST0E3WEF6c29kMjh1eUFFQzRWdjF0ZzQ2Zm5oZFJJczBJZHUzRVYxeWlOdUN3TzdlSnBxSjZVWTBVd1NqVUZGOE5rWlRMVkk0Nnl4Q2NmWUprRVJfQWFobUVTY21ROXhZeWkxd2ozOFBtVXktVjhFWl9B0gGmAUFVX3lxTE42QjVjWEwxSzZjWnQ0a2xDUkdwNEZ4TDNITExzYlhRVE5RN3FYU2FteTQtdV9zZ1Y3allYSTVpWk5aVVZFcUU3MEttVmZwX21uVzVFWVc0dUwzOVp3dmhCaVVkQTlnOWlfLTRobUJYZ0tlb2RrNFlDek1FZjNpRkRTbWtxZlVFaDJ4YTN4Zzh4WVVGY0RTRjFIeWM2THNLNGdvNjFJMXc?oc=5",
@@ -985,21 +988,10 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-f8081d6ba1",
-      "nombre": "Registra gobernador May 43.1 por ciento de aprobación y se posiciona en el lugar",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 12,
-      "motivo": "¿Qué establece la Ley de Armonización Catastral y Registral aprobada por el Senado?",
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/que-establece-la-ley-de-armonizacion-catastral-y-registral-aprobada-por-el-senado-20261014-0213.html",
-      "fecha_anterior": "2026-10-02",
-      "fuente_url_anterior": ""
-    },
-    {
       "id": "auto-dacd2cd4d0",
       "nombre": "Informe desde Estocolmo: la migración, en el centro de la jornada electoral en S",
       "categoria": "Social",
-      "dias_silencio": 9,
+      "dias_silencio": 10,
       "motivo": "🔔 ALERTA — Remesas, informalidad y migración irregular: el círculo que atrapa a Centroamérica y las propuestas para romperlo - Infobae",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPek1jcUtrZzluaUtzSEhzV09aamh2aGpreFdWbnl2Yl80aUppY2VScUliQUxXcjNMUS1qLUx2dVc0TDZTdHFBNDhTTi1nb3Z3Q3Z6ZE1yWkQ2SGFFOVg3dC15Sm84dlNQQVdVb0NpVzN0MDZVZ2h1Sl9mM21YdV9mSFI2U0J0RzlDNFR3WVR2UUdQb2JSZmItYjFvWHdOcGt0dWZheDllQUlSX0FkZEN5QzEyRkZldWxHWDJVRDhxVUl4MDZZb205MktsRXZQbGtjaFBXRlFMSTBZU2pmNlZMTjBiUnNBS3lhWmtsUG50SUHSAYsCQVVfeXFMTkJ2UHBqUnZIVkpVU1dOSjZPbXJ6RlNNUVFKTnJHbFhJZVZBSm1XZWczdldLdEZyUlVWa3VwdktMd01PUk1rQ21VTFprblpxbmFNM3JQVlZLUVNER01FZ28tcHpWZGliYXBJbncwbXgyMGlHWm1TNnkwWW83ak9oRFZQX0JBdjlURmtOS2Exd1FMZkxCQkN6VXYyZzFoUUdCVGNoX2FkcU0tN01rYlBUVDZQc2RtRDN4TEZtVTctN0gtd2lzTUNPc0ZlbXdEa0d3aFhJUXhObmpCRElXaTZBU3g3VUxZOUp3bkduRS1ENzRFWkZYN1V1VFRlMEdmRlVLTlJON1ZidVNtZlhN?oc=5",
@@ -1010,26 +1002,26 @@
       "id": "auto-9034408d2e",
       "nombre": "EU busca reforzar cooperación militar con Islandia por seguridad en el Ártico",
       "categoria": "Relación Bilateral",
-      "dias_silencio": 8,
+      "dias_silencio": 9,
       "motivo": "⚡ Posible presión de Claudia Sheinbaum Pardo — Defiende Ken Salazar que estados cooperen en seguridad con EU",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/15/politica/013n4pol?partner=rss",
       "fecha_anterior": "2026-10-06",
       "fuente_url_anterior": ""
+    },
+    {
+      "id": "auto-bf6d3cc73e",
+      "nombre": "Bozal digital morenista, escribe Germán Martínez Cázares - El Universal",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 7,
+      "motivo": "Pedro Infante Bukele, escribe Germán Martínez Cázares - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUU1uUlJDejhmUGhxZ3UzVkpzeThVYTJwU0ZTUHBmbEtTRXFUTDRhVXlzR0lxOU1zYldKbjBud3JKNVd4OXdnQk1OS05jOERhVXV3enJIMW45Yjg1ZTBJQm1DbUIybkdrWUo5WFBRbDBxM1hXajJnRjU3cWVOS2E4WGlGVi1hcm54aUFjcQ?oc=5",
+      "fecha_anterior": "2026-10-08",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQTkRISmJ1XzJUUmJhLTJ6cXdNb3BFV2hTdUw4cm85bUhpTndBSmg2eHpGRmxPR0hJWWthTkFIVlJJVno0OEUwemU5eGJLb0x6TlhQYlpvTkVwNEl2eHY0dW0tU1pyWmxKQ284RHVGNVFiOVdPVmxpd2dER245YlBFQjJabUdPY1M2VWN2QkV6X0c?oc=5"
     }
   ],
   "actores_destacados": [
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "rol": "Mencionado",
-      "tema": "Visa de Andy",
-      "nota": "Andrés Manuel López Beltrán cuenta con curso de formación política aprobado: INFP de Morena - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOa09ZYjM1UXYyMHMxazVhei1zcHdwODMzOUpZMUd6XzNCemV3NTBsWnFsSzd5d2V1MF8ta0JiZkFJM1NJRmRhZmttTzhabmRnejk1am94d3lzdElSbnljZ2ZXM0xPdkRfZFdmSmtCUVVxR0IxcFJGRXJRbGdjNDJ2QW5oOWZaMjV6TjNTZUVERDZZaFo3RzBWeUJKUkRlb0HSAZ8BQVVfeXFMTmlmSlJEN2JNY29PVWstdlAtR2gxcXZiWVFEZzQ2bDQtTE5EWmRWWEQ0aXN2dDBkb25HMjUxMjdXeUJuQU1kTkxmamRlNzJZbEhhR2l3cW9VeWwwVDV1YzZ4OVN1cm9yN0xEcFNJeE1nVXJQZ1dKN0NXQWpHR2pLR3o2aXczU3U3RDZ3R1QxVEpYWHpmaERFOGlfcDBITnAw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -1053,23 +1045,34 @@
       "confianza": "media"
     },
     {
-      "id": "pt_partido",
-      "nombre": "Partido del Trabajo (PT)",
-      "rol": "Reacción de oposición",
-      "tema": "Coordinadores estatales de Morena rumbo a 2027",
-      "nota": "PT y PVEM perfilan respaldo a Morena con Lorenia Valles en Sonora - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPejJodlZsdVo1ekN4TlZ5UE1sTUphcngtcHlybmxVd0ktTWpQaVRVejJ4LWlYS3c4eDRuOWtObDJtVWZiNnFXbjE2WGhJdlR2T1JkclVGX19wcDVSRDV3am1SdXJ2c1NYY3Y4WWxjdlJLNWhZb3d4ZXdBZkRFSGVEbXlkX0R2WnZhaW45VkhCejFXX0MzcGRHMWNsVXM2VmFnekVaMEFQMkt4UHBjTm43azVPcV96cks0Zk9lZFBNeUd0VkFWSG8yalVtYmFXcnAyZXfSAeYBQVVfeXFMT3lEeDVmQ2Z6QndrQnlQdURUb1JHMk9Bc2x0Y2Etdm4taXFhNk9TNWt0T2hUbGZ4LU01am9GMnh1bjJ6aXJQcWdzd3B4RkFCYUFqMkN4SnJHN293YkI1QnROMlpCX1NDSW5KeE9CQmZSZzFpZFZfMXhIMWJseFN4ejRwZHEtSjUtQnR0WHh6MzZWZEFwZVN1UlhjZU9yeTJxR1Q5X2QzMWt0SWNlRkRfbEhOQzNNaTd2YTUwcThrR21jTHFFQUk5QXNsWnpPVUNEY2hXa1htcjM2NTRIS2Y2RzVlX2VxbEE?oc=5",
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Donald Trump imita a Claudia Sheinbaum al asegurar que con su “hermosa voz” le p",
+      "nota": "El accidentado debut de Katie Zacharia, vocera de Donald Trump - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPU3lCQlF6VU40Nzd1UFJBZmJDYnp4Z0wwSDhNSmJlUWstVmFra093SnhkNm1DWlByQjNRVFZLM3ZZVHlzT01pMmVRUEhUSnVoQWJNeDh2UnY2UzJiM1llUkFLMEx5d04xbnNYZnhkYnBjNlVtdEpoaFFMMDJfMUJ5SUNNMEtkUlhIajNxaEZWeWpKR3Q0MzZvWFpKQnpFbzdraHZCaHpzQ3EzODZT0gGsAUFVX3lxTE9TeUJCUXpVTjQ3N3VQUkFmYkNienhnTDBIOE1KYmVRay1WYWtrT3dKeGQ2bUNaUHJCM1FUVkszdllUeXNPTWkyZVFQSFRKdWhBYk14OHZSdjZTMmIzWWVSQUswTHl3TjFuc1hmeGRicGM2VW10SmhoUUwwMl8xQnlJQ00wS2RSWEhqM3FoRlZ5akpHdDQzNm9YWkpCekVvN2todkJoenNDcTM4NlM?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "lorenia_valles_sampedro",
-      "nombre": "Lorenia Valles Sampedro",
-      "rol": "Autoridad",
-      "tema": "Coordinadores estatales de Morena rumbo a 2027",
-      "nota": "PT y PVEM perfilan respaldo a Morena con Lorenia Valles en Sonora - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPejJodlZsdVo1ekN4TlZ5UE1sTUphcngtcHlybmxVd0ktTWpQaVRVejJ4LWlYS3c4eDRuOWtObDJtVWZiNnFXbjE2WGhJdlR2T1JkclVGX19wcDVSRDV3am1SdXJ2c1NYY3Y4WWxjdlJLNWhZb3d4ZXdBZkRFSGVEbXlkX0R2WnZhaW45VkhCejFXX0MzcGRHMWNsVXM2VmFnekVaMEFQMkt4UHBjTm43azVPcV96cks0Zk9lZFBNeUd0VkFWSG8yalVtYmFXcnAyZXfSAeYBQVVfeXFMT3lEeDVmQ2Z6QndrQnlQdURUb1JHMk9Bc2x0Y2Etdm4taXFhNk9TNWt0T2hUbGZ4LU01am9GMnh1bjJ6aXJQcWdzd3B4RkFCYUFqMkN4SnJHN293YkI1QnROMlpCX1NDSW5KeE9CQmZSZzFpZFZfMXhIMWJseFN4ejRwZHEtSjUtQnR0WHh6MzZWZEFwZVN1UlhjZU9yeTJxR1Q5X2QzMWt0SWNlRkRfbEhOQzNNaTd2YTUwcThrR21jTHFFQUk5QXNsWnpPVUNEY2hXa1htcjM2NTRIS2Y2RzVlX2VxbEE?oc=5",
+      "id": "godoy",
+      "nombre": "Ernestina Godoy",
+      "rol": "Investigado",
+      "tema": "Ernestina Godoy promete frenar acosos sexual en la FGR; busca acabar con represa",
+      "nota": "Ernestina Godoy promete frenar acosos sexual en la FGR; busca acabar con represalias por denuncias - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQOW9zUENCVmhHN3gtLU1DRWhqcmNnNjVjd2xUTWRubzZuSzBIX01uM1NvSXl1WHd3QzZ6VmtTT2dYLVFyazQ0WjNuVUgyVHdrRXFQTVQ1U0JWVzZoRmRpSWdOUmxKalIxUnRmcXd0N09YTjkwbU9wXzhBZXdkSi1jeWdFY9IBgwFBVV95cUxOc3h1Z2hXME9PbkdJVXZrdjg2YnRmY0RCSjBlbVhkUGtrZFRPbGNUUDZ4ZjdxQmctSWhBTFpIRkhZZ2dPQ3daZHcwcldQdWJTcTRHdGc3TUx0ZC1Qa29RN2Fzd1V5YmVDNGV1ck85QXhfd21uNmI2N1NUODNZa0xkaXpwTQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "loret_de_mola",
+      "nombre": "Carlos Loret de Mola",
+      "rol": "Mencionado",
+      "tema": "La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso",
+      "nota": "La presidenta más trumpista del mundo, escribe Carlos Loret de Mola - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOejMwMTkwTnp2ZFFRNkFFUzN3RElCemQxLW1CelpDanBYM3dQbUhXUDFSLUFQeWJCemo2SDM0c01vZ2ZGTXVvNGgzbkR5bW9BOWZId3IzX1hCRUJyRXVMdHFJQVpMUkVnR3d1Sm5fYUtyRkQ2ZHV3RjhKdFJWTjd3eVlrRjFwa3VTdDRpSmlQM1poMW1idmJpSlZ2VENHOXc?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1112,10 +1115,10 @@
     },
     {
       "fecha": "2026-09-22",
-      "tension": 43,
-      "n_notas": 77,
+      "tension": 42,
+      "n_notas": 78,
       "n_alto_impacto": 55,
-      "n_medio_impacto": 22,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
@@ -1152,10 +1155,10 @@
     },
     {
       "fecha": "2026-09-27",
-      "tension": 39,
-      "n_notas": 35,
+      "tension": 37,
+      "n_notas": 37,
       "n_alto_impacto": 24,
-      "n_medio_impacto": 11,
+      "n_medio_impacto": 13,
       "n_bajo_impacto": 0
     },
     {
@@ -1192,10 +1195,10 @@
     },
     {
       "fecha": "2026-10-02",
-      "tension": 37,
-      "n_notas": 46,
+      "tension": 36,
+      "n_notas": 47,
       "n_alto_impacto": 28,
-      "n_medio_impacto": 18,
+      "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
     {
@@ -1217,17 +1220,17 @@
     {
       "fecha": "2026-10-05",
       "tension": 21,
-      "n_notas": 82,
+      "n_notas": 83,
       "n_alto_impacto": 29,
-      "n_medio_impacto": 53,
+      "n_medio_impacto": 54,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-06",
       "tension": 16,
-      "n_notas": 104,
+      "n_notas": 105,
       "n_alto_impacto": 25,
-      "n_medio_impacto": 79,
+      "n_medio_impacto": 80,
       "n_bajo_impacto": 0
     },
     {
@@ -1241,9 +1244,9 @@
     {
       "fecha": "2026-10-08",
       "tension": 25,
-      "n_notas": 78,
+      "n_notas": 79,
       "n_alto_impacto": 31,
-      "n_medio_impacto": 47,
+      "n_medio_impacto": 48,
       "n_bajo_impacto": 0
     },
     {
@@ -1256,9 +1259,9 @@
     },
     {
       "fecha": "2026-10-10",
-      "tension": 26,
-      "n_notas": 38,
-      "n_alto_impacto": 18,
+      "tension": 27,
+      "n_notas": 39,
+      "n_alto_impacto": 19,
       "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
@@ -1272,34 +1275,34 @@
     },
     {
       "fecha": "2026-10-12",
-      "tension": 19,
-      "n_notas": 51,
+      "tension": 18,
+      "n_notas": 53,
       "n_alto_impacto": 16,
-      "n_medio_impacto": 35,
+      "n_medio_impacto": 37,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-13",
       "tension": 28,
-      "n_notas": 58,
-      "n_alto_impacto": 26,
-      "n_medio_impacto": 32,
+      "n_notas": 60,
+      "n_alto_impacto": 27,
+      "n_medio_impacto": 33,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-14",
-      "tension": 21,
-      "n_notas": 39,
+      "tension": 20,
+      "n_notas": 40,
       "n_alto_impacto": 12,
-      "n_medio_impacto": 27,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-15",
-      "tension": 30,
-      "n_notas": 11,
+      "tension": 20,
+      "n_notas": 19,
       "n_alto_impacto": 6,
-      "n_medio_impacto": 5,
+      "n_medio_impacto": 13,
       "n_bajo_impacto": 0
     }
   ],
@@ -1394,14 +1397,14 @@
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "iniciales": "OG",
-      "x_lunes": 50,
-      "y_lunes": 75,
-      "x_hoy": 62,
-      "y_hoy": 80,
+      "x_lunes": 56,
+      "y_lunes": 72,
+      "x_hoy": 69,
+      "y_hoy": 77,
       "delta_pts": 6.0,
-      "alcance": 8,
+      "alcance": 9,
       "n_alto": 6,
-      "n_medio": 4,
+      "n_medio": 5,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
@@ -1413,13 +1416,13 @@
       "trayectoria": [
         {
           "fecha": "2026-10-13",
-          "x": 50,
-          "y": 75
+          "x": 56,
+          "y": 72
         },
         {
           "fecha": "2026-10-14",
-          "x": 62,
-          "y": 80
+          "x": 69,
+          "y": 77
         }
       ],
       "fecha_apagado": "2026-10-15"
@@ -1428,19 +1431,19 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 31,
-      "y_lunes": 80,
-      "x_hoy": 56,
-      "y_hoy": 78,
-      "delta_pts": 9.0,
-      "alcance": 6,
-      "n_alto": 5,
-      "n_medio": 4,
+      "x_lunes": 38,
+      "y_lunes": 83,
+      "x_hoy": 69,
+      "y_hoy": 77,
+      "delta_pts": 10.5,
+      "alcance": 8,
+      "n_alto": 6,
+      "n_medio": 5,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNOEdJNmxjdEdHUGM0RkxmYi1DZnoyR0dPMGgtb3YwdjhkQ3lfTXBLT0s2SjFMZ1JhOFNsUnZTZGFQaXg3VjNrT0trbGExMG8zNjhtajItYTJrVnZ1dkpNZE5hbkV0NHVtdmtVOFdBcm5Pb09nN0IyQ05SeFBKUkdCZFdoNTB2VXFjZEdnVDJFdXVKWmVOS2RzVDR0UTVVRF9CeTVNMVFOeXlyclRUU2FJaWVJYUs4VjMxWi11NW1pZy16cDl1dk9wV3hiXzhzZw?oc=5",
-      "nota_texto": "Pío López Obrador recorre colonias de Tuxtla Gutiérrez rumbo a coordinación distrital de Morena - www.sinaloahoy.com.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5oNlFRSGwxRUxIa185NGhXS2h0QVFCU25OaEYzNTVjSjJjNG9FLWZ0eHNxcUZGY0w1d01yVF9oWU1yUXZrT3IyNEZzQmVidEFDSmh1MHZOUWppOHZ2RnFqMFZVR2ticnA2Tmg4QWRYMXBocWp4NS0tNUhLTQ?oc=5",
+      "nota_texto": "Morena reúne a representantes: ¿Qué pasó en Campeche? - La Chispa",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1452,50 +1455,50 @@
         },
         {
           "fecha": "2026-10-13",
-          "x": 31,
-          "y": 80
+          "x": 38,
+          "y": 83
         },
         {
           "fecha": "2026-10-14",
-          "x": 56,
-          "y": 78
+          "x": 69,
+          "y": 77
         }
       ],
       "fecha_apagado": "2026-10-15"
     },
     {
-      "id": "ebrard",
-      "nombre": "Marcelo Ebrard",
-      "iniciales": "ME",
-      "x_lunes": 6,
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "iniciales": "DT",
+      "x_lunes": 12,
       "y_lunes": 100,
-      "x_hoy": 12,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 2,
+      "x_hoy": 19,
+      "y_hoy": 83,
+      "delta_pts": 1.5,
+      "alcance": 3,
       "n_alto": 2,
-      "n_medio": 0,
+      "n_medio": 1,
       "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNd1IycFIweDJ0UHdhOC04NW42TS05X1ZfZWx0ajEwRGN5bzJWWTBEZldlZ0dHNHk1OTdXY2t2R09zV0owbWNtSUtJSFNoT2JYYXBwZEp6ODZ3SVpQU3FjWWs3TXV5ZGFVRTlKNUJhNmxNUU5BT1hyNDJCRGhwekRBNS03cTBhaDJubDZDalpyRzgzLTdQ0gGaAUFVX3lxTE1WVWFnM0doeE9pS1ZvQVFmc3RrMS1YS084QmZCZ2x5YUtfY2YzY09RYlR5SmlXZkJrNFIydHVWNlhkeGRHSlZseWpQSWZsMk00MF9yZFg4X3d6blBPVjNIUmVIcTh4SlRjNXhQdTFiMlEtb29YN3A4U2dHNG5veXc5RmpjaFFZNHhvbFJnNnhrRTRBUTJYOVNTRnc?oc=5",
-      "nota_texto": "Marcelo Ebrard aseguró que el T-MEC está “blindado” - Por Esto!",
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOaGhQZ3RmaVgyNENfcmN6elBqYmo1ZngwcV9VQzZjVnRVM2hpVnljU0RqMzMwMXNCbGlLamZ4LW44WUZvam01b0NXenBwMVlJWVAyNG1meGlBbHBQUjNvZWxOaS16aUNNT0d4blI2NnpPeTFucW4taUg0QW5nNkRyLTFtbGRIM09HdVhfQzM0WXN6aFd5WDFJMFZPTnJQLW1WekkyekwzUDVYYS1nM1ZsbkFFRGtNS1p3WDdiUXRn?oc=5",
+      "nota_texto": "Donald Trump y amigos son más ricos que hace 20 meses - La Jornada Maya",
       "es_nuevo": false,
-      "categoria": "Economía",
+      "categoria": "Relación Bilateral",
       "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-10-13",
-          "x": 6,
+          "x": 12,
           "y": 100
         },
         {
-          "fecha": "2026-10-14",
-          "x": 12,
-          "y": 100
+          "fecha": "2026-10-15",
+          "x": 19,
+          "y": 83
         }
       ],
-      "fecha_apagado": "2026-10-15"
+      "fecha_reactivado": "2026-10-15"
     },
     {
       "id": "rocha_moya",
@@ -1529,6 +1532,45 @@
           "y": 70
         }
       ]
+    },
+    {
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "iniciales": "RI",
+      "x_lunes": 31,
+      "y_lunes": 50,
+      "x_hoy": 38,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 5,
+      "n_alto": 0,
+      "n_medio": 6,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
+      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 6,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-13",
+          "x": 31,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-15",
+          "x": 38,
+          "y": 50
+        }
+      ],
+      "fecha_reactivado": "2026-10-15"
     },
     {
       "id": "clara_luz_flores",
@@ -1599,67 +1641,38 @@
       "fecha_apagado": "2026-10-15"
     },
     {
-      "id": "rosa_icela",
-      "nombre": "Rosa Icela Rodríguez",
-      "iniciales": "RI",
+      "id": "ebrard",
+      "nombre": "Marcelo Ebrard",
+      "iniciales": "ME",
       "x_lunes": 6,
-      "y_lunes": 50,
-      "x_hoy": 31,
-      "y_hoy": 50,
-      "delta_pts": 6.0,
-      "alcance": 4,
-      "n_alto": 0,
-      "n_medio": 5,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
-      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-12",
-          "x": 6,
-          "y": 50
-        },
-        {
-          "fecha": "2026-10-13",
-          "x": 31,
-          "y": 50
-        }
-      ],
-      "fecha_apagado": "2026-10-14"
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "iniciales": "DT",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 18,
+      "y_lunes": 100,
+      "x_hoy": 12,
       "y_hoy": 100,
-      "delta_pts": 6,
+      "delta_pts": 3,
       "alcance": 2,
       "n_alto": 2,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOaGhQZ3RmaVgyNENfcmN6elBqYmo1ZngwcV9VQzZjVnRVM2hpVnljU0RqMzMwMXNCbGlLamZ4LW44WUZvam01b0NXenBwMVlJWVAyNG1meGlBbHBQUjNvZWxOaS16aUNNT0d4blI2NnpPeTFucW4taUg0QW5nNkRyLTFtbGRIM09HdVhfQzM0WXN6aFd5WDFJMFZPTnJQLW1WekkyekwzUDVYYS1nM1ZsbkFFRGtNS1p3WDdiUXRn?oc=5",
-      "nota_texto": "Donald Trump y amigos son más ricos que hace 20 meses - La Jornada Maya",
+      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNd1IycFIweDJ0UHdhOC04NW42TS05X1ZfZWx0ajEwRGN5bzJWWTBEZldlZ0dHNHk1OTdXY2t2R09zV0owbWNtSUtJSFNoT2JYYXBwZEp6ODZ3SVpQU3FjWWs3TXV5ZGFVRTlKNUJhNmxNUU5BT1hyNDJCRGhwekRBNS03cTBhaDJubDZDalpyRzgzLTdQ0gGaAUFVX3lxTE1WVWFnM0doeE9pS1ZvQVFmc3RrMS1YS084QmZCZ2x5YUtfY2YzY09RYlR5SmlXZkJrNFIydHVWNlhkeGRHSlZseWpQSWZsMk00MF9yZFg4X3d6blBPVjNIUmVIcTh4SlRjNXhQdTFiMlEtb29YN3A4U2dHNG5veXc5RmpjaFFZNHhvbFJnNnhrRTRBUTJYOVNTRnc?oc=5",
+      "nota_texto": "Marcelo Ebrard aseguró que el T-MEC está “blindado” - Por Esto!",
       "es_nuevo": false,
-      "categoria": "Relación Bilateral",
-      "dias_activo": 1,
+      "categoria": "Economía",
+      "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-10-13",
-          "x": 18,
+          "x": 6,
+          "y": 100
+        },
+        {
+          "fecha": "2026-10-14",
+          "x": 12,
           "y": 100
         }
       ],
-      "fecha_apagado": "2026-10-14"
+      "fecha_apagado": "2026-10-15"
     },
     {
       "id": "montiel",
@@ -1818,5 +1831,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-15 12:01"
+  "hora_corte_publicada": "2026-10-15 18:03"
 }
