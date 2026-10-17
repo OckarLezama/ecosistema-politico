@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-16T18:04:19.313657-06:00",
+  "generado_en": "2026-10-17T00:00:27.077547-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 22,
+  "n_notas_ventana": 25,
   "baja_confianza": false,
-  "tension_nacional": 24,
+  "tension_nacional": 19,
   "tension_anomalia": {
-    "z": -0.96,
+    "z": -1.42,
     "nivel": "normal",
-    "media_periodo": 33.2,
+    "media_periodo": 32.1,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 50,
+      "peso_pct": 60,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
-      "n_temas": 9,
-      "n_notas": 12,
+      "n_temas": 10,
+      "n_notas": 16,
       "notas": [
         {
           "texto": "Rocío Nahle fortalece seguridad de Veracruz: Firma convenio con estados vecinos",
@@ -26,10 +26,10 @@
           "medio": "elfinanciero.com.mx"
         },
         {
-          "texto": "Cambios en comercio con EU afectaría inversión: FMI",
-          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/10/16/cambios-en-comercio-con-eu-afectaria-inversion-fmi/",
-          "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
+          "texto": "Le brinca a Andy López Beltrán un rival... ¿o sparring? - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWG5YQzNKZDJtYllVOWo4OE9scXhYSFNya3kzV2h1SDFBeWc5LUxXSi1XcV9XMFRIYTFxMk1wRy1vM0U4ZkJZUHdBc0ZnU3NRMHZKaGVITDNNT01PVEFDVHhycWlVTldPU2t2TktpeEFZdVRFU3ZtMFJkNjJyTDkwMExkRGRJdnl2N2p2MktnMlJlN2VnTXpsektHbkZoZw?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Universal"
         },
         {
           "texto": "Armenta puede ser el próximo Rocha Moya - Periódico AM",
@@ -90,16 +90,34 @@
           "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/16/tatiana-clouthier-prepara-una-rebelion-en-morena-el-papel-que-podria-jugar-alfonso-romo-en-nuevo-leon/",
           "intensidad": 5.0,
           "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "Tatiana Clouthier usa libro de López Obrador para criticar a Clara Luz Flores - www.noroeste.com.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPOWtNS0E1eERnU05FMUg5UkdHeEU5RXFwUDdoajgxNDZ3X09BOUpoakRudkg4d29TQnp6dFdCYzlZM282ZkluNmNWNDN1REVvbzZNdE1Dd09FVjhyRTk3WVBEdGliME5famVNVUZUUnRPNXhzbXBpVVZlRXBfNU1MY0NlV1ItTWZ3RkFhQ3hPR1hNZy1NaWVnU0VJTkF0U0hEMmlPUk5ieTFBbVNfUVZlSXFHMkpUR0J5WkFodlRfRGY1NmQ2cXFXadIByAFBVV95cUxPOWtNS0E1eERnU05FMUg5UkdHeEU5RXFwUDdoajgxNDZ3X09BOUpoakRudkg4d29TQnp6dFdCYzlZM282ZkluNmNWNDN1REVvbzZNdE1Dd09FVjhyRTk3WVBEdGliME5famVNVUZUUnRPNXhzbXBpVVZlRXBfNU1MY0NlV1ItTWZ3RkFhQ3hPR1hNZy1NaWVnU0VJTkF0U0hEMmlPUk5ieTFBbVNfUVZlSXFHMkpUR0J5WkFodlRfRGY1NmQ2cXFXaQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "www.noroeste.com.mx"
+        },
+        {
+          "texto": "Legisladores de Morena expresan su desacuerdo con los destapes de las “corcholatas” estatales - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOOTRyVWttRVFyWVotZzl2QzQ0R3FwTmJHZkNNOGRLVlNfbHFuLVJqV0lZRFZjWF81b091ak9TYWVvaGtnMDJEdlpZNlBpN29EWng3X0pFODdjYmhvNlM0VEJ5S0tIRTlqa193ZGpIempQUlp1WnRJMWRicW1nWDhUX3p1MzJBeVYtX1pqMzNWRkNCbmhfVTN5R3hPTi1UVWF2Z3NyQnUzTnJfWVdyNk90eU0tTkV4WjFZMlBxWDJmeGYtQzVJTnFrdWxqTjVRZWvSAeoBQVVfeXFMT0duOURLbGQxTmFCVHplM1dsd2t4SEhpdkxUYXVYczFTYkJSdlpGcklYMjRDMlhZQm5WZ2FsMlRQYXhWSU80SExYUTQwdUZVX196RXRvVTZFVGdNRWx2MU5yR2liYnBrQ0E1S281LWM0ekJ3Ylk2MTliU1N3dU5wNHdSeHZpMDFpcXBKdmljMERrZ1dxTVBKOE5GT0x0NnlQQ09sbTJfZFJobTVrTXVPZFlXZV9jVlp0TUJYdUtGZ2FSR1hoWUE5UkpLTmtObC1QMkVtTlo1czhkcDhJeEEtalllZEVMQmxfcHZ3?oc=5",
+          "intensidad": 5.0,
+          "medio": "Infobae"
+        },
+        {
+          "texto": "Anilú Ingram recorre colonias en busca de coordinación distrital de MORENA - Al Calor Político",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQa1loNWxVUFZndDJNX1JDai1vQXl5QjZUZElKeWZOVVRObHN6QjNEUEg5Y2RsWVhQM1A3VmlyVGNKY2Nud3FZT3V3RUhaaEtkcWlNYUlaMTFlajFjYW5aRGpOb09fdk9fVnpOMG9yQk54bFd6cW95Qy1VbE1aaGtLSVBVM3cxMVJtWUN3Qk4waWpPTXhTXzlsS2ZsUDRuMDJIX3didnUzUFl2SFpUeHJ5end5N0plU0xXa1dsdlRCUkdZU1ZZRFozejFn?oc=5",
+          "intensidad": 5.0,
+          "medio": "Al Calor Político"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 26,
+      "peso_pct": 19,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 5,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "T-MEC, ¿“libre de temas políticos”? // Tortuoso proceso de “revisión” // Trump, chantajista y perverso - México SA - La Jornada",
@@ -124,29 +142,17 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPM3RFdEtMRHpMR3NFZmhpTXpEa0VldVU4ODZSZmlNT2wzNUpEeE9XMjVtWHRwWUc1cExyWWU3SG9jRE94WW9BVFpWWWpsNFUwV3NWYU4yeG95SWp0bzNDbVhvUjNaS0xvM2drZWJVRjlFR2c1OWpXSjRuc21fRkJoXzVHU1FJdGpOdkF1MUladDZhODZrRFE4Y0w1dnhMVlMzRlhRdk1JdmpYQ3JoVS00VVNJb1hhbGRnQVE?oc=5",
           "intensidad": 7.0,
           "medio": "Ríodoce"
-        },
-        {
-          "texto": "México arriesga competitividad si acepta cambios a T-MEC para reducir aranceles: Kenneth Smith - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOY0ptWEZMdVFjLXREUzFySUstaDY4THExcHRLQTIxMlVPcEtnMjZRMmd2TTlvaGxrVGJ3Y1BNTXVCYXBIUzlHd0xVTGF6VEtLQ2hkNFdzdlhaeWREU1hVSEllZ3ZuNzBTS0dORVBzUmFJT0hYY0RSSTFSX3hERDI5R1plUDV1ZU1selJ3ZDM4cENNcTBCMTZfcTQwcDJnZ9IBngFBVV95cUxOY0ptWEZMdVFjLXREUzFySUstaDY4THExcHRLQTIxMlVPcEtnMjZRMmd2TTlvaGxrVGJ3Y1BNTXVCYXBIUzlHd0xVTGF6VEtLQ2hkNFdzdlhaeWREU1hVSEllZ3ZuNzBTS0dORVBzUmFJT0hYY0RSSTFSX3hERDI5R1plUDV1ZU1selJ3ZDM4cENNcTBCMTZfcTQwcDJnZw?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 14,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 3,
+      "peso_pct": 11,
+      "tema_principal": "Asesinato de Carlos Manzo",
+      "tema_principal_id": "carlos-manzo",
+      "n_temas": 2,
       "n_notas": 3,
       "notas": [
-        {
-          "texto": "“Los cárteles controlan México”, insiste Trump sin dar pruebas",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/16/politica/011n1pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
-        },
         {
           "texto": "Detienen a cuatro miembros de Los Chapitos, entre ellos “El Pokemón”, encargados de suministrar armas al cártel en Sinaloa - Por Esto!",
           "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQRUNsMVJfY0dwb1JLXzFHalVBNjJWUXBRSTlXZXU2LXdmZkMzWE05Nm9fMTFWMHBCTnB3YjMzWlA2dURIQ3ROcjhqQ3BKR0g2aGU5ckU4dFFUWFFLTUxUOHo0WU1UQjVsVjZLQ25Iay1wVnJBTGljMHkyYlVrWVNWMEc0UzAxbkI2Ym5xWDBsVmRiZE9tbXJvWThNUFdIVDdraWdyTFNMQlYwREtVYkhiWlFuRFcyX2tiMnhsSFI5S2V0bTIzWmF5WUFzcGhUZ9IB0wFBVV95cUxOUEtwVWMyck1HcGVJNmlaZkl3OTB5YjJyc29JSW82d2stSzZEcTh0alFOMS1qSFBnbHEySGhaWTNCd3R3MUh1QldHYWhCZmViM2dMWUlQeE42QWhzTnJreGRlcXI4SENPcjZSUkFsdG9DSUJJMTJXSlBrRnh6cHVPM1FJYV82NjBzQm9rc2xySHJjUmxkOTBIMEJXRlJoSXBTQ0EzUXhXQ0k4cnhPazl3NUE4RThoVVZIM0dJSnlWMWNEWkltMHN5Mm90QlVRZ3lwUXpR?oc=5",
@@ -158,12 +164,18 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPV2tfY1JQUC0zMEpvelIxNFdveFluX3UyMnZ4TTE2WHd0ZWR5eHhMNm5kMlZxTzMtcktrd05jVVV6dUN3bXdTQ1ROd3Brbmc1RmxoUkdOMU1mMTdqUHRZcHQxRi12ZXJMeGNhSzNOaHRYUElQSkpYdVVBRERPQ2xuSVpjd25KYTNidW9GQnlEcWsyTy02dEdkZko3bmpVcWxrVVpJbNIBpAFBVV95cUxOa1RSUEEwSWZPSWxaN2dQVmFyZmhjVEViV1NEbk1CUGlYUUhTbEhOQ0xGdy1RRnMweTNGbXRSbGN2Wm4wOVZkejhKRXJXNTc1NXZuZVk1MU1ZNnYwTzBtZzlqaVc0Z3FSaXNhajhNZlF4Y1ZUaUdlT2NZazlZUG1MMktoUEtWaHMwdFN4ZXZzN29FcGg1enYyeVI3ckx3UXp4N3NJXw?oc=5",
           "intensidad": 5.0,
           "medio": "MILENIO"
+        },
+        {
+          "texto": "Crimen contra Carlos Manzo fue por una represalia: Vicefiscal de Michoacán",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/16/crimen-contra-carlos-manzo-fue-por-una-represalia-vicefiscal-de-michoacan.html",
+          "intensidad": 5.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 10,
+      "peso_pct": 9,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -194,31 +206,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-19",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 25
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 55
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 11
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 2
-        }
-      ]
-    },
     {
       "fecha": "2026-09-20",
       "categorias": [
@@ -882,7 +869,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -893,44 +880,63 @@
           "peso_pct": 3
         }
       ]
+    },
+    {
+      "fecha": "2026-10-17",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 65
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 14
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 12
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 2
+        }
+      ]
     }
   ],
   "top5_temas": [
-    {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "T-MEC, ¿“libre de temas políticos”? // Tortuoso proceso de “revisión” // Trump, chantajista y perverso - México SA - La Jornada",
-      "peso": 39.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 5,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQbnkxNkJ6bzc5MktxZGlXRmZDRExDS2kySk8yRk5lM1ZrdTZTWHg3Q3kxLVNrU1BROUg1MUJ6TWs3cWdpX2o1Q2FGNXVRdXNzSWIzLUNNZXNfcVBhQTFleUNhdzhyb19idVhIUl9SaFdiaV81OUZQLS1lbGRJU0pjT2F2aDIzTHNRVTA3VGJfc0lEOU15RnFjcWpQV3ozNGZlb1N2OFh0RHVVQ1I3TzR5Qjc0dS11THBOZ2lZcFJmeS00dEFoMlMwZXNNellVLWNTN2c4UWZGWFJHdW02WTNSRGZOTWhYZFE?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
-    },
     {
       "id": "morena-coordinadores-2027",
       "nombre": "Coordinadores estatales de Morena rumbo a 2027",
       "categoria": "Gobernabilidad",
       "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
       "motivo": "Rocío Nahle fortalece seguridad de Veracruz: Firma convenio con estados vecinos",
-      "peso": 26.0,
-      "n_temas_agrupados": 4,
+      "peso": 31.0,
+      "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
+      "medios_corroborantes": 4,
       "confianza": "alta",
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/16/rocio-nahle-fortalece-seguridad-de-veracruz-firma-convenio-con-estados-vecinos/",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "T-MEC, ¿“libre de temas políticos”? // Tortuoso proceso de “revisión” // Trump, chantajista y perverso - México SA - La Jornada",
+      "peso": 27.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 4,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQbnkxNkJ6bzc5MktxZGlXRmZDRExDS2kySk8yRk5lM1ZrdTZTWHg3Q3kxLVNrU1BROUg1MUJ6TWs3cWdpX2o1Q2FGNXVRdXNzSWIzLUNNZXNfcVBhQTFleUNhdzhyb19idVhIUl9SaFdiaV81OUZQLS1lbGRJU0pjT2F2aDIzTHNRVTA3VGJfc0lEOU15RnFjcWpQV3ozNGZlb1N2OFh0RHVVQ1I3TzR5Qjc0dS11THBOZ2lZcFJmeS00dEFoMlMwZXNNellVLWNTN2c4UWZGWFJHdW02WTNSRGZOTWhYZFE?oc=5",
+      "actor_vinculado": null
     },
     {
       "id": "auto-8e1b5cb00c",
@@ -945,44 +951,25 @@
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUXFsakowQnFHRDlLOXBhNVF5QW1YNWdYYi11RUl1azVYR1VpWG4zVzIxb0pMNEpiel9teGI3d3hMN29LY3NtOHhKSEdmZlFWV0kwY1doclhzVDdiMjI4aHVKUEFXNjRMTWJIRWhCeFlfSTYzQUo3VHoteXFHN08tRFVIcllsTGl2Y2xYSXNpeXJMTVA0N0xIRWFEYlZDVWlzY1lYTFU1Vld1d9IBqgFBVV95cUxORGgwMW1lVnNmUzVDU2lnU2NObW1YSWxBQ19LcS1kUmdqQVMtSVpOX2xNdURlblZwVHFtQmlsNGtfU3E3YzI4ZEhscDFQN3lieHA3NDhaU3V5ME1ZdklLdVgyMm5nUnVucUxNMktNQi1KS0E5TFVMdGVTXzJPSzhEVkZHbDYxRWxEbEMxTGxHVWZnUm5oOXJmNFFmVTFQbW1hM0s1OFpZQl8xdw?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "actor_vinculado": null
     },
     {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
+      "id": "visa-de-andy",
+      "nombre": "Visa de Andy",
       "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "“Los cárteles controlan México”, insiste Trump sin dar pruebas",
+      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
+      "motivo": "Le brinca a Andy López Beltrán un rival... ¿o sparring? - El Universal",
       "peso": 7.0,
-      "n_temas_agrupados": 1,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/16/politica/011n1pol?partner=rss",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWG5YQzNKZDJtYllVOWo4OE9scXhYSFNya3kzV2h1SDFBeWc5LUxXSi1XcV9XMFRIYTFxMk1wRy1vM0U4ZkJZUHdBc0ZnU3NRMHZKaGVITDNNT01PVEFDVHhycWlVTldPU2t2TktpeEFZdVRFU3ZtMFJkNjJyTDkwMExkRGRJdnl2N2p2MktnMlJlN2VnTXpsektHbkZoZw?oc=5",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-a9aab2e07f",
-      "nombre": "Jonás Cuarón lleva la migración al ring con \"Campeón gabacho\" - El Universal",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNSlJYZnNwV05pdTN4ZVV0V09RZUJIQzNYaUlXWk9GX1dLQVVyZlBwdDIxZ0t5U0pTQlpwc09OLUVVdEtoMm52U0U1Y1VYM2lkbFJpaDFKRDlFa2x3ekNBVnplclQ3c25Bb1NtdHlTajNnSjY4eVVGY1NybU1NM1FOZkt5bHM2M1U0WFNRaHhBcUFzU084UTBRQVF6OGpiTFU4WHd5MEtWSQ?oc=5"
-    },
-    {
-      "id": "auto-72dbfdc823",
-      "nombre": "Defensa debe responder sobre desaparición de integrante de la Liga Comunista: Sh",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/16/politica/008n1pol?partner=rss"
-    },
     {
       "id": "auto-178b58de86",
       "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
@@ -1006,19 +993,46 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNVE8wdnVTQW9Pc0ZBcGlCZVdxdVUxclhnYmxjbWxKYU80MGxWUXhLN2NyMkl6LXBTWG5nLUV4M3hWdTdDOXlaOGtNUEI5akprampCRVlPcklQM3dqdnFlZlVKUWxHWDR1QjduZjc4Y3NsRDBBYUkyMVAwS1JQVk16YndjZXJkMlVQQ0VuVm1CakhnRnNHOHY1a0ZRRHdnTlZBRG9XcWM0enRaUUVnVlM5eGhyXzh6Y05lLVBIQmNXamQ5N192T2VBckI2TEd5R0FUTjFnY1RqSlZlLThpWDJzZmpWZks5M0VTamZNb1FQblVDVm5r0gGPAkFVX3lxTE43SC13bmtsY29qY2pnSkRqWVVxYWJ5bzZ3RmpzOGh2ci1IM2kxWk5DeUM4Z0V2VHF2cmV5S0ZtcVhRMTNmSXFob29vNWFVVDY1d1FlYTJnSTZBUTd1QUhqVHBqQWFnYkxPUE9iQ1puU0p2MVYzendDY0ctNTBUV1JWNUxDMklJc1Azd0FPSlFGYmZ6TzNjY1VDSjVucE00V2NEWTJIVmVrVjY3S28yQWxLVFU4S2FJcXZySmd2dzBLWE1yZ1Y1V0Y3Qll0bDVZdTBDRVpSd0tqWHdoZjRaZ2h5M2FEQWo5TTV1TnhJZktEejdEcU5VbWViVzhDNHFoV3ZoNjNKOG5fTzNxajhKeFE?oc=5"
+    },
+    {
+      "id": "auto-5e88d6e9cc",
+      "nombre": "PVEM respalda a Citlalli Hernández en Cuauhtémoc y reelección de Janecarlo Lozan",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPRnpwRmd3cEI4Wl9uTktxc1J4ZEtUa2ptSWxNdm5YdER0WEdfZHg2Q1lSTlRLZXJyQUZpa193M1lsMExINEV0X2VSSUlQa25jMzIybzlGeGQ4M25MT19CR1U1OUFUY0xKanJjUXdvMlk0U0o5SXEwOUVDTTlZeFVlTEFjdGhUMnRCVEHSAYoBQVVfeXFMT0Z6cEZnd3BCOFpfbk5LcXNSeGRLVGtqbUlsTXZuWHREdFhHX2R4NkNZUk5US2VyckFGaWtfdzNZbDBMSDRFdF9lUklJUGtuYzMyMm85RnhkODNuTE9fQkdVNTlBVGNMSmpyY1F3bzJZNFNKOUlxMDlFQ005WXhVZUxBY3RoVDJ0QlRB?oc=5"
+    },
+    {
+      "id": "auto-87367ac7aa",
+      "nombre": "Asesinan a tres actores políticos en Chiapas en las últimas horas; víctimas pert",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQNkFEd3YwaVRjRUdNQkNZOGlNYnlFeUlaT2tBcENodU9zeC1VcUxvbFNBdnI2c2MxQVhOdC1RcnVhUVQ0LXAzVUh2dkg0OG9vMWdSYkdjS2c5S3FaVmV3c0s2ZGZ6cGxyT1RzZ0doYjJnRGkwVTVfYzFVN1dtQ3Nja0M3OGJaYUNVMXl2ZWdCUXJ6VnNKdW5sOUItMnBJX0tndWYwRXp5Wm5HOGNfSVZBTVV2SURnWi1UMWZJTTRJbElsSUowVVEyMWdwYmV1ZmM?oc=5"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-2aadfad6b7",
-      "nombre": "Segob y SSPC serán canales para coordinación con Chihuahua: Presidenta",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 25,
-      "motivo": "Se extiende descontento a Chihuahua y QR por coordinaciones de Morena",
+      "id": "auto-217ea13ffe",
+      "nombre": "¿Puede migración de EU revisar mi celular? - lasillarota.com",
+      "categoria": "Social",
+      "dias_silencio": 19,
+      "motivo": "🔔 ALERTA — Gonzalo Fanjul: “La migración es la mejor noticia que puede recibir la sociedad” - EL PAÍS",
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/16/politica/006n1pol?partner=rss",
-      "fecha_anterior": "2026-09-21",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQcXdaMzEzYklSVWg2ZXhfQ0lVYUotbmd5dkNhSmF4UVhEdmg1TW5ObHprNHFuNXJlUXh1cDRzMzNvNG14dExPRkMtRDRxOUUyTnpGTVNnRkM5ZTlabXRGMkRSSTlRNXpBN3l3cGJNbWNMSVNKeG45QXJIMk1KeW1mRnFHOXJZd1M3aHBBeEJwYTJSUUVELV8yN29EbWtES0hEM0J5NUFJS3gxYXdfLVdheVRfMFVLYlRMejFOa1ZVWDVFN2pXakHSAdoBQVVfeXFMT08tRnQzMVFULUt0SjJ5TTFhRk9jaHdQcFM1RXF0VHFrWGlYZFV5NlY0MGtCY1dsZElZYjBLdGYzUzhfaXRxMFRqb2c1dE9XU1ZxYS1fb1lPLXZqX2xfYjl2SkdwVzVyYzk0NFY1TkZDaGp1ajVsNjR4cmhPYTZBT243elNzYjJadkxaa2NCNmFlamNXQnduaGNmMmpMWnpTdFlfVnVBNmtGVTBYS1hicktHVVlPdGZJUlVtbGYwSnBhSkFfWDJ5YkdOWjJiVDRIZlNZQUxKUzJWeFE?oc=5",
+      "fecha_anterior": "2026-09-27",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOSHZSVERLMTEwM28zYkxrX0R2ZmJoVkNGLUFDWnpaZnlGYllUWVNKR3hVZEU3RFljdHFnei1HTkNXQktRRTlRcThGRTB0amc5Y045RUk0N0FuVE01ZlphUUZXZDlFSUYzWGYtTV9rbjJlWnotR3hYOEFqUzRIemFjUzZsRWxpNXlIelA1X2h0SVZ2NmZpTlU5dDFRWmhUMzFISGZEdVhn?oc=5"
+    },
+    {
+      "id": "auto-8db27bd979",
+      "nombre": "La presidenta Claudia Sheinbaum destacó que México mantiene una relación de coop",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 8,
+      "motivo": "Marcelo Ebrard destaca mejor relación comercial de México con EU - Milenio",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQa01mUTFYRDJoNnplVkRaYlBKTnZNQlZ5dGdmWTIxcFZ2MUVZVEM2VkJteExtQnljLW1tUURzS2ljeTZhQmEzbUpxX2Z6ZlpoaGpoQzNfSjNvUmhiODAweTRmbkdCN1lxUUJURTNuZV9UZ2ZkWDBfd2dPczJoRGpRVlpNQWZIMUtsM2pBOGtmUEgzeHpfWmfSAZYBQVVfeXFMTVlidkVDTjdkaDBtWkNLblNWMlBYeGRlZEs2STg4ZVJkN0hDYlRXYzBkOU9xNFZKWE1keWJ2S0xxTFpwdXdPb0NEMnRMbWZ0Ym1uS0hZR2ZYMU9ydUlZbk5QMTRFVHNIVjlwUjVJTXI3Nmh0WFlFdGlZMjhlLWRwMURDSHlWMG5IOVZJQmFaNnRwdW5Ea1dn?oc=5",
+      "fecha_anterior": "2026-10-08",
+      "fuente_url_anterior": "https://heraldodemexico.com.mx/nacional/2026/10/8/claudia-sheinbaum-destaca-importancia-de-la-relacion-comercial-de-mexico-eu-en-reunion-con-embajador-ronald-johnson-904173.html"
     }
   ],
   "actores_destacados": [
@@ -1056,12 +1070,12 @@
       "confianza": "media"
     },
     {
-      "id": "pt_partido",
-      "nombre": "Partido del Trabajo (PT)",
-      "rol": "Reacción de oposición",
-      "tema": "Pese a resolución de Consejo Nacional de Morena, aún no hay alianzas definidas e",
-      "nota": "Pese a alianzas, PT condiciona a Morena - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQbnFPVnRKWXRnckdQTWY5Y29ZRG85d0xSTFk5dHVkeTQ0aHRrUXpDV2l6NE9pemVKVW1KcWk0NmVQbW9HbTF5d1ZqVnhUS2loTENZdmw4V1NXeHhNbEpmT3BwaXJRaVJaeW9TektvaDNoNlZINzdXQWI2cUtRUzREemw4OXdFWlRMdUJJelRLUDluWGN3WUZ1b2YxenFwcVZ6YWd2OV9OSEFyQ3BWZWfSAa4BQVVfeXFMUFQ0TW1HVkhRZndrdDA0ek9CNWlXaUotNTZOQjdfdUVOWmY4TklNcXdwNS16X0FKTkdjYnVxUmV5TlhhYW5mQk5DOVNfZkdPemVXX1JRLWxZRDlTUlJCb25xaFJ4VWdkMGdCU1IyX3NnWWR6a3E2S2w4V1hYajFiUzRCNWhXRmZYTDZMMVZBQVVVY3VuV191VkVWWUl0T3QxLU9hem9OaVRTLWt4aGh3?oc=5",
+      "id": "montiel",
+      "nombre": "Ariadna Montiel",
+      "rol": "Responsable institucional",
+      "tema": "Ariadna Montiel confía en mantener alianza con PT: “Es parte de la política y no",
+      "nota": "\"Vamos a ganar en Zacatecas\", confía Ariadna Montiel; respalda a Verónica Díaz como su coordinadora - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOdGg4SWRZcDI1MTdCNnAwX1JWUDVLQUx0TEcxV28ybTJEcThSSHNsb212Rmx2WDlyMHBBeXRianhqNnJ5c2VoTFdhRDVfOFFVM0FVa2RCYjJ4ei1TbHcwWjRGcWFqZENqMkdfU0xqR25NZDd4OXdrSElHSnI5SEdRSm1PdUktZFAxMjlvN2ZXbXlfdlA3dVdYOEFVc1hZRFRlMlZv0gGjAUFVX3lxTE50aDhJZFlwMjUxN0I2cDBfUlZQNUtBTHRMRzFXbzJtMkRxOFJIc2xvbXZGbHZYOXIwcEF5dGJqeGo2cnlzZWhMV2FENV84UVUzQVVrZEJiMnh6LVNsdzBaNEZxYWpkQ2oyR19TTGpHbk1kN3g5d2tISUdKcjlIR1FKbU91SS1kUDEyOW83ZldteV92UDd1V1g4QVVzWFlEVGUyVm8?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1088,14 +1102,6 @@
     "nivel_fuente": "ALTA"
   },
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-19",
-      "tension": 50,
-      "n_notas": 45,
-      "n_alto_impacto": 34,
-      "n_medio_impacto": 11,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-20",
       "tension": 45,
@@ -1306,10 +1312,18 @@
     },
     {
       "fecha": "2026-10-16",
-      "tension": 24,
-      "n_notas": 22,
-      "n_alto_impacto": 7,
-      "n_medio_impacto": 15,
+      "tension": 21,
+      "n_notas": 28,
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 20,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-17",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1328,7 +1342,7 @@
       "n_medio": 16,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/13/claudia-sheinbaum-valora-comprar-mas-gas-a-ee-uu-y-reducir-el-deficit-que-preocupa-a-donald-trump.html",
       "nota_texto": "Claudia Sheinbaum valora comprar más gas a EE.UU. y reducir el déficit que preocupa a Donald Trump",
       "es_nuevo": false,
@@ -1360,28 +1374,29 @@
           "x": 100,
           "y": 60
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-17"
     },
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 70,
-      "y_lunes": 75,
-      "x_hoy": 75,
-      "y_hoy": 77,
-      "delta_pts": 3.0,
-      "alcance": 11,
+      "x_lunes": 75,
+      "y_lunes": 77,
+      "x_hoy": 80,
+      "y_hoy": 75,
+      "delta_pts": 1.5,
+      "alcance": 12,
       "n_alto": 8,
-      "n_medio": 7,
+      "n_medio": 8,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://www.jornada.com.mx/2026/10/12/politica/006n2pol?partner=rss",
-      "nota_texto": "Coincidencia y compromiso con la 4T, eje para alianzas, define Consejo de Morena",
+      "nota_url": "https://www.tabascohoy.com/morena-puede-ganar-solo-pero-coalicion-fortalece-triunfos-higinio-martinez/",
+      "nota_texto": "Morena puede ganar solo, pero coalición fortalece triunfos: Higinio Martínez",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 4,
+      "dias_activo": 5,
       "trayectoria": [
         {
           "fecha": "2026-10-12",
@@ -1402,6 +1417,11 @@
           "fecha": "2026-10-15",
           "x": 75,
           "y": 77
+        },
+        {
+          "fecha": "2026-10-16",
+          "x": 80,
+          "y": 75
         }
       ],
       "fecha_apagado": "2026-10-16"
@@ -1410,13 +1430,13 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 35,
+      "x_lunes": 40,
       "y_lunes": 100,
-      "x_hoy": 40,
+      "x_hoy": 45,
       "y_hoy": 100,
       "delta_pts": 3,
-      "alcance": 7,
-      "n_alto": 8,
+      "alcance": 8,
+      "n_alto": 9,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
@@ -1425,7 +1445,7 @@
       "nota_texto": "“Defiendo a mis amigos\": Adán Augusto mete las manos al fuego por Andy López Beltrán por relación con Amílcar - TV Azteca",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 4,
+      "dias_activo": 5,
       "trayectoria": [
         {
           "fecha": "2026-10-12",
@@ -1445,6 +1465,11 @@
         {
           "fecha": "2026-10-15",
           "x": 40,
+          "y": 100
+        },
+        {
+          "fecha": "2026-10-16",
+          "x": 45,
           "y": 100
         }
       ],
@@ -1498,7 +1523,7 @@
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQSUxjeTM3UEMtVmY2cUxPdjg1Y1JSa0FwNTVkN193UXlHRDhBSXRJdl92di1vY3FaczlCR3JfNW1HbzBqa0tUZ1ZEaHhLVFFNY0pGX1hNY0xab2U2MHd2X0xTbk9nUnZPcUd5TUQtZGZzam5waGh0bXJWRkNXNXkwMDQ1VGhobXBXTjN5WWhQY05NMmw0TGN1SU9wQXRHeWxCVVlDdnVITHA4aDQ?oc=5",
       "nota_texto": "Sheinbaum truena contra Gobernador de Jalisco: Máynez la acusa de proteger a Rocha Moya - Red Crucero",
       "es_nuevo": false,
@@ -1520,7 +1545,8 @@
           "x": 35,
           "y": 71
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-17"
     },
     {
       "id": "rocio_nahle_garcia",
@@ -1536,7 +1562,7 @@
       "n_medio": 6,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOUUMtVEJjanVZSzc3RHNLZHItVEh4UVA2ZmhXRFN1c3hGX25oUGx2djM1ZjVlWDJHSXN3eEdsbExDZmJ4blNTV1dCLUprbkp2dGVrclIxeHFTc0xvYlVhSzNqOXlacDVmci12LVVLUFRsQklhVkM3alpRTVRYMFhGLWpUWnhjeWZPRHVGQW9JdzMxWWJMUGNDVVYxUmJlTy1jdERQNmhkbWozemJlQ1JfRU5BYk05dDdHbzk3OTFsWDE4SmtlMm15OWFUSnkzZw?oc=5",
       "nota_texto": "Morena Veracruz cierra filas con Rocío Nahle ante señalamientos contra su gobierno - Entorno Político",
       "es_nuevo": false,
@@ -1568,7 +1594,47 @@
           "x": 40,
           "y": 62
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-17"
+    },
+    {
+      "id": "clara_luz_flores",
+      "nombre": "Clara Luz Flores",
+      "iniciales": "CL",
+      "x_lunes": 30,
+      "y_lunes": 50,
+      "x_hoy": 50,
+      "y_hoy": 50,
+      "delta_pts": 6.0,
+      "alcance": 9,
+      "n_alto": 0,
+      "n_medio": 10,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOOEFodlFILWFFQk96bS03Z1JQbHhJN2tyLW0yeURVeTl0X1JRQm1aSzBYTFhqZDJvWXpwdnozUnRnM2RHZ0EzVUpmSy05WWFEc05XSnNEc0JXdGw5WUlndDMxZFZiRW9ocDNmZmNIbkZiZlpPdmVyenZCMjVZS1ppSzREQkdKMXZYWG1OQjQwM1ZFTlQ2YWt5ZG1fWTd2bjZx0gGgAUFVX3lxTE44QWh2UUgtYUVCT3ptLTdnUlBseEk3a3ItbTJ5RFV5OXRfUlFCbVpLMFhMWGpkMm9ZenB2ejNSdGczZEdnQTNVSmZLLTlZYURzTldKc0RzQld0bDlZSWd0MzFkVmJFb2hwM2ZmY0huRmJmWk92ZXJ6dkIyNVlLWmlLNERCR0oxdlhYbU5CNDAzVkVOVDZha3lkbV9ZN3ZuNnE?oc=5",
+      "nota_texto": "Ex 'corcholatas' de Morena rechazan nombramiento de Clara Luz Flores rumbo a 2027 - Milenio",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-13",
+          "x": 15,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-14",
+          "x": 30,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-16",
+          "x": 50,
+          "y": 50
+        }
+      ],
+      "fecha_apagado": "2026-10-17"
     },
     {
       "id": "trump",
@@ -1605,45 +1671,6 @@
       "fecha_apagado": "2026-10-16"
     },
     {
-      "id": "clara_luz_flores",
-      "nombre": "Clara Luz Flores",
-      "iniciales": "CL",
-      "x_lunes": 30,
-      "y_lunes": 50,
-      "x_hoy": 40,
-      "y_hoy": 50,
-      "delta_pts": 3.0,
-      "alcance": 7,
-      "n_alto": 0,
-      "n_medio": 8,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOOEFodlFILWFFQk96bS03Z1JQbHhJN2tyLW0yeURVeTl0X1JRQm1aSzBYTFhqZDJvWXpwdnozUnRnM2RHZ0EzVUpmSy05WWFEc05XSnNEc0JXdGw5WUlndDMxZFZiRW9ocDNmZmNIbkZiZlpPdmVyenZCMjVZS1ppSzREQkdKMXZYWG1OQjQwM1ZFTlQ2YWt5ZG1fWTd2bjZx0gGgAUFVX3lxTE44QWh2UUgtYUVCT3ptLTdnUlBseEk3a3ItbTJ5RFV5OXRfUlFCbVpLMFhMWGpkMm9ZenB2ejNSdGczZEdnQTNVSmZLLTlZYURzTldKc0RzQld0bDlZSWd0MzFkVmJFb2hwM2ZmY0huRmJmWk92ZXJ6dkIyNVlLWmlLNERCR0oxdlhYbU5CNDAzVkVOVDZha3lkbV9ZN3ZuNnE?oc=5",
-      "nota_texto": "Ex 'corcholatas' de Morena rechazan nombramiento de Clara Luz Flores rumbo a 2027 - Milenio",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-13",
-          "x": 15,
-          "y": 50
-        },
-        {
-          "fecha": "2026-10-14",
-          "x": 30,
-          "y": 50
-        },
-        {
-          "fecha": "2026-10-16",
-          "x": 40,
-          "y": 50
-        }
-      ],
-      "fecha_reactivado": "2026-10-16"
-    },
-    {
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
@@ -1658,8 +1685,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNaWtDeDdaaUdOenpPMFQ1RThwdld1aFJ1NDhUUHJmX0ZFbl9wdUh6djBDMHNPcm5ualpJNXNLMmMzWUdLT3dlRTNYS3FscmVsVG1pZFBFV0Q0WlJjaV9KLWh0SUtJdUdvTThfUl9LWEVtcElLNDlhN0RkZ1ctZ3FzVjcxRmJROTVKVjVBUkxQSm5iSTF2Q19vcnp5aVNyOXFEQURtT2RDRjdPOWJwVmwyZmluS2tJOVgwczNsZENVNkZaVkM3RHJodzFQSURIMnlCVFpIelU2WjVqWUJBcGs3Z3NOOTZRN0dxcjEzSGJ3?oc=5",
-      "nota_texto": "Estefanía Mercado participa en reunión con Rosa Icela Rodríguez para impulsar la paz y la seguridad en Playa del Carmen - Noticaribe",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
+      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1781,44 +1808,8 @@
     }
   ],
   "tablero_semana_inicio": "2026-10-12",
-  "resumen_mananera": [
-    {
-      "texto": "Se informó sobre la creación de una nueva unidad académica de la Universidad Nacional Rosario Castellanos en Tlalpan, que iniciará operaciones en 2027. La demanda de estudiantes de la alcaldía es muy",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se presentó el proyecto del Bachillerato Nacional enfocado en cultura y artes que se construirá en el terreno de Casa Tlalpan. La infraestructura estará diseñada para 1,200 estudiantes con una inversi",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se reportó sobre el huracán Trudy, clasificado como categoría 3 en la escala Saffir-Simpson con vientos de 220 kilómetros por hora y rachas de 270. El huracán se acercará a las costas de Jalisco y Col",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se hizo un llamado a los medios de comunicación para difundir información sobre las lluvias severas que afectarán el Golfo de México durante el fin de semana, no solo sobre el huracán Trudy. Se inform",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se informó sobre el trabajo de la Coordinadora Nacional de Protección Civil, Laura Velásquez, en coordinación con gobernadores y gobernadoras para alertar a la población sobre los riesgos del huracán",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
+  "resumen_mananera": [],
+  "mananera_estado": "pendiente",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1877,11 +1868,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-16T12:02:58.541929-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Marcelo Ebrard"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-16 18:04"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-17 00:00"
 }
