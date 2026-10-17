@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-17T12:03:31.543058-06:00",
+  "generado_en": "2026-10-17T15:34:30.547307-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 9,
+  "n_notas_ventana": 12,
   "baja_confianza": false,
-  "tension_nacional": 6,
+  "tension_nacional": 19,
   "tension_anomalia": {
-    "z": -2.82,
-    "nivel": "baja",
+    "z": -1.42,
+    "nivel": "normal",
     "media_periodo": 32.1,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 89,
+      "peso_pct": 68,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
-      "n_temas": 5,
-      "n_notas": 8,
+      "n_temas": 6,
+      "n_notas": 9,
       "notas": [
         {
           "texto": "Le brinca a Andy López Beltrán un rival... ¿o sparring? - El Universal",
@@ -66,36 +66,55 @@
           "fuente_url": "https://heraldodemexico.com.mx/edicion-impresa/2026/10/17/ocho-de-11-equipos-de-morena-en-michoacan-se-suman-carlos-torres-pina-rumbo-2027-910442.html",
           "intensidad": 5.0,
           "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "Claudia Sheinbaum reconoce desabasto de medicamentos e insumos médicos y falta de personal en el IMSS - Urbano Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPWFFYTWJoNEYxaGI4eG9KblVBN3BNVEZnY29ld0J6am9KX2tfbW91TWd3N24yeFowUUp2SFU2a1BCdkRrY3RXZldHejBCZ3BwN2sxbG1nUURtblBuWFZlUHo2a25kR2RJWDl6dUVfQTlTQjRaQ0V6cGd4Yzk1Y2tyNG1wMmxoVFJSQm1YOUZIa2ZuNnFYNG1odWt2UkdQY0xrcGZCM0FZakJBWFUzMnp5R2IwNFlIZU81VDZmNmRGNms4Wmo2bHlnWTlsbDRsckg4VHB2VWVXV28?oc=5",
+          "intensidad": 5.0,
+          "medio": "Urbano Puebla"
         }
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 11,
+      "categoria": "Economía",
+      "peso_pct": 22,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "Descartan que esté paralizado el T-MEC - Cuarto Poder Chiapas",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNbVhDbTFoT0NzcC1COUhkTkZEUkxlTEhONHZJR1VTYVp0MDE5el9MakdjMGIyWnlrU1J0aURwQkZNOFhLeUFQdHctNGxiQlc0aHJIRUZfa0k0Q2lja2JkRkl4c0I4R0lKdVZhcHdhUWo1WjlRdVNDWll3ci1RaWVVQWE0MnBGeTBKR1pkaWdR0gGOAUFVX3lxTE1tWENtMWhPQ3NwLUI5SGRORkRSTGVMSE40dklHVVNhWnQwMTl6X0xqR2MwYjJaeWtTUnRpRHBCRk04WEt5QVB0dy00bGJCVzRockhFRl9rSTRDaWNrYmRGSXhzQjhHSUp1VmFwd2FRajVaOVF1U0NaWXdyLVFpZVVBYTQycEZ5MEpHWmRpZ1E?oc=5",
+          "intensidad": 8.0,
+          "medio": "Cuarto Poder Chiapas"
+        },
+        {
+          "texto": "Ignacio Mier ve viable una reunión interparlamentaria con EU para abordar el T-MEC - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQcUNFYzEzdmo5eEZ0ODdoZzhfQVpyOXN2cVJ5Mm43dzBOczhKWVA5aHFwMURaOWU3NDdQS1BjTWRxb29DRkhKakEtdWp4Wk54ZEpnMEREQUZyVmpfdmRkY2gxVnNtOHZ5QWJfZmhiWkVFX3pkZFNWVHBHMWM3REhXSm5tbnlDMFloQnY3SGR0Y2hobllTcG1jZ1JR0gGaAUFVX3lxTFBxQ0VjMTN2ajl4RnQ4N2hnOF9BWnI5c3ZxUnkybjd3ME5zOEpZUDlocXAxRFo5ZTc0N1BLUGNNZHFvb0NGSEpqQS11anhaTnhkSmcwRERBRnJWal92ZGRjaDFWc204dnlBYl9maGJaRUVfemRkU1ZUcEcxYzdESFdKbm1ueUMwWWhCdjdIZHRjaGhuWVNwbWNnUlE?oc=5",
+          "intensidad": 7.0,
+          "medio": "Milenio"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 10,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Crimen contra Carlos Manzo fue por una represalia: Vicefiscal de Michoacán",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/16/crimen-contra-carlos-manzo-fue-por-una-represalia-vicefiscal-de-michoacan.html",
-          "intensidad": 5.0,
-          "medio": "yucatan.com.mx"
+          "texto": "Ebrard defiende avance en T-MEC pese a aranceles de EU - El Mañana de Reynosa",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxORjRmemJjQVFWaE4yQTJ3QjRnaWN3UW5MTTBuU0ItNDNWZl9QTDRFNVkzX0RmMFlCVDBrRGVyNjc1ZVhZa3hFOUd6ZG5wcTB5Q253eVpfczA5XzdLQkN6U1l3V2pmQk1OOW1jNl84YXNSbGQyNTRsR1A3ZFJFcmRTU3kybWE4SDk5MHlFemlYa3hnSlZIbGwwQWg1RDFTSy1WMVHSAacBQVVfeXFMUFcwdDh2cHp4cE9LWEhqa29fM2tleF9uamxjTmRuRk56ZVdMdlh6LUpPNm0yOTVadEQyVjhna3F2MU9FakdRWThaNmxvWEZ0d1Y5ZnljT183RGVUNXBVd0pjN1ItQ3JkWmRPY0lqNFhBWGU0Q2F5WFJ0aXdkXzNta2JmX2h2M2dlVEFPdjNZR0d1WHRPWDRTUnQtT2dMWWg1b3hHdlFHVjQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Mañana de Reynosa"
         }
       ]
     },
     {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
-    },
-    {
-      "categoria": "Economía",
+      "categoria": "Seguridad Nacional",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -798,11 +817,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -830,8 +849,8 @@
       "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOOTRyVWttRVFyWVotZzl2QzQ0R3FwTmJHZkNNOGRLVlNfbHFuLVJqV0lZRFZjWF81b091ak9TYWVvaGtnMDJEdlpZNlBpN29EWng3X0pFODdjYmhvNlM0VEJ5S0tIRTlqa193ZGpIempQUlp1WnRJMWRicW1nWDhUX3p1MzJBeVYtX1pqMzNWRkNCbmhfVTN5R3hPTi1UVWF2Z3NyQnUzTnJfWVdyNk90eU0tTkV4WjFZMlBxWDJmeGYtQzVJTnFrdWxqTjVRZWvSAeoBQVVfeXFMT0duOURLbGQxTmFCVHplM1dsd2t4SEhpdkxUYXVYczFTYkJSdlpGcklYMjRDMlhZQm5WZ2FsMlRQYXhWSU80SExYUTQwdUZVX196RXRvVTZFVGdNRWx2MU5yR2liYnBrQ0E1S281LWM0ekJ3Ylk2MTliU1N3dU5wNHdSeHZpMDFpcXBKdmljMERrZ1dxTVBKOE5GT0x0NnlQQ09sbTJfZFJobTVrTXVPZFlXZV9jVlp0TUJYdUtGZ2FSR1hoWUE5UkpLTmtObC1QMkVtTlo1czhkcDhJeEEtalllZEVMQmxfcHZ3?oc=5",
       "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
       }
     },
     {
@@ -847,7 +866,28 @@
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWG5YQzNKZDJtYllVOWo4OE9scXhYSFNya3kzV2h1SDFBeWc5LUxXSi1XcV9XMFRIYTFxMk1wRy1vM0U4ZkJZUHdBc0ZnU3NRMHZKaGVITDNNT01PVEFDVHhycWlVTldPU2t2TktpeEFZdVRFU3ZtMFJkNjJyTDkwMExkRGRJdnl2N2p2MktnMlJlN2VnTXpsektHbkZoZw?oc=5",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Ignacio Mier ve viable una reunión interparlamentaria con EU para abordar el T-MEC - Milenio",
+      "peso": 7.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQcUNFYzEzdmo5eEZ0ODdoZzhfQVpyOXN2cVJ5Mm43dzBOczhKWVA5aHFwMURaOWU3NDdQS1BjTWRxb29DRkhKakEtdWp4Wk54ZEpnMEREQUZyVmpfdmRkY2gxVnNtOHZ5QWJfZmhiWkVFX3pkZFNWVHBHMWM3REhXSm5tbnlDMFloQnY3SGR0Y2hobllTcG1jZ1JR0gGaAUFVX3lxTFBxQ0VjMTN2ajl4RnQ4N2hnOF9BWnI5c3ZxUnkybjd3ME5zOEpZUDlocXAxRFo5ZTc0N1BLUGNNZHFvb0NGSEpqQS11anhaTnhkSmcwRERBRnJWal92ZGRjaDFWc204dnlBYl9maGJaRUVfemRkU1ZUcEcxYzdESFdKbm1ueUMwWWhCdjdIZHRjaGhuWVNwbWNnUlE?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
     }
   ],
   "temas_nuevos": [
@@ -916,26 +956,37 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOSHZSVERLMTEwM28zYkxrX0R2ZmJoVkNGLUFDWnpaZnlGYllUWVNKR3hVZEU3RFljdHFnei1HTkNXQktRRTlRcThGRTB0amc5Y045RUk0N0FuVE01ZlphUUZXZDlFSUYzWGYtTV9rbjJlWnotR3hYOEFqUzRIemFjUzZsRWxpNXlIelA1X2h0SVZ2NmZpTlU5dDFRWmhUMzFISGZEdVhn?oc=5"
     },
     {
-      "id": "auto-c59f58dbbf",
-      "nombre": "Desde Veracruz, presidenta Claudia Sheinbaum reporta 43% de avance del programa ",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 8,
-      "motivo": "Desde Veracruz, presidenta Claudia Sheinbaum reporta 43% de avance del programa de Vivienda para el Bienestar; entrega 900 en la entidad - Gob MX",
+      "id": "auto-5576be7f59",
+      "nombre": "«México por el Clima: naturaleza y migración: UAT» - TAMPICO",
+      "categoria": "Social",
+      "dias_silencio": 10,
+      "motivo": "🔔 ALERTA — Migración y explotación de la naturaleza se encuentran en \"El jardín que soñamos\", película que llega al FICM - El Universal",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPb2wxOG9uNHB6SllLTF9tc1F0eVd3aUE3UDZOTUtidDhlX1BTNldEelNHeXc2cmhrVHpDMHNXcVBsSFZGMHQ3Tm9NaG5oUjJlbXFUMXJQWFIzS3RvdWhlaXVDZURydlA3anloOVZCaXpBXzNjejgwdk9MVXNDNkc1aE9pdlpqXzl3NndPd0gtT0RoeWlaSnlXM29xa3Vtb3psVGd1ZVJQbk9URFdoTUJJa2wzSF9ETldhQjZHTHo0S002bHoxbE9NYnY3WVNjWGR5cjdZOTFYbDYtMjFRX1luVERxdEFFdGRUSjhJVVNvVm8tQnJFbXBhSDd3Y1dGcjhfQ1djQ1ZJSQ?oc=5",
-      "fecha_anterior": "2026-10-08",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijAJBVV95cUxPdHFQS1VXOTN4alBzYkZnN3AybVZZbndUUkF6VUlQNnVNbkpKem9vNXZlbHUtSy1WeVJRYVlHajlveUV6c0c4X2N2enZVa0g2b0RsTkdWUEdjZTV6VWNkZGdTYTFzZDJZZTZvdHdwT2M3YjE4aUlMczI1cU9zRVAzbjNMWjJqWkhkb0RDaG0tUDJ1UU9nU2ZsaHQ3OVRudWUyR2ZwOXAxQjV6T1RXckZMSmJEUTk4amlFT0V1T2xRNVFJQTRnaUpQdFVXUm1FeExMY1pONGVXeGhtcGliOXNLQzFMSm12ZmtLQmFMQXk2aEUzdTdGZks0dnNxUjhYYWZiRTZSMXp3ZnYxX0JU?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPTXFHdlVtb01nMkVsMEhIaEV4LWhrelRUc2x2TkczM0VhYUE5OWsxeWVUMjl2a01sT2JfUHBzYU1wT29KZjVCYUIyZy1pUWx5aFRSVElhMlUxaTdvRi00X3BwLVFtZlV3a0FUcm5fd19qRzNOQ3BMTzlORFhKQnhlSS1DZFFqbmNiakNGSVIzbm1UVjZtVENPV2JSMzRhZ1YzaldBMzVhWjVxalU4bTdwRlBaaEdRNVotXzhWTGs5cVJCVmpLeTdBUTZpaGVMNWpLUkZsVklpVFZvVFF1NnE1VnhsY3dWUQ?oc=5",
+      "fecha_anterior": "2026-10-06",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNNlJraUUtT3hmSXZYY3IwOWI5SE5EVVh5SHlBY01BTWZBa3ZoUkVWWG5zeHhsVDZhN1IxV1RHcGE4SnpseWVZejR5WXZfbHktWi16Z3dHam1tei1NQ3VzTzVjSng2QTF0V0xZSldibi0yckpzbG1WWkR6Snh0NjNVbktR?oc=5"
     },
     {
-      "id": "auto-8db27bd979",
-      "nombre": "La presidenta Claudia Sheinbaum destacó que México mantiene una relación de coop",
-      "categoria": "Relación Bilateral",
-      "dias_silencio": 8,
-      "motivo": "Marcelo Ebrard destaca mejor relación comercial de México con EU - Milenio",
+      "id": "auto-9bf957e4fa",
+      "nombre": "Suenan seis nombres para la coordinación de Morena en Cancún; mañana se definirí",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 9,
+      "motivo": "Negocia Marín Mollinedo con Morena coordinación en Cancún - Reforma",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQa01mUTFYRDJoNnplVkRaYlBKTnZNQlZ5dGdmWTIxcFZ2MUVZVEM2VkJteExtQnljLW1tUURzS2ljeTZhQmEzbUpxX2Z6ZlpoaGpoQzNfSjNvUmhiODAweTRmbkdCN1lxUUJURTNuZV9UZ2ZkWDBfd2dPczJoRGpRVlpNQWZIMUtsM2pBOGtmUEgzeHpfWmfSAZYBQVVfeXFMTVlidkVDTjdkaDBtWkNLblNWMlBYeGRlZEs2STg4ZVJkN0hDYlRXYzBkOU9xNFZKWE1keWJ2S0xxTFpwdXdPb0NEMnRMbWZ0Ym1uS0hZR2ZYMU9ydUlZbk5QMTRFVHNIVjlwUjVJTXI3Nmh0WFlFdGlZMjhlLWRwMURDSHlWMG5IOVZJQmFaNnRwdW5Ea1dn?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOcWNMY0ZPcGZ3WURXby1CYXM2M3QyY2trT2NhQXhZUEtjNE5NUEpVTTlmV0I0YThpcUFvVzhuREN4dXM0WmowUG1WOVg0V0NsWjAxZGFpN1JMVGVjVzRiTHM1SnpTeHNKa01yZkZSWS1vWllGaG5jM0JudWhVRGJLblY4dEh6MEpkdHZvTnN0VWNxT3VWbVE?oc=5",
+      "fecha_anterior": "2026-10-07",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQTlg4dXd3U2cwX25nYWp4V3NfRV92Ui1aZnEwcmRGTHJNM2p5dVhELVkwWUdWaEhQTGlFTUdzUE1LZGFnbTE4ekNBM0pXWHFueXNpekNiWHEyc1RFVndDdDJvamx5R2owRU5WT09HT2U2MFJrWnlVeXFhWlZ1TFo0cXBNNTAxdEFiTnpaT3h4aS11MDh6V3N1MHp1ZERhajVvZmpDeTNlTF9wbHlFZVRnc21NMFBNaDJK?oc=5"
+    },
+    {
+      "id": "auto-96d2fdb2ce",
+      "nombre": "Reaparición de López Obrador genera acontecimiento político digital disruptivo c",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 8,
+      "motivo": "‘Pepín’ López Obrador descarta candidatura en 2027 o 2030: ‘Mi aspiración es irme a mi terrenito’",
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/17/pepin-lopez-obrador-descarta-candidatura-en-2027-o-2030-mi-aspiracion-es-irme-a-mi-terrenito/",
       "fecha_anterior": "2026-10-08",
-      "fuente_url_anterior": "https://heraldodemexico.com.mx/nacional/2026/10/8/claudia-sheinbaum-destaca-importancia-de-la-relacion-comercial-de-mexico-eu-en-reunion-con-embajador-ronald-johnson-904173.html"
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTTM0UVltaDNWOG52UTZGMkk2Z250eHRrZXBqM0lxUjVCbjNTSnhtWTFmbGZpVDE4Umoxbm1hTHlYNC1uc3ZVVDdmWkZqNWVRNE1OUkYwRndRVU1PZDRfYWFRb0xVTnNxLVRhTUo1UlNtRER5bEpoUVRtQWlJWWVFdzdrOU4tUDN0bEVQVXppZWpPLWRLTHRLQUk1ZW5SeE9qZ2ZV?oc=5"
     }
   ],
   "actores_destacados": [
@@ -946,6 +997,17 @@
       "tema": "Destaca Mara Lezama mayor prosperidad con proyecto eólico en el sur de Quintana ",
       "nota": "Claudia Sheinbaum supervisa hospitales y proyectos de salud en Chetumal acompañada de Mara Lezama - El Economista",
       "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOcFBSYnpsdUlJT3BudVNKbTZiQzJneFdMdzhCS1JSVy1Jc1A4MEN2T29Jbm42UHlnRUh6VkZ4VDhKSzBQbzJfVGx5b3pNVmh2al95SGxoMHl6S3MxWmRiRDBzckNEcWlqRENOS3F0a1RoVjdmRTRiUjJua2pYWGxCdTFrbkVVeUY4MWlscG1LNFpVaGhtV2FsdnFBbDAta1hTTWZ0Q24wM1otUzNTVU1zYmtwa1ROaVI1UWxCeWt4ZXpIcXdkSkxzSnBKVnVSQUY4TUdBZExqSkdzclNybzVqQi1SbFVUMUnSAecBQVVfeXFMTnBQUmJ6bHVJSU9wbnVTSm02YkMyZ3hXTHc4QktSUlctSXNQODBDdk9vSW5uNlB5Z0VIelZGeFQ4SkswUG8yX1RseW96TVZodmpfeUhsaDB5ektzMVpkYkQwc3JDRHFpakRDTktxdGtUaFY3ZkU0YlIybmtqWFhsQnUxa25FVXlGODFpbHBtSzRaVWhobVdhbHZxQWwwLWtYU01mdENuMDNaLVMzU1VNc2JrcGtUTmlSNVFsQnlreGV6SHF3ZEpMc0pwSlZ1UkFGOE1HQWRMakpHc3JTcm81akItUmxVVDFJ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "ebrard",
+      "nombre": "Marcelo Ebrard",
+      "rol": "Responsable institucional",
+      "tema": "La presidenta Claudia Sheinbaum destacó que México mantiene una relación de coop",
+      "nota": "Marcelo Ebrard destaca mejor relación comercial de México con EU - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQa01mUTFYRDJoNnplVkRaYlBKTnZNQlZ5dGdmWTIxcFZ2MUVZVEM2VkJteExtQnljLW1tUURzS2ljeTZhQmEzbUpxX2Z6ZlpoaGpoQzNfSjNvUmhiODAweTRmbkdCN1lxUUJURTNuZV9UZ2ZkWDBfd2dPczJoRGpRVlpNQWZIMUtsM2pBOGtmUEgzeHpfWmfSAZYBQVVfeXFMTVlidkVDTjdkaDBtWkNLblNWMlBYeGRlZEs2STg4ZVJkN0hDYlRXYzBkOU9xNFZKWE1keWJ2S0xxTFpwdXdPb0NEMnRMbWZ0Ym1uS0hZR2ZYMU9ydUlZbk5QMTRFVHNIVjlwUjVJTXI3Nmh0WFlFdGlZMjhlLWRwMURDSHlWMG5IOVZJQmFaNnRwdW5Ea1dn?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -979,17 +1041,6 @@
       "tema": "Visa de Andy",
       "nota": "Le brinca a Andy López Beltrán un rival... ¿o sparring? - El Universal",
       "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWG5YQzNKZDJtYllVOWo4OE9scXhYSFNya3kzV2h1SDFBeWc5LUxXSi1XcV9XMFRIYTFxMk1wRy1vM0U4ZkJZUHdBc0ZnU3NRMHZKaGVITDNNT01PVEFDVHhycWlVTldPU2t2TktpeEFZdVRFU3ZtMFJkNjJyTDkwMExkRGRJdnl2N2p2MktnMlJlN2VnTXpsektHbkZoZw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "alito_moreno",
-      "nombre": "Alejandro Moreno Cárdenas",
-      "rol": "Responsable institucional",
-      "tema": "Magistrado propone revertir prohibición al PRI y a Alejandro Moreno: \"Narcoparti",
-      "nota": "Gobierno quiebra al IMSS, escribe Alejandro Moreno - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQmhJZEtYeTRFMDA4WkY1cE1jTURjNXZZU3hWWDZOOVYxTnpKX1JXRDFnNWRjMktEWXVlbFNYUDl5OE9BalAyS3JxVm4xaEhSc2d5RHNjZ1VVODI0RG9nTzR6WUswT0R6dWFuNzZ0UVF4MXQ3WEFzeUw5Nlp0VnVNQmVtcFh4U0NN?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1216,10 +1267,10 @@
     },
     {
       "fecha": "2026-10-17",
-      "tension": 0,
-      "n_notas": 3,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 3,
+      "tension": 25,
+      "n_notas": 7,
+      "n_alto_impacto": 3,
+      "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     }
   ],
@@ -1228,58 +1279,63 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 90,
-      "y_lunes": 61,
+      "x_lunes": 95,
+      "y_lunes": 60,
       "x_hoy": 100,
       "y_hoy": 60,
-      "delta_pts": 3.0,
-      "alcance": 14,
+      "delta_pts": 1.5,
+      "alcance": 15,
       "n_alto": 4,
-      "n_medio": 16,
+      "n_medio": 17,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
-      "nota_texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
+      "apagado": false,
+      "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/13/claudia-sheinbaum-valora-comprar-mas-gas-a-ee-uu-y-reducir-el-deficit-que-preocupa-a-donald-trump.html",
+      "nota_texto": "Claudia Sheinbaum valora comprar más gas a EE.UU. y reducir el déficit que preocupa a Donald Trump",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 5,
+      "dias_activo": 6,
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 45,
+          "x": 43,
           "y": 61
         },
         {
           "fecha": "2026-10-13",
-          "x": 65,
+          "x": 62,
           "y": 65
         },
         {
           "fecha": "2026-10-14",
-          "x": 70,
+          "x": 67,
           "y": 64
         },
         {
           "fecha": "2026-10-15",
-          "x": 90,
+          "x": 86,
           "y": 61
         },
         {
           "fecha": "2026-10-16",
+          "x": 95,
+          "y": 60
+        },
+        {
+          "fecha": "2026-10-17",
           "x": 100,
           "y": 60
         }
       ],
-      "fecha_apagado": "2026-10-17"
+      "fecha_reactivado": "2026-10-17"
     },
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 80,
+      "x_lunes": 76,
       "y_lunes": 75,
-      "x_hoy": 85,
+      "x_hoy": 81,
       "y_hoy": 74,
       "delta_pts": 1.5,
       "alcance": 12,
@@ -1296,44 +1352,43 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 20,
+          "x": 19,
           "y": 75
         },
         {
           "fecha": "2026-10-13",
-          "x": 45,
+          "x": 43,
           "y": 78
         },
         {
           "fecha": "2026-10-14",
-          "x": 70,
+          "x": 67,
           "y": 75
         },
         {
           "fecha": "2026-10-15",
-          "x": 75,
+          "x": 71,
           "y": 77
         },
         {
           "fecha": "2026-10-16",
-          "x": 80,
+          "x": 76,
           "y": 75
         },
         {
           "fecha": "2026-10-17",
-          "x": 85,
+          "x": 81,
           "y": 74
         }
-      ],
-      "fecha_reactivado": "2026-10-17"
+      ]
     },
     {
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 40,
+      "x_lunes": 38,
       "y_lunes": 100,
-      "x_hoy": 45,
+      "x_hoy": 43,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 8,
@@ -1355,22 +1410,22 @@
         },
         {
           "fecha": "2026-10-13",
-          "x": 20,
+          "x": 19,
           "y": 100
         },
         {
           "fecha": "2026-10-14",
-          "x": 35,
+          "x": 33,
           "y": 100
         },
         {
           "fecha": "2026-10-15",
-          "x": 40,
+          "x": 38,
           "y": 100
         },
         {
           "fecha": "2026-10-16",
-          "x": 45,
+          "x": 43,
           "y": 100
         }
       ],
@@ -1380,9 +1435,9 @@
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "iniciales": "OG",
-      "x_lunes": 45,
+      "x_lunes": 43,
       "y_lunes": 72,
-      "x_hoy": 55,
+      "x_hoy": 52,
       "y_hoy": 77,
       "delta_pts": 6.0,
       "alcance": 9,
@@ -1399,12 +1454,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-13",
-          "x": 45,
+          "x": 43,
           "y": 72
         },
         {
           "fecha": "2026-10-14",
-          "x": 55,
+          "x": 52,
           "y": 77
         }
       ],
@@ -1414,9 +1469,9 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 25,
+      "x_lunes": 24,
       "y_lunes": 70,
-      "x_hoy": 35,
+      "x_hoy": 33,
       "y_hoy": 71,
       "delta_pts": 4.5,
       "alcance": 6,
@@ -1433,17 +1488,17 @@
       "trayectoria": [
         {
           "fecha": "2026-10-14",
-          "x": 20,
+          "x": 19,
           "y": 62
         },
         {
           "fecha": "2026-10-15",
-          "x": 25,
+          "x": 24,
           "y": 70
         },
         {
           "fecha": "2026-10-16",
-          "x": 35,
+          "x": 33,
           "y": 71
         }
       ],
@@ -1453,9 +1508,9 @@
       "id": "rocio_nahle_garcia",
       "nombre": "Rocío Nahle García",
       "iniciales": "RN",
-      "x_lunes": 35,
+      "x_lunes": 33,
       "y_lunes": 57,
-      "x_hoy": 40,
+      "x_hoy": 38,
       "y_hoy": 62,
       "delta_pts": 3.0,
       "alcance": 7,
@@ -1472,27 +1527,27 @@
       "trayectoria": [
         {
           "fecha": "2026-10-12",
-          "x": 15,
+          "x": 14,
           "y": 50
         },
         {
           "fecha": "2026-10-13",
-          "x": 25,
+          "x": 24,
           "y": 60
         },
         {
           "fecha": "2026-10-14",
-          "x": 30,
+          "x": 29,
           "y": 58
         },
         {
           "fecha": "2026-10-15",
-          "x": 35,
+          "x": 33,
           "y": 57
         },
         {
           "fecha": "2026-10-16",
-          "x": 40,
+          "x": 38,
           "y": 62
         }
       ],
@@ -1502,9 +1557,9 @@
       "id": "clara_luz_flores",
       "nombre": "Clara Luz Flores",
       "iniciales": "CL",
-      "x_lunes": 30,
+      "x_lunes": 29,
       "y_lunes": 50,
-      "x_hoy": 50,
+      "x_hoy": 48,
       "y_hoy": 50,
       "delta_pts": 6.0,
       "alcance": 9,
@@ -1521,17 +1576,17 @@
       "trayectoria": [
         {
           "fecha": "2026-10-13",
-          "x": 15,
+          "x": 14,
           "y": 50
         },
         {
           "fecha": "2026-10-14",
-          "x": 30,
+          "x": 29,
           "y": 50
         },
         {
           "fecha": "2026-10-16",
-          "x": 50,
+          "x": 48,
           "y": 50
         }
       ],
@@ -1543,7 +1598,7 @@
       "iniciales": "DT",
       "x_lunes": 10,
       "y_lunes": 100,
-      "x_hoy": 15,
+      "x_hoy": 14,
       "y_hoy": 83,
       "delta_pts": 1.5,
       "alcance": 3,
@@ -1565,7 +1620,7 @@
         },
         {
           "fecha": "2026-10-15",
-          "x": 15,
+          "x": 14,
           "y": 83
         }
       ],
@@ -1575,9 +1630,9 @@
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
-      "x_lunes": 25,
+      "x_lunes": 24,
       "y_lunes": 50,
-      "x_hoy": 30,
+      "x_hoy": 29,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 5,
@@ -1599,12 +1654,12 @@
         },
         {
           "fecha": "2026-10-13",
-          "x": 25,
+          "x": 24,
           "y": 50
         },
         {
           "fecha": "2026-10-15",
-          "x": 30,
+          "x": 29,
           "y": 50
         }
       ],
@@ -1770,5 +1825,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-17 12:03"
+  "hora_corte_publicada": "2026-10-17 15:34"
 }
