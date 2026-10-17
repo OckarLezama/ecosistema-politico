@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-10-17T06:01:56.209972-06:00",
+  "generado_en": "2026-10-17T10:43:13.024921-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 19,
+  "n_notas_ventana": 9,
   "baja_confianza": false,
-  "tension_nacional": 20,
+  "tension_nacional": 8,
   "tension_anomalia": {
-    "z": -1.31,
-    "nivel": "normal",
+    "z": -2.6,
+    "nivel": "baja",
     "media_periodo": 32.1,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 59,
+      "peso_pct": 90,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
-      "n_temas": 6,
-      "n_notas": 12,
+      "n_temas": 5,
+      "n_notas": 8,
       "notas": [
-        {
-          "texto": "Rocío Nahle fortalece seguridad de Veracruz: Firma convenio con estados vecinos",
-          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/16/rocio-nahle-fortalece-seguridad-de-veracruz-firma-convenio-con-estados-vecinos/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
-        },
         {
           "texto": "Le brinca a Andy López Beltrán un rival... ¿o sparring? - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWG5YQzNKZDJtYllVOWo4OE9scXhYSFNya3kzV2h1SDFBeWc5LUxXSi1XcV9XMFRIYTFxMk1wRy1vM0U4ZkJZUHdBc0ZnU3NRMHZKaGVITDNNT01PVEFDVHhycWlVTldPU2t2TktpeEFZdVRFU3ZtMFJkNjJyTDkwMExkRGRJdnl2N2p2MktnMlJlN2VnTXpsektHbkZoZw?oc=5",
@@ -36,30 +30,6 @@
           "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/16/fiscalia-investiga-como-feminicidio-muerte-de-doctora-del-imss-bienestar-en-veracruz.html",
           "intensidad": 6.0,
           "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "Más deuda, las mismas carencias, escribe Kenia López Rabadán - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQeTlrRXJZTVVTaGMweTFqM0Zld2JGaHo3WUZOaVhrNVdHQzZ6NkVHcFBXb2ZSc0VpMUdacVozaTR0b2ZQeGloLUFac2hrOWNTN1BMYzZiTWE3RmRldTI3TlpjbV9lRk9aRnFFTVZkcUlzUTFDMnFRVC1xOFlSMWF2dV9vZklacDYwOUhmRnlTSlB6enRi?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Universal"
-        },
-        {
-          "texto": "Clouthier usa libro de AMLO para criticar a Clara Luz: ‘Si somos auténticos, hablamos con la verdad’",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/16/clouthier-usa-libro-de-amlo-para-criticar-a-clara-luz-si-somos-autenticos-hablamos-con-la-verdad/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "¡Morena vs. Morena! Tatiana Clouthier usa libro de AMLO para criticar a Clara Luz Flores en Nuevo León - TV Azteca",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOU3lWcVhJOW9ZLUthRFNVekNHazN5bzc4QUl1MGxVTjlqX2xzWUpReG1GSXg1U1lNdTNoUlMtZTJRVHFVNkc4LUpQQ2Y4WWJNeE9UXzNWZDFiYWVoSkhLU1Q5X2czY1M3Z2N2cHZZcVpzUmIwRXV5c3duVmJDSGF5ankxZUdCV0FEbGd1ZVB1RE1lTXdMWWM4Zld4WThFdU42ZjRWMlI0ZHZvLUJHdll1b2paSnJLbmFDbGJpZjJPTXNfQdIBzwFBVV95cUxQZmt3VHY1Sm9KU3IxOVNBWDZIRG8zYmoyYnlzT3NwWkpCaUdmZldHUGtZbDNLd21KMU5xTGhlRDZfdV9SQlc0Z1Ryal83cEoxeXZ3dnJ2elBEZlpTVlBlWmR3QzN5UEhsVXUyZU5ZRGNMVmc2NWgyanp4aEJ0Y3NQUGl4T3d6R1IzV0xTVC1PZ2tSTmJzajNvQTNPN203dVlQNkhlclhrQzlUaXBmci1sLVBwTGR5RnB6RHZYZ2N5Qmw1M0trZ08wbUw4eElxMk0?oc=5",
-          "intensidad": 5.0,
-          "medio": "TV Azteca"
-        },
-        {
-          "texto": "¿Tatiana Clouthier prepara una rebelión en Morena? El papel que podría jugar Alfonso Romo en Nuevo León",
-          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/16/tatiana-clouthier-prepara-una-rebelion-en-morena-el-papel-que-podria-jugar-alfonso-romo-en-nuevo-leon/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
         },
         {
           "texto": "Tatiana Clouthier usa libro de López Obrador para criticar a Clara Luz Flores - www.noroeste.com.mx",
@@ -90,56 +60,12 @@
           "fuente_url": "https://www.jornada.com.mx/2026/10/17/politica/007n2pol?partner=rss",
           "intensidad": 5.0,
           "medio": "jornada.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 19,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 2,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Usted es el culpable: ¿Quién y por qué tiene detenida la negociación del T-MEC entre México y EU?",
-          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/16/usted-es-el-culpable-quien-y-por-que-tiene-detenida-la-negociacion-del-t-mec-entre-mexico-y-eu/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
         },
         {
-          "texto": "Alejandro Armenta bajo la sombra del caso Rocha Moya: señalamientos por huachicol y dudas sobre el financiamiento ilegal de su campaña lo ponen en la mira de Estados Unidos - Azteca Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitAJBVV95cUxPY00wOEY4cnF5WmZnLVFxZVVSZVhXckw2TlJaeGpKVU9BYU9ZYlhIMFRFUnQ5bGRMUjBkeUctY3ZVOFMzamZYTG84TU5pUmtleXBWTnNkT2RJUjR3ZFZpQ3lHQWNYUFVjVlV0V0RXYmVjTzIzSGRTeUQybHg5cHFMZHQyQWZ4aGw1NFZjTWo5MGpKa19QVkRLNHlyVndyaGlvTmNOV3hsWlo3YTJhekRIUFNpRDhBWkhEWEN0TlU3eU94NktFeVBHMWlJVFBlNlR2Mk9jLVFQaVRDZEo5dTJvMlZ6VkZrbGxFRWk4RWxKTTBleWNTMnhGZlZzbUNpYXpDdjV5LU9Ec0NGd2NpaWJndkI5WC1LYmI0ck94XzJGaExCRWFJQ1U1UnlZMkJWVTByWTRpTA?oc=5",
-          "intensidad": 7.0,
-          "medio": "Azteca Puebla"
-        },
-        {
-          "texto": "Ebrard descarta freno en negociación con EU por aranceles y prevé nueva ronda del T-MEC - Ríodoce",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPM3RFdEtMRHpMR3NFZmhpTXpEa0VldVU4ODZSZmlNT2wzNUpEeE9XMjVtWHRwWUc1cExyWWU3SG9jRE94WW9BVFpWWWpsNFUwV3NWYU4yeG95SWp0bzNDbVhvUjNaS0xvM2drZWJVRjlFR2c1OWpXSjRuc21fRkJoXzVHU1FJdGpOdkF1MUladDZhODZrRFE4Y0w1dnhMVlMzRlhRdk1JdmpYQ3JoVS00VVNJb1hhbGRnQVE?oc=5",
-          "intensidad": 7.0,
-          "medio": "Ríodoce"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 12,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Niega Ebrard que T-MEC exija sancionar memes - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQLUQ2LU1xdjhsWlBJYmhvQm5GRDFteEF1Rnk0QUV6eTdfSU9DS3JPeFU1bUhSaFdGSVhxZTFmUWRmX0lUZWN2QUtKRlM3aG40NnZ0aXFyZEtLR21IQ196NW5PRzRXamYwRDR1QnFkMl91SHFtTUFoSFhrcHRhZVhHN204TVQ1cEprVEE?oc=5",
-          "intensidad": 7.0,
-          "medio": "Reforma"
-        },
-        {
-          "texto": "El T-MEC y la relación bilateral: nuevos parámetros de integración, escribe Larry Rubin - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQdEdPWG1IcDh6Q3ljRkRpWnNqRmdxYS1BWC1OS1VUcFJ2Y09MRVJqamxsdnUxbHd0TTBzc2F5NXdYejgxUUtvNEtpTkhMWFdGeDBmMXlfV2FmMnBYcC0wdHU5YTZZamplc1dzckt2M1EyT0FScWd0bzNfa2NBMXJ4TU5EaHk1aWhvVmtpa1hfQzdLX0U5RE1XNW5Od3dybWRTbHh4Y3dpZjFhSFZkNUFsS2IzYUh3RFRsT21QSDlRY013eUZN?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
+          "texto": "Caen presuntos extorsionadores del diseñador Elvis Guerra",
+          "fuente_url": "https://imparcialoaxaca.mx/policiaca/caen-presuntos-extorsionadores-del-disenador-elvis-guerra/",
+          "intensidad": 5.0,
+          "medio": "imparcialoaxaca.mx"
         }
       ]
     },
@@ -148,15 +74,9 @@
       "peso_pct": 10,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 2,
+      "n_temas": 1,
+      "n_notas": 1,
       "notas": [
-        {
-          "texto": "Detienen a cuatro miembros de Los Chapitos, entre ellos “El Pokemón”, encargados de suministrar armas al cártel en Sinaloa - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQRUNsMVJfY0dwb1JLXzFHalVBNjJWUXBRSTlXZXU2LXdmZkMzWE05Nm9fMTFWMHBCTnB3YjMzWlA2dURIQ3ROcjhqQ3BKR0g2aGU5ckU4dFFUWFFLTUxUOHo0WU1UQjVsVjZLQ25Iay1wVnJBTGljMHkyYlVrWVNWMEc0UzAxbkI2Ym5xWDBsVmRiZE9tbXJvWThNUFdIVDdraWdyTFNMQlYwREtVYkhiWlFuRFcyX2tiMnhsSFI5S2V0bTIzWmF5WUFzcGhUZ9IB0wFBVV95cUxOUEtwVWMyck1HcGVJNmlaZkl3OTB5YjJyc29JSW82d2stSzZEcTh0alFOMS1qSFBnbHEySGhaWTNCd3R3MUh1QldHYWhCZmViM2dMWUlQeE42QWhzTnJreGRlcXI4SENPcjZSUkFsdG9DSUJJMTJXSlBrRnh6cHVPM1FJYV82NjBzQm9rc2xySHJjUmxkOTBIMEJXRlJoSXBTQ0EzUXhXQ0k4cnhPazl3NUE4RThoVVZIM0dJSnlWMWNEWkltMHN5Mm90QlVRZ3lwUXpR?oc=5",
-          "intensidad": 6.0,
-          "medio": "news.google.com"
-        },
         {
           "texto": "Crimen contra Carlos Manzo fue por una represalia: Vicefiscal de Michoacán",
           "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/16/crimen-contra-carlos-manzo-fue-por-una-represalia-vicefiscal-de-michoacan.html",
@@ -164,6 +84,24 @@
           "medio": "yucatan.com.mx"
         }
       ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -281,11 +219,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 19
+          "peso_pct": 18
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 66
+          "peso_pct": 67
         },
         {
           "categoria": "Relación Bilateral",
@@ -310,7 +248,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 66
+          "peso_pct": 67
         },
         {
           "categoria": "Relación Bilateral",
@@ -335,7 +273,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 66
+          "peso_pct": 67
         },
         {
           "categoria": "Relación Bilateral",
@@ -385,7 +323,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 68
+          "peso_pct": 69
         },
         {
           "categoria": "Relación Bilateral",
@@ -410,7 +348,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 72
         },
         {
           "categoria": "Relación Bilateral",
@@ -435,11 +373,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 73
+          "peso_pct": 74
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 5
         },
         {
           "categoria": "Economía",
@@ -883,29 +821,14 @@
       "nombre": "Coordinadores estatales de Morena rumbo a 2027",
       "categoria": "Gobernabilidad",
       "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
-      "motivo": "Rocío Nahle fortalece seguridad de Veracruz: Firma convenio con estados vecinos",
-      "peso": 36.0,
-      "n_temas_agrupados": 5,
+      "motivo": "Legisladores de Morena expresan su desacuerdo con los destapes de las “corcholatas” estatales - Infobae",
+      "peso": 10.0,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 5,
-      "confianza": "alta",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/16/rocio-nahle-fortalece-seguridad-de-veracruz-firma-convenio-con-estados-vecinos/",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-8e1b5cb00c",
-      "nombre": "Citlalli Hernández responde en defensa de Sheinbaum: “La injerencia extranjera t",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Citlalli Hernández responde en defensa de Sheinbaum: “La injerencia extranjera también es violencia” - sdpnoticias",
-      "motivo": "Citlalli Hernández niega encuestas amañadas en coordinaciones - MILENIO",
-      "peso": 7.0,
-      "n_temas_agrupados": 4,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUXFsakowQnFHRDlLOXBhNVF5QW1YNWdYYi11RUl1azVYR1VpWG4zVzIxb0pMNEpiel9teGI3d3hMN29LY3NtOHhKSEdmZlFWV0kwY1doclhzVDdiMjI4aHVKUEFXNjRMTWJIRWhCeFlfSTYzQUo3VHoteXFHN08tRFVIcllsTGl2Y2xYSXNpeXJMTVA0N0xIRWFEYlZDVWlzY1lYTFU1Vld1d9IBqgFBVV95cUxORGgwMW1lVnNmUzVDU2lnU2NObW1YSWxBQ19LcS1kUmdqQVMtSVpOX2xNdURlblZwVHFtQmlsNGtfU3E3YzI4ZEhscDFQN3lieHA3NDhaU3V5ME1ZdklLdVgyMm5nUnVucUxNMktNQi1KS0E5TFVMdGVTXzJPSzhEVkZHbDYxRWxEbEMxTGxHVWZnUm5oOXJmNFFmVTFQbW1hM0s1OFpZQl8xdw?oc=5",
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOOTRyVWttRVFyWVotZzl2QzQ0R3FwTmJHZkNNOGRLVlNfbHFuLVJqV0lZRFZjWF81b091ak9TYWVvaGtnMDJEdlpZNlBpN29EWng3X0pFODdjYmhvNlM0VEJ5S0tIRTlqa193ZGpIempQUlp1WnRJMWRicW1nWDhUX3p1MzJBeVYtX1pqMzNWRkNCbmhfVTN5R3hPTi1UVWF2Z3NyQnUzTnJfWVdyNk90eU0tTkV4WjFZMlBxWDJmeGYtQzVJTnFrdWxqTjVRZWvSAeoBQVVfeXFMT0duOURLbGQxTmFCVHplM1dsd2t4SEhpdkxUYXVYczFTYkJSdlpGcklYMjRDMlhZQm5WZ2FsMlRQYXhWSU80SExYUTQwdUZVX196RXRvVTZFVGdNRWx2MU5yR2liYnBrQ0E1S281LWM0ekJ3Ylk2MTliU1N3dU5wNHdSeHZpMDFpcXBKdmljMERrZ1dxTVBKOE5GT0x0NnlQQ09sbTJfZFJobTVrTXVPZFlXZV9jVlp0TUJYdUtGZ2FSR1hoWUE5UkpLTmtObC1QMkVtTlo1czhkcDhJeEEtalllZEVMQmxfcHZ3?oc=5",
       "actor_vinculado": null
     },
     {
@@ -926,36 +849,28 @@
   ],
   "temas_nuevos": [
     {
-      "id": "auto-9a92b6ceb2",
-      "nombre": "Claudia Sheinbaum anuncia que “Casa Tlalpan” será nueva sede de la Universidad R",
-      "categoria": "Gobernabilidad",
-      "peso": 23.0,
-      "impacto": "alto",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/17/politica/009n1pol?partner=rss"
+      "id": "auto-a1a5bfe40a",
+      "nombre": "MSF: perdurables, las secuelas de agresiones extremas a migrantes",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/17/politica/003n2pol?partner=rss"
     },
     {
-      "id": "auto-5e88d6e9cc",
-      "nombre": "PVEM respalda a Citlalli Hernández en Cuauhtémoc y reelección de Janecarlo Lozan",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-8fc824dee5",
+      "nombre": "Es morenista… y buscó refugio en el PAN - El Universal",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPRnpwRmd3cEI4Wl9uTktxc1J4ZEtUa2ptSWxNdm5YdER0WEdfZHg2Q1lSTlRLZXJyQUZpa193M1lsMExINEV0X2VSSUlQa25jMzIybzlGeGQ4M25MT19CR1U1OUFUY0xKanJjUXdvMlk0U0o5SXEwOUVDTTlZeFVlTEFjdGhUMnRCVEHSAYoBQVVfeXFMT0Z6cEZnd3BCOFpfbk5LcXNSeGRLVGtqbUlsTXZuWHREdFhHX2R4NkNZUk5US2VyckFGaWtfdzNZbDBMSDRFdF9lUklJUGtuYzMyMm85RnhkODNuTE9fQkdVNTlBVGNMSmpyY1F3bzJZNFNKOUlxMDlFQ005WXhVZUxBY3RoVDJ0QlRB?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNWWZ0OUFiNXBQeWozLWNXN29zNG1hV1l5OWl4YlV1UDk3WHJLMUNGVWxBbkczZFlJWXdrLVdwbFBkWkdsaUMxV3l6RVVSclVhT0J5ekE5MTgyVGV0QUZ0ZUxTUko5aWhHaGFuNkdLWVhQamM1ek9sVkJZZFJVT3NVZHg3NTZSZm1VeDNpR2hJajRnWGpsYXc?oc=5"
     },
     {
-      "id": "auto-8f3a127803",
-      "nombre": "¿Latinos se arrepienten de votar por Trump? 74% desaprueba su gestión y 70% ve d",
-      "categoria": "Relación Bilateral",
-      "peso": 5.0,
+      "id": "auto-a766315122",
+      "nombre": "Agentes del ICE atropellaron a mexicano en redada en Texas; buscaban a un hombre",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/16/latinos-se-arrepienten-de-votar-por-trump-74-desaprueba-su-gestion-y-70-ve-daninas-sus-politicas/"
-    },
-    {
-      "id": "auto-87367ac7aa",
-      "nombre": "Asesinan a tres actores políticos en Chiapas en las últimas horas; víctimas pert",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQNkFEd3YwaVRjRUdNQkNZOGlNYnlFeUlaT2tBcENodU9zeC1VcUxvbFNBdnI2c2MxQVhOdC1RcnVhUVQ0LXAzVUh2dkg0OG9vMWdSYkdjS2c5S3FaVmV3c0s2ZGZ6cGxyT1RzZ0doYjJnRGkwVTVfYzFVN1dtQ3Nja0M3OGJaYUNVMXl2ZWdCUXJ6VnNKdW5sOUItMnBJX0tndWYwRXp5Wm5HOGNfSVZBTVV2SURnWi1UMWZJTTRJbElsSUowVVEyMWdwYmV1ZmM?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/17/agentes-del-ice-atropellaron-a-mexicano-en-redada-en-texas-buscaban-a-un-hombre-que-ya-habia-fallecido/"
     },
     {
       "id": "auto-77d0dce50b",
@@ -964,6 +879,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBuVWJNcm5YZkVCclZuNS02alBtU09TcEh6R0U5d3YxZUs3bEpMbjFrQW9jVTlIdFVyZUtLOW01S3czQTU5Uk5JYmpaOWl6VDVsNXdETlZ6NXc2TGtoMzlwRVRIRjRKZjRhaHhz?oc=5"
+    },
+    {
+      "id": "auto-6b215b519f",
+      "nombre": "Por presión interna y del PT, se encienden focos rojos para Morena en ocho estad",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPWnFOeHUxNkNHZXBLS01jV1RLc2VqVmtDemRkRDNmdFZzNlNacjBJOVBQa05Vd1RWbG1vY1Jnd1ExUjdlQVRadkl5d1hMVDAxTmViMVI4czNMQlhjcGEyQWV0Q2pXaEpWTzZPYTVudG5HbzBaN3BsTjRUZW1vVFFGQ2pZT2ptbFZObGJHOW1Ld21LVk1mOVRtdnM5NVrSAZwBQVVfeXFMTTdGWUsxQXdlazdxdjJTWkRPV1g0V2UyZFRpNjZHVmJqQjhodTRtRXNvVmcyMmhCV3FVVmg2UHJhWGVZTFBYdTFRdXJKMjF1V1hZSWRJNnJIQlhjMURJVFVVODZTanptSmhfSmh1cGZ6NWhmQ1VKTzZyRC1FNjI5enZndHdVVXg1eko3dGNuVU9VdFkzclRRMlBYS1pB?oc=5"
     }
   ],
   "temas_retomados": [
@@ -1047,37 +970,30 @@
       "confianza": "media"
     },
     {
-      "id": "tatiana_clouthier",
-      "nombre": "Tatiana Clouthier",
-      "rol": "Reacción de oposición",
-      "tema": "Coordinadores estatales de Morena rumbo a 2027",
-      "nota": "¿Tatiana Clouthier prepara una rebelión en Morena? El papel que podría jugar Alfonso Romo en Nuevo León",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/16/tatiana-clouthier-prepara-una-rebelion-en-morena-el-papel-que-podria-jugar-alfonso-romo-en-nuevo-leon/",
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "rol": "Mencionado",
+      "tema": "Visa de Andy",
+      "nota": "Le brinca a Andy López Beltrán un rival... ¿o sparring? - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWG5YQzNKZDJtYllVOWo4OE9scXhYSFNya3kzV2h1SDFBeWc5LUxXSi1XcV9XMFRIYTFxMk1wRy1vM0U4ZkJZUHdBc0ZnU3NRMHZKaGVITDNNT01PVEFDVHhycWlVTldPU2t2TktpeEFZdVRFU3ZtMFJkNjJyTDkwMExkRGRJdnl2N2p2MktnMlJlN2VnTXpsektHbkZoZw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "clara_luz_flores",
-      "nombre": "Clara Luz Flores",
-      "rol": "Autoridad",
-      "tema": "Coordinadores estatales de Morena rumbo a 2027",
-      "nota": "Clouthier usa libro de AMLO para criticar a Clara Luz: ‘Si somos auténticos, hablamos con la verdad’",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/16/clouthier-usa-libro-de-amlo-para-criticar-a-clara-luz-si-somos-autenticos-hablamos-con-la-verdad/",
+      "id": "alito_moreno",
+      "nombre": "Alejandro Moreno Cárdenas",
+      "rol": "Responsable institucional",
+      "tema": "Magistrado propone revertir prohibición al PRI y a Alejandro Moreno: \"Narcoparti",
+      "nota": "Gobierno quiebra al IMSS, escribe Alejandro Moreno - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQmhJZEtYeTRFMDA4WkY1cE1jTURjNXZZU3hWWDZOOVYxTnpKX1JXRDFnNWRjMktEWXVlbFNYUDl5OE9BalAyS3JxVm4xaEhSc2d5RHNjZ1VVODI0RG9nTzR6WUswT0R6dWFuNzZ0UVF4MXQ3WEFzeUw5Nlp0VnVNQmVtcFh4U0NN?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     }
   ],
   "declaracion_presidenta": null,
-  "declaracion_otro": {
-    "actor": "Marcelo Ebrard",
-    "texto": "México exporta, pero necesita fortalecer su industria propia: Marcelo Ebrard - MILENIO",
-    "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNNEkwbU9VOHYwdTNoTGJYQnV3ZS1paTh2ajhfQU91aFpjTjJUQmt6c3YyblRBSmZhR3lkc2NBUG50VEctNHBIc3F4NEs3X20yTkVBQ3JoM0doNWItUUxMNXVzLU1OVFVWRGMxcnpTNjVCOXRDZk5VU09DTThpZjJVUzM3NkVuM0xiZENyMzJ1eExMZ2twMXdBazFfWExJZ9IBngFBVV95cUxOSU5RWGR0MHo2RFowUDhIZERMaWV2Rnk4T0xCdGh6VjNjd0VZRHZ6RE9GdHZjZkxVTk43VHdmT0RyeHVFNVJDNks4RGdSSjg2LXB2Z1FTQnRlRzZCOUdnSW5SS1lhR2l6OVZJM1pDNk8wbkI1aHpnRFE5YlBsWVNMV3FGazRqaVJYVHhoUG1kNWVQRGdONGl1UEVmdFFBQQ?oc=5",
-    "intensidad": 7.0,
-    "fecha": "2026-10-16",
-    "nivel_fuente": "ALTA"
-  },
+  "declaracion_otro": null,
   "patron_historico_4sem": [
     {
       "fecha": "2026-09-20",
@@ -1105,25 +1021,25 @@
     },
     {
       "fecha": "2026-09-23",
-      "tension": 35,
-      "n_notas": 61,
+      "tension": 34,
+      "n_notas": 63,
       "n_alto_impacto": 34,
-      "n_medio_impacto": 27,
+      "n_medio_impacto": 29,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-24",
-      "tension": 43,
-      "n_notas": 64,
-      "n_alto_impacto": 45,
+      "tension": 44,
+      "n_notas": 67,
+      "n_alto_impacto": 48,
       "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-09-25",
       "tension": 42,
-      "n_notas": 56,
-      "n_alto_impacto": 37,
+      "n_notas": 58,
+      "n_alto_impacto": 39,
       "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
@@ -1298,9 +1214,9 @@
     {
       "fecha": "2026-10-17",
       "tension": 0,
-      "n_notas": 1,
+      "n_notas": 2,
       "n_alto_impacto": 0,
-      "n_medio_impacto": 1,
+      "n_medio_impacto": 2,
       "n_bajo_impacto": 0
     }
   ],
@@ -1320,8 +1236,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/13/claudia-sheinbaum-valora-comprar-mas-gas-a-ee-uu-y-reducir-el-deficit-que-preocupa-a-donald-trump.html",
-      "nota_texto": "Claudia Sheinbaum valora comprar más gas a EE.UU. y reducir el déficit que preocupa a Donald Trump",
+      "nota_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
+      "nota_texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1369,8 +1285,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPN1pzRXQ2OGs4UFVmcVVzUTY2Y0NnQzkzMVJsWFJnR19ydWJhQWRrYnJNNmRuZUkzRTIzRGhtM0k3SDZVaUZwdmcxMU45aEJkYzloby02TUphRWgwdTM3QW81S2MzVEQ4WmNoV3hwMF9wcS1GUHFRQzdqY2dSUzg4cmxpZmJ0bzhsZ29keU4xRDN1TFNVYVM5Z2hkN1dWWjFrckV4MUMtekxQbFI5cDhDWEgwdG1BQTFfOW9zNVd3THU1cDcwTGVyVlh3WdIB0AFBVV95cUxPQWtrdGtwMHNMWGZ4OWVFU2JUbGNGZDNEb2VPb1BtVGF5eEE1akJKSGk5UE03NC1ibUU4UW01d2tHNGVybHl5bEZyMnpkRU1IUEpkbjRYTU5yLWlzRWxPRjR1UWFpQ3BzeTZudlhYZUQ2c3lOak13ckZMWWJDclhCQ2h5R1ItY0xTZV9NQ3M0NFRvTnZZN1AzU2hGTWIta1pkcEJiRXpweEFCRkFKLXNJcHVCd2c3LUFBczZEdFNUYmxwLXZoaVgxdE0xaW15OTlU?oc=5",
-      "nota_texto": "Estefanía Mercado se registra para buscar la coordinación municipal de Morena en Playa del Carmen - Por Esto!",
+      "nota_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5oNlFRSGwxRUxIa185NGhXS2h0QVFCU25OaEYzNTVjSjJjNG9FLWZ0eHNxcUZGY0w1d01yVF9oWU1yUXZrT3IyNEZzQmVidEFDSmh1MHZOUWppOHZ2RnFqMFZVR2ticnA2Tmg4QWRYMXBocWp4NS0tNUhLTQ?oc=5",
+      "nota_texto": "Morena reúne a representantes: ¿Qué pasó en Campeche? - La Chispa",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1786,7 +1702,7 @@
   ],
   "tablero_semana_inicio": "2026-10-12",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "sin_mananera",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1846,5 +1762,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-17 06:01"
+  "hora_corte_publicada": "2026-10-17 10:43"
 }
