@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-17T10:43:13.024921-06:00",
+  "generado_en": "2026-10-17T12:03:31.543058-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 9,
   "baja_confianza": false,
-  "tension_nacional": 8,
+  "tension_nacional": 6,
   "tension_anomalia": {
-    "z": -2.6,
+    "z": -2.82,
     "nivel": "baja",
     "media_periodo": 32.1,
     "dias_base": 27
@@ -13,7 +13,7 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 90,
+      "peso_pct": 89,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
       "n_temas": 5,
@@ -24,12 +24,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWG5YQzNKZDJtYllVOWo4OE9scXhYSFNya3kzV2h1SDFBeWc5LUxXSi1XcV9XMFRIYTFxMk1wRy1vM0U4ZkJZUHdBc0ZnU3NRMHZKaGVITDNNT01PVEFDVHhycWlVTldPU2t2TktpeEFZdVRFU3ZtMFJkNjJyTDkwMExkRGRJdnl2N2p2MktnMlJlN2VnTXpsektHbkZoZw?oc=5",
           "intensidad": 7.0,
           "medio": "El Universal"
-        },
-        {
-          "texto": "Fiscalía investiga como feminicidio muerte de doctora del IMSS-Bienestar en Veracruz",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/16/fiscalia-investiga-como-feminicidio-muerte-de-doctora-del-imss-bienestar-en-veracruz.html",
-          "intensidad": 6.0,
-          "medio": "yucatan.com.mx"
         },
         {
           "texto": "Tatiana Clouthier usa libro de López Obrador para criticar a Clara Luz Flores - www.noroeste.com.mx",
@@ -66,12 +60,18 @@
           "fuente_url": "https://imparcialoaxaca.mx/policiaca/caen-presuntos-extorsionadores-del-disenador-elvis-guerra/",
           "intensidad": 5.0,
           "medio": "imparcialoaxaca.mx"
+        },
+        {
+          "texto": "Ocho de 11 equipos de Morena en Michoacán se suman a Carlos Torres Piña rumbo a 2027",
+          "fuente_url": "https://heraldodemexico.com.mx/edicion-impresa/2026/10/17/ocho-de-11-equipos-de-morena-en-michoacan-se-suman-carlos-torres-pina-rumbo-2027-910442.html",
+          "intensidad": 5.0,
+          "medio": "heraldodemexico.com.mx"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 10,
+      "peso_pct": 11,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -823,13 +823,16 @@
       "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
       "motivo": "Legisladores de Morena expresan su desacuerdo con los destapes de las “corcholatas” estatales - Infobae",
       "peso": 10.0,
-      "n_temas_agrupados": 2,
+      "n_temas_agrupados": 4,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOOTRyVWttRVFyWVotZzl2QzQ0R3FwTmJHZkNNOGRLVlNfbHFuLVJqV0lZRFZjWF81b091ak9TYWVvaGtnMDJEdlpZNlBpN29EWng3X0pFODdjYmhvNlM0VEJ5S0tIRTlqa193ZGpIempQUlp1WnRJMWRicW1nWDhUX3p1MzJBeVYtX1pqMzNWRkNCbmhfVTN5R3hPTi1UVWF2Z3NyQnUzTnJfWVdyNk90eU0tTkV4WjFZMlBxWDJmeGYtQzVJTnFrdWxqTjVRZWvSAeoBQVVfeXFMT0duOURLbGQxTmFCVHplM1dsd2t4SEhpdkxUYXVYczFTYkJSdlpGcklYMjRDMlhZQm5WZ2FsMlRQYXhWSU80SExYUTQwdUZVX196RXRvVTZFVGdNRWx2MU5yR2liYnBrQ0E1S281LWM0ekJ3Ylk2MTliU1N3dU5wNHdSeHZpMDFpcXBKdmljMERrZ1dxTVBKOE5GT0x0NnlQQ09sbTJfZFJobTVrTXVPZFlXZV9jVlp0TUJYdUtGZ2FSR1hoWUE5UkpLTmtObC1QMkVtTlo1czhkcDhJeEEtalllZEVMQmxfcHZ3?oc=5",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
+      }
     },
     {
       "id": "visa-de-andy",
@@ -838,7 +841,7 @@
       "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
       "motivo": "Le brinca a Andy López Beltrán un rival... ¿o sparring? - El Universal",
       "peso": 7.0,
-      "n_temas_agrupados": 2,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
@@ -1214,9 +1217,9 @@
     {
       "fecha": "2026-10-17",
       "tension": 0,
-      "n_notas": 2,
+      "n_notas": 3,
       "n_alto_impacto": 0,
-      "n_medio_impacto": 2,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
@@ -1274,22 +1277,22 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 75,
-      "y_lunes": 77,
-      "x_hoy": 80,
-      "y_hoy": 75,
+      "x_lunes": 80,
+      "y_lunes": 75,
+      "x_hoy": 85,
+      "y_hoy": 74,
       "delta_pts": 1.5,
       "alcance": 12,
       "n_alto": 8,
-      "n_medio": 8,
+      "n_medio": 9,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5oNlFRSGwxRUxIa185NGhXS2h0QVFCU25OaEYzNTVjSjJjNG9FLWZ0eHNxcUZGY0w1d01yVF9oWU1yUXZrT3IyNEZzQmVidEFDSmh1MHZOUWppOHZ2RnFqMFZVR2ticnA2Tmg4QWRYMXBocWp4NS0tNUhLTQ?oc=5",
-      "nota_texto": "Morena reúne a representantes: ¿Qué pasó en Campeche? - La Chispa",
+      "apagado": false,
+      "nota_url": "https://www.tabascohoy.com/morena-puede-ganar-solo-pero-coalicion-fortalece-triunfos-higinio-martinez/",
+      "nota_texto": "Morena puede ganar solo, pero coalición fortalece triunfos: Higinio Martínez",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 5,
+      "dias_activo": 6,
       "trayectoria": [
         {
           "fecha": "2026-10-12",
@@ -1315,9 +1318,14 @@
           "fecha": "2026-10-16",
           "x": 80,
           "y": 75
+        },
+        {
+          "fecha": "2026-10-17",
+          "x": 85,
+          "y": 74
         }
       ],
-      "fecha_apagado": "2026-10-16"
+      "fecha_reactivado": "2026-10-17"
     },
     {
       "id": "andy",
@@ -1578,8 +1586,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNaWtDeDdaaUdOenpPMFQ1RThwdld1aFJ1NDhUUHJmX0ZFbl9wdUh6djBDMHNPcm5ualpJNXNLMmMzWUdLT3dlRTNYS3FscmVsVG1pZFBFV0Q0WlJjaV9KLWh0SUtJdUdvTThfUl9LWEVtcElLNDlhN0RkZ1ctZ3FzVjcxRmJROTVKVjVBUkxQSm5iSTF2Q19vcnp5aVNyOXFEQURtT2RDRjdPOWJwVmwyZmluS2tJOVgwczNsZENVNkZaVkM3RHJodzFQSURIMnlCVFpIelU2WjVqWUJBcGs3Z3NOOTZRN0dxcjEzSGJ3?oc=5",
-      "nota_texto": "Estefanía Mercado participa en reunión con Rosa Icela Rodríguez para impulsar la paz y la seguridad en Playa del Carmen - Noticaribe",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
+      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1762,5 +1770,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-17 10:43"
+  "hora_corte_publicada": "2026-10-17 12:03"
 }
