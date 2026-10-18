@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-18T10:50:05.639325-06:00",
+  "generado_en": "2026-10-18T12:00:37.069261-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 12,
   "baja_confianza": false,
-  "tension_nacional": 21,
+  "tension_nacional": 23,
   "tension_anomalia": {
-    "z": -1.19,
+    "z": -0.97,
     "nivel": "normal",
     "media_periodo": 31.6,
     "dias_base": 27
@@ -13,18 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Social",
-      "peso_pct": 43,
+      "peso_pct": 34,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
-      "n_notas": 5,
+      "n_notas": 4,
       "notas": [
-        {
-          "texto": "🔔 ALERTA — Trump criminaliza a inmigrantes en su intento de animar a votantes republicanos; dice que llegarán más si demócratas ganan intermedias - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxPQTNPQTc1LVN0MjBOVUw1TEdOMmNkcGQ5Mll3OG01eHAzYlo4NXZWalRPMXV5UXl0dFRuNnJJYTlfZHJRaG5wemZVRU50a1llSWxTZHZheFotY2tZN05KUnJFbktxX1d5V2cyWDhMcVJhZzJTdnpYdzh3cjJTczlrOXRVVWJVeXROcEZ1RjNHanl3RXNhUUlsTDV5a0dmRHhfeHBSa2c0Z2pKMEl4eEVhZkRQLUZiTXZGV0dYTDNFR3daUHIyRlNjWkNXcUZaWEVvQWNqWnBjT2c1VEN2MFV4MGRSQjd2MkpERFU5RE9JMU0zc0xDQUxFdGtYX3BpM29oZkx1ODRsQmtyc0NZR2puYnZnVTfSAZQCQVVfeXFMT0EzT0E3NS1TdDIwTlVMNUxHTjJjZHBkOTJZdzhtNXhwM2JaODV2VmpUTzF1eVF5dHRUbjZySWE5X2RyUWhucHpmVUVOdGtZZUlsU2R2YXhaLWNrWTdOSlJyRW5LcV9XeVdnMlg4THFSYWcyU3Z6WHc4d3IyU3M5azl0VVViVXl0TnBGdUYzR2p5d0VzYVFJbEw1eWtHZkR4X3hwUmtnNGdqSjBJeHhFYWZEUC1GYk12RldHWEwzRUd3WlByMkZTY1pDV3FGWlhFb0FjalpwY09nNVRDdjBVeDBkUkI3djJKRERVOURPSTFNM3NMQ0FMRXRrWF9waTNvaGZMdTg0bEJrcnNDWUdqbmJ2Z1U3?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
-        },
         {
           "texto": "🔔 ALERTA — Trump insta a republicanos a votar para que migrantes \"criminales\" no vuelvan a EU - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQak5GeDlWb0FQRmRHdWZOMmhfbnhadFV3YjNqYUdUc0Fkel9PdFc4S0hFd2pzREhoajVKWUY2emROX09udHRHa0ZDUGFCVnBJX18wMnB1VDRqUFJvaXRYNURRcXA5Z0gzX2hYdE5LNFhha3M2OWRMZ3lGZFhYb3lBeXJTNlJua1A4cnE4eV9QU3B3YzN2clHSAZYBQVVfeXFMTjBRaU9YVVVsbkpsSER0Y01RMTJYb2xVeWhuVVRBUkNGT01tVmp3NTB2R21kZ0ZsUkxiNUlLQWdKMUFBWlQ2ZDlfc2gtaEpBQ24wVzdJOEVwRG9DOE9ZTXFvcTNpbXJRV0lVWDFvWnBVbFNYeF8tNkNCY0thRkJfQTFsMk9wSFNEUlkxY0lVQW1lUmJ4QnNB?oc=5",
@@ -53,7 +47,7 @@
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 29,
+      "peso_pct": 28,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
       "n_temas": 4,
@@ -87,17 +81,23 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 10,
+      "peso_pct": 20,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 1,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Senado impulsa la reanudación de interparlamentarias con EU",
           "fuente_url": "https://www.jornada.com.mx/2026/10/18/politica/007n4pol?partner=rss",
           "intensidad": 7.0,
           "medio": "jornada.com.mx"
+        },
+        {
+          "texto": "⚡ Posible presión de Marcelo Ebrard — Exige Manque Granados a Marcelo Ebrard cuentas sobre aranceles, T-MEC, inversión y apoyos a empresas de Chihuahua - Pausa.MX",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPR3hCMVpudDQwME9ZYU95WllheUVadl9CNGRKa0Z5VlplR2ZJZGpnWklmME9UNDJRZjk2SklxbjNNbUtzaDJtUmtaTjNBM1VHODdfVE5vbmRaYl9lckRHOUFiSFNpMEF3MUoyLWJhQnh2SlZFTVZfVThCSG1FV1dDTHk2WENrTlBpSERDaGlYcXUycEphMnZLTHpNRTR4dUFVSWw0QTk4VEd0SVBiYVBoLWRhQ0o0a2RRX3JxaTJpT29XdTNoZDVkRw?oc=5",
+          "intensidad": 7.0,
+          "medio": "Pausa.MX"
         }
       ]
     },
@@ -119,7 +119,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 9,
+      "peso_pct": 8,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
       "n_temas": 1,
@@ -842,14 +842,14 @@
       "nombre": "Trump y México: declaraciones y presión",
       "categoria": "Relación Bilateral",
       "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "🔔 ALERTA — Trump criminaliza a inmigrantes en su intento de animar a votantes republicanos; dice que llegarán más si demócratas ganan intermedias - El Universal",
-      "peso": 30.0,
+      "motivo": "🔔 ALERTA — Trump insta a republicanos a votar para que migrantes \"criminales\" no vuelvan a EU - Milenio",
+      "peso": 24.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxPQTNPQTc1LVN0MjBOVUw1TEdOMmNkcGQ5Mll3OG01eHAzYlo4NXZWalRPMXV5UXl0dFRuNnJJYTlfZHJRaG5wemZVRU50a1llSWxTZHZheFotY2tZN05KUnJFbktxX1d5V2cyWDhMcVJhZzJTdnpYdzh3cjJTczlrOXRVVWJVeXROcEZ1RjNHanl3RXNhUUlsTDV5a0dmRHhfeHBSa2c0Z2pKMEl4eEVhZkRQLUZiTXZGV0dYTDNFR3daUHIyRlNjWkNXcUZaWEVvQWNqWnBjT2c1VEN2MFV4MGRSQjd2MkpERFU5RE9JMU0zc0xDQUxFdGtYX3BpM29oZkx1ODRsQmtyc0NZR2puYnZnVTfSAZQCQVVfeXFMT0EzT0E3NS1TdDIwTlVMNUxHTjJjZHBkOTJZdzhtNXhwM2JaODV2VmpUTzF1eVF5dHRUbjZySWE5X2RyUWhucHpmVUVOdGtZZUlsU2R2YXhaLWNrWTdOSlJyRW5LcV9XeVdnMlg4THFSYWcyU3Z6WHc4d3IyU3M5azl0VVViVXl0TnBGdUYzR2p5d0VzYVFJbEw1eWtHZkR4X3hwUmtnNGdqSjBJeHhFYWZEUC1GYk12RldHWEwzRUd3WlByMkZTY1pDV3FGWlhFb0FjalpwY09nNVRDdjBVeDBkUkI3djJKRERVOURPSTFNM3NMQ0FMRXRrWF9waTNvaGZMdTg0bEJrcnNDWUdqbmJ2Z1U3?oc=5",
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQak5GeDlWb0FQRmRHdWZOMmhfbnhadFV3YjNqYUdUc0Fkel9PdFc4S0hFd2pzREhoajVKWUY2emROX09udHRHa0ZDUGFCVnBJX18wMnB1VDRqUFJvaXRYNURRcXA5Z0gzX2hYdE5LNFhha3M2OWRMZ3lGZFhYb3lBeXJTNlJua1A4cnE4eV9QU3B3YzN2clHSAZYBQVVfeXFMTjBRaU9YVVVsbkpsSER0Y01RMTJYb2xVeWhuVVRBUkNGT01tVmp3NTB2R21kZ0ZsUkxiNUlLQWdKMUFBWlQ2ZDlfc2gtaEpBQ24wVzdJOEVwRG9DOE9ZTXFvcTNpbXJRV0lVWDFvWnBVbFNYeF8tNkNCY0thRkJfQTFsMk9wSFNEUlkxY0lVQW1lUmJ4QnNB?oc=5",
       "actor_vinculado": null
     },
     {
@@ -866,8 +866,8 @@
       "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNRXlQUm8wekx0TTI2eVZiejA0OGdNMGxFaFdXSHRuSDNMdjFsbUE0cGttelBzb1VjUGE4YUk1am52YTJLNXFteXdEd2VFNFZWSDZxNy15b1lJQTVxb2lUc2J6SF9qdnVwU1VfNkhZeFhiWjVtNW9RQ0tWd2ZFNXZrNEZUT09GTzFxUl80WkxoSnppLTZqRkJ5TW4zaXpVam4xSFRPTW1LUXhETnpVYU4wYksteTZPNUtzUHFiXy14MjN3ODAwZVdCZ1lrRQ?oc=5",
       "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
+        "id": "ebrard",
+        "nombre": "Marcelo Ebrard"
       }
     },
     {
@@ -914,12 +914,12 @@
       "fuente_url": "https://www.jornada.com.mx/2026/10/18/politica/007n3pol?partner=rss"
     },
     {
-      "id": "auto-4ba28512ef",
-      "nombre": "Diputada de Morena presenta iniciativa para que cuerpos policiales reciban ayuda",
+      "id": "auto-a3bb771193",
+      "nombre": "¡Del exilio del futbol a la política! 'El Gullit' Peña busca la Coordinación de ",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbk4xU0IweU5xR2R4bzRhQ3ZZVjFIRkVocjJuZE5INl82NXA2WTEzN3habV85dmd2US05Y1d6aE1UWFJEMTdTODNfRTgyZ3lVRWdHLXIzclliTTlLS05MeW9ySFNQV3lmcW5FcjFqVDlmVFpxeTJtQmFfeGRHaWE4Qk5Ga1JmLXAxYmdZekFXek1xOHVlMGJwZFBR0gGaAUFVX3lxTFBuTjFTQjB5TnFHZHhvNGFDdllWMUhGRWhyMm5kTkg2XzY1cDZZMTM3eFptXzl2Z3ZRLTljV3poTVRYUkQxN1M4M19FODJneVVFZ0ctcjNyWWJNOUtLTkx5b3JIU1BXeWZxbkVyMWpUOWZUWnF5Mm1CYV94ZEdpYThCTkZrUmYtcDFiZ1l6QVd6TXE4dWUwYnBkUFE?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNNEp6SGNMVG5IYVR4cmpITXgtUWhXYVNlR3dkMWlvTDlqMVJhSW9JQTNXNFJyQXdleVBNcm9JZXlFOGU3RXRCUXBqdmNhakRtMWpoMDB6UGw1WFBlajF1UnFuSzhUSDV4V1RFSHJSX0JJOU1jeDhLN2RvUnRTOXYyc9IBgAFBVV95cUxNNl9jR3FDdnZoYllTc3FZUExNYWxHZlNEOGd5OWJzZGtHdmMwQlR3RVdqQllxZDdvMWdiOS1KRHZ1RFpFd3ByNk5JWUZBY3pTQkprR3lkQVNGYmVrWk5KaDVPa1ZlZ3JUWUFXaWk5UFktajd4ZGR2Z1RMNThNalltag?oc=5"
     },
     {
       "id": "auto-ba30776324",
@@ -930,12 +930,20 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPblZtU05sbXhFc0d1bjExdE01QUlGRE1KNmpIaE92ZGY5VDlNVTl3TnFTUGlFajFBV1p3NjBnTXl2WTgwMFdfLXJHR2o3aFlLLXlSNGtvSi1ZTkRfWm1HbktsQ05waHdRdFhsOGlvOXJYMGVVdFVuQzZaUnlzU1lqaGkwd183WHlDLWV4bmkxQWVKVHMtRTJ0dEI4ZU1ZREFlWlZrY1ZfNURzOUFCMjJKWVJFUkRZVnVMa216TjVSdXJQbzTSAdcBQVVfeXFMT1BPdzJ1X0dzblhYb2g3Y3Y5RzRpckxaUWlkRWhOdkREdlY2N3pma19UMkkxX08xVDFGdlNHM3JodEVUalJpUVI4YWsyNWZOblQ4c0JWc25CVGVLVENqX0tCR0loZ0x5X0tWUFRqRjcxWk1jNE83VGxnRmtxUUtrYXo0djFhR2hXRzBXM3l2VkcwZDFDbldZRDJvQzl1YzRGQXJuTDBjSlluWHhIam9LTnlaUVgySmw0T0dKcHpyS01JUUxpdVJlQW5UUE9aNmNfZ3RleTFlWXc?oc=5"
     },
     {
-      "id": "auto-b1c48307e6",
-      "nombre": "El gobernador morenista que hizo coincidir al PAN con Palacio, escribe Claudio O",
+      "id": "auto-c65c6910c7",
+      "nombre": "Elección de 2027, el gran reto de Morena por mantener la hegemonía electoral: In",
       "categoria": "Gobernabilidad",
-      "peso": 4.0,
+      "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOZzdIU0VBN2xkdDZTclBjdl9PMVhTLTZaSk9IQk5ZREI1X0pNMWI5OXFsNkgwcHNkNzFveHJybkpkQU5JNENzNnpxTHF3NzdTT3BpV1VyODNkUXNhdmI4VzN5YTM1SFY0ZXVZTEhMUkdGQ0pINHJjaklMYXRQcUlpcjRtQ2hrbHl4V0tQaHVfR1BYcTB4ampNSDhVbmdTWjFqcVZxR1Q0RU9ZcHZsZ2Q0MzhHdGgxcURNQkltSnVvcw?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOc3VHdHVnUHEwMm9vaF9KcDZVa0hmNTBCVDQ4cHkxa3NscGFOM3hRZjZiWVE2UGt4aTd1cFhHNXQxYVhBZVhueU1wUlN0VzcxODZ6RmdpYWN1cXlnQUdWcFZ6cHR0XzFXSWFCZFFhSmF5MXVkUWVKQTMxRVhLNzBvSEhHMjVtQndLODZrRVMteTVwb01yQ3RJYzhQcHp5WHJCTmhtZzliMTBlT04yRXVNOUpCMkExMkd6aG5kVDA3b2Z2U2FtcVJ5SzdBN19fZGVWZEhpS3k2a0V3UFFNVmY0akVDbExiWEFncTVCdFVXU1VtU3ZjWlQxNWxn0gGOAkFVX3lxTE5HS1N4c0d2ZG90VUhXR3BKRjVXUGpSbFhnT2psSTFPRGJmMnljXzJVajQweHc3N1hGYnJ2ZTVucU1jOE1oLWNQbzFTTGJla1lhbE5lNWhKUjJ4elgtUzhmNWdwTTc3cGpkQ3dYai1yTVRJV1k2U19pTVpOcGpRMGh6djVWMHFFTy1VWUJsUFdlbEZrQlRuNW9TNnJUZ0o0eVk0T3dyXzBiV3h6WE9naDJBWE1PeXRLRkp0amZkWjlPb2hwV1lacXotbm90d3F1eWpWOGF6OVNiU3RMWlA3WHBtRlRQMl9MQ3ZHZk55TmJkVWZvVzdXNW5RR0s0OXJqWlhEeFpsaTV2UDFZeEFhQQ?oc=5"
+    },
+    {
+      "id": "auto-9c32adc4bd",
+      "nombre": "Anuncia Mara Lezama nuevas rutas y más vuelos internacionales hacia el Caribe Me",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOVjR1S0VmZHFsRkNmVUxOQ1JDeS1xM0RtTzcxX3hOekdSYllQOHFkMGttYTd0M1l0NkZEeGJpaHp2VTVlc2NFWmJyd1NjaWhtUjJHbHhVQU1MSHBkSGNfR3NRQVl4UGR2SEdYRWxObUttM0t0WDh4QUduZUMyNGd1d1ZuQ3djdDltOHZZdjJGNjhIckMzcUg4akRxUVM0VVVaT3ROVHRZWUFtb21XOXB3QlQtYVBPcVRENlpiRDJoOGVEQ1JsWVJvcA?oc=5"
     }
   ],
   "temas_retomados": [
@@ -998,7 +1006,14 @@
     }
   ],
   "declaracion_presidenta": null,
-  "declaracion_otro": null,
+  "declaracion_otro": {
+    "actor": "Higinio Martínez Miranda",
+    "texto": "Defensa de soberanía debe estar por encima de diferencias políticas: Higinio Martínez - El Universal",
+    "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNaG94VzZZYmxPNnJVUE1RLUhxa0JXNzFRX1dSUE4wdHZaaS1jeGFPTDBOcXVnR3lTZ2w0NnEwWW81eHJGOWxMT1ZpQUg2WHE5ajlERjEyQ1ZCUlVrVVg4dm9mN2IzU2N2bl93aDgwUWt6TzBZR3BEU1JYZXVLUGx1TEEzT3RBX05CMWY2OGhCQWs1WXJjdGdhc21zQWtUU1RBUGFoSnR5OVlxWXhLb0luNEh5UUllV2tlX2RNZktyVldKcTZmUG1kM1FJdERBa3VZYUtEb2V6b0Fha3ZPcnFuazBrSXRIbTNsVGphRUdjMjR5U3FHWWg2dGR0UdIBjwJBVV95cUxOZ0dpR0RtMTZGRUNRM1JqRmhtZzItZHVIbWN1cGtHOHZhN1ZWa3g4SUlaaEZHSWZqaVAxUVlCekU2WGdzV3RfRmRtZ1BvZU53Wk1iNFlKUjNUNFMzYi1WRm5nOFZLYlduZFBqTVdkaWhndG4wcVNiYlZGdlVqdmF2ZGR4MW9BNjVtM1dPcHpXRzdzVFVrd2ZFMW9XdjFCSDllbUJoMlhFcDNhcF9RcHpnMnVpMTgyd3lEUzExaDJQcFA5N1lHLW5Uamg2WGg2SFEzSHE3WURWRllvazlYem5HUFBENlM1VC05dnF2bHhEdmpFVlpteFoxTFhNTGphOFBXclRFOWFDN1lpRF9aVDBn?oc=5",
+    "intensidad": 7.0,
+    "fecha": "2026-10-18",
+    "nivel_fuente": "ALTA"
+  },
   "patron_historico_4sem": [
     {
       "fecha": "2026-09-21",
@@ -1218,9 +1233,9 @@
     },
     {
       "fecha": "2026-10-18",
-      "tension": 17,
-      "n_notas": 9,
-      "n_alto_impacto": 1,
+      "tension": 20,
+      "n_notas": 10,
+      "n_alto_impacto": 2,
       "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
@@ -1282,8 +1297,7 @@
           "x": 95,
           "y": 75
         }
-      ],
-      "fecha_reactivado": "2026-10-18"
+      ]
     },
     {
       "id": "sheinbaum",
@@ -1300,8 +1314,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxORnh4SzRkY2d4bVEwNVVyTERoQXl2YWxoeUF3QVFPdFdxNmNDZS11ajRfa0R4eG5PQ3A0Vi1WMlRBNVcydmExVUpsZ0VXMk9ZdUpLN1VLbjI2cmJBVW9zWG5CcGFZNHBhejc0U3pUMFd0bGR1VWFWZHZLTktEMnBndngxQlJZUElPaWJuekpXcVo4RFpwQTVORFR2TmJRNm5leG91OVRQM20yOEhFWjFfQ2pvakZYWHFyZDhKSjQxREx5SnhVZU1hZDBheXNoQ0N1UWpHcW02RXdwX296S2JmLUtHTm03bm9Q0gHuAUFVX3lxTE5aSnFYaWZlNEduT21XUmh1LVNkNkh4R00xbU1Xak1yakxNNXBvRVd6N0JDekZKaE5IZWdHenpKQWtxMnhKQmZON204RDBUM3pOd3Fha1pJM2MzUEMzNmtHOFZzZ2Q5c3V1TXJ3NEJibGNtdUJfZGpaMHNMNExOU04zZmdPM0lUTGJZNmpsQ2E5c0c3Ql8xeWpWTFZza2VIYmszeWo1S3VDR3hHcjdIeU01TXU0RGlFMzhrNXMzaXNhZEJHMVBlNkJ6S0w5MWU1MEdXT3JRM1hxTVQxT2NLMndKY05iZVRGU2I3a19lOXc?oc=5",
-      "nota_texto": "Presidenta Sheinbaum Pardo anuncia visitas sorpresa a hospitales del IMSS-Bienestar y reconoce problemas de desabasto - Por Esto!",
+      "nota_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
+      "nota_texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
@@ -1423,6 +1437,45 @@
       "fecha_apagado": "2026-10-15"
     },
     {
+      "id": "ebrard",
+      "nombre": "Marcelo Ebrard",
+      "iniciales": "ME",
+      "x_lunes": 10,
+      "y_lunes": 100,
+      "x_hoy": 14,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 3,
+      "n_alto": 3,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNd1IycFIweDJ0UHdhOC04NW42TS05X1ZfZWx0ajEwRGN5bzJWWTBEZldlZ0dHNHk1OTdXY2t2R09zV0owbWNtSUtJSFNoT2JYYXBwZEp6ODZ3SVpQU3FjWWs3TXV5ZGFVRTlKNUJhNmxNUU5BT1hyNDJCRGhwekRBNS03cTBhaDJubDZDalpyRzgzLTdQ0gGaAUFVX3lxTE1WVWFnM0doeE9pS1ZvQVFmc3RrMS1YS084QmZCZ2x5YUtfY2YzY09RYlR5SmlXZkJrNFIydHVWNlhkeGRHSlZseWpQSWZsMk00MF9yZFg4X3d6blBPVjNIUmVIcTh4SlRjNXhQdTFiMlEtb29YN3A4U2dHNG5veXc5RmpjaFFZNHhvbFJnNnhrRTRBUTJYOVNTRnc?oc=5",
+      "nota_texto": "Marcelo Ebrard aseguró que el T-MEC está “blindado” - Por Esto!",
+      "es_nuevo": false,
+      "categoria": "Economía",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-13",
+          "x": 5,
+          "y": 100
+        },
+        {
+          "fecha": "2026-10-14",
+          "x": 10,
+          "y": 100
+        },
+        {
+          "fecha": "2026-10-18",
+          "x": 14,
+          "y": 100
+        }
+      ],
+      "fecha_reactivado": "2026-10-18"
+    },
+    {
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
@@ -1463,8 +1516,7 @@
           "x": 38,
           "y": 69
         }
-      ],
-      "fecha_reactivado": "2026-10-18"
+      ]
     },
     {
       "id": "rocio_nahle_garcia",
@@ -1555,6 +1607,45 @@
       "fecha_apagado": "2026-10-17"
     },
     {
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "iniciales": "RI",
+      "x_lunes": 24,
+      "y_lunes": 50,
+      "x_hoy": 29,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 5,
+      "n_alto": 0,
+      "n_medio": 6,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNaWtDeDdaaUdOenpPMFQ1RThwdld1aFJ1NDhUUHJmX0ZFbl9wdUh6djBDMHNPcm5ualpJNXNLMmMzWUdLT3dlRTNYS3FscmVsVG1pZFBFV0Q0WlJjaV9KLWh0SUtJdUdvTThfUl9LWEVtcElLNDlhN0RkZ1ctZ3FzVjcxRmJROTVKVjVBUkxQSm5iSTF2Q19vcnp5aVNyOXFEQURtT2RDRjdPOWJwVmwyZmluS2tJOVgwczNsZENVNkZaVkM3RHJodzFQSURIMnlCVFpIelU2WjVqWUJBcGs3Z3NOOTZRN0dxcjEzSGJ3?oc=5",
+      "nota_texto": "Estefanía Mercado participa en reunión con Rosa Icela Rodríguez para impulsar la paz y la seguridad en Playa del Carmen - Noticaribe",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 5,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-13",
+          "x": 24,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-15",
+          "x": 29,
+          "y": 50
+        }
+      ],
+      "fecha_apagado": "2026-10-16"
+    },
+    {
       "id": "amilcar_olan_aparicio",
       "nombre": "Amílcar Olán Aparicio",
       "iniciales": "AO",
@@ -1597,45 +1688,6 @@
         }
       ],
       "fecha_apagado": "2026-10-18"
-    },
-    {
-      "id": "rosa_icela",
-      "nombre": "Rosa Icela Rodríguez",
-      "iniciales": "RI",
-      "x_lunes": 24,
-      "y_lunes": 50,
-      "x_hoy": 29,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 5,
-      "n_alto": 0,
-      "n_medio": 6,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
-      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-12",
-          "x": 5,
-          "y": 50
-        },
-        {
-          "fecha": "2026-10-13",
-          "x": 24,
-          "y": 50
-        },
-        {
-          "fecha": "2026-10-15",
-          "x": 29,
-          "y": 50
-        }
-      ],
-      "fecha_apagado": "2026-10-16"
     },
     {
       "id": "trump",
@@ -1704,40 +1756,6 @@
         }
       ],
       "fecha_apagado": "2026-10-15"
-    },
-    {
-      "id": "ebrard",
-      "nombre": "Marcelo Ebrard",
-      "iniciales": "ME",
-      "x_lunes": 6,
-      "y_lunes": 100,
-      "x_hoy": 12,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 2,
-      "n_alto": 2,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNd1IycFIweDJ0UHdhOC04NW42TS05X1ZfZWx0ajEwRGN5bzJWWTBEZldlZ0dHNHk1OTdXY2t2R09zV0owbWNtSUtJSFNoT2JYYXBwZEp6ODZ3SVpQU3FjWWs3TXV5ZGFVRTlKNUJhNmxNUU5BT1hyNDJCRGhwekRBNS03cTBhaDJubDZDalpyRzgzLTdQ0gGaAUFVX3lxTE1WVWFnM0doeE9pS1ZvQVFmc3RrMS1YS084QmZCZ2x5YUtfY2YzY09RYlR5SmlXZkJrNFIydHVWNlhkeGRHSlZseWpQSWZsMk00MF9yZFg4X3d6blBPVjNIUmVIcTh4SlRjNXhQdTFiMlEtb29YN3A4U2dHNG5veXc5RmpjaFFZNHhvbFJnNnhrRTRBUTJYOVNTRnc?oc=5",
-      "nota_texto": "Marcelo Ebrard aseguró que el T-MEC está “blindado” - Por Esto!",
-      "es_nuevo": false,
-      "categoria": "Economía",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-13",
-          "x": 6,
-          "y": 100
-        },
-        {
-          "fecha": "2026-10-14",
-          "x": 12,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-10-15"
     }
   ],
   "tablero_semana_inicio": "2026-10-12",
@@ -1777,6 +1795,14 @@
   ],
   "declaracion_otro_historial": [
     {
+      "actor": "Higinio Martínez Miranda",
+      "texto": "Defensa de soberanía debe estar por encima de diferencias políticas: Higinio Martínez - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNaG94VzZZYmxPNnJVUE1RLUhxa0JXNzFRX1dSUE4wdHZaaS1jeGFPTDBOcXVnR3lTZ2w0NnEwWW81eHJGOWxMT1ZpQUg2WHE5ajlERjEyQ1ZCUlVrVVg4dm9mN2IzU2N2bl93aDgwUWt6TzBZR3BEU1JYZXVLUGx1TEEzT3RBX05CMWY2OGhCQWs1WXJjdGdhc21zQWtUU1RBUGFoSnR5OVlxWXhLb0luNEh5UUllV2tlX2RNZktyVldKcTZmUG1kM1FJdERBa3VZYUtEb2V6b0Fha3ZPcnFuazBrSXRIbTNsVGphRUdjMjR5U3FHWWg2dGR0UdIBjwJBVV95cUxOZ0dpR0RtMTZGRUNRM1JqRmhtZzItZHVIbWN1cGtHOHZhN1ZWa3g4SUlaaEZHSWZqaVAxUVlCekU2WGdzV3RfRmRtZ1BvZU53Wk1iNFlKUjNUNFMzYi1WRm5nOFZLYlduZFBqTVdkaWhndG4wcVNiYlZGdlVqdmF2ZGR4MW9BNjVtM1dPcHpXRzdzVFVrd2ZFMW9XdjFCSDllbUJoMlhFcDNhcF9RcHpnMnVpMTgyd3lEUzExaDJQcFA5N1lHLW5Uamg2WGg2SFEzSHE3WURWRllvazlYem5HUFBENlM1VC05dnF2bHhEdmpFVlpteFoxTFhNTGphOFBXclRFOWFDN1lpRF9aVDBn?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-10-18",
+      "nivel_fuente": "ALTA"
+    },
+    {
       "actor": "Marcelo Ebrard",
       "texto": "México exporta, pero necesita fortalecer su industria propia: Marcelo Ebrard - MILENIO",
       "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNNEkwbU9VOHYwdTNoTGJYQnV3ZS1paTh2ajhfQU91aFpjTjJUQmt6c3YyblRBSmZhR3lkc2NBUG50VEctNHBIc3F4NEs3X20yTkVBQ3JoM0doNWItUUxMNXVzLU1OVFVWRGMxcnpTNjVCOXRDZk5VU09DTThpZjJVUzM3NkVuM0xiZENyMzJ1eExMZ2twMXdBazFfWExJZ9IBngFBVV95cUxOSU5RWGR0MHo2RFowUDhIZERMaWV2Rnk4T0xCdGh6VjNjd0VZRHZ6RE9GdHZjZkxVTk43VHdmT0RyeHVFNVJDNks4RGdSSjg2LXB2Z1FTQnRlRzZCOUdnSW5SS1lhR2l6OVZJM1pDNk8wbkI1aHpnRFE5YlBsWVNMV3FGazRqaVJYVHhoUG1kNWVQRGdONGl1UEVmdFFBQQ?oc=5",
@@ -1791,16 +1817,13 @@
       "intensidad": 7.0,
       "fecha": "2026-10-15",
       "nivel_fuente": "ALTA"
-    },
-    {
-      "actor": "Andrés Manuel López Obrador ('AMLO')",
-      "texto": "López Obrador: el “aldeano ignorante” - Sin Embargo",
-      "fuente_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9fdk9hMVhzbWVBWVFpWGV5QXRrOVFkbEhmSUpYTUZZU09VZi10MC0zdXRFTkpxUHB4YnVzdGJvdHZCU0ZZZFB6MnFhdGdNNGR4aG5XU0hROEhObmEyVjl3bHZrY1diWWk2NHptR1I3SWhJRnJONnlwdQ?oc=5",
-      "intensidad": 7.0,
-      "fecha": "2026-10-14",
-      "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-18 10:50"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-10-18T10:50:05.639325-06:00",
+    "cambios": [
+      "Nueva declaración relevante (otro actor): Higinio Martínez Miranda"
+    ]
+  },
+  "hora_corte_publicada": "2026-10-18 12:00"
 }
