@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-17T18:00:08.744776-06:00",
+  "generado_en": "2026-10-18T00:01:52.768090-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 9,
+  "n_notas_ventana": 10,
   "baja_confianza": false,
-  "tension_nacional": 28,
+  "tension_nacional": 32,
   "tension_anomalia": {
-    "z": -0.44,
+    "z": 0.05,
     "nivel": "normal",
-    "media_periodo": 32.1,
+    "media_periodo": 31.6,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Economía",
-      "peso_pct": 40,
+      "peso_pct": 46,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 3,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "Descartan que esté paralizado el T-MEC - Cuarto Poder Chiapas",
@@ -36,23 +36,23 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOTGZpY3E4ZmtKQW1iS0VkeWJNVnJJcGFhZlp5X1hCRXpMV0l3TDJuSFBOQ0VsYzM1UTIxV20xcVJhRF9IVnJ5MGdDQWFvVFk1NXlXRkdnaWJjTm9GcG1Mc05ZdnhTWmhsei12X2VTMEc1REUwR0dqcmk1b1JDVjdyRTJSX0dWMzZoaEZ5eGNxOHdxM29rQjFPcGZ1MVJ5bE9oUjJ3QjJSZDBPOVJjRzlsME9NSnJ2eVVJSlJBZnZFaUw1VkMwaFdMVG1Eb1o5VXVUMDB5X0hZaWFJOFppVkV1bjFDUnBnXzltRkxxWnYweXM1ZGVOVE1Fag?oc=5",
           "intensidad": 7.0,
           "medio": "Tribuna Campeche"
+        },
+        {
+          "texto": "Invita Senado a congresistas de EU a retomar diálogo bilateral sobre migración, seguridad y T-MEC - La Jornada",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNRXlQUm8wekx0TTI2eVZiejA0OGdNMGxFaFdXSHRuSDNMdjFsbUE0cGttelBzb1VjUGE4YUk1am52YTJLNXFteXdEd2VFNFZWSDZxNy15b1lJQTVxb2lUc2J6SF9qdnVwU1VfNkhZeFhiWjVtNW9RQ0tWd2ZFNXZrNEZUT09GTzFxUl80WkxoSnppLTZqRkJ5TW4zaXpVam4xSFRPTW1LUXhETnpVYU4wYksteTZPNUtzUHFiXy14MjN3ODAwZVdCZ1lrRQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "La Jornada"
         }
       ]
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 36,
-      "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
-      "tema_principal_id": "morena-coordinadores-2027",
-      "n_temas": 4,
-      "n_notas": 4,
+      "peso_pct": 24,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 3,
+      "n_notas": 3,
       "notas": [
-        {
-          "texto": "Morena  no quiere ganar NL: Clouthier",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/17/politica/007n2pol?partner=rss",
-          "intensidad": 5.0,
-          "medio": "jornada.com.mx"
-        },
         {
           "texto": "Caen presuntos extorsionadores del diseñador Elvis Guerra",
           "fuente_url": "https://imparcialoaxaca.mx/policiaca/caen-presuntos-extorsionadores-del-disenador-elvis-guerra/",
@@ -74,8 +74,30 @@
       ]
     },
     {
+      "categoria": "Social",
+      "peso_pct": 19,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
+      "n_temas": 1,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "🔔 ALERTA — Trump criminaliza a inmigrantes en su intento de animar a votantes republicanos; dice que llegarán más si demócratas ganan intermedias - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxPQTNPQTc1LVN0MjBOVUw1TEdOMmNkcGQ5Mll3OG01eHAzYlo4NXZWalRPMXV5UXl0dFRuNnJJYTlfZHJRaG5wemZVRU50a1llSWxTZHZheFotY2tZN05KUnJFbktxX1d5V2cyWDhMcVJhZzJTdnpYdzh3cjJTczlrOXRVVWJVeXROcEZ1RjNHanl3RXNhUUlsTDV5a0dmRHhfeHBSa2c0Z2pKMEl4eEVhZkRQLUZiTXZGV0dYTDNFR3daUHIyRlNjWkNXcUZaWEVvQWNqWnBjT2c1VEN2MFV4MGRSQjd2MkpERFU5RE9JMU0zc0xDQUxFdGtYX3BpM29oZkx1ODRsQmtyc0NZR2puYnZnVTfSAZQCQVVfeXFMT0EzT0E3NS1TdDIwTlVMNUxHTjJjZHBkOTJZdzhtNXhwM2JaODV2VmpUTzF1eVF5dHRUbjZySWE5X2RyUWhucHpmVUVOdGtZZUlsU2R2YXhaLWNrWTdOSlJyRW5LcV9XeVdnMlg4THFSYWcyU3Z6WHc4d3IyU3M5azl0VVViVXl0TnBGdUYzR2p5d0VzYVFJbEw1eWtHZkR4X3hwUmtnNGdqSjBJeHhFYWZEUC1GYk12RldHWEwzRUd3WlByMkZTY1pDV3FGWlhFb0FjalpwY09nNVRDdjBVeDBkUkI3djJKRERVOURPSTFNM3NMQ0FMRXRrWF9waTNvaGZMdTg0bEJrcnNDWUdqbmJ2Z1U3?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Universal"
+        },
+        {
+          "texto": "🔔 ALERTA — Trump insta a republicanos a votar para que migrantes \"criminales\" no vuelvan a EU - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQak5GeDlWb0FQRmRHdWZOMmhfbnhadFV3YjNqYUdUc0Fkel9PdFc4S0hFd2pzREhoajVKWUY2emROX09udHRHa0ZDUGFCVnBJX18wMnB1VDRqUFJvaXRYNURRcXA5Z0gzX2hYdE5LNFhha3M2OWRMZ3lGZFhYb3lBeXJTNlJua1A4cnE4eV9QU3B3YzN2clHSAZYBQVVfeXFMTjBRaU9YVVVsbkpsSER0Y01RMTJYb2xVeWhuVVRBUkNGT01tVmp3NTB2R21kZ0ZsUkxiNUlLQWdKMUFBWlQ2ZDlfc2gtaEpBQ24wVzdJOEVwRG9DOE9ZTXFvcTNpbXJRV0lVWDFvWnBVbFNYeF8tNkNCY0thRkJfQTFsMk9wSFNEUlkxY0lVQW1lUmJ4QnNB?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
+        }
+      ]
+    },
+    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 13,
+      "peso_pct": 11,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -90,22 +112,6 @@
       ]
     },
     {
-      "categoria": "Social",
-      "peso_pct": 11,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "🔔 ALERTA — Trump criminaliza a inmigrantes en su intento de animar a votantes republicanos; dice que llegarán más si demócratas ganan intermedias - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxPQTNPQTc1LVN0MjBOVUw1TEdOMmNkcGQ5Mll3OG01eHAzYlo4NXZWalRPMXV5UXl0dFRuNnJJYTlfZHJRaG5wemZVRU50a1llSWxTZHZheFotY2tZN05KUnJFbktxX1d5V2cyWDhMcVJhZzJTdnpYdzh3cjJTczlrOXRVVWJVeXROcEZ1RjNHanl3RXNhUUlsTDV5a0dmRHhfeHBSa2c0Z2pKMEl4eEVhZkRQLUZiTXZGV0dYTDNFR3daUHIyRlNjWkNXcUZaWEVvQWNqWnBjT2c1VEN2MFV4MGRSQjd2MkpERFU5RE9JMU0zc0xDQUxFdGtYX3BpM29oZkx1ODRsQmtyc0NZR2puYnZnVTfSAZQCQVVfeXFMT0EzT0E3NS1TdDIwTlVMNUxHTjJjZHBkOTJZdzhtNXhwM2JaODV2VmpUTzF1eVF5dHRUbjZySWE5X2RyUWhucHpmVUVOdGtZZUlsU2R2YXhaLWNrWTdOSlJyRW5LcV9XeVdnMlg4THFSYWcyU3Z6WHc4d3IyU3M5azl0VVViVXl0TnBGdUYzR2p5d0VzYVFJbEw1eWtHZkR4X3hwUmtnNGdqSjBJeHhFYWZEUC1GYk12RldHWEwzRUd3WlByMkZTY1pDV3FGWlhFb0FjalpwY09nNVRDdjBVeDBkUkI3djJKRERVOURPSTFNM3NMQ0FMRXRrWF9waTNvaGZMdTg0bEJrcnNDWUdqbmJ2Z1U3?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
-        }
-      ]
-    },
-    {
       "categoria": "Seguridad Nacional",
       "peso_pct": 0,
       "tema_principal": null,
@@ -116,31 +122,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-20",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 24
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 57
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 2
-        }
-      ]
-    },
     {
       "fecha": "2026-09-21",
       "categorias": [
@@ -800,7 +781,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -809,6 +790,31 @@
         {
           "categoria": "Economía",
           "peso_pct": 13
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 2
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-18",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 64
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 12
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 14
         },
         {
           "categoria": "Social",
@@ -824,17 +830,14 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Ignacio Mier ve viable una reunión interparlamentaria con EU para abordar el T-MEC - Milenio",
-      "peso": 7.0,
+      "peso": 14.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
+      "medios_corroborantes": 2,
+      "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQcUNFYzEzdmo5eEZ0ODdoZzhfQVpyOXN2cVJ5Mm43dzBOczhKWVA5aHFwMURaOWU3NDdQS1BjTWRxb29DRkhKakEtdWp4Wk54ZEpnMEREQUZyVmpfdmRkY2gxVnNtOHZ5QWJfZmhiWkVFX3pkZFNWVHBHMWM3REhXSm5tbnlDMFloQnY3SGR0Y2hobllTcG1jZ1JR0gGaAUFVX3lxTFBxQ0VjMTN2ajl4RnQ4N2hnOF9BWnI5c3ZxUnkybjd3ME5zOEpZUDlocXAxRFo5ZTc0N1BLUGNNZHFvb0NGSEpqQS11anhaTnhkSmcwRERBRnJWal92ZGRjaDFWc204dnlBYl9maGJaRUVfemRkU1ZUcEcxYzdESFdKbm1ueUMwWWhCdjdIZHRjaGhuWVNwbWNnUlE?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
     },
     {
       "id": "trump-agenda",
@@ -842,43 +845,32 @@
       "categoria": "Relación Bilateral",
       "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
       "motivo": "🔔 ALERTA — Trump criminaliza a inmigrantes en su intento de animar a votantes republicanos; dice que llegarán más si demócratas ganan intermedias - El Universal",
-      "peso": 6.0,
+      "peso": 12.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
+      "medios_corroborantes": 2,
+      "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxPQTNPQTc1LVN0MjBOVUw1TEdOMmNkcGQ5Mll3OG01eHAzYlo4NXZWalRPMXV5UXl0dFRuNnJJYTlfZHJRaG5wemZVRU50a1llSWxTZHZheFotY2tZN05KUnJFbktxX1d5V2cyWDhMcVJhZzJTdnpYdzh3cjJTczlrOXRVVWJVeXROcEZ1RjNHanl3RXNhUUlsTDV5a0dmRHhfeHBSa2c0Z2pKMEl4eEVhZkRQLUZiTXZGV0dYTDNFR3daUHIyRlNjWkNXcUZaWEVvQWNqWnBjT2c1VEN2MFV4MGRSQjd2MkpERFU5RE9JMU0zc0xDQUxFdGtYX3BpM29oZkx1ODRsQmtyc0NZR2puYnZnVTfSAZQCQVVfeXFMT0EzT0E3NS1TdDIwTlVMNUxHTjJjZHBkOTJZdzhtNXhwM2JaODV2VmpUTzF1eVF5dHRUbjZySWE5X2RyUWhucHpmVUVOdGtZZUlsU2R2YXhaLWNrWTdOSlJyRW5LcV9XeVdnMlg4THFSYWcyU3Z6WHc4d3IyU3M5azl0VVViVXl0TnBGdUYzR2p5d0VzYVFJbEw1eWtHZkR4X3hwUmtnNGdqSjBJeHhFYWZEUC1GYk12RldHWEwzRUd3WlByMkZTY1pDV3FGWlhFb0FjalpwY09nNVRDdjBVeDBkUkI3djJKRERVOURPSTFNM3NMQ0FMRXRrWF9waTNvaGZMdTg0bEJrcnNDWUdqbmJ2Z1U3?oc=5",
       "actor_vinculado": null
     },
     {
-      "id": "morena-coordinadores-2027",
-      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
+      "id": "auto-a7761b0ff1",
+      "nombre": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó q",
       "categoria": "Gobernabilidad",
-      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
-      "motivo": "Morena  no quiere ganar NL: Clouthier",
-      "peso": 5.0,
+      "resumen": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó que el director del IMSS, Zoé Robledo, ya atiende e investiga el caso de los bebés que fallecieron en el HGZ de Durango. #MILENIO16h con Ady Cabriales - facebook.com",
+      "motivo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 04 de septiembre de 2026 - Gob MX",
+      "peso": 7.0,
       "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/17/politica/007n2pol?partner=rss",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSm10ZnJ0NEZtWXJsc3ZLRldPaHdielNqc3FDUHhZbmhSWWhmVkl4LVU2UTVhWFg2TmxwRE9aSUZrUWVqcFZUbEwtcWxKZ3QzRTBhWEFmZWRPNU0xMWR5b3NhenFiU0Y3MEl2Z1hJZjQ2Wm02N0VjX2JnTlpPOXp4RUltR0tyTkgxTk1nNFM0U2dXYzAwQnFMYTZYX0hiclFiVE5aNHpqRGpnS3dqYnVtRUpUNnBGSjk1eVBGTzFzcEtkcWljNnpWWVpMS29wQ2dqaE4tby1ZZ2lJQ2pWZ1kwTkZSbExZOHFkLW9BZThB?oc=5",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-a1a5bfe40a",
-      "nombre": "MSF: perdurables, las secuelas de agresiones extremas a migrantes",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/17/politica/003n2pol?partner=rss"
-    },
     {
       "id": "auto-8fc824dee5",
       "nombre": "Es morenista… y buscó refugio en el PAN - El Universal",
@@ -904,26 +896,15 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPTzJBcy1PQlBsdkE3V0lCWkc3RTVzbndlQklBdnNsZFpSMXVOSjJEd0FydTFucTZsVmFabHhWWmlEdXJlak9qMzNHMWM2YXZ5LXdSYVhHajZQUXN0UDJta0ZPSldKS1R5enlEelBIX0dFc2U3Sk5uNER4bmtrT1JkNGZnWXZGakY5eEtPZk1GRXJKS1hfVmZ6WHZIdnBNaC0tQXh4UjBQLVh0Y3M0WnNFOHY4VkMxS3BaTlBJMkltQXQ1c0dmRmRqcjczUVdqQ0hiM1N4eWdkQ1pGemNOMUQ2cXdmUEk5Zw?oc=5"
     },
     {
-      "id": "auto-6b215b519f",
-      "nombre": "Por presión interna y del PT, se encienden focos rojos para Morena en ocho estad",
+      "id": "auto-9910cf5163",
+      "nombre": "Marta Arizmendi registra su aspiración para coordinar comités de Morena en Tonal",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPWnFOeHUxNkNHZXBLS01jV1RLc2VqVmtDemRkRDNmdFZzNlNacjBJOVBQa05Vd1RWbG1vY1Jnd1ExUjdlQVRadkl5d1hMVDAxTmViMVI4czNMQlhjcGEyQWV0Q2pXaEpWTzZPYTVudG5HbzBaN3BsTjRUZW1vVFFGQ2pZT2ptbFZObGJHOW1Ld21LVk1mOVRtdnM5NVrSAZwBQVVfeXFMTTdGWUsxQXdlazdxdjJTWkRPV1g0V2UyZFRpNjZHVmJqQjhodTRtRXNvVmcyMmhCV3FVVmg2UHJhWGVZTFBYdTFRdXJKMjF1V1hZSWRJNnJIQlhjMURJVFVVODZTanptSmhfSmh1cGZ6NWhmQ1VKTzZyRC1FNjI5enZndHdVVXg1eko3dGNuVU9VdFkzclRRMlBYS1pB?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQMFR4aUh1WVlVVU12Ni14QW5oUHBFamhZY3htLVo5eWNFeTFES25GUENBZlpBYXE2REJXNzNYejJnR2Rnd3NwZ1FKbzlISWIxb0d5SDRRUlplbDc3d2M3NXBPZFF1UHdfaEZkMjRVa1c5QTZ5aUxkUGVzY3JzNE01dGdlbEN5QdIBhgFBVV95cUxQMFR4aUh1WVlVVU12Ni14QW5oUHBFamhZY3htLVo5eWNFeTFES25GUENBZlpBYXE2REJXNzNYejJnR2Rnd3NwZ1FKbzlISWIxb0d5SDRRUlplbDc3d2M3NXBPZFF1UHdfaEZkMjRVa1c5QTZ5aUxkUGVzY3JzNE01dGdlbEN5QQ?oc=5"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-545a3d3b02",
-      "nombre": "Lev M. Velázquez Barriga*: ¿PISA? Mejor escuchar a los maestros",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 35,
-      "motivo": "Lev M. Velázquez Barriga*: La derecha por cualquier vía",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/17/politica/012a1pol?partner=rss",
-      "fecha_anterior": "2026-09-12",
-      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/12/politica/012a1pol?partner=rss"
-    },
     {
       "id": "auto-5576be7f59",
       "nombre": "«México por el Clima: naturaleza y migración: UAT» - TAMPICO",
@@ -956,17 +937,6 @@
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/17/pepin-lopez-obrador-descarta-candidatura-en-2027-o-2030-mi-aspiracion-es-irme-a-mi-terrenito/",
       "fecha_anterior": "2026-10-08",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTTM0UVltaDNWOG52UTZGMkk2Z250eHRrZXBqM0lxUjVCbjNTSnhtWTFmbGZpVDE4Umoxbm1hTHlYNC1uc3ZVVDdmWkZqNWVRNE1OUkYwRndRVU1PZDRfYWFRb0xVTnNxLVRhTUo1UlNtRER5bEpoUVRtQWlJWWVFdzdrOU4tUDN0bEVQVXppZWpPLWRLTHRLQUk1ZW5SeE9qZ2ZV?oc=5"
-    },
-    {
-      "id": "auto-c59f58dbbf",
-      "nombre": "Desde Veracruz, presidenta Claudia Sheinbaum reporta 43% de avance del programa ",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 9,
-      "motivo": "Desde Veracruz, presidenta Claudia Sheinbaum reporta 43% de avance del programa de Vivienda para el Bienestar; entrega 900 en la entidad - Gob MX",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPb2wxOG9uNHB6SllLTF9tc1F0eVd3aUE3UDZOTUtidDhlX1BTNldEelNHeXc2cmhrVHpDMHNXcVBsSFZGMHQ3Tm9NaG5oUjJlbXFUMXJQWFIzS3RvdWhlaXVDZURydlA3anloOVZCaXpBXzNjejgwdk9MVXNDNkc1aE9pdlpqXzl3NndPd0gtT0RoeWlaSnlXM29xa3Vtb3psVGd1ZVJQbk9URFdoTUJJa2wzSF9ETldhQjZHTHo0S002bHoxbE9NYnY3WVNjWGR5cjdZOTFYbDYtMjFRX1luVERxdEFFdGRUSjhJVVNvVm8tQnJFbXBhSDd3Y1dGcjhfQ1djQ1ZJSQ?oc=5",
-      "fecha_anterior": "2026-10-08",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijAJBVV95cUxPdHFQS1VXOTN4alBzYkZnN3AybVZZbndUUkF6VUlQNnVNbkpKem9vNXZlbHUtSy1WeVJRYVlHajlveUV6c0c4X2N2enZVa0g2b0RsTkdWUEdjZTV6VWNkZGdTYTFzZDJZZTZvdHdwT2M3YjE4aUlMczI1cU9zRVAzbjNMWjJqWkhkb0RDaG0tUDJ1UU9nU2ZsaHQ3OVRudWUyR2ZwOXAxQjV6T1RXckZMSmJEUTk4amlFT0V1T2xRNVFJQTRnaUpQdFVXUm1FeExMY1pONGVXeGhtcGliOXNLQzFMSm12ZmtLQmFMQXk2aEUzdTdGZks0dnNxUjhYYWZiRTZSMXp3ZnYxX0JU?oc=5"
     }
   ],
   "actores_destacados": [
@@ -974,23 +944,12 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Anuncia Mara Lezama inversión de 3 mil 600 mdp de la CFE para cableado submarino",
-      "nota": "Claudia Sheinbaum, junto a Mara Lezama, supervisa obras hospitalarias en Quintana Roo - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxON1RJaXRpck1iTWhFWlBSU284SkFTRjhiU0pheTdmaHNsVTVfOGhxVnVaUkM3YWtBc3QzcXZZdWNDU0lWTVlDY3R4TDJFdl84Ylh1aTNtUEhXMm5FbmZXQ2FZUklTRXU5bVF3ZFYwdFhxMDYxV213NHNwcFFDMVBta1VOWGRuS09sNVNwV2tQZXRIbm5uR0dXel9FRdIBmwFBVV95cUxON1RJaXRpck1iTWhFWlBSU284SkFTRjhiU0pheTdmaHNsVTVfOGhxVnVaUkM3YWtBc3QzcXZZdWNDU0lWTVlDY3R4TDJFdl84Ylh1aTNtUEhXMm5FbmZXQ2FZUklTRXU5bVF3ZFYwdFhxMDYxV213NHNwcFFDMVBta1VOWGRuS09sNVNwV2tQZXRIbm5uR0dXel9FRQ?oc=5",
+      "tema": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó q",
+      "nota": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 04 de septiembre de 2026 - Gob MX",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSm10ZnJ0NEZtWXJsc3ZLRldPaHdielNqc3FDUHhZbmhSWWhmVkl4LVU2UTVhWFg2TmxwRE9aSUZrUWVqcFZUbEwtcWxKZ3QzRTBhWEFmZWRPNU0xMWR5b3NhenFiU0Y3MEl2Z1hJZjQ2Wm02N0VjX2JnTlpPOXp4RUltR0tyTkgxTk1nNFM0U2dXYzAwQnFMYTZYX0hiclFiVE5aNHpqRGpnS3dqYnVtRUpUNnBGSjk1eVBGTzFzcEtkcWljNnpWWVpMS29wQ2dqaE4tby1ZZ2lJQ2pWZ1kwTkZSbExZOHFkLW9BZThB?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "pt_partido",
-      "nombre": "Partido del Trabajo (PT)",
-      "rol": "Reacción de oposición",
-      "tema": "Por presión interna y del PT, se encienden focos rojos para Morena en ocho estad",
-      "nota": "Por presión interna y del PT, se encienden focos rojos para Morena en ocho estados rumbo a 2027 - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPWnFOeHUxNkNHZXBLS01jV1RLc2VqVmtDemRkRDNmdFZzNlNacjBJOVBQa05Vd1RWbG1vY1Jnd1ExUjdlQVRadkl5d1hMVDAxTmViMVI4czNMQlhjcGEyQWV0Q2pXaEpWTzZPYTVudG5HbzBaN3BsTjRUZW1vVFFGQ2pZT2ptbFZObGJHOW1Ld21LVk1mOVRtdnM5NVrSAZwBQVVfeXFMTTdGWUsxQXdlazdxdjJTWkRPV1g0V2UyZFRpNjZHVmJqQjhodTRtRXNvVmcyMmhCV3FVVmg2UHJhWGVZTFBYdTFRdXJKMjF1V1hZSWRJNnJIQlhjMURJVFVVODZTanptSmhfSmh1cGZ6NWhmQ1VKTzZyRC1FNjI5enZndHdVVXg1eko3dGNuVU9VdFkzclRRMlBYS1pB?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
+      "confianza": "alta"
     },
     {
       "id": "morena_partido",
@@ -1007,14 +966,6 @@
   "declaracion_presidenta": null,
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-20",
-      "tension": 43,
-      "n_notas": 29,
-      "n_alto_impacto": 21,
-      "n_medio_impacto": 8,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-21",
       "tension": 41,
@@ -1225,10 +1176,18 @@
     },
     {
       "fecha": "2026-10-17",
-      "tension": 28,
-      "n_notas": 9,
-      "n_alto_impacto": 4,
-      "n_medio_impacto": 5,
+      "tension": 30,
+      "n_notas": 11,
+      "n_alto_impacto": 5,
+      "n_medio_impacto": 6,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-18",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1247,9 +1206,9 @@
       "n_medio": 9,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQSm51YmVMbUU5ajRuUTBPeW9RMjEyYlQ1NW1qektiQklSQU56SGNyUEZWWU5uYXBpZ0NMZTJTZURXM0VKOUlXYjREMWlHaTF4ZnBuWWxVMjNRNFBkMUlOQ2kzNTRpdXdETnp1WGxCaVpUOVBRY0NxcXZhRHdrZ3h2aUZOUDRFMlVoTlF6MUgzMlc1dW43aXpUS1hjbE5tRkhnQ3NWN2NybW1ILTdDdnRGVUR6emxsbzUzTlE?oc=5",
-      "nota_texto": "La diputada María Félix García da su confianza al proceso interno de Morena - Quadratín Tabasco",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5oNlFRSGwxRUxIa185NGhXS2h0QVFCU25OaEYzNTVjSjJjNG9FLWZ0eHNxcUZGY0w1d01yVF9oWU1yUXZrT3IyNEZzQmVidEFDSmh1MHZOUWppOHZ2RnFqMFZVR2ticnA2Tmg4QWRYMXBocWp4NS0tNUhLTQ?oc=5",
+      "nota_texto": "Morena reúne a representantes: ¿Qué pasó en Campeche? - La Chispa",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
@@ -1284,7 +1243,8 @@
           "x": 86,
           "y": 75
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-18"
     },
     {
       "id": "sheinbaum",
@@ -1300,9 +1260,9 @@
       "n_medio": 17,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxORnh4SzRkY2d4bVEwNVVyTERoQXl2YWxoeUF3QVFPdFdxNmNDZS11ajRfa0R4eG5PQ3A0Vi1WMlRBNVcydmExVUpsZ0VXMk9ZdUpLN1VLbjI2cmJBVW9zWG5CcGFZNHBhejc0U3pUMFd0bGR1VWFWZHZLTktEMnBndngxQlJZUElPaWJuekpXcVo4RFpwQTVORFR2TmJRNm5leG91OVRQM20yOEhFWjFfQ2pvakZYWHFyZDhKSjQxREx5SnhVZU1hZDBheXNoQ0N1UWpHcW02RXdwX296S2JmLUtHTm03bm9Q0gHuAUFVX3lxTE5aSnFYaWZlNEduT21XUmh1LVNkNkh4R00xbU1Xak1yakxNNXBvRVd6N0JDekZKaE5IZWdHenpKQWtxMnhKQmZON204RDBUM3pOd3Fha1pJM2MzUEMzNmtHOFZzZ2Q5c3V1TXJ3NEJibGNtdUJfZGpaMHNMNExOU04zZmdPM0lUTGJZNmpsQ2E5c0c3Ql8xeWpWTFZza2VIYmszeWo1S3VDR3hHcjdIeU01TXU0RGlFMzhrNXMzaXNhZEJHMVBlNkJ6S0w5MWU1MEdXT3JRM1hxTVQxT2NLMndKY05iZVRGU2I3a19lOXc?oc=5",
-      "nota_texto": "Presidenta Sheinbaum Pardo anuncia visitas sorpresa a hospitales del IMSS-Bienestar y reconoce problemas de desabasto - Por Esto!",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
+      "nota_texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
@@ -1337,7 +1297,8 @@
           "x": 100,
           "y": 60
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-18"
     },
     {
       "id": "andy",
@@ -1722,7 +1683,7 @@
   ],
   "tablero_semana_inicio": "2026-10-12",
   "resumen_mananera": [],
-  "mananera_estado": "sin_mananera",
+  "mananera_estado": "pendiente",
   "a_vigilar": [
     {
       "id": "auto-642a4e6753",
@@ -1791,5 +1752,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-17 18:00"
+  "hora_corte_publicada": "2026-10-18 00:01"
 }
