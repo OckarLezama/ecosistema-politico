@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-18T00:01:52.768090-06:00",
+  "generado_en": "2026-10-18T06:03:35.110630-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 10,
+  "n_notas_ventana": 13,
   "baja_confianza": false,
-  "tension_nacional": 32,
+  "tension_nacional": 33,
   "tension_anomalia": {
-    "z": 0.05,
+    "z": 0.16,
     "nivel": "normal",
     "media_periodo": 31.6,
     "dias_base": 27
@@ -13,7 +13,7 @@
   "categorias_dia": [
     {
       "categoria": "Economía",
-      "peso_pct": 46,
+      "peso_pct": 35,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -47,35 +47,69 @@
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 24,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 3,
-      "n_notas": 3,
+      "peso_pct": 33,
+      "tema_principal": "García Harfuch comparece en privado ante el Senado como parte de la glosa del se",
+      "tema_principal_id": "auto-642a4e6753",
+      "n_temas": 4,
+      "n_notas": 5,
       "notas": [
         {
-          "texto": "Caen presuntos extorsionadores del diseñador Elvis Guerra",
-          "fuente_url": "https://imparcialoaxaca.mx/policiaca/caen-presuntos-extorsionadores-del-disenador-elvis-guerra/",
-          "intensidad": 5.0,
-          "medio": "imparcialoaxaca.mx"
+          "texto": "Senadora de Morena pide comparecencia de Aeroméxico por limitar salas VIP - Proceso",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOeTJWS1gtcjlJOXd1dVhYTVpVa1dTQklNTWVabTRDU0VqYk12dTV2bzNYRFdmYVJRT2cyMkNPODFxUnpWNmFRNVFHaG9RWHRWeGJINnVRV3JlcTFaLXQ2cnJWVkh5N25RQ1dJc0VtdE00SHVOaUxfRWM0VFZQZlAwUGxkT0drZ19aTnRZYllNckVHNU5BZmpNRlFOY3ZUN1ZXMTgxR1JPaGJCSV9uUnUzbWtKdEFRY3BhcWN2Z29oTndMWngyMEVlQWdzbEY?oc=5",
+          "intensidad": 7.0,
+          "medio": "Proceso"
         },
         {
-          "texto": "Ocho de 11 equipos de Morena en Michoacán se suman a Carlos Torres Piña rumbo a 2027",
-          "fuente_url": "https://heraldodemexico.com.mx/edicion-impresa/2026/10/17/ocho-de-11-equipos-de-morena-en-michoacan-se-suman-carlos-torres-pina-rumbo-2027-910442.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
+          "texto": "esperan más dinero para seguridad pública",
+          "fuente_url": "https://www.tabascohoy.com/esperan-mas-dinero-para-seguridad-publica/",
+          "intensidad": 6.0,
+          "medio": "tabascohoy.com"
         },
         {
           "texto": "Claudia Sheinbaum reconoce desabasto de medicamentos e insumos médicos y falta de personal en el IMSS - Urbano Puebla",
           "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPWFFYTWJoNEYxaGI4eG9KblVBN3BNVEZnY29ld0J6am9KX2tfbW91TWd3N24yeFowUUp2SFU2a1BCdkRrY3RXZldHejBCZ3BwN2sxbG1nUURtblBuWFZlUHo2a25kR2RJWDl6dUVfQTlTQjRaQ0V6cGd4Yzk1Y2tyNG1wMmxoVFJSQm1YOUZIa2ZuNnFYNG1odWt2UkdQY0xrcGZCM0FZakJBWFUzMnp5R2IwNFlIZU81VDZmNmRGNms4Wmo2bHlnWTlsbDRsckg4VHB2VWVXV28?oc=5",
           "intensidad": 5.0,
           "medio": "Urbano Puebla"
+        },
+        {
+          "texto": "‘Esta vez sí se pasaron’: Senadora Malú Mícher reclama a Aeroméxico por restringir el acceso a sus salas VIP",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/17/esta-vez-si-se-pasaron-senadora-malu-micher-reclama-a-aeromexico-por-restringir-el-acceso-a-sus-salas-vip/",
+          "intensidad": 5.0,
+          "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "Allana doña Layda a su corcholata el camino al ayuntamiento - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNcnZ2MklwOEZVY0JQRjVzT0diZXliRWU0WUktU0M5N2hhMjNZWGZUS25OVlBONXc5c3pTa1VoaURCT0hQZUNzV000SHBaSHJ6S0p6VXpVMTRybnp3QUJucGlCbGtreklWSGNJTEtoWFZjNVVTOE5uQ3A3UnpCc1AwMjZkcE54a3NQN2dDblNQTlRZOHd2N1FhZ1pnME5Kd1RCN1drcURDSlNEQQ?oc=5",
+          "intensidad": 4.0,
+          "medio": "El Universal"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 17,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "Ebrard defiende avance en T-MEC pese a aranceles de EU - El Mañana de Reynosa",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxORjRmemJjQVFWaE4yQTJ3QjRnaWN3UW5MTTBuU0ItNDNWZl9QTDRFNVkzX0RmMFlCVDBrRGVyNjc1ZVhZa3hFOUd6ZG5wcTB5Q253eVpfczA5XzdLQkN6U1l3V2pmQk1OOW1jNl84YXNSbGQyNTRsR1A3ZFJFcmRTU3kybWE4SDk5MHlFemlYa3hnSlZIbGwwQWg1RDFTSy1WMVHSAacBQVVfeXFMUFcwdDh2cHp4cE9LWEhqa29fM2tleF9uamxjTmRuRk56ZVdMdlh6LUpPNm0yOTVadEQyVjhna3F2MU9FakdRWThaNmxvWEZ0d1Y5ZnljT183RGVUNXBVd0pjN1ItQ3JkWmRPY0lqNFhBWGU0Q2F5WFJ0aXdkXzNta2JmX2h2M2dlVEFPdjNZR0d1WHRPWDRTUnQtT2dMWWg1b3hHdlFHVjQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Mañana de Reynosa"
+        },
+        {
+          "texto": "Senado impulsa la reanudación de interparlamentarias con EU",
+          "fuente_url": "https://www.jornada.com.mx/2026/10/18/politica/007n4pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
         }
       ]
     },
     {
       "categoria": "Social",
-      "peso_pct": 19,
+      "peso_pct": 15,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
@@ -92,22 +126,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQak5GeDlWb0FQRmRHdWZOMmhfbnhadFV3YjNqYUdUc0Fkel9PdFc4S0hFd2pzREhoajVKWUY2emROX09udHRHa0ZDUGFCVnBJX18wMnB1VDRqUFJvaXRYNURRcXA5Z0gzX2hYdE5LNFhha3M2OWRMZ3lGZFhYb3lBeXJTNlJua1A4cnE4eV9QU3B3YzN2clHSAZYBQVVfeXFMTjBRaU9YVVVsbkpsSER0Y01RMTJYb2xVeWhuVVRBUkNGT01tVmp3NTB2R21kZ0ZsUkxiNUlLQWdKMUFBWlQ2ZDlfc2gtaEpBQ24wVzdJOEVwRG9DOE9ZTXFvcTNpbXJRV0lVWDFvWnBVbFNYeF8tNkNCY0thRkJfQTFsMk9wSFNEUlkxY0lVQW1lUmJ4QnNB?oc=5",
           "intensidad": 6.0,
           "medio": "Milenio"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 11,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "Ebrard defiende avance en T-MEC pese a aranceles de EU - El Mañana de Reynosa",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxORjRmemJjQVFWaE4yQTJ3QjRnaWN3UW5MTTBuU0ItNDNWZl9QTDRFNVkzX0RmMFlCVDBrRGVyNjc1ZVhZa3hFOUd6ZG5wcTB5Q253eVpfczA5XzdLQkN6U1l3V2pmQk1OOW1jNl84YXNSbGQyNTRsR1A3ZFJFcmRTU3kybWE4SDk5MHlFemlYa3hnSlZIbGwwQWg1RDFTSy1WMVHSAacBQVVfeXFMUFcwdDh2cHp4cE9LWEhqa29fM2tleF9uamxjTmRuRk56ZVdMdlh6LUpPNm0yOTVadEQyVjhna3F2MU9FakdRWThaNmxvWEZ0d1Y5ZnljT183RGVUNXBVd0pjN1ItQ3JkWmRPY0lqNFhBWGU0Q2F5WFJ0aXdkXzNta2JmX2h2M2dlVEFPdjNZR0d1WHRPWDRTUnQtT2dMWWg1b3hHdlFHVjQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Mañana de Reynosa"
         }
       ]
     },
@@ -706,7 +724,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 68
+          "peso_pct": 69
         },
         {
           "categoria": "Relación Bilateral",
@@ -756,7 +774,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
@@ -781,7 +799,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -802,11 +820,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 65
         },
         {
           "categoria": "Relación Bilateral",
@@ -814,7 +832,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Social",
@@ -830,13 +848,28 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Ignacio Mier ve viable una reunión interparlamentaria con EU para abordar el T-MEC - Milenio",
-      "peso": 14.0,
+      "peso": 21.0,
       "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQcUNFYzEzdmo5eEZ0ODdoZzhfQVpyOXN2cVJ5Mm43dzBOczhKWVA5aHFwMURaOWU3NDdQS1BjTWRxb29DRkhKakEtdWp4Wk54ZEpnMEREQUZyVmpfdmRkY2gxVnNtOHZ5QWJfZmhiWkVFX3pkZFNWVHBHMWM3REhXSm5tbnlDMFloQnY3SGR0Y2hobllTcG1jZ1JR0gGaAUFVX3lxTFBxQ0VjMTN2ajl4RnQ4N2hnOF9BWnI5c3ZxUnkybjd3ME5zOEpZUDlocXAxRFo5ZTc0N1BLUGNNZHFvb0NGSEpqQS11anhaTnhkSmcwRERBRnJWal92ZGRjaDFWc204dnlBYl9maGJaRUVfemRkU1ZUcEcxYzdESFdKbm1ueUMwWWhCdjdIZHRjaGhuWVNwbWNnUlE?oc=5",
+      "actor_vinculado": null
+    },
+    {
+      "id": "auto-642a4e6753",
+      "nombre": "García Harfuch comparece en privado ante el Senado como parte de la glosa del se",
+      "categoria": "Gobernabilidad",
+      "resumen": "García Harfuch comparece en privado ante el Senado como parte de la glosa del segundo informe de Sheinbaum - LatinUS",
+      "motivo": "Senadora de Morena pide comparecencia de Aeroméxico por limitar salas VIP - Proceso",
+      "peso": 12.0,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQcUNFYzEzdmo5eEZ0ODdoZzhfQVpyOXN2cVJ5Mm43dzBOczhKWVA5aHFwMURaOWU3NDdQS1BjTWRxb29DRkhKakEtdWp4Wk54ZEpnMEREQUZyVmpfdmRkY2gxVnNtOHZ5QWJfZmhiWkVFX3pkZFNWVHBHMWM3REhXSm5tbnlDMFloQnY3SGR0Y2hobllTcG1jZ1JR0gGaAUFVX3lxTFBxQ0VjMTN2ajl4RnQ4N2hnOF9BWnI5c3ZxUnkybjd3ME5zOEpZUDlocXAxRFo5ZTc0N1BLUGNNZHFvb0NGSEpqQS11anhaTnhkSmcwRERBRnJWal92ZGRjaDFWc204dnlBYl9maGJaRUVfemRkU1ZUcEcxYzdESFdKbm1ueUMwWWhCdjdIZHRjaGhuWVNwbWNnUlE?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOeTJWS1gtcjlJOXd1dVhYTVpVa1dTQklNTWVabTRDU0VqYk12dTV2bzNYRFdmYVJRT2cyMkNPODFxUnpWNmFRNVFHaG9RWHRWeGJINnVRV3JlcTFaLXQ2cnJWVkh5N25RQ1dJc0VtdE00SHVOaUxfRWM0VFZQZlAwUGxkT0drZ19aTnRZYllNckVHNU5BZmpNRlFOY3ZUN1ZXMTgxR1JPaGJCSV9uUnUzbWtKdEFRY3BhcWN2Z29oTndMWngyMEVlQWdzbEY?oc=5",
       "actor_vinculado": null
     },
     {
@@ -860,40 +893,48 @@
       "categoria": "Gobernabilidad",
       "resumen": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó que el director del IMSS, Zoé Robledo, ya atiende e investiga el caso de los bebés que fallecieron en el HGZ de Durango. #MILENIO16h con Ady Cabriales - facebook.com",
       "motivo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 04 de septiembre de 2026 - Gob MX",
-      "peso": 7.0,
-      "n_temas_agrupados": 3,
+      "peso": 11.0,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
+      "medios_corroborantes": 2,
+      "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSm10ZnJ0NEZtWXJsc3ZLRldPaHdielNqc3FDUHhZbmhSWWhmVkl4LVU2UTVhWFg2TmxwRE9aSUZrUWVqcFZUbEwtcWxKZ3QzRTBhWEFmZWRPNU0xMWR5b3NhenFiU0Y3MEl2Z1hJZjQ2Wm02N0VjX2JnTlpPOXp4RUltR0tyTkgxTk1nNFM0U2dXYzAwQnFMYTZYX0hiclFiVE5aNHpqRGpnS3dqYnVtRUpUNnBGSjk1eVBGTzFzcEtkcWljNnpWWVpMS29wQ2dqaE4tby1ZZ2lJQ2pWZ1kwTkZSbExZOHFkLW9BZThB?oc=5",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-8fc824dee5",
-      "nombre": "Es morenista… y buscó refugio en el PAN - El Universal",
+      "id": "auto-3311a01e84",
+      "nombre": "El jardín que soñamos, un relato sobre la migración y la tala de bosques - Quadr",
       "categoria": "Social",
-      "peso": 6.0,
+      "peso": 12.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNWWZ0OUFiNXBQeWozLWNXN29zNG1hV1l5OWl4YlV1UDk3WHJLMUNGVWxBbkczZFlJWXdrLVdwbFBkWkdsaUMxV3l6RVVSclVhT0J5ekE5MTgyVGV0QUZ0ZUxTUko5aWhHaGFuNkdLWVhQamM1ek9sVkJZZFJVT3NVZHg3NTZSZm1VeDNpR2hJajRnWGpsYXc?oc=5"
-    },
-    {
-      "id": "auto-a766315122",
-      "nombre": "Agentes del ICE atropellaron a mexicano en redada en Texas; buscaban a un hombre",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/17/agentes-del-ice-atropellaron-a-mexicano-en-redada-en-texas-buscaban-a-un-hombre-que-ya-habia-fallecido/"
+      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNazNXQXZkcmM5d2EwVzZXakctUFIyeXhuaVhRYUdkOHdtWmlxY2pMSHhEMzZpXzZyWFkyT0ZsckZ5UUlSUmE1Qy16N05yOXpnQnJaVnd4T3Rfa2Q5T29WMFBrbl83NXpST2NDbDhtUXBuNTVyYURaM0dFNGFRdFNnNnBIREt0ZURUODF1aWd2b0pkUFl2ODYtN090QkxBc3hDNHRUZHBXLVlQVXBMMGZFYm54Vk3SAboBQVVfeXFMTTVlcnBCb25SQ2ZLcXhpRlF6cmo3S0ZEaGNvRHN2Z1lSTVpkb3ludHlLczhZMVhIUHpfeWZ4d3JzREU3MDE0M3k0dkhLWTcwOWdwcVktSUItb2pITTN1NnZnNUY2Zm9JWHA3U01rZDlCdTZBekpkbmMxd0xBWkFEazNPZDE2YWVXSjh6QlRZeC1RTWYybEFqZGZaZEhhVUJ3UjE0cE1ISUwtR0xHQmtEbDNlQUpNc2dGTER3?oc=5"
     },
     {
       "id": "auto-cf2424def5",
       "nombre": "Combatir la migración irregular \"salva vidas\": Johnson al referirse al rescate d",
       "categoria": "Social",
-      "peso": 6.0,
+      "peso": 12.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPTzJBcy1PQlBsdkE3V0lCWkc3RTVzbndlQklBdnNsZFpSMXVOSjJEd0FydTFucTZsVmFabHhWWmlEdXJlak9qMzNHMWM2YXZ5LXdSYVhHajZQUXN0UDJta0ZPSldKS1R5enlEelBIX0dFc2U3Sk5uNER4bmtrT1JkNGZnWXZGakY5eEtPZk1GRXJKS1hfVmZ6WHZIdnBNaC0tQXh4UjBQLVh0Y3M0WnNFOHY4VkMxS3BaTlBJMkltQXQ1c0dmRmRqcjczUVdqQ0hiM1N4eWdkQ1pGemNOMUQ2cXdmUEk5Zw?oc=5"
+    },
+    {
+      "id": "auto-b5fbc06a4d",
+      "nombre": "ONG unen fuerzas para defender los derechos de los indocumentados",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/18/politica/007n3pol?partner=rss"
+    },
+    {
+      "id": "auto-1090c2cad3",
+      "nombre": "Acosta Naranjo asegura que 17 candidaturas de Morena se decidieron desde Palenqu",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQV09oNUNrNDZIbnZLZWdOb0NmNDRUbWJpajE4UXNScG1pN19sTnl1ZktvRmZTWkpDd3hYOXFlalJsM0RUdTJTN0hkRHZaczRfTDdacmNtbXdyT2d3bHVZdlJZN0ZzOTA2TWtta2lXSjFRZVdMZ2hoVmo1b0djZmlBZjl0UlkyeEtvSkVTOUdRbjRod2VqaHI5dFc1OGI4RGg3OC16ZDdkZzh1MU92YndGZmFhWlZsbVBCRk9YNmJ1ZFRKT1dSM3hUdHVWcEdwN0pzVVhwQjZaYUNsMkxaRndzQdIB9AFBVV95cUxPcXlNU3pRUHV3T0dzZU0zandPeU9wdzlwem1jY1luaWtrcm5NUF9CSm93d21QT1oxRjc5My1KZmIxcDJLZHIzeFVPeFNSeEgxbVdBTjhJcWozVDBlMm1WNU5wSS1ESUU2cmhuYkwyTUJxTl9taEJrS0ZKdDR1R2pjNUM1R285ZlgtVG44SERkbVNjZ2dfVVhMTWx5dG4tYkZHYWhRS1dEZldqZ05RMFkxT3pDNGU0c2ozMFR6TTlwa0lwVHpWdGVmMlQ0aHdjeHdDQ2hfaElkN2lJVkNkRDNENnRvMVBFR2hwZUhKZmw1RVpOeWV6?oc=5"
     },
     {
       "id": "auto-9910cf5163",
@@ -905,6 +946,17 @@
     }
   ],
   "temas_retomados": [
+    {
+      "id": "auto-446e81ed93",
+      "nombre": "Jorge Durand: Adiós al muro",
+      "categoria": "Social",
+      "dias_silencio": 27,
+      "motivo": "🔔 ALERTA — Jorge Durand: Aliados inconformes",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/18/politica/011a1pol?partner=rss",
+      "fecha_anterior": "2026-09-20",
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/20/politica/011a1pol?partner=rss"
+    },
     {
       "id": "auto-5576be7f59",
       "nombre": "«México por el Clima: naturaleza y migración: UAT» - TAMPICO",
@@ -958,6 +1010,17 @@
       "tema": "García Harfuch comparece en privado ante el Senado como parte de la glosa del se",
       "nota": "Senadora de Morena pide comparecencia de Aeroméxico por limitar salas VIP - Proceso",
       "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOeTJWS1gtcjlJOXd1dVhYTVpVa1dTQklNTWVabTRDU0VqYk12dTV2bzNYRFdmYVJRT2cyMkNPODFxUnpWNmFRNVFHaG9RWHRWeGJINnVRV3JlcTFaLXQ2cnJWVkh5N25RQ1dJc0VtdE00SHVOaUxfRWM0VFZQZlAwUGxkT0drZ19aTnRZYllNckVHNU5BZmpNRlFOY3ZUN1ZXMTgxR1JPaGJCSV9uUnUzbWtKdEFRY3BhcWN2Z29oTndMWngyMEVlQWdzbEY?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "malu_micher_camarena",
+      "nombre": "Malú Mícher Camarena",
+      "rol": "Mencionado",
+      "tema": "García Harfuch comparece en privado ante el Senado como parte de la glosa del se",
+      "nota": "‘Esta vez sí se pasaron’: Senadora Malú Mícher reclama a Aeroméxico por restringir el acceso a sus salas VIP",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/17/esta-vez-si-se-pasaron-senadora-malu-micher-reclama-a-aeromexico-por-restringir-el-acceso-a-sus-salas-vip/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1064,10 +1127,10 @@
     },
     {
       "fecha": "2026-10-03",
-      "tension": 38,
-      "n_notas": 24,
+      "tension": 36,
+      "n_notas": 26,
       "n_alto_impacto": 16,
-      "n_medio_impacto": 8,
+      "n_medio_impacto": 10,
       "n_bajo_impacto": 0
     },
     {
@@ -1105,9 +1168,9 @@
     {
       "fecha": "2026-10-08",
       "tension": 25,
-      "n_notas": 81,
+      "n_notas": 82,
       "n_alto_impacto": 33,
-      "n_medio_impacto": 48,
+      "n_medio_impacto": 49,
       "n_bajo_impacto": 0
     },
     {
@@ -1145,25 +1208,25 @@
     {
       "fecha": "2026-10-13",
       "tension": 29,
-      "n_notas": 63,
+      "n_notas": 64,
       "n_alto_impacto": 29,
-      "n_medio_impacto": 34,
+      "n_medio_impacto": 35,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-14",
-      "tension": 19,
-      "n_notas": 41,
-      "n_alto_impacto": 12,
+      "tension": 20,
+      "n_notas": 42,
+      "n_alto_impacto": 13,
       "n_medio_impacto": 29,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-15",
       "tension": 17,
-      "n_notas": 33,
-      "n_alto_impacto": 9,
-      "n_medio_impacto": 24,
+      "n_notas": 35,
+      "n_alto_impacto": 10,
+      "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
@@ -1177,17 +1240,17 @@
     {
       "fecha": "2026-10-17",
       "tension": 30,
-      "n_notas": 11,
-      "n_alto_impacto": 5,
-      "n_medio_impacto": 6,
+      "n_notas": 14,
+      "n_alto_impacto": 7,
+      "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-18",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 17,
+      "n_notas": 3,
+      "n_alto_impacto": 1,
+      "n_medio_impacto": 2,
       "n_bajo_impacto": 0
     }
   ],
@@ -1198,17 +1261,17 @@
       "iniciales": "MO",
       "x_lunes": 81,
       "y_lunes": 76,
-      "x_hoy": 86,
-      "y_hoy": 75,
-      "delta_pts": 1.5,
-      "alcance": 13,
-      "n_alto": 9,
+      "x_hoy": 90,
+      "y_hoy": 76,
+      "delta_pts": 4.5,
+      "alcance": 14,
+      "n_alto": 10,
       "n_medio": 9,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5oNlFRSGwxRUxIa185NGhXS2h0QVFCU25OaEYzNTVjSjJjNG9FLWZ0eHNxcUZGY0w1d01yVF9oWU1yUXZrT3IyNEZzQmVidEFDSmh1MHZOUWppOHZ2RnFqMFZVR2ticnA2Tmg4QWRYMXBocWp4NS0tNUhLTQ?oc=5",
-      "nota_texto": "Morena reúne a representantes: ¿Qué pasó en Campeche? - La Chispa",
+      "nota_url": "https://www.jornada.com.mx/2026/10/12/politica/006n2pol?partner=rss",
+      "nota_texto": "Coincidencia y compromiso con la 4T, eje para alianzas, define Consejo de Morena",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
@@ -1240,8 +1303,8 @@
         },
         {
           "fecha": "2026-10-17",
-          "x": 86,
-          "y": 75
+          "x": 90,
+          "y": 76
         }
       ],
       "fecha_apagado": "2026-10-18"
@@ -1261,8 +1324,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
-      "nota_texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
+      "nota_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxORnh4SzRkY2d4bVEwNVVyTERoQXl2YWxoeUF3QVFPdFdxNmNDZS11ajRfa0R4eG5PQ3A0Vi1WMlRBNVcydmExVUpsZ0VXMk9ZdUpLN1VLbjI2cmJBVW9zWG5CcGFZNHBhejc0U3pUMFd0bGR1VWFWZHZLTktEMnBndngxQlJZUElPaWJuekpXcVo4RFpwQTVORFR2TmJRNm5leG91OVRQM20yOEhFWjFfQ2pvakZYWHFyZDhKSjQxREx5SnhVZU1hZDBheXNoQ0N1UWpHcW02RXdwX296S2JmLUtHTm03bm9Q0gHuAUFVX3lxTE5aSnFYaWZlNEduT21XUmh1LVNkNkh4R00xbU1Xak1yakxNNXBvRVd6N0JDekZKaE5IZWdHenpKQWtxMnhKQmZON204RDBUM3pOd3Fha1pJM2MzUEMzNmtHOFZzZ2Q5c3V1TXJ3NEJibGNtdUJfZGpaMHNMNExOU04zZmdPM0lUTGJZNmpsQ2E5c0c3Ql8xeWpWTFZza2VIYmszeWo1S3VDR3hHcjdIeU01TXU0RGlFMzhrNXMzaXNhZEJHMVBlNkJ6S0w5MWU1MEdXT3JRM1hxTVQxT2NLMndKY05iZVRGU2I3a19lOXc?oc=5",
+      "nota_texto": "Presidenta Sheinbaum Pardo anuncia visitas sorpresa a hospitales del IMSS-Bienestar y reconoce problemas de desabasto - Por Esto!",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
@@ -1353,14 +1416,14 @@
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "iniciales": "OG",
-      "x_lunes": 43,
-      "y_lunes": 72,
-      "x_hoy": 52,
+      "x_lunes": 48,
+      "y_lunes": 70,
+      "x_hoy": 62,
       "y_hoy": 77,
-      "delta_pts": 6.0,
-      "alcance": 9,
-      "n_alto": 6,
-      "n_medio": 5,
+      "delta_pts": 9.0,
+      "alcance": 11,
+      "n_alto": 7,
+      "n_medio": 6,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
@@ -1372,12 +1435,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-13",
-          "x": 43,
-          "y": 72
+          "x": 48,
+          "y": 70
         },
         {
           "fecha": "2026-10-14",
-          "x": 52,
+          "x": 62,
           "y": 77
         }
       ],
@@ -1511,6 +1574,89 @@
       "fecha_apagado": "2026-10-17"
     },
     {
+      "id": "amilcar_olan_aparicio",
+      "nombre": "Amílcar Olán Aparicio",
+      "iniciales": "AO",
+      "x_lunes": 14,
+      "y_lunes": 83,
+      "x_hoy": 19,
+      "y_hoy": 75,
+      "delta_pts": 1.5,
+      "alcance": 4,
+      "n_alto": 2,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://www.jornada.com.mx/2026/10/14/politica/007n1pol?partner=rss",
+      "nota_texto": "Amílcar Olán, ligado a El Tanque, está ubicable, dice García Harfuch a senadores",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 4,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 5,
+          "y": 100
+        },
+        {
+          "fecha": "2026-10-13",
+          "x": 10,
+          "y": 75
+        },
+        {
+          "fecha": "2026-10-14",
+          "x": 14,
+          "y": 83
+        },
+        {
+          "fecha": "2026-10-15",
+          "x": 19,
+          "y": 75
+        }
+      ],
+      "fecha_apagado": "2026-10-18"
+    },
+    {
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "iniciales": "RI",
+      "x_lunes": 24,
+      "y_lunes": 50,
+      "x_hoy": 29,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 5,
+      "n_alto": 0,
+      "n_medio": 6,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/12/rosa-icela-rodriguez-delfina-gomez-revisan-plan-integral-de-la-zona-oriente-del-edomex-906769.html",
+      "nota_texto": "Rosa Icela Rodríguez y Delfina Gómez revisan Plan Integral de la Zona Oriente del Edomex",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-12",
+          "x": 5,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-13",
+          "x": 24,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-15",
+          "x": 29,
+          "y": 50
+        }
+      ],
+      "fecha_apagado": "2026-10-16"
+    },
+    {
       "id": "trump",
       "nombre": "Donald Trump",
       "iniciales": "DT",
@@ -1540,45 +1686,6 @@
           "fecha": "2026-10-15",
           "x": 14,
           "y": 83
-        }
-      ],
-      "fecha_apagado": "2026-10-16"
-    },
-    {
-      "id": "rosa_icela",
-      "nombre": "Rosa Icela Rodríguez",
-      "iniciales": "RI",
-      "x_lunes": 24,
-      "y_lunes": 50,
-      "x_hoy": 29,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 5,
-      "n_alto": 0,
-      "n_medio": 6,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNaWtDeDdaaUdOenpPMFQ1RThwdld1aFJ1NDhUUHJmX0ZFbl9wdUh6djBDMHNPcm5ualpJNXNLMmMzWUdLT3dlRTNYS3FscmVsVG1pZFBFV0Q0WlJjaV9KLWh0SUtJdUdvTThfUl9LWEVtcElLNDlhN0RkZ1ctZ3FzVjcxRmJROTVKVjVBUkxQSm5iSTF2Q19vcnp5aVNyOXFEQURtT2RDRjdPOWJwVmwyZmluS2tJOVgwczNsZENVNkZaVkM3RHJodzFQSURIMnlCVFpIelU2WjVqWUJBcGs3Z3NOOTZRN0dxcjEzSGJ3?oc=5",
-      "nota_texto": "Estefanía Mercado participa en reunión con Rosa Icela Rodríguez para impulsar la paz y la seguridad en Playa del Carmen - Noticaribe",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-12",
-          "x": 5,
-          "y": 50
-        },
-        {
-          "fecha": "2026-10-13",
-          "x": 24,
-          "y": 50
-        },
-        {
-          "fecha": "2026-10-15",
-          "x": 29,
-          "y": 50
         }
       ],
       "fecha_apagado": "2026-10-16"
@@ -1650,54 +1757,16 @@
         }
       ],
       "fecha_apagado": "2026-10-15"
-    },
-    {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "iniciales": "AM",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 18,
-      "y_hoy": 75,
-      "delta_pts": 4.5,
-      "alcance": 2,
-      "n_alto": 1,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/13/ariadna-montiel-pide-la-renuncia-de-pablo-lemus-por-la-crisis-de-agua-en-jalisco-907377.html",
-      "nota_texto": "Ariadna Montiel pide la renuncia de Pablo Lemus por la crisis de agua en Jalisco",
-      "es_nuevo": false,
-      "categoria": "Social",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-13",
-          "x": 18,
-          "y": 75
-        }
-      ],
-      "fecha_apagado": "2026-10-14"
     }
   ],
   "tablero_semana_inicio": "2026-10-12",
   "resumen_mananera": [],
   "mananera_estado": "pendiente",
-  "a_vigilar": [
-    {
-      "id": "auto-642a4e6753",
-      "nombre": "García Harfuch comparece en privado ante el Senado como parte de la glosa del se",
-      "categoria": "Gobernabilidad",
-      "resumen": "García Harfuch comparece en privado ante el Senado como parte de la glosa del segundo informe de Sheinbaum - LatinUS",
-      "fuente_url": "",
-      "actor_vinculado": null
-    }
-  ],
+  "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 0
   },
   "declaracion_presidenta_historial": [
     {
@@ -1752,5 +1821,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-18 00:01"
+  "hora_corte_publicada": "2026-10-18 06:03"
 }
