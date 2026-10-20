@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-20T09:37:14.797121-06:00",
+  "generado_en": "2026-10-20T12:02:57.102912-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 20,
+  "n_notas_ventana": 25,
   "baja_confianza": false,
-  "tension_nacional": 48,
+  "tension_nacional": 45,
   "tension_anomalia": {
-    "z": 2.15,
-    "nivel": "alta",
+    "z": 1.78,
+    "nivel": "normal",
     "media_periodo": 30.7,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 47,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
+      "peso_pct": 46,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
       "n_temas": 4,
-      "n_notas": 9,
+      "n_notas": 11,
       "notas": [
         {
           "texto": "Ven viable acuerdos de México y EU en el T-MEC ante distanciamiento de Trump con Canadá - Excélsior",
@@ -56,6 +56,18 @@
           "medio": "Vanguardia de Veracruz"
         },
         {
+          "texto": "Sheinbaum confirma cercanía de acuerdo con EE.UU. en T-MEC tras dichos de Trump - XEVA",
+          "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOdWh3MUc5d1BjNmRjalNvVk15TFQxQUgzQ0NNb09mQm9mMXgxaTdieS1sQjNzZWxDaEFkMV9CbjhIN0tNZTNva09CeW1Da1c2LVFMeEgxb2gwVGNOajI1NmVCVTlXZDVpYnBJbDRJT3hzaWIwc2ZESm5EUkJzZUppblNkMnJWLXVHT0lKMFlIZlBNMGYycFp6LTlxdndlZTNUNkpGTHpGcnZzM3Z4UzJaNkVB?oc=5",
+          "intensidad": 7.0,
+          "medio": "XEVA"
+        },
+        {
+          "texto": "Sheinbaum percibe “muy buena actitud” de EEUU en el T-MEC: asegura que están muy cerca de un acuerdo pero aún hay temas sin resolver - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQaHdPNEI2M1BlU1JFVVp1bzI1SS1YcFZEaWNBeUJsMmRHeVd3dkxITEwxSnlFV0RPZUM5S05rVHF0N29tc0dNMWZIbnN0RmJhVmRqRWdja0tvdEwwZG5McmVCT2NEXzV0SmREY2NYd3MteHBTcFFWQmRoSGQzUTBUV2Z2MnRhRmowbUVGbFZDeHEyU0Z4Q3RDMWo4bWUzWl9iaUQyN2YtTU1pbUxRVlZSWG9ka0U0WWxobjN6TFdlRVhEd9IB3AFBVV95cUxON3JjOU5qS0lsWG5kM3dnSmdEaG5qWXdHRF83YVEyeGhaZm14aGRkWUhtVnBQbnpoOExQWG1XSXhwODNlTXZMdmcwbmxYUlJuNTFtUW9aVDN4bzB6T2M4SHVlQVduV3RCLUllN3ZMT1ZUVEN2eGFpTW9aenB0endxRDR4TlNWVWxtR3lLZEdnYkpkWUw2RHRlNzdoNG5oTll4OG5IUUlHQXdqTkNidm9BNkNPVGduV2tGY1QtcGxKaWEyeThXR3AtVy1wa3RRYlJoOHVQekRndHM2YXFR?oc=5",
+          "intensidad": 7.0,
+          "medio": "Infobae"
+        },
+        {
           "texto": "Donald Trump insiste en renombrar Nuevo México como ‘Nueva América’: “Le daría gran valor” - Por Esto!",
           "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNeFR4Mm1OOGhtZGM2TnB4Rk5Qc3dpeG5DNmNEV2hwRk1xOUQ0Z0k1VDVkSzE1d1hCV05YbWNQdnAzenhQTDJoTlZid0EyRnRtUHhLR09CcjJoT3NfbFMxZEJoSWpBV2FoWVM3aXk2VHYzTzg0bUduX1Z6Y1dQTnJHSm5rLXllZW9raWRvVjNfWEhCUTVFNEs1VkJzdG9vODJKeEFveVdrNlDSAa4BQVVfeXFMUGpuMmFEcVduWE9HbVY2M1pNQ2ZVWWR3Rk1nNUhfT0pIOE9USUpGdmhUcU9uczQzbHdfeU4xaFk2a2NMV09QNmg5a3pRd3M2S0V6UjJ0dWFSRTVyLTEwclhKR09Fek5tSTJVQXpoWXBGY1RCcUM2bXA2S2VhRlV4Mk02WE9zWDBfMnpLSk5sdUZoNk5JUU9kR0UtWHozRUsxc1o5dGg0MThNQmJ4c3Bn?oc=5",
           "intensidad": 5.0,
@@ -77,7 +89,7 @@
     },
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 43,
+      "peso_pct": 35,
       "tema_principal": "Impulsa senador Higinio Martínez nuevo Padrón de Cabilderos de Cámara de Senador",
       "tema_principal_id": "auto-c6def1ccd5",
       "n_temas": 6,
@@ -141,31 +153,49 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 5,
+      "peso_pct": 11,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 1,
-      "n_notas": 1,
+      "n_temas": 3,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "Feminicidios en Sinaloa aumentan 148%: la crisis en medio de la guerra entre Los Chapitos y Los Mayos - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBJSlAzaGJCNE5rRS1GWDZiQWVHUndWRU1XVFNQaGI3UG8zVmZ2N2RfdUJqX2VxSWlZNmU4SmVUOTV4M2FKSmItZmZOTEFTZnhNdDJkYUd1TTZWLVA1RU45SXY4NWpVVElXYnhRZmdVT2J2YThJc3BB0gF3QVVfeXFMTWRWN2FoUjJLckZ2UzB1QVNlQVRtdWZ6aUtndGptTHJrQnlCNEFncnZrNjJEVlBuWnVob2FUMTZFejA3aTJOMnlNWUtIbk14cUNpaHZwT3U3bEpYeDFkRzRheFhXdDlyT2w4VERFTXEzY0Jkc0xxZ0k?oc=5",
           "intensidad": 7.0,
           "medio": "Milenio"
+        },
+        {
+          "texto": "DESMIENTE CLAUDIA: DONALD TRUMP NO CONDICIONÓ T-MEC",
+          "fuente_url": "http://campechehoy.mx/2026/10/20/desmiente-claudia-donald-trump-no-condiciono-t-mec/",
+          "intensidad": 7.0,
+          "medio": "campechehoy.mx"
+        },
+        {
+          "texto": "‘San Judas Tadeo, un gallo y calaveras’: Así es la ofrenda en la tumba de ‘El Mencho’, exlíder del CJNG",
+          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/20/san-judas-tadeo-un-gallo-y-calaveras-asi-es-la-ofrenda-en-la-tumba-de-el-mencho-exlider-del-cjng/",
+          "intensidad": 4.0,
+          "medio": "elfinanciero.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 5,
+      "peso_pct": 8,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 1,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "EU cierra caso laboral contra Alimentos Grole bajo el T-MEC; empresa reinstala a nueve trabajadores - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNSGlSS3A2MUJtQkx6Ry13b2NJN3Y4WUxBUC1jbDg4RkhPcWlaY2xMSHUwZHBxa3gwdC1tVXFKR3FUdGtJUTlkNF9leGstR0dhLXk5a1JkUy1yb3c0YkYzNzhQWURPOV91NWs0WWd0RTZRSE5RRmktLTNGd2s2WUpMTVBFVTg0cmNhMXU4bVh30gGOAUFVX3lxTE5DS2RDT3VFUldRdVVfdGVpTEFVdkozOU1ObWxkX0Faa0hmZ1pMcXA0TFJnMVBlbG9yOGhmY2FkR1BZRTh1WGN1RzlSdHAyM0NxWWpLdHc3MHVNbEg4aFZ6NHlxOXpyaVJTQ1FsMEhwSEpfLUVGaHkzdlpxajVoQzNEWUx5SDR2SDdLbk5VYUE?oc=5",
+          "intensidad": 7.0,
+          "medio": "Milenio"
+        },
+        {
+          "texto": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYUhFSkt0bGJUNXpVTXZ1YWRLUDNTeTRKbzlCQm4ydVVaMEZodEwxeV8xb09QRXpYR0ZLRU9kak01T1R1YThicnhWNkhFLTRKYWhZU3Rhel9jS1JGU1Jpanl4OGZhTWltdWRXNXVkU19TVFd0b2g1VDVIYkJ6aS1WU1BuZ2otc0dnR3l4QW9ZSEt1MVBn0gGUAUFVX3lxTE1hRUFndGNhQVg2SGlnRFJmTjZlWUl6cFdyd0JQUzJZdTQ5MmgyekRaNWxRTjB1SnpyTFVoOHBGUTYyTVVVTnNIX0taVVpNVGRZT3dWUHliNHczM2hybmFhTnpmRjdJakZCTVBvRWI1SDlKa2dBNGcwdS1mLVBZaU1aS1hxczM1TWdyWGVveFhmRE9vSkk?oc=5",
           "intensidad": 7.0,
           "medio": "Milenio"
         }
@@ -866,15 +896,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 18
+          "peso_pct": 19
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -884,6 +914,24 @@
     }
   ],
   "top5_temas": [
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Ven viable acuerdos de México y EU en el T-MEC ante distanciamiento de Trump con Canadá - Excélsior",
+      "peso": 30.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNRDJhUkxuN0VZU1g3TE12ZTlLeW95RnpRcWFiVDZSN243YmFDdjJEOXV0MVdPY2tIR3dNZzdfVERXSE1jbE1TTy1qZkJtQ0dTR255RzVtNmdReTlVcHVsNENoUDU0ZVcyekNYZkhaTXZiRVRhOEdsOTBneGxvQ3QyWW5xQzdtUWZaTnVXS0hlbzNYaGo1QlowSjdZMjJsWDA0b3h6NXpMQXozMFU5SFNZ0gG0AUFVX3lxTE8xS3pTaGtqNjVoRmo3UGQ3UV92YWplcUR4Z3NkYUhYWjNiTFV6dnd5anVpb3BQRmJmUTNsYXUxUFoxZkJWSE5NdmtRNHcwUkFmRm1SWGtFekI1U2Y3U1BBUzVPRUoxZF95ZnJjMkl3ZzQ1ZW5FZm1zQS1vOGRyakdHMnlFNG1CaGNmbnJ1cHZfaXdWODBFV01ZUU52dlFBb19sc0FHSl84Ulk5ZTJ1QWx5M3FGdQ?oc=5",
+      "actor_vinculado": {
+        "id": "trump",
+        "nombre": "Donald Trump"
+      }
+    },
     {
       "id": "auto-ec8c237f9a",
       "nombre": "Pío López Obrador se registra en proceso interno de Morena por Tuxtla Gutiérrez ",
@@ -900,24 +948,6 @@
       "actor_vinculado": {
         "id": "morena_partido",
         "nombre": "Morena (partido político)"
-      }
-    },
-    {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Ven viable acuerdos de México y EU en el T-MEC ante distanciamiento de Trump con Canadá - Excélsior",
-      "peso": 16.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNRDJhUkxuN0VZU1g3TE12ZTlLeW95RnpRcWFiVDZSN243YmFDdjJEOXV0MVdPY2tIR3dNZzdfVERXSE1jbE1TTy1qZkJtQ0dTR255RzVtNmdReTlVcHVsNENoUDU0ZVcyekNYZkhaTXZiRVRhOEdsOTBneGxvQ3QyWW5xQzdtUWZaTnVXS0hlbzNYaGo1QlowSjdZMjJsWDA0b3h6NXpMQXozMFU5SFNZ0gG0AUFVX3lxTE8xS3pTaGtqNjVoRmo3UGQ3UV92YWplcUR4Z3NkYUhYWjNiTFV6dnd5anVpb3BQRmJmUTNsYXUxUFoxZkJWSE5NdmtRNHcwUkFmRm1SWGtFekI1U2Y3U1BBUzVPRUoxZF95ZnJjMkl3ZzQ1ZW5FZm1zQS1vOGRyakdHMnlFNG1CaGNmbnJ1cHZfaXdWODBFV01ZUU52dlFBb19sc0FHSl84Ulk5ZTJ1QWx5M3FGdQ?oc=5",
-      "actor_vinculado": {
-        "id": "trump",
-        "nombre": "Donald Trump"
       }
     },
     {
@@ -939,6 +969,24 @@
       }
     },
     {
+      "id": "sinaloa-crisis",
+      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
+      "motivo": "Feminicidios en Sinaloa aumentan 148%: la crisis en medio de la guerra entre Los Chapitos y Los Mayos - Milenio",
+      "peso": 11.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBJSlAzaGJCNE5rRS1GWDZiQWVHUndWRU1XVFNQaGI3UG8zVmZ2N2RfdUJqX2VxSWlZNmU4SmVUOTV4M2FKSmItZmZOTEFTZnhNdDJkYUd1TTZWLVA1RU45SXY4NWpVVElXYnhRZmdVT2J2YThJc3BB0gF3QVVfeXFMTWRWN2FoUjJLckZ2UzB1QVNlQVRtdWZ6aUtndGptTHJrQnlCNEFncnZrNjJEVlBuWnVob2FUMTZFejA3aTJOMnlNWUtIbk14cUNpaHZwT3U3bEpYeDFkRzRheFhXdDlyT2w4VERFTXEzY0Jkc0xxZ0k?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
+    },
+    {
       "id": "trump-agenda",
       "nombre": "Trump y México: declaraciones y presión",
       "categoria": "Relación Bilateral",
@@ -952,35 +1000,9 @@
       "confianza": "media",
       "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/10/19/donald-trump-inorma-que-esta-cerca-de-un-acuerdo-con-mexico-para-reducir-deficit-comercial/",
       "actor_vinculado": null
-    },
-    {
-      "id": "auto-24192425ec",
-      "nombre": "Donald Trump imita a Claudia Sheinbaum al asegurar que con su “hermosa voz” le p",
-      "categoria": "Relación Bilateral",
-      "resumen": "Donald Trump imita a Claudia Sheinbaum al asegurar que con su “hermosa voz” le pidió “por favor” no rebautizar el Golfo de México; además, sostiene que Estados Unidos posee el 93% de la costa, aunque los datos geoespaciales muestran otra proporción - El Imparcial",
-      "motivo": "Donald Trump respalda la reelección de Benjamin Netanyahu - Milenio",
-      "peso": 7.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOWEhkSnVsemxqYjhsTGdqV1BBcWdxZVBJZG5FenpBZWdMb0VGQ3BPalJmbF9RNEl4VW9Uck4tclljV2h6MzkyM0R6VHk3Q09aYUJoTmYwbjFzMk15dlEtRnZmWWRIcGJqNWhpWFFfbTgtNTFDMHVxU19QdWU2Vkx6Qmg0WDR0VnVIUEhZTFJWTkhudVRXTHR6a1p5czdBOWEtRElVODRZRzBlc0NhWDBHV2FrQ0Joem1WbXfSAboBQVVfeXFMT2JqVEpNakVzMjhPYlA5S0xlVS1hd3AyWkoxQVZrYmFUR1llT3FiWkU2LWlGcmlueDA0Q3R4TTFaLTREcFA4eUR2b2RfeUtld3VMbGJJNXpLMjRzZVFiV3hsdkVteF9URFNtUDVDMzNhOWkzQjMySTVVZmJlQ1NraVFXVVhZVEwxSkVTcG9JaHdEdnJaVkUzYnhWdl91ejNldFdKRUV2VWgzSFJDUGFIUzVsRG1EZ2FWREZ3?oc=5",
-      "actor_vinculado": {
-        "id": "trump",
-        "nombre": "Donald Trump"
-      }
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-3c57ebffd5",
-      "nombre": "Otra vez interrumpen mitin de JD Vance: Vicepresidente califica a activista como",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/19/otra-vez-interrumpen-mitin-de-jd-vance-vicepresidente-califica-a-activista-como-un-migrante-ilegal/"
-    },
     {
       "id": "auto-9b81f8ce9c",
       "nombre": "Caravanas migrantes alistan salida de Tapachula rumbo al centro de México - Mile",
@@ -988,6 +1010,14 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTkNyNFhMdktkeE1OUWt3bGtSMko4eUxxZS1VTUVsNkZ0MkxORl9pbHBRYU9lVFlaQWdIUVJzendpN1B6NFJYVjBPZkszdTVyaUlfOUhscGF3RkhGa0FIMnFmOUplZDE3VVVoTmNlQ25sZTd3QnBRQ3ZybVhWdWV4LTZLRWZPOE1RYWRRZEdjb9IBjwFBVV95cUxOdTBFZmw1R2RMOVVxMlpXcEtPdnhlZkFUQS1WVVRpZUhwWUw0b0tNQm41dnE0N3VLejQzN0R4MzFVSDRqZG1weDUzNlRxXzRZUFhYVWljMGZOSHcyMThJdWNab0ZhamhDOGRuQkZ0STczdWtYa1c1M05Jd2g1cmJ2QjdWUXgyX0VUc3VneHctUQ?oc=5"
+    },
+    {
+      "id": "auto-f0f75af0a6",
+      "nombre": "‘Te lo pido por favor’: Candidatean a Juan Gabriel para recibir la Medalla Belis",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/19/te-lo-pido-por-favor-candidatean-a-juan-gabriel-para-recibir-la-medalla-belisario-dominguez/"
     },
     {
       "id": "auto-128d783407",
@@ -1062,17 +1092,6 @@
       "confianza": "media"
     },
     {
-      "id": "jd_vance",
-      "nombre": "JD Vance",
-      "rol": "Responsable institucional",
-      "tema": "Otra vez interrumpen mitin de JD Vance: Vicepresidente califica a activista como",
-      "nota": "🔔 ALERTA — Otra vez interrumpen mitin de JD Vance: Vicepresidente califica a activista como un ‘migrante ilegal’",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/19/otra-vez-interrumpen-mitin-de-jd-vance-vicepresidente-califica-a-activista-como-un-migrante-ilegal/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Responsable institucional",
@@ -1093,9 +1112,27 @@
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
+    },
+    {
+      "id": "higinio_martinez",
+      "nombre": "Higinio Martínez Miranda",
+      "rol": "Responsable institucional",
+      "tema": "Impulsa senador Higinio Martínez nuevo Padrón de Cabilderos de Cámara de Senador",
+      "nota": "Higinio Martínez llama  a realizar cumbre del sector salud en el Senado",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/20/politica/004n3pol?partner=rss",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
     }
   ],
-  "declaracion_presidenta": null,
+  "declaracion_presidenta": {
+    "actor": "Claudia Sheinbaum Pardo",
+    "texto": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
+    "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYUhFSkt0bGJUNXpVTXZ1YWRLUDNTeTRKbzlCQm4ydVVaMEZodEwxeV8xb09QRXpYR0ZLRU9kak01T1R1YThicnhWNkhFLTRKYWhZU3Rhel9jS1JGU1Jpanl4OGZhTWltdWRXNXVkU19TVFd0b2g1VDVIYkJ6aS1WU1BuZ2otc0dnR3l4QW9ZSEt1MVBn0gGUAUFVX3lxTE1hRUFndGNhQVg2SGlnRFJmTjZlWUl6cFdyd0JQUzJZdTQ5MmgyekRaNWxRTjB1SnpyTFVoOHBGUTYyTVVVTnNIX0taVVpNVGRZT3dWUHliNHczM2hybmFhTnpmRjdJakZCTVBvRWI1SDlKa2dBNGcwdS1mLVBZaU1aS1hxczM1TWdyWGVveFhmRE9vSkk?oc=5",
+    "intensidad": 7.0,
+    "fecha": "2026-10-20",
+    "nivel_fuente": "ALTA"
+  },
   "declaracion_otro": null,
   "patron_historico_4sem": [
     {
@@ -1316,21 +1353,54 @@
     },
     {
       "fecha": "2026-10-20",
-      "tension": 50,
-      "n_notas": 9,
-      "n_alto_impacto": 7,
-      "n_medio_impacto": 2,
+      "tension": 45,
+      "n_notas": 14,
+      "n_alto_impacto": 11,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
     {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "iniciales": "DT",
+      "x_lunes": 50,
+      "y_lunes": 88,
+      "x_hoy": 100,
+      "y_hoy": 94,
+      "delta_pts": 12.0,
+      "alcance": 8,
+      "n_alto": 7,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOWjF4N3lJeTJmdklmcEY5UUdPdTRlel9RaFFCVGhwMFR4ckg3OVJXU08yQTg1THQ3dS1JZHotX1Q0aWJ3ek1uZVR2QlhteVhSVmVKRjVmTXUtUE91RExISXM3XzJhRkdZNmFUNFZjamdKZVcyZzJTNVN1aFljMmdObkpTNjdEc0RUZ3d1YWVUMU54NGtCcnhNRWJQckdYdldCUG4xZzZZa1IyaU80TVJpallSRFVPQUJPSWpvd0FQalZCODk3TnFPRFAyYlFrRENMMnE0WE5lazVnZDVzWGZJSXMzSnpVNzlaOUh5aGJ1Z1JMQTFSSXNhUUVfWkktZkktaEtmTGtJTFZULWVMd25mcNIBlgJBVV95cUxOVmxOTW5wTTQ1Y1BqZmVCNDBrQ0NHcS0xTWFNNDVhelFSQ010ZEUwLTF1dVBYNDBxZ3dOd1p2QjhraDJLZ1BsY3JyUlhkMDg1QWlOQzA2S3h5UjZSZlBBU2ZwSjBxU09CTzYwampsZk9zTGhUaUpmZURha2NpUk43VXhDaVk4endEQ092bmtzR0xNUUtXNWFQU1BJVXRVdTJSbE1FT3NVZVJ1bDBQbE8xa1BlblVmcVAyTnpacWNGLWt0Q25PRHYzOGxJZ3V5eTBSRnJlSkJtOWtXcV84YkU5TE5CMkw2OEhFWldGOWN4R3YwMHRVSWtka25Bd3hsNHBpZXpVUHFwSGc2WTU1UFZlWW9MTllIZw?oc=5",
+      "nota_texto": "Claudia Sheinbaum confiesa que Donald Trump le pidió que le compre más gas a EEUU y que quería acciones de PEMEX: qué le respondió - Ambito",
+      "es_nuevo": false,
+      "categoria": "Relación Bilateral",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-19",
+          "x": 50,
+          "y": 88
+        },
+        {
+          "fecha": "2026-10-20",
+          "x": 100,
+          "y": 94
+        }
+      ]
+    },
+    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 86,
+      "x_lunes": 75,
       "y_lunes": 100,
-      "x_hoy": 100,
+      "x_hoy": 88,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 5,
@@ -1347,47 +1417,13 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 86,
+          "x": 75,
           "y": 100
         },
         {
           "fecha": "2026-10-20",
-          "x": 100,
+          "x": 88,
           "y": 100
-        }
-      ],
-      "fecha_reactivado": "2026-10-20"
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "iniciales": "DT",
-      "x_lunes": 57,
-      "y_lunes": 88,
-      "x_hoy": 100,
-      "y_hoy": 93,
-      "delta_pts": 9.0,
-      "alcance": 7,
-      "n_alto": 6,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOWjF4N3lJeTJmdklmcEY5UUdPdTRlel9RaFFCVGhwMFR4ckg3OVJXU08yQTg1THQ3dS1JZHotX1Q0aWJ3ek1uZVR2QlhteVhSVmVKRjVmTXUtUE91RExISXM3XzJhRkdZNmFUNFZjamdKZVcyZzJTNVN1aFljMmdObkpTNjdEc0RUZ3d1YWVUMU54NGtCcnhNRWJQckdYdldCUG4xZzZZa1IyaU80TVJpallSRFVPQUJPSWpvd0FQalZCODk3TnFPRFAyYlFrRENMMnE0WE5lazVnZDVzWGZJSXMzSnpVNzlaOUh5aGJ1Z1JMQTFSSXNhUUVfWkktZkktaEtmTGtJTFZULWVMd25mcNIBlgJBVV95cUxOVmxOTW5wTTQ1Y1BqZmVCNDBrQ0NHcS0xTWFNNDVhelFSQ010ZEUwLTF1dVBYNDBxZ3dOd1p2QjhraDJLZ1BsY3JyUlhkMDg1QWlOQzA2S3h5UjZSZlBBU2ZwSjBxU09CTzYwampsZk9zTGhUaUpmZURha2NpUk43VXhDaVk4endEQ092bmtzR0xNUUtXNWFQU1BJVXRVdTJSbE1FT3NVZVJ1bDBQbE8xa1BlblVmcVAyTnpacWNGLWt0Q25PRHYzOGxJZ3V5eTBSRnJlSkJtOWtXcV84YkU5TE5CMkw2OEhFWldGOWN4R3YwMHRVSWtka25Bd3hsNHBpZXpVUHFwSGc2WTU1UFZlWW9MTllIZw?oc=5",
-      "nota_texto": "Claudia Sheinbaum confiesa que Donald Trump le pidió que le compre más gas a EEUU y que quería acciones de PEMEX: qué le respondió - Ambito",
-      "es_nuevo": false,
-      "categoria": "Relación Bilateral",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-19",
-          "x": 57,
-          "y": 88
-        },
-        {
-          "fecha": "2026-10-20",
-          "x": 100,
-          "y": 93
         }
       ]
     },
@@ -1395,9 +1431,9 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 43,
+      "x_lunes": 38,
       "y_lunes": 100,
-      "x_hoy": 57,
+      "x_hoy": 50,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 4,
@@ -1414,16 +1450,15 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 43,
+          "x": 38,
           "y": 100
         },
         {
           "fecha": "2026-10-20",
-          "x": 57,
+          "x": 50,
           "y": 100
         }
-      ],
-      "fecha_reactivado": "2026-10-20"
+      ]
     },
     {
       "id": "andy",
@@ -1431,7 +1466,7 @@
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 29,
+      "x_hoy": 25,
       "y_hoy": 100,
       "delta_pts": 6,
       "alcance": 2,
@@ -1448,7 +1483,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 29,
+          "x": 25,
           "y": 100
         }
       ],
@@ -1458,9 +1493,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 29,
+      "x_lunes": 25,
       "y_lunes": 75,
-      "x_hoy": 43,
+      "x_hoy": 38,
       "y_hoy": 83,
       "delta_pts": 3.0,
       "alcance": 3,
@@ -1477,16 +1512,15 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 29,
+          "x": 25,
           "y": 75
         },
         {
           "fecha": "2026-10-20",
-          "x": 43,
+          "x": 38,
           "y": 83
         }
-      ],
-      "fecha_reactivado": "2026-10-20"
+      ]
     },
     {
       "id": "soto_picha",
@@ -1494,7 +1528,7 @@
       "iniciales": "JS",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 12,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1511,7 +1545,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 14,
+          "x": 12,
           "y": 100
         }
       ],
@@ -1521,9 +1555,9 @@
       "id": "higinio_martinez",
       "nombre": "Higinio Martínez Miranda",
       "iniciales": "HM",
-      "x_lunes": 14,
+      "x_lunes": 12,
       "y_lunes": 50,
-      "x_hoy": 29,
+      "x_hoy": 25,
       "y_hoy": 75,
       "delta_pts": 3.0,
       "alcance": 2,
@@ -1540,12 +1574,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 14,
+          "x": 12,
           "y": 50
         },
         {
           "fecha": "2026-10-20",
-          "x": 29,
+          "x": 25,
           "y": 75
         }
       ]
@@ -1556,7 +1590,7 @@
       "iniciales": "RM",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 12,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1573,7 +1607,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 14,
+          "x": 12,
           "y": 50
         }
       ],
@@ -1585,7 +1619,7 @@
       "iniciales": "CL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 12,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1602,7 +1636,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-20",
-          "x": 14,
+          "x": 12,
           "y": 50
         }
       ]
@@ -1639,21 +1673,13 @@
   ],
   "tablero_semana_inicio": "2026-10-19",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "fuente_retrasada",
   "a_vigilar": [
     {
       "id": "auto-e334602297",
       "nombre": "PAN en Puebla concluirá medición de perfiles y formación de cuadros jóvenes ante",
       "categoria": "Gobernabilidad",
       "resumen": "PAN en Puebla concluirá medición de perfiles y formación de cuadros jóvenes antes de noviembre",
-      "fuente_url": "",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-0c8f592de4",
-      "nombre": "Detienen a César Jáuregui, exfiscal de Chihuahua, por caso de agentes de la CIA ",
-      "categoria": "Gobernabilidad",
-      "resumen": "Detienen a César Jáuregui, exfiscal de Chihuahua, por caso de agentes de la CIA en México",
       "fuente_url": "",
       "actor_vinculado": null
     }
@@ -1664,6 +1690,14 @@
     "pendientes": 4
   },
   "declaracion_presidenta_historial": [
+    {
+      "actor": "Claudia Sheinbaum Pardo",
+      "texto": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYUhFSkt0bGJUNXpVTXZ1YWRLUDNTeTRKbzlCQm4ydVVaMEZodEwxeV8xb09QRXpYR0ZLRU9kak01T1R1YThicnhWNkhFLTRKYWhZU3Rhel9jS1JGU1Jpanl4OGZhTWltdWRXNXVkU19TVFd0b2g1VDVIYkJ6aS1WU1BuZ2otc0dnR3l4QW9ZSEt1MVBn0gGUAUFVX3lxTE1hRUFndGNhQVg2SGlnRFJmTjZlWUl6cFdyd0JQUzJZdTQ5MmgyekRaNWxRTjB1SnpyTFVoOHBGUTYyTVVVTnNIX0taVVpNVGRZT3dWUHliNHczM2hybmFhTnpmRjdJakZCTVBvRWI1SDlKa2dBNGcwdS1mLVBZaU1aS1hxczM1TWdyWGVveFhmRE9vSkk?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-10-20",
+      "nivel_fuente": "ALTA"
+    },
     {
       "actor": "Claudia Sheinbaum Pardo",
       "texto": "Sheinbaum aclara que Trump no condiciona el T-MEC a la entrega de “narcopolíticos” ni ha usado esa palabra en sus llamadas - Infobae",
@@ -1678,14 +1712,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1qMEVFV3VJWkY1OEdId0VwdTdtN1NUbXk2WWQ1ZnJ5RWxjOW05VXJuWG1GT0Vqc3o3R2pFWEVuU3JUelZiV2s4VUNyd2lnS180SE5QajhEcU5GOGhsa3RQTEc3REJRd3VMZEhiU29IZDHSAXZBVV95cUxQTm02LU5kbEFTc1RhMk9xZV9sUTdaVE5ySWFFRUlCZ2NOSUNuakU1cGh5SUxJLTI1VlNxczNTTUpRcnhackNkeHU0M0N2aG9mRDAwOFYyS1N6Y0xqN1dtM2wyOUZ0WDRkeG1IV29QMExVV0JoMjJn?oc=5",
       "intensidad": 7.0,
       "fecha": "2026-10-13",
-      "nivel_fuente": "ALTA"
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
-      "texto": "Claudia Sheinbaum admite problemas en el IMSS y reconoce demandas \"legítimas” del personal: desabasto de medicamentos y falta de prestaciones - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxQUkROQjFxbHBNVEtiWWJxclQ5R043bVlTek94ZHF3Ymx1a0xRcWFUWWpvTUdIOE10X0dTWDNqTklEZWt0RmdLRnNhek9heUpmOU1zbklaN2s2Qmxjam1VTGVMR19tLXJ1anVURmhOSWZLQ0I5NTVuYXpybFpJdEJTVjJnSGM3WDR2d2ZyeEZ5dXNQU3J6WHFUUThzaWZTMW5NMmtJWU9NSFFHVUhNVTBrSE4yejFSeGE3M3JqTDdrT252aFNBd05NdndwWFdmbTI5YS11NGhrSzBIY1VlNkpPX3c3WGhqTk1nS1R1ZE4taE9pWml1X212NVdtVGtBTUk1WUVnZVFkWkVzTDBjWkR0NDd2WVFKVk9mUGVkdGFPaVBkUQ?oc=5",
-      "intensidad": 7.0,
-      "fecha": "2026-10-12",
       "nivel_fuente": "ALTA"
     }
   ],
@@ -1715,6 +1741,11 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-20 09:37"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-10-20T09:37:14.797121-06:00",
+    "cambios": [
+      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
+    ]
+  },
+  "hora_corte_publicada": "2026-10-20 12:02"
 }
