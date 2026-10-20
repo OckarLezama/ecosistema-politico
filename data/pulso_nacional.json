@@ -1,52 +1,28 @@
 {
-  "generado_en": "2026-10-19T19:33:17.336369-06:00",
+  "generado_en": "2026-10-20T00:04:39.997786-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 27,
+  "n_notas_ventana": 19,
   "baja_confianza": false,
-  "tension_nacional": 34,
+  "tension_nacional": 39,
   "tension_anomalia": {
-    "z": 0.4,
+    "z": 1.04,
     "nivel": "normal",
-    "media_periodo": 30.5,
+    "media_periodo": 30.2,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 63,
-      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
-      "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 13,
-      "n_notas": 18,
+      "peso_pct": 54,
+      "tema_principal": "La Barredora",
+      "tema_principal_id": "la-barredora",
+      "n_temas": 10,
+      "n_notas": 11,
       "notas": [
         {
           "texto": "Juan Carlos Natale se registra como aspirante a Coordinación Municipal de Morena; suman siete aspirantes - El Popular, periodismo con causa",
           "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQTm4ydmNoOEU1Vm5wVkFoSmIxcHpjMjk1REY2SnVKM0Utb1dOaFpfVFJYQUF1ejMwRkFhLWhfWkw4cWpxRGJDZzF1M3EyOXAyUGlPYTBDTkdhVmE2QllkVUlQWTVYMDRMd013TEczVTRrZmZ4VGdxTHMwVkJEX01SS1FjWXR3VWI5NlBJUFVfUlA2Y3p2cEM3TW5EV0M2MmNlaUpJS0VJcm5Za2ZBZHkyQmxMcVRjeXNpTFVCQ0FDTTgxbEZaRzdNMW5zVmhURG0tT29UaGw3ZmZWY2N1?oc=5",
           "intensidad": 9.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Andrés Manuel López Beltrán sigue activo en Morena y no se oculta a pesar de las acusaciones en su contra. - El Congresista",
-          "fuente_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFAtdzZXNHlncFpoRGdhZFNsRUxjcnhwT21KY2twOU0tYnZDY3ROOFlFSnU2VnRTd0l0VkQ5Smpjc2g1OE5BYWtsTmRkRnY2ZndkUU5OSlctaTJ1Qmcxb1FxZUY2LUZvdUdoWUJ2WlFSTHNfTm15S3c?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Congresista"
-        },
-        {
-          "texto": "La madre de Carlos Emilio presiona para que la Fiscalía investigue a un exsecretario del Gobierno de Rocha Moya en la desaparición de su hijo - EL PAÍS",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOM0dheGd6TGM2ZlVEcXVBbGdZT1dybWFBejF6c0dyTEdWYmhKR1V3ajRvSVRGaEFhT0RRZnFNR2xiTzlmdDVDSnZTcG15NHB3dHN6Z1hjWDYyUTBxbmlnMEl0MUZOUXg5N0ZUSXFFQkZkUHVGRVBxVnowSU5iV1ByUjJPcFR2dDJiRG02Y3paUEt3ZzJnWGZyMG1Hb0hCVEpUSTQ0TG1EOTJwLVZBbE5NVUQ5bm5Zd2tSLVAxNjZTc1RhUmQyUnZscmdsRkVYRVpYZHZuSVBrQzhUVHNLbkVKOV9OaTNIdENyNVNXd2t2TWVyZ015TWFPcjBKVnRhalR6X1lsU1EzTzJrZFpCSy1LcQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "EL PAÍS"
-        },
-        {
-          "texto": "Denuncian carencias en hospital recién inaugurado en Yucatán",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/19/politica/004n2pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
-        },
-        {
-          "texto": "Morena: ¿Derechairos? - López-Dóriga Digital",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9Sd3F4Smw0cXNLVDRQc05za3FyVmxlMmtCQkhFVzJKUjJuYTJiTUk1QVRFN2xpTDBNTWZCYnZWalF4NWtjdnJuRnN5SGdVLUhKMVp4aU93MjF0Y2dNdkJvYQ?oc=5",
-          "intensidad": 7.0,
           "medio": "news.google.com"
         },
         {
@@ -80,12 +56,6 @@
           "medio": "Reforma"
         },
         {
-          "texto": "Colima se suma a las tensiones de Morena: se cocina frente contra la coordinadora Rosa María Bayardo",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/19/politica/005n2pol?partner=rss",
-          "intensidad": 5.0,
-          "medio": "jornada.com.mx"
-        },
-        {
           "texto": "Destaca Claudia Sheinbaum aumento de 400 mil jóvenes inscritos al Bachillerato Nacional - SPR Informa",
           "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPZEIxV1ZlbkdFdmlOSGNSTjFXczl5dmlqTmI5ZE9GVG02V2F4RmJtYkJBZzhraTk0NG1YeEhpc1NmOVhGb2dOLXJOaXkwdXBNOFRxVXZYQTJ1Nnd1UmJpN084dGpSOWFtbFlLcjJ3dko3R0hqekxsX05Zc0t5ZXNjVktwZi1RWGQ1c29IZXlrSTZBeURxazJwb3h6a01jSjJmNnVYZ2VuN2ZvWEJhMG1JTEN2Rzd3MlR2eU5mS1RB?oc=5",
           "intensidad": 5.0,
@@ -108,56 +78,22 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOUTl6SU1TMFktQjZuNDBsZEhGRXU5VmotZFlrU2ZtUW1kWlcweW9KSHVwVXBHdzhsbXFKb181VHBSdVVMaUM0NlN4Ui01eFdoVW5mRlJROGtRU19hZDNOdG5tM1cxWWRBbWtCQk1QaTVrSG1PamFKek43ME9sU1ZjMWY3eWpnR1gzYnJvOExBMmFVSWM4WWxLUkVKSmpCTkxrbFVtS19vTGZRM2hrM2dFZ3pQZHI4SXlIUXF3ctIBwgFBVV95cUxQYThQUzZXS0dxU0FPR1cyY3ZkU2FIODRleWlpb2oxMWdfLTg1Z1EwbmFkVDJoSWJrUHhFNVhGalNMNUlUdGdkX0RFTXVneE4zUzQzbk12aG1EWEJjWnFreTRkRVF6VWVRWGxJZGF5OWF5Z3JyZ2VycGl6cjZBeGNEc2NSellucUJyeG9qazlTRXI2MTNsUnFDUS13NnpPMjhQQ2dGaFJSWC13MTA4dVpGMTFBRlh6RVhBUW9Xb2F5cXJMdw?oc=5",
           "intensidad": 5.0,
           "medio": "news.google.com"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 18,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 3,
-      "n_notas": 5,
-      "notas": [
-        {
-          "texto": "Caen el Talibán e implicados en plagio de 10 mineros y 4 turistas en Sinaloa",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/19/politica/015n2pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
         },
         {
-          "texto": "Ejecutan a aspirante de Morena a la alcaldía de Cuajinicuilapa, Guerrero",
-          "fuente_url": "https://imparcialoaxaca.mx/policiaca/ejecutan-a-aspirante-de-morena-a-la-alcaldia-de-cuajinicuilapa-guerrero/",
-          "intensidad": 7.0,
-          "medio": "imparcialoaxaca.mx"
-        },
-        {
-          "texto": "Sheinbaum aclara que Trump no condiciona el T-MEC a la entrega de “narcopolíticos” ni ha usado esa palabra en sus llamadas - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQSDczbWRvanM5TnJJOVR6QkFSY1hCYkNVeG5iOV9uNjZ6SzhwQVk2YTg1VFd0MkNXYXJIYWdZUU80RUJpZlVLU1RSaWNiMjByVlVfTnZFQmhta0ZVRmhlSlRtRExzaGd1WEhSSjNVbEVxbnpVX1Z4Nk4xT0lhRkFxOUxqTzlNSzl5Zld4SVM1WHZoamFFcU9LbGNfT20zN052NEFDZXlvOU5DRmxrZ0Z1NE00Znc3WnM4cWh0QWxIaXBfR2xpS0VCY1RsV2V1MWFPUnFwOVZNZENBdWpYZUVwdFNnalNSQ2ZKaFlNWVdJM3JyOFNxYUHSAZACQVVfeXFMT2RTVk0yUF9HeVRlekpTT0x3M2xnQzVycld4WURBdDNJWjl4dzNfbmhjMWlEeWFpLXBMaC1ObWRDYTZZd3ZtdTlqcTdObXBwN2kwUDFacWVyUWxIazk4TWtUSzUtVmhxbm1qUXhpZTBTbjc0bEFoSVJnVnZibnZnSmQyRFNwZ3N2bjlQUE1ySWpJeDcwQmhGRzJTazA4NFpTd1RFUW5rN0xPbmE2X3AzWW10UnE4Z2xpTXExV3dhcXUtcFo1ZWJEU3JUTllLN2haVXVKTWFHSVViZnFLN3MzZ2pLQ0R3cE1keHNIbkQ5X3JNSWNpQW8xU0xtTS1vTWtRT2UzMGlMVnhacjJkelNDaGo?oc=5",
-          "intensidad": 7.0,
-          "medio": "Infobae"
-        },
-        {
-          "texto": "Capturan a “Talibán” y a cuatro operadores de Los Chapitos en Sinaloa - El Popular, periodismo con causa",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQR001ampnYmdfcTV0bmpjRUc1RlA5b1dIVzNYNnVkQU03MnEyQ19XUEFBVjgzNGlfT2Nwc1RLWldCZFkzUnVsR0FlWlEyMEg5UUxacjZwdHh4bzNjTGs0MzhQcDZnYTdJRTZuNVd6LUdqV3B1MGtXSGZxNXdtVnc2VmstT1IxSHNLLV9oUDRQeUlWTElrTVZBT09GMUNja0VudXg5VFZXdzBIaWJfdFRMdUtpVG9pamVrdFFR?oc=5",
-          "intensidad": 6.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Cae en Sinaloa a Jesús Abraham “N”, “El Talibán”, vinculado con el homicidio de 10 mineros - Intolerancia Diario",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPNEdCeDEtYUtxWHBfUHVNVGlRUllYLS1kOWdlNGU2ek9DWkh4Yk9pTWlUaS1TemlTWXNkTE1HUi0zLXVOeHF4YkNHaDRfTVlkc3dfR3Z6dGlUYlpWSXkzUG8yalVLbXFaWlJFRFBYdmZKdFdiNXd3NkMzZHZxQ0NMRmU0akRaYWxiOUNjNmRxd3Y1eklLNTdNNm1mZ1RGUTdLNHM5ako2SFd6Ykw3TGMzaUJXQXRxS1pNMEhqRUh6UHZWQ0xSR0NUdEtzVGVUVVV6bDNNRzJQY0RjRk96SzhubnQ5ZnI2SHF2cGRxcVp3?oc=5",
-          "intensidad": 4.0,
-          "medio": "Intolerancia Diario"
+          "texto": "Diputados prevén discutir el Presupuesto de Egresos del 9 al 13 de noviembre",
+          "fuente_url": "https://www.informador.mx/mexico/diputados-preven-discutir-el-presupuesto-de-egresos-del-9-al-13-de-noviembre-20261019-0181.html",
+          "intensidad": 5.0,
+          "medio": "informador.mx"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 15,
+      "peso_pct": 24,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 2,
-      "n_notas": 3,
+      "n_temas": 3,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "Ven viable acuerdos de México y EU en el T-MEC ante distanciamiento de Trump con Canadá - Excélsior",
@@ -176,12 +112,46 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOdm5lTGxJY3R6WHJSRnZDS3RpM0NwbjBjRktrVlNqSWYyanpjanlVZjBWTUIzU1ZkdHJEMkZheThBQUstYkxIUkx1TEdIamFpVWpwU3oyb256a2FlMjdSRUdjdFBwLXVzdU83dTh0dTdua2NnVlI0eExiMEVyRzRibWoxZjROY241SzlwbTR2TXR6YzBvVnlBb1FCaGRYSlBjYWNlNXNKUGtMMGdPME1jd0hrY1NFLUdfM0x1bW8wSzc2c2s1Qi1CRWQxb0dsSlFVWV92MERR?oc=5",
           "intensidad": 7.0,
           "medio": "Clarin.com"
+        },
+        {
+          "texto": "Trump está cerca de un acuerdo con México para reducir déficit comercial de 150 mil mdp ‘hasta cero’",
+          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/10/19/donald-trump-inorma-que-esta-cerca-de-un-acuerdo-con-mexico-para-reducir-deficit-comercial/",
+          "intensidad": 5.0,
+          "medio": "elfinanciero.com.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 16,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 3,
+      "n_notas": 3,
+      "notas": [
+        {
+          "texto": "Ejecutan a aspirante de Morena a la alcaldía de Cuajinicuilapa, Guerrero",
+          "fuente_url": "https://imparcialoaxaca.mx/policiaca/ejecutan-a-aspirante-de-morena-a-la-alcaldia-de-cuajinicuilapa-guerrero/",
+          "intensidad": 7.0,
+          "medio": "imparcialoaxaca.mx"
+        },
+        {
+          "texto": "Sheinbaum aclara que Trump no condiciona el T-MEC a la entrega de “narcopolíticos” ni ha usado esa palabra en sus llamadas - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQSDczbWRvanM5TnJJOVR6QkFSY1hCYkNVeG5iOV9uNjZ6SzhwQVk2YTg1VFd0MkNXYXJIYWdZUU80RUJpZlVLU1RSaWNiMjByVlVfTnZFQmhta0ZVRmhlSlRtRExzaGd1WEhSSjNVbEVxbnpVX1Z4Nk4xT0lhRkFxOUxqTzlNSzl5Zld4SVM1WHZoamFFcU9LbGNfT20zN052NEFDZXlvOU5DRmxrZ0Z1NE00Znc3WnM4cWh0QWxIaXBfR2xpS0VCY1RsV2V1MWFPUnFwOVZNZENBdWpYZUVwdFNnalNSQ2ZKaFlNWVdJM3JyOFNxYUHSAZACQVVfeXFMT2RTVk0yUF9HeVRlekpTT0x3M2xnQzVycld4WURBdDNJWjl4dzNfbmhjMWlEeWFpLXBMaC1ObWRDYTZZd3ZtdTlqcTdObXBwN2kwUDFacWVyUWxIazk4TWtUSzUtVmhxbm1qUXhpZTBTbjc0bEFoSVJnVnZibnZnSmQyRFNwZ3N2bjlQUE1ySWpJeDcwQmhGRzJTazA4NFpTd1RFUW5rN0xPbmE2X3AzWW10UnE4Z2xpTXExV3dhcXUtcFo1ZWJEU3JUTllLN2haVXVKTWFHSVViZnFLN3MzZ2pLQ0R3cE1keHNIbkQ5X3JNSWNpQW8xU0xtTS1vTWtRT2UzMGlMVnhacjJkelNDaGo?oc=5",
+          "intensidad": 7.0,
+          "medio": "Infobae"
+        },
+        {
+          "texto": "Capturan a “Talibán” y a cuatro operadores de Los Chapitos en Sinaloa - El Popular, periodismo con causa",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQR001ampnYmdfcTV0bmpjRUc1RlA5b1dIVzNYNnVkQU03MnEyQ19XUEFBVjgzNGlfT2Nwc1RLWldCZFkzUnVsR0FlWlEyMEg5UUxacjZwdHh4bzNjTGs0MzhQcDZnYTdJRTZuNVd6LUdqV3B1MGtXSGZxNXdtVnc2VmstT1IxSHNLLV9oUDRQeUlWTElrTVZBT09GMUNja0VudXg5VFZXdzBIaWJfdFRMdUtpVG9pamVrdFFR?oc=5",
+          "intensidad": 6.0,
+          "medio": "news.google.com"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 4,
+      "peso_pct": 6,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -206,31 +176,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-22",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 20
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 64
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 2
-        }
-      ]
-    },
     {
       "fecha": "2026-09-23",
       "categorias": [
@@ -894,7 +839,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Economía",
@@ -905,27 +850,34 @@
           "peso_pct": 4
         }
       ]
+    },
+    {
+      "fecha": "2026-10-20",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 66
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 5
+        }
+      ]
     }
   ],
   "top5_temas": [
-    {
-      "id": "rocha-moya-acusacion",
-      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
-      "motivo": "La madre de Carlos Emilio presiona para que la Fiscalía investigue a un exsecretario del Gobierno de Rocha Moya en la desaparición de su hijo - EL PAÍS",
-      "peso": 29.0,
-      "n_temas_agrupados": 5,
-      "escalando": true,
-      "ultima_hora": false,
-      "medios_corroborantes": 5,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOM0dheGd6TGM2ZlVEcXVBbGdZT1dybWFBejF6c0dyTEdWYmhKR1V3ajRvSVRGaEFhT0RRZnFNR2xiTzlmdDVDSnZTcG15NHB3dHN6Z1hjWDYyUTBxbmlnMEl0MUZOUXg5N0ZUSXFFQkZkUHVGRVBxVnowSU5iV1ByUjJPcFR2dDJiRG02Y3paUEt3ZzJnWGZyMG1Hb0hCVEpUSTQ0TG1EOTJwLVZBbE5NVUQ5bm5Zd2tSLVAxNjZTc1RhUmQyUnZscmdsRkVYRVpYZHZuSVBrQzhUVHNLbkVKOV9OaTNIdENyNVNXd2t2TWVyZ015TWFPcjBKVnRhalR6X1lsU1EzTzJrZFpCSy1LcQ?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
-    },
     {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
@@ -939,39 +891,55 @@
       "medios_corroborantes": 3,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNRDJhUkxuN0VZU1g3TE12ZTlLeW95RnpRcWFiVDZSN243YmFDdjJEOXV0MVdPY2tIR3dNZzdfVERXSE1jbE1TTy1qZkJtQ0dTR255RzVtNmdReTlVcHVsNENoUDU0ZVcyekNYZkhaTXZiRVRhOEdsOTBneGxvQ3QyWW5xQzdtUWZaTnVXS0hlbzNYaGo1QlowSjdZMjJsWDA0b3h6NXpMQXozMFU5SFNZ0gG0AUFVX3lxTE8xS3pTaGtqNjVoRmo3UGQ3UV92YWplcUR4Z3NkYUhYWjNiTFV6dnd5anVpb3BQRmJmUTNsYXUxUFoxZkJWSE5NdmtRNHcwUkFmRm1SWGtFekI1U2Y3U1BBUzVPRUoxZF95ZnJjMkl3ZzQ1ZW5FZm1zQS1vOGRyakdHMnlFNG1CaGNmbnJ1cHZfaXdWODBFV01ZUU52dlFBb19sc0FHSl84Ulk5ZTJ1QWx5M3FGdQ?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "actor_vinculado": null
     },
     {
-      "id": "morena-coordinadores-2027",
-      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
-      "categoria": "Gobernabilidad",
-      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
-      "motivo": "Colima se suma a las tensiones de Morena: se cocina frente contra la coordinadora Rosa María Bayardo",
-      "peso": 10.0,
-      "n_temas_agrupados": 6,
+      "id": "la-barredora",
+      "nombre": "La Barredora",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Grupo criminal de Tabasco -según reportes de inteligencia militar de la Sedena, consultados por Mexicanos Contra la Corrupción y la Impunidad (MCCI)- presuntamente liderado por Hernán Bermúdez Requena, exsecretario de Seguridad Pública de Tabasco con Adán Augusto López. La red operó robo de combustible en el puerto de Dos Bocas desde al menos 2025. Bermúdez huyó de México en febrero de 2025 con ficha roja de Interpol vigente; la UIF bloqueó sus cuentas y las de empresas de familiares y socios en julio de 2025.",
+      "motivo": "Entra líder de La Barredora a falsificar billetes - Reforma",
+      "peso": 11.0,
+      "n_temas_agrupados": 4,
       "escalando": true,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/19/politica/005n2pol?partner=rss",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPQWxENDZiWllRbVBTWm5VTS1jcWFSTFVIQ0ZZRkNtNjVGLW44SVNCd0xBaktyekhjNXdnM2FmNWhWWm95ZkZzR3ZVbjZQUnVseHNva3cwa1JTV2dhZURFQ2x1Y1YwUl9pNTg0UGdoTTM2c1d6SlpwRnI3X0h3dnB3YmR0aVFwMlVhRWt3?oc=5",
+      "actor_vinculado": null
+    },
+    {
+      "id": "ley-antimemes",
+      "nombre": "Ley Antimemes y reforma de propiedad industrial",
+      "categoria": "Gobernabilidad",
+      "resumen": "Reforma sobre propiedad industrial/derechos de autor apodada «Ley Antimemes»: aprobación en comisiones y Senado, críticas por riesgo de censura y aclaraciones de la presidenta.",
+      "motivo": "Diputados prevén discutir el Presupuesto de Egresos del 9 al 13 de noviembre",
+      "peso": 5.0,
+      "n_temas_agrupados": 5,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.informador.mx/mexico/diputados-preven-discutir-el-presupuesto-de-egresos-del-9-al-13-de-noviembre-20261019-0181.html",
+      "actor_vinculado": null
+    },
+    {
+      "id": "trump-agenda",
+      "nombre": "Trump y México: declaraciones y presión",
+      "categoria": "Relación Bilateral",
+      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
+      "motivo": "Trump está cerca de un acuerdo con México para reducir déficit comercial de 150 mil mdp ‘hasta cero’",
+      "peso": 5.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/10/19/donald-trump-inorma-que-esta-cerca-de-un-acuerdo-con-mexico-para-reducir-deficit-comercial/",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-6653dc1e7e",
-      "nombre": "Exige México indagar la muerte de otro paisano a manos del ICE; ya son 18",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/19/politica/007n1pol?partner=rss"
-    },
     {
       "id": "auto-3c57ebffd5",
       "nombre": "Otra vez interrumpen mitin de JD Vance: Vicepresidente califica a activista como",
@@ -989,34 +957,31 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTkNyNFhMdktkeE1OUWt3bGtSMko4eUxxZS1VTUVsNkZ0MkxORl9pbHBRYU9lVFlaQWdIUVJzendpN1B6NFJYVjBPZkszdTVyaUlfOUhscGF3RkhGa0FIMnFmOUplZDE3VVVoTmNlQ25sZTd3QnBRQ3ZybVhWdWV4LTZLRWZPOE1RYWRRZEdjb9IBjwFBVV95cUxOdTBFZmw1R2RMOVVxMlpXcEtPdnhlZkFUQS1WVVRpZUhwWUw0b0tNQm41dnE0N3VLejQzN0R4MzFVSDRqZG1weDUzNlRxXzRZUFhYVWljMGZOSHcyMThJdWNab0ZhamhDOGRuQkZ0STczdWtYa1c1M05Jd2g1cmJ2QjdWUXgyX0VUc3VneHctUQ?oc=5"
     },
     {
-      "id": "auto-998150b685",
-      "nombre": "“Relación con gobierno pasó al diálogo en 6 años”: José Medina, Presidente del C",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOMlZ3NHdnOVZKRFVpV0pfLWtlMngwaGlZWnNuazh3cVBWS0tRTW4yWmQ2MTU5MkNBQ2pWbTFtME0zRmZHajFhRHdzX0U1T1JJU2E2ZG5KU2ZJZ2JNNF9ueHNpcFMzcXNXVGhjc2tFLWNPTnY0VnlJY0V3dFd2U2hnNEljb1JDdmxHck9aUnJaS2tuM0g4MVNJLWM4YmhJSUp4dS0xU0tUNWNZQnQ1S2ZZYm56VGRZZmdmQjc5Tkd4c2xMWjBJOTZuTExnUy0xd9IBzgFBVV95cUxOMlZ3NHdnOVZKRFVpV0pfLWtlMngwaGlZWnNuazh3cVBWS0tRTW4yWmQ2MTU5MkNBQ2pWbTFtME0zRmZHajFhRHdzX0U1T1JJU2E2ZG5KU2ZJZ2JNNF9ueHNpcFMzcXNXVGhjc2tFLWNPTnY0VnlJY0V3dFd2U2hnNEljb1JDdmxHck9aUnJaS2tuM0g4MVNJLWM4YmhJSUp4dS0xU0tUNWNZQnQ1S2ZZYm56VGRZZmdmQjc5Tkd4c2xMWjBJOTZuTExnUy0xdw?oc=5"
-    },
-    {
       "id": "auto-036e6be456",
       "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPS0JQdE1WWFJjNEFIaDBxTDJNekZaYnIzUmlTRlBKdndQaDZ2ck52RzRJeXYxVWdyOGZhNk5NVk5scHJTNFp1OHR1X3BKaFZDTTN5WFFMTE92Z2lBVUpvVXF4Mk9lblRLeW1CRnBMTW5fRm5xLTNUa3lLNlFxeWNGZWxPU2NSMFN5OUFsdUFwVHUyc3hJTi1naWU2VldRcmpyZkFaM29PX2Npbl9y?oc=5"
+    },
+    {
+      "id": "auto-c84f883061",
+      "nombre": "Sheinbaum reporta baja de cuentas de reclutamiento forzado en redes",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-reporta-baja-de-cuentas-de-reclutamiento-forzado-en-redes-sociales-y-destaca-alerta-nacional-de-busqueda-20261019-0075.html"
+    },
+    {
+      "id": "auto-444f65c3ad",
+      "nombre": "Los alcaldes que van por la reelección en Morena - El Universal",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSVpZWldtamdKWTlsQjlfR2lsSVJUaVUtdmFsZk9tdmljN1d5cDNqdVBjWVVSaVVUQ0ZaNnVROFJvci1FRnhSMXRGV2FfSC1FWGpNQ3ZJT0I2UHNNc3ZteV9IZENMUnY3SG9kWUpsV0JOSnBJTjVjT3lkMVNxekFwYjR5U2NFYXFlWnF6cHQwcDR3Zkw0TWlfVzFKbE1pVVJKRjk0?oc=5"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-16e3696fe2",
-      "nombre": "Arturo Balderas Rodríguez: Controversia sobre los almacenes de información elect",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 42,
-      "motivo": "Arturo Balderas Rodríguez: Cuarto para las doce",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/19/politica/012a1pol?partner=rss",
-      "fecha_anterior": "2026-09-07",
-      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/07/politica/010a1pol?partner=rss"
-    },
     {
       "id": "auto-718902fbaf",
       "nombre": "Alista PRD denuncia por uso de GN para escoltar a servidores que entregan propag",
@@ -1027,17 +992,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNemFHbkpaejFsWmV3amd5MEV6R050b0s1TDN3S2hCS3RZZVFZR3d6YXVjSW9yRTA4MjV0T1lEZjdLS3kyeXhEYVplNzhjV3JFYmdoaGd0clJ4Vmt1TkZKd09YaVhOcmdYdXA3aEY1YXdzdTN2cUpVQTR5cGFNZVp2TkwwZm1MZVd3WGhEdFdURmpUTTFsSDVXRm4yS03SAZwBQVVfeXFMTUpxekpqOGpWdnZkelV6aEFTdEhFN2pUUkViRDhvM0MzUjFYdlJRaXVvM0pvc1lYYnlSUTJFQzNPSTRWT0hJcXBRR0kzczZJclhtMk1XdWtxb0FKQXFyNnNQa1hIVFlkWldIQnBqRDdxTHZVaXo1dzg4M0hBWVdHNXYwN0JHVURHdTJXZHlVWi1OSmVSSE44b3lGbWI4?oc=5",
       "fecha_anterior": "2026-09-09",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNTzM2YUpia24tNnlSX1FScG5YMTVkanZsUTdIVnpQaDBHTy1PZGloTUxSSW4yYld6QjNZd2t2Y3VjbW1FYm1PamYtMzBPN1BoU09fcnF4QU9sU2VoOVlZOC14TVNNeFpySGtiUUZVT3FtZk9Bb2kwR3cwcktBSFBFckNITlN0Sk5xczB5R2hkT1VCU0FlT3ZvaWEyWEJFa2JYc3o4UUtkU1B3aUJMNVR6c09WY0JmeG5DeTdjWGpRUGFQYklCRVZhcWJCQWNDTnBueU91Uk9kaw?oc=5"
-    },
-    {
-      "id": "auto-e334602297",
-      "nombre": "PAN en Puebla concluirá medición de perfiles y formación de cuadros jóvenes ante",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 32,
-      "motivo": "Claudia Sheinbaum reclutará jóvenes para digitalizar almacenes de medicinas",
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/salud-claudia-sheinbaum-reclutara-jovenes-para-digitalizar-almacenes-de-medicinas-20261019-0019.html",
-      "fecha_anterior": "2026-09-17",
-      "fuente_url_anterior": ""
     },
     {
       "id": "auto-debc05f623",
@@ -1060,27 +1014,38 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNNV9KVU9xT3JtWXZROV9HRW1VNDMzU2xrN2FiTEZrTmxTbUVMTG9xUWU4eFJUczBxaEhRT05kTHpRakp6a0ZZUjBMWUFkalV6VElXQW9Lc1hPVUpUWlpjbWl2dUZJbVJodWg3dnEzamJBUmxYdXg1X2E5Q0t3UUlXUFE2R1BMRFF6VVpYYjNRNWtEOUFrYmJDd1hTSWFoT2JLWF9YUExkTWhHM2RZb2FxS3dNeFpVX09jU2VTeTVscUxqcGN1UmhQa2hlTlR3Snkx?oc=5",
       "fecha_anterior": "2026-09-28",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTFd3UVBRaW5QN0kzd2xGTnJKQ2VrdHd2czdlY1RzMlVNSjJBN3Z2Zm5tOUJ3UW9HbzhId2V6Vy00V0hmMFdxZF9NNWR1eEd0V3ZtRFhpR0QwNWdHNTFlUDN5aXIyN045TTdfalUtcFVLYjFrRTgxbk00Qjk2bEN2TTZxWWhaaUtXbS1pOEh1U01GT3pCdFlNRXFqNjU3eDR5bHlmcEhPUVk2VTQxbnJqbmRRV2JuaUJ5TXVjbWtnRTNhRWs0TjNvT1ZHZTc4Z3B6aW5jRnNqaVdsNFE1S3ViUlY0WDZCUzVZckJONy1fd04?oc=5"
+    },
+    {
+      "id": "auto-3e1616f264",
+      "nombre": "Muerte de Renee Good por disparos de agente de ICE: Familia denuncia al gobierno",
+      "categoria": "Social",
+      "dias_silencio": 18,
+      "motivo": "🔔 ALERTA — Van 18: México denunciará nueva muerte de connacional a manos del ICE - El Informador",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxOZDF1SmpCeG13SDNnZUw3YlJDaFFTcWFFV3pnZVNSVzNIVGk2WTc5TzQwNk5zdE1Ed1ZZVkJoa3lCRkk3eS1KSjJkNnRyTGRVMGNNWENQWXNLb2dGLTJ6T1NfUFJwN21pZGo5bWkycTctRGF1bUkwVlQ2ekNUaW1GTjBBX2tvd1d3NmJ1bVJCU3FmSkpnMk5PbzlJRElhWklhYWZjUWNPNW53dzV2Z0NJVXJTa1lFUTU4V0Zubjd0ZnQzM2hBMWhlMTR5RjNfUDhiQ0paeGgxeGI4Y1hvdE5GUmxnZGM2UE5DM09xMXZVNGcwbnF3amFJY056b1lEdDNRVURXZEY3Z0PSAYgCQVVfeXFMTmQxdUpqQnhtd0gzZ2VMN2JSQ2hRU3FhRVd6Z2VTUlczSFRpNlk3OU80MDZOc3RNRHdWWVZCaGt5QkZJN3ktSkoyZDZ0ckxkVTBjTVhDUFlzS29nRi0yek9TX1BScDdtaWRqOW1pMnE3LURhdW1JMFZUNnpDVGltRk4wQV9rb3dXdzZidW1SQlNxZkpKZzJOT285SURJYVpJYWFmY1FjTzVud3c1dmdDSVVyU2tZRVE1OFdGbm43dGZ0MzNoQTFoZTE0eUYzX1A4YkNKWnhoMXhiOGNYb3RORlJsZ2RjNlBOQzNPcTF2VTRnMG5xd2phSWNOem9ZRHQzUVVEV2RGN2dD?oc=5",
+      "fecha_anterior": "2026-10-01",
+      "fuente_url_anterior": "https://www.elfinanciero.com.mx/mundo/2026/10/01/muerte-de-renee-good-por-disparos-de-agente-de-ice-familia-denuncia-al-gobierno-de-trump/"
+    },
+    {
+      "id": "auto-7d432c725e",
+      "nombre": "Movimiento Ciudadano va tras candidatos virtuales de Morena, presenta denuncia a",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 17,
+      "motivo": "🔔 ALERTA — México presentará denuncia en EEUU por muerte de connacional detenido bajo custodia del ICE, adelanta Sheinbaum - Infobae",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNYjJaQjdnSnF5OFhwRlVKbF91WGwzM0d2alNmNHBGTFNXU3pJVHlBZmJMcmUxWWkzMFRBV19HNXo0ejVVaUc1bGhKVWVDTVZ5NktNR253N0lDbmtNQ0o0Mkk4OW5Ja3ZWU1N1UXI2Y2ZEaXBJUE8yb1pjRkhnNzhsT05kRFRWcm5iV3VpNFExTkxUUWdBOWE5M1dtTlU2dXgtMzRkRnBJUllyZmZvYWhkU1VWOWhjeVAwZ1d5MDFnMFRjNU9SQ1NrQzNDVUxscVoxU1VMaGF3QVNVSDhQQ0phS2pIY9IB_gFBVV95cUxOTG1Xc2hyTlZET2dRR2VlSzVabzVINGpISzdNSTV5Um40bUp1dVY4b2ZIdEJtYkRLRW9CSVQxalE3aVdKalE2UEhfbWlfUnlfbHBaM1Nsal8yc0xUdms0TFpZQVB3dG9uV0ZQTmg2cVl2WVVweTRjMUlXbGktdjdtbmFUS0l4LWdCaHMxaXZDRERYYktkRTUwUjVjVlU5WExoVk9nUlZ5NHVBRUtuRkdQWGZCN3ZRbmNWUzZfQjRyRjlPN3FCYkd1cXB6UW1tcVRyMFdqdlpEMkxWUVZzZ00yejlKMTF6Vld5T3dzb09VcHpibEtHNy1NLXNTcndFZw?oc=5",
+      "fecha_anterior": "2026-10-02",
+      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
+      "id": "trump",
+      "nombre": "Donald Trump",
       "rol": "Responsable institucional",
-      "tema": "Diálogo, inversión y justicia social: el rumbo económico que consolida la Dra. C",
-      "nota": "Diálogo, inversión y justicia social: el rumbo económico que consolida la Dra. Claudia Sheinbaum - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNam51dmRBSFBtNjR3Mi15M0I5cnNoY2ZpM04zUGVOSnA2TXFZME9QeUhQRXpUYmR2dXVNTHBjQ3RtSm13M0wxbzN3Y2pjR0dhSUdQOFlLLVNyRnlMZ0QyQXFFQzFtWVo2cllVRmp6X3dmV2huWjdvZFNnUE9FanNEb21MTm1jaERpaGZUckJFSWtiNGFremd5OC02ekcwQVhIc1FzZXBnMmdUMXMzUFAtbUxGLXRTYkFIWjVTODBzR0kxcWJ4NE8tYlpsdF9oYVRodkswM01RUXVRZjh5eDkwcTN1SXlLZERC?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "rol": "Investigado",
-      "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "La madre de Carlos Emilio presiona para que la Fiscalía investigue a un exsecretario del Gobierno de Rocha Moya en la desaparición de su hijo - EL PAÍS",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOM0dheGd6TGM2ZlVEcXVBbGdZT1dybWFBejF6c0dyTEdWYmhKR1V3ajRvSVRGaEFhT0RRZnFNR2xiTzlmdDVDSnZTcG15NHB3dHN6Z1hjWDYyUTBxbmlnMEl0MUZOUXg5N0ZUSXFFQkZkUHVGRVBxVnowSU5iV1ByUjJPcFR2dDJiRG02Y3paUEt3ZzJnWGZyMG1Hb0hCVEpUSTQ0TG1EOTJwLVZBbE5NVUQ5bm5Zd2tSLVAxNjZTc1RhUmQyUnZscmdsRkVYRVpYZHZuSVBrQzhUVHNLbkVKOV9OaTNIdENyNVNXd2t2TWVyZ015TWFPcjBKVnRhalR6X1lsU1EzTzJrZFpCSy1LcQ?oc=5",
+      "tema": "Algunos republicanos temen que el proyecto de ley de sanciones a Rusia le dé a T",
+      "nota": "Donald Trump defiende el freno de sanciones a Rusia - El Informador",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNaXJFX2JOWllzR05ra1FnV3BiSWZuQnRXd0VNUnhXejJHZGxrajY2QmxRSXhPLU1qdVBkQlBiUGltM1FOdUVFdjFzUThEc1pDTzhYM0l3VEFDOEJ6c3EyeTAwUzNtZ184M0ZCeUREWEhialg5blRCanpNVmFPb3NOeTN2TV8zSzNOOTJKUExYZ3o4YjMyNnE0OGV1TVNoN19rOXdFUTZqOEhVbjE2cGFtUElxY0l0U20xWDlUZ0Ntd1plY2PSAcgBQVVfeXFMT0hySjhDTEh6TDB1dk5MVnhwNnVXWGZuclZpS3BMS3lCT1c1blRGYnFMTFRfNTl6WUVaU1JKSVdjcnQwVklWdjJXaUFXYTV0SU82UGJ3ZlJmdTN4WThCQ2E1RlN0MHpzcnc1Slp2b0FQQWdhU0ZEWFRhV3lhN0RzRDRNQU5NWW00bzN4amx2dHdFeDdHeWNmdjRSZ2lVYVg3a0oyajdSbkVldGwwTEJ4X1NLMUw4b0NkNkJDQXhHb210clROeUhDTGo?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1097,23 +1062,34 @@
       "confianza": "media"
     },
     {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Algunos republicanos temen que el proyecto de ley de sanciones a Rusia le dé a T",
-      "nota": "Donald Trump defiende el freno de sanciones a Rusia - El Informador",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNaXJFX2JOWllzR05ra1FnV3BiSWZuQnRXd0VNUnhXejJHZGxrajY2QmxRSXhPLU1qdVBkQlBiUGltM1FOdUVFdjFzUThEc1pDTzhYM0l3VEFDOEJ6c3EyeTAwUzNtZ184M0ZCeUREWEhialg5blRCanpNVmFPb3NOeTN2TV8zSzNOOTJKUExYZ3o4YjMyNnE0OGV1TVNoN19rOXdFUTZqOEhVbjE2cGFtUElxY0l0U20xWDlUZ0Ntd1plY2PSAcgBQVVfeXFMT0hySjhDTEh6TDB1dk5MVnhwNnVXWGZuclZpS3BMS3lCT1c1blRGYnFMTFRfNTl6WUVaU1JKSVdjcnQwVklWdjJXaUFXYTV0SU82UGJ3ZlJmdTN4WThCQ2E1RlN0MHpzcnc1Slp2b0FQQWdhU0ZEWFRhV3lhN0RzRDRNQU5NWW00bzN4amx2dHdFeDdHeWNmdjRSZ2lVYVg3a0oyajdSbkVldGwwTEJ4X1NLMUw4b0NkNkJDQXhHb210clROeUhDTGo?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "mc_partido",
       "nombre": "Movimiento Ciudadano (MC)",
       "rol": "Investigado",
       "tema": "Oposición tiene ‘misión imposible’ en elecciones 2027: Morena duplica intención ",
       "nota": "Oposición tiene ‘misión imposible’ en elecciones 2027: Morena duplica intención de voto del PRI, PAN y MC",
       "fuente_url": "https://www.elfinanciero.com.mx/encuestas-ef/2026/10/19/oposicion-tiene-mision-imposible-en-elecciones-2027-morena-duplica-intencion-de-voto-del-pri-pan-y-mc/",
+      "reaparece": true,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Responsable institucional",
+      "tema": "Cecilia Patrón: la mujer detrás de la alcaldesa de Mérida - La Revista Peninsula",
+      "nota": "Liborio Vidal, exfuncionario del PRI y PAN, busca la alcaldía de Mérida por Morena - Proceso",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQbmlfSnNDX3g3dGpMOHlMOUtKTHBqcC1DN1BacWR6OURLNmhqTU9fcXpkMG1JaXRCX0E2dTRGQ0pnczhDSHltdzBZT2ZKOFh1MUlzZjM1UnRsVmhabmZUMjRsOTdpdnptZWEyYjl2Z2Jkd2xmRzVQajUzZklzNjF2Vkx2QWZWUHd3RHpMeE0taTNIQXNPc1FGTnhXNlFuTVprWGctQ00wWkt6REh6bk12emV5WDlxMFdiSUVEWjhxWVZDWXdIZktEdEJLTUZmN1RjR0tvNE04aWNXaFBhakJyZg?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "pan_partido",
+      "nombre": "Partido Acción Nacional (PAN)",
+      "rol": "Reacción de oposición",
+      "tema": "Cecilia Patrón: la mujer detrás de la alcaldesa de Mérida - La Revista Peninsula",
+      "nota": "Liborio Vidal, exfuncionario del PRI y PAN, busca la alcaldía de Mérida por Morena - Proceso",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQbmlfSnNDX3g3dGpMOHlMOUtKTHBqcC1DN1BacWR6OURLNmhqTU9fcXpkMG1JaXRCX0E2dTRGQ0pnczhDSHltdzBZT2ZKOFh1MUlzZjM1UnRsVmhabmZUMjRsOTdpdnptZWEyYjl2Z2Jkd2xmRzVQajUzZklzNjF2Vkx2QWZWUHd3RHpMeE0taTNIQXNPc1FGTnhXNlFuTVprWGctQ00wWkt6REh6bk12emV5WDlxMFdiSUVEWjhxWVZDWXdIZktEdEJLTUZmN1RjR0tvNE04aWNXaFBhakJyZg?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1129,14 +1105,6 @@
   },
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-22",
-      "tension": 41,
-      "n_notas": 80,
-      "n_alto_impacto": 55,
-      "n_medio_impacto": 25,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-23",
       "tension": 34,
@@ -1347,10 +1315,18 @@
     },
     {
       "fecha": "2026-10-19",
-      "tension": 34,
-      "n_notas": 27,
+      "tension": 33,
+      "n_notas": 28,
       "n_alto_impacto": 16,
-      "n_medio_impacto": 11,
+      "n_medio_impacto": 12,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-20",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1369,7 +1345,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQTm4ydmNoOEU1Vm5wVkFoSmIxcHpjMjk1REY2SnVKM0Utb1dOaFpfVFJYQUF1ejMwRkFhLWhfWkw4cWpxRGJDZzF1M3EyOXAyUGlPYTBDTkdhVmE2QllkVUlQWTVYMDRMd013TEczVTRrZmZ4VGdxTHMwVkJEX01SS1FjWXR3VWI5NlBJUFVfUlA2Y3p2cEM3TW5EV0M2MmNlaUpJS0VJcm5Za2ZBZHkyQmxMcVRjeXNpTFVCQ0FDTTgxbEZaRzdNMW5zVmhURG0tT29UaGw3ZmZWY2N1?oc=5",
       "nota_texto": "Juan Carlos Natale se registra como aspirante a Coordinación Municipal de Morena; suman siete aspirantes - El Popular, periodismo con causa",
       "es_nuevo": false,
@@ -1381,7 +1357,8 @@
           "x": 100,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-20"
     },
     {
       "id": "rocha_moya",
@@ -1397,7 +1374,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMitwJBVV95cUxNSUJGRG5VRHZmTmdHTDdqNUNkaTltcThXQm9tVU9Tc1pLWVlfQThKcmVISUYwUXM3eHRPbUIzbmJjYUtBSEp4akFqN2U3MzR6TFNmc1hrMXR5T0lpeE1kNFk1Nl9iWGoxX1VYbkx3MEVyRHcxcnY0RF9LZ2dZNE5PNzVYYjJ3eW5PQmVpaU81ZmdoZ29wUFdIRUp3X1M3NWJKRkVGZngwcXd3UlN4d1FsX0RpcDZTWG5Bc282c1pKb1NJWGtEUTNySnVHeTVQR3ZiSDA2akZGZS1JV1VFVlB3cWk4NjBXZFZvckU1VEdWTHpOTkFfM2lRR1B3Mk5LRk1KUTBEU2FNZTloQVBYRFUzWHZQT1dMcUM0dVNKT2I2TTNWUjZBVm9XTHVRSnVxMUpmNXR4bHIxSQ?oc=5",
       "nota_texto": "Alejandro Armenta bajo la sombra del caso Rocha Moya: señalamientos por huachicol y dudas sobre el financiamiento ilegal de su campaña lo ponen en la mira de Estados Unidos - Azteca Puebla",
       "es_nuevo": false,
@@ -1409,7 +1386,8 @@
           "x": 60,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-20"
     },
     {
       "id": "andy",
@@ -1425,7 +1403,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFAtdzZXNHlncFpoRGdhZFNsRUxjcnhwT21KY2twOU0tYnZDY3ROOFlFSnU2VnRTd0l0VkQ5Smpjc2g1OE5BYWtsTmRkRnY2ZndkUU5OSlctaTJ1Qmcxb1FxZUY2LUZvdUdoWUJ2WlFSTHNfTm15S3c?oc=5",
       "nota_texto": "Andrés Manuel López Beltrán sigue activo en Morena y no se oculta a pesar de las acusaciones en su contra. - El Congresista",
       "es_nuevo": false,
@@ -1437,7 +1415,8 @@
           "x": 40,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-20"
     },
     {
       "id": "soto_picha",
@@ -1453,7 +1432,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQTm4ydmNoOEU1Vm5wVkFoSmIxcHpjMjk1REY2SnVKM0Utb1dOaFpfVFJYQUF1ejMwRkFhLWhfWkw4cWpxRGJDZzF1M3EyOXAyUGlPYTBDTkdhVmE2QllkVUlQWTVYMDRMd013TEczVTRrZmZ4VGdxTHMwVkJEX01SS1FjWXR3VWI5NlBJUFVfUlA2Y3p2cEM3TW5EV0M2MmNlaUpJS0VJcm5Za2ZBZHkyQmxMcVRjeXNpTFVCQ0FDTTgxbEZaRzdNMW5zVmhURG0tT29UaGw3ZmZWY2N1?oc=5",
       "nota_texto": "Juan Carlos Natale se registra como aspirante a Coordinación Municipal de Morena; suman siete aspirantes - El Popular, periodismo con causa",
       "es_nuevo": false,
@@ -1465,7 +1444,8 @@
           "x": 20,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-20"
     },
     {
       "id": "sheinbaum",
@@ -1481,7 +1461,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPZEIxV1ZlbkdFdmlOSGNSTjFXczl5dmlqTmI5ZE9GVG02V2F4RmJtYkJBZzhraTk0NG1YeEhpc1NmOVhGb2dOLXJOaXkwdXBNOFRxVXZYQTJ1Nnd1UmJpN084dGpSOWFtbFlLcjJ3dko3R0hqekxsX05Zc0t5ZXNjVktwZi1RWGQ1c29IZXlrSTZBeURxazJwb3h6a01jSjJmNnVYZ2VuN2ZvWEJhMG1JTEN2Rzd3MlR2eU5mS1RB?oc=5",
       "nota_texto": "Destaca Claudia Sheinbaum aumento de 400 mil jóvenes inscritos al Bachillerato Nacional - SPR Informa",
       "es_nuevo": false,
@@ -1493,7 +1473,8 @@
           "x": 20,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-20"
     },
     {
       "id": "monreal",
@@ -1509,7 +1490,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOUTl6SU1TMFktQjZuNDBsZEhGRXU5VmotZFlrU2ZtUW1kWlcweW9KSHVwVXBHdzhsbXFKb181VHBSdVVMaUM0NlN4Ui01eFdoVW5mRlJROGtRU19hZDNOdG5tM1cxWWRBbWtCQk1QaTVrSG1PamFKek43ME9sU1ZjMWY3eWpnR1gzYnJvOExBMmFVSWM4WWxLUkVKSmpCTkxrbFVtS19vTGZRM2hrM2dFZ3pQZHI4SXlIUXF3ctIBwgFBVV95cUxQYThQUzZXS0dxU0FPR1cyY3ZkU2FIODRleWlpb2oxMWdfLTg1Z1EwbmFkVDJoSWJrUHhFNVhGalNMNUlUdGdkX0RFTXVneE4zUzQzbk12aG1EWEJjWnFreTRkRVF6VWVRWGxJZGF5OWF5Z3JyZ2VycGl6cjZBeGNEc2NSellucUJyeG9qazlTRXI2MTNsUnFDUS13NnpPMjhQQ2dGaFJSWC13MTA4dVpGMTFBRlh6RVhBUW9Xb2F5cXJMdw?oc=5",
       "nota_texto": "Presupuesto 2027: Diputados prevén discutirlo del 9 al 13 de noviembre, anuncia Ricardo Monreal - Por Esto!",
       "es_nuevo": false,
@@ -1521,7 +1502,8 @@
           "x": 20,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-20"
     },
     {
       "id": "andrea_chavez",
@@ -1537,7 +1519,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOci0zdUtBMVR4cE44a1JrOWVLSl82VkRkRThqZnlLT1ZMQ3hKb2laODRjVnlaeURSUmNWRndIUlF6MGxMNVdXeU5VbUhIdzBXbWdKOW93eGRfaVoxaWVFWEJxSUFyYUttb2VhdExLSzJSUHpOSk1hZjNuMzlnWlVoWXBGZF95bFhFS3EyZ09uUE5LeGFCeWMzZUtHQTg4dWQ5U2VlYVVIWkQ1ZlVGWDNYbTlIWkh2V0U?oc=5",
       "nota_texto": "9 datos perturbadores de la relación entre Adán Augusto y Andrea Chávez que te harán perder la fe en Morena - Debate",
       "es_nuevo": false,
@@ -1549,17 +1531,18 @@
           "x": 20,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-20"
     }
   ],
   "tablero_semana_inicio": "2026-10-19",
   "resumen_mananera": [],
-  "mananera_estado": "fuente_retrasada",
+  "mananera_estado": "pendiente",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 5
   },
   "declaracion_presidenta_historial": [
     {
@@ -1614,5 +1597,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-19 19:33"
+  "hora_corte_publicada": "2026-10-20 00:04"
 }
