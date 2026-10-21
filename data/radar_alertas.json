@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-10-21|entro_critica|auto-1925c582a4",
+   "ts": "2026-10-21T17:31:48-06:00",
+   "tipo": "entro_critica",
+   "tema_id": "auto-1925c582a4",
+   "texto": "▲ Trump amenaza con aniquilar a Irán ante la ONU pasó a crítico (impacto 7, 6 medios)"
+  },
+  {
    "id": "2026-10-21|entro_critica|auto-9409afa73d",
    "ts": "2026-10-21T10:53:42-06:00",
    "tipo": "entro_critica",
@@ -414,13 +421,6 @@
    "tipo": "entro_critica",
    "tema_id": "el-mencho",
    "texto": "▲ Abatimiento de \"El Mencho\" pasó a crítico (impacto 7, 5 medios)"
-  },
-  {
-   "id": "2026-10-06|inflexion|el-mencho|2026-10-06|trigger",
-   "ts": "2026-10-06T12:12:35-06:00",
-   "tipo": "inflexion",
-   "tema_id": "el-mencho",
-   "texto": "⚡ Posible trigger en «Abatimiento de \"El Mencho\"» (10-06): Lo normal del tema son ~0.3 notas al día; ese día fueron 3 (por azar eso pasaría en menos de 1 de cada 300 días)."
   }
  ]
 }
