@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-21T11:30:10.068528-06:00",
+  "generado_en": "2026-10-21T12:00:36.009582-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 33,
+  "n_notas_ventana": 34,
   "baja_confianza": false,
-  "tension_nacional": 41,
+  "tension_nacional": 40,
   "tension_anomalia": {
-    "z": 1.3,
+    "z": 1.18,
     "nivel": "normal",
     "media_periodo": 30.0,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 38,
+      "peso_pct": 46,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 10,
-      "n_notas": 14,
+      "n_temas": 11,
+      "n_notas": 17,
       "notas": [
         {
           "texto": "Sheinbaum destaca \"decenas de detenidos\" por huachicol fiscal - El Universal",
@@ -50,6 +50,18 @@
           "medio": "Hoy Tamaulipas"
         },
         {
+          "texto": "Sheinbaum Pardo anuncia plan para aumentar salarios en el IMSS y modernizar sus servicios - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOTEFnc1o5cTBfaV9aREtNT3FfZ0pCUGV3M09lZmxuTnRHd2x3SWxVbEdybjQ5RV9HZ2VuUk50NHpzdEppU2ZzM2lYbnlLSFo5d1JPdWZidW40MmhUX3BheFg4dWZvOXZIT3lnTXcxem9ZcWt5WVdxWjhnaGZRWmhZSnhUd2Q1REVvMnAzUUJCczlTT0praWsyRV9uVFpPU0thVDBzQXNjbWpwVjlMN0dlZjJPdHY5MV82eWxB0gHAAUFVX3lxTE1fa2ZUdnhNZGxnQnlFUDNRdVE0TmxOWXlpVlNMOHpROHI0N1FjMGNkdndrenpTeWVVM0tETTh5OU9FQVdjYWtudTNkUlJ0cnY3eXh0UHJyc0o5Y3ZHVXhVSVAxLTVaSThtOFFFeGxwSXFZLXZEdWUyR2dsUDliRHFxLUd4QkI2cWZpOGoxaVh3YXJvNjJ6dWpfc0tsZHhzT3M5NGpkOE5CcXJVbmt5aUZnVl9OMkZubW11UC1sNnFOaA?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Alcanza Sindicato Nacional De Trabajadores Del Seguro Social nuevo acuerdo salarial del 8 %",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/21/alcanza-sindicato-nacional-de-trabajadores-del-seguro-social-nuevo-acuerdo-salarial-del-913212.html",
+          "intensidad": 7.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
           "texto": "Gobierno reporta 2,539 detenidos por contrabando de combustibles y recupera 173.7 millones de litros - Por Esto!",
           "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQWXdjNWRKVEU3cHYyZ2pfdlpURGxNNUhMcUt0N3hhUnR0T1EyS2VCSUJ3WXFsOGd1Mnp6TjR1dUNDNXJHS1pzc2NiRlQ5Sk5oeFN4RnlfSlZWcVFMTlFDMmpoM3NjSGQ0SDhDdGs0ZjBJVUJtZkJKa2ZyN1NoS21GejdqZnF6dGsxZ0YxV1BtSnhHNnJKcUFUYi1nYVJyX2g0RVZWS1JMMkhHYjExVlkxc1lxajVfdTl0a2lqTkhXV3DSAcYBQVVfeXFMUEpPVFI1QURLbV9HYkhqNzF1VDhEV0xwdzBPYk5vc1c2bHV4QlY1S0xvRTQ4UnJTN0swSXVHSUhHLWxPRE1kZEhoS3NKYk53cnZWZVlPbWQ3UUNKMzdHV1plZHV2X0VCN0NfNlhDc0JRdC03U1NVdklFcUxRQl80d09valU1Z2tnQ0pmSi1oWjhmNGFGZWJ0QmxtSTIyREM1R1ZKYjF2SDJoWGFFc296SzBKS1I2c1FvWHMwcGhJVS1vaXJ1RC1B?oc=5",
           "intensidad": 6.0,
@@ -60,6 +72,12 @@
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/21/revelan-la-inquietante-ofrenda-que-aparecio-en-la-tumba-de-el-mencho-antes-del-dia-de-muertos-que-significa-fotos-913183.html",
           "intensidad": 6.0,
           "medio": "FOTOS"
+        },
+        {
+          "texto": "La magnitud del huachicol fiscal: detectan fraude por 61,700 mdp en 2025; supera el presupuesto anual de la UNAM - La Crónica de Hoy",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOOTdVMkRKYmVXckNCOGlWYXJnM294TnRTemdpZE40RkdEallXeWdnaWdVOXFmWmxMd1RYcE9mWVppbWpKT1kxbVJNWFhsOEVFU2duWURnRGdIQ25nOWlwNnU5WTdGeDMwQ0lxU1N5RGxkLVpvOHFoXzhDbVVxU1hMNHpoTE5DTFRVRThBejZLZzJzTkNpMjN6eHB4bW9OeFJ0RHRGLWFINlI3VHE4V19VUXlQVU13eTBZRlJub1FIcHZjcHBST0tVbXhNLW84VGUzQmRfV1lrOGhRZnRValVhQm9DT1FjVTVoOGdlVWhn?oc=5",
+          "intensidad": 6.0,
+          "medio": "La Crónica de Hoy"
         },
         {
           "texto": "Excandidato del PVEM en Suchiapa se inscribe como coordinador municipal por Morena - El Universal",
@@ -90,28 +108,16 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNRjFuZld0TVBJSTlYWUJHX205UDA4NW9TZlpyTVRwc0E0a3c0WElEb2g3OUJtbzBfTWdVR28za3MxTmhhLXUyeHV1SGhRU1ZkY1FOX1NURlNYa3VtdlBxM0ZUdkJHM05JNHlnTHByU3E2NTNpSnBmZzJqaTRUcVZONHpTbWNoOXZTbnJIRDBXTUNQeklCMDZRSnJETXNEWDNKSG0wT2NpRE8?oc=5",
           "intensidad": 5.0,
           "medio": "El Universal"
-        },
-        {
-          "texto": "Embajador Ronald Johnson ha ayudado a México en muchos temas: Claudia Sheinbaum - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxObHNRUXdvd082N0NqSUp5M0xNV19OZTNNbHFIc3pNN0k0X1FXVmE2N1JDODNMZHFBbnNvdUc5cHBTNGVJd0NOWmdIOVlqNDhHeGl1YUJXbjg0bEtJM19RaDBjc1hrWjRINm5MUVlXV1RxVEV1Nnd0Y0pkVzlEVmZjc2JjN3hhSXlaYXp2dTZTSy1LMUM1NVVzMlBXV25KVUgySkNiTHFkYnNlYUZDSFZV0gG0AUFVX3lxTE9RZmVudlNXWGcyY0JBcWY1cTYwOEZOMmJmU3l2RjVMLUx1akFRQmE2RGpWMjQ0Ql9qN2N3TUg3cjZVd1ZVR1RCR3ZNYkpkRk16UzFBU0J3ck81Q2drV2NlNWllN1hoWDEwclJEOXgzZzBUTjRrOGR3LUE2eGdZYXpfLXpFajRaMDFnTTBfUnFsQTVhbGJuWHJWUUFkeTRJWUxva3BucTB0VDFEdWxTV01MQ2tncQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Raúl Bolaños-Cacho Cué explica que sanciones podría tener Gutiérrez Mancilla tras altercado con Máynez en San Lázaro",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/21/raul-bolanos-cacho-cue-explica-que-sanciones-podria-tener-gutierrez-mancilla-tras-altercado-con-maynez-en-san-lazaro-913165.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 29,
+      "peso_pct": 25,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 9,
+      "n_notas": 8,
       "notas": [
         {
           "texto": "Destacan ahorro de 70 mmdp en compra de medicamentos - Cuarto Poder Chiapas",
@@ -123,12 +129,6 @@
           "texto": "Julio Preciado REVELA su lucha contra la ludopatía; vendió sus alhajas para seguir apostando - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNYXNWR1N1M0hCdUllSlI2cUJTMmdFWmwwbUo0UlgyOGc4ZG9TMEc3cG83ZDBxYlhKVDc2aGtYOUNoZlRJQnhpOWJYdjMwWWY1X3ZSa1pLOW1pRmI5UGp5b0FQa3pRbXdaUmo1WWUyY29Ta3NtNUVEeVFVYTVXSUZUQVRMUFVFeW4yNGfSAYoBQVVfeXFMTzFwYUxxZS1ESVkyUU05TFI2RGduVnhIaERockQxcExpLWx5X1FPZEJMSlEyLXFfc1laYmVGY0NrZ0lSa2ZqWDlrb0kxOW9fY0dqXzV6SWdTNjhXcFJteWUxOG51cklYTDRrTVJsNWJzNl96S1gxRWJtRmxYVzNVNUprY241akpKUUVR?oc=5",
           "intensidad": 8.0,
-          "medio": "Milenio"
-        },
-        {
-          "texto": "Ebrard insiste en que lo borren de la lista de candidatos a la presidencia en 2030; su prioridad es el T-MEC - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQT3l6NkliQjJraVJkSzF5QTZ6X1htemJPVE1hUUo0eExWMlNDcmJCckZvNzZtT3JuQkQtZGZnQjhRSkJwUWprWlRwRTJzZDRwbk9yUGtEODBNLURBQkN5ck01dG5la1Y0dDU2M1paYjRfcTNmbS1QTkJ0SkRtMTFVQzJwYzZVa0FhSHA3aVFzMFRmMUxyRXdUStIBmAFBVV95cUxQT3l6NkliQjJraVJkSzF5QTZ6X1htemJPVE1hUUo0eExWMlNDcmJCckZvNzZtT3JuQkQtZGZnQjhRSkJwUWprWlRwRTJzZDRwbk9yUGtEODBNLURBQkN5ck01dG5la1Y0dDU2M1paYjRfcTNmbS1QTkJ0SkRtMTFVQzJwYzZVa0FhSHA3aVFzMFRmMUxyRXdUSg?oc=5",
-          "intensidad": 7.0,
           "medio": "Milenio"
         },
         {
@@ -171,18 +171,12 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 18,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
+      "peso_pct": 14,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
       "n_temas": 4,
-      "n_notas": 6,
+      "n_notas": 5,
       "notas": [
-        {
-          "texto": "Trump no mezcla ‘amenazas’ a cárteles mexicanos con revisión del T-MEC, aclara Ebrard: ‘No le conviene’ - El Financiero",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNbUFJMDlMa0NfTWFRZTVHYzQ3b0lQQ0ZTOW40STJYX0l4M3VXeDRGS2s4QUxOTVVlc2g2Zmh4d0lEczhicEEtRHFaRjAyUWp0T2F1TUZVVGhWOUdWdjFnX1BuTGhucVhzTGRZVHdqblhmYjU4cGFSSW9XV2ZxT2ZRRkVkYTdWMkh0bGZfbDdyM2dfN09ZTDNNeVlZbFhPbUJTUEx5S05OeE5lSDlKc05uanRFQ0xaUVVhNHRQVEh0TGhKeTBWYTlNSU13eEpMRGgzLTZfd05IdHNFbWU5dUxfNFNtMzM?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Financiero"
-        },
         {
           "texto": "Raúl Bolaños-Cacho Cué anuncia investigación por incidente que pudo derivar en violencia en San Lázaro",
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/20/raul-bolanos-cacho-cue-anuncia-investigacion-por-incidente-que-pudo-derivar-en-violencia-en-san-lazaro-912586.html",
@@ -217,7 +211,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 15,
+      "peso_pct": 14,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -827,7 +821,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -927,7 +921,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Social",
@@ -944,15 +938,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 12
         },
         {
           "categoria": "Social",
@@ -968,7 +962,7 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Julio Preciado REVELA su lucha contra la ludopatía; vendió sus alhajas para seguir apostando - Milenio",
-      "peso": 50.0,
+      "peso": 36.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
@@ -976,8 +970,8 @@
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNYXNWR1N1M0hCdUllSlI2cUJTMmdFWmwwbUo0UlgyOGc4ZG9TMEc3cG83ZDBxYlhKVDc2aGtYOUNoZlRJQnhpOWJYdjMwWWY1X3ZSa1pLOW1pRmI5UGp5b0FQa3pRbXdaUmo1WWUyY29Ta3NtNUVEeVFVYTVXSUZUQVRMUFVFeW4yNGfSAYoBQVVfeXFMTzFwYUxxZS1ESVkyUU05TFI2RGduVnhIaERockQxcExpLWx5X1FPZEJMSlEyLXFfc1laYmVGY0NrZ0lSa2ZqWDlrb0kxOW9fY0dqXzV6SWdTNjhXcFJteWUxOG51cklYTDRrTVJsNWJzNl96S1gxRWJtRmxYVzNVNUprY241akpKUUVR?oc=5",
       "actor_vinculado": {
-        "id": "ebrard",
-        "nombre": "Marcelo Ebrard"
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
       }
     },
     {
@@ -1017,12 +1011,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNNFRKbzZVeXlsMDFQSzJVZDBXR1YwcFNGQTBmMGZWTFNnYUpPMWJQcllhYnlfaUtTUkR0dkRVQnl4OVFZek9mYlVfOGZVazRSVnJkem9Wb0Q0cjljQkpZTFVYWjhVUmtRUGh2cWxQcDlMbDd0TFh5eTFTb3RmRWd2d0o3dmg1aEJ0Z1BtbXh2ZWFFeWdEU2pWQVdLaW5jQkpONDV6bzNHSU5KRHhfUFI5M0JlekVGQU11blJPSTdMcGFidlpVOFlXZHM5aVR3R0V5cUVVdy1vdkhDMTJWQWFFTDNoY1BjU2Z1V2kxeGZnV1BrNjh5ZC1ldl9sZUxyNjN0ckYyT3VPRFRwV0NISzF5bHczRDRRbGE0b29ad0FTMldjNGZLNlNwTNIBwwJBVV95cUxPaEJMSnRveTJjYmp5alctRi15aUJSZ1RvU0U2djRReHdqNGxpVDFVM2I1OTktUF9VLXFqRFBXNjhjZVdudmU2YnF4dVNrTFY4TkxIR19hRzhTUGNIc0F3Q2xGNHFXeUlveV94XzNFb283ZlhFOGpaRHl1NkNvOHFxb0pHT3A0SERlU1kxRW1kLUhpMVN2T1luaGIyWW8zN0lPWVZhVzlvR0lMV09wV1NMMW8wMXpWZHZzSjJYaTF6bHdFa1IxeUd6dTBzMk1fSTZaR2Jta2ZoR3hadG0xOVpXenM3OFN3UnFJWkdTZVVfQW5VY0cwQ2h6cGpHdDBJWjB6WlhEWF9ESW5BYWoxN0hwNHhrWUF4a0gySnpLWTB3dEhDNTZueTg1ajVrTFVrVmpESmZKOEFWZjhuZkxlU29mZUlQSQ?oc=5"
     },
     {
-      "id": "auto-1f844edac2",
-      "nombre": "México rechaza interpretación de la ONU sobre desapariciones forzadas en nuestro",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-995f205acd",
+      "nombre": "Francia y la profecía de Houellebecq: migración, islamismo y crisis - El Univers",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPd3NfckE0VWNsLVMxYkIwd3RYaktBMTBtWEdiWlBpUy1CZFhTUE1YcEFpU3V5N3RNN0ZPaW93N2g5RTdiSUU0VnR0TVNyYS1OdTJkOU0wbmxnaTFSMUt6Z2JDd3V2RlJneVB1X1I0RnBWb2xDc1d5RXM5UjBhd2QtLWtDYjZRa0JiSTRObzFtZUpGMUk2MmRuMUxyVnk1SV8ya0FkblNTZlRSVDNoU3R6Z1E5S3h3RXJMNnMySFhwZHU4eF9aWk9CQkU4WFVLNnhyellIRS0xZS1FYUVVb05DVHZMdUZ0S0dydlhZWDY5SkVjUdIBhgJBVV95cUxNemFZaHR6ZklOeU1QblFUSy1PanRkcHZZRTBGa0ZabERoUXg0U1dMMjIzMVBDM2JrcDlYRXUxaldMcFdQX1VEQW85MndudFE4ME5nd0c5dUZHS3NxeklBU01QRjhCaWVycUFpYlZRZDNiT2tLSl9HbmhmX25ZMWFIZnd0c2dhb0R2cGR0bkFFbTRjY3V2ZC1WRzRkbjVfSmZmUVhzWVU4VVRHcUhSdTBIODIxSm8zN0NvWHJNVksxR2VDTDl6WFVNSGlXck5zUzYxdXczRWd1dmhHd20wdTZfZk1sSXJXVl96dUJLU1htakdLdmJKeGNTZEcyLXpUNTdhZVpfU0R3?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQSW10ZnpacjdhbkpZdFd1Z3oxMTJrYTJQNDJlUldQUE9YVmwwSHBfY0p1dnJIWFJoVlVoUHRnVXFQaHVhV2QyV25vY0ExVTlyekdjNU5iV0taSF9Jbm45SlA3enFTNEhrNXhad3YtSFhDMGI4dEZobkFHZ1dhQXo4Y1NvOEJmR01RdEVWdVdGNTliYW1GNWNzTzMtdTh5eFBkWHRuNmxFWnA5N09tUWw0YXFLZC10S2JpeEQwV2FXNXNMbHlveUE?oc=5"
     },
     {
       "id": "auto-8b3f1c8625",
@@ -1133,23 +1127,23 @@
       "confianza": "media"
     },
     {
+      "id": "snte",
+      "nombre": "Sindicato Nacional de Trabajadores de la Educación (SNTE)",
+      "rol": "Mencionado",
+      "tema": "Mérida aplicará pruebas de salud mental en universidades: así funcionará el tami",
+      "nota": "⚡ Posible presión de Sindicato Nacional de Trabajadores de la Educación (SNTE) — Líder del sindicato de Salud exige pruebas",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/21/politica/007n2pol?partner=rss",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "rol": "Responsable institucional",
       "tema": "Exige Félix Salgado a Morena que presente una encuesta que él ganó - Quadratín T",
       "nota": "Presume Félix Salgado acuerdos con Ariadna Montiel - Reforma",
       "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPV3h0SDZTR3RfYzM5NHdmSHRpbzRhNDcxcV9sT3ZDdFZIWjZBNF9Rb2U4Y3hMRmdtMGtycVlud01fVnVMZUdrVE5mb0FxWlNDaWdQWWM1NzVZem51MUpDMENDOGFIbmE5UE1ZOS1qVFlQWXlEOUlTN2IzQlFkYTlUS2Rza295OEtCM2VJSw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Mencionado",
-      "tema": "Claudia Sheinbaum anuncia que “Casa Tlalpan” será nueva sede de la Universidad R",
-      "nota": "Construirán universidad en antigua casa del 'Negro' Durazo; Morena celebra \"triunfo ante la corrupción\" - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxORzM0bHdtOWdHN0dvbXRyc1NLZWh4OVhudm96NFMyTnI2NmNWMjJkZ2lGeUZ3Zmo5eGMtZVlOWlF2aU4wUXFiNmpkT0dWOTM1MW5ZWUQ3MUEtRkdSMm1adVlOaHJuVG80NEN6aFhRdXhOaHdaUXhGdmJMeUI3TVVVbmlTZVZGMlZkUTJ6N9IBjAFBVV95cUxORzM0bHdtOWdHN0dvbXRyc1NLZWh4OVhudm96NFMyTnI2NmNWMjJkZ2lGeUZ3Zmo5eGMtZVlOWlF2aU4wUXFiNmpkT0dWOTM1MW5ZWUQ3MUEtRkdSMm1adVlOaHJuVG80NEN6aFhRdXhOaHdaUXhGdmJMeUI3TVVVbmlTZVZGMlZkUTJ6Nw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1271,9 +1265,9 @@
     {
       "fecha": "2026-10-06",
       "tension": 16,
-      "n_notas": 111,
+      "n_notas": 112,
       "n_alto_impacto": 28,
-      "n_medio_impacto": 83,
+      "n_medio_impacto": 84,
       "n_bajo_impacto": 0
     },
     {
@@ -1343,16 +1337,16 @@
     {
       "fecha": "2026-10-15",
       "tension": 20,
-      "n_notas": 41,
+      "n_notas": 42,
       "n_alto_impacto": 14,
-      "n_medio_impacto": 27,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-16",
-      "tension": 19,
-      "n_notas": 34,
-      "n_alto_impacto": 9,
+      "tension": 20,
+      "n_notas": 35,
+      "n_alto_impacto": 10,
       "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
@@ -1375,9 +1369,9 @@
     {
       "fecha": "2026-10-19",
       "tension": 32,
-      "n_notas": 35,
+      "n_notas": 36,
       "n_alto_impacto": 19,
-      "n_medio_impacto": 16,
+      "n_medio_impacto": 17,
       "n_bajo_impacto": 0
     },
     {
@@ -1391,9 +1385,9 @@
     {
       "fecha": "2026-10-21",
       "tension": 39,
-      "n_notas": 18,
-      "n_alto_impacto": 11,
-      "n_medio_impacto": 7,
+      "n_notas": 21,
+      "n_alto_impacto": 13,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
   ],
@@ -1442,11 +1436,11 @@
       "iniciales": "CS",
       "x_lunes": 45,
       "y_lunes": 80,
-      "x_hoy": 64,
-      "y_hoy": 79,
-      "delta_pts": 4.5,
+      "x_hoy": 73,
+      "y_hoy": 81,
+      "delta_pts": 7.5,
       "alcance": 7,
-      "n_alto": 4,
+      "n_alto": 5,
       "n_medio": 3,
       "n_bajo": 0,
       "impacto_nivel": "medio",
@@ -1469,8 +1463,8 @@
         },
         {
           "fecha": "2026-10-21",
-          "x": 64,
-          "y": 79
+          "x": 73,
+          "y": 81
         }
       ]
     },
@@ -1800,7 +1794,7 @@
     {
       "texto": "Se presenta una estrategia integral de coordinación interinstitucional para combatir el contrabando de combustibles, involucrando a 16 entidades del gobierno mexicano. Se desarrolló la Plataforma Unif",
       "categoria": "Gobernabilidad",
-      "intensidad": 6.0,
+      "intensidad": 8.0,
       "alerta": false,
       "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
     },
@@ -1848,7 +1842,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 4
+    "pendientes": 2
   },
   "declaracion_presidenta_historial": [
     {
@@ -1903,5 +1897,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-21 11:30"
+  "hora_corte_publicada": "2026-10-21 12:00"
 }
