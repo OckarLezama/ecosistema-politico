@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-10-21|entro_critica|auto-9409afa73d",
+   "ts": "2026-10-21T10:53:42-06:00",
+   "tipo": "entro_critica",
+   "tema_id": "auto-9409afa73d",
+   "texto": "▲ Marcelo Ebrard destaca que México paga menos aranceles que otros países a EEUU y pasó a crítico (impacto 7, 5 medios)"
+  },
+  {
    "id": "2026-10-21|inflexion|huachicol-fiscal|2026-10-21|trigger",
    "ts": "2026-10-21T09:11:05-06:00",
    "tipo": "inflexion",
@@ -414,13 +421,6 @@
    "tipo": "inflexion",
    "tema_id": "el-mencho",
    "texto": "⚡ Posible trigger en «Abatimiento de \"El Mencho\"» (10-06): Lo normal del tema son ~0.3 notas al día; ese día fueron 3 (por azar eso pasaría en menos de 1 de cada 300 días)."
-  },
-  {
-   "id": "2026-10-06|inflexion|morena-coordinadores-distritales|2026-10-04|trigger",
-   "ts": "2026-10-06T11:57:34-06:00",
-   "tipo": "inflexion",
-   "tema_id": "morena-coordinadores-distritales",
-   "texto": "⚡ Posible trigger en «Coordinaciones distritales federales de Morena 2027» (10-04): Lo normal del tema son ~0.4 notas al día; ese día fueron 3 (por azar eso pasaría en menos de 1 de cada 100 días). Quién lo protagoniza: Morena (3 de 3"
   }
  ]
 }
