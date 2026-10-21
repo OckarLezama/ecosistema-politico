@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-10-20T18:04:50.571988-06:00",
+  "generado_en": "2026-10-20T23:16:28.512233-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 27,
+  "n_notas_ventana": 31,
   "baja_confianza": false,
-  "tension_nacional": 38,
+  "tension_nacional": 39,
   "tension_anomalia": {
-    "z": 0.92,
+    "z": 1.06,
     "nivel": "normal",
-    "media_periodo": 30.6,
+    "media_periodo": 30.5,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 43,
-      "tema_principal": "Impulsa senador Higinio Martínez nuevo Padrón de Cabilderos de Cámara de Senador",
-      "tema_principal_id": "auto-c6def1ccd5",
+      "peso_pct": 42,
+      "tema_principal": "Trabajadores del IMSS llaman a paro nacional; bloquean Reforma",
+      "tema_principal_id": "auto-d012f2d168",
       "n_temas": 10,
-      "n_notas": 12,
+      "n_notas": 14,
       "notas": [
-        {
-          "texto": "Higinio Martínez llama  a realizar cumbre del sector salud en el Senado",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/20/politica/004n3pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
-        },
         {
           "texto": "¿También es traición a la patria? Rubén Rocha Moya y los señalamientos de presuntos pactos con el crimen organizado - www.adn40.mx",
           "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOaTFybTN4YTBUNk1RQ3BTYmFNZTRqbUVTZU1nWjNrankxQjFETVpDWm9lTnJQT1pYYTZJbHNCYXIyY1NfYkdJQ19Db0dBNkdiVVl2R05WQVpEOEJjaTRGZm1RUjF6UDRWZ2l1bkpPcXlWMkZ3ZC1VWWY0RUhuVVYyOHpTNXlBbUE5d1RhenNfZHN2dlVEbFVfZGhNMUphUVF2MDlIRUJXWU5nY045QjZPTlNIMm5aNUtWNm5DNktZbmZNN1d6ZGlRc2N4V2V5NFREVVBSYkltajl4bS1uamlqQmtuSmJYTEpDalBwVw?oc=5",
@@ -68,10 +62,10 @@
           "medio": "news.google.com"
         },
         {
-          "texto": "El gran éxito de... regresar a donde estábamos, escribe Carlos Loret de Mola - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPdmY0RUE5TUtralU3VEhkQWtvZmc3M3ZtejRfT3ZwNXJRYk1KUU9kdlFKZlhHcXNpOVlqMGxJbkU2SFRieUlqdTFQMDM1WHRLRGFLb2pBZzZnS3lnYmFXN2N1aU5ON3Z4dE9GOEg2QTdTcE9UaWhmbDYxZC1GX0txQU5qZHptN1c1VUVkaVJIWmNjajV6ZUIxWFBZb1lFYzh0S0NISGtCTQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Universal"
+          "texto": "\"No son militantes\": Morena se deslinda del partido a los amigos de Andy López Beltrán - LatinUS",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNSFdRNG5pc3cxMGNKRGxhNGF5OWhWVG4yY3hDY1B4SEFYZDM5UUlRb09fakI2WXF2V0NmSHh0ekF5amk1Q01ncUF0VlVlNDdGZnZ6bW1vUjJhOXMxMGlSYm4xZXViV3hoRW9Hc2JFSVlCUks1bWVidlpaMGRNVi1zOGRDZEpfREUtekxHbENuTl9QSnVXZkMxZlVZbEJYRTdaQkpJVlNETVI3OXMtem9OV3VVLVRQdGtTSGlHLTAwRXVWOWVLdUR2XzJR0gHKAUFVX3lxTE1IV1E0bmlzdzEwY0pEbGE0YXk5aFZUbjJjeENjUHhIQVhkMzlRSVFvT19qQjZZcXZXQ2ZIeHR6QXlqaTVDTWdxQXRWVWU0N0ZmdnptbW9SMmE5czEwaVJibjFldWJXeGhFb0dzYkVJWUJSSzVtZWJ2WlowZE1WLXM4ZENkSl9ERS16TEdsQ25OX1BKdVdmQzFmVVlsQlhFN1pCSklWU0RNUjc5cy16b05XdVUtVFB0a1NIaUctMDBFdVY5ZUt1RHZfMlE?oc=5",
+          "intensidad": 7.0,
+          "medio": "LatinUS"
         },
         {
           "texto": "Morena mantiene resultados de encuestas pese a inconformidad de Tatiana Clouthier y Raúl Morón - Por Esto!",
@@ -86,6 +80,24 @@
           "medio": "Milenio"
         },
         {
+          "texto": "Excandidato del PVEM en Suchiapa se inscribe como coordinador municipal por Morena - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNTjRia1lFbW5lZkVqUXBDVTdnWWdzRnYtMjlJWDQ4R0NtRzc2amxlYlA4VkxXUVZ4MGFVMVNuS2RJSFVzRFFlcThRdTFVRjlqeGplbmtiNlJFbVg1OUJvVXBGY1BVQzF5MU1SV3QzTkRtWjR5dk4yQVUxZXc0d1dPZWU4bnJHUXprTmNvd01rNmZMOE5oV3gyc0dvdUgyVWl3X0QyWE5vZzRLZC1OTVUtZWxQSlhfcS1pWDBFYlRvQW1HSXNqZWdYUXhLWVNySk9SUjB6c245Q3ZHbmIwMEZ3TVBSLXNqWmN0TlVtek5DLTdxSVdPbTJUYzVfUGxMMzRKRmxmbFN0NEVxOW01cWww?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Universal"
+        },
+        {
+          "texto": "Se analizarán consecuencias y responsabilidades en incidente suscitado en la Cámara de Diputados: Raúl Bolaños-Cacho - Primera Línea",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPMkR5QkNkWVhIc3pLYUE4bi16RzFjTEh3VTJtazZMOUNpeUN5X0pVTWU3S09NSlBHWDhuZGdudWp4TlNGSFpjVTJoaWM0UHRyNHFtajMxSjNaNGpEdGliLWFLYmlIUnpkbDVOYVRMaUVpZnZqMXpSZ2NiZk1DMVRLQmQxSnhpamVHc3VtT0JtbmpKNG1vLWlzYldUT1FKTXV4MmJBOElnOW9XUUZSNkxQZGphZFpweDN6WEVKNFNfbnVlQnBpb2hSbXFNSHZuUlRfWWFIazd6ZEluSU95Xy01MmpsamFmeFRJMmx3?oc=5",
+          "intensidad": 5.0,
+          "medio": "Primera Línea"
+        },
+        {
+          "texto": "ExPVEM se registra como coordinador municipal de Morena en Suchiapa - El Congresista",
+          "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPMURoeS1MekZBQ2dPMjBCdFpYakYyOE9leWQ3SVd2dk5uOHdBRGFZTEhmdXF4ZENmRG5HS1BCMGhtTFNLNkZjbjh2aDJibGNXY1pMZUpENDBNQkFfZ09FY2dOLVprSElwRldqblc0WWQzWXRzRldNVW4yY2FfY2lES193c3RJZw?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Congresista"
+        },
+        {
           "texto": "“Ley Antimemes” avanza en Diputados; oposición acusa censura - Grupo Animal",
           "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOMGdSdVp5T0hWcTBJSjlhQVVIQTNFMDNydGFMRWtLY0N3U09ZUnlIb0xBY09WWFpUMWJPZHB2R2UyaHgtSG9ULUQ1VDJoNlR1aTRVNGZHMFhvVzY4U0lObXhRcTJUeG1nYlluMlV1a2pUOEJNVzJETzRkUTFJQ0lHODZybFpwMWk4?oc=5",
           "intensidad": 4.0,
@@ -95,18 +107,12 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 31,
+      "peso_pct": 26,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 3,
-      "n_notas": 8,
+      "n_temas": 2,
+      "n_notas": 7,
       "notas": [
-        {
-          "texto": "¿Será confiable Donald Trump? - Plaza de Armas | Querétaro",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1vckZ0c200aWppWEdMclVaWW1BY0JySEMydHRsdEs0NGsxUmlaVFFIZGlQZEpUX1hJbXNaMDVCOVJqdUxkQkdQT1ZmWUsxdw?oc=5",
-          "intensidad": 9.0,
-          "medio": "Plaza de Armas | Querétaro"
-        },
         {
           "texto": "Claudia Sheinbaum sobre acuerdo comercial con Donald Trump: ''Ha avanzado, hay buena actitud'' - MARCA",
           "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOVWdvU3I5VFZWY0dPNzRBMWxWMzRkOU1lXzIyc1gtb3RTYnBBUUNZM3ZWY000Ykx1U1pmcnRkSkpkZTZoNHRXbVJJWndyVG5rUG9YS25nNVZlbXBkdm5GdkRua2ZRM3BqNmFyV0tyVnR1ekE4OHgxNmVaaGx3RTczYTBWY3J0VVczUTVCc2RTcHpmbUQ2VEduY29fTkE4VXVldGE0RXdPZk9rcDBhQ3BKNmVCTEI1b1d2cGF1S2xmQjNZYTVJNlpXb3B4V0dXWXIyS3k1SdIB1AFBVV95cUxPUXJ0Z3dQV2VTOUs5MFh3Uy1nVGpCR3Bjd0VXZWM1SmoycTdJd0c2djNNeVRaT3o4Qlk1NGpxVXBaZnJTOEJneDUtNW0wTV9yMktWVGxFOFNwNVNLeUZoWV9Td2I4RWNWZlRuR2E4YTFpRGRRVzkxZERaaldtX0hMbTJKLTNXS3pWN3lWRTRUWTFHLVZOeHJOY3czYWMyd0ZURWlkS3p0aEUzRjZKdkVxOFdBbEtPSkdvZlFYdHdvMDRZT0JlbHFseXF5VFBqNkttMEhQdA?oc=5",
@@ -114,10 +120,16 @@
           "medio": "MARCA"
         },
         {
-          "texto": "Insiste Donald Trump en cambiar nombre de Nuevo México por Nueva América - Vanguardia de Veracruz",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOUU9DaU9qS0tXRUwtOHk3a2tKMHB3UFlIejJJaDlvWTZTZGpxQUtHV01EVG9XYV9nRk1XMzhrd0F3S1owYl9mVUh6V1NEOUM3OVI5MWMxcXJLYjVLdlRsN3dIbmc0ejJYTS1MWi04cDRVM2tBNnQ0NHZEVjdjQUNpSmtnUGhQMTdKY1dGVnI4WE8wQnVrZ3lTaUI1aVN3OVN6bXNvVkxCZw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Vanguardia de Veracruz"
+          "texto": "Revisión del T-MEC: preocupa a Ebrard aranceles en sectores automotriz, acero y aluminio - LatinUS",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNWkF5Q1p1R2NtM2Rab1hnYlRheDdma2xKWTNfSDVtWC00dmR4WHZxZmRONlV1SWo2VkFZOGJTVjJmeVRJTEJwR1lRWDR4OVNCSlVFM3dlQU5KUW5EY3hlMGxQTEYtbWY5dHJLSkh6S2ZLeDdpaGczcGFfNnExQmNEdTYtSmFrOVlhSUh3WW15aHRUQWpEYTNQRHRoYzZpYWRJZFVrYlFwQUJGOENyTTVySjBxTlNKNzV3eTQtTlFMR0VXVF84SjdZVWJqXzhKQdIBzgFBVV95cUxNWkF5Q1p1R2NtM2Rab1hnYlRheDdma2xKWTNfSDVtWC00dmR4WHZxZmRONlV1SWo2VkFZOGJTVjJmeVRJTEJwR1lRWDR4OVNCSlVFM3dlQU5KUW5EY3hlMGxQTEYtbWY5dHJLSkh6S2ZLeDdpaGczcGFfNnExQmNEdTYtSmFrOVlhSUh3WW15aHRUQWpEYTNQRHRoYzZpYWRJZFVrYlFwQUJGOENyTTVySjBxTlNKNzV3eTQtTlFMR0VXVF84SjdZVWJqXzhKQQ?oc=5",
+          "intensidad": 9.0,
+          "medio": "LatinUS"
+        },
+        {
+          "texto": "México y Estados Unidos, cerca de cerrar acuerdo comercial en el marco del T-MEC - Ahora Tabasco Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPcm5PMksxcXZyVzRLWmRfc0Q1YXJPbkJtbkdGOXBldDhKZjFMMmVNdVhJUjQ1MUJUaFRoelpaMG4wXzFuUVZ4UGFpQnBIaTJ4YmpDc1hOZlJtZ25XM0xVWFpZVjRmcl9XSkNabTVyYm5QRXpoTWxGVW1RSEhUbUR0MjJtVXh5UU91ME1VZ1pyZXRnNnEyeGVZMmV6NEZfSmVrOEltTWRjcFo?oc=5",
+          "intensidad": 9.0,
+          "medio": "Ahora Tabasco Noticias"
         },
         {
           "texto": "Sheinbaum confirma cercanía de acuerdo con EE.UU. en T-MEC tras dichos de Trump - XEVA",
@@ -138,12 +150,6 @@
           "medio": "UDG TV"
         },
         {
-          "texto": "Trump ha ofrecido a México ayuda para extraer más petróleo",
-          "fuente_url": "https://www.jornada.com.mx/2026/10/20/politica/005n1pol?partner=rss",
-          "intensidad": 5.0,
-          "medio": "jornada.com.mx"
-        },
-        {
           "texto": "Donald Trump busca renombrar Nuevo México como “Nueva América”. Esto sabemos - La Jornada Estado de México",
           "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPVUpnS0VCaXBuTTFOTjFobFhfQzJzR3M3TlhzNnZDVGh6c3pBbnR4V3BDTGN1VktZcmN4MFBWbF82dzBQTThVMWJuQlMwVy1SVXdSTndJcThrMHBvYTJUUzJwb0hQcjltVHctYW9GM3duLTI2VjR2T1pCNmJlMk9hMnBBd19vYS1xdG4yLXR4QkpTLTFqUWM5cFdsX3FxUQ?oc=5",
           "intensidad": 5.0,
@@ -153,11 +159,11 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 14,
+      "peso_pct": 19,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 3,
-      "n_notas": 4,
+      "n_temas": 4,
+      "n_notas": 6,
       "notas": [
         {
           "texto": "Feminicidios en Sinaloa aumentan 148%: la crisis en medio de la guerra entre Los Chapitos y Los Mayos - Milenio",
@@ -178,6 +184,18 @@
           "medio": "El Financiero"
         },
         {
+          "texto": "Raúl Bolaños-Cacho Cué anuncia investigación por incidente que pudo derivar en violencia en San Lázaro",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/20/raul-bolanos-cacho-cue-anuncia-investigacion-por-incidente-que-pudo-derivar-en-violencia-en-san-lazaro-912586.html",
+          "intensidad": 7.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "Dan prisión preventiva a 'El Talibán', miembro de Los Chapitos acusado de desaparición de mineros en Concordia - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQRjlGNy00Vy14QVh0T3lHTEJtbU9GaVZHd3VqMVNrRXZJaG1SVmQ5SGJKbWRaQ29raTlrT1pxQ3FwOWY2NW1tV1BEMFBCUDhHWEhuczh1dHJzNG5QMXUxV0lNdHI4ZGFvMHIwLWJCYWozYmJIOWFXMGZWUERpcmx1dEVSSkI3LVNaRFVjRjVuN0RJQl9hcVFB0gGXAUFVX3lxTE82cUNqVjV6S3BQRzdEUnJxQWdaU0x1LW9HZ3NxSTI5NG94Q25QYWxFOTJJRGVPU2Z4Z2g2NlhtaUloNGlJcF9RSDFDSGh0Mkc4aEJTMl9nYTh1RkMySzF4T0VOby1IZzVHamdxMDlmMjJTQ2U4VHFHUGpmX2xGcEhlbE1ydDhBZmw2eW00MEM4VXdJT1M1SU0?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
+        },
+        {
           "texto": "‘San Judas Tadeo, un gallo y calaveras’: Así es la ofrenda en la tumba de ‘El Mencho’, exlíder del CJNG",
           "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/20/san-judas-tadeo-un-gallo-y-calaveras-asi-es-la-ofrenda-en-la-tumba-de-el-mencho-exlider-del-cjng/",
           "intensidad": 4.0,
@@ -187,11 +205,11 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 12,
+      "peso_pct": 14,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 3,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
@@ -210,6 +228,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQT3l6NkliQjJraVJkSzF5QTZ6X1htemJPVE1hUUo0eExWMlNDcmJCckZvNzZtT3JuQkQtZGZnQjhRSkJwUWprWlRwRTJzZDRwbk9yUGtEODBNLURBQkN5ck01dG5la1Y0dDU2M1paYjRfcTNmbS1QTkJ0SkRtMTFVQzJwYzZVa0FhSHA3aVFzMFRmMUxyRXdUStIBmAFBVV95cUxQT3l6NkliQjJraVJkSzF5QTZ6X1htemJPVE1hUUo0eExWMlNDcmJCckZvNzZtT3JuQkQtZGZnQjhRSkJwUWprWlRwRTJzZDRwbk9yUGtEODBNLURBQkN5ck01dG5la1Y0dDU2M1paYjRfcTNmbS1QTkJ0SkRtMTFVQzJwYzZVa0FhSHA3aVFzMFRmMUxyRXdUSg?oc=5",
           "intensidad": 7.0,
           "medio": "Milenio"
+        },
+        {
+          "texto": "‘A México le está yendo bien’: ¿Cuáles son las preocupaciones de Ebrard en la negociación del T-MEC? - El Financiero",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOWWJYMUVLTTl3b01yTTdiTWhOME9uVlNHODRvbGphaThFYXJNR0ExNnNOWmJ2ZTNfSk9WQVp5RGxnb21VY29CcGxZWUZXUUY2M3VaenZCLTdjN01QeEwzSlVCOGQwdmlwLURLaUhSMU9taU9Velk0QTBvZXE4R1pQM2JGaVVTQ0d2OWU2N3d2bDE1YlBQeXlobGhhTWYtU2hCaklXdUk3N1FlbmxYUGtYM3h2eE4yOHJzemFGbGx2TlZsMnROVktoUHg1TGF2Qm9w?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Financiero"
         }
       ]
     },
@@ -591,7 +615,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 4
+          "peso_pct": 3
         },
         {
           "categoria": "Social",
@@ -683,7 +707,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 73
+          "peso_pct": 74
         },
         {
           "categoria": "Relación Bilateral",
@@ -691,7 +715,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 7
+          "peso_pct": 6
         },
         {
           "categoria": "Social",
@@ -704,11 +728,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 72
         },
         {
           "categoria": "Relación Bilateral",
@@ -733,7 +757,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 69
+          "peso_pct": 70
         },
         {
           "categoria": "Relación Bilateral",
@@ -741,7 +765,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -758,7 +782,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 68
+          "peso_pct": 69
         },
         {
           "categoria": "Relación Bilateral",
@@ -783,7 +807,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
@@ -904,7 +928,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
@@ -932,7 +956,7 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
-      "peso": 28.0,
+      "peso": 35.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
@@ -950,49 +974,13 @@
       "categoria": "Gobernabilidad",
       "resumen": "Trabajadores del IMSS llaman a paro nacional; bloquean Reforma",
       "motivo": "Trabajadores del IMSS entregan pliego para Claudia Sheinbaum",
-      "peso": 12.0,
-      "n_temas_agrupados": 6,
+      "peso": 17.0,
+      "n_temas_agrupados": 7,
       "escalando": true,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://www.informador.mx/mexico/tenemos-salarios-deplorables-trabajadores-del-imss-entregan-pliego-para-claudia-sheinbaum-20261020-0097.html",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
-    },
-    {
-      "id": "auto-c6def1ccd5",
-      "nombre": "Impulsa senador Higinio Martínez nuevo Padrón de Cabilderos de Cámara de Senador",
-      "categoria": "Gobernabilidad",
-      "resumen": "Impulsa senador Higinio Martínez nuevo Padrón de Cabilderos de Cámara de Senadores - senado.gob",
-      "motivo": "Higinio Martínez llama  a realizar cumbre del sector salud en el Senado",
-      "peso": 7.0,
-      "n_temas_agrupados": 1,
-      "escalando": true,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/20/politica/004n3pol?partner=rss",
-      "actor_vinculado": {
-        "id": "higinio_martinez",
-        "nombre": "Higinio Martínez Miranda"
-      }
-    },
-    {
-      "id": "auto-cf2ebbe6da",
-      "nombre": "La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso",
-      "categoria": "Economía",
-      "resumen": "La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso",
-      "motivo": "El gran éxito de... regresar a donde estábamos, escribe Carlos Loret de Mola - El Universal",
-      "peso": 5.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPdmY0RUE5TUtralU3VEhkQWtvZmc3M3ZtejRfT3ZwNXJRYk1KUU9kdlFKZlhHcXNpOVlqMGxJbkU2SFRieUlqdTFQMDM1WHRLRGFLb2pBZzZnS3lnYmFXN2N1aU5ON3Z4dE9GOEg2QTdTcE9UaWhmbDYxZC1GX0txQU5qZHptN1c1VUVkaVJIWmNjajV6ZUIxWFBZb1lFYzh0S0NISGtCTQ?oc=5",
       "actor_vinculado": {
         "id": "morena_partido",
         "nombre": "Morena (partido político)"
@@ -1001,20 +989,12 @@
   ],
   "temas_nuevos": [
     {
-      "id": "auto-c837371b86",
-      "nombre": "El presupuesto “no se puede estirar” ni para universidades: Monreal",
-      "categoria": "Economía",
-      "peso": 5.0,
+      "id": "auto-fa3777dcf4",
+      "nombre": "Caso Emiliano Andrade: México exige a EU ‘investigar a fondo’ muerte de mexicano",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/20/politica/014n1pol?partner=rss"
-    },
-    {
-      "id": "auto-73befce30f",
-      "nombre": "Busca Morena frenar favoritismos en Campeche - El Universal",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPZ3NITGtINGNHeUphYjJMZUV3RkdRVXkxQmdHTVlqd3RIMGFDZmV5MG5VbVQtbGNzUVF2UFNvZG9KSDFXVjBhQ2R5bmM2ZzhuSy1rT0hmRDlWV1hmbTZzN0JlMjQyUjdzaHV0Tk9XWGZRMUg4VWFNLWVvb285VU03RXhFOFk2Y1U0eVdFSHVEZENOUmhOZ1E?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/20/caso-emiliano-andrade-mexico-exige-a-eu-investigar-a-fondo-muerte-de-mexicano-bajo-custodia-de-ice/"
     },
     {
       "id": "auto-0fe36316aa",
@@ -1039,20 +1019,17 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOVS1QS1EzSGdhU0sxRllmSFV6cVd6bHprVEhiazZIYVpYNVl6ZmNjRTlPLTR3MGNlSldOX1BDRTQwcGlqdmlJN3FkbTFpNk1QWkxXdUlsMkhsanRkUHlVNFZXVHVpOXB6SjFjelV3TVEydU9sYXJCNWJQVGFrblZPektoWE5MQW5YUmNmc1Q1eVZpWXNJOW90d1FJRmZUYk5kUVZmVWt2SW9zeDZlM0l5cUhic040ZktuSURmM1Y3cU9jS3FURDBCdWNaWlR2SW5WaDdneXRNMDFXbHlZVi1xc250NjJJZjZQdV9ibUxKd0NPT1E3a1pXa0hrNA?oc=5"
+    },
+    {
+      "id": "auto-ff6cf23a37",
+      "nombre": "Sheinbaum rechaza llevar a la FGR a Lilly Téllez y \"Alito\" Moreno por traición a",
+      "categoria": "Seguridad Nacional",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/sheinbaum-rechaza-llevar-a-la-fgr-a-lilly-tellez-y-alito-moreno-por-traicion-a-la-patria-la-politica-no-debe-judicializarse-20261020-0073.html"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-ed8f447502",
-      "nombre": "Aplazan para el 2 de octubre la huelga en VW; siguen el diálogo",
-      "categoria": "Social",
-      "dias_silencio": 35,
-      "motivo": "Autoridades y sindicato siguen en diálogo por el tema salarial",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/20/politica/004n2pol?partner=rss",
-      "fecha_anterior": "2026-09-15",
-      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/15/politica/010n3pol?partner=rss"
-    },
     {
       "id": "auto-a1e6b71463",
       "nombre": "Arenga sobre madres buscadoras, para reconocer labor; hay seguimiento a sus caso",
@@ -1144,12 +1121,12 @@
       "confianza": "media"
     },
     {
-      "id": "amlo",
-      "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Reacción social/mediática",
-      "tema": "PRI Veracruz exige que regresen a la Gobernadora, la Diputada Victoria se la lle",
-      "nota": "Victorias son regresar a donde estábamos antes de AMLO: Loret",
-      "fuente_url": "https://www.informador.mx/mexico/los-logros-de-sheinbaum-son-basicamente-regresar-a-donde-estabamos-antes-de-amlo-carlos-loret-de-mola-20261020-0050.html",
+      "id": "pvem_partido",
+      "nombre": "Partido Verde Ecologista de México (PVEM)",
+      "rol": "Responsable institucional",
+      "tema": "Coordinadores estatales de Morena rumbo a 2027",
+      "nota": "Excandidato del PVEM en Suchiapa se inscribe como coordinador municipal por Morena - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNTjRia1lFbW5lZkVqUXBDVTdnWWdzRnYtMjlJWDQ4R0NtRzc2amxlYlA4VkxXUVZ4MGFVMVNuS2RJSFVzRFFlcThRdTFVRjlqeGplbmtiNlJFbVg1OUJvVXBGY1BVQzF5MU1SV3QzTkRtWjR5dk4yQVUxZXc0d1dPZWU4bnJHUXprTmNvd01rNmZMOE5oV3gyc0dvdUgyVWl3X0QyWE5vZzRLZC1OTVUtZWxQSlhfcS1pWDBFYlRvQW1HSXNqZWdYUXhLWVNySk9SUjB6c245Q3ZHbmIwMEZ3TVBSLXNqWmN0TlVtek5DLTdxSVdPbTJUYzVfUGxMMzRKRmxmbFN0NEVxOW01cWww?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1207,10 +1184,10 @@
     },
     {
       "fecha": "2026-09-28",
-      "tension": 38,
-      "n_notas": 77,
+      "tension": 37,
+      "n_notas": 78,
       "n_alto_impacto": 50,
-      "n_medio_impacto": 27,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
@@ -1264,9 +1241,9 @@
     {
       "fecha": "2026-10-05",
       "tension": 21,
-      "n_notas": 86,
+      "n_notas": 87,
       "n_alto_impacto": 31,
-      "n_medio_impacto": 55,
+      "n_medio_impacto": 56,
       "n_bajo_impacto": 0
     },
     {
@@ -1280,33 +1257,33 @@
     {
       "fecha": "2026-10-07",
       "tension": 22,
-      "n_notas": 84,
+      "n_notas": 85,
       "n_alto_impacto": 33,
-      "n_medio_impacto": 51,
+      "n_medio_impacto": 52,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-08",
       "tension": 26,
-      "n_notas": 88,
+      "n_notas": 89,
       "n_alto_impacto": 37,
-      "n_medio_impacto": 51,
+      "n_medio_impacto": 52,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-09",
       "tension": 30,
-      "n_notas": 63,
-      "n_alto_impacto": 33,
-      "n_medio_impacto": 30,
+      "n_notas": 66,
+      "n_alto_impacto": 35,
+      "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-10",
       "tension": 27,
-      "n_notas": 43,
-      "n_alto_impacto": 21,
-      "n_medio_impacto": 22,
+      "n_notas": 45,
+      "n_alto_impacto": 22,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
@@ -1375,18 +1352,18 @@
     },
     {
       "fecha": "2026-10-19",
-      "tension": 33,
-      "n_notas": 36,
+      "tension": 32,
+      "n_notas": 37,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 16,
+      "n_medio_impacto": 17,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-20",
-      "tension": 38,
-      "n_notas": 27,
-      "n_alto_impacto": 19,
-      "n_medio_impacto": 8,
+      "tension": 39,
+      "n_notas": 36,
+      "n_alto_impacto": 24,
+      "n_medio_impacto": 12,
       "n_bajo_impacto": 0
     }
   ],
@@ -1527,30 +1504,35 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 22,
+      "x_lunes": 22,
+      "y_lunes": 100,
+      "x_hoy": 33,
       "y_hoy": 100,
-      "delta_pts": 6,
-      "alcance": 2,
-      "n_alto": 2,
+      "delta_pts": 3,
+      "alcance": 3,
+      "n_alto": 3,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFAtdzZXNHlncFpoRGdhZFNsRUxjcnhwT21KY2twOU0tYnZDY3ROOFlFSnU2VnRTd0l0VkQ5Smpjc2g1OE5BYWtsTmRkRnY2ZndkUU5OSlctaTJ1Qmcxb1FxZUY2LUZvdUdoWUJ2WlFSTHNfTm15S3c?oc=5",
       "nota_texto": "Andrés Manuel López Beltrán sigue activo en Morena y no se oculta a pesar de las acusaciones en su contra. - El Congresista",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 1,
+      "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-10-19",
           "x": 22,
           "y": 100
+        },
+        {
+          "fecha": "2026-10-20",
+          "x": 33,
+          "y": 100
         }
       ],
-      "fecha_apagado": "2026-10-20"
+      "fecha_reactivado": "2026-10-20"
     },
     {
       "id": "ebrard",
@@ -1635,6 +1617,34 @@
           "x": 11,
           "y": 50
         },
+        {
+          "fecha": "2026-10-20",
+          "x": 22,
+          "y": 75
+        }
+      ]
+    },
+    {
+      "id": "bolanoscacho_cue",
+      "nombre": "Raúl Bolaños-Cacho Cué",
+      "iniciales": "",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 22,
+      "y_hoy": 75,
+      "delta_pts": 4.5,
+      "alcance": 2,
+      "n_alto": 1,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/20/raul-bolanos-cacho-cue-anuncia-investigacion-por-incidente-que-pudo-derivar-en-violencia-en-san-lazaro-912586.html",
+      "nota_texto": "Raúl Bolaños-Cacho Cué anuncia investigación por incidente que pudo derivar en violencia en San Lázaro",
+      "es_nuevo": false,
+      "categoria": "Seguridad Nacional",
+      "dias_activo": 1,
+      "trayectoria": [
         {
           "fecha": "2026-10-20",
           "x": 22,
@@ -1837,5 +1847,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-20 18:04"
+  "hora_corte_publicada": "2026-10-20 23:16"
 }
