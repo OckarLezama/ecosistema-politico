@@ -1,7 +1,7 @@
 {
-  "generado_en": "2026-10-20T17:49:43.360198-06:00",
+  "generado_en": "2026-10-20T18:04:50.571988-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 26,
+  "n_notas_ventana": 27,
   "baja_confianza": false,
   "tension_nacional": 38,
   "tension_anomalia": {
@@ -13,7 +13,7 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 44,
+      "peso_pct": 43,
       "tema_principal": "Impulsa senador Higinio Martínez nuevo Padrón de Cabilderos de Cámara de Senador",
       "tema_principal_id": "auto-c6def1ccd5",
       "n_temas": 10,
@@ -95,7 +95,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 33,
+      "peso_pct": 31,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 3,
@@ -152,6 +152,40 @@
       ]
     },
     {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 14,
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis",
+      "n_temas": 3,
+      "n_notas": 4,
+      "notas": [
+        {
+          "texto": "Feminicidios en Sinaloa aumentan 148%: la crisis en medio de la guerra entre Los Chapitos y Los Mayos - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBJSlAzaGJCNE5rRS1GWDZiQWVHUndWRU1XVFNQaGI3UG8zVmZ2N2RfdUJqX2VxSWlZNmU4SmVUOTV4M2FKSmItZmZOTEFTZnhNdDJkYUd1TTZWLVA1RU45SXY4NWpVVElXYnhRZmdVT2J2YThJc3BB0gF3QVVfeXFMTWRWN2FoUjJLckZ2UzB1QVNlQVRtdWZ6aUtndGptTHJrQnlCNEFncnZrNjJEVlBuWnVob2FUMTZFejA3aTJOMnlNWUtIbk14cUNpaHZwT3U3bEpYeDFkRzRheFhXdDlyT2w4VERFTXEzY0Jkc0xxZ0k?oc=5",
+          "intensidad": 7.0,
+          "medio": "Milenio"
+        },
+        {
+          "texto": "DESMIENTE CLAUDIA: DONALD TRUMP NO CONDICIONÓ T-MEC",
+          "fuente_url": "http://campechehoy.mx/2026/10/20/desmiente-claudia-donald-trump-no-condiciono-t-mec/",
+          "intensidad": 7.0,
+          "medio": "campechehoy.mx"
+        },
+        {
+          "texto": "Trump no mezcla ‘amenazas’ a cárteles mexicanos con revisión del T-MEC, aclara Ebrard: ‘No le conviene’ - El Financiero",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNbUFJMDlMa0NfTWFRZTVHYzQ3b0lQQ0ZTOW40STJYX0l4M3VXeDRGS2s4QUxOTVVlc2g2Zmh4d0lEczhicEEtRHFaRjAyUWp0T2F1TUZVVGhWOUdWdjFnX1BuTGhucVhzTGRZVHdqblhmYjU4cGFSSW9XV2ZxT2ZRRkVkYTdWMkh0bGZfbDdyM2dfN09ZTDNNeVlZbFhPbUJTUEx5S05OeE5lSDlKc05uanRFQ0xaUVVhNHRQVEh0TGhKeTBWYTlNSU13eEpMRGgzLTZfd05IdHNFbWU5dUxfNFNtMzM?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Financiero"
+        },
+        {
+          "texto": "‘San Judas Tadeo, un gallo y calaveras’: Así es la ofrenda en la tumba de ‘El Mencho’, exlíder del CJNG",
+          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/20/san-judas-tadeo-un-gallo-y-calaveras-asi-es-la-ofrenda-en-la-tumba-de-el-mencho-exlider-del-cjng/",
+          "intensidad": 4.0,
+          "medio": "elfinanciero.com.mx"
+        }
+      ]
+    },
+    {
       "categoria": "Economía",
       "peso_pct": 12,
       "tema_principal": "Revisión del T-MEC",
@@ -176,34 +210,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQT3l6NkliQjJraVJkSzF5QTZ6X1htemJPVE1hUUo0eExWMlNDcmJCckZvNzZtT3JuQkQtZGZnQjhRSkJwUWprWlRwRTJzZDRwbk9yUGtEODBNLURBQkN5ck01dG5la1Y0dDU2M1paYjRfcTNmbS1QTkJ0SkRtMTFVQzJwYzZVa0FhSHA3aVFzMFRmMUxyRXdUStIBmAFBVV95cUxQT3l6NkliQjJraVJkSzF5QTZ6X1htemJPVE1hUUo0eExWMlNDcmJCckZvNzZtT3JuQkQtZGZnQjhRSkJwUWprWlRwRTJzZDRwbk9yUGtEODBNLURBQkN5ck01dG5la1Y0dDU2M1paYjRfcTNmbS1QTkJ0SkRtMTFVQzJwYzZVa0FhSHA3aVFzMFRmMUxyRXdUSg?oc=5",
           "intensidad": 7.0,
           "medio": "Milenio"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 11,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 3,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Feminicidios en Sinaloa aumentan 148%: la crisis en medio de la guerra entre Los Chapitos y Los Mayos - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBJSlAzaGJCNE5rRS1GWDZiQWVHUndWRU1XVFNQaGI3UG8zVmZ2N2RfdUJqX2VxSWlZNmU4SmVUOTV4M2FKSmItZmZOTEFTZnhNdDJkYUd1TTZWLVA1RU45SXY4NWpVVElXYnhRZmdVT2J2YThJc3BB0gF3QVVfeXFMTWRWN2FoUjJLckZ2UzB1QVNlQVRtdWZ6aUtndGptTHJrQnlCNEFncnZrNjJEVlBuWnVob2FUMTZFejA3aTJOMnlNWUtIbk14cUNpaHZwT3U3bEpYeDFkRzRheFhXdDlyT2w4VERFTXEzY0Jkc0xxZ0k?oc=5",
-          "intensidad": 7.0,
-          "medio": "Milenio"
-        },
-        {
-          "texto": "DESMIENTE CLAUDIA: DONALD TRUMP NO CONDICIONÓ T-MEC",
-          "fuente_url": "http://campechehoy.mx/2026/10/20/desmiente-claudia-donald-trump-no-condiciono-t-mec/",
-          "intensidad": 7.0,
-          "medio": "campechehoy.mx"
-        },
-        {
-          "texto": "‘San Judas Tadeo, un gallo y calaveras’: Así es la ofrenda en la tumba de ‘El Mencho’, exlíder del CJNG",
-          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/20/san-judas-tadeo-un-gallo-y-calaveras-asi-es-la-ofrenda-en-la-tumba-de-el-mencho-exlider-del-cjng/",
-          "intensidad": 4.0,
-          "medio": "elfinanciero.com.mx"
         }
       ]
     },
@@ -902,7 +908,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -926,12 +932,12 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
-      "peso": 21.0,
+      "peso": 28.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYUhFSkt0bGJUNXpVTXZ1YWRLUDNTeTRKbzlCQm4ydVVaMEZodEwxeV8xb09QRXpYR0ZLRU9kak01T1R1YThicnhWNkhFLTRKYWhZU3Rhel9jS1JGU1Jpanl4OGZhTWltdWRXNXVkU19TVFd0b2g1VDVIYkJ6aS1WU1BuZ2otc0dnR3l4QW9ZSEt1MVBn0gGUAUFVX3lxTE1hRUFndGNhQVg2SGlnRFJmTjZlWUl6cFdyd0JQUzJZdTQ5MmgyekRaNWxRTjB1SnpyTFVoOHBGUTYyTVVVTnNIX0taVVpNVGRZT3dWUHliNHczM2hybmFhTnpmRjdJakZCTVBvRWI1SDlKa2dBNGcwdS1mLVBZaU1aS1hxczM1TWdyWGVveFhmRE9vSkk?oc=5",
       "actor_vinculado": {
         "id": "trump",
@@ -995,14 +1001,6 @@
   ],
   "temas_nuevos": [
     {
-      "id": "auto-93b350f995",
-      "nombre": "‘No me sumaré al linchamiento’: Monreal habla sobre exigencia de destitución de ",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/19/no-me-sumare-al-linchamiento-monreal-habla-sobre-exigencia-de-destitucion-de-pablo-lemus/"
-    },
-    {
       "id": "auto-c837371b86",
       "nombre": "El presupuesto “no se puede estirar” ni para universidades: Monreal",
       "categoria": "Economía",
@@ -1033,6 +1031,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNWk1oeEFyM2RTS3lGU29WeDFhS19QVzFoTnhKWk5sOFFrLVhOTGJKa1Nxb2dJVFpxLWI3SFNRU3kxMEhoTFMtY2kzVXRkSUVnVlY4UlFxSE1nMGFiNm1PS0ZLZV9ZRmZSS3FvdEJPZUppNnB3RjA5Z0VHWkZpNzVUUngyUVdmLXBrTjQwbFFQSG16LWlybFRJRU02dDFiRjhuODFTQ3FQREpZY09BbURF?oc=5"
+    },
+    {
+      "id": "auto-b03f2cbbef",
+      "nombre": "En 2029, serán 32 centros de atención integral del cáncer de mama; uno en cada e",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOVS1QS1EzSGdhU0sxRllmSFV6cVd6bHprVEhiazZIYVpYNVl6ZmNjRTlPLTR3MGNlSldOX1BDRTQwcGlqdmlJN3FkbTFpNk1QWkxXdUlsMkhsanRkUHlVNFZXVHVpOXB6SjFjelV3TVEydU9sYXJCNWJQVGFrblZPektoWE5MQW5YUmNmc1Q1eVZpWXNJOW90d1FJRmZUYk5kUVZmVWt2SW9zeDZlM0l5cUhic040ZktuSURmM1Y3cU9jS3FURDBCdWNaWlR2SW5WaDdneXRNMDFXbHlZVi1xc250NjJJZjZQdV9ibUxKd0NPT1E3a1pXa0hrNA?oc=5"
     }
   ],
   "temas_retomados": [
@@ -1040,7 +1046,7 @@
       "id": "auto-ed8f447502",
       "nombre": "Aplazan para el 2 de octubre la huelga en VW; siguen el diálogo",
       "categoria": "Social",
-      "dias_silencio": 34,
+      "dias_silencio": 35,
       "motivo": "Autoridades y sindicato siguen en diálogo por el tema salarial",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/20/politica/004n2pol?partner=rss",
@@ -1051,7 +1057,7 @@
       "id": "auto-a1e6b71463",
       "nombre": "Arenga sobre madres buscadoras, para reconocer labor; hay seguimiento a sus caso",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 30,
+      "dias_silencio": 31,
       "motivo": "Morena reconoce actuación de la FGR en el caso CIA en Chihuahua - El Universal",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPVmM0YU1zUkkxQ3BZWTFIRmpReGxNb1RkWERfVjhvU2hhU244OVEyZHFRSFplZVJwYkpQRE1nSy0wU294cng1di00YUdMTFdJYjhwUlR4LVZmaUg1WnZaVDVOQk1BNEpZZ2VnMjdoUUowa2pxZTRHdkhZNS1INFVCdlhLTDlXcHFTQVFFRU1YeG9kRXBZR2IzejlNVHU5alZnY2J0aFdtNDNzZjc4a3AwbXFieXNiZnFYQ19ONGhPVXJBeHF3VXRNVUFDdmtaSUhESGN1a2lWSm3SAewBQVVfeXFMTnI4anR1VnpUVFYxOXJSQzBHN3lEWlM2OHc5ZFJJZWVUQ2gwNWtBQXdLWjgxaFR0REtpX3ZMQ0txMDU5MHVneDhxRXF6T1VHaktkVGpxYXo0bkRyakZVRmRYZ2drYjVwYUZzVmUyUWVWVFcyNjAxeTVvZjhSTE5oRUNVcHlUMGJNb2lmYURhOXYxUTdBWTZqRGh0V1hUc0NFa3JJUFpDZ2QzemdIZlhzcmFkcGQtcno0V1RQbUJldnBYbGtVc254Vnp2bUxSQ1N1eG1CbklXa1FwRl90dmpwYmNNWFFTMTNQRy1iNWU?oc=5",
@@ -1062,7 +1068,7 @@
       "id": "auto-08b6dc7c3e",
       "nombre": "De Griselda Álvarez a Delfina Gómez: las mujeres que abrieron el camino de la de",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 19,
+      "dias_silencio": 20,
       "motivo": "Delfina Gómez devuelve a las mujeres espacios públicos y prepara Centros Colibrí para la niñez",
       "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/20/delfina-gomez-devuelve-a-las-mujeres-espacios-publicos-y-prepara-centros-colibri-para-la-ninez/",
@@ -1073,12 +1079,23 @@
       "id": "amlo-agenda",
       "nombre": "López Obrador: reaparición y declaraciones",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 17,
+      "dias_silencio": 18,
       "motivo": "Sistema de salud de México colapsa tras gobierno de López Obrador - Milenio",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQOU5FQjNsTkg5d1pqVnFVVnBGME8wY2dHQVlpYUNrNEVYQUhDWkxJQkF2Ql9HZnBGQnI2SXhoRTRuVEV6QXRtMmw4RjA1b09Wc2Z0TEJvSzRJQTROYXpXelZaY3lRY1hGTHpqOXVWUFJZZTNwbXhmZFBoX3EtbGFkOXBpRW1PZFE2LUdxT0hxMWVVM0JhUjNPVFFqd21MTHB40gGgAUFVX3lxTFA5TkVCM2xOSDl3WmpWcVVWcEYwTzBjZ0dBWWlhQ2s0RVhBSENaTElCQXZCX0dmcEZCcjZJeGhFNG5URXpBdG0ybDhGMDVvT1ZzZnRMQm9LNElBNE5held6VlpjeVFjWEZMemo5dVZQUlllM3BteGZkUGhfcS1sYWQ5cGlFbU9kUTYtR3FPSHExZVUzQmFSM09UUWp3bUxMcHg?oc=5",
       "fecha_anterior": "2026-10-02",
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/02/politica/005n1pol?partner=rss"
+    },
+    {
+      "id": "auto-f98912c1ed",
+      "nombre": "Donald Trump presiona a México para firmar acuerdos energéticos con empresas de ",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 7,
+      "motivo": "Rostro 'Mar-a-Lago': Al gusto de Donald Trump - Reforma",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOckFXRjNVbGpIMjZ0RndkdkVvYVhHSlhxRE1fTDhVT05vWHRsaWY1SUEwY2ctX0trTE9RUG11UG5mWUxWSmotN3RKT2p4QWNHT0dMTk1EbzVhTFJrV3VtS1ZSeTJlU1c5RzhKVXg3alpsVEJFOEZmOXAzN2taWTJGeWZR?oc=5",
+      "fecha_anterior": "2026-10-13",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOeGxza2hDeTlwX1VJQzRRVndSZksza0pSNEk4ZzAzdFY5M0xJLTU5eTQzMmxmSnZyQ1BucWp1aTNPUUZTNEN2eHoxeFlmSmIxQzNINDVFOHdZSkZlMHU1V3J4YTNFcFlNV0tjd3czWEJkZGhFMG9MeU1vNTFMNm9JekdXbzFWTUdrd1FDUFZpcUkzd2UxLUpVNWtMUEtPZlFZZFJNdTE2U3NLbDQzaFdoWV9wdGdCdXdQZFBSUVhidDRRSHVIWl9IQkpXVXVxM0xFa3BpaUtDZmlZQQ?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1367,8 +1384,8 @@
     {
       "fecha": "2026-10-20",
       "tension": 38,
-      "n_notas": 26,
-      "n_alto_impacto": 18,
+      "n_notas": 27,
+      "n_alto_impacto": 19,
       "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
@@ -1820,5 +1837,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-20 17:49"
+  "hora_corte_publicada": "2026-10-20 18:04"
 }
