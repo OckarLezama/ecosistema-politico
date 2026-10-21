@@ -1,19 +1,19 @@
 {
-  "generado_en": "2026-10-20T23:16:28.512233-06:00",
+  "generado_en": "2026-10-21T00:01:43.570667-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 31,
+  "n_notas_ventana": 34,
   "baja_confianza": false,
-  "tension_nacional": 39,
+  "tension_nacional": 40,
   "tension_anomalia": {
-    "z": 1.06,
+    "z": 1.13,
     "nivel": "normal",
-    "media_periodo": 30.5,
+    "media_periodo": 30.7,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 42,
+      "peso_pct": 38,
       "tema_principal": "Trabajadores del IMSS llaman a paro nacional; bloquean Reforma",
       "tema_principal_id": "auto-d012f2d168",
       "n_temas": 10,
@@ -107,7 +107,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 26,
+      "peso_pct": 23,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
@@ -159,11 +159,11 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 19,
+      "peso_pct": 20,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 4,
-      "n_notas": 6,
+      "n_notas": 7,
       "notas": [
         {
           "texto": "Feminicidios en Sinaloa aumentan 148%: la crisis en medio de la guerra entre Los Chapitos y Los Mayos - Milenio",
@@ -190,6 +190,12 @@
           "medio": "heraldodemexico.com.mx"
         },
         {
+          "texto": "Pese a las presiones de Trump, narcotráfico no se ha discutido en la mesa del T-MEC: Ebrard - Proyecto Puente",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPOG9MakJvRkVoS3czX1lKczRGdExBcHZuQzhsbF9NZ0FNaXVJMDFVWmVEUmVLV1Y3U01CVXpkTWVNdFdXV2hwNWg3MFNPNXFaaHhZTlZaaHl4ejlKVkJPd2FCMHN3ckZOWUdTUHBnVTZ0bW5lcjJYVHduRHMtTGp5ckU0REJ5TUVzTWt3dkxGZ0tyYWZ0NXE1UUl1ejU2b0tIUkpubzdrbW5aWEQ4cWtSdmdQSWFrNjNRYWYzWE01cGFIc3JOYlAyTkJvbw?oc=5",
+          "intensidad": 7.0,
+          "medio": "Proyecto Puente"
+        },
+        {
           "texto": "Dan prisión preventiva a 'El Talibán', miembro de Los Chapitos acusado de desaparición de mineros en Concordia - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQRjlGNy00Vy14QVh0T3lHTEJtbU9GaVZHd3VqMVNrRXZJaG1SVmQ5SGJKbWRaQ29raTlrT1pxQ3FwOWY2NW1tV1BEMFBCUDhHWEhuczh1dHJzNG5QMXUxV0lNdHI4ZGFvMHIwLWJCYWozYmJIOWFXMGZWUERpcmx1dEVSSkI3LVNaRFVjRjVuN0RJQl9hcVFB0gGXAUFVX3lxTE82cUNqVjV6S3BQRzdEUnJxQWdaU0x1LW9HZ3NxSTI5NG94Q25QYWxFOTJJRGVPU2Z4Z2g2NlhtaUloNGlJcF9RSDFDSGh0Mkc4aEJTMl9nYTh1RkMySzF4T0VOby1IZzVHamdxMDlmMjJTQ2U4VHFHUGpmX2xGcEhlbE1ydDhBZmw2eW00MEM4VXdJT1M1SU0?oc=5",
           "intensidad": 6.0,
@@ -205,12 +211,18 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 14,
+      "peso_pct": 19,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 4,
+      "n_notas": 6,
       "notas": [
+        {
+          "texto": "Destacan ahorro de 70 mmdp en compra de medicamentos - Cuarto Poder Chiapas",
+          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNY2llaTVGSVRTMEc1TVl1TVI5Zk1NVldBMmJTUkdiVnltR0Z5NlA4a0c4dmg0X3N6RWtYenhldjdGY1RYX3ZjX0NrSzBGY05hakJSSTF3dkRuUGtsUmtlZW1jaTBXTURDNTVLLTdwVGZxbjl2WWNlYm1MWGl4YWVsTnVvNlotWG9lcWtvTy1oQ2JWSVlRU214bzNMVGRnd9IBowFBVV95cUxPUEhKU3c4ZmUxTkdURkxUNkItV24xY0pxSk9RcXBEdlppUjNxc0NmdzFNZVJlSGtZa1lhdFp2dmRET0dGTU4zTG9WXzVxR1UzUGV0SG5BYV9ObmpsRVRGN3BwOEY1X00zdDU4dDFaVU5ScURqOHZYMDVEcEFNNGZPVGdub1VDbk02UGx0ZE5JVEtWUFNoVG04eTEwSTRmNnpXTXpr?oc=5",
+          "intensidad": 8.0,
+          "medio": "Cuarto Poder Chiapas"
+        },
         {
           "texto": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYUhFSkt0bGJUNXpVTXZ1YWRLUDNTeTRKbzlCQm4ydVVaMEZodEwxeV8xb09QRXpYR0ZLRU9kak01T1R1YThicnhWNkhFLTRKYWhZU3Rhel9jS1JGU1Jpanl4OGZhTWltdWRXNXVkU19TVFd0b2g1VDVIYkJ6aS1WU1BuZ2otc0dnR3l4QW9ZSEt1MVBn0gGUAUFVX3lxTE1hRUFndGNhQVg2SGlnRFJmTjZlWUl6cFdyd0JQUzJZdTQ5MmgyekRaNWxRTjB1SnpyTFVoOHBGUTYyTVVVTnNIX0taVVpNVGRZT3dWUHliNHczM2hybmFhTnpmRjdJakZCTVBvRWI1SDlKa2dBNGcwdS1mLVBZaU1aS1hxczM1TWdyWGVveFhmRE9vSkk?oc=5",
@@ -234,6 +246,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOWWJYMUVLTTl3b01yTTdiTWhOME9uVlNHODRvbGphaThFYXJNR0ExNnNOWmJ2ZTNfSk9WQVp5RGxnb21VY29CcGxZWUZXUUY2M3VaenZCLTdjN01QeEwzSlVCOGQwdmlwLURLaUhSMU9taU9Velk0QTBvZXE4R1pQM2JGaVVTQ0d2OWU2N3d2bDE1YlBQeXlobGhhTWYtU2hCaklXdUk3N1FlbmxYUGtYM3h2eE4yOHJzemFGbGx2TlZsMnROVktoUHg1TGF2Qm9w?oc=5",
           "intensidad": 7.0,
           "medio": "El Financiero"
+        },
+        {
+          "texto": "Ebrard presume éxito en negociación del T-MEC y asegura continuidad del tratado por 10 años - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOMUkwMHdSa3d3aDdIeGZqQS1DRXpOcUhhWGYydExzNWRzZ3BTQlJzdlJuZDJDYk8zMU1VX1JtR1VBaGlWdHhnWE4zV3pEdnhKa3NzaWdUNVpOeWl4UF9rZTRWS2pnUUh1eEVYZkhoRnBkdmx5T0F3cWs4ZzgyTVJuOC1heERUUVZVYUN2TThWMNIBjwFBVV95cUxOMUkwMHdSa3d3aDdIeGZqQS1DRXpOcUhhWGYydExzNWRzZ3BTQlJzdlJuZDJDYk8zMU1VX1JtR1VBaGlWdHhnWE4zV3pEdnhKa3NzaWdUNVpOeWl4UF9rZTRWS2pnUUh1eEVYZkhoRnBkdmx5T0F3cWs4ZzgyTVJuOC1heERUUVZVYUN2TThWMA?oc=5",
+          "intensidad": 7.0,
+          "medio": "Milenio"
         }
       ]
     },
@@ -248,31 +266,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-23",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 19
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 64
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 2
-        }
-      ]
-    },
     {
       "fecha": "2026-09-24",
       "categorias": [
@@ -932,11 +925,36 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 58
         },
         {
           "categoria": "Relación Bilateral",
           "peso_pct": 19
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 4
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-21",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 12
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 53
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 21
         },
         {
           "categoria": "Economía",
@@ -956,17 +974,14 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
-      "peso": 35.0,
+      "peso": 42.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 3,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYUhFSkt0bGJUNXpVTXZ1YWRLUDNTeTRKbzlCQm4ydVVaMEZodEwxeV8xb09QRXpYR0ZLRU9kak01T1R1YThicnhWNkhFLTRKYWhZU3Rhel9jS1JGU1Jpanl4OGZhTWltdWRXNXVkU19TVFd0b2g1VDVIYkJ6aS1WU1BuZ2otc0dnR3l4QW9ZSEt1MVBn0gGUAUFVX3lxTE1hRUFndGNhQVg2SGlnRFJmTjZlWUl6cFdyd0JQUzJZdTQ5MmgyekRaNWxRTjB1SnpyTFVoOHBGUTYyTVVVTnNIX0taVVpNVGRZT3dWUHliNHczM2hybmFhTnpmRjdJakZCTVBvRWI1SDlKa2dBNGcwdS1mLVBZaU1aS1hxczM1TWdyWGVveFhmRE9vSkk?oc=5",
-      "actor_vinculado": {
-        "id": "trump",
-        "nombre": "Donald Trump"
-      }
+      "actor_vinculado": null
     },
     {
       "id": "auto-d012f2d168",
@@ -981,10 +996,7 @@
       "medios_corroborantes": 3,
       "confianza": "alta",
       "fuente_url": "https://www.informador.mx/mexico/tenemos-salarios-deplorables-trabajadores-del-imss-entregan-pliego-para-claudia-sheinbaum-20261020-0097.html",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -1142,14 +1154,6 @@
   },
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-09-23",
-      "tension": 34,
-      "n_notas": 63,
-      "n_alto_impacto": 34,
-      "n_medio_impacto": 29,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-09-24",
       "tension": 44,
@@ -1360,10 +1364,18 @@
     },
     {
       "fecha": "2026-10-20",
-      "tension": 39,
-      "n_notas": 36,
-      "n_alto_impacto": 24,
+      "tension": 40,
+      "n_notas": 39,
+      "n_alto_impacto": 27,
       "n_medio_impacto": 12,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-21",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1382,7 +1394,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOWjF4N3lJeTJmdklmcEY5UUdPdTRlel9RaFFCVGhwMFR4ckg3OVJXU08yQTg1THQ3dS1JZHotX1Q0aWJ3ek1uZVR2QlhteVhSVmVKRjVmTXUtUE91RExISXM3XzJhRkdZNmFUNFZjamdKZVcyZzJTNVN1aFljMmdObkpTNjdEc0RUZ3d1YWVUMU54NGtCcnhNRWJQckdYdldCUG4xZzZZa1IyaU80TVJpallSRFVPQUJPSWpvd0FQalZCODk3TnFPRFAyYlFrRENMMnE0WE5lazVnZDVzWGZJSXMzSnpVNzlaOUh5aGJ1Z1JMQTFSSXNhUUVfWkktZkktaEtmTGtJTFZULWVMd25mcNIBlgJBVV95cUxOVmxOTW5wTTQ1Y1BqZmVCNDBrQ0NHcS0xTWFNNDVhelFSQ010ZEUwLTF1dVBYNDBxZ3dOd1p2QjhraDJLZ1BsY3JyUlhkMDg1QWlOQzA2S3h5UjZSZlBBU2ZwSjBxU09CTzYwampsZk9zTGhUaUpmZURha2NpUk43VXhDaVk4endEQ092bmtzR0xNUUtXNWFQU1BJVXRVdTJSbE1FT3NVZVJ1bDBQbE8xa1BlblVmcVAyTnpacWNGLWt0Q25PRHYzOGxJZ3V5eTBSRnJlSkJtOWtXcV84YkU5TE5CMkw2OEhFWldGOWN4R3YwMHRVSWtka25Bd3hsNHBpZXpVUHFwSGc2WTU1UFZlWW9MTllIZw?oc=5",
       "nota_texto": "Claudia Sheinbaum confiesa que Donald Trump le pidió que le compre más gas a EEUU y que quería acciones de PEMEX: qué le respondió - Ambito",
       "es_nuevo": false,
@@ -1399,7 +1411,8 @@
           "x": 100,
           "y": 89
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-21"
     },
     {
       "id": "morena_partido",
@@ -1415,7 +1428,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQTm4ydmNoOEU1Vm5wVkFoSmIxcHpjMjk1REY2SnVKM0Utb1dOaFpfVFJYQUF1ejMwRkFhLWhfWkw4cWpxRGJDZzF1M3EyOXAyUGlPYTBDTkdhVmE2QllkVUlQWTVYMDRMd013TEczVTRrZmZ4VGdxTHMwVkJEX01SS1FjWXR3VWI5NlBJUFVfUlA2Y3p2cEM3TW5EV0M2MmNlaUpJS0VJcm5Za2ZBZHkyQmxMcVRjeXNpTFVCQ0FDTTgxbEZaRzdNMW5zVmhURG0tT29UaGw3ZmZWY2N1?oc=5",
       "nota_texto": "Juan Carlos Natale se registra como aspirante a Coordinación Municipal de Morena; suman siete aspirantes - El Popular, periodismo con causa",
       "es_nuevo": false,
@@ -1432,7 +1445,8 @@
           "x": 89,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-21"
     },
     {
       "id": "rocha_moya",
@@ -1448,7 +1462,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMitwJBVV95cUxNSUJGRG5VRHZmTmdHTDdqNUNkaTltcThXQm9tVU9Tc1pLWVlfQThKcmVISUYwUXM3eHRPbUIzbmJjYUtBSEp4akFqN2U3MzR6TFNmc1hrMXR5T0lpeE1kNFk1Nl9iWGoxX1VYbkx3MEVyRHcxcnY0RF9LZ2dZNE5PNzVYYjJ3eW5PQmVpaU81ZmdoZ29wUFdIRUp3X1M3NWJKRkVGZngwcXd3UlN4d1FsX0RpcDZTWG5Bc282c1pKb1NJWGtEUTNySnVHeTVQR3ZiSDA2akZGZS1JV1VFVlB3cWk4NjBXZFZvckU1VEdWTHpOTkFfM2lRR1B3Mk5LRk1KUTBEU2FNZTloQVBYRFUzWHZQT1dMcUM0dVNKT2I2TTNWUjZBVm9XTHVRSnVxMUpmNXR4bHIxSQ?oc=5",
       "nota_texto": "Alejandro Armenta bajo la sombra del caso Rocha Moya: señalamientos por huachicol y dudas sobre el financiamiento ilegal de su campaña lo ponen en la mira de Estados Unidos - Azteca Puebla",
       "es_nuevo": false,
@@ -1465,7 +1479,8 @@
           "x": 44,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-21"
     },
     {
       "id": "sheinbaum",
@@ -1481,7 +1496,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOWjF4N3lJeTJmdklmcEY5UUdPdTRlel9RaFFCVGhwMFR4ckg3OVJXU08yQTg1THQ3dS1JZHotX1Q0aWJ3ek1uZVR2QlhteVhSVmVKRjVmTXUtUE91RExISXM3XzJhRkdZNmFUNFZjamdKZVcyZzJTNVN1aFljMmdObkpTNjdEc0RUZ3d1YWVUMU54NGtCcnhNRWJQckdYdldCUG4xZzZZa1IyaU80TVJpallSRFVPQUJPSWpvd0FQalZCODk3TnFPRFAyYlFrRENMMnE0WE5lazVnZDVzWGZJSXMzSnpVNzlaOUh5aGJ1Z1JMQTFSSXNhUUVfWkktZkktaEtmTGtJTFZULWVMd25mcNIBlgJBVV95cUxOVmxOTW5wTTQ1Y1BqZmVCNDBrQ0NHcS0xTWFNNDVhelFSQ010ZEUwLTF1dVBYNDBxZ3dOd1p2QjhraDJLZ1BsY3JyUlhkMDg1QWlOQzA2S3h5UjZSZlBBU2ZwSjBxU09CTzYwampsZk9zTGhUaUpmZURha2NpUk43VXhDaVk4endEQ092bmtzR0xNUUtXNWFQU1BJVXRVdTJSbE1FT3NVZVJ1bDBQbE8xa1BlblVmcVAyTnpacWNGLWt0Q25PRHYzOGxJZ3V5eTBSRnJlSkJtOWtXcV84YkU5TE5CMkw2OEhFWldGOWN4R3YwMHRVSWtka25Bd3hsNHBpZXpVUHFwSGc2WTU1UFZlWW9MTllIZw?oc=5",
       "nota_texto": "Claudia Sheinbaum confiesa que Donald Trump le pidió que le compre más gas a EEUU y que quería acciones de PEMEX: qué le respondió - Ambito",
       "es_nuevo": false,
@@ -1498,7 +1513,8 @@
           "x": 56,
           "y": 80
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-21"
     },
     {
       "id": "andy",
@@ -1514,7 +1530,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFAtdzZXNHlncFpoRGdhZFNsRUxjcnhwT21KY2twOU0tYnZDY3ROOFlFSnU2VnRTd0l0VkQ5Smpjc2g1OE5BYWtsTmRkRnY2ZndkUU5OSlctaTJ1Qmcxb1FxZUY2LUZvdUdoWUJ2WlFSTHNfTm15S3c?oc=5",
       "nota_texto": "Andrés Manuel López Beltrán sigue activo en Morena y no se oculta a pesar de las acusaciones en su contra. - El Congresista",
       "es_nuevo": false,
@@ -1532,7 +1548,7 @@
           "y": 100
         }
       ],
-      "fecha_reactivado": "2026-10-20"
+      "fecha_apagado": "2026-10-21"
     },
     {
       "id": "ebrard",
@@ -1548,7 +1564,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/20/marcelo-ebrard-aborda-en-el-senado-como-han-sido-las-negociaciones-del-t-mec-912527.html",
       "nota_texto": "Marcelo Ebrard aborda en el Senado cómo han sido las negociaciones del T-MEC",
       "es_nuevo": false,
@@ -1560,7 +1576,8 @@
           "x": 11,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-21"
     },
     {
       "id": "soto_picha",
@@ -1605,7 +1622,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.jornada.com.mx/2026/10/20/politica/004n3pol?partner=rss",
       "nota_texto": "Higinio Martínez llama  a realizar cumbre del sector salud en el Senado",
       "es_nuevo": false,
@@ -1622,7 +1639,8 @@
           "x": 22,
           "y": 75
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-21"
     },
     {
       "id": "bolanoscacho_cue",
@@ -1638,7 +1656,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/20/raul-bolanos-cacho-cue-anuncia-investigacion-por-incidente-que-pudo-derivar-en-violencia-en-san-lazaro-912586.html",
       "nota_texto": "Raúl Bolaños-Cacho Cué anuncia investigación por incidente que pudo derivar en violencia en San Lázaro",
       "es_nuevo": false,
@@ -1650,7 +1668,8 @@
           "x": 22,
           "y": 75
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-21"
     },
     {
       "id": "monreal",
@@ -1741,44 +1760,8 @@
     }
   ],
   "tablero_semana_inicio": "2026-10-19",
-  "resumen_mananera": [
-    {
-      "texto": "El Hospital de La Pastora ha atendido a más de 11 mil mujeres en 200 días, realizando más de 800 cirugías oncológicas, 1,500 hospitalizaciones, 2 mil mastografías de tamizaje, 2,800 urgencias oncológi",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se informó sobre la estrategia de compra consolidada de medicamentos que ha generado ahorros significativos. En 2025-2026, la compra de medicamentos al costo anterior hubiera costado 45 mil millones d",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se presentó la plataforma Compraconsolidada.salud.gov.mx que permite total transparencia en las compras de medicamentos. En esta página se puede ver cada medicamento comprado, cuántas piezas, a quién",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se documentó un caso de sobrecosto en la distribución de medicamentos en el Estado de México. Una empresa vinculada a una televisora tenía un contrato de distribución que llegaba a mil 700 millones de",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Respecto al caso del exfiscal de Chihuahua César Jauregui, la presidenta aclaró que la justicia está por encima de la política y que no se hacen pactos políticos con la justicia. El exfiscal violó la",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
+  "resumen_mananera": [],
+  "mananera_estado": "pendiente",
   "a_vigilar": [
     {
       "id": "auto-e334602297",
@@ -1787,12 +1770,20 @@
       "resumen": "PAN en Puebla concluirá medición de perfiles y formación de cuadros jóvenes antes de noviembre",
       "fuente_url": "",
       "actor_vinculado": null
+    },
+    {
+      "id": "auto-9a92b6ceb2",
+      "nombre": "Claudia Sheinbaum anuncia que “Casa Tlalpan” será nueva sede de la Universidad R",
+      "categoria": "Gobernabilidad",
+      "resumen": "Claudia Sheinbaum anuncia que “Casa Tlalpan” será nueva sede de la Universidad Rosario Castellanos",
+      "fuente_url": "",
+      "actor_vinculado": null
     }
   ],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 3
+    "pendientes": 4
   },
   "declaracion_presidenta_historial": [
     {
@@ -1847,5 +1838,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-20 23:16"
+  "hora_corte_publicada": "2026-10-21 00:01"
 }
