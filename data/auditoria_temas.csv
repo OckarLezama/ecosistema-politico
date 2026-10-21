@@ -41,6 +41,7 @@ auto-44250cb339,Esposa de locutor Iván Michel Atilano pide a Presidenta de Méx
 auto-db83bd3ced,"Delfina Gómez presenta hoy su Tercer Informe de Gobierno: infraestructura, emple",3,informativo,231,75,0.32,mezcla historias
 auto-af03748273,Claudia Sheinbaum Pardo. . Presentamos resultados en rehabilitación y construcci,1,completo,24,8,0.33,mezcla historias
 auto-958b227a58,Deja en espera Sheinbaum a embajadores y reaviva dudas sobre la política exterio,3,informativo,18,6,0.33,mezcla historias
+auto-dde2e457d8,Fiscalía reporta 50 resoluciones judiciales en 24 horas en Veracruz - Golpe Polí,3,informativo,18,6,0.33,mezcla historias
 auto-10cc6a1112,Claudia Sheinbaum lo confirmó: se evalúa nuevo aumento para pensionados y jubila,1,completo,15,5,0.33,mezcla historias
 auto-dd10bcf406,Manifestantes bloquean paso de Claudia Sheinbaum y le plantean demandas en Juáre,3,informativo,12,4,0.33,mezcla historias
 auto-9523390fbd,Gobierno del Estado invita a votar por Puebla en Ángel del Turismo - Primera Pla,3,informativo,12,4,0.33,mezcla historias
@@ -58,7 +59,6 @@ auto-22f0395974,Mejoramiento a las escuelas: Gestiones para garantizar aulas má
 auto-cda2fac0e2,Diputado pide a la SEV respaldar a maestro denunciado por pedir croquis; hay ini,3,informativo,3,1,0.33,mezcla historias
 auto-345f003b6f,Sesnsp: En México el promedio diario de homicidio doloso disminuye 52% de septie,3,informativo,3,1,0.33,mezcla historias
 auto-7eeca57db5,🇲🇽 Claudia Sheinbaum concluirá este fin de semana la gira nacional que realiza c,3,informativo,20,7,0.35,mezcla historias
-auto-dde2e457d8,Fiscalía reporta 50 resoluciones judiciales en 24 horas en Veracruz - Golpe Polí,3,informativo,17,6,0.35,mezcla historias
 auto-cf2ebbe6da,La semana hace 50 años. Incertidumbre en Yucatán por la “flotación” del peso,1,completo,24,9,0.38,mezcla historias
 auto-88859caeb0,Claudia Sheinbaum destacó coordinación con gobernadora de Guanajuato pese a que ,1,completo,24,9,0.38,mezcla historias
 auto-2dcc78062c,Involucrados funcionarios municipales en ilícitos,3,informativo,8,3,0.38,mezcla historias
@@ -156,7 +156,7 @@ auto-a7761b0ff1,"MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia
 auto-45f10f176c,Dice Nahle que IMSS-Bienestar sabía desde mayo de desabasto - Reforma,1,completo,14,9,0.64,revisar
 auto-1641840940,Niega Gino operación de Mara y se burla de la oposición - Caribe Peninsular,3,informativo,11,7,0.64,revisar
 auto-c86c133062,"Noticias para el fin de semana: Alerta de posible huracán, Claudia Sheinbaum, IC",3,informativo,11,7,0.64,revisar
-huachicol-fiscal,Huachicol Fiscal,1,completo,248,166,0.67,revisar
+huachicol-fiscal,Huachicol Fiscal,1,completo,250,166,0.66,revisar
 auto-e8dd6ecd11,"""¿Qué pasa del otro lado?"": Claudia Sheinbaum responde al informe de la administ",3,informativo,18,12,0.67,revisar
 auto-c09a3f898a,"Tras irregularidades, examen de ingreso a la UNAM regresará a presencial",3,informativo,6,4,0.67,revisar
 auto-8d5b6f2bdd,Renuncia la secretaria ejecutiva del INE a un día de que comience el proceso ele,3,completo,6,4,0.67,revisar
@@ -392,7 +392,7 @@ auto-641d6ee9f0,Morena se toma su tiempo porque no quiere sorpresas: Marybel Vil
 auto-12044f2311,Conferencia presidencial de Claudia Sheinbaum de este martes 06 de octubre de 20,3,informativo,16,15,0.94,ok
 reforma-doble-nacionalidad,Reforma constitucional contra la doble nacionalidad en candidaturas,1,completo,80,76,0.95,ok
 auto-7f7c69e0b9,Anuncia Mara Lezama inversión de 3 mil 600 mdp de la CFE para cableado submarino,3,informativo,20,19,0.95,ok
-auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,277,266,0.96,ok
+auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,278,266,0.96,ok
 auto-4a6494b939,Congreso de Puebla busca blindar candidaturas ante posibles nexos criminales; la,3,informativo,28,27,0.96,ok
 auto-dbae60d53e,"Mensaje del senador Ignacio Mier Velazco, presidente de la Junta de Coordinación",3,informativo,26,25,0.96,ok
 auto-69c4cc53cd,"En Izúcar de Matamoros, el diputado Pável Gaspar participó en la Jornada de Refo",3,informativo,25,24,0.96,ok
@@ -416,8 +416,8 @@ auto-40de66980c,Se presentó la expansión importante en proyectos renovables co
 auto-3520faacac,Programas sociales benefician a más de 1.6 millones en Guerrero: Presidenta,1,completo,106,106,1.0,ok
 auto-75bf58dc44,Se informó sobre avances en la búsqueda de justicia para desaparecidos de la Gue,3,informativo,100,100,1.0,ok
 auto-9294ecc850,En el monitoreo de precios de la canasta básica PASIC de 24 productos que no deb,3,informativo,99,99,1.0,ok
+auto-507541cef1,Saneamiento de ríos contaminados: Se presentó un plan integral de saneamiento de,3,informativo,87,87,1.0,ok
 auto-69a1927adc,"Se informó sobre la entrega de viviendas en Durango, específicamente en Lerdo, d",3,informativo,87,87,1.0,ok
-auto-507541cef1,Saneamiento de ríos contaminados: Se presentó un plan integral de saneamiento de,3,informativo,86,86,1.0,ok
 auto-b6de8facd5,INE informa que más de 100 mil yucatecos deberán renovar su credencial para vota,3,informativo,85,85,1.0,ok
 auto-991ada61bf,Se explicó el procedimiento legal que deben seguir los gobiernos estatales para ,3,informativo,83,83,1.0,ok
 auto-20898af6a3,"#EnPrivado | “El 1 de septiembre de 2024, en el Zócalo, en su último Informe de ",3,informativo,79,79,1.0,ok
@@ -453,9 +453,9 @@ auto-c91bbadb49,Se informó sobre el Instituto para Devolver al Pueblo lo Robado
 auto-b698d9ce01,Huracán Simon: Claudia sheinbaum llama a la población a mantenerse alerta y segu,3,informativo,67,67,1.0,ok
 auto-1c7f29a8e3,Se informó sobre la creación de una nueva unidad académica de la Universidad Nac,3,informativo,66,66,1.0,ok
 auto-6e2c691a8e,¿Qué pasará con las consultas para la homologación de pueblos indígenas? Esto re,3,informativo,63,63,1.0,ok
-auto-7261c08eaf,📱 🇲🇽 Claudia Sheinbaum anunció que la próxima semana realizará una transmisión e,3,informativo,62,62,1.0,ok
+auto-7261c08eaf,📱 🇲🇽 Claudia Sheinbaum anunció que la próxima semana realizará una transmisión e,3,informativo,63,63,1.0,ok
 auto-701364a215,La gobernadora de Baja California reportó diez personas no localizadas y una men,3,informativo,61,61,1.0,ok
-auto-8aadedabbc,Se presentó el detector de mentiras que desmentía información falsa difundida po,3,informativo,59,59,1.0,ok
+auto-8aadedabbc,Se presentó el detector de mentiras que desmentía información falsa difundida po,3,informativo,60,60,1.0,ok
 auto-8ec13057e3,Se informó sobre la Estrategia Nacional para Promover la Estabilización del Prec,3,informativo,57,57,1.0,ok
 auto-f4bff265ab,Reporta SICT avance de más de 560 obras viales en primeros dos años del gobierno,3,informativo,54,54,1.0,ok
 auto-cd49aa949b,Se informó sobre la rehabilitación y modernización de 650 quirófanos en las inst,3,informativo,51,51,1.0,ok
@@ -512,6 +512,10 @@ auto-cfab498458,Lo que Guadalajara entiende y Morena no,3,informativo,12,12,1.0,
 auto-6b039edaef,Alcalde de Juchitán es acusado de integrar red de extorsión ligada al CJNG; cobr,3,informativo,12,12,1.0,ok
 auto-a00ea963de,"Con llantos, tensiones y consensos, Morena concreta 17 perfiles rumbo al 2027 - ",3,informativo,12,12,1.0,ok
 auto-a677371666,Pío López Obrador va por diputación en Chiapas; asegura que se someterá a los re,3,informativo,12,12,1.0,ok
+auto-8fe43ba685,En 2025 se identificó un desbalance de 8 mil 824 millones de litros de combustib,3,informativo,12,12,1.0,ok
+auto-9054611b92,La Agencia Nacional de Aduanas reporta un incremento de 10.54% en el volumen de ,3,informativo,12,12,1.0,ok
+auto-0c5c351c9c,"La Comisión Nacional de Energía ha logrado registrar, identificar y rastrear 61 ",3,informativo,12,12,1.0,ok
+auto-d88f4a7794,"Se aborda el tema del robo de gas a Pemex, que ha aumentado 11% en el primer sem",3,informativo,12,12,1.0,ok
 auto-64d2ac08f8,Exige Congreso proteger anidación de tortugas,3,informativo,11,11,1.0,ok
 auto-6c66c4f554,"PAZ irá solo en 2027 y marca distancia de Morena, afirma su dirigente - Imagen d",3,informativo,11,11,1.0,ok
 auto-b739bf9715,Beatriz Mojica se reúne con Ariadna Montiel en Guerrero; acusa a oposición de “g,3,informativo,11,11,1.0,ok
@@ -521,10 +525,6 @@ auto-d13bab47a4,Congreso de Yucatán aprueba reformas para blindar salud mental 
 auto-3c55efcb9a,"Pavel Gaspar se destapa para liderar Morena en Puebla; acepta que le ""gustaría"" ",3,informativo,11,11,1.0,ok
 auto-7e13e93744,Congreso perfila reforma para postular a una mujer a la gubernatura de Puebla en,3,informativo,11,11,1.0,ok
 auto-ec8c237f9a,Pío López Obrador se registra en proceso interno de Morena por Tuxtla Gutiérrez ,1,completo,11,11,1.0,ok
-auto-8fe43ba685,En 2025 se identificó un desbalance de 8 mil 824 millones de litros de combustib,3,informativo,11,11,1.0,ok
-auto-9054611b92,La Agencia Nacional de Aduanas reporta un incremento de 10.54% en el volumen de ,3,informativo,11,11,1.0,ok
-auto-0c5c351c9c,"La Comisión Nacional de Energía ha logrado registrar, identificar y rastrear 61 ",3,informativo,11,11,1.0,ok
-auto-d88f4a7794,"Se aborda el tema del robo de gas a Pemex, que ha aumentado 11% en el primer sem",3,informativo,11,11,1.0,ok
 auto-c23661b683,Fuerte operativo se mantiene en Puebla tras la captura de “El Amarillo”,1,completo,10,10,1.0,ok
 auto-a34275f96e,Ataque con arma blanca deja un herido; vecinos piden mayor vigilancia por casa “,1,completo,10,10,1.0,ok
 auto-6f0ffe12e8,Congreso local descarta intervención política en situación de Paraíso,1,completo,10,10,1.0,ok
@@ -621,6 +621,7 @@ auto-22541c2682,Buscará Congreso de Tabasco que Pemex apague 2 mecheros de bate
 auto-5a1d51df93,Clausura Congreso Oaxaqueño Segundo Periodo Ordinario de Sesiones - Meganoticias,3,informativo,7,7,1.0,ok
 auto-03dc32478d,Congreso de Yucatán elimina criminalización de personas con VIH por peligro de c,3,informativo,7,7,1.0,ok
 auto-c5700ceaad,Claudia Sheinbaum opina en la Mañanera sobre inversión de Carlos Slim Helú en ce,3,informativo,7,7,1.0,ok
+auto-5c704b7409,"Entrevista al coordinador de las y los senadores del GPPAN Ricardo Anaya Cortés,",3,informativo,7,7,1.0,ok
 auto-520b7b6fa3,García Harfuch agradece a Gobierno de Veracruz apoyo para captura de El Tanque -,1,completo,7,7,1.0,ok
 auto-506050e11d,Manuel Velasco compara a Harfuch con Pedro Infante - Tabasco HOY,3,informativo,7,7,1.0,ok
 auto-1c8e564fb8,Cae “El Moco” en la Sierra Norte; del huachicol a la política en Chignahuapan - ,3,informativo,7,7,1.0,ok
@@ -662,7 +663,6 @@ auto-4b46a0f6b3,"""Estoy lista"": Gaby ""La Bonita"" Sánchez confirma interés 
 auto-78c6865d49,"Instagram, Facebook, TikTok y X deberán detectar y eliminar publicaciones en Méx",3,informativo,6,6,1.0,ok
 auto-b32d5a6e84,Mara Lezama cambia la historia del transporte en Cancún: MOBI lo lleva a la altu,3,informativo,6,6,1.0,ok
 auto-8d58911a6e,Señalan ante Rosa Icela que narco controla 30% de territorio - reforma.com,3,informativo,6,6,1.0,ok
-auto-5c704b7409,"Entrevista al coordinador de las y los senadores del GPPAN Ricardo Anaya Cortés,",3,informativo,6,6,1.0,ok
 auto-ab51b7a24e,Reforma de nacionalidad única es avalada por 22 congresos estatales - Zona Franc,3,informativo,6,6,1.0,ok
 auto-0fc465c1a0,De colonia en colonia: así define Gino Segura su nueva tarea en Morena - Quadrat,3,informativo,6,6,1.0,ok
 auto-3c4f1c6d0c,"Llama Bracamonte a la unidad en Morena ""la vida política no se acaba con una can",3,informativo,6,6,1.0,ok
@@ -768,6 +768,7 @@ auto-d87eefd2f1,Mexicanos Contra la Corrupción e Impunidad - e-consulta.com,3,i
 auto-a246bbc4d2,Laureano Coronado Viera formaliza su registro para buscar coordinación de Morena,3,informativo,5,5,1.0,ok
 auto-c3fe115272,Buscará Ray Chagoya reelección por Morena en Oaxaca de Juárez - Quadratin Oaxaca,3,informativo,5,5,1.0,ok
 auto-9409afa73d,Marcelo Ebrard destaca que México paga menos aranceles que otros países a EEUU y,3,informativo,5,5,1.0,ok
+auto-e3f8ad11a8,IMSS hará contrapropuesta de aumento salarial a trabajadores: ‘Tiene que estar e,3,informativo,5,5,1.0,ok
 auto-9a92b6ceb2,Claudia Sheinbaum anuncia que “Casa Tlalpan” será nueva sede de la Universidad R,1,completo,5,5,1.0,ok
 auto-d7646619b8,Liborio Vidal desata críticas por acercamiento a Morena - Reporteros Hoy,3,informativo,5,5,1.0,ok
 aranceles-trump-mexico,Guerra de Aranceles de Trump contra México,1,completo,4,4,1.0,ok
@@ -947,7 +948,6 @@ auto-f2d9e7a6c2,EU sanciona a cuatro mexicanos y 11 empresas ligadas al Cártel 
 auto-b9ce2cd82e,"En medio de la crisis del sistema de salud en #México, el Partido Acción Naciona",3,informativo,4,4,1.0,ok
 auto-d23da5110c,Este Ayuntamiento no tiene subejercicio - El Sol de México - El Sol de México,3,informativo,4,4,1.0,ok
 auto-28fddef6a3,Ex tesorero Ismael Moguel busca la coordinación de Morena en Lázaro Cárdenas - C,3,informativo,4,4,1.0,ok
-auto-e3f8ad11a8,IMSS hará contrapropuesta de aumento salarial a trabajadores: ‘Tiene que estar e,3,informativo,4,4,1.0,ok
 auto-87b2b4a1a9,Los Tigres del Norte llegan al Tiny Desk con mensaje en defensa de los migrantes,3,informativo,4,4,1.0,ok
 auto-61995d1eab,Llega CSP a Quintana Roo a supervisar hospitales - Reforma,3,informativo,4,4,1.0,ok
 auto-8f33053e60,Maru Campos negó en un principio intervención de agentes de EU,3,informativo,4,4,1.0,ok
