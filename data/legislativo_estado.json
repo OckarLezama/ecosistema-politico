@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-20 12:33",
+ "actualizado": "2026-10-21 12:46",
  "fuentes": [
   {
    "nombre": "Google Noticias DOF",
@@ -8,12 +8,12 @@
   },
   {
    "nombre": "Google Noticias Gaceta Parlamentaria",
-   "entradas": 0,
+   "entradas": 4,
    "error": ""
   },
   {
    "nombre": "Google Noticias Senado",
-   "entradas": 7,
+   "entradas": 21,
    "error": ""
   },
   {
@@ -23,32 +23,32 @@
   },
   {
    "nombre": "Búsqueda dirigida: ley-egresos-2027",
-   "entradas": 41,
+   "entradas": 43,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-doble-nacionalidad",
-   "entradas": 7,
+   "entradas": 8,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-aduanera-2026",
-   "entradas": 29,
+   "entradas": 15,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: ley-catastral-2026",
-   "entradas": 79,
+   "entradas": 72,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-propiedad-industrial-antimemes-2026",
-   "entradas": 21,
+   "entradas": 37,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-educacion-celulares-escuelas-2025",
-   "entradas": 8,
+   "entradas": 5,
    "error": ""
   }
  ],
@@ -59,15 +59,15 @@
    "etapa": "Presentada",
    "notas_recientes": 2,
    "ultima_nota": "2026-10-20",
-   "dias_sin_actualizar": 42
+   "dias_sin_actualizar": 43
   },
   {
    "id": "reforma-doble-nacionalidad",
    "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas a Presidencia y gubernaturas",
    "etapa": "Aprobada",
-   "notas_recientes": 0,
-   "ultima_nota": "",
-   "dias_sin_actualizar": 14
+   "notas_recientes": 1,
+   "ultima_nota": "2026-10-14",
+   "dias_sin_actualizar": 15
   },
   {
    "id": "reforma-ley-aduanera-2026",
@@ -75,38 +75,38 @@
    "etapa": "Presentada",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 42
+   "dias_sin_actualizar": 43
   },
   {
    "id": "ley-catastral-2026",
    "nombre": "Ley General para el Fortalecimiento y Armonización Catastral y Registral",
    "etapa": "Pleno",
-   "notas_recientes": 3,
-   "ultima_nota": "2026-10-20",
-   "dias_sin_actualizar": 25
+   "notas_recientes": 2,
+   "ultima_nota": "2026-10-21",
+   "dias_sin_actualizar": 26
   },
   {
    "id": "reforma-propiedad-industrial-antimemes-2026",
    "nombre": "Reforma al Código Penal Federal y a la Ley Federal de Protección a la Propiedad Industrial (\"Ley Antimemes\")",
    "etapa": "Pleno",
-   "notas_recientes": 5,
-   "ultima_nota": "2026-10-20",
-   "dias_sin_actualizar": 20
+   "notas_recientes": 28,
+   "ultima_nota": "2026-10-21",
+   "dias_sin_actualizar": 21
   },
   {
    "id": "reforma-ley-educacion-celulares-escuelas-2025",
    "nombre": "Reforma al Artículo 84 de la Ley General de Educación (prohibición de celulares en horario escolar)",
    "etapa": "Presentada",
-   "notas_recientes": 4,
+   "notas_recientes": 1,
    "ultima_nota": "2026-10-20",
-   "dias_sin_actualizar": 29
+   "dias_sin_actualizar": 30
   }
  ],
  "actualizaciones_etapa": 0,
  "votos_actualizados": 0,
- "candidatos_nuevos": 46,
- "candidatos_podados": 33,
+ "candidatos_nuevos": 84,
+ "candidatos_podados": 210,
  "altas_automaticas": [],
- "ruido_descartado": 91,
+ "ruido_descartado": 88,
  "alertas": []
 }
