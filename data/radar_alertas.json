@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-10-20|inflexion|tmec-revision|2026-10-20|trigger",
+   "ts": "2026-10-20T23:16:06-06:00",
+   "tipo": "inflexion",
+   "tema_id": "tmec-revision",
+   "texto": "⚡ Posible trigger en «Revisión del T-MEC» (10-20): Lo normal del tema son ~5.4 notas al día; ese día fueron 12 (por azar eso pasaría en menos de 1 de cada 100 días). Quién lo protagoniza: Marcelo Ebrar"
+  },
+  {
    "id": "2026-10-20|escalo|auto-0c8f592de4",
    "ts": "2026-10-20T17:45:47-06:00",
    "tipo": "escalo",
@@ -414,13 +421,6 @@
    "tipo": "actor_clave",
    "tema_id": "embajador-johnson-queretaro",
    "texto": "◉ Claudia Sheinbaum Pardo aparece por primera vez en «Embajador Johnson en Querétaro: invitación del gobernador Kuri»: ⚡ Posible presión de Claudia Sheinbaum Pardo — Claudia Sheinbaum exige explicaciones a Que"
-  },
-  {
-   "id": "2026-10-06|actor_clave|sheinbaum|visa-de-andy",
-   "ts": "2026-10-06T09:15:12-06:00",
-   "tipo": "actor_clave",
-   "tema_id": "visa-de-andy",
-   "texto": "◉ Claudia Sheinbaum Pardo aparece por primera vez en «Visa de Andy»: Qué gusto volver a ver a nuestro querido expresidente Andrés Manuel López Obrador, present"
   }
  ]
 }
