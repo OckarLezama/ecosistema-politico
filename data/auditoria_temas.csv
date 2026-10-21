@@ -156,6 +156,7 @@ auto-45f10f176c,Dice Nahle que IMSS-Bienestar sabía desde mayo de desabasto - R
 auto-1641840940,Niega Gino operación de Mara y se burla de la oposición - Caribe Peninsular,3,informativo,11,7,0.64,revisar
 auto-c86c133062,"Noticias para el fin de semana: Alerta de posible huracán, Claudia Sheinbaum, IC",3,informativo,11,7,0.64,revisar
 auto-e8dd6ecd11,"""¿Qué pasa del otro lado?"": Claudia Sheinbaum responde al informe de la administ",3,informativo,18,12,0.67,revisar
+auto-dde2e457d8,Fiscalía reporta 50 resoluciones judiciales en 24 horas en Veracruz - Golpe Polí,3,informativo,9,6,0.67,revisar
 auto-c09a3f898a,"Tras irregularidades, examen de ingreso a la UNAM regresará a presencial",3,informativo,6,4,0.67,revisar
 auto-8d5b6f2bdd,Renuncia la secretaria ejecutiva del INE a un día de que comience el proceso ele,3,completo,6,4,0.67,revisar
 auto-1a7070ab4b,"Sheinbaum admite que México debe crecer más, pero pide medir también cómo se dis",3,completo,6,4,0.67,revisar
@@ -203,6 +204,7 @@ auto-80beef7668,"Mara Lezama propone construir un Centro financiero en Cancún, 
 intervencion-militar-eeuu,Amenazas de Intervención Militar de Trump,1,completo,13,9,0.69,revisar
 segundo-informe-gobierno-2026,Segundo Informe de Gobierno de Claudia Sheinbaum,1,completo,13,9,0.69,revisar
 auto-499898b1a0,Gobernadora Nahle presume vestido confeccionado por manos veracruzanas para la n,3,informativo,10,7,0.7,ok
+huachicol-fiscal,Huachicol Fiscal,1,completo,231,165,0.71,ok
 auto-5cee60d226,"Claudia Sheinbaum le deposita $1,900 a miles de hombres y mujeres que habían que",3,informativo,14,10,0.71,ok
 auto-570a47e018,Participa UT San Juan en Congreso Internacional de Turismo - hoysanjuandelrio.co,3,informativo,14,10,0.71,ok
 auto-ca38aebd28,"""Hay varias líneas de investigación, una proviene del buque detenido en Tampico""",3,informativo,7,5,0.71,ok
@@ -214,7 +216,7 @@ auto-10dbffebd5,Fiscalía de Guerrero investiga agresión de pobladores contra l
 auto-b44ad52512,Exhorta Gobernadora a vacunarse contra el sarampión - Imagen del Golfo,3,informativo,7,5,0.71,ok
 auto-ccc332d672,Agroexportadoras deben asegurar a trabajadores ante IMSS partir de octubre: Shei,1,completo,7,5,0.71,ok
 auto-063cb18044,Benjamín Piña Pavón se registra rumbo a la alcaldía de Balancán,3,informativo,7,5,0.71,ok
-huachicol-fiscal,Huachicol Fiscal,1,completo,229,165,0.72,ok
+auto-f517e64944,"En dos semanas, Morena podría publicar convocatoria para coordinaciones municipa",3,informativo,15,11,0.73,ok
 auto-4ba9fa9ee8,BLINDA A 43 MILLONES DE MEXICANOS,3,informativo,11,8,0.73,ok
 auto-28b2dab9ba,Emboscada junto a un río termina en homicidio; detienen a presunto responsable e,3,informativo,11,8,0.73,ok
 ley-antimemes,Ley Antimemes y reforma de propiedad industrial,1,completo,31,23,0.74,ok
@@ -222,7 +224,6 @@ el-mencho,"Abatimiento de ""El Mencho""",1,completo,27,20,0.74,ok
 auto-5666b8f6a7,Nuevo dirigente de Morena Tabasco lo definirá el Consejo Estatal o el CEN: Jesús,3,informativo,23,17,0.74,ok
 auto-f82dd57434,Congreso reconoce nuevas agencias municipales y de policía en Costa e Istmo - Me,3,informativo,16,12,0.75,ok
 auto-9478ddbee9,¿Subirá la cerveza en México? Diputados analizan aumentar el IEPS,3,informativo,8,6,0.75,ok
-auto-dde2e457d8,Fiscalía reporta 50 resoluciones judiciales en 24 horas en Veracruz - Golpe Polí,3,informativo,8,6,0.75,ok
 auto-502a234977,"Ante próxima temporada de lluvias, Gobierno del Estado refuerza prevención con a",3,informativo,8,6,0.75,ok
 auto-0f5deb1940,Trabajadores del IMSS marchan en Puebla; protestan en el SNTSS por salarios e in,1,completo,8,6,0.75,ok
 auto-4a4ddad935,"Con protesta en escuela de Momoxpan, despiden a conserje acusado de trabajar ebr",3,completo,4,3,0.75,ok
@@ -274,7 +275,6 @@ auto-d1f2a7f7b3,Detecta Anticorrupción fraude en becas Benito Juárez por 592.3
 auto-a120e88bf7,"Claudia Sheinbaum sorprende con visita en Chicoloapan, acompaña a Delfina Gómez ",3,informativo,9,7,0.78,ok
 auto-02d8e54c89,Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel,1,completo,29,23,0.79,ok
 carlos-manzo,Asesinato de Carlos Manzo,1,completo,24,19,0.79,ok
-auto-f517e64944,"En dos semanas, Morena podría publicar convocatoria para coordinaciones municipa",3,informativo,14,11,0.79,ok
 auto-88f1d051f2,Chedraui ante la oportunidad de ser el primer alcalde de Puebla en reelegirse en,3,informativo,10,8,0.8,ok
 auto-52df7509c8,"¡877 mil no votarán en 2027! abstención, el partido más grande",3,completo,5,4,0.8,ok
 auto-47ec581ea0,Sheinbaum llama a nuevos cadetes militares a poner a México por encima de intere,3,completo,5,4,0.8,ok
@@ -298,7 +298,6 @@ auto-c9737a6f4d,¿Por qué Europa está tan obsesionada con la migración? - mil
 auto-8471b47b7e,Agradece Sheinbaum vestido único de artesanas muxes que usó el día 15,1,completo,5,4,0.8,ok
 auto-21bb16a21b,Impulsan Leonela Martínez y Elías Lozada reforma para fortalecer los derechos de,3,informativo,5,4,0.8,ok
 auto-428e4f209c,Detención de presunto feminicida de Claudia Tacoronte no resuelve la violencia c,1,completo,5,4,0.8,ok
-auto-7e929a205f,Sindicato del Seguro Social anuncia consulta nacional  sobre aumento al salario,3,informativo,5,4,0.8,ok
 auto-e6989f1ed8,Denunciará vocera de las mamás de niños con cáncer a escolta de la gobernadora p,3,informativo,5,4,0.8,ok
 auto-4c78a9c860,"Roberto Zataráin, diputado local, buscará reelección si no logra diputación fede",3,informativo,5,4,0.8,ok
 auto-2c88d35374,Rocío Nahle. . Impulsamos la producción agrícola en el sur de Veracruz con el in,3,informativo,5,4,0.8,ok
@@ -319,6 +318,7 @@ auto-071957561c,"Con coordinación e inteligencia, gobierno estatal registra res
 auto-9b5da3d9cb,"Promovido por el PAN, realizarán en la CDMX foro internacional de la derecha",3,informativo,6,5,0.83,ok
 auto-daa25cc71b,Plataformas digitales deben eliminar contenidos violentos para prevenir ataques ,3,informativo,6,5,0.83,ok
 auto-4a411a1701,"Con Trump, el ICE impone récord de muertes; 31%, connacionales",3,informativo,6,5,0.83,ok
+auto-7e929a205f,Sindicato del Seguro Social anuncia consulta nacional  sobre aumento al salario,1,completo,6,5,0.83,ok
 auto-5f3906addc,"Morena publicará entre hoy y mañana convocatorias para alcaldías, ayuntamientos ",3,informativo,6,5,0.83,ok
 auto-b81692cee9,Se registra Toño Subiaur por la Coordinación de Defensa de la Transformación de ,3,informativo,6,5,0.83,ok
 auto-796ebb5b06,Lo que dijo ayer el gobernador Alejandro Armenta en su Mañanera - Hipócrita Lect,3,informativo,19,16,0.84,ok
@@ -398,7 +398,7 @@ auto-c092a6fca7,Sheinbaum minimiza el crecimiento económico y prioriza la redis
 auto-140c183067,"Se presentó un homenaje al Consejo Estudiantil Universitario (CEU) de 1986, movi",3,informativo,40,39,0.97,ok
 auto-91a10c8965,Gobernador Salomón Jara condena el asesinato de Amy Navarrete en Oaxaca y refuer,3,informativo,37,36,0.97,ok
 auto-f9058da40c,Diputados del Congreso de Puebla faltan a 2° simulacro nacional de 2026 - Ángulo,3,informativo,43,42,0.98,ok
-auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,268,266,0.99,ok
+auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,269,266,0.99,ok
 auto-5cbd3ffc2f,Se anunció que para la próxima semana se trabajará en un decreto presidencial qu,3,informativo,122,121,0.99,ok
 auto-fb7a7b4ab7,El diputado federal Daniel Asaf evitó responder a los cuestionamientos de la rep,3,informativo,80,79,0.99,ok
 auto-3de5902549,La presidenta Claudia Sheinbaum abordó el tema de la intervención de la embajada,3,informativo,401,401,1.0,ok
@@ -420,11 +420,11 @@ auto-991ada61bf,Se explicó el procedimiento legal que deben seguir los gobierno
 auto-20898af6a3,"#EnPrivado | “El 1 de septiembre de 2024, en el Zócalo, en su último Informe de ",3,informativo,79,79,1.0,ok
 auto-b3f998443a,"Para “reafirmar la soberanía”, Macron y Carney se reúnen en una isla de Francia ",3,informativo,78,78,1.0,ok
 auto-684ea982ed,Fortalece FGEO combate a delitos de alto impacto con el grupo de élite “Binnizá”,3,informativo,78,78,1.0,ok
+auto-507541cef1,Saneamiento de ríos contaminados: Se presentó un plan integral de saneamiento de,3,informativo,78,78,1.0,ok
 auto-408b3ab015,Gobierno del Estado presenta el Sistema Empresarial de Inspección Digital - Cana,3,informativo,78,78,1.0,ok
 auto-e3a5e87d85,Gobierno de Yucatán reporta saldo blanco tras el alejamiento del huracán Isaías ,3,informativo,78,78,1.0,ok
 auto-b5600da9ba,"Sheinbaum, Johnson y empresarios abordan temas de comercio, seguridad, inteligen",3,informativo,78,78,1.0,ok
 auto-910700fcf5,"Se presentó la entrega de viviendas en Playa del Carmen, Quintana Roo, como part",3,informativo,78,78,1.0,ok
-auto-507541cef1,Saneamiento de ríos contaminados: Se presentó un plan integral de saneamiento de,3,informativo,77,77,1.0,ok
 auto-001e5da65f,Se reportó que al 30 de septiembre de 2026 hay registrados ante el IMSS más de 2,3,informativo,77,77,1.0,ok
 auto-1703fe0013,La consejera jurídica Luisa María Alcalde presentó un decreto presidencial para ,3,informativo,76,76,1.0,ok
 auto-97f1f6934c,"El director de la Agencia de Transformación Digital, Pepe Merino, explicó que el",3,informativo,76,76,1.0,ok
@@ -456,7 +456,7 @@ auto-701364a215,La gobernadora de Baja California reportó diez personas no loca
 auto-8ec13057e3,Se informó sobre la Estrategia Nacional para Promover la Estabilización del Prec,3,informativo,57,57,1.0,ok
 auto-f4bff265ab,Reporta SICT avance de más de 560 obras viales en primeros dos años del gobierno,3,informativo,54,54,1.0,ok
 auto-cd49aa949b,Se informó sobre la rehabilitación y modernización de 650 quirófanos en las inst,3,informativo,51,51,1.0,ok
-auto-8aadedabbc,Se presentó el detector de mentiras que desmentía información falsa difundida po,3,informativo,50,50,1.0,ok
+auto-8aadedabbc,Se presentó el detector de mentiras que desmentía información falsa difundida po,3,informativo,51,51,1.0,ok
 auto-48a528c42b,Xalapa prevé entregar 110 obras con una inversión cercana a 500 millones de peso,3,informativo,49,49,1.0,ok
 auto-f5acf0abf1,Se presentó el avance en la meta de garantizar que la CFE genere al menos el 54%,3,informativo,47,47,1.0,ok
 auto-352017a2a1,Se reportó la inauguración de seis centrales de ciclo combinado durante 2025-202,3,informativo,47,47,1.0,ok
@@ -1037,6 +1037,7 @@ auto-d22f3a15d6,“Morena me da ternurita; tienen todo y no resuelven nada”: A
 auto-49dad6a83f,Conoce qué servicios funcionarán en Centro el 16 de septiembre,3,informativo,3,3,1.0,ok
 auto-40a0f59228,Detienen a dos exfuncionarios de Torreón; FGR no ha informado los delitos,3,informativo,3,3,1.0,ok
 auto-eb0ecee3de,El pacto de silencio en el Congreso - solquintanaroo.mx,3,informativo,3,3,1.0,ok
+auto-d751ccd50e,Avala Senado ingreso de  139 soldados de EU con armas,3,informativo,3,3,1.0,ok
 auto-8337f0a6e3,Alarma silencio de la Fiscalía - Sol Yucatán,3,informativo,3,3,1.0,ok
 auto-f42eb24a22,SSPC reforzará seguridad en Mazatlán con más de 1800 elementos; serían 20 mil en,3,informativo,3,3,1.0,ok
 auto-4dfbe1dd0c,Yucatán | Astrid Sánchez | Cabildo de Mérida: Reivindican a mujeres que particip,3,informativo,3,3,1.0,ok
@@ -1202,3 +1203,7 @@ auto-3311a01e84,"El jardín que soñamos, un relato sobre la migración y la tal
 auto-7260ebb083,Pepin López rechaza que vaya a poner al candidato de Morena en Macuspana - XEVT,3,informativo,3,3,1.0,ok
 auto-65e8a0b114,Ex fiscal de Chihuahua habría cometido traición a la patria: FGR,3,informativo,3,3,1.0,ok
 auto-ab24b5e5d9,García Parra anuncia reforma para que ISSSTEP construya casas y otorgue créditos,3,informativo,3,3,1.0,ok
+auto-8fe43ba685,En 2025 se identificó un desbalance de 8 mil 824 millones de litros de combustib,3,informativo,3,3,1.0,ok
+auto-9054611b92,La Agencia Nacional de Aduanas reporta un incremento de 10.54% en el volumen de ,3,informativo,3,3,1.0,ok
+auto-0c5c351c9c,"La Comisión Nacional de Energía ha logrado registrar, identificar y rastrear 61 ",3,informativo,3,3,1.0,ok
+auto-d88f4a7794,"Se aborda el tema del robo de gas a Pemex, que ha aumentado 11% en el primer sem",3,informativo,3,3,1.0,ok
