@@ -1,7 +1,7 @@
 {
-  "generado_en": "2026-10-22T05:41:03.224733-06:00",
+  "generado_en": "2026-10-22T06:01:10.427864-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 22,
+  "n_notas_ventana": 20,
   "baja_confianza": false,
   "tension_nacional": 15,
   "tension_anomalia": {
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 72,
+      "peso_pct": 69,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
-      "n_temas": 12,
-      "n_notas": 16,
+      "n_temas": 10,
+      "n_notas": 14,
       "notas": [
         {
           "texto": "Cruz Pérez Cuéllar, virtual candidato de Morena en Chihuahua, denunciará a Santiago Taboada del PAN",
@@ -44,22 +44,10 @@
           "medio": "Reforma"
         },
         {
-          "texto": "La magnitud del huachicol fiscal: detectan fraude por 61,700 mdp en 2025; supera el presupuesto anual de la UNAM - La Crónica de Hoy",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOOTdVMkRKYmVXckNCOGlWYXJnM294TnRTemdpZE40RkdEallXeWdnaWdVOXFmWmxMd1RYcE9mWVppbWpKT1kxbVJNWFhsOEVFU2duWURnRGdIQ25nOWlwNnU5WTdGeDMwQ0lxU1N5RGxkLVpvOHFoXzhDbVVxU1hMNHpoTE5DTFRVRThBejZLZzJzTkNpMjN6eHB4bW9OeFJ0RHRGLWFINlI3VHE4V19VUXlQVU13eTBZRlJub1FIcHZjcHBST0tVbXhNLW84VGUzQmRfV1lrOGhRZnRValVhQm9DT1FjVTVoOGdlVWhn?oc=5",
-          "intensidad": 6.0,
-          "medio": "La Crónica de Hoy"
-        },
-        {
           "texto": "YOLANDA OSUNA, LA “AHIJADA” DE “LA BARREDORA”, GOBIERNO FALLIDO EN CENTRO - Sin Fronteras Agencias",
           "fuente_url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5FSmtFMmtSbGNZbHlRNG1UeExkTGc0X1BPR1VmNDgxd0VNaWwtU2FVYUtVXzU5RWdDOXE1aDhlOFVWbnhod3ZDOWNBUmNWel83QTk4V1JqUWM?oc=5",
           "intensidad": 6.0,
           "medio": "Sin Fronteras Agencias"
-        },
-        {
-          "texto": "Gibrán Ramírez denuncia agresiones del PRI contra Jorge Álvarez Máynez en el Congreso",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/21/gibran-ramirez-denuncia-agresiones-del-pri-contra-jorge-alvarez-maynez-en-el-congreso-913209.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
         },
         {
           "texto": "Tatiana Clouthier ‘no tira la toalla’: Llama a reunión en NL para explicar su nuevo movimiento",
@@ -108,12 +96,18 @@
           "fuente_url": "https://www.tabascohoy.com/da-voto-de-confianza-pt-a-rigoberto-de-la-o-pese-a-impugnaciones-de-oposicion/",
           "intensidad": 4.0,
           "medio": "tabascohoy.com"
+        },
+        {
+          "texto": "Diputados avalan llamada 'Ley Antimemes'; oposición advierte riesgos para la libertad de expresión - Noticaribe",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOaFk3YUs3M0VTZ0FZcndHMGZPanByam5rVUxDT095X0ZsdWxielVLeVJtSllHTnRxQ0lwVU1ySDhscTBKcG83bTAtRThPRmctaTdNb2RUM0wwalNTX3VPU1hsS3RVYy11TW5uOFQ5S005TmZSMzdjQ25fWlRaOTlFZFFYZ0xRSjBLOHBxS2RHZXpwTkw4aTNrb0Jfc2xaZDVqclI3OE1MUTJnMjBhZW1jeklzcEhraE15U2s5M0NTN1FDU1VlQUU0eEhyTmFrQQ?oc=5",
+          "intensidad": 4.0,
+          "medio": "Noticaribe"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 14,
+      "peso_pct": 15,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 3,
@@ -141,7 +135,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 11,
+      "peso_pct": 12,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
@@ -897,7 +891,7 @@
       "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
       "motivo": "Cruz Pérez Cuéllar, virtual candidato de Morena en Chihuahua, denunciará a Santiago Taboada del PAN",
       "peso": 29.0,
-      "n_temas_agrupados": 7,
+      "n_temas_agrupados": 6,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 4,
@@ -938,12 +932,12 @@
   ],
   "temas_nuevos": [
     {
-      "id": "auto-995f205acd",
-      "nombre": "Francia y la profecía de Houellebecq: migración, islamismo y crisis - El Univers",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQSW10ZnpacjdhbkpZdFd1Z3oxMTJrYTJQNDJlUldQUE9YVmwwSHBfY0p1dnJIWFJoVlVoUHRnVXFQaHVhV2QyV25vY0ExVTlyekdjNU5iV0taSF9Jbm45SlA3enFTNEhrNXhad3YtSFhDMGI4dEZobkFHZ1dhQXo4Y1NvOEJmR01RdEVWdVdGNTliYW1GNWNzTzMtdTh5eFBkWHRuNmxFWnA5N09tUWw0YXFLZC10S2JpeEQwV2FXNXNMbHlveUE?oc=5"
+      "id": "auto-974aff1041",
+      "nombre": "Morena y Sheinbaum rechazan acto religioso con la Embajada de Israel en la Cámar",
+      "categoria": "Relación Bilateral",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/22/politica/011n1pol?partner=rss"
     },
     {
       "id": "auto-eb9b66ae5a",
@@ -1011,6 +1005,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOajZiQS1ua21jcmNhREFMbm84VlR1bWdaU1k5YU43T1dDMXo1emh3ZXR4SmV5UG8xd3hTdUJFYjhKam84Tjl4MVFobHdkOVJXZ3lSc2xlbkxPVEdTeGV5YkVlM1pISk1STlIzWmdaUGwydnVmTHdWd0hIcE5jTzBHSVFDajMzSy1IVkdXTGRkeXhNdzl3RGh6V0FhWERxZ9IBngFBVV95cUxOajZiQS1ua21jcmNhREFMbm84VlR1bWdaU1k5YU43T1dDMXo1emh3ZXR4SmV5UG8xd3hTdUJFYjhKam84Tjl4MVFobHdkOVJXZ3lSc2xlbkxPVEdTeGV5YkVlM1pISk1STlIzWmdaUGwydnVmTHdWd0hIcE5jTzBHSVFDajMzSy1IVkdXTGRkeXhNdzl3RGh6V0FhWERxZw?oc=5",
       "fecha_anterior": "2026-09-23",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirgFBVV95cUxONTdRV0pnWFhVUlF6TkhVQy1lSTdpTXZCT19JcG93QzBHTHNNZXZpLVlzY201QmNhVjZydHpEalhDem1nRTRsRUVjWlhNVkJOLVQxa0MyT3pMUXBGWnhjNjExSUhCejlONWJzandHWFNWVkcxZ1lMajN3aVFqT3VveWZaMUxhM25FaFAxLUZNYTJDaVlGMVFZSm51ajdodXUzOFFuVnFWemZxa3U1bkE?oc=5"
+    },
+    {
+      "id": "auto-04ff54d6e9",
+      "nombre": "“LOS MENSAJES QUE MORENA NO PUEDE BORRAR”; AHORA LA SENADORA OLGA SOSA HABRÍA OF",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 16,
+      "motivo": "Un acuerdo no puede modificar una ley: senadores",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/22/politica/005n4pol?partner=rss",
+      "fecha_anterior": "2026-10-05",
+      "fuente_url_anterior": ""
     },
     {
       "id": "auto-e6b844a099",
@@ -1786,11 +1791,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-22T00:04:23.300738-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Jorge Romero Herrera"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-22 05:41"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-22 06:01"
 }
