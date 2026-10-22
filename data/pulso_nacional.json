@@ -1,41 +1,29 @@
 {
-  "generado_en": "2026-10-21T18:02:34.219088-06:00",
+  "generado_en": "2026-10-22T00:04:23.300738-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 31,
+  "n_notas_ventana": 32,
   "baja_confianza": false,
-  "tension_nacional": 31,
+  "tension_nacional": 27,
   "tension_anomalia": {
-    "z": 0.14,
+    "z": -0.27,
     "nivel": "normal",
-    "media_periodo": 29.9,
+    "media_periodo": 29.1,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 60,
+      "peso_pct": 67,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
-      "n_temas": 13,
-      "n_notas": 19,
+      "n_temas": 15,
+      "n_notas": 22,
       "notas": [
         {
           "texto": "Sheinbaum destaca \"decenas de detenidos\" por huachicol fiscal - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPbEZnbVR4NFJ1d3Z3REI3QVBUS0k1MXdtMVBtcmNhYWREQV9FNGc4dmVQS3VEQVgzUVNVQ2xHS05LOTRveW1GS0JhY2lMTzBIUkljdUZwaURoZ3BMWk9vTms0bjEyaEJtODNuSzhVVmFPaVkxUkdnT3gzalhNSEZiYnR5bklDMzV6Q0hfMW9KamRka0tmbk9rUWtTZVlHLW5YYjU4M1ppT1Q0ZUtpRy1QLXRpZEI4LXlhbUthcUZpSlRTOExlRmRMUnF3am53eG40TFZDZkNyekYwR3Rk0gHwAUFVX3lxTE5HVEVBazNLTElMa0JSSmowNkdxeHNOZ2cxekZYczRBQXdiVzhJcUhlc0ZRNHQ3aGtxNHdLSUpyaTVyZmNuNzk5Y2pIQURmeWp1VXI3SWNCQ0pPbG9HTWNhOFVya3RBclVYWFFnUDFzSHRKSXZJMFF4aHJpTlF1a0VQVENaei1VSVNycFdXMlFEZnVxbXFkbmZhM3RDSDZrS3FsOEVBWV9DdjBoSGV3and1VlVOUkRMUkg5d3dWZ01ISlBESEx6akkyQ2lXZGJDMXk0aDhKRTRVQUE4dTRVX0V6VU1ERjduZUZhT2RHaVZCMw?oc=5",
           "intensidad": 9.0,
           "medio": "El Universal"
-        },
-        {
-          "texto": "MORENA Puebla mantiene supremacia - Diario sin Secretos",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9TRHpiTUJzd3JzdTAxaXI2bW5Rd0JROGdReV92YnVfSVlTcTJLNkhUNHFFME5IOGQzZWFYUDdIeWNHUEc0V3JhLTNWWWRvTkVrUU9uZXh1WWwwN1BHMkZua1BLQ09NZ1FVUGJMa2pMVEs4TGlqNll4N2pn0gF6QVVfeXFMT1NEemJNQnN3cnN1MDFpcjZtblF3QlE4Z1F5X3ZidV9JWVNxMks2SFQ0cUUwTkg4ZDNlYVhQN0h5Y0dQRzRXcmEtM1ZZZG9ORWtRT25leHVZbDA3UEcyRm5rUEtDT01nUVVQYkxrakxUSzhMaWo2WXg3amc?oc=5",
-          "intensidad": 7.0,
-          "medio": "Diario sin Secretos"
-        },
-        {
-          "texto": "Pide Morena llegar hasta las últimas consecuencias por caso CIA en Chihuahua - NVI Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQLWJkMlFwZ21kVGxyMnNGdVFpZjlpLVBZQ08zM0NrUG1MWEoyeTNGZENvM0gwZnFESF91aGpWaExJV2ZlejdBcUxoUHJTQlFxXzdhVUlOTGdLNmR0ZGJfeGlwbkE4dTR1M2o2bE5INUVjUGstdTdWbWxxSVJUVTlFOHdidWJtWVZtSm43Zy1yNWpJSmlTRzlDdDFhdmNVNzZ6M0NJRkZyWnNhVG5YU1o2WUthZnhBYnp2MG5ybmZjbHlpdkVST2dFRDl4TQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "NVI Noticias"
         },
         {
           "texto": "Sheinbaum destapa fraude con facturas y contrabando de combustible en Mexico - Hoy Tamaulipas",
@@ -68,6 +56,18 @@
           "medio": "Reforma"
         },
         {
+          "texto": "Empresas ligadas a Amílcar Olán incumplen 85% de entrega de medicinas pese a millonarios contratos",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/21/amilcar-olan-red-de-empresas-incumplen-entrega-de-medicinas-pese-a-millonarios-contratos.html",
+          "intensidad": 7.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "Insiste PT en que Morón ganó encuesta de Morena - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPR3JQQ2wxNnhkTWtsYU5vWTkwelRqWk5PRnhLMGxlYnIwS2xkRFJzQjAzOFlPTVlmSXZoNWtjMUFqV1hMSGthc1lidlJIQ0diLXYteGd0TlRwU0gtblRIeFlaeE85WWZjalVTQnU1OVF0M2JOVXBlQ19EcVFoYlZPeUpDanhjMGho?oc=5",
+          "intensidad": 7.0,
+          "medio": "Reforma"
+        },
+        {
           "texto": "Gobierno reporta 2,539 detenidos por contrabando de combustibles y recupera 173.7 millones de litros - Por Esto!",
           "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQWXdjNWRKVEU3cHYyZ2pfdlpURGxNNUhMcUt0N3hhUnR0T1EyS2VCSUJ3WXFsOGd1Mnp6TjR1dUNDNXJHS1pzc2NiRlQ5Sk5oeFN4RnlfSlZWcVFMTlFDMmpoM3NjSGQ0SDhDdGs0ZjBJVUJtZkJKa2ZyN1NoS21GejdqZnF6dGsxZ0YxV1BtSnhHNnJKcUFUYi1nYVJyX2g0RVZWS1JMMkhHYjExVlkxc1lxajVfdTl0a2lqTkhXV3DSAcYBQVVfeXFMUEpPVFI1QURLbV9HYkhqNzF1VDhEV0xwdzBPYk5vc1c2bHV4QlY1S0xvRTQ4UnJTN0swSXVHSUhHLWxPRE1kZEhoS3NKYk53cnZWZVlPbWQ3UUNKMzdHV1plZHV2X0VCN0NfNlhDc0JRdC03U1NVdklFcUxRQl80d09valU1Z2tnQ0pmSi1oWjhmNGFGZWJ0QmxtSTIyREM1R1ZKYjF2SDJoWGFFc296SzBKS1I2c1FvWHMwcGhJVS1vaXJ1RC1B?oc=5",
           "intensidad": 6.0,
@@ -86,10 +86,10 @@
           "medio": "La Crónica de Hoy"
         },
         {
-          "texto": "En la 4T, la justicia llega a los “números dos”, escribe Carlos Loret de Mola - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNRjFuZld0TVBJSTlYWUJHX205UDA4NW9TZlpyTVRwc0E0a3c0WElEb2g3OUJtbzBfTWdVR28za3MxTmhhLXUyeHV1SGhRU1ZkY1FOX1NURlNYa3VtdlBxM0ZUdkJHM05JNHlnTHByU3E2NTNpSnBmZzJqaTRUcVZONHpTbWNoOXZTbnJIRDBXTUNQeklCMDZRSnJETXNEWDNKSG0wT2NpRE8?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Universal"
+          "texto": "YOLANDA OSUNA, LA “AHIJADA” DE “LA BARREDORA”, GOBIERNO FALLIDO EN CENTRO - Sin Fronteras Agencias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5FSmtFMmtSbGNZbHlRNG1UeExkTGc0X1BPR1VmNDgxd0VNaWwtU2FVYUtVXzU5RWdDOXE1aDhlOFVWbnhod3ZDOWNBUmNWel83QTk4V1JqUWM?oc=5",
+          "intensidad": 6.0,
+          "medio": "Sin Fronteras Agencias"
         },
         {
           "texto": "Embajador Ronald Johnson ha ayudado a México en muchos temas: Claudia Sheinbaum - Por Esto!",
@@ -126,12 +126,6 @@
           "medio": "Milenio"
         },
         {
-          "texto": "T-MEC seguirá vigente 10 años con revisiones anuales, asegura Marcelo Ebrard - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQeUFUYzhwOERxOTVzZ2lCb2tQR2VoYzgydGxKanRodWpSV2VpVnVuemhnQzZDYW00VmQzTDA2S3pyU25kc3BPN0RZNVEtSTZ5dW5pSUNUR01PemlsazBrWV8xelhNU2ZSUkVmTVZJQUh1dnFQUjUyRTc3dlo0aW92YzZrWVR6X1ZIWHFpdnFOS3VPQdIBkgFBVV95cUxPSk1mMGNhM2xxZDd5Zk10bDczRGozejVNdVFpMTd4LUxGNkdTYzU3eVVyQWhiY0RTcWFzOE1RMFVvQzVNT3d3MWlERkZ4NGhpOVZySGNCMURIR3lEZnNGSk96UE5KTDFaQ1VRaC0zTXU2RllRWVdJZ2h5eHdFeVRUR2dkUGVGN0VLd1o3UE1Gd0g2Zw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Milenio"
-        },
-        {
           "texto": "Sheinbaum promete proteger al Golfo de California, pero minimiza impacto ambiental de planta de gas: aumentaría 4% de buques en toda la región - Infobae",
           "fuente_url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNYlNzcy1EMnJCN0ZKWDl0cUtwVWpoUzZyQTdpQlRmYlR5UXAzeUpJWGxpcGJEc2tVMmlUNElIMnctMEcxQXFGekNDbllvUDVjbU9QQ2FpVFV6OTA1Q05BN05oRmVFclNMSVluWTBQRnBXSUZQZ1hnX1lmWUhfLXlDdmg4Q3U5bVBuWHFWZ3lTY19yWnAtV0RiOXJlT3o2c0ZtQzRHeHROVGxiU3ZadTRWX1d0ZW1ZdUxSN0VxTC1CaHRpNEpodVgybktqUk9URTZmdXdHZkZWcWVnYWQzNjZKR3luakR6a2FqLW1xeVpUOGlCQkZjQ1dwSl9KMElNZ1NpVUQ0MmxpNTdwclZU0gGnAkFVX3lxTE1PX3pvYkxjRUdLNjNJQXkyd3hON0hQaThwaXZ4Yk1MU0V1cU1ydHpiWXJ5SmNKX1JXZHNYVHhiQV9jWE1FOWs1U1Z0b210R2hQbDBkU2ZkTGhBOGJaeTBfem43OEt2NGNtb3dyaGV6WUg5ZFFDZGlfc1FUWFdpNm5INkJkUHp0eFNIbDVXNmQ0amRoREg0QnZfMlZHVE1SNmZ1QjVxckVPLXFWZnV0NkN2TkdkcnF0WmdWYTktbDdKdnhWa2FrdEJZc0d5Z1JRSGp4Sm9HcFlQMnJiNDZnbmpjSzNEc2pldnB2TUVSVDNrejFqV0Z0cHhiV1lzRjBXMC1lRU5RVlFaa3UxdDdkLVV1QzlCQmJCY3BKdEtSWHdwRzEycGt5aTA?oc=5",
           "intensidad": 7.0,
@@ -144,6 +138,12 @@
           "medio": "El Diario de Sonora"
         },
         {
+          "texto": "\"México va bien en las negociaciones\", dice Ebrard sobre acuerdo del T-MEC; \"vamos por buen camino\", afirma - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQYjdhanN5UXlXcld3X0I3czNjemtKd2R0bkh2TFEtbloyOURoZkV1aXZxcjdJN0RIMW5IaVZ5LVdadHB3U1NWRV9WNHh1aVZ6VkxOTXlBenJrWUllSHR5V1p1UVBDc2NQaW9ROC03NzlXR3VJcS1XVDRVUzRsaDlHSUZBYlh2cVoxcXlIYlRuWUl0TWxIb2x4cS1jUE9VODdHY0RjSkV4dnl6cDA0WXhPVG9HTzdiTHhXSFd5Rm5PZFQ1ckw3ZHJyYm8zZTZvVTBTM2tleVk2dVk?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Universal"
+        },
+        {
           "texto": "Huachicol fiscal deja hueco de 61,785 millones de pesos: Secretaría de Energía - El Heraldo de México",
           "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPeDU3MkFZOU5kclMzaFRyd09aN0NyVVp5ZDhULVNNeHVqTmpJdVVwZXBsOGdYaXRXNThBdGZnUU80X2pKYl9tNDFQUDRPS1lyT1VxajE4TUdSano2WHZVVjN1NnFpeW1ra2NxMXBqU2VvN0lLcGZZcktpQWF1cWE1elBvMVhhUjFUOFVONjgtLV9yREhsUE14ZjZnQV95SFZtQi1HbWhYazRRZU0tbnBNdmZObWFlVFE1dkdiWGdTVnE5LUg3amFBZ0p6TFlWZWNZTWVTakFR?oc=5",
           "intensidad": 6.0,
@@ -153,24 +153,12 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 13,
+      "peso_pct": 9,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 3,
-      "n_notas": 4,
+      "n_notas": 3,
       "notas": [
-        {
-          "texto": "Ebrard a Trump: T-MEC después de elecciones - El Independiente",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPMXBGdmtKYjZJUFFtb1VpUU9EanFMUW9GZGJuY2Z2LUF2bFROa3diRjl5cTVRWjdYdTlwRzByc295MnJ1T21YaDRLRTkwUEEzVENTMmFJeFlOS3R1SzBtMDlWdGJHckJReTRnNTRYMGl2ZWtkNEhmWnpqeWZPOXZwS2lST1hOWGtTMThNX0l2U0ZpcUZj?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Independiente"
-        },
-        {
-          "texto": "La diputada Genoveva Huerta pide a Claudia Sheinbaum usar la disposición de Trump para beneficiarse en el T-MEC. - El Congresista",
-          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNRDlpZVFLR25pMm5CckhGTDczNDRWTi03bmpGTEp3RFpQc0dGQ1o0Rm9LdmwxQ0dPTThKSjV1V3dtSUxFaFIzbnduMWVCX2p3MDY2YkF6QTFKRm9BN3VzU2JLOXNJR1ZsZmwzV2R0SmcwRTR0RUN0N2J5OUJCQnIxbkc4ZFdaRWRXRTlzVFQ1elFfN2hwNUxoVXlKWTB4Zw?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Congresista"
-        },
         {
           "texto": "⚡ Posible presión de Donald Trump — Arrestan a hombre por amenazar de muerte a Donald Trump por redes sociales - Quinta Fuerza",
           "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUdObnBLbERfZW9MbkE3V01OSWlsYzJScEk2cnhqRnVocW8tdUJXQWp2LUtTTVZWOEFhTmRGbWtLdHVuNUpkdjRyLW9iN1dZWGdGazZaU3dmUjEwUW5paWh4bXdlcmVZLTJtRGsteUtFT3BzaDFaT3BWaUJkX3FMZVJNMXVScm8wSWdWS3JQczI5Q1JYVDBDNUhnQ0RZOTJJSmw5MkVlcUdCdUxMYU1MWVNQSQ?oc=5",
@@ -182,28 +170,28 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQRWktUy0zZ0JlMTRMVFhOYnFOdnJSQ2NRdS0xb2pZbEJaQUl3ZnRrYkRCU1owWGU0VEcwTGJQNlRkdEtOaHRTVEMxVUlacXBFejBLd1lWd1hlbmZUckNRaHVnNjNKdjJVNEt4TmNOVDdnTGdQUXhSUV9kXzZLcGFUTFA3c1JsbDMxWUhVTzM5Ukl1YmN2cTU2cUpEVEIyblJwNkU3d3EtZTRrejlOVW9zLXdQUmlhX2J2ZWhDZUJqSUI0S04tazdmVzJXd0VyT25jcjhRVTVsOFhtNVNlX2RpQ21vOA?oc=5",
           "intensidad": 5.0,
           "medio": "Facebook"
+        },
+        {
+          "texto": "Donald Trump quería llamar “Océano Trump” al Atlántico; Google Maps rechazó su petición - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOcDFqYzRmQlFIMG92OUFzZ1FpTm1mekRiREVxb3U5eEREWkJFZkZjQjNlVEtDaDlzaEU5anJzZ3dmNmFuQzJTUGdJcUczcmpoOFdwQ1dsOGJ2YlZOc1hkNVpLU240M2Q4MWJ0T3o1Y25QYnhucW5HYklMZ1F4WHdod3pLa0tzMnUxSzJaTFlCZ2s1VFJTNnJtSTZuYlg0RVpQM0pRMG5QcmNtR3l5MG50R2pua1RJSmo3RXNlZnliUExubzVIUkZZMjljc2LSAdIBQVVfeXFMUE5SYXdwT2xmLVpxM2RwSVl4ZkVnTUprQ2Y5Q3ZVZnJzMmdtME5QZkx2am1CM1NjdGprMWhSWXhaTzl3WWNIbkdFcEdKQTdrM1RKTmRvVk5mOTNUUGhkU0FOckZac1BRZlpNSzBxcXcyaTdmRFN0RlMyaUJhNGRRa2lERWhSOVlFX0JpVWROdFJ4YUh4ODctMnZVZl9GcTF0ZDZFVFEzcXJaNXFKeEozeThoVG1BNGpDSnZyQndPcV9CQjRFcW5KS19jdzFsSWs1M2FR?oc=5",
+          "intensidad": 5.0,
+          "medio": "news.google.com"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 6,
+      "peso_pct": 4,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 2,
-      "n_notas": 2,
+      "n_temas": 1,
+      "n_notas": 1,
       "notas": [
         {
           "texto": "Loret de Mola destapa el \"patrón\" de la 4T: Se castiga al subordinado pero no al jefe",
           "fuente_url": "https://www.informador.mx/mexico/loret-de-mola-destapa-el-patron-de-la-4t-se-castiga-al-subordinado-pero-no-al-jefe-20261021-0051.html",
           "intensidad": 7.0,
           "medio": "informador.mx"
-        },
-        {
-          "texto": "Respeto a periodismo y libertad de expresión: Raúl Bolaños-Cacho",
-          "fuente_url": "https://imparcialoaxaca.mx/nacional/respeto-a-periodismo-y-libertad-de-expresion-raul-bolanos-cacho/",
-          "intensidad": 5.0,
-          "medio": "imparcialoaxaca.mx"
         }
       ]
     },
@@ -225,31 +213,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-09-24",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 19
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 66
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 6
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 2
-        }
-      ]
-    },
     {
       "fecha": "2026-09-25",
       "categorias": [
@@ -367,7 +330,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 6
+          "peso_pct": 5
         },
         {
           "categoria": "Social",
@@ -388,7 +351,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 6
+          "peso_pct": 5
         },
         {
           "categoria": "Economía",
@@ -492,7 +455,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 4
+          "peso_pct": 3
         },
         {
           "categoria": "Social",
@@ -767,7 +730,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -792,7 +755,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -905,11 +868,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -924,9 +887,49 @@
           "peso_pct": 4
         }
       ]
+    },
+    {
+      "fecha": "2026-10-22",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 60
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 14
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 12
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 4
+        }
+      ]
     }
   ],
   "top5_temas": [
+    {
+      "id": "morena-coordinadores-2027",
+      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
+      "categoria": "Gobernabilidad",
+      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
+      "motivo": "Cruz Pérez Cuéllar, virtual candidato de Morena en Chihuahua, denunciará a Santiago Taboada del PAN",
+      "peso": 24.0,
+      "n_temas_agrupados": 8,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/21/cruz-perez-cuellar-virtual-candidato-de-morena-en-chihuahua-denunciara-a-santiago-taboada-del-pan/",
+      "actor_vinculado": null
+    },
     {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
@@ -937,13 +940,10 @@
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNYXNWR1N1M0hCdUllSlI2cUJTMmdFWmwwbUo0UlgyOGc4ZG9TMEc3cG83ZDBxYlhKVDc2aGtYOUNoZlRJQnhpOWJYdjMwWWY1X3ZSa1pLOW1pRmI5UGp5b0FQa3pRbXdaUmo1WWUyY29Ta3NtNUVEeVFVYTVXSUZUQVRMUFVFeW4yNGfSAYoBQVVfeXFMTzFwYUxxZS1ESVkyUU05TFI2RGduVnhIaERockQxcExpLWx5X1FPZEJMSlEyLXFfc1laYmVGY0NrZ0lSa2ZqWDlrb0kxOW9fY0dqXzV6SWdTNjhXcFJteWUxOG51cklYTDRrTVJsNWJzNl96S1gxRWJtRmxYVzNVNUprY241akpKUUVR?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
     },
     {
       "id": "huachicol-fiscal",
@@ -951,35 +951,14 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
       "motivo": "Sheinbaum destaca \"decenas de detenidos\" por huachicol fiscal - El Universal",
-      "peso": 16.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
+      "peso": 21.0,
+      "n_temas_agrupados": 4,
+      "escalando": true,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPbEZnbVR4NFJ1d3Z3REI3QVBUS0k1MXdtMVBtcmNhYWREQV9FNGc4dmVQS3VEQVgzUVNVQ2xHS05LOTRveW1GS0JhY2lMTzBIUkljdUZwaURoZ3BMWk9vTms0bjEyaEJtODNuSzhVVmFPaVkxUkdnT3gzalhNSEZiYnR5bklDMzV6Q0hfMW9KamRka0tmbk9rUWtTZVlHLW5YYjU4M1ppT1Q0ZUtpRy1QLXRpZEI4LXlhbUthcUZpSlRTOExlRmRMUnF3am53eG40TFZDZkNyekYwR3Rk0gHwAUFVX3lxTE5HVEVBazNLTElMa0JSSmowNkdxeHNOZ2cxekZYczRBQXdiVzhJcUhlc0ZRNHQ3aGtxNHdLSUpyaTVyZmNuNzk5Y2pIQURmeWp1VXI3SWNCQ0pPbG9HTWNhOFVya3RBclVYWFFnUDFzSHRKSXZJMFF4aHJpTlF1a0VQVENaei1VSVNycFdXMlFEZnVxbXFkbmZhM3RDSDZrS3FsOEVBWV9DdjBoSGV3and1VlVOUkRMUkg5d3dWZ01ISlBESEx6akkyQ2lXZGJDMXk0aDhKRTRVQUE4dTRVX0V6VU1ERjduZUZhT2RHaVZCMw?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
-    {
-      "id": "morena-coordinadores-2027",
-      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
-      "categoria": "Gobernabilidad",
-      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
-      "motivo": "Cruz Pérez Cuéllar, virtual candidato de Morena en Chihuahua, denunciará a Santiago Taboada del PAN",
-      "peso": 12.0,
-      "n_temas_agrupados": 8,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/21/cruz-perez-cuellar-virtual-candidato-de-morena-en-chihuahua-denunciara-a-santiago-taboada-del-pan/",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "actor_vinculado": null
     },
     {
       "id": "amlo-agenda",
@@ -1015,28 +994,28 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQSW10ZnpacjdhbkpZdFd1Z3oxMTJrYTJQNDJlUldQUE9YVmwwSHBfY0p1dnJIWFJoVlVoUHRnVXFQaHVhV2QyV25vY0ExVTlyekdjNU5iV0taSF9Jbm45SlA3enFTNEhrNXhad3YtSFhDMGI4dEZobkFHZ1dhQXo4Y1NvOEJmR01RdEVWdVdGNTliYW1GNWNzTzMtdTh5eFBkWHRuNmxFWnA5N09tUWw0YXFLZC10S2JpeEQwV2FXNXNMbHlveUE?oc=5"
     },
     {
-      "id": "auto-24cdeca2f3",
-      "nombre": "La controvertida pasarela de Morena: famosos, hijos y cercanos a la 4T que se re",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOOERPdDNFZWFnN2VOWnJLYTBIanIzUWNXbUVxaFJEamF3SEJHT2R2VGNxbl9MeXJwaWZ0Y3dCdU9UTUd2Ml8yeTB1dVhSUGxFY01oV1RlUVhVY2YxaEtRekFSV0NKYTAwWVROeTF5S3N4Y0RKQmJHSE0tSHA3VEVpelhEMkpwYWEtMVpaaGJNWG40ell40gGUAUFVX3lxTE1TTlVkaGgyRHFzanQ0ZHQ4QzMtUTMxVnVWMW1VOHZRcC1vdDRlTkpMWHZnM1Z2dW0yV3VvQ1l3aXg1T3ZGUEpnLXZqWE8tNFloS2l5S2N6WUtBMWI2N1Vmam5COUQzVWp2WHR4QWFaamVqRlp6eFFoSWxISE5CbVphMjgxUXNzZWNOb2tDWFpQcVBPSHQ?oc=5"
-    },
-    {
-      "id": "auto-abf49813b8",
-      "nombre": "Panistas cobijan a Maru en el Congreso de Chihuahua",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/21/politica/005n2pol?partner=rss"
-    },
-    {
       "id": "auto-b0b595aad0",
       "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQdkRpT3kxSU9raVdvalV1b2I1OFk3Q192ZFIzdDk5cUE1M2RkYTZSM3pOcnN5ZEdlMXdIS0pfQy1KZXhMWUY3TVF1YkthM2NZU1MzWFp5M0EwX1dmVmxVU29CSEt0Z1ZNd0ZZR3pxMFNrbG9SbUpzeE1DclN1ZkFLUVRjX0hoUVAyQnZBU2lMNDloMlVRamU2X2xiWG1TR2FmNzRYUHhuTzhEVl9V?oc=5"
+    },
+    {
+      "id": "auto-63f945e0d5",
+      "nombre": "‘Una calentadita a opositores’: PAN acusa a Morena de convertir el Altiplano en ",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/21/una-calentadita-a-opositores-pan-acusa-a-morena-de-convertir-el-altiplano-en-el-lecumberri-de-la-4t/"
+    },
+    {
+      "id": "auto-0accf33d05",
+      "nombre": "'La Presidenta Sheinbaum le cumple a Jalisco: Agua digna y sin deuda para nuestr",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQLS0wckd3ZHFHbXMyMDJham9tZGtUZTluVDYzYWZUaEhSTGItbmpONTNzUGxzenBhYkd4V29VSjVBN3ptaExmaDFRYVNrQXlSb3pkVHlEUzh3QWdBS2w0dEZjTXAycTFYWEhwQ3NKMmF3S2d1ZkNmQ0lpNVRlSFZ3cy1kcGk4cUk2ZUxieGZKNGJNM2t6UXFjZVNUaE53REZoVFZ6M0tQV3Z0UWRCTF9QWmdtb0dYRm5Xb2xVN29rckxHRVNQeWpRNXRWcGVKVGlNNUc4ckRhejBFZ3I3WWdMb2Z1aFBEaHRCOHpQX3g5Qk5EZWMxcDhQVmRR0gH_AUFVX3lxTE5LdFB5NW9QeGRTcUJDUHk2NWl5WkhiR2hiY3pKdDdORnJia29ONDRUOUdnc1FjU0YxY0NGdGhHZEhiRW1ndFZZdDM4cU13bzZRa1BFaVo3dHNMQzlta2x4NV8tX29rbDVmVFQydEVzdWl5LXhUVzNpbmRjWnJxNUc0SU4waDVieDctWFROZ0VvT1BzUUJNUE5MbXoyNHMzSUxhVUJfY2p3b21DelNjUXBzM00zTWdXTUpLQUZoeE1ORVZhNnh1bDJVUjlic3NZb3RPMTlpLWYySjVSLTFwMUJ1UUZwbnBQcGNBYjYzclg2QVNnMEdxOEEzTjYya0VwYw?oc=5"
     }
   ],
   "temas_retomados": [
@@ -1050,6 +1029,28 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOZlF2NjdITldzMjJDZnAwaW9zRHN5N280NFBsd01hcDZKSTJnX0c5YS1QQ19BRDVMdW1hbU9RTkxoSUIya3dNRnk5ZFd0OERnU3cxSC1mcERuUW5yeS1hWTdpV01lVHVNNTdMcVU5SFlnWUlPUTVHM3I4MFE2eW5HazEyenVzSFNVX3R6YmpYaGtVMHg1cFRmUTB2eEZTYUljMDNHQ0tqM0dXdW9MeUZV0gG8AUFVX3lxTE1jbTdxcjNsd2QtQjAyV21BSS00VW80Ti01bW5tWkw2U190X190ek83U1gxUzU3WDhIUEZxNnh2b3BEMkNST3FHZU1lU0pkOVdwYVFIM25GSGh0VnZ2YlBQdVRtVjh6akhfcWZ6RU5faDUyT1E5MVA3cTBCX3RnZ0hVYTh3Sy1PV2Z4TWNaVjk1Y2NzbWxjQXZKOFpnZWp1ekhRRFNWSFJFQUVvUXRCaDdVSjdpNXRtX1k3ejRG?oc=5",
       "fecha_anterior": "2026-09-12",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPZ1pWdHgzWU9nWWZkMURPRVNuUkJUNXV6TXRoZ2J4MFJzRng3czhvOHpGYnVmdWpPcm1ZZlg5VUliUlBRemRxMnBMZ29xT1M4NkdOSi1KcGFXcnZfdnpVZ29qM2ttR3RlUGpBOE9oRkFBR25HVXFmdkc5Z1VIY0FTODRTY0Z5MzZxd3lhbXZRM1Q4eUx4YWxCMmcybTQ5bzA1ZmtFY0ln?oc=5"
+    },
+    {
+      "id": "auto-101eae9a6e",
+      "nombre": "Invita Mara Lezama a prestadores de servicios del Parque del Jaguar de Tulum a i",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 34,
+      "motivo": "Invita Mara Lezama a vivir la magia del Janal Pixán por primera vez en Calderitas - Gobierno del Estado de Quintana Roo",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPdERjMWJ3UGRFSHFOZXRtbHc4cnprTzVPelhwc1BlU00tbVpEb2VORjYxejBuNEdfUVNRay1QME80REFDLVRLUllacGZCWjhjVy02Q1VFQTRtbEk4dzBQajg2c0xfUFZKOG1PWVFrWk9jRzFLbGNEQUJlZDl2MnRKa3dLNXZ4cEVRQXoxeFVoX3dZeVdVWTMwVVpBd0Y1SVUtWWE4eVVGUTl2dw?oc=5",
+      "fecha_anterior": "2026-09-17",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNeFhiZTR1blVsbXRpNWpzazh4ZTNUeUUtajJ0aThGSldiWENHR1J0U0xuNlhuWHhNSHRxT3ZPdkdILWxsbnNWV01JRVlUM0tXRFVpYkZSVklwazlELXdkeVBGdUhTdU9kZmgxSm5TV0VYV3ZUTlFyWXFJcFlNVTVVSDlVUWtZbHNsOWxHOG9XTHkzQXJlMGM5YnhOZWx3d0U4MHdRem40c3ZlMWlQdVJCUG94WXlhX1NxeS0zQ2pLRnk1dW5tVWRUbXZSRV9RcXN0a0l0bDRRbk9CV0RfdnY4MWxqa2otZw?oc=5"
+    },
+    {
+      "id": "auto-d34820a416",
+      "nombre": "Desde el Norte. Campeche y su tragedia presupuestal. Por Rubén Moreira Valdez - ",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 28,
+      "motivo": "“En el PRI insistiremos en otorgarle un mayor presupuesto al Cervantino”: Rubén Moreira - Milenio",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOajZiQS1ua21jcmNhREFMbm84VlR1bWdaU1k5YU43T1dDMXo1emh3ZXR4SmV5UG8xd3hTdUJFYjhKam84Tjl4MVFobHdkOVJXZ3lSc2xlbkxPVEdTeGV5YkVlM1pISk1STlIzWmdaUGwydnVmTHdWd0hIcE5jTzBHSVFDajMzSy1IVkdXTGRkeXhNdzl3RGh6V0FhWERxZ9IBngFBVV95cUxOajZiQS1ua21jcmNhREFMbm84VlR1bWdaU1k5YU43T1dDMXo1emh3ZXR4SmV5UG8xd3hTdUJFYjhKam84Tjl4MVFobHdkOVJXZ3lSc2xlbkxPVEdTeGV5YkVlM1pISk1STlIzWmdaUGwydnVmTHdWd0hIcE5jTzBHSVFDajMzSy1IVkdXTGRkeXhNdzl3RGh6V0FhWERxZw?oc=5",
+      "fecha_anterior": "2026-09-23",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirgFBVV95cUxONTdRV0pnWFhVUlF6TkhVQy1lSTdpTXZCT19JcG93QzBHTHNNZXZpLVlzY201QmNhVjZydHpEalhDem1nRTRsRUVjWlhNVkJOLVQxa0MyT3pMUXBGWnhjNjExSUhCejlONWJzandHWFNWVkcxZ1lMajN3aVFqT3VveWZaMUxhM25FaFAxLUZNYTJDaVlGMVFZSm51ajdodXUzOFFuVnFWemZxa3U1bkE?oc=5"
     },
     {
       "id": "auto-d90309d718",
@@ -1072,28 +1073,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPbnVHUHZPc1I3TVNoU01mQmJxWjY4a1hvLXk4a1Zxa2pSYkZSeEppWl9jZWE4S1dyeDhxN3ZIb2k2LXlmXzRrLXJoZ3BvVEFHWUdoV1p2dzJDeHQxRkJYa25QaVYtVm1FZWhveHpzcklPam1lOFhDYTFmN1VkM3gwdlluTEpncVZJWmtuRE1pN2lwa2tlblA4b1RqMFowWkxqMG5uMDVoLUxSOGFhZkpwdExyYXFhUdIB0AFBVV95cUxQTWpodnF6V0tiNnRxaDl3YWpEZDIxNTQ4TnBZamNwLTZIN0NpRkJveUN2VE93NmJkblI3VmdQWDdFSkZGNjhfWnZWTUZwOTVoWTg4NVhraXlFWWFTX1VpNU5Ob055dEpKSVEzTG9SSDNYQzY0Y2F6TnBDaUVzcDlUMWd4akVQNGZadmp2OHBLZFBEUEpfUGRxZjRHOTJCYVl5WDNvVHZmdWxkYlYtYnRqeEVXa3huQ3ltdG1ZM0UyY0NCZUVwVVNQamY1TExRdW9M?oc=5",
       "fecha_anterior": "2026-10-01",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPdzRoc25zWXdpNld5bi0tYkRsVF9FRWozQndGRG0tUk5HOWUyOFQ1ZExBTVBZSWowWllwSHZ2TzRuMmNUUE9kVGZaQzV3UEh6c1d5TDhNSlkyZW1HQ0xJT0pqSENnUS1ubUVtRHpXWXpRd1NPeW4ya3JDOU5oNW5vX21EdzN1bHFjV255WVdnOFNKS3ZaSk50VmZycjBpc00?oc=5"
-    },
-    {
-      "id": "auto-ee75c21d30",
-      "nombre": "Hay críticas tanto de la oposición como del propio partido en el poder.",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 14,
-      "motivo": "Morena da poder excesivo a Hacienda, según crítica - Milenio",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQM29NcVl1S2JWWGVJMlc3cm9OUXBSV0UybElvRUlOb1VwYVpXb0c4U3RpbjNUa2lIWDlaelJzNmpGM0dnUHBESEpVQjJYWG91M0lBYjN3U3VvbExiSlNZa0RCUGZ5S0hkcVBmWG1wR0VydkYzWWJKR3FSelBBaFQ0UzdOVF9FczhyUEY40gGLAUFVX3lxTFAzb01xWXVLYlZYZUkyVzdyb05RcFJXRTJsSW9FSU5vVXBhWldvRzhTdGluM1RraUhYOVp6UnM2akYzR2dQcERISlVCMlhYb3UzSUFiM3dTdW9sTGJKU1lrREJQZnlLSGRxUGZYbXBHRXJ2RjNZYkpHcVJ6UEFoVDRTN05UX0VzOHJQRjg?oc=5",
-      "fecha_anterior": "2026-10-07",
-      "fuente_url_anterior": ""
-    },
-    {
-      "id": "auto-b183a1493c",
-      "nombre": "Exige Félix Salgado a Morena que presente una encuesta que él ganó - Quadratín T",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 13,
-      "motivo": "Presume Félix Salgado acuerdos con Ariadna Montiel - Reforma",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPV3h0SDZTR3RfYzM5NHdmSHRpbzRhNDcxcV9sT3ZDdFZIWjZBNF9Rb2U4Y3hMRmdtMGtycVlud01fVnVMZUdrVE5mb0FxWlNDaWdQWWM1NzVZem51MUpDMENDOGFIbmE5UE1ZOS1qVFlQWXlEOUlTN2IzQlFkYTlUS2Rza295OEtCM2VJSw?oc=5",
-      "fecha_anterior": "2026-10-08",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWlV5X2FCSF84QjJtZ3UzdWkzUzlRZ0lFYnJRZmk2anQ4blNjWlVPVWRaOUNHU0ZvTzA0TGZmRndreXNRbVlQZnRpUjR0eGVadkdHMWdsc3c4eERpQVdGZ3dPVkk5UXlsUGd5azAzM2lwdk5WVzFmRWg0TGRycFVvaGFDYmx5VjVlSERUVlpuZ3Fod3RGdVpHMExsaThqOGtIb1RpYlVGWENJdTdpdjdJR1Rxb1Bjd2lmbmtaUXU4NA?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1101,20 +1080,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum y Julio Menchaca recorren hospital y clínica del IMSS-Bienesta",
-      "nota": "Presidenta Claudia Sheinbaum Pardo visita el Hospital Oncológico para la Mujer de la Ciudad de México del IMSS Bienestar - Gob MX",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNUTVudXpib2JRbzdJaWo0WldYYVZ1amRZOHJyUzBfTnlTVkY2QUxCM3dUWU9neXNFTndPMFJEX3BLMWpWdDZtcURjWUY5eTJaeGZybDB5SmpnaTNPWTR3X1F5UlVQMFp4SktIYVBpcWRfZDF5aFVHckhfV3ZTa2lNUWdHeDRsNU10ZE1OaXZobkpfMU9jODdQd1ZNajk1bGFWYlNoSy0yUngwczRYUlY1eTJSMWpIajNZaFZ6VkFNWXl6OGVVaHVYR2dkNjFGUDB1eHZMMm9CTmg0S2gwNVlUck5USERTQXd5SWs1M1Y2NA?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "alta"
-    },
-    {
-      "id": "ebrard",
-      "nombre": "Marcelo Ebrard",
-      "rol": "Responsable institucional",
-      "tema": "Revisión del T-MEC",
-      "nota": "T-MEC seguirá vigente 10 años con revisiones anuales, asegura Marcelo Ebrard - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQeUFUYzhwOERxOTVzZ2lCb2tQR2VoYzgydGxKanRodWpSV2VpVnVuemhnQzZDYW00VmQzTDA2S3pyU25kc3BPN0RZNVEtSTZ5dW5pSUNUR01PemlsazBrWV8xelhNU2ZSUkVmTVZJQUh1dnFQUjUyRTc3dlo0aW92YzZrWVR6X1ZIWHFpdnFOS3VPQdIBkgFBVV95cUxPSk1mMGNhM2xxZDd5Zk10bDczRGozejVNdVFpMTd4LUxGNkdTYzU3eVVyQWhiY0RTcWFzOE1RMFVvQzVNT3d3MWlERkZ4NGhpOVZySGNCMURIR3lEZnNGSk96UE5KTDFaQ1VRaC0zTXU2RllRWVdJZ2h5eHdFeVRUR2dkUGVGN0VLd1o3UE1Gd0g2Zw?oc=5",
+      "tema": "Claudia Sheinbaum anuncia que “Casa Tlalpan” será nueva sede de la Universidad R",
+      "nota": "Claudia Sheinbaum explica cómo la Casa Tlalpan de El Negro Durazo pasará de símbolo de abuso a espacio educativo - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNc29KdWEyemFqVmw3WTZ3ZmVnV1hxekhlcFV3N1RqcXJHbXZaV0JjcmpFR0NqNlZqblphb0NKZ1BxYTR3LVUtbzJwOTRDeHlrSGhuam94QkE3dlhWLTZiUzdmVGZ4NjR0Njk5c01xRlVkaVNaMzJ6UmxsSGVYT0dmb0Q5cTQwYkl2cjNuV3hUenFhb1ZGUDVzVWFfcVdVVmNURXZ0TkEyMjRGZDk4dkNYb2JJRFFxN0RwZTlFVGsxc09jZkZlMjdlRXljSEREY2l1bHfSAewBQVVfeXFMT3lhbkpocHBkeXd5Vl9iN0VGWnFidzRlM3doRGVmNW9lcTVhbFlWMzh3X1pJMWxWbW8ydmRUaHVNUnRCcVRKT2FmZUhQNHVBRDB2eG40bjNVa1hGWjRUZGxtZUtGVVRuVC1zQzN0eWdmMzNjWTF4X29JQmhFbGpHLW9JYWx1TUFrZTZqZVozRWtoOWM4Rk5yWHV2RFFFRDlZaTJWcHVnTW9lVVU1QmNyU084NnFxdFhmRERMRjB2bmtPWjJ6aldGRWdTLUdLOUNmTlM5UkU1eWd3bl9jLXpiMkItVkVFbUI4T0xNNlU?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1131,23 +1099,34 @@
       "confianza": "media"
     },
     {
-      "id": "snte",
-      "nombre": "Sindicato Nacional de Trabajadores de la Educación (SNTE)",
-      "rol": "Mencionado",
-      "tema": "Mérida aplicará pruebas de salud mental en universidades: así funcionará el tami",
-      "nota": "⚡ Posible presión de Sindicato Nacional de Trabajadores de la Educación (SNTE) — Líder del sindicato de Salud exige pruebas",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/21/politica/007n2pol?partner=rss",
+      "id": "pri_partido",
+      "nombre": "Partido Revolucionario Institucional (PRI)",
+      "rol": "Reacción de oposición",
+      "tema": "Desde el Norte. Campeche y su tragedia presupuestal. Por Rubén Moreira Valdez - ",
+      "nota": "“En el PRI insistiremos en otorgarle un mayor presupuesto al Cervantino”: Rubén Moreira - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOajZiQS1ua21jcmNhREFMbm84VlR1bWdaU1k5YU43T1dDMXo1emh3ZXR4SmV5UG8xd3hTdUJFYjhKam84Tjl4MVFobHdkOVJXZ3lSc2xlbkxPVEdTeGV5YkVlM1pISk1STlIzWmdaUGwydnVmTHdWd0hIcE5jTzBHSVFDajMzSy1IVkdXTGRkeXhNdzl3RGh6V0FhWERxZ9IBngFBVV95cUxOajZiQS1ua21jcmNhREFMbm84VlR1bWdaU1k5YU43T1dDMXo1emh3ZXR4SmV5UG8xd3hTdUJFYjhKam84Tjl4MVFobHdkOVJXZ3lSc2xlbkxPVEdTeGV5YkVlM1pISk1STlIzWmdaUGwydnVmTHdWd0hIcE5jTzBHSVFDajMzSy1IVkdXTGRkeXhNdzl3RGh6V0FhWERxZw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "rol": "Responsable institucional",
-      "tema": "Exige Félix Salgado a Morena que presente una encuesta que él ganó - Quadratín T",
-      "nota": "Presume Félix Salgado acuerdos con Ariadna Montiel - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPV3h0SDZTR3RfYzM5NHdmSHRpbzRhNDcxcV9sT3ZDdFZIWjZBNF9Rb2U4Y3hMRmdtMGtycVlud01fVnVMZUdrVE5mb0FxWlNDaWdQWWM1NzVZem51MUpDMENDOGFIbmE5UE1ZOS1qVFlQWXlEOUlTN2IzQlFkYTlUS2Rza295OEtCM2VJSw?oc=5",
+      "id": "pt_partido",
+      "nombre": "Partido del Trabajo (PT)",
+      "rol": "Reacción de oposición",
+      "tema": "Coordinadores estatales de Morena rumbo a 2027",
+      "nota": "Insiste PT en que Morón ganó encuesta de Morena - Reforma",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPR3JQQ2wxNnhkTWtsYU5vWTkwelRqWk5PRnhLMGxlYnIwS2xkRFJzQjAzOFlPTVlmSXZoNWtjMUFqV1hMSGthc1lidlJIQ0diLXYteGd0TlRwU0gtblRIeFlaeE85WWZjalVTQnU1OVF0M2JOVXBlQ19EcVFoYlZPeUpDanhjMGho?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "tatiana_clouthier",
+      "nombre": "Tatiana Clouthier",
+      "rol": "Reacción de oposición",
+      "tema": "Coordinadores estatales de Morena rumbo a 2027",
+      "nota": "Tatiana Clouthier ‘no tira la toalla’: Llama a reunión en NL para explicar su nuevo movimiento",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/21/tatiana-clouthier-no-tira-la-toalla-llama-a-reunion-en-nl-para-explicar-su-nuevo-movimiento/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1171,19 +1150,11 @@
   },
   "patron_historico_4sem": [
     {
-      "fecha": "2026-09-24",
-      "tension": 44,
-      "n_notas": 68,
-      "n_alto_impacto": 49,
-      "n_medio_impacto": 19,
-      "n_bajo_impacto": 0
-    },
-    {
       "fecha": "2026-09-25",
       "tension": 40,
-      "n_notas": 61,
+      "n_notas": 62,
       "n_alto_impacto": 39,
-      "n_medio_impacto": 22,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
@@ -1213,8 +1184,8 @@
     {
       "fecha": "2026-09-29",
       "tension": 37,
-      "n_notas": 114,
-      "n_alto_impacto": 61,
+      "n_notas": 115,
+      "n_alto_impacto": 62,
       "n_medio_impacto": 53,
       "n_bajo_impacto": 0
     },
@@ -1324,10 +1295,10 @@
     },
     {
       "fecha": "2026-10-13",
-      "tension": 27,
-      "n_notas": 71,
+      "tension": 26,
+      "n_notas": 72,
       "n_alto_impacto": 30,
-      "n_medio_impacto": 41,
+      "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
     {
@@ -1372,10 +1343,10 @@
     },
     {
       "fecha": "2026-10-19",
-      "tension": 32,
-      "n_notas": 36,
+      "tension": 31,
+      "n_notas": 37,
       "n_alto_impacto": 19,
-      "n_medio_impacto": 17,
+      "n_medio_impacto": 18,
       "n_bajo_impacto": 0
     },
     {
@@ -1388,10 +1359,18 @@
     },
     {
       "fecha": "2026-10-21",
-      "tension": 31,
-      "n_notas": 31,
-      "n_alto_impacto": 16,
-      "n_medio_impacto": 15,
+      "tension": 27,
+      "n_notas": 40,
+      "n_alto_impacto": 19,
+      "n_medio_impacto": 21,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-22",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1400,17 +1379,17 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 69,
-      "y_lunes": 94,
+      "x_lunes": 71,
+      "y_lunes": 90,
       "x_hoy": 100,
-      "y_hoy": 88,
+      "y_hoy": 86,
       "delta_pts": 9.0,
-      "alcance": 10,
+      "alcance": 11,
       "n_alto": 10,
-      "n_medio": 3,
+      "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQTm4ydmNoOEU1Vm5wVkFoSmIxcHpjMjk1REY2SnVKM0Utb1dOaFpfVFJYQUF1ejMwRkFhLWhfWkw4cWpxRGJDZzF1M3EyOXAyUGlPYTBDTkdhVmE2QllkVUlQWTVYMDRMd013TEczVTRrZmZ4VGdxTHMwVkJEX01SS1FjWXR3VWI5NlBJUFVfUlA2Y3p2cEM3TW5EV0M2MmNlaUpJS0VJcm5Za2ZBZHkyQmxMcVRjeXNpTFVCQ0FDTTgxbEZaRzdNMW5zVmhURG0tT29UaGw3ZmZWY2N1?oc=5",
       "nota_texto": "Juan Carlos Natale se registra como aspirante a Coordinación Municipal de Morena; suman siete aspirantes - El Popular, periodismo con causa",
       "es_nuevo": false,
@@ -1419,36 +1398,37 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 46,
-          "y": 100
+          "x": 50,
+          "y": 93
         },
         {
           "fecha": "2026-10-20",
-          "x": 69,
-          "y": 94
+          "x": 71,
+          "y": 90
         },
         {
           "fecha": "2026-10-21",
           "x": 100,
-          "y": 88
+          "y": 86
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-22"
     },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 38,
+      "x_lunes": 36,
       "y_lunes": 80,
-      "x_hoy": 69,
-      "y_hoy": 78,
-      "delta_pts": 9.0,
-      "alcance": 8,
+      "x_hoy": 79,
+      "y_hoy": 73,
+      "delta_pts": 12.0,
+      "alcance": 10,
       "n_alto": 5,
-      "n_medio": 4,
+      "n_medio": 6,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.informador.mx/mexico/tenemos-salarios-deplorables-trabajadores-del-imss-entregan-pliego-para-claudia-sheinbaum-20261020-0097.html",
       "nota_texto": "Trabajadores del IMSS entregan pliego para Claudia Sheinbaum",
       "es_nuevo": false,
@@ -1457,28 +1437,29 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 23,
+          "x": 21,
           "y": 67
         },
         {
           "fecha": "2026-10-20",
-          "x": 38,
+          "x": 36,
           "y": 80
         },
         {
           "fecha": "2026-10-21",
-          "x": 69,
-          "y": 78
+          "x": 79,
+          "y": 73
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-22"
     },
     {
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 23,
+      "x_lunes": 21,
       "y_lunes": 100,
-      "x_hoy": 31,
+      "x_hoy": 29,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 4,
@@ -1495,12 +1476,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 23,
+          "x": 21,
           "y": 100
         },
         {
           "fecha": "2026-10-20",
-          "x": 31,
+          "x": 29,
           "y": 100
         }
       ],
@@ -1510,9 +1491,9 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 15,
+      "x_lunes": 14,
       "y_lunes": 100,
-      "x_hoy": 23,
+      "x_hoy": 21,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 3,
@@ -1529,12 +1510,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 15,
+          "x": 14,
           "y": 100
         },
         {
           "fecha": "2026-10-20",
-          "x": 23,
+          "x": 21,
           "y": 100
         }
       ],
@@ -1544,9 +1525,9 @@
       "id": "ebrard",
       "nombre": "Marcelo Ebrard",
       "iniciales": "ME",
-      "x_lunes": 8,
+      "x_lunes": 7,
       "y_lunes": 100,
-      "x_hoy": 23,
+      "x_hoy": 21,
       "y_hoy": 100,
       "delta_pts": 6,
       "alcance": 3,
@@ -1554,7 +1535,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/20/marcelo-ebrard-aborda-en-el-senado-como-han-sido-las-negociaciones-del-t-mec-912527.html",
       "nota_texto": "Marcelo Ebrard aborda en el Senado cómo han sido las negociaciones del T-MEC",
       "es_nuevo": false,
@@ -1563,49 +1544,16 @@
       "trayectoria": [
         {
           "fecha": "2026-10-20",
-          "x": 8,
+          "x": 7,
           "y": 100
         },
         {
           "fecha": "2026-10-21",
-          "x": 23,
-          "y": 100
-        }
-      ]
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "iniciales": "DT",
-      "x_lunes": 8,
-      "y_lunes": 100,
-      "x_hoy": 15,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 2,
-      "n_alto": 2,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": false,
-      "nota_url": "http://campechehoy.mx/2026/10/20/desmiente-claudia-donald-trump-no-condiciono-t-mec/",
-      "nota_texto": "DESMIENTE CLAUDIA: DONALD TRUMP NO CONDICIONÓ T-MEC",
-      "es_nuevo": false,
-      "categoria": "Seguridad Nacional",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-20",
-          "x": 8,
-          "y": 100
-        },
-        {
-          "fecha": "2026-10-21",
-          "x": 15,
+          "x": 21,
           "y": 100
         }
       ],
-      "fecha_reactivado": "2026-10-21"
+      "fecha_apagado": "2026-10-22"
     },
     {
       "id": "soto_picha",
@@ -1613,7 +1561,7 @@
       "iniciales": "JS",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 8,
+      "x_hoy": 7,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1630,19 +1578,53 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 8,
+          "x": 7,
           "y": 100
         }
       ],
       "fecha_apagado": "2026-10-20"
     },
     {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "iniciales": "DT",
+      "x_lunes": 7,
+      "y_lunes": 100,
+      "x_hoy": 21,
+      "y_hoy": 83,
+      "delta_pts": 4.5,
+      "alcance": 3,
+      "n_alto": 2,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUdObnBLbERfZW9MbkE3V01OSWlsYzJScEk2cnhqRnVocW8tdUJXQWp2LUtTTVZWOEFhTmRGbWtLdHVuNUpkdjRyLW9iN1dZWGdGazZaU3dmUjEwUW5paWh4bXdlcmVZLTJtRGsteUtFT3BzaDFaT3BWaUJkX3FMZVJNMXVScm8wSWdWS3JQczI5Q1JYVDBDNUhnQ0RZOTJJSmw5MkVlcUdCdUxMYU1MWVNQSQ?oc=5",
+      "nota_texto": "⚡ Posible presión de Donald Trump — Arrestan a hombre por amenazar de muerte a Donald Trump por redes sociales - Quinta Fuerza",
+      "es_nuevo": false,
+      "categoria": "Relación Bilateral",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-20",
+          "x": 7,
+          "y": 100
+        },
+        {
+          "fecha": "2026-10-21",
+          "x": 21,
+          "y": 83
+        }
+      ],
+      "fecha_apagado": "2026-10-22"
+    },
+    {
       "id": "bolanoscacho_cue",
       "nombre": "Raúl Bolaños-Cacho Cué",
       "iniciales": "",
-      "x_lunes": 15,
+      "x_lunes": 14,
       "y_lunes": 75,
-      "x_hoy": 31,
+      "x_hoy": 29,
       "y_hoy": 62,
       "delta_pts": 3.0,
       "alcance": 3,
@@ -1650,7 +1632,7 @@
       "n_medio": 3,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/20/raul-bolanos-cacho-cue-anuncia-investigacion-por-incidente-que-pudo-derivar-en-violencia-en-san-lazaro-912586.html",
       "nota_texto": "Raúl Bolaños-Cacho Cué anuncia investigación por incidente que pudo derivar en violencia en San Lázaro",
       "es_nuevo": false,
@@ -1659,23 +1641,24 @@
       "trayectoria": [
         {
           "fecha": "2026-10-20",
-          "x": 15,
+          "x": 14,
           "y": 75
         },
         {
           "fecha": "2026-10-21",
-          "x": 31,
+          "x": 29,
           "y": 62
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-22"
     },
     {
       "id": "higinio_martinez",
       "nombre": "Higinio Martínez Miranda",
       "iniciales": "HM",
-      "x_lunes": 8,
+      "x_lunes": 7,
       "y_lunes": 50,
-      "x_hoy": 15,
+      "x_hoy": 14,
       "y_hoy": 75,
       "delta_pts": 3.0,
       "alcance": 2,
@@ -1692,12 +1675,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 8,
+          "x": 7,
           "y": 50
         },
         {
           "fecha": "2026-10-20",
-          "x": 15,
+          "x": 14,
           "y": 75
         }
       ],
@@ -1792,44 +1775,8 @@
     }
   ],
   "tablero_semana_inicio": "2026-10-19",
-  "resumen_mananera": [
-    {
-      "texto": "Se han realizado operativos coordinados entre la Secretaría de Seguridad y Protección Ciudadana, Guardia Nacional y Fiscalía General de la República, resultando en la detención de 2 mil 539 personas v",
-      "categoria": "Seguridad Nacional",
-      "intensidad": 9.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se presenta una estrategia integral de coordinación interinstitucional para combatir el contrabando de combustibles, involucrando a 16 entidades del gobierno mexicano. Se desarrolló la Plataforma Unif",
-      "categoria": "Gobernabilidad",
-      "intensidad": 8.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "En 2025 se identificó un desbalance de 8 mil 824 millones de litros de combustibles, equivalentes a 61 mil 700 millones de pesos anuales en impuestos no pagados. El 72% de este desbalance se concentra",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se reportan avances significativos en la recuperación de ingresos fiscales por IEPS durante 2026. Hasta septiembre de 2026, se han recuperado 48 mil 411 millones de pesos en declaraciones de IEPS, en",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "La Agencia Nacional de Aduanas reporta un incremento de 10.54% en el volumen de combustibles declarados en importación, pasando de 23 mil 933 millones de litros a 26 mil 455 millones. Además, mediante",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
+  "resumen_mananera": [],
+  "mananera_estado": "pendiente",
   "a_vigilar": [
     {
       "id": "auto-e334602297",
@@ -1838,20 +1785,12 @@
       "resumen": "PAN en Puebla concluirá medición de perfiles y formación de cuadros jóvenes antes de noviembre",
       "fuente_url": "",
       "actor_vinculado": null
-    },
-    {
-      "id": "auto-180d88f3d2",
-      "nombre": "PVEM rompe con Morena en Puebla; niega acuerdo sobre alternancia de género para ",
-      "categoria": "Gobernabilidad",
-      "resumen": "PVEM rompe con Morena en Puebla; niega acuerdo sobre alternancia de género para 2030 - Periódico Central",
-      "fuente_url": "",
-      "actor_vinculado": null
     }
   ],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 3
+    "pendientes": 4
   },
   "declaracion_presidenta_historial": [
     {
@@ -1906,5 +1845,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-21 18:02"
+  "hora_corte_publicada": "2026-10-22 00:04"
 }
