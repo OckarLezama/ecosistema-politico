@@ -1,7 +1,7 @@
 {
-  "generado_en": "2026-10-22T11:22:39.427822-06:00",
+  "generado_en": "2026-10-22T12:02:56.553960-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 19,
+  "n_notas_ventana": 20,
   "baja_confianza": false,
   "tension_nacional": 25,
   "tension_anomalia": {
@@ -13,7 +13,7 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 51,
+      "peso_pct": 48,
       "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
       "tema_principal_id": "morena-coordinadores-2027",
       "n_temas": 8,
@@ -83,11 +83,11 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 23,
+      "peso_pct": 27,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 4,
+      "n_notas": 5,
       "notas": [
         {
           "texto": "\"México va bien en las negociaciones\", dice Ebrard sobre acuerdo del T-MEC; \"vamos por buen camino\", afirma - El Universal",
@@ -112,12 +112,18 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOcUdQV3hTQ2FIX05yOEptNkk0dTdHMjdVWmdhUXZBOFh4OF9lRHIwVlQxenVhOXp2MG1kVFk5emdOSEZ4QXNIOTZrSG1QZTRpLW9GSjNOYW9RY1dNMm05X2p5cWxjNmlDWFhYazhWWmdoS0FLQVFaVDlXRzZQQUJCZDBSd2NxTjgx?oc=5",
           "intensidad": 6.0,
           "medio": "Quadratin Oaxaca"
+        },
+        {
+          "texto": "Endurecer reglas del T-MEC daría ventaja a autos asiáticos: expertos - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQczd1TTZGNnFRTlphU1N1YVU4Y1c1SGdtUFBDN0dSOW1EN0pUQkV4LXRFQlBScHlZMm5ZcEVEdDNIeTRrdVZ0SVdHb0p6Y0ljTUw4NHpNTEJ4STZOcG1ldHlsbE5ZQ3hqMDV2SjVCZFdsZmwwaTBDT1NkelJFQnpXa0NJUk9EY1J2MFNWVGlR0gGOAUFVX3lxTE9OUlhqSktWaTlDelpaRUxMY0pmeUhBLU9xUVRzcnNVcGUyQ3FCZ1JNY2NFb2xJWmdud3BsbTRqVm1sRDU0UVdDbTVMRDJENHlIT1NGWFJBcGNPZ29QMFBfMTVUakQ1MVBrLTNmUTVkV1lPLWcwcVo3bnFpYlRYd01ucG9tTzA2ZThvX0NvUWc?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 21,
+      "peso_pct": 20,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 3,
@@ -868,7 +874,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Social",
@@ -878,6 +884,24 @@
     }
   ],
   "top5_temas": [
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "\"México va bien en las negociaciones\", dice Ebrard sobre acuerdo del T-MEC; \"vamos por buen camino\", afirma - El Universal",
+      "peso": 20.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQYjdhanN5UXlXcld3X0I3czNjemtKd2R0bkh2TFEtbloyOURoZkV1aXZxcjdJN0RIMW5IaVZ5LVdadHB3U1NWRV9WNHh1aVZ6VkxOTXlBenJrWUllSHR5V1p1UVBDc2NQaW9ROC03NzlXR3VJcS1XVDRVUzRsaDlHSUZBYlh2cVoxcXlIYlRuWUl0TWxIb2x4cS1jUE9VODdHY0RjSkV4dnl6cDA0WXhPVG9HTzdiTHhXSFd5Rm5PZFQ1ckw3ZHJyYm8zZTZvVTBTM2tleVk2dVk?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
     {
       "id": "huachicol-fiscal",
       "nombre": "Huachicol Fiscal",
@@ -909,24 +933,6 @@
       "medios_corroborantes": 3,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPR3JQQ2wxNnhkTWtsYU5vWTkwelRqWk5PRnhLMGxlYnIwS2xkRFJzQjAzOFlPTVlmSXZoNWtjMUFqV1hMSGthc1lidlJIQ0diLXYteGd0TlRwU0gtblRIeFlaeE85WWZjalVTQnU1OVF0M2JOVXBlQ19EcVFoYlZPeUpDanhjMGho?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
-    {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "\"México va bien en las negociaciones\", dice Ebrard sobre acuerdo del T-MEC; \"vamos por buen camino\", afirma - El Universal",
-      "peso": 14.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQYjdhanN5UXlXcld3X0I3czNjemtKd2R0bkh2TFEtbloyOURoZkV1aXZxcjdJN0RIMW5IaVZ5LVdadHB3U1NWRV9WNHh1aVZ6VkxOTXlBenJrWUllSHR5V1p1UVBDc2NQaW9ROC03NzlXR3VJcS1XVDRVUzRsaDlHSUZBYlh2cVoxcXlIYlRuWUl0TWxIb2x4cS1jUE9VODdHY0RjSkV4dnl6cDA0WXhPVG9HTzdiTHhXSFd5Rm5PZFQ1ckw3ZHJyYm8zZTZvVTBTM2tleVk2dVk?oc=5",
       "actor_vinculado": {
         "id": "sheinbaum",
         "nombre": "Claudia Sheinbaum Pardo"
@@ -1324,10 +1330,10 @@
     },
     {
       "fecha": "2026-10-22",
-      "tension": 30,
-      "n_notas": 11,
+      "tension": 29,
+      "n_notas": 12,
       "n_alto_impacto": 5,
-      "n_medio_impacto": 6,
+      "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     }
   ],
@@ -1347,8 +1353,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://www.informador.mx/mexico/tenemos-salarios-deplorables-trabajadores-del-imss-entregan-pliego-para-claudia-sheinbaum-20261020-0097.html",
-      "nota_texto": "Trabajadores del IMSS entregan pliego para Claudia Sheinbaum",
+      "nota_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOTEFnc1o5cTBfaV9aREtNT3FfZ0pCUGV3M09lZmxuTnRHd2x3SWxVbEdybjQ5RV9HZ2VuUk50NHpzdEppU2ZzM2lYbnlLSFo5d1JPdWZidW40MmhUX3BheFg4dWZvOXZIT3lnTXcxem9ZcWt5WVdxWjhnaGZRWmhZSnhUd2Q1REVvMnAzUUJCczlTT0praWsyRV9uVFpPU0thVDBzQXNjbWpwVjlMN0dlZjJPdHY5MV82eWxB0gHAAUFVX3lxTE1fa2ZUdnhNZGxnQnlFUDNRdVE0TmxOWXlpVlNMOHpROHI0N1FjMGNkdndrenpTeWVVM0tETTh5OU9FQVdjYWtudTNkUlJ0cnY3eXh0UHJyc0o5Y3ZHVXhVSVAxLTVaSThtOFFFeGxwSXFZLXZEdWUyR2dsUDliRHFxLUd4QkI2cWZpOGoxaVh3YXJvNjJ6dWpfc0tsZHhzT3M5NGpkOE5CcXJVbmt5aUZnVl9OMkZubW11UC1sNnFOaA?oc=5",
+      "nota_texto": "Sheinbaum Pardo anuncia plan para aumentar salarios en el IMSS y modernizar sus servicios - Por Esto!",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1373,8 +1379,7 @@
           "x": 100,
           "y": 74
         }
-      ],
-      "fecha_reactivado": "2026-10-22"
+      ]
     },
     {
       "id": "morena_partido",
@@ -1451,8 +1456,7 @@
           "x": 24,
           "y": 100
         }
-      ],
-      "fecha_reactivado": "2026-10-22"
+      ]
     },
     {
       "id": "rocha_moya",
@@ -1605,8 +1609,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUdObnBLbERfZW9MbkE3V01OSWlsYzJScEk2cnhqRnVocW8tdUJXQWp2LUtTTVZWOEFhTmRGbWtLdHVuNUpkdjRyLW9iN1dZWGdGazZaU3dmUjEwUW5paWh4bXdlcmVZLTJtRGsteUtFT3BzaDFaT3BWaUJkX3FMZVJNMXVScm8wSWdWS3JQczI5Q1JYVDBDNUhnQ0RZOTJJSmw5MkVlcUdCdUxMYU1MWVNQSQ?oc=5",
-      "nota_texto": "⚡ Posible presión de Donald Trump — Arrestan a hombre por amenazar de muerte a Donald Trump por redes sociales - Quinta Fuerza",
+      "nota_url": "http://campechehoy.mx/2026/10/20/desmiente-claudia-donald-trump-no-condiciono-t-mec/",
+      "nota_texto": "DESMIENTE CLAUDIA: DONALD TRUMP NO CONDICIONÓ T-MEC",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
@@ -1626,8 +1630,7 @@
           "x": 24,
           "y": 75
         }
-      ],
-      "fecha_reactivado": "2026-10-22"
+      ]
     },
     {
       "id": "bolanoscacho_cue",
@@ -1857,11 +1860,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-22T06:01:10.427864-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-22 11:22"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-22 12:02"
 }
