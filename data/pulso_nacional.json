@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-23T11:30:17.571358-06:00",
+  "generado_en": "2026-10-23T12:00:29.871081-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 23,
+  "n_notas_ventana": 21,
   "baja_confianza": false,
-  "tension_nacional": 27,
+  "tension_nacional": 25,
   "tension_anomalia": {
-    "z": -0.24,
+    "z": -0.51,
     "nivel": "normal",
     "media_periodo": 28.7,
     "dias_base": 27
@@ -13,24 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 58,
-      "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
-      "tema_principal_id": "morena-coordinadores-2027",
+      "peso_pct": 53,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
       "n_temas": 7,
-      "n_notas": 14,
+      "n_notas": 12,
       "notas": [
-        {
-          "texto": "Jasmine Bugarín deja PVEM y se afilia a Morena tras ser nombrada como coordinadora de la 4T en Nayarit - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPX25ZVExFODh1d3hOWGtrZzFJakZBREt1QTN1RUdmOHZFdHM1ZFJXbTFlSGFhVDdacjFyUjI2bWpodks4eTJvdTFXcm1hbWJ0amxCVWFhRlRPZEE1Sy1VS2FocmZxSmliTVU1aElUMFpNSWlQdWw3eWRtSFhLZTZibmpqN3JEbEtHUnY0WU12WDlHd9IBkgFBVV95cUxPX25ZVExFODh1d3hOWGtrZzFJakZBREt1QTN1RUdmOHZFdHM1ZFJXbTFlSGFhVDdacjFyUjI2bWpodks4eTJvdTFXcm1hbWJ0amxCVWFhRlRPZEE1Sy1VS2FocmZxSmliTVU1aElUMFpNSWlQdWw3eWRtSFhLZTZibmpqN3JEbEtHUnY0WU12WDlHdw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Milenio"
-        },
-        {
-          "texto": "Ex 'corcholatas' de Morena en NL ven riesgo electoral por designación de Clara Luz Flores rumbo a 2027 - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPaGZSbjVVWms5a2lxZTliNHpwSTk5MFkxRC1WTTdlanBWMURESF9zVC1rWXJpT3BsdVA0N29kYkNHYzhmS3B5YTFLYTVPdWlXbEJXa0gwYURHWmU0eHRPanZLVmxRbENvN3FfMWJuVHlPMmFUNHB3ZkJ2cmJBa3llZEtnYWd2QUQ2azFMSlU3TDlPb29INHJuZ202eGdxZ9IBngFBVV95cUxPaGZSbjVVWms5a2lxZTliNHpwSTk5MFkxRC1WTTdlanBWMURESF9zVC1rWXJpT3BsdVA0N29kYkNHYzhmS3B5YTFLYTVPdWlXbEJXa0gwYURHWmU0eHRPanZLVmxRbENvN3FfMWJuVHlPMmFUNHB3ZkJ2cmJBa3llZEtnYWd2QUQ2azFMSlU3TDlPb29INHJuZ202eGdxZw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Milenio"
-        },
         {
           "texto": "Guadalupe Siyancán se mantendrá como dirigente interina de Morena Puebla hasta concluir selección de coordinadores - Periódico Central",
           "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOTENSWFIxaXhoSkdWQVJBV2NQelN6N3BJenZjZWpqZy1wSENoSEN3a3hZMnlfbmY5M1drdDRZSUVLYm9rWkVQWUhOLVBVa0oyNkRkd1p5Z2M0SlFJdWhTajBXSlFNSFpiaW9TOUVHSnZWRC1VTkl6ZnR5VUUwM05fYTNYcVlCVVl1eXhNdXlZUFZCeWdHZ1JTMC0xeVI2OG5odklwa0dMM1RSWnU2OWczZFN6YUJWWE9RMFBJRmt6Z25kcDFGdzNWdGc2d1g4QVhMNWl3MXZQaWthTnozRmtqNDhZODlaZHhRWFlKajVoVVdveXBDZnc?oc=5",
@@ -107,7 +95,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 15,
+      "peso_pct": 17,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 3,
@@ -135,7 +123,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 14,
+      "peso_pct": 16,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -163,7 +151,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 9,
+      "peso_pct": 10,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 1,
@@ -185,7 +173,7 @@
     },
     {
       "categoria": "Social",
-      "peso_pct": 4,
+      "peso_pct": 5,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
@@ -904,18 +892,18 @@
   ],
   "top5_temas": [
     {
-      "id": "morena-coordinadores-2027",
-      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
+      "id": "auto-4d7849301a",
+      "nombre": "Exige PRI rendición de cuentas a Ariadna Montiel por manejo de recursos de progr",
       "categoria": "Gobernabilidad",
-      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
-      "motivo": "Jasmine Bugarín deja PVEM y se afilia a Morena tras ser nombrada como coordinadora de la 4T en Nayarit - Milenio",
-      "peso": 28.0,
+      "resumen": "Exige PRI rendición de cuentas a Ariadna Montiel por manejo de recursos de programas sociales - Hoja de Ruta Digital",
+      "motivo": "Ariadna Montiel pide resistencia para coaligarse con PT y PVEM - Milenio",
+      "peso": 14.0,
       "n_temas_agrupados": 4,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPX25ZVExFODh1d3hOWGtrZzFJakZBREt1QTN1RUdmOHZFdHM1ZFJXbTFlSGFhVDdacjFyUjI2bWpodks4eTJvdTFXcm1hbWJ0amxCVWFhRlRPZEE1Sy1VS2FocmZxSmliTVU1aElUMFpNSWlQdWw3eWRtSFhLZTZibmpqN3JEbEtHUnY0WU12WDlHd9IBkgFBVV95cUxPX25ZVExFODh1d3hOWGtrZzFJakZBREt1QTN1RUdmOHZFdHM1ZFJXbTFlSGFhVDdacjFyUjI2bWpodks4eTJvdTFXcm1hbWJ0amxCVWFhRlRPZEE1Sy1VS2FocmZxSmliTVU1aElUMFpNSWlQdWw3eWRtSFhLZTZibmpqN3JEbEtHUnY0WU12WDlHdw?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNNEF5RjBmb1l0eTZIUmxLR0llRUtURW5vbGRJTi1YbU5weUtMSHVDNzZWVnJSeHkyWHlyVG5kNmMxZ0xCcFFZeS1KeXlxLTN0ZWw5aE5wSWh6UWtBNXM3amJJeFBIVWNpRThETGVBWWRKY3FfZjVBQjdvM18tNVRKeEhpcTd4OThmeVJ5VC1wWdIBjwFBVV95cUxNLXlOYV9BRFoxUlZYLXlUZUhjQ1dVMEdQd3N5d3Z1SDM4cVptamlhUmlLZWxKVU9LbThoRVhCREFqMklaNEJKYUxwV2xEb3dEa1VTNWRNR21MS1l3ZkJWSXFoLVgyYkNHelpaQ0Z4eERIWFB4MjFyd1hzeGgxTjlNXzEzclVMSE1HUmJiR21uZw?oc=5",
       "actor_vinculado": {
         "id": "jasmine_bugarin_rodriguez",
         "nombre": "Jasmine Bugarín Rodríguez"
@@ -998,14 +986,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/23/politica/010n2pol?partner=rss"
-    },
-    {
-      "id": "auto-f55496e492",
-      "nombre": "Morena señala persecución política contra Luisa González, excandidata en Ecuador",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/22/morena-senala-persecucion-politica-contra-luisa-gonzalez-excandidata-en-ecuador-tras-su-detencion/"
     },
     {
       "id": "auto-1fc0493067",
@@ -1094,6 +1074,17 @@
       "confianza": "media"
     },
     {
+      "id": "ernesto_ruffo",
+      "nombre": "Ernesto Ruffo Appel",
+      "rol": "Mencionado",
+      "tema": "Huachicol Fiscal",
+      "nota": "Jorge Romero sostiene videollamada con Ernesto Ruffo y acusa ataque político por caso de huachicol fiscal - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQN2laMU5WS21YXzZZYld6MFRXWlBkYXduaU5kVUdjMVAtcUdnQzlPbGtaNWtLSExqWElBWmFULUhidW56RzBmZjRiZGR1MXdhcFE1VFBHdjZXNEpfVjRZUlNwanBPLTdYMmlZa2NEdEtaV1FlQ1IyeUhQNmZOcHJpdlpqMlpLYlp4ZWd2UDd0bDZIQ3lzTlVFUGhDMWIyNzUzLW9xS1RQYlhPQTNKNFZKS2VMSnotVTJFSmF0MHNWLWY0d25xRktFSWxwdHUxbnI2dVVNaXZHdDdWWTRwMXJFRzN30gH8AUFVX3lxTE5OS3JLVWl2aTlkTmUwd3ZtV1hRNkVWVi1zWEQ3bnVRWldmUG52MFZwSzJPUjB6WF90RWg0SC1vNWgxT2dlbUV0M3RPNWpQMldhZllodjd1d3ZjRk1BR25TajdKTzhVUmZiYjlxd0xmT1FfeWdSSU1tbW1UV2QtWUc1NUhkbXFJdVNkZTYxTFV2WHNOc2k3bFJxZWFVRXZVdnNLOXNxeENfVUtHVmRyVW5lMmlkZTI3UWk3em0tVWM0ODBxbDNxcWZmaTREcUltOFhvWXMwdUQ4Q0xTU05hckV2X3NWZmp6bkxNbVJ1aHVjd05Ydi1zSHlsbTZwdw?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "rol": "Responsable institucional",
@@ -1116,24 +1107,13 @@
       "confianza": "media"
     },
     {
-      "id": "clara_luz_flores",
-      "nombre": "Clara Luz Flores",
-      "rol": "Autoridad",
-      "tema": "Coordinadores estatales de Morena rumbo a 2027",
-      "nota": "Ex 'corcholatas' de Morena en NL ven riesgo electoral por designación de Clara Luz Flores rumbo a 2027 - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPaGZSbjVVWms5a2lxZTliNHpwSTk5MFkxRC1WTTdlanBWMURESF9zVC1rWXJpT3BsdVA0N29kYkNHYzhmS3B5YTFLYTVPdWlXbEJXa0gwYURHWmU0eHRPanZLVmxRbENvN3FfMWJuVHlPMmFUNHB3ZkJ2cmJBa3llZEtnYWd2QUQ2azFMSlU3TDlPb29INHJuZ202eGdxZ9IBngFBVV95cUxPaGZSbjVVWms5a2lxZTliNHpwSTk5MFkxRC1WTTdlanBWMURESF9zVC1rWXJpT3BsdVA0N29kYkNHYzhmS3B5YTFLYTVPdWlXbEJXa0gwYURHWmU0eHRPanZLVmxRbENvN3FfMWJuVHlPMmFUNHB3ZkJ2cmJBa3llZEtnYWd2QUQ2azFMSlU3TDlPb29INHJuZ202eGdxZw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "jasmine_bugarin_rodriguez",
-      "nombre": "Jasmine Bugarín Rodríguez",
-      "rol": "Autoridad",
-      "tema": "Coordinadores estatales de Morena rumbo a 2027",
-      "nota": "Jasmine Bugarín deja PVEM y se afilia a Morena tras ser nombrada como coordinadora de la 4T en Nayarit - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPX25ZVExFODh1d3hOWGtrZzFJakZBREt1QTN1RUdmOHZFdHM1ZFJXbTFlSGFhVDdacjFyUjI2bWpodks4eTJvdTFXcm1hbWJ0amxCVWFhRlRPZEE1Sy1VS2FocmZxSmliTVU1aElUMFpNSWlQdWw3eWRtSFhLZTZibmpqN3JEbEtHUnY0WU12WDlHd9IBkgFBVV95cUxPX25ZVExFODh1d3hOWGtrZzFJakZBREt1QTN1RUdmOHZFdHM1ZFJXbTFlSGFhVDdacjFyUjI2bWpodks4eTJvdTFXcm1hbWJ0amxCVWFhRlRPZEE1Sy1VS2FocmZxSmliTVU1aElUMFpNSWlQdWw3eWRtSFhLZTZibmpqN3JEbEtHUnY0WU12WDlHdw?oc=5",
-      "reaparece": false,
+      "id": "garcia_harfuch",
+      "nombre": "Omar García Harfuch",
+      "rol": "Responsable institucional",
+      "tema": "Claudia Sheinbaum desmiente regaño a Omar García Harfuch publicado en medios de ",
+      "nota": "Omar García Harfuch destaca disminución en la percepción de inseguridad",
+      "fuente_url": "https://www.informador.mx/mexico/omar-garcia-harfuch-destaca-disminucion-en-la-percepcion-de-inseguridad-20261023-0053.html",
+      "reaparece": true,
       "tema_nuevo": false,
       "confianza": "media"
     }
@@ -1632,8 +1612,7 @@
           "x": 15,
           "y": 83
         }
-      ],
-      "fecha_reactivado": "2026-10-23"
+      ]
     },
     {
       "id": "trump",
@@ -1650,8 +1629,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "http://campechehoy.mx/2026/10/20/desmiente-claudia-donald-trump-no-condiciono-t-mec/",
-      "nota_texto": "DESMIENTE CLAUDIA: DONALD TRUMP NO CONDICIONÓ T-MEC",
+      "nota_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUdObnBLbERfZW9MbkE3V01OSWlsYzJScEk2cnhqRnVocW8tdUJXQWp2LUtTTVZWOEFhTmRGbWtLdHVuNUpkdjRyLW9iN1dZWGdGazZaU3dmUjEwUW5paWh4bXdlcmVZLTJtRGsteUtFT3BzaDFaT3BWaUJkX3FMZVJNMXVScm8wSWdWS3JQczI5Q1JYVDBDNUhnQ0RZOTJJSmw5MkVlcUdCdUxMYU1MWVNQSQ?oc=5",
+      "nota_texto": "⚡ Posible presión de Donald Trump — Arrestan a hombre por amenazar de muerte a Donald Trump por redes sociales - Quinta Fuerza",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
@@ -1903,5 +1882,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-23 11:30"
+  "hora_corte_publicada": "2026-10-23 12:00"
 }
