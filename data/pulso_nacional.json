@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-24T06:00:49.497540-06:00",
+  "generado_en": "2026-10-24T10:02:14.537465-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 19,
+  "n_notas_ventana": 6,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 38,
   "tension_anomalia": {
-    "z": -0.24,
+    "z": 1.58,
     "nivel": "normal",
     "media_periodo": 27.6,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 60,
-      "tema_principal": "Abatimiento de \"El Mencho\"",
-      "tema_principal_id": "el-mencho",
-      "n_temas": 8,
-      "n_notas": 11,
+      "peso_pct": 85,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 5,
+      "n_notas": 5,
       "notas": [
         {
           "texto": "Ariadna Montiel responde a acusaciones de Maru Campos - CódigoQro",
@@ -26,34 +26,10 @@
           "medio": "CódigoQro"
         },
         {
-          "texto": "Revela gobernadora de Chihuahua discusión a gritos con Sheinbaum por operativo de la CIA - Intolerancia Diario",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPbXc3R0txczA1Ry1PaG9UNHVuT08xQ0hCcHVKSTQtQ0pzSnNubHBSV2ZfVW9hc0JlYThNRmhZRUVjd0NITlJ2NEhGZExHdW81LUVKb0RjQ0VmNnZhc1o4eklqckFLNVJISXlycnNaSEZvR2htQ0hlZFRCNy1DdkU3ZE82Y1drZkc1cTZVa09vQ0VIQVN2VlhuT250cDFDR3o2cmROVzZ6X0d5bzl6clAxMnMwOTN1NXRVRE43ZFB3VFliX3ZIVlRQZ3FIV1NINTMzZTNYcW9wUWlRMmxYLUY0UE01NmhEeVphd2VhYkdpVlVXQ1U?oc=5",
-          "intensidad": 7.0,
-          "medio": "Intolerancia Diario"
-        },
-        {
-          "texto": "Cuatro perfiles del Partido Verde se registran en Morena como aspirantes a Coordinadores Municipales - El Popular, periodismo con causa",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPbkNCUjVad1FhMC1wS3lmWDBQV3F6MDZKRTc0WC1oRFNER3RjMjA4Z3dKaTJMTzBHTl9ienJ5NGdDRm5Pd0lQMUpRVi0zcF9XR0pwZWQ3cl9DTHRHODMwZlBuejI0bUVqa2ZyRDIxM2tVR0pmS2JnRjBaSm9BblNnWDhKZHY2WGFSamxzOUVQeDRES2VaYzZJM1U0ZHFyZVVFX3pXZFg4MTVPU0FuQzh2bmo1eVRHTERDeHhFd3B3dXU5RUdCbGdNTmtuWmJZNm1ENVN1MEpFcHA?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "⚡ Posible presión de Ariadna Montiel Reyes — Exige Javier May pruebas o disculpa pública a gobernadora de Chihuahua tras señalamientos contra Ariadna Montiel - XEVT",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOMnRyMlk1cjJLU2xudWtjMkRjQmdmT0t4ZUh1bEptdmo3WWxnQ2Y0SzlvNy1adDVneGJ4Mk1kVjF4clo5WUxsdmd1MnlUVU1SUW80YmZ0RC1NUGtSZ0prMlVGSTFFYW1RdWZBUWZMUFo4YkVQNmR0ekNndG9UdjhEOFN3ODBLZnZrREhfSzBWUmRMRW8tN0xDV3RrdVRVYU1Eb1pXNlpwSVdaX0RuWnl6c0VDbE9vR1R3VVRGWGNCQ1lWcUREeXZCWDV6RW81cGpMcFNEZ2p3TXBNMHNOdnpJVGg0MA?oc=5",
-          "intensidad": 7.0,
-          "medio": "XEVT"
-        },
-        {
           "texto": "Gobernadores de la 4T respaldan a Ariadna Montiel tras acusaciones de la mandataria de Chihuahua - Por Esto!",
           "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNMXN2S3BpQ2tPTUNyT0ItcHB4MkRza1Bnb1RLS2p6NWkzN3l4UzdSRDZVWndkT1JMZjFuUVBsNml3eWtRQUlHVERZMnpEM1pFVlBiaUQ5Nnd1OGhTcDhhd05lcVNUeHhsek02MElWR2tvWHNXdURzY1hGeV9tem9lbWdjRGVuSjFDQVlsUmpYN1VTd1ZWenlEdkhMSElmWkhoWjZzU2tOTjFZM0lxTENDcURGVDM0SHNPVk53UdIBwgFBVV95cUxNaGFXTXdFcjVHVkFzT2NkVHJTTEpYY1MzLUhZSS1pdWptMTEtWXg0a08tYy1SVHludDUtbUtPTlFTSWRqYVd4NzdFTmw2dzZmRVpCZjI5QVZHN1I1VTZDVnFONm9lYzMwbXhTWl9ab0h4TDRrLXhiUDcwN0k2bEhSdUFTVEFwRWJUZG5nZko1YVItZ3RpVjJhZW8wXzlTaWZ2S2JBSTA1YmRGRldHZm84WG95cGp2aUllZmFnM1N1b21CZw?oc=5",
           "intensidad": 7.0,
           "medio": "news.google.com"
-        },
-        {
-          "texto": "Hermano de \"Mencho\" tramita amparo tras supuesta nueva orden de aprehensión",
-          "fuente_url": "https://www.informador.mx/mexico/don-rodo-hermano-del-extinto-mencho-recurre-al-amparo-tras-supuesta-nueva-orden-de-aprehension-en-su-contra-20261023-0099.html",
-          "intensidad": 6.0,
-          "medio": "informador.mx"
         },
         {
           "texto": "Los Juniors de Rocha Moya vuelven al tablero - Mercurio Sinaloa",
@@ -62,22 +38,10 @@
           "medio": "Mercurio Sinaloa"
         },
         {
-          "texto": "Claudia Sheinbaum expone en la Mañanera los detalles de la tensa discusión con Maru Campos: \"Levantamos la voz las dos\" - Ambito",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNc2JOTVZ1cGNoRUJ1WU1IOUN3UERsS2tUZEx6UjY5Z1U0bUNzVHpEcVJOeTJXMk5ia1MxaEdETDdRaExvbkJNalg0S3U5cFlXcEo5YmY2VUREdHdOelBWSnBhNWI4cjRaQ19BN1NOUkhOcFNKVExaZC1FekNGZ3k5U3JmQTExQzJaT3VyZFF4U0x1dEFQeHU5NVhXRkZldjRrWnpOYzVqMkNWcUM2T2QwNlVVeEx2cUk3ZkJyU2lOSnpqOUpQWEN2TjBSS1NPUndvWUxCVXVxdDRIbUl2OC00dE90Y3pqby1vNzEycEtST094alJVZTlhbNIB_gFBVV95cUxPME9OcV9kX3FYR3p3VWVoelFvTExjc21GaFlVSDVsQnd6ek84VWx5cjNXblpVRTNhQ0tSVmlwN1hvSm9ibmxGaFZfeWpVUGkxU19uci1HWWtweVlYMXFVcklnSzFRcVd2dktMZ1pJbmdHTmFTUjJoMEYxQ3JER3RwY2VwM05sT2VGckpsUkY4cG54cDVHbkp4blp0LXEwSjJGWXJHTDhEdlUzYkQ0cXhGWkpXYjVndk9EN1o5N2FLZXhGVkFEb0oxUGdZYk1CdlkwazB2dDJyVG4yZmZMN3plOFl4dFRBTFMyc0JwcXQ4NmhpX3dRcWY1OVBRallYQQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "Ambito"
-        },
-        {
-          "texto": "Sheinbaum arremete contra el festival organizado por Ricardo Salinas Pliego, opositor de la 4T: \"No les vaya a salir como cuando vino Ayuso\" - Ambito",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxQVUFqRk4tTC0xbnZjU2NVR0dIb1lVRmxfeTRCN3NhU3JWVW16cmVtNC1QZm5mZHJGd2ttYUliMWZsZ294NDZwOWVpZDVpVl9VMHlWU0NpbUIwM2VDWC1xNHo0d3ZkODgtbzlfNUZoSHZFR2puRWgwdERSdnYyaTQtblFySG95T3U2ZVlfbFYzS2xTbUVWWnBMS3hDMnVIU0YtV2J2d2E4VDRaMkYwUVYyYkkyRzVQR3RsajNvNlhlVTdWMFNXbF9hOTk1SDJYb3V1d3Q5UFI4TnBFdkd3Rm90NnBrWVlQTmc4WnNSb2NoWUY5N21sYmZJWG9Ua2M3bngyMWFNUHZtbWFoUUVOajRWMkVTYVHSAZoCQVVfeXFMTUV3YmFwMDJVYTF4VUlRaDBVTF85QmR1RmJFdGFPeGgyTVp5M1ZGWWdMOTluSWg5RnBaMWdtYzREbXF5eFRXcnd3ZmFhZERudkM3OUxSWTAwWVVYQnVzZFhFMkl5NEZsdlJMOG82T1NSa0NOT1RNQnMtRXNjbXRCb2hVdjk5M0xhM0tyQmk4d2o2aUgtWFdOR1d5SXFhLXRlVnFtWG1LVU81QVpxSlhmYUVWR2hiRmF3cUU0Szk5RGhBNkVTZDRJVWRFMV9GLUZXY0JZVXpuZHN1TlcxMkNfdVlhSkR3bzhrcnBueGozYm9SUXJ6U25ndmQwOWtfejRleWVMU3c1alM3NFVFOGR3TWVtLXhqRzhtRGJR?oc=5",
-          "intensidad": 5.0,
-          "medio": "Ambito"
-        },
-        {
-          "texto": "⚡ Posible presión de Morena (partido político) — Exige alcalde de Amaxac que Morena reconozca liderazgo de Ana Lilia Rivera - Intolerancia Diario",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOSlZlNHVHQzlUNm1CRWZ6QjlGdVNWWnpHU01MaHpJdlBVUElXZ3BjU2NEZV9qTi1GNy04Ty1uWmc4S1JwMExhelc3QUp0Q2VlbDA3RG5RUkZVU3BDYkpvZm9TM2c2UVkxa29CRF9naGdHTER1MTRaX1BHZldTTVRycHZGeUQ5Sk1PcTNkTnNwbTE4VnVHOTktX1RLR1pZWk0tNVRKbkNpdXZUWV9OZFBUYk5pX2xuWl9sSGJDdXBMSnZwejM3LV8zZnZ0ZlJNUmh5TXZGbGw1bC1kTHM?oc=5",
-          "intensidad": 5.0,
-          "medio": "Intolerancia Diario"
+          "texto": "Don Rodo, hermano de “El Mencho”, tramita amparo - Cuarto Poder Chiapas",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPR0hiQUpsYkxFWWJaOWk1RFdCQlB3bHdaT1dRT25RNndwMnkzcDJMNzllNU13S1Q1LUo2OVlqa3lFS2UzSlhVYzlBbnJwZWxpRG9waUNiRFBycjdhZDVEdDJPWnEyd0YzYmhLRVA5cXo0QUZyak1JSHJoQjhEMnBWODcyMk8yb18tMjlKQ0VmNVlmd3NscEHSAZYBQVVfeXFMT0dIYkFKbGJMRVliWjlpNURXQkJQd2x3Wk9XUU9uUTZ3cDJ5M3AyTDc5ZTVNd0tUNS1KNjlZamt5RUtlM0pYVWM5QW5ycGVsaURvcGlDYkRQcnI3YWQ1RHQyT1pxMndGM2JoS0VQOXF6NEFGcmpNSUhyaEI4RDJwVjg3MjJPMm9fLTI5SkNFZjVZZndzbHBB?oc=5",
+          "intensidad": 6.0,
+          "medio": "Cuarto Poder Chiapas"
         },
         {
           "texto": "Cruz Pérez Cuéllar anuncia denuncias contra Maru Campos por dichos contra Sheinbaum y Morena - El Sol de México",
@@ -89,81 +53,37 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 20,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 3,
-      "n_notas": 4,
-      "notas": [
-        {
-          "texto": "Elimina Donald Trump aranceles de 50% a productos canadienses - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQODdOVC16TEFfcUdYaUR0YlRrd2ZRMU9rMS05QWlycFpOeHpSd1ZCNlJEX1E1dFp2Y1NVLTdHMkcwX2xiWEFFUUtjd0hFdFloSmU4T19JNXlGYWpqSTNjQUpvYnhFTVRuVE9MekZmTjdyQjZVRmllZnd3UUNGdUk2eFRPWHQtZjhQZnZaMDRsYmVhd9IBkgFBVV95cUxQWngxekNmMEo1THBFdkRveWNaYkhiWTd4X1NVbmFuZW5PdmxzbjZWeDZOdFhnTDBXWWswYTQ3VjJlWGVVNEUxNnJuZ2RNSWN6Y19DNDlyUTNNc1FUdzR0RzYyT1hIcDF4U0lGZ1YxeURlX1NiLTY1SHBDT1lMaS1vRXFyNC0wREMwamZaVU5haENoZw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Milenio"
-        },
-        {
-          "texto": "¿México viola el T-MEC? Congresista de EU acusa trabajo forzado en la contratación de médicos cubanos",
-          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/23/congresista-de-eu-acusa-a-mexico-de-permitir-trabajo-forzado-de-medicos-cubanos-y-pide-revisar-el-t-mec/",
-          "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "Trump demanda para frenar la certificación de la elección al Senado en Alaska si el republicano pierde",
-          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/23/trump-demanda-para-frenar-la-certificacion-de-la-eleccion-al-senado-en-alaska-si-el-republicano-pierde/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "Donald Trump eliminó aranceles del 50% a nueve categorías de productos canadienses - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQdU1YejhNaEt3WW13X1BHeHEtck9nUGNDMUh1Nkt5T1BHVjhoSHAybGNWMW5STTMyd1ZLSnZvSGxZdkVGZlFQbXFOMU1UV1JrY0lYQU9wMnJRb3N2OXV3OUhaaDFWMFBMSUFlZGdDSUR2eFRTNlZTLVpScVdjUXFBOEhnZm4yUU9yblFCYjRCb2huWldxZDhBUFFvUzRkUWFHMTJqSVpzOThYVlp6M2diTWJ4cDhsZkpFNHd4RlVvNDViWUViZ09DdkdxLVnSAecBQVVfeXFMUFVPQkExc21BN0pPSnNpSjhvOGRrSGd0VXhsaWZTdTREUXc3MmhoSWs4cFlHU1F2cnFvRy1nQUZFRnRsM3pUWVBPdXh1Uk9FYVF1Vi00Ty1VOFRIWnJuRmFWMHFOYTFTYjN5XzNYcVNjWWRCOEpwdVNjOFhWR0pIeGVmLWtYbDBEYjV1OHZSSWdiTC1ueXdGOGNMRWhreWh0YWluMzFPQUsycXVEUzM2OERrcDJiMXRDcUxFUzI2MGRHaWNSOWRvMG5rME81b19vQUIxYnV0SVAtd3pkQ0lod2htdXpfSWVr?oc=5",
-          "intensidad": 5.0,
-          "medio": "Infobae"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 17,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Ernestina Godoy asegura que Maru Campos culpó al exfiscal de Chihuahua en el caso de la CIA",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/23/ernestina-godoy-asegura-que-maru-campos-culpo-al-exfiscal-de-chihuahua-en-el-caso-de-la-cia.html",
-          "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "Acusan a Ariadna Montiel, líder de Morena, de nexos con el Cártel de Sinaloa: esto dijo Maru Campos",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/23/acusan-a-ariadna-montiel-lider-de-morena-de-nexos-con-el-cartel-de-sinaloa-esto-dijo-maru-campos.html",
-          "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "🗳️📌 ERNESTINA GODOY REPITE VERSIÓN DE SHEINBAUM SOBRE MARU CAMPOS Y SU EXFISCAL En una demostración de la autonomía de la FGR, su titular, Ernestina Godoy, salió a repetir lo que Claudia Sheinbaum hab",
-          "fuente_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9aNHVXNXBJTTE3d1RubVdUc2ViNUtKRkxwd3VlUS1zb2ZsV1NCekxJWWlER0dYT09RSjBubGhjTGdZbUt0bFo0cDBfTGJWOFNKMENReGpXNHRMbF9QYUNGbkF1MHh4X29KdzFiSXBn?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 3,
+      "peso_pct": 15,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "UV solicitará casi nueve mil millones de pesos de presupuesto para ampliar su matrícula en 2027",
-          "fuente_url": "https://oem.com.mx/diariodexalapa/local/uv-solicitara-casi-nueve-mil-millones-de-pesos-de-presupuesto-para-ampliar-su-matricula-en-2027-32755149",
-          "intensidad": 4.0,
-          "medio": "oem.com.mx"
+          "texto": "Guanajuato pide proteger contenido regional y aranceles en revisión del T-MEC - NW Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQWXgwUEhoYUlHWGRLb3hna0pxb0FFSk9idWZFR3B5dncxR2ZLU3F2MnBNZTQ5d09BTXRyZFpYa1ZkdzFqTkh6SkU3WWdkWExoMEdySUhGWloyVnJIS1JFVkdKRnVodVVJQTJyd1c5NHIzbjNpdE1fSV9fOGVHcmxmOHhCeTdQY3ZpOEdJUzJmRWRqTWh6Zm1qcG53LWxXRWNZbDhUeWNMQ2UtaWFm?oc=5",
+          "intensidad": 6.0,
+          "medio": "NW Noticias"
         }
       ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -864,7 +784,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -877,53 +797,7 @@
       ]
     }
   ],
-  "top5_temas": [
-    {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "Elimina Donald Trump aranceles de 50% a productos canadienses - Milenio",
-      "peso": 12.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQODdOVC16TEFfcUdYaUR0YlRrd2ZRMU9rMS05QWlycFpOeHpSd1ZCNlJEX1E1dFp2Y1NVLTdHMkcwX2xiWEFFUUtjd0hFdFloSmU4T19JNXlGYWpqSTNjQUpvYnhFTVRuVE9MekZmTjdyQjZVRmllZnd3UUNGdUk2eFRPWHQtZjhQZnZaMDRsYmVhd9IBkgFBVV95cUxQWngxekNmMEo1THBFdkRveWNaYkhiWTd4X1NVbmFuZW5PdmxzbjZWeDZOdFhnTDBXWWswYTQ3VjJlWGVVNEUxNnJuZ2RNSWN6Y19DNDlyUTNNc1FUdzR0RzYyT1hIcDF4U0lGZ1YxeURlX1NiLTY1SHBDT1lMaS1vRXFyNC0wREMwamZaVU5haENoZw?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "el-mencho",
-      "nombre": "Abatimiento de \"El Mencho\"",
-      "categoria": "Seguridad Nacional",
-      "resumen": "El 22 de febrero de 2026, fuerzas de seguridad mexicanas abatieron a Nemesio 'El Mencho' Oseguera Cervantes, líder del Cártel Jalisco Nueva Generación, durante un operativo militar en Tapalpa, Jalisco. El operativo detonó una ola de violencia, bloqueos e incendios en varios estados; su lugarteniente 'El Tuli' encabezó las represalias hasta ser abatido, con un saldo de al menos 25 elementos de la Guardia Nacional muertos y decenas de detenidos.",
-      "motivo": "Hermano de \"Mencho\" tramita amparo tras supuesta nueva orden de aprehensión",
-      "peso": 6.0,
-      "n_temas_agrupados": 4,
-      "escalando": true,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.informador.mx/mexico/don-rodo-hermano-del-extinto-mencho-recurre-al-amparo-tras-supuesta-nueva-orden-de-aprehension-en-su-contra-20261023-0099.html",
-      "actor_vinculado": null
-    },
-    {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "¿México viola el T-MEC? Congresista de EU acusa trabajo forzado en la contratación de médicos cubanos",
-      "peso": 6.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/23/congresista-de-eu-acusa-a-mexico-de-permitir-trabajo-forzado-de-medicos-cubanos-y-pide-revisar-el-t-mec/",
-      "actor_vinculado": null
-    }
-  ],
+  "top5_temas": [],
   "temas_nuevos": [
     {
       "id": "auto-0d9ec90cdd",
@@ -934,28 +808,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOSURfNEd4ZTMyNlJLcW5NQ3VXWHhmYlVXNms3RVVPSHF3Ny1uOG1NeU1MQThjRXR2cDFKM2NGeGhUU3Y0LU9SaFV6b3E1eldjRXcyVTBaekk4dWUyVkt2R3JuMDh3WnY2MmVfQlVjYUJTdlNIUklzR1Uzb0cwdlQ2a1pNZ3ZqdlZtVkN6RUZra0lkaUJsV3JUS1pZQdIBmwFBVV95cUxOSURfNEd4ZTMyNlJLcW5NQ3VXWHhmYlVXNms3RVVPSHF3Ny1uOG1NeU1MQThjRXR2cDFKM2NGeGhUU3Y0LU9SaFV6b3E1eldjRXcyVTBaekk4dWUyVkt2R3JuMDh3WnY2MmVfQlVjYUJTdlNIUklzR1Uzb0cwdlQ2a1pNZ3ZqdlZtVkN6RUZra0lkaUJsV3JUS1pZQQ?oc=5"
     },
     {
-      "id": "auto-628bc84705",
-      "nombre": "Maru Campos responde a relación con Sheinbaum: ‘Nunca me voy a doblar, hasta don",
+      "id": "auto-5436a2102a",
+      "nombre": "Edomex alista estrategia en materia de seguridad para 13 municipios del corredor",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/23/maru-campos-responde-a-relacion-con-sheinbaum-nunca-me-voy-a-doblar-hasta-donde-tope/"
-    },
-    {
-      "id": "auto-eda9070111",
-      "nombre": "\"Pruebas contra Ariadna Montiel no son mi prioridad\": Maru Campos revira a Shein",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/no-he-presentado-pruebas-contra-ariadna-montiel-porque-no-es-mi-prioridad-maru-campos-revira-a-sheinbaum-20261023-0098.html"
-    },
-    {
-      "id": "auto-96d59389d7",
-      "nombre": "Evalúa Morena revisar superpoderes de Taddei - Reforma",
-      "categoria": "Relación Bilateral",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxORHJjMGdpeElyVVlaVnd6Sm9DY0k4VWZ6aGMydXFWYVJtOU10Qzd3a1lHZElxYnU5ZjZ3VWh5alFzZDJaWVYybnppVENqNWRaMVdHRkVPMUNnU0JZWHpEUlF0Q29ELVc0SjhLUS14YW5mOW0yXzhIcGFKU3lXdFh6ODNHVXQ?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/10/23/edomex-alista-estrategia-en-materia-de-seguridad-para-13-municipios-del-corredor-aifa-piramides/"
     },
     {
       "id": "auto-6af2f0adeb",
@@ -964,6 +822,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/24/politica/005n2pol?partner=rss"
+    },
+    {
+      "id": "auto-708530b602",
+      "nombre": "Mara Lezama supervisa construcción de cuartel para duplicar de 200 a 400 policía",
+      "categoria": "Relación Bilateral",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOREo2bU1uOXRLMnZYN056X0xuMVF3Mmx0OTlxazdGMkdYSHhSSXM3bHhodUdwc1FNQ29STzVQRlFEaVBrU2psd0ZueUwzdGRmbnpORC1kOTAya04xa1JvSEFwSVVtVFhkVnZuUndKenMweGtTVkJzcnNEMGwyYkJjeFZUTW1HM2lvTnZsRTVIOU9hSXo3SkZjUVpkS2xHaHZNUXNiSnFSQ0R3ZjdjSVk3elRYTEYwbzBH?oc=5"
     }
   ],
   "temas_retomados": [
@@ -977,17 +843,6 @@
       "fuente_url": "https://www.jornada.com.mx/2026/10/24/politica/010n1pol?partner=rss",
       "fecha_anterior": "2026-09-24",
       "fuente_url_anterior": "http://campechehoy.mx/2026/09/24/advierte-de-manipulacion-masiva-con-ia-en-redes/"
-    },
-    {
-      "id": "auto-771c303e87",
-      "nombre": "Marco Rubio, el hombre del presidente",
-      "categoria": "Relación Bilateral",
-      "dias_silencio": 17,
-      "motivo": "“Nos ocuparemos de Cuba después de Irán”, asegura Trump; planea que Marco Rubio concrete el trato - El Universal",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNc2stSUpoa0hPMlJDOHBWQzZ5cGplWllaTC00SS1IVV9LYVdiamVrR3lHdzRzaUlsbVdKNld2aFJNYk5jQmp3eHZGMzFsTGZvbDBIWHBmOVQzZk13ZjhnZ2hYRzlDb0F5b29TLXEzaF9qcTBoU2ZLTzZ0bXU2S0FfbXhwQ2RPcXlMcEQ0OTVRbnBnQnRENGNfOE1WNjBYVFhFUkpjUFZoRDhkY3NrMFBJd0ZuanVKOE5PT1J1cUtnS3hvVHMwM05qLTVsbw?oc=5",
-      "fecha_anterior": "2026-10-06",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOZTdJM2k2SGlBT2NNb2g4MFNRcXJ1N001Y215NmJxQlExMkxDNng2Zy1PZWFzUFk5a25QNks3d3paOV9tU0hROTFrWmswSFBtNlpkYmxZbHBSbHpLNXBTY3VRaUI5MjdFeTdLeHlkY3FpdnBNaXVSMkE0S2RSMUYyVHFNZmZFXy00TVBpZjlWdw?oc=5"
     },
     {
       "id": "auto-8e2e82bb41",
@@ -1012,36 +867,25 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOUE5YdXJ4akl3anRORDA4ZVR5T1NUbWxCdDZWZ3JrT3VWZGZMZlRuUjFScTdqN1ZJc3ZLU0xBRmNIcGtScmVxVURxVkhNZHlYMVROZzFmSjM4NVo3UXdNU29sYzFFajN2YWFGMS1hNVJQMUhJb1FoOXZTWTlOTG9HZ1pLZFVwR1V0TmFuMDVob05tb1duekJzdUJ2WFp0NEp3QUw0SFdDWQ?oc=5"
     },
     {
-      "id": "auto-ea5a0e5da2",
-      "nombre": "Estrategia Nacional de Seguridad en Tabasco contribuye a reducir 54% el homicidi",
-      "categoria": "Seguridad Nacional",
-      "dias_silencio": 11,
-      "motivo": "Fiscalía detiene a Cleofas 'N', director de seguridad en Tabasco - Milenio",
+      "id": "auto-de751c0fe8",
+      "nombre": "Alejandro Moreno respalda a Adrián de la Garza en Nuevo León - Milenio",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 7,
+      "motivo": "No mentir, no robar… no explicar, escribe Alejandro Moreno - El Universal",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxObGZFaXZZRWhaV0JxQzRnVS10UWExNnpyN1A4V1RtdDBPR29yd21jZmRscXQ0eFgyYUJ5MldxWlNSOWJObGc2ZFhRUnVlclNjcTdhSndhcFVQRXl6UUN3bnYxU1d4d1h5Sy11VXlpbG1vZHQ0THZJUE40MWRPMWE0NUZDYlNRN0lydHg2QkRXb3lVdlFDTEHSAZYBQVVfeXFMT3F5elp2My1vUjdUYjFKdWVfWFVKX3VUMm9DRVpWeGtTWG8zeU1rZVNnUFpBdnc4ZU5YYXBuOFVlTDMwM2pyZl9PTjg4NHcyVGdzYkNod2laYTF6czAwZkw4WEZtTFlHSmtNdTNTWFJRVDJJbUR6OTBoMGNPQ281Y2tpSlJFcnd4czJUMS1RNjZLU3p1YVln?oc=5",
-      "fecha_anterior": "2026-10-12",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNU2tGVmwwUFVaSFJaZ004WjRranJ5aDdoUHpHQVNGblRrdWJIQk04ZGlJN1pyYjdCal9kdXFacjNjYi13UFRrMnF0SFBjWGdYdmpuMG9NUzg2QzBPX2hGalN3d0RLbUFYVGNJc1BGdVRVcHc3ZjlQdDRiQlZnTnMzRWx0a0VwYWJKZkVTcmdtNkhuT0EwcnFsM2xnS1lyRmVPZkRBVFFncnpVZWc0QTIxd3dWWmpuWUtWWFNHalB4cTdoVThMYW84S1R6VF9zZw?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQa2s5QTAzY082UlBuRWtCMEpUT3lKQ3lFWmpGSWd3QnoydERkZnpoT21mNjRqZGt3QjFTSGZSdVF2UVZtLUdVclVTWEtDNjVPS1BuQmFBUEp0SGNpRWRfa3BZd3k5ZWNTSVVNUHdQZFI1Rm5BZ1djREQ3aXBaT19lV0xlSTd4dHRGNXc1Z3Jlei0?oc=5",
+      "fecha_anterior": "2026-10-16",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOOWgyV2U4OVdCR0d5a2lWbE55U3Y3SkVjOWtjLUJqNnRsMWRiU1pYV29XOV90di1KVnE5NHdwSnpNVE92M3dRZ0pyRzM5al9IbTBKcUJ3ZlNvREx0TEozekRFcmN3eTduWjk2d0phZ1JkMGNwSTV1NmdldnlubzdfUG1WU3dSNExvYTBKMVYwdlF4QVJy?oc=5"
     }
   ],
   "actores_destacados": [
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Responsable institucional",
-      "tema": "Solicitud de uso de salas VIP para senadores en el AICM fue un ‘error garrafal’,",
-      "nota": "⚡ Posible presión de Claudia Sheinbaum Pardo — \"Cero privilegios\": Sheinbaum exhibe a senadores por pedir salas VIP en el AICM",
-      "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-exhibe-a-senadores-por-pedir-salas-vip-en-el-aicm-cero-privilegios-que-no-se-nos-olvide-de-donde-venimos-20261023-0081.html",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "rol": "Responsable institucional",
-      "tema": "\"Pruebas contra Ariadna Montiel no son mi prioridad\": Maru Campos revira a Shein",
-      "nota": "\"Pruebas contra Ariadna Montiel no son mi prioridad\": Maru Campos revira a Sheinbaum",
-      "fuente_url": "https://www.informador.mx/mexico/no-he-presentado-pruebas-contra-ariadna-montiel-porque-no-es-mi-prioridad-maru-campos-revira-a-sheinbaum-20261023-0098.html",
+      "rol": "Investigado",
+      "tema": "‘Son 3 horas diarias, no se podía\": Por este motivo, Claudia Sheinbaum dejó de b",
+      "nota": "‘Son 3 horas diarias, no se podía’: Por este motivo, Claudia Sheinbaum dejó de bailar ballet",
+      "fuente_url": "https://www.elfinanciero.com.mx/espectaculos/2026/10/22/por-que-claudia-sheinbaum-dejo-las-clases-de-ballet-para-estudiar-fisica/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1049,10 +893,10 @@
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "Evalúa Morena revisar superpoderes de Taddei - Reforma",
-      "nota": "Evalúa Morena revisar superpoderes de Taddei - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxORHJjMGdpeElyVVlaVnd6Sm9DY0k4VWZ6aGMydXFWYVJtOU10Qzd3a1lHZElxYnU5ZjZ3VWh5alFzZDJaWVYybnppVENqNWRaMVdHRkVPMUNnU0JZWHpEUlF0Q29ELVc0SjhLUS14YW5mOW0yXzhIcGFKU3lXdFh6ODNHVXQ?oc=5",
+      "rol": "Reacción social/mediática",
+      "tema": "Senadora de Morena exige a Aeroméxico acceso a sala premier VIP - Milenio",
+      "nota": "⚡ Posible presión de Morena (partido político) — Senadora de Morena exige a Aeroméxico acceso a sala premier VIP - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPTnhWRGRnZnM5ZnB3Z0RLT3lnZE5KcHlhbkt0SG9IdHV6dlVVRDAxSENiMzN3elRQYld1RDRvMGlIR0NCbEhURmJGMThxOGxndS1IZ2RNUUVIR3NTeFdaX2lQZV8yeGtRWTMxX1RheEZPQ182ckhzV3FrSWY3T2ZValAzcjBqM2MxX0llb0lWV092LUxDLVJ0QldXa2huTmVtX3dXUUJPS0V4Ql9BbmNRdXNqNUctUdIBtgFBVV95cUxPZXhvTzJIOGExbDlWN3FxRHE3Q0d3YVpGRG9LOTJDZHl6bC1pZDF5QWRObUtfV0pWdWREZVR1M1lqR1BYbzhQNzRlSl9Qc2hnR0h4NkQzY0h2ajhFbWdNWDV2YWh2dmltMi1ucEVkRHkzU2lFNlM2bDdia0xwbmhkVzJwNzVTNGFuNHd0UVlqX0xNODBUdGExMmZUVlN0czd0X09jSHlCY2RKSDVqM0Nuanl1YlVTdw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1064,17 +908,6 @@
       "tema": "Marcelo Ebrard destaca que México paga menos aranceles que otros países a EEUU y",
       "nota": "Marcelo Ebrard revela que hay avances en las negociaciones con EEUU sobre aranceles a autos, aranceles y aluminio - Infobae",
       "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPT29sQUowOWJBNGczQi1CZ0xkNkJINUpXMUI2WHEwOWZfY1RSOVNYMVE2d1UwRGlSMXBVRW1Db05ib2FFanF5c255U2VRMTNlbXpqNzd4ZHJyRmozM0g2c2dEemJhWWEwUlY2VmZnYnRZM1BsZDdQU2hUd3Z5Ql9LVEEtQUV0dG5rN1dNaC1ldFVTYUgxX25YVWZGYWczQjZ0ME9PUUtRdW1ON0ZROWJOMUNTQlRXZEtUS3ZrLXJxUGJFZk5nSUVrWFBPN1hBY2ZmMmprc1czdkx1NmZxdzJXMUVyOFRQRkpEVHBz0gGGAkFVX3lxTFBDNE9VcEs3NWRvR2RuY2FKLTdhQ2p3dHZ5WUwtc19qU1ZpckhrQllRbi1VVktidTVDSDd6bkhmazFGOVpULWpJWWI2S1MwdklLVU96WEJmQjhuZVNJd1N6SUVJb25sUGkwTmxwcGFtNUdzekxJUnZqcEFnNWgzOXFTZ212aGdtaXBKeTdTU1pIR3pzVy11YlpHQllNdzVtX0pEV0l4Um12TzRTVE9ZeUJtbnRHRDhILTE0SnZfVWpKVUZZZjlNbmhCWnBtb0VyZUI1N1YtN0l5cnI3Y0ZrSmRfRGpvVk9DbE1TX3hFQ3h3RGRtaTdZUC1ZRFlrd3ZWQmhubjZyckE?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Trump y México: declaraciones y presión",
-      "nota": "Elimina Donald Trump aranceles de 50% a productos canadienses - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQODdOVC16TEFfcUdYaUR0YlRrd2ZRMU9rMS05QWlycFpOeHpSd1ZCNlJEX1E1dFp2Y1NVLTdHMkcwX2xiWEFFUUtjd0hFdFloSmU4T19JNXlGYWpqSTNjQUpvYnhFTVRuVE9MekZmTjdyQjZVRmllZnd3UUNGdUk2eFRPWHQtZjhQZnZaMDRsYmVhd9IBkgFBVV95cUxQWngxekNmMEo1THBFdkRveWNaYkhiWTd4X1NVbmFuZW5PdmxzbjZWeDZOdFhnTDBXWWswYTQ3VjJlWGVVNEUxNnJuZ2RNSWN6Y19DNDlyUTNNc1FUdzR0RzYyT1hIcDF4U0lGZ1YxeURlX1NiLTY1SHBDT1lMaS1vRXFyNC0wREMwamZaVU5haENoZw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1301,10 +1134,10 @@
     },
     {
       "fecha": "2026-10-24",
-      "tension": null,
-      "n_notas": 0,
+      "tension": 25,
+      "n_notas": 2,
       "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "n_medio_impacto": 2,
       "n_bajo_impacto": 0
     }
   ],
@@ -1324,8 +1157,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/edicion-impresa/2026/10/22/layda-sansores-participa-en-reunion-con-claudia-sheinbaum-para-impulsar-vivienda-inversion-en-campeche-914104.html",
-      "nota_texto": "Layda Sansores participa en reunión con Claudia Sheinbaum para impulsar vivienda e inversión en Campeche",
+      "nota_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOTEFnc1o5cTBfaV9aREtNT3FfZ0pCUGV3M09lZmxuTnRHd2x3SWxVbEdybjQ5RV9HZ2VuUk50NHpzdEppU2ZzM2lYbnlLSFo5d1JPdWZidW40MmhUX3BheFg4dWZvOXZIT3lnTXcxem9ZcWt5WVdxWjhnaGZRWmhZSnhUd2Q1REVvMnAzUUJCczlTT0praWsyRV9uVFpPU0thVDBzQXNjbWpwVjlMN0dlZjJPdHY5MV82eWxB0gHAAUFVX3lxTE1fa2ZUdnhNZGxnQnlFUDNRdVE0TmxOWXlpVlNMOHpROHI0N1FjMGNkdndrenpTeWVVM0tETTh5OU9FQVdjYWtudTNkUlJ0cnY3eXh0UHJyc0o5Y3ZHVXhVSVAxLTVaSThtOFFFeGxwSXFZLXZEdWUyR2dsUDliRHFxLUd4QkI2cWZpOGoxaVh3YXJvNjJ6dWpfc0tsZHhzT3M5NGpkOE5CcXJVbmt5aUZnVl9OMkZubW11UC1sNnFOaA?oc=5",
+      "nota_texto": "Sheinbaum Pardo anuncia plan para aumentar salarios en el IMSS y modernizar sus servicios - Por Esto!",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1760,7 +1593,7 @@
   ],
   "tablero_semana_inicio": "2026-10-19",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "sin_mananera",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1820,5 +1653,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-24 06:00"
+  "hora_corte_publicada": "2026-10-24 10:02"
 }
