@@ -47,6 +47,7 @@ auto-10cc6a1112,Claudia Sheinbaum lo confirmó: se evalúa nuevo aumento para pe
 auto-dd10bcf406,Manifestantes bloquean paso de Claudia Sheinbaum y le plantean demandas en Juáre,3,informativo,12,4,0.33,mezcla historias
 auto-e1c3b9234b,"Atacan a equipo de alcaldesa de Tecámac, Estado de México - Meganoticias.mx",3,informativo,9,3,0.33,mezcla historias
 auto-1d0cc3cc21,A los del PAN cada vez les creen menos: Sheinbaum sobre viaje a Europa - Quadrat,3,informativo,6,2,0.33,mezcla historias
+auto-642a4e6753,García Harfuch comparece en privado ante el Senado como parte de la glosa del se,1,completo,6,2,0.33,mezcla historias
 ley-telecomunicaciones-2025,Nueva Ley de Telecomunicaciones y Radiodifusión,2,completo,3,1,0.33,mezcla historias
 ruptura-diplomatica-ecuador,Ruptura Diplomática con Ecuador,2,completo,3,1,0.33,mezcla historias
 auto-32dee1a56b,"Con Alonso Romero, ANAM fortalece controles de confianza para nuevo personal: Sh",3,informativo,3,1,0.33,mezcla historias
@@ -78,7 +79,6 @@ auto-c0ccef3fbe,¿Quiénes son los cadetes que entregaron la bandera a Sheinbaum
 auto-60e86e646e,"México no se doblega ni se arrodilla y nunca se vende, define Sheinbaum",1,completo,5,2,0.4,mezcla historias
 auto-e8e86c177d,"🌎 Ellos son Luis Olivares, secretario de Economía del Gobierno del Estado de Coa",3,informativo,5,2,0.4,mezcla historias
 auto-04223cbd81,Claudia Sheinbaum y SEP aprueban restricción del uso de celulares en primarias y,1,completo,5,2,0.4,mezcla historias
-auto-642a4e6753,García Harfuch comparece en privado ante el Senado como parte de la glosa del se,1,completo,5,2,0.4,mezcla historias
 auto-ad130e93d6,Los jóvenes papantecos acompañaron al alcalde a recibir a la Presidenta - Diario,3,informativo,12,5,0.42,mezcla historias
 huachicol-fiscal,Huachicol Fiscal,1,completo,397,171,0.43,mezcla historias
 auto-d4ad5d9712,Claudia Sheinbaum niega que los mexicanos quieran intervención extranjera y deja,3,informativo,23,10,0.43,mezcla historias
@@ -270,7 +270,6 @@ auto-c61469485e,El cinismo de un alcalde cuestionado - e-consulta.com,3,informat
 ley-antimemes,Ley Antimemes y reforma de propiedad industrial,1,completo,34,26,0.76,ok
 el-mencho,"Abatimiento de ""El Mencho""",1,completo,29,22,0.76,ok
 auto-5666b8f6a7,Nuevo dirigente de Morena Tabasco lo definirá el Consejo Estatal o el CEN: Jesús,3,informativo,26,20,0.77,ok
-auto-708f865cd2,Fiscal Ernestina Godoy galardona a miembros de la policía ministerial,3,informativo,13,10,0.77,ok
 auto-28b2dab9ba,Emboscada junto a un río termina en homicidio; detienen a presunto responsable e,3,informativo,13,10,0.77,ok
 la-barredora,La Barredora,1,completo,23,18,0.78,ok
 auto-9b109e7b25,Ven con buenos ojos que Congreso defina municipios para mujeres en 2027 - El Sol,3,informativo,23,18,0.78,ok
@@ -280,6 +279,7 @@ auto-bbaa4a7b46,Policía Estatal asume seguridad de Juchitán tras detención de
 auto-861a4925d0,Sentencian a 15 años de prisión a tres personas en Sonora por posesión de armas ,3,informativo,9,7,0.78,ok
 auto-02d8e54c89,Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 18 de septiembre de 2026: Síguel,1,completo,29,23,0.79,ok
 auto-b5d6fb5683,Layda Sansores destaca liderazgo de Claudia,1,completo,24,19,0.79,ok
+auto-708f865cd2,Fiscal Ernestina Godoy galardona a miembros de la policía ministerial,3,informativo,14,11,0.79,ok
 auto-dacd2cd4d0,"Informe desde Estocolmo: la migración, en el centro de la jornada electoral en S",3,informativo,14,11,0.79,ok
 auto-9a04e4096e,La Secretaría de las Mujeres presentó un informe sobre sus acciones durante el ú,3,informativo,425,342,0.8,ok
 auto-0aff0917b3,Denunció agresión sexual a su hija en secundaria; Fiscalía de Veracruz la proces,3,informativo,10,8,0.8,ok
@@ -353,7 +353,7 @@ auto-90d728719a,"El IEPC Tabasco es un órgano autónomo, no interviene el Gobie
 auto-8a8046937c,El próximo sábado 19 de septiembre se llevará a cabo el segundo Simulacro Nacion,3,informativo,7,6,0.86,ok
 auto-d2ae07bb0d,Claudia Sheinbaum y Donald Trump hablaron por teléfono sobre el acuerdo comercia,1,completo,7,6,0.86,ok
 auto-b57cec062e,La corona de Morena está en riesgo - El Financiero,1,completo,7,6,0.86,ok
-auto-70761cce6c,Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida,3,informativo,7,6,0.86,ok
+auto-70761cce6c,Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida,1,completo,7,6,0.86,ok
 auto-771c303e87,"Marco Rubio, el hombre del presidente",3,informativo,7,6,0.86,ok
 auto-3842db069d,Morena defiende nueva ley catastral: 52% del predial no se recauda,1,completo,7,6,0.86,ok
 auto-ab51b7a24e,Reforma de nacionalidad única es avalada por 22 congresos estatales - Zona Franc,3,informativo,7,6,0.86,ok
@@ -701,6 +701,7 @@ auto-8ab7f9bd7b,SAT y Sheinbaum detectaron a más de 54 mil empresas que acumula
 auto-f1fa3803ab,¿Por qué latinos y jóvenes que apoyaron a Trump hoy le dan la espalda? - La Sill,3,informativo,6,6,1.0,ok
 auto-969d88066f,Listado completo de pensionados IMSS que cobrarán casi 18 mil pesos en octubre 2,3,informativo,6,6,1.0,ok
 auto-9e3f36cfc1,Forma Ayuntamiento de Veracruz nuevos talentos en la natación con las Escuelas D,3,informativo,6,6,1.0,ok
+auto-23aafccb3f,"Layda Sansores, gobernadora de Campeche, señala campaña de ‘fake news’ y niega i",3,informativo,6,6,1.0,ok
 auto-9965a6c899,IEEPCO aplicará “8 de 8” a candidaturas en Oaxaca; sentenciados por violencia y ,3,informativo,6,6,1.0,ok
 auto-73c1c5814c,¡DESIGNA MORENA A 'AHIJADO' DE MARA EN QR! - NOTIVER,3,informativo,6,6,1.0,ok
 auto-1a131301d3,"MÉXICO, UN PAÍS LIBRE E INDEPENDIENTE",1,completo,6,6,1.0,ok
@@ -779,7 +780,6 @@ auto-47e00c49c7,"Amílcar Olán, amigo del hijo de AMLO, habría financiado camp
 auto-c554fc10b9,Aprueban en comisiones la integración del Concejo de Esperanza tras detención de,3,completo,5,5,1.0,ok
 auto-31142b1965,‘¿Un ratero hablando de robar la eleccion?’: Hermano de AMLO responde a acusacio,1,completo,5,5,1.0,ok
 auto-b056bd5bf8,Sheinbaum: “es absurda” la supuesta encuesta de EU sobre apoyo de mexicanos a un,1,completo,5,5,1.0,ok
-auto-23aafccb3f,"Layda Sansores, gobernadora de Campeche, señala campaña de ‘fake news’ y niega i",3,informativo,5,5,1.0,ok
 auto-ee75c21d30,Hay críticas tanto de la oposición como del propio partido en el poder.,3,informativo,5,5,1.0,ok
 auto-8b1d9f44c2,Claudia Tacoronte: Universidad de Granada suspende intercambios a la UAEM,3,completo,5,5,1.0,ok
 auto-3d55b135f0,Condenan a 47 años a hombre por feminicidio contra su madre en Tehuacán,3,informativo,5,5,1.0,ok
