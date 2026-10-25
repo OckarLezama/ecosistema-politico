@@ -1,70 +1,24 @@
 {
-  "generado_en": "2026-10-25T00:01:14.784482-06:00",
+  "generado_en": "2026-10-25T06:02:34.511509-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 12,
+  "n_notas_ventana": 8,
   "baja_confianza": false,
-  "tension_nacional": 23,
+  "tension_nacional": 25,
   "tension_anomalia": {
-    "z": -0.58,
+    "z": -0.29,
     "nivel": "normal",
     "media_periodo": 27.0,
     "dias_base": 27
   },
   "categorias_dia": [
     {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 39,
-      "tema_principal": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
-      "tema_principal_id": "auto-70761cce6c",
-      "n_temas": 3,
-      "n_notas": 5,
-      "notas": [
-        {
-          "texto": "Morena refuerza organización territorial en Tlaxcala con Ariadna Montiel y Ana Lilia Rivera - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUdIBzgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Don Rodo, hermano de “El Mencho”, tramita amparo - Cuarto Poder Chiapas",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPR0hiQUpsYkxFWWJaOWk1RFdCQlB3bHdaT1dRT25RNndwMnkzcDJMNzllNU13S1Q1LUo2OVlqa3lFS2UzSlhVYzlBbnJwZWxpRG9waUNiRFBycjdhZDVEdDJPWnEyd0YzYmhLRVA5cXo0QUZyak1JSHJoQjhEMnBWODcyMk8yb18tMjlKQ0VmNVlmd3NscEHSAZYBQVVfeXFMT0dIYkFKbGJMRVliWjlpNURXQkJQd2x3Wk9XUU9uUTZ3cDJ5M3AyTDc5ZTVNd0tUNS1KNjlZamt5RUtlM0pYVWM5QW5ycGVsaURvcGlDYkRQcnI3YWQ1RHQyT1pxMndGM2JoS0VQOXF6NEFGcmpNSUhyaEI4RDJwVjg3MjJPMm9fLTI5SkNFZjVZZndzbHBB?oc=5",
-          "intensidad": 6.0,
-          "medio": "Cuarto Poder Chiapas"
-        },
-        {
-          "texto": "Se fortalece trabajo territorial en Tlaxcala; CEN de Morena alinea estructura territorial con Ana Lilia Rivera - La Jornada de Oriente – Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPYXVKR0tXUEpKcVZSLWhPcFBURkllMkpwUk53YXVSdDJ0cFc4MmFPcHUyb3NaOXB6OUJfa1JPTEd5LUswaVRjMXlVdnR4YWxYNkVvclBLcVFJUzgxcUZ3aW4zVkktbDRaS192VHRzbTZIUF9jbGNjSU9nT05LanRqMTlfUk5qekFoRjNCVTViN2xVeUlJTUlyenc1R3NMWHJsV2VldU4wdmFOTUpmZVJqdVZXdTd2TU15NXlHR3E2am8xb1FKNjdSaGl3Q0VoVm5wb21Nbzg5eXZDblFGS280RmhvTkdONTJLYVgzLUpR?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Ariadna Montiel y Ana Lilia Rivera unen fuerzas para fortalecer la Transformación en Tlaxcala - El Soberano",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQLVhreWxQX2lEZGVqZEJCNTluVGRZWkRXS2tuVWQ2cklVVDh4a19BX1RQNmJuS09tVlZQcUY1dmRMRHR5SDVIc043TGNuTmRJb2YyOVZXUFdyOFNkT0MwV0ZJREQxY3k2RDY0YVRleUZHNjZMNm9pQUxQd3J1cHNGZHhId1JSWFYzSmVEZ0xTN2hmaG9uRi1laEZmeUNkSXpHSTBiVzFTSHJlWFUybHd2XzVuelhUem9NQmw2S2N2R3BwNl9JelE?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Soberano"
-        },
-        {
-          "texto": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
-          "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
-          "intensidad": 5.0,
-          "medio": "informador.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 32,
+      "peso_pct": 35,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 3,
-      "n_notas": 4,
+      "n_notas": 3,
       "notas": [
-        {
-          "texto": "Detienen a 3 por homicidio de 3 personas en la Mixteca - Quadratin Oaxaca",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQNkxQR25fLXE0TnA2VTA1UXBKMi1Pd3BPTW5PLUJWNHhZVFJCNGZhUEpaSVFJbjRFNVAwMGhqOXhKYi1DQTJ3UlIyZ21vUVA0TFNyZkN3NEgxMVdhMWt5czUyY3BWX2lfaW5waGtrNy05N1dqdDJVR3VUTGJ1X3VDSUZ4MDc4b0FqNkswem1jTGs?oc=5",
-          "intensidad": 6.0,
-          "medio": "Quadratin Oaxaca"
-        },
         {
           "texto": "Vinculan a proceso a \"El Talibán\" de \"Los Chapitos\"; es acusado de portar armas exclusivas del Ejército - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNS2V1dDdYNzVIY0h0OVFSYVh4RGluSnkzSkxha0E3RnExbzZtVnIwYnhkT2swOFB0d2x6Zm5hWlRud2x6UG1TZVE3ZGF6RFdpbVpDQ3lWQUdsbGlWTDV5SFpOWElIZFVlaDFseHFCaUFUSjhPTTlvOVlGZ1JQOFlUMzBTTldaVFpkNkhoekJIeDR4V1hJdklkYWtMUC1GTWF6ejBzeU1WbTBLVzFDU2daU0ZtRWcwNzdPM3M5Rkp3TkRtQWZwYTlQcWJ4SlpPcWNjSThV?oc=5",
@@ -86,12 +40,40 @@
       ]
     },
     {
+      "categoria": "Gobernabilidad",
+      "peso_pct": 35,
+      "tema_principal": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
+      "tema_principal_id": "auto-70761cce6c",
+      "n_temas": 2,
+      "n_notas": 3,
+      "notas": [
+        {
+          "texto": "Morena refuerza organización territorial en Tlaxcala con Ariadna Montiel y Ana Lilia Rivera - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUdIBzgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Ariadna Montiel y Ana Lilia Rivera unen fuerzas para fortalecer la Transformación en Tlaxcala - El Soberano",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQLVhreWxQX2lEZGVqZEJCNTluVGRZWkRXS2tuVWQ2cklVVDh4a19BX1RQNmJuS09tVlZQcUY1dmRMRHR5SDVIc043TGNuTmRJb2YyOVZXUFdyOFNkT0MwV0ZJREQxY3k2RDY0YVRleUZHNjZMNm9pQUxQd3J1cHNGZHhId1JSWFYzSmVEZ0xTN2hmaG9uRi1laEZmeUNkSXpHSTBiVzFTSHJlWFUybHd2XzVuelhUem9NQmw2S2N2R3BwNl9JelE?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Soberano"
+        },
+        {
+          "texto": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
+          "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
+          "intensidad": 5.0,
+          "medio": "informador.mx"
+        }
+      ]
+    },
+    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 28,
+      "peso_pct": 29,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 3,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Gobierno de Trump defiende planes de muro fronterizo con México: “no es negociable”",
@@ -104,12 +86,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOOF96Q05KVXhUZUFYSXgtMVpFWjEyT213RkplWVRvX25yNWdkT0gxRW94LW1peWNFdXExbUFrZWQzbC1pUFdLR1NLWjFvWkMtOHBsamxEaVNabU5lZ3o5ZjV2RUZxNkMxTm5MUFFqc0VHMjIzUW9fY3dPWTRfU0laQjFKS3lRSWo2T25RTEl0RGxTamRveEpmUVpFTUdtUVVLalFFX093RS1sMnBtRkdlU2s3RGJoNmxW?oc=5",
           "intensidad": 7.0,
           "medio": "Sin Embargo"
-        },
-        {
-          "texto": "Guanajuato pide proteger contenido regional y aranceles en revisión del T-MEC - NW Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQWXgwUEhoYUlHWGRLb3hna0pxb0FFSk9idWZFR3B5dncxR2ZLU3F2MnBNZTQ5d09BTXRyZFpYa1ZkdzFqTkh6SkU3WWdkWExoMEdySUhGWloyVnJIS1JFVkdKRnVodVVJQTJyd1c5NHIzbjNpdE1fSV9fOGVHcmxmOHhCeTdQY3ZpOEdJUzJmRWRqTWh6Zm1qcG53LWxXRWNZbDhUeWNMQ2UtaWFm?oc=5",
-          "intensidad": 6.0,
-          "medio": "NW Noticias"
         }
       ]
     },
@@ -866,21 +842,6 @@
       "actor_vinculado": null
     },
     {
-      "id": "auto-70761cce6c",
-      "nombre": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
-      "categoria": "Gobernabilidad",
-      "resumen": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida y afianza como el quinto estado más seguro: Antonino Morales - morena.senado.gob.mx",
-      "motivo": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
-      "peso": 5.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
-      "actor_vinculado": null
-    },
-    {
       "id": "trump-agenda",
       "nombre": "Trump y México: declaraciones y presión",
       "categoria": "Relación Bilateral",
@@ -894,16 +855,31 @@
       "confianza": "baja",
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/24/trump-presiona-a-mexico-y-pide-combatir-a-carteles-con-militares-de-eu-en-un-memorandum-nyt/",
       "actor_vinculado": null
+    },
+    {
+      "id": "auto-70761cce6c",
+      "nombre": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
+      "categoria": "Gobernabilidad",
+      "resumen": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida y afianza como el quinto estado más seguro: Antonino Morales - morena.senado.gob.mx",
+      "motivo": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
+      "peso": 5.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-9b600cbc85",
-      "nombre": "Incendio arrasa el \"Nido del Águila\", refugio construido para Hitler; hay un sos",
-      "categoria": "Social",
+      "id": "auto-d86d9c49a9",
+      "nombre": "Claudia Sheinbaum opina de irregularidades en el INE: “No queremos corrupción en",
+      "categoria": "Gobernabilidad",
       "peso": 12.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOX2xmcFFtVzdBTTJ4dElVTW03NG1fdktweWNoQnJVRmtPamV1M05TNDk4c0szY1NjSmJQYW5uWm1venFhV1pGcnBmT2Nfa2dNcHRDVTcxVk9EaC0wSUJ1MF9ZRjJYZklGMWk4MERaS1M1d2swcmtlZVBNNTRmU3hYcTljME5lWGdmRXZackZRN09BVEZSUTVldGRwODNwc2xmMkc4cXJ0aXVuLU9QbGNQY2V0ZmtQeHVCTzdkdjRlNmRaTllyMGRLZXBKU0VrSDc2elFjUGdLczJobV9GcU1tN3hRNUdRdTYwQW1vMFlKaEVVZ3BwMGhvUUFEYTZVdHNlbE9XT3FEWDg5YnI2d1HSAY4CQVVfeXFMTl9sZnBRbVc3QU0yeHRJVU1tNzRtX3ZLcHljaEJyVUZrT2pldTNOUzQ5OHNLM2NTY0piUGFublptb3pxYVdaRnJwZk9jX2tnTXB0Q1U3MVZPRGgtMElCdTBfWUYyWGZJRjFpODBEWktTNXdrMHJrZWVQTTU0ZlN4WHE5YzBOZVhnZkV2WnJGUTdPQVRGUlE1ZXRkcDgzcHNsZjJHOHFydGl1bi1PUGxjUGNldGZrUHh1Qk83ZHY0ZTZkWk5ZcjBkS2VwSlNFa0g3NnpRY1BnS3MyaG1fRnFNbTd4UTVHUXU2MEFtbzBZSmhFVWdwcDBob1FBRGE2VXRzZWxPV09xRFg4OWJyNndR?oc=5"
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU0FPTHhldWREang3NGIxNG9MNFJTNGc3UVo3d2U0dDdGZnN0M0k2NTZUQjVhblZHMzZ1VC1MdTk1UHk3akhqZ2VUTVN6Y0hKRWV5MDBrcjdVQkhJWEpOMXlua0thZFFsVDRjM3FrUG9wWWlqMVZCZVVVTDZoRDgyY1VGeW5uUXlMeHhDUHJkQXA4TmtKXzUwZGlSWEdEbFFTcjdJ0gGoAUFVX3lxTE4zNXhzTm9LaG5IdTlSa1hvUjJJZzhzWjF0X1pXZVJMUnBLTDllcmF4T2VYejEtYnlQc0QyUk5tVERCeFh2VVdnZ0diM202cEg1VjBWdU9JUEVaeGNnTHVzR3JOc0JyUkRsSDRlblduVFFEcG02UHdnYk5yQWJFdlFNOHlpQ0Y4WXluNl9JVDl5OVRuanRrcnAzQjR6V1ktZFc4UW5yVXVPMQ?oc=5"
     },
     {
       "id": "auto-1c9222338a",
@@ -914,20 +890,28 @@
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/24/alcalde-de-nueva-york-da-consejos-en-espanol-a-migrantes-ante-redadas-de-ice-estos-son-tus-derechos/"
     },
     {
-      "id": "auto-708530b602",
-      "nombre": "Mara Lezama supervisa construcción de cuartel para duplicar de 200 a 400 policía",
-      "categoria": "Relación Bilateral",
-      "peso": 4.0,
+      "id": "auto-a116f795b9",
+      "nombre": "Jorge Romero nombra a Enrique Vargas como coordinador de Huixquilucan; senador d",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOREo2bU1uOXRLMnZYN056X0xuMVF3Mmx0OTlxazdGMkdYSHhSSXM3bHhodUdwc1FNQ29STzVQRlFEaVBrU2psd0ZueUwzdGRmbnpORC1kOTAya04xa1JvSEFwSVVtVFhkVnZuUndKenMweGtTVkJzcnNEMGwyYkJjeFZUTW1HM2lvTnZsRTVIOU9hSXo3SkZjUVpkS2xHaHZNUXNiSnFSQ0R3ZjdjSVk3elRYTEYwbzBH?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNeUNPTkZqdDZLTllONFFHRjg5aXZkOVRzVmQwdHZvX1d1S0FrbTk5dXI5TE1mN3JtRmJZdEVMeGFNUmJlMVFqMXh3Rzl6VzVjck15ZXMxU2NVYjYtSFJuYkNxNS0xUDh5NmpVZmZlYWFLUGlIZVdqc1ZQYThMZ0JUUUE1Vy02WU1mVmhfVlpqMGlrUy1Bd2NtcEpjdHBzcUZ4bEVfMEhnbjVnVE5wMGRRczQ1em9qQ2toV1BVYXRXQWo1SGxBNnprVlRFdVZ1WkcxVm1ycEpn0gHqAUFVX3lxTE5KX3hOdXB5WHh5cS1kLUM5dUtxUExwUzJYTWd4NFdYSXBUTHFKbXl0M1RtOWtMUmotVmhRTVRuSGY4MExlaHRxWk1OVVRVQ3NiTmVoUjBaYjFFX1pCRjJFclQ3ZUtWbmhzU2tpLWpKeUxWUHRmWENwUmZGU0hBUzhpcXdhNkgwMWxTTGxVTFVDN201VHJ1LVcxLVREWF9oOFp0X0dYSGpna2pPNWZZYmNjdmNKczhWbEVZZWtLM0NnYXVMSl9tRFNJMUJEXzZReEF3aFJ4U0ctQU54eWhlR1BBQUQ2bV9wS01Rdw?oc=5"
     },
     {
-      "id": "auto-43c08eaf0e",
-      "nombre": "Le congela UIF cuentas y huye petista del País - Reforma",
+      "id": "auto-1971334bae",
+      "nombre": "Legisladores de Morena analizan relevo en el instituto",
       "categoria": "Gobernabilidad",
-      "peso": 4.0,
+      "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOZC15MEVOc2NOVW1BWjRHWkxvdXkwTTNxd1ZSM3JVWXVJQUUxNEpYM0JRQnhfMFNzQzBYQ2lJRmlBTTFYOUgtQkRnWFBGS1dENS14bk1QeGgwT0szVFNmajltN2NRci1wb202NEs2dXF4ek1kRkM4UG5LSWtRQVk2Z0syVGtTb1k?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/10/25/politica/003n3pol?partner=rss"
+    },
+    {
+      "id": "auto-6d1547b699",
+      "nombre": "Demián Bichir expresa su respaldo a Claudia Sheinbaum en el Festival de Cine de ",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPMzNpbDNBSEpzWjVrME9IVEpQOTQ4U2NkaGpRWFU3OC1IXy01Wl81RVdUZnhhX0tJRGY4VElUVjd4VHE2U3NmRmZCVmNqazJfTHhQWkdIQ3RvandXTWhoR0RHSVZHS2wtN0pDMmg2Zi1ldmhfaEFkRkhXNEdJbnBTX3dQaTZQa29ESFVlRWQ0Wlh2dXlKclUyd0FYcENJRGozdlN6X2VtNHJmamdfSzNraFFDMVNaNC11NXl2R1RjWnlwM25mem1DWnYwczNfa1E?oc=5"
     }
   ],
   "temas_retomados": [
@@ -943,6 +927,28 @@
       "fuente_url_anterior": "https://www.yucatan.com.mx/mexico/2026/09/09/renuncia-claudia-espino-al-ine-guadalupe-taddei-nombra-a-roberto-felix-como-encargado.html"
     },
     {
+      "id": "auto-5503c2c2d2",
+      "nombre": "“La corrupción mata”: Cenapred advierte que malas decisiones en Protección Civil",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 33,
+      "motivo": "⚡ Posible presión de Claudia Sheinbaum Pardo — “No queremos corrupción en la 4T”, advierte Claudia Sheinbaum",
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-no-queremos-corrupcion-en-la-4t-20261025-0028.html",
+      "fecha_anterior": "2026-09-21",
+      "fuente_url_anterior": "https://oem.com.mx/diariodexalapa/local/veracruz-entre-los-cinco-estados-mejor-evaluados-en-gestion-de-riesgos-cenapred-exige-cero-corrupcion-32195030"
+    },
+    {
+      "id": "auto-8575d673e0",
+      "nombre": "Honestidad para no hablar de corrupción",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 31,
+      "motivo": "Llama Sheinbaum a garantizar autoridad moral y honestidad",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/25/politica/003n2pol?partner=rss",
+      "fecha_anterior": "2026-09-23",
+      "fuente_url_anterior": ""
+    },
+    {
       "id": "auto-90406af9f3",
       "nombre": "Ángel Etiem Jiménez Castañeda rinde protesta como diputado federal por el Distri",
       "categoria": "Social",
@@ -954,15 +960,15 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-fc5211ddaf",
-      "nombre": "Aumenta prevalencia de corrupción en Hidalgo entre 2023 y 2025 - Periódico Centr",
+      "id": "auto-fa0f9ca9c7",
+      "nombre": "Conmemoración de los 15 años de Morena como movimiento de transformación social ",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 12,
-      "motivo": "En 9 meses abren 685 carpetas y vinculan a 78 por corrupción en Hidalgo - Milenio",
+      "dias_silencio": 16,
+      "motivo": "40 años del CEU: el movimiento estudiantil en el que se formó Claudia Sheinbaum llega a la tercera edad - EL PAÍS",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQbnhNYWNyTmRlVFprbGVkMVVSRm1TaGlNTHNFZmZ2dVN0Z2xkYVVsb1NlMnMySWlabWFZMmtJdjA5aWlZbmRLOU9ZWHlOVzlUNVZTYzd2aHhvY0s0OC1IbGJBTTZrZDRQcjFrY21scy1oZXY3cUJXR3pOYzVUb3ZyN3ZmYVA4UlFEdW00MkMxeHPSAZABQVVfeXFMUG54TWFjck5kZVRaa2xlZDFVUkZtU2hpTUxzRWZmdnVTdGdsZGFVbG9TZTJzMklpWm1hWTJrSXYwOWlpWW5kSzlPWVh5Tlc5VDVWU2M3dmh4b2NLNDgtSGxiQU02a2Q0UHIxa2NtbHMtaGV2N3FCV0d6TmM1VG92cjd2ZmFQOFJRRHVtNDJDMXhz?oc=5",
-      "fecha_anterior": "2026-10-12",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQNW9TRlVJa2hzQWstUGFRbG5IVkNqcElBdVhqR1ZBZFZCLWR1V2QzT3JYQTY4MzR3WmdobzR3NHVRZHMtZEJ6R3k4WjhsbXgxRTcxY1NPYUV0VGYtRlRPNVVGZEc2djdCMy1NTmxOVlBCSkt2c3R2YUl3NkxJZmp2LXJYUW9JbTVPYkRZUXN4eUk3UjVJRy1qakVoT3hocFZLS1V2TDdLbjU5cTl4cnBGU0t0dw?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNUDdpVHN1MC1wclFUMFpFRnJrTlBaRDJ0UmFXN1dWSjV0SUxtT3JxY2dRNTg1SW81UDRJM2g0RlppajItZ1V4TEVON1k0RXZVbmJBVzlnN3I3MWpaZlY5bmI4OUxTYnhoeTJmcmNIVjliT1hESFAzY3ltTUdtRXBsLWhGOU1VcUtVSm9FbFlIWFdGVklWNDZjUE1pMHZ2MElRQ2ctajdPSVUteHJSZUpyUFdaUjBJclRBekwzdE9ZMXdGc3hBUHBMTm1vTXpyUVZ2N0ZTY3UwZ2JMT3otR0NvNVMtM21aWFJhLVFfWkNTX3TSAfABQVVfeXFMTVA3aVRzdTAtcHJRVDBaRUZya05QWkQydFJhVzdXVko1dElMbU9ycWNnUTU4NUlvNVA0STNoNEZaaWoyLWdVeExFTjdZNEV2VW5iQVc5ZzdyNzFqWmZWOW5iODlMU2J4aHkyZnJjSFY5Yk9YREhQM2N5bU1HbUVwbC1oRjlNVXFLVUpvRWxZSFhXRlZJVjQ2Y1BNaTB2djBJUUNnLWo3T0lVLXhyUmVKclBXWlIwSXJUQXpMM3RPWTF3RnN4QVBwTE5tb016clFWdjdGU2N1MGdiTE96LUdDbzVTLTNtWlhSYS1RX1pDU190?oc=5",
+      "fecha_anterior": "2026-10-08",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNV21wNWg2cTZ5V3VyeE40MjNQUmp4VF92cklOaGJWdi1UaTQzbFNvc1dIUDNzMFUwZTNmTnphejlDSWFLQzFtSjhqdGVpb2VpbnlHWlBoUDJubVRfcHN5M2FJRHg2dGRGSnNfUUF0YkRLTXZLOXktbTJZSExYRjJwdWVxWjdVamx1dW9VTUdJV0JYSnB5MmVWbnRXVVZ5R1FRWnV4N1BMZDZPQ1RuWE41YkVRTUVPdXkya3hjSnQ5dXQ2dWF6V29vbjdZSzJqTjI3WWc0?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1011,7 +1017,14 @@
       "confianza": "media"
     }
   ],
-  "declaracion_presidenta": null,
+  "declaracion_presidenta": {
+    "actor": "Claudia Sheinbaum Pardo",
+    "texto": "Claudia Sheinbaum: “No queremos corrupción en la 4T” - El Informador",
+    "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU0FPTHhldWREang3NGIxNG9MNFJTNGc3UVo3d2U0dDdGZnN0M0k2NTZUQjVhblZHMzZ1VC1MdTk1UHk3akhqZ2VUTVN6Y0hKRWV5MDBrcjdVQkhJWEpOMXlua0thZFFsVDRjM3FrUG9wWWlqMVZCZVVVTDZoRDgyY1VGeW5uUXlMeHhDUHJkQXA4TmtKXzUwZGlSWEdEbFFTcjdJ0gGoAUFVX3lxTE4zNXhzTm9LaG5IdTlSa1hvUjJJZzhzWjF0X1pXZVJMUnBLTDllcmF4T2VYejEtYnlQc0QyUk5tVERCeFh2VVdnZ0diM202cEg1VjBWdU9JUEVaeGNnTHVzR3JOc0JyUkRsSDRlblduVFFEcG02UHdnYk5yQWJFdlFNOHlpQ0Y4WXluNl9JVDl5OVRuanRrcnAzQjR6V1ktZFc4UW5yVXVPMQ?oc=5",
+    "intensidad": 7.0,
+    "fecha": "2026-10-25",
+    "nivel_fuente": "ALTA"
+  },
   "declaracion_otro": null,
   "patron_historico_4sem": [
     {
@@ -1255,8 +1268,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNYnV2Mld0Q0VQZkxBa2lydDRLVHQxNXBNaWRxUW8tS3UtS3ZiVmZWckZKRGVaUmlMQnNTc1JnR0xqaE5aOV9YWURLMnNPZGZzblFtX1hhay12X3FPMC1WejFwOXU4dkdBLUFzRFVoNlJoQTFJT0NvY3hHdTZqYnIyUk1nRkRBOFdxOGh1aHQtVjNqVFJZWENCZXJTMnE3dHBlcG1Cbi1wUVNOZGVnMW1ZejJPdlJMZmtydE5jYmpxanM0Z3ZsdjcwN3Nad2dzZVZTT1NFaTA5UWw?oc=5",
-      "nota_texto": "Maru Campos niega pacto con Claudia Sheinbaum y lanza acusaciones contra Ariadna Montiel - Revista GENTE",
+      "nota_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBsTEM0ZW1iRW1IcjE5TGV1RzZFZlpYVER2c05wYWlLSzVCUkE4a2U5aGRXT1Q0b0dCa0tvVFZpbGJFMDRlYlBfRC1fVkFKQXplbVM0ZXhtbFlmWHBld1hwcld1ZTRWd01ibHgxQk5NNkVZUGpWZnBz?oc=5",
+      "nota_texto": "Donald Trump critica la trayectoria de Claudia Sheinbaum en un mitin en Carolina del Sur. - El Congresista",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1304,8 +1317,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdTZYVDF1Z3FwOWotWTdvZFQyMGZUeTJmSmdMYm5WSnlqQlRCTUJ3TXZVVGs0aF9ISmxTTk1VelVrNUZJMzF3N1hUTnQ1eXJSYUd4UDBOaDFVUTRmR2czUHRwMHFBSS03OVZFT2ZFNU0ySi04d3liUlZJT3R0U0RzSE12eVI0QmdGTE5hZ1FNTXM5bTVMaXQw?oc=5",
-      "nota_texto": "Seis perfiles buscan alcaldía de Puebla con Morena - Quadratín Puebla",
+      "nota_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQTm4ydmNoOEU1Vm5wVkFoSmIxcHpjMjk1REY2SnVKM0Utb1dOaFpfVFJYQUF1ejMwRkFhLWhfWkw4cWpxRGJDZzF1M3EyOXAyUGlPYTBDTkdhVmE2QllkVUlQWTVYMDRMd013TEczVTRrZmZ4VGdxTHMwVkJEX01SS1FjWXR3VWI5NlBJUFVfUlA2Y3p2cEM3TW5EV0M2MmNlaUpJS0VJcm5Za2ZBZHkyQmxMcVRjeXNpTFVCQ0FDTTgxbEZaRzdNMW5zVmhURG0tT29UaGw3ZmZWY2N1?oc=5",
+      "nota_texto": "Juan Carlos Natale se registra como aspirante a Coordinación Municipal de Morena; suman siete aspirantes - El Popular, periodismo con causa",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1392,8 +1405,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "http://campechehoy.mx/2026/10/20/desmiente-claudia-donald-trump-no-condiciono-t-mec/",
-      "nota_texto": "DESMIENTE CLAUDIA: DONALD TRUMP NO CONDICIONÓ T-MEC",
+      "nota_url": "https://heraldodemexico.com.mx/espectaculos/2026/10/20/pepillo-origel-comparte-foto-con-donald-trump-presidente-de-los-estados-unidos-912604.html",
+      "nota_texto": "Pepillo Origel comparte foto con Donald Trump, presidente de los Estados Unidos",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
@@ -1711,6 +1724,14 @@
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
+      "texto": "Claudia Sheinbaum: “No queremos corrupción en la 4T” - El Informador",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU0FPTHhldWREang3NGIxNG9MNFJTNGc3UVo3d2U0dDdGZnN0M0k2NTZUQjVhblZHMzZ1VC1MdTk1UHk3akhqZ2VUTVN6Y0hKRWV5MDBrcjdVQkhJWEpOMXlua0thZFFsVDRjM3FrUG9wWWlqMVZCZVVVTDZoRDgyY1VGeW5uUXlMeHhDUHJkQXA4TmtKXzUwZGlSWEdEbFFTcjdJ0gGoAUFVX3lxTE4zNXhzTm9LaG5IdTlSa1hvUjJJZzhzWjF0X1pXZVJMUnBLTDllcmF4T2VYejEtYnlQc0QyUk5tVERCeFh2VVdnZ0diM202cEg1VjBWdU9JUEVaeGNnTHVzR3JOc0JyUkRsSDRlblduVFFEcG02UHdnYk5yQWJFdlFNOHlpQ0Y4WXluNl9JVDl5OVRuanRrcnAzQjR6V1ktZFc4UW5yVXVPMQ?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-10-25",
+      "nivel_fuente": "ALTA"
+    },
+    {
+      "actor": "Claudia Sheinbaum Pardo",
       "texto": "Sheinbaum califica como \"oportunismo político\" mitin de Jorge Romero en plantón del IMSS - El Universal",
       "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQTmJtRVpTUVk2blFIbjFvMDdiRFAwNENpbXNZclZ3eTljbjZHNkpGXzBnYTJjS1hpOUR6RUhwSzdBZDFDNFlIT2dWQmFjZkdYM0JnR2dmalFvVjZKbkRSaUh4ZE12Qk8xYkF2SmNkdWtIdnZtcTNOU3hWZHVBZ0haMTBKQ1RRejUtcUhjUF9PRG9wUW9QLWFhcVBLUk5nSUtBTTZEMmV3QmdvZXQ0eVlxUFhCLTJvcy16ZXVkWGlyZDgzM3RvVmx1WG1WQndfbFladlNXMVBPLVFsZHM1dFRBTnVFbnBiVjTSAfsBQVVfeXFMUFlnN3VLR1JyQWZESmk4VjAwSy1SOEhWNkdKZEhISENuaXRIOXkweENjdU1JQzdTWkhqY2NtenNYRUkwZlU0WFNUZVFqSENNQUNTc3JGcmlIZ05oRWhsTkRITVAwdXZieU9WOVNWdkRUdFlQYzVveGI0bFJEdUZOY29OY3Y3aFZnd0RoNi1vNUlHSlMxT0ZiVlZ0WlRoYTlTcThKZDdjb2owcllDemY5cl9obDhBa2RIREk0TXNEa3B6ckhMejcwWElYX280YmxOdHFjN2Zsa1k0T1Rtc0lpMFVNc3d4SjF4WmJsNjJjU2d3NF9jUVRGVUo0c2M?oc=5",
       "intensidad": 7.0,
@@ -1723,14 +1744,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPbEZnbVR4NFJ1d3Z3REI3QVBUS0k1MXdtMVBtcmNhYWREQV9FNGc4dmVQS3VEQVgzUVNVQ2xHS05LOTRveW1GS0JhY2lMTzBIUkljdUZwaURoZ3BMWk9vTms0bjEyaEJtODNuSzhVVmFPaVkxUkdnT3gzalhNSEZiYnR5bklDMzV6Q0hfMW9KamRka0tmbk9rUWtTZVlHLW5YYjU4M1ppT1Q0ZUtpRy1QLXRpZEI4LXlhbUthcUZpSlRTOExlRmRMUnF3am53eG40TFZDZkNyekYwR3Rk0gHwAUFVX3lxTE5HVEVBazNLTElMa0JSSmowNkdxeHNOZ2cxekZYczRBQXdiVzhJcUhlc0ZRNHQ3aGtxNHdLSUpyaTVyZmNuNzk5Y2pIQURmeWp1VXI3SWNCQ0pPbG9HTWNhOFVya3RBclVYWFFnUDFzSHRKSXZJMFF4aHJpTlF1a0VQVENaei1VSVNycFdXMlFEZnVxbXFkbmZhM3RDSDZrS3FsOEVBWV9DdjBoSGV3and1VlVOUkRMUkg5d3dWZ01ISlBESEx6akkyQ2lXZGJDMXk0aDhKRTRVQUE4dTRVX0V6VU1ERjduZUZhT2RHaVZCMw?oc=5",
       "intensidad": 9.0,
       "fecha": "2026-10-21",
-      "nivel_fuente": "ALTA"
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
-      "texto": "Sheinbaum afirma que negociaciones sobre el T-MEC avanzan: “Estamos muy cerca” - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYUhFSkt0bGJUNXpVTXZ1YWRLUDNTeTRKbzlCQm4ydVVaMEZodEwxeV8xb09QRXpYR0ZLRU9kak01T1R1YThicnhWNkhFLTRKYWhZU3Rhel9jS1JGU1Jpanl4OGZhTWltdWRXNXVkU19TVFd0b2g1VDVIYkJ6aS1WU1BuZ2otc0dnR3l4QW9ZSEt1MVBn0gGUAUFVX3lxTE1hRUFndGNhQVg2SGlnRFJmTjZlWUl6cFdyd0JQUzJZdTQ5MmgyekRaNWxRTjB1SnpyTFVoOHBGUTYyTVVVTnNIX0taVVpNVGRZT3dWUHliNHczM2hybmFhTnpmRjdJakZCTVBvRWI1SDlKa2dBNGcwdS1mLVBZaU1aS1hxczM1TWdyWGVveFhmRE9vSkk?oc=5",
-      "intensidad": 7.0,
-      "fecha": "2026-10-20",
       "nivel_fuente": "ALTA"
     }
   ],
@@ -1760,6 +1773,11 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-25 00:01"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-10-25T00:01:14.784482-06:00",
+    "cambios": [
+      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
+    ]
+  },
+  "hora_corte_publicada": "2026-10-25 06:02"
 }
