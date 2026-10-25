@@ -1,23 +1,45 @@
 {
-  "generado_en": "2026-10-25T06:02:34.511509-06:00",
+  "generado_en": "2026-10-25T12:04:08.711641-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 8,
+  "n_notas_ventana": 4,
   "baja_confianza": false,
-  "tension_nacional": 25,
+  "tension_nacional": 31,
   "tension_anomalia": {
-    "z": -0.29,
+    "z": 0.59,
     "nivel": "normal",
     "media_periodo": 27.0,
     "dias_base": 27
   },
   "categorias_dia": [
     {
+      "categoria": "Gobernabilidad",
+      "peso_pct": 52,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 2,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "Morena refuerza organización territorial en Tlaxcala con Ariadna Montiel y Ana Lilia Rivera - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUdIBzgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Huachicol fiscal, empresas y familiares ¿Qué hay detrás de Sánchez Zumaya? - emsavalles.com",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQYk5tSUd1cmZCcVoyWnpQZndDQWN1TVBETThXM3o3aFNZU0xOVXB4UUZNM1QzVTZ5eVhpcGQtZzd6d2NSWHZsd0xlRnVWbEMwc2l2dlFvZmJ2V1psaEJfU3dtOW54b0JGdWdSV0FSNTFJZnBQYXhZUTdSNEhZZkRpM2dRYkVKbUNyOEVKY2dTODBiNVdsSUdKZzBXNDhtNUF5d0g4NXl6SXRRamc?oc=5",
+          "intensidad": 6.0,
+          "medio": "emsavalles.com"
+        }
+      ]
+    },
+    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 35,
+      "peso_pct": 48,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 3,
-      "n_notas": 3,
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Vinculan a proceso a \"El Talibán\" de \"Los Chapitos\"; es acusado de portar armas exclusivas del Ejército - El Universal",
@@ -30,64 +52,17 @@
           "fuente_url": "https://oem.com.mx/diariodexalapa/local/imponen-prision-preventiva-a-presunto-responsable-del-homicidio-de-maestro-de-secundaria-en-xalapa-32777171",
           "intensidad": 6.0,
           "medio": "oem.com.mx"
-        },
-        {
-          "texto": "⚡ Posible presión de Donald Trump — Trump presiona a México y pide combatir a cárteles con militares de EU en un memorándum: NYT",
-          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/24/trump-presiona-a-mexico-y-pide-combatir-a-carteles-con-militares-de-eu-en-un-memorandum-nyt/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 35,
-      "tema_principal": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
-      "tema_principal_id": "auto-70761cce6c",
-      "n_temas": 2,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Morena refuerza organización territorial en Tlaxcala con Ariadna Montiel y Ana Lilia Rivera - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUdIBzgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Ariadna Montiel y Ana Lilia Rivera unen fuerzas para fortalecer la Transformación en Tlaxcala - El Soberano",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQLVhreWxQX2lEZGVqZEJCNTluVGRZWkRXS2tuVWQ2cklVVDh4a19BX1RQNmJuS09tVlZQcUY1dmRMRHR5SDVIc043TGNuTmRJb2YyOVZXUFdyOFNkT0MwV0ZJREQxY3k2RDY0YVRleUZHNjZMNm9pQUxQd3J1cHNGZHhId1JSWFYzSmVEZ0xTN2hmaG9uRi1laEZmeUNkSXpHSTBiVzFTSHJlWFUybHd2XzVuelhUem9NQmw2S2N2R3BwNl9JelE?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Soberano"
-        },
-        {
-          "texto": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
-          "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
-          "intensidad": 5.0,
-          "medio": "informador.mx"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 29,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Gobierno de Trump defiende planes de muro fronterizo con México: “no es negociable”",
-          "fuente_url": "https://www.yucatan.com.mx/mundo/2026/10/24/gobierno-de-trump-defiende-planes-de-muro-fronterizo-con-mexico-no-es-negociable.html",
-          "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "Trump quiere permiso de México para sus militares y T-MEC antes de la elección: NYT - Sin Embargo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOOF96Q05KVXhUZUFYSXgtMVpFWjEyT213RkplWVRvX25yNWdkT0gxRW94LW1peWNFdXExbUFrZWQzbC1pUFdLR1NLWjFvWkMtOHBsamxEaVNabU5lZ3o5ZjV2RUZxNkMxTm5MUFFqc0VHMjIzUW9fY3dPWTRfU0laQjFKS3lRSWo2T25RTEl0RGxTamRveEpmUVpFTUdtUVVLalFFX093RS1sMnBtRkdlU2s3RGJoNmxW?oc=5",
-          "intensidad": 7.0,
-          "medio": "Sin Embargo"
-        }
-      ]
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Economía",
@@ -812,63 +787,18 @@
   ],
   "top5_temas": [
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Trump quiere permiso de México para sus militares y T-MEC antes de la elección: NYT - Sin Embargo",
-      "peso": 7.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOOF96Q05KVXhUZUFYSXgtMVpFWjEyT213RkplWVRvX25yNWdkT0gxRW94LW1peWNFdXExbUFrZWQzbC1pUFdLR1NLWjFvWkMtOHBsamxEaVNabU5lZ3o5ZjV2RUZxNkMxTm5MUFFqc0VHMjIzUW9fY3dPWTRfU0laQjFKS3lRSWo2T25RTEl0RGxTamRveEpmUVpFTUdtUVVLalFFX093RS1sMnBtRkdlU2s3RGJoNmxW?oc=5",
-      "actor_vinculado": null
-    },
-    {
       "id": "sinaloa-crisis",
       "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "categoria": "Seguridad Nacional",
       "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
       "motivo": "Vinculan a proceso a \"El Talibán\" de \"Los Chapitos\"; es acusado de portar armas exclusivas del Ejército - El Universal",
       "peso": 6.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNS2V1dDdYNzVIY0h0OVFSYVh4RGluSnkzSkxha0E3RnExbzZtVnIwYnhkT2swOFB0d2x6Zm5hWlRud2x6UG1TZVE3ZGF6RFdpbVpDQ3lWQUdsbGlWTDV5SFpOWElIZFVlaDFseHFCaUFUSjhPTTlvOVlGZ1JQOFlUMzBTTldaVFpkNkhoekJIeDR4V1hJdklkYWtMUC1GTWF6ejBzeU1WbTBLVzFDU2daU0ZtRWcwNzdPM3M5Rkp3TkRtQWZwYTlQcWJ4SlpPcWNjSThV?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "⚡ Posible presión de Donald Trump — Trump presiona a México y pide combatir a cárteles con militares de EU en un memorándum: NYT",
-      "peso": 5.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/24/trump-presiona-a-mexico-y-pide-combatir-a-carteles-con-militares-de-eu-en-un-memorandum-nyt/",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-70761cce6c",
-      "nombre": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
-      "categoria": "Gobernabilidad",
-      "resumen": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida y afianza como el quinto estado más seguro: Antonino Morales - morena.senado.gob.mx",
-      "motivo": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
-      "peso": 5.0,
       "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNS2V1dDdYNzVIY0h0OVFSYVh4RGluSnkzSkxha0E3RnExbzZtVnIwYnhkT2swOFB0d2x6Zm5hWlRud2x6UG1TZVE3ZGF6RFdpbVpDQ3lWQUdsbGlWTDV5SFpOWElIZFVlaDFseHFCaUFUSjhPTTlvOVlGZ1JQOFlUMzBTTldaVFpkNkhoekJIeDR4V1hJdklkYWtMUC1GTWF6ejBzeU1WbTBLVzFDU2daU0ZtRWcwNzdPM3M5Rkp3TkRtQWZwYTlQcWJ4SlpPcWNjSThV?oc=5",
       "actor_vinculado": null
     }
   ],
@@ -882,20 +812,20 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU0FPTHhldWREang3NGIxNG9MNFJTNGc3UVo3d2U0dDdGZnN0M0k2NTZUQjVhblZHMzZ1VC1MdTk1UHk3akhqZ2VUTVN6Y0hKRWV5MDBrcjdVQkhJWEpOMXlua0thZFFsVDRjM3FrUG9wWWlqMVZCZVVVTDZoRDgyY1VGeW5uUXlMeHhDUHJkQXA4TmtKXzUwZGlSWEdEbFFTcjdJ0gGoAUFVX3lxTE4zNXhzTm9LaG5IdTlSa1hvUjJJZzhzWjF0X1pXZVJMUnBLTDllcmF4T2VYejEtYnlQc0QyUk5tVERCeFh2VVdnZ0diM202cEg1VjBWdU9JUEVaeGNnTHVzR3JOc0JyUkRsSDRlblduVFFEcG02UHdnYk5yQWJFdlFNOHlpQ0Y4WXluNl9JVDl5OVRuanRrcnAzQjR6V1ktZFc4UW5yVXVPMQ?oc=5"
     },
     {
-      "id": "auto-1c9222338a",
-      "nombre": "Alcalde de Nueva York da consejos en español a migrantes ante redadas de ICE: ‘E",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/24/alcalde-de-nueva-york-da-consejos-en-espanol-a-migrantes-ante-redadas-de-ice-estos-son-tus-derechos/"
-    },
-    {
       "id": "auto-a116f795b9",
       "nombre": "Jorge Romero nombra a Enrique Vargas como coordinador de Huixquilucan; senador d",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNeUNPTkZqdDZLTllONFFHRjg5aXZkOVRzVmQwdHZvX1d1S0FrbTk5dXI5TE1mN3JtRmJZdEVMeGFNUmJlMVFqMXh3Rzl6VzVjck15ZXMxU2NVYjYtSFJuYkNxNS0xUDh5NmpVZmZlYWFLUGlIZVdqc1ZQYThMZ0JUUUE1Vy02WU1mVmhfVlpqMGlrUy1Bd2NtcEpjdHBzcUZ4bEVfMEhnbjVnVE5wMGRRczQ1em9qQ2toV1BVYXRXQWo1SGxBNnprVlRFdVZ1WkcxVm1ycEpn0gHqAUFVX3lxTE5KX3hOdXB5WHh5cS1kLUM5dUtxUExwUzJYTWd4NFdYSXBUTHFKbXl0M1RtOWtMUmotVmhRTVRuSGY4MExlaHRxWk1OVVRVQ3NiTmVoUjBaYjFFX1pCRjJFclQ3ZUtWbmhzU2tpLWpKeUxWUHRmWENwUmZGU0hBUzhpcXdhNkgwMWxTTGxVTFVDN201VHJ1LVcxLVREWF9oOFp0X0dYSGpna2pPNWZZYmNjdmNKczhWbEVZZWtLM0NnYXVMSl9tRFNJMUJEXzZReEF3aFJ4U0ctQU54eWhlR1BBQUQ2bV9wS01Rdw?oc=5"
+    },
+    {
+      "id": "auto-c9bb78ce39",
+      "nombre": "Crean cuenta falsa de Guadalupe Taddei en X: ‘Sufrimos una severa presión desde ",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/24/crean-cuenta-falsa-de-guadalupe-taddei-en-x-sufrimos-una-severa-presion-desde-el-ejecutivo-publica/"
     },
     {
       "id": "auto-1971334bae",
@@ -916,17 +846,6 @@
   ],
   "temas_retomados": [
     {
-      "id": "auto-754048b435",
-      "nombre": "Renuncia Claudia Espino al INE; Guadalupe Taddei nombra a Roberto Félix como enc",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 45,
-      "motivo": "⚡ Posible presión de Morena (partido político) — Advierten en Morena: renuncia de Taddei no evitaría juicio - Reforma",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNOFpUUGp1cGN6NUQxQWhHS1I2TGVwVTdoSmdnUDRPQW5aVjg4NXd4QWJ0bVhOb2pkOUFicnJHUmxoaENzT25QZTVBY2NzaGFlRjFhMEpEZG1RaWZCVGhhT01YRGpOb01aYTV0UTFvZGVhcHNGMV90REhpLVZMaEJ6RHJVV1NTS1p5TnVWRkNLQjZqZVdUMUE?oc=5",
-      "fecha_anterior": "2026-09-09",
-      "fuente_url_anterior": "https://www.yucatan.com.mx/mexico/2026/09/09/renuncia-claudia-espino-al-ine-guadalupe-taddei-nombra-a-roberto-felix-como-encargado.html"
-    },
-    {
       "id": "auto-5503c2c2d2",
       "nombre": "“La corrupción mata”: Cenapred advierte que malas decisiones en Protección Civil",
       "categoria": "Gobernabilidad",
@@ -936,17 +855,6 @@
       "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-no-queremos-corrupcion-en-la-4t-20261025-0028.html",
       "fecha_anterior": "2026-09-21",
       "fuente_url_anterior": "https://oem.com.mx/diariodexalapa/local/veracruz-entre-los-cinco-estados-mejor-evaluados-en-gestion-de-riesgos-cenapred-exige-cero-corrupcion-32195030"
-    },
-    {
-      "id": "auto-8575d673e0",
-      "nombre": "Honestidad para no hablar de corrupción",
-      "categoria": "Relación Bilateral",
-      "dias_silencio": 31,
-      "motivo": "Llama Sheinbaum a garantizar autoridad moral y honestidad",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/25/politica/003n2pol?partner=rss",
-      "fecha_anterior": "2026-09-23",
-      "fuente_url_anterior": ""
     },
     {
       "id": "auto-90406af9f3",
@@ -969,6 +877,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNUDdpVHN1MC1wclFUMFpFRnJrTlBaRDJ0UmFXN1dWSjV0SUxtT3JxY2dRNTg1SW81UDRJM2g0RlppajItZ1V4TEVON1k0RXZVbmJBVzlnN3I3MWpaZlY5bmI4OUxTYnhoeTJmcmNIVjliT1hESFAzY3ltTUdtRXBsLWhGOU1VcUtVSm9FbFlIWFdGVklWNDZjUE1pMHZ2MElRQ2ctajdPSVUteHJSZUpyUFdaUjBJclRBekwzdE9ZMXdGc3hBUHBMTm1vTXpyUVZ2N0ZTY3UwZ2JMT3otR0NvNVMtM21aWFJhLVFfWkNTX3TSAfABQVVfeXFMTVA3aVRzdTAtcHJRVDBaRUZya05QWkQydFJhVzdXVko1dElMbU9ycWNnUTU4NUlvNVA0STNoNEZaaWoyLWdVeExFTjdZNEV2VW5iQVc5ZzdyNzFqWmZWOW5iODlMU2J4aHkyZnJjSFY5Yk9YREhQM2N5bU1HbUVwbC1oRjlNVXFLVUpvRWxZSFhXRlZJVjQ2Y1BNaTB2djBJUUNnLWo3T0lVLXhyUmVKclBXWlIwSXJUQXpMM3RPWTF3RnN4QVBwTE5tb016clFWdjdGU2N1MGdiTE96LUdDbzVTLTNtWlhSYS1RX1pDU190?oc=5",
       "fecha_anterior": "2026-10-08",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNV21wNWg2cTZ5V3VyeE40MjNQUmp4VF92cklOaGJWdi1UaTQzbFNvc1dIUDNzMFUwZTNmTnphejlDSWFLQzFtSjhqdGVpb2VpbnlHWlBoUDJubVRfcHN5M2FJRHg2dGRGSnNfUUF0YkRLTXZLOXktbTJZSExYRjJwdWVxWjdVamx1dW9VTUdJV0JYSnB5MmVWbnRXVVZ5R1FRWnV4N1BMZDZPQ1RuWE41YkVRTUVPdXkya3hjSnQ5dXQ2dWF6V29vbjdZSzJqTjI3WWc0?oc=5"
+    },
+    {
+      "id": "auto-fc5211ddaf",
+      "nombre": "Aumenta prevalencia de corrupción en Hidalgo entre 2023 y 2025 - Periódico Centr",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 12,
+      "motivo": "En 9 meses abren 685 carpetas y vinculan a 78 por corrupción en Hidalgo - Milenio",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQbnhNYWNyTmRlVFprbGVkMVVSRm1TaGlNTHNFZmZ2dVN0Z2xkYVVsb1NlMnMySWlabWFZMmtJdjA5aWlZbmRLOU9ZWHlOVzlUNVZTYzd2aHhvY0s0OC1IbGJBTTZrZDRQcjFrY21scy1oZXY3cUJXR3pOYzVUb3ZyN3ZmYVA4UlFEdW00MkMxeHPSAZABQVVfeXFMUG54TWFjck5kZVRaa2xlZDFVUkZtU2hpTUxzRWZmdnVTdGdsZGFVbG9TZTJzMklpWm1hWTJrSXYwOWlpWW5kSzlPWVh5Tlc5VDVWU2M3dmh4b2NLNDgtSGxiQU02a2Q0UHIxa2NtbHMtaGV2N3FCV0d6TmM1VG92cjd2ZmFQOFJRRHVtNDJDMXhz?oc=5",
+      "fecha_anterior": "2026-10-12",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQNW9TRlVJa2hzQWstUGFRbG5IVkNqcElBdVhqR1ZBZFZCLWR1V2QzT3JYQTY4MzR3WmdobzR3NHVRZHMtZEJ6R3k4WjhsbXgxRTcxY1NPYUV0VGYtRlRPNVVGZEc2djdCMy1NTmxOVlBCSkt2c3R2YUl3NkxJZmp2LXJYUW9JbTVPYkRZUXN4eUk3UjVJRy1qakVoT3hocFZLS1V2TDdLbjU5cTl4cnBGU0t0dw?oc=5"
     }
   ],
   "actores_destacados": [
@@ -976,42 +895,20 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Ayuntamiento de Zitácuaro gestiona créditos de 50 mil pesos para mujeres emprend",
-      "nota": "Presidenta Claudia Sheinbaum al cumplir meta de 56 mil 500 créditos FINABIEN en Michoacán para que mujeres emprendan - Gob MX",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOR2VPWXdFdkZ5Q3AyamhyX3pxRHA5S1VzQlBCZHhmWWFXVmQyU3BlNmtCa09ETHh2SzhISjQ0MW8wWHc0UnAwaGNnZjV3b2F1QmFWeFo4b282R21iQVZ5cHFWMGhJcG1YQTVMcmJxYUttQmRYcm1fWm1xZERUSnk4LWxOYXJKTzRqb1R6NlZPOEFLaE5QckZra2ZCbDlSVTIxZlJSdmxCVHlubFJ0Y1A3UXFUd2Q0UjRGdklKVXpvb1kyN2pBdkRuR0Y4Y1cyRHNQVmlKMHZMckNEX3Fyem9tOEUtdGs0d2YtMFE?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "alta"
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Trump y México: declaraciones y presión",
-      "nota": "⚡ Posible presión de Donald Trump — Trump presiona a México y pide combatir a cárteles con militares de EU en un memorándum: NYT",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/24/trump-presiona-a-mexico-y-pide-combatir-a-carteles-con-militares-de-eu-en-un-memorandum-nyt/",
+      "tema": "Claudia Sheinbaum opina de irregularidades en el INE: “No queremos corrupción en",
+      "nota": "Claudia Sheinbaum: “No queremos corrupción en la 4T” - El Informador",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU0FPTHhldWREang3NGIxNG9MNFJTNGc3UVo3d2U0dDdGZnN0M0k2NTZUQjVhblZHMzZ1VC1MdTk1UHk3akhqZ2VUTVN6Y0hKRWV5MDBrcjdVQkhJWEpOMXlua0thZFFsVDRjM3FrUG9wWWlqMVZCZVVVTDZoRDgyY1VGeW5uUXlMeHhDUHJkQXA4TmtKXzUwZGlSWEdEbFFTcjdJ0gGoAUFVX3lxTE4zNXhzTm9LaG5IdTlSa1hvUjJJZzhzWjF0X1pXZVJMUnBLTDllcmF4T2VYejEtYnlQc0QyUk5tVERCeFh2VVdnZ0diM202cEg1VjBWdU9JUEVaeGNnTHVzR3JOc0JyUkRsSDRlblduVFFEcG02UHdnYk5yQWJFdlFNOHlpQ0Y4WXluNl9JVDl5OVRuanRrcnAzQjR6V1ktZFc4UW5yVXVPMQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
-      "nota": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
-      "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "ramirez_cuellar",
-      "nombre": "Alfonso Ramírez Cuéllar",
-      "rol": "Investigado",
-      "tema": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
-      "nota": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
-      "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
+      "id": "amlo",
+      "nombre": "Andrés Manuel López Obrador ('AMLO')",
+      "rol": "Reacción social/mediática",
+      "tema": "Taddei es inamovible por ser cuota de AMLO, acusa Döring - Reforma",
+      "nota": "Taddei es inamovible por ser cuota de AMLO, acusa Döring - Reforma",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPOEsxekhmZkl0MmFLdGtPbTFSRVpBaDZVU0U4ZWJId2RPVFZCcjJsemdzOWRsX2ZtUGs5Qmpad3hjWElsMEJyRjg4Y3NRWXNPWWxvaXJUOTlCdUQ1b3lhMlZiSll1d0w0ZHlEam1CVXN3QVhYS3BGWTMwT2Z3aHExY3M2bGN2b0d5V1poMEJ2ZFhDWkE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1245,10 +1142,10 @@
     },
     {
       "fecha": "2026-10-25",
-      "tension": null,
-      "n_notas": 0,
+      "tension": 25,
+      "n_notas": 1,
       "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
   ],
@@ -1405,8 +1302,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/espectaculos/2026/10/20/pepillo-origel-comparte-foto-con-donald-trump-presidente-de-los-estados-unidos-912604.html",
-      "nota_texto": "Pepillo Origel comparte foto con Donald Trump, presidente de los Estados Unidos",
+      "nota_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUdObnBLbERfZW9MbkE3V01OSWlsYzJScEk2cnhqRnVocW8tdUJXQWp2LUtTTVZWOEFhTmRGbWtLdHVuNUpkdjRyLW9iN1dZWGdGazZaU3dmUjEwUW5paWh4bXdlcmVZLTJtRGsteUtFT3BzaDFaT3BWaUJkX3FMZVJNMXVScm8wSWdWS3JQczI5Q1JYVDBDNUhnQ0RZOTJJSmw5MkVlcUdCdUxMYU1MWVNQSQ?oc=5",
+      "nota_texto": "⚡ Posible presión de Donald Trump — Arrestan a hombre por amenazar de muerte a Donald Trump por redes sociales - Quinta Fuerza",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
@@ -1561,8 +1458,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPYVNSZjdKcjJoNnVFTFdaX1NSN1hFeGhTa2dWckZwTjVkSUw4dkdPdnJueERFeWp5VWpXdXM4eFJtVFVhYU5WaUJhcDdOc0t4YVV1aEJoMUxTdVI4Z2FUenp4NU9VM2N4SFFPX1JIOS1SRTVueTVMU0hBMGpJMlVFcW9xaU8xdTN2a3JIQks2bFpxUTdkV3J3aDNRNU5yRFFxYmVtQ1l3S0FXcTBJRHpPN29PR1FETFFTU05JM3FWQU9tT05TenNDd1d0QVk4UDJNeXdSd3Q1TnJzYlhFNzI0d1RZWWpTMjNsUjEyNA?oc=5",
-      "nota_texto": "Confía Higinio Martínez en que aumento salarial ayude a resolver conflicto en el IMSS - senado.gob",
+      "nota_url": "https://www.jornada.com.mx/2026/10/20/politica/004n3pol?partner=rss",
+      "nota_texto": "Higinio Martínez llama  a realizar cumbre del sector salud en el Senado",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1714,12 +1611,12 @@
   ],
   "tablero_semana_inicio": "2026-10-19",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "sin_mananera",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1773,11 +1670,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-25T00:01:14.784482-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-25 06:02"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-25 12:04"
 }
