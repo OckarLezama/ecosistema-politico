@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-25T12:04:08.711641-06:00",
+  "generado_en": "2026-10-25T14:19:46.524396-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 4,
   "baja_confianza": false,
-  "tension_nacional": 31,
+  "tension_nacional": 19,
   "tension_anomalia": {
-    "z": 0.59,
+    "z": -1.17,
     "nivel": "normal",
     "media_periodo": 27.0,
     "dias_base": 27
@@ -13,56 +13,57 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 52,
+      "peso_pct": 48,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 2,
       "n_notas": 2,
       "notas": [
-        {
-          "texto": "Morena refuerza organización territorial en Tlaxcala con Ariadna Montiel y Ana Lilia Rivera - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUdIBzgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
         {
           "texto": "Huachicol fiscal, empresas y familiares ¿Qué hay detrás de Sánchez Zumaya? - emsavalles.com",
           "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQYk5tSUd1cmZCcVoyWnpQZndDQWN1TVBETThXM3o3aFNZU0xOVXB4UUZNM1QzVTZ5eVhpcGQtZzd6d2NSWHZsd0xlRnVWbEMwc2l2dlFvZmJ2V1psaEJfU3dtOW54b0JGdWdSV0FSNTFJZnBQYXhZUTdSNEhZZkRpM2dRYkVKbUNyOEVKY2dTODBiNVdsSUdKZzBXNDhtNUF5d0g4NXl6SXRRamc?oc=5",
           "intensidad": 6.0,
           "medio": "emsavalles.com"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 48,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Vinculan a proceso a \"El Talibán\" de \"Los Chapitos\"; es acusado de portar armas exclusivas del Ejército - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNS2V1dDdYNzVIY0h0OVFSYVh4RGluSnkzSkxha0E3RnExbzZtVnIwYnhkT2swOFB0d2x6Zm5hWlRud2x6UG1TZVE3ZGF6RFdpbVpDQ3lWQUdsbGlWTDV5SFpOWElIZFVlaDFseHFCaUFUSjhPTTlvOVlGZ1JQOFlUMzBTTldaVFpkNkhoekJIeDR4V1hJdklkYWtMUC1GTWF6ejBzeU1WbTBLVzFDU2daU0ZtRWcwNzdPM3M5Rkp3TkRtQWZwYTlQcWJ4SlpPcWNjSThV?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
         },
         {
-          "texto": "Imponen prisión preventiva a presunto responsable del homicidio de maestro de secundaria en Xalapa",
-          "fuente_url": "https://oem.com.mx/diariodexalapa/local/imponen-prision-preventiva-a-presunto-responsable-del-homicidio-de-maestro-de-secundaria-en-xalapa-32777171",
-          "intensidad": 6.0,
-          "medio": "oem.com.mx"
+          "texto": "Ariadna Montiel y Ana Lilia Rivera fortalecen la organización y defensa de la transformación en Tlaxcala - Central Municipal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOOFZCTUpSZjFleGVDdmZvSFFOY1dUZ3JIWEJsNC1IZzlHNGU0QUxxZUhmY0hYanN6NGgxY1p1QU1hVkE0YlhOOHZvQmdPMGRQWHJNVnhkRjZSc0tJQTNLNThLTU5tZ2VVYlhTUzQzQktTd3BVVjg1U0x5d01VTkFJNHhoNy1OTUYyTHI3RXhuVlc4VEFBbHV5LUNVa2VIUUFKVG5Da1Y5LUJqYVBQYmFLOHpwQlJYQXRjTTJPbl9JY3lKVXNBd2oyX2MtS3YyRzJOUVVlSmZfRlVYQ2hoc2NIUTc4UjdBc3pf?oc=5",
+          "intensidad": 5.0,
+          "medio": "Central Municipal"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 0,
+      "peso_pct": 30,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Trump no necesita romper el T-MEC para imponer sus condiciones - sdpnoticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNalZPTGhrelU3WExCWWRWVnozSVJqVi14UEZqMDVrbUU2X1JMZTF1c3BqWHlJM01TY000b0UwdjRKSnQzdkM1WWJxa3dhNmZVbjVvWEdON3F3c0NKYlJoTWUySDdPZGdRYnFxc3ZYejg5eFZxbVRhTjRXV2dsRzhaenI4S0xfSFQ4NkMxb2JzTDM0STh0Snk3V1B1Y09OREJx?oc=5",
+          "intensidad": 7.0,
+          "medio": "sdpnoticias"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 22,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Armenta y García Parra respaldan a Ariadna Montiel tras señalamientos de nexos con el narco - Ambas Manos",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNSVRlQzM3TVk0YS1sY0ZpakItM21XekpUX3hWRE1OcXkwZ1U3bWNSRWhiYmp5SXAzaGhkTDdlYkN1aU5Wb09BQ2ljRjFOc20wUm5WVWZrNzdfNXFuSnU0ZzAzejRIZEp5S3NKeGEzcjZaTmFpSDZjNEpFOFIwbERhVkZEOGVvV2lRZEJZWXBjanFHUHZKZkt2LUw3S2ZTdHRYb1BZb2JpNnU2RHZkeGstUFA2dWs2eWV3UWFDcGdad3BJRFJ0Y1pfbVFRTXc?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ambas Manos"
+        }
+      ]
     },
     {
       "categoria": "Economía",
@@ -785,40 +786,8 @@
       ]
     }
   ],
-  "top5_temas": [
-    {
-      "id": "sinaloa-crisis",
-      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
-      "motivo": "Vinculan a proceso a \"El Talibán\" de \"Los Chapitos\"; es acusado de portar armas exclusivas del Ejército - El Universal",
-      "peso": 6.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNS2V1dDdYNzVIY0h0OVFSYVh4RGluSnkzSkxha0E3RnExbzZtVnIwYnhkT2swOFB0d2x6Zm5hWlRud2x6UG1TZVE3ZGF6RFdpbVpDQ3lWQUdsbGlWTDV5SFpOWElIZFVlaDFseHFCaUFUSjhPTTlvOVlGZ1JQOFlUMzBTTldaVFpkNkhoekJIeDR4V1hJdklkYWtMUC1GTWF6ejBzeU1WbTBLVzFDU2daU0ZtRWcwNzdPM3M5Rkp3TkRtQWZwYTlQcWJ4SlpPcWNjSThV?oc=5",
-      "actor_vinculado": null
-    }
-  ],
+  "top5_temas": [],
   "temas_nuevos": [
-    {
-      "id": "auto-d86d9c49a9",
-      "nombre": "Claudia Sheinbaum opina de irregularidades en el INE: “No queremos corrupción en",
-      "categoria": "Gobernabilidad",
-      "peso": 12.0,
-      "impacto": "alto",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU0FPTHhldWREang3NGIxNG9MNFJTNGc3UVo3d2U0dDdGZnN0M0k2NTZUQjVhblZHMzZ1VC1MdTk1UHk3akhqZ2VUTVN6Y0hKRWV5MDBrcjdVQkhJWEpOMXlua0thZFFsVDRjM3FrUG9wWWlqMVZCZVVVTDZoRDgyY1VGeW5uUXlMeHhDUHJkQXA4TmtKXzUwZGlSWEdEbFFTcjdJ0gGoAUFVX3lxTE4zNXhzTm9LaG5IdTlSa1hvUjJJZzhzWjF0X1pXZVJMUnBLTDllcmF4T2VYejEtYnlQc0QyUk5tVERCeFh2VVdnZ0diM202cEg1VjBWdU9JUEVaeGNnTHVzR3JOc0JyUkRsSDRlblduVFFEcG02UHdnYk5yQWJFdlFNOHlpQ0Y4WXluNl9JVDl5OVRuanRrcnAzQjR6V1ktZFc4UW5yVXVPMQ?oc=5"
-    },
-    {
-      "id": "auto-a116f795b9",
-      "nombre": "Jorge Romero nombra a Enrique Vargas como coordinador de Huixquilucan; senador d",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNeUNPTkZqdDZLTllONFFHRjg5aXZkOVRzVmQwdHZvX1d1S0FrbTk5dXI5TE1mN3JtRmJZdEVMeGFNUmJlMVFqMXh3Rzl6VzVjck15ZXMxU2NVYjYtSFJuYkNxNS0xUDh5NmpVZmZlYWFLUGlIZVdqc1ZQYThMZ0JUUUE1Vy02WU1mVmhfVlpqMGlrUy1Bd2NtcEpjdHBzcUZ4bEVfMEhnbjVnVE5wMGRRczQ1em9qQ2toV1BVYXRXQWo1SGxBNnprVlRFdVZ1WkcxVm1ycEpn0gHqAUFVX3lxTE5KX3hOdXB5WHh5cS1kLUM5dUtxUExwUzJYTWd4NFdYSXBUTHFKbXl0M1RtOWtMUmotVmhRTVRuSGY4MExlaHRxWk1OVVRVQ3NiTmVoUjBaYjFFX1pCRjJFclQ3ZUtWbmhzU2tpLWpKeUxWUHRmWENwUmZGU0hBUzhpcXdhNkgwMWxTTGxVTFVDN201VHJ1LVcxLVREWF9oOFp0X0dYSGpna2pPNWZZYmNjdmNKczhWbEVZZWtLM0NnYXVMSl9tRFNJMUJEXzZReEF3aFJ4U0ctQU54eWhlR1BBQUQ2bV9wS01Rdw?oc=5"
-    },
     {
       "id": "auto-c9bb78ce39",
       "nombre": "Crean cuenta falsa de Guadalupe Taddei en X: ‘Sufrimos una severa presión desde ",
@@ -842,6 +811,22 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPMzNpbDNBSEpzWjVrME9IVEpQOTQ4U2NkaGpRWFU3OC1IXy01Wl81RVdUZnhhX0tJRGY4VElUVjd4VHE2U3NmRmZCVmNqazJfTHhQWkdIQ3RvandXTWhoR0RHSVZHS2wtN0pDMmg2Zi1ldmhfaEFkRkhXNEdJbnBTX3dQaTZQa29ESFVlRWQ0Wlh2dXlKclUyd0FYcENJRGozdlN6X2VtNHJmamdfSzNraFFDMVNaNC11NXl2R1RjWnlwM25mem1DWnYwczNfa1E?oc=5"
+    },
+    {
+      "id": "auto-ec63700739",
+      "nombre": "No tenía el gusto de conocerla.- Mier - Reforma",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1jb1VTc19DME52ZlBrT1B5VnFfZnhBcC1Hb1BBQldfOFIzVl80M1BKTU9Rb0VyeG5IX1dsd1lVMnRZNXpBQlNyMXA1WUV5dDBzd29aZUtqUjRhVzRpTXUxbmNlbE1YUjdxYklBaHNhZkNqcUtBQWNTMg?oc=5"
+    },
+    {
+      "id": "auto-4f2545a0d1",
+      "nombre": "Caen presuntos feminicidas de mujer y su nieta en Chiapas; gobernador asegura qu",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNREQ3elBTWkRQMHdoNGhSNDR4SkNZZTZnYmhZQzlVSDVKdm5XemxlWDNieEZ1aXpxLXNidl9PbUl2Y3RBYjdCa2RjR280ZWpueTZzUWZVcDZMYkExSWxfR1V2dU9ZNGU1ZVdXR2ZCSkg0aDhzOGNoTTNVaU5xZVdmVG0ydHNuRG12Y1QzVmVVd1hDdDNKR0F4TU1CeTJmT19uM0RjNWJfTmI4a2xPSktSejN5OVoxaDk4ZnNRVFJRdFJ6Q1htYklfbTdFdE14NW5ob05JS1RR?oc=5"
     }
   ],
   "temas_retomados": [
@@ -857,17 +842,6 @@
       "fuente_url_anterior": "https://oem.com.mx/diariodexalapa/local/veracruz-entre-los-cinco-estados-mejor-evaluados-en-gestion-de-riesgos-cenapred-exige-cero-corrupcion-32195030"
     },
     {
-      "id": "auto-90406af9f3",
-      "nombre": "Ángel Etiem Jiménez Castañeda rinde protesta como diputado federal por el Distri",
-      "categoria": "Social",
-      "dias_silencio": 19,
-      "motivo": "Diputada de Morena Yucatán va contra la criminalización de la protesta - El Universal",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOd19HOW9ndG1ZNXhKY3RCTERITVgtc0xyMFU4T0NGLVpsbkVjMlF4UzJ4eVIxUjIzNmNpQ2RSUzFBcHdvUk5VRmFyczU4X0hJaXExYTM3SWlXVEMzMXpkaDBuOWdoNS1UaWNTNllyTUVHSllSYXJQQThPMjRGa2JZUWo0ZFF4azF3RTBtOVdyeXo0T0hVYWp1cEkwT2tnTXh3VW10TXZZa1djVmg4Xy1YcjU4ZklpWUQ5N2FMSHFhajZNbkI4ZTFZRjFn0gHeAUFVX3lxTE1pRC03cE1YX3lkVy1KZmtXY0hZS0VjR0R4Y29nbnhJRjVTRUhCc0wwX1VKM0xXUnRTUUladVpuV3pzTXZRNlB2SjNiZDdLcWRrd0tfSDhsZDlXbndRWF84YlJ4ZlhPMTlmV2hzVXJJd0pKRlYxbndWRHZMZV95RU1lQVdSRDloV2YyTnpnTy1EWUpCSUpXVUpzTktkc2locUNUVFFLdW5rWWZydmVaR1NDdVZ3Q3AtNWlTVnRTaVFZMm84OXI4TlJsZlE5SFVQRS1rc3RsenNQa3pyV2dXQQ?oc=5",
-      "fecha_anterior": "2026-10-05",
-      "fuente_url_anterior": ""
-    },
-    {
       "id": "auto-fa0f9ca9c7",
       "nombre": "Conmemoración de los 15 años de Morena como movimiento de transformación social ",
       "categoria": "Gobernabilidad",
@@ -877,17 +851,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNUDdpVHN1MC1wclFUMFpFRnJrTlBaRDJ0UmFXN1dWSjV0SUxtT3JxY2dRNTg1SW81UDRJM2g0RlppajItZ1V4TEVON1k0RXZVbmJBVzlnN3I3MWpaZlY5bmI4OUxTYnhoeTJmcmNIVjliT1hESFAzY3ltTUdtRXBsLWhGOU1VcUtVSm9FbFlIWFdGVklWNDZjUE1pMHZ2MElRQ2ctajdPSVUteHJSZUpyUFdaUjBJclRBekwzdE9ZMXdGc3hBUHBMTm1vTXpyUVZ2N0ZTY3UwZ2JMT3otR0NvNVMtM21aWFJhLVFfWkNTX3TSAfABQVVfeXFMTVA3aVRzdTAtcHJRVDBaRUZya05QWkQydFJhVzdXVko1dElMbU9ycWNnUTU4NUlvNVA0STNoNEZaaWoyLWdVeExFTjdZNEV2VW5iQVc5ZzdyNzFqWmZWOW5iODlMU2J4aHkyZnJjSFY5Yk9YREhQM2N5bU1HbUVwbC1oRjlNVXFLVUpvRWxZSFhXRlZJVjQ2Y1BNaTB2djBJUUNnLWo3T0lVLXhyUmVKclBXWlIwSXJUQXpMM3RPWTF3RnN4QVBwTE5tb016clFWdjdGU2N1MGdiTE96LUdDbzVTLTNtWlhSYS1RX1pDU190?oc=5",
       "fecha_anterior": "2026-10-08",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNV21wNWg2cTZ5V3VyeE40MjNQUmp4VF92cklOaGJWdi1UaTQzbFNvc1dIUDNzMFUwZTNmTnphejlDSWFLQzFtSjhqdGVpb2VpbnlHWlBoUDJubVRfcHN5M2FJRHg2dGRGSnNfUUF0YkRLTXZLOXktbTJZSExYRjJwdWVxWjdVamx1dW9VTUdJV0JYSnB5MmVWbnRXVVZ5R1FRWnV4N1BMZDZPQ1RuWE41YkVRTUVPdXkya3hjSnQ5dXQ2dWF6V29vbjdZSzJqTjI3WWc0?oc=5"
-    },
-    {
-      "id": "auto-fc5211ddaf",
-      "nombre": "Aumenta prevalencia de corrupción en Hidalgo entre 2023 y 2025 - Periódico Centr",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 12,
-      "motivo": "En 9 meses abren 685 carpetas y vinculan a 78 por corrupción en Hidalgo - Milenio",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQbnhNYWNyTmRlVFprbGVkMVVSRm1TaGlNTHNFZmZ2dVN0Z2xkYVVsb1NlMnMySWlabWFZMmtJdjA5aWlZbmRLOU9ZWHlOVzlUNVZTYzd2aHhvY0s0OC1IbGJBTTZrZDRQcjFrY21scy1oZXY3cUJXR3pOYzVUb3ZyN3ZmYVA4UlFEdW00MkMxeHPSAZABQVVfeXFMUG54TWFjck5kZVRaa2xlZDFVUkZtU2hpTUxzRWZmdnVTdGdsZGFVbG9TZTJzMklpWm1hWTJrSXYwOWlpWW5kSzlPWVh5Tlc5VDVWU2M3dmh4b2NLNDgtSGxiQU02a2Q0UHIxa2NtbHMtaGV2N3FCV0d6TmM1VG92cjd2ZmFQOFJRRHVtNDJDMXhz?oc=5",
-      "fecha_anterior": "2026-10-12",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQNW9TRlVJa2hzQWstUGFRbG5IVkNqcElBdVhqR1ZBZFZCLWR1V2QzT3JYQTY4MzR3WmdobzR3NHVRZHMtZEJ6R3k4WjhsbXgxRTcxY1NPYUV0VGYtRlRPNVVGZEc2djdCMy1NTmxOVlBCSkt2c3R2YUl3NkxJZmp2LXJYUW9JbTVPYkRZUXN4eUk3UjVJRy1qakVoT3hocFZLS1V2TDdLbjU5cTl4cnBGU0t0dw?oc=5"
     }
   ],
   "actores_destacados": [
@@ -903,12 +866,12 @@
       "confianza": "media"
     },
     {
-      "id": "amlo",
-      "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Reacción social/mediática",
-      "tema": "Taddei es inamovible por ser cuota de AMLO, acusa Döring - Reforma",
-      "nota": "Taddei es inamovible por ser cuota de AMLO, acusa Döring - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPOEsxekhmZkl0MmFLdGtPbTFSRVpBaDZVU0U4ZWJId2RPVFZCcjJsemdzOWRsX2ZtUGs5Qmpad3hjWElsMEJyRjg4Y3NRWXNPWWxvaXJUOTlCdUQ1b3lhMlZiSll1d0w0ZHlEam1CVXN3QVhYS3BGWTMwT2Z3aHExY3M2bGN2b0d5V1poMEJ2ZFhDWkE?oc=5",
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Investigado",
+      "tema": "Legisladores de Morena analizan relevo en el instituto",
+      "nota": "Legisladores de Morena analizan relevo en el instituto",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/25/politica/003n3pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1142,10 +1105,10 @@
     },
     {
       "fecha": "2026-10-25",
-      "tension": 25,
-      "n_notas": 1,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 1,
+      "tension": 19,
+      "n_notas": 4,
+      "n_alto_impacto": 1,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
@@ -1165,8 +1128,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBsTEM0ZW1iRW1IcjE5TGV1RzZFZlpYVER2c05wYWlLSzVCUkE4a2U5aGRXT1Q0b0dCa0tvVFZpbGJFMDRlYlBfRC1fVkFKQXplbVM0ZXhtbFlmWHBld1hwcld1ZTRWd01ibHgxQk5NNkVZUGpWZnBz?oc=5",
-      "nota_texto": "Donald Trump critica la trayectoria de Claudia Sheinbaum en un mitin en Carolina del Sur. - El Congresista",
+      "nota_url": "https://heraldodemexico.com.mx/edicion-impresa/2026/10/22/layda-sansores-participa-en-reunion-con-claudia-sheinbaum-para-impulsar-vivienda-inversion-en-campeche-914104.html",
+      "nota_texto": "Layda Sansores participa en reunión con Claudia Sheinbaum para impulsar vivienda e inversión en Campeche",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1252,22 +1215,22 @@
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 27,
-      "y_lunes": 94,
-      "x_hoy": 33,
-      "y_hoy": 90,
-      "delta_pts": 4.5,
-      "alcance": 8,
+      "x_lunes": 33,
+      "y_lunes": 90,
+      "x_hoy": 40,
+      "y_hoy": 83,
+      "delta_pts": 3.0,
+      "alcance": 10,
       "n_alto": 8,
-      "n_medio": 2,
+      "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPbWlMcGN2TEwwSHQ0OVNMazJMdVk0bTd5RGt2TkRnSWYtdldZa1FicGZBM1RQNGFBRkJldjk1eDlMeVoyaFZVMXJjVC1EcjJNMWM4ZzlNTDF0NWxTUUYyYXA2T2tHZmVHYmFITS1zMzh5clQ4ZGFhZG8tQ0l2WGFPWXROZXpGRXY4ZVM5X3ltdnhuT2NSVHdFWVpBeWY3T0hKQnlGLWx3?oc=5",
       "nota_texto": "Ariadna Montiel responde a acusaciones de Maru Campos - CódigoQro",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 3,
+      "dias_activo": 4,
       "trayectoria": [
         {
           "fecha": "2026-10-22",
@@ -1283,9 +1246,14 @@
           "fecha": "2026-10-24",
           "x": 33,
           "y": 90
+        },
+        {
+          "fecha": "2026-10-25",
+          "x": 40,
+          "y": 83
         }
       ],
-      "fecha_apagado": "2026-10-25"
+      "fecha_reactivado": "2026-10-25"
     },
     {
       "id": "trump",
@@ -1458,8 +1426,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://www.jornada.com.mx/2026/10/20/politica/004n3pol?partner=rss",
-      "nota_texto": "Higinio Martínez llama  a realizar cumbre del sector salud en el Senado",
+      "nota_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPYVNSZjdKcjJoNnVFTFdaX1NSN1hFeGhTa2dWckZwTjVkSUw4dkdPdnJueERFeWp5VWpXdXM4eFJtVFVhYU5WaUJhcDdOc0t4YVV1aEJoMUxTdVI4Z2FUenp4NU9VM2N4SFFPX1JIOS1SRTVueTVMU0hBMGpJMlVFcW9xaU8xdTN2a3JIQks2bFpxUTdkV3J3aDNRNU5yRFFxYmVtQ1l3S0FXcTBJRHpPN29PR1FETFFTU05JM3FWQU9tT05TenNDd1d0QVk4UDJNeXdSd3Q1TnJzYlhFNzI0d1RZWWpTMjNsUjEyNA?oc=5",
+      "nota_texto": "Confía Higinio Martínez en que aumento salarial ayude a resolver conflicto en el IMSS - senado.gob",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1481,6 +1449,44 @@
         }
       ],
       "fecha_apagado": "2026-10-21"
+    },
+    {
+      "id": "ana_lilia_rivera",
+      "nombre": "Ana Lilia Rivera",
+      "iniciales": "AL",
+      "x_lunes": 13,
+      "y_lunes": 62,
+      "x_hoy": 17,
+      "y_hoy": 60,
+      "delta_pts": 1.5,
+      "alcance": 4,
+      "n_alto": 1,
+      "n_medio": 4,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUdIBzgFBVV95cUxNUzhQS2NfejFscE5tYmVaTE11OGwtTzZGTHRvb1VvTnAtX19LY05iclF1NERMekNBbTF0UU84YnNlYjFzNnU5ckZ6X1U2S29BZkpkbzZBQll6X1RRSDBtVHZWSTlmVVJtbkVJclJ2ME1wdEowd3ExMl9EWVlUWVhpV3hNV2ZLblRLQ0F5a0tqRXBzQ1FWQzMyWXplYmhmRWNiZ1h2V21IbFVoOFNlbFhFaF9BUWMzd1dPS0YtRGlybDNwT1VNSHZZUmt2UF9TUQ?oc=5",
+      "nota_texto": "Morena refuerza organización territorial en Tlaxcala con Ariadna Montiel y Ana Lilia Rivera - Por Esto!",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-23",
+          "x": 3,
+          "y": 50
+        },
+        {
+          "fecha": "2026-10-24",
+          "x": 13,
+          "y": 62
+        },
+        {
+          "fecha": "2026-10-25",
+          "x": 17,
+          "y": 60
+        }
+      ]
     },
     {
       "id": "bolanoscacho_cue",
@@ -1578,35 +1584,6 @@
         }
       ],
       "fecha_apagado": "2026-10-20"
-    },
-    {
-      "id": "monreal",
-      "nombre": "Ricardo Monreal",
-      "iniciales": "RM",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 11,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOUTl6SU1TMFktQjZuNDBsZEhGRXU5VmotZFlrU2ZtUW1kWlcweW9KSHVwVXBHdzhsbXFKb181VHBSdVVMaUM0NlN4Ui01eFdoVW5mRlJROGtRU19hZDNOdG5tM1cxWWRBbWtCQk1QaTVrSG1PamFKek43ME9sU1ZjMWY3eWpnR1gzYnJvOExBMmFVSWM4WWxLUkVKSmpCTkxrbFVtS19vTGZRM2hrM2dFZ3pQZHI4SXlIUXF3ctIBwgFBVV95cUxQYThQUzZXS0dxU0FPR1cyY3ZkU2FIODRleWlpb2oxMWdfLTg1Z1EwbmFkVDJoSWJrUHhFNVhGalNMNUlUdGdkX0RFTXVneE4zUzQzbk12aG1EWEJjWnFreTRkRVF6VWVRWGxJZGF5OWF5Z3JyZ2VycGl6cjZBeGNEc2NSellucUJyeG9qazlTRXI2MTNsUnFDUS13NnpPMjhQQ2dGaFJSWC13MTA4dVpGMTFBRlh6RVhBUW9Xb2F5cXJMdw?oc=5",
-      "nota_texto": "Presupuesto 2027: Diputados prevén discutirlo del 9 al 13 de noviembre, anuncia Ricardo Monreal - Por Esto!",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-19",
-          "x": 11,
-          "y": 50
-        }
-      ],
-      "fecha_apagado": "2026-10-20"
     }
   ],
   "tablero_semana_inicio": "2026-10-19",
@@ -1671,5 +1648,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-25 12:04"
+  "hora_corte_publicada": "2026-10-25 14:19"
 }
