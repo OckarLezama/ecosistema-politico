@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-24T13:53:36.671518-06:00",
+  "generado_en": "2026-10-24T18:04:53.157995-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 6,
+  "n_notas_ventana": 8,
   "baja_confianza": false,
-  "tension_nacional": 17,
+  "tension_nacional": 19,
   "tension_anomalia": {
-    "z": -1.6,
+    "z": -1.3,
     "nivel": "normal",
-    "media_periodo": 27.7,
+    "media_periodo": 27.6,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 47,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 3,
+      "peso_pct": 46,
+      "tema_principal": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
+      "tema_principal_id": "auto-70761cce6c",
+      "n_temas": 3,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "Don Rodo, hermano de “El Mencho”, tramita amparo - Cuarto Poder Chiapas",
@@ -36,22 +36,34 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQLVhreWxQX2lEZGVqZEJCNTluVGRZWkRXS2tuVWQ2cklVVDh4a19BX1RQNmJuS09tVlZQcUY1dmRMRHR5SDVIc043TGNuTmRJb2YyOVZXUFdyOFNkT0MwV0ZJREQxY3k2RDY0YVRleUZHNjZMNm9pQUxQd3J1cHNGZHhId1JSWFYzSmVEZ0xTN2hmaG9uRi1laEZmeUNkSXpHSTBiVzFTSHJlWFUybHd2XzVuelhUem9NQmw2S2N2R3BwNl9JelE?oc=5",
           "intensidad": 5.0,
           "medio": "El Soberano"
+        },
+        {
+          "texto": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
+          "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
+          "intensidad": 5.0,
+          "medio": "informador.mx"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 38,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "peso_pct": 43,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 2,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "Gobierno de Trump defiende planes de muro fronterizo con México: “no es negociable”",
           "fuente_url": "https://www.yucatan.com.mx/mundo/2026/10/24/gobierno-de-trump-defiende-planes-de-muro-fronterizo-con-mexico-no-es-negociable.html",
           "intensidad": 7.0,
           "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "Trump quiere permiso de México para sus militares y T-MEC antes de la elección: NYT - Sin Embargo",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOOF96Q05KVXhUZUFYSXgtMVpFWjEyT213RkplWVRvX25yNWdkT0gxRW94LW1peWNFdXExbUFrZWQzbC1pUFdLR1NLWjFvWkMtOHBsamxEaVNabU5lZ3o5ZjV2RUZxNkMxTm5MUFFqc0VHMjIzUW9fY3dPWTRfU0laQjFKS3lRSWo2T25RTEl0RGxTamRveEpmUVpFTUdtUVVLalFFX093RS1sMnBtRkdlU2s3RGJoNmxW?oc=5",
+          "intensidad": 7.0,
+          "medio": "Sin Embargo"
         },
         {
           "texto": "Guanajuato pide proteger contenido regional y aranceles en revisión del T-MEC - NW Noticias",
@@ -63,7 +75,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 15,
+      "peso_pct": 11,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
@@ -539,7 +551,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -643,7 +655,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 5
+          "peso_pct": 4
         }
       ]
     },
@@ -664,7 +676,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -706,7 +718,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -731,7 +743,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
@@ -777,7 +789,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
@@ -793,12 +805,45 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 3
         }
       ]
     }
   ],
   "top5_temas": [
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Trump quiere permiso de México para sus militares y T-MEC antes de la elección: NYT - Sin Embargo",
+      "peso": 7.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOOF96Q05KVXhUZUFYSXgtMVpFWjEyT213RkplWVRvX25yNWdkT0gxRW94LW1peWNFdXExbUFrZWQzbC1pUFdLR1NLWjFvWkMtOHBsamxEaVNabU5lZ3o5ZjV2RUZxNkMxTm5MUFFqc0VHMjIzUW9fY3dPWTRfU0laQjFKS3lRSWo2T25RTEl0RGxTamRveEpmUVpFTUdtUVVLalFFX093RS1sMnBtRkdlU2s3RGJoNmxW?oc=5",
+      "actor_vinculado": null
+    },
+    {
+      "id": "auto-70761cce6c",
+      "nombre": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
+      "categoria": "Gobernabilidad",
+      "resumen": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida y afianza como el quinto estado más seguro: Antonino Morales - morena.senado.gob.mx",
+      "motivo": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
+      "peso": 5.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
+      "actor_vinculado": {
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
+      }
+    },
     {
       "id": "trump-agenda",
       "nombre": "Trump y México: declaraciones y presión",
@@ -817,28 +862,20 @@
   ],
   "temas_nuevos": [
     {
-      "id": "auto-0d9ec90cdd",
-      "nombre": "Convocan nuevas protestas en Francia e Italia; derecha culpa a la inmigración de",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOSURfNEd4ZTMyNlJLcW5NQ3VXWHhmYlVXNms3RVVPSHF3Ny1uOG1NeU1MQThjRXR2cDFKM2NGeGhUU3Y0LU9SaFV6b3E1eldjRXcyVTBaekk4dWUyVkt2R3JuMDh3WnY2MmVfQlVjYUJTdlNIUklzR1Uzb0cwdlQ2a1pNZ3ZqdlZtVkN6RUZra0lkaUJsV3JUS1pZQdIBmwFBVV95cUxOSURfNEd4ZTMyNlJLcW5NQ3VXWHhmYlVXNms3RVVPSHF3Ny1uOG1NeU1MQThjRXR2cDFKM2NGeGhUU3Y0LU9SaFV6b3E1eldjRXcyVTBaekk4dWUyVkt2R3JuMDh3WnY2MmVfQlVjYUJTdlNIUklzR1Uzb0cwdlQ2a1pNZ3ZqdlZtVkN6RUZra0lkaUJsV3JUS1pZQQ?oc=5"
-    },
-    {
       "id": "auto-9b600cbc85",
       "nombre": "Incendio arrasa el \"Nido del Águila\", refugio construido para Hitler; hay un sos",
       "categoria": "Social",
-      "peso": 6.0,
+      "peso": 12.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOX2xmcFFtVzdBTTJ4dElVTW03NG1fdktweWNoQnJVRmtPamV1M05TNDk4c0szY1NjSmJQYW5uWm1venFhV1pGcnBmT2Nfa2dNcHRDVTcxVk9EaC0wSUJ1MF9ZRjJYZklGMWk4MERaS1M1d2swcmtlZVBNNTRmU3hYcTljME5lWGdmRXZackZRN09BVEZSUTVldGRwODNwc2xmMkc4cXJ0aXVuLU9QbGNQY2V0ZmtQeHVCTzdkdjRlNmRaTllyMGRLZXBKU0VrSDc2elFjUGdLczJobV9GcU1tN3hRNUdRdTYwQW1vMFlKaEVVZ3BwMGhvUUFEYTZVdHNlbE9XT3FEWDg5YnI2d1HSAY4CQVVfeXFMTl9sZnBRbVc3QU0yeHRJVU1tNzRtX3ZLcHljaEJyVUZrT2pldTNOUzQ5OHNLM2NTY0piUGFublptb3pxYVdaRnJwZk9jX2tnTXB0Q1U3MVZPRGgtMElCdTBfWUYyWGZJRjFpODBEWktTNXdrMHJrZWVQTTU0ZlN4WHE5YzBOZVhnZkV2WnJGUTdPQVRGUlE1ZXRkcDgzcHNsZjJHOHFydGl1bi1PUGxjUGNldGZrUHh1Qk83ZHY0ZTZkWk5ZcjBkS2VwSlNFa0g3NnpRY1BnS3MyaG1fRnFNbTd4UTVHUXU2MEFtbzBZSmhFVWdwcDBob1FBRGE2VXRzZWxPV09xRFg4OWJyNndR?oc=5"
     },
     {
-      "id": "auto-a4e599aa70",
-      "nombre": "‘Mucho rata quiere ser alcalde’: Abelina López lanza crítica contra aspirantes d",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-1c9222338a",
+      "nombre": "Alcalde de Nueva York da consejos en español a migrantes ante redadas de ICE: ‘E",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/23/mucho-rata-quiere-ser-alcalde-abelina-lopez-lanza-critica-contra-aspirantes-de-morena-en-acapulco/"
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/24/alcalde-de-nueva-york-da-consejos-en-espanol-a-migrantes-ante-redadas-de-ice-estos-son-tus-derechos/"
     },
     {
       "id": "auto-6af2f0adeb",
@@ -855,14 +892,33 @@
       "peso": 4.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOREo2bU1uOXRLMnZYN056X0xuMVF3Mmx0OTlxazdGMkdYSHhSSXM3bHhodUdwc1FNQ29STzVQRlFEaVBrU2psd0ZueUwzdGRmbnpORC1kOTAya04xa1JvSEFwSVVtVFhkVnZuUndKenMweGtTVkJzcnNEMGwyYkJjeFZUTW1HM2lvTnZsRTVIOU9hSXo3SkZjUVpkS2xHaHZNUXNiSnFSQ0R3ZjdjSVk3elRYTEYwbzBH?oc=5"
+    },
+    {
+      "id": "auto-43c08eaf0e",
+      "nombre": "Le congela UIF cuentas y huye petista del País - Reforma",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOZC15MEVOc2NOVW1BWjRHWkxvdXkwTTNxd1ZSM3JVWXVJQUUxNEpYM0JRQnhfMFNzQzBYQ2lJRmlBTTFYOUgtQkRnWFBGS1dENS14bk1QeGgwT0szVFNmajltN2NRci1wb202NEs2dXF4ek1kRkM4UG5LSWtRQVk2Z0syVGtTb1k?oc=5"
     }
   ],
   "temas_retomados": [
     {
+      "id": "auto-754048b435",
+      "nombre": "Renuncia Claudia Espino al INE; Guadalupe Taddei nombra a Roberto Félix como enc",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 45,
+      "motivo": "⚡ Posible presión de Morena (partido político) — Advierten en Morena: renuncia de Taddei no evitaría juicio - Reforma",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNOFpUUGp1cGN6NUQxQWhHS1I2TGVwVTdoSmdnUDRPQW5aVjg4NXd4QWJ0bVhOb2pkOUFicnJHUmxoaENzT25QZTVBY2NzaGFlRjFhMEpEZG1RaWZCVGhhT01YRGpOb01aYTV0UTFvZGVhcHNGMV90REhpLVZMaEJ6RHJVV1NTS1p5TnVWRkNLQjZqZVdUMUE?oc=5",
+      "fecha_anterior": "2026-09-09",
+      "fuente_url_anterior": "https://www.yucatan.com.mx/mexico/2026/09/09/renuncia-claudia-espino-al-ine-guadalupe-taddei-nombra-a-roberto-felix-como-encargado.html"
+    },
+    {
       "id": "auto-41a01f3a9b",
       "nombre": "ADVIERTE DE MANIPULACIÓN MASIVA CON IA EN REDES",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 29,
+      "dias_silencio": 30,
       "motivo": "⚡ Posible presión de Claudia Sheinbaum Pardo — Redes sociales provocan depresión, advierte la Presidenta a estudiantes",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/24/politica/010n1pol?partner=rss",
@@ -870,32 +926,10 @@
       "fuente_url_anterior": "http://campechehoy.mx/2026/09/24/advierte-de-manipulacion-masiva-con-ia-en-redes/"
     },
     {
-      "id": "auto-8e2e82bb41",
-      "nombre": "🚨 Tras salida de Renán Barrera del PAN, en redes sociales usuarios cuestionan la",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 15,
-      "motivo": "Claudia Sheinbaum cuestiona a estudiantes sobre el tiempo que pasan en redes sociales: “Estar todo el día tiene sus consecuencias” - Infobae",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxQZGNId1N4b29KYnZMbXZWMFB1Q3pZR1hrREhBTThHMnQ3RHMxbGYza1JiYjFqUmdFWW45Rl9WaWZhWHA1VXdwX1lsV1dGREFkR2ttSDBNSWRhLThxc3FYSzctQlBPeTBtQU1FOV9FcjJVZkJsQTVqcUhDQmxROGNRWjN3N2h5VWl3ZkhPbVZtaDgxbjZIOUdKa1RnaFlDZ0hxaHgwV1VEZG1rNFI3SlhwNGNmMkRnTVlhUFRQcGJkaElMRHZMeWpwOWRBMWFPbVIzTGpSUG5DbnRzcHlnOVY2OEJfU05IeGJ3c196dndQQWpRTkQ5a0tJY2JfcV9XTkHSAZoCQVVfeXFMUFJhYzRPYTQtYktxQ21KbUEtNXExQ2NEbEkzQXNrRWFXM3F0Sy1nUGVBRDJSSVVYUklzbE5NRjVHbDBlbFdia2NjdktJcTUxZ2xaUHYwaUdPUkJta1FicU42NHJMelp3c0NXRUhiRS1RT2Yzc2gyd1pWX1FxcTF3eWtvQ2tZQVBIdDNyRlhZc3pHV1RLZk00Z09nMWsxTURkVGVSdTdWQU1uNm9nSlBDcEhKa0RzNzZIdkV1ZWJPYnFCN1EtSURyU2RoU2RGMGdIX2h1d3BCajNrN2VWSjNlRUFLUklfVVE0ZlB6cEtZXzE5WUxLUmxwODBRcmpWVWZ0QXo1YU1HREJaLWtfRWtvRjlvOXVNdU44bmpR?oc=5",
-      "fecha_anterior": "2026-10-08",
-      "fuente_url_anterior": ""
-    },
-    {
-      "id": "auto-f659cff2b2",
-      "nombre": "Legisladoras del PRI, PAN, MC y Morena cuestionan alianzas y falta de perfiles o",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 11,
-      "motivo": "Cuestiona Ugalde: ¿Morena impondrá otro perfil afín al INE? - Reforma",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNdnZ6NUozVEo0M3ZTNVRfNUw4X1A5b3FndGhsREs5LTViNTRhQVhWUy1OR3ZvVnlXWkdBMnp6VmZCVW5iVjZUYWZ3eUZudlF6U2dNdUszcW9oVTVOQmJZck5WNHg2aHI2c2h0N3BkTHdwSjA5YUVUOC03eWV1MnZ3aDhaNTJqWUZqWjQtdHJOSG9tN1Rz?oc=5",
-      "fecha_anterior": "2026-10-12",
-      "fuente_url_anterior": ""
-    },
-    {
       "id": "auto-de751c0fe8",
       "nombre": "Alejandro Moreno respalda a Adrián de la Garza en Nuevo León - Milenio",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 7,
+      "dias_silencio": 8,
       "motivo": "No mentir, no robar… no explicar, escribe Alejandro Moreno - El Universal",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQa2s5QTAzY082UlBuRWtCMEpUT3lKQ3lFWmpGSWd3QnoydERkZnpoT21mNjRqZGt3QjFTSGZSdVF2UVZtLUdVclVTWEtDNjVPS1BuQmFBUEp0SGNpRWRfa3BZd3k5ZWNTSVVNUHdQZFI1Rm5BZ1djREQ3aXBaT19lV0xlSTd4dHRGNXc1Z3Jlei0?oc=5",
@@ -918,10 +952,32 @@
     {
       "id": "trump",
       "nombre": "Donald Trump",
-      "rol": "Investigado",
+      "rol": "Responsable institucional",
       "tema": "Trump y México: declaraciones y presión",
       "nota": "⚡ Posible presión de Donald Trump — Trump presiona a México y pide combatir a cárteles con militares de EU en un memorándum: NYT",
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/24/trump-presiona-a-mexico-y-pide-combatir-a-carteles-con-militares-de-eu-en-un-memorandum-nyt/",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Investigado",
+      "tema": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
+      "nota": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
+      "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "ramirez_cuellar",
+      "nombre": "Alfonso Ramírez Cuéllar",
+      "rol": "Investigado",
+      "tema": "Respaldamos Estrategia de Seguridad en Oaxaca; nuevo grupo de élite la consolida",
+      "nota": "⚡ Posible presión de Morena (partido político) — Taddei debe asumir su responsabilidad ante acusaciones al INE: Alfonso Ramírez Cuéllar",
+      "fuente_url": "https://www.informador.mx/mexico/taddei-debe-asumir-su-responsabilidad-ante-acusaciones-al-ine-alfonso-ramirez-cuellar-20261024-0069.html",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1028,17 +1084,17 @@
     },
     {
       "fecha": "2026-10-09",
-      "tension": 28,
-      "n_notas": 68,
+      "tension": 27,
+      "n_notas": 69,
       "n_alto_impacto": 34,
-      "n_medio_impacto": 34,
+      "n_medio_impacto": 35,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-10",
       "tension": 26,
-      "n_notas": 47,
-      "n_alto_impacto": 22,
+      "n_notas": 48,
+      "n_alto_impacto": 23,
       "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
@@ -1060,9 +1116,9 @@
     },
     {
       "fecha": "2026-10-13",
-      "tension": 26,
-      "n_notas": 77,
-      "n_alto_impacto": 33,
+      "tension": 27,
+      "n_notas": 78,
+      "n_alto_impacto": 34,
       "n_medio_impacto": 44,
       "n_bajo_impacto": 0
     },
@@ -1084,9 +1140,9 @@
     },
     {
       "fecha": "2026-10-16",
-      "tension": 21,
-      "n_notas": 37,
-      "n_alto_impacto": 11,
+      "tension": 22,
+      "n_notas": 38,
+      "n_alto_impacto": 12,
       "n_medio_impacto": 26,
       "n_bajo_impacto": 0
     },
@@ -1124,10 +1180,10 @@
     },
     {
       "fecha": "2026-10-21",
-      "tension": 30,
-      "n_notas": 44,
+      "tension": 29,
+      "n_notas": 45,
       "n_alto_impacto": 23,
-      "n_medio_impacto": 21,
+      "n_medio_impacto": 22,
       "n_bajo_impacto": 0
     },
     {
@@ -1140,18 +1196,18 @@
     },
     {
       "fecha": "2026-10-23",
-      "tension": 24,
-      "n_notas": 36,
+      "tension": 23,
+      "n_notas": 37,
       "n_alto_impacto": 14,
-      "n_medio_impacto": 22,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-24",
-      "tension": 17,
-      "n_notas": 6,
-      "n_alto_impacto": 1,
-      "n_medio_impacto": 5,
+      "tension": 19,
+      "n_notas": 8,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 6,
       "n_bajo_impacto": 0
     }
   ],
@@ -1161,46 +1217,46 @@
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
       "x_lunes": 90,
-      "y_lunes": 75,
+      "y_lunes": 74,
       "x_hoy": 100,
-      "y_hoy": 74,
+      "y_hoy": 73,
       "delta_pts": 6.0,
-      "alcance": 20,
+      "alcance": 21,
       "n_alto": 14,
-      "n_medio": 15,
+      "n_medio": 16,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOTEFnc1o5cTBfaV9aREtNT3FfZ0pCUGV3M09lZmxuTnRHd2x3SWxVbEdybjQ5RV9HZ2VuUk50NHpzdEppU2ZzM2lYbnlLSFo5d1JPdWZidW40MmhUX3BheFg4dWZvOXZIT3lnTXcxem9ZcWt5WVdxWjhnaGZRWmhZSnhUd2Q1REVvMnAzUUJCczlTT0praWsyRV9uVFpPU0thVDBzQXNjbWpwVjlMN0dlZjJPdHY5MV82eWxB0gHAAUFVX3lxTE1fa2ZUdnhNZGxnQnlFUDNRdVE0TmxOWXlpVlNMOHpROHI0N1FjMGNkdndrenpTeWVVM0tETTh5OU9FQVdjYWtudTNkUlJ0cnY3eXh0UHJyc0o5Y3ZHVXhVSVAxLTVaSThtOFFFeGxwSXFZLXZEdWUyR2dsUDliRHFxLUd4QkI2cWZpOGoxaVh3YXJvNjJ6dWpfc0tsZHhzT3M5NGpkOE5CcXJVbmt5aUZnVl9OMkZubW11UC1sNnFOaA?oc=5",
-      "nota_texto": "Sheinbaum Pardo anuncia plan para aumentar salarios en el IMSS y modernizar sus servicios - Por Esto!",
+      "nota_url": "https://www.informador.mx/mexico/tenemos-salarios-deplorables-trabajadores-del-imss-entregan-pliego-para-claudia-sheinbaum-20261020-0097.html",
+      "nota_texto": "Trabajadores del IMSS entregan pliego para Claudia Sheinbaum",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 14,
+          "x": 13,
           "y": 62
         },
         {
           "fecha": "2026-10-20",
-          "x": 34,
+          "x": 33,
           "y": 70
         },
         {
           "fecha": "2026-10-21",
-          "x": 62,
-          "y": 72
+          "x": 63,
+          "y": 71
         },
         {
           "fecha": "2026-10-22",
           "x": 90,
-          "y": 75
+          "y": 74
         },
         {
           "fecha": "2026-10-23",
           "x": 100,
-          "y": 74
+          "y": 73
         }
       ],
       "fecha_apagado": "2026-10-24"
@@ -1209,53 +1265,58 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 55,
-      "y_lunes": 88,
-      "x_hoy": 66,
-      "y_hoy": 84,
-      "delta_pts": 6.0,
-      "alcance": 16,
+      "x_lunes": 67,
+      "y_lunes": 82,
+      "x_hoy": 70,
+      "y_hoy": 81,
+      "delta_pts": 1.5,
+      "alcance": 17,
       "n_alto": 13,
-      "n_medio": 6,
+      "n_medio": 8,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdTZYVDF1Z3FwOWotWTdvZFQyMGZUeTJmSmdMYm5WSnlqQlRCTUJ3TXZVVGs0aF9ISmxTTk1VelVrNUZJMzF3N1hUTnQ1eXJSYUd4UDBOaDFVUTRmR2czUHRwMHFBSS03OVZFT2ZFNU0ySi04d3liUlZJT3R0U0RzSE12eVI0QmdGTE5hZ1FNTXM5bTVMaXQw?oc=5",
-      "nota_texto": "Seis perfiles buscan alcaldía de Puebla con Morena - Quadratín Puebla",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQTm4ydmNoOEU1Vm5wVkFoSmIxcHpjMjk1REY2SnVKM0Utb1dOaFpfVFJYQUF1ejMwRkFhLWhfWkw4cWpxRGJDZzF1M3EyOXAyUGlPYTBDTkdhVmE2QllkVUlQWTVYMDRMd013TEczVTRrZmZ4VGdxTHMwVkJEX01SS1FjWXR3VWI5NlBJUFVfUlA2Y3p2cEM3TW5EV0M2MmNlaUpJS0VJcm5Za2ZBZHkyQmxMcVRjeXNpTFVCQ0FDTTgxbEZaRzdNMW5zVmhURG0tT29UaGw3ZmZWY2N1?oc=5",
+      "nota_texto": "Juan Carlos Natale se registra como aspirante a Coordinación Municipal de Morena; suman siete aspirantes - El Popular, periodismo con causa",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 4,
+      "dias_activo": 5,
       "trayectoria": [
         {
           "fecha": "2026-10-19",
-          "x": 28,
+          "x": 27,
           "y": 94
         },
         {
           "fecha": "2026-10-20",
-          "x": 41,
+          "x": 40,
           "y": 92
         },
         {
           "fecha": "2026-10-21",
-          "x": 55,
+          "x": 53,
           "y": 88
         },
         {
           "fecha": "2026-10-23",
-          "x": 66,
-          "y": 84
+          "x": 67,
+          "y": 82
+        },
+        {
+          "fecha": "2026-10-24",
+          "x": 70,
+          "y": 81
         }
       ],
-      "fecha_apagado": "2026-10-24"
+      "fecha_reactivado": "2026-10-24"
     },
     {
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 28,
+      "x_lunes": 27,
       "y_lunes": 94,
-      "x_hoy": 31,
+      "x_hoy": 30,
       "y_hoy": 89,
       "delta_pts": 1.5,
       "alcance": 8,
@@ -1277,16 +1338,15 @@
         },
         {
           "fecha": "2026-10-23",
-          "x": 28,
+          "x": 27,
           "y": 94
         },
         {
           "fecha": "2026-10-24",
-          "x": 31,
+          "x": 30,
           "y": 89
         }
-      ],
-      "fecha_reactivado": "2026-10-24"
+      ]
     },
     {
       "id": "trump",
@@ -1294,7 +1354,7 @@
       "iniciales": "DT",
       "x_lunes": 17,
       "y_lunes": 90,
-      "x_hoy": 28,
+      "x_hoy": 27,
       "y_hoy": 88,
       "delta_pts": 7.5,
       "alcance": 7,
@@ -1321,7 +1381,7 @@
         },
         {
           "fecha": "2026-10-22",
-          "x": 28,
+          "x": 27,
           "y": 88
         }
       ],
@@ -1333,7 +1393,7 @@
       "iniciales": "ME",
       "x_lunes": 10,
       "y_lunes": 100,
-      "x_hoy": 14,
+      "x_hoy": 13,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 4,
@@ -1360,7 +1420,7 @@
         },
         {
           "fecha": "2026-10-22",
-          "x": 14,
+          "x": 13,
           "y": 100
         }
       ],
@@ -1406,7 +1466,7 @@
       "iniciales": "RR",
       "x_lunes": 17,
       "y_lunes": 90,
-      "x_hoy": 21,
+      "x_hoy": 20,
       "y_hoy": 83,
       "delta_pts": 1.5,
       "alcance": 6,
@@ -1428,7 +1488,7 @@
         },
         {
           "fecha": "2026-10-20",
-          "x": 14,
+          "x": 13,
           "y": 100
         },
         {
@@ -1438,7 +1498,7 @@
         },
         {
           "fecha": "2026-10-23",
-          "x": 21,
+          "x": 20,
           "y": 83
         }
       ],
@@ -1489,7 +1549,7 @@
       "iniciales": "",
       "x_lunes": 7,
       "y_lunes": 75,
-      "x_hoy": 14,
+      "x_hoy": 13,
       "y_hoy": 62,
       "delta_pts": 3.0,
       "alcance": 3,
@@ -1511,7 +1571,7 @@
         },
         {
           "fecha": "2026-10-21",
-          "x": 14,
+          "x": 13,
           "y": 62
         }
       ],
@@ -1672,5 +1732,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-24 13:53"
+  "hora_corte_publicada": "2026-10-24 18:04"
 }
