@@ -1,7 +1,7 @@
 {
-  "generado_en": "2026-10-25T14:19:46.524396-06:00",
+  "generado_en": "2026-10-25T18:01:00.765574-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 4,
+  "n_notas_ventana": 8,
   "baja_confianza": false,
   "tension_nacional": 19,
   "tension_anomalia": {
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 48,
+      "peso_pct": 46,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 2,
-      "n_notas": 2,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "Huachicol fiscal, empresas y familiares ¿Qué hay detrás de Sánchez Zumaya? - emsavalles.com",
@@ -30,12 +30,46 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOOFZCTUpSZjFleGVDdmZvSFFOY1dUZ3JIWEJsNC1IZzlHNGU0QUxxZUhmY0hYanN6NGgxY1p1QU1hVkE0YlhOOHZvQmdPMGRQWHJNVnhkRjZSc0tJQTNLNThLTU5tZ2VVYlhTUzQzQktTd3BVVjg1U0x5d01VTkFJNHhoNy1OTUYyTHI3RXhuVlc4VEFBbHV5LUNVa2VIUUFKVG5Da1Y5LUJqYVBQYmFLOHpwQlJYQXRjTTJPbl9JY3lKVXNBd2oyX2MtS3YyRzJOUVVlSmZfRlVYQ2hoc2NIUTc4UjdBc3pf?oc=5",
           "intensidad": 5.0,
           "medio": "Central Municipal"
+        },
+        {
+          "texto": "Morena aplicará doble filtro para elegir a sus coordinadores: Andrés Villegas - Intolerancia Diario",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNb3U1dTJBZjdLZlUxX1o4dzdmaEZxZkNqTEZOdlFxNF8xdEtqVjJUZUNfMjZIVllNaEFVSG1MRC1xanF6VW9WYWh1YnhSZkhGZDEzWTg1RzMwYl94QWZTM25HN1pxYTlDZGJldXRrTWt1VHhIQ1lBQ2tLTVFnaC0zZm5DUVZpUzlqRjA0VDhqY3NIUWlmSHB5UGozZU8zdG5ILVlWRFh4NVFyWmdTNDQta1h6eWhuUWFOQklxaURPaEpTa1BmYnpPblFGSy1JZEVIcTJ4b3VtM3pxb2NsVndrZVluZw?oc=5",
+          "intensidad": 5.0,
+          "medio": "Intolerancia Diario"
+        },
+        {
+          "texto": "Ana Lilia, entre los perfiles que menos rechazo generó su designación como Coordinadora Estatal de Morena - El Periódico de Tlaxcala",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQcVphcmpJRkZQN2J0ZEk3TkdLeXdnd3l2akNpUGRTcUZrZ2NTUzJ4SFRCd3FYOTdFVWFxaks0ZWYtTENwMkNWUkVwa0M0RGFONHI4VE9ZMzZqNFAzczk2NTNpUU1IMHdXWlN4UFNrZ3R2ZDl6RjBoR3ZJQnVxTFN4UTVKM2dGVEVOYTU1eTNLN016U1RHbkFza0M3NEFobmZhTEtQdEFQN2lRMHJXRlVrckk2R2JnTXU5S29EUXlWWnotLWtvTXJYektyNjZjLXdXeHVjNkV3?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Periódico de Tlaxcala"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 28,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 2,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "Alito Moreno pide al gobierno cancelar acuerdos con Cuba por médicos y advierte riesgo para el T-MEC - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPenh4WVFHeDlldEZvcXRyZUkyaFpCMlp0SVJFeUdXWUNiaThCMklTMXFnRzJoRmV5VjAtV1pEOWY2SWVlQVpTVldYQTBneFNseE1Wcm00dnZaZjZrR2t5Y3dHQlJKUkt5RWltT2ZzcDlmekFlZF9HYjk3dnkzSjJJdWFRa19DR1FJa05aRktXSmdiTjhtTEVGaThsb1lDQWxCU0Q2QkM0UTdrNVVRQkQwVExKbjYtOTFGTXNYbGRvM0JhcXZpUFJnaFdXUU5jaHJHdXhPeVhiSjR2RFU?oc=5",
+          "intensidad": 7.0,
+          "medio": "Infobae"
+        },
+        {
+          "texto": "Costó 61.7 mil millones de pesos huachicol fiscal en 2025: Sener - Energía a Debate",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPRnJBZjBJeFFPUE1vM1I2YkhQVGhjVFpOeUhnekFyNTd3T0xhRkdqOGdFU0c0V3EzWVZWX1M1UGhzYkF4dGs0Y3BwM3VxcWV6cklnRGo3dERmZXhaTS1YdGhJWmNKUXlBMGlzUnplQkMzenNDQVVtN1pPeFlqa0JkcmVsU2FHRVFIbmtHQ19nM2RtSlczWnc?oc=5",
+          "intensidad": 6.0,
+          "medio": "Energía a Debate"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 30,
+      "peso_pct": 15,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -51,7 +85,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 22,
+      "peso_pct": 11,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -64,15 +98,6 @@
           "medio": "Ambas Manos"
         }
       ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
     },
     {
       "categoria": "Social",
@@ -769,7 +794,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 57
+          "peso_pct": 56
         },
         {
           "categoria": "Relación Bilateral",
@@ -777,7 +802,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Social",
@@ -786,16 +811,24 @@
       ]
     }
   ],
-  "top5_temas": [],
-  "temas_nuevos": [
+  "top5_temas": [
     {
-      "id": "auto-c9bb78ce39",
-      "nombre": "Crean cuenta falsa de Guadalupe Taddei en X: ‘Sufrimos una severa presión desde ",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/24/crean-cuenta-falsa-de-guadalupe-taddei-en-x-sufrimos-una-severa-presion-desde-el-ejecutivo-publica/"
-    },
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Alito Moreno pide al gobierno cancelar acuerdos con Cuba por médicos y advierte riesgo para el T-MEC - Infobae",
+      "peso": 7.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPenh4WVFHeDlldEZvcXRyZUkyaFpCMlp0SVJFeUdXWUNiaThCMklTMXFnRzJoRmV5VjAtV1pEOWY2SWVlQVpTVldYQTBneFNseE1Wcm00dnZaZjZrR2t5Y3dHQlJKUkt5RWltT2ZzcDlmekFlZF9HYjk3dnkzSjJJdWFRa19DR1FJa05aRktXSmdiTjhtTEVGaThsb1lDQWxCU0Q2QkM0UTdrNVVRQkQwVExKbjYtOTFGTXNYbGRvM0JhcXZpUFJnaFdXUU5jaHJHdXhPeVhiSjR2RFU?oc=5",
+      "actor_vinculado": null
+    }
+  ],
+  "temas_nuevos": [
     {
       "id": "auto-1971334bae",
       "nombre": "Legisladores de Morena analizan relevo en el instituto",
@@ -821,12 +854,20 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1jb1VTc19DME52ZlBrT1B5VnFfZnhBcC1Hb1BBQldfOFIzVl80M1BKTU9Rb0VyeG5IX1dsd1lVMnRZNXpBQlNyMXA1WUV5dDBzd29aZUtqUjRhVzRpTXUxbmNlbE1YUjdxYklBaHNhZkNqcUtBQWNTMg?oc=5"
     },
     {
-      "id": "auto-4f2545a0d1",
-      "nombre": "Caen presuntos feminicidas de mujer y su nieta en Chiapas; gobernador asegura qu",
+      "id": "auto-5217e2a0bd",
+      "nombre": "Morena CdMx iniciará en noviembre foros sobre derecho a decidir el final de la v",
       "categoria": "Gobernabilidad",
-      "peso": 4.0,
+      "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNREQ3elBTWkRQMHdoNGhSNDR4SkNZZTZnYmhZQzlVSDVKdm5XemxlWDNieEZ1aXpxLXNidl9PbUl2Y3RBYjdCa2RjR280ZWpueTZzUWZVcDZMYkExSWxfR1V2dU9ZNGU1ZVdXR2ZCSkg0aDhzOGNoTTNVaU5xZVdmVG0ydHNuRG12Y1QzVmVVd1hDdDNKR0F4TU1CeTJmT19uM0RjNWJfTmI4a2xPSktSejN5OVoxaDk4ZnNRVFJRdFJ6Q1htYklfbTdFdE14NW5ob05JS1RR?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNZkROOW1iaFEtOFlETVBVekRkRUNEdUVKUGVVQTVUNC1TU1Z3aWtOLVhjQmNReDY3RDlyTXlXa01fWmItVXVQbVFUbFdRaUZzMU9QcVZteVpMQzRUaE1XenMyeHZ6ZWtrWGVvSUJvN2hNWnZnNFk4Mjh6YmVxNS1iU09tUVdwQ0hVZTZ1eUxqONIBjwFBVV95cUxOblZad2pGY3NYV0xBcHFnc3NZbHdOSWhORUJJTTVjTEMwbzB2OFVXcXhhZUF2djJXSDhaejBuSW9rT3JieGJQbm9yV2QzY0JMdTFMSXFNQlZuZWpxN3k1d3dTSGVSb2dSRTZ4ZXVqanZrWjRjTTVNQ1FlcGI2MlEwem5oRGphRmMwY1kyRDk0SQ?oc=5"
+    },
+    {
+      "id": "auto-90f9761886",
+      "nombre": "Morena CDMX anuncia colecta de firmas en apoyo a Ley de Rentas - El Universal",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNUnJFNXczdHlDNGx5bEY4YjRxREYyRDB4aTVfWnlrNE10bmI1dnhhbFFJbDJ1TExHZWhOU0JGT2IxdzJyUlZQNGVBMmhxRl84Um5FdnNhTTREdG5Yd05VN2RqOXNPZ3NMekhMaDNVQWN1Z2RiYTRjSWo5X2pZX3ZmbEtaWVBYckp0b3NwcXM2dnJ1OXNqLW1rcjRVbDdsVEJtR0FWd0dyRXV1anlBY1JCWlkxYm5oa3lMNkpURGJwYXpxVHZCR01aSDFLaDZCMURGZWx5b3ZNS2ZQd25rQUN5SFhCd9IB9wFBVV95cUxQZXE2enJ0WEpnQndST29LY0hnSWE3NHg3cFVma2JnRDNhMXRDbTAtSW1mTjh5bmJkQzV1bDR0YnVHbDNWdU9rWUZ1bG9MM3poNW9BLVlmaFRaYXRmY1liclhxMzFxeVpEakRwU2gyckhBMXJjT2JuZmY3bzZDWjFrTWJ2bDRodnE0SGMyNm5jVlZ4RUxNM0FBRDlMb19PYUdUS21sazdtUlhvSDBRSmNZUmNINjRTVVZDV1ltTTlkdTItNW9jUjNEOVljSFA3VmNmMzJmcHVkNjR0MUo2cmNTZ1NHeU5NSm0tcVRfcDNZYkRPeG1aWlZj?oc=5"
     }
   ],
   "temas_retomados": [
@@ -834,7 +875,7 @@
       "id": "auto-5503c2c2d2",
       "nombre": "“La corrupción mata”: Cenapred advierte que malas decisiones en Protección Civil",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 33,
+      "dias_silencio": 34,
       "motivo": "⚡ Posible presión de Claudia Sheinbaum Pardo — “No queremos corrupción en la 4T”, advierte Claudia Sheinbaum",
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-no-queremos-corrupcion-en-la-4t-20261025-0028.html",
@@ -845,12 +886,23 @@
       "id": "auto-fa0f9ca9c7",
       "nombre": "Conmemoración de los 15 años de Morena como movimiento de transformación social ",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 16,
+      "dias_silencio": 17,
       "motivo": "40 años del CEU: el movimiento estudiantil en el que se formó Claudia Sheinbaum llega a la tercera edad - EL PAÍS",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNUDdpVHN1MC1wclFUMFpFRnJrTlBaRDJ0UmFXN1dWSjV0SUxtT3JxY2dRNTg1SW81UDRJM2g0RlppajItZ1V4TEVON1k0RXZVbmJBVzlnN3I3MWpaZlY5bmI4OUxTYnhoeTJmcmNIVjliT1hESFAzY3ltTUdtRXBsLWhGOU1VcUtVSm9FbFlIWFdGVklWNDZjUE1pMHZ2MElRQ2ctajdPSVUteHJSZUpyUFdaUjBJclRBekwzdE9ZMXdGc3hBUHBMTm1vTXpyUVZ2N0ZTY3UwZ2JMT3otR0NvNVMtM21aWFJhLVFfWkNTX3TSAfABQVVfeXFMTVA3aVRzdTAtcHJRVDBaRUZya05QWkQydFJhVzdXVko1dElMbU9ycWNnUTU4NUlvNVA0STNoNEZaaWoyLWdVeExFTjdZNEV2VW5iQVc5ZzdyNzFqWmZWOW5iODlMU2J4aHkyZnJjSFY5Yk9YREhQM2N5bU1HbUVwbC1oRjlNVXFLVUpvRWxZSFhXRlZJVjQ2Y1BNaTB2djBJUUNnLWo3T0lVLXhyUmVKclBXWlIwSXJUQXpMM3RPWTF3RnN4QVBwTE5tb016clFWdjdGU2N1MGdiTE96LUdDbzVTLTNtWlhSYS1RX1pDU190?oc=5",
       "fecha_anterior": "2026-10-08",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNV21wNWg2cTZ5V3VyeE40MjNQUmp4VF92cklOaGJWdi1UaTQzbFNvc1dIUDNzMFUwZTNmTnphejlDSWFLQzFtSjhqdGVpb2VpbnlHWlBoUDJubVRfcHN5M2FJRHg2dGRGSnNfUUF0YkRLTXZLOXktbTJZSExYRjJwdWVxWjdVamx1dW9VTUdJV0JYSnB5MmVWbnRXVVZ5R1FRWnV4N1BMZDZPQ1RuWE41YkVRTUVPdXkya3hjSnQ5dXQ2dWF6V29vbjdZSzJqTjI3WWc0?oc=5"
+    },
+    {
+      "id": "auto-1c3e82fd02",
+      "nombre": "Indignación en California tras declaraciones de Donald Trump sobre un posible at",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 13,
+      "motivo": "Piropea Donald Trump físico de Nicki Minaj - Reforma",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQTFBqc1NuLUhqSXFtSHVhcmhNU1pCSV9BMXlVYjBvR0U0d1EyU280RExNZlQwMlZCQ3pZajEtbk1PVHpZZUg2ajI5NENDRG1WYlgxXzdaR0lGNkRWamxWUndSSTR2aTdpWW9nbzJHM1dONWtEU3N1SlRHMkM3a0M5cVo4aDhScnc?oc=5",
+      "fecha_anterior": "2026-10-12",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNMThxTVpFZklJb2thelhwMENVd1IzaERCYlE4VzdMWU5Pa1ZMNUo4NmtSRks1ZENfd0JhdkZVbGhPaXJRS0plYXotTjdfQ2ZXNTJSb2pBd1NGZDNfWDRsZVdTTklBX2dFNDZsb1E4ci1IVnNlejRNWWotQjZBYVNKdG1lSjlSQmZRVHVLM1E1Q1JQSFI2VGkwdjRtY1VKOXZQS2dvMHRDMHR0RmNlRHpBSEpKQnRlN1lwd0I3UlE0Vy3SAcYBQVVfeXFMUHMzOGJNNjBWZWt1dEZKUERVTEU4RnZFWkYwZkVHM0VWanJOOS12blUzY2taQ0c1cmdYTlI3RzB2SDlIZWl0Wm1HZk5rZG1CSVVnbk1VVFpMeXJiS1lXR2hEOTVEdG9nbzNWUTd1ZW9WcmNxS0ZoTTBCZUwtQXA3VjE3ck1HWUZpUlZxeFJXZ2ZNcF81bTFsV29FU2hpZnMtdDRBcGViZGgxd2lWaFV2VW1QTUJXci0wbGNmMnhaMmE4MUlwSy13?oc=5"
     }
   ],
   "actores_destacados": [
@@ -861,6 +913,17 @@
       "tema": "Claudia Sheinbaum opina de irregularidades en el INE: “No queremos corrupción en",
       "nota": "Claudia Sheinbaum: “No queremos corrupción en la 4T” - El Informador",
       "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU0FPTHhldWREang3NGIxNG9MNFJTNGc3UVo3d2U0dDdGZnN0M0k2NTZUQjVhblZHMzZ1VC1MdTk1UHk3akhqZ2VUTVN6Y0hKRWV5MDBrcjdVQkhJWEpOMXlua0thZFFsVDRjM3FrUG9wWWlqMVZCZVVVTDZoRDgyY1VGeW5uUXlMeHhDUHJkQXA4TmtKXzUwZGlSWEdEbFFTcjdJ0gGoAUFVX3lxTE4zNXhzTm9LaG5IdTlSa1hvUjJJZzhzWjF0X1pXZVJMUnBLTDllcmF4T2VYejEtYnlQc0QyUk5tVERCeFh2VVdnZ0diM202cEg1VjBWdU9JUEVaeGNnTHVzR3JOc0JyUkRsSDRlblduVFFEcG02UHdnYk5yQWJFdlFNOHlpQ0Y4WXluNl9JVDl5OVRuanRrcnAzQjR6V1ktZFc4UW5yVXVPMQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Indignación en California tras declaraciones de Donald Trump sobre un posible at",
+      "nota": "Piropea Donald Trump físico de Nicki Minaj - Reforma",
+      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQTFBqc1NuLUhqSXFtSHVhcmhNU1pCSV9BMXlVYjBvR0U0d1EyU280RExNZlQwMlZCQ3pZajEtbk1PVHpZZUg2ajI5NENDRG1WYlgxXzdaR0lGNkRWamxWUndSSTR2aTdpWW9nbzJHM1dONWtEU3N1SlRHMkM3a0M5cVo4aDhScnc?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1106,9 +1169,9 @@
     {
       "fecha": "2026-10-25",
       "tension": 19,
-      "n_notas": 4,
-      "n_alto_impacto": 1,
-      "n_medio_impacto": 3,
+      "n_notas": 8,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 6,
       "n_bajo_impacto": 0
     }
   ],
@@ -1128,8 +1191,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/edicion-impresa/2026/10/22/layda-sansores-participa-en-reunion-con-claudia-sheinbaum-para-impulsar-vivienda-inversion-en-campeche-914104.html",
-      "nota_texto": "Layda Sansores participa en reunión con Claudia Sheinbaum para impulsar vivienda e inversión en Campeche",
+      "nota_url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPWF9HdHItenRGc29QQVF0UzNmTk16SXN5QUNnbWlKQUNBMzRyWWUxaC1QUWRYX0FkWTRNZ05ETHBQeFJGWExVclFCbnNscGVid2hocjRsT0NEUUVDZFBqbFZSdmh3YVlhaGs4Z1FvMFFJZ0pNTG5Yb3pwbHJUcjdOTUZBLVdna3hHY2tBTjJYMGs0VTYyUVpNSl9nVVE5MllqSEhQME5ZLWpLR09SZzJNLXZjYTJ1bzRGTHJ4bXZpVjJoc3NIMnA1Y1BudHYwNjlMVUdjaUFmSGt6RFZFNzVRMVlZWVR1Z1NIdHVxQWstTll5YUk?oc=5",
+      "nota_texto": "Claudia Sheinbaum confirma que el exfiscal de Chihuahua, César Jáuregui, es investigado por otros delitos - Reporte Indigo",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1252,8 +1315,7 @@
           "x": 40,
           "y": 83
         }
-      ],
-      "fecha_reactivado": "2026-10-25"
+      ]
     },
     {
       "id": "trump",
@@ -1270,8 +1332,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUdObnBLbERfZW9MbkE3V01OSWlsYzJScEk2cnhqRnVocW8tdUJXQWp2LUtTTVZWOEFhTmRGbWtLdHVuNUpkdjRyLW9iN1dZWGdGazZaU3dmUjEwUW5paWh4bXdlcmVZLTJtRGsteUtFT3BzaDFaT3BWaUJkX3FMZVJNMXVScm8wSWdWS3JQczI5Q1JYVDBDNUhnQ0RZOTJJSmw5MkVlcUdCdUxMYU1MWVNQSQ?oc=5",
-      "nota_texto": "⚡ Posible presión de Donald Trump — Arrestan a hombre por amenazar de muerte a Donald Trump por redes sociales - Quinta Fuerza",
+      "nota_url": "https://heraldodemexico.com.mx/espectaculos/2026/10/20/pepillo-origel-comparte-foto-con-donald-trump-presidente-de-los-estados-unidos-912604.html",
+      "nota_texto": "Pepillo Origel comparte foto con Donald Trump, presidente de los Estados Unidos",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
@@ -1426,8 +1488,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPYVNSZjdKcjJoNnVFTFdaX1NSN1hFeGhTa2dWckZwTjVkSUw4dkdPdnJueERFeWp5VWpXdXM4eFJtVFVhYU5WaUJhcDdOc0t4YVV1aEJoMUxTdVI4Z2FUenp4NU9VM2N4SFFPX1JIOS1SRTVueTVMU0hBMGpJMlVFcW9xaU8xdTN2a3JIQks2bFpxUTdkV3J3aDNRNU5yRFFxYmVtQ1l3S0FXcTBJRHpPN29PR1FETFFTU05JM3FWQU9tT05TenNDd1d0QVk4UDJNeXdSd3Q1TnJzYlhFNzI0d1RZWWpTMjNsUjEyNA?oc=5",
-      "nota_texto": "Confía Higinio Martínez en que aumento salarial ayude a resolver conflicto en el IMSS - senado.gob",
+      "nota_url": "https://www.jornada.com.mx/2026/10/20/politica/004n3pol?partner=rss",
+      "nota_texto": "Higinio Martínez llama  a realizar cumbre del sector salud en el Senado",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1456,12 +1518,12 @@
       "iniciales": "AL",
       "x_lunes": 13,
       "y_lunes": 62,
-      "x_hoy": 17,
-      "y_hoy": 60,
-      "delta_pts": 1.5,
-      "alcance": 4,
+      "x_hoy": 20,
+      "y_hoy": 58,
+      "delta_pts": 3.0,
+      "alcance": 5,
       "n_alto": 1,
-      "n_medio": 4,
+      "n_medio": 5,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
@@ -1483,8 +1545,8 @@
         },
         {
           "fecha": "2026-10-25",
-          "x": 17,
-          "y": 60
+          "x": 20,
+          "y": 58
         }
       ]
     },
@@ -1593,7 +1655,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 0
   },
   "declaracion_presidenta_historial": [
     {
@@ -1648,5 +1710,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-25 14:19"
+  "hora_corte_publicada": "2026-10-25 18:01"
 }
