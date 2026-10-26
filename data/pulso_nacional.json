@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-26T11:38:27.628522-06:00",
+  "generado_en": "2026-10-26T12:03:37.118982-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 25,
+  "n_notas_ventana": 26,
   "baja_confianza": false,
-  "tension_nacional": 8,
+  "tension_nacional": 10,
   "tension_anomalia": {
-    "z": -2.75,
+    "z": -2.45,
     "nivel": "baja",
     "media_periodo": 26.0,
     "dias_base": 27
@@ -13,7 +13,7 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 76,
+      "peso_pct": 72,
       "tema_principal": "López Obrador: reaparición y declaraciones",
       "tema_principal_id": "amlo-agenda",
       "n_temas": 9,
@@ -112,6 +112,34 @@
       ]
     },
     {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 13,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 2,
+      "n_notas": 3,
+      "notas": [
+        {
+          "texto": "Claudia Sheinbaum: Diálogo comercial con EE.UU. está avanzado, pero “hay que esperar”",
+          "fuente_url": "https://www.yucatan.com.mx/economia-2/2026/10/26/claudia-sheinbaum-dialogo-comercial-con-ee-uu-esta-avanzado-pero-hay-que-esperar.html",
+          "intensidad": 7.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "T-MEC: Estados Unidos busca aranceles para el aguacate y el acero mexicanos - EL CEO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPb3FlcWlxNDNRaDdKd3ZaN2lRUXBsMDBRLWdHSGw3bEJsLU9NZVFMZVlYaWNiN1ZoRUM0NEx5X3ZRZEoxQkUtclpOVUgwZ1VPNVZWeFZpZmV3T0NCMXNadmU3dWllYkhGbXYza241V1BUWDlTcWt1VVpfUUhxS1pYUGNnZHRuYTUzUl80?oc=5",
+          "intensidad": 6.0,
+          "medio": "EL CEO"
+        },
+        {
+          "texto": "Victoria de Luiz Inácio Lula da Silva en Brasil frena el giro regional a la derecha y niega a Donald Trump un aliado poderoso - ABC7 Los Angeles",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQU1lNZS1YWW5UWmFrVzRpQ2RoVTl6LXB6b0RVdDhybUoycGNRV2lBX3VkeGlSR2ZnUzBxSDhhejBrb2JVU2FZeExsYW1zNGdDNnlETXUwWWpPUXdpRWN1WS1FMkp0SFBKUnRDWjlxMnhrNVN5TU9EYjdHMllKRXF0NE9wbWhKUU1BZk9iREJyeHhJU2gwbndoTjUxOXNOV0NmbmZ6NVJlTnlRRlgwVWhSc3IzMHNFaDYxUnBJck80dHRmd2VPMUJTTdIBzgFBVV95cUxPTU54REw3amhrYU8teWN4Tk5UTDhfSkdXeUJpdjd2UWtNb1RJRFM0UXJjY1lzb01CcFBrRnBKX0w3TjZHdnRtUkd4aFFaTFE5MVFyMm96Z2lOTGRReDRhRk93Si1fYmpyVmt3NW9XdGVDaUZxenpDT0VOVUVRVGdQVF9tMHlPRlVPUkFzd1ZGN2lzdDc3dWVwMUREbWk0S1hpTVR1ZUo1R0QtdmdrNWQ2MDlDWVhaRE5DV190anhmc1RINEJXVFd5WnVZblh1UQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "ABC7 Los Angeles"
+        }
+      ]
+    },
+    {
       "categoria": "Economía",
       "peso_pct": 9,
       "tema_principal": null,
@@ -130,28 +158,6 @@
           "fuente_url": "https://imparcialoaxaca.mx/oaxaca/piden-al-t-mec-mas-tiempo-para-explicar-derrames-de-pemex/",
           "intensidad": 6.0,
           "medio": "imparcialoaxaca.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 8,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "T-MEC: Estados Unidos busca aranceles para el aguacate y el acero mexicanos - EL CEO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPb3FlcWlxNDNRaDdKd3ZaN2lRUXBsMDBRLWdHSGw3bEJsLU9NZVFMZVlYaWNiN1ZoRUM0NEx5X3ZRZEoxQkUtclpOVUgwZ1VPNVZWeFZpZmV3T0NCMXNadmU3dWllYkhGbXYza241V1BUWDlTcWt1VVpfUUhxS1pYUGNnZHRuYTUzUl80?oc=5",
-          "intensidad": 6.0,
-          "medio": "EL CEO"
-        },
-        {
-          "texto": "Victoria de Luiz Inácio Lula da Silva en Brasil frena el giro regional a la derecha y niega a Donald Trump un aliado poderoso - ABC7 Los Angeles",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQU1lNZS1YWW5UWmFrVzRpQ2RoVTl6LXB6b0RVdDhybUoycGNRV2lBX3VkeGlSR2ZnUzBxSDhhejBrb2JVU2FZeExsYW1zNGdDNnlETXUwWWpPUXdpRWN1WS1FMkp0SFBKUnRDWjlxMnhrNVN5TU9EYjdHMllKRXF0NE9wbWhKUU1BZk9iREJyeHhJU2gwbndoTjUxOXNOV0NmbmZ6NVJlTnlRRlgwVWhSc3IzMHNFaDYxUnBJck80dHRmd2VPMUJTTdIBzgFBVV95cUxPTU54REw3amhrYU8teWN4Tk5UTDhfSkdXeUJpdjd2UWtNb1RJRFM0UXJjY1lzb01CcFBrRnBKX0w3TjZHdnRtUkd4aFFaTFE5MVFyMm96Z2lOTGRReDRhRk93Si1fYmpyVmt3NW9XdGVDaUZxenpDT0VOVUVRVGdQVF9tMHlPRlVPUkFzd1ZGN2lzdDc3dWVwMUREbWk0S1hpTVR1ZUo1R0QtdmdrNWQ2MDlDWVhaRE5DV190anhmc1RINEJXVFd5WnVZblh1UQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "ABC7 Los Angeles"
         }
       ]
     },
@@ -877,7 +883,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 15
+          "peso_pct": 16
         },
         {
           "categoria": "Economía",
@@ -1287,9 +1293,9 @@
     },
     {
       "fecha": "2026-10-26",
-      "tension": 9,
-      "n_notas": 17,
-      "n_alto_impacto": 1,
+      "tension": 11,
+      "n_notas": 18,
+      "n_alto_impacto": 2,
       "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     }
@@ -1303,15 +1309,15 @@
       "y_lunes": 0,
       "x_hoy": 100,
       "y_hoy": 100,
-      "delta_pts": 9.0,
-      "alcance": 3,
-      "n_alto": 1,
+      "delta_pts": 12.0,
+      "alcance": 4,
+      "n_alto": 2,
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNZzQxYUpnZ0YtOXkyVHo1VGJ2UnNscUFpRVNUODNtanJuRzM2LWItMTdsYWEydUZwZzdGb2tEdUl5b2kxX3J0M2hfOXJYUzk4RjdjeW5DYi1MbFY3NFlmXzlrNFpMZ1BDVjMtLWFEUUhuLTRYVWNrRlJmejc3QUJuOHlNWnlsM3kzem4zY0w0VlZMSzRkT0RWclM5ZFhHRE1aMVJwUWgza3M4aWdiVHktS2pVSDMyNFdQWWd3eXlsY1VXREZuSlE?oc=5",
-      "nota_texto": "Claudia Sheinbaum Reacciona a Resultados de Elecciones en Brasil y Destaca Reelección de Lula - N+",
+      "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/26/claudia-sheinbaum-dialogo-comercial-con-ee-uu-esta-avanzado-pero-hay-que-esperar.html",
+      "nota_texto": "Claudia Sheinbaum: Diálogo comercial con EE.UU. está avanzado, pero “hay que esperar”",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1329,8 +1335,8 @@
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 20,
-      "y_hoy": 83,
+      "x_hoy": 17,
+      "y_hoy": 75,
       "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
@@ -1346,8 +1352,8 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 20,
-          "y": 83
+          "x": 17,
+          "y": 75
         }
       ]
     },
@@ -1357,8 +1363,8 @@
       "iniciales": "DT",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 20,
-      "y_hoy": 83,
+      "x_hoy": 17,
+      "y_hoy": 75,
       "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
@@ -1374,8 +1380,8 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 20,
-          "y": 83
+          "x": 17,
+          "y": 75
         }
       ]
     },
@@ -1385,8 +1391,8 @@
       "iniciales": "MO",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 20,
-      "y_hoy": 83,
+      "x_hoy": 17,
+      "y_hoy": 75,
       "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
@@ -1402,8 +1408,8 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 20,
-          "y": 83
+          "x": 17,
+          "y": 75
         }
       ]
     },
@@ -1413,8 +1419,8 @@
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 20,
-      "y_hoy": 83,
+      "x_hoy": 17,
+      "y_hoy": 75,
       "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
@@ -1430,8 +1436,8 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 20,
-          "y": 83
+          "x": 17,
+          "y": 75
         }
       ]
     }
@@ -1542,11 +1548,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-26T06:04:23.911791-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Donald Trump"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-26 11:38"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-26 12:03"
 }
