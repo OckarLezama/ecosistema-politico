@@ -1,7 +1,7 @@
 {
-  "generado_en": "2026-10-26T12:03:37.118982-06:00",
+  "generado_en": "2026-10-26T18:04:30.592998-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 26,
+  "n_notas_ventana": 22,
   "baja_confianza": false,
   "tension_nacional": 10,
   "tension_anomalia": {
@@ -13,18 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 72,
-      "tema_principal": "López Obrador: reaparición y declaraciones",
-      "tema_principal_id": "amlo-agenda",
-      "n_temas": 9,
-      "n_notas": 19,
+      "peso_pct": 62,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 8,
+      "n_notas": 14,
       "notas": [
-        {
-          "texto": "Claudia Sheinbaum concluye gira por Colima y Michoacán con entrega de becas, créditos y viviendas",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/25/claudia-sheinbaum-concluye-gira-por-colima-michoacan-con-entrega-de-becas-creditos-viviendas-916070.html",
-          "intensidad": 7.0,
-          "medio": "heraldodemexico.com.mx"
-        },
         {
           "texto": "Claudia Sheinbaum Reacciona a Resultados de Elecciones en Brasil y Destaca Reelección de Lula - N+",
           "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNZzQxYUpnZ0YtOXkyVHo1VGJ2UnNscUFpRVNUODNtanJuRzM2LWItMTdsYWEydUZwZzdGb2tEdUl5b2kxX3J0M2hfOXJYUzk4RjdjeW5DYi1MbFY3NFlmXzlrNFpMZ1BDVjMtLWFEUUhuLTRYVWNrRlJmejc3QUJuOHlNWnlsM3kzem4zY0w0VlZMSzRkT0RWclM5ZFhHRE1aMVJwUWgza3M4aWdiVHktS2pVSDMyNFdQWWd3eXlsY1VXREZuSlE?oc=5",
@@ -42,48 +36,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQZHpiTkxFSzhkZm1mUndmVmoxd3FiRWV2VWt5dHlWRnZkTXExNFA4RHgtZmR2cnN6TlRrbW0wWVc2S2NJQ1NxLVQ1NWZWbUxtZGRIOEFuYnI2S21XeEw3bnVldTFldDMxeWU3MVMtQWFfY0ItQU1BYzlZcWF6NzhRckhhZzNBaldoRzZhM1JkZWYxaEJCY1hMNjlLNkF6bDFsWWQwdG94eS00eHRFNTJoTHpOSVV3NTg?oc=5",
           "intensidad": 6.0,
           "medio": "emsavalles.com"
-        },
-        {
-          "texto": "Estaremos atentos a notificación formal del INE de renuncia de consejera presidenta: Raúl Bolaños-Cacho - Rosy Ramales",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUW8yeDJQSVgzVnN2a2JJb1NvMmx4MnFqUzllZEdJakhBYjh1d1RoN3hGOGI5OENoV00xd1k3amc5Z3RyTlFFc0lfREJZXzN4dklhakxNSV96VmctX0FpaDRYTUxNOW8zaEg2bGlsQlo5aWFWOWFmMmRlT1NMaUhVcmt4aGdCRE53X08wMTgtLVg5eFl5ZzdmRUJaSVlnZ1RmclZKNWpDeFpqMXJycnJ0Y2lxck9GS19uNW1nN1FtaVI2NnhuSmc?oc=5",
-          "intensidad": 5.0,
-          "medio": "Rosy Ramales"
-        },
-        {
-          "texto": "Claudia Sheinbaum felicita a Lula da Silva por ganar un cuarto mandato en Brasil - sdpnoticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNQ2lFcjRxSk55UmVOTmhKOVNfNDNHSklzd0U1YnpvanU3UHdsY1BRd0RmYk1WSzhrdkd6QzRCVkY5OVJhd2g0VnFoYUFpWXNSR2laVk1GcXh3UDlSS2dxY0tMaTZhSGo4ZU52akJZTlZ3bVJRVE0zU1JQcGlZdzBvN0xkYW4tUUJZVFZaQm1MbzZ0ajFlcGNHY3EtbGZWMWYyRV9mQjUwV1RocWNkeWJ5bFVTT20tcjNtMEFtMjlQb3g?oc=5",
-          "intensidad": 5.0,
-          "medio": "sdpnoticias"
-        },
-        {
-          "texto": "🇲🇽 La presidenta de México, Claudia Sheinbaum, felicitó a Luiz Inácio Lula da Silva por su triunfo en las elecciones presidenciales de Brasil y destacó el resultado de la jornada electoral como una mu",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPWnhNYmV6MnJ5M0x0ZF9hZGE2cDNMMGhHZk9Wa3NxdWNMc3FXRFZNWWpmUFpjY3RHQUhiTmJMaFBfVTNnR1hvR1lidUpYd3VqZmRsdnZUeDg4dmNyMnI2S2FHY0o1UUlsNl8yc2l2VUk4cEpmeDZjWERLOUtEV3Q3RUtnc3ZBc2Eteml6U2dyNGZMZ1Ewbm04aDh1YTUtNHpBZm1iT2hqZ0JWazVOODNTMXo0YnQ4QXUteFZFVy1fQjBJbE9kVDNKY3dueTl5c1ZIdWZMVEFRX3M1ckk1M2VHakR5LTNOaFBYZ21BZUMwVQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "Facebook"
-        },
-        {
-          "texto": "Claudia Sheinbaum felicita a Lula da Silva por su triunfo electoral en Brasil - Municipios Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQcXFIb3l6MzdobjdVSlpkMlBOeE9VT05oNkdMSFBxZHV1RjJxSXlfbUpZYjRtbU1Na0tfdF9QeTlTYjBidFY4WFNnVXhiSGFUaGNNcWJScEtRZndCenkxUFU3OG50dnNuUFpERFNJVVgwZE43a3FCeW82OWlFbUhzY3Z4NF9pLXZhcjIxQ1NvaHBSai1wRTRvWDZTU2RMSTBvaFJwVVdLR0IyejFWbDktTWpBeldKWGFNbU9jWXNKTV9Ua1ExbGNxYmNR?oc=5",
-          "intensidad": 5.0,
-          "medio": "Municipios Puebla"
-        },
-        {
-          "texto": "Clara Luz Flores llama a fortalecer la unidad de Morena en Nuevo León",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/25/clara-luz-flores-llama-fortalecer-la-unidad-de-morena-en-nuevo-leon-916057.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "Resultados de auditoría al INE deben dar certeza al proceso electoral: Ariadna Montiel - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNN3ExTmUtWHNMQ0xQU2w5ZDlLNmFZTHRDeE5ZTXVTY294bV9TOGFBZWRXaGlETjUzbFVjdHFPTnpZT1YzaEREcDhLcFRhd1B5b2VMMFZBY3dmbDYyeTdwSGJiSG1HS1dPUzBjZVM5SWdkckNpLUo0SzA0R0hhT2VKelFzcmg1Q0dERlVnMTIxc0llN3JlMUHSAZYBQVVfeXFMTTdxMU5lLVhzTENMUFNsOWQ5SzZhWUx0Q3hOWU11U2NveG1fUzhhQWVkV2hpRE41M2xVY3RxT056WU9WM2hERHA4S3BUYXdQeW9lTDBWQWN3Zmw2Mnk3cEhiYkhtR0tXT1MwY2VTOUlnZHJDaS1KNEswNEdIYU9lSnpRc3JoNUNHREZVZzEyMXNJZTdyZTFB?oc=5",
-          "intensidad": 5.0,
-          "medio": "Milenio"
-        },
-        {
-          "texto": "Claudia Sheinbaum celebra triunfo de Lula da Silva para un cuarto mandato en Brasil - XEVT",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX05xOWM5cHdSUEZHNmJBS0s3T055RFlpczM4dHJHaDZWOEtlWG9CeDZ6ZVB6S1oxQWlJaUQyZ1g1QmcwSTVSb2pVM2ZkZnNfTFV4Nl9XUlBhRDRldkVnM3NSNWYwMFhWMW5XeXRpM2hWWno3R3FyTXFUNnh3b04ycmRpVERVUS04RzhISmpWbzVra01aWUQzV1BHMGtSb3p3OVdIbkhaTjNUN3NxdTVHN1o1Ty1wWFE0anZBaXMwTDR4TWs?oc=5",
-          "intensidad": 5.0,
-          "medio": "XEVT"
         },
         {
           "texto": "Campesinos dignifican la vida del campo con Crédito a la Palabra",
@@ -108,12 +60,54 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQdmlRSjNQTnNlM09kSUFfWEtValdRMUVRLXBvb05EYXg4UUp3b1EwYjhkQ3NRNWNXeU5qUC1Hd1ZMdW53UWc0NnZMTHg1azRfRUJSVVpiam9XZ0FDcV9Od243dHhBc1V0SFF4ZmhNOEdrbnlvd1pra0RmbVc5ZnV6VTFkcTI2MnRocWdrZ1hnbVd3QnhyanNYRktTQk1zTDY1M05QdFVMNlkxelVsdkJXcVI5QWR1Yk5iY3JKYmJGa3VJMnl2TTVya1BBQ1lIcXdLaWZGWGJB?oc=5",
           "intensidad": 5.0,
           "medio": "Reporte Indigo"
+        },
+        {
+          "texto": "Claudia Sheinbaum celebra triunfo de Lula da Silva en Brasil: “Una bocanada de aire fresco para América Latina” - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOUG9hdEZyQTRkRVFabmk2VTU5V0xVa2FBemxLWGQ5QjVDVnh2RzhnWTEyOHFrdjJPeVE2VlNiMEthcnEwWnh3MU1TTmZ0RDloajRQTV9KMURRZUQ2TlplU0F4WWM2czJMaXUxelY2T2tRZ0JLNEhGZjgyRXNFS2tQclpSbC1EU0JIc1FXbTAzWHdkdVZUXzNlcW15VGNjX2hyTGxYRTlLUHdLVE4zZElONDAxaC1FUUU5c1FPaVVGV2lEOGtrNXBmTDZKWGI4QkU?oc=5",
+          "intensidad": 5.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Se destapa red de corrupción en Tabasco ligada a Javier May y Andy López Beltrán - www.adn40.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxObzBOQkNza1lTcTNTSUt6dUZscjJ1SjlfeDc3dnl0VW9ZRWRRZlJMLWdQUjlzMFI2dWtMSDhlbzk4T3ViWktpX3lnbWJRdjlfVVlMdEFjNnVGN29MemRnTlc5YjhsLUdETXhyNDl1RHZNWDJySzBXS2JKM01fN2lnSEtyRlpSc3VaWXBFM3RPZTJ6ZE9mSFc5RWhWLWVMV0tMTEFfb1p0REJScnY0My16RjFNa0YzZ0VncUdUZ3NmRQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "www.adn40.mx"
+        },
+        {
+          "texto": "Mary Hernández buscará coordinación distrital de Morena - Caribe Peninsular",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNN2JrMXhHTmdfMkdMWjkwejRMcHVBM3VKeS1LQklrMzZaY0JmY1p6NTlEbFRDT01OYkh5U2JKZUZiYzNrNFczTFBFWHVBa3NQWUpRZkpqcmwySzZjbGZMNEltQ3BySHdjZHVuWXV2MzV1RTlyOWR3Y1hRM0Z3TjRXTkRPQU1yN09QejFTZA?oc=5",
+          "intensidad": 5.0,
+          "medio": "Caribe Peninsular"
+        },
+        {
+          "texto": "Ana Lilia Rivera registra el segundo menor nivel de rechazo entre coordinadores de Morena - Intolerancia Diario",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQWDZjWkJiMGJkR1VrdXNac1RrVl92UF9aSHFFWUF6VFdjeXdXOE5Uc2laR0FZMFd6dno2ajIxcGZONG1yc1VyV3ptMWY2cXhfVzBjTEthSGpvNndfeEZfeGhVVk9YRlJVc3ZmYmMyNWJieWVuWDlSdWNIVC1XTEdKNmtOZ1V4amJLTldpTXpOSWNLUnZTcWo2N0p2ZUdrRW43YTBOeE91WnhMMlFoWHNLS2VxaXBidW5tRXVxbmk1WTlZdF9RNTB4Z1lPZFVVbVpOTmFoMlY0bUh5cFJnZmF0ZVZ2cHZvTFlNbmxUcW1kVQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "Intolerancia Diario"
+        },
+        {
+          "texto": "“Quisieron silenciarnos”: Elvis Guerra denuncia nuevas agresiones y gobierno promete reforzar su protección",
+          "fuente_url": "https://imparcialoaxaca.mx/istmo/quisieron-silenciarnos-elvis-guerra-denuncia-nuevas-agresiones-y-gobierno-promete-reforzar-su-proteccion/",
+          "intensidad": 5.0,
+          "medio": "imparcialoaxaca.mx"
+        },
+        {
+          "texto": "Triunfo de Lula es bocanada de aire fresco para América Latina: Claudia Sheinbaum - Quinta Fuerza",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNT0RzQ2c0ajdHM0pvUGs5a2RvMmt3dHVRLUVXTVJaYmtPa2xnQTJ3enpRVXB2WUpYSjBJbmc3eHFOeXU3c2lEMzhHT2Q4RmpPS1Z6cEM0OENKcGZZMmFKMUh0UkF1a2ViYWRJZUhKek5xRjJkLVNWdUVZcHp2Vnl2U2IyZ2trbmtFQ19ic0V5UG02eDJsYXYzQWlhalJKdGZkeGc?oc=5",
+          "intensidad": 5.0,
+          "medio": "Quinta Fuerza"
+        },
+        {
+          "texto": "Morena prepara 542 asambleas en Michoacán; Torres Piña llama a escuchar a la ciudadanía - Ahora Tabasco Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONEdTaGNsWjBMRWgwcVF3cHBiTXM0ZVRPbF9BZXpyRGFmUVRhQXBlQjlIV0JDNE1iN0ZUUkhrZWxsbzJxQUVvS29qY0VXemQwZzFjai1mUlNHNDd1R3FjRlBsdUFXY2szYzVkbjFwcGdLa0pJQ2N6TzZtbGsxdGZKai1yUHdfU3g3bURpYkdxd2hUZUNOTFBTcnhLQkxrZ0JVdUFYcHdMeTY3bjVKdlR5WVNB?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ahora Tabasco Noticias"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 13,
+      "peso_pct": 15,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 2,
@@ -141,11 +135,11 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 9,
+      "peso_pct": 15,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 2,
-      "n_notas": 2,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "Huachicol fiscal: la cifra oficial deja fuera miles de millones de pesos por evasión del IVA - Expansión",
@@ -158,6 +152,12 @@
           "fuente_url": "https://imparcialoaxaca.mx/oaxaca/piden-al-t-mec-mas-tiempo-para-explicar-derrames-de-pemex/",
           "intensidad": 6.0,
           "medio": "imparcialoaxaca.mx"
+        },
+        {
+          "texto": "El futuro del T-MEC | Retos y oportunidades para la prosperidad compartida en México: Gabriela Cuevas",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/26/el-futuro-del-t-mec-retos-oportunidades-para-la-prosperidad-compartida-en-mexico-gabriela-cuevas-916589.html",
+          "intensidad": 6.0,
+          "medio": "heraldodemexico.com.mx"
         }
       ]
     },
@@ -875,7 +875,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
@@ -887,7 +887,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Social",
@@ -914,21 +914,6 @@
         "id": "sheinbaum",
         "nombre": "Claudia Sheinbaum Pardo"
       }
-    },
-    {
-      "id": "amlo-agenda",
-      "nombre": "López Obrador: reaparición y declaraciones",
-      "categoria": "Gobernabilidad",
-      "resumen": "Declaraciones, apariciones y señalamientos que involucran al expresidente Andrés Manuel López Obrador y su influencia en el gobierno y en Morena.",
-      "motivo": "Resultados de auditoría al INE deben dar certeza al proceso electoral: Ariadna Montiel - Milenio",
-      "peso": 5.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNN3ExTmUtWHNMQ0xQU2w5ZDlLNmFZTHRDeE5ZTXVTY294bV9TOGFBZWRXaGlETjUzbFVjdHFPTnpZT1YzaEREcDhLcFRhd1B5b2VMMFZBY3dmbDYyeTdwSGJiSG1HS1dPUzBjZVM5SWdkckNpLUo0SzA0R0hhT2VKelFzcmg1Q0dERlVnMTIxc0llN3JlMUHSAZYBQVVfeXFMTTdxMU5lLVhzTENMUFNsOWQ5SzZhWUx0Q3hOWU11U2NveG1fUzhhQWVkV2hpRE41M2xVY3RxT056WU9WM2hERHA4S3BUYXdQeW9lTDBWQWN3Zmw2Mnk3cEhiYkhtR0tXT1MwY2VTOUlnZHJDaS1KNEswNEdIYU9lSnpRc3JoNUNHREZVZzEyMXNJZTdyZTFB?oc=5",
-      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -965,31 +950,53 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOZTJDQlJMUS1FQkVvRTlZMzdMMWJiSmZwamhpTWpVclhMZ3VpLWF0cXRRSmVjVnE0eXRtSHNjNV9rd2hEeWRWOWVMeEc0RzJLbkhkQ3NUaVprRTcyLWt1Rm5ld0FqQXE2OEh0dHNRdEQtSjRkS2l5dFdGN3lPY0tISF9ITDdZQnVMX0VUSDdEVWFNU3JOcmFJdEY1bFV6ZEZLb3JxZ2J0MGRTQQ?oc=5"
     },
     {
-      "id": "auto-98df8ce7b2",
-      "nombre": "Claudia Sheinbaum confirma presión de EEUU para realizar operaciones militares e",
-      "categoria": "Seguridad Nacional",
+      "id": "auto-d0adeaaca4",
+      "nombre": "Máynez pide a Sheinbaum “sacar las manos del INE” tras la renuncia de Taddei y a",
+      "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPYXBRWm5tRmQtVnlHeldDLWNyMy1VNDZOaW5vakFzTnhOd2dYMnh1Sy1PWHR5Sk9IcDJMbXc3d3I1RGcwNkNXMGF2YldDQnM2a2d2NWpRSExlTzJQei0wMjR4Rkp1Q2ZEQlVwR3pRTTFJVVhIOENZd3NiTUhiM0h5YkM4ZUxsendLM3BUTHh4VTNsNTVBZ0YydmljQzZBbW1HYWRkTExWMk1VbWMtMHRnX29aYkUyd1ZuMVJtZ3B3ZUZOdVdnUjUzYU5pUGVwTHNCT1RFaEc2YlBVaWphbW1Lc2g2Vl83RXZpbllJREs5d2hLdm5NdkVqSHFWOHdNQXNy?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNejhWdi00ejN0ZzN6ekZNSGNRVWZFWXVDWDZ5d19QOW1GanNRVWgxOXdfcG5FUzd5d2JoODU2TFlnYV9KNjhQbHRucmtXRWlMNUl4QWlMeHNXU0dKLVpkOXVoREo3TnZlMW9IU2J4M0tGNGhOWmJaa1ZGczVBWGlYcE9feExpS1JPWEtmaTVlR1dLQV9hU2FORFlhY2tCc1VOY1hzaS1JTkF5M1dTbjM4Vnh4YkZwbDR3dnc0aG83UkVUZTVDc3F4MXZFbW4zUGxWeXpsMDhJQktQb1Z5RDJTaUdwR0NhUzRsNTJRTEhYMjBEV2xqc0h3?oc=5"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-783676909e",
-      "nombre": "Sitaudi llama a la unidad tras triunfo de César Orta en elección sindical - Diar",
-      "categoria": "Economía",
-      "dias_silencio": 17,
-      "motivo": "Horacio Duarte llama a la unidad en Morena; rumbo a las elecciones de 2027 - El Universal",
+      "id": "auto-7ff9f70a7e",
+      "nombre": "El cablebús más largo y más peligroso del mundo (Línea 5), escribe Margarita Zav",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 28,
+      "motivo": "La Conatrib y su rechazo, escribe Margarita Zavala - El Universal",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNMThXeWZlRmRfYzBPZkwtOC1ZeHVJZld6QXNEVEFHbDlnRlFFbzR2RE5hWWtTcWd6R2Z6dEVCVG44QWstZzF5ZHBHV3Q0eGVQaGY2T0FiSXJGVFBjcmkyeDFNaElIY0paeE1LMGhJY3NPcVQ0a1NOM2VuNHNVLVNXalBuTFd2MlBQVXl0QTVlc1RoZEpHTWZJUjJ2R3VNT0F5MnpKUXpOd2YyUy1TYndRWlNzaWNpUdIBygFBVV95cUxQS0VaT2FGOHBsek04WHhLYzRPRTc3MGxPTFdBblJSN2E5aHNkUWdCS0hOWVFrNmtuQUJfZVM2VjFhWTBJSXRpczlQazdma3FwaUQ1T1FJMUoyS1h1NUdyTHJ6RDJnZjFNX0phQk1lenRHbUlLeVBKMnpvdVhsMm1hYzhSS2kzNTlocXJ3dVJkS2VtdGpndHgzNWV5VnM3dGpDSkZOUjU2REFUbzVFNDJqYUk5UGYwbHpVSUdYQ21BdjNFaDJ2XzdfWWd3?oc=5",
-      "fecha_anterior": "2026-10-08",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQUnJlUDdxcEpibXlDczZ3RGl0dkVhT01SdWFYTWNDUFpwbnR5bTZYeXBSZG42Q0xReGxlY0k2VEI0VGNMOEhIajlvT1ZGdWhCaDIxWmJ2Zk8ybkFvRTEyNXBnQ1ZyekZ3NlpDSFZRN0Y5U2NoOXBneFBvRmZ1TUpHMnNHMlVadEpYWFlmOVRfZW5fX18tZjdCVDNLSDdjSWV0aTAxTHRVazg0Z0dSSHY1TXZxTkhNQ3d0cUlvUA?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPOEhOWjE0N2psdC1BTlVZZllOZVVyU3hBSDBubFVSR3kwOTkwcmg0QlA1YXBnYjNlUEFoU2RxOTc4cVJWclZBUGFqSTBTTV9nMTY4QzRWTk5MQlZDT2JWUWc1VXdhUGVPTmdPSUduNVFzNWtLRE9OREJ0OG9DVVVieEJnVFBkSFdR?oc=5",
+      "fecha_anterior": "2026-09-28",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOTmxtSC1pNUxRLTQyaEdsemM4TzlEVEc1NS1QbUN1NjVjTTdsdDJlNGZrTFQ4NTMwSUxPTGJ5eFNlYlozQ0wtOVpGblMyUGFIRWRuWG1LUmI1QVl1WGdNYUxZZDNNODVaNkNjNDVNdmExaTFIMG1FT1RjUHgwQmRfLUVGaHVrVlNpSS0yMS1BaW1HRkJPZllkV2xESGlLS3pLeC1Ia3U4dUVGZUpidjhmM3ZB?oc=5"
+    },
+    {
+      "id": "auto-86a0afb23b",
+      "nombre": "Emprendedores serían los más beneficiados con reforma fiscal: experto - Grupo An",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 17,
+      "motivo": "Transportistas bloquean caseta México-Pachuca por reforma fiscal - MILENIO",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPZDdnQ0R6VHJxSk1vaFFseWNYQjFJZjBEMm4zUVJKeVBRZmhSclVDRExHZ2ZkaGRPNmx6Q1UyelNFX0RSS0VBRGlvdU0zUDBNTEsySXVpVlowVTZEZ25OaU9aZURJd2tJVDlONUI1MjNLUnBDTXM3WUU2RnFJY3JDbDJ3bTJRZldRM09HSWh3U080dzk4VUHSAZYBQVVfeXFMUDdKS1Y4OW4wa05pZHNnUGF1cEt2SHVDNkE5R1VLUDB6SHBGVGRvR2ZZNURNZHFMV0VLbHVtUWIxa290N1JMT0tkeE1vVmpTZWVTalFoUGtZMndzMlVoeVl3UWVUZmh2aXRta0VINUxCMW1mTVI4RGJvYlRlUlUtYWN4aUNteXZTNWJSWGZ3ckR3eFh1X0Fn?oc=5",
+      "fecha_anterior": "2026-10-09",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNVXRzUklhMjJ5aVV2REhWcUVhUnY5NkRHdW1VR2xTM0NfbUdxZ1hUWFpQMmxtZWFTS1htbTlRcVQ0RjhmU2xYcmtJcEpmQlBIZDFDbWJaT1F6Y3VJeWNpSTZqWnJ6S3lONWx6M2tSM0dBS1JGNEZBS2FVdHB4cE5yZ0lWby15U285c09wbGdxdk9PNUZ3NGFZ0gGcAUFVX3lxTE1lNkdXZHczUEJzX1pveDZPRHVoQTVQR1dZLS1La1FBY1ZyOTgzQS1LVHRCYjljalBuaWRXbGUwby0tbHRCdnRGMVRNdk9TVVJrdHhud1EwNHViZTB1WGFlc3hTQ3ViRDk5S2I0YmNuZFM1N2NYNUx1Z0M5Q2FLUmV0aFJrRW9qYm5EaTBUb3VNeG1ST2trU3BaNXpqbg?oc=5"
+    },
+    {
+      "id": "auto-1fa2c93cf9",
+      "nombre": "Renunció Miriam Aquino. Va para diputada - Municipios Puebla",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 12,
+      "motivo": "Taddei presenta su renuncia al INE a la Cámara de Diputados; el comunicado OFICIAL",
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/ine-guadalupe-taddei-presenta-su-renuncia-a-la-camara-de-diputados-el-comunicado-oficial-20261026-0124.html",
+      "fecha_anterior": "2026-10-14",
+      "fuente_url_anterior": ""
     },
     {
       "id": "auto-dae453ad14",
       "nombre": "Diagnóstico CNDH: migración mejora estancias, pero falla en informar sobre sus d",
       "categoria": "Social",
-      "dias_silencio": 11,
+      "dias_silencio": 12,
       "motivo": "Falta, pero las instituciones mejoran, afirma Sheinbaum",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/26/politica/011n1pol?partner=rss",
@@ -997,15 +1004,15 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-075b81747a",
-      "nombre": "EU ubica al \"número dos\" de la 4T, comparte Riva Palacio",
+      "id": "auto-a8bd731860",
+      "nombre": "“Morena no debe proteger a nadie”, dice Monreal por nuevos audios de Amílcar Olá",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 9,
-      "motivo": "Taddei es un instrumento desechable al servicio de Morena: Riva Palacio",
+      "dias_silencio": 12,
+      "motivo": "Renuncia de Taddei demuestra que Sheinbaum “no protege a nadie”, afirma Ricardo Monreal - Infobae",
       "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/raymundo-riva-palacio-asegura-que-guadalupe-taddei-es-un-instrumento-desechable-al-servicio-de-morena-20261026-0046.html",
-      "fecha_anterior": "2026-10-16",
-      "fuente_url_anterior": "https://www.informador.mx/mexico/raymundo-riva-palacio-grietas-internas-en-morena-abren-oportunidad-electoral-a-la-oposicion-para-2027-20261016-0046.html"
+      "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPNlIwWEtoMXpHZExmUmlzWElNRGNoZDNmdXozTFNoOG45RW1ibG5wd0pXMlRtRW94bzJ3WFZKT3RkOGt2bGFNMDFJT0JqbVVxck5sVU9YNTdia1Jna0JvMko5a3V2QnB2YlN1QnVrSkFjbFBLVGxnbWp2c3dWaFpBeElDSUVjeWVUNDBodjJCQ1hxM2lFY1ZhZ2cwYmdvMlpla0VUVDdsUXNBWHFicm5YeFNPY3h4bjRER1B4aWFiNEVLRmtBeUHSAeABQVVfeXFMUDNvMERrT1I2T1hqV3RJUG5mcm50eWV1OFVRUmN5RVowaENIQUpzc3hFSU9talhqNy0xMGl2NGplU2RVWHk4elVtYklrTjRXWnpyM0luYXZkNlJ3eHpOc1ZOTUlIRlkxOVBtb3ZSTi1DT0pXSnJINEhuREZFelA3Tnk3OTBIbDYwYUZaUVR5N3F4UEhXQzdRck91cjNqRTRNU0N3bUl4eC1iMEVCZ2wwZ0dYQUJxTFdWOHdobW91VXZsd3hyTGlGX19nZGlKaXZUeTUzXzZkdlJDYUZwcjNtVUs?oc=5",
+      "fecha_anterior": "2026-10-14",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQMlB6SzhLTmMzZU96TEJuNkEwbV9nS2Y3dC04RWpGS01idDQ0a2dLS3FiUFJZZmw4cEdBcTdOUWtzU3ZWZkE1NDZJNkJoZHRrVFUxc01CT3hYeTlNSG1rTV8yWWU2RDdJdjgwcmkxSlA2dkxpdlh4NENnMnVpN3ZkbWY0TE1ua21SMllwSlk5REFHbEU3QXZzVTM5Y1ZlREp2Y2pSMTRETWUtdzNFMWVJYWpXZXd4R05xbHZ1WU1fbkxCbnpydklrMEVZSHd0TlJqYUI0QTlWd1dpb2hVMnBtc2o4c2pLTknSAecBQVVfeXFMUDJQeks4S05jM2VPekxCbjZBMG1fZ0tmN3QtOEVqRktNYnQ0NGtnS0txYlBSWWZsOHBHQXE3TlFrc1N2VmZBNTQ2STZCaGR0a1RVMXNNQk94WHk5TUhta01fMlllNkQ3SXY4MHJpMUpQNnZMaXZYeDRDZzJ1aTd2ZG1mNExNbmttUjJZcEpZOURBR2xFN0F2c1UzOWNWZURKdmNqUjE0RE1lLXczRTFlSWFqV2V3eEdOcWx2dVlNX25MQm56cnZJazBFWUh3dE5SamFCNEE5VndXaW9oVTJwbXNqOHNqS05J?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1056,10 +1063,10 @@
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
-      "rol": "Responsable institucional",
-      "tema": "Marta Arizmendi registra su aspiración para coordinar comités de Morena en Tonal",
-      "nota": "Morena Yucatán registró a cuatro aspirantes a la coordinación de Mérida; Liborio Vidal causa polémica - La Jornada",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOYVp3X0RfZjBJSWwwU3M2U2pfUGJHZmFjbDc3NDNmTElrSllGdnlsQmd3STY0eHc1S1NqME5WVTJ3QWlPUk0xSnpteFhiT0tnN2NxZUZCU21SNVVpVThMUEFUcU9YR1k4OXV2WFVYdHF2NjNmLWNyZTZ1SVdrSzB6YTI1dXZUOGdzMy1scUNiN2lGRnBTMDM4bWhhQ0QzbWlRX1pjbUNLWnJ3dXh1RG1CMmRZYU5ubm9kVF9rUXpjdWs5Q3dHa2tVQjVtYTE3bHFOa2tUaUZXOGJ3UnFhZ2hlTnEzUi1JMEU0Y0wxdHFB?oc=5",
+      "rol": "Mencionado",
+      "tema": "Claudia Sheinbaum le asegura pensión mínima garantizada del IMSS a todos los mex",
+      "nota": "Morena pide garantizar la certeza de todos los procesos comiciales",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/26/politica/005n2pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1293,10 +1300,10 @@
     },
     {
       "fecha": "2026-10-26",
-      "tension": 11,
-      "n_notas": 18,
+      "tension": 10,
+      "n_notas": 22,
       "n_alto_impacto": 2,
-      "n_medio_impacto": 16,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     }
   ],
@@ -1309,15 +1316,15 @@
       "y_lunes": 0,
       "x_hoy": 100,
       "y_hoy": 100,
-      "delta_pts": 12.0,
-      "alcance": 4,
+      "delta_pts": 13.5,
+      "alcance": 5,
       "n_alto": 2,
-      "n_medio": 4,
+      "n_medio": 5,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/26/claudia-sheinbaum-dialogo-comercial-con-ee-uu-esta-avanzado-pero-hay-que-esperar.html",
-      "nota_texto": "Claudia Sheinbaum: Diálogo comercial con EE.UU. está avanzado, pero “hay que esperar”",
+      "nota_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNZzQxYUpnZ0YtOXkyVHo1VGJ2UnNscUFpRVNUODNtanJuRzM2LWItMTdsYWEydUZwZzdGb2tEdUl5b2kxX3J0M2hfOXJYUzk4RjdjeW5DYi1MbFY3NFlmXzlrNFpMZ1BDVjMtLWFEUUhuLTRYVWNrRlJmejc3QUJuOHlNWnlsM3kzem4zY0w0VlZMSzRkT0RWclM5ZFhHRE1aMVJwUWgza3M4aWdiVHktS2pVSDMyNFdQWWd3eXlsY1VXREZuSlE?oc=5",
+      "nota_texto": "Claudia Sheinbaum Reacciona a Resultados de Elecciones en Brasil y Destaca Reelección de Lula - N+",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1330,13 +1337,41 @@
       ]
     },
     {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 29,
+      "y_hoy": 78,
+      "delta_pts": 3.0,
+      "alcance": 2,
+      "n_alto": 0,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONEdTaGNsWjBMRWgwcVF3cHBiTXM0ZVRPbF9BZXpyRGFmUVRhQXBlQjlIV0JDNE1iN0ZUUkhrZWxsbzJxQUVvS29qY0VXemQwZzFjai1mUlNHNDd1R3FjRlBsdUFXY2szYzVkbjFwcGdLa0pJQ2N6TzZtbGsxdGZKai1yUHdfU3g3bURpYkdxd2hUZUNOTFBTcnhLQkxrZ0JVdUFYcHdMeTY3bjVKdlR5WVNB?oc=5",
+      "nota_texto": "Morena prepara 542 asambleas en Michoacán; Torres Piña llama a escuchar a la ciudadanía - Ahora Tabasco Noticias",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-26",
+          "x": 29,
+          "y": 78
+        }
+      ]
+    },
+    {
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 17,
-      "y_hoy": 75,
+      "x_hoy": 14,
+      "y_hoy": 78,
       "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
@@ -1352,8 +1387,8 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 17,
-          "y": 75
+          "x": 14,
+          "y": 78
         }
       ]
     },
@@ -1363,8 +1398,8 @@
       "iniciales": "DT",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 17,
-      "y_hoy": 75,
+      "x_hoy": 14,
+      "y_hoy": 78,
       "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
@@ -1380,36 +1415,8 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 17,
-          "y": 75
-        }
-      ]
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "iniciales": "MO",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 17,
-      "y_hoy": 75,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNN2JrMXhHTmdfMkdMWjkwejRMcHVBM3VKeS1LQklrMzZaY0JmY1p6NTlEbFRDT01OYkh5U2JKZUZiYzNrNFczTFBFWHVBa3NQWUpRZkpqcmwySzZjbGZMNEltQ3BySHdjZHVuWXV2MzV1RTlyOWR3Y1hRM0Z3TjRXTkRPQU1yN09QejFTZA?oc=5",
-      "nota_texto": "Mary Hernández buscará coordinación distrital de Morena - Caribe Peninsular",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-26",
-          "x": 17,
-          "y": 75
+          "x": 14,
+          "y": 78
         }
       ]
     },
@@ -1419,8 +1426,8 @@
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 17,
-      "y_hoy": 75,
+      "x_hoy": 14,
+      "y_hoy": 78,
       "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
@@ -1436,8 +1443,8 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 17,
-          "y": 75
+          "x": 14,
+          "y": 78
         }
       ]
     }
@@ -1549,5 +1556,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-26 12:03"
+  "hora_corte_publicada": "2026-10-26 18:04"
 }
