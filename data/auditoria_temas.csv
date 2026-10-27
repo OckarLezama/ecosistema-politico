@@ -52,7 +52,6 @@ ley-telecomunicaciones-2025,Nueva Ley de Telecomunicaciones y Radiodifusión,2,c
 ruptura-diplomatica-ecuador,Ruptura Diplomática con Ecuador,2,completo,3,1,0.33,mezcla historias
 auto-32dee1a56b,"Con Alonso Romero, ANAM fortalece controles de confianza para nuevo personal: Sh",3,informativo,3,1,0.33,mezcla historias
 auto-6ecd332310,Desde el inicio del gobierno de Claudia Sheinbaum se han inaugurado 32 hospitale,3,completo,3,1,0.33,mezcla historias
-auto-fea887a68b,Senado propone a Claudia Sheinbaum DETENER iniciativa sobre jueces sin rostro - ,3,informativo,3,1,0.33,mezcla historias
 auto-d0d61ef731,Comité Técnico de Alfabetización reafirma su coordinación y compromiso con el go,3,informativo,3,1,0.33,mezcla historias
 auto-81b36d96e2,"Claudia Sheinbaum negocia con Estados Unidos una baja de aranceles: ""Nos interes",3,informativo,3,1,0.33,mezcla historias
 auto-5a783c7ea9,Gobierno de Claudia Sheinbaum se apropia del dinero de Afores no reclamadas en e,3,informativo,3,1,0.33,mezcla historias
@@ -120,6 +119,7 @@ auto-bc5881c5b5,Sheinbaum pide regular la IA ante difusión de información fals
 auto-9e86d846a3,Aspirante a diputado panista actúa como antíguo perredista. ¡Mueve a la gente y ,3,informativo,4,2,0.5,revisar
 auto-c04b30a748,“Quiero justicia para mi hija”: padre peruano busca ser escuchado por Sheinbaum ,3,informativo,4,2,0.5,revisar
 auto-c42133bff0,"“Queremos Medicinas, No Otro Teatro”: Reclaman a Sheinbaum por Megaproyecto de L",3,informativo,4,2,0.5,revisar
+auto-fea887a68b,Senado propone a Claudia Sheinbaum DETENER iniciativa sobre jueces sin rostro - ,3,informativo,4,2,0.5,revisar
 auto-0ee7153b01,"Gobernadora Nahle dice que ya no habrá protección por fuero a alcaldes, regidore",3,informativo,4,2,0.5,revisar
 auto-4ffcbd555d,Pensiones millonarias de Zedillo y Ortiz en el BdeM por pocos años: Sheinbaum,1,completo,4,2,0.5,revisar
 auto-07e3993d6e,Fortalecen transparencia pública en Comalcalco,3,informativo,4,2,0.5,revisar
@@ -400,12 +400,12 @@ auto-1fd312da6e,"Morena avanza, pero se fractura - 24 HORAS | El Diario sin Lím
 auto-4729269584,Aurelio Nuño responsabiliza a Morena del colapso educativo en México,3,informativo,11,10,0.91,ok
 auto-f66c5a4c05,PT pone pausa a proceso de Morena; cuestiona rumbo de la 4T - Caribe Peninsular,3,informativo,11,10,0.91,ok
 auto-280d4466cb,El secretario de Seguridad Pública del Estado participó en el Encuentro Nacional,1,completo,11,10,0.91,ok
-auto-19f6ec5b78,Advierte gobernadora a funcionarios que aspiren a participar en proceso electora,3,informativo,11,10,0.91,ok
 auto-ab3f2d6dae,Cartón de Tony: Los grandes ausentes,3,informativo,13,12,0.92,ok
 auto-d96d7cfc94,PT Campeche abre posibilidad para no ir en coalición con Morena - La Jornada May,1,completo,13,12,0.92,ok
 auto-849ce1462c,Presenta el gobierno de Yucatán proyectos en el foro Momento Mexicano: MUUK’ The,1,completo,13,12,0.92,ok
 auto-2790d16615,Eugenio Segura sería el primer gobernador de Quintana Roo nacido en Cancún - Pal,3,informativo,12,11,0.92,ok
 auto-a7b2e4627d,Gobernador de Puebla cuestiona que mujeres encabecen municipios con presencia cr,3,informativo,12,11,0.92,ok
+auto-19f6ec5b78,Advierte gobernadora a funcionarios que aspiren a participar en proceso electora,3,informativo,12,11,0.92,ok
 auto-d19d80c92b,"‘No lo veas a los ojos’: ¿Por qué le dicen ‘El Jaguar Negro’ a Eduardo Ramírez, ",3,informativo,12,11,0.92,ok
 auto-3a87904492,Claudia Sheinbaum desmiente regaño a Omar García Harfuch publicado en medios de ,1,completo,12,11,0.92,ok
 auto-64fd12a5e0,Ayuntamiento de Puebla e INE firman convenio para impulsar participación polític,3,informativo,15,14,0.93,ok
@@ -521,7 +521,7 @@ auto-da01a6cae3,"En octubre concretará el gobernador May, el incremento de una 
 trump-agenda,Trump y México: declaraciones y presión,1,completo,40,40,1.0,ok
 auto-0c8f592de4,"Detienen a César Jáuregui, exfiscal de Chihuahua, por caso de agentes de la CIA ",1,completo,37,37,1.0,ok
 auto-8239f55705,¡CRISIS en #Yucatán! 🆘 El gobernador Joaquín Díaz Mena mantiene TOTAL SILENCIO a,3,informativo,36,36,1.0,ok
-auto-fdf5a8cbd8,Julio Hernández López: Astillero,1,completo,32,32,1.0,ok
+auto-fdf5a8cbd8,Julio Hernández López: Astillero,1,completo,33,33,1.0,ok
 auto-2ce99fc8ff,"El Hospital de La Pastora ha atendido a más de 11 mil mujeres en 200 días, reali",3,informativo,30,30,1.0,ok
 auto-5b52c9db56,Se presentó la plataforma Compraconsolidada.salud.gov.mx que permite total trans,3,informativo,30,30,1.0,ok
 auto-81a4d6f074,Se documentó un caso de sobrecosto en la distribución de medicamentos en el Esta,3,informativo,30,30,1.0,ok
@@ -1068,6 +1068,7 @@ auto-6d79e15366,"Mexicano fue arrollado ""intencionalmente"" por agente del ICE 
 auto-34ad6f6697,"Hay demandas legítimas en el IMSS que deben atenderse, afirma Sheinbaum",3,informativo,4,4,1.0,ok
 auto-8aeb439846,"El acuerdo de la FIFA con la Torre Trump: 7 años, 4 millones de dólares y una of",3,informativo,4,4,1.0,ok
 auto-6e8117105f,Claudia Sheinbaum destaca crecimiento del PIB de México en el 50 Aniversario del,3,informativo,4,4,1.0,ok
+auto-54f63d763e,Claudia Sheinbaum minimiza la marcha del IMSS y tilda de “oportunista” la presen,3,informativo,4,4,1.0,ok
 auto-d23da5110c,Este Ayuntamiento no tiene subejercicio - El Sol de México - El Sol de México,3,informativo,4,4,1.0,ok
 auto-337f3006d2,Donald Trump acusa a gobernadora de Arizona de presuntos vínculos con cárteles d,3,informativo,4,4,1.0,ok
 auto-28fddef6a3,Ex tesorero Ismael Moguel busca la coordinación de Morena en Lázaro Cárdenas - C,3,informativo,4,4,1.0,ok
@@ -1318,7 +1319,6 @@ auto-48d2a77670,"Sofía Castro, aspirante a gobernadora de Oaxaca, advierte posi
 auto-3b196caf61,Claudia Sheinbaum admite problemas en el IMSS - El Heraldo de San Luis Potosí.,3,informativo,3,3,1.0,ok
 auto-075b81747a,"EU ubica al ""número dos"" de la 4T, comparte Riva Palacio",3,informativo,3,3,1.0,ok
 auto-de3089f5bf,Pepe y Gaby en la final de Morena por la alcaldía - Municipios Puebla,3,informativo,3,3,1.0,ok
-auto-54f63d763e,Claudia Sheinbaum minimiza la marcha del IMSS y tilda de “oportunista” la presen,3,informativo,3,3,1.0,ok
 auto-89f16e668a,Presidenta de México pide pruebas a EU sobre presunta infiltración del Cártel de,3,informativo,3,3,1.0,ok
 auto-cab9f7e837,Cabildo de Puebla aprueba la Ley de Ingresos 2027 y un ajuste catastral del 7% -,3,informativo,3,3,1.0,ok
 auto-05596fe344,Atribuye Fiscalía de Oaxaca a Los Cromos 70 % de homicidios en el Istmo - Quadra,3,informativo,3,3,1.0,ok

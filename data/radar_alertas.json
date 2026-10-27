@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-10-27|escalo|auto-19f6ec5b78",
+   "ts": "2026-10-27T03:25:56-06:00",
+   "tipo": "escalo",
+   "tema_id": "auto-19f6ec5b78",
+   "texto": "↗ Advierte gobernadora a funcionarios que aspiren a participar en proceso electora creció (impacto 5.2, 5 medios)"
+  },
+  {
    "id": "2026-10-26|actor_clave|montiel_reyes|auto-b739bf9715",
    "ts": "2026-10-26T22:25:18-06:00",
    "tipo": "actor_clave",
@@ -414,13 +421,6 @@
    "tipo": "inflexion",
    "tema_id": "tmec-revision",
    "texto": "⚡ Posible trigger en «Revisión del T-MEC» (10-09): Varios días seguidos por encima de lo normal (~2.7 notas al día) acumularon un aumento sostenido; ese día fueron 5."
-  },
-  {
-   "id": "2026-10-08|actor_clave|garcia_harfuch|carlos-manzo",
-   "ts": "2026-10-08T19:54:23-06:00",
-   "tipo": "actor_clave",
-   "tema_id": "carlos-manzo",
-   "texto": "◉ Omar García Harfuch aparece por primera vez en «Asesinato de Carlos Manzo»: Asesinato de Carlos Manzo: Harfuch confirma que van 33 detenidos y mantiene contacto con G"
   }
  ]
 }
