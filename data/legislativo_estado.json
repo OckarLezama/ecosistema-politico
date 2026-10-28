@@ -1,9 +1,9 @@
 {
- "actualizado": "2026-10-27 13:30",
+ "actualizado": "2026-10-28 13:41",
  "fuentes": [
   {
    "nombre": "Google Noticias DOF",
-   "entradas": 59,
+   "entradas": 67,
    "error": ""
   },
   {
@@ -13,42 +13,42 @@
   },
   {
    "nombre": "Google Noticias Senado",
-   "entradas": 12,
+   "entradas": 63,
    "error": ""
   },
   {
    "nombre": "Google Noticias Congreso (prensa)",
-   "entradas": 47,
+   "entradas": 100,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: ley-egresos-2027",
-   "entradas": 28,
+   "entradas": 49,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-doble-nacionalidad",
-   "entradas": 6,
+   "entradas": 5,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-aduanera-2026",
-   "entradas": 9,
+   "entradas": 10,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: ley-catastral-2026",
-   "entradas": 17,
+   "entradas": 16,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-propiedad-industrial-antimemes-2026",
-   "entradas": 50,
+   "entradas": 47,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-educacion-celulares-escuelas-2025",
-   "entradas": 4,
+   "entradas": 2,
    "error": ""
   }
  ],
@@ -57,9 +57,9 @@
    "id": "ley-egresos-2027",
    "nombre": "Ley de Egresos de la Federación 2027",
    "etapa": "Presentada",
-   "notas_recientes": 1,
-   "ultima_nota": "2026-10-27",
-   "dias_sin_actualizar": 49
+   "notas_recientes": 7,
+   "ultima_nota": "2026-10-28",
+   "dias_sin_actualizar": 50
   },
   {
    "id": "reforma-doble-nacionalidad",
@@ -67,7 +67,7 @@
    "etapa": "Aprobada",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 21
+   "dias_sin_actualizar": 22
   },
   {
    "id": "reforma-ley-aduanera-2026",
@@ -75,23 +75,23 @@
    "etapa": "Presentada",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 49
+   "dias_sin_actualizar": 50
   },
   {
    "id": "ley-catastral-2026",
    "nombre": "Ley General para el Fortalecimiento y Armonización Catastral y Registral",
    "etapa": "Pleno",
-   "notas_recientes": 4,
-   "ultima_nota": "2026-10-27",
-   "dias_sin_actualizar": 32
+   "notas_recientes": 3,
+   "ultima_nota": "2026-10-28",
+   "dias_sin_actualizar": 33
   },
   {
    "id": "reforma-propiedad-industrial-antimemes-2026",
    "nombre": "Reforma al Código Penal Federal y a la Ley Federal de Protección a la Propiedad Industrial (\"Ley Antimemes\")",
    "etapa": "Pleno",
-   "notas_recientes": 9,
+   "notas_recientes": 11,
    "ultima_nota": "2026-10-23",
-   "dias_sin_actualizar": 27
+   "dias_sin_actualizar": 28
   },
   {
    "id": "reforma-ley-educacion-celulares-escuelas-2025",
@@ -99,14 +99,14 @@
    "etapa": "Presentada",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 36
+   "dias_sin_actualizar": 37
   }
  ],
  "actualizaciones_etapa": 0,
  "votos_actualizados": 0,
- "candidatos_nuevos": 37,
- "candidatos_podados": 37,
+ "candidatos_nuevos": 105,
+ "candidatos_podados": 48,
  "altas_automaticas": [],
- "ruido_descartado": 42,
+ "ruido_descartado": 75,
  "alertas": []
 }
