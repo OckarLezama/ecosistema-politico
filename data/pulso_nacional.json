@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-28T11:29:34.832509-06:00",
+  "generado_en": "2026-10-28T12:04:49.166788-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 16,
+  "n_notas_ventana": 19,
   "baja_confianza": false,
-  "tension_nacional": 34,
+  "tension_nacional": 32,
   "tension_anomalia": {
-    "z": 1.5,
+    "z": 1.16,
     "nivel": "normal",
     "media_periodo": 25.0,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 34,
+      "peso_pct": 44,
       "tema_principal": "Visa de Andy",
       "tema_principal_id": "visa-de-andy",
-      "n_temas": 5,
-      "n_notas": 6,
+      "n_temas": 7,
+      "n_notas": 9,
       "notas": [
         {
           "texto": "Las 104 promesas de Andrés Manuel López Beltrán en la tierra de su padre: “Son dos gotas de agua” - EL PAÍS",
@@ -30,6 +30,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOa2pxcFRfVzd1Y0VVN2FvTjc2a2ttSGtFUm5XX3Fvd1dYR19vLUdWV3ByTW92VW5xWkhzTEdqRktHeFNUYjZHQ1ZGSkFTVGg2RjZSV3lTZGdhMU9nUmIyaURTTnNxTmRYT3NQRUluQnV5UVZsR3hkRUt1SU44RDliNnRUS2xDeWd5bUpDWlNpRkFvcnlUd3ROUFpKbUdPRFJxWTcwT2xVME9kOWZpRFZWY2hGR0lTX3V0OEJISFRTRldQSmpzT3c?oc=5",
           "intensidad": 7.0,
           "medio": "Récord"
+        },
+        {
+          "texto": "Se reúne Ignacio Mier con 17 coordinadores de la defensa de la 4T - Quadratín México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOREZ5MHQ3bmZpNzlQNWZqcUtiUG1oRi1vLWlBOGs2XzZTMGtIdV9fY280MnZvTEFXOFl0UHlrX2pJVmMyVGkyZFVaMG5IX2hhRGxDd2QwMnJkOTFXcWlLamRTTDBOay1JNW9XbFdUUk5iVVJVLVRMMjJJOTZCaTI0WlA3Y3I0cGF6WDNNX21EZHVuM040VERrRnZuUVdxYUE?oc=5",
+          "intensidad": 7.0,
+          "medio": "Quadratín México"
         },
         {
           "texto": "Rocha Moya sufre segundo ataque armado a sus inmuebles en Sinaloa - Milenio",
@@ -50,6 +56,18 @@
           "medio": "tabascohoy.com"
         },
         {
+          "texto": "Revelan acta de defunción de Carlos Manzo, alcalde asesinado en Uruapan; murió por disparo en el abdomen - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNbS1OYlNKWlZiVWlLaUU5VWRTaVlSTm1RU3JtVWt1R0Y2WjJHbDVDSERJa1JMZUt1c1Rxb1UzY2ttNG5QOHZ5OS1NME9WaXNUM1laRDJJRTFzeDZPSmZKZTNWQkJIS1R1cURQVm1TRS1lQnlkcXQwVXNlTkdHc1pNSTM3d0RmWFo1dHU5cVp4dzI4MHcxaENPWURGUGzSAZwBQVVfeXFMTWJwYzJtc3praVBmbnhRMWp6Tkp0dG9YbXp6OHZQQXM3NUJob2xybEI5Y3pTQ1I3Q2tWTlZDYi1xMHprUm1kTko4bzkzLWhoWnJLa1JKRkM1aHlqQWkxOXVmX24zT3B4ZTQyVjNIbmRWNm9jQUljSmg5a0J4M2RLX0Fpd3dNSVFSZFhMMU1ZUFRpdkpINElJbzJyNW1J?oc=5",
+          "intensidad": 5.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "Ariadna Montiel anuncia denuncias contra Maru Campos por señalamientos de vínculos criminales - Ahora Tabasco Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPV2kwS05HbnVKcVJWektPSHdMNFpwNktiUjlKS3YwZFEybHNfd2xneFZHeTVQdy1XLWprcWl1dHJZb0dYNE1abXBCZlR6cVU2RVhmQkJ2OS1nSTc3TExkNnJILWJqbTVtVWZXRlNIbFhxMXJqMl90c3U3TjMzRDR1eEhKUFhZSDJudGdEWHpPV0ZtMjJUcXU4bXFrS090S01sVVctbkJDWEhsQlpfZU1seWRmbWh3d2E0X1BF?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ahora Tabasco Noticias"
+        },
+        {
           "texto": "Senado avala paquete económico 2027 entre reclamos por deuda millonaria",
           "fuente_url": "https://www.tabascohoy.com/senado-avala-paquete-economico-2027-entre-reclamos-por-deuda-millonaria/",
           "intensidad": 4.0,
@@ -58,46 +76,12 @@
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 26,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "categoria": "Relación Bilateral",
+      "peso_pct": 22,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
       "n_temas": 2,
       "n_notas": 4,
-      "notas": [
-        {
-          "texto": "FGR descarta abrir investigaciones contra Andy López Beltrán y Adán Augusto - Serpientes y Escaleras",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQWU2VF9EZzdDcG15bFBZVWRVVldBUFJpNm9FYXVnT194S3NzUDhvdERITDZXN0wya0VXd2xCaml3bHJCY3JvUDlWTVp6azZyVU16OVFkc251RVVtTFJtZEpZdTVuTjlGQ1RRUWh0TmdFTHhxZ0t1dXZ1ZGVTTl9KYkdvUHE5STRjVnEtZGVWMzJ2MlFXck9LdTFTNzBLYTNvRmpKZ3RCTWhLd1o0eFkzOHlzOV93TWNNM1pQcWdBYktFQQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "Serpientes y Escaleras"
-        },
-        {
-          "texto": "Andy López Beltrán y Adán Augusto López vuelven al centro de la polémica por el huachicol fiscal, pero la FGR sostiene que las declaraciones de Farías Laguna no bastan para investigarlos - El Imparcia",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gJBVV95cUxPc3g1SXlPZWJoVjBNbXFRdTcyUUVsTzRfa09Lc1h0LWRFck5YSWR5UG04N2ZpdlJQLWhVVjVIWVJ1YVhSM3pydUxHT3p2VFhqUnI2cncxRDh2RFBuVHM5STZzUUpEbldQSXlfUFNEWGlmeXBVSExJVFQ2RnUtX2ZpMUI5VlFoSGFEcjI0RWxGRUt4Q0p6c0M2LTRYWk5fZ1JNVVQxQjFsWm9mZnFZNlVLZE03T004Rk45aWZDVE5xRkc0Q1BlcDQtdldEMFlBZFQ3Rk5NVHV5NzZmcHNHZDc4NjRnMU1jcXRVblZpSTJKLUowUlFLcTBQQVBlbnVVLVY5bDdkRkExdURMc1RQelBuTFMwWXc3MmhWcWNqOXFtdzV0eGFUMzN3bFkzalFkOWVIcFVRd1hUUGVZaXF4cktwWU1ibmdPcjBqbE1TX0lYYmxGUdIB7AJBVV95cUxPLS1jc0llbkhDTVh2bWUwQnZTTUVhRzZxYklNaXRnajgzM3NtbE1DYTRqRzEzQlhtY2x4NmNJU3ZtQUF4Qzl2MnBHcGdlNU14MHFSUVlsSi0yNUs4ay1uS0dQVmx2c1AyVHk4bHA5Szh3XzlfZk95cHowS0tpTW93WmJuNFRlanFuMTVXNnN2dnZJVk1tVWkzRGdRUUhZQVJVSGRpLXNTa29pSGRPRmlNWUVkc2V6amVXdzJYUHVza2s2NUVBWFZVWHAzRjVLelpsR25IR2lTYkFWYVAwdHNLUU5RTE1CWDFWV3RLVGpoRVBxcms3aDdPS1BSTVVtcHBJbEZLNHRjMmhEanJwanhaVlJFSVhqNkQtRlNVZG5KYy1SN2R0M2JCUTVPRFdILVEtTDVIdFhoR3ZXYTVCZnJwQUk5U0RUX2d5Vy1NV1RRR2NLY1pxakZ6dGJjMmMzWVJoT1J0YjFQWERhY1Zt?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Imparcial"
-        },
-        {
-          "texto": "No hay elementos suficientes para investigar a Andy López Beltrán y Adán Augusto: FGR - Quinceminutos.MX",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNTEppQXl3UDNybVVVa0NaaWpFUFlJcUl2dzBVX2NwN3ZHWHZsMDRpOG40NU1ZdDc1VmpGWHFvZzdUc3ozeU10Y1c1QnBUd1N1TW9kUzNiVlgzZVo0UjlnLTRYVUtHRlVHUWQ1aThqcUxRa3NoUGhDRVVmYzJubE9DS2N1QzVmQm5BXy1zQm94Rm8zakxOdThaMkdxVTd4UXZzLWx2Tm1lTXFBeEJBRldmTTBqMFJoMWQ3cmc?oc=5",
-          "intensidad": 7.0,
-          "medio": "Quinceminutos.MX"
-        },
-        {
-          "texto": "Farías Laguna acusa omisiones de la FGR y se declara ‘chivo expiatorio’ - PolíticoMX",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNazRzUWxXTm1XWTE3UVJpSHMzWkxqLW5zaEFqNDZjWkM1aEtJZkM4dHNiZDNuSXEweEluc2p0MU0zLVZVMkFjbktfaVlFblFyWUp3OFIwdTJPZFRUVWZlVl9hVFJyUUxOUVNkUEtpd2p4VGlRV3Y0WXlNYm5ZM3lvRVJDc09SNkU2M0dRalJoS1QtVTVvWUlWdzIxV1F6TXc2SVpTZHJCcS03eHdF?oc=5",
-          "intensidad": 6.0,
-          "medio": "PolíticoMX"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 20,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 2,
-      "n_notas": 3,
       "notas": [
         {
           "texto": "Donald Trump vuelve a presumir aranceles a la industria automotriz proveniente de México - Infobae",
@@ -116,12 +100,46 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQSENrY0gwb0NOLVVJamN0dE5uNnVYZmtUY1l6bFp1M05GMXVsWGtKdzJNUEoyVmEtR25XUVFKeDNKeTQ5dFhDc0w5MUdrcnhMR0VVSEdLejQ5VmpzdkZCUGhndzNXRHY0WkRiMTlWRGZXTHVWdXQxdjltWnVjbXJieUY1c3ZfU013QXRpdmd2QzFnMTlpdUV6cFY2ZXJiYXhvbHJ3bDJGSk53QlJGZkFYX2dSNmpSQ3Z5YlBjNnNObUMyWXdhYXJnS2lTOTlGLXBhcDMtN9IB7wFBVV95cUxQLVhwbmFUMjd4TVRfNjljOENFZGRPRU81N1h5UmtINW9weEFmSlctNnVOSDUwQ2t3OGFjVDQ0TVo4b2l2ZXUtcjNFNmdiNEpkTkZwenlqT1RDd3U3VGcxMDBnRm0wY0FRTnJRcVBVLUhMclRIQ0JLWVhScHc4Z2wtLVktenczMGZldDVhc2FPcXdwYW5BbFRwTWV0akFLZ2o0M21HdG5SdmN2eDF0UnJTNmkxcElSZ0xzUi16bUxJa1Y2MnlXWDhhQ21HLVlBc1hUQ0hhaHJudjNUTjJMbUlTZnNBTjcyYVg0dDZob0VGdw?oc=5",
           "intensidad": 6.0,
           "medio": "Infobae"
+        },
+        {
+          "texto": "México y EU reanudarán diálogo sobre el T-MEC y aranceles tras las elecciones: Concamin - La Jornada",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxORUpwRGlWMmNrOFhNekZWSXBybV9NR3B6WWp1cVgyanpET3NHNnpHYzNNdUw1SnUxS2hRdE9nNVlZa00wbjk5OFJrblRtRndXUlNOWDZIdnZLM1RybTVnZG45TFJSMmZSX1NKd283OU91Q3VPb0F0Z2k1RE5ZWEQwOFJVRlRlUzRHX0VuV2UtM3RUMTB3Z0dvVnNCbFU0VjRzT3BZUTdSRXJlNXZHZVJXcTB4Ui1jbEZUVVdtVVpDRmJvZUNGdkxURDhmYVNDY05odG9BR0FCOA?oc=5",
+          "intensidad": 6.0,
+          "medio": "La Jornada"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 18,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 2,
+      "n_notas": 3,
+      "notas": [
+        {
+          "texto": "FGR descarta abrir investigaciones contra Andy López Beltrán y Adán Augusto - Serpientes y Escaleras",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQWU2VF9EZzdDcG15bFBZVWRVVldBUFJpNm9FYXVnT194S3NzUDhvdERITDZXN0wya0VXd2xCaml3bHJCY3JvUDlWTVp6azZyVU16OVFkc251RVVtTFJtZEpZdTVuTjlGQ1RRUWh0TmdFTHhxZ0t1dXZ1ZGVTTl9KYkdvUHE5STRjVnEtZGVWMzJ2MlFXck9LdTFTNzBLYTNvRmpKZ3RCTWhLd1o0eFkzOHlzOV93TWNNM1pQcWdBYktFQQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "Serpientes y Escaleras"
+        },
+        {
+          "texto": "Andy López Beltrán y Adán Augusto López vuelven al centro de la polémica por el huachicol fiscal, pero la FGR sostiene que las declaraciones de Farías Laguna no bastan para investigarlos - El Imparcia",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0gJBVV95cUxPc3g1SXlPZWJoVjBNbXFRdTcyUUVsTzRfa09Lc1h0LWRFck5YSWR5UG04N2ZpdlJQLWhVVjVIWVJ1YVhSM3pydUxHT3p2VFhqUnI2cncxRDh2RFBuVHM5STZzUUpEbldQSXlfUFNEWGlmeXBVSExJVFQ2RnUtX2ZpMUI5VlFoSGFEcjI0RWxGRUt4Q0p6c0M2LTRYWk5fZ1JNVVQxQjFsWm9mZnFZNlVLZE03T004Rk45aWZDVE5xRkc0Q1BlcDQtdldEMFlBZFQ3Rk5NVHV5NzZmcHNHZDc4NjRnMU1jcXRVblZpSTJKLUowUlFLcTBQQVBlbnVVLVY5bDdkRkExdURMc1RQelBuTFMwWXc3MmhWcWNqOXFtdzV0eGFUMzN3bFkzalFkOWVIcFVRd1hUUGVZaXF4cktwWU1ibmdPcjBqbE1TX0lYYmxGUdIB7AJBVV95cUxPLS1jc0llbkhDTVh2bWUwQnZTTUVhRzZxYklNaXRnajgzM3NtbE1DYTRqRzEzQlhtY2x4NmNJU3ZtQUF4Qzl2MnBHcGdlNU14MHFSUVlsSi0yNUs4ay1uS0dQVmx2c1AyVHk4bHA5Szh3XzlfZk95cHowS0tpTW93WmJuNFRlanFuMTVXNnN2dnZJVk1tVWkzRGdRUUhZQVJVSGRpLXNTa29pSGRPRmlNWUVkc2V6amVXdzJYUHVza2s2NUVBWFZVWHAzRjVLelpsR25IR2lTYkFWYVAwdHNLUU5RTE1CWDFWV3RLVGpoRVBxcms3aDdPS1BSTVVtcHBJbEZLNHRjMmhEanJwanhaVlJFSVhqNkQtRlNVZG5KYy1SN2R0M2JCUTVPRFdILVEtTDVIdFhoR3ZXYTVCZnJwQUk5U0RUX2d5Vy1NV1RRR2NLY1pxakZ6dGJjMmMzWVJoT1J0YjFQWERhY1Zt?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Imparcial"
+        },
+        {
+          "texto": "No hay elementos suficientes para investigar a Andy López Beltrán y Adán Augusto: FGR - Quinceminutos.MX",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNTEppQXl3UDNybVVVa0NaaWpFUFlJcUl2dzBVX2NwN3ZHWHZsMDRpOG40NU1ZdDc1VmpGWHFvZzdUc3ozeU10Y1c1QnBUd1N1TW9kUzNiVlgzZVo0UjlnLTRYVUtHRlVHUWQ1aThqcUxRa3NoUGhDRVVmYzJubE9DS2N1QzVmQm5BXy1zQm94Rm8zakxOdThaMkdxVTd4UXZzLWx2Tm1lTXFBeEJBRldmTTBqMFJoMWQ3cmc?oc=5",
+          "intensidad": 7.0,
+          "medio": "Quinceminutos.MX"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 14,
+      "peso_pct": 12,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -143,7 +161,7 @@
     },
     {
       "categoria": "Social",
-      "peso_pct": 6,
+      "peso_pct": 5,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
@@ -189,11 +207,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 77
+          "peso_pct": 76
         },
         {
           "categoria": "Relación Bilateral",
@@ -289,7 +307,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 7
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
@@ -297,7 +315,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
@@ -839,7 +857,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Gobernabilidad",
@@ -847,7 +865,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -867,12 +885,12 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Sheinbaum ve avances en negociación del T-MEC - El Universal",
-      "peso": 13.0,
+      "peso": 19.0,
       "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOVkFHazJLMWwteUNYUncweG5aU05sMThpWDNoVjhvY0VCUlZkaWs0eTdLaGliay1TckxnTTFiUExjb1d4VnZucFRPYThHYzh4enhmMjMtdGotaU5QV3ZseDdzZDhUSXZ0Mi1yMXNiV05uQjFqTFZzWUFSX2hXQXdHTFhqUmhVdXZTRllsZUw2WlpaS29RcUpIc0xqZFdfSkJHdk0zWDZOQlZuQ0hnMjlPdEJjSEVFUkJTVEhHS1dGT011SS1KdnBvV2FQdzBpcXfSAeMBQVVfeXFMTXRTRDcwSFFYbFVXM3dWQzV1YmdhelNpUmphWHlGTHk3ZllSQm4yQmR5WHBrTjZxMTJoei04dmJlRS13VzlGeS1sY0ZQOUdlNXZ6dHNqT3V1WVRkTTdfZlJvNjRESUE3N1U2d2llVnpZaWd3elphVGszRE93TWJSbC1RX1U3SzZKLWdENVVlelV3NGxxTGxqUUdvY2RWTGtfbVViV1g3RTJSczBkMzBkbGVKdDR5bk9HbnpqVFVXNUppaGpKMlVlR3JCVDY4WGlLM2lCMGxHa1h2QVB0RDQta3N6SVE?oc=5",
       "actor_vinculado": {
         "id": "rocha_moya",
@@ -895,6 +913,24 @@
       "actor_vinculado": null
     },
     {
+      "id": "rocha-moya-acusacion",
+      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
+      "motivo": "Rocha Moya sufre segundo ataque armado a sus inmuebles en Sinaloa - Milenio",
+      "peso": 11.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQZUtZdGg3MGNlZUxBUHc2Wk1OMHktSFFFakt3aWxHZGowd2pIZG9ZdS1wY0xUVzN6d2FmajB5Ri1PeDRhbmpTY3BIRGlzREo1YWRjd25DZC1HbTZtLUhyTEVwWGt2UTd6cmJqT2w2ckp5V1E4cC14SWhpbUlTQ2I5blo2QWd1cVFjRXpN0gGLAUFVX3lxTE16V0M0NEU1Nmc5MWVQVElYalJtN0paWkV1TzAyZDJLMkhzcHluaGxaSEVINEFUV0xvbWVxVzhVazhrWmJNbW9hazIwYkdlMUhGMWd5TWJWMzVJTmMwYWdpMlp0SUdmQURBZ1RqN29rMEgzMnFBdDFzbmNTeG5tMWs4R19VbVVjNC1wTUE?oc=5",
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
+    },
+    {
       "id": "visa-de-andy",
       "nombre": "Visa de Andy",
       "categoria": "Relación Bilateral",
@@ -911,32 +947,9 @@
         "id": "andy",
         "nombre": "Andrés Manuel López Beltrán ('Andy')"
       }
-    },
-    {
-      "id": "auto-4d7849301a",
-      "nombre": "Exige PRI rendición de cuentas a Ariadna Montiel por manejo de recursos de progr",
-      "categoria": "Gobernabilidad",
-      "resumen": "Exige PRI rendición de cuentas a Ariadna Montiel por manejo de recursos de programas sociales - Hoja de Ruta Digital",
-      "motivo": "Ariadna Montiel niega responsabilidad de Morena en el caso INE - MILENIO",
-      "peso": 7.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPWDBwMFA4WUE5VDZxdzY4TEtiZDRzVmxpSlFtRENGLWhiMW5Bd3IzaXBvejlrNXRyNUNoX2xsaHdCTmZZeDFaeVVMbzN3bDNnWXY1OVAxQ0N5bm16N1ZscmNRSzhTbThBRWlJS2xYRlV6MWdfOTJsTmw0MTZoOXFyalhsWFlPakg1LVVyX2ppcmlLWWNyYWfSAZYBQVVfeXFMTlJrRFVWY19fazBlSUxHbEJ4RnRtSjBlLWstOFBaUEF0NE11Sk1CRDdueDZPczJsU2dSc0xlMEVtUWdtM2NJcjFGMFBVZ21EYkRyeEt5aUdNWm9DYnF3ZDF4dU0yQ2F0ancyM2hBeGtoTWctaE9mUi1vY0JCOW1KWXluYlZSU190LUFwRGpnWGhiVU9xaW9B?oc=5",
-      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-a91bfc3474",
-      "nombre": "Productores del campo se manifestaron en Pénjamo tras no haber recibido apoyo fe",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOVDliU2NXczc5c2JqQi0zcC05T2RxMkhFcFpkV3pqc0VUUnVLbGo2N1FwYnJ1YlhabFdkYTl5R2pHQVM2WDZlZmFURHYxR0tBZmpNamVITW5vNllHRnNnZTdhY0V3Wms5MmhyLWRtWlBVSVVvSUNPSXVqS3k3VXVOVkx2X3VfZE41TU1qYjU4dU1CRFhFSkEw0gGXAUFVX3lxTE9EMVZ6TW5MYzkydEFIWEd3UDZLQllWSWJadjFianZ5TEozSm04NjFGNDRxRVliU09YWFlwYXhISWwtY2NvLXJ0ZUY3RGFWYXowWVF3LXU3RjAwbVhRZU5KTV9pWHB4M1VGVm9ya25qS1FsczJZYU1BT2tLV0JFMHhsaklyMmh0MEo5ZHk2Q1EyLVc2TGhCcWs?oc=5"
-    },
     {
       "id": "auto-5053d15a51",
       "nombre": "¿Quién es la jovencita que desata huracanes? El origen de Claudia Sheinbaum ¬ Pa",
@@ -968,6 +981,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNR3R3MUdfMnRzLTVEdGJjSU42V19uU2Y2Nzlfc2Z3SFAwNmd1elNHR0Z2SXloX1BxOEdjNl9EZ1FCUXVDVlFUTW5WWEpFTC1Td2c0SkMwUEdPOXF3bk54NlIwSGpwWHRpanRDb0ZEdEdUc1dncXpyeEJfVXh3T191MWFJZG96Wnd2T21Tb0QxWmp0ZWdJXzl0SDhFMndqQzJxRC1EZzc3cGNsQm9Y?oc=5"
+    },
+    {
+      "id": "auto-8942e1dfb7",
+      "nombre": "¿Está el INE controlado por Morena? Sheinbaum lo niega - Milenio",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNUlhMdXJXcldLcHBVWExicjRueE9VOXEtX3ZQeU5jOHdZeEtBaV9aS2pwSUR6OVR1Y0lhWXpkaDZ6aW45aURjTW11M0NrZ1UyRUtvbTdvMFA0d212YWI0UENKUW1NSjRxdF9rWlZSUmZXMjZLUWZtd0lyZk1oc1lTY1hZNEl2M082LVlXdFhOUkhVd9IBkgFBVV95cUxOOFdyejh5VzNCbDI2b0JVdUdOUnhJbG5JZk5CV18xYi1vczh1NlkzZzcxOUJENWJKVGItb3Z3bmJUQ0lCTk54UUFqR0lqNzFpX2ZlOWs5dkVtUnpkQjFTSW1tX0JoemZ4SVRibkFIVmJFcjNpZUR3UzNkdG85eW9rdHBqbzRHU19semk2Z0tOYmo1Zw?oc=5"
     }
   ],
   "temas_retomados": [
@@ -1097,8 +1118,8 @@
     {
       "fecha": "2026-10-01",
       "tension": 36,
-      "n_notas": 74,
-      "n_alto_impacto": 46,
+      "n_notas": 75,
+      "n_alto_impacto": 47,
       "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
@@ -1112,9 +1133,9 @@
     },
     {
       "fecha": "2026-10-03",
-      "tension": 30,
-      "n_notas": 30,
-      "n_alto_impacto": 16,
+      "tension": 31,
+      "n_notas": 31,
+      "n_alto_impacto": 17,
       "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
@@ -1144,10 +1165,10 @@
     },
     {
       "fecha": "2026-10-07",
-      "tension": 23,
-      "n_notas": 88,
+      "tension": 22,
+      "n_notas": 89,
       "n_alto_impacto": 34,
-      "n_medio_impacto": 54,
+      "n_medio_impacto": 55,
       "n_bajo_impacto": 0
     },
     {
@@ -1312,10 +1333,10 @@
     },
     {
       "fecha": "2026-10-28",
-      "tension": 38,
-      "n_notas": 10,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 4,
+      "tension": 32,
+      "n_notas": 14,
+      "n_alto_impacto": 7,
+      "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     }
   ],
@@ -1358,22 +1379,22 @@
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 33,
-      "y_lunes": 100,
-      "x_hoy": 83,
-      "y_hoy": 75,
-      "delta_pts": 10.5,
+      "x_lunes": 83,
+      "y_lunes": 75,
+      "x_hoy": 92,
+      "y_hoy": 73,
+      "delta_pts": 1.5,
       "alcance": 7,
       "n_alto": 5,
-      "n_medio": 5,
+      "n_medio": 6,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5PTDVubmNGd1Nwb3BiZk9nTllsMjRrRFd6Q0U2Z3E1R1o2RktyZ2hBX0J5djljTTBSQVlqMUNYNGRZOFczbFRqZGVidFNlcXUybHlKNmlvQzlGZVlnUVR5QllRVDlPOU5HNTl0NlF5OWJoWkRJN051Uw?oc=5",
-      "nota_texto": "Respaldo de Ariadna Montiel a Ana Lilia Rivera marca nueva etapa de Morena en Tlaxcala - Intolerancia Diario",
+      "apagado": false,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/26/sobre-taddei-en-morena-no-somos-tapadera-de-nadie-pero-que-investigue-la-asf-ariadna-montiel-916712.html",
+      "nota_texto": "“Sobre Taddei, en Morena no somos tapadera de nadie pero que investigue la ASF”: Ariadna Montiel",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 2,
+      "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-10-26",
@@ -1384,9 +1405,14 @@
           "fecha": "2026-10-27",
           "x": 83,
           "y": 75
+        },
+        {
+          "fecha": "2026-10-28",
+          "x": 92,
+          "y": 73
         }
       ],
-      "fecha_apagado": "2026-10-28"
+      "fecha_reactivado": "2026-10-28"
     },
     {
       "id": "andy",
@@ -1403,8 +1429,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQWU2VF9EZzdDcG15bFBZVWRVVldBUFJpNm9FYXVnT194S3NzUDhvdERITDZXN0wya0VXd2xCaml3bHJCY3JvUDlWTVp6azZyVU16OVFkc251RVVtTFJtZEpZdTVuTjlGQ1RRUWh0TmdFTHhxZ0t1dXZ1ZGVTTl9KYkdvUHE5STRjVnEtZGVWMzJ2MlFXck9LdTFTNzBLYTNvRmpKZ3RCTWhLd1o0eFkzOHlzOV93TWNNM1pQcWdBYktFQQ?oc=5",
-      "nota_texto": "FGR descarta abrir investigaciones contra Andy López Beltrán y Adán Augusto - Serpientes y Escaleras",
+      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPMThPZTNaTFVXOU5xRnd0WmJWTDVJdEhiMXNPQ3lic2FycmVtRnY0SzVYdXdUY0J4SnRkQXV4clhzQk9nT2YxYlNST2dhMnBVNklrZUdBczlibHVIYUUxTm5RTko5MGVpV0FZTTJ3UC1aRlBYeHd1QURqRDY0Y19wdXk2NmpfQWI3LTZ6STcycW4xZDVjVXBVLUFlZFhKLWhDMklrT0JVSEd4QncxR2xGSXpwSENFeXQydEhmT1FuTQ?oc=5",
+      "nota_texto": "FGR descarta elementos para investigar a 'Andy' López Beltrán y Adán Augusto López por huachicol fiscal - López-Dóriga Digital",
       "es_nuevo": false,
       "categoria": "Seguridad Nacional",
       "dias_activo": 3,
@@ -1441,8 +1467,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/27/morena-denunciara-maru-campos-por-presuntos-delitos-electorales-dano-moral-violencia-politica-de-genero-ariadna-montiel-917255.html",
-      "nota_texto": "Morena denunciará a Maru Campos por presuntos delitos electorales, daño moral y violencia política de género: Ariadna Montiel",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/26/sobre-taddei-en-morena-no-somos-tapadera-de-nadie-pero-que-investigue-la-asf-ariadna-montiel-916712.html",
+      "nota_texto": "“Sobre Taddei, en Morena no somos tapadera de nadie pero que investigue la ASF”: Ariadna Montiel",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1736,11 +1762,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-10-28T06:02:18.122910-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
-    ]
-  },
-  "hora_corte_publicada": "2026-10-28 11:29"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-10-28 12:04"
 }
