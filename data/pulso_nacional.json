@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-28T18:01:57.394178-06:00",
+  "generado_en": "2026-10-28T22:58:31.586624-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 32,
+  "n_notas_ventana": 37,
   "baja_confianza": false,
-  "tension_nacional": 23,
+  "tension_nacional": 27,
   "tension_anomalia": {
-    "z": -0.31,
+    "z": 0.35,
     "nivel": "normal",
     "media_periodo": 24.9,
     "dias_base": 27
@@ -13,18 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 58,
+      "peso_pct": 46,
       "tema_principal": "Asesinato de Carlos Manzo",
       "tema_principal_id": "carlos-manzo",
-      "n_temas": 11,
-      "n_notas": 19,
+      "n_temas": 10,
+      "n_notas": 18,
       "notas": [
-        {
-          "texto": "Las 104 promesas de Andrés Manuel López Beltrán en la tierra de su padre: “Son dos gotas de agua” - EL PAÍS",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOR2FlbzRzM3FtYi1OR2JWSU9wR1hCVVhwZmV1SmpQUzVSX0FVWUdQZjFwZDNwNmxuenBSeVRYZlRvME5XWUc5UnNHamMtd1A5YnROLVRxbjdTTlA2WGZPTnJWWGRJcEZtdTRVY3FoQ2gzS2lrT1pDTXFqbkFLNG5fU0ZPS0VhMk0yQ0wycmxFY3V6RkpCWV9rUmwta3hIMzRRQ2d4YUluZEpwemphckJvZk5DcGRqRGZLMmpqOVN6SEpCOTIxby1XY2M4eTB5YUNOTnfSAeYBQVVfeXFMUFYxY21taUQ2TVcwTjZOUWJrTmZJLXBFbmoxcXRnOWp6NlJlQmczeXZ5SUM2QjU3aWpBaDRJMncyM3NjS0I5ajFhb2QybmVqZTN4cTlORVpGa1JIVENzdmRKUUtvZ2VRbGtYOVdJYnRyLWJreU0weS1HcE1fZlBGVnV4QUlfNmRzYzl2YzlOU1ZzNVI3NEVqY0hFaDh6b0U5dGtBdTNlY0ZEcDItRVZHMmFGdFlKQlpyaTAwci1vdlhaTmJCek9tN3lUZnNoVGxGVzBjN2xqR0tUdS1oZm1wM19QSUpkdFE?oc=5",
-          "intensidad": 7.0,
-          "medio": "EL PAÍS"
-        },
         {
           "texto": "Atacan a balazos antigua casa de campaña de Rubén Rocha Moya en Culiacán - Récord",
           "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOa2pxcFRfVzd1Y0VVN2FvTjc2a2ttSGtFUm5XX3Fvd1dYR19vLUdWV3ByTW92VW5xWkhzTEdqRktHeFNUYjZHQ1ZGSkFTVGg2RjZSV3lTZGdhMU9nUmIyaURTTnNxTmRYT3NQRUluQnV5UVZsR3hkRUt1SU44RDliNnRUS2xDeWd5bUpDWlNpRkFvcnlUd3ROUFpKbUdPRFJxWTcwT2xVME9kOWZpRFZWY2hGR0lTX3V0OEJISFRTRldQSmpzT3c?oc=5",
@@ -62,22 +56,10 @@
           "medio": "heraldodemexico.com.mx"
         },
         {
-          "texto": "Rocha Moya sufre segundo ataque armado a sus inmuebles en Sinaloa - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQZUtZdGg3MGNlZUxBUHc2Wk1OMHktSFFFakt3aWxHZGowd2pIZG9ZdS1wY0xUVzN6d2FmajB5Ri1PeDRhbmpTY3BIRGlzREo1YWRjd25DZC1HbTZtLUhyTEVwWGt2UTd6cmJqT2w2ckp5V1E4cC14SWhpbUlTQ2I5blo2QWd1cVFjRXpN0gGLAUFVX3lxTE16V0M0NEU1Nmc5MWVQVElYalJtN0paWkV1TzAyZDJLMkhzcHluaGxaSEVINEFUV0xvbWVxVzhVazhrWmJNbW9hazIwYkdlMUhGMWd5TWJWMzVJTmMwYWdpMlp0SUdmQURBZ1RqN29rMEgzMnFBdDFzbmNTeG5tMWs4R19VbVVjNC1wTUE?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
-        },
-        {
           "texto": "Aguas Profundas / Energética Carvel ¿otra crisis de huachicol fiscal? - El Sol de México",
           "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPb2loaUJvVjIyX2JSRS1IRnpoemtZbTdnb1M0NVZUbnRZMEFaYWhReWV4cVhHM3RYU1JySUlPYUQ4NVpONXdvZlhZQzZjNGI3djNFN0RoMDZkY01RYzlUS21XbVRibFJiWDN6eXJQTWY0S2pLY0hIX1RaV3RFOG1FQ05SNktlYUtlWHBfbmpGajFCSm5SdnZqM3lUSWNoRXBEVE1zdzM1ME85WU9EcGpxQk05YVFUZDQ?oc=5",
           "intensidad": 6.0,
           "medio": "El Sol de México"
-        },
-        {
-          "texto": "ESCALA ÓSCAR CANTÓN CÚPULA EN EL SENADO",
-          "fuente_url": "https://www.tabascohoy.com/escala-oscar-canton-cupula-en-el-senado/",
-          "intensidad": 5.0,
-          "medio": "tabascohoy.com"
         },
         {
           "texto": "Revelan acta de defunción de Carlos Manzo, alcalde asesinado en Uruapan; murió por disparo en el abdomen - MILENIO",
@@ -108,16 +90,34 @@
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/rosa-icela-rodriguez-ernestina-godoy-encabezan-reunion-con-madres-buscadoras-colectivos-en-hermosillo-918016.html",
           "intensidad": 5.0,
           "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "Senadores se reúnen con las 9 corcholatas de Morena - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOMHc2MW5mMWVSdnFQSFl6OWVBMndEbnFSM0pSYXJMeDR3SnFkZVlLQjJaRzh3RHV1RW1QczlBbW0wN2VwbUM4SGMtSThMN2J1Q1Uxc1M4TnRFc08xRkQ0UGpFOHVZWU9TMWNpS25sR1NRSHBKRnluMVM5dzc1UmFBN1pyZnJZMHZUY0EzMWtRX1hFTnRKRURUcDRxaDdJXzJ3SUZwOWxDNHBYNXNJSXNSUHFkWUpVei11ZnhrX2ZmSjNUSFJwbHfSAdoBQVVfeXFMTW1EdmpvQ3B6eU41Y2E5M0pLSmFvZnJvVE1WdmtzSE1KU1p2X1BOdG9UVllTRmRLUUxuZFFZNk8xVTh2YVhCdy1xZDlrUUJ6VEMyalZEZ0dHTXlrMUpWd3hHQndCV2xxbVVhWU91V2ZBTUtwaVNhN2h5Qk5LaEJOYkVxU1l1NG04Q3lxcWRIM21OZ1hTMXc5Y3VhaU11YWFMTTEycVdzb1ppOEozUk1fRVdybGZQTzE1Uk9rYVVVc3VYckcyMDBicHRJZmkwd1haUUJJV2V2M051Y2c?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Universal"
+        },
+        {
+          "texto": "Carlos Manzo era soltero revela acta de defunción; Grecia Quiroz y el exalcalde no se habrían casado",
+          "fuente_url": "https://imparcialoaxaca.mx/nacional/carlos-manzo-era-soltero-revela-acta-de-defuncion-grecia-quiroz-y-el-exalcalde-no-se-habrian-casado/",
+          "intensidad": 5.0,
+          "medio": "imparcialoaxaca.mx"
+        },
+        {
+          "texto": "Retoma Alfonso Sánchez García agenda de trabajo al frente del ayuntamiento de Tlaxcala - La Jornada de Oriente – Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxObUozQWFtQmtoelI5VGhtODQwLTdSeFhSa3U0WlMtYmdidGwwYjRiSldUZkl5RFFMeWxseU9RZFZ3UGhvYnZMUGppWldyWngtR3VPWnRjUWxtZUl5MVVrV0poblJPX2pkTVJ0T3Q4ZHFBcDFTZG9EUURCc1JsM0l3SnNiYWtXREE3RWczSjRsZjhNcXB5TTE4LXJ6dGNHZ0paUl9WYjdsUTdGNlJsS0NTeFhUZmR0V1Q2T3FhM3ZzdGpxVWQ2Z0phLVVSZjZzejA?oc=5",
+          "intensidad": 5.0,
+          "medio": "news.google.com"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
       "peso_pct": 19,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis",
       "n_temas": 5,
-      "n_notas": 6,
+      "n_notas": 7,
       "notas": [
         {
           "texto": "Andy López Beltrán y Adán Augusto López vuelven al centro de la polémica por el huachicol fiscal, pero la FGR sostiene que las declaraciones de Farías Laguna no bastan para investigarlos - El Imparcia",
@@ -136,6 +136,12 @@
           "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/28/mexico-reconoce-repunte-de-homicidios-en-sinaloa-y-revisa-despliegue-militar.html",
           "intensidad": 7.0,
           "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "Vinculan a proceso a cuatro presuntos integrantes de Los Chapitos por posesión de armas y drogas en Culiacán - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPckJuTHNaWVVXbTRsNl9Vc2o2c21VVHVpTC1yVVgzWWI3YjRYWXMzN1piMG50WG0zZzBibUlKQUFoek55QWNoT3VKVFVXLXpNamJXMVR6MUczSEdMdEoyZnlOWHRNWTB4NE5VYXJzM0JWaHQxbWVBYUlSVkxJWUVpcFMxVGVKQmppUHQwd2lEVFRUOWROLWlNek1KeS1WQdIBngFBVV95cUxOb2dfMHpkMUhjV1pmMXRzQlNJYm1GVGwtcWdMU0lIYjBGYnMxSk9rNXQ2dzRjVHNyV2x1VVZoNmw5ZEJzNk9OaEtKdFFWS3g4OXBXemluREdjbTJxS3ZyMGFKSVdOQmppUUJuVHRxY3RVYW5lREU4OUJiazlUSXFMekdyQ05TZ3c0RnBrVjB3THZmX2JYZXVjS25fb1laZw?oc=5",
+          "intensidad": 6.0,
+          "medio": "MILENIO"
         },
         {
           "texto": "Visitas de Omar García Harfuch en Sinaloa, es por aumento de homicidios en la entidad: Sheinbaum - 24-horas",
@@ -159,17 +165,23 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 15,
+      "peso_pct": 18,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 3,
-      "n_notas": 5,
+      "n_temas": 4,
+      "n_notas": 7,
       "notas": [
         {
           "texto": "García Harfuch llega a Culiacán para revisar estrategia de seguridad y proyecto del nuevo penal",
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/garcia-harfuch-llega-culiacan-para-revisar-estrategia-de-seguridad-proyecto-del-nuevo-penal-917988.html",
           "intensidad": 7.0,
           "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "TMEC: Sheinbaum busca un acuerdo con Estados Unidos ante diferencias por aranceles - IMER Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOMnh0aGdmbVY5dVJXRjhSMGxCRzQ2aGphazZmakdnY01OX04tdS0xM3NvR29yTEMyUTBBNW01czMyeGI2XzJ5UmFhUnBwRjNzSVdjM05Hb21QeXpidlg2bjFnS1RFZzFheVRYeWIyNElSdHZVNDRFRVEySkRnSWhhREpFRjFMUHpWLS1FYXRJZWR0VVRva2NWSktrZ1E4aVhzcjkwdFcyT1dyeUc3MElFZEZ3?oc=5",
+          "intensidad": 7.0,
+          "medio": "IMER Noticias"
         },
         {
           "texto": "México descarta riesgos en negociaciones del T-MEC por elecciones intermedias en Estados Unidos - Infobae",
@@ -194,17 +206,41 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPZU5KWGhmMHNGSXFieDVrMVNOYS1mZjRkRUJKZ3dvYmh3dFN3V2VycHVIcVRid3VnSVczTWpGU0NVbDBoLWJDdGs1QWh4dHMwZUhGeVhRNXZjakdHZGMwMll6Y0FDRXBXQW1kZWVCRHk0QXQxaTU4djBRNlNMV0EzMW1oTy01Nm8tU2FqVm9wSWlNdDIzcjl30gGXAUFVX3lxTE9lTkpYaGYwc0ZJcWJ4NWsxU05hLWZmNGRFQkpnd29iaHd0U3dXZXJwdUhxVGJ3dWdJVzNNakZTQ1VsMGgtYkN0azVBaHh0czBlSEZ5WFE1dmNqR0dkYzAyWXpjQUNFcFdBbWRlZUJEeTRBdDFpNTh2MFE2U0xXQTMxbWhPLTU2by1TYWpWb3BJaU10MjNyOXc?oc=5",
           "intensidad": 5.0,
           "medio": "MILENIO"
+        },
+        {
+          "texto": "Le salió mal a Trump: Arancel al tomate mexicano encareció el producto en EU, asegura Ebrard",
+          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/10/28/le-salio-mal-a-trump-arancel-al-tomate-mexicano-encarecio-el-producto-en-eu-asegura-ebrard/",
+          "intensidad": 5.0,
+          "medio": "elfinanciero.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 7,
+      "peso_pct": 17,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 2,
+      "n_notas": 5,
       "notas": [
+        {
+          "texto": "México busca inversión fuera de EU mientras negocia el T-MEC: Roberto Velasco - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxORnZuMW9JTGFmQmViZDlDeUhOVlBhM192RVF1OUxjU1FwZmJWQXhFTEdEbUNjenNKLWk1WVhwWS1fSmo2QTQ2SkF2M2hJX19yMm52MFFzemIzVXF2OVdoVUxMR3FkbkliQjduM213U3Z4cU9Dc3BKcDQ1aVlhOUZHaUdRU0NuOXEzREc3M9IBjAFBVV95cUxPdkFmbUppUGQwa2ZJWDg0cEg2VHpFSUFpZkp4OE5HaTJjR2JIbEVKblVST2RFdXBIWUFVY1hwLUpGbjZJM1B0d29DallIbWRkMHVyUjdDV3A3Q1l6WEltT0RaYzVSbzh5aW1SSFQ1WEFRWlFzbGthb3U3WEhTWmpTT1RIcDRMcVpqMExhWA?oc=5",
+          "intensidad": 9.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "México y EU pueden alcanzar acuerdo arancelario este año; revisión del T-MEC seguirá en 2027: Comce - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPMnIwQVdJem1JT3JiMmRWMWY4aGF5U2hBU0tzMld3bzhFUlJwOHQxd2JqanR4UUNkVURWNkwzOHlkMUlMMXpzVmlFS1pHNDBwSVp6RXRQV2lWQndyNnVXRHhkc2NhWGcyZkdZdEZXdlo3OGRnS2Z2Y0JxYnVtM2w0R1hKVDQ5cmVmd0E?oc=5",
+          "intensidad": 8.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "¿Pueden las elecciones en EU cambiar la negociación del T-MEC? Esto prevén empresarios y especialistas - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPVGp1OVp5QVhobHZHcXBSSUFCeUVNRlpNM3RuQ1JKUlVSMV9YVkxNWkg2eVdzRnJyeWcxRUZQd2xFbExZVUREWVlLeGhEdHBURElaUko4ZWZPSl93dkE2TDJEekJHM2Q2M3otN2VvUVh2bWh1QnJ1WmhNa2x0TWVlaGNFMmdnMVc0VWpSZnc3aWRzSVnSAZMBQVVfeXFMT2lCRFRXd3R5c1kwU0h6dXVXYUQyaWpHM2FtVXU1MFYxUHpyV2N4NXJ6bDNac0pnUVJlNkhFODZYV0pQZUR6VzFFbTZjejZCQVNkMEo3OFQyUVRQOVdXcEJjYlp6Wm9DczBFazYzT3hzWkF1MjFNWWduWFVwVzRSWVkzTk12SWloZzZpZE1MUlA3MzFJ?oc=5",
+          "intensidad": 8.0,
+          "medio": "MILENIO"
+        },
         {
           "texto": "Se prevé llegar a un acuerdo del T-Mec previo a elecciones en EU: Sheinbaum",
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/se-preve-llegar-un-acuerdo-del-t-mec-previo-elecciones-en-eu-sheinbaum-917958.html",
@@ -914,15 +950,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 11
         },
         {
           "categoria": "Social",
@@ -937,14 +973,14 @@
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Sheinbaum ve avances en negociación del T-MEC - El Universal",
-      "peso": 19.0,
+      "motivo": "México busca inversión fuera de EU mientras negocia el T-MEC: Roberto Velasco - MILENIO",
+      "peso": 44.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
+      "medios_corroborantes": 4,
       "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOVkFHazJLMWwteUNYUncweG5aU05sMThpWDNoVjhvY0VCUlZkaWs0eTdLaGliay1TckxnTTFiUExjb1d4VnZucFRPYThHYzh4enhmMjMtdGotaU5QV3ZseDdzZDhUSXZ0Mi1yMXNiV05uQjFqTFZzWUFSX2hXQXdHTFhqUmhVdXZTRllsZUw2WlpaS29RcUpIc0xqZFdfSkJHdk0zWDZOQlZuQ0hnMjlPdEJjSEVFUkJTVEhHS1dGT011SS1KdnBvV2FQdzBpcXfSAeMBQVVfeXFMTXRTRDcwSFFYbFVXM3dWQzV1YmdhelNpUmphWHlGTHk3ZllSQm4yQmR5WHBrTjZxMTJoei04dmJlRS13VzlGeS1sY0ZQOUdlNXZ6dHNqT3V1WVRkTTdfZlJvNjRESUE3N1U2d2llVnpZaWd3elphVGszRE93TWJSbC1RX1U3SzZKLWdENVVlelV3NGxxTGxqUUdvY2RWTGtfbVViV1g3RTJSczBkMzBkbGVKdDR5bk9HbnpqVFVXNUppaGpKMlVlR3JCVDY4WGlLM2lCMGxHa1h2QVB0RDQta3N6SVE?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxORnZuMW9JTGFmQmViZDlDeUhOVlBhM192RVF1OUxjU1FwZmJWQXhFTEdEbUNjenNKLWk1WVhwWS1fSmo2QTQ2SkF2M2hJX19yMm52MFFzemIzVXF2OVdoVUxMR3FkbkliQjduM213U3Z4cU9Dc3BKcDQ1aVlhOUZHaUdRU0NuOXEzREc3M9IBjAFBVV95cUxPdkFmbUppUGQwa2ZJWDg0cEg2VHpFSUFpZkp4OE5HaTJjR2JIbEVKblVST2RFdXBIWUFVY1hwLUpGbjZJM1B0d29DallIbWRkMHVyUjdDV3A3Q1l6WEltT0RaYzVSbzh5aW1SSFQ1WEFRWlFzbGthb3U3WEhTWmpTT1RIcDRMcVpqMExhWA?oc=5",
       "actor_vinculado": {
         "id": "rocha_moya",
         "nombre": "Rubén Rocha Moya"
@@ -967,45 +1003,17 @@
         "id": "andy",
         "nombre": "Andrés Manuel López Beltrán ('Andy')"
       }
-    },
-    {
-      "id": "auto-4d7849301a",
-      "nombre": "Exige PRI rendición de cuentas a Ariadna Montiel por manejo de recursos de progr",
-      "categoria": "Gobernabilidad",
-      "resumen": "Exige PRI rendición de cuentas a Ariadna Montiel por manejo de recursos de programas sociales - Hoja de Ruta Digital",
-      "motivo": "Ariadna Montiel niega responsabilidad de Morena en el caso INE - MILENIO",
-      "peso": 17.0,
-      "n_temas_agrupados": 8,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPWDBwMFA4WUE5VDZxdzY4TEtiZDRzVmxpSlFtRENGLWhiMW5Bd3IzaXBvejlrNXRyNUNoX2xsaHdCTmZZeDFaeVVMbzN3bDNnWXY1OVAxQ0N5bm16N1ZscmNRSzhTbThBRWlJS2xYRlV6MWdfOTJsTmw0MTZoOXFyalhsWFlPakg1LVVyX2ppcmlLWWNyYWfSAZYBQVVfeXFMTlJrRFVWY19fazBlSUxHbEJ4RnRtSjBlLWstOFBaUEF0NE11Sk1CRDdueDZPczJsU2dSc0xlMEVtUWdtM2NJcjFGMFBVZ21EYkRyeEt5aUdNWm9DYnF3ZDF4dU0yQ2F0ancyM2hBeGtoTWctaE9mUi1vY0JCOW1KWXluYlZSU190LUFwRGpnWGhiVU9xaW9B?oc=5",
-      "actor_vinculado": {
-        "id": "garcia_harfuch",
-        "nombre": "Omar García Harfuch"
-      }
-    },
-    {
-      "id": "visa-de-andy",
-      "nombre": "Visa de Andy",
-      "categoria": "Relación Bilateral",
-      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
-      "motivo": "Las 104 promesas de Andrés Manuel López Beltrán en la tierra de su padre: “Son dos gotas de agua” - EL PAÍS",
-      "peso": 7.0,
-      "n_temas_agrupados": 3,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOR2FlbzRzM3FtYi1OR2JWSU9wR1hCVVhwZmV1SmpQUzVSX0FVWUdQZjFwZDNwNmxuenBSeVRYZlRvME5XWUc5UnNHamMtd1A5YnROLVRxbjdTTlA2WGZPTnJWWGRJcEZtdTRVY3FoQ2gzS2lrT1pDTXFqbkFLNG5fU0ZPS0VhMk0yQ0wycmxFY3V6RkpCWV9rUmwta3hIMzRRQ2d4YUluZEpwemphckJvZk5DcGRqRGZLMmpqOVN6SEpCOTIxby1XY2M4eTB5YUNOTnfSAeYBQVVfeXFMUFYxY21taUQ2TVcwTjZOUWJrTmZJLXBFbmoxcXRnOWp6NlJlQmczeXZ5SUM2QjU3aWpBaDRJMncyM3NjS0I5ajFhb2QybmVqZTN4cTlORVpGa1JIVENzdmRKUUtvZ2VRbGtYOVdJYnRyLWJreU0weS1HcE1fZlBGVnV4QUlfNmRzYzl2YzlOU1ZzNVI3NEVqY0hFaDh6b0U5dGtBdTNlY0ZEcDItRVZHMmFGdFlKQlpyaTAwci1vdlhaTmJCek9tN3lUZnNoVGxGVzBjN2xqR0tUdS1oZm1wM19QSUpkdFE?oc=5",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
     }
   ],
   "temas_nuevos": [
+    {
+      "id": "auto-667b4e2bde",
+      "nombre": "Reportan la muerte de Cuauhtémoc Cárdenas Solórzano, a los 92 años, ícono de la ",
+      "categoria": "Social",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://www.informador.mx/mexico/sheinbaum-despide-a-cuauhtemoc-cardenas-como-un-referente-imprescindible-de-mexico-20261028-0199.html"
+    },
     {
       "id": "auto-650517801c",
       "nombre": "Sheinbaum, sobre el refugio que le ha dado Estados Unidos a Bolsonaro: “Creo que",
@@ -1015,20 +1023,20 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQQmtFb3RzNDkyeFJJQXdqV092MGw0aFNtLVZqTGVTZlBabUE4NkNfajhXRE41ekYzcldCOGFyRjlfeDFFaThoNVBqNDUyUzNFV2JPUXN0enZKT2NUX0lqWkI2RGRORWNvRER1aXZpZmFSek5qVVNrVldsNkpQUG95dFVBcUNUYmlTRmRFWGNNeUZrMzd5eDMtSGhLRFpEbEV0eUxNODZ2Q2xOUGVoNGV6dm5HWmxIbUI5U2pLaFNOSVFnX0VVZWNTNF9VdmRHWjhj0gHkAUFVX3lxTE5HemhxUDJMZDhwZGNnOUdVRUFzemYwLXpITUlJYThscHhRTXRmVlZLcWxPUk15dnBEWThYR3QwY1NFbzl2aGRlblEzTlByQTExRy10b0JpVmZXemtISzRUelJfT2Z6Z2pteUtuZGp5MlNYTTZXYkFzMHg2alhUaGxRMy02MEo2V3N5SUVyeGUzVFRaNU9xU0VKeHUySGZxOGVkQ1ozYzM1WmtBdGppTjMwR0c4RHJMTjV4enQ0T1V5bGhDNW5GZXZyN2x1SndhekxuR1gtVV9YY0tTd1BoY2VmWU5LTw?oc=5"
     },
     {
-      "id": "auto-5053d15a51",
-      "nombre": "¿Quién es la jovencita que desata huracanes? El origen de Claudia Sheinbaum ¬ Pa",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-cb337265e7",
+      "nombre": "CNDH y Segob acuerdan reforzar protección de migrantes en la frontera; pactan co",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOdG9tdC1rTUJQcW4xV3ViYVZvTVlPZG1vYWhEbGVWNHpoWTRsVkEwRUZqOE44RmJYbmtod2k5aUs4U2xLNHhaQzZkZTZxTFZzUzJGSnNSbGFDN1dsX1NYcFQtR1NJNU4wbFBIYVB4ekdpcUdBM0hqOWR4UWI4eHBtaHplZ3hTelloX2FkTGYzdFdFZkgxVHFZZFY2czhpTnpqQWtiZTloNjJiRFAtTnU1bTRmYy01VDQ?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNcF8xMW5KQjFGalRRcDVyRk9ZRS13VDBLZ3RBVWdOMmFZc1YwNGNPcXBKN2NVNHNGZk1RS0huNXRoMTA0TTlWNTFHY2tERWdBOTFpRzE0VTRvenBJaUN1dmtwOHFrRXd1VmJsaFk4SFlQaGh6UHZ6cUt4Mm5uVGpqYjU1NEw3dzA0SzdjRWdGaTR0eUxXUERBNHJYY0NjRmFsVHV6OXBxWkc1NDFWMlN2dXJOV050N2pHNjZ6dnpKV3prMGxWTTNUbE1uSW1NVmJqYzJzVXZrSEl3d2ljTlBaRTZn0gH2AUFVX3lxTE03RVVHTE9oNjhkNnNLU2xJWlVnY01wOUM3aktaTTlISDQ1bUt5VXVTazlSUEtUckcxTk9xajhhM3hVWHYySnBBVGszNThGQ3dETmZuWDVCaVRSR2JMZjFnS1FORDdFRHpNWFZMTzB2SThXQ2xxQ0V5dDFRdnFGeXhnblBuSVY2aU5SY3NITGRvdWRpVk5IYlhBMzZTbTRacC1yQnU4bXNral9ObDVQU2N5UGpIY0NfMFhxNG9Na1BJR1R5Ri1vcFhndTdpZVppYVVDcFhUd01QcUIyMjJEMWJGWEIyTVBjVEVKT3RkWURIZE9qQWVHUQ?oc=5"
     },
     {
-      "id": "auto-7edacdb5af",
-      "nombre": "Dedica Tampico altar de Xantolo a prima de López Obrador - La Jornada",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-e068de9f7c",
+      "nombre": "Pachuca implementará Refugio Invernal por tercer año consecutivo - MILENIO",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMmx0QnU5NE5TZF9LUGlxdmZTMHlsd0F2aEd1RU96NlM4aGdSYzVqeGpQZ0dBSThHcEJnTXRyODJ1UVdHZ1Zkck1xclJNVFBRSmdlamU4Q1dNOXRkVGhlM19nSmdnaFBTWE5QWlhMRzV1OWFkTG1TQVRJbzMxSEpiMWxPTjFUQ0tWbWFuMzJWUmV0RlFFS0d6RnMyN1BsQ0VlWV9SWHdxMGNnc0RRZDRv?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxObUNoLU9hcDBQZmFtWWpBdFJCemtsOXlkaVNfd1JnS2hOOWRfVmFEd2kzSXQwZUt4c3lZLThGaTlFeUNEU2JScXVzTmNldkV0MzNnQzN1c0QzN25ESVhLYWprdGFhdE5QTzl5eEp1RHBjUWNhN1dWY3Nxc3BrRjhZeWg1S1RlWkpYTGxMTHVwdmcwZTI4X1FjbWRB0gGaAUFVX3lxTE5tQ2gtT2FwMFBmYW1ZakF0UkJ6a2w5eWRpU193UmdLaE45ZF9WYUR3aTNJdDBlS3hzeVktOEZpOUV5Q0RTYlJxdXNOY2V2RXQzM2dDM3VzRDM3bkRJWEthamt0YWF0TlBPOXl4SnVEcGNRY2E3V1Zjc3FzcGtGOFl5aDVLVGVaSlhMbExMdXB2ZzBlMjhfUWNtZEE?oc=5"
     },
     {
       "id": "auto-f3ee492ef3",
@@ -1037,27 +1045,19 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/28/politica/010n1pol?partner=rss"
-    },
-    {
-      "id": "auto-d8f8a2e3bc",
-      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNR3R3MUdfMnRzLTVEdGJjSU42V19uU2Y2Nzlfc2Z3SFAwNmd1elNHR0Z2SXloX1BxOEdjNl9EZ1FCUXVDVlFUTW5WWEpFTC1Td2c0SkMwUEdPOXF3bk54NlIwSGpwWHRpanRDb0ZEdEdUc1dncXpyeEJfVXh3T191MWFJZG96Wnd2T21Tb0QxWmp0ZWdJXzl0SDhFMndqQzJxRC1EZzc3cGNsQm9Y?oc=5"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-807455d446",
-      "nombre": "Entre disparos al aire y caos, así fue el traslado de migrantes al campamento de",
-      "categoria": "Social",
-      "dias_silencio": 40,
-      "motivo": "🔔 ALERTA — “Te odio, maldito mexicano”: se disparan crímenes contra migrantes en EU - MILENIO",
+      "id": "auto-3411929b7d",
+      "nombre": "Corte anula facultad de la fiscalía especializada de BCS para solicitar interven",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 22,
+      "motivo": "PRI solicita Comisión Especial para destituir a representante de Morena ante el INE - El Universal",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNVnlCVm9tdmx5dTRfaU1ZWVlSR05mTWt3akNKZUhWc2ZVT0Ztb2t3RGRZR3kyelZOMmVXc3p0MFBSZWRtSXlQYzFDazRmOFFmYkgtWXBnaVhJdHc0ZWtQdUdpRGd5bm9BSDJ0N0FGeEhlVUxGbGVWUnVMODFsRGlkVWRWamvSAYQBQVVfeXFMTV80Tl9kVXN5YXVnZHI3SjJYOWhKQ01Zb3dKcmk0bWRBTldGSU1aaTMtSWNWTDlIWE1TamhkY25KVXotejlVSmYwV2FaMTE5TlBxVzhuNzQzUE03WG55cTZwZ1pJZk5yelRja3RBQmdkMkhXcTBBaEkwMHluR1d4Y1FZN3Zz?oc=5",
-      "fecha_anterior": "2026-09-18",
-      "fuente_url_anterior": "https://heraldodemexico.com.mx/mundo/2026/9/18/entre-disparos-al-aire-caos-asi-fue-el-traslado-de-migrantes-al-campamento-de-ceuta-890559.html"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPbVpiMGtiN1hwbWY4WEdRMnRoUFF0WXVTMXBwdXRXa2hlZ25KU3U4V3kwdnJZcFViQ0U1MllFcUdFdlNrcDV2ZkVmdTNEU1lHT2o5d3pmYzhDZmRLVG05dmFkdHRrSW1fNzRMZFV4cjEzaV9WUy1sNjJXYnBvbDRsbUJaRmRuS3d1LVFLaU9waUhqOUV0VnhrRk9ITkRVcDRiQ1VCN1BMamF6aENZM016RHZ6bmdleHZQbVhsckhkTkxYS1MwWFlVakNZMEJfWmZiTXB1Sjk3b2NIa0hscUNMZkY5M3cwek1LVVFyakRTSlV5QdIBhgJBVV95cUxPaXUyOVB3b3Utc1d1YTRENzE2SUFVWENNV3FlemN0dnBxdzRtb2VEVTdTOVBnaTQzcjQtalVBU2FNVmxLQl94V01iSzN3Q2xOMDNLOC01Z01JdThXaEE5blhIU1BPY0U1YXhkSTZXd2pBMzZERU01UktiS1JnVnZHcEZGVHI2dk85QUtUc2dDR0MwZWJfb1ZQcmsteC1pZ2JDTk95SEI5T1kwemZtdWFXVVhhNWRGaWYtV2dyRzQyWnIwUmt2dGFDUGZ6aEd1RjBDQnd2LWFVZGlXY2liVy1oaXlaQmRhcm03MTFtaGMwVlVFX1VoUzEyamFRVExHSXBFVVFXaVhB?oc=5",
+      "fecha_anterior": "2026-10-06",
+      "fuente_url_anterior": ""
     },
     {
       "id": "auto-b88c33dec7",
@@ -1071,15 +1071,26 @@
       "fuente_url_anterior": "http://campechehoy.mx/2026/10/08/piden-quitar-a-biby-el-control-del-saneamiento/"
     },
     {
-      "id": "auto-627b6e5121",
-      "nombre": "Sheinbaum mantiene alta aprobación, pero 6 de cada 10 rechazan la reelección de ",
+      "id": "auto-3c5262287d",
+      "nombre": "Se reúnen aspirantes de Morena a gubernaturas con dirigencia - Reforma",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 16,
-      "motivo": "“Morena puede aprobarla, pero no es la intención” - El Universal",
+      "dias_silencio": 20,
+      "motivo": "Ignacio Mier llama a la unidad a aspirantes de Morena a nueve gubernaturas - La Jornada",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNTXQ2RGRHQzdFb3d2OXJ6RHJULUkxRGZtelR2U3BYdXRqSVpidER6MFZkR05KdDdnX3czV21Hb0JPcFQtenpndVdaajFhWGgxUGpMTnpESmh0Q2xzeTUwWlR5dzhqcFRSQ3A5eDhYZXlhREtNa21fZUZ6akE5T085QWRkaXBCSHNUQ3JEdUFGb2tqQdIBpgFBVV95cUxQM2tMeTh2N0pWQXNRVzBUdzNqX0FENkdhYnU1QTBpVnRCNzlwWXplQWtWaFNwWnZBZk5QNDRubk9nb2t4Y1Y5cWtqbkhCYWMxYmJWcGpaa0NpbTZQeGlhUFJLS0V2RkZJdVlLd0NNOGwwa1hOX0JNUVZWRHRza2pkT1N1RFhfd1FVaDF4WWo1bzNJUlh0c0VxcS03RFJ5ejFtNTVva3V3?oc=5",
-      "fecha_anterior": "2026-10-12",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQUmxnOTNsQUVoY2xCN2d0MkgwLWNmOG9kenVJdFR4N2N2ZjlIV3pfTzFCOXM5cExYUFdMMmJKdjdiTEJ4M090V1dpb2tyN2VHQm96eVpuS0t6a0c2SWh6WlRrSkY3QmxLYUtOWE8wRVZMR3QzMVZNRmNiak94dFFIeEtpU2JPN0ljV0Q2Xy1xNzRTVGhjT2gwTGpKbllING9CWlRYS1VQZWNnTHEtXzJoaXBSUlhGZFJkc29zU1hYeExIQ0t3dnFGaQ?oc=5",
+      "fecha_anterior": "2026-10-08",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQZWVBd05YVzBkMHdfTkVZVjhKV1E1Rl9wMC1WYURSLUo0ZWRRSzZkdFlwYlRxa25Cd21HOVFwS3BWel9yZTNrS1JkUnY4RklPWjVJcldkTU5MTzVIeG5PbFhYY2NHN19CcGtTdTRoQjlCZ1JrRkUwU2JnSm90aHBOdTZRQ2RmTXpiS1pPMDhUVU41STJFa0twSkVR?oc=5"
+    },
+    {
+      "id": "auto-93b496f155",
+      "nombre": "No es retórica la defensa de la soberanía: Claudia Sheinbaum - El Heraldo de Méx",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 19,
+      "motivo": "\"Siempre fiel a la defensa de la soberanía nacional\": Claudia Sheinbaum lamenta muerte de Cuauhtémoc Cárdenas - MILENIO",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOMkJrLUF1MWJJRk9DTzNxX290QWdiLUN5UEhvWnlJSTZzTHlzNmgyUjBieWNXaTJ3MmpaNWJxc1l6UHhPNG1HM0lIU1BxTk5IQVYzYV9mY1lOU1k0dE5ZR01wZHJUUTU4SHN3d2tBaV9DWUJpem0zTVliU1NQY09sM09TaDJRWmlVTy1Ib9IBjAFBVV95cUxPRDFRUXpNSXk2U05rVnhmSUtzbmo0OHQ0d24tc3hEZ0ZzcTFKT3NhNFE4M19ReHhHVkhyamVhOTJFX0xkZnJWLU5EVUswdEpCWEtrbDlya0YtM2UyM1hMR2hhZFRITGphdzRiRENmbVBQZHZuTzZwVWNpU2loNWFRSnA5MlVvS0NYbkM3SQ?oc=5",
+      "fecha_anterior": "2026-10-09",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOc1FMQl90al9jZnR5a0xMbXRQM1Z1SW01V3NpWW4wMGxnSnRTaGZ3RERLZ0RQcjF5SS1TOEVDb3JjX2hxNTA0SklhY3R3X21NLXVVNFd4ZGxvZ1o0UDJlRU5RMDBVQ1ktVUtNYnp3bU9mSEFCR1phQ3B4dFlnYk1jeVdHYTV4aGRaeVBZMUZmel83Q01LZ0RVSkYzXzFjWWNzMmdqUTF3YmNtUHZKYV9vV0NRbFlfc0NJb1FoQXdB?oc=5"
     },
     {
       "id": "auto-95e85b8af5",
@@ -1091,17 +1102,6 @@
       "fuente_url": "https://www.informador.mx/mexico/harfuch-abaten-en-sinaloa-a-chuy-penuelas-buscado-por-la-dea-ofrecian-5-millones-de-dolares-por-el-20261028-0039.html",
       "fecha_anterior": "2026-10-16",
       "fuente_url_anterior": ""
-    },
-    {
-      "id": "auto-a1e60ac83c",
-      "nombre": "Reconoce Mara Lezama la fuerza, identidad y liderazgo de las mujeres mayas con l",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 9,
-      "motivo": "🔔 ALERTA — Recibe Mara Lezama donativo para fortalecer refugios y albergues de mujeres en Quintana Roo - Gobierno del Estado de Quintana Roo",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPalp0UlNnbGg5clR2bXlMMmJ5YmE0X3lYOEFzLWZ6OGwxRnN1NzJfN1VSVWJNaks2MVItaWVCbXZ5empxNFdMZlZZMzZBQnZtRlNHcXd1SXA1WEdCUWxYSUJiTVZ3aEdCV1NMa09BYkQtdnZyLVdRRDF5c2ktUk1FamhkRnUzME9WbzlvRGw5U0NtUzF3NnhqUTFmc3dhNkxCc245TlFMbU5mVWtmcXZGZXk2LWwxZEE?oc=5",
-      "fecha_anterior": "2026-10-19",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNNV9KVU9xT3JtWXZROV9HRW1VNDMzU2xrN2FiTEZrTmxTbUVMTG9xUWU4eFJUczBxaEhRT05kTHpRakp6a0ZZUjBMWUFkalV6VElXQW9Lc1hPVUpUWlpjbWl2dUZJbVJodWg3dnEzamJBUmxYdXg1X2E5Q0t3UUlXUFE2R1BMRFF6VVpYYjNRNWtEOUFrYmJDd1hTSWFoT2JLWF9YUExkTWhHM2RZb2FxS3dNeFpVX09jU2VTeTVscUxqcGN1UmhQa2hlTlR3Snkx?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1109,9 +1109,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "¿Quién es la jovencita que desata huracanes? El origen de Claudia Sheinbaum ¬ Pa",
-      "nota": "¿Quién es la jovencita que desata huracanes? El origen de Claudia Sheinbaum ¬ Parte 3 - Sin Embargo",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOdG9tdC1rTUJQcW4xV3ViYVZvTVlPZG1vYWhEbGVWNHpoWTRsVkEwRUZqOE44RmJYbmtod2k5aUs4U2xLNHhaQzZkZTZxTFZzUzJGSnNSbGFDN1dsX1NYcFQtR1NJNU4wbFBIYVB4ekdpcUdBM0hqOWR4UWI4eHBtaHplZ3hTelloX2FkTGYzdFdFZkgxVHFZZFY2czhpTnpqQWtiZTloNjJiRFAtTnU1bTRmYy01VDQ?oc=5",
+      "tema": "No es retórica la defensa de la soberanía: Claudia Sheinbaum - El Heraldo de Méx",
+      "nota": "\"Siempre fiel a la defensa de la soberanía nacional\": Claudia Sheinbaum lamenta muerte de Cuauhtémoc Cárdenas - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOMkJrLUF1MWJJRk9DTzNxX290QWdiLUN5UEhvWnlJSTZzTHlzNmgyUjBieWNXaTJ3MmpaNWJxc1l6UHhPNG1HM0lIU1BxTk5IQVYzYV9mY1lOU1k0dE5ZR01wZHJUUTU4SHN3d2tBaV9DWUJpem0zTVliU1NQY09sM09TaDJRWmlVTy1Ib9IBjAFBVV95cUxPRDFRUXpNSXk2U05rVnhmSUtzbmo0OHQ0d24tc3hEZ0ZzcTFKT3NhNFE4M19ReHhHVkhyamVhOTJFX0xkZnJWLU5EVUswdEpCWEtrbDlya0YtM2UyM1hMR2hhZFRITGphdzRiRENmbVBQZHZuTzZwVWNpU2loNWFRSnA5MlVvS0NYbkM3SQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1119,10 +1119,21 @@
     {
       "id": "montiel",
       "nombre": "Ariadna Montiel",
-      "rol": "Reacción social/mediática",
-      "tema": "Exige PRI rendición de cuentas a Ariadna Montiel por manejo de recursos de progr",
-      "nota": "Ariadna Montiel niega responsabilidad de Morena en el caso INE - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPWDBwMFA4WUE5VDZxdzY4TEtiZDRzVmxpSlFtRENGLWhiMW5Bd3IzaXBvejlrNXRyNUNoX2xsaHdCTmZZeDFaeVVMbzN3bDNnWXY1OVAxQ0N5bm16N1ZscmNRSzhTbThBRWlJS2xYRlV6MWdfOTJsTmw0MTZoOXFyalhsWFlPakg1LVVyX2ppcmlLWWNyYWfSAZYBQVVfeXFMTlJrRFVWY19fazBlSUxHbEJ4RnRtSjBlLWstOFBaUEF0NE11Sk1CRDdueDZPczJsU2dSc0xlMEVtUWdtM2NJcjFGMFBVZ21EYkRyeEt5aUdNWm9DYnF3ZDF4dU0yQ2F0ancyM2hBeGtoTWctaE9mUi1vY0JCOW1KWXluYlZSU190LUFwRGpnWGhiVU9xaW9B?oc=5",
+      "rol": "Responsable institucional",
+      "tema": "EL UNIVERSAL se deslinda de supuestas fotografías de Ariadna Montiel - El Univer",
+      "nota": "EL UNIVERSAL se deslinda de supuestas fotografías de Ariadna Montiel - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNbURYTGEyM05Db1NsSjRHa3dmTG44YXoyYXo5emxxREhtRFR6M2hFck5sTlJZYnRjYXNXSmttRXZqdGNwYnI1cnR6aUZOOEI4QlAxYUd4Y2ppSHUwaWlXSnVZT2hHdmtyLXpzR0hzRDByOHI2bEZUMUxYcWkxN1lRR1lubFhRMEpoeWRIbEUwRk5Ua0JTQXZWZnphdkZGS3BzbWkybGlqSXdFR3U4eXg1MHB30gHGAUFVX3lxTE9pTk15cENkcXZMVVJyTkFPdkJZSGx0NHNYbE9sb0lVdEYxNF91dVR0UzB0bjZVX2xjRUFIRG9mZ2kwQ2VyLVg2bU5QN1FDRExVcVN2MkZRN2VXRF83Sjk0c1p1Q2ZYRVF4MlFsMGFsalpFTU1OeFBpR3BOWHZJRE1zNTdYQkNUbWFGeUZHSUlJYUJhWGEzMzZveW5OMWZJbUxiUWVQNEdsN2R3VkdyZGdaTGM1M1hmRkpCZW5UakhLSEk4Z09JQQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "pri_partido",
+      "nombre": "Partido Revolucionario Institucional (PRI)",
+      "rol": "Reacción de oposición",
+      "tema": "Corte anula facultad de la fiscalía especializada de BCS para solicitar interven",
+      "nota": "PRI solicita Comisión Especial para destituir a representante de Morena ante el INE - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPbVpiMGtiN1hwbWY4WEdRMnRoUFF0WXVTMXBwdXRXa2hlZ25KU3U4V3kwdnJZcFViQ0U1MllFcUdFdlNrcDV2ZkVmdTNEU1lHT2o5d3pmYzhDZmRLVG05dmFkdHRrSW1fNzRMZFV4cjEzaV9WUy1sNjJXYnBvbDRsbUJaRmRuS3d1LVFLaU9waUhqOUV0VnhrRk9ITkRVcDRiQ1VCN1BMamF6aENZM016RHZ6bmdleHZQbVhsckhkTkxYS1MwWFlVakNZMEJfWmZiTXB1Sjk3b2NIa0hscUNMZkY5M3cwek1LVVFyakRTSlV5QdIBhgJBVV95cUxPaXUyOVB3b3Utc1d1YTRENzE2SUFVWENNV3FlemN0dnBxdzRtb2VEVTdTOVBnaTQzcjQtalVBU2FNVmxLQl94V01iSzN3Q2xOMDNLOC01Z01JdThXaEE5blhIU1BPY0U1YXhkSTZXd2pBMzZERU01UktiS1JnVnZHcEZGVHI2dk85QUtUc2dDR0MwZWJfb1ZQcmsteC1pZ2JDTk95SEI5T1kwemZtdWFXVVhhNWRGaWYtV2dyRzQyWnIwUmt2dGFDUGZ6aEd1RjBDQnd2LWFVZGlXY2liVy1oaXlaQmRhcm03MTFtaGMwVlVFX1VoUzEyamFRVExHSXBFVVFXaVhB?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1134,17 +1145,6 @@
       "tema": "García Harfuch aclara cómo es la coordinación con EU en materia de seguridad: \"N",
       "nota": "García Harfuch llega a Culiacán para revisar estrategia de seguridad - MILENIO",
       "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPZU5KWGhmMHNGSXFieDVrMVNOYS1mZjRkRUJKZ3dvYmh3dFN3V2VycHVIcVRid3VnSVczTWpGU0NVbDBoLWJDdGs1QWh4dHMwZUhGeVhRNXZjakdHZGMwMll6Y0FDRXBXQW1kZWVCRHk0QXQxaTU4djBRNlNMV0EzMW1oTy01Nm8tU2FqVm9wSWlNdDIzcjl30gGXAUFVX3lxTE9lTkpYaGYwc0ZJcWJ4NWsxU05hLWZmNGRFQkpnd29iaHd0U3dXZXJwdUhxVGJ3dWdJVzNNakZTQ1VsMGgtYkN0azVBaHh0czBlSEZ5WFE1dmNqR0dkYzAyWXpjQUNFcFdBbWRlZUJEeTRBdDFpNTh2MFE2U0xXQTMxbWhPLTU2by1TYWpWb3BJaU10MjNyOXc?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "rol": "Investigado",
-      "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "Rocha Moya sufre segundo ataque armado a sus inmuebles en Sinaloa - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQZUtZdGg3MGNlZUxBUHc2Wk1OMHktSFFFakt3aWxHZGowd2pIZG9ZdS1wY0xUVzN6d2FmajB5Ri1PeDRhbmpTY3BIRGlzREo1YWRjd25DZC1HbTZtLUhyTEVwWGt2UTd6cmJqT2w2ckp5V1E4cC14SWhpbUlTQ2I5blo2QWd1cVFjRXpN0gGLAUFVX3lxTE16V0M0NEU1Nmc5MWVQVElYalJtN0paWkV1TzAyZDJLMkhzcHluaGxaSEVINEFUV0xvbWVxVzhVazhrWmJNbW9hazIwYkdlMUhGMWd5TWJWMzVJTmMwYWdpMlp0SUdmQURBZ1RqN29rMEgzMnFBdDFzbmNTeG5tMWs4R19VbVVjNC1wTUE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1389,10 +1389,10 @@
     },
     {
       "fecha": "2026-10-28",
-      "tension": 23,
-      "n_notas": 32,
-      "n_alto_impacto": 13,
-      "n_medio_impacto": 19,
+      "tension": 27,
+      "n_notas": 40,
+      "n_alto_impacto": 17,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     }
   ],
@@ -1433,8 +1433,7 @@
           "x": 100,
           "y": 76
         }
-      ],
-      "fecha_reactivado": "2026-10-28"
+      ]
     },
     {
       "id": "montiel",
@@ -1451,8 +1450,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/27/morena-denunciara-maru-campos-por-presuntos-delitos-electorales-dano-moral-violencia-politica-de-genero-ariadna-montiel-917255.html",
-      "nota_texto": "Morena denunciará a Maru Campos por presuntos delitos electorales, daño moral y violencia política de género: Ariadna Montiel",
+      "nota_url": "https://www.yucatan.com.mx/mexico/2026/10/26/ariadna-montiel-rechaza-acusaciones-de-vinculos-con-el-guano-y-responde-a-maru-campos.html",
+      "nota_texto": "Ariadna Montiel rechaza acusaciones de vínculos con El Guano y responde a Maru Campos",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1548,8 +1547,7 @@
           "x": 54,
           "y": 78
         }
-      ],
-      "fecha_reactivado": "2026-10-28"
+      ]
     },
     {
       "id": "garcia_harfuch",
@@ -1842,12 +1840,20 @@
       "resumen": "Evalúa Morena revisar superpoderes de Taddei - Reforma",
       "fuente_url": "",
       "actor_vinculado": null
+    },
+    {
+      "id": "auto-4d9fe024a0",
+      "nombre": "Dirigente de Morena Ariadna Montiel Negó relación con el crimen organizado",
+      "categoria": "Gobernabilidad",
+      "resumen": "Dirigente de Morena Ariadna Montiel Negó relación con el crimen organizado",
+      "fuente_url": "",
+      "actor_vinculado": null
     }
   ],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 4
   },
   "declaracion_presidenta_historial": [
     {
@@ -1902,5 +1908,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-28 18:01"
+  "hora_corte_publicada": "2026-10-28 22:58"
 }
