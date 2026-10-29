@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-10-28T22:58:31.586624-06:00",
+  "generado_en": "2026-10-29T00:03:47.939074-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 37,
+  "n_notas_ventana": 40,
   "baja_confianza": false,
-  "tension_nacional": 27,
+  "tension_nacional": 26,
   "tension_anomalia": {
-    "z": 0.35,
+    "z": 0.27,
     "nivel": "normal",
-    "media_periodo": 24.9,
+    "media_periodo": 24.4,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 46,
+      "peso_pct": 44,
       "tema_principal": "Asesinato de Carlos Manzo",
       "tema_principal_id": "carlos-manzo",
-      "n_temas": 10,
-      "n_notas": 18,
+      "n_temas": 11,
+      "n_notas": 19,
       "notas": [
         {
           "texto": "Atacan a balazos antigua casa de campaña de Rubén Rocha Moya en Culiacán - Récord",
@@ -56,10 +56,10 @@
           "medio": "heraldodemexico.com.mx"
         },
         {
-          "texto": "Aguas Profundas / Energética Carvel ¿otra crisis de huachicol fiscal? - El Sol de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPb2loaUJvVjIyX2JSRS1IRnpoemtZbTdnb1M0NVZUbnRZMEFaYWhReWV4cVhHM3RYU1JySUlPYUQ4NVpONXdvZlhZQzZjNGI3djNFN0RoMDZkY01RYzlUS21XbVRibFJiWDN6eXJQTWY0S2pLY0hIX1RaV3RFOG1FQ05SNktlYUtlWHBfbmpGajFCSm5SdnZqM3lUSWNoRXBEVE1zdzM1ME85WU9EcGpxQk05YVFUZDQ?oc=5",
+          "texto": "Han muerto marinos y funcionarios por caso del huachicol fiscal - www.adn40.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMFJLV3dITXBYbFZTNW1yY0FObnVkRWJ4VklfRTFxTHNGRVo4NGN0eVhkZ2d5OHFMd3hJbGFJdWd2encwamw0ZW1DTzZ6MzdTeEFmRGJSMjVVRnpHQVVXTVR3dk5GVmhXdEIzYW1QdHd4RldlY3pSN29lN0pkNi04WVpVUDJxYmtqeDNNN0Voc1E0YWlVMXgxVV9Ndm1tdXZLTkwwdTJlOXA?oc=5",
           "intensidad": 6.0,
-          "medio": "El Sol de México"
+          "medio": "www.adn40.mx"
         },
         {
           "texto": "Revelan acta de defunción de Carlos Manzo, alcalde asesinado en Uruapan; murió por disparo en el abdomen - MILENIO",
@@ -113,7 +113,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 19,
+      "peso_pct": 17,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 5,
@@ -165,7 +165,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 18,
+      "peso_pct": 17,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 4,
@@ -217,7 +217,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 17,
+      "peso_pct": 16,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -257,40 +257,28 @@
     },
     {
       "categoria": "Social",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
+      "peso_pct": 5,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
+      "n_temas": 1,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "🔔 ALERTA — Migrantes se arraigan en México tras el bloqueo de Trump al \"sueño americano\" - El Economista",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOa2dDbU9nNFFEaHk5c3FiYy1HQkw0V3k1Q0pYQXdlc28yeW14X2l3Nk05b3pxdTE2dmJ3ckxHWE1Gbk56R2VOQndSam12SkZyTUN1UGxBbmdRNUhaX3lvdURNZHFkeGFLR2x3RlljQkhiU085T21PQ0h0WWs0RUlIZzJoNkZENlRlN2ZaVk52WXVScm1pcFR2NjdCaVlUUGFLekdLbEdhblZxUFNod05BQkhQQ2VNZUNYWkdpZElybHRWQdIBxwFBVV95cUxNR0RQenBPbTJJSnFEUXVhdVR0TUZwdHE0LVdhRDRFb3JndVRqR2NZNzVMbDZZR2FkaUE3Tk8zWEJXVTJaWlVwYk05eU5ublZDT01qeE1ZVkVkYW1taVFnYjc0Y2c3ekdrb1g4R2ExMkQtVU56ZHdHQlVGVFpNMnpmLVQ4cnBadzdvbTRZVmFDQzFiN1k4S190Q3pqUk1HZ0s3dl9mYmtqdDVEc055eG03Rmw3XzJTd1B0YlRrSWhiel9ZRTJmOXBn?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Economista"
+        },
+        {
+          "texto": "🔔 ALERTA — Migrantes se arraigan en México tras bloqueo de Trump - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPSGh6ZVF2SWJNMkN6aFdGQnRla3k2MmxXTUc0d3MxNUpZaUtRUXo4dndpbEtHX3FOS2l1WVppSU5wUW54VXIyb2ZiWm1rTS1WMkQxWV9BTWktSWd4RGs0OGNhMG02WDhFNmhzTEtIT01ZZmNZdHR5RmpLOThnRk5rdUdYSi1JNXFETmgyLUlUaHo?oc=5",
+          "intensidad": 6.0,
+          "medio": "Reforma"
+        }
+      ]
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-01",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 76
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 6
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 5
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 4
-        }
-      ]
-    },
     {
       "fecha": "2026-10-02",
       "categorias": [
@@ -300,7 +288,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 76
+          "peso_pct": 77
         },
         {
           "categoria": "Relación Bilateral",
@@ -325,7 +313,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 77
+          "peso_pct": 78
         },
         {
           "categoria": "Relación Bilateral",
@@ -358,7 +346,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 4
+          "peso_pct": 3
         },
         {
           "categoria": "Social",
@@ -600,7 +588,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 72
         },
         {
           "categoria": "Relación Bilateral",
@@ -733,7 +721,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -800,7 +788,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -946,7 +934,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Gobernabilidad",
@@ -958,11 +946,36 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
-          "peso_pct": 3
+          "peso_pct": 4
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-29",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 13
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 60
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 13
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 4
         }
       ]
     }
@@ -981,10 +994,7 @@
       "medios_corroborantes": 4,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxORnZuMW9JTGFmQmViZDlDeUhOVlBhM192RVF1OUxjU1FwZmJWQXhFTEdEbUNjenNKLWk1WVhwWS1fSmo2QTQ2SkF2M2hJX19yMm52MFFzemIzVXF2OVdoVUxMR3FkbkliQjduM213U3Z4cU9Dc3BKcDQ1aVlhOUZHaUdRU0NuOXEzREc3M9IBjAFBVV95cUxPdkFmbUppUGQwa2ZJWDg0cEg2VHpFSUFpZkp4OE5HaTJjR2JIbEVKblVST2RFdXBIWUFVY1hwLUpGbjZJM1B0d29DallIbWRkMHVyUjdDV3A3Q1l6WEltT0RaYzVSbzh5aW1SSFQ1WEFRWlFzbGthb3U3WEhTWmpTT1RIcDRMcVpqMExhWA?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "actor_vinculado": null
     },
     {
       "id": "carlos-manzo",
@@ -999,10 +1009,22 @@
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/28/grecia-quiroz-pide-a-hermano-de-carlos-manzo-no-ventilar-temas-personales-eso-no-va-a-llevar-a-nada/",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
+      "actor_vinculado": null
+    },
+    {
+      "id": "trump-agenda",
+      "nombre": "Trump y México: declaraciones y presión",
+      "categoria": "Relación Bilateral",
+      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
+      "motivo": "🔔 ALERTA — Migrantes se arraigan en México tras el bloqueo de Trump al \"sueño americano\" - El Economista",
+      "peso": 17.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOa2dDbU9nNFFEaHk5c3FiYy1HQkw0V3k1Q0pYQXdlc28yeW14X2l3Nk05b3pxdTE2dmJ3ckxHWE1Gbk56R2VOQndSam12SkZyTUN1UGxBbmdRNUhaX3lvdURNZHFkeGFLR2x3RlljQkhiU085T21PQ0h0WWs0RUlIZzJoNkZENlRlN2ZaVk52WXVScm1pcFR2NjdCaVlUUGFLekdLbEdhblZxUFNod05BQkhQQ2VNZUNYWkdpZElybHRWQdIBxwFBVV95cUxNR0RQenBPbTJJSnFEUXVhdVR0TUZwdHE0LVdhRDRFb3JndVRqR2NZNzVMbDZZR2FkaUE3Tk8zWEJXVTJaWlVwYk05eU5ublZDT01qeE1ZVkVkYW1taVFnYjc0Y2c3ekdrb1g4R2ExMkQtVU56ZHdHQlVGVFpNMnpmLVQ4cnBadzdvbTRZVmFDQzFiN1k4S190Q3pqUk1HZ0s3dl9mYmtqdDVEc055eG03Rmw3XzJTd1B0YlRrSWhiel9ZRTJmOXBn?oc=5",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -1049,6 +1071,17 @@
   ],
   "temas_retomados": [
     {
+      "id": "auto-832f1c0529",
+      "nombre": "Asume Laura Itzel Castillo cargo de secretaria de las Mujeres",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 49,
+      "motivo": "Chocan Morena y Oposición en comparecencia de Laura Itzel - Reforma",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQLUhyeWRLNFNBYWgtTzY2VUlPeFBrU2JYTk91N19Kem42RHhoZlk2bVEzR3U3T0c1c2NsS2xJX3JadnhmTTYybndIclRtc29xT3pCMmhsNG1Dd1NBbWhtT2o4OEZYeTNYTHlZYlVHYkVVWUdxelROYUNqYTk3RFFZcEtPTFVJUTVxcExkUW9PTVJ0SnRVZ1E?oc=5",
+      "fecha_anterior": "2026-09-09",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNNEFUZWFIMUstWkNVcW50SmxYcndhTDdLUUo0SEEtd19vNEN0WnYzMVNDLVNCWUQxeHZhbTZvVEJxV2dFU1dLLVlzbE1SVUF3Rzh6eHlscFdsXzg5OFR1NzIwMG5BLVZma1JZXzhsaW5PeWJhaHpvMWZkUkJnUmtXNUpBTmFEVEpINUE2MXZyNTFUOUstbU5TM1NtLXBfTVdNVmlhNmU1ckpkWVVwQjNGWmdwQVkwc1FqUEdEZFVYdGlxLWk2?oc=5"
+    },
+    {
       "id": "auto-3411929b7d",
       "nombre": "Corte anula facultad de la fiscalía especializada de BCS para solicitar interven",
       "categoria": "Gobernabilidad",
@@ -1091,17 +1124,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOMkJrLUF1MWJJRk9DTzNxX290QWdiLUN5UEhvWnlJSTZzTHlzNmgyUjBieWNXaTJ3MmpaNWJxc1l6UHhPNG1HM0lIU1BxTk5IQVYzYV9mY1lOU1k0dE5ZR01wZHJUUTU4SHN3d2tBaV9DWUJpem0zTVliU1NQY09sM09TaDJRWmlVTy1Ib9IBjAFBVV95cUxPRDFRUXpNSXk2U05rVnhmSUtzbmo0OHQ0d24tc3hEZ0ZzcTFKT3NhNFE4M19ReHhHVkhyamVhOTJFX0xkZnJWLU5EVUswdEpCWEtrbDlya0YtM2UyM1hMR2hhZFRITGphdzRiRENmbVBQZHZuTzZwVWNpU2loNWFRSnA5MlVvS0NYbkM3SQ?oc=5",
       "fecha_anterior": "2026-10-09",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOc1FMQl90al9jZnR5a0xMbXRQM1Z1SW01V3NpWW4wMGxnSnRTaGZ3RERLZ0RQcjF5SS1TOEVDb3JjX2hxNTA0SklhY3R3X21NLXVVNFd4ZGxvZ1o0UDJlRU5RMDBVQ1ktVUtNYnp3bU9mSEFCR1phQ3B4dFlnYk1jeVdHYTV4aGRaeVBZMUZmel83Q01LZ0RVSkYzXzFjWWNzMmdqUTF3YmNtUHZKYV9vV0NRbFlfc0NJb1FoQXdB?oc=5"
-    },
-    {
-      "id": "auto-95e85b8af5",
-      "nombre": "García Harfuch confirma ingreso a México de colombianos provenientes de Ucrania ",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 12,
-      "motivo": "Abaten a \"Chuy Peñuelas\" en Sinaloa; EU ofrecía 5 millones de dólares por él",
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/harfuch-abaten-en-sinaloa-a-chuy-penuelas-buscado-por-la-dea-ofrecian-5-millones-de-dolares-por-el-20261028-0039.html",
-      "fecha_anterior": "2026-10-16",
-      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
@@ -1112,6 +1134,17 @@
       "tema": "No es retórica la defensa de la soberanía: Claudia Sheinbaum - El Heraldo de Méx",
       "nota": "\"Siempre fiel a la defensa de la soberanía nacional\": Claudia Sheinbaum lamenta muerte de Cuauhtémoc Cárdenas - MILENIO",
       "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOMkJrLUF1MWJJRk9DTzNxX290QWdiLUN5UEhvWnlJSTZzTHlzNmgyUjBieWNXaTJ3MmpaNWJxc1l6UHhPNG1HM0lIU1BxTk5IQVYzYV9mY1lOU1k0dE5ZR01wZHJUUTU4SHN3d2tBaV9DWUJpem0zTVliU1NQY09sM09TaDJRWmlVTy1Ib9IBjAFBVV95cUxPRDFRUXpNSXk2U05rVnhmSUtzbmo0OHQ0d24tc3hEZ0ZzcTFKT3NhNFE4M19ReHhHVkhyamVhOTJFX0xkZnJWLU5EVUswdEpCWEtrbDlya0YtM2UyM1hMR2hhZFRITGphdzRiRENmbVBQZHZuTzZwVWNpU2loNWFRSnA5MlVvS0NYbkM3SQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Trump ‘estalla’ por elecciones al Senado en Alaska: Acusa a Mary Peltola de mani",
+      "nota": "⚡ Posible presión de Donald Trump — Trump ‘estalla’ por elecciones al Senado en Alaska: Acusa a Mary Peltola de manipulación de votos",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/28/trump-estalla-por-elecciones-al-senado-en-alaska-acusa-a-mary-peltola-de-presunta-manipulacion-de-votos/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1148,17 +1181,6 @@
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
-    },
-    {
-      "id": "manzo",
-      "nombre": "Carlos Manzo Rodríguez",
-      "rol": "Investigado",
-      "tema": "Asesinato de Carlos Manzo",
-      "nota": "Grecia Quiroz pide a hermano de Carlos Manzo no ventilar temas personales: ‘Eso no va a llevar a nada’",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/28/grecia-quiroz-pide-a-hermano-de-carlos-manzo-no-ventilar-temas-personales-eso-no-va-a-llevar-a-nada/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
     }
   ],
   "declaracion_presidenta": {
@@ -1172,19 +1194,11 @@
   "declaracion_otro": null,
   "patron_historico_4sem": [
     {
-      "fecha": "2026-10-01",
-      "tension": 36,
-      "n_notas": 75,
-      "n_alto_impacto": 47,
-      "n_medio_impacto": 28,
-      "n_bajo_impacto": 0
-    },
-    {
       "fecha": "2026-10-02",
       "tension": 34,
-      "n_notas": 51,
-      "n_alto_impacto": 29,
-      "n_medio_impacto": 22,
+      "n_notas": 53,
+      "n_alto_impacto": 30,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
@@ -1238,9 +1252,9 @@
     {
       "fecha": "2026-10-09",
       "tension": 26,
-      "n_notas": 73,
+      "n_notas": 74,
       "n_alto_impacto": 35,
-      "n_medio_impacto": 38,
+      "n_medio_impacto": 39,
       "n_bajo_impacto": 0
     },
     {
@@ -1277,17 +1291,17 @@
     },
     {
       "fecha": "2026-10-14",
-      "tension": 22,
-      "n_notas": 54,
+      "tension": 21,
+      "n_notas": 55,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 34,
+      "n_medio_impacto": 35,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-15",
       "tension": 21,
-      "n_notas": 54,
-      "n_alto_impacto": 20,
+      "n_notas": 55,
+      "n_alto_impacto": 21,
       "n_medio_impacto": 34,
       "n_bajo_impacto": 0
     },
@@ -1317,10 +1331,10 @@
     },
     {
       "fecha": "2026-10-19",
-      "tension": 27,
-      "n_notas": 47,
+      "tension": 26,
+      "n_notas": 48,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 27,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
@@ -1341,9 +1355,9 @@
     },
     {
       "fecha": "2026-10-22",
-      "tension": 27,
-      "n_notas": 46,
-      "n_alto_impacto": 21,
+      "tension": 28,
+      "n_notas": 47,
+      "n_alto_impacto": 22,
       "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
@@ -1381,18 +1395,26 @@
     },
     {
       "fecha": "2026-10-27",
-      "tension": 20,
-      "n_notas": 37,
+      "tension": 19,
+      "n_notas": 38,
       "n_alto_impacto": 13,
-      "n_medio_impacto": 24,
+      "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-28",
-      "tension": 27,
-      "n_notas": 40,
+      "tension": 26,
+      "n_notas": 44,
       "n_alto_impacto": 17,
-      "n_medio_impacto": 23,
+      "n_medio_impacto": 27,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-10-29",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1411,9 +1433,9 @@
       "n_medio": 8,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/26/claudia-sheinbaum-dialogo-comercial-con-ee-uu-esta-avanzado-pero-hay-que-esperar.html",
-      "nota_texto": "Claudia Sheinbaum: Diálogo comercial con EE.UU. está avanzado, pero “hay que esperar”",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNZzQxYUpnZ0YtOXkyVHo1VGJ2UnNscUFpRVNUODNtanJuRzM2LWItMTdsYWEydUZwZzdGb2tEdUl5b2kxX3J0M2hfOXJYUzk4RjdjeW5DYi1MbFY3NFlmXzlrNFpMZ1BDVjMtLWFEUUhuLTRYVWNrRlJmejc3QUJuOHlNWnlsM3kzem4zY0w0VlZMSzRkT0RWclM5ZFhHRE1aMVJwUWgza3M4aWdiVHktS2pVSDMyNFdQWWd3eXlsY1VXREZuSlE?oc=5",
+      "nota_texto": "Claudia Sheinbaum Reacciona a Resultados de Elecciones en Brasil y Destaca Reelección de Lula - N+",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1433,7 +1455,8 @@
           "x": 100,
           "y": 76
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "montiel",
@@ -1449,7 +1472,7 @@
       "n_medio": 6,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.yucatan.com.mx/mexico/2026/10/26/ariadna-montiel-rechaza-acusaciones-de-vinculos-con-el-guano-y-responde-a-maru-campos.html",
       "nota_texto": "Ariadna Montiel rechaza acusaciones de vínculos con El Guano y responde a Maru Campos",
       "es_nuevo": false,
@@ -1471,7 +1494,8 @@
           "x": 92,
           "y": 82
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "andy",
@@ -1487,7 +1511,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQWU2VF9EZzdDcG15bFBZVWRVVldBUFJpNm9FYXVnT194S3NzUDhvdERITDZXN0wya0VXd2xCaml3bHJCY3JvUDlWTVp6azZyVU16OVFkc251RVVtTFJtZEpZdTVuTjlGQ1RRUWh0TmdFTHhxZ0t1dXZ1ZGVTTl9KYkdvUHE5STRjVnEtZGVWMzJ2MlFXck9LdTFTNzBLYTNvRmpKZ3RCTWhLd1o0eFkzOHlzOV93TWNNM1pQcWdBYktFQQ?oc=5",
       "nota_texto": "FGR descarta abrir investigaciones contra Andy López Beltrán y Adán Augusto - Serpientes y Escaleras",
       "es_nuevo": false,
@@ -1509,7 +1533,8 @@
           "x": 46,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "morena_partido",
@@ -1525,7 +1550,7 @@
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQSGI3ZFdia0tQa3R3TEtKNUNxMVlubzdQUW5KSmxqZHRsR2V0d2c5akY2SW5BRjZzNTBjSXBXakFGekp5bFJLYzJsemU3ak4zTnlrUDJGVFd1cVNrVzJQdU1JTkNUdUZYRVBTanNZWWphbHZXcEFHVzlDWWNaRkNOTVZHamtxb0FrcFBfYkUzdWhFa29NMHNoU194bXg1RVlwTi04NzA0ay00MUE5VUY3LThuM0dLSFM5ODVNZ3doMWVUTlE?oc=5",
       "nota_texto": "Ariadna Montiel niega reunión con 'El Guano' y acusa campaña para desacreditar a Morena - Municipios Puebla",
       "es_nuevo": false,
@@ -1547,7 +1572,8 @@
           "x": 54,
           "y": 78
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "garcia_harfuch",
@@ -1563,7 +1589,7 @@
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNVXp4c05yMWo1Wmo2MDd0LXloX3p3TlkweUhIb0VMRlBXUTZ4eU1rMFdyU1h5Vng5b0ZhLVUzcExYS3JmWWtTb2JkOWVteEs5dG91R2lsQ2l6VHZpckpLRXJ2MFVQWGpXQXlUWlNrX3F6Vmg4T2xkSnlCR0hvd2FiQXdOVFR3ei1qTGNpVUx0WHI4LWJuZDJhbGFkdFEzVWExUE9sU3JnejVDSmNocExmbkw4VC1qa3V6dlkwc1hYVG9ZUG9ZWXAzMjBOWkljZU1JQmNPMFlhcmVXZUxFdXNQZm1WTmNXRmNNTFR1etIB8gFBVV95cUxPSGVrXy1ndVhpeTc3YkVTeDBjd0NzNnlFTmJPUDZpcTktOHRJQWh0SVJ0eHg2UC1idGZoc3RSTVZWSDlqVzFpUTNZbG9FN3J2djlNaVp6VWJEenJQODl4MHo0TzNjM1B6U1NsckRhWkdvbGpXbV9QSFZKNjRfcjJ1ZWZ5UUc0UmtDMEdveXZra3ozS0dlbnNqZG92NUpJN2ttUlA2ZnQ1ejNIdUR6Y3BRS2dXLXhxYVFiZkcycDg3R3o0LThoTFV1MDRHU1NNNWpGek1keHlxTGVUUWpYMHpFMUU5UnRMb1o4Z1VwU240SS0wQQ?oc=5",
       "nota_texto": "Omar García Harfuch anuncia visitas del Gabinete de Seguridad a Sinaloa por orden de Sheinbaum; supervisarán Culiacán y Mazatlán - Por Esto!",
       "es_nuevo": false,
@@ -1580,7 +1606,8 @@
           "x": 46,
           "y": 73
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "rocha_moya",
@@ -1596,7 +1623,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPcjBSdGNKNDc4T0RHQUFZQk1WRTliUEdubEVRODNwTlFTMFpZRUFPREZiSEN5Q0psQzhzYlNCSnRCYUxIQnlTUTh0eFQzc3htLXViRWg0OTA3LVBuU3FKNF9ja1pDN3VqeF9jckVmalNIMTNrZWl1eW5nV1RTZFE1NTVhR0x5UUt2V2duRl9NbzR3czR3TkZDaUZNRWN6MDhseFlFb2V5RzBsanVGRTR0RXRwdURmRFVvQXo0WWlTUXhYVVo1NHdZZWNRTTFSYklPelpWWVRHSlQwUVh4R0JOLXFvdDJGWGR1V0x5aXJDcWJYS29f?oc=5",
       "nota_texto": "Balean antigua casa de campaña de Rubén Rocha en Sinaloa - El Universal",
       "es_nuevo": false,
@@ -1613,7 +1640,8 @@
           "x": 31,
           "y": 82
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "ana_lilia_rivera",
@@ -1658,7 +1686,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.elfinanciero.com.mx/estados/2026/10/28/grecia-quiroz-pide-a-hermano-de-carlos-manzo-no-ventilar-temas-personales-eso-no-va-a-llevar-a-nada/",
       "nota_texto": "Grecia Quiroz pide a hermano de Carlos Manzo no ventilar temas personales: ‘Eso no va a llevar a nada’",
       "es_nuevo": false,
@@ -1670,7 +1698,8 @@
           "x": 23,
           "y": 73
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "rosa_icela",
@@ -1686,7 +1715,7 @@
       "n_medio": 3,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/26/rosa-icela-rodriguez-agradece-transportistas-que-privilegian-el-dialogo-rechazan-el-paro-de-canacar-916565.html",
       "nota_texto": "Rosa Icela Rodríguez agradece a transportistas que privilegian el diálogo y rechazan el paro de CANACAR",
       "es_nuevo": false,
@@ -1703,7 +1732,8 @@
           "x": 23,
           "y": 55
         }
-      ]
+      ],
+      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "farias_manuel",
@@ -1794,44 +1824,8 @@
     }
   ],
   "tablero_semana_inicio": "2026-10-26",
-  "resumen_mananera": [
-    {
-      "texto": "La presidenta informó sobre las negociaciones del T-MEC con Estados Unidos, indicando que se continúa dialogando para llegar a un acuerdo antes de las elecciones estadounidenses del 3 de noviembre. Mé",
-      "categoria": "Relación Bilateral",
-      "intensidad": 8.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se anunció un acuerdo histórico entre el Gobierno Federal y el Gobierno de Jalisco para invertir 25 mil millones de pesos en infraestructura de agua potable para la zona metropolitana de Guadalajara.",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se presentaron dos proyectos federales de acueductos para resolver el problema de agua en Guadalajara. El primero es el acueducto Chapala-Guadalajara de 42 kilómetros que conducirá 8 mil litros por se",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "El Gobierno de Jalisco anunció la renovación completa de la planta potabilizadora número uno en Miravalle, que tiene 70 años de antigüedad y abastece al 42% de la población metropolitana. La primera e",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "La presidenta Sheinbaum abordó el tema del Instituto Nacional Electoral (INE) y los escándalos de corrupción relacionados con empresas contratistas. Explicó que Guadalupe Tadei fue seleccionada median",
-      "categoria": "Gobernabilidad",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
+  "resumen_mananera": [],
+  "mananera_estado": "pendiente",
   "a_vigilar": [
     {
       "id": "auto-96d59389d7",
@@ -1908,5 +1902,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-28 22:58"
+  "hora_corte_publicada": "2026-10-29 00:03"
 }
