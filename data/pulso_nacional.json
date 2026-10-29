@@ -1,36 +1,24 @@
 {
-  "generado_en": "2026-10-29T00:03:47.939074-06:00",
+  "generado_en": "2026-10-29T06:00:26.829058-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 40,
+  "n_notas_ventana": 36,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 23,
   "tension_anomalia": {
-    "z": 0.27,
+    "z": -0.21,
     "nivel": "normal",
-    "media_periodo": 24.4,
+    "media_periodo": 24.2,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 44,
-      "tema_principal": "Asesinato de Carlos Manzo",
-      "tema_principal_id": "carlos-manzo",
-      "n_temas": 11,
-      "n_notas": 19,
+      "peso_pct": 58,
+      "tema_principal": "Coordinadores estatales de Morena rumbo a 2027",
+      "tema_principal_id": "morena-coordinadores-2027",
+      "n_temas": 14,
+      "n_notas": 22,
       "notas": [
-        {
-          "texto": "Atacan a balazos antigua casa de campaña de Rubén Rocha Moya en Culiacán - Récord",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOa2pxcFRfVzd1Y0VVN2FvTjc2a2ttSGtFUm5XX3Fvd1dYR19vLUdWV3ByTW92VW5xWkhzTEdqRktHeFNUYjZHQ1ZGSkFTVGg2RjZSV3lTZGdhMU9nUmIyaURTTnNxTmRYT3NQRUluQnV5UVZsR3hkRUt1SU44RDliNnRUS2xDeWd5bUpDWlNpRkFvcnlUd3ROUFpKbUdPRFJxWTcwT2xVME9kOWZpRFZWY2hGR0lTX3V0OEJISFRTRldQSmpzT3c?oc=5",
-          "intensidad": 7.0,
-          "medio": "Récord"
-        },
-        {
-          "texto": "Se reúne Ignacio Mier con 17 coordinadores de la defensa de la 4T - Quadratín México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOREZ5MHQ3bmZpNzlQNWZqcUtiUG1oRi1vLWlBOGs2XzZTMGtIdV9fY280MnZvTEFXOFl0UHlrX2pJVmMyVGkyZFVaMG5IX2hhRGxDd2QwMnJkOTFXcWlLamRTTDBOay1JNW9XbFdUUk5iVVJVLVRMMjJJOTZCaTI0WlA3Y3I0cGF6WDNNX21EZHVuM040VERrRnZuUVdxYUE?oc=5",
-          "intensidad": 7.0,
-          "medio": "Quadratín México"
-        },
         {
           "texto": "Coordinadoras de la transformación se reúnen con senadores de Morena",
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/coordinadoras-de-la-transformacion-se-reunen-con-senadores-de-morena-917990.html",
@@ -56,22 +44,34 @@
           "medio": "heraldodemexico.com.mx"
         },
         {
+          "texto": "¿Cómo llegó Taddei al INE? De la tómbola de 2023 a los ‘superpoderes’ que recibió en 2024",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/28/como-llego-taddei-al-ine-de-la-tombola-de-2023-a-los-superpoderes-que-recibio-en-2024/",
+          "intensidad": 7.0,
+          "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "Ariadna Montiel y “El Guano”, hermano de “El Chapo”. Gabinete de Seguridad al servicio de Morena, señala De Mauleón",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/28/ariadna-montiel-el-guano-hermano-el-chapo-gabinete-de-seguridad-hector-de-mauleon.html",
+          "intensidad": 7.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "López Obrador y Sheinbaum lamentan muerte de Cuauhtémoc Cárdenas; destacan su legado democrático - Aristegui Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNNVhHZDFJbGl6enBvYVJPZnNhMzZYVDFsX3VmdWJRMVNYTDY4ak9oNUlSY3hJZWlBdXpKX1dSMFc5blZiTi1rTGF1VTdXZ1d3MzdDTDhMWldIWnVQdEpmczBEY1JIUEZ4NHoxam5FZkZ2VU5fTmwxTXhWOFNJSnNpTFBkSTllYVh1NWpXbWhxRk5WbW9taHNPOWk4QjlVdDJ0YmwwWWhDMlZob2RpM3h0VnZ2LUdpaWo5Vy1ZdVkzMkdGdXhzVUpBNC13WjByVkdGS3NBVg?oc=5",
+          "intensidad": 7.0,
+          "medio": "Aristegui Noticias"
+        },
+        {
+          "texto": "Llama Mier a la unidad y a ser buenos gobernantes a coordinadores de la 4T",
+          "fuente_url": "https://www.jornada.com.mx/2026/10/29/politica/018n2pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
+        },
+        {
           "texto": "Han muerto marinos y funcionarios por caso del huachicol fiscal - www.adn40.mx",
           "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMFJLV3dITXBYbFZTNW1yY0FObnVkRWJ4VklfRTFxTHNGRVo4NGN0eVhkZ2d5OHFMd3hJbGFJdWd2encwamw0ZW1DTzZ6MzdTeEFmRGJSMjVVRnpHQVVXTVR3dk5GVmhXdEIzYW1QdHd4RldlY3pSN29lN0pkNi04WVpVUDJxYmtqeDNNN0Voc1E0YWlVMXgxVV9Ndm1tdXZLTkwwdTJlOXA?oc=5",
           "intensidad": 6.0,
           "medio": "www.adn40.mx"
-        },
-        {
-          "texto": "Revelan acta de defunción de Carlos Manzo, alcalde asesinado en Uruapan; murió por disparo en el abdomen - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNbS1OYlNKWlZiVWlLaUU5VWRTaVlSTm1RU3JtVWt1R0Y2WjJHbDVDSERJa1JMZUt1c1Rxb1UzY2ttNG5QOHZ5OS1NME9WaXNUM1laRDJJRTFzeDZPSmZKZTNWQkJIS1R1cURQVm1TRS1lQnlkcXQwVXNlTkdHc1pNSTM3d0RmWFo1dHU5cVp4dzI4MHcxaENPWURGUGzSAZwBQVVfeXFMTWJwYzJtc3praVBmbnhRMWp6Tkp0dG9YbXp6OHZQQXM3NUJob2xybEI5Y3pTQ1I3Q2tWTlZDYi1xMHprUm1kTko4bzkzLWhoWnJLa1JKRkM1aHlqQWkxOXVmX24zT3B4ZTQyVjNIbmRWNm9jQUljSmg5a0J4M2RLX0Fpd3dNSVFSZFhMMU1ZUFRpdkpINElJbzJyNW1J?oc=5",
-          "intensidad": 5.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "Ariadna Montiel anuncia denuncias contra Maru Campos por señalamientos de vínculos criminales - Ahora Tabasco Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPV2kwS05HbnVKcVJWektPSHdMNFpwNktiUjlKS3YwZFEybHNfd2xneFZHeTVQdy1XLWprcWl1dHJZb0dYNE1abXBCZlR6cVU2RVhmQkJ2OS1nSTc3TExkNnJILWJqbTVtVWZXRlNIbFhxMXJqMl90c3U3TjMzRDR1eEhKUFhZSDJudGdEWHpPV0ZtMjJUcXU4bXFrS090S01sVVctbkJDWEhsQlpfZU1seWRmbWh3d2E0X1BF?oc=5",
-          "intensidad": 5.0,
-          "medio": "Ahora Tabasco Noticias"
         },
         {
           "texto": "Rosa Icela Rodríguez encabeza reunión con madres buscadoras y colectivos del noreste en Hermosillo",
@@ -112,64 +112,12 @@
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 17,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 5,
-      "n_notas": 7,
-      "notas": [
-        {
-          "texto": "Andy López Beltrán y Adán Augusto López vuelven al centro de la polémica por el huachicol fiscal, pero la FGR sostiene que las declaraciones de Farías Laguna no bastan para investigarlos - El Imparcia",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gJBVV95cUxPc3g1SXlPZWJoVjBNbXFRdTcyUUVsTzRfa09Lc1h0LWRFck5YSWR5UG04N2ZpdlJQLWhVVjVIWVJ1YVhSM3pydUxHT3p2VFhqUnI2cncxRDh2RFBuVHM5STZzUUpEbldQSXlfUFNEWGlmeXBVSExJVFQ2RnUtX2ZpMUI5VlFoSGFEcjI0RWxGRUt4Q0p6c0M2LTRYWk5fZ1JNVVQxQjFsWm9mZnFZNlVLZE03T004Rk45aWZDVE5xRkc0Q1BlcDQtdldEMFlBZFQ3Rk5NVHV5NzZmcHNHZDc4NjRnMU1jcXRVblZpSTJKLUowUlFLcTBQQVBlbnVVLVY5bDdkRkExdURMc1RQelBuTFMwWXc3MmhWcWNqOXFtdzV0eGFUMzN3bFkzalFkOWVIcFVRd1hUUGVZaXF4cktwWU1ibmdPcjBqbE1TX0lYYmxGUdIB7AJBVV95cUxPLS1jc0llbkhDTVh2bWUwQnZTTUVhRzZxYklNaXRnajgzM3NtbE1DYTRqRzEzQlhtY2x4NmNJU3ZtQUF4Qzl2MnBHcGdlNU14MHFSUVlsSi0yNUs4ay1uS0dQVmx2c1AyVHk4bHA5Szh3XzlfZk95cHowS0tpTW93WmJuNFRlanFuMTVXNnN2dnZJVk1tVWkzRGdRUUhZQVJVSGRpLXNTa29pSGRPRmlNWUVkc2V6amVXdzJYUHVza2s2NUVBWFZVWHAzRjVLelpsR25IR2lTYkFWYVAwdHNLUU5RTE1CWDFWV3RLVGpoRVBxcms3aDdPS1BSTVVtcHBJbEZLNHRjMmhEanJwanhaVlJFSVhqNkQtRlNVZG5KYy1SN2R0M2JCUTVPRFdILVEtTDVIdFhoR3ZXYTVCZnJwQUk5U0RUX2d5Vy1NV1RRR2NLY1pxakZ6dGJjMmMzWVJoT1J0YjFQWERhY1Zt?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Imparcial"
-        },
-        {
-          "texto": "No hay elementos suficientes para investigar a Andy López Beltrán y Adán Augusto: FGR - Quinceminutos.MX",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNTEppQXl3UDNybVVVa0NaaWpFUFlJcUl2dzBVX2NwN3ZHWHZsMDRpOG40NU1ZdDc1VmpGWHFvZzdUc3ozeU10Y1c1QnBUd1N1TW9kUzNiVlgzZVo0UjlnLTRYVUtHRlVHUWQ1aThqcUxRa3NoUGhDRVVmYzJubE9DS2N1QzVmQm5BXy1zQm94Rm8zakxOdThaMkdxVTd4UXZzLWx2Tm1lTXFBeEJBRldmTTBqMFJoMWQ3cmc?oc=5",
-          "intensidad": 7.0,
-          "medio": "Quinceminutos.MX"
-        },
-        {
-          "texto": "México reconoce repunte de homicidios en Sinaloa y revisa despliegue militar",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/28/mexico-reconoce-repunte-de-homicidios-en-sinaloa-y-revisa-despliegue-militar.html",
-          "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "Vinculan a proceso a cuatro presuntos integrantes de Los Chapitos por posesión de armas y drogas en Culiacán - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPckJuTHNaWVVXbTRsNl9Vc2o2c21VVHVpTC1yVVgzWWI3YjRYWXMzN1piMG50WG0zZzBibUlKQUFoek55QWNoT3VKVFVXLXpNamJXMVR6MUczSEdMdEoyZnlOWHRNWTB4NE5VYXJzM0JWaHQxbWVBYUlSVkxJWUVpcFMxVGVKQmppUHQwd2lEVFRUOWROLWlNek1KeS1WQdIBngFBVV95cUxOb2dfMHpkMUhjV1pmMXRzQlNJYm1GVGwtcWdMU0lIYjBGYnMxSk9rNXQ2dzRjVHNyV2x1VVZoNmw5ZEJzNk9OaEtKdFFWS3g4OXBXemluREdjbTJxS3ZyMGFKSVdOQmppUUJuVHRxY3RVYW5lREU4OUJiazlUSXFMekdyQ05TZ3c0RnBrVjB3THZmX2JYZXVjS25fb1laZw?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "Visitas de Omar García Harfuch en Sinaloa, es por aumento de homicidios en la entidad: Sheinbaum - 24-horas",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQbzJSZHlaZUVEUTNxQWNzM2N6Mmp2Y2FYUER1Y2ptWDFZelpwQjF2X1RFUGY2bURZWklFRDNYcktYRTA1RVpCejJDTlM2UVFadldhMDQ2clZfWk1MNEh0QXpmU2NHQmJCbWJHekZadkttb0wxcERrRGllQ21MbFpCRHhqSEJYX1djbHpMX3Z2dlZ1Uk1PMHlKNjJrTUlzVUg3WmtPSDA4ZmEyTlFPdFEyRzRoR0VwT2F4bE5hZUNIdw?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "MORENA QUIERE INTERVENCIÓN MILITAR EN DECISIONES ECONÓMICAS; APRUEBAN DAR A SEDENA Y SEMAR VOTO EN COMISIÓN DE INVERSIONES EXTRANJERAS - Tribuna Campeche",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPSUtEWGR3dUV6Q3R1bHhac1J0N1Q3ZWZwQ0gwUmQtaUo5cWJRSW1MV2RPRUg4V3U1dHByOWhLY0ItVzh4RUVCdWN0dzVNYlc2eWo1M1FYMVpOWURmbUZ5R0hQd2FBeWliNXRjYjBNOEJsajNLMlEybjlyQmNHMUMxMWRNNGRUYkxBakVZbFo0Q3drbUNUMHdkOGd5eGxyQkwxZVhqaVgyQm5CLVZzQktWdE9XMHlzSTdIb3ltcDZnTVI1dEw1Uk5pekNlN0tjTjdDd3ktTXdPa25UeHZMSThsaDRxb0kyOFZNR0htZE5iTVpDN0tvSUV1ZnZCTlVNU2pQSUE?oc=5",
-          "intensidad": 5.0,
-          "medio": "Tribuna Campeche"
-        },
-        {
-          "texto": "Omar García Harfuch llega a Sinaloa para supervisar operativos de seguridad y fortalecer acciones contra grupos generadores de violencia",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/omar-garcia-harfuch-llega-sinaloa-para-supervisar-operativos-de-seguridad-fortalecer-acciones-contra-grupos-generadores-de-violencia-918091.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 17,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
+      "peso_pct": 14,
+      "tema_principal": "García Harfuch aclara cómo es la coordinación con EU en materia de seguridad: \"N",
+      "tema_principal_id": "auto-0e1d86aac0",
       "n_temas": 4,
-      "n_notas": 7,
+      "n_notas": 5,
       "notas": [
         {
           "texto": "García Harfuch llega a Culiacán para revisar estrategia de seguridad y proyecto del nuevo penal",
@@ -182,18 +130,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOMnh0aGdmbVY5dVJXRjhSMGxCRzQ2aGphazZmakdnY01OX04tdS0xM3NvR29yTEMyUTBBNW01czMyeGI2XzJ5UmFhUnBwRjNzSVdjM05Hb21QeXpidlg2bjFnS1RFZzFheVRYeWIyNElSdHZVNDRFRVEySkRnSWhhREpFRjFMUHpWLS1FYXRJZWR0VVRva2NWSktrZ1E4aVhzcjkwdFcyT1dyeUc3MElFZEZ3?oc=5",
           "intensidad": 7.0,
           "medio": "IMER Noticias"
-        },
-        {
-          "texto": "México descarta riesgos en negociaciones del T-MEC por elecciones intermedias en Estados Unidos - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQSENrY0gwb0NOLVVJamN0dE5uNnVYZmtUY1l6bFp1M05GMXVsWGtKdzJNUEoyVmEtR25XUVFKeDNKeTQ5dFhDc0w5MUdrcnhMR0VVSEdLejQ5VmpzdkZCUGhndzNXRHY0WkRiMTlWRGZXTHVWdXQxdjltWnVjbXJieUY1c3ZfU013QXRpdmd2QzFnMTlpdUV6cFY2ZXJiYXhvbHJ3bDJGSk53QlJGZkFYX2dSNmpSQ3Z5YlBjNnNObUMyWXdhYXJnS2lTOTlGLXBhcDMtN9IB7wFBVV95cUxQLVhwbmFUMjd4TVRfNjljOENFZGRPRU81N1h5UmtINW9weEFmSlctNnVOSDUwQ2t3OGFjVDQ0TVo4b2l2ZXUtcjNFNmdiNEpkTkZwenlqT1RDd3U3VGcxMDBnRm0wY0FRTnJRcVBVLUhMclRIQ0JLWVhScHc4Z2wtLVktenczMGZldDVhc2FPcXdwYW5BbFRwTWV0akFLZ2o0M21HdG5SdmN2eDF0UnJTNmkxcElSZ0xzUi16bUxJa1Y2MnlXWDhhQ21HLVlBc1hUQ0hhaHJudjNUTjJMbUlTZnNBTjcyYVg0dDZob0VGdw?oc=5",
-          "intensidad": 6.0,
-          "medio": "Infobae"
-        },
-        {
-          "texto": "México y EU reanudarán diálogo sobre el T-MEC y aranceles tras las elecciones: Concamin - La Jornada",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxORUpwRGlWMmNrOFhNekZWSXBybV9NR3B6WWp1cVgyanpET3NHNnpHYzNNdUw1SnUxS2hRdE9nNVlZa00wbjk5OFJrblRtRndXUlNOWDZIdnZLM1RybTVnZG45TFJSMmZSX1NKd283OU91Q3VPb0F0Z2k1RE5ZWEQwOFJVRlRlUzRHX0VuV2UtM3RUMTB3Z0dvVnNCbFU0VjRzT3BZUTdSRXJlNXZHZVJXcTB4Ui1jbEZUVVdtVVpDRmJvZUNGdkxURDhmYVNDY05odG9BR0FCOA?oc=5",
-          "intensidad": 6.0,
-          "medio": "La Jornada"
         },
         {
           "texto": "Claudia Sheinbaum y Donald Trump evalúan un eventual acuerdo comercial entre México y EE.UU.",
@@ -217,11 +153,11 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 16,
+      "peso_pct": 12,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 5,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "México busca inversión fuera de EU mientras negocia el T-MEC: Roberto Velasco - MILENIO",
@@ -240,24 +176,46 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPVGp1OVp5QVhobHZHcXBSSUFCeUVNRlpNM3RuQ1JKUlVSMV9YVkxNWkg2eVdzRnJyeWcxRUZQd2xFbExZVUREWVlLeGhEdHBURElaUko4ZWZPSl93dkE2TDJEekJHM2Q2M3otN2VvUVh2bWh1QnJ1WmhNa2x0TWVlaGNFMmdnMVc0VWpSZnc3aWRzSVnSAZMBQVVfeXFMT2lCRFRXd3R5c1kwU0h6dXVXYUQyaWpHM2FtVXU1MFYxUHpyV2N4NXJ6bDNac0pnUVJlNkhFODZYV0pQZUR6VzFFbTZjejZCQVNkMEo3OFQyUVRQOVdXcEJjYlp6Wm9DczBFazYzT3hzWkF1MjFNWWduWFVwVzRSWVkzTk12SWloZzZpZE1MUlA3MzFJ?oc=5",
           "intensidad": 8.0,
           "medio": "MILENIO"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 11,
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis",
+      "n_temas": 3,
+      "n_notas": 4,
+      "notas": [
+        {
+          "texto": "México reconoce repunte de homicidios en Sinaloa y revisa despliegue militar",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/10/28/mexico-reconoce-repunte-de-homicidios-en-sinaloa-y-revisa-despliegue-militar.html",
+          "intensidad": 7.0,
+          "medio": "yucatan.com.mx"
         },
         {
-          "texto": "Se prevé llegar a un acuerdo del T-Mec previo a elecciones en EU: Sheinbaum",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/se-preve-llegar-un-acuerdo-del-t-mec-previo-elecciones-en-eu-sheinbaum-917958.html",
-          "intensidad": 7.0,
+          "texto": "Vinculan a proceso a cuatro presuntos integrantes de Los Chapitos por posesión de armas y drogas en Culiacán - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPckJuTHNaWVVXbTRsNl9Vc2o2c21VVHVpTC1yVVgzWWI3YjRYWXMzN1piMG50WG0zZzBibUlKQUFoek55QWNoT3VKVFVXLXpNamJXMVR6MUczSEdMdEoyZnlOWHRNWTB4NE5VYXJzM0JWaHQxbWVBYUlSVkxJWUVpcFMxVGVKQmppUHQwd2lEVFRUOWROLWlNek1KeS1WQdIBngFBVV95cUxOb2dfMHpkMUhjV1pmMXRzQlNJYm1GVGwtcWdMU0lIYjBGYnMxSk9rNXQ2dzRjVHNyV2x1VVZoNmw5ZEJzNk9OaEtKdFFWS3g4OXBXemluREdjbTJxS3ZyMGFKSVdOQmppUUJuVHRxY3RVYW5lREU4OUJiazlUSXFMekdyQ05TZ3c0RnBrVjB3THZmX2JYZXVjS25fb1laZw?oc=5",
+          "intensidad": 6.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "MORENA QUIERE INTERVENCIÓN MILITAR EN DECISIONES ECONÓMICAS; APRUEBAN DAR A SEDENA Y SEMAR VOTO EN COMISIÓN DE INVERSIONES EXTRANJERAS - Tribuna Campeche",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPSUtEWGR3dUV6Q3R1bHhac1J0N1Q3ZWZwQ0gwUmQtaUo5cWJRSW1MV2RPRUg4V3U1dHByOWhLY0ItVzh4RUVCdWN0dzVNYlc2eWo1M1FYMVpOWURmbUZ5R0hQd2FBeWliNXRjYjBNOEJsajNLMlEybjlyQmNHMUMxMWRNNGRUYkxBakVZbFo0Q3drbUNUMHdkOGd5eGxyQkwxZVhqaVgyQm5CLVZzQktWdE9XMHlzSTdIb3ltcDZnTVI1dEw1Uk5pekNlN0tjTjdDd3ktTXdPa25UeHZMSThsaDRxb0kyOFZNR0htZE5iTVpDN0tvSUV1ZnZCTlVNU2pQSUE?oc=5",
+          "intensidad": 5.0,
+          "medio": "Tribuna Campeche"
+        },
+        {
+          "texto": "Omar García Harfuch llega a Sinaloa para supervisar operativos de seguridad y fortalecer acciones contra grupos generadores de violencia",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/omar-garcia-harfuch-llega-sinaloa-para-supervisar-operativos-de-seguridad-fortalecer-acciones-contra-grupos-generadores-de-violencia-918091.html",
+          "intensidad": 5.0,
           "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "Sheinbaum ve avances en negociación del T-MEC - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOVkFHazJLMWwteUNYUncweG5aU05sMThpWDNoVjhvY0VCUlZkaWs0eTdLaGliay1TckxnTTFiUExjb1d4VnZucFRPYThHYzh4enhmMjMtdGotaU5QV3ZseDdzZDhUSXZ0Mi1yMXNiV05uQjFqTFZzWUFSX2hXQXdHTFhqUmhVdXZTRllsZUw2WlpaS29RcUpIc0xqZFdfSkJHdk0zWDZOQlZuQ0hnMjlPdEJjSEVFUkJTVEhHS1dGT011SS1KdnBvV2FQdzBpcXfSAeMBQVVfeXFMTXRTRDcwSFFYbFVXM3dWQzV1YmdhelNpUmphWHlGTHk3ZllSQm4yQmR5WHBrTjZxMTJoei04dmJlRS13VzlGeS1sY0ZQOUdlNXZ6dHNqT3V1WVRkTTdfZlJvNjRESUE3N1U2d2llVnpZaWd3elphVGszRE93TWJSbC1RX1U3SzZKLWdENVVlelV3NGxxTGxqUUdvY2RWTGtfbVViV1g3RTJSczBkMzBkbGVKdDR5bk9HbnpqVFVXNUppaGpKMlVlR3JCVDY4WGlLM2lCMGxHa1h2QVB0RDQta3N6SVE?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
         }
       ]
     },
     {
       "categoria": "Social",
-      "peso_pct": 5,
+      "peso_pct": 6,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
@@ -475,7 +433,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 1
+          "peso_pct": 2
         }
       ]
     },
@@ -500,7 +458,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 2
+          "peso_pct": 3
         }
       ]
     },
@@ -634,7 +592,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 7
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
@@ -792,11 +750,11 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -813,7 +771,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -825,7 +783,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 3
         }
       ]
     },
@@ -859,7 +817,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
@@ -888,7 +846,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -917,7 +875,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -938,7 +896,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
@@ -959,19 +917,19 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -987,28 +945,28 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "México busca inversión fuera de EU mientras negocia el T-MEC: Roberto Velasco - MILENIO",
-      "peso": 44.0,
+      "peso": 25.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 4,
-      "confianza": "alta",
+      "medios_corroborantes": 1,
+      "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxORnZuMW9JTGFmQmViZDlDeUhOVlBhM192RVF1OUxjU1FwZmJWQXhFTEdEbUNjenNKLWk1WVhwWS1fSmo2QTQ2SkF2M2hJX19yMm52MFFzemIzVXF2OVdoVUxMR3FkbkliQjduM213U3Z4cU9Dc3BKcDQ1aVlhOUZHaUdRU0NuOXEzREc3M9IBjAFBVV95cUxPdkFmbUppUGQwa2ZJWDg0cEg2VHpFSUFpZkp4OE5HaTJjR2JIbEVKblVST2RFdXBIWUFVY1hwLUpGbjZJM1B0d29DallIbWRkMHVyUjdDV3A3Q1l6WEltT0RaYzVSbzh5aW1SSFQ1WEFRWlFzbGthb3U3WEhTWmpTT1RIcDRMcVpqMExhWA?oc=5",
       "actor_vinculado": null
     },
     {
-      "id": "carlos-manzo",
-      "nombre": "Asesinato de Carlos Manzo",
-      "categoria": "Seguridad Nacional",
-      "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
-      "motivo": "Grecia Quiroz pide a hermano de Carlos Manzo no ventilar temas personales: ‘Eso no va a llevar a nada’",
-      "peso": 18.0,
-      "n_temas_agrupados": 4,
-      "escalando": true,
+      "id": "morena-coordinadores-2027",
+      "nombre": "Coordinadores estatales de Morena rumbo a 2027",
+      "categoria": "Gobernabilidad",
+      "resumen": "Designación por encuesta de los coordinadores de la 4T para las gubernaturas de 2027, inconformidades internas (Nuevo León, Chihuahua, Nayarit, Quintana Roo), posicionamiento de la presidenta y queja del PRI ante el INE.",
+      "motivo": "Llama Mier a la unidad y a ser buenos gobernantes a coordinadores de la 4T",
+      "peso": 17.0,
+      "n_temas_agrupados": 9,
+      "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/28/grecia-quiroz-pide-a-hermano-de-carlos-manzo-no-ventilar-temas-personales-eso-no-va-a-llevar-a-nada/",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/29/politica/018n2pol?partner=rss",
       "actor_vinculado": null
     },
     {
@@ -1025,6 +983,36 @@
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOa2dDbU9nNFFEaHk5c3FiYy1HQkw0V3k1Q0pYQXdlc28yeW14X2l3Nk05b3pxdTE2dmJ3ckxHWE1Gbk56R2VOQndSam12SkZyTUN1UGxBbmdRNUhaX3lvdURNZHFkeGFLR2x3RlljQkhiU085T21PQ0h0WWs0RUlIZzJoNkZENlRlN2ZaVk52WXVScm1pcFR2NjdCaVlUUGFLekdLbEdhblZxUFNod05BQkhQQ2VNZUNYWkdpZElybHRWQdIBxwFBVV95cUxNR0RQenBPbTJJSnFEUXVhdVR0TUZwdHE0LVdhRDRFb3JndVRqR2NZNzVMbDZZR2FkaUE3Tk8zWEJXVTJaWlVwYk05eU5ublZDT01qeE1ZVkVkYW1taVFnYjc0Y2c3ekdrb1g4R2ExMkQtVU56ZHdHQlVGVFpNMnpmLVQ4cnBadzdvbTRZVmFDQzFiN1k4S190Q3pqUk1HZ0s3dl9mYmtqdDVEc055eG03Rmw3XzJTd1B0YlRrSWhiel9ZRTJmOXBn?oc=5",
       "actor_vinculado": null
+    },
+    {
+      "id": "carlos-manzo",
+      "nombre": "Asesinato de Carlos Manzo",
+      "categoria": "Seguridad Nacional",
+      "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
+      "motivo": "Grecia Quiroz pide a hermano de Carlos Manzo no ventilar temas personales: ‘Eso no va a llevar a nada’",
+      "peso": 13.0,
+      "n_temas_agrupados": 3,
+      "escalando": true,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/28/grecia-quiroz-pide-a-hermano-de-carlos-manzo-no-ventilar-temas-personales-eso-no-va-a-llevar-a-nada/",
+      "actor_vinculado": null
+    },
+    {
+      "id": "amlo-agenda",
+      "nombre": "López Obrador: reaparición y declaraciones",
+      "categoria": "Gobernabilidad",
+      "resumen": "Declaraciones, apariciones y señalamientos que involucran al expresidente Andrés Manuel López Obrador y su influencia en el gobierno y en Morena.",
+      "motivo": "López Obrador y Sheinbaum lamentan muerte de Cuauhtémoc Cárdenas; destacan su legado democrático - Aristegui Noticias",
+      "peso": 12.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNNVhHZDFJbGl6enBvYVJPZnNhMzZYVDFsX3VmdWJRMVNYTDY4ak9oNUlSY3hJZWlBdXpKX1dSMFc5blZiTi1rTGF1VTdXZ1d3MzdDTDhMWldIWnVQdEpmczBEY1JIUEZ4NHoxam5FZkZ2VU5fTmwxTXhWOFNJSnNpTFBkSTllYVh1NWpXbWhxRk5WbW9taHNPOWk4QjlVdDJ0YmwwWWhDMlZob2RpM3h0VnZ2LUdpaWo5Vy1ZdVkzMkdGdXhzVUpBNC13WjByVkdGS3NBVg?oc=5",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -1032,9 +1020,17 @@
       "id": "auto-667b4e2bde",
       "nombre": "Reportan la muerte de Cuauhtémoc Cárdenas Solórzano, a los 92 años, ícono de la ",
       "categoria": "Social",
-      "peso": 12.0,
+      "peso": 24.0,
       "impacto": "alto",
       "fuente_url": "https://www.informador.mx/mexico/sheinbaum-despide-a-cuauhtemoc-cardenas-como-un-referente-imprescindible-de-mexico-20261028-0199.html"
+    },
+    {
+      "id": "auto-1c57ca80cb",
+      "nombre": "Morena, PAN y PRI buscan quitar \"superpoderes\" a la presidencia del INE - 24-hor",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/29/politica/009n2pol?partner=rss"
     },
     {
       "id": "auto-650517801c",
@@ -1059,14 +1055,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxObUNoLU9hcDBQZmFtWWpBdFJCemtsOXlkaVNfd1JnS2hOOWRfVmFEd2kzSXQwZUt4c3lZLThGaTlFeUNEU2JScXVzTmNldkV0MzNnQzN1c0QzN25ESVhLYWprdGFhdE5QTzl5eEp1RHBjUWNhN1dWY3Nxc3BrRjhZeWg1S1RlWkpYTGxMTHVwdmcwZTI4X1FjbWRB0gGaAUFVX3lxTE5tQ2gtT2FwMFBmYW1ZakF0UkJ6a2w5eWRpU193UmdLaE45ZF9WYUR3aTNJdDBlS3hzeVktOEZpOUV5Q0RTYlJxdXNOY2V2RXQzM2dDM3VzRDM3bkRJWEthamt0YWF0TlBPOXl4SnVEcGNRY2E3V1Zjc3FzcGtGOFl5aDVLVGVaSlhMbExMdXB2ZzBlMjhfUWNtZEE?oc=5"
-    },
-    {
-      "id": "auto-f3ee492ef3",
-      "nombre": "AI, cooptada por contrarios a México, asegura Sheinbaum",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/28/politica/010n1pol?partner=rss"
     }
   ],
   "temas_retomados": [
@@ -1093,15 +1081,15 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-b88c33dec7",
-      "nombre": "PIDEN QUITAR A BIBY EL CONTROL DEL SANEAMIENTO",
+      "id": "auto-d6a8293ba2",
+      "nombre": "Rinden homenaje al senador Belisario Domínguez Palencia - Hoja de Ruta Digital",
       "categoria": "Gobernabilidad",
       "dias_silencio": 20,
-      "motivo": "Piden quitar megafacultades a quien quede al frente del INE",
+      "motivo": "🔔 ALERTA — Rinden homenaje a migrantes muertos con altar en San Diego, EU - MILENIO",
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/10/28/politica/007n3pol?partner=rss",
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQVkl1NnJYSE95Z2UxQldEbmgyc0VWelpIdnJ6X1RIZWJTbkZfMW1EejVZUlc1Wk1oV290d0JnVE9kTDF2UjZ5QTNUMFFsODJ4SURIQ1VtWUkybVVEYWVhLXZNbVNLX0pFNFhXanpNNFhFa2xXU29ENFVmQ29Hb00yUXJBQlRPRG4xOG9mYllzdE9KdE5WaTZwQzA4WmNaRDhE?oc=5",
       "fecha_anterior": "2026-10-08",
-      "fuente_url_anterior": "http://campechehoy.mx/2026/10/08/piden-quitar-a-biby-el-control-del-saneamiento/"
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQNmFfQXdENmV0MzI3RGdtNkM2YkxrMmhmSjUxbjVzclJWaERJWWVUQk5oUXhhVmxQek96M0ctZXpoclJjZllKVmxZWXl4QXd5eG1GQkUwLWFSVXZlMjBVR2V5M3Vmcl80M0FsV0pJZ0c0YmE1Q1l2cWpDSDNndVFWelhiS21qdDJYbHdkUHZn?oc=5"
     },
     {
       "id": "auto-3c5262287d",
@@ -1115,15 +1103,15 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQZWVBd05YVzBkMHdfTkVZVjhKV1E1Rl9wMC1WYURSLUo0ZWRRSzZkdFlwYlRxa25Cd21HOVFwS3BWel9yZTNrS1JkUnY4RklPWjVJcldkTU5MTzVIeG5PbFhYY2NHN19CcGtTdTRoQjlCZ1JrRkUwU2JnSm90aHBOdTZRQ2RmTXpiS1pPMDhUVU41STJFa0twSkVR?oc=5"
     },
     {
-      "id": "auto-93b496f155",
-      "nombre": "No es retórica la defensa de la soberanía: Claudia Sheinbaum - El Heraldo de Méx",
+      "id": "auto-3507871975",
+      "nombre": "Quintana Roo | Rosario Ruiz Canduriz | Descarta Claudia Sheinbaum afectación al ",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 19,
-      "motivo": "\"Siempre fiel a la defensa de la soberanía nacional\": Claudia Sheinbaum lamenta muerte de Cuauhtémoc Cárdenas - MILENIO",
+      "dias_silencio": 13,
+      "motivo": "Descarta el guinda afectaciones a la credibilidad del instituto electoral",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOMkJrLUF1MWJJRk9DTzNxX290QWdiLUN5UEhvWnlJSTZzTHlzNmgyUjBieWNXaTJ3MmpaNWJxc1l6UHhPNG1HM0lIU1BxTk5IQVYzYV9mY1lOU1k0dE5ZR01wZHJUUTU4SHN3d2tBaV9DWUJpem0zTVliU1NQY09sM09TaDJRWmlVTy1Ib9IBjAFBVV95cUxPRDFRUXpNSXk2U05rVnhmSUtzbmo0OHQ0d24tc3hEZ0ZzcTFKT3NhNFE4M19ReHhHVkhyamVhOTJFX0xkZnJWLU5EVUswdEpCWEtrbDlya0YtM2UyM1hMR2hhZFRITGphdzRiRENmbVBQZHZuTzZwVWNpU2loNWFRSnA5MlVvS0NYbkM3SQ?oc=5",
-      "fecha_anterior": "2026-10-09",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOc1FMQl90al9jZnR5a0xMbXRQM1Z1SW01V3NpWW4wMGxnSnRTaGZ3RERLZ0RQcjF5SS1TOEVDb3JjX2hxNTA0SklhY3R3X21NLXVVNFd4ZGxvZ1o0UDJlRU5RMDBVQ1ktVUtNYnp3bU9mSEFCR1phQ3B4dFlnYk1jeVdHYTV4aGRaeVBZMUZmel83Q01LZ0RVSkYzXzFjWWNzMmdqUTF3YmNtUHZKYV9vV0NRbFlfc0NJb1FoQXdB?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/10/29/politica/007n2pol?partner=rss",
+      "fecha_anterior": "2026-10-15",
+      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
@@ -1134,28 +1122,6 @@
       "tema": "No es retórica la defensa de la soberanía: Claudia Sheinbaum - El Heraldo de Méx",
       "nota": "\"Siempre fiel a la defensa de la soberanía nacional\": Claudia Sheinbaum lamenta muerte de Cuauhtémoc Cárdenas - MILENIO",
       "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOMkJrLUF1MWJJRk9DTzNxX290QWdiLUN5UEhvWnlJSTZzTHlzNmgyUjBieWNXaTJ3MmpaNWJxc1l6UHhPNG1HM0lIU1BxTk5IQVYzYV9mY1lOU1k0dE5ZR01wZHJUUTU4SHN3d2tBaV9DWUJpem0zTVliU1NQY09sM09TaDJRWmlVTy1Ib9IBjAFBVV95cUxPRDFRUXpNSXk2U05rVnhmSUtzbmo0OHQ0d24tc3hEZ0ZzcTFKT3NhNFE4M19ReHhHVkhyamVhOTJFX0xkZnJWLU5EVUswdEpCWEtrbDlya0YtM2UyM1hMR2hhZFRITGphdzRiRENmbVBQZHZuTzZwVWNpU2loNWFRSnA5MlVvS0NYbkM3SQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Trump ‘estalla’ por elecciones al Senado en Alaska: Acusa a Mary Peltola de mani",
-      "nota": "⚡ Posible presión de Donald Trump — Trump ‘estalla’ por elecciones al Senado en Alaska: Acusa a Mary Peltola de manipulación de votos",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/28/trump-estalla-por-elecciones-al-senado-en-alaska-acusa-a-mary-peltola-de-presunta-manipulacion-de-votos/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "rol": "Responsable institucional",
-      "tema": "EL UNIVERSAL se deslinda de supuestas fotografías de Ariadna Montiel - El Univer",
-      "nota": "EL UNIVERSAL se deslinda de supuestas fotografías de Ariadna Montiel - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNbURYTGEyM05Db1NsSjRHa3dmTG44YXoyYXo5emxxREhtRFR6M2hFck5sTlJZYnRjYXNXSmttRXZqdGNwYnI1cnR6aUZOOEI4QlAxYUd4Y2ppSHUwaWlXSnVZT2hHdmtyLXpzR0hzRDByOHI2bEZUMUxYcWkxN1lRR1lubFhRMEpoeWRIbEUwRk5Ua0JTQXZWZnphdkZGS3BzbWkybGlqSXdFR3U4eXg1MHB30gHGAUFVX3lxTE9pTk15cENkcXZMVVJyTkFPdkJZSGx0NHNYbE9sb0lVdEYxNF91dVR0UzB0bjZVX2xjRUFIRG9mZ2kwQ2VyLVg2bU5QN1FDRExVcVN2MkZRN2VXRF83Sjk0c1p1Q2ZYRVF4MlFsMGFsalpFTU1OeFBpR3BOWHZJRE1zNTdYQkNUbWFGeUZHSUlJYUJhWGEzMzZveW5OMWZJbUxiUWVQNEdsN2R3VkdyZGdaTGM1M1hmRkpCZW5UakhLSEk4Z09JQQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1172,6 +1138,17 @@
       "confianza": "media"
     },
     {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Trump ‘estalla’ por elecciones al Senado en Alaska: Acusa a Mary Peltola de mani",
+      "nota": "⚡ Posible presión de Donald Trump — Trump ‘estalla’ por elecciones al Senado en Alaska: Acusa a Mary Peltola de manipulación de votos",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/28/trump-estalla-por-elecciones-al-senado-en-alaska-acusa-a-mary-peltola-de-presunta-manipulacion-de-votos/",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "rol": "Responsable institucional",
@@ -1181,16 +1158,20 @@
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
+    },
+    {
+      "id": "manzo",
+      "nombre": "Carlos Manzo Rodríguez",
+      "rol": "Investigado",
+      "tema": "Asesinato de Carlos Manzo",
+      "nota": "Grecia Quiroz pide a hermano de Carlos Manzo no ventilar temas personales: ‘Eso no va a llevar a nada’",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/28/grecia-quiroz-pide-a-hermano-de-carlos-manzo-no-ventilar-temas-personales-eso-no-va-a-llevar-a-nada/",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
     }
   ],
-  "declaracion_presidenta": {
-    "actor": "Claudia Sheinbaum Pardo",
-    "texto": "Sheinbaum acusa \"coyotaje electoral\" desde 1999 y deslinda a Morena de Guadalupe Taddei - La Jornada",
-    "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPRVZsdDRiWFNLb0JsNlBzaEdUQ3pxQW9rd1pLUGpvUHVWaFNVZEtjNl9XS2hLRHI2YkU1aW1GNmJZa0F5ZjFVUmtHQU56b0JXLWoyYUFEX1NSOFVNa19jOWdKNXNxQTFuUENReEhOcTdXSDN6VXRqOEhoWHVaZFdRbHptN3hvSUdPb0JDeFpIdzRKQ09BSjJRY1VzVmhRVUJ1b1dpcUlGLTEtQ3djUThHMlU3bG9MSWZ0bHhTdlc2UVZVRnpLR0I5X3VLaTV2Y1NYUkhkcTQwTHppQQ?oc=5",
-    "intensidad": 7.0,
-    "fecha": "2026-10-28",
-    "nivel_fuente": "ALTA"
-  },
+  "declaracion_presidenta": null,
   "declaracion_otro": null,
   "patron_historico_4sem": [
     {
@@ -1211,26 +1192,26 @@
     },
     {
       "fecha": "2026-10-04",
-      "tension": 36,
-      "n_notas": 45,
+      "tension": 34,
+      "n_notas": 46,
       "n_alto_impacto": 26,
-      "n_medio_impacto": 19,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-05",
       "tension": 21,
-      "n_notas": 94,
+      "n_notas": 95,
       "n_alto_impacto": 35,
-      "n_medio_impacto": 59,
+      "n_medio_impacto": 60,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-06",
       "tension": 16,
-      "n_notas": 120,
-      "n_alto_impacto": 29,
-      "n_medio_impacto": 91,
+      "n_notas": 122,
+      "n_alto_impacto": 30,
+      "n_medio_impacto": 92,
       "n_bajo_impacto": 0
     },
     {
@@ -1308,9 +1289,9 @@
     {
       "fecha": "2026-10-16",
       "tension": 18,
-      "n_notas": 46,
+      "n_notas": 47,
       "n_alto_impacto": 14,
-      "n_medio_impacto": 32,
+      "n_medio_impacto": 33,
       "n_bajo_impacto": 0
     },
     {
@@ -1331,10 +1312,10 @@
     },
     {
       "fecha": "2026-10-19",
-      "tension": 26,
-      "n_notas": 48,
+      "tension": 25,
+      "n_notas": 49,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 28,
+      "n_medio_impacto": 29,
       "n_bajo_impacto": 0
     },
     {
@@ -1355,18 +1336,18 @@
     },
     {
       "fecha": "2026-10-22",
-      "tension": 28,
-      "n_notas": 47,
+      "tension": 24,
+      "n_notas": 51,
       "n_alto_impacto": 22,
-      "n_medio_impacto": 25,
+      "n_medio_impacto": 29,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-23",
-      "tension": 20,
-      "n_notas": 47,
+      "tension": 19,
+      "n_notas": 49,
       "n_alto_impacto": 17,
-      "n_medio_impacto": 30,
+      "n_medio_impacto": 32,
       "n_bajo_impacto": 0
     },
     {
@@ -1380,96 +1361,57 @@
     {
       "fecha": "2026-10-25",
       "tension": 15,
-      "n_notas": 21,
+      "n_notas": 22,
       "n_alto_impacto": 5,
-      "n_medio_impacto": 16,
+      "n_medio_impacto": 17,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-26",
       "tension": 15,
-      "n_notas": 34,
+      "n_notas": 35,
       "n_alto_impacto": 7,
-      "n_medio_impacto": 27,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-27",
-      "tension": 19,
-      "n_notas": 38,
-      "n_alto_impacto": 13,
-      "n_medio_impacto": 25,
+      "tension": 20,
+      "n_notas": 41,
+      "n_alto_impacto": 15,
+      "n_medio_impacto": 26,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-28",
       "tension": 26,
-      "n_notas": 44,
-      "n_alto_impacto": 17,
-      "n_medio_impacto": 27,
+      "n_notas": 47,
+      "n_alto_impacto": 19,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-29",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 10,
+      "n_notas": 5,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 92,
-      "y_lunes": 77,
-      "x_hoy": 100,
-      "y_hoy": 76,
-      "delta_pts": 1.5,
-      "alcance": 8,
-      "n_alto": 5,
-      "n_medio": 8,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNZzQxYUpnZ0YtOXkyVHo1VGJ2UnNscUFpRVNUODNtanJuRzM2LWItMTdsYWEydUZwZzdGb2tEdUl5b2kxX3J0M2hfOXJYUzk4RjdjeW5DYi1MbFY3NFlmXzlrNFpMZ1BDVjMtLWFEUUhuLTRYVWNrRlJmejc3QUJuOHlNWnlsM3kzem4zY0w0VlZMSzRkT0RWclM5ZFhHRE1aMVJwUWgza3M4aWdiVHktS2pVSDMyNFdQWWd3eXlsY1VXREZuSlE?oc=5",
-      "nota_texto": "Claudia Sheinbaum Reacciona a Resultados de Elecciones en Brasil y Destaca Reelección de Lula - N+",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-26",
-          "x": 69,
-          "y": 73
-        },
-        {
-          "fecha": "2026-10-27",
-          "x": 92,
-          "y": 77
-        },
-        {
-          "fecha": "2026-10-28",
-          "x": 100,
-          "y": 76
-        }
-      ],
-      "fecha_apagado": "2026-10-29"
-    },
-    {
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 77,
+      "x_lunes": 80,
       "y_lunes": 82,
-      "x_hoy": 92,
-      "y_hoy": 82,
-      "delta_pts": 4.5,
-      "alcance": 7,
-      "n_alto": 6,
-      "n_medio": 6,
+      "x_hoy": 100,
+      "y_hoy": 84,
+      "delta_pts": 7.5,
+      "alcance": 8,
+      "n_alto": 8,
+      "n_medio": 7,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
@@ -1481,18 +1423,96 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 31,
-          "y": 100
+          "x": 33,
+          "y": 98
         },
         {
           "fecha": "2026-10-27",
-          "x": 77,
+          "x": 80,
           "y": 82
         },
         {
           "fecha": "2026-10-28",
-          "x": 92,
-          "y": 82
+          "x": 100,
+          "y": 84
+        }
+      ],
+      "fecha_apagado": "2026-10-29"
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 87,
+      "y_lunes": 76,
+      "x_hoy": 93,
+      "y_hoy": 74,
+      "delta_pts": 1.5,
+      "alcance": 9,
+      "n_alto": 5,
+      "n_medio": 9,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQRmM1Qm1jMDV3aVhLb3h1MmhXTWEtUGhFMVpLT29PajZLdmRyV1kwcVN1YjFBclRmSTRlLXdqSDdhQ3dWRXpleGUyTmZJd2VCX1JQQ1JuX25vRFpOSkpaT3ZPQ1NVbU93aXVNdERzSks5VHlfZnVFV2JuTUxGOFRXR3YzUjNuSlVvc0ZrdHVuZk5udjlVbEFEOVpsN19uT2VSMWNwazhHb2pkSVlEZWlfOWJoOGFwVUtBOUVPZ1FkTQ?oc=5",
+      "nota_texto": "GOAN estará al margen de las confrontaciones entre Maru Campos y Claudia Sheinbaum - PortalGuanajuato.MX",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-26",
+          "x": 60,
+          "y": 73
+        },
+        {
+          "fecha": "2026-10-27",
+          "x": 87,
+          "y": 76
+        },
+        {
+          "fecha": "2026-10-28",
+          "x": 93,
+          "y": 74
+        }
+      ],
+      "fecha_apagado": "2026-10-29"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
+      "x_lunes": 60,
+      "y_lunes": 85,
+      "x_hoy": 73,
+      "y_hoy": 84,
+      "delta_pts": 4.5,
+      "alcance": 8,
+      "n_alto": 6,
+      "n_medio": 5,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/27/morena-denunciara-maru-campos-por-presuntos-delitos-electorales-dano-moral-violencia-politica-de-genero-ariadna-montiel-917255.html",
+      "nota_texto": "Morena denunciará a Maru Campos por presuntos delitos electorales, daño moral y violencia política de género: Ariadna Montiel",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-26",
+          "x": 33,
+          "y": 76
+        },
+        {
+          "fecha": "2026-10-27",
+          "x": 60,
+          "y": 85
+        },
+        {
+          "fecha": "2026-10-28",
+          "x": 73,
+          "y": 84
         }
       ],
       "fecha_apagado": "2026-10-29"
@@ -1501,9 +1521,9 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 23,
+      "x_lunes": 20,
       "y_lunes": 91,
-      "x_hoy": 46,
+      "x_hoy": 40,
       "y_hoy": 100,
       "delta_pts": 9.0,
       "alcance": 6,
@@ -1520,57 +1540,18 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 8,
+          "x": 7,
           "y": 55
         },
         {
           "fecha": "2026-10-27",
-          "x": 23,
+          "x": 20,
           "y": 91
         },
         {
           "fecha": "2026-10-28",
-          "x": 46,
+          "x": 40,
           "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-10-29"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "iniciales": "MO",
-      "x_lunes": 46,
-      "y_lunes": 82,
-      "x_hoy": 54,
-      "y_hoy": 78,
-      "delta_pts": 1.5,
-      "alcance": 6,
-      "n_alto": 3,
-      "n_medio": 4,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQSGI3ZFdia0tQa3R3TEtKNUNxMVlubzdQUW5KSmxqZHRsR2V0d2c5akY2SW5BRjZzNTBjSXBXakFGekp5bFJLYzJsemU3ak4zTnlrUDJGVFd1cVNrVzJQdU1JTkNUdUZYRVBTanNZWWphbHZXcEFHVzlDWWNaRkNOTVZHamtxb0FrcFBfYkUzdWhFa29NMHNoU194bXg1RVlwTi04NzA0ay00MUE5VUY3LThuM0dLSFM5ODVNZ3doMWVUTlE?oc=5",
-      "nota_texto": "Ariadna Montiel niega reunión con 'El Guano' y acusa campaña para desacreditar a Morena - Municipios Puebla",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-26",
-          "x": 31,
-          "y": 82
-        },
-        {
-          "fecha": "2026-10-27",
-          "x": 46,
-          "y": 82
-        },
-        {
-          "fecha": "2026-10-28",
-          "x": 54,
-          "y": 78
         }
       ],
       "fecha_apagado": "2026-10-29"
@@ -1579,9 +1560,9 @@
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "iniciales": "OG",
-      "x_lunes": 8,
+      "x_lunes": 7,
       "y_lunes": 100,
-      "x_hoy": 46,
+      "x_hoy": 40,
       "y_hoy": 73,
       "delta_pts": 9.0,
       "alcance": 4,
@@ -1598,12 +1579,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-27",
-          "x": 8,
+          "x": 7,
           "y": 100
         },
         {
           "fecha": "2026-10-28",
-          "x": 46,
+          "x": 40,
           "y": 73
         }
       ],
@@ -1613,9 +1594,9 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 15,
+      "x_lunes": 13,
       "y_lunes": 82,
-      "x_hoy": 31,
+      "x_hoy": 27,
       "y_hoy": 82,
       "delta_pts": 4.5,
       "alcance": 4,
@@ -1632,12 +1613,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-27",
-          "x": 15,
+          "x": 13,
           "y": 82
         },
         {
           "fecha": "2026-10-28",
-          "x": 31,
+          "x": 27,
           "y": 82
         }
       ],
@@ -1649,7 +1630,7 @@
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 15,
+      "x_hoy": 13,
       "y_hoy": 82,
       "delta_pts": 4.5,
       "alcance": 1,
@@ -1666,7 +1647,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 15,
+          "x": 13,
           "y": 82
         }
       ],
@@ -1678,7 +1659,7 @@
       "iniciales": "CM",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 23,
+      "x_hoy": 20,
       "y_hoy": 73,
       "delta_pts": 6.0,
       "alcance": 3,
@@ -1695,7 +1676,7 @@
       "trayectoria": [
         {
           "fecha": "2026-10-28",
-          "x": 23,
+          "x": 20,
           "y": 73
         }
       ],
@@ -1705,9 +1686,9 @@
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
-      "x_lunes": 8,
+      "x_lunes": 7,
       "y_lunes": 55,
-      "x_hoy": 23,
+      "x_hoy": 20,
       "y_hoy": 55,
       "delta_pts": 3.0,
       "alcance": 1,
@@ -1724,12 +1705,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 8,
+          "x": 7,
           "y": 55
         },
         {
           "fecha": "2026-10-28",
-          "x": 23,
+          "x": 20,
           "y": 55
         }
       ],
@@ -1826,28 +1807,11 @@
   "tablero_semana_inicio": "2026-10-26",
   "resumen_mananera": [],
   "mananera_estado": "pendiente",
-  "a_vigilar": [
-    {
-      "id": "auto-96d59389d7",
-      "nombre": "Evalúa Morena revisar superpoderes de Taddei - Reforma",
-      "categoria": "Relación Bilateral",
-      "resumen": "Evalúa Morena revisar superpoderes de Taddei - Reforma",
-      "fuente_url": "",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-4d9fe024a0",
-      "nombre": "Dirigente de Morena Ariadna Montiel Negó relación con el crimen organizado",
-      "categoria": "Gobernabilidad",
-      "resumen": "Dirigente de Morena Ariadna Montiel Negó relación con el crimen organizado",
-      "fuente_url": "",
-      "actor_vinculado": null
-    }
-  ],
+  "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 4
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1902,5 +1866,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-29 00:03"
+  "hora_corte_publicada": "2026-10-29 06:00"
 }
