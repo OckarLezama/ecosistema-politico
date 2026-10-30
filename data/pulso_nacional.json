@@ -1,42 +1,24 @@
 {
-  "generado_en": "2026-10-30T00:01:47.092126-06:00",
+  "generado_en": "2026-10-30T06:03:33.086766-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 22,
+  "n_notas_ventana": 15,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 22,
   "tension_anomalia": {
-    "z": 0.44,
+    "z": -0.34,
     "nivel": "normal",
-    "media_periodo": 23.8,
+    "media_periodo": 23.7,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 61,
+      "peso_pct": 62,
       "tema_principal": "Asesinato de Carlos Manzo",
       "tema_principal_id": "carlos-manzo",
-      "n_temas": 10,
-      "n_notas": 14,
+      "n_temas": 9,
+      "n_notas": 10,
       "notas": [
-        {
-          "texto": "Detienen a secretaria del Bienestar de Uruapan: La acusan de encubrir el asesinato de Carlos Manzo",
-          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/29/detienen-a-secretaria-del-bienestar-de-uruapan-la-acusan-de-encubrir-el-asesinato-de-carlos-manzo/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "Mercado legal de diésel repunta en medio de la crisis del huachicol fiscal - tribunanoticias.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxObTNRb0dtVHFSSDF2WUk0S3ctUGJDWC1WbTZwblF2ZFhadS1jUXNJVS1FNG05Q1Z2eVRlc2lSTUExeTBuZXBzZ0FVQTdGLU83ckQ4SnBKYnBUQjVMWjBLNTV4TkRQV1BCUkFQckViRDNmTnJKT3dzclhuVUQ0cV9nVHhvZjdOb2VoY1BHT0ZDZzM0cWtQNlhTX2h3QVRZOW43OTlHNQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "tribunanoticias.mx"
-        },
-        {
-          "texto": "Ricardo Salinas Méndez busca la coordinación de Morena en Acapulco y confía en proceso interno de su partido",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/29/ricardo-salinas-mendez-busca-la-coordinacion-de-morena-en-acapulco-confia-en-proceso-interno-de-su-partido-918720.html",
-          "intensidad": 7.0,
-          "medio": "heraldodemexico.com.mx"
-        },
         {
           "texto": "Máynez ‘defiende’ y respalda a Grecia Quiroz: ‘Es víctima por la posición que tiene en encuestas’",
           "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/29/maynez-defiende-y-respalda-a-grecia-quiroz-es-victima-por-la-posicion-que-tiene-en-encuestas/",
@@ -62,18 +44,6 @@
           "medio": "Proceso"
         },
         {
-          "texto": "Senadores se reúnen con 9 corcholatas de Morena - Cuarto Poder Chiapas",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQTFJWNTRnam5KaFNESTBBNEVDc0pQbG9heFFCMm1lTG43d3BwNEJzX0ZJNUk2RmdrRVZYT2NvTWFOR1BERXRFTG5VT0dpZk11ZWk5emhiNlBmWmJoeEdaMG5NOE5KcG5YMk1ud3paUHhkNDhTSmgyX1BhWGZsQWd3dEoySldmNDhWd2NrMmpDNTBwTXlnWEdZU0V30gGaAUFVX3lxTFBMUlY1NGdqbkpoU0RJMEE0RUNzSlBsb2F4UUIybWVMbjd3cHA0QnNfRkk1STZGZ2tFVlhPY29NYU5HUERFdEVMblVPR2lmTXVlaTl6aGI2UGZaYmh4R1owbk04TkpwblgyTW53elpQeGQ0OFNKaDJfUGFYZmxBZ3d0SjJKV2Y0OFZ3Y2syakM1MHBNeWdYR1lTRXc?oc=5",
-          "intensidad": 5.0,
-          "medio": "Cuarto Poder Chiapas"
-        },
-        {
-          "texto": "Detienen a secretaria del Bienestar de Uruapan por caso Carlos Manzo",
-          "fuente_url": "https://www.informador.mx/mexico/caso-carlos-manzo-detienen-a-secretaria-del-bienestar-de-uruapan-por-presunto-encubrimiento-20261029-0062.html",
-          "intensidad": 5.0,
-          "medio": "informador.mx"
-        },
-        {
           "texto": "INE rechaza a dos aspirantes y declara desierta la elección de una consejería del OPLE Veracruz",
           "fuente_url": "https://oem.com.mx/diariodexalapa/local/ine-declara-desierta-la-eleccion-de-una-consejeria-del-ople-veracruz-rechaza-a-los-dos-aspirantes-32862931",
           "intensidad": 5.0,
@@ -92,78 +62,28 @@
           "medio": "XEVT"
         },
         {
-          "texto": "Falta voluntad y firmeza: Esteban Bautista critica a Fiscalía Anticorrupción para actuar contra funcionarios - La Silla Rota",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPQVVkUFR6ZTMyVmlyUDdkeXBZdGRIQ3pMNV8yZFNlcVpQSkhtSkdwQWJGNENUcV9tRjRqcE1mNnhubjA5X01jY2gtdWh0eTU1UnhlaHpmeHJlQmQ1N2FuVzFmc19LS1N2Wi1FZEF4T2tjYVREbEpwUlctbkxhaWU0OUo0VnhvbXB6LTFEQXV3M3JLV0VJYVV4X2NNakFDYnN4Vmc3QnpTRzBQT0ZTWV9yQ1M1Uk5sOHl0TlBXc2JDNjJ6cWRkXzNiMXFFclZ1NjFKcHhoNmthY25QSTJUWTBEMDZwUXFkMHVhZGFMQmZKTVJ3aURqdnc?oc=5",
-          "intensidad": 4.0,
-          "medio": "La Silla Rota"
+          "texto": "AMLO y Morena contra el INE - El Financiero",
+          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOWnVPbmtGaEVZUE5Qa01jZ1FkbGFGTm16ZDIwQ05aRVNDWURmaUQzN2s3U1Q4cDdfd0RsS3lMaVoxaUh3LUR0c3VJaUxVazk0dk9ZbzB1X2hYTnl6Y1NOcUtnQlZodG5NQk1HOFZaMkRfbDRmVFNBNlUzYUhrUVBlOTZXSi05V1FUR1RzWXloUWlLUV9uUWNwTmxfT1B5RDA?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Financiero"
         },
         {
           "texto": "Designa el Congreso a Karla Sevilla como Directora del Centro de Conciliación Laboral de Tabasco - Quadratín Tabasco",
           "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOVFdmNlBXckZEZ05lRWZJRW5QZHZUQTIzZDBGeUJrdXBWVUpfNElqalFnOUpjWVJLRjFUYnZBek5TQ1ZkdU1mclNMcG9PU0pCb1QxVEJoZXVPRUxBdEtxcmpzNU5WU3p3SW50N3VkbnJQTTBTTTJXV1NwTUdLakJmWmpwMVY5a2hPeWVPVTUweUpsNGdraWkxOERZMXBuWDFnUGVFNXBCY3dCQ2xoOHQ2WVo0ZEJRSV9WVUpPNUE3YW9fd3VWZHpmZ1ljTEpDcEpyb1RyeWZR?oc=5",
           "intensidad": 4.0,
           "medio": "Quadratín Tabasco"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 19,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 4,
-      "notas": [
-        {
-          "texto": "Hay T-MEC hasta 2036: Ebrard distingue la vigencia del acuerdo de su revisión anual - Yucatán a la mano",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQRUY5YWU3T25rQl9BcEMxZ2JXbzFoMUdBVnF6WHp1bkJIQ3NLYUdrSEQwWXhNWVVxekYtTWloVmtaMkxGd3RackRaS0ZiZ1ZsbW1WVkFjS3dTMFJFTmQ1cFZELS1waVJzdjhfQU1meXB4Z0FkX3h1aksxM1pKZ3gzRUtQY01wS1FteWVxWXRqMFNSNURQZFgtVHJleFFqZFJucE50WERtQmJSbFJpLU1j?oc=5",
-          "intensidad": 7.0,
-          "medio": "Yucatán a la mano"
         },
         {
-          "texto": "Aplazan análisis en el T-MEC de queja por presa Mujer Solteca",
-          "fuente_url": "https://imparcialoaxaca.mx/oaxaca/aplazan-analisis-en-el-t-mec-de-queja-por-presa-mujer-solteca/",
-          "intensidad": 6.0,
-          "medio": "imparcialoaxaca.mx"
-        },
-        {
-          "texto": "Piden resolver pendientes de sector energético; indican es clave para inversiones y T-MEC - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPLWxfWjd5ZGtBVUwwUnZhTjhRZTVHTHJQaGI4Qmc1dmgtbUtFNmdfTnN2U3BtZVhWUEliZlRsQlJhTUFVVXlMZVp4LV9TbHJxM0thWDNMS1R5bzFtRjFTZUlJeHlhcFRYeF80LU4wbWpwb2ZuZVQ3eTRRSkJOdlhnQ0NpZFREUXVQLUNEd1RjZHLSAZABQVVfeXFMTnZUUFMyQzc1bmM1SUlNWkZXLTI3bXhZSWRLRnhhc0pFcmVFMGlxQ1hGMm1iSlhDSXJ1TnFZdlk0UXB3emRMM0NOWVdaV2J0VWxlNTRNRklTZ3A4dW5aTmVjM3AtRWcxUmJ0YXVVN0gwU1dyYmxiTVd1SUVZVEZYVEdLbUZzXy1zWWZNSWhtYlRG?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "Italia mantiene su apuesta por México pese a la incertidumbre por el T-MEC",
-          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/10/29/italia-mantiene-su-apuesta-por-mexico-pese-a-la-incertidumbre-por-el-t-mec/",
-          "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 11,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Rubén Rocha Moya y nueve señalados por Estados Unidos siguen sin enfrentar acciones judiciales - www.adn40.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOdGI0ckZOT1VFUWhrQzZHNnNvM0hoSDlWLVJRYk9LUU41NWl5a2dQQ1JCVVJ5M0JaRHEzcHNRYzRKTkFFNHlxYzdhVXp3SUI1b192dkNuQzdnR18xOFR2NDZweTVEc01MZ2xBamtZdDEzaV9qMFdXbjg5dU94Tk81TmI4QTJySVc5Nl8wa1FfSjMtWGMxNmVRcmJJSkZzQWpibVo3WWN5c0laTFJad3VNZXE0LTJnUGYwRVdXZWlxVDNWUTZyckNmbXI3LWM1aHNvQ1E?oc=5",
-          "intensidad": 7.0,
-          "medio": "www.adn40.mx"
-        },
-        {
-          "texto": "“HAY BUENA ACTITUD”",
-          "fuente_url": "http://campechehoy.mx/2026/10/29/hay-buena-actitud/",
-          "intensidad": 7.0,
-          "medio": "campechehoy.mx"
+          "texto": "Karla Sevilla al frente de Conciliación Laboral",
+          "fuente_url": "https://www.tabascohoy.com/karla-sevilla-al-frente-de-conciliacion-laboral/",
+          "intensidad": 4.0,
+          "medio": "tabascohoy.com"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 10,
+      "peso_pct": 15,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 2,
@@ -180,6 +100,44 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxON1BsUzBHdzd0ZWw5UmdZazZJTmxvVEpBRnJpLVFBYlhEdGI2Nk96XzdmZnpyRUhKa0Y0MXJEeFpHUnIwTU1yRlVOMk9aRHZWNDNSeV9BOTlBaWFMTm9SZU56clE4VGVKWnRFcHFPVC1nVHVwV2txZEphWWVkSmlpZURMSTZkOEk0Wm9tYVJjUjdwem5vaU9XZ25vSXFpd0U1aE1rZXRmbmJNZjZRQkNPc2doOEhRdnV3alVtSlBtTE9pQmVFOUE?oc=5",
           "intensidad": 6.0,
           "medio": "ADN 40"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 15,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "Hay T-MEC hasta 2036: Ebrard distingue la vigencia del acuerdo de su revisión anual - Yucatán a la mano",
+          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQRUY5YWU3T25rQl9BcEMxZ2JXbzFoMUdBVnF6WHp1bkJIQ3NLYUdrSEQwWXhNWVVxekYtTWloVmtaMkxGd3RackRaS0ZiZ1ZsbW1WVkFjS3dTMFJFTmQ1cFZELS1waVJzdjhfQU1meXB4Z0FkX3h1aksxM1pKZ3gzRUtQY01wS1FteWVxWXRqMFNSNURQZFgtVHJleFFqZFJucE50WERtQmJSbFJpLU1j?oc=5",
+          "intensidad": 7.0,
+          "medio": "Yucatán a la mano"
+        },
+        {
+          "texto": "Italia mantiene su apuesta por México pese a la incertidumbre por el T-MEC",
+          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/10/29/italia-mantiene-su-apuesta-por-mexico-pese-a-la-incertidumbre-por-el-t-mec/",
+          "intensidad": 6.0,
+          "medio": "elfinanciero.com.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 8,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Movimiento Ciudadano pide investigar contratos del OPLE Veracruz por más de 454 millones de pesos a dos empresas",
+          "fuente_url": "https://oem.com.mx/diariodexalapa/local/movimiento-ciudadano-exige-investigar-contratos-millonarios-del-ople-veracruz-con-dos-empresas-32867138",
+          "intensidad": 7.0,
+          "medio": "oem.com.mx"
         }
       ]
     },
@@ -599,7 +557,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
@@ -736,7 +694,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -799,7 +757,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
@@ -824,7 +782,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
@@ -836,7 +794,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -857,7 +815,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -874,7 +832,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -882,7 +840,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -901,29 +859,29 @@
       "nombre": "Asesinato de Carlos Manzo",
       "categoria": "Seguridad Nacional",
       "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
-      "motivo": "Detienen a secretaria del Bienestar de Uruapan: La acusan de encubrir el asesinato de Carlos Manzo",
-      "peso": 25.0,
-      "n_temas_agrupados": 4,
+      "motivo": "Máynez ‘defiende’ y respalda a Grecia Quiroz: ‘Es víctima por la posición que tiene en encuestas’",
+      "peso": 20.0,
+      "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 3,
       "confianza": "alta",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/29/detienen-a-secretaria-del-bienestar-de-uruapan-la-acusan-de-encubrir-el-asesinato-de-carlos-manzo/",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/29/maynez-defiende-y-respalda-a-grecia-quiroz-es-victima-por-la-posicion-que-tiene-en-encuestas/",
       "actor_vinculado": null
     },
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Piden resolver pendientes de sector energético; indican es clave para inversiones y T-MEC - MILENIO",
-      "peso": 12.0,
+      "id": "amlo-agenda",
+      "nombre": "López Obrador: reaparición y declaraciones",
+      "categoria": "Gobernabilidad",
+      "resumen": "Declaraciones, apariciones y señalamientos que involucran al expresidente Andrés Manuel López Obrador y su influencia en el gobierno y en Morena.",
+      "motivo": "AMLO y Morena contra el INE - El Financiero",
+      "peso": 5.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPLWxfWjd5ZGtBVUwwUnZhTjhRZTVHTHJQaGI4Qmc1dmgtbUtFNmdfTnN2U3BtZVhWUEliZlRsQlJhTUFVVXlMZVp4LV9TbHJxM0thWDNMS1R5bzFtRjFTZUlJeHlhcFRYeF80LU4wbWpwb2ZuZVQ3eTRRSkJOdlhnQ0NpZFREUXVQLUNEd1RjZHLSAZABQVVfeXFMTnZUUFMyQzc1bmM1SUlNWkZXLTI3bXhZSWRLRnhhc0pFcmVFMGlxQ1hGMm1iSlhDSXJ1TnFZdlk0UXB3emRMM0NOWVdaV2J0VWxlNTRNRklTZ3A4dW5aTmVjM3AtRWcxUmJ0YXVVN0gwU1dyYmxiTVd1SUVZVEZYVEdLbUZzXy1zWWZNSWhtYlRG?oc=5",
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOWnVPbmtGaEVZUE5Qa01jZ1FkbGFGTm16ZDIwQ05aRVNDWURmaUQzN2s3U1Q4cDdfd0RsS3lMaVoxaUh3LUR0c3VJaUxVazk0dk9ZbzB1X2hYTnl6Y1NOcUtnQlZodG5NQk1HOFZaMkRfbDRmVFNBNlUzYUhrUVBlOTZXSi05V1FUR1RzWXloUWlLUV9uUWNwTmxfT1B5RDA?oc=5",
       "actor_vinculado": null
     }
   ],
@@ -953,20 +911,20 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPaWFlNDJrcEtIdVJfRnRTRzdRbEFLTkR1NzJ5cWE2WkdYS0NNM2Nya0hhZ3Baa3ZfOUJZdXlfZlJZZE9PbHVjd0RONGJOeVVsU05XdHdueDhxdFVwd1lFMUZCWU9aWWppMFFCdm8xYjlWUzdoTlFrVGVCb0VSTEt5akpad2stOEV4OHV2NURFMnpxcEpLMG1VbTdOR2VURDVhS1lQeGFWNGstb3VoSG56Z0R1Ui1reUxBNWpSempNM0V1SmpSUVRJekVPU0c4TURnZktwaEdQS2E3SlXSAe8BQVVfeXFMTlhIenVKTGRBZDRRc2pVbWVONWd3MHZSVFFJWXltZk9LSXVfQURaUmlJWmpZVk5NaWhoNWZMMjJfNVVvVENYQjliMHRMd0h3cnJLVWhZbXRMclQ3QUdWVHk2WnNERTZldC1oOWF2TENlTTNvQjdWMDBWcHVUemtOanNqbFZaRlhiMi1QMU5DQXVrZEZ4RGdmdlYzOVhpai1IaHZxUG9VLTlNZzl5T0x5OUhiN3ZaNTRHcXl5UDdrTlpPajJVR201M1JfdjRkR3BSSlVqOHdqeWNENXp2Rm1HVkYwRlpSek9hemtxV2ZHT0E?oc=5"
     },
     {
-      "id": "auto-0db286aeb0",
-      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
+      "id": "auto-cbbefe9a7d",
+      "nombre": "‘Boom’ petrolero vuelve más rico a Slim: Gana mil 150 mdd por venta de acciones ",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPTVpjNUgyMjJjcW1Ga1RVbzFZTGRvc0dacGU3a25jRjhFaDVOMkYzQlVIdUxKTkZCUDhaZmhmb0dqeTR4LWlCdWV5amRtNFlhN0NZLWZzMWZHWHFjS3kyOTIxT3lmZlB5Zmh0LU4wcG9sU0VYMjFvaHQ3c09aRWxucThWdG9OMjdqY19yUkRFWllfQnJ2RlVjcW1NOFlEWkJTdFNXcklCZzBhR3lO?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/empresas/2026/10/29/carlos-slim-gana-mil-150-millones-de-dolares-por-venta-de-acciones-petroleras-de-talos-y-pbf-energy/"
     },
     {
-      "id": "auto-66cad255de",
-      "nombre": "Cuauhtémoc Cárdenas y el EZLN: por qué el candidato del PRD viajó a Chiapas en 1",
+      "id": "auto-6b049e9db3",
+      "nombre": "SEP abre consulta para elegir seis perfiles que irán a Claudia Sheinbaum para de",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNUVYtNVFKVzE1MzJILWNQbHdjd3UtMFdKNTVCNE5wWkJHTDB2VWpGRHZIelZnSjZHWHdqTGdKVTFlamNjUjFuVEJ2RjRpWngxQmlUblRoTUxyQ1NoT2gwbjV2T0szaGM4VFEydGNlRmJiXzlrUW9jQXBkQkZ0cmozV1otNGJzUk1TdGRfemF2bDNJMVFrNE5nbURFN3prQmM4YzNMNXFXRHJKY1BGWnFBOE9qekdYajlnNlRxZEV0WUw4dUXSAd4BQVVfeXFMTnFEVjV3WWRSN0EtNTY3eFl5ZjhxM1NuNlhlOWtoMmM2V2VtZVowWmdTLXMtSmxtNjRpdWRhdkpZMk1rLUFlLWgtYjNJVnJKRzExOUVRWHJYX1RVRVBjbFNHTVRfRHNFbTVZV1g1aVcyVGNUWUgtVU1pT2FLY0Q3X0FqTFd2YkgwN1hPTnVXcWhsbWZMNllPYXJMZVJKNVJubXh4VjNRcHBzMDF4QXFUYlc0MUpTV2RSMUNNTWk5TUdYSnAtMWF2ME5RS0tTSlhrTTF4YURDaVRKWVpZZnh3?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQNW5jWWZZcFhYbGJSVmVkdTh4RlRTZjZvRFF5MFpGcVhRMDlqMGQ5S3pjRUtFYzdTb0dSVjlEOUV1Q3J4dXA4RGxycXJOZEJZajFLdDhON2dJdU5DRHRhZzJPaUs3YlJzX0JQNEI1RXVTd2NJRFhTMHVtRTByVHB2N01CVGlLSmR1N2dveWxGRVIxOWJ3T3RZd0VVb2VETkZLWHFWN3YyZVZUNURZbXU1N3pKY1hiVVgySFhzOHFXQ2tfZkl1S2pyOHNMWWpOMC1ZeXJTSFVsVkhyNmpCT21zX0U4MEtJdHc?oc=5"
     }
   ],
   "temas_retomados": [
@@ -982,17 +940,6 @@
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/24/politica/006n1pol?partner=rss"
     },
     {
-      "id": "auto-440283f11e",
-      "nombre": "Anuncia Mara Lezama en Convención de CANACAR digitalización de permisos para el ",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 23,
-      "motivo": "Anuncia Mara Lezama plataforma REC Digital del SATQ para trámites rápidos, sencillos y directos - Gobierno del Estado de Quintana Roo",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQM3MtWGJRUlhlZTRuVmdTdmVVY0tZb1Jpczc1OFBKSUFVWGsyQ2EzSjloWVdSNWVMOWp6RG9JSWp3Vk9pU0g4WDVqTjl1dUIxRDBhbldLVUphbzhZbTIweHlwa09oclg2SjdmS0NpQ1VSOG14bXJHN1ZOeWlEWXhvc2h1YkJueDRqdG1BMzl1NTl5N0xiOHpPVzZQNENDR0hydEd5UkdCZ0NlbG94QjBFcm13MFVzSHNCMDVR?oc=5",
-      "fecha_anterior": "2026-10-06",
-      "fuente_url_anterior": ""
-    },
-    {
       "id": "auto-e8e0ba7b36",
       "nombre": "Morena, PT y PVEM buscan coalición de al menos 290 distritos electorales para 20",
       "categoria": "Gobernabilidad",
@@ -1004,25 +951,25 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMG9XR2FUT2JYS3BjVTdRdDRoYVJiRl9ZZjltbFdpQzNkV2ttUVNvdkJsV0t4eGdhZEJ5NnpDWEZJMVlwUm1zVE1EbndZdERTQkw0aWVES1lOTk5yenBWaVNwMUpGVFUzSXg4NFFnOWdCQW5pbnROaXJSSzNVS25ZdDNpZU5vbTlYX2k1elZn0gGiAUFVX3lxTE41UzNtU0dPWGtvc0ZPeUZHeFFiWTFLb3FsaTgwdmpHMVZwNGFMbF9jVWhpc0tnNmF5UXJ1RlN5cTNncl9LUm52NGxZZ19zRWZuX29VdnFROEZRdXlXRTdzMTBLdXg1SUg2cFJ6TE1kSTA4RzhyT1hLT19sX3NwdmoteDZGYjItMnFpUHJlZmNWYVZiMmFjOWY3QWh1SWpCY0lvdw?oc=5"
     },
     {
-      "id": "auto-5fc22d635b",
-      "nombre": "Sin origen morenista el 58% de sus candidatos, escribe Azucena Uresti - El Unive",
+      "id": "auto-ad4925fbb8",
+      "nombre": "Santiago Nieto sigue en la carrera por Querétaro 2027: Morena descarta su salida",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 14,
-      "motivo": "La revolución devoró al pueblo, escribe Azucena Uresti - El Universal",
+      "dias_silencio": 7,
+      "motivo": "Quedó atrás la idea de que Querétaro es bastión del PAN: Santiago Nieto",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxObFlTZDE4MTQzRWE1RzVYOW81akVyY0ZKTVV6WDFFYm1qUG00SktjbXdXQ3V3Y1FRWFdDbXJJZHhSQ2djYXVHa0Fsbk9tLVl2WkpsT1pudjVva0VfUF9fV2t2MW5EQ3BQOGV2SEZ1OThta19KZU1UemNueHktbmJGZURRbER5YWN3NmNWSTR3?oc=5",
-      "fecha_anterior": "2026-10-15",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQVUdaRkV3eGsyZktPd3pLTlRqUTV6ZDhPQVhteG9LQjFfZHF0SndwYW9hTkdkbTlYb1gyNGlvTnQwczU0ZmRER0lWa0o3SUZBTEdqdUItUV9XYm5XVGxDQVlyd1BQNXRoTnlXVGZDaHBxWFplZjA0di1FLXNyT3B3bU9KWQ?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/30/quedo-atras-la-idea-de-que-queretaro-es-bastion-del-pan-santiago-nieto/",
+      "fecha_anterior": "2026-10-22",
+      "fuente_url_anterior": "https://www.elfinanciero.com.mx/estados/2026/10/22/santiago-nieto-sigue-en-la-carrera-por-queretaro-2027-morena-descarta-su-salida/"
     }
   ],
   "actores_destacados": [
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Responsable institucional",
-      "tema": "Mañanera de la presidenta Claudia Sheinbaum minuto a minuto | 5 de octubre - Gru",
-      "nota": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 29 de octubre: Síguela aquí en vivo - El Financiero",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUjdVb1ZuUkc4M3J0UDdDdXcwWmotZGt1aUJTZ1dUbHlWd0dJQjA1cXRpV05xbjVLaE15NmFYTFh0RUFlalFPeUpPQVV1RTRoTXRReGtOaVdkblUxc2lWb3FJczA5cXR1NE9FVFRhRnl5R3RZSkllLXZuX2FEZkVMMHlfVlZUdzI0SXRKdGN2WERaNFEwX0JGSjVWdGtLWXpRRlRmTmRlcFRKZjJsbkpmV0lRQno4bmJ4TTdj?oc=5",
+      "rol": "Reacción del gobierno",
+      "tema": "Claudia Sheinbaum regalará 45 pases dobles para el Gran Premio de México: ¿Cómo ",
+      "nota": "Claudia Sheinbaum regalará 45 pases dobles para el Gran Premio de México: ¿Cómo participar? | REQUISITOS - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUkVSZVVMRFRHdWQybjh4a0Z1TWJKcTNpaE41SDZ4YXBRS1Q1MTQzc0ppUXd6TEJDWm0tRDYyZmhYendvSlBqUHRMaEFxMk5lUWhhLUVNVk5fQUhraEFjNVAwaWZxZzJNTFNCdjdzdTNpT0N3VjlxTkg4UUNfcDVkQUJNa0hOU2kyd3B3d1MxQnhCMnM1LUlaV3FRLXdsZ194MFBPNNIBpAFBVV95cUxNSHBhZFQwakVxSjZ0NFFZb1AtVEhvbWxkTVhlY3NBTVZLVXF2R1g3c3Y4T2Jlb1o0UjNIcmhfQ0xRSVYxV292M0djaVo0ajRxN2FYR0pWVWFEZmpwRjlWLWNLeVBvcGdKdHZBYVduWFQ4Rmp4Mmh4cVBhbUx4Z0lRSlplRmtLLVZDckk4RWdyR1NNdDBlQklkWUZIZ192ME1NM1BMVg?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1039,23 +986,23 @@
       "confianza": "media"
     },
     {
-      "id": "manzo",
-      "nombre": "Carlos Manzo Rodríguez",
-      "rol": "Investigado",
-      "tema": "Asesinato de Carlos Manzo",
-      "nota": "Detienen a secretaria del Bienestar de Uruapan: La acusan de encubrir el asesinato de Carlos Manzo",
-      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/29/detienen-a-secretaria-del-bienestar-de-uruapan-la-acusan-de-encubrir-el-asesinato-de-carlos-manzo/",
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Donald Trump presiona a México para firmar acuerdos energéticos con empresas de ",
+      "nota": "Elecciones intermedias en EU: El futuro de Donald Trump - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOLXg4MjBFTFBIRXZJWV9MWGZfNlJKVW1zYjhJeWlhVWpTM2FUNmxwMF9DbkFHLTVmSzhmSzJwdTBadm9VRVhtbTRBcnFrQWd0UEt4cXNkZjdzTFNNMXhYV2J0c0RQQjBJa3Z6VlBibmxodXlVWGVfR2FRWTBZREdhWjVYVjgwMWprbUxyeVdMZTNLVlBzaE5xa3NLR2lmQ0NP0gGgAUFVX3lxTE9XbDhGM3B2TDJ6a3NKVWV0RllVWExOczUxY25hMGtwNEpGY0VseEhwT3kzRmUxVEJZU2ZpWDNWc0hoYXp5cldkdWhITXJLQkk0MlA1a3kwdzJtNVN2U1Fmc09UZEhtd2xXREo4SzViYzlabG1VakVIVnZ6eWlCV0Q4MkxjN2s2VWdxelF1N0MzSVE5THQxVzdtZzhjc0w0TDk?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "pt_partido",
-      "nombre": "Partido del Trabajo (PT)",
-      "rol": "Reacción de oposición",
-      "tema": "Morena, PT y PVEM buscan coalición de al menos 290 distritos electorales para 20",
-      "nota": "Se aleja coalición total con Morena y PVEM, reconoce PT - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOT2hmNHBPcFBPV2w5dUNsblBXbnpTSGVvbjY0OUhMTUZ5RG1fSmdqdkNsN1FleTE4TzQ1Tm9lcTNnaGJJVXlXVWZHMUJyU3pxQ2hSVzFEQi1ZUjJQdXEyeUpaQTNfR3hvUGw3M3VNOVlHV3ZmMEgwQ0Z0WDlxYkJMbE5kWFVIVXlTTEh5bDJNY3dKQQ?oc=5",
+      "id": "amlo",
+      "nombre": "Andrés Manuel López Obrador ('AMLO')",
+      "rol": "Reacción social/mediática",
+      "tema": "López Obrador: reaparición y declaraciones",
+      "nota": "AMLO y Morena contra el INE - El Financiero",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOWnVPbmtGaEVZUE5Qa01jZ1FkbGFGTm16ZDIwQ05aRVNDWURmaUQzN2s3U1Q4cDdfd0RsS3lMaVoxaUh3LUR0c3VJaUxVazk0dk9ZbzB1X2hYTnl6Y1NOcUtnQlZodG5NQk1HOFZaMkRfbDRmVFNBNlUzYUhrUVBlOTZXSi05V1FUR1RzWXloUWlLUV9uUWNwTmxfT1B5RDA?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1063,7 +1010,7 @@
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
-      "rol": "Mencionado",
+      "rol": "Investigado",
       "tema": "Sheinbaum niega que Taddei sea de Morena - El Coahuilense",
       "nota": "Sheinbaum niega nexos de Morena con Taddei",
       "fuente_url": "https://www.informador.mx/mexico/sheinbaum-niega-nexos-de-morena-con-guadalupe-taddei-y-anuncia-auditoria-y-cambios-en-talleres-graficos-de-mexico-20261029-0093.html",
@@ -1157,10 +1104,10 @@
     },
     {
       "fecha": "2026-10-13",
-      "tension": 27,
-      "n_notas": 87,
+      "tension": 26,
+      "n_notas": 88,
       "n_alto_impacto": 39,
-      "n_medio_impacto": 48,
+      "n_medio_impacto": 49,
       "n_bajo_impacto": 0
     },
     {
@@ -1214,9 +1161,9 @@
     {
       "fecha": "2026-10-20",
       "tension": 33,
-      "n_notas": 52,
+      "n_notas": 53,
       "n_alto_impacto": 32,
-      "n_medio_impacto": 20,
+      "n_medio_impacto": 21,
       "n_bajo_impacto": 0
     },
     {
@@ -1269,10 +1216,10 @@
     },
     {
       "fecha": "2026-10-27",
-      "tension": 20,
-      "n_notas": 43,
+      "tension": 19,
+      "n_notas": 45,
       "n_alto_impacto": 16,
-      "n_medio_impacto": 27,
+      "n_medio_impacto": 29,
       "n_bajo_impacto": 0
     },
     {
@@ -1285,18 +1232,18 @@
     },
     {
       "fecha": "2026-10-29",
-      "tension": 23,
-      "n_notas": 27,
-      "n_alto_impacto": 12,
+      "tension": 24,
+      "n_notas": 28,
+      "n_alto_impacto": 13,
       "n_medio_impacto": 15,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-30",
-      "tension": null,
-      "n_notas": 0,
+      "tension": 0,
+      "n_notas": 2,
       "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "n_medio_impacto": 2,
       "n_bajo_impacto": 0
     }
   ],
@@ -1306,13 +1253,13 @@
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
       "x_lunes": 88,
-      "y_lunes": 86,
+      "y_lunes": 84,
       "x_hoy": 100,
-      "y_hoy": 85,
+      "y_hoy": 83,
       "delta_pts": 4.5,
       "alcance": 11,
       "n_alto": 9,
-      "n_medio": 7,
+      "n_medio": 8,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
@@ -1324,23 +1271,23 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 31,
+          "x": 29,
           "y": 76
         },
         {
           "fecha": "2026-10-27",
-          "x": 69,
-          "y": 84
+          "x": 71,
+          "y": 82
         },
         {
           "fecha": "2026-10-28",
           "x": 88,
-          "y": 86
+          "y": 84
         },
         {
           "fecha": "2026-10-29",
           "x": 100,
-          "y": 85
+          "y": 83
         }
       ],
       "fecha_apagado": "2026-10-30"
@@ -1349,9 +1296,9 @@
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 75,
+      "x_lunes": 71,
       "y_lunes": 82,
-      "x_hoy": 94,
+      "x_hoy": 88,
       "y_hoy": 84,
       "delta_pts": 7.5,
       "alcance": 8,
@@ -1360,25 +1307,25 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQSGI3ZFdia0tQa3R3TEtKNUNxMVlubzdQUW5KSmxqZHRsR2V0d2c5akY2SW5BRjZzNTBjSXBXakFGekp5bFJLYzJsemU3ak4zTnlrUDJGVFd1cVNrVzJQdU1JTkNUdUZYRVBTanNZWWphbHZXcEFHVzlDWWNaRkNOTVZHamtxb0FrcFBfYkUzdWhFa29NMHNoU194bXg1RVlwTi04NzA0ay00MUE5VUY3LThuM0dLSFM5ODVNZ3doMWVUTlE?oc=5",
-      "nota_texto": "Ariadna Montiel niega reunión con 'El Guano' y acusa campaña para desacreditar a Morena - Municipios Puebla",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/26/sobre-taddei-en-morena-no-somos-tapadera-de-nadie-pero-que-investigue-la-asf-ariadna-montiel-916712.html",
+      "nota_texto": "“Sobre Taddei, en Morena no somos tapadera de nadie pero que investigue la ASF”: Ariadna Montiel",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 31,
+          "x": 29,
           "y": 98
         },
         {
           "fecha": "2026-10-27",
-          "x": 75,
+          "x": 71,
           "y": 82
         },
         {
           "fecha": "2026-10-28",
-          "x": 94,
+          "x": 88,
           "y": 84
         }
       ],
@@ -1388,9 +1335,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 88,
+      "x_lunes": 82,
       "y_lunes": 74,
-      "x_hoy": 94,
+      "x_hoy": 88,
       "y_hoy": 76,
       "delta_pts": 3.0,
       "alcance": 9,
@@ -1407,22 +1354,22 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 56,
+          "x": 53,
           "y": 73
         },
         {
           "fecha": "2026-10-27",
-          "x": 81,
+          "x": 76,
           "y": 76
         },
         {
           "fecha": "2026-10-28",
-          "x": 88,
+          "x": 82,
           "y": 74
         },
         {
           "fecha": "2026-10-29",
-          "x": 94,
+          "x": 88,
           "y": 76
         }
       ],
@@ -1432,9 +1379,9 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 19,
+      "x_lunes": 18,
       "y_lunes": 91,
-      "x_hoy": 38,
+      "x_hoy": 35,
       "y_hoy": 100,
       "delta_pts": 9.0,
       "alcance": 6,
@@ -1443,8 +1390,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQWU2VF9EZzdDcG15bFBZVWRVVldBUFJpNm9FYXVnT194S3NzUDhvdERITDZXN0wya0VXd2xCaml3bHJCY3JvUDlWTVp6azZyVU16OVFkc251RVVtTFJtZEpZdTVuTjlGQ1RRUWh0TmdFTHhxZ0t1dXZ1ZGVTTl9KYkdvUHE5STRjVnEtZGVWMzJ2MlFXck9LdTFTNzBLYTNvRmpKZ3RCTWhLd1o0eFkzOHlzOV93TWNNM1pQcWdBYktFQQ?oc=5",
-      "nota_texto": "FGR descarta abrir investigaciones contra Andy López Beltrán y Adán Augusto - Serpientes y Escaleras",
+      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPMThPZTNaTFVXOU5xRnd0WmJWTDVJdEhiMXNPQ3lic2FycmVtRnY0SzVYdXdUY0J4SnRkQXV4clhzQk9nT2YxYlNST2dhMnBVNklrZUdBczlibHVIYUUxTm5RTko5MGVpV0FZTTJ3UC1aRlBYeHd1QURqRDY0Y19wdXk2NmpfQWI3LTZ6STcycW4xZDVjVXBVLUFlZFhKLWhDMklrT0JVSEd4QncxR2xGSXpwSENFeXQydEhmT1FuTQ?oc=5",
+      "nota_texto": "FGR descarta elementos para investigar a 'Andy' López Beltrán y Adán Augusto López por huachicol fiscal - López-Dóriga Digital",
       "es_nuevo": false,
       "categoria": "Seguridad Nacional",
       "dias_activo": 3,
@@ -1456,12 +1403,12 @@
         },
         {
           "fecha": "2026-10-27",
-          "x": 19,
+          "x": 18,
           "y": 91
         },
         {
           "fecha": "2026-10-28",
-          "x": 38,
+          "x": 35,
           "y": 100
         }
       ],
@@ -1471,9 +1418,9 @@
       "id": "manzo",
       "nombre": "Carlos Manzo Rodríguez",
       "iniciales": "CM",
-      "x_lunes": 25,
+      "x_lunes": 24,
       "y_lunes": 68,
-      "x_hoy": 44,
+      "x_hoy": 41,
       "y_hoy": 78,
       "delta_pts": 7.5,
       "alcance": 6,
@@ -1490,12 +1437,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-28",
-          "x": 25,
+          "x": 24,
           "y": 68
         },
         {
           "fecha": "2026-10-29",
-          "x": 44,
+          "x": 41,
           "y": 78
         }
       ],
@@ -1505,9 +1452,9 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 25,
+      "x_lunes": 24,
       "y_lunes": 82,
-      "x_hoy": 38,
+      "x_hoy": 35,
       "y_hoy": 82,
       "delta_pts": 4.5,
       "alcance": 6,
@@ -1529,12 +1476,12 @@
         },
         {
           "fecha": "2026-10-28",
-          "x": 25,
+          "x": 24,
           "y": 82
         },
         {
           "fecha": "2026-10-29",
-          "x": 38,
+          "x": 35,
           "y": 82
         }
       ],
@@ -1546,7 +1493,7 @@
       "iniciales": "OG",
       "x_lunes": 6,
       "y_lunes": 100,
-      "x_hoy": 38,
+      "x_hoy": 35,
       "y_hoy": 73,
       "delta_pts": 9.0,
       "alcance": 4,
@@ -1568,8 +1515,81 @@
         },
         {
           "fecha": "2026-10-28",
-          "x": 38,
+          "x": 35,
           "y": 73
+        }
+      ],
+      "fecha_apagado": "2026-10-29"
+    },
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "iniciales": "DT",
+      "x_lunes": 12,
+      "y_lunes": 55,
+      "x_hoy": 18,
+      "y_hoy": 55,
+      "delta_pts": 1.5,
+      "alcance": 3,
+      "n_alto": 0,
+      "n_medio": 3,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOdWZSbDZDMlFrcWFRMGY3c3ByUC1FZ29aUHR1OFg1WFB1bEJFcUt0Rk1nQmhXMUR2UGVrY1g2aWJaNDJra1ROMnk1cXotZnMxR2ExSFY3YWhGdWxRUVZNd1AzV204OEIwVjVqVDFGME4xUDBDWlhkV2U5MGo3WkVBU0JRLVJNU0t5X05QLXpJZkRIZTU0M2xnZHNhSUJQcU1kUEE?oc=5",
+      "nota_texto": "Donald Trump promete que mantendrá el nombre del río Mississippi, después de renombrar el Golfo de México y el lago Ontario - Informat.ro",
+      "es_nuevo": false,
+      "categoria": "Relación Bilateral",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-26",
+          "x": 6,
+          "y": 55
+        },
+        {
+          "fecha": "2026-10-27",
+          "x": 12,
+          "y": 55
+        },
+        {
+          "fecha": "2026-10-28",
+          "x": 18,
+          "y": 55
+        }
+      ],
+      "fecha_apagado": "2026-10-27"
+    },
+    {
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "iniciales": "RI",
+      "x_lunes": 6,
+      "y_lunes": 55,
+      "x_hoy": 18,
+      "y_hoy": 55,
+      "delta_pts": 3.0,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 3,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/26/rosa-icela-rodriguez-agradece-transportistas-que-privilegian-el-dialogo-rechazan-el-paro-de-canacar-916565.html",
+      "nota_texto": "Rosa Icela Rodríguez agradece a transportistas que privilegian el diálogo y rechazan el paro de CANACAR",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-26",
+          "x": 6,
+          "y": 55
+        },
+        {
+          "fecha": "2026-10-28",
+          "x": 18,
+          "y": 55
         }
       ],
       "fecha_apagado": "2026-10-29"
@@ -1602,40 +1622,6 @@
         }
       ],
       "fecha_apagado": "2026-10-27"
-    },
-    {
-      "id": "rosa_icela",
-      "nombre": "Rosa Icela Rodríguez",
-      "iniciales": "RI",
-      "x_lunes": 6,
-      "y_lunes": 55,
-      "x_hoy": 19,
-      "y_hoy": 55,
-      "delta_pts": 3.0,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 3,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/26/rosa-icela-rodriguez-agradece-transportistas-que-privilegian-el-dialogo-rechazan-el-paro-de-canacar-916565.html",
-      "nota_texto": "Rosa Icela Rodríguez agradece a transportistas que privilegian el diálogo y rechazan el paro de CANACAR",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-26",
-          "x": 6,
-          "y": 55
-        },
-        {
-          "fecha": "2026-10-28",
-          "x": 19,
-          "y": 55
-        }
-      ],
-      "fecha_apagado": "2026-10-29"
     },
     {
       "id": "farias_manuel",
@@ -1694,35 +1680,6 @@
         }
       ],
       "fecha_apagado": "2026-10-28"
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "iniciales": "DT",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 8,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQU1lNZS1YWW5UWmFrVzRpQ2RoVTl6LXB6b0RVdDhybUoycGNRV2lBX3VkeGlSR2ZnUzBxSDhhejBrb2JVU2FZeExsYW1zNGdDNnlETXUwWWpPUXdpRWN1WS1FMkp0SFBKUnRDWjlxMnhrNVN5TU9EYjdHMllKRXF0NE9wbWhKUU1BZk9iREJyeHhJU2gwbndoTjUxOXNOV0NmbmZ6NVJlTnlRRlgwVWhSc3IzMHNFaDYxUnBJck80dHRmd2VPMUJTTdIBzgFBVV95cUxPTU54REw3amhrYU8teWN4Tk5UTDhfSkdXeUJpdjd2UWtNb1RJRFM0UXJjY1lzb01CcFBrRnBKX0w3TjZHdnRtUkd4aFFaTFE5MVFyMm96Z2lOTGRReDRhRk93Si1fYmpyVmt3NW9XdGVDaUZxenpDT0VOVUVRVGdQVF9tMHlPRlVPUkFzd1ZGN2lzdDc3dWVwMUREbWk0S1hpTVR1ZUo1R0QtdmdrNWQ2MDlDWVhaRE5DV190anhmc1RINEJXVFd5WnVZblh1UQ?oc=5",
-      "nota_texto": "Victoria de Luiz Inácio Lula da Silva en Brasil frena el giro regional a la derecha y niega a Donald Trump un aliado poderoso - ABC7 Los Angeles",
-      "es_nuevo": false,
-      "categoria": "Relación Bilateral",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-26",
-          "x": 8,
-          "y": 50
-        }
-      ],
-      "fecha_apagado": "2026-10-27"
     }
   ],
   "tablero_semana_inicio": "2026-10-26",
@@ -1730,10 +1687,18 @@
   "mananera_estado": "pendiente",
   "a_vigilar": [
     {
-      "id": "auto-c6808917cb",
-      "nombre": "Contratos millonarios y señalamientos fiscales rodean a empresa del sobrino de I",
+      "id": "auto-667b4e2bde",
+      "nombre": "Reportan la muerte de Cuauhtémoc Cárdenas Solórzano, a los 92 años, ícono de la ",
+      "categoria": "Social",
+      "resumen": "Reportan la muerte de Cuauhtémoc Cárdenas Solórzano, a los 92 años, ícono de la izquierda mexicana",
+      "fuente_url": "",
+      "actor_vinculado": null
+    },
+    {
+      "id": "auto-e0722a059a",
+      "nombre": "Claudia Sheinbaum emite despedida a Cuauhtémoc Cárdenas: “Transformó la vida pol",
       "categoria": "Gobernabilidad",
-      "resumen": "Contratos millonarios y señalamientos fiscales rodean a empresa del sobrino de Ignacio Mier - W Radio México",
+      "resumen": "Claudia Sheinbaum emite despedida a Cuauhtémoc Cárdenas: “Transformó la vida política de nuestro país” - Por Esto!",
       "fuente_url": "",
       "actor_vinculado": null
     }
@@ -1741,7 +1706,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 2
   },
   "declaracion_presidenta_historial": [
     {
@@ -1796,5 +1761,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-30 00:01"
+  "hora_corte_publicada": "2026-10-30 06:03"
 }
