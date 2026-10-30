@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-30T11:24:15.611972-06:00",
+  "generado_en": "2026-10-30T12:04:34.949083-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 16,
+  "n_notas_ventana": 15,
   "baja_confianza": false,
-  "tension_nacional": 17,
+  "tension_nacional": 20,
   "tension_anomalia": {
-    "z": -1.32,
+    "z": -0.73,
     "nivel": "normal",
     "media_periodo": 23.7,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 56,
+      "peso_pct": 54,
       "tema_principal": "López Obrador: reaparición y declaraciones",
       "tema_principal_id": "amlo-agenda",
-      "n_temas": 7,
-      "n_notas": 10,
+      "n_temas": 6,
+      "n_notas": 9,
       "notas": [
         {
           "texto": "Guadalupe Taddei traicionó confianza del pueblo, urge auditoria al INE: Claudia Sheinbaum - Quinta Fuerza",
@@ -30,12 +30,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOUW1FWDdack9UVWh5V3hsaUhNMFZZc1liQWlLbzl1emFpblN5VmxKb1MxdDhiM1plQy1zU0w0MXBHLWlWQ3RPLTNVOHNfTnhPMEVtcldKV0Y3Qk9iTEJ2U3p6M0NxU0tlUG9jazN0TURxX2lCaHI1R3ZGV0JiTW1RclQtaWY2R0lGLUZRM3hQcUF1OTFCYm5qQW5sMW9wX3hJUHI1bXdaRF93WWp1NUdEVUdSZTdWY2Q2bGhPRDF3UEhkanhYQWR1QmFGYTZOTVVxMUotYzJTZFZ3bklGc1RIZGdNQQ?oc=5",
           "intensidad": 6.0,
           "medio": "LatinUS"
-        },
-        {
-          "texto": "INE rechaza a dos aspirantes y declara desierta la elección de una consejería del OPLE Veracruz",
-          "fuente_url": "https://oem.com.mx/diariodexalapa/local/ine-declara-desierta-la-eleccion-de-una-consejeria-del-ople-veracruz-rechaza-a-los-dos-aspirantes-32862931",
-          "intensidad": 5.0,
-          "medio": "oem.com.mx"
         },
         {
           "texto": "Jesús Selván reúne a aspirantes a coordinaciones distritales de Morena",
@@ -68,10 +62,10 @@
           "medio": "elfinanciero.com.mx"
         },
         {
-          "texto": "Designa el Congreso a Karla Sevilla como Directora del Centro de Conciliación Laboral de Tabasco - Quadratín Tabasco",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOVFdmNlBXckZEZ05lRWZJRW5QZHZUQTIzZDBGeUJrdXBWVUpfNElqalFnOUpjWVJLRjFUYnZBek5TQ1ZkdU1mclNMcG9PU0pCb1QxVEJoZXVPRUxBdEtxcmpzNU5WU3p3SW50N3VkbnJQTTBTTTJXV1NwTUdLakJmWmpwMVY5a2hPeWVPVTUweUpsNGdraWkxOERZMXBuWDFnUGVFNXBCY3dCQ2xoOHQ2WVo0ZEJRSV9WVUpPNUE3YW9fd3VWZHpmZ1ljTEpDcEpyb1RyeWZR?oc=5",
-          "intensidad": 4.0,
-          "medio": "Quadratín Tabasco"
+          "texto": "¿Quiénes son los 17 coordinadores de la Defensa de la 4T definidos por Morena? - Super Channel 12",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOVllVLVlfcWdoZzFtOGpPeGlDZXRQeHhKX0xjTkRmWVh6WUVMbE5MU1RaSUlFa1kza0NLbWp6TkhaZWNOS2VqNllrbDl2MDMyVkZ0RzdIbTdVZlpUY3UydzJaeVlBeExvZ19uejg4MEkwVXEzcUJ6dFdsb0NLSDViOVAtVkRvem9wblk1YjhJeklPVms1WnBvRWxEU3o3RFZ6UWxrTUt4YXJrdFZNVndBcEhLb0VmMzlfdjVV?oc=5",
+          "intensidad": 5.0,
+          "medio": "Super Channel 12"
         },
         {
           "texto": "Karla Sevilla al frente de Conciliación Laboral",
@@ -83,7 +77,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 23,
+      "peso_pct": 24,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 3,
@@ -111,7 +105,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 14,
+      "peso_pct": 15,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 1,
@@ -854,7 +848,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 3
         }
       ]
     }
@@ -904,14 +898,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOS3NTemVUZllyMzJBbXhEZTRTTW5UNG1leVcxenVXQjhjeXRZNmxxQlA0aTdIeHpBR0Z1Nnc1NjFOUkJlSmlnTFlUTXJ0VjBObFpTaE1GT2Q2X1ZVT3VQYWZHVmhXODRESjg1OWVobERlb3QtTjk4QnNGM3ZJN2FsaGVHMW9CbEpEWEdlOHNxcWFFQXNjenNseDdiU0dpbG9lSDVNbDJ0NNIBpwFBVV95cUxOS3NTemVUZllyMzJBbXhEZTRTTW5UNG1leVcxenVXQjhjeXRZNmxxQlA0aTdIeHpBR0Z1Nnc1NjFOUkJlSmlnTFlUTXJ0VjBObFpTaE1GT2Q2X1ZVT3VQYWZHVmhXODRESjg1OWVobERlb3QtTjk4QnNGM3ZJN2FsaGVHMW9CbEpEWEdlOHNxcWFFQXNjenNseDdiU0dpbG9lSDVNbDJ0NA?oc=5"
     },
     {
-      "id": "auto-6b049e9db3",
-      "nombre": "SEP abre consulta para elegir seis perfiles que irán a Claudia Sheinbaum para de",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQNW5jWWZZcFhYbGJSVmVkdTh4RlRTZjZvRFF5MFpGcVhRMDlqMGQ5S3pjRUtFYzdTb0dSVjlEOUV1Q3J4dXA4RGxycXJOZEJZajFLdDhON2dJdU5DRHRhZzJPaUs3YlJzX0JQNEI1RXVTd2NJRFhTMHVtRTByVHB2N01CVGlLSmR1N2dveWxGRVIxOWJ3T3RZd0VVb2VETkZLWHFWN3YyZVZUNURZbXU1N3pKY1hiVVgySFhzOHFXQ2tfZkl1S2pyOHNMWWpOMC1ZeXJTSFVsVkhyNmpCT21zX0U4MEtJdHc?oc=5"
-    },
-    {
       "id": "auto-6613a03255",
       "nombre": "Regala aspirante de Morena dinero a damnificados en Colima - Reforma",
       "categoria": "Gobernabilidad",
@@ -934,6 +920,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNc2Q5UEZwYXJpa3JJQnpldEw0dU0ySzJnZVBFVzhYV2x1NHVvdi1ZVEI0WkY3RERja01JWlZ1ZVZ1VlBWdkNVNTZ0Z282X255NHdBZzhYektmc19aOVFiVlpxOWV0SnFsTjJvLW4zWHMwQnRibXN0aU1aWHFlX253b19IUnhncTRhckpvS0RTM0VwVWp6NThXNm1oQnhwU0sxYmVHR1VDMFUzd0gw?oc=5"
+    },
+    {
+      "id": "auto-09c4053e4a",
+      "nombre": "Caída de “El Tanque” destapa nexos políticos y del narco: Riva Palacio",
+      "categoria": "Seguridad Nacional",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/riva-palacio-la-captura-de-el-tanque-expone-redes-entre-el-crimen-organizado-y-el-entorno-politico-20261030-0057.html"
     }
   ],
   "temas_retomados": [
@@ -960,17 +954,6 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMG9XR2FUT2JYS3BjVTdRdDRoYVJiRl9ZZjltbFdpQzNkV2ttUVNvdkJsV0t4eGdhZEJ5NnpDWEZJMVlwUm1zVE1EbndZdERTQkw0aWVES1lOTk5yenBWaVNwMUpGVFUzSXg4NFFnOWdCQW5pbnROaXJSSzNVS25ZdDNpZU5vbTlYX2k1elZn0gGiAUFVX3lxTE41UzNtU0dPWGtvc0ZPeUZHeFFiWTFLb3FsaTgwdmpHMVZwNGFMbF9jVWhpc0tnNmF5UXJ1RlN5cTNncl9LUm52NGxZZ19zRWZuX29VdnFROEZRdXlXRTdzMTBLdXg1SUg2cFJ6TE1kSTA4RzhyT1hLT19sX3NwdmoteDZGYjItMnFpUHJlZmNWYVZiMmFjOWY3QWh1SWpCY0lvdw?oc=5"
     },
     {
-      "id": "auto-3950920ff3",
-      "nombre": "Asesinan a Hamurabi Huesca, director de Pinotepa Comunica: Fiscalía de Oaxaca re",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 19,
-      "motivo": "Fiscalía de Oaxaca confirma identidad del asesino de 'El Chuy' - MILENIO",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPMmV4YzNoRFRoaDZOXzV0SC0zMWJiNTk1YkNxWjNubEdOUTJ6VjFNaXY0ZGlSMTFNdEZTVEVIVFUydWMwLXMxaG5IRk43a25zZEpSUDBzTjJMb1k2NHZTeGNiVWQzNGhiOWJLcjhOMThERjRFRE9LUzc1bFhJVFJnWTFrWTJwYmVXajluZGlRUlRGLWwzMy1GdE5LeHdYRDlOS05hdDFxNWZLeVprVWMyZlNRQkwtRHVs0gG4AUFVX3lxTE1GZy1QaWVqbmlGLXVDaHBKTUJnNjNlMU8zR0dkdjVPVE12QUlWVkx1SzktcjJsOUdqX1RiMjBLcU9LRVJzcThteEJORGtZWUtmU1YtNnB5U21HSnJoMmFMU2dmbmxSZEVmS0s4alhwMVNvSjc5V1JtWllJOWNNWGlwTnNmVHNPbGVZekZaalNPYjdaUWlCUkdSMmJhMXVRRWhMNUM5MlhuVjFmS2puNEx3Z211M0J2MEY?oc=5",
-      "fecha_anterior": "2026-10-10",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOSHVrNWk3MGtuckFQbW13dHBVOG50clJENWVod1R6RGlycUhZQzhaaTk3ZHZrNVJfSUdZYzRRT0dXR2c1dUlaSHBwOHBvVDlTOGtKNkJrRzhMNFNtVklOS0x2a2EzVUpscldRdVhITU1wbVZLUEh6ZXRSYUZULUZ2andITFViTzVMVzJQYVpaOTFMVWJsMnVfLUpuclFoNTJlS2lHclY4dER1Q3dsOW1PTmY5RXpHLTBEeS1F?oc=5"
-    },
-    {
       "id": "auto-a5afbdfc4e",
       "nombre": "¿Gobernador de 10? Bertruy cuestiona el bienestar oficial ante familias que elig",
       "categoria": "Gobernabilidad",
@@ -991,6 +974,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOWUg0c2tWUVhuZTlNM29aSnk1endlTHhZVU1leGYyRWZZb29ZN01qUVc4UXFkRDFQQVQ0MmlmQnNKaDMycGI2Y19aeDFvcVA2Z2tFR1dxeGpSOGg3bjhCb19EYzdrQTd4UkZCOTg3OWFMZU5ZUm9FbS1uRHNybW8xRkhld1htcW5nMnJpbWhCSTJhRm5oR2pvTU1WenQ0WmNIbnJzSWQ5dkhiMGpLc2pnYTJYczhWTVo2NUdVSGRqUTJLMm9TdmI2eng2Mm91V2FHZHltSC1FcTdLU0RUMHM5bTJUekVjMWJGMUxFVW530gHuAUFVX3lxTE5ZSDRza1ZRWG5lOU0zb1pKeTV6d2VMeFlVTWV4ZjJFZllvb1k3TWpRVzhRcWREMVBBVDQyaWZCc0poMzJwYjZjX1p4MW9xUDZna0VHV3F4alI4aDduOEJvX0RjN2tBN3hSRkI5ODc5YUxlTllSb0VtLW5Ec3JtbzFGSGV3WG1xbmcycmltaEJJMmFGbmhHam9NTVZ6dDRaY0hucnNJZDl2SGIwaktzamdhMlhzOFZNWjY1R1VIZGpRMksyb1N2YjZ6eDYyb3VXYUdkeW1ILUVxN0tTRFQwczltMlR6RWMxYkYxTEVVbnc?oc=5",
       "fecha_anterior": "2026-10-22",
       "fuente_url_anterior": "https://heraldodemexico.com.mx/nacional/2026/10/22/reconocen-el-trabajo-de-la-presidenta-claudia-sheinbaum-en-materia-de-seguridad-914260.html"
+    },
+    {
+      "id": "auto-ad4925fbb8",
+      "nombre": "Santiago Nieto sigue en la carrera por Querétaro 2027: Morena descarta su salida",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 7,
+      "motivo": "Quedó atrás la idea de que Querétaro es bastión del PAN: Santiago Nieto",
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/30/quedo-atras-la-idea-de-que-queretaro-es-bastion-del-pan-santiago-nieto/",
+      "fecha_anterior": "2026-10-22",
+      "fuente_url_anterior": "https://www.elfinanciero.com.mx/estados/2026/10/22/santiago-nieto-sigue-en-la-carrera-por-queretaro-2027-morena-descarta-su-salida/"
     }
   ],
   "actores_destacados": [
@@ -1006,23 +1000,23 @@
       "confianza": "media"
     },
     {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Donald Trump presiona a México para firmar acuerdos energéticos con empresas de ",
-      "nota": "Elecciones intermedias en EU: El futuro de Donald Trump - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOLXg4MjBFTFBIRXZJWV9MWGZfNlJKVW1zYjhJeWlhVWpTM2FUNmxwMF9DbkFHLTVmSzhmSzJwdTBadm9VRVhtbTRBcnFrQWd0UEt4cXNkZjdzTFNNMXhYV2J0c0RQQjBJa3Z6VlBibmxodXlVWGVfR2FRWTBZREdhWjVYVjgwMWprbUxyeVdMZTNLVlBzaE5xa3NLR2lmQ0NP0gGgAUFVX3lxTE9XbDhGM3B2TDJ6a3NKVWV0RllVWExOczUxY25hMGtwNEpGY0VseEhwT3kzRmUxVEJZU2ZpWDNWc0hoYXp5cldkdWhITXJLQkk0MlA1a3kwdzJtNVN2U1Fmc09UZEhtd2xXREo4SzViYzlabG1VakVIVnZ6eWlCV0Q4MkxjN2s2VWdxelF1N0MzSVE5THQxVzdtZzhjc0w0TDk?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "pt_partido",
       "nombre": "Partido del Trabajo (PT)",
       "rol": "Reacción de oposición",
       "tema": "Morena, PT y PVEM buscan coalición de al menos 290 distritos electorales para 20",
       "nota": "Se aleja coalición total con Morena y PVEM, reconoce PT - Reforma",
       "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOT2hmNHBPcFBPV2w5dUNsblBXbnpTSGVvbjY0OUhMTUZ5RG1fSmdqdkNsN1FleTE4TzQ1Tm9lcTNnaGJJVXlXVWZHMUJyU3pxQ2hSVzFEQi1ZUjJQdXEyeUpaQTNfR3hvUGw3M3VNOVlHV3ZmMEgwQ0Z0WDlxYkJMbE5kWFVIVXlTTEh5bDJNY3dKQQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Donald Trump presiona a México para firmar acuerdos energéticos con empresas de ",
+      "nota": "Elecciones intermedias en EU: El futuro de Donald Trump - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOLXg4MjBFTFBIRXZJWV9MWGZfNlJKVW1zYjhJeWlhVWpTM2FUNmxwMF9DbkFHLTVmSzhmSzJwdTBadm9VRVhtbTRBcnFrQWd0UEt4cXNkZjdzTFNNMXhYV2J0c0RQQjBJa3Z6VlBibmxodXlVWGVfR2FRWTBZREdhWjVYVjgwMWprbUxyeVdMZTNLVlBzaE5xa3NLR2lmQ0NP0gGgAUFVX3lxTE9XbDhGM3B2TDJ6a3NKVWV0RllVWExOczUxY25hMGtwNEpGY0VseEhwT3kzRmUxVEJZU2ZpWDNWc0hoYXp5cldkdWhITXJLQkk0MlA1a3kwdzJtNVN2U1Fmc09UZEhtd2xXREo4SzViYzlabG1VakVIVnZ6eWlCV0Q4MkxjN2s2VWdxelF1N0MzSVE5THQxVzdtZzhjc0w0TDk?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1260,10 +1254,10 @@
     },
     {
       "fecha": "2026-10-30",
-      "tension": 19,
-      "n_notas": 9,
+      "tension": 18,
+      "n_notas": 10,
       "n_alto_impacto": 3,
-      "n_medio_impacto": 6,
+      "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     }
   ],
@@ -1283,8 +1277,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/27/morena-denunciara-maru-campos-por-presuntos-delitos-electorales-dano-moral-violencia-politica-de-genero-ariadna-montiel-917255.html",
-      "nota_texto": "Morena denunciará a Maru Campos por presuntos delitos electorales, daño moral y violencia política de género: Ariadna Montiel",
+      "nota_url": "https://www.yucatan.com.mx/mexico/2026/10/27/morena-se-deslinda-caso-guadalupe-taddei-irregularidades-ine-elecciones-2027.html",
+      "nota_texto": "Caso Guadalupe Taddei: Morena se deslinda de irregularidades en el INE y pide certeza para las elecciones",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1327,8 +1321,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/26/sobre-taddei-en-morena-no-somos-tapadera-de-nadie-pero-que-investigue-la-asf-ariadna-montiel-916712.html",
-      "nota_texto": "“Sobre Taddei, en Morena no somos tapadera de nadie pero que investigue la ASF”: Ariadna Montiel",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/beatriz-mojica-cierra-filas-con-ariadna-montiel-todo-nuestro-respaldo-nuestra-presidenta-918038.html",
+      "nota_texto": "Beatriz Mojica cierra filas con Ariadna Montiel: “Todo nuestro respaldo a nuestra presidenta”",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1366,8 +1360,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNZzQxYUpnZ0YtOXkyVHo1VGJ2UnNscUFpRVNUODNtanJuRzM2LWItMTdsYWEydUZwZzdGb2tEdUl5b2kxX3J0M2hfOXJYUzk4RjdjeW5DYi1MbFY3NFlmXzlrNFpMZ1BDVjMtLWFEUUhuLTRYVWNrRlJmejc3QUJuOHlNWnlsM3kzem4zY0w0VlZMSzRkT0RWclM5ZFhHRE1aMVJwUWgza3M4aWdiVHktS2pVSDMyNFdQWWd3eXlsY1VXREZuSlE?oc=5",
-      "nota_texto": "Claudia Sheinbaum Reacciona a Resultados de Elecciones en Brasil y Destaca Reelección de Lula - N+",
+      "nota_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSlg5MVBDeGdtdXhGalhWdW9uazNzXzV4eUdMMVBzbi1xYUp2WXg3QzdLVFVyVy1oYmZCTDZBSnFyV0JST1JHNG5VMFI4V3pZa3VnOGQ0LU5MamJCMkpqOGVVQ3FFOE96ejBTdWhnaF9CUG5ENzRIbnJvOXY2ZkI3R3JvRGpLMkxWWGhEOTRPWWEtSWEtYlNNV2RWY21GUnZpbzBFWnJRa3VlNHpFSmtlcU1zaw?oc=5",
+      "nota_texto": "Guadalupe Taddei traicionó confianza del pueblo, urge auditoria al INE: Claudia Sheinbaum - Quinta Fuerza",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1475,8 +1469,7 @@
           "x": 47,
           "y": 82
         }
-      ],
-      "fecha_reactivado": "2026-10-30"
+      ]
     },
     {
       "id": "manzo",
@@ -1822,5 +1815,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-30 11:24"
+  "hora_corte_publicada": "2026-10-30 12:04"
 }
