@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-10-30T12:04:34.949083-06:00",
+  "generado_en": "2026-10-30T18:01:49.020693-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 15,
+  "n_notas_ventana": 14,
   "baja_confianza": false,
-  "tension_nacional": 20,
+  "tension_nacional": 14,
   "tension_anomalia": {
-    "z": -0.73,
+    "z": -1.94,
     "nivel": "normal",
-    "media_periodo": 23.7,
+    "media_periodo": 23.8,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 54,
+      "peso_pct": 65,
       "tema_principal": "López Obrador: reaparición y declaraciones",
       "tema_principal_id": "amlo-agenda",
-      "n_temas": 6,
-      "n_notas": 9,
+      "n_temas": 7,
+      "n_notas": 10,
       "notas": [
-        {
-          "texto": "Guadalupe Taddei traicionó confianza del pueblo, urge auditoria al INE: Claudia Sheinbaum - Quinta Fuerza",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSlg5MVBDeGdtdXhGalhWdW9uazNzXzV4eUdMMVBzbi1xYUp2WXg3QzdLVFVyVy1oYmZCTDZBSnFyV0JST1JHNG5VMFI4V3pZa3VnOGQ0LU5MamJCMkpqOGVVQ3FFOE96ejBTdWhnaF9CUG5ENzRIbnJvOXY2ZkI3R3JvRGpLMkxWWGhEOTRPWWEtSWEtYlNNV2RWY21GUnZpbzBFWnJRa3VlNHpFSmtlcU1zaw?oc=5",
-          "intensidad": 7.0,
-          "medio": "Quinta Fuerza"
-        },
         {
           "texto": "Sacan a hija de Rocha Moya de la titularidad del DIF de Sinaloa tras visita del Gabinete de Seguridad - LatinUS",
           "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOUW1FWDdack9UVWh5V3hsaUhNMFZZc1liQWlLbzl1emFpblN5VmxKb1MxdDhiM1plQy1zU0w0MXBHLWlWQ3RPLTNVOHNfTnhPMEVtcldKV0Y3Qk9iTEJ2U3p6M0NxU0tlUG9jazN0TURxX2lCaHI1R3ZGV0JiTW1RclQtaWY2R0lGLUZRM3hQcUF1OTFCYm5qQW5sMW9wX3hJUHI1bXdaRF93WWp1NUdEVUdSZTdWY2Q2bGhPRDF3UEhkanhYQWR1QmFGYTZOTVVxMUotYzJTZFZ3bklGc1RIZGdNQQ?oc=5",
@@ -32,16 +26,10 @@
           "medio": "LatinUS"
         },
         {
-          "texto": "Jesús Selván reúne a aspirantes a coordinaciones distritales de Morena",
-          "fuente_url": "https://www.tabascohoy.com/jesus-selvan-reune-a-aspirantes-a-coordinaciones-distritales-de-morena/",
-          "intensidad": 5.0,
-          "medio": "tabascohoy.com"
-        },
-        {
-          "texto": "Óscar Cantón promete no descuidar Tabasco desde la vicecoordinación de Morena en el Senado - XEVT",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPT3pWeTF2ZVEyWDJPYkZNVkxVenJEb1h5RW5HMUJVOXlMMnN0VUsyZjlhaDhuMnlmVkpQUEwwcUlWNEJ2RnJyNU1td0xCMmNHZVZ6TUZ0dkdfRm0yX2FucHZ0ZG55SlFWOUZ2Ul9hM2M0QjlpSmk0ZTViRHpEQS1HT0phYkZmYnhydU5xcDRsTGFnZzBSbjIteDAxb3k2dm1sbDNOWTVqNWE2OXYxc0VEcWJ0TVpqb1JUdmxFSU1FTHRnT3RzZ0E?oc=5",
-          "intensidad": 5.0,
-          "medio": "XEVT"
+          "texto": "Farías apunta a Ojeda por huachicol fiscal - Periodismo digital",
+          "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9pc21YNUVMZE1oNU5zRWZ3dGl5WURMem9jWjNWbHMwMUxQZnJyR0szdlZaTXZtV2RkeHRFZjZGNHVmQjdfWW9TUUpDbGNOTXBTemo4NDAzYmJ2czFVS1ZhS3lNaTRiY203Z1hvOWJZME8yWGpzSzhCUmZCckthX1E?oc=5",
+          "intensidad": 6.0,
+          "medio": "Periodismo digital"
         },
         {
           "texto": "AMLO y Morena contra el INE - El Financiero",
@@ -68,6 +56,24 @@
           "medio": "Super Channel 12"
         },
         {
+          "texto": "La crisis del INE no termina con una renuncia, escribe Kenia López Rabadán - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQanp6VTBUbVAzNHlyT2ctQkVKbnVDN3RBTXFocmJiV2RLM1UzbzA2a0NuOWRQM0JleGdXdGlEekNYVy1FRjlyY1lYbDdIa3lheGZSci1TWDVfWTZJTm1DODV5cGJ2X3MtWTZHM2FGNGlxS1d3eVlQaGVteTRpUE4wRmNvMG5EY0hZam1sS1FMZGNFSmtWQVBfTXo5aXlQRHJzOVVocjEzbTc?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Universal"
+        },
+        {
+          "texto": "Lorenia Valles participa en encuentro con senadores de Morena - Dossier Político",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOSTZ2SkdpenY1YjFmLWdETmVPYXl6Yy13MVZYMlQ1VWpyaWxNQkNKckFiaGFHMlllT1hPV2VvU0t0ZHp2c0lESVZ2Qld0aFdhZVZJM0JtRDY4YlloeDduX1B2akszU1FvMzltNERZa0JERnJLbWJPcm1TdmFPWm1NTWM5UTk5ZFRqSC05MUVYWjdURFhSNldQeklTdkFpNnZkMnhF?oc=5",
+          "intensidad": 5.0,
+          "medio": "Dossier Político"
+        },
+        {
+          "texto": "Diputado Sergio Luna niega presunto cobro de diezmos en Órgano Interno del INE: ‘Es campaña de la derecha’",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/30/diputado-sergio-luna-niega-presunto-cobro-de-diezmos-en-organo-interno-del-ine-es-campana-de-la-derecha/",
+          "intensidad": 5.0,
+          "medio": "elfinanciero.com.mx"
+        },
+        {
           "texto": "Karla Sevilla al frente de Conciliación Laboral",
           "fuente_url": "https://www.tabascohoy.com/karla-sevilla-al-frente-de-conciliacion-laboral/",
           "intensidad": 4.0,
@@ -77,18 +83,12 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 24,
+      "peso_pct": 18,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 3,
-      "n_notas": 3,
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
-        {
-          "texto": "Movimiento Ciudadano pide investigar contratos del OPLE Veracruz por más de 454 millones de pesos a dos empresas",
-          "fuente_url": "https://oem.com.mx/diariodexalapa/local/movimiento-ciudadano-exige-investigar-contratos-millonarios-del-ople-veracruz-con-dos-empresas-32867138",
-          "intensidad": 7.0,
-          "medio": "oem.com.mx"
-        },
         {
           "texto": "A 6 meses de impunidad de Rubén Rocha Moya, México sigue sin entregar al exgobernador buscado por Estados Unidos - www.adn40.mx",
           "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNb2JUWktLWFRTWjlZWVNkSElvR1NZd1A0bmlMNWdSSHFhcHRVcmFnTWo3SXFqYXlmZmJ1dUtwSGFaT3cwRFNndUx6cS1UWWU0bmRURVhxcFhoQXdnOERNZzI2bjNVS1hsQXFlWnZVZ21iWUplVGg3NXNYeUJWN3RiMzZuZHBUM3hIMlcyYW55UFl2emFkZklhV2hudDVLSzJST2hwQXhNYVBCcjMxRWFiVld0bkZINGZkNVVnZ2NyNU9QNzZDaVhSWXlhb29OQnRGcS1fV0NBekFCQkRFNExSSzJlenhMUHJPV3c?oc=5",
@@ -105,29 +105,23 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 15,
+      "peso_pct": 9,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 1,
-      "n_notas": 2,
+      "n_notas": 1,
       "notas": [
         {
           "texto": "Abatimientos, detenciones y ‘narcoterrorismo’: cómo la guerra entre Chapitos y Mayos alcanzó a los remanentes - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPLVJVS1NqN0lyVTh2cWc0TWF0bDI1M1lGSXh6OGdBaGN4aHhHZnBxel95RWItNGtWREZsbUhOYk1yMlBrN2NHUGJSeVc1S2RQS3VoVVNIZ0pwNk1pczVVOXkwS3ZuRTE5S2tpamRDZXBOekRhemhCZ1pxOEpYYy1uUnFWcEppRjU2Nl9jMGdUQlhHVVk5NzNMVDBJT1RMd9IBngFBVV95cUxQMVR0RjNoc3ZGdUxGYXlMZ0Fna3ZzR3UxcUdtX21xbzNTRHRfWXlLcGZaNHp6MERuU0NZcXVuS012OEVGSEplSDd6al9sN3JybFJ2ejR5Y0w3S25OczFxRlBjcUt1Xzd2TUlQWFhjY3F3NjFzVnBMSjEyQjdEM3R4UmQxS1daem1kUEdiLXRNQURqckpFRG9wXzVQbVlqQQ?oc=5",
           "intensidad": 7.0,
           "medio": "MILENIO"
-        },
-        {
-          "texto": "¡Escándalo en Sinaloa! Los 10 nombres señalados por Estados Unidos por presuntos nexos con Los Chapitos. - ADN 40",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxON1BsUzBHdzd0ZWw5UmdZazZJTmxvVEpBRnJpLVFBYlhEdGI2Nk96XzdmZnpyRUhKa0Y0MXJEeFpHUnIwTU1yRlVOMk9aRHZWNDNSeV9BOTlBaWFMTm9SZU56clE4VGVKWnRFcHFPVC1nVHVwV2txZEphWWVkSmlpZURMSTZkOEk0Wm9tYVJjUjdwem5vaU9XZ25vSXFpd0U1aE1rZXRmbmJNZjZRQkNPc2doOEhRdnV3alVtSlBtTE9pQmVFOUE?oc=5",
-          "intensidad": 6.0,
-          "medio": "ADN 40"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 7,
+      "peso_pct": 8,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -519,7 +513,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -661,7 +655,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -686,11 +680,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -711,7 +705,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -769,7 +763,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -807,7 +801,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -819,7 +813,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -832,15 +826,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -854,6 +848,24 @@
     }
   ],
   "top5_temas": [
+    {
+      "id": "sinaloa-crisis",
+      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
+      "motivo": "Abatimientos, detenciones y ‘narcoterrorismo’: cómo la guerra entre Chapitos y Mayos alcanzó a los remanentes - MILENIO",
+      "peso": 14.0,
+      "n_temas_agrupados": 4,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPLVJVS1NqN0lyVTh2cWc0TWF0bDI1M1lGSXh6OGdBaGN4aHhHZnBxel95RWItNGtWREZsbUhOYk1yMlBrN2NHUGJSeVc1S2RQS3VoVVNIZ0pwNk1pczVVOXkwS3ZuRTE5S2tpamRDZXBOekRhemhCZ1pxOEpYYy1uUnFWcEppRjU2Nl9jMGdUQlhHVVk5NzNMVDBJT1RMd9IBngFBVV95cUxQMVR0RjNoc3ZGdUxGYXlMZ0Fna3ZzR3UxcUdtX21xbzNTRHRfWXlLcGZaNHp6MERuU0NZcXVuS012OEVGSEplSDd6al9sN3JybFJ2ejR5Y0w3S25OczFxRlBjcUt1Xzd2TUlQWFhjY3F3NjFzVnBMSjEyQjdEM3R4UmQxS1daem1kUEdiLXRNQURqckpFRG9wXzVQbVlqQQ?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
+    },
     {
       "id": "amlo-agenda",
       "nombre": "López Obrador: reaparición y declaraciones",
@@ -870,22 +882,19 @@
       "actor_vinculado": null
     },
     {
-      "id": "sinaloa-crisis",
-      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
-      "motivo": "Abatimientos, detenciones y ‘narcoterrorismo’: cómo la guerra entre Chapitos y Mayos alcanzó a los remanentes - MILENIO",
-      "peso": 7.0,
-      "n_temas_agrupados": 2,
+      "id": "ley-antimemes",
+      "nombre": "Ley Antimemes y reforma de propiedad industrial",
+      "categoria": "Gobernabilidad",
+      "resumen": "Reforma sobre propiedad industrial/derechos de autor apodada «Ley Antimemes»: aprobación en comisiones y Senado, críticas por riesgo de censura y aclaraciones de la presidenta.",
+      "motivo": "La crisis del INE no termina con una renuncia, escribe Kenia López Rabadán - El Universal",
+      "peso": 10.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPLVJVS1NqN0lyVTh2cWc0TWF0bDI1M1lGSXh6OGdBaGN4aHhHZnBxel95RWItNGtWREZsbUhOYk1yMlBrN2NHUGJSeVc1S2RQS3VoVVNIZ0pwNk1pczVVOXkwS3ZuRTE5S2tpamRDZXBOekRhemhCZ1pxOEpYYy1uUnFWcEppRjU2Nl9jMGdUQlhHVVk5NzNMVDBJT1RMd9IBngFBVV95cUxQMVR0RjNoc3ZGdUxGYXlMZ0Fna3ZzR3UxcUdtX21xbzNTRHRfWXlLcGZaNHp6MERuU0NZcXVuS012OEVGSEplSDd6al9sN3JybFJ2ejR5Y0w3S25OczFxRlBjcUt1Xzd2TUlQWFhjY3F3NjFzVnBMSjEyQjdEM3R4UmQxS1daem1kUEdiLXRNQURqckpFRG9wXzVQbVlqQQ?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQanp6VTBUbVAzNHlyT2ctQkVKbnVDN3RBTXFocmJiV2RLM1UzbzA2a0NuOWRQM0JleGdXdGlEekNYVy1FRjlyY1lYbDdIa3lheGZSci1TWDVfWTZJTm1DODV5cGJ2X3MtWTZHM2FGNGlxS1d3eVlQaGVteTRpUE4wRmNvMG5EY0hZam1sS1FMZGNFSmtWQVBfTXo5aXlQRHJzOVVocjEzbTc?oc=5",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -896,14 +905,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOS3NTemVUZllyMzJBbXhEZTRTTW5UNG1leVcxenVXQjhjeXRZNmxxQlA0aTdIeHpBR0Z1Nnc1NjFOUkJlSmlnTFlUTXJ0VjBObFpTaE1GT2Q2X1ZVT3VQYWZHVmhXODRESjg1OWVobERlb3QtTjk4QnNGM3ZJN2FsaGVHMW9CbEpEWEdlOHNxcWFFQXNjenNseDdiU0dpbG9lSDVNbDJ0NNIBpwFBVV95cUxOS3NTemVUZllyMzJBbXhEZTRTTW5UNG1leVcxenVXQjhjeXRZNmxxQlA0aTdIeHpBR0Z1Nnc1NjFOUkJlSmlnTFlUTXJ0VjBObFpTaE1GT2Q2X1ZVT3VQYWZHVmhXODRESjg1OWVobERlb3QtTjk4QnNGM3ZJN2FsaGVHMW9CbEpEWEdlOHNxcWFFQXNjenNseDdiU0dpbG9lSDVNbDJ0NA?oc=5"
-    },
-    {
-      "id": "auto-6613a03255",
-      "nombre": "Regala aspirante de Morena dinero a damnificados en Colima - Reforma",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPN0tVUl94WWN4aThfWGdMU2JwU0hmSjlIQlZRMl93RnRuQjdfOG9sTGNKalR2NXl4N2lWWE1seE0xV2R3RmhMbFZHVk9ZbFRYamdldUtkd3Z6MUI4NEhyaTdzbklFaUlrdmtpU1NpemMtQTdVaFNqT01EcFllRjlzcUlYaFJEbWJmMFRqZmRzS0JHUnBLcnpJ?oc=5"
     },
     {
       "id": "auto-5e328affa7",
@@ -932,10 +933,21 @@
   ],
   "temas_retomados": [
     {
+      "id": "auto-914ea02b55",
+      "nombre": "Destaca Mara Lezama mayor prosperidad con proyecto eólico en el sur de Quintana ",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 23,
+      "motivo": "Visibiliza Mara Lezama el talento de 40 artesanas y artesanos que mantienen vivas las tradiciones de Quintana Roo - Gobierno del Estado de Quintana Roo",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNLURaY29jY0ltWFJGcHdkOFk0eHJoZTZ3dGFDbGFST1A0QjEtZ2c4bjY2YkE4eHhCZGlHb1VDcklnZjRCYkdZNlNyWGE3UktvcUdxbU5fWm04Nm8ySmpxWjRJZnZyNThEYWV1eEpiTDdEMjE5V0x0TVEtZDFIODRucFViMG9zdmEtTzJRaXpxVHVTeklpcmxKTUhHaW91MEUxVDM1eUJxaVdrV2RVNTRsY0k1aktJVmNMQXZ6X2drb1lYUHRPd3pnYlduNlhmX0tYS3VlYg?oc=5",
+      "fecha_anterior": "2026-10-07",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObnIxYmlaOWpiVEZHMkRKTE11Y1RvZWJYd05tQTFZcjN6TnNrTWtSelozdXRqbU4xQlFnbmh5WFdXRDVVbkw4ZjV4TGlHS3BwYjd1dFluMTdiVS1xSGtnc0FlcW1KemRMTWdUN3dEVjJOT2h3U1ktTXh4ZWRTb1R4cU1jSzNURDA0NHBZS25EMXhKaG82aWZPUGM0aElIRWcwaTloNFRpOA?oc=5"
+    },
+    {
       "id": "auto-65ecc82849",
       "nombre": "El crac de la alianza Morena-PT, escribe Raúl Rodríguez Cortés - El Universal",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 20,
+      "dias_silencio": 21,
       "motivo": "Morena y los filtros de la pureza, escribe Raúl Rodríguez Cortés - El Universal",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQNlA1SVgxS2tFZ1hLWGFvb2Z2UGh4V1lmUEdnbElSYkoyT1lTUG1QdzAteUZtMDFqSDMzb01PcktEVmRPM2hwYU5uVXVBazJmbUFiWEFoSnRSVFcyRHZ4bEtySmw3OE1XeDhQWUFUMlN4X2hqeWNJSlAyYW4tV1ZVcTMxRXNtOXdGM25wWGtrbXFIckFyaHgzSlhRdw?oc=5",
@@ -943,21 +955,10 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPV2d3Uk9MSWx6YjlzbWROWnQ3dUNpeG9DNzJvdEQ1YXdLLWFlRWJyeDFiX1U4LUFCcXFkMlcwVmRmTnRva1hzZVNma19iSlFTdmpUNWNYcU95UWZMdFNoRm1LSUU5NmdYc3JsX1l3QWpSWm5kSTk0Vk1fSXR2Sl9MT3hfUUxvV2xOblAySlZNRlhiWU1VWXhUdQ?oc=5"
     },
     {
-      "id": "auto-e8e0ba7b36",
-      "nombre": "Morena, PT y PVEM buscan coalición de al menos 290 distritos electorales para 20",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 19,
-      "motivo": "Se aleja coalición total con Morena y PVEM, reconoce PT - Reforma",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOT2hmNHBPcFBPV2w5dUNsblBXbnpTSGVvbjY0OUhMTUZ5RG1fSmdqdkNsN1FleTE4TzQ1Tm9lcTNnaGJJVXlXVWZHMUJyU3pxQ2hSVzFEQi1ZUjJQdXEyeUpaQTNfR3hvUGw3M3VNOVlHV3ZmMEgwQ0Z0WDlxYkJMbE5kWFVIVXlTTEh5bDJNY3dKQQ?oc=5",
-      "fecha_anterior": "2026-10-10",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMG9XR2FUT2JYS3BjVTdRdDRoYVJiRl9ZZjltbFdpQzNkV2ttUVNvdkJsV0t4eGdhZEJ5NnpDWEZJMVlwUm1zVE1EbndZdERTQkw0aWVES1lOTk5yenBWaVNwMUpGVFUzSXg4NFFnOWdCQW5pbnROaXJSSzNVS25ZdDNpZU5vbTlYX2k1elZn0gGiAUFVX3lxTE41UzNtU0dPWGtvc0ZPeUZHeFFiWTFLb3FsaTgwdmpHMVZwNGFMbF9jVWhpc0tnNmF5UXJ1RlN5cTNncl9LUm52NGxZZ19zRWZuX29VdnFROEZRdXlXRTdzMTBLdXg1SUg2cFJ6TE1kSTA4RzhyT1hLT19sX3NwdmoteDZGYjItMnFpUHJlZmNWYVZiMmFjOWY3QWh1SWpCY0lvdw?oc=5"
-    },
-    {
       "id": "auto-a5afbdfc4e",
       "nombre": "¿Gobernador de 10? Bertruy cuestiona el bienestar oficial ante familias que elig",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 8,
+      "dias_silencio": 9,
       "motivo": "Gobernador de Sonora niega la existencia de un “clan familiar”",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/10/30/politica/015n2pol?partner=rss",
@@ -965,21 +966,10 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-3a81bddfc9",
-      "nombre": "Mesa de Seguridad: Pendientes en materia de seguridad, a 2 años de gobierno de C",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 7,
-      "motivo": "🔔 ALERTA — Embajador Johnson reconoce avances en materia de seguridad y migración entre México y Estados Unidos - El Economista",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOWUg0c2tWUVhuZTlNM29aSnk1endlTHhZVU1leGYyRWZZb29ZN01qUVc4UXFkRDFQQVQ0MmlmQnNKaDMycGI2Y19aeDFvcVA2Z2tFR1dxeGpSOGg3bjhCb19EYzdrQTd4UkZCOTg3OWFMZU5ZUm9FbS1uRHNybW8xRkhld1htcW5nMnJpbWhCSTJhRm5oR2pvTU1WenQ0WmNIbnJzSWQ5dkhiMGpLc2pnYTJYczhWTVo2NUdVSGRqUTJLMm9TdmI2eng2Mm91V2FHZHltSC1FcTdLU0RUMHM5bTJUekVjMWJGMUxFVW530gHuAUFVX3lxTE5ZSDRza1ZRWG5lOU0zb1pKeTV6d2VMeFlVTWV4ZjJFZllvb1k3TWpRVzhRcWREMVBBVDQyaWZCc0poMzJwYjZjX1p4MW9xUDZna0VHV3F4alI4aDduOEJvX0RjN2tBN3hSRkI5ODc5YUxlTllSb0VtLW5Ec3JtbzFGSGV3WG1xbmcycmltaEJJMmFGbmhHam9NTVZ6dDRaY0hucnNJZDl2SGIwaktzamdhMlhzOFZNWjY1R1VIZGpRMksyb1N2YjZ6eDYyb3VXYUdkeW1ILUVxN0tTRFQwczltMlR6RWMxYkYxTEVVbnc?oc=5",
-      "fecha_anterior": "2026-10-22",
-      "fuente_url_anterior": "https://heraldodemexico.com.mx/nacional/2026/10/22/reconocen-el-trabajo-de-la-presidenta-claudia-sheinbaum-en-materia-de-seguridad-914260.html"
-    },
-    {
       "id": "auto-ad4925fbb8",
       "nombre": "Santiago Nieto sigue en la carrera por Querétaro 2027: Morena descarta su salida",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 7,
+      "dias_silencio": 8,
       "motivo": "Quedó atrás la idea de que Querétaro es bastión del PAN: Santiago Nieto",
       "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/30/quedo-atras-la-idea-de-que-queretaro-es-bastion-del-pan-santiago-nieto/",
@@ -1000,23 +990,23 @@
       "confianza": "media"
     },
     {
-      "id": "pt_partido",
-      "nombre": "Partido del Trabajo (PT)",
-      "rol": "Reacción de oposición",
-      "tema": "Morena, PT y PVEM buscan coalición de al menos 290 distritos electorales para 20",
-      "nota": "Se aleja coalición total con Morena y PVEM, reconoce PT - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOT2hmNHBPcFBPV2w5dUNsblBXbnpTSGVvbjY0OUhMTUZ5RG1fSmdqdkNsN1FleTE4TzQ1Tm9lcTNnaGJJVXlXVWZHMUJyU3pxQ2hSVzFEQi1ZUjJQdXEyeUpaQTNfR3hvUGw3M3VNOVlHV3ZmMEgwQ0Z0WDlxYkJMbE5kWFVIVXlTTEh5bDJNY3dKQQ?oc=5",
+      "id": "amlo",
+      "nombre": "Andrés Manuel López Obrador ('AMLO')",
+      "rol": "Reacción social/mediática",
+      "tema": "López Obrador: reaparición y declaraciones",
+      "nota": "AMLO y Morena contra el INE - El Financiero",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOWnVPbmtGaEVZUE5Qa01jZ1FkbGFGTm16ZDIwQ05aRVNDWURmaUQzN2s3U1Q4cDdfd0RsS3lMaVoxaUh3LUR0c3VJaUxVazk0dk9ZbzB1X2hYTnl6Y1NOcUtnQlZodG5NQk1HOFZaMkRfbDRmVFNBNlUzYUhrUVBlOTZXSi05V1FUR1RzWXloUWlLUV9uUWNwTmxfT1B5RDA?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Donald Trump presiona a México para firmar acuerdos energéticos con empresas de ",
-      "nota": "Elecciones intermedias en EU: El futuro de Donald Trump - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOLXg4MjBFTFBIRXZJWV9MWGZfNlJKVW1zYjhJeWlhVWpTM2FUNmxwMF9DbkFHLTVmSzhmSzJwdTBadm9VRVhtbTRBcnFrQWd0UEt4cXNkZjdzTFNNMXhYV2J0c0RQQjBJa3Z6VlBibmxodXlVWGVfR2FRWTBZREdhWjVYVjgwMWprbUxyeVdMZTNLVlBzaE5xa3NLR2lmQ0NP0gGgAUFVX3lxTE9XbDhGM3B2TDJ6a3NKVWV0RllVWExOczUxY25hMGtwNEpGY0VseEhwT3kzRmUxVEJZU2ZpWDNWc0hoYXp5cldkdWhITXJLQkk0MlA1a3kwdzJtNVN2U1Fmc09UZEhtd2xXREo4SzViYzlabG1VakVIVnZ6eWlCV0Q4MkxjN2s2VWdxelF1N0MzSVE5THQxVzdtZzhjc0w0TDk?oc=5",
+      "id": "pan_partido",
+      "nombre": "Partido Acción Nacional (PAN)",
+      "rol": "Reacción de oposición",
+      "tema": "Santiago Nieto sigue en la carrera por Querétaro 2027: Morena descarta su salida",
+      "nota": "Quedó atrás la idea de que Querétaro es bastión del PAN: Santiago Nieto",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/10/30/quedo-atras-la-idea-de-que-queretaro-es-bastion-del-pan-santiago-nieto/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1024,7 +1014,7 @@
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
-      "rol": "Investigado",
+      "rol": "Responsable institucional",
       "tema": "Claudia Sheinbaum emite despedida a Cuauhtémoc Cárdenas: “Transformó la vida pol",
       "nota": "La antítesis de Cuauhtémoc Cárdenas es Morena, escribe Maite Azuela - El Universal",
       "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPallPLTNYcjBNR2VIVFFkVWdYVlJjUnNIVHVkVU9DVW11eHQ1Y3BmUVRRWFkxT1h5cXk5SmVheElTLTNOeE1ab2FxSGNlNDNJd3pib093dktPSktOcU5tdFFpYmc5SWEzVFE2dnN4eUZ3emdtdG1adVJ4dWQtSC1JdzcxS0tfX2NEMV9YaUhKOGltYjByM1c0d0Q5WkpfQ3M?oc=5",
@@ -1087,9 +1077,9 @@
     {
       "fecha": "2026-10-09",
       "tension": 26,
-      "n_notas": 74,
+      "n_notas": 75,
       "n_alto_impacto": 35,
-      "n_medio_impacto": 39,
+      "n_medio_impacto": 40,
       "n_bajo_impacto": 0
     },
     {
@@ -1103,8 +1093,8 @@
     {
       "fecha": "2026-10-11",
       "tension": 29,
-      "n_notas": 35,
-      "n_alto_impacto": 17,
+      "n_notas": 36,
+      "n_alto_impacto": 18,
       "n_medio_impacto": 18,
       "n_bajo_impacto": 0
     },
@@ -1183,9 +1173,9 @@
     {
       "fecha": "2026-10-21",
       "tension": 28,
-      "n_notas": 50,
+      "n_notas": 51,
       "n_alto_impacto": 25,
-      "n_medio_impacto": 25,
+      "n_medio_impacto": 26,
       "n_bajo_impacto": 0
     },
     {
@@ -1199,9 +1189,9 @@
     {
       "fecha": "2026-10-23",
       "tension": 20,
-      "n_notas": 50,
-      "n_alto_impacto": 18,
-      "n_medio_impacto": 32,
+      "n_notas": 52,
+      "n_alto_impacto": 19,
+      "n_medio_impacto": 33,
       "n_bajo_impacto": 0
     },
     {
@@ -1222,9 +1212,9 @@
     },
     {
       "fecha": "2026-10-26",
-      "tension": 15,
-      "n_notas": 36,
-      "n_alto_impacto": 7,
+      "tension": 16,
+      "n_notas": 37,
+      "n_alto_impacto": 8,
       "n_medio_impacto": 29,
       "n_bajo_impacto": 0
     },
@@ -1254,10 +1244,10 @@
     },
     {
       "fecha": "2026-10-30",
-      "tension": 18,
-      "n_notas": 10,
+      "tension": 14,
+      "n_notas": 14,
       "n_alto_impacto": 3,
-      "n_medio_impacto": 7,
+      "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     }
   ],
@@ -1321,8 +1311,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/28/beatriz-mojica-cierra-filas-con-ariadna-montiel-todo-nuestro-respaldo-nuestra-presidenta-918038.html",
-      "nota_texto": "Beatriz Mojica cierra filas con Ariadna Montiel: “Todo nuestro respaldo a nuestra presidenta”",
+      "nota_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQSGI3ZFdia0tQa3R3TEtKNUNxMVlubzdQUW5KSmxqZHRsR2V0d2c5akY2SW5BRjZzNTBjSXBXakFGekp5bFJLYzJsemU3ak4zTnlrUDJGVFd1cVNrVzJQdU1JTkNUdUZYRVBTanNZWWphbHZXcEFHVzlDWWNaRkNOTVZHamtxb0FrcFBfYkUzdWhFa29NMHNoU194bXg1RVlwTi04NzA0ay00MUE5VUY3LThuM0dLSFM5ODVNZ3doMWVUTlE?oc=5",
+      "nota_texto": "Ariadna Montiel niega reunión con 'El Guano' y acusa campaña para desacreditar a Morena - Municipios Puebla",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1404,8 +1394,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQWU2VF9EZzdDcG15bFBZVWRVVldBUFJpNm9FYXVnT194S3NzUDhvdERITDZXN0wya0VXd2xCaml3bHJCY3JvUDlWTVp6azZyVU16OVFkc251RVVtTFJtZEpZdTVuTjlGQ1RRUWh0TmdFTHhxZ0t1dXZ1ZGVTTl9KYkdvUHE5STRjVnEtZGVWMzJ2MlFXck9LdTFTNzBLYTNvRmpKZ3RCTWhLd1o0eFkzOHlzOV93TWNNM1pQcWdBYktFQQ?oc=5",
-      "nota_texto": "FGR descarta abrir investigaciones contra Andy López Beltrán y Adán Augusto - Serpientes y Escaleras",
+      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPMThPZTNaTFVXOU5xRnd0WmJWTDVJdEhiMXNPQ3lic2FycmVtRnY0SzVYdXdUY0J4SnRkQXV4clhzQk9nT2YxYlNST2dhMnBVNklrZUdBczlibHVIYUUxTm5RTko5MGVpV0FZTTJ3UC1aRlBYeHd1QURqRDY0Y19wdXk2NmpfQWI3LTZ6STcycW4xZDVjVXBVLUFlZFhKLWhDMklrT0JVSEd4QncxR2xGSXpwSENFeXQydEhmT1FuTQ?oc=5",
+      "nota_texto": "FGR descarta elementos para investigar a 'Andy' López Beltrán y Adán Augusto López por huachicol fiscal - López-Dóriga Digital",
       "es_nuevo": false,
       "categoria": "Seguridad Nacional",
       "dias_activo": 3,
@@ -1815,5 +1805,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-30 12:04"
+  "hora_corte_publicada": "2026-10-30 18:01"
 }
