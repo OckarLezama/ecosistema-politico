@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-10-31T00:03:43.280993-06:00",
+  "generado_en": "2026-10-31T06:00:20.438939-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 18,
+  "n_notas_ventana": 23,
   "baja_confianza": false,
-  "tension_nacional": 22,
+  "tension_nacional": 13,
   "tension_anomalia": {
-    "z": -0.23,
+    "z": -1.89,
     "nivel": "normal",
     "media_periodo": 23.1,
     "dias_base": 27
@@ -13,12 +13,18 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 69,
+      "peso_pct": 90,
       "tema_principal": "Claudia Sheinbaum minimiza la marcha del IMSS y tilda de “oportunista” la presen",
       "tema_principal_id": "auto-54f63d763e",
       "n_temas": 8,
-      "n_notas": 13,
+      "n_notas": 21,
       "notas": [
+        {
+          "texto": "Claudia Sheinbaum llega a Bellas Artes para despedir a Cuauhtémoc Cárdenas; encabeza homenaje de cuerpo presente - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOb0t2d2lOc2tMMjBReVlFYjJJSk1FQXQwWlllUnY5dXVsQlAwM1RYSlZ5T29QOHJOblh1Zno4SHpiQTVwcG1fVzhOVWZMSXB1RW90dzF5NllUSzNFZFJzUFBKRWVqc19ZN0ZUbUxRblZDaWx6STBPV0gyN0NXYm42d1NVVzV4M1FhWUUyS2l0cDNpcU9EMFFWd0tEY25fZml0WFJKcFdxb3VwSHlpeUZkRXNMTXhyTTdnSm93MjlQb29HelpaaDh1cUtxcm0yV2UyLUoxVkZ2UFZTRE4zcUlr0gHkAUFVX3lxTE14ZFpGUThES2NKZDFSbVlOWXQ4X01uQVo2eUxiSU52dGh0Y0J1N2l2SlVTNWNiaTk5czYtTGVFOTBkbXZLN1JHN3RyTHRhMjVfUnM0RThlRjNVVFotZ0NJXy03aG95RHpiTG5NdXU2cEVJSU5XRkl3dzZkTG1ZNnJmOVcwcGgzYmJKNS1BdUJZU0FRYlhNcGVma0dOZWZoM2UtaTNNcGMwR0NMUTBqQlJnRzBlc0ZHQUVQc1NkaXRTcDZ4b2hYZV83dDUxRE5mV0Y2YXBESXIxeW5PU2d3VEoyYUc0Rg?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
+        },
         {
           "texto": "⚡ Posible presión de Sindicato Nacional de Trabajadores de la Educación (SNTE) — Trabajadores del IMSS vuelven a marchar por mejores condiciones",
           "fuente_url": "https://www.informador.mx/mexico/trabajadores-del-imss-vuelven-a-marchar-por-mejores-condiciones-20261030-0147.html",
@@ -30,12 +36,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNdG5YNGt2RmVJZzJyQmF5NWNFeTBwckE4OU50bjlFZnRFMU1aM3cyaEY3b2EtM1dLYWRHWkVhTDJXWGd2SU1rcGRyWTZ5alpmNTdUeWV4NzlmSUp1ZjFZRURJZEUwUHU0N0xHNjVrWVpzcUhJaENMa2UwVHMzaVdNWW5QbXpseldqT29XSHdtLUhPYlVzRExEN1JYTWI2REE?oc=5",
           "intensidad": 7.0,
           "medio": "Contigo Puebla"
-        },
-        {
-          "texto": "Sacan a hija de Rocha Moya de la titularidad del DIF de Sinaloa tras visita del Gabinete de Seguridad - LatinUS",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOUW1FWDdack9UVWh5V3hsaUhNMFZZc1liQWlLbzl1emFpblN5VmxKb1MxdDhiM1plQy1zU0w0MXBHLWlWQ3RPLTNVOHNfTnhPMEVtcldKV0Y3Qk9iTEJ2U3p6M0NxU0tlUG9jazN0TURxX2lCaHI1R3ZGV0JiTW1RclQtaWY2R0lGLUZRM3hQcUF1OTFCYm5qQW5sMW9wX3hJUHI1bXdaRF93WWp1NUdEVUdSZTdWY2Q2bGhPRDF3UEhkanhYQWR1QmFGYTZOTVVxMUotYzJTZFZ3bklGc1RIZGdNQQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "LatinUS"
         },
         {
           "texto": "Farías apunta a Ojeda por huachicol fiscal - Periodismo digital",
@@ -56,24 +56,6 @@
           "medio": "www.adn40.mx"
         },
         {
-          "texto": "Se reúne Lorenia Valles con senadoras y senadores de Morena - Entorno Informativo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOMG9ZempySkVKSGx2cERoUS1nZmFFcEpLZm03Q0ZvV3Z4cnk3cEVNVThUWmluWXVfbXZ6dVNXY0RURFh3dm5pVVRLV0puMURKTXBkSmpVc2Rwd2s0REZmMkxuWng2ampaUnJGZjlLVThGRlJadzVTeFB2aF9WX1Vqc1lnVFVsZVZfZUNkX3dOQm9yUkR2QkU4aHh3?oc=5",
-          "intensidad": 5.0,
-          "medio": "Entorno Informativo"
-        },
-        {
-          "texto": "Sheinbaum defiende a AMLO y niega enemistad con Cuauhtémoc Cárdenas: ‘Tuvieron sus diferencias’",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/30/sheinbaum-defiende-a-amlo-y-niega-enemistad-con-cuauhtemoc-cardenas-tuvieron-sus-diferencias/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "¿Quiénes son los 17 coordinadores de la Defensa de la 4T definidos por Morena? - Super Channel 12",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOVllVLVlfcWdoZzFtOGpPeGlDZXRQeHhKX0xjTkRmWVh6WUVMbE5MU1RaSUlFa1kza0NLbWp6TkhaZWNOS2VqNllrbDl2MDMyVkZ0RzdIbTdVZlpUY3UydzJaeVlBeExvZ19uejg4MEkwVXEzcUJ6dFdsb0NLSDViOVAtVkRvem9wblk1YjhJeklPVms1WnBvRWxEU3o3RFZ6UWxrTUt4YXJrdFZNVndBcEhLb0VmMzlfdjVV?oc=5",
-          "intensidad": 5.0,
-          "medio": "Super Channel 12"
-        },
-        {
           "texto": "La crisis del INE no termina con una renuncia, escribe Kenia López Rabadán - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQanp6VTBUbVAzNHlyT2ctQkVKbnVDN3RBTXFocmJiV2RLM1UzbzA2a0NuOWRQM0JleGdXdGlEekNYVy1FRjlyY1lYbDdIa3lheGZSci1TWDVfWTZJTm1DODV5cGJ2X3MtWTZHM2FGNGlxS1d3eVlQaGVteTRpUE4wRmNvMG5EY0hZam1sS1FMZGNFSmtWQVBfTXo5aXlQRHJzOVVocjEzbTc?oc=5",
           "intensidad": 5.0,
@@ -86,55 +68,73 @@
           "medio": "Dossier Político"
         },
         {
+          "texto": "Homenaje a Cuauhtémoc Cárdenas en Bellas Artes: Llegan figuras políticas y diplomáticas",
+          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/30/homenaje-a-cuauhtemoc-cardenas-en-bellas-artes-llegan-figuras-politicas-y-diplomaticas/",
+          "intensidad": 5.0,
+          "medio": "elfinanciero.com.mx"
+        },
+        {
+          "texto": "🚨 #AlMomento | La presidenta Claudia Sheinbaum y la Jefa de Gobierno, Clara Brugada, realizan guardia de honor al cuerpo de Cuahtémoc Cárdenas durante homenaje en el palacio de Bellas Artes. Video: Ar",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQc3BQMUMySkhGcjFRNFlmWmNfLVdRd0d1YnFOZ1lrMkJIMmpvT1p5WnRIeXJVYTRiZ0gzVE1lekMtTmlwVjFqdmhpOVVzZFJlendIT1E2VFNEUkpLWDlaQzUwZE9SU0JkY2d1T3FzRkZKdFRFTGtKd1lqVEIyY2FRZlo4UEVMcUVuZEMzRGZYQXR3R3FSdFY5Qkd0a191bXgtZDhmbkR5d2hoWDdPT1c5MWw5bmJ6dFBNUVNxaTh4QXZJalJpcTNkTGY4MkZVTUVPelRNVXBEVVE1azA?oc=5",
+          "intensidad": 5.0,
+          "medio": "Facebook"
+        },
+        {
+          "texto": "&quot;Cuauhtémoc Cárdenas fue un hombre valiente&quot;: Claudia Sheinbaum encabeza homenaje de cuerpo presente en Bellas Artes",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/10/30/cuauhtemoc-cardenas-fue-un-hombre-valiente-claudia-sheinbaum-encabeza-homenaje-de-cuerpo-presente-en-bellas-artes-919562.html",
+          "intensidad": 5.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
           "texto": "Diputado Sergio Luna niega presunto cobro de diezmos en Órgano Interno del INE: ‘Es campaña de la derecha’",
           "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/30/diputado-sergio-luna-niega-presunto-cobro-de-diezmos-en-organo-interno-del-ine-es-campana-de-la-derecha/",
           "intensidad": 5.0,
           "medio": "elfinanciero.com.mx"
         },
         {
-          "texto": "Sergio Gutiérrez Luna niega haber pedido “diezmos” a funcionarios del INE - Imagen de Veracruz",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNMGVZNzc1VG4yYlVIalBJZUcwRjFfTWZrNy12aV9OeWluQkxlMV8xdFpCZTNrUjRyWUtsd1RfWlU2aGtUY3h6a3JDQWw1MGgtaV8wSHZ5c3VtUVBIV3RPSVRKYS12NmlrNm8wTHk0Q3J0QlFaSGdycnE4bU1tNTlQcTZjTVNCOWUxTzIzWXJBMnA5VzByVlZibmhrX3B2R0pPOXBMdDFOVDlSSVhNeXBSc2hSNDdpNU8wSTZhYTlFek9tUXAwR3lfRHlNVdIBywFBVV95cUxNMGVZNzc1VG4yYlVIalBJZUcwRjFfTWZrNy12aV9OeWluQkxlMV8xdFpCZTNrUjRyWUtsd1RfWlU2aGtUY3h6a3JDQWw1MGgtaV8wSHZ5c3VtUVBIV3RPSVRKYS12NmlrNm8wTHk0Q3J0QlFaSGdycnE4bU1tNTlQcTZjTVNCOWUxTzIzWXJBMnA5VzByVlZibmhrX3B2R0pPOXBMdDFOVDlSSVhNeXBSc2hSNDdpNU8wSTZhYTlFek9tUXAwR3lfRHlNVQ?oc=5",
+          "texto": "🕊️ La presidenta Claudia Sheinbaum acudió al Palacio de Bellas Artes para el homenaje luctuoso a Cuauhtémoc Cárdenas, histórico líder de la izquierda mexicana. 📹 Armando Martínez | MILENIO - Facebook",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNVDJlRFNhcW1FbFpfMVhyTDFOS3JvV0xmdDVzcGZIMGdmM3FLN3I1SVFhaEdNejIxcV9PWXdyYlFQdXlldzZJQ21IaThoU1FYZVdqRlk5T3k5bk52Tk9ESk5Pc2JGNW9kTWo5Smc5ckpzU21oazM3bmVwTFJPU3lYNXJYUVBpN1dqWmxMV21KVTZ5VWx1ejQ5cHhxcnYzUExjY3B2U21ZV1V4NFlkMm1lYkh1elhZVEtncDFIZnBJeFBRakp4TVBJai05a1prMm5vWUl0dkRhSjV4Rmh3OWU0TFNlRlVqbG9hVjhPNw?oc=5",
           "intensidad": 5.0,
-          "medio": "Imagen de Veracruz"
+          "medio": "Facebook"
+        },
+        {
+          "texto": "🚨 #ÚltimaHora | La presidenta Claudia Sheinbaum arriba a Bellas Artes al homenaje que se le rinde al excandidato presidencial y fundador del PRD, Cuauhtémoc Cárdenas 📺 La información con Ricardo Solab",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPM0hZY3luZkpaa0trWW4wOWg5Rkh3SG4xTUJRZEpPcGhGZzdxaTBFZnVDRzJKSFpvUTN1MWRaOXc5S3g1Wkl6LUJTOVVlYXhBUC1MODBpOUlhOVR3UmlLcndvdmV4Tl9DRWVaV0FvVjJOY1pMbWQwZnUyYTRmZDhfM2s0N2JsRFprSGRiN1cwd0haUFN6V2pZOGJ6VW9KbGdpMkdHU0dHdFVaQ0dyR3N2STdsNzBjQUtZRWZ0X3hrMFFWVEc0Vk4yaFQxTTU3YjQ3OGN4Ukh1ajFFV1d6YUkzLUl3?oc=5",
+          "intensidad": 5.0,
+          "medio": "Facebook"
+        },
+        {
+          "texto": "La presidenta Claudia Sheinbaum llega a Bellas Artes para el homenaje que se lleva a cabo para recordar la vida y legado de de Cuauhtémoc Cárdenas, excandidato presidencial y fundador del PRD 📸Daniel ",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQbXpUZVJZemYta2YwSnkwRC14bTAxX2NHNUNsMEJYaWFKcTBtZFF2dFd5U2V3ZjhPMU9nMWZpY3V2SS1DOFUtT05TR0g4d3VKTTBHRUlpekp0NzdFQ0xuQU5fcWhtaWVtYkFTV1RuckMxaEtHZXRha1VPNHJtUDZlX3FUOHU2a1JweXZOQ2JyZDhOaEVGT0k5cTFyVU1oT1BVZDcxQ2Ftc2tNU1lTNGduVXY0anZDRWR5VzRBZ3Awam1LSGVrc2hxX1Fadk56RTJGRW4xdHdqS2pfcVU?oc=5",
+          "intensidad": 5.0,
+          "medio": "Facebook"
         }
       ]
     },
     {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 13,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 2,
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 6,
+      "tema_principal": "Asesinato de Carlos Manzo",
+      "tema_principal_id": "carlos-manzo",
+      "n_temas": 1,
+      "n_notas": 1,
       "notas": [
         {
-          "texto": "A 6 meses de impunidad de Rubén Rocha Moya, México sigue sin entregar al exgobernador buscado por Estados Unidos - www.adn40.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNb2JUWktLWFRTWjlZWVNkSElvR1NZd1A0bmlMNWdSSHFhcHRVcmFnTWo3SXFqYXlmZmJ1dUtwSGFaT3cwRFNndUx6cS1UWWU0bmRURVhxcFhoQXdnOERNZzI2bjNVS1hsQXFlWnZVZ21iWUplVGg3NXNYeUJWN3RiMzZuZHBUM3hIMlcyYW55UFl2emFkZklhV2hudDVLSzJST2hwQXhNYVBCcjMxRWFiVld0bkZINGZkNVVnZ2NyNU9QNzZDaVhSWXlhb29OQnRGcS1fV0NBekFCQkRFNExSSzJlenhMUHJPV3c?oc=5",
+          "texto": "Fiscalía confirma que asesinato de Carlos Manzo fue venganza del CJNG - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQZE44aGtHZjVlMkhnMnpMcXVfeXZxVU1ZYU1qVDBkVWZHMUJSenBwcjRsa3RKblhQcTlISFVDejNrTi03T3Q5V1E3djMtWnJudnRaZDg3cDVDUlIwblNtb0dHZ0RQQkY1MGdMb000RlZnM2ZZdGZsdjNSUDA4NEtpYnBBTHM3cVNKazI2bnk4bzE3aGF2d3Z6T0FEWDU2cTZzMWQwMW9OdEVsSWlza1VzRkN3VjRlRXRLSzdOckhaVHRvMjZVMjR1Y2NsWEd1Zm9manF0X01ZSXlkVHQzckxsZEVicHZwWWVyTk9fQ0ZhMHrSAYQCQVVfeXFMTU1iSExKbkFLNGs0ZnlhcXNSbzY0cUdLS3JoczNldVdvU0g4ZWU3TEdGRHRSV25Sa1ZfaHpiQjZVV3hkNUVNYkxQekVTVGh2N2pXWDB1bXZfSTNHS0NSNzBac2FNTE5yWmwtUkxvOWxac3ZHNV9CN3lxaEt6aVNPWFlYc1hxUkpWZDZrX1B1dUE4SGdna2h5RnR6MEdZSjV4Wm4telJHRXZRc0pUaHlmSGdsQ0F0UFhvUS1kTlFZWkk4RnJGVFFoZ0pVNnFjU09TWkdBLVVBZzNvN1VfSzY4eldJQVlkcVBrT1FIVm0zTFlDR3BIdWY3SlVreU5iQzNoWWFRb0M?oc=5",
           "intensidad": 7.0,
-          "medio": "www.adn40.mx"
-        },
-        {
-          "texto": "Aranceles de Trump golpean exportaciones mexicanas y abren revisión del T-MEC - El Siglo de Torreón",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNdGo3Ymd3N0NORm9pUjZ1Y2lOZjBsVWlnb2FpaWhFMGFrS1BKZXBQZThobHExdkwyU096MjAtc3hud0s0QUd2NWc1WXZKUGFCZGRDbEgxdWFKempXYnVKbWI5QTFXdmFsamJyS2xOMzBhQlRqTFJEMkNjYjBJT3ZYVURoRFMwUVllNXkydlkwb1hOSkEySkNQbGRYUGVZaEZKZnFnT0xaek9tcU9oYUVoZnY1Z2pRcFZHVUhITEJIeGx3UWxpUllDQjMtYw?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Siglo de Torreón"
+          "medio": "El Universal"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 11,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
+      "peso_pct": 5,
+      "tema_principal": null,
+      "tema_principal_id": null,
       "n_temas": 1,
-      "n_notas": 2,
+      "n_notas": 1,
       "notas": [
-        {
-          "texto": "Index pide certidumbre en revisión del T-MEC para proteger la industria maquiladora - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPYWRWTGVrU2VIc2xTbFBISFBNQ0pMMzUzVWRuU2tMcklJd2pCSTRocVoyNkZ2SXJhQVk2UWk3V2loZkJMcF8zRGVqek5wQ0F5Qk44dS1SZjRNaUJPaXR4OFlqbzNKcHBoWkVnSG9PX1pTT0tnYkJNSVdCRU53VXVhRHVEZFd3SXZyYkt3V292bWZsMGtjaXfSAZYBQVVfeXFMTTdvQ0lKZEF1N29Gd3NnOGlKOG9UYVV5V0F0SExyT2gyLXpUY29hQTdLS2IyckZuNkEzQ1FSSkw0a1hVMmNLNnB0WDZjY1dBOUs4LUtfTm5zNDcyTkRzaVVsNkhTdm5udFRMVU5oMk8zOXBnamItVE8tbzNzRGNlZVgtYnNzQkhyNEk1UkY2cmFzOG5MalN3?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
-        },
         {
           "texto": "Italia mantiene su apuesta por México pese a la incertidumbre por el T-MEC - Golpe Político",
           "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWm1uTkZMZmdscXhOLW5makVULVFzT1dtRjd3cVdtd3RnRFRwUF9rdXFhV1hKbUE1MkZWSUVtd1FncklhaGNCZVRGRmxQUnJwR0JDb0htem54RWdUb0FkLTFvMlo1d1Bkd2Z2dHJVLU5WaTVEOF82TF9KdVI0cWJobnpVQUFEdkNNOHVBamVZOVNWT1ItMjB3ckhmQUF3VkhUZ0hmLWdHREVOSXJreVlVNWt3?oc=5",
@@ -144,20 +144,13 @@
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 7,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "Abatimientos, detenciones y ‘narcoterrorismo’: cómo la guerra entre Chapitos y Mayos alcanzó a los remanentes - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPLVJVS1NqN0lyVTh2cWc0TWF0bDI1M1lGSXh6OGdBaGN4aHhHZnBxel95RWItNGtWREZsbUhOYk1yMlBrN2NHUGJSeVc1S2RQS3VoVVNIZ0pwNk1pczVVOXkwS3ZuRTE5S2tpamRDZXBOekRhemhCZ1pxOEpYYy1uUnFWcEppRjU2Nl9jMGdUQlhHVVk5NzNMVDBJT1RMd9IBngFBVV95cUxQMVR0RjNoc3ZGdUxGYXlMZ0Fna3ZzR3UxcUdtX21xbzNTRHRfWXlLcGZaNHp6MERuU0NZcXVuS012OEVGSEplSDd6al9sN3JybFJ2ejR5Y0w3S25OczFxRlBjcUt1Xzd2TUlQWFhjY3F3NjFzVnBMSjEyQjdEM3R4UmQxS1daem1kUEdiLXRNQURqckpFRG9wXzVQbVlqQQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "MILENIO"
-        }
-      ]
+      "categoria": "Relación Bilateral",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -279,7 +272,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 79
+          "peso_pct": 80
         },
         {
           "categoria": "Relación Bilateral",
@@ -350,7 +343,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Gobernabilidad",
@@ -404,7 +397,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 72
+          "peso_pct": 73
         },
         {
           "categoria": "Relación Bilateral",
@@ -437,7 +430,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -729,7 +722,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -754,7 +747,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 65
         },
         {
           "categoria": "Relación Bilateral",
@@ -775,11 +768,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -800,11 +793,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -825,19 +818,19 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -850,23 +843,23 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 67
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
-        },
-        {
-          "categoria": "Economía",
           "peso_pct": 11
         },
         {
+          "categoria": "Economía",
+          "peso_pct": 10
+        },
+        {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 3
         }
       ]
     }
@@ -878,8 +871,8 @@
       "categoria": "Gobernabilidad",
       "resumen": "Claudia Sheinbaum minimiza la marcha del IMSS y tilda de “oportunista” la presencia de líderes del PT - Semanario ZETA",
       "motivo": "⚡ Posible presión de Sindicato Nacional de Trabajadores de la Educación (SNTE) — Trabajadores del IMSS vuelven a marchar por mejores condiciones",
-      "peso": 17.0,
-      "n_temas_agrupados": 4,
+      "peso": 22.0,
+      "n_temas_agrupados": 6,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 3,
@@ -888,34 +881,22 @@
       "actor_vinculado": null
     },
     {
-      "id": "sinaloa-crisis",
-      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "id": "carlos-manzo",
+      "nombre": "Asesinato de Carlos Manzo",
       "categoria": "Seguridad Nacional",
-      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
-      "motivo": "Abatimientos, detenciones y ‘narcoterrorismo’: cómo la guerra entre Chapitos y Mayos alcanzó a los remanentes - MILENIO",
+      "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
+      "motivo": "Fiscalía confirma que asesinato de Carlos Manzo fue venganza del CJNG - El Universal",
       "peso": 7.0,
-      "n_temas_agrupados": 4,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPLVJVS1NqN0lyVTh2cWc0TWF0bDI1M1lGSXh6OGdBaGN4aHhHZnBxel95RWItNGtWREZsbUhOYk1yMlBrN2NHUGJSeVc1S2RQS3VoVVNIZ0pwNk1pczVVOXkwS3ZuRTE5S2tpamRDZXBOekRhemhCZ1pxOEpYYy1uUnFWcEppRjU2Nl9jMGdUQlhHVVk5NzNMVDBJT1RMd9IBngFBVV95cUxQMVR0RjNoc3ZGdUxGYXlMZ0Fna3ZzR3UxcUdtX21xbzNTRHRfWXlLcGZaNHp6MERuU0NZcXVuS012OEVGSEplSDd6al9sN3JybFJ2ejR5Y0w3S25OczFxRlBjcUt1Xzd2TUlQWFhjY3F3NjFzVnBMSjEyQjdEM3R4UmQxS1daem1kUEdiLXRNQURqckpFRG9wXzVQbVlqQQ?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "amlo-agenda",
-      "nombre": "López Obrador: reaparición y declaraciones",
-      "categoria": "Gobernabilidad",
-      "resumen": "Declaraciones, apariciones y señalamientos que involucran al expresidente Andrés Manuel López Obrador y su influencia en el gobierno y en Morena.",
-      "motivo": "Sheinbaum defiende a AMLO y niega enemistad con Cuauhtémoc Cárdenas: ‘Tuvieron sus diferencias’",
-      "peso": 5.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/30/sheinbaum-defiende-a-amlo-y-niega-enemistad-con-cuauhtemoc-cardenas-tuvieron-sus-diferencias/",
-      "actor_vinculado": null
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQZE44aGtHZjVlMkhnMnpMcXVfeXZxVU1ZYU1qVDBkVWZHMUJSenBwcjRsa3RKblhQcTlISFVDejNrTi03T3Q5V1E3djMtWnJudnRaZDg3cDVDUlIwblNtb0dHZ0RQQkY1MGdMb000RlZnM2ZZdGZsdjNSUDA4NEtpYnBBTHM3cVNKazI2bnk4bzE3aGF2d3Z6T0FEWDU2cTZzMWQwMW9OdEVsSWlza1VzRkN3VjRlRXRLSzdOckhaVHRvMjZVMjR1Y2NsWEd1Zm9manF0X01ZSXlkVHQzckxsZEVicHZwWWVyTk9fQ0ZhMHrSAYQCQVVfeXFMTU1iSExKbkFLNGs0ZnlhcXNSbzY0cUdLS3JoczNldVdvU0g4ZWU3TEdGRHRSV25Sa1ZfaHpiQjZVV3hkNUVNYkxQekVTVGh2N2pXWDB1bXZfSTNHS0NSNzBac2FNTE5yWmwtUkxvOWxac3ZHNV9CN3lxaEt6aVNPWFlYc1hxUkpWZDZrX1B1dUE4SGdna2h5RnR6MEdZSjV4Wm4telJHRXZRc0pUaHlmSGdsQ0F0UFhvUS1kTlFZWkk4RnJGVFFoZ0pVNnFjU09TWkdBLVVBZzNvN1VfSzY4eldJQVlkcVBrT1FIVm0zTFlDR3BIdWY3SlVreU5iQzNoWWFRb0M?oc=5",
+      "actor_vinculado": {
+        "id": "manzo",
+        "nombre": "Carlos Manzo Rodríguez"
+      }
     }
   ],
   "temas_nuevos": [
@@ -936,20 +917,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQakd6UnhqczlmbUZySnJMa3hNZ0hHMmVnNTFRVVJXZmJ2MktYejBuRVFEUDk0VzB3ZEJSbmlDYnJKVkZlMVg4cmRjaURheVViZjBSczZvVGlwdFRfUXhKNWlxVTdnQVBjajFwdDktejU2WVFWY0pMZlhZR0VrWWIwbm9CX2RtYTlqd0pkMWV4M01wNHhpYm9LZVF1T3VzZDcydG1PXzNrcGo1cEx5ZHgxbEkzY3JWcnFSUkptRV9ZbjFGYjBaU241a3pFbTJUNXU3QzBIMTkyOW10ZjZ2UVNibFZIWkhPZW4zbEw1NdIB7AFBVV95cUxQakd6UnhqczlmbUZySnJMa3hNZ0hHMmVnNTFRVVJXZmJ2MktYejBuRVFEUDk0VzB3ZEJSbmlDYnJKVkZlMVg4cmRjaURheVViZjBSczZvVGlwdFRfUXhKNWlxVTdnQVBjajFwdDktejU2WVFWY0pMZlhZR0VrWWIwbm9CX2RtYTlqd0pkMWV4M01wNHhpYm9LZVF1T3VzZDcydG1PXzNrcGo1cEx5ZHgxbEkzY3JWcnFSUkptRV9ZbjFGYjBaU241a3pFbTJUNXU3QzBIMTkyOW10ZjZ2UVNibFZIWkhPZW4zbEw1NQ?oc=5"
     },
     {
-      "id": "auto-db05eabb3c",
-      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-7d0f691830",
+      "nombre": "La migración nos mantiene vivos: Gael García Bernal - El Informador",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNc2Q5UEZwYXJpa3JJQnpldEw0dU0ySzJnZVBFVzhYV2x1NHVvdi1ZVEI0WkY3RERja01JWlZ1ZVZ1VlBWdkNVNTZ0Z282X255NHdBZzhYektmc19aOVFiVlpxOWV0SnFsTjJvLW4zWHMwQnRibXN0aU1aWHFlX253b19IUnhncTRhckpvS0RTM0VwVWp6NThXNm1oQnhwU0sxYmVHR1VDMFUzd0gw?oc=5"
-    },
-    {
-      "id": "auto-09c4053e4a",
-      "nombre": "Caída de “El Tanque” destapa nexos políticos y del narco: Riva Palacio",
-      "categoria": "Seguridad Nacional",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/riva-palacio-la-captura-de-el-tanque-expone-redes-entre-el-crimen-organizado-y-el-entorno-politico-20261030-0057.html"
+      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOdkppT3VQQmYzSFBaOWl6aWJvUlFyZzRXcmdDUXVJNzgxd01sSFF3Zks2azVLR0c5cE9BQTNGb3g5TlE0d2ExZGROMVJzR2d6Vi1CRVFrSzVia3hlRy1iMUZBeC00b1RZb1c1Vlh3aFFCbVl2SHR2anhPZ3FiR0pHMml0bVNMZjBIX3UxRzFCM2ttNWdhZFVzVFVTa0hFZm9oMjBPNTJSaFBxTTd1S09GWHQtRExqOTTSAbwBQVVfeXFMT001OEtDQkVFY0xwX3Nkc2pTZkdpRldRLU1Tek5fcHZNMlpvRGQzQ1QyRWhhLXI0SFVCeWZuMzRwa0RXSExROFE0UE0xWEVyTHFGLXJRdlRsRmh4d3hrdVdBcE5UdmJZUUNGdzNtNE5GRnBXeXJzU1I3Rll6XzhiaTBIVm1DamdpUmdVSEFsalJwUDB0Q3NFUGRUVUVaNnlSVlZjeTRuVFdCTTZ1VlZVX2Q3QzF2ZDVQN0szc0E?oc=5"
     },
     {
       "id": "auto-cf1724f93d",
@@ -958,6 +931,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPbTY0OEluWVpNbVgtV0QtRkxQTk5EakpLdjZkNUtrNktPZjZ2d204Z1NSUzJjek9rejE0akpMLTVGQ01CRDZPNmNJOUMxUUxIQ3RwcmhXWjhUNWxjWWZDaDJMei11R2JVQXM5ZUVNNmVOWWNuVmdaWGRsTDFSTUd2QXZuMlp4dEFVZlRfcXJKWjFxREF6LVl4c0hWMHluOW5PZUYxTVFsS25DZ1E?oc=5"
+    },
+    {
+      "id": "auto-b7a7b04a66",
+      "nombre": "Trump apunta a Corea del Norte como responsable del hackeo a Binance: ‘Estamos i",
+      "categoria": "Relación Bilateral",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/10/30/trump-apunta-a-corea-del-norte-como-responsable-del-hackeo-a-binance-estamos-investigando/"
     }
   ],
   "temas_retomados": [
@@ -984,58 +965,58 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObnIxYmlaOWpiVEZHMkRKTE11Y1RvZWJYd05tQTFZcjN6TnNrTWtSelozdXRqbU4xQlFnbmh5WFdXRDVVbkw4ZjV4TGlHS3BwYjd1dFluMTdiVS1xSGtnc0FlcW1KemRMTWdUN3dEVjJOT2h3U1ktTXh4ZWRTb1R4cU1jSzNURDA0NHBZS25EMXhKaG82aWZPUGM0aElIRWcwaTloNFRpOA?oc=5"
     },
     {
-      "id": "auto-65ecc82849",
-      "nombre": "El crac de la alianza Morena-PT, escribe Raúl Rodríguez Cortés - El Universal",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 21,
-      "motivo": "Morena y los filtros de la pureza, escribe Raúl Rodríguez Cortés - El Universal",
+      "id": "auto-ec1d81157d",
+      "nombre": "Para combatir el hambre reparten utensilios de cocina de 60 mil pesos",
+      "categoria": "Economía",
+      "dias_silencio": 17,
+      "motivo": "Diputada de Morena reparte billetes de 500 pesos en playa de Colima - MILENIO",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQNlA1SVgxS2tFZ1hLWGFvb2Z2UGh4V1lmUEdnbElSYkoyT1lTUG1QdzAteUZtMDFqSDMzb01PcktEVmRPM2hwYU5uVXVBazJmbUFiWEFoSnRSVFcyRHZ4bEtySmw3OE1XeDhQWUFUMlN4X2hqeWNJSlAyYW4tV1ZVcTMxRXNtOXdGM25wWGtrbXFIckFyaHgzSlhRdw?oc=5",
-      "fecha_anterior": "2026-10-09",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPV2d3Uk9MSWx6YjlzbWROWnQ3dUNpeG9DNzJvdEQ1YXdLLWFlRWJyeDFiX1U4LUFCcXFkMlcwVmRmTnRva1hzZVNma19iSlFTdmpUNWNYcU95UWZMdFNoRm1LSUU5NmdYc3JsX1l3QWpSWm5kSTk0Vk1fSXR2Sl9MT3hfUUxvV2xOblAySlZNRlhiWU1VWXhUdQ?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNUnhZR3BIaUhkOUxGN001RGNvNWFud05KempjQTkyZDQyVXljWk9JNkNoV2FhMEU0YXpVNm1ZWEo3M1BXR2k5b0YzaHdYbl83NDNzbGlHX3FWUTZOMnVMbF9PbVNJQlR1cEFqeE1fT1NLaElIU0RPSmJKbE9nb29TZkhjWWREQmRKTk5ZRHVtQkFWR3loYnUtUHhoRk9iMTl3?oc=5",
+      "fecha_anterior": "2026-10-13",
+      "fuente_url_anterior": ""
     },
     {
-      "id": "auto-a120e88bf7",
-      "nombre": "Claudia Sheinbaum sorprende con visita en Chicoloapan, acompaña a Delfina Gómez ",
+      "id": "auto-275347e7d5",
+      "nombre": "Fortalecen Gobierno estatal y Fuerzas Armadas coordinación para consolidar la pa",
       "categoria": "Gobernabilidad",
       "dias_silencio": 9,
-      "motivo": "Delfina Gómez propone que estacionamientos comerciales del Edomex den 60 minutos gratis - MILENIO",
+      "motivo": "Destaca Sheinbaum calidad humana y preparación de las fuerzas armadas",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPWU9xc1hUS3FwdTRCemM2NkUwMUpjcWtINmtlUjBGLXFocjdyZ3VBdnBjMjNrWnlqNV9sa2QwamlPenVqRURnS1pPR1NsdkNEcGpIMVhaYjFyZlJXaXY5STlyWlJfOE5FT2dXZmpKRUpaUVB0S0tvWkQxbkZGM1J4MXlCV2E2QmxzU2pNQngycDBEcEs2c1pma1pWYzJlcEpQMEtSMdIBpAFBVV95cUxNRDRDSTFrQzFoeDJ3RmtXdWRuMWxSSFY1eC1QOVd2bHAyandUcnhpRzJ0Zmhqbk85VldJX3A4Q1NHQ3QzRkV3RXNaYTdpZFpUNlVkNmZBdi12OVNXYTVadDNHNEdRQkRNY0YtcHNFRk10ZkJXLVNUOGtCc0tFYkRadkFIX1ZzVU8tVDFwdFpqUVFabEZKbGxKNE93bndXejhZSVZQbw?oc=5",
+      "fuente_url": "https://www.jornada.com.mx/2026/10/31/politica/009n1pol?partner=rss",
       "fecha_anterior": "2026-10-21",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPcFlrSW5YQnUxVlhFa2gtUXE2WS11SDNuRWFQZFVweDFqa0hya1FyMVdaY0tUTGpaUnduUlR3R0NfbVRBWVluZmR5N1lrZk1LUk9zRXZXRmNKc2pmTUo3X0pua0hpNklHUDVGRXc2NFgzX0dOT0hMMm9fSm1wZjFUN1RlRXd4azA2QWdXaWxWMTlIZkwwc2YtaDNWV1ROTXB3WGJMQVljMnQ0MXRWWlhycm5SMnhCOHowcnc1Q3c3d1c?oc=5"
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNNDRBYzUzMUwybWszUTR5b0JEcTExZlUxdzYtc2V0U2R0SGtubVRSOUVSZER5MC11NnBlMzJGNWJYN2YwdGswaDIwQ3E0QTJzSk9kNEQwUjFBM1FsbHNpYjJJbFFTVUxuSG5HdzhOU2VPZV9LUEUzaXo2Qk9KTDVReGxMdWRTaWplbWFfZ0ppTnFFSTVaNHlON3ZFNnZXXzBPZXVtdjZHY2R2MllueW9HV3dPVjI1LWpOOHVQemhfU3pJMDcyc1d3YQ?oc=5"
     }
   ],
   "actores_destacados": [
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Responsable institucional",
-      "tema": "Mañanera de la presidenta Claudia Sheinbaum minuto a minuto | 5 de octubre - Gru",
-      "nota": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 30 de octubre: Síguela aquí en vivo - El Financiero",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPcmpncUo5eUkzcUMwRE9LUl9xYm53Slc3cFdicWJLWTA1Z0NKdlRTY0lBek5ranViZUdTeFM3V0VaZVQzZGFLbDI0a2R3M1k4VERHV0FOd1hIQU92N0lBek4wakpmSmo3eDZId1o0R3V6RVZJNEE4d0xOcmlERlpGZklka2c1SVF5ZnNDS1ljX1c4TkxfcHRzYlhFeGdmMXBKYmZ4dlJKZnVTbTE1eTkyYV9lV3l6R1lDQ2VJ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "amlo",
-      "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Reacción social/mediática",
-      "tema": "López Obrador: reaparición y declaraciones",
-      "nota": "Sheinbaum defiende a AMLO y niega enemistad con Cuauhtémoc Cárdenas: ‘Tuvieron sus diferencias’",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/10/30/sheinbaum-defiende-a-amlo-y-niega-enemistad-con-cuauhtemoc-cardenas-tuvieron-sus-diferencias/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Mencionado",
-      "tema": "Claudia Sheinbaum emite despedida a Cuauhtémoc Cárdenas: “Transformó la vida pol",
-      "nota": "La antítesis de Cuauhtémoc Cárdenas es Morena, escribe Maite Azuela - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPallPLTNYcjBNR2VIVFFkVWdYVlJjUnNIVHVkVU9DVW11eHQ1Y3BmUVRRWFkxT1h5cXk5SmVheElTLTNOeE1ab2FxSGNlNDNJd3pib093dktPSktOcU5tdFFpYmc5SWEzVFE2dnN4eUZ3emdtdG1adVJ4dWQtSC1JdzcxS0tfX2NEMV9YaUhKOGltYjByM1c0d0Q5WkpfQ3M?oc=5",
+      "tema": "Desvincula Sheinbaum a Morena de la llegada de Taddei al INE - Parabolica.MX",
+      "nota": "Sheinbaum exhibe video para desvincular a Taddei de Morena",
+      "fuente_url": "https://www.informador.mx/mexico/sheinbaum-exhibe-video-de-2014-para-desvincular-a-guadalupe-taddei-de-morena-tras-escandalo-en-el-ine-20261030-0086.html",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "jd_vance",
+      "nombre": "JD Vance",
+      "rol": "Responsable institucional",
+      "tema": "Diputada de Morena reparte billetes de 500 pesos a comerciantes afectados por 'V",
+      "nota": "Diputada de Morena reparte billetes de 500 pesos a comerciantes afectados por 'Vance' en Cuyutlán - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNUnhZR3BIaUhkOUxGN001RGNvNWFud05KempjQTkyZDQyVXljWk9JNkNoV2FhMEU0YXpVNm1ZWEo3M1BXR2k5b0YzaHdYbl83NDNzbGlHX3FWUTZOMnVMbF9PbVNJQlR1cEFqeE1fT1NLaElIU0RPSmJKbE9nb29TZkhjWWREQmRKTk5ZRHVtQkFWR3loYnUtUHhoRk9iMTl30gGgAUFVX3lxTE1QbXpfbkNTVk43eE1CS1oxcUNpRUl3aEU0aTFGN3hKZXVJQVUzU0I5MEVXS2dvbmRhMFlmdFVHNHNrQmFxUEV2ZklxTVlFWTEzZDF2Z280bmg1YnNGUG1ZTXB0NFhaVVpCWVM1TzZkQzVwbGdmNG54ZVQtRXdyNG5KQW5LX3pRNUFyVzdlVmJYV3hnaEh1LUpTNTE0WGJRdVA?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "manzo",
+      "nombre": "Carlos Manzo Rodríguez",
+      "rol": "Investigado",
+      "tema": "Asesinato de Carlos Manzo",
+      "nota": "Fiscalía confirma que asesinato de Carlos Manzo fue venganza del CJNG - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQZE44aGtHZjVlMkhnMnpMcXVfeXZxVU1ZYU1qVDBkVWZHMUJSenBwcjRsa3RKblhQcTlISFVDejNrTi03T3Q5V1E3djMtWnJudnRaZDg3cDVDUlIwblNtb0dHZ0RQQkY1MGdMb000RlZnM2ZZdGZsdjNSUDA4NEtpYnBBTHM3cVNKazI2bnk4bzE3aGF2d3Z6T0FEWDU2cTZzMWQwMW9OdEVsSWlza1VzRkN3VjRlRXRLSzdOckhaVHRvMjZVMjR1Y2NsWEd1Zm9manF0X01ZSXlkVHQzckxsZEVicHZwWWVyTk9fQ0ZhMHrSAYQCQVVfeXFMTU1iSExKbkFLNGs0ZnlhcXNSbzY0cUdLS3JoczNldVdvU0g4ZWU3TEdGRHRSV25Sa1ZfaHpiQjZVV3hkNUVNYkxQekVTVGh2N2pXWDB1bXZfSTNHS0NSNzBac2FNTE5yWmwtUkxvOWxac3ZHNV9CN3lxaEt6aVNPWFlYc1hxUkpWZDZrX1B1dUE4SGdna2h5RnR6MEdZSjV4Wm4telJHRXZRc0pUaHlmSGdsQ0F0UFhvUS1kTlFZWkk4RnJGVFFoZ0pVNnFjU09TWkdBLVVBZzNvN1VfSzY4eldJQVlkcVBrT1FIVm0zTFlDR3BIdWY3SlVreU5iQzNoWWFRb0M?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1057,26 +1038,26 @@
   "patron_historico_4sem": [
     {
       "fecha": "2026-10-04",
-      "tension": 34,
-      "n_notas": 46,
-      "n_alto_impacto": 26,
+      "tension": 35,
+      "n_notas": 47,
+      "n_alto_impacto": 27,
       "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-05",
       "tension": 21,
-      "n_notas": 95,
-      "n_alto_impacto": 35,
+      "n_notas": 96,
+      "n_alto_impacto": 36,
       "n_medio_impacto": 60,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-06",
       "tension": 16,
-      "n_notas": 123,
-      "n_alto_impacto": 30,
-      "n_medio_impacto": 93,
+      "n_notas": 125,
+      "n_alto_impacto": 31,
+      "n_medio_impacto": 94,
       "n_bajo_impacto": 0
     },
     {
@@ -1090,40 +1071,40 @@
     {
       "fecha": "2026-10-08",
       "tension": 27,
-      "n_notas": 99,
-      "n_alto_impacto": 43,
+      "n_notas": 100,
+      "n_alto_impacto": 44,
       "n_medio_impacto": 56,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-09",
       "tension": 26,
-      "n_notas": 75,
-      "n_alto_impacto": 35,
+      "n_notas": 76,
+      "n_alto_impacto": 36,
       "n_medio_impacto": 40,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-10",
       "tension": 27,
-      "n_notas": 52,
-      "n_alto_impacto": 26,
+      "n_notas": 53,
+      "n_alto_impacto": 27,
       "n_medio_impacto": 26,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-11",
-      "tension": 29,
-      "n_notas": 36,
-      "n_alto_impacto": 18,
+      "tension": 30,
+      "n_notas": 37,
+      "n_alto_impacto": 19,
       "n_medio_impacto": 18,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-12",
-      "tension": 19,
-      "n_notas": 71,
-      "n_alto_impacto": 23,
+      "tension": 20,
+      "n_notas": 72,
+      "n_alto_impacto": 24,
       "n_medio_impacto": 48,
       "n_bajo_impacto": 0
     },
@@ -1138,8 +1119,8 @@
     {
       "fecha": "2026-10-14",
       "tension": 21,
-      "n_notas": 56,
-      "n_alto_impacto": 20,
+      "n_notas": 57,
+      "n_alto_impacto": 21,
       "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
@@ -1193,10 +1174,10 @@
     },
     {
       "fecha": "2026-10-21",
-      "tension": 28,
-      "n_notas": 51,
+      "tension": 27,
+      "n_notas": 52,
       "n_alto_impacto": 25,
-      "n_medio_impacto": 26,
+      "n_medio_impacto": 27,
       "n_bajo_impacto": 0
     },
     {
@@ -1233,10 +1214,10 @@
     },
     {
       "fecha": "2026-10-26",
-      "tension": 16,
-      "n_notas": 37,
+      "tension": 15,
+      "n_notas": 39,
       "n_alto_impacto": 8,
-      "n_medio_impacto": 29,
+      "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
@@ -1250,54 +1231,54 @@
     {
       "fecha": "2026-10-28",
       "tension": 25,
-      "n_notas": 50,
-      "n_alto_impacto": 20,
-      "n_medio_impacto": 30,
+      "n_notas": 53,
+      "n_alto_impacto": 21,
+      "n_medio_impacto": 32,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-29",
-      "tension": 24,
-      "n_notas": 28,
-      "n_alto_impacto": 13,
-      "n_medio_impacto": 15,
+      "tension": 25,
+      "n_notas": 37,
+      "n_alto_impacto": 17,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-30",
-      "tension": 19,
-      "n_notas": 20,
-      "n_alto_impacto": 5,
-      "n_medio_impacto": 15,
+      "tension": 15,
+      "n_notas": 35,
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 27,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-31",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 25,
+      "n_notas": 2,
+      "n_alto_impacto": 1,
+      "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "iniciales": "MO",
-      "x_lunes": 94,
-      "y_lunes": 83,
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 66,
+      "y_lunes": 73,
       "x_hoy": 100,
-      "y_hoy": 85,
-      "delta_pts": 3.0,
-      "alcance": 12,
-      "n_alto": 10,
-      "n_medio": 8,
+      "y_hoy": 68,
+      "delta_pts": 18.0,
+      "alcance": 13,
+      "n_alto": 8,
+      "n_medio": 24,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSE8zdHp4ZHVxMHJCVHpTWjF6LVgyQS1IeUJUcXAtdGpuV0J6RDgxamc1VkFHUi1vWmY3QzFTUG81eWZOM3pkNTAyMWhxdkVNTFpEZ3l5VWg4R3VTM2lDRlVnTzltMTVEZlgzbzFhNXN2QVFTc2daWGlqTTFxMGJXU2tocnhPUDc4UTBjWFNRMEZwNkpOa2o5ckQwMThCejFEdU9na0JXLUhPczdEWU5KdWhuZVdvbFI0Qm5obDFVaUctMmVRcElwdERYU29VeEdTeEJrZHRwa2lzRHE5cWprcDJGUTZWU2fSAewBQVVfeXFMTmRDZnhERXh1ZTJlMUpENXdoVlRZTjlNWWNkOGtoa2VOd0VFQnd0a0JRY09RbUVjbTdzNFJYV2o2TzZTNFBGY2gxcmROT1RXRFFVUFpsQkk5M2I0N0ZmUnVYb0syZW80U0xhSERGZUdTaGlJTnpxN3hvYTAyQTk0Y0hfX3p5ZDRHRk1LNmREVFl0cUR6UmNHaHZ5VnB4Sno5SVhvb052VmxqZkp5dlBLWm4xbGtJY1FxdktpbG41ckdQZ2pQSjNaV1E0UW1oekdRVHBRY1lxb2tYMk5ybFhIYzZEM2hLZTFXeE1sZVQ?oc=5",
-      "nota_texto": "Morena responde a señalamientos contra aspirante en Quintana Roo; Ariadna Montiel defiende participación de mujeres - Por Esto!",
+      "nota_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOLVlKRVJsM3ZlTWxTRXRpMGFXRDZSazRwcVY0ZF9YNklEMGdXNWJHaVVucWRLYnY0WXNGMVlNclJKbjd5SUZSOWtldk9LYWVMck41RUJRTktvYXYyYW01WGd4VTJXU1RUNUJjS0hMb1pqZW5ETm5HYl9VM3Jwc3dwN0dNTlZVSnczaFdJVXVCZUkzZTUzOVJDLVUwMzRBZHJYWHJnQnBxYUYwWnVqR1M1NGNwOE84eTVDOGFGY20yOHlsWXdIWC0tenlMa2dtWXV2WDNFWTlyVUhxQXVuTTM0cnNscHRaQW1SUkF1T1NpMkE?oc=5",
+      "nota_texto": "Rinden homenaje a Cuauhtémoc Cárdenas en Palacio Nacional La presidenta Claudia Sheinbaum encabezó este jueves un homenaje a Cuauhtémoc Cárdenas Solórzano, fallecido a los 92 años, a quien reconoció c",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1305,27 +1286,76 @@
         {
           "fecha": "2026-10-26",
           "x": 28,
-          "y": 76
+          "y": 73
         },
         {
           "fecha": "2026-10-27",
-          "x": 67,
-          "y": 82
+          "x": 41,
+          "y": 76
         },
         {
           "fecha": "2026-10-28",
-          "x": 83,
-          "y": 84
+          "x": 50,
+          "y": 72
         },
         {
           "fecha": "2026-10-29",
-          "x": 94,
-          "y": 83
+          "x": 66,
+          "y": 73
         },
         {
           "fecha": "2026-10-30",
           "x": 100,
-          "y": 85
+          "y": 68
+        }
+      ],
+      "fecha_apagado": "2026-10-29"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
+      "x_lunes": 59,
+      "y_lunes": 80,
+      "x_hoy": 66,
+      "y_hoy": 83,
+      "delta_pts": 6.0,
+      "alcance": 15,
+      "n_alto": 11,
+      "n_medio": 10,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/27/morena-denunciara-maru-campos-por-presuntos-delitos-electorales-dano-moral-violencia-politica-de-genero-ariadna-montiel-917255.html",
+      "nota_texto": "Morena denunciará a Maru Campos por presuntos delitos electorales, daño moral y violencia política de género: Ariadna Montiel",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 5,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-26",
+          "x": 19,
+          "y": 73
+        },
+        {
+          "fecha": "2026-10-27",
+          "x": 41,
+          "y": 80
+        },
+        {
+          "fecha": "2026-10-28",
+          "x": 50,
+          "y": 82
+        },
+        {
+          "fecha": "2026-10-29",
+          "x": 59,
+          "y": 80
+        },
+        {
+          "fecha": "2026-10-30",
+          "x": 66,
+          "y": 83
         }
       ],
       "fecha_apagado": "2026-10-30"
@@ -1334,9 +1364,9 @@
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 67,
+      "x_lunes": 38,
       "y_lunes": 82,
-      "x_hoy": 83,
+      "x_hoy": 47,
       "y_hoy": 84,
       "delta_pts": 7.5,
       "alcance": 8,
@@ -1345,70 +1375,26 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSE8zdHp4ZHVxMHJCVHpTWjF6LVgyQS1IeUJUcXAtdGpuV0J6RDgxamc1VkFHUi1vWmY3QzFTUG81eWZOM3pkNTAyMWhxdkVNTFpEZ3l5VWg4R3VTM2lDRlVnTzltMTVEZlgzbzFhNXN2QVFTc2daWGlqTTFxMGJXU2tocnhPUDc4UTBjWFNRMEZwNkpOa2o5ckQwMThCejFEdU9na0JXLUhPczdEWU5KdWhuZVdvbFI0Qm5obDFVaUctMmVRcElwdERYU29VeEdTeEJrZHRwa2lzRHE5cWprcDJGUTZWU2fSAewBQVVfeXFMTmRDZnhERXh1ZTJlMUpENXdoVlRZTjlNWWNkOGtoa2VOd0VFQnd0a0JRY09RbUVjbTdzNFJYV2o2TzZTNFBGY2gxcmROT1RXRFFVUFpsQkk5M2I0N0ZmUnVYb0syZW80U0xhSERGZUdTaGlJTnpxN3hvYTAyQTk0Y0hfX3p5ZDRHRk1LNmREVFl0cUR6UmNHaHZ5VnB4Sno5SVhvb052VmxqZkp5dlBLWm4xbGtJY1FxdktpbG41ckdQZ2pQSjNaV1E0UW1oekdRVHBRY1lxb2tYMk5ybFhIYzZEM2hLZTFXeE1sZVQ?oc=5",
-      "nota_texto": "Morena responde a señalamientos contra aspirante en Quintana Roo; Ariadna Montiel defiende participación de mujeres - Por Esto!",
+      "nota_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5PTDVubmNGd1Nwb3BiZk9nTllsMjRrRFd6Q0U2Z3E1R1o2RktyZ2hBX0J5djljTTBSQVlqMUNYNGRZOFczbFRqZGVidFNlcXUybHlKNmlvQzlGZVlnUVR5QllRVDlPOU5HNTl0NlF5OWJoWkRJN051Uw?oc=5",
+      "nota_texto": "Respaldo de Ariadna Montiel a Ana Lilia Rivera marca nueva etapa de Morena en Tlaxcala - Intolerancia Diario",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 28,
+          "x": 16,
           "y": 98
         },
         {
           "fecha": "2026-10-27",
-          "x": 67,
+          "x": 38,
           "y": 82
         },
         {
           "fecha": "2026-10-28",
-          "x": 83,
+          "x": 47,
           "y": 84
-        }
-      ],
-      "fecha_apagado": "2026-10-29"
-    },
-    {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 83,
-      "y_lunes": 73,
-      "x_hoy": 89,
-      "y_hoy": 75,
-      "delta_pts": 3.0,
-      "alcance": 10,
-      "n_alto": 6,
-      "n_medio": 10,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNZzQxYUpnZ0YtOXkyVHo1VGJ2UnNscUFpRVNUODNtanJuRzM2LWItMTdsYWEydUZwZzdGb2tEdUl5b2kxX3J0M2hfOXJYUzk4RjdjeW5DYi1MbFY3NFlmXzlrNFpMZ1BDVjMtLWFEUUhuLTRYVWNrRlJmejc3QUJuOHlNWnlsM3kzem4zY0w0VlZMSzRkT0RWclM5ZFhHRE1aMVJwUWgza3M4aWdiVHktS2pVSDMyNFdQWWd3eXlsY1VXREZuSlE?oc=5",
-      "nota_texto": "Claudia Sheinbaum Reacciona a Resultados de Elecciones en Brasil y Destaca Reelección de Lula - N+",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 4,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-26",
-          "x": 50,
-          "y": 73
-        },
-        {
-          "fecha": "2026-10-27",
-          "x": 72,
-          "y": 76
-        },
-        {
-          "fecha": "2026-10-28",
-          "x": 83,
-          "y": 73
-        },
-        {
-          "fecha": "2026-10-29",
-          "x": 89,
-          "y": 75
         }
       ],
       "fecha_apagado": "2026-10-29"
@@ -1417,9 +1403,9 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 17,
+      "x_lunes": 9,
       "y_lunes": 91,
-      "x_hoy": 33,
+      "x_hoy": 19,
       "y_hoy": 100,
       "delta_pts": 9.0,
       "alcance": 6,
@@ -1428,25 +1414,25 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQWU2VF9EZzdDcG15bFBZVWRVVldBUFJpNm9FYXVnT194S3NzUDhvdERITDZXN0wya0VXd2xCaml3bHJCY3JvUDlWTVp6azZyVU16OVFkc251RVVtTFJtZEpZdTVuTjlGQ1RRUWh0TmdFTHhxZ0t1dXZ1ZGVTTl9KYkdvUHE5STRjVnEtZGVWMzJ2MlFXck9LdTFTNzBLYTNvRmpKZ3RCTWhLd1o0eFkzOHlzOV93TWNNM1pQcWdBYktFQQ?oc=5",
-      "nota_texto": "FGR descarta abrir investigaciones contra Andy López Beltrán y Adán Augusto - Serpientes y Escaleras",
+      "nota_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPMThPZTNaTFVXOU5xRnd0WmJWTDVJdEhiMXNPQ3lic2FycmVtRnY0SzVYdXdUY0J4SnRkQXV4clhzQk9nT2YxYlNST2dhMnBVNklrZUdBczlibHVIYUUxTm5RTko5MGVpV0FZTTJ3UC1aRlBYeHd1QURqRDY0Y19wdXk2NmpfQWI3LTZ6STcycW4xZDVjVXBVLUFlZFhKLWhDMklrT0JVSEd4QncxR2xGSXpwSENFeXQydEhmT1FuTQ?oc=5",
+      "nota_texto": "FGR descarta elementos para investigar a 'Andy' López Beltrán y Adán Augusto López por huachicol fiscal - López-Dóriga Digital",
       "es_nuevo": false,
       "categoria": "Seguridad Nacional",
       "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 6,
+          "x": 3,
           "y": 55
         },
         {
           "fecha": "2026-10-27",
-          "x": 17,
+          "x": 9,
           "y": 91
         },
         {
           "fecha": "2026-10-28",
-          "x": 33,
+          "x": 19,
           "y": 100
         }
       ],
@@ -1456,9 +1442,9 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 33,
+      "x_lunes": 19,
       "y_lunes": 82,
-      "x_hoy": 44,
+      "x_hoy": 25,
       "y_hoy": 82,
       "delta_pts": 4.5,
       "alcance": 7,
@@ -1475,22 +1461,22 @@
       "trayectoria": [
         {
           "fecha": "2026-10-27",
-          "x": 11,
+          "x": 6,
           "y": 82
         },
         {
           "fecha": "2026-10-28",
-          "x": 22,
+          "x": 12,
           "y": 82
         },
         {
           "fecha": "2026-10-29",
-          "x": 33,
+          "x": 19,
           "y": 82
         },
         {
           "fecha": "2026-10-30",
-          "x": 44,
+          "x": 25,
           "y": 82
         }
       ],
@@ -1501,42 +1487,47 @@
       "nombre": "Carlos Manzo Rodríguez",
       "iniciales": "CM",
       "x_lunes": 22,
-      "y_lunes": 68,
-      "x_hoy": 39,
-      "y_hoy": 78,
-      "delta_pts": 7.5,
-      "alcance": 6,
-      "n_alto": 3,
+      "y_lunes": 78,
+      "x_hoy": 25,
+      "y_hoy": 82,
+      "delta_pts": 3.0,
+      "alcance": 7,
+      "n_alto": 4,
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://www.elfinanciero.com.mx/estados/2026/10/28/grecia-quiroz-pide-a-hermano-de-carlos-manzo-no-ventilar-temas-personales-eso-no-va-a-llevar-a-nada/",
       "nota_texto": "Grecia Quiroz pide a hermano de Carlos Manzo no ventilar temas personales: ‘Eso no va a llevar a nada’",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 2,
+      "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-10-28",
-          "x": 22,
+          "x": 12,
           "y": 68
         },
         {
           "fecha": "2026-10-29",
-          "x": 39,
+          "x": 22,
           "y": 78
+        },
+        {
+          "fecha": "2026-10-31",
+          "x": 25,
+          "y": 82
         }
       ],
-      "fecha_apagado": "2026-10-30"
+      "fecha_reactivado": "2026-10-31"
     },
     {
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "iniciales": "OG",
-      "x_lunes": 6,
+      "x_lunes": 3,
       "y_lunes": 100,
-      "x_hoy": 33,
+      "x_hoy": 19,
       "y_hoy": 73,
       "delta_pts": 9.0,
       "alcance": 4,
@@ -1553,12 +1544,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-27",
-          "x": 6,
+          "x": 3,
           "y": 100
         },
         {
           "fecha": "2026-10-28",
-          "x": 33,
+          "x": 19,
           "y": 73
         }
       ],
@@ -1568,9 +1559,9 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "iniciales": "DT",
-      "x_lunes": 11,
+      "x_lunes": 6,
       "y_lunes": 55,
-      "x_hoy": 17,
+      "x_hoy": 9,
       "y_hoy": 55,
       "delta_pts": 1.5,
       "alcance": 3,
@@ -1579,25 +1570,25 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOdWZSbDZDMlFrcWFRMGY3c3ByUC1FZ29aUHR1OFg1WFB1bEJFcUt0Rk1nQmhXMUR2UGVrY1g2aWJaNDJra1ROMnk1cXotZnMxR2ExSFY3YWhGdWxRUVZNd1AzV204OEIwVjVqVDFGME4xUDBDWlhkV2U5MGo3WkVBU0JRLVJNU0t5X05QLXpJZkRIZTU0M2xnZHNhSUJQcU1kUEE?oc=5",
-      "nota_texto": "Donald Trump promete que mantendrá el nombre del río Mississippi, después de renombrar el Golfo de México y el lago Ontario - Informat.ro",
+      "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/28/claudia-sheinbaum-y-donald-trump-decidiran-si-avalan-un-eventual-acuerdo-comercial-entre-mexico-y-ee-uu.html",
+      "nota_texto": "Claudia Sheinbaum y Donald Trump evalúan un eventual acuerdo comercial entre México y EE.UU.",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 6,
+          "x": 3,
           "y": 55
         },
         {
           "fecha": "2026-10-27",
-          "x": 11,
+          "x": 6,
           "y": 55
         },
         {
           "fecha": "2026-10-28",
-          "x": 17,
+          "x": 9,
           "y": 55
         }
       ],
@@ -1607,9 +1598,9 @@
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
-      "x_lunes": 6,
+      "x_lunes": 3,
       "y_lunes": 55,
-      "x_hoy": 17,
+      "x_hoy": 9,
       "y_hoy": 55,
       "delta_pts": 3.0,
       "alcance": 1,
@@ -1626,12 +1617,12 @@
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 6,
+          "x": 3,
           "y": 55
         },
         {
           "fecha": "2026-10-28",
-          "x": 17,
+          "x": 9,
           "y": 55
         }
       ],
@@ -1728,28 +1719,11 @@
   "tablero_semana_inicio": "2026-10-26",
   "resumen_mananera": [],
   "mananera_estado": "pendiente",
-  "a_vigilar": [
-    {
-      "id": "auto-667b4e2bde",
-      "nombre": "Reportan la muerte de Cuauhtémoc Cárdenas Solórzano, a los 92 años, ícono de la ",
-      "categoria": "Social",
-      "resumen": "Reportan la muerte de Cuauhtémoc Cárdenas Solórzano, a los 92 años, ícono de la izquierda mexicana",
-      "fuente_url": "",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-e0722a059a",
-      "nombre": "Claudia Sheinbaum emite despedida a Cuauhtémoc Cárdenas: “Transformó la vida pol",
-      "categoria": "Gobernabilidad",
-      "resumen": "Claudia Sheinbaum emite despedida a Cuauhtémoc Cárdenas: “Transformó la vida política de nuestro país” - Por Esto!",
-      "fuente_url": "",
-      "actor_vinculado": null
-    }
-  ],
+  "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 0
   },
   "declaracion_presidenta_historial": [
     {
@@ -1804,5 +1778,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-10-31 00:03"
+  "hora_corte_publicada": "2026-10-31 06:00"
 }
