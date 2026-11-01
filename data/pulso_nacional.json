@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-11-01T12:03:09.674936-06:00",
+  "generado_en": "2026-11-01T15:59:02.306249-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 16,
+  "n_notas_ventana": 11,
   "baja_confianza": false,
-  "tension_nacional": 20,
+  "tension_nacional": 34,
   "tension_anomalia": {
-    "z": -0.39,
-    "nivel": "normal",
+    "z": 2.45,
+    "nivel": "alta",
     "media_periodo": 21.9,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 34,
+      "peso_pct": 39,
       "tema_principal": "Mesa de Seguridad: Pendientes en materia de seguridad, a 2 años de gobierno de C",
       "tema_principal_id": "auto-3a81bddfc9",
-      "n_temas": 5,
-      "n_notas": 5,
+      "n_temas": 4,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "Kenia López Rabadán cuestiona inacción del contralor del INE - Caribe Peninsular",
@@ -42,80 +42,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM0Q0Y3ppcGRybGNjU2RWNk1KTE9WS0tkaVZHVEVRYWg3eFpFd0k5LWVLaXVzY1F6ME04eEp2YUpaU2YwcWw4VU5xZk55U1B1eW11cUN6akNhbndjRnpBRjB0QzdfOWJTNl9hVkhoMGl5dk1xeXZqWXhubEgxakx6WW9zczRrZ3NlZEtQR256bHdQcm85RXBmOENpWDM0cFQ2a1lCMmsteEtGLW16ZmFNdmhJWG5zOTZ6R1Nr?oc=5",
           "intensidad": 6.0,
           "medio": "Sin Embargo"
-        },
-        {
-          "texto": "Claudia Sheinbaum anuncia nueva Universidad Rosario Castellanos en Celaya para 2027 y elimina cuotas en preparatoria - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQeHJubHp2anB2LXNTSDF4SDg5WERQT0RKVmVXazFPaU1RMlE3MUJTME8xUE9Bc0pEbGxIVEh0bG9TeTl4VTl1ZVJFNnN1SHFCTGxyRXh3b2RYbWR0a3FQS3ZaSlBfOHBPTUtVdjN3ZVNfUXVGNnR6V1hHd2JZTTJwaXhLUW9HMURScnE2NUJoV2NMbUJFUDRRY0gwMEh4MEVYQlJ2ZEkxeXgyYkNuVElMODFlaVQ3MUQ0cHhFS21GcFFqRXhYMFdVMEZjVUoyRW4yNTJtbEpn0gHbAUFVX3lxTFBneTNya2x3RUMtaFRRUkJKUUIya1N5RzBHRFl5TWl5Y0UtS0VBbUJrY1dEcVJUVzdsSkpEWllZbm1aNXF3dUhxVUZJb0xDVnBqVzJIemRPWDhfQWxCdlQyZlY2N1VUNUYtdDRRZHZmWXBENHpBNzdvLXQ2Uy03NDVENTFJT0dwUnpMMllGWGxMM3VfWEZoUkNiWWZiY3RYYUFncGNSS09nOXllb1NKdjVzRjQ0Z1VQeGxvNEFMcWZmampOMHVxekd4aHNKOXVPRXc5Z1E0ZXZJaHljVQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 22,
-      "tema_principal": "Asesinato de Carlos Manzo",
-      "tema_principal_id": "carlos-manzo",
-      "n_temas": 3,
-      "n_notas": 4,
-      "notas": [
-        {
-          "texto": "Cómo fue la caída de 'El Rhino' del CJNG, y su posible nexo con el asesinato de Carlos Manzo - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPZGt0clQyWldaaXBfbno5emNLRkpna3l0MENncG1SeTRHbHl1Z251bnNTZGtyZk4zRDZXYXc5eHNsbURJRzU5TEkzcWwxTnc4YUNYSVdLOXp2X28xXzNlSEVRNFJ1cG91QXRfRXd2Xzl3bjE2U0xGMEtVMHJEdXU2M2hzSzFhTjhWUzVZ0gGLAUFVX3lxTE5UNnJDWHpHbzRqVVM5YmJSbjluX280MHVrLTZwMGNBbDJkbEVDTkRMUVc4LS1OQ0xyUFBKSEhYMVNLcGVWbk03cDhzOW1acEF0RGZXcC1vcDhzWnpRQjNJUVJqMU9VV2I4UmZtWkRNVkdJWkc2Wm1SSXZ0cWRYdzE5ckJYNkFEOFJZbkk?oc=5",
-          "intensidad": 7.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "Cuando se fortalece la educación pública disminuye la violencia: presidenta Claudia Sheinbaum inaugura plantel Tecozautla de la Universidad Nacional Rosario Castellanos en Hidalgo - Edomex Al Día",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxPVkl3R0h3T3VxMTljQnNQNzc0M29HUHFXNlgwX0xoQWdSc2MwUkkwREpfcnVhZ2JISnZpeFFSbnMyc3U3RUprZGNDOFVMMGVSNGZCOWlwTG9Ibzh6c0dUbHZXeUlYczNVWHpEWkV4Q1p2SkdHT0JaRkVWWXh3bXhLV1oxSEh1eEhRZWl4azJDNi1ueHA4RnFPdkNqQWJoamJ0Zk9UMHdDT05OQm9ycTJ3cnAtZ3NDVHZaRVBjZzF1bTdxTHRPSkN2SHN6SnBYWDFsdXhHY3ZSeldzQlJDU3E2NXpnYXUxX24tSFM4TnpWZUVjczVpWjBCeDR0dUI1emJmNUlxVkx1M2tDOFFOUjFIOXhEbWpxdWdmN0hOb28tbmZ0ZktJZTFYVHNtbw?oc=5",
-          "intensidad": 5.0,
-          "medio": "Edomex Al Día"
-        },
-        {
-          "texto": "Detienen a presunto implicado en homicidio ocurrido afuera de un negocio en Huixtla",
-          "fuente_url": "https://oem.com.mx/diariodelsur/policiaca/detienen-a-presunto-implicado-en-homicidio-ocurrido-afuera-de-un-negocio-en-huixtla-32900277",
-          "intensidad": 4.0,
-          "medio": "oem.com.mx"
-        },
-        {
-          "texto": "Confirma Fiscalía que CJNG ordenó asesinato del alcalde de Uruapan - Net Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOOEVEV0FIZm9FTnJQQ0RmMElmUkV0UTJPTTk4Q0poNElwa1RDN3k4eEgtR2JOV29Td2VyalNYNDRiaTlvNUdIangzbUZRT09GMzBMcTJqTk9XRTVocTh5MWFDbmNBYm9ITnBQTUNYeldXTWlvTE00TmtqRnItdzd1LUNoMHdPRHExZzE0YlNDQkJTR3BKU2swX0lrQTA2MDQ?oc=5",
-          "intensidad": 4.0,
-          "medio": "Net Noticias"
-        }
-      ]
-    },
-    {
-      "categoria": "Social",
-      "peso_pct": 19,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 1,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "🔔 ALERTA — Trump cambia postura y llama a votar por María Elvira Salazar pese a roces sobre inmigración - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOMS13aTVRT3BzeDJ4TDRPOExwMTlsQmlYTmczMzRKVzF0SkZxLXV4NlF2dUxZUWVFQ2tBLU1OUmJNMGI3RnhQYk5iMkVQMnRueU93NFpsd1FaaXdoaVg1UjZiUHoyXzE3cnNNd0hzY0xobzVNcjRxQ1JtZHJCQ3F1aERrMUlqQm5vUEd0bGFJMXFVLXpPZEhtUnFn0gGaAUFVX3lxTE5mVVJYNzdqbXV3SGxFcXY1b0FGSzlzdUJNWUU5OWZSeHhXd0tRc1RYbzNrYi05bllIS2RUdllMVmpURzR4azJQYzZJYVQ0R1ZLTDdwbGQ0ZnJjLWpIUUhSYUM5UTdTdk1SeWVIaU01Nk8yUlBid2ZNcEphY0xFRDhyMjdodVhjQXRjd0ZCdng4Wm16ZF9zYl9rLVE?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "🔔 ALERTA — Trump cambia postura y llama a votar por María Elvira Salazar pese a roces sobre inmigración - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOZlVSWDc3am11d0hsRXF2NW9BRks5c3VCTVlFOTlmUnh4V3dLUXNUWG8za2ItOW5ZSEtkVHZZTFZqVEc0eGsyUGM2SWFUNEdWS0w3cGxkNGZyYy1qSFFIUmFDOVE3U3ZNUnllSGlNNTZPMlJQYndmTXBKYWNMRUQ4cjI3aHVYY0F0Y3dGQnZ4OFptemRfc2Jfay1R0gGaAUFVX3lxTE5mVVJYNzdqbXV3SGxFcXY1b0FGSzlzdUJNWUU5OWZSeHhXd0tRc1RYbzNrYi05bllIS2RUdllMVmpURzR4azJQYzZJYVQ0R1ZLTDdwbGQ0ZnJjLWpIUUhSYUM5UTdTdk1SeWVIaU01Nk8yUlBid2ZNcEphY0xFRDhyMjdodVhjQXRjd0ZCdng4Wm16ZF9zYl9rLVE?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "🔔 ALERTA — Migrantes se arraigan en México tras el bloqueo de Trump al \"sueño americano\" - UDG TV",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOczgyX3kwem1qZUZvNmt0UDh3cnBmZVZ5dktZSzJTYUFzQVNvcFBuanhXWDllREpaVHFkWjZOSlJjbFRLMGZQajg2WTBydXQ2WVNiVy1YclplcXRHVEY2VkJEUjdMUzl4N1c2cU5DNGtiT2dudlpncnpGZmdPdEVUUjNoVWNLSUFEU2lGYmsyVjhHbjhO?oc=5",
-          "intensidad": 6.0,
-          "medio": "UDG TV"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 18,
+      "peso_pct": 24,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 3,
@@ -128,32 +60,70 @@
           "medio": "jornada.com.mx"
         },
         {
-          "texto": "Canciller Roberto Velasco se reúne con ministros de exteriores del G20; conversa con Marco Rubio - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNHRDSUkxczU2RlYxaHZfYkZkZVFsckE0OTl1dWNXVDZvTXVWZ3NNMmhrUFpMUmNfRWtiTEhiQm52X2RSekRpSG1nY1puY05VU09PbmZMOUFmTXFhV0s3NTd2Mkg2RDRzMkNYdldtYmhpaElCVFhyRHRQMmtnb3ZTNWtFcFNxREFMWm5mUTlmR0dadk9pLWoxdVM1OGkwdmdFU1cwcmhUREt2Ujd3UmlVVjFjUTJxd2kyOWl1UC1WVlcxbTY3OTBEVFJ3WnN2NUU?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Universal"
-        },
-        {
           "texto": "Trump prevé el fin del sistema cubano antes de 2028 sin anunciar intervención militar - Columna Digital",
           "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNQ0NHeDBoM1BZaGhNSTZPS041Uk9rUWVHNVZMWTZaZ3IxUFdYT1JiU3NFbVFqTUJUVE95cERncTBYT0RnVU1ZTi1tZVBNLUQzQzFlRGhJTGw3NkdLVWs1Y3U3WnJEd20wTUV4WHhlOTB1UldNU0tZVzc1YnkxS3RQcVJicl9CUWs5bTd2OHJZVW51ZElIa2c?oc=5",
           "intensidad": 5.0,
           "medio": "Columna Digital"
+        },
+        {
+          "texto": "Inés Gómez Mont podría pagar fianza tras detención: Revelan por qué y claves del caso",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/01/ines-gomez-mont-detencion-pagar-fianza-por-que-claves.html",
+          "intensidad": 5.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 6,
+      "peso_pct": 19,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 1,
+      "n_notas": 2,
       "notas": [
+        {
+          "texto": "Omar Osorio impulsa actividades deportivas con causa social en Córdoba - Al Calor Político",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPcnR3b3g1QW1rVU9tTmNlZElxSlVoOWNQTEh4UzRETnVDVGNGckVfMWRYSllER0lzcnJfSDFqZXFVTXROVzMzV2g1dDVGdkMzVFM1dFhhbmROdWcwVW95aURhdEFReEVMcEg4eHNIWEF3d1BYTGJBam5VY1kwaGR6NUY0TjJLTFlOcjZybmdLUGx3YkVNbFVId0xPaGdrcVdxbWVreUlJUE9sSjJDODUtMEczSjE5cUljaFNScDZyUHpJVXhk?oc=5",
+          "intensidad": 7.0,
+          "medio": "Al Calor Político"
+        },
         {
           "texto": "Tras escándalo por fiesta de electrónica en cenote, empresa se disculpa; asegura no repetir esos eventos - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOMmxGc2VkcmwyQVgwb1ZES3Uwckl6eF93N1ZoekJCclNMM1hMenV5MVZwQ25uUzliMU45RENrU0djMWJCV21YMFNaS1c2RGhTemRsOExyYzZ2bXp3aV85dElhamoyOWd3UThRT0t1eHc1SkN2MXBaV09XVmdnbnd6WGo2ejdyNmUwQ0Iwb2tOMVR6TUdObFBrWXFGYVRwOGhqUUhvYW9zMnhXMGtabF9odGkwdGV2UW5ab3VNYmxOWUE1NEhweFNzNjltaXBIWFZpWXVBVFFDYlJTQdIB7gFBVV95cUxNUUlwZWpQQVh1X01JMW02d0RTRGtWNml6TTRkYm9JdVY0eUp6dzRPVTZRUzhUVE9qSWJfN2RNZ2Yydm96RzZTMEc0RlM3OEE5My11Ym01ZzFqSGFGaTVNb3N2REh6R1ppc3FKVjVjWVdBWWxWTjd6Vk5HLURKWHJuM3dyVGY1LUhoSmNrNDNndmp0OUg4TkNNYUJyNDdnU2ExS3hMRng3NGc2U0dOREtuaVlUVzk3QlFCWXlWaDhENHdDdXRxTGxhN2lINEhtVDg3TE4wU3locFdoU0ZqVjNoV3dsaTNnN2FOYmNkOU5n?oc=5",
           "intensidad": 6.0,
           "medio": "El Universal"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 10,
+      "tema_principal": "Asesinato de Carlos Manzo",
+      "tema_principal_id": "carlos-manzo",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Cómo fue la caída de 'El Rhino' del CJNG, y su posible nexo con el asesinato de Carlos Manzo - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPZGt0clQyWldaaXBfbno5emNLRkpna3l0MENncG1SeTRHbHl1Z251bnNTZGtyZk4zRDZXYXc5eHNsbURJRzU5TEkzcWwxTnc4YUNYSVdLOXp2X28xXzNlSEVRNFJ1cG91QXRfRXd2Xzl3bjE2U0xGMEtVMHJEdXU2M2hzSzFhTjhWUzVZ0gGLAUFVX3lxTE5UNnJDWHpHbzRqVVM5YmJSbjluX280MHVrLTZwMGNBbDJkbEVDTkRMUVc4LS1OQ0xyUFBKSEhYMVNLcGVWbk03cDhzOW1acEF0RGZXcC1vcDhzWnpRQjNJUVJqMU9VV2I4UmZtWkRNVkdJWkc2Wm1SSXZ0cWRYdzE5ckJYNkFEOFJZbkk?oc=5",
+          "intensidad": 7.0,
+          "medio": "MILENIO"
+        }
+      ]
+    },
+    {
+      "categoria": "Social",
+      "peso_pct": 9,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "🔔 ALERTA — Migrantes se arraigan en México tras el bloqueo de Trump al \"sueño americano\" - UDG TV",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOczgyX3kwem1qZUZvNmt0UDh3cnBmZVZ5dktZSzJTYUFzQVNvcFBuanhXWDllREpaVHFkWjZOSlJjbFRLMGZQajg2WTBydXQ2WVNiVy1YclplcXRHVEY2VkJEUjdMUzl4N1c2cU5DNGtiT2dudlpncnpGZmdPdEVUUjNoVWNLSUFEU2lGYmsyVjhHbjhO?oc=5",
+          "intensidad": 6.0,
+          "medio": "UDG TV"
         }
       ]
     }
@@ -839,7 +809,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
@@ -862,22 +832,19 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-3a81bddfc9",
-      "nombre": "Mesa de Seguridad: Pendientes en materia de seguridad, a 2 años de gobierno de C",
-      "categoria": "Gobernabilidad",
-      "resumen": "Mesa de Seguridad: Pendientes en materia de seguridad, a 2 años de gobierno de Claudia Sheinbaum",
-      "motivo": "⚡ Posible presión de Morena (partido político) — Exigen legisladores indagar 10 años de coyotaje en material electoral",
-      "peso": 19.0,
-      "n_temas_agrupados": 6,
-      "escalando": true,
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Defiende canciller Velasco el T-MEC durante cumbre G-20",
+      "peso": 13.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/01/politica/004n1pol?partner=rss",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/01/politica/005n3pol?partner=rss",
+      "actor_vinculado": null
     },
     {
       "id": "carlos-manzo",
@@ -887,7 +854,7 @@
       "motivo": "Cómo fue la caída de 'El Rhino' del CJNG, y su posible nexo con el asesinato de Carlos Manzo - MILENIO",
       "peso": 13.0,
       "n_temas_agrupados": 2,
-      "escalando": false,
+      "escalando": true,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
@@ -896,32 +863,9 @@
         "id": "manzo",
         "nombre": "Carlos Manzo Rodríguez"
       }
-    },
-    {
-      "id": "auto-97615f5eb5",
-      "nombre": "Roberto Velasco visitará China para reunirse con el ministro Wang Yi el 7 de sep",
-      "categoria": "Gobernabilidad",
-      "resumen": "Roberto Velasco visitará China para reunirse con el ministro Wang Yi el 7 de septiembre",
-      "motivo": "Canciller Roberto Velasco se reúne con ministros de exteriores del G20; conversa con Marco Rubio - El Universal",
-      "peso": 5.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNHRDSUkxczU2RlYxaHZfYkZkZVFsckE0OTl1dWNXVDZvTXVWZ3NNMmhrUFpMUmNfRWtiTEhiQm52X2RSekRpSG1nY1puY05VU09PbmZMOUFmTXFhV0s3NTd2Mkg2RDRzMkNYdldtYmhpaElCVFhyRHRQMmtnb3ZTNWtFcFNxREFMWm5mUTlmR0dadk9pLWoxdVM1OGkwdmdFU1cwcmhUREt2Ujd3UmlVVjFjUTJxd2kyOWl1UC1WVlcxbTY3OTBEVFJ3WnN2NUU?oc=5",
-      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-484beb9422",
-      "nombre": "Acusan intimidación de ICE rumbo a comicios en California - Reforma",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOaHZVbmQyQUpCc2N2dFU3T2RiaFR2V3VSWml1TzNSUnk3c3BXODRJdEdROE5qblEzd2huWGd0cjVTaV9EeTVCRERtaWVwa2NUNi1qSng5Rk1QSTlzRXpsX0o1OW9KTHJSTURlVEY5UzFWOFBSN3hEM3R6LXNuSXM5dzd6VWptMnZrdGNFdUd1XzlpNkZuNWc?oc=5"
-    },
     {
       "id": "auto-9ead57b30c",
       "nombre": "ICE utiliza canción de Michael Jackson para celebrar Halloween y difunde video d",
@@ -931,12 +875,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPeXF1anBTUmc3aktzMXZFOHdyS1BmakVacHNmVlRIdTk0M3FkWlZlaEsyM0FyZFlOM3Z3Nm5OQlVsVENXZ05weEZmdGZQa0swZUFQMDBWVjA0dXJRSml2bTByNFFEWVU3SHRxSHhsVGJhM2pPNXpVWHJ0UlRLdERlNlVDeTJzd1JDUEh2dUh0ZjJHUkJneW50LTZrTXRVLUZnOWE3V2Mta29waGpLNldvT3UxLWs4TERJUERjQVBYc1diWndEeFllNEZ4UzlzSlpjMV82U25B?oc=5"
     },
     {
-      "id": "auto-71cb22798b",
-      "nombre": "Claudia Sheinbaum se compromete a defender educación gratuita - Excélsior",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-2428153b4b",
+      "nombre": "Cuba aplica una nueva Ley de Migración: qué cambia para los ciudadanos dentro y ",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNWEVIREdIb1BUTEVnTnpURGhKZWg5YjlMOGhpT3JkUjk1NWVJR0d6VHRRQWdub2dfU3dJVndsWlBvdmJpSDJSRmpEanJGakNTbnJlcWtFUGdCN2FVMnBST3dycEJMS3l3WHUxUDdMWDZjVzdCSG5YeUdETTZubkthTGI4TUd3b3FfZTRsZDlKeXhqcGFub2fSAZsBQVVfeXFMUE5CbE53WWZ4MTN2ZnZYNFRhSW9hX0I1ay04RlBDMUg5cG1GNll6a194NEpreTBiVU9TTkNEMnlkUWZvU3NORzdiNUdUTU9hUnpnb3NMV04tX01XWEZTWWs4ZUZpQzZEZ29IdGh5Q1h3YXh4UlBKdU9kRkMxSlRLQ0JNVUFPT0xwSmhEU29GZ3JvaG9UZzZBTVNYczQ?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOdXF1b3VkSUI0SG9DZzdFOVpvcGZKQklDTE0yalhpSEJHdWZCVS1pa0dTWHNvT1plMVR6cElDOGg0RnpDcTdxMVdMZ1BMczZ6bGxiMEN5em96anFJa1Q5bW5nUHkxd04tUkZLWjNFNjc4cXhtQ3lXd01RV0tvcldPWlQ5VG9qSDEzVUVKU0lnOTJ4cTZNQl9YSlRIRE51UVRwaE5EUEFDN2ViSjNiUkFvU0xfNXM5MHBpdW1sZ2xWS3lJNUIzaWxYOFQ2d3h1cFhoQWfSAewBQVVfeXFMTnZ0ZW54T2ZaZlZBcVZsQ3pJM0N4SmJabmlXR2RaVEFONmMxUjM4eFJab3lzWXhadWtMYUh1VHc5YmxnOXRBWG1TM0NFajZ0bEpNVzMtaFljdHZqcm5BRkdfZ1B5M1IzczVJRG1ZNkcxSGlEckdRZDYxaEpEaDBsbG50WkNhRF96RkhqUVY3bUxMMXA0TFhyTFdTSEFvak1maWJMTTNqRzVXXzRUU3JmMUtzd0trWnBmdDh3T1dtbng3d09qbXZITXJieUFWMjc3YkwyUVlYTFNGQjEzTDZjVWJ2cXRzQVpzaVBrSlo?oc=5"
     },
     {
       "id": "auto-c662b5c42c",
@@ -953,20 +897,17 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOTGFUWG1JX0ZnU3c0OG5IYTd4emk4Ql9SVGRDOVk2cmZvbWN4WnV6OEVXWURQRmdjQWJmZzVCdUpBTzBndE80T2VwdHVpSWdQQXpNSnpmejVnMDZIQWUyMExGdmVKd2t2aFhrbEZocU9yNkVENjZpdkdrUjRPRnNMdzRBemhpNzZUTUs2b2kwY0dNb2Vjc3RhMUg5VzlJTTBiRlliaFdxV000cmtZclgwTXJUNjJFWGVrRzJueGlQNjFfMEtfRjQzU2xINzdQOFJ0cUliX9IB6AFBVV95cUxPTklWR3BnQUNOYzhKcTY1eUlyR3lSMmIwcTVmV05MS19Yc19WN2R0Q1JYVW1jaWNfNVpfYXkzV2tjb0VRaGJhUlJhZV84OWFnak5DcURLUWhCRmN0b29uY3h6Tm4wbVpNTGYzaGNqeVZpOFMwU01ZZE5GT2hIaUhhQkxCM1Q2NUR2aWdIdFdMelJNaU5BMUF3Z3k4ZDhITDRpNUpRdERrUE5aZkxsMjE5RGExQkZjeDZiYnNnNG5iYlBNR2R6NV92M0w2VWcyVVV2Z0UwRDQ2SmxnbUx5MnlnMjJBU3AtTHdf?oc=5"
+    },
+    {
+      "id": "auto-7abdc3d48e",
+      "nombre": "Taddei no es de Morena - Reforma",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9aeXJ2UUdTUFZMVGw4NGJGdm13eGJNSnNXUE5ycW1fcElGNmQ4V1lqWUJRU3lPbnJhMlhCa3FZRkVQc0RxWDNJZFZWa244X2hjNERUVjdkNFV6Z2VyN3dvSFdFSXNRT3cwT1poNkUyRG9ZWEFv?oc=5"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-97615f5eb5",
-      "nombre": "Roberto Velasco visitará China para reunirse con el ministro Wang Yi el 7 de sep",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 57,
-      "motivo": "Canciller Roberto Velasco se reúne con ministros de exteriores del G20; conversa con Marco Rubio - El Universal",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNHRDSUkxczU2RlYxaHZfYkZkZVFsckE0OTl1dWNXVDZvTXVWZ3NNMmhrUFpMUmNfRWtiTEhiQm52X2RSekRpSG1nY1puY05VU09PbmZMOUFmTXFhV0s3NTd2Mkg2RDRzMkNYdldtYmhpaElCVFhyRHRQMmtnb3ZTNWtFcFNxREFMWm5mUTlmR0dadk9pLWoxdVM1OGkwdmdFU1cwcmhUREt2Ujd3UmlVVjFjUTJxd2kyOWl1UC1WVlcxbTY3OTBEVFJ3WnN2NUU?oc=5",
-      "fecha_anterior": "2026-09-04",
-      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/04/politica/012n1pol?partner=rss"
-    },
     {
       "id": "auto-80f2312bf9",
       "nombre": "Gobernador nombra a Anahí Sarmiento Pérez como Secretaría de Educación Pública d",
@@ -979,6 +920,17 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOZTdiVVY1UHhJamw4dkFwaWRSclBjLWphbkhFSG5JU1ota3BSX2RrZ0hkX0g4TDQyU2p2NHlyQjRUTWRFcS0zckNyTktvblg5WWJPd21pZUNzNDNlM0Z4Tm1Ed0NqXzRoN05mcldXSjl5amJ6a210UnFLbUtiMVZRSUl3Si1HNE4zYjZ4MFFjd3BqVjdRcWRXSmhocVFXRVJCSFhMVWI5ZnlQMFFxckZIMWxkTQ?oc=5"
     },
     {
+      "id": "auto-1533b63a85",
+      "nombre": "Claudia Sheinbaum firma decreto para proteger a niños y jóvenes en redes sociale",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 17,
+      "motivo": "Morena convierte a jóvenes en voceros de la 4T y los llama a combatir narrativas de ultraderecha en redes sociales - Infobae",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPQ1gwVzVVWU5JaTFjblpTRDZOSG9HOW9BOFdHbzBNWnVCOWxPSVZTMlFlaHhsQzRJYmVLMUd4bkhaM296cnphbTlfcnlsQXRiZHY1c1BIbWh4TWtHOGtjXzlDeFE4MXJrYjVGX3BrWUp2WEpjTExLUUFUZE4tbk5Jc2RSckRuM2oxaHVlOF9IQk5JN3lwX2twSFZXX3ZVbkJKVmxSczZfUGY2Y0hwT3R3b29JMzEtUENxN0ZIZmh2Nk5pTEhYd2dCUEFRNW9yd1VXN0h2WkVNTHdhMDFVMzJlcWVfWTMyT3QzdHVhd3R30gGIAkFVX3lxTE5mbWdNNEIxT3Y3bkUtRl9Gck02YlZ0dlVWeExnMUdhWXl1dU5qT2NuZGZ0cEdfbVhCZkhRSWZsOEpkeDNUQmQ4NkwwZUMtY3l5LVhzaVZIWDZscnBSa2NPeGREUXhNMU1NNHZ1Q1poQmVUU1V4enQ1YWQ5cHdRYUhWX3dNeGVvZGRwUWF4QklUMWNWNks3cDdfQURmSHNFc1NlU3VzYmVHVHZBbWc2X2lTY01EWC1fazRCd2pjOWdvUl8tczc4RVlrMnpaWFJrc1Z6Zl9jQUtLNlRObDh0V1J3NWRoY1gxLUN6S3FZcDBlRjNGcFdMQm5mSFlTdEJXNGZLRlNsaTl4ag?oc=5",
+      "fecha_anterior": "2026-10-14",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOdzJIVGU2NlR1SWVybmRkQ01IOG5GQURJdlc4T3ZSQXhoQVRBOFRCSGdydzdhaTdRRC1USXZwZEJWMjlkWEk1eHVCaEU1dFlrSlhhLTZZRFVlR1pnNkhvWGJrMUFjWHljYTN0T1IySFBxRUdRb2RyWlEwMnpkYy1DUm1ZUUIyMmVROWpnVXlLcFY0WWVqSVpFbEVGb0RhNzhldHVMRjBPRlF6bHo3V0E?oc=5"
+    },
+    {
       "id": "auto-d13031235c",
       "nombre": "La balanza electoral de Estados Unidos: ¿Donald Trump tiene posibilidad de mante",
       "categoria": "Relación Bilateral",
@@ -988,17 +940,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQenkwdG1rQWd1SU1iQWRrc2wzRFFEV1V0TDRiWjVPSTdLdFF6Wjh3M1RZVEM4Y0w1WkpQVlF1SGl5dEZlMVRBSXJ3M0hmSkZmWk1KbzFGM19GbUxLZUZXMmQ1Tm1KUEZJQk9BT0M4aFZuVEk1eHlIUkpDZnV3U2NnLVp0cETSAYQBQVVfeXFMTnJrOHc4ZFNKUm9WOE0yS09acWcyeVFmUzVQem1oZjZHQVc3VWk2QXJHdDhZcl9rZDVlOHI3SlFsdVlvdkZXUHhxajhweExyZ2Zwckp0LURYeXMwWE5VMlVxRGYzVFYtMDFaNmNFSWxUcVhZRFZCNGVMSG9SRkRIQzlhcjg2?oc=5",
       "fecha_anterior": "2026-10-14",
       "fuente_url_anterior": "https://heraldodemexico.com.mx/mundo/2026/10/14/la-balanza-electoral-de-estados-unidos-donald-trump-tiene-posibilidad-de-mantener-al-congreso-su-favor-908237.html"
-    },
-    {
-      "id": "auto-35a44e27cc",
-      "nombre": "Fiscalía confirma el fallecimiento de dos trabajadores baleados en refinería de ",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 12,
-      "motivo": "Asesinato de Manzo fue venganza del CJNG, confirma Fiscalía - Reforma",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxONjc0Y2pNdnJUTmxMZVBIbWtMaHBSd2VyZ2swYUYtMVVheGhxbEd3VzMxNHZzMHlzYTNLY3RCRkJpeE95VF9TNlhFcUttT1EwLUNpa1Y5RGNxdUY3UG9pZTZkeVVmUXNsUkd4UlRyT3N5cHFwVHV1dlRrOW5hbVRRXzJlUzhjaGk5aDdmQ043VFVMaVdJZGdV?oc=5",
-      "fecha_anterior": "2026-10-19",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNUFlXSmNUU3Q1VEtsSGZ4cXFvNl9oTXRETE1mOGFBUFo4R1U3VjRPZzk1dUJrWHpDX2owQlMxeEVJRGVqOXF5bnNTR2JwbUh6dFNvQldnUnZsZ1N3cjFwV3l1bVQ2V3VWVmtyakJxY0NyLVVoU2F0QjBLbDU3czhxUjBTdEpwTEptSzBOTTVNTFUyVGRwdjRLVXFQV2JtM1U5cnpsMEFzSFJjSmZKWU5SS3UtRHVYZHNDOTRUdXV2T1FtWGxp?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1017,9 +958,9 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
-      "tema": "La balanza electoral de Estados Unidos: ¿Donald Trump tiene posibilidad de mante",
-      "nota": "¿Hasta dónde puede caer Donald Trump? Así dinamitó el apoyo del electorado - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQenkwdG1rQWd1SU1iQWRrc2wzRFFEV1V0TDRiWjVPSTdLdFF6Wjh3M1RZVEM4Y0w1WkpQVlF1SGl5dEZlMVRBSXJ3M0hmSkZmWk1KbzFGM19GbUxLZUZXMmQ1Tm1KUEZJQk9BT0M4aFZuVEk1eHlIUkpDZnV3U2NnLVp0cETSAYQBQVVfeXFMTnJrOHc4ZFNKUm9WOE0yS09acWcyeVFmUzVQem1oZjZHQVc3VWk2QXJHdDhZcl9rZDVlOHI3SlFsdVlvdkZXUHhxajhweExyZ2Zwckp0LURYeXMwWE5VMlVxRGYzVFYtMDFaNmNFSWxUcVhZRFZCNGVMSG9SRkRIQzlhcjg2?oc=5",
+      "tema": "Donald Trump presiona a México para firmar acuerdos energéticos con empresas de ",
+      "nota": "Canadá y EU ‘hacen las paces’: Gobiernos de Mark Carney y Donald Trump trabajarán en acuerdo comercial",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/01/canada-y-estados-unidos-trabajaran-en-acuerdo-comercial-informa-mark-carney-gobierno-de-donald-trump-celebra-dialogo/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1036,23 +977,23 @@
       "confianza": "media"
     },
     {
-      "id": "garcia_harfuch",
-      "nombre": "Omar García Harfuch",
-      "rol": "Responsable institucional",
-      "tema": "García Harfuch llama a fusileros paracaidistas a proteger a las familias mexican",
-      "nota": "García Harfuch llama a fusileros paracaidistas a proteger a las familias mexicanas - Excélsior",
-      "fuente_url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9nMjdEd1RzeWpobUo1Y0ZkRkVEaU5pQ1hwZHRXSVhBRnFlRGZ3cTkzNGM3WndDQU1jNk14eEt5V3ktSWVNQlBFMzBTdnphMnUxMUNlYWc0bFptV2JxRlpuWlRlV2lud0RwWjBaTXNmU2VKMHJ4bEpwQ0RfaDPSAYIBQVVfeXFMTWlrVTNfdXVWVWttYzlsSUFIdUVmclo5cjFFUlNWTjRFODRrOG10T29KOUF1VjdBSkJMTVBaWDdhMWkza0ZuMHlzRmxNYWhXZFByUFhxR3JEQ21TOC1nMWlpdjFCQWhOQU9DemRPMmJIMERpSGFSNXcyUE53aF9uM0NGUQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Reacción social/mediática",
       "tema": "Mesa de Seguridad: Pendientes en materia de seguridad, a 2 años de gobierno de C",
       "nota": "⚡ Posible presión de Morena (partido político) — Exigen legisladores indagar 10 años de coyotaje en material electoral",
       "fuente_url": "https://www.jornada.com.mx/2026/11/01/politica/004n1pol?partner=rss",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "ernesto_ruffo",
+      "nombre": "Ernesto Ruffo Appel",
+      "rol": "Mencionado",
+      "tema": "Huachicol Fiscal",
+      "nota": "Ernesto Ruffo obtiene suspensión definitiva y frena juicio oral por huachicol fiscal - Sin Embargo",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM0Q0Y3ppcGRybGNjU2RWNk1KTE9WS0tkaVZHVEVRYWg3eFpFd0k5LWVLaXVzY1F6ME04eEp2YUpaU2YwcWw4VU5xZk55U1B1eW11cUN6akNhbndjRnpBRjB0QzdfOWJTNl9hVkhoMGl5dk1xeXZqWXhubEgxakx6WW9zczRrZ3NlZEtQR256bHdQcm85RXBmOENpWDM0cFQ2a1lCMmsteEtGLW16ZmFNdmhJWG5zOTZ6R1Nr?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1279,10 +1220,10 @@
     },
     {
       "fecha": "2026-11-01",
-      "tension": 36,
-      "n_notas": 7,
-      "n_alto_impacto": 4,
-      "n_medio_impacto": 3,
+      "tension": 33,
+      "n_notas": 9,
+      "n_alto_impacto": 5,
+      "n_medio_impacto": 4,
       "n_bajo_impacto": 0
     }
   ],
@@ -1567,8 +1508,7 @@
           "x": 23,
           "y": 81
         }
-      ],
-      "fecha_reactivado": "2026-11-01"
+      ]
     },
     {
       "id": "garcia_harfuch",
@@ -1802,7 +1742,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 2
   },
   "declaracion_presidenta_historial": [
     {
@@ -1857,5 +1797,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-01 12:03"
+  "hora_corte_publicada": "2026-11-01 15:59"
 }
