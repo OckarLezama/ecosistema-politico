@@ -129,7 +129,7 @@ auto-0ee7153b01,"Gobernadora Nahle dice que ya no habrá protección por fuero a
 auto-4ffcbd555d,Pensiones millonarias de Zedillo y Ortiz en el BdeM por pocos años: Sheinbaum,1,completo,4,2,0.5,revisar
 auto-4cab75075e,"Diputada del PT propone auditoría a gobierno de Jara por presuntos ""aviadores"" e",3,informativo,4,2,0.5,revisar
 auto-c256c6d86f,"Gobernar en el sótano, ganar elecciones",3,informativo,4,2,0.5,revisar
-auto-a17ab6a268,"Informe de la gobernadora, INEGI y desplazamiento - Marcaje Legislativo",3,informativo,165,85,0.52,revisar
+auto-a17ab6a268,"Informe de la gobernadora, INEGI y desplazamiento - Marcaje Legislativo",3,informativo,166,86,0.52,revisar
 auto-043bf7b202,"Sheinbaum anuncia paquete de reducción de trámites del SAT, IMSS y STPS para inc",1,completo,25,13,0.52,revisar
 auto-85077e4101,"Aseguran nueve autos de lujo, un arma y joyería durante cateo en Nuevo León",3,informativo,9,5,0.56,revisar
 auto-38b7af4bf5,"Policía de Tránsito, la corporación que más identifican con corrupción en Tabasc",3,informativo,9,5,0.56,revisar
@@ -378,6 +378,7 @@ auto-49e358a46c,Imputan a dos abogados por fraude y fraude procesal ligados al �
 auto-7d63c5d887,Un hombre fue ejecutado a balazos en Juchitán de Zaragoza; fue identificado como,3,informativo,13,11,0.85,ok
 auto-f987b5010b,Investiga Fiscalía a seis autoridades municipales de Oaxaca por presuntos nexos ,3,informativo,13,11,0.85,ok
 auto-071718fd5d,Ayuntamiento de Puebla destina 9.4 mdp a mejorar unidades habitacionales - El Po,3,informativo,13,11,0.85,ok
+auto-140b0227c9,"¿Bailarina o científica?, el comentario de Donald Trump sobre Claudia Sheinbaum ",3,informativo,13,11,0.85,ok
 sinaloa-crisis,Crisis de Violencia en Sinaloa (Chapitos vs. Mayos),1,completo,71,61,0.86,ok
 carlos-manzo,Asesinato de Carlos Manzo,1,completo,42,36,0.86,ok
 auto-16bfe5e7f1,Congreso buscará reunión con Pepe Chedraui sobre San Francisco Totimehuacan - Al,3,informativo,22,19,0.86,ok
@@ -442,7 +443,6 @@ auto-f66c5a4c05,PT pone pausa a proceso de Morena; cuestiona rumbo de la 4T - Ca
 auto-280d4466cb,El secretario de Seguridad Pública del Estado participó en el Encuentro Nacional,1,completo,11,10,0.91,ok
 auto-771c303e87,"Marco Rubio, el hombre del presidente",3,informativo,11,10,0.91,ok
 auto-0cb15c039a,Rocío Nahle regala el nuevo libro de AMLO en Veracruz y destaca la dedicatoria a,3,informativo,11,10,0.91,ok
-auto-140b0227c9,"¿Bailarina o científica?, el comentario de Donald Trump sobre Claudia Sheinbaum ",3,informativo,11,10,0.91,ok
 auto-ee6efd9cf7,"Sheinbaum y Rosa Icela sostienen primera reunión con gobernadora de Sinaloa, Gra",1,completo,25,23,0.92,ok
 auto-a120e88bf7,"Claudia Sheinbaum sorprende con visita en Chicoloapan, acompaña a Delfina Gómez ",3,informativo,24,22,0.92,ok
 auto-d96d7cfc94,PT Campeche abre posibilidad para no ir en coalición con Morena - La Jornada May,1,completo,13,12,0.92,ok
@@ -452,12 +452,12 @@ auto-19f6ec5b78,Advierte gobernadora a funcionarios que aspiren a participar en 
 auto-c8fbd586e0,¡Cero tolerancia a Morena! PRI va con todo ante INE por campaña anticipada - Gru,1,completo,12,11,0.92,ok
 auto-d19d80c92b,"‘No lo veas a los ojos’: ¿Por qué le dicen ‘El Jaguar Negro’ a Eduardo Ramírez, ",3,informativo,12,11,0.92,ok
 auto-3a87904492,Claudia Sheinbaum desmiente regaño a Omar García Harfuch publicado en medios de ,1,completo,12,11,0.92,ok
+reforma-doble-nacionalidad,Reforma constitucional contra la doble nacionalidad en candidaturas,1,completo,83,77,0.93,ok
 auto-ab3f2d6dae,Cartón de Tony: Los grandes ausentes,3,informativo,15,14,0.93,ok
 auto-2790d16615,Eugenio Segura sería el primer gobernador de Quintana Roo nacido en Cancún - Pal,3,informativo,15,14,0.93,ok
 auto-1c727912de,La gobernadora arranca una gira de supervisión a los 61 hospitales de la red IMS,1,completo,15,14,0.93,ok
 auto-e9a9befafe,"Obispos de México, EU y Canadá piden fraternidad ante migración y retos de la IA",3,informativo,14,13,0.93,ok
 auto-9649359730,"Morena revela a 17 candidatos para las elecciones estatales de 2027, una lista q",3,informativo,14,13,0.93,ok
-reforma-doble-nacionalidad,Reforma constitucional contra la doble nacionalidad en candidaturas,1,completo,82,77,0.94,ok
 auto-a62c2391bc,¿Se va a rebelar el PT frente a Morena? - La Jornada de Oriente - Puebla,3,informativo,18,17,0.94,ok
 auto-b134c2bded,"Medio siglo de cacicazgo en Tlaxcala con PRI, PRD, PAN y Morena - Línea Política",3,informativo,17,16,0.94,ok
 auto-cad8c444ea,¡ÚLTIMA HORA! Detienen al presidente municipal de Juchitán en OAXACA - El Herald,3,informativo,16,15,0.94,ok
@@ -792,6 +792,7 @@ auto-7fc9fb56ad,Diputado del Verde cachetea a contrincante por candidatura en Pu
 auto-0c7ca2f7b4,Sinaloa y Baja California encabezaban la migración hacia Sonora: Qué cambió en 2,3,informativo,7,7,1.0,ok
 auto-5a0b8c2bec,INE define Consejo Local de Quintana Roo para elección federal de 2027 - Grupo A,1,completo,7,7,1.0,ok
 auto-fcfc2fcebf,Claudia Sheinbaum destacó las palabras de José María Morelos y lo establecido en,3,informativo,7,7,1.0,ok
+auto-ded5ff6eee,TEPJF ve inconstitucional reducción de regidurías en Puebla capital; SCJN analiz,3,informativo,7,7,1.0,ok
 auto-5a1d51df93,Clausura Congreso Oaxaqueño Segundo Periodo Ordinario de Sesiones - Meganoticias,3,informativo,7,7,1.0,ok
 auto-520b7b6fa3,García Harfuch agradece a Gobierno de Veracruz apoyo para captura de El Tanque -,1,completo,7,7,1.0,ok
 auto-914ea02b55,Destaca Mara Lezama mayor prosperidad con proyecto eólico en el sur de Quintana ,3,informativo,7,7,1.0,ok
@@ -843,7 +844,6 @@ auto-2465c52b9b,Ariadna Montiel se reunirá con morenistas perdedores para pedir
 auto-88567fb1d2,Catean domicilio de Guillermo Pamuce tras homicidio en Coatzacoalcos; autoridade,3,informativo,6,6,1.0,ok
 auto-5b15fcfe45,"Avanza en la Cámara de Diputados el paquete económico 2027: Ley Aduanera, regula",1,completo,6,6,1.0,ok
 auto-7995d71cb3,"Tras la detención de sus alcaldes por extorsión, lavado de dinero y crimen organ",3,informativo,6,6,1.0,ok
-auto-ded5ff6eee,TEPJF ve inconstitucional reducción de regidurías en Puebla capital; SCJN analiz,3,informativo,6,6,1.0,ok
 auto-42a66084c3,"Carlos Slim Domit, el heredero, respalda a Sheinbaum: “Cuenten con nosotros y co",3,informativo,6,6,1.0,ok
 auto-0622430799,Senado aprueba candado de nacionalidad mexicana para la presidencia; Puebla debe,3,informativo,6,6,1.0,ok
 auto-db6a3aaf66,Aprobación de la Ley de Bienestar Animal: Se informó sobre la aprobación de la L,3,informativo,6,6,1.0,ok
@@ -1162,6 +1162,7 @@ auto-a8e5fb94bf,Avioneta usada por gobernador se desploma - Cuarto Poder - Tu Di
 auto-86528b5fe2,Atzacan pide ayuda al Gobierno estatal ante estragos por lluvias - Al Calor Polí,3,informativo,4,4,1.0,ok
 auto-fb03723e76,Enrique Rivera busca diputación federal con Morena pese a denuncia de la ASE por,3,informativo,4,4,1.0,ok
 auto-82a42e7999,Claudia Sheinbaum confirma inversión histórica de un billón de pesos en Energía ,3,informativo,4,4,1.0,ok
+auto-fd9db05124,Que doña Claudia ya está harta del veleidoso Donald Trump: The Wall Street Journ,3,informativo,4,4,1.0,ok
 auto-ba07e11cb3,Alma Sánchez visita sede de Morena y llama a fortalecer trabajo territorial en C,3,informativo,4,4,1.0,ok
 auto-1d0b52ec6f,Diputada pide a FGE esclarecer feminicidio de María Fernanda con perspectiva de ,3,informativo,4,4,1.0,ok
 auto-d3bc446cc7,"Tlaxcala, sede del primer Congreso Internacional de la Talavera México–España - ",3,informativo,4,4,1.0,ok
@@ -1415,7 +1416,6 @@ auto-2216ceff12,Cascada de licencias y renuncias en Quintana Roo: funcionarios d
 auto-577a812d9a,Morena y su fiesta de XV años… en mitad de semana,3,informativo,3,3,1.0,ok
 auto-2f9588a4a1,Cabildo solicitará al congreso suspender al síndico detenido,3,informativo,3,3,1.0,ok
 auto-d4cf2ed043,El gobierno de Claudia Sheinbaum prevé nuevas inversiones para ampliar la capaci,3,informativo,3,3,1.0,ok
-auto-fd9db05124,Que doña Claudia ya está harta del veleidoso Donald Trump: The Wall Street Journ,3,informativo,3,3,1.0,ok
 auto-72060c42e7,La captura de un capo del narco complica a la familia de López Obrador - ABC,3,informativo,3,3,1.0,ok
 auto-16606fd386,Sheinbaum reafirma orgullo por Morena y pide mantener principios,3,informativo,3,3,1.0,ok
 auto-0438b2001f,Senado aprueba reforma contra llamadas comerciales sin consentimiento; multas su,3,informativo,3,3,1.0,ok
