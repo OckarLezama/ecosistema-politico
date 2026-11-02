@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-02|inflexion|carlos-manzo|2026-11-01|trigger",
+   "ts": "2026-11-02T05:03:57-06:00",
+   "tipo": "inflexion",
+   "tema_id": "carlos-manzo",
+   "texto": "⚡ Posible trigger en «Asesinato de Carlos Manzo» (11-01): Varios días seguidos por encima de lo normal (~0.6 notas al día) acumularon un aumento sostenido; ese día fueron 2. Quién lo protagoniza: Carlos Manzo"
+  },
+  {
    "id": "2026-11-02|hito_proximo|tmec-revision",
    "ts": "2026-11-02T00:14:19-06:00",
    "tipo": "hito_proximo",
@@ -414,13 +421,6 @@
    "tipo": "inflexion",
    "tema_id": "tmec-revision",
    "texto": "◉ Posible turning point en «Revisión del T-MEC» (10-12): Lo normal del tema son ~3.0 notas al día; ese día fueron 11 (por azar eso pasaría en menos de 1 de cada 3,400 días). Quién lo protagoniza: Sheinbaum ("
-  },
-  {
-   "id": "2026-10-14|actor_clave|sheinbaum|rocha-moya-acusacion",
-   "ts": "2026-10-14T13:48:44-06:00",
-   "tipo": "actor_clave",
-   "tema_id": "rocha-moya-acusacion",
-   "texto": "◉ Claudia Sheinbaum Pardo aparece por primera vez en «Acusación de Narcotráfico contra Rocha Moya»: Sheinbaum truena contra Gobernador de Jalisco: Máynez la acusa de proteger a Rocha Moya - "
   }
  ]
 }
