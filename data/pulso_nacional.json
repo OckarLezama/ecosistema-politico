@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-11-01T15:59:02.306249-06:00",
+  "generado_en": "2026-11-01T18:04:26.970770-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 11,
+  "n_notas_ventana": 13,
   "baja_confianza": false,
-  "tension_nacional": 34,
+  "tension_nacional": 27,
   "tension_anomalia": {
-    "z": 2.45,
-    "nivel": "alta",
+    "z": 1.05,
+    "nivel": "normal",
     "media_periodo": 21.9,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 39,
+      "peso_pct": 32,
       "tema_principal": "Mesa de Seguridad: Pendientes en materia de seguridad, a 2 años de gobierno de C",
       "tema_principal_id": "auto-3a81bddfc9",
       "n_temas": 4,
       "n_notas": 4,
       "notas": [
-        {
-          "texto": "Kenia López Rabadán cuestiona inacción del contralor del INE - Caribe Peninsular",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOOEpJZHplVHlPMWppX3dWYjFQNjgtdmU0d1dhVUR3S3BJZlVZcDZjV3ZZaGVEMGoxTEIwZmxxQzlFeDJCVVlsTDlHc2VHZTQ2NF9ndkRzV1U1UTAxc2lleHRHLUlxbmI0aUFmLWZSQ2FHRm43VnRSeS1BZU5KM19KZUp5dmpXLU5od2FqajF0QkhJUkk?oc=5",
-          "intensidad": 7.0,
-          "medio": "Caribe Peninsular"
-        },
         {
           "texto": "Inés Gómez Mont en la mira por 2 mil 950 mdp",
           "fuente_url": "https://www.tabascohoy.com/ines-gomez-mont-en-la-mira-por-2-mil-950-mdp/",
@@ -42,16 +36,22 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM0Q0Y3ppcGRybGNjU2RWNk1KTE9WS0tkaVZHVEVRYWg3eFpFd0k5LWVLaXVzY1F6ME04eEp2YUpaU2YwcWw4VU5xZk55U1B1eW11cUN6akNhbndjRnpBRjB0QzdfOWJTNl9hVkhoMGl5dk1xeXZqWXhubEgxakx6WW9zczRrZ3NlZEtQR256bHdQcm85RXBmOENpWDM0cFQ2a1lCMmsteEtGLW16ZmFNdmhJWG5zOTZ6R1Nr?oc=5",
           "intensidad": 6.0,
           "medio": "Sin Embargo"
+        },
+        {
+          "texto": "No busco venganza, sino una investigación exhaustiva: Grecia Quiroz a Claudia Sheinbaum - El Sol de México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOVmVGVU1aNzBVRzllel8wRWtBc0JsQVBYcDByVHNlaWtPRkdnMTNnZVQzYVFZNVRqeFpPclFDaVU5eEtwQUNDWHpSQ2dkemhySVNmdERLXzlGeU9obHd5YmMyM25fMm1VOU1YVE1IY2IzVVhsWml3cjlwOXduRDZSX0FiOHVWMGRoSlp5Z0Zvd2k2bUlPMXdBbzZtWmhaRndFLU5NRlFkQzNPS3dIQmVWOHNSTzJRSlUySFVVak14cldWQ2VTNVV0RnZBZjI5UlRU?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Sol de México"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 24,
+      "peso_pct": 28,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 3,
-      "n_notas": 3,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "Defiende canciller Velasco el T-MEC durante cumbre G-20",
@@ -70,49 +70,61 @@
           "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/01/ines-gomez-mont-detencion-pagar-fianza-por-que-claves.html",
           "intensidad": 5.0,
           "medio": "yucatan.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 19,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Omar Osorio impulsa actividades deportivas con causa social en Córdoba - Al Calor Político",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPcnR3b3g1QW1rVU9tTmNlZElxSlVoOWNQTEh4UzRETnVDVGNGckVfMWRYSllER0lzcnJfSDFqZXFVTXROVzMzV2g1dDVGdkMzVFM1dFhhbmROdWcwVW95aURhdEFReEVMcEg4eHNIWEF3d1BYTGJBam5VY1kwaGR6NUY0TjJLTFlOcjZybmdLUGx3YkVNbFVId0xPaGdrcVdxbWVreUlJUE9sSjJDODUtMEczSjE5cUljaFNScDZyUHpJVXhk?oc=5",
-          "intensidad": 7.0,
-          "medio": "Al Calor Político"
         },
         {
-          "texto": "Tras escándalo por fiesta de electrónica en cenote, empresa se disculpa; asegura no repetir esos eventos - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOMmxGc2VkcmwyQVgwb1ZES3Uwckl6eF93N1ZoekJCclNMM1hMenV5MVZwQ25uUzliMU45RENrU0djMWJCV21YMFNaS1c2RGhTemRsOExyYzZ2bXp3aV85dElhamoyOWd3UThRT0t1eHc1SkN2MXBaV09XVmdnbnd6WGo2ejdyNmUwQ0Iwb2tOMVR6TUdObFBrWXFGYVRwOGhqUUhvYW9zMnhXMGtabF9odGkwdGV2UW5ab3VNYmxOWUE1NEhweFNzNjltaXBIWFZpWXVBVFFDYlJTQdIB7gFBVV95cUxNUUlwZWpQQVh1X01JMW02d0RTRGtWNml6TTRkYm9JdVY0eUp6dzRPVTZRUzhUVE9qSWJfN2RNZ2Yydm96RzZTMEc0RlM3OEE5My11Ym01ZzFqSGFGaTVNb3N2REh6R1ppc3FKVjVjWVdBWWxWTjd6Vk5HLURKWHJuM3dyVGY1LUhoSmNrNDNndmp0OUg4TkNNYUJyNDdnU2ExS3hMRng3NGc2U0dOREtuaVlUVzk3QlFCWXlWaDhENHdDdXRxTGxhN2lINEhtVDg3TE4wU3locFdoU0ZqVjNoV3dsaTNnN2FOYmNkOU5n?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
+          "texto": "Detención de Inés Gómez Mont: Lujosas joyas que usaba, valuadas en más de 400 mil pesos (FOTOS)",
+          "fuente_url": "https://www.yucatan.com.mx/espectaculos/2026/11/01/ines-gomez-mont-detencion-pulseras-precio-fotos.html",
+          "intensidad": 5.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 10,
+      "peso_pct": 16,
       "tema_principal": "Asesinato de Carlos Manzo",
       "tema_principal_id": "carlos-manzo",
-      "n_temas": 1,
-      "n_notas": 1,
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Cómo fue la caída de 'El Rhino' del CJNG, y su posible nexo con el asesinato de Carlos Manzo - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPZGt0clQyWldaaXBfbno5emNLRkpna3l0MENncG1SeTRHbHl1Z251bnNTZGtyZk4zRDZXYXc5eHNsbURJRzU5TEkzcWwxTnc4YUNYSVdLOXp2X28xXzNlSEVRNFJ1cG91QXRfRXd2Xzl3bjE2U0xGMEtVMHJEdXU2M2hzSzFhTjhWUzVZ0gGLAUFVX3lxTE5UNnJDWHpHbzRqVVM5YmJSbjluX280MHVrLTZwMGNBbDJkbEVDTkRMUVc4LS1OQ0xyUFBKSEhYMVNLcGVWbk03cDhzOW1acEF0RGZXcC1vcDhzWnpRQjNJUVJqMU9VV2I4UmZtWkRNVkdJWkc2Wm1SSXZ0cWRYdzE5ckJYNkFEOFJZbkk?oc=5",
           "intensidad": 7.0,
           "medio": "MILENIO"
+        },
+        {
+          "texto": "Violencia en Sinaloa: 3 asesinados y balaceras en Mazatlán y Culiacán - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOaVZhZ29KaVFJTXNKWWgxaVlTaXcyNFh1WF9qcnpkeS0zcWRGdDQ1bHdJWjZkS3Znb21DelE4eTdfSlhudHhEUFViMlV1Sy1GTVNGWndSNnIzTTE0aEJOMU1tczBITlprY2F4U28wam1mRGZVb2VPX0FtcmdpTXJ3ZllEWjVwcnhIRkxaR1dMR1ZaSHoxS2VxNzRqYi0tSTIyamRGSktR0gGmAUFVX3lxTE1lcnB2eC1VNXVycEV5ZXFhRGV2RkdDcC00c2g1VzRETzhnQk1CYlVmQkMtX1VMZ1drUDdOVXBaa25IcEE3N2FEdHEydmx3YUdKS0xDVzFnTGtCdW9mSG5LOWlJU3NDQlB3NkdmLWV4M3dKdUY1RWxDSktQVkN1Mk04UlVtTE5qMEE1cmRxQXNYYzlISG9VU1ZoMXJ5RURCaGZyVm9nUkE?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
         }
       ]
     },
     {
       "categoria": "Social",
+      "peso_pct": 15,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 2,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "🔔 ALERTA — Migrantes se arraigan en México tras el bloqueo de Trump al \"sueño americano\" - UDG TV",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOczgyX3kwem1qZUZvNmt0UDh3cnBmZVZ5dktZSzJTYUFzQVNvcFBuanhXWDllREpaVHFkWjZOSlJjbFRLMGZQajg2WTBydXQ2WVNiVy1YclplcXRHVEY2VkJEUjdMUzl4N1c2cU5DNGtiT2dudlpncnpGZmdPdEVUUjNoVWNLSUFEU2lGYmsyVjhHbjhO?oc=5",
+          "intensidad": 6.0,
+          "medio": "UDG TV"
+        },
+        {
+          "texto": "🔔 ALERTA — ¡Texas se rebela contra Trump! Jóvenes latinos toman las calles para darle un giro a la elección",
+          "fuente_url": "https://imparcialoaxaca.mx/internacional/texas-se-rebela-contra-trump/",
+          "intensidad": 6.0,
+          "medio": "imparcialoaxaca.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
       "peso_pct": 9,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -120,10 +132,10 @@
       "n_notas": 1,
       "notas": [
         {
-          "texto": "🔔 ALERTA — Migrantes se arraigan en México tras el bloqueo de Trump al \"sueño americano\" - UDG TV",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOczgyX3kwem1qZUZvNmt0UDh3cnBmZVZ5dktZSzJTYUFzQVNvcFBuanhXWDllREpaVHFkWjZOSlJjbFRLMGZQajg2WTBydXQ2WVNiVy1YclplcXRHVEY2VkJEUjdMUzl4N1c2cU5DNGtiT2dudlpncnpGZmdPdEVUUjNoVWNLSUFEU2lGYmsyVjhHbjhO?oc=5",
-          "intensidad": 6.0,
-          "medio": "UDG TV"
+          "texto": "Omar Osorio impulsa actividades deportivas con causa social en Córdoba - Al Calor Político",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPcnR3b3g1QW1rVU9tTmNlZElxSlVoOWNQTEh4UzRETnVDVGNGckVfMWRYSllER0lzcnJfSDFqZXFVTXROVzMzV2g1dDVGdkMzVFM1dFhhbmROdWcwVW95aURhdEFReEVMcEg4eHNIWEF3d1BYTGJBam5VY1kwaGR6NUY0TjJLTFlOcjZybmdLUGx3YkVNbFVId0xPaGdrcVdxbWVreUlJUE9sSjJDODUtMEczSjE5cUljaFNScDZyUHpJVXhk?oc=5",
+          "intensidad": 7.0,
+          "medio": "Al Calor Político"
         }
       ]
     }
@@ -392,7 +404,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -442,7 +454,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -492,7 +504,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -509,7 +521,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
@@ -567,7 +579,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -638,7 +650,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -663,7 +675,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -671,7 +683,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -692,7 +704,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -746,7 +758,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -788,7 +800,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -809,11 +821,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
@@ -832,28 +844,13 @@
   ],
   "top5_temas": [
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Defiende canciller Velasco el T-MEC durante cumbre G-20",
-      "peso": 13.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/01/politica/005n3pol?partner=rss",
-      "actor_vinculado": null
-    },
-    {
       "id": "carlos-manzo",
       "nombre": "Asesinato de Carlos Manzo",
       "categoria": "Seguridad Nacional",
       "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
       "motivo": "Cómo fue la caída de 'El Rhino' del CJNG, y su posible nexo con el asesinato de Carlos Manzo - MILENIO",
-      "peso": 13.0,
-      "n_temas_agrupados": 2,
+      "peso": 19.0,
+      "n_temas_agrupados": 3,
       "escalando": true,
       "ultima_hora": false,
       "medios_corroborantes": 2,
@@ -863,17 +860,27 @@
         "id": "manzo",
         "nombre": "Carlos Manzo Rodríguez"
       }
+    },
+    {
+      "id": "auto-3a81bddfc9",
+      "nombre": "Mesa de Seguridad: Pendientes en materia de seguridad, a 2 años de gobierno de C",
+      "categoria": "Gobernabilidad",
+      "resumen": "Mesa de Seguridad: Pendientes en materia de seguridad, a 2 años de gobierno de Claudia Sheinbaum",
+      "motivo": "⚡ Posible presión de Morena (partido político) — Exigen legisladores indagar 10 años de coyotaje en material electoral",
+      "peso": 7.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/01/politica/004n1pol?partner=rss",
+      "actor_vinculado": {
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
+      }
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-9ead57b30c",
-      "nombre": "ICE utiliza canción de Michael Jackson para celebrar Halloween y difunde video d",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPeXF1anBTUmc3aktzMXZFOHdyS1BmakVacHNmVlRIdTk0M3FkWlZlaEsyM0FyZFlOM3Z3Nm5OQlVsVENXZ05weEZmdGZQa0swZUFQMDBWVjA0dXJRSml2bTByNFFEWVU3SHRxSHhsVGJhM2pPNXpVWHJ0UlRLdERlNlVDeTJzd1JDUEh2dUh0ZjJHUkJneW50LTZrTXRVLUZnOWE3V2Mta29waGpLNldvT3UxLWs4TERJUERjQVBYc1diWndEeFllNEZ4UzlzSlpjMV82U25B?oc=5"
-    },
     {
       "id": "auto-2428153b4b",
       "nombre": "Cuba aplica una nueva Ley de Migración: qué cambia para los ciudadanos dentro y ",
@@ -881,14 +888,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOdXF1b3VkSUI0SG9DZzdFOVpvcGZKQklDTE0yalhpSEJHdWZCVS1pa0dTWHNvT1plMVR6cElDOGg0RnpDcTdxMVdMZ1BMczZ6bGxiMEN5em96anFJa1Q5bW5nUHkxd04tUkZLWjNFNjc4cXhtQ3lXd01RV0tvcldPWlQ5VG9qSDEzVUVKU0lnOTJ4cTZNQl9YSlRIRE51UVRwaE5EUEFDN2ViSjNiUkFvU0xfNXM5MHBpdW1sZ2xWS3lJNUIzaWxYOFQ2d3h1cFhoQWfSAewBQVVfeXFMTnZ0ZW54T2ZaZlZBcVZsQ3pJM0N4SmJabmlXR2RaVEFONmMxUjM4eFJab3lzWXhadWtMYUh1VHc5YmxnOXRBWG1TM0NFajZ0bEpNVzMtaFljdHZqcm5BRkdfZ1B5M1IzczVJRG1ZNkcxSGlEckdRZDYxaEpEaDBsbG50WkNhRF96RkhqUVY3bUxMMXA0TFhyTFdTSEFvak1maWJMTTNqRzVXXzRUU3JmMUtzd0trWnBmdDh3T1dtbng3d09qbXZITXJieUFWMjc3YkwyUVlYTFNGQjEzTDZjVWJ2cXRzQVpzaVBrSlo?oc=5"
-    },
-    {
-      "id": "auto-c662b5c42c",
-      "nombre": "Murió Rosina del Villar, presidenta de Morena en BC; un día antes aseguró que su",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOcmtwVjhzTlBLX2dmb0tDWWg4UGw1M1ZrUDFIck5OcWIwRHM5RDJBbEQzeUtkOG1YMVc4dG52SU10WEFaTmY5Q1I2am5qelB3RFZGamFGYy1PMFlpVkIyT0Jnb19iSHZtTFlBOGRLdks4Z2pCSHZnY2JWWTg2NUpDR1NqcHB5dkg5eTA3QmJCbklydlBna1l2Y0Fxd9IBmwFBVV95cUxOcmtwVjhzTlBLX2dmb0tDWWg4UGw1M1ZrUDFIck5OcWIwRHM5RDJBbEQzeUtkOG1YMVc4dG52SU10WEFaTmY5Q1I2am5qelB3RFZGamFGYy1PMFlpVkIyT0Jnb19iSHZtTFlBOGRLdks4Z2pCSHZnY2JWWTg2NUpDR1NqcHB5dkg5eTA3QmJCbklydlBna1l2Y0Fxdw?oc=5"
     },
     {
       "id": "auto-f19eb54956",
@@ -905,6 +904,22 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9aeXJ2UUdTUFZMVGw4NGJGdm13eGJNSnNXUE5ycW1fcElGNmQ4V1lqWUJRU3lPbnJhMlhCa3FZRkVQc0RxWDNJZFZWa244X2hjNERUVjdkNFV6Z2VyN3dvSFdFSXNRT3cwT1poNkUyRG9ZWEFv?oc=5"
+    },
+    {
+      "id": "auto-e58aced844",
+      "nombre": "Claudia Sheinbaum devela altar en Palacio Nacional",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-devela-altar-de-dia-de-muertos-en-palacio-nacional-y-hace-un-llamado-a-las-nuevas-generaciones-para-seguir-las-tradiciones-20261101-0054.html"
+    },
+    {
+      "id": "auto-be4d7fcbcc",
+      "nombre": "De ‘Rafa’ Márquez a Osmar Olvera: ¿Qué deportistas y famosos acudieron al Gran P",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/espectaculos/2026/11/01/que-deportistas-y-famosos-acudieron-al-gran-premio-de-mexico-2026/"
     }
   ],
   "temas_retomados": [
@@ -912,7 +927,7 @@
       "id": "auto-80f2312bf9",
       "nombre": "Gobernador nombra a Anahí Sarmiento Pérez como Secretaría de Educación Pública d",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 32,
+      "dias_silencio": 33,
       "motivo": "“Educación pública, eje de la transformación nacional”: Sheinbaum",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/01/politica/005n1pol?partner=rss",
@@ -923,7 +938,7 @@
       "id": "auto-1533b63a85",
       "nombre": "Claudia Sheinbaum firma decreto para proteger a niños y jóvenes en redes sociale",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 17,
+      "dias_silencio": 18,
       "motivo": "Morena convierte a jóvenes en voceros de la 4T y los llama a combatir narrativas de ultraderecha en redes sociales - Infobae",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPQ1gwVzVVWU5JaTFjblpTRDZOSG9HOW9BOFdHbzBNWnVCOWxPSVZTMlFlaHhsQzRJYmVLMUd4bkhaM296cnphbTlfcnlsQXRiZHY1c1BIbWh4TWtHOGtjXzlDeFE4MXJrYjVGX3BrWUp2WEpjTExLUUFUZE4tbk5Jc2RSckRuM2oxaHVlOF9IQk5JN3lwX2twSFZXX3ZVbkJKVmxSczZfUGY2Y0hwT3R3b29JMzEtUENxN0ZIZmh2Nk5pTEhYd2dCUEFRNW9yd1VXN0h2WkVNTHdhMDFVMzJlcWVfWTMyT3QzdHVhd3R30gGIAkFVX3lxTE5mbWdNNEIxT3Y3bkUtRl9Gck02YlZ0dlVWeExnMUdhWXl1dU5qT2NuZGZ0cEdfbVhCZkhRSWZsOEpkeDNUQmQ4NkwwZUMtY3l5LVhzaVZIWDZscnBSa2NPeGREUXhNMU1NNHZ1Q1poQmVUU1V4enQ1YWQ5cHdRYUhWX3dNeGVvZGRwUWF4QklUMWNWNks3cDdfQURmSHNFc1NlU3VzYmVHVHZBbWc2X2lTY01EWC1fazRCd2pjOWdvUl8tczc4RVlrMnpaWFJrc1Z6Zl9jQUtLNlRObDh0V1J3NWRoY1gxLUN6S3FZcDBlRjNGcFdMQm5mSFlTdEJXNGZLRlNsaTl4ag?oc=5",
@@ -934,22 +949,33 @@
       "id": "auto-d13031235c",
       "nombre": "La balanza electoral de Estados Unidos: ¿Donald Trump tiene posibilidad de mante",
       "categoria": "Relación Bilateral",
-      "dias_silencio": 17,
+      "dias_silencio": 18,
       "motivo": "¿Hasta dónde puede caer Donald Trump? Así dinamitó el apoyo del electorado - MILENIO",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQenkwdG1rQWd1SU1iQWRrc2wzRFFEV1V0TDRiWjVPSTdLdFF6Wjh3M1RZVEM4Y0w1WkpQVlF1SGl5dEZlMVRBSXJ3M0hmSkZmWk1KbzFGM19GbUxLZUZXMmQ1Tm1KUEZJQk9BT0M4aFZuVEk1eHlIUkpDZnV3U2NnLVp0cETSAYQBQVVfeXFMTnJrOHc4ZFNKUm9WOE0yS09acWcyeVFmUzVQem1oZjZHQVc3VWk2QXJHdDhZcl9rZDVlOHI3SlFsdVlvdkZXUHhxajhweExyZ2Zwckp0LURYeXMwWE5VMlVxRGYzVFYtMDFaNmNFSWxUcVhZRFZCNGVMSG9SRkRIQzlhcjg2?oc=5",
       "fecha_anterior": "2026-10-14",
       "fuente_url_anterior": "https://heraldodemexico.com.mx/mundo/2026/10/14/la-balanza-electoral-de-estados-unidos-donald-trump-tiene-posibilidad-de-mantener-al-congreso-su-favor-908237.html"
+    },
+    {
+      "id": "auto-5071b4dbdf",
+      "nombre": "Demócratas aventajan rumbo a elecciones intermedias que amenazan el control repu",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 14,
+      "motivo": "Elecciones intermedias en EU: Trump busca mantener el control republicano del Congreso - El Economista",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPZnNHeGpZNnl6X3NtbS1Wb0JLckJxWnZPSGc2MllDVHo3M0stcFJIQjNmNnktR3hsT25SUUQzSVFEcU1ENzZoOGtwZzhWaEVlTnJjSTdvUXdWRWFUc2ZiS0lndnZCMVVsMXkwOENEQl9KQzYyTzNVNnRXTkdkNFhpNndlZGZvblNBMFp3RFp3R0ZHbjNkbWpCb1JEazRKUHVDTU1wR0psWDBFSkdUeWRrc1V6SW90eVp1a0lRZVVCekZhYVhwMTJMNmNkbGt3Z3E5SmRCWG5SS2HSAdgBQVVfeXFMT2ZzR3hqWTZ5el9zbW0tVm9CS3JCcVp2T0hnNjJZQ1R6NzNLLXBSSEIzZjZ5LUd4bE9uUlFEM0lRRHFNRDc2aDhrcGc4VmhFZU5yY0k3b1F3VkVhVHNmYktJZ3Z2QjFVbDF5MDhDREJfSkM2Mk8zVTZ0V05HZDRYaTZ3ZWRmb25TQTBad0Rad0dGR24zZG1qQm9SRGs0SlB1Q01NcEdKbFgwRUpHVHlka3NVeklvdHladWtJUWVVQnpGYWFYcDEyTDZjZGxrd2dxOUpkQlhuUkth?oc=5",
+      "fecha_anterior": "2026-10-18",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNb1ZKeTJJT1BKaWd6S0NIVkJaZWM4VlZEMmVYNEtYdFJ2bW9nZ3FzZjVjTERweUEteW8tZV9FUWhyZURYbjBENkNsczl0ZWl3cE1Tc2JSME8xdnhONDFtX1pTQXRRNEJtRk5kaUloMEh1THJ4VmM1VXZpS1V5SW9yNHpfNnNJcXdtWTdaOU1JWkhpOHNsU01IZHoxT05DRnZRRTd0Q2N0a2Q5ZTNXc0ozMjU0QjVjdVlwc0ZJaVdELXduWkxCU0E?oc=5"
     }
   ],
   "actores_destacados": [
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Reacción social/mediática",
-      "tema": "Para visita de Sheinbaum intervendrán los tres niveles de gobierno: Alcalde de C",
-      "nota": "Claudia Sheinbaum destaca trenes de pasajeros para reducir tráfico; obra Querétaro-Irapuato registra 25% de av - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNRFROa21RMHZEWnY1Nl9QYUpKdFFTSGdYSGlpekZ0U19ULWVQMFVMODFMaFM2bks2OWhDNEpxZy0xQlQzblN3c0xnNEl1UUxDdEJ4cDNTa1hkckRtMVRJWDVJQlFMRVBKV01pT1BzNE5CMGFSSTJzVVM3TGxsSTNhN29VZkFzajAyclZVWjhRMkx4NEJDZ3F1T0lFRVBpd9IBngFBVV95cUxOZEFic3hCV3c5UEprWFBpdEs3dHRSaERyQm9FZ0RtVmRMTkZfUm9jMTVoR0FtbmVzYXRydjRBT3NGak40c1NKN2pjbTZwd2oydWh4Q3g0Q1V1akpEZm1zVGl4VDRCd2tpTVlaRGlrSWZjVjZGNzZTOVVGWk1nQWptV0FFRjdESVY3ZFY1VkZEel9EeVItQkRSM3F5clRGQQ?oc=5",
+      "rol": "Responsable institucional",
+      "tema": "Claudia Sheinbaum devela altar en Palacio Nacional",
+      "nota": "Claudia Sheinbaum devela altar en Palacio Nacional",
+      "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-devela-altar-de-dia-de-muertos-en-palacio-nacional-y-hace-un-llamado-a-las-nuevas-generaciones-para-seguir-las-tradiciones-20261101-0054.html",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1029,17 +1055,17 @@
     {
       "fecha": "2026-10-08",
       "tension": 26,
-      "n_notas": 104,
+      "n_notas": 105,
       "n_alto_impacto": 45,
-      "n_medio_impacto": 59,
+      "n_medio_impacto": 60,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-09",
       "tension": 26,
-      "n_notas": 78,
+      "n_notas": 79,
       "n_alto_impacto": 37,
-      "n_medio_impacto": 41,
+      "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
     {
@@ -1077,9 +1103,9 @@
     {
       "fecha": "2026-10-14",
       "tension": 21,
-      "n_notas": 57,
+      "n_notas": 58,
       "n_alto_impacto": 21,
-      "n_medio_impacto": 36,
+      "n_medio_impacto": 37,
       "n_bajo_impacto": 0
     },
     {
@@ -1093,9 +1119,9 @@
     {
       "fecha": "2026-10-16",
       "tension": 17,
-      "n_notas": 49,
+      "n_notas": 50,
       "n_alto_impacto": 14,
-      "n_medio_impacto": 35,
+      "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
     {
@@ -1124,10 +1150,10 @@
     },
     {
       "fecha": "2026-10-20",
-      "tension": 31,
-      "n_notas": 55,
+      "tension": 30,
+      "n_notas": 56,
       "n_alto_impacto": 32,
-      "n_medio_impacto": 23,
+      "n_medio_impacto": 24,
       "n_bajo_impacto": 0
     },
     {
@@ -1164,9 +1190,9 @@
     },
     {
       "fecha": "2026-10-25",
-      "tension": 15,
-      "n_notas": 22,
-      "n_alto_impacto": 5,
+      "tension": 16,
+      "n_notas": 23,
+      "n_alto_impacto": 6,
       "n_medio_impacto": 17,
       "n_bajo_impacto": 0
     },
@@ -1181,9 +1207,9 @@
     {
       "fecha": "2026-10-27",
       "tension": 18,
-      "n_notas": 47,
+      "n_notas": 48,
       "n_alto_impacto": 16,
-      "n_medio_impacto": 31,
+      "n_medio_impacto": 32,
       "n_bajo_impacto": 0
     },
     {
@@ -1212,18 +1238,18 @@
     },
     {
       "fecha": "2026-10-31",
-      "tension": 16,
-      "n_notas": 41,
+      "tension": 15,
+      "n_notas": 42,
       "n_alto_impacto": 11,
-      "n_medio_impacto": 30,
+      "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-01",
-      "tension": 33,
-      "n_notas": 9,
+      "tension": 27,
+      "n_notas": 13,
       "n_alto_impacto": 5,
-      "n_medio_impacto": 4,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
   ],
@@ -1232,26 +1258,26 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 74,
-      "y_lunes": 67,
+      "x_lunes": 98,
+      "y_lunes": 64,
       "x_hoy": 100,
       "y_hoy": 64,
-      "delta_pts": 16.5,
+      "delta_pts": 1.5,
       "alcance": 18,
       "n_alto": 8,
-      "n_medio": 35,
+      "n_medio": 36,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOLVlKRVJsM3ZlTWxTRXRpMGFXRDZSazRwcVY0ZF9YNklEMGdXNWJHaVVucWRLYnY0WXNGMVlNclJKbjd5SUZSOWtldk9LYWVMck41RUJRTktvYXYyYW01WGd4VTJXU1RUNUJjS0hMb1pqZW5ETm5HYl9VM3Jwc3dwN0dNTlZVSnczaFdJVXVCZUkzZTUzOVJDLVUwMzRBZHJYWHJnQnBxYUYwWnVqR1M1NGNwOE84eTVDOGFGY20yOHlsWXdIWC0tenlMa2dtWXV2WDNFWTlyVUhxQXVuTTM0cnNscHRaQW1SUkF1T1NpMkE?oc=5",
       "nota_texto": "Rinden homenaje a Cuauhtémoc Cárdenas en Palacio Nacional La presidenta Claudia Sheinbaum encabezó este jueves un homenaje a Cuauhtémoc Cárdenas Solórzano, fallecido a los 92 años, a quien reconoció c",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 6,
+      "dias_activo": 7,
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 21,
+          "x": 20,
           "y": 72
         },
         {
@@ -1261,34 +1287,39 @@
         },
         {
           "fecha": "2026-10-28",
-          "x": 37,
+          "x": 36,
           "y": 71
         },
         {
           "fecha": "2026-10-29",
-          "x": 49,
+          "x": 48,
           "y": 72
         },
         {
           "fecha": "2026-10-30",
-          "x": 74,
+          "x": 73,
           "y": 67
         },
         {
           "fecha": "2026-10-31",
+          "x": 98,
+          "y": 64
+        },
+        {
+          "fecha": "2026-11-01",
           "x": 100,
           "y": 64
         }
       ],
-      "fecha_apagado": "2026-11-01"
+      "fecha_reactivado": "2026-11-01"
     },
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 49,
+      "x_lunes": 48,
       "y_lunes": 82,
-      "x_hoy": 51,
+      "x_hoy": 50,
       "y_hoy": 83,
       "delta_pts": 3.0,
       "alcance": 16,
@@ -1297,8 +1328,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/27/morena-denunciara-maru-campos-por-presuntos-delitos-electorales-dano-moral-violencia-politica-de-genero-ariadna-montiel-917255.html",
-      "nota_texto": "Morena denunciará a Maru Campos por presuntos delitos electorales, daño moral y violencia política de género: Ariadna Montiel",
+      "nota_url": "https://www.jornada.com.mx/2026/11/01/politica/004n1pol?partner=rss",
+      "nota_texto": "⚡ Posible presión de Morena (partido político) — Exigen legisladores indagar 10 años de coyotaje en material electoral",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
@@ -1315,22 +1346,22 @@
         },
         {
           "fecha": "2026-10-28",
-          "x": 37,
+          "x": 36,
           "y": 81
         },
         {
           "fecha": "2026-10-29",
-          "x": 44,
+          "x": 43,
           "y": 79
         },
         {
           "fecha": "2026-10-30",
-          "x": 49,
+          "x": 48,
           "y": 82
         },
         {
           "fecha": "2026-11-01",
-          "x": 51,
+          "x": 50,
           "y": 83
         }
       ]
@@ -1339,9 +1370,9 @@
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 28,
+      "x_lunes": 27,
       "y_lunes": 81,
-      "x_hoy": 35,
+      "x_hoy": 34,
       "y_hoy": 83,
       "delta_pts": 7.5,
       "alcance": 8,
@@ -1350,25 +1381,25 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/10/27/morena-denunciara-maru-campos-por-presuntos-delitos-electorales-dano-moral-violencia-politica-de-genero-ariadna-montiel-917255.html",
-      "nota_texto": "Morena denunciará a Maru Campos por presuntos delitos electorales, daño moral y violencia política de género: Ariadna Montiel",
+      "nota_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQSGI3ZFdia0tQa3R3TEtKNUNxMVlubzdQUW5KSmxqZHRsR2V0d2c5akY2SW5BRjZzNTBjSXBXakFGekp5bFJLYzJsemU3ak4zTnlrUDJGVFd1cVNrVzJQdU1JTkNUdUZYRVBTanNZWWphbHZXcEFHVzlDWWNaRkNOTVZHamtxb0FrcFBfYkUzdWhFa29NMHNoU194bXg1RVlwTi04NzA0ay00MUE5VUY3LThuM0dLSFM5ODVNZ3doMWVUTlE?oc=5",
+      "nota_texto": "Ariadna Montiel niega reunión con 'El Guano' y acusa campaña para desacreditar a Morena - Municipios Puebla",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-10-26",
-          "x": 12,
+          "x": 11,
           "y": 97
         },
         {
           "fecha": "2026-10-27",
-          "x": 28,
+          "x": 27,
           "y": 81
         },
         {
           "fecha": "2026-10-28",
-          "x": 35,
+          "x": 34,
           "y": 83
         }
       ],
@@ -1422,7 +1453,7 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 19,
+      "x_lunes": 18,
       "y_lunes": 81,
       "x_hoy": 23,
       "y_hoy": 81,
@@ -1456,7 +1487,7 @@
         },
         {
           "fecha": "2026-10-30",
-          "x": 19,
+          "x": 18,
           "y": 81
         },
         {
@@ -1471,7 +1502,7 @@
       "id": "manzo",
       "nombre": "Carlos Manzo Rodríguez",
       "iniciales": "CM",
-      "x_lunes": 21,
+      "x_lunes": 20,
       "y_lunes": 78,
       "x_hoy": 23,
       "y_hoy": 81,
@@ -1500,7 +1531,7 @@
         },
         {
           "fecha": "2026-10-31",
-          "x": 21,
+          "x": 20,
           "y": 78
         },
         {
@@ -1589,6 +1620,50 @@
       "fecha_apagado": "2026-11-01"
     },
     {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "iniciales": "DT",
+      "x_lunes": 9,
+      "y_lunes": 54,
+      "x_hoy": 11,
+      "y_hoy": 54,
+      "delta_pts": 1.5,
+      "alcance": 5,
+      "n_alto": 0,
+      "n_medio": 5,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPeGRaMFFfbkFWb2hkSFVYRWx4eExBeUNJOTk3NEZRZjdROWFRY0lYNzJFYlFhcXFKVEdyQkhiendtb2xlRWcxMVdGZ1p1SWZnQTNlX0s4cWhITTBzMG0zMEVpUWdWYXNybFhSLU04SDBtRDcxaWVxSjF6cTRVZDNRdThtTDhIRFo2R3ZVbGFRejFGTVNDcHg5bjZycjZMOFRqbVJtLUhIdXZXdnlfV3N30gGvAUFVX3lxTFBVT3RGUTA5RkZMamo2MEdyLUNaVklFSEYwTjlMZjBTRjk3TEZzdi15UWR0UUFBVUJpTEJ3a0lmSEJtZDlaN0ZhUC1rYzNTNl9HUzFrTGZJOXkzcEhzU0xmV2IxSW9ZQ05uYmFXa2dGSlpWb0hrT0UwYVZ1VWZiSnMwTW92YUpBaGY2cmY3S2ZZbDFqT2pMek9SeVJraUV0bWZCY3VhYm5yNThQOHNTMDA?oc=5",
+      "nota_texto": "⚡ Posible presión de Donald Trump — ¿Elección histórica? Texas amenaza con dar la espalda a Donald Trump - MILENIO",
+      "es_nuevo": false,
+      "categoria": "Relación Bilateral",
+      "dias_activo": 4,
+      "trayectoria": [
+        {
+          "fecha": "2026-10-26",
+          "x": 2,
+          "y": 54
+        },
+        {
+          "fecha": "2026-10-27",
+          "x": 5,
+          "y": 54
+        },
+        {
+          "fecha": "2026-10-28",
+          "x": 9,
+          "y": 54
+        },
+        {
+          "fecha": "2026-10-31",
+          "x": 11,
+          "y": 54
+        }
+      ],
+      "fecha_apagado": "2026-10-27"
+    },
+    {
       "id": "ana_lilia_rivera",
       "nombre": "Ana Lilia Rivera",
       "iniciales": "AL",
@@ -1660,45 +1735,6 @@
         }
       ],
       "fecha_apagado": "2026-10-31"
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "iniciales": "DT",
-      "x_lunes": 6,
-      "y_lunes": 55,
-      "x_hoy": 9,
-      "y_hoy": 55,
-      "delta_pts": 1.5,
-      "alcance": 3,
-      "n_alto": 0,
-      "n_medio": 3,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://www.yucatan.com.mx/economia-2/2026/10/28/claudia-sheinbaum-y-donald-trump-decidiran-si-avalan-un-eventual-acuerdo-comercial-entre-mexico-y-ee-uu.html",
-      "nota_texto": "Claudia Sheinbaum y Donald Trump evalúan un eventual acuerdo comercial entre México y EE.UU.",
-      "es_nuevo": false,
-      "categoria": "Relación Bilateral",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-10-26",
-          "x": 3,
-          "y": 55
-        },
-        {
-          "fecha": "2026-10-27",
-          "x": 6,
-          "y": 55
-        },
-        {
-          "fecha": "2026-10-28",
-          "x": 9,
-          "y": 55
-        }
-      ],
-      "fecha_apagado": "2026-10-27"
     },
     {
       "id": "rosa_icela",
@@ -1797,5 +1833,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-01 15:59"
+  "hora_corte_publicada": "2026-11-01 18:04"
 }
