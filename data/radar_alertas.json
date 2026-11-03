@@ -1,7 +1,21 @@
 {
- "generado": "2026-11-02",
+ "generado": "2026-11-03",
  "ultimo_brief_enviado": "",
  "alertas": [
+  {
+   "id": "2026-11-03|hito_proximo|auto-f98912c1ed",
+   "ts": "2026-11-03T00:46:17-06:00",
+   "tipo": "hito_proximo",
+   "tema_id": "auto-f98912c1ed",
+   "texto": "◷ Donald Trump presiona a México para firmar acuerdos energéticos con empresas de : fecha clave hoy — …l sector automotriz antes del 3 de noviembre? - Cadena Politica…"
+  },
+  {
+   "id": "2026-11-03|hito_proximo|tmec-revision",
+   "ts": "2026-11-03T00:46:17-06:00",
+   "tipo": "hito_proximo",
+   "tema_id": "tmec-revision",
+   "texto": "◷ Revisión del T-MEC: fecha clave hoy — …lecciones estadounidenses del 3 de noviembre. Mé…"
+  },
   {
    "id": "2026-11-02|actor_clave|trump|auto-f98912c1ed",
    "ts": "2026-11-02T18:05:28-06:00",
@@ -407,20 +421,6 @@
    "tipo": "inflexion",
    "tema_id": "tmec-revision",
    "texto": "⚡ Posible trigger en «Revisión del T-MEC» (10-15): Varios días seguidos por encima de lo normal (~3.7 notas al día) acumularon un aumento sostenido; ese día fueron 4."
-  },
-  {
-   "id": "2026-10-15|actor_clave|trump|intervencion-militar-eeuu",
-   "ts": "2026-10-15T13:21:25-06:00",
-   "tipo": "actor_clave",
-   "tema_id": "intervencion-militar-eeuu",
-   "texto": "◉ Donald Trump aparece por primera vez en «Amenazas de Intervención Militar de Trump»: ⚡ Posible presión de Donald Trump — Donald Trump reitera que los cárteles controlan México"
-  },
-  {
-   "id": "2026-10-15|entro_critica|visa-de-andy",
-   "ts": "2026-10-15T10:20:46-06:00",
-   "tipo": "entro_critica",
-   "tema_id": "visa-de-andy",
-   "texto": "▲ Visa de Andy pasó a crítico (impacto 7.2, 22 medios)"
   }
  ]
 }
