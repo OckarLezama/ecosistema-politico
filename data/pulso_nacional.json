@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-02T13:44:57.347777-06:00",
+  "generado_en": "2026-11-02T18:01:09.098316-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 15,
+  "n_notas_ventana": 13,
   "baja_confianza": false,
-  "tension_nacional": 23,
+  "tension_nacional": 21,
   "tension_anomalia": {
-    "z": 0.18,
+    "z": -0.23,
     "nivel": "normal",
     "media_periodo": 22.1,
     "dias_base": 27
@@ -13,18 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 64,
-      "tema_principal": "Morena se toma su tiempo porque no quiere sorpresas: Marybel Villegas - grupopir",
-      "tema_principal_id": "auto-641d6ee9f0",
-      "n_temas": 7,
-      "n_notas": 10,
+      "peso_pct": 59,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 6,
+      "n_notas": 8,
       "notas": [
-        {
-          "texto": "⚡ Posible presión de Claudia Sheinbaum Pardo — Grecia Quiroz exige a Claudia Sheinbaum investigación transparente por el crimen de Carlos Manzo - Cambio de Michoacán",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPYmNZajlKT0RsNjNuMTdnR25RV1NkMThoN18zU0k2S0VmdS03Uzk2bDdhMU9uanh4WHFZU3JySi1mM284R0FZZHViTkRWSF9yaDA1b05uaFl0Y2ljU3R5ZFEtUnNfeXhSaXJzbXM3aTJzcUJrd3N1WFhzckpITnZuOXhTQkU2TEw0dWxoVHBkS0FKN29md3BpMElZcjN5dTcxZGxMNkRyUE1sT3dUS1VXckNkY3dLXzk1VGk5azlkOC1SU2paVGxlZUk1T1h5eFBVQWQ0VEZEYkQ2aGRwNEJZNtIB4AFBVV95cUxPYmNZajlKT0RsNjNuMTdnR25RV1NkMThoN18zU0k2S0VmdS03Uzk2bDdhMU9uanh4WHFZU3JySi1mM284R0FZZHViTkRWSF9yaDA1b05uaFl0Y2ljU3R5ZFEtUnNfeXhSaXJzbXM3aTJzcUJrd3N1WFhzckpITnZuOXhTQkU2TEw0dWxoVHBkS0FKN29md3BpMElZcjN5dTcxZGxMNkRyUE1sT3dUS1VXckNkY3dLXzk1VGk5azlkOC1SU2paVGxlZUk1T1h5eFBVQWQ0VEZEYkQ2aGRwNEJZNg?oc=5",
-          "intensidad": 7.0,
-          "medio": "Cambio de Michoacán"
-        },
         {
           "texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
           "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
@@ -50,18 +44,6 @@
           "medio": "Periódico AM"
         },
         {
-          "texto": "‘La traición a la patria los une’: Citlalli Hernández critica reunión de Alito y Maru Campos",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/01/la-traicion-a-la-patria-los-une-citlalli-hernandez-critica-reunion-de-alito-y-maru-campos/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "Involucran a Sergio Gutiérrez Luna en esquema de moches en el INE - https://urbisveracruz.com.mx/",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPZW5rOUtBSnRacm9xaTJsV2t1RFRuemFQeG9rQjhmc0NqTUdUdzgzNWJrNDBlRExjNERwYzU1UFQ5ckxuTVd4YlJRdE5odEFMQ2ZRZmpCMmF1cVpXd3BsNEtucDRsa0pXN0NIZkFtbHQtY3NYX2hEWXR1dUoyUXBhYmY5b3lfa2lOMmNESWVhcTduOEp3eGw0VWlJb3gwUzJ4REpVZ0piOHFxS0lyZUdiazJ1RDZmZDg?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
           "texto": "Claudia Sheinbaum registra 71.2% aprobación nacional en octubre - - Yo por la Justicia",
           "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOLXhaem55UzYtRndaZ2tNd3VEdWdoWTdpOEtjWlNOZzhRejJ1M0hwa0RXNHBaY0xFQmZCQXZmd3F2NWpBZXlnMUZxeGlNM0lscS1wNGhOcnQ2MERtVHEyd2lqMExuNm1VeXpPSEJBY1ZMc1dpdXVsX3hNQjVoV21ZTHV5VnI4eVAzUjZaSXNfa0dDaWRMajFoMkUzR0htaHlsLXNNZG90WmVaMEE5STlYalAwREs?oc=5",
           "intensidad": 5.0,
@@ -78,28 +60,28 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQeXN5cVNtR0R6YVFCcFpnOWYyX2lFTy14TFlQWjdkOC0tN0RJTElUSU5XZ3IyMzZGSHFJdFI5QU9DajRFZWstaF81Sk5LZGpGZ3p1aUVjWktvbWVscU1Zc1pOUzIxdWUxSEhid05JVUwzRXRiVDFYamE5eUQyOU9qVkFYV0VudDNxYXdpd3FRTVg0SE9tWlUzc2lFWXdScHJLYjhyb2dDZm11dVdaTWVGeVF1VFNiUVA4aDZBSjdXaTlRaW12WUlqcDhWU0V2OWF3S0Mzdg?oc=5",
           "intensidad": 5.0,
           "medio": "Nación321"
+        },
+        {
+          "texto": "Ricardo Salinas Pliego, millonario opositor a Claudia Sheinbaum, lanza una dura advertencia por el escándalo del INE: \"Tenemos que ponerles un freno\" - Ambito",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPLTJuaUIwdHNSU3JrQ0RkUThyamtyMVNEaEpaek5OOHVZS0FMazlaal9rUFFZOVFIUXJKVEMyUVp4dDlNUXhHRVgzclpteU5xcnRnUkNvSC1VM1BkdWp3dFROd1lGMndhTTcwdjRPaXE1MjIxRnQyRWd3LUFjR1hnbFY0cU5weTYybXlTOElVdXBfMU1xaVFlN1dWNkVIVnZieEZiV21WdGlYcDNLeEpNeDhXZFBhMjR0RVFkME04THJhLTMyZk5fRmJYRWVNT0FPMko4VHdkZFNaVmFKOHlKMjJzOHg0bXp5NnVXWm5fOEt1NE40X1ljRmEzcWR6ZE1FRnZIZ2czUHhsQ0NmMlIwcnJkU1Y5X2ZSUTZSSWRiaWR5a2_SAagCQVVfeXFMTkNBV2dhNnBUdXBHUTRiWTNCNy1ZSHNQanhxa1pQNnp4dTBNNGlYM1M2WlFQRXJFYVJMc05pQ296MHpsb2h2Y2FmSVlPd1haUE9GNVR4cXpoVzY1YlJ6WkRKaXZST0I4X2RfU0l2X1doZUNmaUs5YVB2Z0xmSjdrc2RrSHpZTDJHa2JXQ1ltMkNfRHhpU2RwOGphRFMtT2lYVFBLU0RuNUs0LVJOeWNEdnJsN3BPcFc0dkN6WkFzSnRIRGVGb0VXSTNVUUh0UGJGNzAwXzBLUGI2NjFDNllZMEFMamRMQUdpX0d2dUV1Zl9lUGZHUjI5UF8zbkFodjVZaFVWaWZidTZGNnBQZWc1MDlXYjlYMWpNT2sxeVlDcFBLN3pFZlFZVE8?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ambito"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 30,
+      "peso_pct": 26,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 3,
-      "n_notas": 4,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "FGR matiza suspensión concedida al exgobernador de Baja California; no termina proceso por huachicol fiscal - El Sol de México",
           "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOQTM3WDN4Q1RObk1DS2s4Q2QyemV6YlFjQ0s3akw5azV2YTM5YkNSZmF1V3RlaFJpeGxvVW9qXzNPRlR0NmhlMmU5ZDd6eThLMl84MzRzNGN5ZjliTWdTRGtTSWtxQV9mMUVFRERzQzZIS0s4dHJ6QmUzWUF5Qy1pMmxTdjZRamJUVndrOGY4a3M3SlRyLVZJY0pKbDJsdkxyZlRlbVBhTkk3S3QzTmxvcnFuU3FSZkRHNEhiZl91bGFYelFqMkJ3NU44c0ZfTnpCTDl5OEJNSktEUXFiZ3pCdjVwaXEzZ1hFcUJn?oc=5",
           "intensidad": 8.0,
           "medio": "El Sol de México"
-        },
-        {
-          "texto": "FGR matiza suspensión concedida al exgobernador de Baja California; no termina proceso por huachicol fiscal (nota de Juan Carlos Rodríguez en OEM-Informex) - julioastillero.com",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOZ3FPd19xa1N0djVMaGVSc3B6OVhEZXZMYm53bzZmdmJ4ekI0X3J1M2xkcHI1SzFLSG56VkZ2RWpOUEtyaGtUblRWbDRQZk9kaC1wSlhYSjJPWUI0RVVqNU9wQ2ltSTdiZjllTUhIdExkTDJhUkt6N3huVVRrMFpoUVdjYjFaWkNrSTNFQ3JCQ0NVWFZ0Nk9VRUJVZTROM3kxX3lzeFlxb1d2ckFhNzhpSW43M19QekZHcGxsaDZ2UjBkdjU3ay1zbXlIby16Y00?oc=5",
-          "intensidad": 7.0,
-          "medio": "julioastillero.com"
         },
         {
           "texto": "“La justicia no puede tener protegidos”: Grecia Quiroz reclama a Sheinbaum justicia para Carlos Manzo",
@@ -116,8 +98,24 @@
       ]
     },
     {
+      "categoria": "Economía",
+      "peso_pct": 8,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Inicia Gobierno del Estado rehabilitación de terrazas y miradores en Los Fuertes - El Quinto Medio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNWtHVVRZZzUxS3JyUUU1VnpqRFpOMnJxQl9GbnU2SUZwcFQxa2VjYXJ2RklzUDZIekZURWhiLXpQazkxaExwN0lueU16aHR1RW5iWEtzclg4SjZibjI2NFRwUFdoNFJYbGVydTQ2bkxhUGdIM1AxSF9JYV9TMEcyQnJZVFlwdTh0dFlRa0dJREdDcktPSVBtc3RBeVNvbnMycnFFSG5jSWFVSnBvY3hRYWJhdlpvZw?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Quinto Medio"
+        }
+      ]
+    },
+    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 6,
+      "peso_pct": 7,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
@@ -130,15 +128,6 @@
           "medio": "Infobae"
         }
       ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
     },
     {
       "categoria": "Social",
@@ -831,7 +820,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Gobernabilidad",
@@ -843,7 +832,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -854,31 +843,13 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-641d6ee9f0",
-      "nombre": "Morena se toma su tiempo porque no quiere sorpresas: Marybel Villegas - grupopir",
-      "categoria": "Gobernabilidad",
-      "resumen": "Morena se toma su tiempo porque no quiere sorpresas: Marybel Villegas - grupopiramide.com.mx",
-      "motivo": "‘La traición a la patria los une’: Citlalli Hernández critica reunión de Alito y Maru Campos",
-      "peso": 5.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/01/la-traicion-a-la-patria-los-une-citlalli-hernandez-critica-reunion-de-alito-y-maru-campos/",
-      "actor_vinculado": {
-        "id": "citlalli",
-        "nombre": "Citlalli Hernández Mora"
-      }
-    },
-    {
       "id": "auto-708f865cd2",
       "nombre": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
       "categoria": "Gobernabilidad",
       "resumen": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
       "motivo": "A la memoria del ingeniero Cárdenas Solórzano, escribe Ernestina Godoy - El Universal",
       "peso": 5.0,
-      "n_temas_agrupados": 3,
+      "n_temas_agrupados": 4,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
@@ -931,12 +902,20 @@
       "fuente_url": "https://www.jornada.com.mx/2026/11/02/politica/008n1pol?partner=rss"
     },
     {
-      "id": "auto-dbe3602881",
-      "nombre": "Liberan carretera 180 de Campeche; secretaría de Gobierno ofrece diálogo a deman",
-      "categoria": "Economía",
-      "peso": 4.0,
+      "id": "auto-213048183c",
+      "nombre": "Relación México-EU enfrenta incertidumbre ante elecciones intermedias: Integrali",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOTXRQeVZMMy1jNzRFWldka3dZNTBYUFBJb2NtREFOS0FxUkM5SVVDN21CQ1BHNDNlOXBFWjJCeXNpVWE2YzdSa0ptS2k3c0NEVDJ1M00xaVpIbkJHSmhDejFQZ05DcnU4NFNpVDZSTXh6LS0tMnlBaGlBOE55TmxKWm4tTjFrQlgyRE9RVlZNTzBfdmVmUW5hTGtMLUdfd1pwYlkxTjNJeWFZbU5ndHh1d3BiQ0lUekwweUhwV0xQUnhGNndab3N6a2hNdU1TYVNMTXlwRVVLZVNaUXQzOGRWcA?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQM3R4eDlYSE0yR1FiVlAxTVdMT3lqTXhYcEFxd1QtcFc1cXZuYWhRaXAwVGxndE9FNXZwbkEyT0RxeWhieEc2bXA0emkwd21EQVd1S2xEd0ZuVXBQSzJtWXNBWkI4VnBvaEwydGpydWtUVjZyU25MSUdraWg3TV9JTjVGWFdYS05xYXJYYVlYcFhyOHhkMkZmTDBOZi0ydVlEdHR3a0ZQMmJEVUd6SnFob2M4Zlk4TmhpUGF5Tzh0ODhvankwS1dQTHVNaVFiTURBZnptSlkwRHFnWGJ4THhfLV9rYTF1MW5mTGJMZktodGJYUWJJTWU4?oc=5"
+    },
+    {
+      "id": "auto-9dbfb316c8",
+      "nombre": "Se metió con dinero de cárceles: FGR explica esquema de desvío de recursos de In",
+      "categoria": "Seguridad Nacional",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/02/ines-gomez-mont-desvio-recursos-que-eran-para-carceles-en-mexico-fgr/"
     }
   ],
   "temas_retomados": [
@@ -944,12 +923,23 @@
       "id": "auto-ddde22b618",
       "nombre": "Kenia López presentará iniciativa para sancionar como traición a la patria a fun",
       "categoria": "Seguridad Nacional",
-      "dias_silencio": 12,
+      "dias_silencio": 13,
       "motivo": "⚡ Posible presión de Kenia López Rabadán — Kenia López Rabadán exige sanción contra 'Clan Taddei' del INE - MILENIO",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNWDU2OXlhbUpzRUNYOHRxd204U3JfVDlsb1pmcHgxaV81TnZqMHY4dURndi12TFNnTmlTblFHS1QzRDcwYm5NXzllY0NwSFlUYXVKM3ZnS1ZaZDBxTTJZVEtodHFYZ21GczBpNlUwLTFQQUlhUXlWSjk2d1ZqMFRETUJoT1BZVEt3eUxNVXVtQ1ZrbVVuWmZ2Q1pn0gGaAUFVX3lxTE9KbGdzRWl4LTA5cms5Ti1ZZ0M2LTRwSkU1clV6T1QyV29nQ25CSnpOX2N1bVpwUW5IVEhzY05rRWJ0dUxsYjRMSEZ3aklnOUhsX09NNXdwMzY1TjI0NFRiNFRXc0htZ0ZIQ1BUckVRMUdhNG9aeERhUHBSNUxtem5YM1JfSWtzd1hhWi10RV9lSnpVeERiV2sydFE?oc=5",
       "fecha_anterior": "2026-10-20",
       "fuente_url_anterior": ""
+    },
+    {
+      "id": "auto-708f865cd2",
+      "nombre": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 7,
+      "motivo": "A la memoria del ingeniero Cárdenas Solórzano, escribe Ernestina Godoy - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPLWdGRTFqbHdKUE0xT2pLTzRkN1lmOWF0Qk0xVlVCbWRNUE9vTzZ5TmRiMXBsZ3BJcXplOW01UThPZkUzaEt2S1JSZUlydmNGQlk2VTU2cC02RFpvZ3JXblU0ZHlpMlB1UHVQSjd5Y3l0Q1RiNVhKX21sT0RDZi1ndXltd1ZTRk5fLURsamh1X1QzTDQzbWFPX3c3SWlNU0l6dGZKd0prTTZnNEk?oc=5",
+      "fecha_anterior": "2026-10-26",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPZ2lNWlJWYXhhdVNuM0FKWmE5eDFERHlTTzBvRUhSZmtBeXZJV09oTjFmNVBILXducW5rNFBlN095RGxzemltYVdySk5ma053NVVaRTg1YVU0OHNJY2hsZ1FmaXBiS0FNM2NIR3ZwQWhBNFl4TXl3THFHbUN2YURNU212SlNBZVlBYUNGcg?oc=5"
     }
   ],
   "actores_destacados": [
@@ -965,23 +955,23 @@
       "confianza": "media"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "🗳️📌 SHEINBAUM PIDE A TADDEI ACLARAR EL CASO DE SU “CHOFER FANTASMA” METIDO EN TR",
-      "nota": "Morena se alinea con Sheinbaum en caso Taddei para salpicar a Lorenzo Córdova - Proceso",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPT2o3V1FPb0w1MWhjdDIwcWppMGZwOERTWG1hYU5hQ01zcF9teVlxUnBOVkFnbF9pSWRGbUIwX1VGc3AwVzFIczFBMTktcW5KTjN2RGRPclplSUc2RHhlWDRRR3RKZEFRNWhJTWV6WnBuc0tia1QzQmNXUWFNV3htRWZrOFZDNDVrVzZjX01sRW1WeXZJcDdrQlpYc0EwOEVlNWVmdkpPWHZsdjBBTVZkVVNQNVRaZnc5bFF6MDB5VWRLbGN6OG5iTERMYm1YVTVoMXJzbFZXbDVkTGNt?oc=5",
+      "id": "ricardo_salinas_pliego",
+      "nombre": "Ricardo Salinas Pliego",
+      "rol": "Responsable institucional",
+      "tema": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s",
+      "nota": "Salinas Pliego llama a recuperar al INE y volverlo 100% ciudadano - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNMVlVcHowY2dXRTRaVVdDa0taOGdnam5sUWdxTzVhbkk0ci1OT2NNMzV6Wm5TWHVibEZYZW45VHprSXVnS0ZKSVhMOGxoTlc0S0xHX251XzhmcnpXbTRTQUxzT0lPUkVtcjRYaU1UV0lHbm5lci1qcjd5anhWdllTb3FYRG9nS2VFM05yTTR6VVRuZElYek1XYmQ0elJWcmtyZC1ublNwWmFUYXJLbVJOeE5lRWtoc3ItVy1oTzVWRjBQN2V3R1FZ0gHbAUFVX3lxTE5BZDVVM2ZvSHVEbmQzcVllNUxyQkJCTHdHOTlFbVd5Umw5c1loNk1ma3lQeG82RnYxN2N5Ujdld3VjTTE5UlJXeFJoOUgzQ1pPdTV6VDhsUm9BWndidVBXZFh2Mkx3anphR2NvXzhMWGVESEpxcUtUVWxEN0pabFJCckU5TDlkdXpHa21IUlFMeElrR0NORTdPNVFvS0MyOUVMbWxDUDdmZGxxZHlmSFQxbldqc3ZGWWdJNkMtSjRHdGVOc0RwWFdDN1BBZXJqaUVVQjF3dGNTWGtucw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "citlalli",
-      "nombre": "Citlalli Hernández Mora",
-      "rol": "Reacción del gobierno",
-      "tema": "Morena se toma su tiempo porque no quiere sorpresas: Marybel Villegas - grupopir",
-      "nota": "‘La traición a la patria los une’: Citlalli Hernández critica reunión de Alito y Maru Campos",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/01/la-traicion-a-la-patria-los-une-citlalli-hernandez-critica-reunion-de-alito-y-maru-campos/",
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Trump y México: declaraciones y presión",
+      "nota": "⚡ Posible presión de Donald Trump — Elecciones en EEUU: expertos advierten sobre posibles “arrebatos” de Donald Trump contra México - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxObGU1N3RvOVZURXBDb1NGcGFfSFhDWkdIX2hQNDBNRjJGcFZQUE1xdGdMbUY5LXA4OEV3X1ZpeWlCR2hpSjJVbkh4TWNfYTVCRmQ4Z200dl9BMU1JcG1wMEdPNzNvMTJ6UURNTEpkdFczVXZuNHkxOHpOZjFzcnJ6Z0g3Mm5Qa3p6Z1c3WU8tOVc0aHdWa19CTVlyR0R5ZWpiaUpQQ19fS0E1NEdQbkZfLTU1cm9leVN0c0JQa21icWg4OFVOSlRvYW9keTQxOTJs0gHrAUFVX3lxTE10Z1dFM2tSVHpsbEZXckQtMm80OVg2WGRQMEVvdExaQk4zZEZCQzBnYVBnZmZES0JadWhZMHh4MmdkRlF6d0pST1E1ZnIzYzBpY2toNGlGbDMxWnhiTXJESnRBY1ZfS3ZfWDdRTm5WNkl0alA4Y2o0R1lMcFotUWlIQWVYRU4yWEtKVjdzMkp3bzVvX1oxdGRtTVFaVXRGT2I3VnpmQThIZDc0cG00VmFWN2FWbXZUTzk2NktuR21Oa0tpWVhYQTlEUUJDNVB2V1YzUmlodWRvb183dGltbE12R1ZsU2pLWG05OUE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -993,6 +983,17 @@
       "tema": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
       "nota": "A la memoria del ingeniero Cárdenas Solórzano, escribe Ernestina Godoy - El Universal",
       "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPLWdGRTFqbHdKUE0xT2pLTzRkN1lmOWF0Qk0xVlVCbWRNUE9vTzZ5TmRiMXBsZ3BJcXplOW01UThPZkUzaEt2S1JSZUlydmNGQlk2VTU2cC02RFpvZ3JXblU0ZHlpMlB1UHVQSjd5Y3l0Q1RiNVhKX21sT0RDZi1ndXltd1ZTRk5fLURsamh1X1QzTDQzbWFPX3c3SWlNU0l6dGZKd0prTTZnNEk?oc=5",
+      "reaparece": true,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Investigado",
+      "tema": "Renuncia Claudia Espino al INE; Guadalupe Taddei nombra a Roberto Félix como enc",
+      "nota": "Alito acusa a Morena de negar a Guadalupe Taddei; afirma que impulsó su nombramiento - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNWXAwUzZfQ2dORkk1NFJTX0xuS2tvd2g1amhLMVQzT1NtcUZocnBMczZCeVFvcmtDT1owY1NoS0xzTDk4TFhpZjhtSUhOVXktQ1V3ZjF5UFI2X2lrTFh1RlEzYTZRUGxZaHBITVFIVk54N1lBUVo2SVhYZ2RKUTkwN0d3Vkd2SjhfT2p2ZVlGSWwzT0R4LWtIb041QjNjd09NRFF0TWQzQkx6TGtRQ0NWSnBxazdlYUJCcWd5b0ViOA?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1219,21 +1220,49 @@
     },
     {
       "fecha": "2026-11-02",
-      "tension": 23,
-      "n_notas": 11,
+      "tension": 21,
+      "n_notas": 13,
       "n_alto_impacto": 3,
-      "n_medio_impacto": 8,
+      "n_medio_impacto": 10,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 100,
+      "y_hoy": 50,
+      "delta_pts": 3.0,
+      "alcance": 2,
+      "n_alto": 0,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPLTJuaUIwdHNSU3JrQ0RkUThyamtyMVNEaEpaek5OOHVZS0FMazlaal9rUFFZOVFIUXJKVEMyUVp4dDlNUXhHRVgzclpteU5xcnRnUkNvSC1VM1BkdWp3dFROd1lGMndhTTcwdjRPaXE1MjIxRnQyRWd3LUFjR1hnbFY0cU5weTYybXlTOElVdXBfMU1xaVFlN1dWNkVIVnZieEZiV21WdGlYcDNLeEpNeDhXZFBhMjR0RVFkME04THJhLTMyZk5fRmJYRWVNT0FPMko4VHdkZFNaVmFKOHlKMjJzOHg0bXp5NnVXWm5fOEt1NE40X1ljRmEzcWR6ZE1FRnZIZ2czUHhsQ0NmMlIwcnJkU1Y5X2ZSUTZSSWRiaWR5a2_SAagCQVVfeXFMTkNBV2dhNnBUdXBHUTRiWTNCNy1ZSHNQanhxa1pQNnp4dTBNNGlYM1M2WlFQRXJFYVJMc05pQ296MHpsb2h2Y2FmSVlPd1haUE9GNVR4cXpoVzY1YlJ6WkRKaXZST0I4X2RfU0l2X1doZUNmaUs5YVB2Z0xmSjdrc2RrSHpZTDJHa2JXQ1ltMkNfRHhpU2RwOGphRFMtT2lYVFBLU0RuNUs0LVJOeWNEdnJsN3BPcFc0dkN6WkFzSnRIRGVGb0VXSTNVUUh0UGJGNzAwXzBLUGI2NjFDNllZMEFMamRMQUdpX0d2dUV1Zl9lUGZHUjI5UF8zbkFodjVZaFVWaWZidTZGNnBQZWc1MDlXYjlYMWpNT2sxeVlDcFBLN3pFZlFZVE8?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego, millonario opositor a Claudia Sheinbaum, lanza una dura advertencia por el escándalo del INE: \"Tenemos que ponerles un freno\" - Ambito",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-02",
+          "x": 100,
+          "y": 50
+        }
+      ]
+    },
     {
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 50,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1250,7 +1279,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-02",
-          "x": 100,
+          "x": 50,
           "y": 100
         }
       ]
@@ -1261,7 +1290,7 @@
       "iniciales": "CM",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 50,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1278,36 +1307,8 @@
       "trayectoria": [
         {
           "fecha": "2026-11-02",
-          "x": 100,
+          "x": 50,
           "y": 100
-        }
-      ]
-    },
-    {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 100,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOLXhaem55UzYtRndaZ2tNd3VEdWdoWTdpOEtjWlNOZzhRejJ1M0hwa0RXNHBaY0xFQmZCQXZmd3F2NWpBZXlnMUZxeGlNM0lscS1wNGhOcnQ2MERtVHEyd2lqMExuNm1VeXpPSEJBY1ZMc1dpdXVsX3hNQjVoV21ZTHV5VnI4eVAzUjZaSXNfa0dDaWRMajFoMkUzR0htaHlsLXNNZG90WmVaMEE5STlYalAwREs?oc=5",
-      "nota_texto": "Claudia Sheinbaum registra 71.2% aprobación nacional en octubre - - Yo por la Justicia",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-02",
-          "x": 100,
-          "y": 50
         }
       ]
     },
@@ -1317,7 +1318,7 @@
       "iniciales": "CH",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 50,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1334,7 +1335,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-02",
-          "x": 100,
+          "x": 50,
           "y": 50
         }
       ]
@@ -1345,7 +1346,7 @@
       "iniciales": "ER",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 50,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1362,7 +1363,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-02",
-          "x": 100,
+          "x": 50,
           "y": 50
         }
       ]
@@ -1373,7 +1374,7 @@
       "iniciales": "SJ",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 50,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1390,7 +1391,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-02",
-          "x": 100,
+          "x": 50,
           "y": 50
         }
       ]
@@ -1458,5 +1459,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-02 13:44"
+  "hora_corte_publicada": "2026-11-02 18:01"
 }
