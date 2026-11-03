@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-11-03T00:04:01.878663-06:00",
+  "generado_en": "2026-11-03T06:00:07.102056-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 13,
+  "n_notas_ventana": 11,
   "baja_confianza": false,
-  "tension_nacional": 15,
+  "tension_nacional": 16,
   "tension_anomalia": {
-    "z": -1.62,
+    "z": -1.43,
     "nivel": "normal",
-    "media_periodo": 22.4,
+    "media_periodo": 22.5,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 59,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "peso_pct": 79,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
       "n_temas": 7,
-      "n_notas": 8,
+      "n_notas": 9,
       "notas": [
-        {
-          "texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Sol de México"
-        },
         {
           "texto": "Andrés Manuel López Beltrán prepara un anuncio importante para este martes - sdpnoticias",
           "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNelpSSXVvRlFIdDF2aXdaZFd5aE5iTXFyXzNqZE9HWHQ0eExkRDU4N2NMN0RVYVkzVVBzX3NfcGgwRnF6YzdaQm9tdE50ZmR0bHBUX0pFeXpDYW0wZUdVY2VTckNDZmxmbXk5WTNQSk5RMFZ3WGY1V1plQy1LalZ0Y1hrQ1lQMW93aTFtMEJScGlkUVBuUm80dnNIRDh2c1lMWGRHbXJFQXlGVVhMY1ZF?oc=5",
@@ -32,10 +26,22 @@
           "medio": "sdpnoticias"
         },
         {
-          "texto": "Promueven en Matamoros a agentes aduanales acusados de huachicol fiscal - Periódico AM",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPbGRfNUt3a1g2Z1pFLVBsdXVBZHM0QnNvSGJNbnl4TmZYOFdpUUVVd2E5R0dzWTkwU09mZFpkZUMtY1FBQllyWkg4aVJPOHNVQzlzbkVTSUF4UTJmRnotTGhhakxlVF94WENsWmxYVWhfZ2tLaHozeWFHUFdST0NEcXVtQzhBclU2b2FKU2oyVlVWN0h6Rjl4RmVUcHY0cnNIa01DeEpHQ1ExWnNMV1dLMFVtS0NETkZvZXNQWnZXZTFaMnVY?oc=5",
+          "texto": "Lucha anticorrupción, rebasada; urge nueva estrategia: senadora morenista",
+          "fuente_url": "https://www.jornada.com.mx/2026/11/03/politica/004n2pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
+        },
+        {
+          "texto": "¿Para cuándo negarán a Rocha Moya? - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPT1hJbEY1aFh1RFF4X2Y5ZUdpQTI1ZF8yMUVRVnNtb1g0ZWdLZlgwWlBHQ1Z1VkN2RWF4dmhhQ05YRkE3NjRpMTBjTm5Dc3NoUUhPc3c5cnhZeGNCNnNVU3dqZDVBdHZLSWx6RjJibzloYkJ6b2NqMFo2M1RLRDhoeWZKYmlwcTNZOHBvbkQ3bGxYTW9OWHNQYlFB0gGaAUFVX3lxTE8tNW9XckxYclVFT09IcXJLTHRKY2FNM0VsNGlyb0k2X2hQRndqUkQ4aWZ0MEkyNy02cU5mMWhxRlRsNjhqa2VYUkp3djgycExBTDZDc1ZHbHJkejd3TUEtYXJiN0JhamZUN3c1cFZoQXdUeXk2M20zNDJDRTVtTV95bkw4cERVWDJpTjlRMDNIb2JiTnZ0UEd2cmc?oc=5",
           "intensidad": 6.0,
-          "medio": "Periódico AM"
+          "medio": "Milenio"
+        },
+        {
+          "texto": "Ruffo Appel obtiene suspensión definitiva en proceso por huachicol fiscal; sigue en prisión domiciliaria - Dossier Político",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPZ0RKbjlGRm84Wm9TQ28tX0QxbUxZandMLVF4UUkzb2hrM1NVTWJ6b3ozSno3YXV6M0pjSGVjRkFsVGhRbjBVX1kwbG84NzRkZ1RFYzBXSHlGN1A4VUhjRExhdmZEYUExaW1nVVVKUVRSZm1IXzM0RXdSd1lBRWNUN21KRV9IaWdiMVlUOUEtSDJJZzFqNFBoenltTElBelgtM0VxS3c1UFdkSG1idS1HTVhJelZHeVRwUFQ3V2FMQmc5ZnNFUl9VMGFWM1BSMjkzTmhxQzhVVVh2U2M?oc=5",
+          "intensidad": 6.0,
+          "medio": "Dossier Político"
         },
         {
           "texto": "Citlalli Hernández arremete contra Maru Campos y ‘Alito’ Moreno por acercamiento rumbo a 2027 - Nación321",
@@ -71,35 +77,23 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 26,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 2,
-      "n_notas": 3,
+      "peso_pct": 11,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
       "notas": [
-        {
-          "texto": "Donald Trump y Mark Carney negocian el comercio bilateral - Revista Caretas",
-          "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9BRzFMRU5WT2VCaTJmTDV4bHVqNzh1aFdaOG9Vc09sYUdVN2pvVGVYR29MNGpITkxnZlpnaEFvRGpMcF9qTElEMkR6X0p5bzBWMFo1NFdKaTBOSnlHWGFXMUVzaV83Z3BNNGFQSnQ0RmJqSnE1VHZueXE1LWExNVU?oc=5",
-          "intensidad": 7.0,
-          "medio": "Revista Caretas"
-        },
         {
           "texto": "¿Cómo llega Donald Trump a las elecciones intermedias de Estados Unidos 2026?",
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/2/como-llega-donald-trump-las-elecciones-intermedias-de-estados-unidos-2026-921312.html",
           "intensidad": 7.0,
           "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "⚡ Posible presión de Donald Trump — Elecciones en EEUU: expertos advierten sobre posibles “arrebatos” de Donald Trump contra México - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxObGU1N3RvOVZURXBDb1NGcGFfSFhDWkdIX2hQNDBNRjJGcFZQUE1xdGdMbUY5LXA4OEV3X1ZpeWlCR2hpSjJVbkh4TWNfYTVCRmQ4Z200dl9BMU1JcG1wMEdPNzNvMTJ6UURNTEpkdFczVXZuNHkxOHpOZjFzcnJ6Z0g3Mm5Qa3p6Z1c3WU8tOVc0aHdWa19CTVlyR0R5ZWpiaUpQQ19fS0E1NEdQbkZfLTU1cm9leVN0c0JQa21icWg4OFVOSlRvYW9keTQxOTJs0gHrAUFVX3lxTE10Z1dFM2tSVHpsbEZXckQtMm80OVg2WGRQMEVvdExaQk4zZEZCQzBnYVBnZmZES0JadWhZMHh4MmdkRlF6d0pST1E1ZnIzYzBpY2toNGlGbDMxWnhiTXJESnRBY1ZfS3ZfWDdRTm5WNkl0alA4Y2o0R1lMcFotUWlIQWVYRU4yWEtKVjdzMkp3bzVvX1oxdGRtTVFaVXRGT2I3VnpmQThIZDc0cG00VmFWN2FWbXZUTzk2NktuR21Oa0tpWVhYQTlEUUJDNVB2V1YzUmlodWRvb183dGltbE12R1ZsU2pLWG05OUE?oc=5",
-          "intensidad": 5.0,
-          "medio": "Infobae"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 8,
+      "peso_pct": 10,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -115,19 +109,12 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 7,
+      "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "La traición a Manzo desde su propio gobierno habría facilitado su crimen, según la Fiscalía",
-          "fuente_url": "https://imparcialoaxaca.mx/nacional/la-traicion-a-manzo-desde-su-propio-gobierno-habria-facilitado-su-crimen-segun-la-fiscalia/",
-          "intensidad": 5.0,
-          "medio": "imparcialoaxaca.mx"
-        }
-      ]
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -732,7 +719,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -782,7 +769,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -843,30 +830,25 @@
   ],
   "top5_temas": [
     {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "⚡ Posible presión de Donald Trump — Elecciones en EEUU: expertos advierten sobre posibles “arrebatos” de Donald Trump contra México - Infobae",
-      "peso": 5.0,
-      "n_temas_agrupados": 1,
+      "id": "huachicol-fiscal",
+      "nombre": "Huachicol Fiscal",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
+      "motivo": "Lucha anticorrupción, rebasada; urge nueva estrategia: senadora morenista",
+      "peso": 13.0,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxObGU1N3RvOVZURXBDb1NGcGFfSFhDWkdIX2hQNDBNRjJGcFZQUE1xdGdMbUY5LXA4OEV3X1ZpeWlCR2hpSjJVbkh4TWNfYTVCRmQ4Z200dl9BMU1JcG1wMEdPNzNvMTJ6UURNTEpkdFczVXZuNHkxOHpOZjFzcnJ6Z0g3Mm5Qa3p6Z1c3WU8tOVc0aHdWa19CTVlyR0R5ZWpiaUpQQ19fS0E1NEdQbkZfLTU1cm9leVN0c0JQa21icWg4OFVOSlRvYW9keTQxOTJs0gHrAUFVX3lxTE10Z1dFM2tSVHpsbEZXckQtMm80OVg2WGRQMEVvdExaQk4zZEZCQzBnYVBnZmZES0JadWhZMHh4MmdkRlF6d0pST1E1ZnIzYzBpY2toNGlGbDMxWnhiTXJESnRBY1ZfS3ZfWDdRTm5WNkl0alA4Y2o0R1lMcFotUWlIQWVYRU4yWEtKVjdzMkp3bzVvX1oxdGRtTVFaVXRGT2I3VnpmQThIZDc0cG00VmFWN2FWbXZUTzk2NktuR21Oa0tpWVhYQTlEUUJDNVB2V1YzUmlodWRvb183dGltbE12R1ZsU2pLWG05OUE?oc=5",
-      "actor_vinculado": null
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/03/politica/004n2pol?partner=rss",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-a6b2c12f71",
-      "nombre": "Inés Gómez Mont pidió asilo político desde 2022 a EU; sigue retenida en centro m",
-      "categoria": "Social",
-      "peso": 13.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPOG5wUFZUQktXcjlMR21mUUJsZzBJNmdIZGFGZWFkZm5pTmIzNnNGdTM4dV9DaVRBZkNYVmJXUmxCWE1nOE5NQ3pLSGhub2tYSjIwaTkyaE94Q1RCTFVnckdYRklULXVoMDdNOW1yV2tsaDdkdDM1dTd0ODQxS3ZFRVVfRnZNdXfSAYcBQVVfeXFMTWdWQmJBNWJoLXV2N3FXN1lINVRGdUN3ZFZ0RlBaWmpjd3VLTWZKcVBlWlZEcWV5SVBNQmxRbkxKRUpiejRRS0JOaFI1TFZwSWdaeFFQV3FCeUxEZGNrYldXOW92R0g4Rk5kSUZob3FTdkNTY2VlS3lyTUhJUWhvbElDWXREVlAw?oc=5"
-    },
     {
       "id": "auto-213048183c",
       "nombre": "Relación México-EU enfrenta incertidumbre ante elecciones intermedias: Integrali",
@@ -874,6 +856,14 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQM3R4eDlYSE0yR1FiVlAxTVdMT3lqTXhYcEFxd1QtcFc1cXZuYWhRaXAwVGxndE9FNXZwbkEyT0RxeWhieEc2bXA0emkwd21EQVd1S2xEd0ZuVXBQSzJtWXNBWkI4VnBvaEwydGpydWtUVjZyU25MSUdraWg3TV9JTjVGWFdYS05xYXJYYVlYcFhyOHhkMkZmTDBOZi0ydVlEdHR3a0ZQMmJEVUd6SnFob2M4Zlk4TmhpUGF5Tzh0ODhvankwS1dQTHVNaVFiTURBZnptSlkwRHFnWGJ4THhfLV9rYTF1MW5mTGJMZktodGJYUWJJTWU4?oc=5"
+    },
+    {
+      "id": "auto-7b08ee0bb9",
+      "nombre": "California desea mantenerse en el ala democrática con un perfil inmigrante y de ",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQOUtXem96blhENkVHemZyV1NjV1NJMVZmbU9UeWNSQkQySFpnc1lQS2hqT21uWmRtb0JiQUtDNnN4aEdlalBMVXE4c2dabmJrc2FScHFBT2NmR05XRHJtWUxFNGdKbEprZVYxYU5WTDlOLTJ2cmZfNzdPVVJhM0QtY0tHLXl6a2dCR1o3SDBmQ2pGUzFsNnFTVTdzUDDSAZwBQVVfeXFMTzduYXMyRlRja3hpZGlQMkhaMG1TN3pUQkxfSXJRaVpUVVF3T2dlTDBOclJLSWo4MzJocC1Uem1DdTFoSVdSRVRJdVc3SzRJWjJnX19JME1WQlFRWldLc19hSDVDd0x4LXp2bGdPdF90RExpNXZKNmJCaTQ0Z0F6N09aZDZmd0Z1NlctNnIyVnlKazA3SXRjcjU5TXlO?oc=5"
     },
     {
       "id": "auto-9dbfb316c8",
@@ -892,15 +882,26 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOM0dNRUFwNFpObVBKQWVFbVB2WmQyaW81TENGdGRoSDdvVUc1STA5UXEtelNhalpXMTd3M0lWRUlkdGhrV3lRaS1XeExhdXdoZ2FzcU1EY2hUV1drcW50bUItdUVobk5sSHhxb0VnYVp0bTNwOWpMSWQyYnhURm5uaU9XX1c0dWIyd0QweU9fNTdZMXpsRzB1Q2ZYWnFEa2thQUZoRVZ0NmRlQnFtczhVSnFiaVdBclE?oc=5"
     },
     {
-      "id": "auto-a64e13bcb5",
-      "nombre": "Celebran Mara Lezama y Ana Paty Peralta el Janal Pixán 2026 que reunió tradición",
-      "categoria": "Gobernabilidad",
-      "peso": 4.0,
+      "id": "auto-e9e3e18b0c",
+      "nombre": "Gómez Mont, con 3 órdenes de captura por delincuencia organizada y evasión",
+      "categoria": "Seguridad Nacional",
+      "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPNjVwTm85YkVtVnUyc2dnbmV1Q2RsNEYzbWZncXJsMjNMdGxVR0ZXM2R1eUFMRlVoOE1XWWdsWS1EWDcwNGRXTFl0Wnl1RU1fbXpMdmhHWjFOZVVtWjZXSXBwU2FHSFcySUZfM2ZRb1V1clVPX0hkSExFVnJmUS1ZZVNoSW9pOVFNcU5IMUlObmVEQ3FIREhMaVM4b0psanJaMVRneWZXRHBzaXNWWnhpVDFQOFVhVjJ2NXpHZ2o3bEtSM2FtVFIw?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/11/03/politica/004n1pol?partner=rss"
     }
   ],
   "temas_retomados": [
+    {
+      "id": "auto-7b0f05dab9",
+      "nombre": "Prevé Estefanía Mercado más cambios en su gabinete por proceso interno de Morena",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 25,
+      "motivo": "Proceso interno da a Morena cobertura positiva en medios - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQbXVhWlJPa0UzQlZNZG1OMlFJcnZLdzB5T3ZVNnJZaXpyYjZ5V3JmdDhrbjdqUnRncndwcVlIY2NXb1ZsRkkyVE5meEtEMkxMa0JOZFN5T3Zid0JUcFRveWMzc0JURUdxSzNNT1lZTUI2d1c1RHZIMFpBWjEtQ2ZkalZJYUtUZ004SXQtT3ZEamFTLUotRnpnSVRhWdIBrwFBVV95cUxNWmVnZWlDZnZ0QjU4bHk3R2gzdUwyNXdVS3UxZDdqUlI5eVBXQmVNWFg1N0RVUENrTEtCWFFnOFNtY1lKdFdIUG5NT1NoZk4ya05sOF9RWVlLU0pjTnVKbF9KOE9XMXk4eUZBb1JFb1hQOVNTTzdFcGZ2VE1kaVJTa2xLU2swNDdPYjE2WVh1QWlBVjZJbG5IX3FoYjFKcmNpYTU0Q3RPNWZsVUh1S0pJ?oc=5",
+      "fecha_anterior": "2026-10-08",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQd0tPUERYeVNwbXZWYjlvbzdhdmtKNjVpTklyVkM0eVhhTlZ6VWxMWHh6SXE0ZFI3eUJiVDF3S3lVLUgySHBlOEFUb1lJRGVjV1RvYjhCM2dXLUJsREhRZEdSOHE4YmZkdWN0REFFNGlYV1RUYnZIand0VzJ6N3A3LXRIVGRtX1VFNFNMNDVCd2M5cjJqVnFsVVRQM3MzMjhhd3hBQXRnYzJyM0ZON2xlM3BaTTh3aTZ6aWc?oc=5"
+    },
     {
       "id": "auto-ddde22b618",
       "nombre": "Kenia López presentará iniciativa para sancionar como traición a la patria a fun",
@@ -911,17 +912,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNWDU2OXlhbUpzRUNYOHRxd204U3JfVDlsb1pmcHgxaV81TnZqMHY4dURndi12TFNnTmlTblFHS1QzRDcwYm5NXzllY0NwSFlUYXVKM3ZnS1ZaZDBxTTJZVEtodHFYZ21GczBpNlUwLTFQQUlhUXlWSjk2d1ZqMFRETUJoT1BZVEt3eUxNVXVtQ1ZrbVVuWmZ2Q1pn0gGaAUFVX3lxTE9KbGdzRWl4LTA5cms5Ti1ZZ0M2LTRwSkU1clV6T1QyV29nQ25CSnpOX2N1bVpwUW5IVEhzY05rRWJ0dUxsYjRMSEZ3aklnOUhsX09NNXdwMzY1TjI0NFRiNFRXc0htZ0ZIQ1BUckVRMUdhNG9aeERhUHBSNUxtem5YM1JfSWtzd1hhWi10RV9lSnpVeERiV2sydFE?oc=5",
       "fecha_anterior": "2026-10-20",
       "fuente_url_anterior": ""
-    },
-    {
-      "id": "auto-708f865cd2",
-      "nombre": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 7,
-      "motivo": "A la memoria del ingeniero Cárdenas Solórzano, escribe Ernestina Godoy - El Universal",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPLWdGRTFqbHdKUE0xT2pLTzRkN1lmOWF0Qk0xVlVCbWRNUE9vTzZ5TmRiMXBsZ3BJcXplOW01UThPZkUzaEt2S1JSZUlydmNGQlk2VTU2cC02RFpvZ3JXblU0ZHlpMlB1UHVQSjd5Y3l0Q1RiNVhKX21sT0RDZi1ndXltd1ZTRk5fLURsamh1X1QzTDQzbWFPX3c3SWlNU0l6dGZKd0prTTZnNEk?oc=5",
-      "fecha_anterior": "2026-10-26",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPZ2lNWlJWYXhhdVNuM0FKWmE5eDFERHlTTzBvRUhSZmtBeXZJV09oTjFmNVBILXducW5rNFBlN095RGxzemltYVdySk5ma053NVVaRTg1YVU0OHNJY2hsZ1FmaXBiS0FNM2NIR3ZwQWhBNFl4TXl3THFHbUN2YURNU212SlNBZVlBYUNGcg?oc=5"
     }
   ],
   "actores_destacados": [
@@ -929,9 +919,20 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "MILENIO. . #ENVIVO | Ya comienza la conferencia matutina de Claudia Sheinbaum, p",
-      "nota": "Claudia Sheinbaum anuncia suspensión de la conferencia matutina por el Día de Muertos - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQZURHSmJQdWtRMkRMaEdrenBGRjRmOWlObkRTdHBEcTJhT2NrYmhrRWxZc2lnOF9OOGo0T1RnZ0xUTzlUeUJ1Wi1ib3pUSndfMlYtLXEtNjBObVA2aWVlN0VZQUR5cGl4MTFuRE1uY0dheUhpUV9BRkVadXBYYWNyNkJhQjRJLXh6Z0FkUWRxeVNaNEZhT2NFTUlhWFVHcDBPNkxERVhObm0xVjU4SDZPaHNuNXpoX0RDaTI1U1VXLThwMGxuSXdrQzN4aEJmZ3hJeE1JSnFjcV9mcms?oc=5",
+      "tema": "¿Qué dijo Claudia Sheinbaum sobre las elecciones de EU? - Milenio",
+      "nota": "¿Qué dijo Claudia Sheinbaum sobre las elecciones de EU? - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNTUsycXdZODE2VGRzYTdwanE0WUxCYkJsQnJheXkxRmJOZkZUMVZvT1cxSlhqR2twYnBXMGhfazNxcFFzNGk3UUJNQndfcktTTmxCV3VxUGVDQTVkODlaUmxMdWpIbHlXMEMyZElTYlRyU0kyd1ZJemVIbDVfNzV0V0NHZTlWaHRBMldnRXFKT0R6V05sMnJsQmJmUU1xLVctQ0dj0gGjAUFVX3lxTE1UamQ0UmhOSTdJZlozRnR5LTZkQjhmN2Z3a2hMWkpyRlhtX0ZQMV9rczhwSVF2RTZqcGVMenBFUkkxSGhrNGthb3kwYVJMendRTDJscGVSX0dYU0UtT1lkUjgwc3VkamJpdDliamg3a0p5SkEwVUJOeE1xNEVNNG9Kb3RJYXdIU0NuNzVYWkRnLV90aUlJTDlsekgtaUF3RmF0Z3c?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "rol": "Investigado",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "¿Para cuándo negarán a Rocha Moya? - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPT1hJbEY1aFh1RFF4X2Y5ZUdpQTI1ZF8yMUVRVnNtb1g0ZWdLZlgwWlBHQ1Z1VkN2RWF4dmhhQ05YRkE3NjRpMTBjTm5Dc3NoUUhPc3c5cnhZeGNCNnNVU3dqZDVBdHZLSWx6RjJibzloYkJ6b2NqMFo2M1RLRDhoeWZKYmlwcTNZOHBvbkQ3bGxYTW9OWHNQYlFB0gGaAUFVX3lxTE8tNW9XckxYclVFT09IcXJLTHRKY2FNM0VsNGlyb0k2X2hQRndqUkQ4aWZ0MEkyNy02cU5mMWhxRlRsNjhqa2VYUkp3djgycExBTDZDc1ZHbHJkejd3TUEtYXJiN0JhamZUN3c1cFZoQXdUeXk2M20zNDJDRTVtTV95bkw4cERVWDJpTjlRMDNIb2JiTnZ0UEd2cmc?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -940,9 +941,9 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
-      "tema": "Trump y México: declaraciones y presión",
-      "nota": "⚡ Posible presión de Donald Trump — Elecciones en EEUU: expertos advierten sobre posibles “arrebatos” de Donald Trump contra México - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxObGU1N3RvOVZURXBDb1NGcGFfSFhDWkdIX2hQNDBNRjJGcFZQUE1xdGdMbUY5LXA4OEV3X1ZpeWlCR2hpSjJVbkh4TWNfYTVCRmQ4Z200dl9BMU1JcG1wMEdPNzNvMTJ6UURNTEpkdFczVXZuNHkxOHpOZjFzcnJ6Z0g3Mm5Qa3p6Z1c3WU8tOVc0aHdWa19CTVlyR0R5ZWpiaUpQQ19fS0E1NEdQbkZfLTU1cm9leVN0c0JQa21icWg4OFVOSlRvYW9keTQxOTJs0gHrAUFVX3lxTE10Z1dFM2tSVHpsbEZXckQtMm80OVg2WGRQMEVvdExaQk4zZEZCQzBnYVBnZmZES0JadWhZMHh4MmdkRlF6d0pST1E1ZnIzYzBpY2toNGlGbDMxWnhiTXJESnRBY1ZfS3ZfWDdRTm5WNkl0alA4Y2o0R1lMcFotUWlIQWVYRU4yWEtKVjdzMkp3bzVvX1oxdGRtTVFaVXRGT2I3VnpmQThIZDc0cG00VmFWN2FWbXZUTzk2NktuR21Oa0tpWVhYQTlEUUJDNVB2V1YzUmlodWRvb183dGltbE12R1ZsU2pLWG05OUE?oc=5",
+      "tema": "“Resucitamos a Cristóbal Colón”, dice Donald Trump durante un homenaje en la Cas",
+      "nota": "¿Qué hará Donald Trump si pierde el Congreso? - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQN3RkRUNOQkxQa1VXRHFYdU5ZZG1objVMTTBwTTR3bUZFdXJPVXlNQzcxN1VKbmVkSjdlRE03bndxZnQxNjc0dVh4RE9pV3ZqQTd3VWV6eVFaVXVrWDRxTHVqeWFCLTE4RjZjQVo5dnpRdDdVZlR5XzNJaTZ4RXkyeXE4NE9aTjFwdVJZSk5FS0ZRdjA4UnNRZzhuYnF2Wi1xUE1ycUhMaU9qMGlJYVFPUmkzR0p4ODRxbkHSAboBQVVfeXFMTTAtWjJwQ3BOS3ppanlZMWFnTDUtNHd4WU90Zi1ZaTlCMEhQMHhtNU5sbUZEYXBQTkV3QkxNVUctM3I4U1JCWmFiYTBzWlp1VW1remNtUEd5ZVdZRUFfUDVzR0g4LVNXNGJacjZlRVAxMFZHUFU1RHlyd2RUZmpTcHd1QlNybVhVLXpoRl8zb2JZRnRBU3lVZlREVnhJVEFKb0FTaS1LTF9IdmJIaDVBa29PODctTGVEYVpB?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -950,17 +951,6 @@
     {
       "id": "alito_moreno",
       "nombre": "Alejandro Moreno Cárdenas",
-      "rol": "Responsable institucional",
-      "tema": "Ariadna Montiel llevará a tribunales a Maru Campos por acusaciones de vínculos c",
-      "nota": "Chocan en redes Ariadna Montiel y Maru Campos; polémica inicia por foto con Alejandro Moreno - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNYXZZdmVRaTZpVFFOS0N5bHM3Q1gxLTl5WEozaEpBcjdSejhpYlczZm13ZGVLWktiWkJtemhhYkdNTjlqc0o0bk1OOWlPN3FrUDN1a0huZEFuTU1nU1dqbVdYUEdZNVJPVjBRLWNqbzV4RTkxMnBFZ2NXSG1udW1iaEpKQmd1NmtKSFJQV0RTRjFtb1NtNEcyM2w0eGdaTTBGbmxuWVl6VjdSRnhOU2ZmdUdCNDBwU2gtTUx6bWZCTjJVTHB0VWZhY2xB?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
       "rol": "Responsable institucional",
       "tema": "Ariadna Montiel llevará a tribunales a Maru Campos por acusaciones de vínculos c",
       "nota": "Chocan en redes Ariadna Montiel y Maru Campos; polémica inicia por foto con Alejandro Moreno - El Universal",
@@ -1163,16 +1153,16 @@
     {
       "fecha": "2026-10-29",
       "tension": 26,
-      "n_notas": 40,
+      "n_notas": 41,
       "n_alto_impacto": 19,
-      "n_medio_impacto": 21,
+      "n_medio_impacto": 22,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-30",
-      "tension": 13,
-      "n_notas": 45,
-      "n_alto_impacto": 9,
+      "tension": 14,
+      "n_notas": 46,
+      "n_alto_impacto": 10,
       "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
@@ -1202,10 +1192,10 @@
     },
     {
       "fecha": "2026-11-03",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 33,
+      "n_notas": 3,
+      "n_alto_impacto": 1,
+      "n_medio_impacto": 2,
       "n_bajo_impacto": 0
     }
   ],
@@ -1240,6 +1230,40 @@
       "fecha_apagado": "2026-11-03"
     },
     {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 50,
+      "y_lunes": 100,
+      "x_hoy": 100,
+      "y_hoy": 75,
+      "delta_pts": 1.5,
+      "alcance": 2,
+      "n_alto": 1,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
+      "nota_texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-02",
+          "x": 50,
+          "y": 100
+        },
+        {
+          "fecha": "2026-11-03",
+          "x": 100,
+          "y": 75
+        }
+      ],
+      "fecha_reactivado": "2026-11-03"
+    },
+    {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
@@ -1254,8 +1278,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOLXhaem55UzYtRndaZ2tNd3VEdWdoWTdpOEtjWlNOZzhRejJ1M0hwa0RXNHBaY0xFQmZCQXZmd3F2NWpBZXlnMUZxeGlNM0lscS1wNGhOcnQ2MERtVHEyd2lqMExuNm1VeXpPSEJBY1ZMc1dpdXVsX3hNQjVoV21ZTHV5VnI4eVAzUjZaSXNfa0dDaWRMajFoMkUzR0htaHlsLXNNZG90WmVaMEE5STlYalAwREs?oc=5",
-      "nota_texto": "Claudia Sheinbaum registra 71.2% aprobación nacional en octubre - - Yo por la Justicia",
+      "nota_url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPLTJuaUIwdHNSU3JrQ0RkUThyamtyMVNEaEpaek5OOHVZS0FMazlaal9rUFFZOVFIUXJKVEMyUVp4dDlNUXhHRVgzclpteU5xcnRnUkNvSC1VM1BkdWp3dFROd1lGMndhTTcwdjRPaXE1MjIxRnQyRWd3LUFjR1hnbFY0cU5weTYybXlTOElVdXBfMU1xaVFlN1dWNkVIVnZieEZiV21WdGlYcDNLeEpNeDhXZFBhMjR0RVFkME04THJhLTMyZk5fRmJYRWVNT0FPMko4VHdkZFNaVmFKOHlKMjJzOHg0bXp5NnVXWm5fOEt1NE40X1ljRmEzcWR6ZE1FRnZIZ2czUHhsQ0NmMlIwcnJkU1Y5X2ZSUTZSSWRiaWR5a2_SAagCQVVfeXFMTkNBV2dhNnBUdXBHUTRiWTNCNy1ZSHNQanhxa1pQNnp4dTBNNGlYM1M2WlFQRXJFYVJMc05pQ296MHpsb2h2Y2FmSVlPd1haUE9GNVR4cXpoVzY1YlJ6WkRKaXZST0I4X2RfU0l2X1doZUNmaUs5YVB2Z0xmSjdrc2RrSHpZTDJHa2JXQ1ltMkNfRHhpU2RwOGphRFMtT2lYVFBLU0RuNUs0LVJOeWNEdnJsN3BPcFc0dkN6WkFzSnRIRGVGb0VXSTNVUUh0UGJGNzAwXzBLUGI2NjFDNllZMEFMamRMQUdpX0d2dUV1Zl9lUGZHUjI5UF8zbkFodjVZaFVWaWZidTZGNnBQZWc1MDlXYjlYMWpNT2sxeVlDcFBLN3pFZlFZVE8?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego, millonario opositor a Claudia Sheinbaum, lanza una dura advertencia por el escándalo del INE: \"Tenemos que ponerles un freno\" - Ambito",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1298,35 +1322,6 @@
       "fecha_apagado": "2026-11-03"
     },
     {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 50,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 1,
-      "n_alto": 1,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
-      "nota_texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-02",
-          "x": 50,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-11-03"
-    },
-    {
       "id": "manzo",
       "nombre": "Carlos Manzo Rodríguez",
       "iniciales": "CM",
@@ -1356,6 +1351,40 @@
       "fecha_apagado": "2026-11-03"
     },
     {
+      "id": "ernesto_ruffo",
+      "nombre": "Ernesto Ruffo Appel",
+      "iniciales": "ER",
+      "x_lunes": 50,
+      "y_lunes": 50,
+      "x_hoy": 100,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 2,
+      "n_alto": 0,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQaHowcGVibW5BSTdSTE5ISHd1RkNiTVp5eG5PNkxkX25MWE5Bcm1wYmhhUllFTjNfMkd6Uko3Ymh4aVp2N25welpOUnBQakY2Z1ppVFVBdzBVWkE2Y0dCUGlDcGhNQ3FOazFfTGFrbG5LbnNTZWF5VktaWl84ZXVtbHp6Y2xBaFFrc0JZOXQtS3lRenZxQVFvOFF2ODIzV3NOOEpkUFhwaWFPZklrRTNlSk16dG0xOVRaWG94VGFQN2V2Ulg0bU11MWwwR3BmR25VQzhSMzN3YVdXdkpldDZOUTlrWFpkRXJvVXR3VEN3TQ?oc=5",
+      "nota_texto": "Juez penal otorga suspensión definitiva a Ernesto Ruffo en juicio por huachicol fiscal; mantiene vigente juicio - El Independiente",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-02",
+          "x": 50,
+          "y": 50
+        },
+        {
+          "fecha": "2026-11-03",
+          "x": 100,
+          "y": 50
+        }
+      ],
+      "fecha_reactivado": "2026-11-03"
+    },
+    {
       "id": "citlalli",
       "nombre": "Citlalli Hernández Mora",
       "iniciales": "CH",
@@ -1372,35 +1401,6 @@
       "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQeXN5cVNtR0R6YVFCcFpnOWYyX2lFTy14TFlQWjdkOC0tN0RJTElUSU5XZ3IyMzZGSHFJdFI5QU9DajRFZWstaF81Sk5LZGpGZ3p1aUVjWktvbWVscU1Zc1pOUzIxdWUxSEhid05JVUwzRXRiVDFYamE5eUQyOU9qVkFYV0VudDNxYXdpd3FRTVg0SE9tWlUzc2lFWXdScHJLYjhyb2dDZm11dVdaTWVGeVF1VFNiUVA4aDZBSjdXaTlRaW12WUlqcDhWU0V2OWF3S0Mzdg?oc=5",
       "nota_texto": "Citlalli Hernández arremete contra Maru Campos y ‘Alito’ Moreno por acercamiento rumbo a 2027 - Nación321",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-02",
-          "x": 50,
-          "y": 50
-        }
-      ],
-      "fecha_apagado": "2026-11-03"
-    },
-    {
-      "id": "ernesto_ruffo",
-      "nombre": "Ernesto Ruffo Appel",
-      "iniciales": "ER",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 50,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQaHowcGVibW5BSTdSTE5ISHd1RkNiTVp5eG5PNkxkX25MWE5Bcm1wYmhhUllFTjNfMkd6Uko3Ymh4aVp2N25welpOUnBQakY2Z1ppVFVBdzBVWkE2Y0dCUGlDcGhNQ3FOazFfTGFrbG5LbnNTZWF5VktaWl84ZXVtbHp6Y2xBaFFrc0JZOXQtS3lRenZxQVFvOFF2ODIzV3NOOEpkUFhwaWFPZklrRTNlSk16dG0xOVRaWG94VGFQN2V2Ulg0bU11MWwwR3BmR25VQzhSMzN3YVdXdkpldDZOUTlrWFpkRXJvVXR3VEN3TQ?oc=5",
-      "nota_texto": "Juez penal otorga suspensión definitiva a Ernesto Ruffo en juicio por huachicol fiscal; mantiene vigente juicio - El Independiente",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1534,5 +1534,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-03 00:04"
+  "hora_corte_publicada": "2026-11-03 06:00"
 }
