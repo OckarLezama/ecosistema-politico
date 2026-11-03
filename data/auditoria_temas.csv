@@ -91,9 +91,9 @@ auto-8c95067d18,"Nuestra presidenta Claudia Sheinbaum Pardo quiere mucho a Verac
 auto-fb871d8278,Justicia ambiental en zonas históricamente relegadas: Se presentaron inversiones,3,informativo,7,3,0.43,mezcla historias
 auto-8db27bd979,La presidenta Claudia Sheinbaum destacó que México mantiene una relación de coop,1,completo,7,3,0.43,mezcla historias
 auto-726ae9441f,"Claudia Sheinbaum refrenda respaldo a Tlaxcala con inversión en vivienda, salud ",1,completo,20,9,0.45,mezcla historias
-huachicol-fiscal,Huachicol Fiscal,1,completo,428,199,0.46,mezcla historias
 auto-7eeca57db5,🇲🇽 Claudia Sheinbaum concluirá este fin de semana la gira nacional que realiza c,1,completo,26,12,0.46,mezcla historias
 auto-15d0ef9e2f,INE da banderazo al proceso electoral 2027; Taddei garantiza piso parejo a parti,1,completo,13,6,0.46,mezcla historias
+huachicol-fiscal,Huachicol Fiscal,1,completo,429,200,0.47,mezcla historias
 auto-450eac718d,Claudia Sheinbaum destacó la presencia que ha ganado el K-pop entre los jóvenes ,3,informativo,164,77,0.47,mezcla historias
 auto-cae542e3f7,Sheinbaum visitará Culiacán este domingo 20 de septiembre; encabezará evento en ,3,completo,15,7,0.47,mezcla historias
 operacion-enjambre,Operación Enjambre: alcaldes y funcionarios detenidos,1,completo,33,16,0.48,mezcla historias
@@ -236,6 +236,7 @@ auto-95c8f15e3d,"Detiene SSPC a presunto implicado; le aseguran vehículo, narc�
 auto-255592d9a1,Transformación del campo y obra comunitaria fortalecen bienestar en la Sierra No,3,informativo,7,5,0.71,ok
 auto-10dbffebd5,Fiscalía de Guerrero investiga agresión de pobladores contra la Guardia Nacional,1,completo,7,5,0.71,ok
 auto-86a0afb23b,Emprendedores serían los más beneficiados con reforma fiscal: experto - Grupo An,3,informativo,7,5,0.71,ok
+auto-afe6a252c5,¿Quién es el peor gobernador? - El Universal Querétaro,3,informativo,7,5,0.71,ok
 auto-b44ad52512,Exhorta Gobernadora a vacunarse contra el sarampión - Imagen del Golfo,3,informativo,7,5,0.71,ok
 auto-249fb47d59,Senador afirma que México enfrenta una terrible crisis de seguridad; 70% del ter,1,completo,7,5,0.71,ok
 auto-ccc332d672,Agroexportadoras deben asegurar a trabajadores ante IMSS partir de octubre: Shei,1,completo,7,5,0.71,ok
@@ -275,7 +276,6 @@ auto-ee0a657646,La bandera de México a través del tiempo,3,informativo,4,3,0.7
 auto-5017ab5430,Trump va por políticos mexicanos que ‘ayuden’ a cárteles: ‘Traicionan la soberan,3,completo,4,3,0.75,ok
 auto-865e32191c,Cuautlancingo separa a tres policías por hechos delictivos; FGE investiga,3,informativo,4,3,0.75,ok
 auto-d555c3ea88,Morena pagará muy caro el despojo a jubilados y pensionados | COLUMNA de Héctor ,3,informativo,4,3,0.75,ok
-auto-afe6a252c5,¿Quién es el peor gobernador? - El Universal Querétaro,3,informativo,4,3,0.75,ok
 auto-c75e0e9665,¿Ayuda selectiva? Gobierno de Alejandro Armenta acelera búsqueda del hijo de alc,3,informativo,4,3,0.75,ok
 auto-e5d698be78,Director de IMSS-Bienestar permanece en Veracruz para revisar fallas en abasto d,1,completo,4,3,0.75,ok
 auto-cb30f226f6,SSPC desplegará operativo vial por visita de Claudia Sheinbaum a Ciudad Deportiv,3,informativo,4,3,0.75,ok
@@ -478,7 +478,7 @@ auto-69c4cc53cd,"En Izúcar de Matamoros, el diputado Pável Gaspar participó e
 auto-7f7c69e0b9,Anuncia Mara Lezama inversión de 3 mil 600 mdp de la CFE para cableado submarino,3,informativo,25,24,0.96,ok
 auto-12044f2311,Conferencia presidencial de Claudia Sheinbaum de este martes 06 de octubre de 20,3,informativo,25,24,0.96,ok
 auto-d2b483c639,La reforma que le puso género al mapa de Chiapas - Diario de Chiapas,3,informativo,24,23,0.96,ok
-auto-f9058da40c,Diputados del Congreso de Puebla faltan a 2° simulacro nacional de 2026 - Ángulo,3,informativo,64,62,0.97,ok
+auto-f9058da40c,Diputados del Congreso de Puebla faltan a 2° simulacro nacional de 2026 - Ángulo,3,informativo,65,63,0.97,ok
 auto-140c183067,"Se presentó un homenaje al Consejo Estudiantil Universitario (CEU) de 1986, movi",3,informativo,40,39,0.97,ok
 auto-91a10c8965,Gobernador Salomón Jara condena el asesinato de Amy Navarrete en Oaxaca y refuer,1,completo,38,37,0.97,ok
 auto-4a6494b939,Congreso de Puebla busca blindar candidaturas ante posibles nexos criminales; la,3,informativo,34,33,0.97,ok
@@ -631,6 +631,7 @@ auto-f32641d2ff,"Dirigente de Morena en Puebla, Olga Lucía Romero Garci-Crespo,
 auto-dda509b8ea,Detienen a Luis de Llano por presunto incumplimiento de sentencia en caso Sasha ,1,completo,16,16,1.0,ok
 auto-c4cec44b97,Fermín “N” enfrenta nueva orden de aprehensión por triple homicidio en Centro,3,informativo,16,16,1.0,ok
 auto-3c55efcb9a,"Pavel Gaspar se destapa para liderar Morena en Puebla; acepta que le ""gustaría"" ",3,informativo,16,16,1.0,ok
+auto-8c60a74868,"Luego del video del miércoles del ex mandatario Andrés Manuel López Obrador, la ",3,informativo,16,16,1.0,ok
 auto-5e8589f02d,Aspabuap llevará a consulta reforma de pensiones; aportación docente subiría de ,3,informativo,16,16,1.0,ok
 auto-49721c498b,Fiscalía de Oaxaca obtiene vinculación a proceso por tentativa de robo y contra ,1,completo,15,15,1.0,ok
 auto-756ae60dca,Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s,3,informativo,15,15,1.0,ok
@@ -638,7 +639,6 @@ auto-5ac251969e,Deben aprender a perder y a ganar: Higinio Martínez,1,completo,
 auto-444faadc89,Diputada de Morena acusa “encuesta amañada” en proceso interno de Quintana Roo -,1,completo,15,15,1.0,ok
 auto-5ec9504f96,Interpol retira ficha roja de Inés Gómez Mont y Víctor Álvarez Puga; Claudia She,1,completo,15,15,1.0,ok
 auto-3dd86281e2,"Diego Luna: ""La migración y la crisis climática son los dos grandes retos que te",3,informativo,15,15,1.0,ok
-auto-8c60a74868,"Luego del video del miércoles del ex mandatario Andrés Manuel López Obrador, la ",3,informativo,15,15,1.0,ok
 auto-7c5b998382,Morena busca contener inconformidades rumbo a 2027; Ariadna Montiel confirma reu,1,completo,15,15,1.0,ok
 auto-7d432c725e,"Movimiento Ciudadano va tras candidatos virtuales de Morena, presenta denuncia a",3,informativo,14,14,1.0,ok
 auto-1660f5abbf,"Rocío Nahle García, gobernadora, inició el recorrido por los 61 hospitales de Ve",3,informativo,14,14,1.0,ok
@@ -978,6 +978,7 @@ auto-ca6d8c69c3,Fijan plazo a la Fiscalía General del Estado para concluir inve
 auto-e9fe3f62ee,Los diputados locales de Morena que ahora buscan ser legisladores federales - Al,3,informativo,5,5,1.0,ok
 auto-84b4cc19af,López Obrador señala a EU por “pruebas hechizas” contra Rocha e Inzunza - eltiem,3,informativo,5,5,1.0,ok
 auto-4e3b2719f5,PRD Tabasco busca acercamiento con cuadros de Morena y PVEM - XEVA,3,informativo,5,5,1.0,ok
+auto-dcfe640980,El que implicó a Andy en el 'huachicol' - Milenio,3,informativo,5,5,1.0,ok
 embajador-johnson-queretaro,Embajador Johnson en Querétaro: invitación del gobernador Kuri,1,completo,5,5,1.0,ok
 auto-254ce2f56e,Trump Responsabiliza al Islam y a la Migración por las Protestas de Estudiantes ,3,informativo,5,5,1.0,ok
 auto-23db6d7cb3,Morena alista celebración nacional por su 15 aniversario: ¿a qué hora y quiénes ,3,informativo,5,5,1.0,ok
@@ -1159,7 +1160,6 @@ auto-c1ddb26466,Ricardo Monreal deja en manos de Morena decisión sobre su conti
 auto-b0d9589649,"Nunca es fácil ganar, Morena debe elegir bien al candidato a edil de Puebla: Car",3,informativo,4,4,1.0,ok
 auto-530b856451,Jessica Saiden destaca unidad y organización de Morena en Yucatán - lachispa.mx,3,informativo,4,4,1.0,ok
 auto-63e6dc9681,Antón Bojórquez se separa de su cargo en el Ayuntamiento de Playa del Carmen - Q,3,informativo,4,4,1.0,ok
-auto-dcfe640980,El que implicó a Andy en el 'huachicol' - Milenio,3,informativo,4,4,1.0,ok
 auto-f682f4b420,Despliega el gobierno federal a 500 uniformados en la frontera con Texas,3,informativo,4,4,1.0,ok
 auto-3547a7ab69,EN VIVO: La Mañanera de la presidenta Claudia Sheinbaum hoy martes 6 de septiemb,3,informativo,4,4,1.0,ok
 auto-e8e0ba7b36,"Morena, PT y PVEM buscan coalición de al menos 290 distritos electorales para 20",3,informativo,4,4,1.0,ok
