@@ -1,13 +1,13 @@
 {
-  "generado_en": "2026-11-02T18:01:09.098316-06:00",
+  "generado_en": "2026-11-03T00:04:01.878663-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 13,
   "baja_confianza": false,
-  "tension_nacional": 21,
+  "tension_nacional": 15,
   "tension_anomalia": {
-    "z": -0.23,
+    "z": -1.62,
     "nivel": "normal",
-    "media_periodo": 22.1,
+    "media_periodo": 22.4,
     "dias_base": 27
   },
   "categorias_dia": [
@@ -16,7 +16,7 @@
       "peso_pct": 59,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 6,
+      "n_temas": 7,
       "n_notas": 8,
       "notas": [
         {
@@ -26,34 +26,16 @@
           "medio": "El Sol de México"
         },
         {
-          "texto": "Juez penal otorga suspensión definitiva a Ernesto Ruffo en juicio por huachicol fiscal; mantiene vigente juicio - El Independiente",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQaHowcGVibW5BSTdSTE5ISHd1RkNiTVp5eG5PNkxkX25MWE5Bcm1wYmhhUllFTjNfMkd6Uko3Ymh4aVp2N25welpOUnBQakY2Z1ppVFVBdzBVWkE2Y0dCUGlDcGhNQ3FOazFfTGFrbG5LbnNTZWF5VktaWl84ZXVtbHp6Y2xBaFFrc0JZOXQtS3lRenZxQVFvOFF2ODIzV3NOOEpkUFhwaWFPZklrRTNlSk16dG0xOVRaWG94VGFQN2V2Ulg0bU11MWwwR3BmR25VQzhSMzN3YVdXdkpldDZOUTlrWFpkRXJvVXR3VEN3TQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Independiente"
-        },
-        {
-          "texto": "Caen empresarios ligados al huachicol fiscal - Plaza de Armas | Querétaro",
-          "fuente_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5Lak5nVkdpRTBCaElJYVFmR25FUmFRSk5VZk9PZFMtcENvSTJSY3BDN1NVUGxMdnVhOUE3cHo0b1FoaUxKTEE2ZGs1OUFkUW5PNThfNVlQaHl0bkZBVFpwdmRJWHNrMnV5eTRKc1d6cUpSaGlIZGNrNF9ZYUh5dw?oc=5",
-          "intensidad": 6.0,
-          "medio": "Plaza de Armas | Querétaro"
+          "texto": "Andrés Manuel López Beltrán prepara un anuncio importante para este martes - sdpnoticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNelpSSXVvRlFIdDF2aXdaZFd5aE5iTXFyXzNqZE9HWHQ0eExkRDU4N2NMN0RVYVkzVVBzX3NfcGgwRnF6YzdaQm9tdE50ZmR0bHBUX0pFeXpDYW0wZUdVY2VTckNDZmxmbXk5WTNQSk5RMFZ3WGY1V1plQy1LalZ0Y1hrQ1lQMW93aTFtMEJScGlkUVBuUm80dnNIRDh2c1lMWGRHbXJFQXlGVVhMY1ZF?oc=5",
+          "intensidad": 7.0,
+          "medio": "sdpnoticias"
         },
         {
           "texto": "Promueven en Matamoros a agentes aduanales acusados de huachicol fiscal - Periódico AM",
           "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPbGRfNUt3a1g2Z1pFLVBsdXVBZHM0QnNvSGJNbnl4TmZYOFdpUUVVd2E5R0dzWTkwU09mZFpkZUMtY1FBQllyWkg4aVJPOHNVQzlzbkVTSUF4UTJmRnotTGhhakxlVF94WENsWmxYVWhfZ2tLaHozeWFHUFdST0NEcXVtQzhBclU2b2FKU2oyVlVWN0h6Rjl4RmVUcHY0cnNIa01DeEpHQ1ExWnNMV1dLMFVtS0NETkZvZXNQWnZXZTFaMnVY?oc=5",
           "intensidad": 6.0,
           "medio": "Periódico AM"
-        },
-        {
-          "texto": "Claudia Sheinbaum registra 71.2% aprobación nacional en octubre - - Yo por la Justicia",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOLXhaem55UzYtRndaZ2tNd3VEdWdoWTdpOEtjWlNOZzhRejJ1M0hwa0RXNHBaY0xFQmZCQXZmd3F2NWpBZXlnMUZxeGlNM0lscS1wNGhOcnQ2MERtVHEyd2lqMExuNm1VeXpPSEJBY1ZMc1dpdXVsX3hNQjVoV21ZTHV5VnI4eVAzUjZaSXNfa0dDaWRMajFoMkUzR0htaHlsLXNNZG90WmVaMEE5STlYalAwREs?oc=5",
-          "intensidad": 5.0,
-          "medio": "Yo por la Justicia"
-        },
-        {
-          "texto": "SALOMÓN JARA Y SU ESQUELETO",
-          "fuente_url": "https://imparcialoaxaca.mx/estilo/calaveritas/salomon-jara-y-su-esqueleto/",
-          "intensidad": 5.0,
-          "medio": "imparcialoaxaca.mx"
         },
         {
           "texto": "Citlalli Hernández arremete contra Maru Campos y ‘Alito’ Moreno por acercamiento rumbo a 2027 - Nación321",
@@ -66,34 +48,52 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPLTJuaUIwdHNSU3JrQ0RkUThyamtyMVNEaEpaek5OOHVZS0FMazlaal9rUFFZOVFIUXJKVEMyUVp4dDlNUXhHRVgzclpteU5xcnRnUkNvSC1VM1BkdWp3dFROd1lGMndhTTcwdjRPaXE1MjIxRnQyRWd3LUFjR1hnbFY0cU5weTYybXlTOElVdXBfMU1xaVFlN1dWNkVIVnZieEZiV21WdGlYcDNLeEpNeDhXZFBhMjR0RVFkME04THJhLTMyZk5fRmJYRWVNT0FPMko4VHdkZFNaVmFKOHlKMjJzOHg0bXp5NnVXWm5fOEt1NE40X1ljRmEzcWR6ZE1FRnZIZ2czUHhsQ0NmMlIwcnJkU1Y5X2ZSUTZSSWRiaWR5a2_SAagCQVVfeXFMTkNBV2dhNnBUdXBHUTRiWTNCNy1ZSHNQanhxa1pQNnp4dTBNNGlYM1M2WlFQRXJFYVJMc05pQ296MHpsb2h2Y2FmSVlPd1haUE9GNVR4cXpoVzY1YlJ6WkRKaXZST0I4X2RfU0l2X1doZUNmaUs5YVB2Z0xmSjdrc2RrSHpZTDJHa2JXQ1ltMkNfRHhpU2RwOGphRFMtT2lYVFBLU0RuNUs0LVJOeWNEdnJsN3BPcFc0dkN6WkFzSnRIRGVGb0VXSTNVUUh0UGJGNzAwXzBLUGI2NjFDNllZMEFMamRMQUdpX0d2dUV1Zl9lUGZHUjI5UF8zbkFodjVZaFVWaWZidTZGNnBQZWc1MDlXYjlYMWpNT2sxeVlDcFBLN3pFZlFZVE8?oc=5",
           "intensidad": 5.0,
           "medio": "Ambito"
+        },
+        {
+          "texto": "¿Qué crees “Gutierritos”? Hay pruebas de los moches que cobraba Sergio Gutiérrez Luna en el INE. ¿Con que compraba las joyas y lujos de “dato protegido”? - Libertad Bajo Palabra",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPMXlVYnFhSkpzXzR2SzVvMk4zTE9qNnZXQUFobWF5TGdjSDMyZTFkTF9QWHo5cHN1YnJhcVBROUZWdnpTa0NpYUVoVkF2N0piTE9wRDFKaFpndzYyYmxza0NxSHNnZ3RmdER5bmtFSG5lSlhlVnlmOGNCR294eHRKMjdNSmJuYVpLRFRMTkNTdXg5Qy1aZXZXMC1DNmtBbnJPY0F6OEhKSHBoSzhrZGRDU04tXzdmLWxLc21qVk1CVl9abXR0a1g1YWpkd1RyNXQyYmZQNm9qUjhaNnMyZ09XbnFzMXlZMkUzcWIzd0Y1N0l5T3FsVDRwZDBRVnNhUnp2MGtXZkpqTXU4ajY2ZF9xYlYtaUp2a2MtekE?oc=5",
+          "intensidad": 5.0,
+          "medio": "Libertad Bajo Palabra"
+        },
+        {
+          "texto": "Inicia Gobierno del Estado rehabilitación de terrazas y miradores en Los Fuertes - ContraRéplica",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOYngzV2ZsOEg2c2V4YUtOcGlJSVNMNUVUR3RjVFZJMnJ1UXpxZE01LU44X0o0RkwzdEhKcl90bExqZ3U4ZVNHQ3VJWDBqTC12RFN0WWNFQ1dFNThicGRCYnptcy1XelMtVFktVGhtRTBJeGJfeGc1MWdOUGN5WDAtRmNHenJtaF9pZjYwalJsM0VJMGUybHJuT2JDUVVQZ0tkdlUwSV9ydTRCbXJDS3g0c2RzZm82cElWVkNsc1FKclhDNXFf?oc=5",
+          "intensidad": 4.0,
+          "medio": "ContraRéplica"
+        },
+        {
+          "texto": "Inicia Gobierno del Estado rehabilitación de terrazas y miradores en Los Fuertes - Municipios Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPbVBtZG8tN2ZCelZmaEpmWU9XRFdCbW9mN3NmSmJiRUIwQlZReGtPYnpIZGZ3ZVdWMUM1bjJPR0tzaXRiWEZlVjJkYkRvUmRYdlA4NEpfb19ZSDJ2bUJUTEMzM3VsM0Y0UFo5cWhXTHVtWlR6MDRXdW55U0swdmg0LVRmdlJyTXNWWW1WVnFVajR4aUItUGVWTTU2S2Zpek1yRGFqVjhMNmNxSHRWalAwV0g1Y2U0YmFkR1FQZQ?oc=5",
+          "intensidad": 4.0,
+          "medio": "Municipios Puebla"
         }
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
+      "categoria": "Relación Bilateral",
       "peso_pct": 26,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 3,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
+      "n_temas": 2,
       "n_notas": 3,
       "notas": [
         {
-          "texto": "FGR matiza suspensión concedida al exgobernador de Baja California; no termina proceso por huachicol fiscal - El Sol de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOQTM3WDN4Q1RObk1DS2s4Q2QyemV6YlFjQ0s3akw5azV2YTM5YkNSZmF1V3RlaFJpeGxvVW9qXzNPRlR0NmhlMmU5ZDd6eThLMl84MzRzNGN5ZjliTWdTRGtTSWtxQV9mMUVFRERzQzZIS0s4dHJ6QmUzWUF5Qy1pMmxTdjZRamJUVndrOGY4a3M3SlRyLVZJY0pKbDJsdkxyZlRlbVBhTkk3S3QzTmxvcnFuU3FSZkRHNEhiZl91bGFYelFqMkJ3NU44c0ZfTnpCTDl5OEJNSktEUXFiZ3pCdjVwaXEzZ1hFcUJn?oc=5",
-          "intensidad": 8.0,
-          "medio": "El Sol de México"
-        },
-        {
-          "texto": "“La justicia no puede tener protegidos”: Grecia Quiroz reclama a Sheinbaum justicia para Carlos Manzo",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/02/la-justicia-no-puede-tener-protegidos-grecia-quiroz-reclama-a-sheinbaum-justicia-para-carlos-manzo.html",
+          "texto": "Donald Trump y Mark Carney negocian el comercio bilateral - Revista Caretas",
+          "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9BRzFMRU5WT2VCaTJmTDV4bHVqNzh1aFdaOG9Vc09sYUdVN2pvVGVYR29MNGpITkxnZlpnaEFvRGpMcF9qTElEMkR6X0p5bzBWMFo1NFdKaTBOSnlHWGFXMUVzaV83Z3BNNGFQSnQ0RmJqSnE1VHZueXE1LWExNVU?oc=5",
           "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
+          "medio": "Revista Caretas"
         },
         {
-          "texto": "La traición a Manzo desde su propio gobierno habría facilitado su crimen, según la Fiscalía",
-          "fuente_url": "https://imparcialoaxaca.mx/nacional/la-traicion-a-manzo-desde-su-propio-gobierno-habria-facilitado-su-crimen-segun-la-fiscalia/",
+          "texto": "¿Cómo llega Donald Trump a las elecciones intermedias de Estados Unidos 2026?",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/2/como-llega-donald-trump-las-elecciones-intermedias-de-estados-unidos-2026-921312.html",
+          "intensidad": 7.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "⚡ Posible presión de Donald Trump — Elecciones en EEUU: expertos advierten sobre posibles “arrebatos” de Donald Trump contra México - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxObGU1N3RvOVZURXBDb1NGcGFfSFhDWkdIX2hQNDBNRjJGcFZQUE1xdGdMbUY5LXA4OEV3X1ZpeWlCR2hpSjJVbkh4TWNfYTVCRmQ4Z200dl9BMU1JcG1wMEdPNzNvMTJ6UURNTEpkdFczVXZuNHkxOHpOZjFzcnJ6Z0g3Mm5Qa3p6Z1c3WU8tOVc0aHdWa19CTVlyR0R5ZWpiaUpQQ19fS0E1NEdQbkZfLTU1cm9leVN0c0JQa21icWg4OFVOSlRvYW9keTQxOTJs0gHrAUFVX3lxTE10Z1dFM2tSVHpsbEZXckQtMm80OVg2WGRQMEVvdExaQk4zZEZCQzBnYVBnZmZES0JadWhZMHh4MmdkRlF6d0pST1E1ZnIzYzBpY2toNGlGbDMxWnhiTXJESnRBY1ZfS3ZfWDdRTm5WNkl0alA4Y2o0R1lMcFotUWlIQWVYRU4yWEtKVjdzMkp3bzVvX1oxdGRtTVFaVXRGT2I3VnpmQThIZDc0cG00VmFWN2FWbXZUTzk2NktuR21Oa0tpWVhYQTlEUUJDNVB2V1YzUmlodWRvb183dGltbE12R1ZsU2pLWG05OUE?oc=5",
           "intensidad": 5.0,
-          "medio": "imparcialoaxaca.mx"
+          "medio": "Infobae"
         }
       ]
     },
@@ -114,18 +114,18 @@
       ]
     },
     {
-      "categoria": "Relación Bilateral",
+      "categoria": "Seguridad Nacional",
       "peso_pct": 7,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
+      "tema_principal": null,
+      "tema_principal_id": null,
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "⚡ Posible presión de Donald Trump — Elecciones en EEUU: expertos advierten sobre posibles “arrebatos” de Donald Trump contra México - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxObGU1N3RvOVZURXBDb1NGcGFfSFhDWkdIX2hQNDBNRjJGcFZQUE1xdGdMbUY5LXA4OEV3X1ZpeWlCR2hpSjJVbkh4TWNfYTVCRmQ4Z200dl9BMU1JcG1wMEdPNzNvMTJ6UURNTEpkdFczVXZuNHkxOHpOZjFzcnJ6Z0g3Mm5Qa3p6Z1c3WU8tOVc0aHdWa19CTVlyR0R5ZWpiaUpQQ19fS0E1NEdQbkZfLTU1cm9leVN0c0JQa21icWg4OFVOSlRvYW9keTQxOTJs0gHrAUFVX3lxTE10Z1dFM2tSVHpsbEZXckQtMm80OVg2WGRQMEVvdExaQk4zZEZCQzBnYVBnZmZES0JadWhZMHh4MmdkRlF6d0pST1E1ZnIzYzBpY2toNGlGbDMxWnhiTXJESnRBY1ZfS3ZfWDdRTm5WNkl0alA4Y2o0R1lMcFotUWlIQWVYRU4yWEtKVjdzMkp3bzVvX1oxdGRtTVFaVXRGT2I3VnpmQThIZDc0cG00VmFWN2FWbXZUTzk2NktuR21Oa0tpWVhYQTlEUUJDNVB2V1YzUmlodWRvb183dGltbE12R1ZsU2pLWG05OUE?oc=5",
+          "texto": "La traición a Manzo desde su propio gobierno habría facilitado su crimen, según la Fiscalía",
+          "fuente_url": "https://imparcialoaxaca.mx/nacional/la-traicion-a-manzo-desde-su-propio-gobierno-habria-facilitado-su-crimen-segun-la-fiscalia/",
           "intensidad": 5.0,
-          "medio": "Infobae"
+          "medio": "imparcialoaxaca.mx"
         }
       ]
     },
@@ -140,31 +140,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-06",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 78
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 4
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 3
-        }
-      ]
-    },
     {
       "fecha": "2026-10-07",
       "categorias": [
@@ -228,7 +203,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 7
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
@@ -349,7 +324,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 72
+          "peso_pct": 71
         },
         {
           "categoria": "Relación Bilateral",
@@ -378,7 +353,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 8
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -503,7 +478,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -545,7 +520,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -553,7 +528,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -574,11 +549,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -599,11 +574,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -624,15 +599,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -649,11 +624,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -674,15 +649,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -699,15 +674,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -724,11 +699,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 16
         },
         {
           "categoria": "Economía",
@@ -736,7 +711,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 3
         }
       ]
     },
@@ -749,11 +724,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
@@ -774,11 +749,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 12
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
@@ -799,11 +774,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 16
         },
         {
           "categoria": "Economía",
@@ -824,11 +799,36 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 17
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 8
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 5
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-03",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 12
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 57
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 17
         },
         {
           "categoria": "Economía",
@@ -836,30 +836,12 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 6
+          "peso_pct": 5
         }
       ]
     }
   ],
   "top5_temas": [
-    {
-      "id": "auto-708f865cd2",
-      "nombre": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
-      "categoria": "Gobernabilidad",
-      "resumen": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
-      "motivo": "A la memoria del ingeniero Cárdenas Solórzano, escribe Ernestina Godoy - El Universal",
-      "peso": 5.0,
-      "n_temas_agrupados": 4,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPLWdGRTFqbHdKUE0xT2pLTzRkN1lmOWF0Qk0xVlVCbWRNUE9vTzZ5TmRiMXBsZ3BJcXplOW01UThPZkUzaEt2S1JSZUlydmNGQlk2VTU2cC02RFpvZ3JXblU0ZHlpMlB1UHVQSjd5Y3l0Q1RiNVhKX21sT0RDZi1ndXltd1ZTRk5fLURsamh1X1QzTDQzbWFPX3c3SWlNU0l6dGZKd0prTTZnNEk?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
     {
       "id": "trump-agenda",
       "nombre": "Trump y México: declaraciones y presión",
@@ -886,22 +868,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPOG5wUFZUQktXcjlMR21mUUJsZzBJNmdIZGFGZWFkZm5pTmIzNnNGdTM4dV9DaVRBZkNYVmJXUmxCWE1nOE5NQ3pLSGhub2tYSjIwaTkyaE94Q1RCTFVnckdYRklULXVoMDdNOW1yV2tsaDdkdDM1dTd0ODQxS3ZFRVVfRnZNdXfSAYcBQVVfeXFMTWdWQmJBNWJoLXV2N3FXN1lINVRGdUN3ZFZ0RlBaWmpjd3VLTWZKcVBlWlZEcWV5SVBNQmxRbkxKRUpiejRRS0JOaFI1TFZwSWdaeFFQV3FCeUxEZGNrYldXOW92R0g4Rk5kSUZob3FTdkNTY2VlS3lyTUhJUWhvbElDWXREVlAw?oc=5"
     },
     {
-      "id": "auto-7947468a40",
-      "nombre": "¿Habrá una migración masiva desde Buenos Aires a Vaca Muerta y las zonas mineras",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQNnRqM2dTWHNCOHdCdnd0S29Sd19ld2k4YjBtY2lVOHRNQ3FpbXd1dTh6LXlvY3gweWFPRTlCeFcxLVp5RkxJN0NTWDl4X1hBX2hfS1l0b0NQUmh4VGtNMnNXelROZWlYRDRfREI0aURkYkdaZmtaTWN5Q29SNXVBdllEQkpsWlVMakt0ZGVCal9xOGg0VHRLU2ZCdUIwVmljU2ZsSldqV3BvR3BZQ0tOQ1dGMzZpUUlYWGpyR1F2YTkzbXpWQWVZLTBqaTFSbmFmMjZlUHFrSXJVdXNQaFM0dmJoLXBmVGdCSUHSAf4BQVVfeXFMTVVVbDczTmhxWlZaSHZuWHd1RnpIWTVKSERXYl81VUd4Q1c1R05nVkJWNlpZRUtDd21nU1lHUXNMdGl4NWVmZ3Q2Q0xFcWQ2MExvVjJTcmdHcVBYdHpsVVlTTFNla3liNC1XZ0k5T1dXS2R2bDU3RzRZc25LNm1lZU5wWXNDUE9fanBQSTZvRllHNG9WRmtBeHZpczVkSTFZd3NDZ2dieE8xdXdiTnFYOEpzSlFoN0E3cDF4QmhFVTVHdzY2d1BYRGJ5djMyd01MM1lObnlzcnhnYmFCZ2NHel9JTlhWTm1qODY4T1BlU01EUGhOWlJnM0dneGlyS2c?oc=5"
-    },
-    {
-      "id": "auto-d0ee04e6a0",
-      "nombre": "Al alza, nacimientos de inmigrantes: Conapo",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/02/politica/008n1pol?partner=rss"
-    },
-    {
       "id": "auto-213048183c",
       "nombre": "Relación México-EU enfrenta incertidumbre ante elecciones intermedias: Integrali",
       "categoria": "Social",
@@ -916,6 +882,22 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/02/ines-gomez-mont-desvio-recursos-que-eran-para-carceles-en-mexico-fgr/"
+    },
+    {
+      "id": "auto-a31c0ddbed",
+      "nombre": "De las Heras: La aprobación de la Presidenta sube a 70% y Morena crece también, ",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOM0dNRUFwNFpObVBKQWVFbVB2WmQyaW81TENGdGRoSDdvVUc1STA5UXEtelNhalpXMTd3M0lWRUlkdGhrV3lRaS1XeExhdXdoZ2FzcU1EY2hUV1drcW50bUItdUVobk5sSHhxb0VnYVp0bTNwOWpMSWQyYnhURm5uaU9XX1c0dWIyd0QweU9fNTdZMXpsRzB1Q2ZYWnFEa2thQUZoRVZ0NmRlQnFtczhVSnFiaVdBclE?oc=5"
+    },
+    {
+      "id": "auto-a64e13bcb5",
+      "nombre": "Celebran Mara Lezama y Ana Paty Peralta el Janal Pixán 2026 que reunió tradición",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPNjVwTm85YkVtVnUyc2dnbmV1Q2RsNEYzbWZncXJsMjNMdGxVR0ZXM2R1eUFMRlVoOE1XWWdsWS1EWDcwNGRXTFl0Wnl1RU1fbXpMdmhHWjFOZVVtWjZXSXBwU2FHSFcySUZfM2ZRb1V1clVPX0hkSExFVnJmUS1ZZVNoSW9pOVFNcU5IMUlObmVEQ3FIREhMaVM4b0psanJaMVRneWZXRHBzaXNWWnhpVDFQOFVhVjJ2NXpHZ2o3bEtSM2FtVFIw?oc=5"
     }
   ],
   "temas_retomados": [
@@ -955,17 +937,6 @@
       "confianza": "media"
     },
     {
-      "id": "ricardo_salinas_pliego",
-      "nombre": "Ricardo Salinas Pliego",
-      "rol": "Responsable institucional",
-      "tema": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s",
-      "nota": "Salinas Pliego llama a recuperar al INE y volverlo 100% ciudadano - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNMVlVcHowY2dXRTRaVVdDa0taOGdnam5sUWdxTzVhbkk0ci1OT2NNMzV6Wm5TWHVibEZYZW45VHprSXVnS0ZKSVhMOGxoTlc0S0xHX251XzhmcnpXbTRTQUxzT0lPUkVtcjRYaU1UV0lHbm5lci1qcjd5anhWdllTb3FYRG9nS2VFM05yTTR6VVRuZElYek1XYmQ0elJWcmtyZC1ublNwWmFUYXJLbVJOeE5lRWtoc3ItVy1oTzVWRjBQN2V3R1FZ0gHbAUFVX3lxTE5BZDVVM2ZvSHVEbmQzcVllNUxyQkJCTHdHOTlFbVd5Umw5c1loNk1ma3lQeG82RnYxN2N5Ujdld3VjTTE5UlJXeFJoOUgzQ1pPdTV6VDhsUm9BWndidVBXZFh2Mkx3anphR2NvXzhMWGVESEpxcUtUVWxEN0pabFJCckU5TDlkdXpHa21IUlFMeElrR0NORTdPNVFvS0MyOUVMbWxDUDdmZGxxZHlmSFQxbldqc3ZGWWdJNkMtSjRHdGVOc0RwWFdDN1BBZXJqaUVVQjF3dGNTWGtucw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "trump",
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
@@ -977,23 +948,34 @@
       "confianza": "media"
     },
     {
-      "id": "godoy",
-      "nombre": "Ernestina Godoy",
+      "id": "alito_moreno",
+      "nombre": "Alejandro Moreno Cárdenas",
       "rol": "Responsable institucional",
-      "tema": "Fiscal Ernestina Godoy galardona a miembros de la policía ministerial",
-      "nota": "A la memoria del ingeniero Cárdenas Solórzano, escribe Ernestina Godoy - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPLWdGRTFqbHdKUE0xT2pLTzRkN1lmOWF0Qk0xVlVCbWRNUE9vTzZ5TmRiMXBsZ3BJcXplOW01UThPZkUzaEt2S1JSZUlydmNGQlk2VTU2cC02RFpvZ3JXblU0ZHlpMlB1UHVQSjd5Y3l0Q1RiNVhKX21sT0RDZi1ndXltd1ZTRk5fLURsamh1X1QzTDQzbWFPX3c3SWlNU0l6dGZKd0prTTZnNEk?oc=5",
-      "reaparece": true,
+      "tema": "Ariadna Montiel llevará a tribunales a Maru Campos por acusaciones de vínculos c",
+      "nota": "Chocan en redes Ariadna Montiel y Maru Campos; polémica inicia por foto con Alejandro Moreno - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNYXZZdmVRaTZpVFFOS0N5bHM3Q1gxLTl5WEozaEpBcjdSejhpYlczZm13ZGVLWktiWkJtemhhYkdNTjlqc0o0bk1OOWlPN3FrUDN1a0huZEFuTU1nU1dqbVdYUEdZNVJPVjBRLWNqbzV4RTkxMnBFZ2NXSG1udW1iaEpKQmd1NmtKSFJQV0RTRjFtb1NtNEcyM2w0eGdaTTBGbmxuWVl6VjdSRnhOU2ZmdUdCNDBwU2gtTUx6bWZCTjJVTHB0VWZhY2xB?oc=5",
+      "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "Renuncia Claudia Espino al INE; Guadalupe Taddei nombra a Roberto Félix como enc",
-      "nota": "Alito acusa a Morena de negar a Guadalupe Taddei; afirma que impulsó su nombramiento - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNWXAwUzZfQ2dORkk1NFJTX0xuS2tvd2g1amhLMVQzT1NtcUZocnBMczZCeVFvcmtDT1owY1NoS0xzTDk4TFhpZjhtSUhOVXktQ1V3ZjF5UFI2X2lrTFh1RlEzYTZRUGxZaHBITVFIVk54N1lBUVo2SVhYZ2RKUTkwN0d3Vkd2SjhfT2p2ZVlGSWwzT0R4LWtIb041QjNjd09NRFF0TWQzQkx6TGtRQ0NWSnBxazdlYUJCcWd5b0ViOA?oc=5",
+      "id": "montiel",
+      "nombre": "Ariadna Montiel",
+      "rol": "Responsable institucional",
+      "tema": "Ariadna Montiel llevará a tribunales a Maru Campos por acusaciones de vínculos c",
+      "nota": "Chocan en redes Ariadna Montiel y Maru Campos; polémica inicia por foto con Alejandro Moreno - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNYXZZdmVRaTZpVFFOS0N5bHM3Q1gxLTl5WEozaEpBcjdSejhpYlczZm13ZGVLWktiWkJtemhhYkdNTjlqc0o0bk1OOWlPN3FrUDN1a0huZEFuTU1nU1dqbVdYUEdZNVJPVjBRLWNqbzV4RTkxMnBFZ2NXSG1udW1iaEpKQmd1NmtKSFJQV0RTRjFtb1NtNEcyM2w0eGdaTTBGbmxuWVl6VjdSRnhOU2ZmdUdCNDBwU2gtTUx6bWZCTjJVTHB0VWZhY2xB?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "ricardo_salinas_pliego",
+      "nombre": "Ricardo Salinas Pliego",
+      "rol": "Responsable institucional",
+      "tema": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s",
+      "nota": "Salinas Pliego llama a recuperar al INE y volverlo 100% ciudadano - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNMVlVcHowY2dXRTRaVVdDa0taOGdnam5sUWdxTzVhbkk0ci1OT2NNMzV6Wm5TWHVibEZYZW45VHprSXVnS0ZKSVhMOGxoTlc0S0xHX251XzhmcnpXbTRTQUxzT0lPUkVtcjRYaU1UV0lHbm5lci1qcjd5anhWdllTb3FYRG9nS2VFM05yTTR6VVRuZElYek1XYmQ0elJWcmtyZC1ublNwWmFUYXJLbVJOeE5lRWtoc3ItVy1oTzVWRjBQN2V3R1FZ0gHbAUFVX3lxTE5BZDVVM2ZvSHVEbmQzcVllNUxyQkJCTHdHOTlFbVd5Umw5c1loNk1ma3lQeG82RnYxN2N5Ujdld3VjTTE5UlJXeFJoOUgzQ1pPdTV6VDhsUm9BWndidVBXZFh2Mkx3anphR2NvXzhMWGVESEpxcUtUVWxEN0pabFJCckU5TDlkdXpHa21IUlFMeElrR0NORTdPNVFvS0MyOUVMbWxDUDdmZGxxZHlmSFQxbldqc3ZGWWdJNkMtSjRHdGVOc0RwWFdDN1BBZXJqaUVVQjF3dGNTWGtucw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1002,14 +984,6 @@
   "declaracion_presidenta": null,
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-10-06",
-      "tension": 16,
-      "n_notas": 126,
-      "n_alto_impacto": 31,
-      "n_medio_impacto": 95,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-10-07",
       "tension": 22,
@@ -1029,9 +1003,9 @@
     {
       "fecha": "2026-10-09",
       "tension": 25,
-      "n_notas": 80,
+      "n_notas": 81,
       "n_alto_impacto": 37,
-      "n_medio_impacto": 43,
+      "n_medio_impacto": 44,
       "n_bajo_impacto": 0
     },
     {
@@ -1061,9 +1035,9 @@
     {
       "fecha": "2026-10-13",
       "tension": 26,
-      "n_notas": 89,
+      "n_notas": 90,
       "n_alto_impacto": 39,
-      "n_medio_impacto": 50,
+      "n_medio_impacto": 51,
       "n_bajo_impacto": 0
     },
     {
@@ -1117,40 +1091,40 @@
     {
       "fecha": "2026-10-20",
       "tension": 29,
-      "n_notas": 59,
-      "n_alto_impacto": 32,
-      "n_medio_impacto": 27,
+      "n_notas": 61,
+      "n_alto_impacto": 33,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-21",
-      "tension": 28,
-      "n_notas": 57,
+      "tension": 27,
+      "n_notas": 58,
       "n_alto_impacto": 27,
-      "n_medio_impacto": 30,
+      "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-22",
-      "tension": 23,
-      "n_notas": 56,
-      "n_alto_impacto": 23,
+      "tension": 24,
+      "n_notas": 57,
+      "n_alto_impacto": 24,
       "n_medio_impacto": 33,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-23",
-      "tension": 17,
-      "n_notas": 59,
-      "n_alto_impacto": 21,
+      "tension": 18,
+      "n_notas": 60,
+      "n_alto_impacto": 22,
       "n_medio_impacto": 38,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-24",
-      "tension": 29,
-      "n_notas": 18,
-      "n_alto_impacto": 8,
+      "tension": 30,
+      "n_notas": 19,
+      "n_alto_impacto": 9,
       "n_medio_impacto": 10,
       "n_bajo_impacto": 0
     },
@@ -1164,41 +1138,41 @@
     },
     {
       "fecha": "2026-10-26",
-      "tension": 15,
-      "n_notas": 39,
-      "n_alto_impacto": 8,
+      "tension": 16,
+      "n_notas": 40,
+      "n_alto_impacto": 9,
       "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-27",
-      "tension": 17,
-      "n_notas": 50,
-      "n_alto_impacto": 16,
+      "tension": 18,
+      "n_notas": 51,
+      "n_alto_impacto": 17,
       "n_medio_impacto": 34,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-28",
       "tension": 25,
-      "n_notas": 54,
-      "n_alto_impacto": 21,
-      "n_medio_impacto": 33,
+      "n_notas": 57,
+      "n_alto_impacto": 23,
+      "n_medio_impacto": 34,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-29",
-      "tension": 25,
-      "n_notas": 38,
-      "n_alto_impacto": 17,
+      "tension": 26,
+      "n_notas": 40,
+      "n_alto_impacto": 19,
       "n_medio_impacto": 21,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-30",
-      "tension": 12,
-      "n_notas": 44,
-      "n_alto_impacto": 8,
+      "tension": 13,
+      "n_notas": 45,
+      "n_alto_impacto": 9,
       "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
@@ -1212,22 +1186,59 @@
     },
     {
       "fecha": "2026-11-01",
-      "tension": 25,
-      "n_notas": 19,
-      "n_alto_impacto": 7,
-      "n_medio_impacto": 12,
+      "tension": 24,
+      "n_notas": 22,
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-02",
-      "tension": 21,
-      "n_notas": 13,
-      "n_alto_impacto": 3,
-      "n_medio_impacto": 10,
+      "tension": 20,
+      "n_notas": 19,
+      "n_alto_impacto": 6,
+      "n_medio_impacto": 13,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-11-03",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "iniciales": "DT",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 100,
+      "y_hoy": 100,
+      "delta_pts": 6,
+      "alcance": 2,
+      "n_alto": 2,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9BRzFMRU5WT2VCaTJmTDV4bHVqNzh1aFdaOG9Vc09sYUdVN2pvVGVYR29MNGpITkxnZlpnaEFvRGpMcF9qTElEMkR6X0p5bzBWMFo1NFdKaTBOSnlHWGFXMUVzaV83Z3BNNGFQSnQ0RmJqSnE1VHZueXE1LWExNVU?oc=5",
+      "nota_texto": "Donald Trump y Mark Carney negocian el comercio bilateral - Revista Caretas",
+      "es_nuevo": false,
+      "categoria": "Relación Bilateral",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-02",
+          "x": 100,
+          "y": 100
+        }
+      ],
+      "fecha_apagado": "2026-11-03"
+    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -1242,9 +1253,9 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPLTJuaUIwdHNSU3JrQ0RkUThyamtyMVNEaEpaek5OOHVZS0FMazlaal9rUFFZOVFIUXJKVEMyUVp4dDlNUXhHRVgzclpteU5xcnRnUkNvSC1VM1BkdWp3dFROd1lGMndhTTcwdjRPaXE1MjIxRnQyRWd3LUFjR1hnbFY0cU5weTYybXlTOElVdXBfMU1xaVFlN1dWNkVIVnZieEZiV21WdGlYcDNLeEpNeDhXZFBhMjR0RVFkME04THJhLTMyZk5fRmJYRWVNT0FPMko4VHdkZFNaVmFKOHlKMjJzOHg0bXp5NnVXWm5fOEt1NE40X1ljRmEzcWR6ZE1FRnZIZ2czUHhsQ0NmMlIwcnJkU1Y5X2ZSUTZSSWRiaWR5a2_SAagCQVVfeXFMTkNBV2dhNnBUdXBHUTRiWTNCNy1ZSHNQanhxa1pQNnp4dTBNNGlYM1M2WlFQRXJFYVJMc05pQ296MHpsb2h2Y2FmSVlPd1haUE9GNVR4cXpoVzY1YlJ6WkRKaXZST0I4X2RfU0l2X1doZUNmaUs5YVB2Z0xmSjdrc2RrSHpZTDJHa2JXQ1ltMkNfRHhpU2RwOGphRFMtT2lYVFBLU0RuNUs0LVJOeWNEdnJsN3BPcFc0dkN6WkFzSnRIRGVGb0VXSTNVUUh0UGJGNzAwXzBLUGI2NjFDNllZMEFMamRMQUdpX0d2dUV1Zl9lUGZHUjI5UF8zbkFodjVZaFVWaWZidTZGNnBQZWc1MDlXYjlYMWpNT2sxeVlDcFBLN3pFZlFZVE8?oc=5",
-      "nota_texto": "Ricardo Salinas Pliego, millonario opositor a Claudia Sheinbaum, lanza una dura advertencia por el escándalo del INE: \"Tenemos que ponerles un freno\" - Ambito",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOLXhaem55UzYtRndaZ2tNd3VEdWdoWTdpOEtjWlNOZzhRejJ1M0hwa0RXNHBaY0xFQmZCQXZmd3F2NWpBZXlnMUZxeGlNM0lscS1wNGhOcnQ2MERtVHEyd2lqMExuNm1VeXpPSEJBY1ZMc1dpdXVsX3hNQjVoV21ZTHV5VnI4eVAzUjZaSXNfa0dDaWRMajFoMkUzR0htaHlsLXNNZG90WmVaMEE5STlYalAwREs?oc=5",
+      "nota_texto": "Claudia Sheinbaum registra 71.2% aprobación nacional en octubre - - Yo por la Justicia",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1254,7 +1265,37 @@
           "x": 100,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-03"
+    },
+    {
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "iniciales": "AL",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 50,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 1,
+      "n_alto": 1,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNelpSSXVvRlFIdDF2aXdaZFd5aE5iTXFyXzNqZE9HWHQ0eExkRDU4N2NMN0RVYVkzVVBzX3NfcGgwRnF6YzdaQm9tdE50ZmR0bHBUX0pFeXpDYW0wZUdVY2VTckNDZmxmbXk5WTNQSk5RMFZ3WGY1V1plQy1LalZ0Y1hrQ1lQMW93aTFtMEJScGlkUVBuUm80dnNIRDh2c1lMWGRHbXJFQXlGVVhMY1ZF?oc=5",
+      "nota_texto": "Andrés Manuel López Beltrán prepara un anuncio importante para este martes - sdpnoticias",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-02",
+          "x": 50,
+          "y": 100
+        }
+      ],
+      "fecha_apagado": "2026-11-03"
     },
     {
       "id": "rocha_moya",
@@ -1270,7 +1311,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
       "nota_texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
       "es_nuevo": false,
@@ -1282,7 +1323,8 @@
           "x": 50,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-03"
     },
     {
       "id": "manzo",
@@ -1298,7 +1340,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.yucatan.com.mx/mexico/2026/11/02/la-justicia-no-puede-tener-protegidos-grecia-quiroz-reclama-a-sheinbaum-justicia-para-carlos-manzo.html",
       "nota_texto": "“La justicia no puede tener protegidos”: Grecia Quiroz reclama a Sheinbaum justicia para Carlos Manzo",
       "es_nuevo": false,
@@ -1310,7 +1352,8 @@
           "x": 50,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-03"
     },
     {
       "id": "citlalli",
@@ -1326,7 +1369,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQeXN5cVNtR0R6YVFCcFpnOWYyX2lFTy14TFlQWjdkOC0tN0RJTElUSU5XZ3IyMzZGSHFJdFI5QU9DajRFZWstaF81Sk5LZGpGZ3p1aUVjWktvbWVscU1Zc1pOUzIxdWUxSEhid05JVUwzRXRiVDFYamE5eUQyOU9qVkFYV0VudDNxYXdpd3FRTVg0SE9tWlUzc2lFWXdScHJLYjhyb2dDZm11dVdaTWVGeVF1VFNiUVA4aDZBSjdXaTlRaW12WUlqcDhWU0V2OWF3S0Mzdg?oc=5",
       "nota_texto": "Citlalli Hernández arremete contra Maru Campos y ‘Alito’ Moreno por acercamiento rumbo a 2027 - Nación321",
       "es_nuevo": false,
@@ -1338,7 +1381,8 @@
           "x": 50,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-03"
     },
     {
       "id": "ernesto_ruffo",
@@ -1354,7 +1398,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQaHowcGVibW5BSTdSTE5ISHd1RkNiTVp5eG5PNkxkX25MWE5Bcm1wYmhhUllFTjNfMkd6Uko3Ymh4aVp2N25welpOUnBQakY2Z1ppVFVBdzBVWkE2Y0dCUGlDcGhNQ3FOazFfTGFrbG5LbnNTZWF5VktaWl84ZXVtbHp6Y2xBaFFrc0JZOXQtS3lRenZxQVFvOFF2ODIzV3NOOEpkUFhwaWFPZklrRTNlSk16dG0xOVRaWG94VGFQN2V2Ulg0bU11MWwwR3BmR25VQzhSMzN3YVdXdkpldDZOUTlrWFpkRXJvVXR3VEN3TQ?oc=5",
       "nota_texto": "Juez penal otorga suspensión definitiva a Ernesto Ruffo en juicio por huachicol fiscal; mantiene vigente juicio - El Independiente",
       "es_nuevo": false,
@@ -1366,7 +1410,8 @@
           "x": 50,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-03"
     },
     {
       "id": "salomon_jara",
@@ -1382,7 +1427,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://imparcialoaxaca.mx/estilo/calaveritas/salomon-jara-y-su-esqueleto/",
       "nota_texto": "SALOMÓN JARA Y SU ESQUELETO",
       "es_nuevo": false,
@@ -1394,12 +1439,42 @@
           "x": 50,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-03"
+    },
+    {
+      "id": "gutierrez_luna",
+      "nombre": "Sergio Gutiérrez Luna",
+      "iniciales": "",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 50,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPMXlVYnFhSkpzXzR2SzVvMk4zTE9qNnZXQUFobWF5TGdjSDMyZTFkTF9QWHo5cHN1YnJhcVBROUZWdnpTa0NpYUVoVkF2N0piTE9wRDFKaFpndzYyYmxza0NxSHNnZ3RmdER5bmtFSG5lSlhlVnlmOGNCR294eHRKMjdNSmJuYVpLRFRMTkNTdXg5Qy1aZXZXMC1DNmtBbnJPY0F6OEhKSHBoSzhrZGRDU04tXzdmLWxLc21qVk1CVl9abXR0a1g1YWpkd1RyNXQyYmZQNm9qUjhaNnMyZ09XbnFzMXlZMkUzcWIzd0Y1N0l5T3FsVDRwZDBRVnNhUnp2MGtXZkpqTXU4ajY2ZF9xYlYtaUp2a2MtekE?oc=5",
+      "nota_texto": "¿Qué crees “Gutierritos”? Hay pruebas de los moches que cobraba Sergio Gutiérrez Luna en el INE. ¿Con que compraba las joyas y lujos de “dato protegido”? - Libertad Bajo Palabra",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-02",
+          "x": 50,
+          "y": 50
+        }
+      ],
+      "fecha_apagado": "2026-11-03"
     }
   ],
   "tablero_semana_inicio": "2026-11-02",
   "resumen_mananera": [],
-  "mananera_estado": "fuente_retrasada",
+  "mananera_estado": "pendiente",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1459,5 +1534,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-02 18:01"
+  "hora_corte_publicada": "2026-11-03 00:04"
 }
