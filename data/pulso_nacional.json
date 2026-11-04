@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-04T12:50:41.231914-06:00",
+  "generado_en": "2026-11-04T14:21:03.532273-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 25,
+  "n_notas_ventana": 30,
   "baja_confianza": false,
-  "tension_nacional": 25,
+  "tension_nacional": 29,
   "tension_anomalia": {
-    "z": 0.6,
+    "z": 1.51,
     "nivel": "normal",
     "media_periodo": 22.4,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 49,
-      "tema_principal": "Ley Antimemes y reforma de propiedad industrial",
-      "tema_principal_id": "ley-antimemes",
-      "n_temas": 8,
-      "n_notas": 13,
+      "peso_pct": 43,
+      "tema_principal": "Asesinato de Carlos Manzo",
+      "tema_principal_id": "carlos-manzo",
+      "n_temas": 9,
+      "n_notas": 14,
       "notas": [
         {
           "texto": "Andrés Manuel López Beltrán niega vínculos con red de huachicol fiscal - Imagen Televisión",
@@ -56,12 +56,6 @@
           "medio": "LJA.MX"
         },
         {
-          "texto": "En fast track, Ley Antimemes avanza en comisiones del Senado",
-          "fuente_url": "https://www.informador.mx/mexico/en-fast-track-ley-antimemes-avanza-en-comisiones-del-senado-20261103-0179.html",
-          "intensidad": 5.0,
-          "medio": "informador.mx"
-        },
-        {
           "texto": "Ignacio Mier descarta que la crisis en el INE ponga en riesgo las elecciones de 2027: “No se preocupen, amigos” - Infobae",
           "fuente_url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNTkxqblEwT2thODFUTXExVnE0dzFtQm1kWXBucTcyNGsxX2FmTW95SXdEa0o4LUdYVFVBX0hDTExYYmpWcElaSWEzcXVTWnZETnJEVWlkVVUzU0dyZndBVlpENHFYS2tQajFmWUpTN2dmWjdJdGVqdnotZll6YmtoU3B0Rm9tNkhKZWM1em5DbksyY183a2JTbzNHU0xXNHk2bWJjM2F4WV8zM1FoeWVZcnFYU1NLVmN0WlRxdHB5bThZT18xcXJ1MXZRcEF6eTFxOWpIWkxRSFkzRV9UZUJIZWRHXzQyQ29IYlBabnJMQndEYUN1N0thdmo3RzN6dlHSAf8BQVVfeXFMTU5Mam5RME9rYTgxVE1xMVZxNHcxbUJtZFlwbnE3MjRrMV9hZk1veUl3RGtKOC1HWFRVQV9IQ0xMWGJqVnBJWklhM3F1U1p2RE5yRFVpZFVVM1NHcmZ3QVZaRDRxWEtrUGoxZllKUzdnZlo3SXRlanZ6LWZZemJraFNwdEZvbTZISmVjNXpuQ25LMmNfN2tiU28zR1NMVzR5Nm1iYzNheFlfMzNRaHllWXJxWFNTS1ZjdFpUcXRweW04WU9fMXFydTF2UXBBenkxcTlqSFpMUUhZM0VfVGVCSGVkR180MkNvSGJQWm5yTEJ3RGFDdTdLYXZqN0czenZR?oc=5",
           "intensidad": 5.0,
@@ -92,6 +86,18 @@
           "medio": "Tabasco HOY"
         },
         {
+          "texto": "Gino Segura y Farid Rentería fortalecen el diálogo y la unidad de Morena en Quintana Roo - Edomex Al Día",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPWjZ5S09QLXBqWXA1MDRPdjdDVjVIOWFuUzZLOTUwZ3NOLXhmd1NXamMzaHlxZ2dXaTlfWG5QeGpxV25lZDJtOGRQbXg4TTFnNGFEdkY3S3FMcEc0S193N2pZMjZ2d3Z1M2ozS2tDaTQyYVd0NUNzcHJ5SFZDM2tKZDdCc25URTBHaGR2bHg2WDBobTg4TWs5azhaTUhiT2VNaGsyanlUb2ZyMFdVUm50dlhmbw?oc=5",
+          "intensidad": 5.0,
+          "medio": "Edomex Al Día"
+        },
+        {
+          "texto": "En Quintana Roo No Hay Todavía Encuestas de Morena para Definir Coordinadores Municipales: Jorge Sanén - Diario CAMBIO 22",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNSGduakRLLVlNb3NpU0RmeURKVWI5QUN5NVhtVDVQLURDWlZ1TmVhRE1yV0tCNEdVWGQyajJCS3JTOTBvMlBPTVgwc2ttNUVULW51WGZlWTdaNnRhak5GRWY0VGJ5T1VDSHRUZWExQ01JQWF5VlZKckpkYmljN05qSWRPTWdGTW5LMmMxQlJ4S1JGX09lcmhmckJxdGFJaHJrYzN2c2NmYVlidVZ2b3NzSHhLYlhoTlkwZWQweDBUYkZybTh6d3Z3?oc=5",
+          "intensidad": 5.0,
+          "medio": "Diario CAMBIO 22"
+        },
+        {
           "texto": "“Ley Antimemes” avanza en el Senado; ¿De qué trata esta reforma? - Por Esto!",
           "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPeHM4cnlEY0dka0hrLW1zYWxneE1xQ3JtamZyRG16UThnTU9qbEtqeHhDcXlqRFFQU0hGeHZoaG5SOFRMMW9MYjBJX1kwLVNnUGMxVXQ2TWR1TEJlWTM0VWs1dms4QXRmZ0VQZjZodm9KMnpFT2F3ZTk0YmhsTVhEZVpOQ19hemlt0gGOAUFVX3lxTE9nb1VrQk1tTEF5bGpKaDhZcThSeHBIVmp6Q3NvSm4zcXhQVXBsNVJRR0ljcEVXNnpfQlR1Y0h6a2VjMWltRURZVkgzWkJMZFRLZnVTeExWUlk1YmFyRmFVU2NMMXNjWVphbkFqNmVENDRsS25sejhDR2R4Y3VGcmo0VjE4czdDbHI5LUVONnc?oc=5",
           "intensidad": 4.0,
@@ -100,52 +106,36 @@
       ]
     },
     {
-      "categoria": "Economía",
-      "peso_pct": 17,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 4,
-      "notas": [
-        {
-          "texto": "Sheinbaum Explica si Resultados de Elecciones en EUA Impactan en Negociación del T-MEC - N+",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQYUhldmpTQ19JbDFOWWs3ZURpa1FBOTNGZ0YxR3UtQjh6YkZDd0FMaWU5d0ZqU0JadWdWVGxwRFh4Q3RyZWJjSVZuT2s5WllVcTU2Yk9IaUxnUENVb05xYWEyQlY1amlobVlwWTFLX0RxZk5RUm1IMWllclYzNXRfdGo1emRtM1oybmI5MGUzazMxWmNHUXBPdmJJUnBBS0pmNEFndVBzcUtpUlVtQWpUTDBXdDFNSkxnRWNIMQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Hay buena relación con China, pero TMEC es prioridad: Sheinbaum - La Silla Rota",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcjZxT3FXdVNabXZnMmFTRHM5WFlxdEw3RHA2bjF1bXdHcHFqZ3ZDbGdpMGV3QzZTN0VMVzJNUTJTUkdrZkVjTnFmRDF3dlVoX3NnekdVY2F0SlRDSTQzQ2huZDVLdjdQWmF0Q1Vrczk4LVowREJwN3N4Q2U2V2lJbm5DVDB1MXl6a0xrWDF5QVNFZDJ6d3pKbXhieDVEajZuaFgzbFRwS1ItNjJ2YzJrdC1sa1U?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Silla Rota"
-        },
-        {
-          "texto": "Del rojo al azul, el T-MEC sigue en juego - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNm9fOUZaZzNfTGtkV1FmV3JtdVZmOUZCYlJ1UXdpN01yUmZ5NU9FTUFJUDlzdGxaQ1hObklnZ0p1Y0JSS0FQSTA3S09PMVVmTGFVSWVSSVlGdGQ3OTBwYUhlRF9QVFVPdndISkN5eW5zVXdFNE5SQlFEai13MTlIWm9iNDlTVnphNFN1cFlrMjg3N0MyekJvdWw4N1ZXcC1tWDAyb9IBpAFBVV95cUxQNm9fOUZaZzNfTGtkV1FmV3JtdVZmOUZCYlJ1UXdpN01yUmZ5NU9FTUFJUDlzdGxaQ1hObklnZ0p1Y0JSS0FQSTA3S09PMVVmTGFVSWVSSVlGdGQ3OTBwYUhlRF9QVFVPdndISkN5eW5zVXdFNE5SQlFEai13MTlIWm9iNDlTVnphNFN1cFlrMjg3N0MyekJvdWw4N1ZXcC1tWDAybw?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
-        },
-        {
-          "texto": "México ‘pierde’ con la llegada de demócratas al Congreso de EU: ¿Por qué no será favorable?",
-          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/11/04/mexico-pierde-con-la-llegada-de-democratas-al-congreso-de-eu-por-que-no-sera-favorable/",
-          "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 16,
+      "peso_pct": 25,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
-      "n_notas": 4,
+      "n_notas": 7,
       "notas": [
+        {
+          "texto": "Triunfo de los demócratas no garantiza que Trump pare de pegar comercialmente a México; ni la extensión del T-MEC - Dossier Político",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQcWszay05eU5yNWxoUThCaVRmUnFubVI3TWZzRnA4ZWVGZVRWLWFvbXdsNHZjOXpBM1pLZ18tQXFxZWJsVEtSTDBaRDdENTJYOWVjSmFBUk1pUGtRZzlqUjZXckJJSEEyalltMmgwNTU5SHIyRko3dEw4cGF4R29OcmtaUHYxR2dkRWFDeUVfZFB2aG5venFnUFZFN010dWtIWW8xZThvNkw5NHBvQTVmcTc1ZlMzUXJWMC1ZM0VkZW1vM2d3WTBnVVUxTWdoYVU1S282czdSV1BUeVVaQk9CMkwzX0otWWs?oc=5",
+          "intensidad": 9.0,
+          "medio": "Dossier Político"
+        },
         {
           "texto": "Triunfo de los demócratas no garantiza que Trump le siga pegando comercialmente a México; ni la extensión del T-MEC - Proceso",
           "fuente_url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQWWRYY3VPZTdBajBhQlo0S3JWckhTWVpzZ051RDRLdVV6bVdfaGNncTZKTTIwWXN3enRGdE5Ua0JWWVdOSTJnZld0LVdGcktGREZBZGl0WTRBbV8xT0dzc1dpRDZ5dU1GMUxtdDRhb0RUTWs2TFZLVXZ6MDZRMFNBT1o2RHEwb2hFVkkzc3MxVWp1WEQzTnd1UTlyTXc5QU5MZ1l4bmo1VEI5cHlfUmFZNGJmZFMzb0tQRk5hS3N3aVkyckNGSWNUb19xYWI0VUhCOUtmeXlBRXNzTnFwMG56QnFMeUV6eUlCNmhFVkthQTAtcHdjTEZ1ZXpVOXd3aUNEVGc?oc=5",
           "intensidad": 7.0,
           "medio": "Proceso"
+        },
+        {
+          "texto": "Ebrard ve pocos cambios en aranceles tras elecciones de EU, pero abre la puerta a ajustes al T-MEC - Expansión",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQeFhmWXJ0LVlZMWtDaTdnNDJKWHozSnlfcjljUU83Y3luX1l2dmRPOUJWYVdsUnQxU3FNWElYbjFfU1ZwXzFmMDIxY2o4SlhXR3ZBY1lzNUZ2UVhjV0FNc0l1M2kzR29lVDM5WVUxcFppcnNkZ1NWeWtfY25GaGZFcW9TbUkzS2k5aldTcXNR0gGbAUFVX3lxTE12dXAzV3RELWFmdTRhZGlYQV91MFN1YVdfaTRfYXJIUnNZSGtCXzBhQmlBbFU3cEw1eFhoRXJDVWhCTE5uUFpiZFluNXRGeGgtRGpDMnpKZ3lGdWQxUmtYY3gtenUzQVdGNXJxeEVENXN2UmpHTmM2M1QtcWVvYTZ4S25zd2hwcjRBSnE3akJnaXJFVW1TeHg4OFVF?oc=5",
+          "intensidad": 7.0,
+          "medio": "Expansión"
+        },
+        {
+          "texto": "Con nuevo congreso de EU negociaciones sobre aranceles siguen igual; sobre el T-MEC, pueden cambiar: Ebrard - El Economista",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVTZFNkt5aUFCNHZYN1V1RGlqZ2o2TlVFOE5hYXpKVFhjaDh6RUFGc2pWb0VKcmd1V3pNcS1yT0owNzFZbTd5dmdQRU1zemdrSTNkVmpmOWNFc2Zqa2RvMVFWbDNBYzFQdWdqWWZyd3NKV2kyMWV5Yjhpei00Y3gyZ2lhVm9uUFFEN1FIUk1jcU1KQklaWDVFNWRXbnVRcXE3SmZzZ25TbDB3OC1kVm9rZGRHaDdsajg3QXBjUEhYckxncWMtYWo3YjY2NTNSV1VNY1JVWTZibklMbjJfNTI2dGlQY9IB6AFBVV95cUxNTmhNTkFhSkR3a2NJTy1wVTZGQ3ZGdjBmRGRyU044SF9GMC1ZcmVMNGJQN2ZOUHUxWkxpTUFiUzM4LWJQZFQtd3hodDlVXy1oZWxaT1NCTUYwNmlXeFl2TFFRUnRWTkhzQnNIQWZDN0pOaldPSDNvcVpyUV9od3FBRkNIOERpdE5oaFNxc09VbkF0dkhlX0k2SGVRSXpyM04zVDY2dzhobE5MWDlCQ1BHTTZsQk1CcGpWTTVwRWJ2SEVsdmFGbE9GcG8zNEZlSFluMGtZRTJzQWx6eUl5aWNTaTlqbGZvTjR0?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Economista"
         },
         {
           "texto": "Aranceles externos comunes sobre el acero en la región del T-MEC - El Economista",
@@ -168,8 +158,48 @@
       ]
     },
     {
+      "categoria": "Economía",
+      "peso_pct": 18,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 5,
+      "notas": [
+        {
+          "texto": "Sheinbaum Explica si Resultados de Elecciones en EUA Impactan en Negociación del T-MEC - N+",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQYUhldmpTQ19JbDFOWWs3ZURpa1FBOTNGZ0YxR3UtQjh6YkZDd0FMaWU5d0ZqU0JadWdWVGxwRFh4Q3RyZWJjSVZuT2s5WllVcTU2Yk9IaUxnUENVb05xYWEyQlY1amlobVlwWTFLX0RxZk5RUm1IMWllclYzNXRfdGo1emRtM1oybmI5MGUzazMxWmNHUXBPdmJJUnBBS0pmNEFndVBzcUtpUlVtQWpUTDBXdDFNSkxnRWNIMQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Hay buena relación con China, pero TMEC es prioridad: Sheinbaum - La Silla Rota",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcjZxT3FXdVNabXZnMmFTRHM5WFlxdEw3RHA2bjF1bXdHcHFqZ3ZDbGdpMGV3QzZTN0VMVzJNUTJTUkdrZkVjTnFmRDF3dlVoX3NnekdVY2F0SlRDSTQzQ2huZDVLdjdQWmF0Q1Vrczk4LVowREJwN3N4Q2U2V2lJbm5DVDB1MXl6a0xrWDF5QVNFZDJ6d3pKbXhieDVEajZuaFgzbFRwS1ItNjJ2YzJrdC1sa1U?oc=5",
+          "intensidad": 7.0,
+          "medio": "La Silla Rota"
+        },
+        {
+          "texto": "Sheinbaum reconoce triunfos de mexicanos en elecciones de EU; revisión del T-MEC sigue sin cambios - Revista Fortuna",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPeXVMak1tUmFaTk92YUtWY1U2cVpGVktqQ2JzcFdoOHV0SGIyLUFVS3N4R2xOdnpicjd2Z21fN3hDeWhuX19UbXM1TnliR2VlLVQxZWFYZFBNNUw3SHpEMWVzUllENjBNNUs5UmRFaUdWX0NwdUFidnI3VmwtY1FPRHVNcEtXWU9yT19xa3Q3Qy05MW8tbTBVUXBaWFAteEtLVS16dmNRdWNvWlZ0Umd5RUdQZzktMGhLU0pxZEVGU0YwaEgwQ3FkS2c4ZWFzV2ZDUUdnaW1B?oc=5",
+          "intensidad": 7.0,
+          "medio": "Revista Fortuna"
+        },
+        {
+          "texto": "Del rojo al azul, el T-MEC sigue en juego - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNm9fOUZaZzNfTGtkV1FmV3JtdVZmOUZCYlJ1UXdpN01yUmZ5NU9FTUFJUDlzdGxaQ1hObklnZ0p1Y0JSS0FQSTA3S09PMVVmTGFVSWVSSVlGdGQ3OTBwYUhlRF9QVFVPdndISkN5eW5zVXdFNE5SQlFEai13MTlIWm9iNDlTVnphNFN1cFlrMjg3N0MyekJvdWw4N1ZXcC1tWDAyb9IBpAFBVV95cUxQNm9fOUZaZzNfTGtkV1FmV3JtdVZmOUZCYlJ1UXdpN01yUmZ5NU9FTUFJUDlzdGxaQ1hObklnZ0p1Y0JSS0FQSTA3S09PMVVmTGFVSWVSSVlGdGQ3OTBwYUhlRF9QVFVPdndISkN5eW5zVXdFNE5SQlFEai13MTlIWm9iNDlTVnphNFN1cFlrMjg3N0MyekJvdWw4N1ZXcC1tWDAybw?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
+        },
+        {
+          "texto": "México ‘pierde’ con la llegada de demócratas al Congreso de EU: ¿Por qué no será favorable?",
+          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/11/04/mexico-pierde-con-la-llegada-de-democratas-al-congreso-de-eu-por-que-no-sera-favorable/",
+          "intensidad": 6.0,
+          "medio": "elfinanciero.com.mx"
+        }
+      ]
+    },
+    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 13,
+      "peso_pct": 10,
       "tema_principal": "Abatimiento de \"El Mencho\"",
       "tema_principal_id": "el-mencho",
       "n_temas": 3,
@@ -197,7 +227,7 @@
     },
     {
       "categoria": "Social",
-      "peso_pct": 5,
+      "peso_pct": 4,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -893,15 +923,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 15
+          "peso_pct": 17
         },
         {
           "categoria": "Economía",
@@ -916,19 +946,22 @@
   ],
   "top5_temas": [
     {
-      "id": "ley-antimemes",
-      "nombre": "Ley Antimemes y reforma de propiedad industrial",
-      "categoria": "Gobernabilidad",
-      "resumen": "Reforma sobre propiedad industrial/derechos de autor apodada «Ley Antimemes»: aprobación en comisiones y Senado, críticas por riesgo de censura y aclaraciones de la presidenta.",
-      "motivo": "En fast track, Ley Antimemes avanza en comisiones del Senado",
-      "peso": 30.0,
-      "n_temas_agrupados": 7,
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Triunfo de los demócratas no garantiza que Trump le siga pegando comercialmente a México; ni la extensión del T-MEC - Proceso",
+      "peso": 32.0,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
+      "medios_corroborantes": 4,
       "confianza": "alta",
-      "fuente_url": "https://www.informador.mx/mexico/en-fast-track-ley-antimemes-avanza-en-comisiones-del-senado-20261103-0179.html",
-      "actor_vinculado": null
+      "fuente_url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQWWRYY3VPZTdBajBhQlo0S3JWckhTWVpzZ051RDRLdVV6bVdfaGNncTZKTTIwWXN3enRGdE5Ua0JWWVdOSTJnZld0LVdGcktGREZBZGl0WTRBbV8xT0dzc1dpRDZ5dU1GMUxtdDRhb0RUTWs2TFZLVXZ6MDZRMFNBT1o2RHEwb2hFVkkzc3MxVWp1WEQzTnd1UTlyTXc5QU5MZ1l4bmo1VEI5cHlfUmFZNGJmZFMzb0tQRk5hS3N3aVkyckNGSWNUb19xYWI0VUhCOUtmeXlBRXNzTnFwMG56QnFMeUV6eUlCNmhFVkthQTAtcHdjTEZ1ZXpVOXd3aUNEVGc?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     },
     {
       "id": "el-mencho",
@@ -949,21 +982,21 @@
       }
     },
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Triunfo de los demócratas no garantiza que Trump le siga pegando comercialmente a México; ni la extensión del T-MEC - Proceso",
+      "id": "auto-cbc8972ef8",
+      "nombre": "Elecciones 2027: Integralia advierte riesgos por la magnitud del proceso y una p",
+      "categoria": "Gobernabilidad",
+      "resumen": "Elecciones 2027: Integralia advierte riesgos por la magnitud del proceso y una prueba para Morena",
+      "motivo": "Ignacio Mier descarta que la crisis en el INE ponga en riesgo las elecciones de 2027: “No se preocupen, amigos” - Infobae",
       "peso": 25.0,
-      "n_temas_agrupados": 1,
+      "n_temas_agrupados": 8,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 4,
+      "medios_corroborantes": 3,
       "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQWWRYY3VPZTdBajBhQlo0S3JWckhTWVpzZ051RDRLdVV6bVdfaGNncTZKTTIwWXN3enRGdE5Ua0JWWVdOSTJnZld0LVdGcktGREZBZGl0WTRBbV8xT0dzc1dpRDZ5dU1GMUxtdDRhb0RUTWs2TFZLVXZ6MDZRMFNBT1o2RHEwb2hFVkkzc3MxVWp1WEQzTnd1UTlyTXc5QU5MZ1l4bmo1VEI5cHlfUmFZNGJmZFMzb0tQRk5hS3N3aVkyckNGSWNUb19xYWI0VUhCOUtmeXlBRXNzTnFwMG56QnFMeUV6eUlCNmhFVkthQTAtcHdjTEZ1ZXpVOXd3aUNEVGc?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNTkxqblEwT2thODFUTXExVnE0dzFtQm1kWXBucTcyNGsxX2FmTW95SXdEa0o4LUdYVFVBX0hDTExYYmpWcElaSWEzcXVTWnZETnJEVWlkVVUzU0dyZndBVlpENHFYS2tQajFmWUpTN2dmWjdJdGVqdnotZll6YmtoU3B0Rm9tNkhKZWM1em5DbksyY183a2JTbzNHU0xXNHk2bWJjM2F4WV8zM1FoeWVZcnFYU1NLVmN0WlRxdHB5bThZT18xcXJ1MXZRcEF6eTFxOWpIWkxRSFkzRV9UZUJIZWRHXzQyQ29IYlBabnJMQndEYUN1N0thdmo3RzN6dlHSAf8BQVVfeXFMTU5Mam5RME9rYTgxVE1xMVZxNHcxbUJtZFlwbnE3MjRrMV9hZk1veUl3RGtKOC1HWFRVQV9IQ0xMWGJqVnBJWklhM3F1U1p2RE5yRFVpZFVVM1NHcmZ3QVZaRDRxWEtrUGoxZllKUzdnZlo3SXRlanZ6LWZZemJraFNwdEZvbTZISmVjNXpuQ25LMmNfN2tiU28zR1NMVzR5Nm1iYzNheFlfMzNRaHllWXJxWFNTS1ZjdFpUcXRweW04WU9fMXFydTF2UXBBenkxcTlqSFpMUUhZM0VfVGVCSGVkR180MkNvSGJQWm5yTEJ3RGFDdTdLYXZqN0czenZR?oc=5",
       "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
+        "id": "morena_partido",
+        "nombre": "Morena (partido político)"
       }
     }
   ],
@@ -975,6 +1008,14 @@
       "peso": 12.0,
       "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/03/elecciones-intermedias-estados-unidos-2026-en-vivo-resultados/"
+    },
+    {
+      "id": "auto-bbb2079e83",
+      "nombre": "Carlos Alberto, exfutbolista y comentarista, muere a los 83 años - Milenio",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNMGFEbXNnckp2dk9PRFp6ZjBIV3Rob0FwXzVPb05LSjRLeUZvNl9mZjAzWVN0T1p5RENmVFRpUDNfd0plTjNiMWEyTlFjY0tUSk4wWWRYRlotWGtvMUpTMmdLSnphQkh2N0U1TDJzSExKSHhkRjlIRWVqOUdpdUFQcmEzTmItZGdtRzV2RWNYaVg1dmVNZkstU3FqTDB1dTNVS0x4d2hnenQ0MUdXaTFaQVdvbTQ4bEZULVBqc1VwZk9ITllpaGfSAdoBQVVfeXFMUE4wTFNpNWdKV3ZubENNT214TWJoam94SFdReGJhRnZUQTk2cFBRUzRiTHhQN0toSUhaWHpzRmpxdjdaN3I5Rll2RUJybVdpUEZQRDRlSGhiaFpqX0VhUlY2bWZPekU5UkxGb25XVF9kalVTdWtVRk5zTzI5SV80T0c1blFmM0Ytb0xGNnVnbXoweHV0cTlUS3B3Qnd5WWNOOUx5bWRLb3V3NXdFOS1QcnF1cVlXUzFVcEF2LThmZVBTQzFjbEhBdV9RT0ttbUJTMmFpNDRFS21VVmc?oc=5"
     },
     {
       "id": "auto-66fc4eaa3b",
@@ -999,14 +1040,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNYVRwRENSRWh2TDlZQWRxbkdOclhzanpHdFAyeE0ySnZmZ1d6aUxSUzhlWF9NQ2JXTDJnRGhJQjNZbWUtUERYYXlFaE5DX0FGdUplTndreGRIYjNhYkdHWW05VDFfRldfbHR5SEY3aUtWam5ZWGdvcEVjcVBwcmxXaERjOXhQWmfSAYcBQVVfeXFMT1I4cEZOTGs4VXpUaEc2WVZ6MGNmX0poN01CcXlpa21vNHlmemppQTBVNVpVa3BNU3VuT18zeGtoOTJ0SThIaWswYzFQdE56NkNvcE5sNkRpV3ZOOXJqUms2aUFmMUJaUTlScnNIdWU5RkpHOF9hQzdMd0xtRnRnaVo1ZTFxQ2Nr?oc=5"
-    },
-    {
-      "id": "auto-5afb3ead78",
-      "nombre": "¿Quién es Willian, el niño indígena que pide ayuda a Claudia Sheinbaum? - El Fin",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOM0d0aFZLcmhSRXJwbFRuVldacHV1c0czc21YRGs4bTdFZ3pXbUZ5R2R0MEtGcVdHY2p5RnoteTBDOFNOWWh2eWZGZ3BsZEpVbVpBb0JHUnluUVB3T3BRSWdQM25YLWlueEMyVDdlWGlxd0wydGRjTWpZdlBGeTh5Snd2eWxlTnF2cElkT2tDOXUxWXk0dzdPNE90aUM4TWNndjhXUmMwR0ZCSlg0MDlobTRWRTdmMHZtM2Q2VQ?oc=5"
     }
   ],
   "temas_retomados": [
@@ -1082,9 +1115,9 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "rol": "Mencionado",
-      "tema": "“Pobre Salinas Pliego, ojalá rectifique”, y otros apuntes de López Obrador sobre",
-      "nota": "Salinas Pliego RETA a 'Andy' López luego de que lo acusara de campaña en su contra",
-      "fuente_url": "https://www.informador.mx/mexico/salinas-pliego-reta-con-cuestionario-a-andy-lopez-luego-de-que-lo-acusara-de-campana-en-su-contra-20261103-0184.html",
+      "tema": "Exige PRI rendición de cuentas a Ariadna Montiel por manejo de recursos de progr",
+      "nota": "'Andy tiene derecho a dar su opinión', dice Ariadna Montiel - Reforma",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPRU1QaHV2TUs4YUlBVEIyV1BHTWJpSHVqM1pfRktibi14N1dmQm9OblJKWnVOb2VOMGdNSDRCaE9vQjFpcHhQU1ZGcjY3cjF5UGpERDJ4MnRlSWRoUWpRbzMwNDQwTVZ6eWtkS2EzVENwRzFvRi16RlNlNWFDSnUtWXRjX3AyU0lzMGc2cFYzVjVFVUJB?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1333,10 +1366,10 @@
     },
     {
       "fecha": "2026-11-04",
-      "tension": 32,
-      "n_notas": 18,
-      "n_alto_impacto": 9,
-      "n_medio_impacto": 9,
+      "tension": 34,
+      "n_notas": 24,
+      "n_alto_impacto": 13,
+      "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     }
   ],
@@ -1356,8 +1389,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOZVYtZEw5X2xGWjk1ZFNTWUJ4LU01cmhNZzlNMWJxWXAxX0JmUjZuRUFtZEU1cWlJdWNEY2sxUnRWcGpEUVdUaUs3ZUxpVnBKdVRZU0E3MC01cFJReUwyUlRLcUZLNngtaTdDYjlScDJXaVlZMndCVldwQUpJZTlxRlJhRXVPNUg0eUdNTnN0TGJCZlNRZU1nekcwZFQyZVBXN1Q1VlU1Y1FZckM3OFM3MVc0Y2tQUWZBdHcwZThQNy10dzVYcVpHVWx0czRsTGphOXhyc3NOd0pCQ09tMVlOZ0U4aE5SUUo1UldLUFJ1aGVTNDJwRVp5Z2h3OWIzMlFWaTRqTNIBnwJBVV95cUxOeld4MHQ5c2cxbVlYV0FSMGlraDNhY1JwT1FseXd2Y21qRWtJVldmV2Zxa1BGVW5lYXhGUDliTGJpMUdDMFlnWm1EUTR1Y3VrZlJacTZyZDJzeDlxR2xUZEJFMllyNngxVUMzS2N2Sks2M1N5ZmVFd1dJSHZMSkRfQUJWaHlreWZPSVBZdnhDeFpTUTZIekhuTlJlRkh1TGhKZ1VtSXJnMjJPdDN3REtOQkJTV0I3OHVOTHJYZkZ1LWxmOFJXNHpHS1duYWg5bEdYQ1J2anRpdml0VHBQeXdyUGFMVkV4UVBzZWR4bTYtdFdENkVPVFhncjVwVlloLW1reXJDeXV5RGRZNEZvVmp1eGRlOUpqSngwWUtLenc5bw?oc=5",
-      "nota_texto": "Defensa de los Farías Laguna acusa contradicciones en la FGR por no investigar a Andy López Beltrán tras ser mencionado por testigo - Infobae",
+      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNelpSSXVvRlFIdDF2aXdaZFd5aE5iTXFyXzNqZE9HWHQ0eExkRDU4N2NMN0RVYVkzVVBzX3NfcGgwRnF6YzdaQm9tdE50ZmR0bHBUX0pFeXpDYW0wZUdVY2VTckNDZmxmbXk5WTNQSk5RMFZ3WGY1V1plQy1LalZ0Y1hrQ1lQMW93aTFtMEJScGlkUVBuUm80dnNIRDh2c1lMWGRHbXJFQXlGVVhMY1ZF?oc=5",
+      "nota_texto": "Andrés Manuel López Beltrán prepara un anuncio importante para este martes - sdpnoticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1432,8 +1465,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNeTQwWHlMZkRFdjFIaXB0QXpXbl9Qc1dUOHR6U2xiOUN2UEFJd3ZVazhHM0FNNDdzVUM5dlZLb3BJRVlsam1ZN01MUEZna2t4dHNQNEdhZlhhQ2k1djhvTHVsWFRyV1NkbjVoSlVDQVJBeTU4aWFWZGpOU0NCeHZVXzM0Q3c5dllrQkpGRlF2djRWcVJQQTVPejQ3QkpxMzZUcGE3ZTNpWlFHWDYzLUwzSEUxeUVfNVNjeHZ3VA?oc=5",
-      "nota_texto": "Andy López niega vínculos con huachicol fiscal y con Amílcar Olán: “No somos corruptos” - XEVA",
+      "nota_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxORzZyTUJPdkNUZVZJWHFTME1CSFcxZFVBV2U5TXNPNDlJUFU3em5KclNlWEpGczJkT1d5WjF4d2pSeVl6TlF2QUJLZmJEd1lFcHNwZnFpMjhWM19LVWlSY3FKSXZXWGpfZkwxdnhlR2R6M3pUcGE4SW5KaFlSYjNWZG9ZRGVuS0NUVzkyeUI1dVc4Z0VsWE5mNnBJMm84YWdEM3hJR001VTRBN3pnWU0zbGN5aEJjdmk3anFXd2FoXy05a1JBN0NkU1AzemdfRVpDd1RBNEZDcEwyMEZiV0hVYXJPb0pVaDRqT3R6UGJn0gGCAkFVX3lxTE1lNzhiaXhQMjFCRUJxR3cyRHIycXFncnFpdmUtZmRhTUZvZ0x4TEY0ek16YlBYODMtcklfLWZ2VHNTMlVHNHhsZXBpbVQzdEVNQnl3bTVmSGxla2h5dmJtUHFza0cyeTFYd1JPSFN0bVpMRnJ6Tm9JSGUtOEpQdGFzQXhIU0RGZkh5UUl3TWVXR2FyWkpxNlFLSWl6eHpwUkZGcHJyUnBDZWJtejNxRWdKUmt4bG5LSFRDMjZSVE1TbzdLZ3dCb2pmWTZlMG5lSFpMa2IxRGw2LXJLQmZsY196YTB6NHBuSHR1cWdvRXhIbFlxT3pIM2gwRlo3TDZHNlV2dw?oc=5",
+      "nota_texto": "Andy López Beltrán niega vínculos con empresas de Amílcar Olán - El Universal",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1510,8 +1543,7 @@
           "x": 22,
           "y": 100
         }
-      ],
-      "fecha_reactivado": "2026-11-04"
+      ]
     },
     {
       "id": "montiel",
@@ -1548,6 +1580,40 @@
       "fecha_apagado": "2026-11-04"
     },
     {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
+      "x_lunes": 11,
+      "y_lunes": 100,
+      "x_hoy": 22,
+      "y_hoy": 75,
+      "delta_pts": 1.5,
+      "alcance": 2,
+      "n_alto": 1,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPck1pcjB6dXpNY2FCM0w2QWRiOGFpSGw2RWVpNXdfMFJGdmpHanpHS1RvR2FVSzh0akd5QmFTMkZzbndjdVp0a0l1eGtlc3plUDNJSTFqRGwzQTBVTkJpNFNSb0xwQXVSOVJYdWhFeVdPbUJkSHhUa0l0OVkwSHc5ODViTTlqUEtkQ0s1QUI0VENZSDZheWdnZ1U4QV9PenhjOUc2aXlvREptc3lhalkyWUw0eFIySG9wbzlabzBMeWJEbHZNeC1SVVJuTFZVRjDSAdQBQVVfeXFMTkFIbWpnLVNpTWk5TmlHOENOOHR2enFWV3ZDX1lrVDVKckNPbHJVY3N2aW1Rbkc4YVVOeTJ0YTJtNWo1YWcwcTBEMDhweWN0Y0hnNm1rQTV0Um5tclJKdkpBUk9tZl9mVEFGYkhNT1B2T3dTYWlGdkx2c3BGWFBxeVVaQzVMWTB3THNJMlZQOWVia01HS1dIWlFQQVdqOHZkdlRYMFowa2RTVVdLRjRIWGstSUcycDRSc3hiLVkyemFiWkRWSjlHaWpBUEVrNmNiazI3QTg?oc=5",
+      "nota_texto": "⚡ Posible presión de Morena (partido político) — Morena se deslinda de Guadalupe Taddei: Ariadna Montiel la llama “indefendible” y exige investigar al INE - Por Esto!",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-03",
+          "x": 11,
+          "y": 100
+        },
+        {
+          "fecha": "2026-11-04",
+          "x": 22,
+          "y": 75
+        }
+      ],
+      "fecha_reactivado": "2026-11-04"
+    },
+    {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
@@ -1562,8 +1628,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNUElQeTBfdGgzR0hIVms0Qmt6TnJWT1dMaGVIOHNFWThjSWdYcm11b2xqU3JkNE81VE5jTXdvUTUzYmttQXJ4QVpHTUVwWk9iOTJnOU5UWkh1NGVORG80SmtnV2xJTzBkQ0gzTnBEbWhuYlV6SHRUNVlxV0RmMW5UY1BCYTFINDMwRjMzRkdJaFI?oc=5",
-      "nota_texto": "Claudia Sheinbaum rechaza pretensiones de Texas sobre islas en el Río Bravo; atribuye el reclamo a fines electorales - Almomento.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOLXhaem55UzYtRndaZ2tNd3VEdWdoWTdpOEtjWlNOZzhRejJ1M0hwa0RXNHBaY0xFQmZCQXZmd3F2NWpBZXlnMUZxeGlNM0lscS1wNGhOcnQ2MERtVHEyd2lqMExuNm1VeXpPSEJBY1ZMc1dpdXVsX3hNQjVoV21ZTHV5VnI4eVAzUjZaSXNfa0dDaWRMajFoMkUzR0htaHlsLXNNZG90WmVaMEE5STlYalAwREs?oc=5",
+      "nota_texto": "Claudia Sheinbaum registra 71.2% aprobación nacional en octubre - - Yo por la Justicia",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1629,7 +1695,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.yucatan.com.mx/mexico/2026/11/03/mexico-defiende-su-frontera-tras-reclamo-de-texas-sobre-nueve-islas-del-rio-bravo.html",
       "nota_texto": "México defiende su frontera tras reclamo de Texas sobre nueve islas del río Bravo",
       "es_nuevo": false,
@@ -1645,34 +1711,6 @@
           "fecha": "2026-11-04",
           "x": 22,
           "y": 50
-        }
-      ]
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "iniciales": "MO",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 12,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 1,
-      "n_alto": 1,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPck1pcjB6dXpNY2FCM0w2QWRiOGFpSGw2RWVpNXdfMFJGdmpHanpHS1RvR2FVSzh0akd5QmFTMkZzbndjdVp0a0l1eGtlc3plUDNJSTFqRGwzQTBVTkJpNFNSb0xwQXVSOVJYdWhFeVdPbUJkSHhUa0l0OVkwSHc5ODViTTlqUEtkQ0s1QUI0VENZSDZheWdnZ1U4QV9PenhjOUc2aXlvREptc3lhalkyWUw0eFIySG9wbzlabzBMeWJEbHZNeC1SVVJuTFZVRjDSAdQBQVVfeXFMTkFIbWpnLVNpTWk5TmlHOENOOHR2enFWV3ZDX1lrVDVKckNPbHJVY3N2aW1Rbkc4YVVOeTJ0YTJtNWo1YWcwcTBEMDhweWN0Y0hnNm1rQTV0Um5tclJKdkpBUk9tZl9mVEFGYkhNT1B2T3dTYWlGdkx2c3BGWFBxeVVaQzVMWTB3THNJMlZQOWVia01HS1dIWlFQQVdqOHZkdlRYMFowa2RTVVdLRjRIWGstSUcycDRSc3hiLVkyemFiWkRWSjlHaWpBUEVrNmNiazI3QTg?oc=5",
-      "nota_texto": "⚡ Posible presión de Morena (partido político) — Morena se deslinda de Guadalupe Taddei: Ariadna Montiel la llama “indefendible” y exige investigar al INE - Por Esto!",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-03",
-          "x": 12,
-          "y": 100
         }
       ],
       "fecha_apagado": "2026-11-04"
@@ -1804,5 +1842,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-04 12:50"
+  "hora_corte_publicada": "2026-11-04 14:21"
 }
