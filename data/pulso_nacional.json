@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-03T16:03:26.596866-06:00",
+  "generado_en": "2026-11-03T18:04:16.019864-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 25,
+  "n_notas_ventana": 24,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 28,
   "tension_anomalia": {
-    "z": 0.81,
+    "z": 1.27,
     "nivel": "normal",
     "media_periodo": 22.4,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 60,
+      "peso_pct": 59,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 8,
-      "n_notas": 15,
+      "n_temas": 7,
+      "n_notas": 14,
       "notas": [
         {
           "texto": "Lucha anticorrupción, rebasada; urge nueva estrategia: senadora morenista",
@@ -102,18 +102,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQYzJINi1hYU1HTzFhdGdJd3o5Z1RVZFJuM201d1g5cG9HdU51Z0pEbmFJVUlxOVlXbm5RaXN0ODl3ZjRzeV9iR0R3SlUtaC1XbmNFbFlEQURzOHJlbWwyQXVqdUV3eVBKUVVwM0FFQzlNMTRkSWR6dVp6MW1SSWRmcUFSeVNGQ250SDZqUHFCMVhZdTlqVzdjclpFc1R5R2Y1Mjk0bHdKa3M5QWtUSnZXZ3NQMzJjRzZwSHJ4SWFpQjdzQUJGbWE4?oc=5",
           "intensidad": 5.0,
           "medio": "news.google.com"
-        },
-        {
-          "texto": "Inicia Gobierno del Estado rehabilitación de terrazas y miradores en Los Fuertes - Municipios Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPbVBtZG8tN2ZCelZmaEpmWU9XRFdCbW9mN3NmSmJiRUIwQlZReGtPYnpIZGZ3ZVdWMUM1bjJPR0tzaXRiWEZlVjJkYkRvUmRYdlA4NEpfb19ZSDJ2bUJUTEMzM3VsM0Y0UFo5cWhXTHVtWlR6MDRXdW55U0swdmg0LVRmdlJyTXNWWW1WVnFVajR4aUItUGVWTTU2S2Zpek1yRGFqVjhMNmNxSHRWalAwV0g1Y2U0YmFkR1FQZQ?oc=5",
-          "intensidad": 4.0,
-          "medio": "Municipios Puebla"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 21,
+      "peso_pct": 22,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
       "n_temas": 4,
@@ -940,7 +934,7 @@
       "motivo": "México espera resultados de elecciones intermedias de EEUU para renegociar en el T-MEC, prevé especialista de la UNAM - Infobae",
       "peso": 12.0,
       "n_temas_agrupados": 1,
-      "escalando": false,
+      "escalando": true,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
@@ -994,6 +988,14 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQOUtXem96blhENkVHemZyV1NjV1NJMVZmbU9UeWNSQkQySFpnc1lQS2hqT21uWmRtb0JiQUtDNnN4aEdlalBMVXE4c2dabmJrc2FScHFBT2NmR05XRHJtWUxFNGdKbEprZVYxYU5WTDlOLTJ2cmZfNzdPVVJhM0QtY0tHLXl6a2dCR1o3SDBmQ2pGUzFsNnFTVTdzUDDSAZwBQVVfeXFMTzduYXMyRlRja3hpZGlQMkhaMG1TN3pUQkxfSXJRaVpUVVF3T2dlTDBOclJLSWo4MzJocC1Uem1DdTFoSVdSRVRJdVc3SzRJWjJnX19JME1WQlFRWldLc19hSDVDd0x4LXp2bGdPdF90RExpNXZKNmJCaTQ0Z0F6N09aZDZmd0Z1NlctNnIyVnlKazA3SXRjcjU5TXlO?oc=5"
     },
     {
+      "id": "auto-9ced14194c",
+      "nombre": "Vigilancia fronteriza de EU desplaza cruces migratorios hacia rutas marítimas de",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/03/vigilancia-fronteriza-de-eu-desplaza-cruces-migratorios-hacia-rutas-maritimas-de-alto-riesgo/"
+    },
+    {
       "id": "auto-30fbd1e3a9",
       "nombre": "Diputados de Morena replican el plan Monex - El Universal",
       "categoria": "Gobernabilidad",
@@ -1016,14 +1018,6 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBGamlIRXZzX1prSHpDSllqM0pjT1Y2S3ViOFVIUTBPVnJaMXdtSW91VU5tNlozS1ZWSUpJTXhNZmt5ZmZPOVdvdHI1akVjMS12emNubEhIVl92ZGxReFVmalhiOEtJSk15UmFB?oc=5"
-    },
-    {
-      "id": "auto-4a4dc78193",
-      "nombre": "Nuevos videos son la evidencia más contundente del delito en el INE: Loret",
-      "categoria": "Social",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/carlos-loret-de-mola-los-nuevos-videos-son-la-evidencia-mas-contundente-del-delito-en-el-ine-20261103-0051.html"
     }
   ],
   "temas_retomados": [
@@ -1031,7 +1025,7 @@
       "id": "auto-4095449417",
       "nombre": "Son niños y adolescentes casi 13% de los migrantes en el mundo, señala OEA",
       "categoria": "Social",
-      "dias_silencio": 45,
+      "dias_silencio": 46,
       "motivo": "🔔 ALERTA — Niños migrantes y niños refugiados - Milenio",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOMG1SUDlFSllaWUlLZ3kyWU9HZ2pxTW4ya1lVMGRDbTI5VERLc19qRnAxamp0SGw3Z1RoQkxXX0FWcDNNLTFWLVpFTlFzekJlMWFXSkZKUkJXWDI4VlZJQlV4aVlCWWJNNDBOaVZyUGxYUmNFX0tyU1dIU21nZkV1cGtHRkJzWTJlQVIzbk9seXMxUTMweEg1Z3ZHY2xqVVNoNUdDM25pb9IBpwFBVV95cUxOejE0c1hYbFhNTWtlc2VkQnZ2b1FCa3Nwb1NIWUdOZXV6M1VCbG9lSDNHaGQ1NG1uMmlDN2d2ZXgzcHVmQ3NjVmFnMjRmTVpxa3IxelZvc3VURkdwSXQtemdDRnFWMUIxb3d0U01TQWVrQ0x2OTcwQXhMWUJVRlhhX0pyVDE3SGY5SVo2eURqUFN5MzRZWF9SbkFBSWUwc3ktRktfWk9pQQ?oc=5",
@@ -1042,7 +1036,7 @@
       "id": "auto-afe6a252c5",
       "nombre": "¿Quién es el peor gobernador? - El Universal Querétaro",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 42,
+      "dias_silencio": 43,
       "motivo": "🔔 ALERTA — México ‘reconquista’ California: ¿Quién es Xavier Becerra, hijo de mexicanos que se perfila a gobernador?",
       "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/03/mexico-reconquista-california-quien-es-xavier-becerra-hijo-de-mexicanos-que-se-perfila-a-gobernador/",
@@ -1053,7 +1047,7 @@
       "id": "auto-7b0f05dab9",
       "nombre": "Prevé Estefanía Mercado más cambios en su gabinete por proceso interno de Morena",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 25,
+      "dias_silencio": 26,
       "motivo": "Proceso interno da a Morena cobertura positiva en medios - El Universal",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQbXVhWlJPa0UzQlZNZG1OMlFJcnZLdzB5T3ZVNnJZaXpyYjZ5V3JmdDhrbjdqUnRncndwcVlIY2NXb1ZsRkkyVE5meEtEMkxMa0JOZFN5T3Zid0JUcFRveWMzc0JURUdxSzNNT1lZTUI2d1c1RHZIMFpBWjEtQ2ZkalZJYUtUZ004SXQtT3ZEamFTLUotRnpnSVRhWdIBrwFBVV95cUxNWmVnZWlDZnZ0QjU4bHk3R2gzdUwyNXdVS3UxZDdqUlI5eVBXQmVNWFg1N0RVUENrTEtCWFFnOFNtY1lKdFdIUG5NT1NoZk4ya05sOF9RWVlLU0pjTnVKbF9KOE9XMXk4eUZBb1JFb1hQOVNTTzdFcGZ2VE1kaVJTa2xLU2swNDdPYjE2WVh1QWlBVjZJbG5IX3FoYjFKcmNpYTU0Q3RPNWZsVUh1S0pJ?oc=5",
@@ -1064,7 +1058,7 @@
       "id": "auto-84b4cc19af",
       "nombre": "López Obrador señala a EU por “pruebas hechizas” contra Rocha e Inzunza - eltiem",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 16,
+      "dias_silencio": 17,
       "motivo": "Señalan a esposa de López Obrador por recibir trato preferente en su nacionalidad española - Infobae",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOc1pSclRvOXAzdGhmWk9mUDVsYWZWTm14dTBWS2huWTlxeFdva0poVUlZSU1zSmt4ZWw4WDlOZ1NxUVN2SnRnM1lJZjhHalFDcUJfekdlYVJweHloTm1SUWRrZkw4bFI3TEY3OHlGWHlnU1J2VU9IeENyNUpiLUVKQ2xkaDZrWUMwOTlzVVlvY0s4R0l1QXhEbW1tcWRzdGpZT1lwUU1EcEpvdmtrcTB0WGNHUHVsZE9GMWR2dEhfaDRnMUlPY0VzWXZPYjJoZ9IB6AFBVV95cUxOTWVUVjE1MWZFQ3FRaWp4YV9DRDFJQTVxUHZHMndRWkFHUElDcjFqRFVJVE54d1dzT3RiRjVodVZTaTRhLXhKckJFVWlOVDI0akp6Z3ZBc3BLRmxGalJVeXN5THhlbTBKaXNJcnptajBMUmpyVGFDZXM2TFNlc1o3c1BweEd5MGFpdmRVWGk5Qjg4aW1DNzBsaUZKMm5hTTdoOEdVMHAtVjZMaTh0dTVNa1hzbDFFWWxwa2ZXbTZZZm5CUkd3U2RzTWFHUzA4cmV3NTBFdnE3WmlCUXdTQzZZN3NMeHVkUl9H?oc=5",
@@ -1075,7 +1069,7 @@
       "id": "auto-3547a7ab69",
       "nombre": "EN VIVO: La Mañanera de la presidenta Claudia Sheinbaum hoy martes 6 de septiemb",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 11,
+      "dias_silencio": 12,
       "motivo": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 3 de noviembre: Síguela aquí en vivo - El Financiero",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOOS1UUnVfSGtudDFsUVVrTkQ2OENKOXE1cVF1NDB6bnppM3BHNTBUd1RfMjVrSTF2QkhnWmR3SnRXVFFzbUFTQVp6bjhpcnR6cEcwNzlMNnUtdzdQc1Nya0dFeHpESHpLTVBwUy14bHF0cVFoNFBHMl9mUTVWbkJHVE1OdV9zUDJjdTROS3hNMHhFdVc0YjYwWDhFQzIwYl9LR2I5N1dnR3FhNVIwNUp5LXEyNE5CaHNiX0djeA?oc=5",
@@ -1597,8 +1591,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNUElQeTBfdGgzR0hIVms0Qmt6TnJWT1dMaGVIOHNFWThjSWdYcm11b2xqU3JkNE81VE5jTXdvUTUzYmttQXJ4QVpHTUVwWk9iOTJnOU5UWkh1NGVORG80SmtnV2xJTzBkQ0gzTnBEbWhuYlV6SHRUNVlxV0RmMW5UY1BCYTFINDMwRjMzRkdJaFI?oc=5",
-      "nota_texto": "Claudia Sheinbaum rechaza pretensiones de Texas sobre islas en el Río Bravo; atribuye el reclamo a fines electorales - Almomento.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOLXhaem55UzYtRndaZ2tNd3VEdWdoWTdpOEtjWlNOZzhRejJ1M0hwa0RXNHBaY0xFQmZCQXZmd3F2NWpBZXlnMUZxeGlNM0lscS1wNGhOcnQ2MERtVHEyd2lqMExuNm1VeXpPSEJBY1ZMc1dpdXVsX3hNQjVoV21ZTHV5VnI4eVAzUjZaSXNfa0dDaWRMajFoMkUzR0htaHlsLXNNZG90WmVaMEE5STlYalAwREs?oc=5",
+      "nota_texto": "Claudia Sheinbaum registra 71.2% aprobación nacional en octubre - - Yo por la Justicia",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1613,8 +1607,7 @@
           "x": 50,
           "y": 50
         }
-      ],
-      "fecha_reactivado": "2026-11-03"
+      ]
     },
     {
       "id": "ernesto_ruffo",
@@ -1786,7 +1779,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1841,5 +1834,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-03 16:03"
+  "hora_corte_publicada": "2026-11-03 18:04"
 }
