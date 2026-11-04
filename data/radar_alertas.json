@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-04|inflexion|tmec-revision|2026-11-04|trigger",
+   "ts": "2026-11-04T17:25:37-06:00",
+   "tipo": "inflexion",
+   "tema_id": "tmec-revision",
+   "texto": "⚡ Posible trigger en «Revisión del T-MEC» (11-04): Marcelo Ebrard entra con fuerza al tema: lo mencionan 4 de las 10 notas del día y en la semana previa casi no aparecía (1)."
+  },
+  {
    "id": "2026-11-04|nueva_anticipatoria|auto-3709d776b1",
    "ts": "2026-11-04T00:12:28-06:00",
    "tipo": "nueva_anticipatoria",
@@ -414,13 +421,6 @@
    "tipo": "actor_clave",
    "tema_id": "auto-c6def1ccd5",
    "texto": "◉ Higinio Martínez Miranda aparece por primera vez en «Impulsa senador Higinio Martínez nuevo Padrón de Cabilderos de Cámara de Senador»: Higinio Martínez llama  a realizar cumbre del sector salud en el Senado"
-  },
-  {
-   "id": "2026-10-19|nueva_anticipatoria|auto-7d432c725e",
-   "ts": "2026-10-19T09:37:07-06:00",
-   "tipo": "nueva_anticipatoria",
-   "tema_id": "auto-7d432c725e",
-   "texto": "◐ Tema por vigilar: Movimiento Ciudadano va tras candidatos virtuales de Morena, presenta denuncia a (impacto 8.2, 2 medios)"
   }
  ]
 }
