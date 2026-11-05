@@ -1,30 +1,94 @@
 {
-  "generado_en": "2026-11-05T01:20:02.581656-06:00",
+  "generado_en": "2026-11-05T06:01:24.674450-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 34,
+  "n_notas_ventana": 32,
   "baja_confianza": false,
   "tension_nacional": 28,
   "tension_anomalia": {
-    "z": 1.22,
+    "z": 1.21,
     "nivel": "normal",
     "media_periodo": 22.6,
     "dias_base": 27
   },
   "categorias_dia": [
     {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 38,
-      "tema_principal": "Asesinato de Carlos Manzo",
-      "tema_principal_id": "carlos-manzo",
-      "n_temas": 10,
-      "n_notas": 14,
+      "categoria": "Relación Bilateral",
+      "peso_pct": 33,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
+      "n_temas": 2,
+      "n_notas": 10,
       "notas": [
         {
-          "texto": "Sheinbaum presenta avances del Plan Michoacán a un año del asesinato de Carlos Manzo: pospone resultados en Seguridad - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNaERmQXdJdENJbmVka2tGckhtRGMwTzRKV3lmZlN6R2lYOG9tVXF4NjhhcDRXSHpxZFNST0JmRVZrNG9oNWNHc2JNVnZJWlRTSHUwc3VQbnh2NDJLYVFCaEJnM1VyLUhpYjRmMHlxN2RkZmN1dzJzS3ItZzRXNVM5OUtORGwxTEUtR0JuVWZ6cm1BekZMUDluMXJOUl9ORjh1Q1dCQ1Vxd0M5eVM5TG9BOG42WGR5NElYNmk2bE9zV0szX1FLd3lyeTF4UFVjUExSRE9TUGctOFFUZklQWVdSSk11aTlFclZhVDhCY0Q2ZnPSAYsCQVVfeXFMTlV0ZGh3NWZFM3NxZDBGTmM2bWxIMzJxNTZqWjVFTkFoaUFXdUl1d0JfbjRzTGc0RGdvdzZRcWdnWmtDdHJtZF80dWdkYmJLc203eldoMmR3eWh4cGJpX3dEbG13Q05mRzlKR3laZTRFUFI4dmxKcC1WVzFvd2hCY3c2WXpicHFmYjlBZUxiUHMxRDhpQ2pwSU1GQVR0V3ZyUHBoWjBMYlBIbWhmd2JRLU1jVVdnVjhCb29pOUpUWlRHTWFqUWJaTXRFMVVFUDF5VG5hTzh2T1NTZUZTTUo5U2l4WFI0SlBPNndXTndrRVprNXB2MlEyaHBiTVh3QVlOX0d5M2JKVVZKaXNv?oc=5",
+          "texto": "Triunfo de los demócratas no garantiza que Trump pare de pegar comercialmente a México; ni la extensión del T-MEC - Dossier Político",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQcWszay05eU5yNWxoUThCaVRmUnFubVI3TWZzRnA4ZWVGZVRWLWFvbXdsNHZjOXpBM1pLZ18tQXFxZWJsVEtSTDBaRDdENTJYOWVjSmFBUk1pUGtRZzlqUjZXckJJSEEyalltMmgwNTU5SHIyRko3dEw4cGF4R29OcmtaUHYxR2dkRWFDeUVfZFB2aG5venFnUFZFN010dWtIWW8xZThvNkw5NHBvQTVmcTc1ZlMzUXJWMC1ZM0VkZW1vM2d3WTBnVVUxTWdoYVU1S282czdSV1BUeVVaQk9CMkwzX0otWWs?oc=5",
+          "intensidad": 9.0,
+          "medio": "Dossier Político"
+        },
+        {
+          "texto": "Ebrard ve pocos cambios en aranceles tras elecciones de EU, pero abre la puerta a ajustes al T-MEC - Expansión",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQeFhmWXJ0LVlZMWtDaTdnNDJKWHozSnlfcjljUU83Y3luX1l2dmRPOUJWYVdsUnQxU3FNWElYbjFfU1ZwXzFmMDIxY2o4SlhXR3ZBY1lzNUZ2UVhjV0FNc0l1M2kzR29lVDM5WVUxcFppcnNkZ1NWeWtfY25GaGZFcW9TbUkzS2k5aldTcXNR0gGbAUFVX3lxTE12dXAzV3RELWFmdTRhZGlYQV91MFN1YVdfaTRfYXJIUnNZSGtCXzBhQmlBbFU3cEw1eFhoRXJDVWhCTE5uUFpiZFluNXRGeGgtRGpDMnpKZ3lGdWQxUmtYY3gtenUzQVdGNXJxeEVENXN2UmpHTmM2M1QtcWVvYTZ4S25zd2hwcjRBSnE3akJnaXJFVW1TeHg4OFVF?oc=5",
           "intensidad": 7.0,
+          "medio": "Expansión"
+        },
+        {
+          "texto": "Con nuevo congreso de EU negociaciones sobre aranceles siguen igual; sobre el T-MEC, pueden cambiar: Ebrard - El Economista",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVTZFNkt5aUFCNHZYN1V1RGlqZ2o2TlVFOE5hYXpKVFhjaDh6RUFGc2pWb0VKcmd1V3pNcS1yT0owNzFZbTd5dmdQRU1zemdrSTNkVmpmOWNFc2Zqa2RvMVFWbDNBYzFQdWdqWWZyd3NKV2kyMWV5Yjhpei00Y3gyZ2lhVm9uUFFEN1FIUk1jcU1KQklaWDVFNWRXbnVRcXE3SmZzZ25TbDB3OC1kVm9rZGRHaDdsajg3QXBjUEhYckxncWMtYWo3YjY2NTNSV1VNY1JVWTZibklMbjJfNTI2dGlQY9IB6AFBVV95cUxNTmhNTkFhSkR3a2NJTy1wVTZGQ3ZGdjBmRGRyU044SF9GMC1ZcmVMNGJQN2ZOUHUxWkxpTUFiUzM4LWJQZFQtd3hodDlVXy1oZWxaT1NCTUYwNmlXeFl2TFFRUnRWTkhzQnNIQWZDN0pOaldPSDNvcVpyUV9od3FBRkNIOERpdE5oaFNxc09VbkF0dkhlX0k2SGVRSXpyM04zVDY2dzhobE5MWDlCQ1BHTTZsQk1CcGpWTTVwRWJ2SEVsdmFGbE9GcG8zNEZlSFluMGtZRTJzQWx6eUl5aWNTaTlqbGZvTjR0?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Economista"
+        },
+        {
+          "texto": "OTRO ESCENARIO, OTRAS PRESIONES: Derrota de Trump no garantiza reducción de aranceles a México, advierte Ebrard; revisión del T-MEC sigue pendiente - Noticaribe",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNek1jUXRUYVJtaFBwbm9WRHhBNEZEb0o1c1N4MEFfVlNpNXQ0TTFWbjZJYU5rWWdYaFB1MjZnTGd3WlN2bmpGU2FLZHl0a3BVaS1UeExiNF95TWJBdmhlRnZnam85OVpOWkV0cG5qWWlmMDZKYldzWEMtY25yYWZQZHdSSEtBbV94aHU4YlVBaXBzSXV2UEIzOHhCeEpNbTA1Nk5tM0Z1eTgzU0lEbllfbkJab09kX24xWHpTWm53SW5xU2xYeXUxQnVjSWZvUGFERWlrTFFBUWRWUmpwazcxWmhQREtaSEJwcDQ1LTBiR2ZyUHQwWHdNb0lyemI0bE5QSHNPclRGbmltTVVuX0E?oc=5",
+          "intensidad": 7.0,
+          "medio": "Noticaribe"
+        },
+        {
+          "texto": "Luego de las elecciones intermedias en Estados Unidos, México podría aprovechar el debilitamiento de Trump y lograr un nuevo escenario para el T-MEC - Reporte Indigo",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxNMDZTZEI5eEtlaFFFS0M5MmY5SV9sODA5SUVLdENPei1iUThQY1FrcXgtRk9IQ0tBamhJNDNDM24yUXd4bVpjMGJIR2dfdTltSGtzYjl4dWtHSlpBcFctZGlROVc5M2FLQkl2enJfd0txcG13cDM4VU1LakJjRXN2d2dJTEJBdmdGc0ZocllGS0FSNGo3T3NzTFhSTC0xdmZTejRFYm5Zd05HQmp1b0R2ZGZNc19nZk45N1dMYURWckRZMmxBdG1BeTZXN2F1WEJiSHA2cmo4cnZIclRUSDZzOVplZnczQUhXWGVIZUVzOENVLVJLSmp3aU95N2NvZVRueFlYeGJscC1yOFU4MkVValBrcXI5bjg0TzBKVTR4ZFUwelplWGlMUGpGQQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "Reporte Indigo"
+        },
+        {
+          "texto": "México ve prematuro medir el impacto electoral en EE.UU. sobre aranceles y T-MEC - Yahoo",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNcTZxanE4RFc5UVVLMXdPcC1Bdkt3d1VEdEU4bUNFOTlKbFBZXzJOb09JWi1tU2F3MTk4clRVckhmWUdkMldwMlBkOTZ5TG41MUhLQ1JPb3ZvbUdZbVFGNmRGTWVYQlBfNFZORWE0ekVDemRyWkdQQjMxZzl1aHZ4Tl9JZWtHR3hNeXA2N1IwQQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "Yahoo"
+        },
+        {
+          "texto": "#InformaciónConfidencial: ola azul en Estados Unidos, ¿contrapeso a la relación comercial de México bajo el T-MEC? - EL CEO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNOWZUX1VzZFVWV3R6al93SDVjWkNGWDVyY1NyWnJJbFpmdTF6MWdmbDVYY0t0M25IUlVuQU5TZS14NVRkYlRaVkJUVnJubnNsVk9ia1JYY095VjBxNU5lS2RucTM1b05RYjA2ZmJBNWQwVEZ2RXlWek5fSE11U3VaUVNmX2luelBvaGVqbXFPRjQ3T05VbUVaOXFxeFJMeWthQ1BDX0U1aUdtM09reHlEdzMwVU5KMVd4?oc=5",
+          "intensidad": 6.0,
+          "medio": "EL CEO"
+        },
+        {
+          "texto": "Marcelo Ebrard descarta cambios inmediatos en aranceles de Trump tras elecciones intermedias en EEUU - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPQ2cyTUNKVExtWUcyNzV4dWM0OWVMTlkxdU0wb3N6V2QwVjVEOEZYS01RM3dneVU3NldGVzgyS2JLa0Eyb0hIclM5VW9tSjVjd1REbE1oX1NxenpGQV8zamVZcGw2cEtYZUxYUDg2YXZ5U3QtTF85TU1xSGZiOTVrVkFLMU5tX2dmRnRFU2FSRlVISWdVaVJfRkZVaWUwbGxHRjFWSmlYRDNoVE9LUmJ1QlktTkpDLXIxMFY4V2FvUUxmZzZjdXVBVjJrNThlMXRKUk1aQWs1MzlDVjQ?oc=5",
+          "intensidad": 5.0,
           "medio": "Infobae"
         },
+        {
+          "texto": "Afirma Higinio que Morena no sufrirá revés como Trump - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTERqU2NrWFdSMkRwWllXTk02OFk1dzA3OXY0YU1QeDBxTzRpUy1mSDZONEgyODc1TEphMjRGQUV4bFRhc2NYdjFIb0s4YzNkM3htN0d0SnhuZUpZN3ExMlRJZlBEQUdmcmFlb0RnVnl4Um9qQXpWMmJtR25pdGJUYk1qUHlRak9pd3hGekVncWI?oc=5",
+          "intensidad": 5.0,
+          "medio": "Reforma"
+        },
+        {
+          "texto": "Paliza a Trump, (mal) consuelo de Sheinbaum, escribe Carlos Loret de Mola - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNYTJhNXN6UWJmcjNwV1AzaDZyXzYxUUM4UWJhZU1MUkU3NlFuaElCa3d1TThESDAzLXVhOVVRRE9hTWxIa3hnRUttdlljLVVyaTJXR0pnZS1QWmJjcjJ1akdTdU1ERTJJQTdENkp2RDZYMGJPMkdkZ05KVVItb2Y5OWtVUFNtVUgwTmlXUDVlb0ozS3hJbkNneXJlbEhPT3JKRFNJ?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Universal"
+        }
+      ]
+    },
+    {
+      "categoria": "Gobernabilidad",
+      "peso_pct": 32,
+      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
+      "tema_principal_id": "rocha-moya-acusacion",
+      "n_temas": 8,
+      "n_notas": 11,
+      "notas": [
         {
           "texto": "Expresa Rocío Nahle rotundo respaldo a Andrés Manuel López Beltrán ante señalamientos públicos - Noreste.net",
           "fuente_url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1kTm0tdkhzZExENWFzU0NHazJVVHJSRnZDdlVXYk9WX05POWVfVkdwRE45bHlpYUE0QVZDNDJDOGVzR2gxRDc2Rl9UUzVQMUpR?oc=5",
@@ -50,22 +114,10 @@
           "medio": "MILENIO"
         },
         {
-          "texto": "Anuncia Claudia Sheinbaum programa de 12 puntos en 120 días para fortalecer al ISSSTE - El Sur Acapulco suracapulco I Noticias Acapulco Guerrero",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNbDJOMFRQVDRaMGNwRkFQUGczNl9YSV9rMEtrLUZOcEM1M09rMXhIaDJXa0twVjBYX1M4bUtDMWNtX2xPQ1RFdjRJbGFYbDBIQUdzYXhIM3pEMTN6Y2UwUExWWUZrc0Z1eFBFaEtIdUZSbjdaOTdRMDlPQ2pHOF9SMHRNRHB5eEFxT2FmMmEwY2NFaXdrTGJaWjZXTU9GYVFaRWhlSnIyaC1tQWZVVkE?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Prevén resultados de encuesta de Morena en Centro para diciembre",
-          "fuente_url": "https://www.tabascohoy.com/preven-resultados-de-encuesta-de-morena-en-centro-para-diciembre/",
-          "intensidad": 5.0,
-          "medio": "tabascohoy.com"
-        },
-        {
-          "texto": "Prevén resultados de encuesta de Morena en Centro para diciembre - Tabasco HOY",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNUHJhQUZ2WmpNVnV6XzRvZ1Y4MmRkWGhPRTlZUy1OamZ2aUVTOEZYUjFxSC1Oenc0UXpjSk5ieTQxRlF2SGV6WUtGLU96RGJpS3RQZVN2VUVRSmdJYXdSYjNpeEFjVU16enVkMnp1aDJWczR3OFowV08wcUMxUlRxLWtMSVlTaWxBT2tNZlRPS0dDZGlvWXhV?oc=5",
-          "intensidad": 5.0,
-          "medio": "Tabasco HOY"
+          "texto": "“Se lo mismo que ustedes”, Graciela sobre observaciones de la ASF a la cuenta pública de Rocha Moya - El Sol de México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPdUxTS1RCc2QyUjY4QmhaOXYteFNfclBkcFJJZ3MtTndCaVpMSDdaUVZ1aC1nU3pPUmk5RDBjMXljZGlydmQtbHQtZlE2SkNZNGRJV2E2WC1xZnh6SjdMX1hWaWN2ZFhGcXB2U0dGaUtHeG9SY1JZaVRmb3pmVUlBcHVILTZtbkppbnV3QXV1WGdZaEw1bVRhSmFWZTJrUnVHOE1HZ1lmUXVnZW1OS3JkaWN3T3doaFNTOHhUZlI5S1RILWRCM3oycl9pQVlSN0RaWGlfREFaNnV1VmVibnc?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Sol de México"
         },
         {
           "texto": "Gino Segura y Farid Rentería fortalecen el diálogo y la unidad de Morena en Quintana Roo - Edomex Al Día",
@@ -106,83 +158,47 @@
       ]
     },
     {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 25,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 2,
-      "n_notas": 8,
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 13,
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis",
+      "n_temas": 4,
+      "n_notas": 4,
       "notas": [
         {
-          "texto": "Triunfo de los demócratas no garantiza que Trump pare de pegar comercialmente a México; ni la extensión del T-MEC - Dossier Político",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQcWszay05eU5yNWxoUThCaVRmUnFubVI3TWZzRnA4ZWVGZVRWLWFvbXdsNHZjOXpBM1pLZ18tQXFxZWJsVEtSTDBaRDdENTJYOWVjSmFBUk1pUGtRZzlqUjZXckJJSEEyalltMmgwNTU5SHIyRko3dEw4cGF4R29OcmtaUHYxR2dkRWFDeUVfZFB2aG5venFnUFZFN010dWtIWW8xZThvNkw5NHBvQTVmcTc1ZlMzUXJWMC1ZM0VkZW1vM2d3WTBnVVUxTWdoYVU1S282czdSV1BUeVVaQk9CMkwzX0otWWs?oc=5",
-          "intensidad": 9.0,
-          "medio": "Dossier Político"
-        },
-        {
-          "texto": "Ebrard ve pocos cambios en aranceles tras elecciones de EU, pero abre la puerta a ajustes al T-MEC - Expansión",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQeFhmWXJ0LVlZMWtDaTdnNDJKWHozSnlfcjljUU83Y3luX1l2dmRPOUJWYVdsUnQxU3FNWElYbjFfU1ZwXzFmMDIxY2o4SlhXR3ZBY1lzNUZ2UVhjV0FNc0l1M2kzR29lVDM5WVUxcFppcnNkZ1NWeWtfY25GaGZFcW9TbUkzS2k5aldTcXNR0gGbAUFVX3lxTE12dXAzV3RELWFmdTRhZGlYQV91MFN1YVdfaTRfYXJIUnNZSGtCXzBhQmlBbFU3cEw1eFhoRXJDVWhCTE5uUFpiZFluNXRGeGgtRGpDMnpKZ3lGdWQxUmtYY3gtenUzQVdGNXJxeEVENXN2UmpHTmM2M1QtcWVvYTZ4S25zd2hwcjRBSnE3akJnaXJFVW1TeHg4OFVF?oc=5",
+          "texto": "Alejandro Moreno denuncia a Guadalupe Taddei ante la FGR; anuncia gira internacional",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/04/alejandro-moreno-denuncia-a-guadalupe-taddei-ante-la-fgr-anuncia-gira-internacional.html",
           "intensidad": 7.0,
-          "medio": "Expansión"
+          "medio": "yucatan.com.mx"
         },
         {
-          "texto": "Con nuevo congreso de EU negociaciones sobre aranceles siguen igual; sobre el T-MEC, pueden cambiar: Ebrard - El Economista",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVTZFNkt5aUFCNHZYN1V1RGlqZ2o2TlVFOE5hYXpKVFhjaDh6RUFGc2pWb0VKcmd1V3pNcS1yT0owNzFZbTd5dmdQRU1zemdrSTNkVmpmOWNFc2Zqa2RvMVFWbDNBYzFQdWdqWWZyd3NKV2kyMWV5Yjhpei00Y3gyZ2lhVm9uUFFEN1FIUk1jcU1KQklaWDVFNWRXbnVRcXE3SmZzZ25TbDB3OC1kVm9rZGRHaDdsajg3QXBjUEhYckxncWMtYWo3YjY2NTNSV1VNY1JVWTZibklMbjJfNTI2dGlQY9IB6AFBVV95cUxNTmhNTkFhSkR3a2NJTy1wVTZGQ3ZGdjBmRGRyU044SF9GMC1ZcmVMNGJQN2ZOUHUxWkxpTUFiUzM4LWJQZFQtd3hodDlVXy1oZWxaT1NCTUYwNmlXeFl2TFFRUnRWTkhzQnNIQWZDN0pOaldPSDNvcVpyUV9od3FBRkNIOERpdE5oaFNxc09VbkF0dkhlX0k2SGVRSXpyM04zVDY2dzhobE5MWDlCQ1BHTTZsQk1CcGpWTTVwRWJ2SEVsdmFGbE9GcG8zNEZlSFluMGtZRTJzQWx6eUl5aWNTaTlqbGZvTjR0?oc=5",
+          "texto": "Guerra entre Los Chapitos y La Mayiza se extiende a Nayarit; decomisos permiten trazar ruta del narco - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOQUVPOWFmbG4zUEk1OGthZV91NTRDT1FmRFJvVEx5MEM3QThHZGQ1ZGdXdU13UjgyMklhd3lFTkRqWV9ud3hUb2Jicjdhc1lLZThOUnNUOG5KYXE5NFBQUkNTRkwwZFRHajUzMzdIT0lyWldLNnN3X3JEQnN4Vy1UcEd1MS1tNHZ3VlHSAYoBQVVfeXFMTkFFTzlhZmxuM1BJNThrYWVfdTU0Q09RZkRSb1RMeTBDN0E4R2RkNWRnV3VNd1I4MjJJYXd5RU5Eallfbnd4VG9iYnI3YXNZS2U4TlJzVDhuSmFxOTRQUFJDU0ZMMGRUR2o1MzM3SE9JclpXSzZzd19yREJzeFctVHBHdTEtbTR2d1ZR?oc=5",
           "intensidad": 7.0,
-          "medio": "El Economista"
+          "medio": "MILENIO"
         },
         {
-          "texto": "OTRO ESCENARIO, OTRAS PRESIONES: Derrota de Trump no garantiza reducción de aranceles a México, advierte Ebrard; revisión del T-MEC sigue pendiente - Noticaribe",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNek1jUXRUYVJtaFBwbm9WRHhBNEZEb0o1c1N4MEFfVlNpNXQ0TTFWbjZJYU5rWWdYaFB1MjZnTGd3WlN2bmpGU2FLZHl0a3BVaS1UeExiNF95TWJBdmhlRnZnam85OVpOWkV0cG5qWWlmMDZKYldzWEMtY25yYWZQZHdSSEtBbV94aHU4YlVBaXBzSXV2UEIzOHhCeEpNbTA1Nk5tM0Z1eTgzU0lEbllfbkJab09kX24xWHpTWm53SW5xU2xYeXUxQnVjSWZvUGFERWlrTFFBUWRWUmpwazcxWmhQREtaSEJwcDQ1LTBiR2ZyUHQwWHdNb0lyemI0bE5QSHNPclRGbmltTVVuX0E?oc=5",
-          "intensidad": 7.0,
-          "medio": "Noticaribe"
-        },
-        {
-          "texto": "Mesa República MX: T-MEC, aranceles y fentanilo, los temas que marcarán la relación México-EEUU tras las elecciones intermedias - ADN 40",
-          "fuente_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQZ1UzdE45OEljbjV0eXZVQXkxT1duQkZlZGdQLTRLQ09nWlNvLVp5Wi1pOFNxX1A1TGtodnA4Q0FLaTd4UFVnZFJvbzBGYlhNUUQ1T1poVjRGanBmc0RaNG85NVdwWUhRamE1WHVMWkpnR3BweUJSejh6N1hYcDhzZEJyZ0sxeWFQUW9HaDVvcERoYzFoTEVFTU1fSDVZYzRxbUotaDdUR2dsSmhYZlRibE5PVmQ4X0d5bHdvMVNKQkRRa0hlbXh1TmhLWVV1LUwxbVBIdG9zOW1yNDRoZnRDNXBhRzlHSTZQekdqOTdUemdlMEFhc0NMVk1Sei1ZVGpXbGE0?oc=5",
+          "texto": "Oseguera 'N' alega haber dejado el CJNG tras morir 'El Mencho' - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNbUROekd6V1JVTnJFVzMyVmJnVGIxZWVzRWZKdUNYQXc0Uk94RjVTSFppUVZ1SUQ3REZsWmR5b0E2WlNLWEN1clE5TmVFNm1GYjdNelRROXBIQzJqNnlQekVSaDdZdGppN2NUZFJ2SEJhV3oxWGRDTnRUWVVGWVlZaDNQemo4ZHJwWTZPVXg4bU1VSmPSAZMBQVVfeXFMUGpVZGJUbURIOGY4Q2FmRDZtYjk0Z2FFY1R6ZHNkTnlCMWIxVlhPaGpOWHRsRVFLYlRldFN5V05NNGlyUlJLVWxpS1B4UU4zek44WE5fOS1mLTY1UTZjNHIwcWZfamFxWEZJSGN5R25fcW1WUGcyc0RxbjFQVzhBdmdkbjhYVUxnbzJMaUkxdDBRZkNF?oc=5",
           "intensidad": 6.0,
-          "medio": "ADN 40"
+          "medio": "MILENIO"
         },
         {
-          "texto": "México ve prematuro medir el impacto electoral en EE.UU. sobre aranceles y T-MEC - Yahoo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNcTZxanE4RFc5UVVLMXdPcC1Bdkt3d1VEdEU4bUNFOTlKbFBZXzJOb09JWi1tU2F3MTk4clRVckhmWUdkMldwMlBkOTZ5TG41MUhLQ1JPb3ZvbUdZbVFGNmRGTWVYQlBfNFZORWE0ekVDemRyWkdQQjMxZzl1aHZ4Tl9JZWtHR3hNeXA2N1IwQQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "Yahoo"
-        },
-        {
-          "texto": "Marcelo Ebrard descarta cambios inmediatos en aranceles de Trump tras elecciones intermedias en EEUU - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPQ2cyTUNKVExtWUcyNzV4dWM0OWVMTlkxdU0wb3N6V2QwVjVEOEZYS01RM3dneVU3NldGVzgyS2JLa0Eyb0hIclM5VW9tSjVjd1REbE1oX1NxenpGQV8zamVZcGw2cEtYZUxYUDg2YXZ5U3QtTF85TU1xSGZiOTVrVkFLMU5tX2dmRnRFU2FSRlVISWdVaVJfRkZVaWUwbGxHRjFWSmlYRDNoVE9LUmJ1QlktTkpDLXIxMFY4V2FvUUxmZzZjdXVBVjJrNThlMXRKUk1aQWs1MzlDVjQ?oc=5",
+          "texto": "Exsecretaria del Bienestar de Uruapan, a proceso por encubrimiento en el caso Carlos Manzo",
+          "fuente_url": "https://imparcialoaxaca.mx/nacional/exsecretaria-del-bienestar-de-uruapan-a-proceso-por-encubrimiento-en-el-caso-carlos-manzo/",
           "intensidad": 5.0,
-          "medio": "Infobae"
-        },
-        {
-          "texto": "Afirma Higinio que Morena no sufrirá revés como Trump - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTERqU2NrWFdSMkRwWllXTk02OFk1dzA3OXY0YU1QeDBxTzRpUy1mSDZONEgyODc1TEphMjRGQUV4bFRhc2NYdjFIb0s4YzNkM3htN0d0SnhuZUpZN3ExMlRJZlBEQUdmcmFlb0RnVnl4Um9qQXpWMmJtR25pdGJUYk1qUHlRak9pd3hGekVncWI?oc=5",
-          "intensidad": 5.0,
-          "medio": "Reforma"
+          "medio": "imparcialoaxaca.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 19,
+      "peso_pct": 13,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 6,
+      "n_notas": 4,
       "notas": [
-        {
-          "texto": "Sheinbaum Explica si Resultados de Elecciones en EUA Impactan en Negociación del T-MEC - N+",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQYUhldmpTQ19JbDFOWWs3ZURpa1FBOTNGZ0YxR3UtQjh6YkZDd0FMaWU5d0ZqU0JadWdWVGxwRFh4Q3RyZWJjSVZuT2s5WllVcTU2Yk9IaUxnUENVb05xYWEyQlY1amlobVlwWTFLX0RxZk5RUm1IMWllclYzNXRfdGo1emRtM1oybmI5MGUzazMxWmNHUXBPdmJJUnBBS0pmNEFndVBzcUtpUlVtQWpUTDBXdDFNSkxnRWNIMQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Hay buena relación con China, pero TMEC es prioridad: Sheinbaum - La Silla Rota",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOcjZxT3FXdVNabXZnMmFTRHM5WFlxdEw3RHA2bjF1bXdHcHFqZ3ZDbGdpMGV3QzZTN0VMVzJNUTJTUkdrZkVjTnFmRDF3dlVoX3NnekdVY2F0SlRDSTQzQ2huZDVLdjdQWmF0Q1Vrczk4LVowREJwN3N4Q2U2V2lJbm5DVDB1MXl6a0xrWDF5QVNFZDJ6d3pKbXhieDVEajZuaFgzbFRwS1ItNjJ2YzJrdC1sa1U?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Silla Rota"
-        },
         {
           "texto": "Sheinbaum reconoce triunfos de mexicanos en elecciones de EU; revisión del T-MEC sigue sin cambios - Revista Fortuna",
           "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPeXVMak1tUmFaTk92YUtWY1U2cVpGVktqQ2JzcFdoOHV0SGIyLUFVS3N4R2xOdnpicjd2Z21fN3hDeWhuX19UbXM1TnliR2VlLVQxZWFYZFBNNUw3SHpEMWVzUllENjBNNUs5UmRFaUdWX0NwdUFidnI3VmwtY1FPRHVNcEtXWU9yT19xa3Q3Qy05MW8tbTBVUXBaWFAteEtLVS16dmNRdWNvWlZ0Umd5RUdQZzktMGhLU0pxZEVGU0YwaEgwQ3FkS2c4ZWFzV2ZDUUdnaW1B?oc=5",
@@ -210,46 +226,12 @@
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 12,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 4,
-      "n_notas": 4,
-      "notas": [
-        {
-          "texto": "Leva del narco nutre guerra en Sinaloa, reclutan en 4 estados - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPZ0QxellqdHgxY09fVEdwTnUyUVFCbFdvSFkzWTFuTnMyeW9DZlNXM3RhSDk3YkxlM1NzOWFFQkFfX2h1WC1vYlNhbW91eHpZcmVSbDh4NjBVaW9PMHBNckhELW1WcXhkaGh6TW4teWZNbk9xbS1YdWVMOXF1ZU9ka2k1aVJOLUoyMVV3MFp0WnNrQVkyOUdDcFJGU24zbU1zM2JmRlN1Qm0xXzZkUnpwbHZ1U2gybUtTZEd5Z0pOalFLWEo5bXpjaXR6bTlpdkxONmRNN2JjWHNReVZORTNWZEZNcEtPc28?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
-        },
-        {
-          "texto": "Alejandro Moreno denuncia a Guadalupe Taddei ante la FGR; anuncia gira internacional",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/04/alejandro-moreno-denuncia-a-guadalupe-taddei-ante-la-fgr-anuncia-gira-internacional.html",
-          "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "Oseguera 'N' alega haber dejado el CJNG tras morir 'El Mencho' - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNbUROekd6V1JVTnJFVzMyVmJnVGIxZWVzRWZKdUNYQXc0Uk94RjVTSFppUVZ1SUQ3REZsWmR5b0E2WlNLWEN1clE5TmVFNm1GYjdNelRROXBIQzJqNnlQekVSaDdZdGppN2NUZFJ2SEJhV3oxWGRDTnRUWVVGWVlZaDNQemo4ZHJwWTZPVXg4bU1VSmPSAZMBQVVfeXFMUGpVZGJUbURIOGY4Q2FmRDZtYjk0Z2FFY1R6ZHNkTnlCMWIxVlhPaGpOWHRsRVFLYlRldFN5V05NNGlyUlJLVWxpS1B4UU4zek44WE5fOS1mLTY1UTZjNHIwcWZfamFxWEZJSGN5R25fcW1WUGcyc0RxbjFQVzhBdmdkbjhYVUxnbzJMaUkxdDBRZkNF?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "Exsecretaria del Bienestar de Uruapan, a proceso por encubrimiento en el caso Carlos Manzo",
-          "fuente_url": "https://imparcialoaxaca.mx/nacional/exsecretaria-del-bienestar-de-uruapan-a-proceso-por-encubrimiento-en-el-caso-carlos-manzo/",
-          "intensidad": 5.0,
-          "medio": "imparcialoaxaca.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Social",
-      "peso_pct": 6,
+      "peso_pct": 10,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 2,
-      "n_notas": 2,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "Andy da la cara; ve guerra sucia",
@@ -262,6 +244,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNUU1SaElndGxfaExwa21IWTFDOWJiTEpnR2R6ZkVLRmhha0ZMWU9YWi1FZ3pCMjBJUGs3YmJUb0FmN3F5NnJkTVBJNnBra202SFpvb2hxNFZwSXRkaGZJU3k1Yks1SFJfclVUTDdIamRTQTVpNTU3VzdDQ0h2MHh6ZFUzNXFneDU5dW1xbkVyVmQ0dlZYWWcxS09QbjFYejBkYkRxX1oxclFPdEpzS2FJdzJObXJvdEV2NlFGZXRiZ1pYWWw0WElBRTk1bGtTSXBiazNCa05RdEkyS3l0UWwzbVRKNXdsQ2MySjJTQ2wybXRnc1pPVmc?oc=5",
           "intensidad": 6.0,
           "medio": "El Universal"
+        },
+        {
+          "texto": "🔔 ALERTA — Frena voto a Trump por ofensiva migratoria y abusos del ICE - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQeVVQZW9LWE1ka05BSXJtYndUbHAyS2E1ZkZoOFRYQ3RtVUx6RGJSSy0yOHM1Y2tuVVB3R2FNaXlOazM2MnRiSF9oYkwxVUpJNlRRV2hPaWswb3FvbVJFZm4wQzFvRnFHZTJEOFp3NWJ4Vlc5VzA0cjNtUDM5aEVITUVXanVYOWV5MEs3Yk9xN3pRMnJ3XzJGaA?oc=5",
+          "intensidad": 6.0,
+          "medio": "Reforma"
         }
       ]
     }
@@ -472,7 +460,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Gobernabilidad",
@@ -576,7 +564,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
@@ -630,7 +618,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -647,7 +635,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Gobernabilidad",
@@ -672,7 +660,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
@@ -751,7 +739,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
@@ -772,7 +760,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -797,7 +785,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
@@ -822,7 +810,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
@@ -951,15 +939,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 54
+          "peso_pct": 53
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 17
+          "peso_pct": 18
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -970,19 +958,37 @@
   ],
   "top5_temas": [
     {
-      "id": "carlos-manzo",
-      "nombre": "Asesinato de Carlos Manzo",
-      "categoria": "Seguridad Nacional",
-      "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
-      "motivo": "Sheinbaum presenta avances del Plan Michoacán a un año del asesinato de Carlos Manzo: pospone resultados en Seguridad - Infobae",
-      "peso": 32.0,
-      "n_temas_agrupados": 5,
+      "id": "trump-agenda",
+      "nombre": "Trump y México: declaraciones y presión",
+      "categoria": "Relación Bilateral",
+      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
+      "motivo": "🔔 ALERTA — Triunfo demócrata debilita movimiento MAGA de Trump; especialistas advierten más presión sobre México en migración y comercio - El Universal",
+      "peso": 27.0,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 3,
       "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNaERmQXdJdENJbmVka2tGckhtRGMwTzRKV3lmZlN6R2lYOG9tVXF4NjhhcDRXSHpxZFNST0JmRVZrNG9oNWNHc2JNVnZJWlRTSHUwc3VQbnh2NDJLYVFCaEJnM1VyLUhpYjRmMHlxN2RkZmN1dzJzS3ItZzRXNVM5OUtORGwxTEUtR0JuVWZ6cm1BekZMUDluMXJOUl9ORjh1Q1dCQ1Vxd0M5eVM5TG9BOG42WGR5NElYNmk2bE9zV0szX1FLd3lyeTF4UFVjUExSRE9TUGctOFFUZklQWVdSSk11aTlFclZhVDhCY0Q2ZnPSAYsCQVVfeXFMTlV0ZGh3NWZFM3NxZDBGTmM2bWxIMzJxNTZqWjVFTkFoaUFXdUl1d0JfbjRzTGc0RGdvdzZRcWdnWmtDdHJtZF80dWdkYmJLc203eldoMmR3eWh4cGJpX3dEbG13Q05mRzlKR3laZTRFUFI4dmxKcC1WVzFvd2hCY3c2WXpicHFmYjlBZUxiUHMxRDhpQ2pwSU1GQVR0V3ZyUHBoWjBMYlBIbWhmd2JRLU1jVVdnVjhCb29pOUpUWlRHTWFqUWJaTXRFMVVFUDF5VG5hTzh2T1NTZUZTTUo5U2l4WFI0SlBPNndXTndrRVprNXB2MlEyaHBiTVh3QVlOX0d5M2JKVVZKaXNv?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNUU1SaElndGxfaExwa21IWTFDOWJiTEpnR2R6ZkVLRmhha0ZMWU9YWi1FZ3pCMjBJUGs3YmJUb0FmN3F5NnJkTVBJNnBra202SFpvb2hxNFZwSXRkaGZJU3k1Yks1SFJfclVUTDdIamRTQTVpNTU3VzdDQ0h2MHh6ZFUzNXFneDU5dW1xbkVyVmQ0dlZYWWcxS09QbjFYejBkYkRxX1oxclFPdEpzS2FJdzJObXJvdEV2NlFGZXRiZ1pYWWw0WElBRTk1bGtTSXBiazNCa05RdEkyS3l0UWwzbVRKNXdsQ2MySjJTQ2wybXRnc1pPVmc?oc=5",
       "actor_vinculado": null
+    },
+    {
+      "id": "sinaloa-crisis",
+      "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
+      "motivo": "Guerra entre Los Chapitos y La Mayiza se extiende a Nayarit; decomisos permiten trazar ruta del narco - MILENIO",
+      "peso": 25.0,
+      "n_temas_agrupados": 5,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOQUVPOWFmbG4zUEk1OGthZV91NTRDT1FmRFJvVEx5MEM3QThHZGQ1ZGdXdU13UjgyMklhd3lFTkRqWV9ud3hUb2Jicjdhc1lLZThOUnNUOG5KYXE5NFBQUkNTRkwwZFRHajUzMzdIT0lyWldLNnN3X3JEQnN4Vy1UcEd1MS1tNHZ3VlHSAYoBQVVfeXFMTkFFTzlhZmxuM1BJNThrYWVfdTU0Q09RZkRSb1RMeTBDN0E4R2RkNWRnV3VNd1I4MjJJYXd5RU5Eallfbnd4VG9iYnI3YXNZS2U4TlJzVDhuSmFxOTRQUFJDU0ZMMGRUR2o1MzM3SE9JclpXSzZzd19yREJzeFctVHBHdTEtbTR2d1ZR?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     },
     {
       "id": "tmec-revision",
@@ -997,22 +1003,10 @@
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVTZFNkt5aUFCNHZYN1V1RGlqZ2o2TlVFOE5hYXpKVFhjaDh6RUFGc2pWb0VKcmd1V3pNcS1yT0owNzFZbTd5dmdQRU1zemdrSTNkVmpmOWNFc2Zqa2RvMVFWbDNBYzFQdWdqWWZyd3NKV2kyMWV5Yjhpei00Y3gyZ2lhVm9uUFFEN1FIUk1jcU1KQklaWDVFNWRXbnVRcXE3SmZzZ25TbDB3OC1kVm9rZGRHaDdsajg3QXBjUEhYckxncWMtYWo3YjY2NTNSV1VNY1JVWTZibklMbjJfNTI2dGlQY9IB6AFBVV95cUxNTmhNTkFhSkR3a2NJTy1wVTZGQ3ZGdjBmRGRyU044SF9GMC1ZcmVMNGJQN2ZOUHUxWkxpTUFiUzM4LWJQZFQtd3hodDlVXy1oZWxaT1NCTUYwNmlXeFl2TFFRUnRWTkhzQnNIQWZDN0pOaldPSDNvcVpyUV9od3FBRkNIOERpdE5oaFNxc09VbkF0dkhlX0k2SGVRSXpyM04zVDY2dzhobE5MWDlCQ1BHTTZsQk1CcGpWTTVwRWJ2SEVsdmFGbE9GcG8zNEZlSFluMGtZRTJzQWx6eUl5aWNTaTlqbGZvTjR0?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "🔔 ALERTA — Triunfo demócrata debilita movimiento MAGA de Trump; especialistas advierten más presión sobre México en migración y comercio - El Universal",
-      "peso": 16.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNUU1SaElndGxfaExwa21IWTFDOWJiTEpnR2R6ZkVLRmhha0ZMWU9YWi1FZ3pCMjBJUGs3YmJUb0FmN3F5NnJkTVBJNnBra202SFpvb2hxNFZwSXRkaGZJU3k1Yks1SFJfclVUTDdIamRTQTVpNTU3VzdDQ0h2MHh6ZFUzNXFneDU5dW1xbkVyVmQ0dlZYWWcxS09QbjFYejBkYkRxX1oxclFPdEpzS2FJdzJObXJvdEV2NlFGZXRiZ1pYWWw0WElBRTk1bGtTSXBiazNCa05RdEkyS3l0UWwzbVRKNXdsQ2MySjJTQ2wybXRnc1pPVmc?oc=5",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     },
     {
       "id": "auto-e2212e7fb3",
@@ -1021,7 +1015,7 @@
       "resumen": "Claudia Sheinbaum niega acuerdo con Maru Campos tras detención de exfiscal de Chihuahua - Periódico Síntesis",
       "motivo": "Ariadna Montiel se lanza contra Fox por decir que ayudó a Calderón: ‘Trataste la Presidencia como negocio’",
       "peso": 5.0,
-      "n_temas_agrupados": 6,
+      "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
@@ -1048,14 +1042,6 @@
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/04/ola-democrata-disminuira-persecucion-a-migrantes-estos-son-los-posibles-frenos-a-trump/"
     },
     {
-      "id": "auto-4e08b90a3c",
-      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOYkQxRkFBTTRJVm11cDFJX2U1dWF1dzNJSEtDR1dOWlBxU24tOG1FTEZWbTFHRU5Ob2d6V1ZtY2Q4TElNQWpWN28zal9Zd0gzZEpKMjdZR2xjRm5zdzlsbnc0ZndVWXFoZW1iMXE3aklNc0o1MnR5MkhrNTdUWk5kcC1Qc0VtRHY4dlM0ZHpwcF92VlgxMzFkN0VQQ1hvVTZSZ2RrcTJldHAzWXBD?oc=5"
-    },
-    {
       "id": "auto-b7f75c69f5",
       "nombre": "PAN amaga con tomar San Lázaro y el INE si Morena impone alfil en la Presidencia",
       "categoria": "Gobernabilidad",
@@ -1070,6 +1056,14 @@
       "peso": 4.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPbHBNQmk4ZGJMazhsWjRYUlJSbllmcFhZZzgyM183dEJiZUV3d0p5bV9UbnRoWEpsTk9KMlZYeWNOVGFoY19sYkVOc2p3RFZOMDUzUEFFOW5DM0ZvR1I4SXhDU2p0VXRnTVFOU0Zadm4wdEVFa3JDcVJhZ2JWV0I3S0c4WQ?oc=5"
+    },
+    {
+      "id": "auto-14f60dc510",
+      "nombre": "Concluye campaña “Septiembre y Octubre, Meses del Testamento 2026”, con 2 mil 10",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOYXNEVXRudTJhSTF3QWhVNU84U2xoWmtndGlRTHQ1aDZraWxLRTRhRENOUExBNVJNcXFGMWV2VUxKYkxjaU1DcGR6cXI3c2gybF92T25BdWE2QWNFSlVRSVMwMl9hX3ZuUzNmN1UyNUpQNWt3MVJ3MS1TdXNTTEhIODNiWkUteUhhRmdjSHFtTG0tUVJNYURfS2Z6SUQxdHhqSFRab0ZmenVLQ01XTENkcl9DeEx4aERCQ2pTYm9PRUc0MDNkSHd5ZnFic2VpU2xucVg0?oc=5"
     }
   ],
   "temas_retomados": [
@@ -1164,18 +1158,25 @@
       "confianza": "media"
     },
     {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "rol": "Investigado",
-      "tema": "Claudia Sheinbaum niega acuerdo con Maru Campos tras detención de exfiscal de Ch",
-      "nota": "Ariadna Montiel se lanza contra Fox por decir que ayudó a Calderón: ‘Trataste la Presidencia como negocio’",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/04/ariadna-montiel-se-lanza-contra-fox-por-decir-que-ayudo-a-calderon-trataste-la-presidencia-como-negocio/",
+      "id": "garcia_harfuch",
+      "nombre": "Omar García Harfuch",
+      "rol": "Responsable institucional",
+      "tema": "Sheinbaum frena especulaciones sobre García Harfuch rumbo a 2030; “está dedicado",
+      "nota": "Por el liderazgo de la presidenta Sheinbaum, la seguridad está cambiando: García Harfuch - Excélsior",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOY2lJbjRvaGJncG52LUtlM29GcEpsby1zU3B2eGRaSzlOQW9IbzZGcFFvYkNTZlFITVVyOUw3Snl4ekdrdTNOWExwVU9RM1F4VENIVFB4R1g3Sko0cXlfU3VsNEx4SVpkZUZUSnFyYW1XbVhENzNuRU9FR1ltN3NkU0ZoRUtHWG54QTdBNG1GU3hqSEs3UnVzRVNmSm1QT29CYjhOY0NTODVQTVnSAbABQVVfeXFMT2Jsa0hLbU91ZEN6NzZsMERDSmZfaURBVHo0ZGZqUmNTOENIRU5wLVUwOHBKTVU4TTJ5UDJ2Y0p5NWtiYzZmMHQ3d2w0U2phN1daWmo1LVplaEN2WGxCY2N0UU9CWG5IQmJ6N2ozcG5DNWJLbXJMcWplYlBQVG1ULVNXcTFidUprVzFsbS1PdlRFQV9zb055WHhYQVpFUUhzOEhBN191SWRpa0loVl8xNU0?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     }
   ],
-  "declaracion_presidenta": null,
+  "declaracion_presidenta": {
+    "actor": "Claudia Sheinbaum Pardo",
+    "texto": "Plan México: presidenta Claudia Sheinbaum inaugura Planta Platah de Carnot Laboratorios en Villa de Tezontepec, Hidalgo - Gob MX",
+    "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPbjBsYk84WjRnajIzWEhOQ2gzS1B2LVhXTVh5cHJmWE1YWng3VDY2ZGptalFmOVE5R0hhZ0dmOXd1Q3plaUNDTnRzaUdKQkxBTDMwNlgzUzJ4b3N6a1ZYLXQ3Y1FocWkwV1VLeWZLdm1PRFRLaWxzLUc1SXJXOFdWVmFzZG1TMWh4QUFpUEFibEVYelRvNmpyMlBWdWpVRlVTUTB3eV9rTmowbGlETXJReGltMDV5RFh5cFllTW8tam9meWZJQ0hjd3pJNm9pX2ZmUDlCOVNtRWxnSnlvYnlpZmVoNHVzeW5iU0ZlUFdrM29Pbkp5bFdv?oc=5",
+    "intensidad": 7.0,
+    "fecha": "2026-11-05",
+    "nivel_fuente": "OFICIAL"
+  },
   "declaracion_otro": {
     "actor": "Morena (partido político)",
     "texto": "Van por Vicente Fox: Morena presentará denuncia por intervención en la elección de 2006 - Infobae",
@@ -1252,9 +1253,9 @@
     {
       "fecha": "2026-10-17",
       "tension": 22,
-      "n_notas": 29,
+      "n_notas": 30,
       "n_alto_impacto": 11,
-      "n_medio_impacto": 18,
+      "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
     {
@@ -1283,25 +1284,25 @@
     },
     {
       "fecha": "2026-10-21",
-      "tension": 27,
-      "n_notas": 61,
+      "tension": 26,
+      "n_notas": 62,
       "n_alto_impacto": 28,
-      "n_medio_impacto": 33,
+      "n_medio_impacto": 34,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-22",
       "tension": 24,
-      "n_notas": 58,
-      "n_alto_impacto": 24,
+      "n_notas": 59,
+      "n_alto_impacto": 25,
       "n_medio_impacto": 34,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-23",
       "tension": 19,
-      "n_notas": 63,
-      "n_alto_impacto": 24,
+      "n_notas": 64,
+      "n_alto_impacto": 25,
       "n_medio_impacto": 39,
       "n_bajo_impacto": 0
     },
@@ -1332,24 +1333,24 @@
     {
       "fecha": "2026-10-27",
       "tension": 18,
-      "n_notas": 56,
+      "n_notas": 57,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 36,
+      "n_medio_impacto": 37,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-28",
-      "tension": 25,
-      "n_notas": 61,
-      "n_alto_impacto": 26,
+      "tension": 26,
+      "n_notas": 62,
+      "n_alto_impacto": 27,
       "n_medio_impacto": 35,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-29",
-      "tension": 25,
-      "n_notas": 42,
-      "n_alto_impacto": 19,
+      "tension": 26,
+      "n_notas": 43,
+      "n_alto_impacto": 20,
       "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
@@ -1403,10 +1404,10 @@
     },
     {
       "fecha": "2026-11-05",
-      "tension": 25,
-      "n_notas": 1,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 1,
+      "tension": 29,
+      "n_notas": 7,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 5,
       "n_bajo_impacto": 0
     }
   ],
@@ -1426,8 +1427,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOZVYtZEw5X2xGWjk1ZFNTWUJ4LU01cmhNZzlNMWJxWXAxX0JmUjZuRUFtZEU1cWlJdWNEY2sxUnRWcGpEUVdUaUs3ZUxpVnBKdVRZU0E3MC01cFJReUwyUlRLcUZLNngtaTdDYjlScDJXaVlZMndCVldwQUpJZTlxRlJhRXVPNUg0eUdNTnN0TGJCZlNRZU1nekcwZFQyZVBXN1Q1VlU1Y1FZckM3OFM3MVc0Y2tQUWZBdHcwZThQNy10dzVYcVpHVWx0czRsTGphOXhyc3NOd0pCQ09tMVlOZ0U4aE5SUUo1UldLUFJ1aGVTNDJwRVp5Z2h3OWIzMlFWaTRqTNIBnwJBVV95cUxOeld4MHQ5c2cxbVlYV0FSMGlraDNhY1JwT1FseXd2Y21qRWtJVldmV2Zxa1BGVW5lYXhGUDliTGJpMUdDMFlnWm1EUTR1Y3VrZlJacTZyZDJzeDlxR2xUZEJFMllyNngxVUMzS2N2Sks2M1N5ZmVFd1dJSHZMSkRfQUJWaHlreWZPSVBZdnhDeFpTUTZIekhuTlJlRkh1TGhKZ1VtSXJnMjJPdDN3REtOQkJTV0I3OHVOTHJYZkZ1LWxmOFJXNHpHS1duYWg5bEdYQ1J2anRpdml0VHBQeXdyUGFMVkV4UVBzZWR4bTYtdFdENkVPVFhncjVwVlloLW1reXJDeXV5RGRZNEZvVmp1eGRlOUpqSngwWUtLenc5bw?oc=5",
-      "nota_texto": "Defensa de los Farías Laguna acusa contradicciones en la FGR por no investigar a Andy López Beltrán tras ser mencionado por testigo - Infobae",
+      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNelpSSXVvRlFIdDF2aXdaZFd5aE5iTXFyXzNqZE9HWHQ0eExkRDU4N2NMN0RVYVkzVVBzX3NfcGgwRnF6YzdaQm9tdE50ZmR0bHBUX0pFeXpDYW0wZUdVY2VTckNDZmxmbXk5WTNQSk5RMFZ3WGY1V1plQy1LalZ0Y1hrQ1lQMW93aTFtMEJScGlkUVBuUm80dnNIRDh2c1lMWGRHbXJFQXlGVVhMY1ZF?oc=5",
+      "nota_texto": "Andrés Manuel López Beltrán prepara un anuncio importante para este martes - sdpnoticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1454,22 +1455,22 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 44,
-      "y_lunes": 88,
-      "x_hoy": 78,
-      "y_hoy": 79,
-      "delta_pts": 6.0,
+      "x_lunes": 78,
+      "y_lunes": 79,
+      "x_hoy": 89,
+      "y_hoy": 75,
+      "delta_pts": 1.5,
       "alcance": 7,
       "n_alto": 4,
-      "n_medio": 3,
+      "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
       "nota_texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 3,
+      "dias_activo": 4,
       "trayectoria": [
         {
           "fecha": "2026-11-02",
@@ -1485,9 +1486,14 @@
           "fecha": "2026-11-04",
           "x": 78,
           "y": 79
+        },
+        {
+          "fecha": "2026-11-05",
+          "x": 89,
+          "y": 75
         }
       ],
-      "fecha_apagado": "2026-11-05"
+      "fecha_reactivado": "2026-11-05"
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1504,8 +1510,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNeTQwWHlMZkRFdjFIaXB0QXpXbl9Qc1dUOHR6U2xiOUN2UEFJd3ZVazhHM0FNNDdzVUM5dlZLb3BJRVlsam1ZN01MUEZna2t4dHNQNEdhZlhhQ2k1djhvTHVsWFRyV1NkbjVoSlVDQVJBeTU4aWFWZGpOU0NCeHZVXzM0Q3c5dllrQkpGRlF2djRWcVJQQTVPejQ3QkpxMzZUcGE3ZTNpWlFHWDYzLUwzSEUxeUVfNVNjeHZ3VA?oc=5",
-      "nota_texto": "Andy López niega vínculos con huachicol fiscal y con Amílcar Olán: “No somos corruptos” - XEVA",
+      "nota_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxORzZyTUJPdkNUZVZJWHFTME1CSFcxZFVBV2U5TXNPNDlJUFU3em5KclNlWEpGczJkT1d5WjF4d2pSeVl6TlF2QUJLZmJEd1lFcHNwZnFpMjhWM19LVWlSY3FKSXZXWGpfZkwxdnhlR2R6M3pUcGE4SW5KaFlSYjNWZG9ZRGVuS0NUVzkyeUI1dVc4Z0VsWE5mNnBJMm84YWdEM3hJR001VTRBN3pnWU0zbGN5aEJjdmk3anFXd2FoXy05a1JBN0NkU1AzemdfRVpDd1RBNEZDcEwyMEZiV0hVYXJPb0pVaDRqT3R6UGJn0gGCAkFVX3lxTE1lNzhiaXhQMjFCRUJxR3cyRHIycXFncnFpdmUtZmRhTUZvZ0x4TEY0ek16YlBYODMtcklfLWZ2VHNTMlVHNHhsZXBpbVQzdEVNQnl3bTVmSGxla2h5dmJtUHFza0cyeTFYd1JPSFN0bVpMRnJ6Tm9JSGUtOEpQdGFzQXhIU0RGZkh5UUl3TWVXR2FyWkpxNlFLSWl6eHpwUkZGcHJyUnBDZWJtejNxRWdKUmt4bG5LSFRDMjZSVE1TbzdLZ3dCb2pmWTZlMG5lSFpMa2IxRGw2LXJLQmZsY196YTB6NHBuSHR1cWdvRXhIbFlxT3pIM2gwRlo3TDZHNlV2dw?oc=5",
+      "nota_texto": "Andy López Beltrán niega vínculos con empresas de Amílcar Olán - El Universal",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1713,8 +1719,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNUElQeTBfdGgzR0hIVms0Qmt6TnJWT1dMaGVIOHNFWThjSWdYcm11b2xqU3JkNE81VE5jTXdvUTUzYmttQXJ4QVpHTUVwWk9iOTJnOU5UWkh1NGVORG80SmtnV2xJTzBkQ0gzTnBEbWhuYlV6SHRUNVlxV0RmMW5UY1BCYTFINDMwRjMzRkdJaFI?oc=5",
-      "nota_texto": "Claudia Sheinbaum rechaza pretensiones de Texas sobre islas en el Río Bravo; atribuye el reclamo a fines electorales - Almomento.mx",
+      "nota_url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPLTJuaUIwdHNSU3JrQ0RkUThyamtyMVNEaEpaek5OOHVZS0FMazlaal9rUFFZOVFIUXJKVEMyUVp4dDlNUXhHRVgzclpteU5xcnRnUkNvSC1VM1BkdWp3dFROd1lGMndhTTcwdjRPaXE1MjIxRnQyRWd3LUFjR1hnbFY0cU5weTYybXlTOElVdXBfMU1xaVFlN1dWNkVIVnZieEZiV21WdGlYcDNLeEpNeDhXZFBhMjR0RVFkME04THJhLTMyZk5fRmJYRWVNT0FPMko4VHdkZFNaVmFKOHlKMjJzOHg0bXp5NnVXWm5fOEt1NE40X1ljRmEzcWR6ZE1FRnZIZ2czUHhsQ0NmMlIwcnJkU1Y5X2ZSUTZSSWRiaWR5a2_SAagCQVVfeXFMTkNBV2dhNnBUdXBHUTRiWTNCNy1ZSHNQanhxa1pQNnp4dTBNNGlYM1M2WlFQRXJFYVJMc05pQ296MHpsb2h2Y2FmSVlPd1haUE9GNVR4cXpoVzY1YlJ6WkRKaXZST0I4X2RfU0l2X1doZUNmaUs5YVB2Z0xmSjdrc2RrSHpZTDJHa2JXQ1ltMkNfRHhpU2RwOGphRFMtT2lYVFBLU0RuNUs0LVJOeWNEdnJsN3BPcFc0dkN6WkFzSnRIRGVGb0VXSTNVUUh0UGJGNzAwXzBLUGI2NjFDNllZMEFMamRMQUdpX0d2dUV1Zl9lUGZHUjI5UF8zbkFodjVZaFVWaWZidTZGNnBQZWc1MDlXYjlYMWpNT2sxeVlDcFBLN3pFZlFZVE8?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego, millonario opositor a Claudia Sheinbaum, lanza una dura advertencia por el escándalo del INE: \"Tenemos que ponerles un freno\" - Ambito",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1853,6 +1859,14 @@
   "declaracion_presidenta_historial": [
     {
       "actor": "Claudia Sheinbaum Pardo",
+      "texto": "Plan México: presidenta Claudia Sheinbaum inaugura Planta Platah de Carnot Laboratorios en Villa de Tezontepec, Hidalgo - Gob MX",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPbjBsYk84WjRnajIzWEhOQ2gzS1B2LVhXTVh5cHJmWE1YWng3VDY2ZGptalFmOVE5R0hhZ0dmOXd1Q3plaUNDTnRzaUdKQkxBTDMwNlgzUzJ4b3N6a1ZYLXQ3Y1FocWkwV1VLeWZLdm1PRFRLaWxzLUc1SXJXOFdWVmFzZG1TMWh4QUFpUEFibEVYelRvNmpyMlBWdWpVRlVTUTB3eV9rTmowbGlETXJReGltMDV5RFh5cFllTW8tam9meWZJQ0hjd3pJNm9pX2ZmUDlCOVNtRWxnSnlvYnlpZmVoNHVzeW5iU0ZlUFdrM29Pbkp5bFdv?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-11-05",
+      "nivel_fuente": "OFICIAL"
+    },
+    {
+      "actor": "Claudia Sheinbaum Pardo",
       "texto": "Sheinbaum acusa \"coyotaje electoral\" desde 1999 y deslinda a Morena de Guadalupe Taddei - La Jornada",
       "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPRVZsdDRiWFNLb0JsNlBzaEdUQ3pxQW9rd1pLUGpvUHVWaFNVZEtjNl9XS2hLRHI2YkU1aW1GNmJZa0F5ZjFVUmtHQU56b0JXLWoyYUFEX1NSOFVNa19jOWdKNXNxQTFuUENReEhOcTdXSDN6VXRqOEhoWHVaZFdRbHptN3hvSUdPb0JDeFpIdzRKQ09BSjJRY1VzVmhRVUJ1b1dpcUlGLTEtQ3djUThHMlU3bG9MSWZ0bHhTdlc2UVZVRnpLR0I5X3VLaTV2Y1NYUkhkcTQwTHppQQ?oc=5",
       "intensidad": 7.0,
@@ -1865,14 +1879,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU0FPTHhldWREang3NGIxNG9MNFJTNGc3UVo3d2U0dDdGZnN0M0k2NTZUQjVhblZHMzZ1VC1MdTk1UHk3akhqZ2VUTVN6Y0hKRWV5MDBrcjdVQkhJWEpOMXlua0thZFFsVDRjM3FrUG9wWWlqMVZCZVVVTDZoRDgyY1VGeW5uUXlMeHhDUHJkQXA4TmtKXzUwZGlSWEdEbFFTcjdJ0gGoAUFVX3lxTE4zNXhzTm9LaG5IdTlSa1hvUjJJZzhzWjF0X1pXZVJMUnBLTDllcmF4T2VYejEtYnlQc0QyUk5tVERCeFh2VVdnZ0diM202cEg1VjBWdU9JUEVaeGNnTHVzR3JOc0JyUkRsSDRlblduVFFEcG02UHdnYk5yQWJFdlFNOHlpQ0Y4WXluNl9JVDl5OVRuanRrcnAzQjR6V1ktZFc4UW5yVXVPMQ?oc=5",
       "intensidad": 7.0,
       "fecha": "2026-10-25",
-      "nivel_fuente": "ALTA"
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
-      "texto": "Sheinbaum califica como \"oportunismo político\" mitin de Jorge Romero en plantón del IMSS - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQTmJtRVpTUVk2blFIbjFvMDdiRFAwNENpbXNZclZ3eTljbjZHNkpGXzBnYTJjS1hpOUR6RUhwSzdBZDFDNFlIT2dWQmFjZkdYM0JnR2dmalFvVjZKbkRSaUh4ZE12Qk8xYkF2SmNkdWtIdnZtcTNOU3hWZHVBZ0haMTBKQ1RRejUtcUhjUF9PRG9wUW9QLWFhcVBLUk5nSUtBTTZEMmV3QmdvZXQ0eVlxUFhCLTJvcy16ZXVkWGlyZDgzM3RvVmx1WG1WQndfbFladlNXMVBPLVFsZHM1dFRBTnVFbnBiVjTSAfsBQVVfeXFMUFlnN3VLR1JyQWZESmk4VjAwSy1SOEhWNkdKZEhISENuaXRIOXkweENjdU1JQzdTWkhqY2NtenNYRUkwZlU0WFNUZVFqSENNQUNTc3JGcmlIZ05oRWhsTkRITVAwdXZieU9WOVNWdkRUdFlQYzVveGI0bFJEdUZOY29OY3Y3aFZnd0RoNi1vNUlHSlMxT0ZiVlZ0WlRoYTlTcThKZDdjb2owcllDemY5cl9obDhBa2RIREk0TXNEa3B6ckhMejcwWElYX280YmxOdHFjN2Zsa1k0T1Rtc0lpMFVNc3d4SjF4WmJsNjJjU2d3NF9jUVRGVUo0c2M?oc=5",
-      "intensidad": 7.0,
-      "fecha": "2026-10-22",
       "nivel_fuente": "ALTA"
     }
   ],
@@ -1903,10 +1909,10 @@
     }
   ],
   "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-11-04T18:01:50.479091-06:00",
+    "generado_anterior": "2026-11-05T01:20:02.581656-06:00",
     "cambios": [
-      "Nueva declaración relevante (otro actor): Morena (partido político)"
+      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
     ]
   },
-  "hora_corte_publicada": "2026-11-05 01:20"
+  "hora_corte_publicada": "2026-11-05 06:01"
 }
