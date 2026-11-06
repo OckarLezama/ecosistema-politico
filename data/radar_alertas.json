@@ -3,6 +3,20 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-06|actor_clave|ignacio_mier_velazco|auto-754048b435",
+   "ts": "2026-11-06T10:58:16-06:00",
+   "tipo": "actor_clave",
+   "tema_id": "auto-754048b435",
+   "texto": "◉ Ignacio Mier Velazco aparece por primera vez en «Renuncia Claudia Espino al INE; Guadalupe Taddei nombra a Roberto Félix como enc»: Afirma Ignacio Mier que Guadalupe Taddei no fue designada por Morena - Almomento.mx"
+  },
+  {
+   "id": "2026-11-06|actor_clave|morena_partido|auto-754048b435",
+   "ts": "2026-11-06T10:58:16-06:00",
+   "tipo": "actor_clave",
+   "tema_id": "auto-754048b435",
+   "texto": "◉ Morena aparece por primera vez en «Renuncia Claudia Espino al INE; Guadalupe Taddei nombra a Roberto Félix como enc»: Afirma Ignacio Mier que Guadalupe Taddei no fue designada por Morena - Almomento.mx"
+  },
+  {
    "id": "2026-11-06|actor_clave|sheinbaum|auto-70872a96ec",
    "ts": "2026-11-06T05:21:27-06:00",
    "tipo": "actor_clave",
@@ -407,20 +421,6 @@
    "tipo": "inflexion",
    "tema_id": "huachicol-fiscal",
    "texto": "⚡ Posible trigger en «Huachicol Fiscal» (10-21): Sheinbaum entra con fuerza al tema: lo mencionan 2 de las 4 notas del día y en la semana previa casi no aparecía (0)."
-  },
-  {
-   "id": "2026-10-21|actor_clave|sheinbaum|huachicol-fiscal",
-   "ts": "2026-10-21T08:47:03-06:00",
-   "tipo": "actor_clave",
-   "tema_id": "huachicol-fiscal",
-   "texto": "◉ Claudia Sheinbaum Pardo aparece por primera vez en «Huachicol Fiscal»: Sheinbaum destaca \"decenas de detenidos\" por huachicol fiscal - El Universal"
-  },
-  {
-   "id": "2026-10-20|inflexion|tmec-revision|2026-10-20|trigger",
-   "ts": "2026-10-20T23:16:06-06:00",
-   "tipo": "inflexion",
-   "tema_id": "tmec-revision",
-   "texto": "⚡ Posible trigger en «Revisión del T-MEC» (10-20): Lo normal del tema son ~5.4 notas al día; ese día fueron 12 (por azar eso pasaría en menos de 1 de cada 100 días). Quién lo protagoniza: Marcelo Ebrar"
   }
  ]
 }
