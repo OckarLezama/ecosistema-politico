@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-06|actor_clave|trump|auto-771c303e87",
+   "ts": "2026-11-06T14:16:47-06:00",
+   "tipo": "actor_clave",
+   "tema_id": "auto-771c303e87",
+   "texto": "◉ Donald Trump aparece por primera vez en «Marco Rubio, el hombre del presidente»: Marco Rubio evalúa su salida del gobierno de Donald Trump - Intolerancia Diario"
+  },
+  {
    "id": "2026-11-06|actor_clave|ignacio_mier_velazco|auto-754048b435",
    "ts": "2026-11-06T10:58:16-06:00",
    "tipo": "actor_clave",
@@ -414,13 +421,6 @@
    "tipo": "entro_critica",
    "tema_id": "auto-9409afa73d",
    "texto": "▲ Marcelo Ebrard destaca que México paga menos aranceles que otros países a EEUU y pasó a crítico (impacto 7, 5 medios)"
-  },
-  {
-   "id": "2026-10-21|inflexion|huachicol-fiscal|2026-10-21|trigger",
-   "ts": "2026-10-21T09:11:05-06:00",
-   "tipo": "inflexion",
-   "tema_id": "huachicol-fiscal",
-   "texto": "⚡ Posible trigger en «Huachicol Fiscal» (10-21): Sheinbaum entra con fuerza al tema: lo mencionan 2 de las 4 notas del día y en la semana previa casi no aparecía (0)."
   }
  ]
 }
