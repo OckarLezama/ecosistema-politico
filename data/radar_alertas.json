@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-07|actor_clave|trump|auto-140b0227c9",
+   "ts": "2026-11-07T16:27:56-06:00",
+   "tipo": "actor_clave",
+   "tema_id": "auto-140b0227c9",
+   "texto": "◉ Donald Trump aparece por primera vez en «¿Bailarina o científica?, el comentario de Donald Trump sobre Claudia Sheinbaum »: Donald Trump le ofrece al presidente de la UFC, Dana White, el rol de secretario de prensa"
+  },
+  {
    "id": "2026-11-07|inflexion|la-barredora|2026-11-07|trigger",
    "ts": "2026-11-07T10:42:09-06:00",
    "tipo": "inflexion",
@@ -414,13 +421,6 @@
    "tipo": "nueva_anticipatoria",
    "tema_id": "carlos-manzo",
    "texto": "◐ Tema por vigilar: Asesinato de Carlos Manzo (impacto 8.2, 3 medios)"
-  },
-  {
-   "id": "2026-10-22|hito_proximo|tmec-revision",
-   "ts": "2026-10-22T08:06:56-06:00",
-   "tipo": "hito_proximo",
-   "tema_id": "tmec-revision",
-   "texto": "◷ Revisión del T-MEC: fecha clave hoy — …sidenta Claudia Sheinbaum hoy 22 de octubre: Marcelo Ebrard está en EEUU…"
   }
  ]
 }
