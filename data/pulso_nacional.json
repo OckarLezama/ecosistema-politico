@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-07T00:03:53.001106-06:00",
+  "generado_en": "2026-11-07T06:00:23.186707-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 30,
+  "n_notas_ventana": 18,
   "baja_confianza": false,
-  "tension_nacional": 22,
+  "tension_nacional": 24,
   "tension_anomalia": {
-    "z": -0.11,
+    "z": 0.44,
     "nivel": "normal",
     "media_periodo": 22.4,
     "dias_base": 27
@@ -13,36 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 62,
-      "tema_principal": "Visa de Andy",
-      "tema_principal_id": "visa-de-andy",
-      "n_temas": 13,
-      "n_notas": 19,
+      "peso_pct": 52,
+      "tema_principal": "Huachicol Fiscal",
+      "tema_principal_id": "huachicol-fiscal",
+      "n_temas": 8,
+      "n_notas": 10,
       "notas": [
-        {
-          "texto": "¿Morena le da la espalda a Andy López Beltrán? El análisis de Loret de Mola",
-          "fuente_url": "https://www.informador.mx/mexico/morena-le-da-la-espalda-a-andy-lopez-beltran-el-analisis-de-carlos-loret-de-mola-20261106-0050.html",
-          "intensidad": 7.0,
-          "medio": "informador.mx"
-        },
-        {
-          "texto": "⚡ Posible presión de Partido Acción Nacional (PAN) — PAN exige alerta migratoria contra Guadalupe Taddei por presuntas irregularidades",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/6/pan-exige-alerta-migratoria-contra-guadalupe-tadey-por-presuntas-irregularidades-2911441.html",
-          "intensidad": 7.0,
-          "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "El INE se tiene que sanear; ataques contra el instituto electoral son para afectar a Morena: Claudia Sheinbaum",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/6/el-ine-se-tiene-que-sanear-ataques-contra-el-instituto-electoral-son-para-afectar-a-morena-claudia-sheinbaum-2911450.html",
-          "intensidad": 7.0,
-          "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "Claudia Sheinbaum mantiene 69.2% de aprobación tras 766 días de gobierno",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/6/claudia-sheinbaum-mantiene-692-de-aprobacion-tras-766-dias-de-gobiern-2911459.html",
-          "intensidad": 7.0,
-          "medio": "heraldodemexico.com.mx"
-        },
         {
           "texto": "Morena definirá coordinaciones distritales en Veracruz antes de terminar el año",
           "fuente_url": "https://oem.com.mx/diariodexalapa/local/morena-definira-coordinaciones-distritales-en-veracruz-antes-de-terminar-el-ano-32997056",
@@ -68,63 +44,51 @@
           "medio": "elfinanciero.com.mx"
         },
         {
-          "texto": "Andy, el apestado, escribe Carlos Loret de Mola - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQaUNKZjNtc2FlYm9qNFJWanpuUW1DZGZJd1R5eGFFM09yLWJrVkVyU3BQaVVLbl9PcFR0dTM5eEJfOVZ3MXJHSnlRLVpRVEZOdEE0c1cwWjNBVGRpd3YtSG1DSDRDQU5tQ2k3NkR6WEZXV1UxWW10RFFvS1ZsNk5RMktPOA?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Universal"
+          "texto": "Comerciantes denuncian llamadas de 'La Barredora' - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOWm9OVlZldnB1M0ozenhneW1zRFpGYktvRldWa2Rmb1NXTjRrcHp0X3YyNU9xZzVZcndvVndiTzNMcDZmbVVGcGhEX21XcUtDV1dZZFVKNVVKUGV2N0tBdEpmRWVOaVhUQXRFLTdRa01jYW9OZDNoMUhRSUF3NjlmMU96M2ZiUdIBhgFBVV95cUxOS2FjYVNxZjhoeDZMdF9xYlFSZm9HZ0xWWm5kcGxyeEZEbGdKUllQZDJ5aFFTT2lJWXNleTBnYXBra1VnQ2tSUTh1Q3BaR182enJkR0I3NklDWDcyXzNRZFJBWERfSHJCVkNISmtRRnJEd2lxQnA3NW5WcXVBLXV4eVFUT3cwZw?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
         },
         {
-          "texto": "Respalda Beatriz Mojica a Sheinbaum y a Morena en investigación al INE - Quadratín Guerrero",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOb3g4M2lhSDRmT0Y4T3lfSGZBWUViandTT3V0U21iTFN6S2JkeW05TXhrV1FGM2g5aUxESDJ5T2VnZjM0WWlja3BJTV9JdjZwb0pXZURqdTZ3M1h3S2ZyTGNfMmlpOVBRVlNKZDJKenpMRWFFZ0EyYTU2azRMMVQ4LVl5R21Kbm03ZjNNV2JXMGdzbkpaOTNtYTQ5SlcwOTViNW5wdlk2TEU?oc=5",
+          "texto": "¿Guadalupe Taddei tiene vínculos con Morena? Citlalli Hernández aclara su relación con el partido",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/6/guadalupe-taddei-tiene-vinculos-con-morena-citlalli-hernandez-aclara-su-relacion-con-el-partido-2911500.html",
           "intensidad": 5.0,
-          "medio": "Quadratín Guerrero"
+          "medio": "heraldodemexico.com.mx"
         },
         {
-          "texto": "Sheinbaum confirma asesinato ordenado de regidor Gabriel Rivas en Morelos - UDG TV",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOMkJTY21YZEprbVk4N3NwREdoemFCYUJER3c2NnlreFo1TFVOZ25aa2sxUmxyUnQ1Rzd5dHJkU1ZmRUgwNzI4LVZnaEZZYVliUVgxN3VpY1RXaGdMN09ZM1daMWVWX1RkdXRaQ3hrUDFHZzdOYkZaZkRhblM5MlFjaEhQeUhlTXZ6ZmpFcWRLcXF0OC03WExGcTNB?oc=5",
+          "texto": "Salomón Jara y Claudia Sheinbaum instalan Feria de Paz en Juchitán: qué servicios gratuitos ofrecen - El Heraldo de México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPcFJ0U1lXZlJ3R19xak5iRURKa1lpMml6MkxyRGN4ZjhqYkl0N1JVekZobVpMdGdHMWcyYUNWV1huQVBKUnlBYjNwaFBoMTJOYWY3Ri0tTEpwLTBDSFJYYlV1am45bDdDMUVzeVBGWWlJQ3ZmUVZGS3VtM242bU9SV0VYR1lkeXNJdXBrRkNzLTJOSWRqOFdtVHBUQzg5U2ZiMFdMckxMZzFtNW5tSFdnSGVTS09pNlBORHByZWZhcGJSUHJQSUdtel8wTmJWZ0pRd0hUYTdDNjcyVjZkb2pjQ1dTNzc2eHFUWkdOb3RQdER1WlBBUkE?oc=5",
           "intensidad": 5.0,
-          "medio": "UDG TV"
+          "medio": "El Heraldo de México"
         },
         {
-          "texto": "La presidenta Claudia Sheinbaum lamentó el asesinato de Gabriel Rivas Ríos, regidor de Morena en Cuernavaca, Morelos, y activista social con más de 50 años de trayectoria. El funcionario fue atacado a",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSXFOYldDMnQta0ZqN0RMSThsemdyN2tQQ0VEUWRkTnQxUnBUQnpzd2Eya1Rzd3U4aUZhY3FnaGVyX3l3YWY5SFNOQk44cXFZMVFybFNuaGdsWjlTZHF1c25mT0lTeDdKNVFrMXc4NWZrTnBPSmQyMFdHSG5SRmgya0MtMDRObHhxN2cyNjhOV1FHdG9kaV9OUWhZdXdwazhNdk16YnZLMWhleWpMSHdEMzJUTXNTbVMzOExRejlqNW5mck42LXZyRUpLTEVZNmw1MXRTQVdlVFFaZ3VNUzZCMHRsbFc2ekxS?oc=5",
-          "intensidad": 5.0,
-          "medio": "Facebook"
+          "texto": "¡Se libra de la cárcel! Orden contra Vadhir Derbez se cae, pero sigue investigado por la Fiscalía CDMX",
+          "fuente_url": "https://imparcialoaxaca.mx/en-escena/se-libra-de-la-carcel-orden-contra-vadhir-derbez-se-cae-pero-sigue-investigado-por-la-fiscalia-cdmx/",
+          "intensidad": 4.0,
+          "medio": "imparcialoaxaca.mx"
         },
         {
-          "texto": "Ordenaron el asesinato del regidor morenista de Cuernavaca, Gabriel Rivas: Sheinbaum - La Jornada",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQSkhEcVc2bEdFYVJCYVhHNnIxMFhJY0Z1ZDRSUlhuWnpZLVBoWmV0NmdpVUZPZGp1WEtsY0dNZzRrbkoycl80MTJjOWVUT0o0UXRNNnR3LTV1cnhkdmhkUl8xMENlRE9Dd2lDSkk2dnlyNkdCYnY0U2RMd0JhRFlfRHZzS19KWXF0ZllVUFg1aTZUTG51em5LdEl0TmlUSEFFLXlQVkUzOW5DOFpZTU9lc2lDQlRjMWZrYUZiZk4wa1JUM0V5VzVYVGg5SE9DdFZjdW5FTzdmTktPalQzdnVPSmlJbkYzNGFiU0JFaU50Zkl4NEZoWkNvRUNB?oc=5",
-          "intensidad": 5.0,
-          "medio": "La Jornada"
+          "texto": "Fiscalía confirma orden de aprehensión contra Vadhir Derbez por violación - Municipios Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQSFV2TkxSR3RzeGJlQmJqWG5CQm1veUF1cXNNVTRteGU0ZE9NUmFUVE9kNV9VSVZLRFMzdEx6ZE9jSFQ1NzM3cUo5bUZNQk9rTVg5X1ZldVNKa21QLWp4aEVwbEQyWHgzMVJxYTVRTGM5MzA3aFhTNFVDWEt3Vnk2Nmk0cWtfdklrRjE0MUh3QmRvVmhEQVNOLTg2cC0xUmpKZHpYU1g1Z1Vlb19BckRjRjhYUno?oc=5",
+          "intensidad": 4.0,
+          "medio": "Municipios Puebla"
         },
         {
-          "texto": "Sheinbaum afirma que asesinato de regidor en estado de Morelos fue un ataque ordenado - Yahoo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOdF93R2FOMlZpbExVM0pmaTZJMS12SFBvNjlkS2lBREo3MWtqMFNEZnM0NmM0b3J3VlNaaTdIRTI2U2ptZnB0d1BpcWlSbTl0X1pxVm0tNEF3aTYxcWs1Z19mOWttN0dwUVBpRTQ5ZWN0OHhzSDBKSnpUM2k5NDI0c2E5dE1XbHhNMXhVVUNiZUVyeWc?oc=5",
-          "intensidad": 5.0,
-          "medio": "Yahoo"
-        },
-        {
-          "texto": "Claudia Sheinbaum ordena investigar el asesinato del defensor Gabriel Rivas en Cuernavaca - Diario de Morelos",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNbGxuQ0JqT2xsNmZWekZ2Qk1oUHVETVNRYzJfVEE2YnpOVWhUNFBBQWV5X1pEMlpiOFY3NE84N0hockxycHdrSElaZGNnVkdYaWZ4OWwtNDk1ZmNJV1UwTWRFdXlFSGVWeFBTTVRrS2psTmRXODVEOVFIczF0a1VXX0lieDBqbmVCOXdJcE5tX01mY2dTUWRBQS1yWDhOLUFNQVMzR3RLeTgxaG12bzFObHNzREZSRDZGVDBjQXdnM3DSAcYBQVVfeXFMTmdfSzdsaGRMYm1jdk02NTEzTHkxRnUwbzU0YjdOZnNER0o2UEVEQkZyZzA3eGhvRnYyWTc5QW5EemNkVnpEN0hrZDlKZU0ybnpDNV9KTEdKSFBFVE54a0RvaDN2cV9iTEN1X09IVXprb3Vnam9yd0pvdGh2d0F6SWdTRWE2X1BTNTI2NDFEbDBPdDFLZEh3aEl5RGk0ek1PWG1uY1lpd3VpWko1LTRiUzg4aXhyMkNYWTh4a281YmxyTW9ob0tR?oc=5",
-          "intensidad": 5.0,
-          "medio": "Diario de Morelos"
+          "texto": "Fiscalía de Tabasco obtiene 12 órdenes contra exfuncionarios ligados a Adán Augusto y La Barredora - Sinaloahoy",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOQjRtdXNVUl9xTGFQRjgxV25DenZsUVZ5RkxuR05IYXA2TDIzT09CZHBfVDBFUnAyMGV5dnozbUdqTHlxTm15VWFFZHdRYW4xcUZCMUZrUUNGYmlhZFE5QnllUmgyOTgyM2Z1Y0FTOUIwX3JwQ2hHNHV5d01UUVh6d3I2Q1RVY0xPLXdFT3N6cE0wdXNVdFRVT2ZMX0pVMkpZM1Y3ZzQ3eURJZjY3amdFUUNrQXhIU1BXV2tRaDJkM2RiVjlVZVhrLTN3SGJRWGVnT1E?oc=5",
+          "intensidad": 4.0,
+          "medio": "Sinaloahoy"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 23,
+      "peso_pct": 38,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
       "n_notas": 6,
       "notas": [
-        {
-          "texto": "Ebrard prevé continuidad en aranceles de EU, pero cambios en T-MEC - Notisistema",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOT21KMzh5anE0bkdFSy1WbU50aGxXT3NQcXd4ejgtTTJlaUtWaTgtVG1SVk9YQUlTNDYwY0xod3pRdTBTdkVUd19mQ1pfckNQcHFFZVV1d1RXMjlnYUxMdjdmV3RLdERBaDFrb19qNGlENmc5N1h5LVoxMFVsWm5zblM0eGFSWWlDY2hwczctVWV1bk5WTHJTQXpSNFVpdlZoOGMyRlVR?oc=5",
-          "intensidad": 7.0,
-          "medio": "Notisistema"
-        },
         {
           "texto": "Aranceles de Trump y revisión del T-MEC frenan inversiones y provocan recortes en industrias de Veracruz: C... - Imagen de Veracruz",
           "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxQTEpnMVpaVEJxNk5LMlk1VUlKaWhlVFFYVjZzWlYtUVY4eVJ2R0prSG14LTV3dU56ZVozVlBvdklCdVFUeGtPdHljaFZ2VDJ5NGJXZnZtOXN5LXQtMzRuVTJwN1ZNdFYxSmJybkZIeU8yRUcyaWFsYWQ4VWxTS3JaVkRfSUZ2ZjI2bDdSZk92R0hDOWRocGlrYTFvM05UREVQUEVXSEl6b1Brbkt0bWR5UWN5eWdTc1pyX25SQ1JicEhEQW9GUVl1dE1RRWtBVHNxVkd6Ql9SdGhCWm9LUzEwb3liVmVvY0ZJajM5TGQ4REF0RHk4WEFtQzliaUpWbzhT0gGGAkFVX3lxTE5uZWZhTnU3UThsbzNPdjEtTkUzU2I5NV9jVkNuQVBhTTJwRUVTZ1l2eXFZeGFMR3pydEMyQWlwZEo4WnVTdjZKV2gtVkV4TERsNHBlQ20yWmVlVTg2T2lUQ1pjWkxueFN2RGJWUVZLUHZFbHZnQXJqVWNZMnRRSUZYMkQzMGp0MkE2TmRJUXQ1dnBrc3JnYmh1V0VsR3A2OExxY0FxSjBpSWE0cU5yOFQ4WWg3WTZJUXZCQ0JCTFpiRW9TQzlidW9qVnE4Wmo3c0tjNE9PUnJ0blhqYjZGS1oyeG9YZ3BRcDVLbVdCWXY4WVYxZ1ZtWjN2MkNaaDlNZFV4ZTRqN0E?oc=5",
@@ -150,6 +114,12 @@
           "medio": "Mi bolsillo"
         },
         {
+          "texto": "Richard Neal promete mantener el T-MEC y revertir aranceles de Trump - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOUGp4MjZyR0JKaTBzZm45eDd6UEZZRzRUdXdrVURYVk5iaDlGdkNxaEw5OUJ2MDlQNUlJRmNKaEpBTXhfd0FOTkNYSmVsWmZXZ0VsS1V3UVp2NVdudlh6eThETE9TY09QbUh1dVJneFR1UTNMa1JONC1GRk1hN01zNXBvN29taEZuZG11bzc0N3k0UFE5U3VMQlBFU0Z1ckJGRC1sUFFwRkZMRkNScXhUTNIBywFBVV95cUxNdnk0ano0aUs5WWU0ZW03MXJYdENQeUJaRllKb09vQjhKYm9rVnM0WHNPLXpiOE9tSkI0dGRRN19lU1hxMzVNT0x3LTdoZGNXUlItQUU5NG5tRjd0UzV6VWVKYVBsdDNjbU9uMXM0VmRuckVNR2dRNl82NG45WTJSVW90MUpxS1hxQ1QzX2FfRzQ0alRkclVCdm9CYUZEZ01GU0Y2VFpZTXAyRVlEbEhLQVVOUFphZkJ0R3ZLbzlNT1RXRzRMaVFJTE40VQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "Infobae"
+        },
+        {
           "texto": "Líder demócrata en Cámara de Representantes se compromete a revocar aranceles y mantener el T-MEC - El Economista",
           "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNa2toV3R1VEVBcTRFVDlLeG0wWWxReUtuczhvZzl6VGxBeTB5WVd2ZlFoVTZSUVRzTWh0S184ZWoyUmZ2TE5BdUZucGo4ZGZPd25UUlVhT0otZTE3Yy14bUdnMGlCZm5iWHo2eDc4Zm84UDlMdWNpM2FJVVI5MVQxY28xN2N5THFWcTFEYlp6ODBTX0w3QWRDcFhEUGdLOG1KWEd2MVk0bE5jMlpMTE9Fdm9oNEF1WjlxUjhGeDVpMGF2aXJJejVlUUN6M2phT2hzSGYzb2d2YTJWdlXSAeABQVVfeXFMT2xmMEYya2dmNmFLT09XZVA3RU40djZEMk8xOGNIYzZOTzI1OGtBRGZwbGVGSDgySmlaX2RLa0Q0MlhaX202UWlOTWtUV2cwZmMyVktqcHg5ZkNRY29kR1EyVEhyRk1qa1p3V0Vtbk1IQktWLVVhbzZTZjlDQ2RRQ3BpOTR1ZnpCQ3gzeGoxQTFUaHJLVzlqcUVjcmtMREtJenBFblg3am5TZUlpam9KUS14emNFalMtSk0xSVNFYmdxaG4zM0hPSGZab0FTcWJOdW9GWnNydllFYUZRQ2FlamY?oc=5",
           "intensidad": 6.0,
@@ -158,41 +128,23 @@
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 11,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 4,
+      "categoria": "Economía",
+      "peso_pct": 6,
+      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
+      "tema_principal_id": "rocha-moya-acusacion",
+      "n_temas": 1,
+      "n_notas": 1,
       "notas": [
         {
-          "texto": "Sheinbaum promete esclarecimiento del homicidio de Gabriel Rivas, activista y regidor de Morena en Cuernavaca - Reporte Indigo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQRENDRkd0Wi1OVTFXR1RpODFmb1B6cGg2ekp6aDJRSURkQUN5cFRERzV0TUtTOHVPbDZfbkx0LVpDNVlEbkVBbXBJQ09FWThrdVJmeG42dGdrdjlZUjk5Rm5NNTBmbXlxazM0Y245QXJ2ZS1EeXptMHRwSHN1N0JMenRaWFBJaml1N3R1Ny0zaWQtQUF3dmwxOUh2YnV6QUV3a3Fpa240VC1BUWtsNVZ1QWFqc1RMMndKRXFTY2wzck9NaGJQaGotZWdMcDQ4dnZ0YmZmU3o3ajZZSWhvczM4WGcycDNPU20wMVBQUzU0UGF0b3hweC1MV2VB?oc=5",
-          "intensidad": 5.0,
-          "medio": "Reporte Indigo"
-        },
-        {
-          "texto": "“Era un homicidio ordenado”: Sheinbaum pide esclarecer asesinato de Gabriel Rivas, regidor de Morena en Cuernavaca - 24-horas",
-          "fuente_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9PMk95MlVHdlBNTVc2cmFneTRwdVBJb3NIZFhlUENQVnVOSy1wWFpmVEJ4QmNQeVNEUWloQzIzamxUaW92bGhSb1BiTU9VVkk4d241WTBZenlKeWhWYmhlNlowcXRNT0pPa3lQRGdSSWR1X3o4a3dDMw?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Asesinato de Gabriel Rivas fue un ataque ordenado, afirma Claudia Sheinbaum",
-          "fuente_url": "https://www.yucatan.com.mx/general/2026/11/06/asesinato-de-gabriel-rivas-fue-un-ataque-ordenado-afirma-claudia-sheinbaum.html",
-          "intensidad": 5.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
-          "texto": "FGR confirma que Vadhir Derbez tiene orden de aprehensión por violación; esto se sabe",
-          "fuente_url": "https://www.yucatan.com.mx/espectaculos/2026/11/06/fgr-confirma-vadhir-derbez-orden-de-aprehension-violacion.html",
-          "intensidad": 4.0,
-          "medio": "yucatan.com.mx"
+          "texto": "Otro clan: hijos de Rocha Moya ganan millones en Sinaloa - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNclh5Y2hKamFYZ0JUUnJjZHQyckUyN0hHR1NnQ1NhNkh5bnNTLS1USkYtVUM5Z09qTHRxYU9rY3VLZGRoaGxWck54Z0N4ZDhfQmx5VGZHaUNWUWxjVGhuaWd1d2NYMlhzelV5M0hnU3R1eWtlTkFYQ0JWX3h4N1FLMzJwdG40RERyNHVLVlJpOEJOVW9PNXRFZFNDOExCaEt2OVHSAbYBQVVfeXFMTTRSR1MzS2xCcUVJXy1JZDZhTk93WnpPZmR3aHVxbGtxWC1lblcyUVpfNjBoZURNY1U5S2F1LXBRYkRaOURmYjdYUm5CeHpQQUFhWE9WaTV2azJZV194ZDVkS2F2d0s3ZzllMkp0SlpYM2tMTWptU2tyNF92c24yVldBeHJGMldMdnE3bWc4ODNuU2pIbnM2d2lsSXlqclg5SC1VYTg1YndOSjAycmNsTjVhQVgySmc?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Universal"
         }
       ]
     },
     {
-      "categoria": "Economía",
+      "categoria": "Seguridad Nacional",
       "peso_pct": 4,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -200,10 +152,10 @@
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Detecta ESAF observaciones por 22.7 millones de pesos contra exalcalde de Tlaltizapán",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/6/detecta-esaf-observaciones-por-227-millones-de-pesos-contra-exalcalde-de-tlaltizapan-2911434.html",
-          "intensidad": 7.0,
-          "medio": "heraldodemexico.com.mx"
+          "texto": "FGR confirma que Vadhir Derbez tiene orden de aprehensión por violación; esto se sabe",
+          "fuente_url": "https://www.yucatan.com.mx/espectaculos/2026/11/06/fgr-confirma-vadhir-derbez-orden-de-aprehension-violacion.html",
+          "intensidad": 4.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
@@ -914,7 +866,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 5
+          "peso_pct": 4
         }
       ]
     }
@@ -926,29 +878,17 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Demócratas prometen frenar aranceles de Trump y proteger el T-MEC con México y Canadá - Excélsior",
-      "peso": 13.0,
-      "n_temas_agrupados": 2,
-      "escalando": true,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxObVZTUkdnYUw1WTN5RDdpQVdueGdFdXdSOUszc0M0ekxnaGlXNl9uVjJOR1hpWm11ckZyRkpqYnAzeHdwOUpfYUs0TDBHZUVfVzVLM1RlLWJ2YUZkUy1OUXZOS3FBU3hYY08weV9zMmhEWXR0R3lpR2ZMak5jNVFJMFFfcHRQNXRUV2lRaDBGNTBoaXlOZjFKZnRWVExUQWYwRks3NDhPV21yWVNqa1hrUlB6RjZSeEJ0RTJBUUI1Z9IBxAFBVV95cUxPR3RCRGhieklBdHJhNk9mbVlWSGlxaDlnelBFN0phSTM3Mll1SUUzMHd0andlVld5X1NPMVFNblowTVBiZzBQUVFNc1ZyaEpMQ01IM3YzSnBVR1l2N0Q0MXJrdzBKYTA1NS1VSDRuZ0R4M0pIWkFNNWZrdy1qWjQ0b2MzRmt4a0tobXNTNVVGUWVGTHkxWWtLZU43OFRsUGR5VXRTUTRKamRLcFdfeUlJQTBzZG1DYnZFMFRfMUNlT29nMW4x?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "visa-de-andy",
-      "nombre": "Visa de Andy",
-      "categoria": "Relación Bilateral",
-      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
-      "motivo": "¿Morena le da la espalda a Andy López Beltrán? El análisis de Loret de Mola",
-      "peso": 12.0,
-      "n_temas_agrupados": 3,
+      "peso": 20.0,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.informador.mx/mexico/morena-le-da-la-espalda-a-andy-lopez-beltran-el-analisis-de-carlos-loret-de-mola-20261106-0050.html",
-      "actor_vinculado": null
+      "medios_corroborantes": 3,
+      "confianza": "alta",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxObVZTUkdnYUw1WTN5RDdpQVdueGdFdXdSOUszc0M0ekxnaGlXNl9uVjJOR1hpWm11ckZyRkpqYnAzeHdwOUpfYUs0TDBHZUVfVzVLM1RlLWJ2YUZkUy1OUXZOS3FBU3hYY08weV9zMmhEWXR0R3lpR2ZMak5jNVFJMFFfcHRQNXRUV2lRaDBGNTBoaXlOZjFKZnRWVExUQWYwRks3NDhPV21yWVNqa1hrUlB6RjZSeEJ0RTJBUUI1Z9IBxAFBVV95cUxPR3RCRGhieklBdHJhNk9mbVlWSGlxaDlnelBFN0phSTM3Mll1SUUzMHd0andlVld5X1NPMVFNblowTVBiZzBQUVFNc1ZyaEpMQ01IM3YzSnBVR1l2N0Q0MXJrdzBKYTA1NS1VSDRuZ0R4M0pIWkFNNWZrdy1qWjQ0b2MzRmt4a0tobXNTNVVGUWVGTHkxWWtLZU43OFRsUGR5VXRTUTRKamRLcFdfeUlJQTBzZG1DYnZFMFRfMUNlT29nMW4x?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     },
     {
       "id": "huachicol-fiscal",
@@ -956,84 +896,72 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
       "motivo": "⚡ Posible presión de Andrés Manuel López Obrador ('AMLO') — ‘Peores cosas se verán’: ‘Pepín’ López Obrador advierte más acusaciones contra Andy rumbo a 2027",
-      "peso": 7.0,
-      "n_temas_agrupados": 1,
+      "peso": 19.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/11/06/peores-cosas-se-veran-pepin-lopez-obrador-advierte-mas-acusaciones-contra-andy-rumbo-a-2027/",
-      "actor_vinculado": null
-    },
-    {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "Andy, el apestado, escribe Carlos Loret de Mola - El Universal",
-      "peso": 5.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQaUNKZjNtc2FlYm9qNFJWanpuUW1DZGZJd1R5eGFFM09yLWJrVkVyU3BQaVVLbl9PcFR0dTM5eEJfOVZ3MXJHSnlRLVpRVEZOdEE0c1cwWjNBVGRpd3YtSG1DSDRDQU5tQ2k3NkR6WEZXV1UxWW10RFFvS1ZsNk5RMktPOA?oc=5",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-4f0a097cc0",
-      "nombre": "Dan 16 años de prisión a dos hombres por transportar 83 migrantes, entre ellos 3",
+      "id": "auto-a294d368b5",
+      "nombre": "Sheinbaum insiste en la “mafia electoral” y omite respaldo de Morena - Los Ángel",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/07/politica/004n1pol?partner=rss"
+    },
+    {
+      "id": "auto-d2018368bb",
+      "nombre": "Detienen en Alvarado a exregidora de Tierra Blanca; despliegan 60 patrullas fede",
+      "categoria": "Gobernabilidad",
+      "peso": 11.0,
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQVpHNEpwelRrNGw3NG9YQS0zRWhvU2FWdmpSYlJGRnFEMTlxOF9HU3lZVDFFZGJwOW1KVVlHenhZMWk5Z0s2VU1TOHI3NlBqdWc5NEtiVWtpV2dZMkVYNjFmcWNLOFJMeHhXcVc1REdDOUhrMVJKNkQ2NkhwWU9LYlFFeFlIOGxjQ2xOYkY2VXo1Z0dPTUVr0gGXAUFVX3lxTE5KMGx5RE4xVGRaRHluR1I4NHFnS3dDa1hwZzZoMnBRRVFfVVNDUEtPVk1hd2d2TmxjbEtHSkUtQVJlNVJtRkNwOHhpNnJfbkNONTRaWHFzNHE4clVQZVhzSk1kN1VMZUJXSGRvSldvdjZjTHR0dVEyaGswRHlkYWdTTGE1b2NqODVaaEhoVy1GaU1keGNwdnM?oc=5"
+    },
+    {
+      "id": "auto-38c6c1e901",
+      "nombre": "El buceo de las ranas , filme sobre desalojos y migración a causa de las mineras",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQSzAyUUdQRzNlWkRaQ3VVbWdxaEV4WTY0OGRlTmw3TVlGTGJ5aEF6RmVzOXNzQUM1MEI1WmhGQXlvOGYxYkdDaUZPRmFMeVdvOGZwR1NkTDNHUFdESnZoR01OS2d3dEdtYXhONkpNa3NxcDE4X01qcWVXc0tIZ1V6aUdfRzhfa0RQN2RsdnBfbnNuY2pzb1JqeXpmU0dvaHBG0gGgAUFVX3lxTE1GQ0Z2UUFXWWQ1bzFLOURLU0NHVWNFLUZuVkk1ZXNiT0ZzcEEwdWpPT2xIOUNWcXRmZUJmOUlidUVvd25hTXhRamNMVEhkckw1VVc3TkxZcG9XU25fYldHcVZ3eVpOc0Vqdk95VVdrYW1XbGlBUWxnOWxhd0JjcFFqbGYycGtXN0lqa0MtOWVUUTEtZWtEMDdfbXBzWHp1aG4?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE02WGM4MFk0QlNHczRQcXdCOS1qUm9EdWJDMVJyZFFBa3dZZ05lS0FWYTUyLXQ0R2RHNHkzS3pmQmxSaWwyWHZuSk80THZENDlrXzJBUTFKNXV5Ym5SSmNXa2VYQUlOem50TzFJ?oc=5"
     },
     {
-      "id": "auto-b25feca169",
-      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
+      "id": "auto-2cd6d173bb",
+      "nombre": "¡Por inclumplidos! Edomex retirará concesión a empresas que no den mantenimiento",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPaG5uQUdNaERwRkVMZWw1WUdENzdBTi00QjFDMFhzMXk4Ujhja0xCaVExNHoyT0R2eFpZNko0OVEwNnJBeTFzTDFudUlUR1lOU2diRHZTRFRFRTJobjFHaGthaGhoLUVoS1IwTndrMVpBcm1jbXRhZm9BMTdmZ09wY0VQWElZaGVvRWZMSzRwZTNGLXNsckpKek5rSXRzYVZmMHozLXZQVVdUbmRl?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/11/06/por-inclumplidos-edomex-retirara-concesion-a-empresas-que-no-den-mantenimiento-a-carreteras/"
     },
     {
-      "id": "auto-d448e50717",
-      "nombre": "Bacheo intensivo en Edomex: Repararán en 60 días el equivalente a recorrer 2 vec",
+      "id": "auto-0e55221f8f",
+      "nombre": "Claudia Sheinbaum respalda reducción de cinco mil millones al INE",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/11/06/bacheo-intensivo-en-edomex-repararan-en-60-dias-el-equivalente-a-recorrer-2-veces-la-linea-9-del-metro/"
-    },
-    {
-      "id": "auto-a4617b2ba4",
-      "nombre": "Con la misma vara - Reforma",
-      "categoria": "Gobernabilidad",
-      "peso": 4.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9lbVBlQUlKbklicVF3blJwSmJYVjVLZFNZMzRDNjNWQkxwOWVfZ2pzZmFoOTlvNGhLWFlncGRWOGozNjJ0b3pPQlVMWFZtLS02OVN1Sk9neU10cUswMWxXUQ?oc=5"
-    },
-    {
-      "id": "auto-368df3be52",
-      "nombre": "Cancún será sede de la segunda Expo Turismo Health & Wellness 2026 - Gobierno de",
-      "categoria": "Economía",
-      "peso": 4.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNbGlKWVRoUHdyYUh1RlR5bmpVU0R5LUE0RllrYTRtd2pibE1FSTFrTENveG42VkxGLWJXODRRUEN1VUdFYXktcG84dnE0UERCMHJhVXRibFJYSk16SWV2NG55TVN4M0NCQjhYRVZVeGlkSFNlbVFPbGtFOWZJbjhkZXFIMG9ud0tyZThhMF9UQnRLVnM?oc=5"
+      "fuente_url": "https://www.informador.mx/mexico/morena-claudia-sheinbaum-respalda-reduccion-de-cinco-mil-millones-al-ine-20261107-0019.html"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-b8df8d40a9",
-      "nombre": "Se investiga el ataque en Nacajuca",
+      "id": "auto-786c00a97f",
+      "nombre": "Chedraui esperará convocatoria de Morena para solicitar licencia para reelección",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 24,
-      "motivo": "‘Fue un ataque directo’: Gobierno ayudará en investigación de homicidio de regidor de Morena en Cuernavaca",
+      "dias_silencio": 40,
+      "motivo": "🔔 ALERTA — Morena emplaza a la senadora Karina Ruiz a solicitar licencia",
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/06/claudia-sheinbaum-mananera-temas-hoy-6-de-noviembre-de-2026-en-vivo/",
-      "fecha_anterior": "2026-10-13",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://www.jornada.com.mx/2026/11/07/politica/009n2pol?partner=rss",
+      "fecha_anterior": "2026-09-27",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNUVRFelUtYkRZWnBQQUxuWGRUdGp1eTQtTmlSMjBob2hnWjEydlhjbTNWRmYyaW5hSnVuazhYWGRkSE4wNkw3akZ4elNIb0g4d1ZiSnBwNDI2ZHE0aEtielFkaDMtVFVTOENobXBBSWN6M0REcUFMT3ljV3RET01pc21jcnpuSzdVSEtyN0FxZWV3M0pnWHd5TDJEN2R0Tng1VUpPOTNKLW13VDlZY00tX2RCTENxZEtQMHRERTJXOVZwaTgtVTA0Sg?oc=5"
     },
     {
       "id": "auto-2ce2d4b522",
@@ -1047,15 +975,15 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-e1725b2982",
-      "nombre": "Exigen justicia para Kimberly en Ixcotel",
+      "id": "auto-756dd88be1",
+      "nombre": "Morena pide a aspirantes respetar tiempos y la ley electoral",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 21,
-      "motivo": "Activistas exigen justicia por asesinato de regidor en Cuernavaca - Milenio",
+      "dias_silencio": 17,
+      "motivo": "🔔 ALERTA — Alcalde de Houston limita cooperación con ICE; llama a respetar voluntad de los electores - Milenio",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOZFd5WHhoc0I0azV6T1h0UDV5SnltaXpJM2hsLTQtRGVCeGMtYmFIMmxWSk53Wk5uSDFXVGFkOU42eW96RVFyV2xGdWNTNG1BS2dTM1pNZ2NkR0pfc0J0U3czdkNfQmUyekc3RG1CbVdMTjk0Y3ZieXJlT0lPWWVlVDhqWko5MWFab0dKeERIREhQcWFHdEJhS9IBmAFBVV95cUxQaHZaTnFGNG5iWGFOUDN6bmFZYndESndwbHU4TVl5LUJOUFV0SVlDOElKNzhTdmRJbEoyN3dTQzRKVEFuazJiOUw4aG9YVGJGcFd4Wjg0Ym9oalp6NnRCT1ZBVHdvUU9fS2paRUxSMlNScnFCV3R2TTM4aEZnSk45VWI3X2RCYWxBbUJnVVIxakNTLTBNeDlvcA?oc=5",
-      "fecha_anterior": "2026-10-16",
-      "fuente_url_anterior": "https://imparcialoaxaca.mx/los-municipios/exigen-justicia-para-kimberly-en-ixcotel/"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNRzZnWVJrQXBkZ0lSWjdLbWhMUTZSdFNFYi12XzVEM3d5R3RkN0NrbHFwQUM0V3FRMk9QRXNKdTNZZERpVnctdTZjQzlOYnhjYlQ2aFhlSHg5Z1VtMURjNHpURWRUclRZUTVXOEtQdE40d2Jwb2l2dlZJQzNMbWt1Y1Y4ZVhJbnlVOWJmUE9PV1RVb3BY0gGUAUFVX3lxTE8xYmZ0WDZ1bzNpdGRYeXBsOVVQNUQ5YjN3ejFqd3BtWllRVk5wWnZyaXkzMHBTN0RQVzc0MEpxdXliN0Z4SGxOanRnNTdwTGV3azZDMldyNFo5V1d0N0ZidW5CM1NyLVJxZFkxM2g4V01xdVhtY3NUV0JCMlJ1eFdjWkVWNmxYaXhUcDhKcmhpczdRZEc?oc=5",
+      "fecha_anterior": "2026-10-20",
+      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
@@ -1063,20 +991,20 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "EN VIVO: La Mañanera de la presidenta Claudia Sheinbaum hoy martes 6 de septiemb",
-      "nota": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 6 de noviembre: Síguela aquí en vivo - El Financiero",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxObFRhbGNaTzRjd1p1Rk9oMUpNSXdKRVZWaG1vbDg4OFhIb055cDk0S2RETmVMLUtIeEkwYm5aeGdEdWlVNG5aNUkzQ3pkTzFEdGpoSHRYejhFUTMzdTJSZmxUNjVFSDdiU0MzMVZSSGRJdlJ2LUdJZkI5TENRNklzM3c0N0Fjd0FaTmlNVGdOUExRbk9FdTFVSmh1ZzJGNnJ5Z2xaUV95THlVVy1ZckhpN3lBUTdyZ1lORC1tTw?oc=5",
+      "tema": "Fiscalía de Chiapas busca a Humberto 'N', entregado a un cartel - Milenio",
+      "nota": "Presidenta Claudia Sheinbaum entrega el ABC de las emociones en Conalep 022 de Chiapas como parte de la Jornada Nacional por la Paz - Gob MX",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNUWdObTRXNkhhelpkbHdEd2Q4MnF6NTNRZmxqelotMVlIRnVvV2xpQ19CNGpySDl3VDZZanZGTTExelk2V3pDMUVJTmZiU21tTGhoVFRKWFZPdFR3QkE3YVhwa1BUSWpENlotZnR5aEtoc01PVjhYdHJJdE5PYnN5a21UMG9ZSUpNaUhGUkxXU1Z4SHJnM3dCTkpTZnIyX0p4bWN3akc4ck5uVkI3cjZodl9aYjBicEF2R2g5VUhSSlNIbHRqdXdEMkJJU3RVcE0wQnRrOVZSSUlsRWRvZG4wUkEtazZwNEFOanloQXV5RF82TXphQlJnbHVFbElQVVJoc1FTbHBKQWlvZw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
-      "confianza": "media"
+      "confianza": "alta"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Reacción social/mediática",
-      "tema": "Visa de Andy",
-      "nota": "¿Morena le da la espalda a Andy López Beltrán? El análisis de Loret de Mola",
-      "fuente_url": "https://www.informador.mx/mexico/morena-le-da-la-espalda-a-andy-lopez-beltran-el-analisis-de-carlos-loret-de-mola-20261106-0050.html",
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "rol": "Investigado",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "Otro clan: hijos de Rocha Moya ganan millones en Sinaloa - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNclh5Y2hKamFYZ0JUUnJjZHQyckUyN0hHR1NnQ1NhNkh5bnNTLS1USkYtVUM5Z09qTHRxYU9rY3VLZGRoaGxWck54Z0N4ZDhfQmx5VGZHaUNWUWxjVGhuaWd1d2NYMlhzelV5M0hnU3R1eWtlTkFYQ0JWX3h4N1FLMzJwdG40RERyNHVLVlJpOEJOVW9PNXRFZFNDOExCaEt2OVHSAbYBQVVfeXFMTTRSR1MzS2xCcUVJXy1JZDZhTk93WnpPZmR3aHVxbGtxWC1lblcyUVpfNjBoZURNY1U5S2F1LXBRYkRaOURmYjdYUm5CeHpQQUFhWE9WaTV2azJZV194ZDVkS2F2d0s3ZzllMkp0SlpYM2tMTWptU2tyNF92c24yVldBeHJGMldMdnE3bWc4ODNuU2pIbnM2d2lsSXlqclg5SC1VYTg1YndOSjAycmNsTjVhQVgySmc?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1096,9 +1024,9 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "rol": "Mencionado",
-      "tema": "Visa de Andy",
-      "nota": "¿Morena le da la espalda a Andy López Beltrán? El análisis de Loret de Mola",
-      "fuente_url": "https://www.informador.mx/mexico/morena-le-da-la-espalda-a-andy-lopez-beltran-el-analisis-de-carlos-loret-de-mola-20261106-0050.html",
+      "tema": "Huachicol Fiscal",
+      "nota": "⚡ Posible presión de Andrés Manuel López Obrador ('AMLO') — ‘Peores cosas se verán’: ‘Pepín’ López Obrador advierte más acusaciones contra Andy rumbo a 2027",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/11/06/peores-cosas-se-veran-pepin-lopez-obrador-advierte-mas-acusaciones-contra-andy-rumbo-a-2027/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1256,10 +1184,10 @@
     },
     {
       "fecha": "2026-10-28",
-      "tension": 24,
-      "n_notas": 71,
+      "tension": 23,
+      "n_notas": 72,
       "n_alto_impacto": 29,
-      "n_medio_impacto": 42,
+      "n_medio_impacto": 43,
       "n_bajo_impacto": 0
     },
     {
@@ -1336,10 +1264,10 @@
     },
     {
       "fecha": "2026-11-07",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 19,
+      "n_notas": 4,
+      "n_alto_impacto": 1,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
@@ -1408,8 +1336,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/6/el-ine-se-tiene-que-sanear-ataques-contra-el-instituto-electoral-son-para-afectar-a-morena-claudia-sheinbaum-2911450.html",
-      "nota_texto": "El INE se tiene que sanear; ataques contra el instituto electoral son para afectar a Morena: Claudia Sheinbaum",
+      "nota_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOMVVQQ2NrU2VuSXFPcnAxUDBFMGFUSXlNXzNTemk2YVBPYnNQN3JYQWtKRnpiM0YxTVY0UzR6NGJVLTFFdkJjY1VsSnZjc1B0clRfSGU5VkV6NUp6X205b2hKOTNOcDBKdmNhYmd5QlZMVzVqdFR4ZkZjYkR0Nk9HUl81RjhsSlVvblFwQnV3eFlJM0JLelppemVZODEtZVpSRGx0cG02NXhwTjVQbThPQ0IxOA?oc=5",
+      "nota_texto": "Rocío Nahle expresa respaldo a Claudia Sheinbaum y pide transparencia en caso del INE - MÁSNOTICIAS",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1534,22 +1462,22 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 29,
-      "y_lunes": 86,
-      "x_hoy": 33,
-      "y_hoy": 82,
+      "x_lunes": 33,
+      "y_lunes": 82,
+      "x_hoy": 38,
+      "y_hoy": 79,
       "delta_pts": 1.5,
-      "alcance": 7,
+      "alcance": 8,
       "n_alto": 4,
-      "n_medio": 4,
+      "n_medio": 5,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
+      "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
       "nota_texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 4,
+      "dias_activo": 5,
       "trayectoria": [
         {
           "fecha": "2026-11-02",
@@ -1570,9 +1498,14 @@
           "fecha": "2026-11-05",
           "x": 33,
           "y": 82
+        },
+        {
+          "fecha": "2026-11-07",
+          "x": 38,
+          "y": 79
         }
       ],
-      "fecha_apagado": "2026-11-06"
+      "fecha_reactivado": "2026-11-07"
     },
     {
       "id": "trump",
@@ -1589,8 +1522,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONXgwejhYby14Z2pTNWc0dGZWbmpJR1BoOHpKVm5OQThfNzJuQzFnWW5qRy1DSXRTajZfUnY1SE9WeUd0aGllZEk3aGpJaHg2SjRIRXkxc2hMaG9IdDQwcG9jVmNoVlVxZDJibHdONXNRQURJUXIzN29OUkZxSVg0N2E2SjhmcUM3M0FmdjRGLTkySkZGUEtsV1JnQmp0bG1SVTJRRW8tX2FxZUxxT09kbjFnclp4ZlJmbk9qZThBeWs3R003alF6Rk12NHU0Y2xE?oc=5",
-      "nota_texto": "Marco Rubio evalúa su salida del gobierno de Donald Trump - Intolerancia Diario",
+      "nota_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9BRzFMRU5WT2VCaTJmTDV4bHVqNzh1aFdaOG9Vc09sYUdVN2pvVGVYR29MNGpITkxnZlpnaEFvRGpMcF9qTElEMkR6X0p5bzBWMFo1NFdKaTBOSnlHWGFXMUVzaV83Z3BNNGFQSnQ0RmJqSnE1VHZueXE1LWExNVU?oc=5",
+      "nota_texto": "Donald Trump y Mark Carney negocian el comercio bilateral - Revista Caretas",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
@@ -1835,7 +1768,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1890,5 +1823,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-07 00:03"
+  "hora_corte_publicada": "2026-11-07 06:00"
 }
