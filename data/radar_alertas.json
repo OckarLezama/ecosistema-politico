@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-07|inflexion|la-barredora|2026-11-07|trigger",
+   "ts": "2026-11-07T10:42:09-06:00",
+   "tipo": "inflexion",
+   "tema_id": "la-barredora",
+   "texto": "⚡ Posible trigger en «La Barredora» (11-07): Lo normal del tema son ~0.3 notas al día; ese día fueron 3 (por azar eso pasaría en menos de 1 de cada 300 días)."
+  },
+  {
    "id": "2026-11-07|nueva_anticipatoria|auto-1abb5796c7",
    "ts": "2026-11-07T00:02:40-06:00",
    "tipo": "nueva_anticipatoria",
@@ -414,13 +421,6 @@
    "tipo": "hito_proximo",
    "tema_id": "tmec-revision",
    "texto": "◷ Revisión del T-MEC: fecha clave hoy — …sidenta Claudia Sheinbaum hoy 22 de octubre: Marcelo Ebrard está en EEUU…"
-  },
-  {
-   "id": "2026-10-21|actor_clave|sheinbaum|auto-9a92b6ceb2",
-   "ts": "2026-10-21T20:44:03-06:00",
-   "tipo": "actor_clave",
-   "tema_id": "auto-9a92b6ceb2",
-   "texto": "◉ Claudia Sheinbaum Pardo aparece por primera vez en «Claudia Sheinbaum anuncia que “Casa Tlalpan” será nueva sede de la Universidad R»: Claudia Sheinbaum explica cómo la Casa Tlalpan de El Negro Durazo pasará de símbolo de abu"
   }
  ]
 }
