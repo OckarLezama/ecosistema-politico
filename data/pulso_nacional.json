@@ -1,36 +1,24 @@
 {
-  "generado_en": "2026-11-07T06:00:23.186707-06:00",
+  "generado_en": "2026-11-07T08:16:01.123826-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 18,
+  "n_notas_ventana": 12,
   "baja_confianza": false,
-  "tension_nacional": 24,
+  "tension_nacional": 12,
   "tension_anomalia": {
-    "z": 0.44,
-    "nivel": "normal",
+    "z": -2.8,
+    "nivel": "baja",
     "media_periodo": 22.4,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 52,
+      "peso_pct": 64,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 8,
-      "n_notas": 10,
+      "n_temas": 6,
+      "n_notas": 8,
       "notas": [
-        {
-          "texto": "Morena definirá coordinaciones distritales en Veracruz antes de terminar el año",
-          "fuente_url": "https://oem.com.mx/diariodexalapa/local/morena-definira-coordinaciones-distritales-en-veracruz-antes-de-terminar-el-ano-32997056",
-          "intensidad": 7.0,
-          "medio": "oem.com.mx"
-        },
-        {
-          "texto": "⚡ Posible presión de Andrés Manuel López Obrador ('AMLO') — Prevén más “guerra sucia”, advierte José Ramiro López Obrador",
-          "fuente_url": "https://www.tabascohoy.com/preven-mas-guerra-sucia-advierte-jose-ramiro-lopez-obrador/",
-          "intensidad": 7.0,
-          "medio": "tabascohoy.com"
-        },
         {
           "texto": "Rocío Nahle niega vínculos con exregidora de Morena detenida en Veracruz",
           "fuente_url": "https://oem.com.mx/diariodexalapa/local/rocio-nahle-niega-vinculos-con-exregidora-de-morena-detenida-en-veracruz-33005061",
@@ -83,30 +71,12 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 38,
+      "peso_pct": 21,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 2,
-      "n_notas": 6,
+      "n_temas": 1,
+      "n_notas": 2,
       "notas": [
-        {
-          "texto": "Aranceles de Trump y revisión del T-MEC frenan inversiones y provocan recortes en industrias de Veracruz: C... - Imagen de Veracruz",
-          "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxQTEpnMVpaVEJxNk5LMlk1VUlKaWhlVFFYVjZzWlYtUVY4eVJ2R0prSG14LTV3dU56ZVozVlBvdklCdVFUeGtPdHljaFZ2VDJ5NGJXZnZtOXN5LXQtMzRuVTJwN1ZNdFYxSmJybkZIeU8yRUcyaWFsYWQ4VWxTS3JaVkRfSUZ2ZjI2bDdSZk92R0hDOWRocGlrYTFvM05UREVQUEVXSEl6b1Brbkt0bWR5UWN5eWdTc1pyX25SQ1JicEhEQW9GUVl1dE1RRWtBVHNxVkd6Ql9SdGhCWm9LUzEwb3liVmVvY0ZJajM5TGQ4REF0RHk4WEFtQzliaUpWbzhT0gGGAkFVX3lxTE5uZWZhTnU3UThsbzNPdjEtTkUzU2I5NV9jVkNuQVBhTTJwRUVTZ1l2eXFZeGFMR3pydEMyQWlwZEo4WnVTdjZKV2gtVkV4TERsNHBlQ20yWmVlVTg2T2lUQ1pjWkxueFN2RGJWUVZLUHZFbHZnQXJqVWNZMnRRSUZYMkQzMGp0MkE2TmRJUXQ1dnBrc3JnYmh1V0VsR3A2OExxY0FxSjBpSWE0cU5yOFQ4WWg3WTZJUXZCQ0JCTFpiRW9TQzlidW9qVnE4Wmo3c0tjNE9PUnJ0blhqYjZGS1oyeG9YZ3BRcDVLbVdCWXY4WVYxZ1ZtWjN2MkNaaDlNZFV4ZTRqN0E?oc=5",
-          "intensidad": 7.0,
-          "medio": "Imagen de Veracruz"
-        },
-        {
-          "texto": "Demócratas prometen frenar aranceles de Trump y proteger el T-MEC con México y Canadá - Excélsior",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxObVZTUkdnYUw1WTN5RDdpQVdueGdFdXdSOUszc0M0ekxnaGlXNl9uVjJOR1hpWm11ckZyRkpqYnAzeHdwOUpfYUs0TDBHZUVfVzVLM1RlLWJ2YUZkUy1OUXZOS3FBU3hYY08weV9zMmhEWXR0R3lpR2ZMak5jNVFJMFFfcHRQNXRUV2lRaDBGNTBoaXlOZjFKZnRWVExUQWYwRks3NDhPV21yWVNqa1hrUlB6RjZSeEJ0RTJBUUI1Z9IBxAFBVV95cUxPR3RCRGhieklBdHJhNk9mbVlWSGlxaDlnelBFN0phSTM3Mll1SUUzMHd0andlVld5X1NPMVFNblowTVBiZzBQUVFNc1ZyaEpMQ01IM3YzSnBVR1l2N0Q0MXJrdzBKYTA1NS1VSDRuZ0R4M0pIWkFNNWZrdy1qWjQ0b2MzRmt4a0tobXNTNVVGUWVGTHkxWWtLZU43OFRsUGR5VXRTUTRKamRLcFdfeUlJQTBzZG1DYnZFMFRfMUNlT29nMW4x?oc=5",
-          "intensidad": 7.0,
-          "medio": "Excélsior"
-        },
-        {
-          "texto": "Marco Rubio evalúa su salida del gobierno de Donald Trump - Intolerancia Diario",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONXgwejhYby14Z2pTNWc0dGZWbmpJR1BoOHpKVm5OQThfNzJuQzFnWW5qRy1DSXRTajZfUnY1SE9WeUd0aGllZEk3aGpJaHg2SjRIRXkxc2hMaG9IdDQwcG9jVmNoVlVxZDJibHdONXNRQURJUXIzN29OUkZxSVg0N2E2SjhmcUM3M0FmdjRGLTkySkZGUEtsV1JnQmp0bG1SVTJRRW8tX2FxZUxxT09kbjFnclp4ZlJmbk9qZThBeWs3R003alF6Rk12NHU0Y2xE?oc=5",
-          "intensidad": 7.0,
-          "medio": "Intolerancia Diario"
-        },
         {
           "texto": "Richard Neal plantea revertir aranceles de Trump y priorizar el T-MEC: impacto - Mi bolsillo",
           "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOd1c5Mmd0SGJSVXBpMV90Z0NGcTFWSjBxZnYtdjVpMzA2bXhOeEVraEdHRjhnT2N5NWh4Y1lLZjZWNXp3Smc2VHZfQ2hoMnlaVU1HQWhwMnpRb1RBR1hIcmFxZkNDMXdkTXhoWG9waWZPWXZwNlhtMS1weVBBQXFDMU9mT0o0Z1hyaWhQVmV0TE5MUzVfQkNseUtrRTdwRTlvVkRPS2puWUE4TDNYWEZyZDk3STFESzZOd1Zwdkh6bzg5LVcyUFdaeWtXaVc?oc=5",
@@ -118,18 +88,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOUGp4MjZyR0JKaTBzZm45eDd6UEZZRzRUdXdrVURYVk5iaDlGdkNxaEw5OUJ2MDlQNUlJRmNKaEpBTXhfd0FOTkNYSmVsWmZXZ0VsS1V3UVp2NVdudlh6eThETE9TY09QbUh1dVJneFR1UTNMa1JONC1GRk1hN01zNXBvN29taEZuZG11bzc0N3k0UFE5U3VMQlBFU0Z1ckJGRC1sUFFwRkZMRkNScXhUTNIBywFBVV95cUxNdnk0ano0aUs5WWU0ZW03MXJYdENQeUJaRllKb09vQjhKYm9rVnM0WHNPLXpiOE9tSkI0dGRRN19lU1hxMzVNT0x3LTdoZGNXUlItQUU5NG5tRjd0UzV6VWVKYVBsdDNjbU9uMXM0VmRuckVNR2dRNl82NG45WTJSVW90MUpxS1hxQ1QzX2FfRzQ0alRkclVCdm9CYUZEZ01GU0Y2VFpZTXAyRVlEbEhLQVVOUFphZkJ0R3ZLbzlNT1RXRzRMaVFJTE40VQ?oc=5",
           "intensidad": 7.0,
           "medio": "Infobae"
-        },
-        {
-          "texto": "Líder demócrata en Cámara de Representantes se compromete a revocar aranceles y mantener el T-MEC - El Economista",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNa2toV3R1VEVBcTRFVDlLeG0wWWxReUtuczhvZzl6VGxBeTB5WVd2ZlFoVTZSUVRzTWh0S184ZWoyUmZ2TE5BdUZucGo4ZGZPd25UUlVhT0otZTE3Yy14bUdnMGlCZm5iWHo2eDc4Zm84UDlMdWNpM2FJVVI5MVQxY28xN2N5THFWcTFEYlp6ODBTX0w3QWRDcFhEUGdLOG1KWEd2MVk0bE5jMlpMTE9Fdm9oNEF1WjlxUjhGeDVpMGF2aXJJejVlUUN6M2phT2hzSGYzb2d2YTJWdlXSAeABQVVfeXFMT2xmMEYya2dmNmFLT09XZVA3RU40djZEMk8xOGNIYzZOTzI1OGtBRGZwbGVGSDgySmlaX2RLa0Q0MlhaX202UWlOTWtUV2cwZmMyVktqcHg5ZkNRY29kR1EyVEhyRk1qa1p3V0Vtbk1IQktWLVVhbzZTZjlDQ2RRQ3BpOTR1ZnpCQ3gzeGoxQTFUaHJLVzlqcUVjcmtMREtJenBFblg3am5TZUlpam9KUS14emNFalMtSk0xSVNFYmdxaG4zM0hPSGZab0FTcWJOdW9GWnNydllFYUZRQ2FlamY?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Economista"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 6,
+      "peso_pct": 9,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
       "n_temas": 1,
@@ -145,7 +109,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 4,
+      "peso_pct": 6,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -873,24 +837,6 @@
   ],
   "top5_temas": [
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Demócratas prometen frenar aranceles de Trump y proteger el T-MEC con México y Canadá - Excélsior",
-      "peso": 20.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxObVZTUkdnYUw1WTN5RDdpQVdueGdFdXdSOUszc0M0ekxnaGlXNl9uVjJOR1hpWm11ckZyRkpqYnAzeHdwOUpfYUs0TDBHZUVfVzVLM1RlLWJ2YUZkUy1OUXZOS3FBU3hYY08weV9zMmhEWXR0R3lpR2ZMak5jNVFJMFFfcHRQNXRUV2lRaDBGNTBoaXlOZjFKZnRWVExUQWYwRks3NDhPV21yWVNqa1hrUlB6RjZSeEJ0RTJBUUI1Z9IBxAFBVV95cUxPR3RCRGhieklBdHJhNk9mbVlWSGlxaDlnelBFN0phSTM3Mll1SUUzMHd0andlVld5X1NPMVFNblowTVBiZzBQUVFNc1ZyaEpMQ01IM3YzSnBVR1l2N0Q0MXJrdzBKYTA1NS1VSDRuZ0R4M0pIWkFNNWZrdy1qWjQ0b2MzRmt4a0tobXNTNVVGUWVGTHkxWWtLZU43OFRsUGR5VXRTUTRKamRLcFdfeUlJQTBzZG1DYnZFMFRfMUNlT29nMW4x?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
-    },
-    {
       "id": "huachicol-fiscal",
       "nombre": "Huachicol Fiscal",
       "categoria": "Seguridad Nacional",
@@ -907,17 +853,27 @@
         "id": "rocha_moya",
         "nombre": "Rubén Rocha Moya"
       }
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Richard Neal promete mantener el T-MEC y revertir aranceles de Trump - Infobae",
+      "peso": 7.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOUGp4MjZyR0JKaTBzZm45eDd6UEZZRzRUdXdrVURYVk5iaDlGdkNxaEw5OUJ2MDlQNUlJRmNKaEpBTXhfd0FOTkNYSmVsWmZXZ0VsS1V3UVp2NVdudlh6eThETE9TY09QbUh1dVJneFR1UTNMa1JONC1GRk1hN01zNXBvN29taEZuZG11bzc0N3k0UFE5U3VMQlBFU0Z1ckJGRC1sUFFwRkZMRkNScXhUTNIBywFBVV95cUxNdnk0ano0aUs5WWU0ZW03MXJYdENQeUJaRllKb09vQjhKYm9rVnM0WHNPLXpiOE9tSkI0dGRRN19lU1hxMzVNT0x3LTdoZGNXUlItQUU5NG5tRjd0UzV6VWVKYVBsdDNjbU9uMXM0VmRuckVNR2dRNl82NG45WTJSVW90MUpxS1hxQ1QzX2FfRzQ0alRkclVCdm9CYUZEZ01GU0Y2VFpZTXAyRVlEbEhLQVVOUFphZkJ0R3ZLbzlNT1RXRzRMaVFJTE40VQ?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-a294d368b5",
-      "nombre": "Sheinbaum insiste en la “mafia electoral” y omite respaldo de Morena - Los Ángel",
-      "categoria": "Gobernabilidad",
-      "peso": 12.0,
-      "impacto": "alto",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/07/politica/004n1pol?partner=rss"
-    },
     {
       "id": "auto-d2018368bb",
       "nombre": "Detienen en Alvarado a exregidora de Tierra Blanca; despliegan 60 patrullas fede",
@@ -925,6 +881,14 @@
       "peso": 11.0,
       "impacto": "alto",
       "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQVpHNEpwelRrNGw3NG9YQS0zRWhvU2FWdmpSYlJGRnFEMTlxOF9HU3lZVDFFZGJwOW1KVVlHenhZMWk5Z0s2VU1TOHI3NlBqdWc5NEtiVWtpV2dZMkVYNjFmcWNLOFJMeHhXcVc1REdDOUhrMVJKNkQ2NkhwWU9LYlFFeFlIOGxjQ2xOYkY2VXo1Z0dPTUVr0gGXAUFVX3lxTE5KMGx5RE4xVGRaRHluR1I4NHFnS3dDa1hwZzZoMnBRRVFfVVNDUEtPVk1hd2d2TmxjbEtHSkUtQVJlNVJtRkNwOHhpNnJfbkNONTRaWHFzNHE4clVQZVhzSk1kN1VMZUJXSGRvSldvdjZjTHR0dVEyaGswRHlkYWdTTGE1b2NqODVaaEhoVy1GaU1keGNwdnM?oc=5"
+    },
+    {
+      "id": "auto-5e2670adcc",
+      "nombre": "Ignoran paradero de Taddei",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/07/politica/004n2pol?partner=rss"
     },
     {
       "id": "auto-38c6c1e901",
@@ -1010,17 +974,6 @@
       "confianza": "media"
     },
     {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Elecciones en EU 2026: Donald Trump llega con baja popularidad y descontento soc",
-      "nota": "La participación de Donald Trump en las elecciones sentenció la derrota del partido republicano - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWFNXMUNpV0FfQlhHWURJcjNqMUJSWmRmWkFEdTFjQ09uYU5fYUx3a3ZXOUxXR3VyN0J4OEcyclJpV0tCcVQ3LU1sQ2lNV1kxcy1kQnRGa0lUMTNzcnIwaGtwdGRzZTg5WDVuOUhjWVhxaEozeGJoYzBRc3NkTlFnVTlEZnpOSmF5TlBhWGdtX1FEMVlVMFY2cjNRSFJBNFBmc2lZMHFGdzTSAagBQVVfeXFMUGF0WWp2bmRQc0NUa0s4OTRhRklOMXdrRlFxTmRObUE0SFYxTUE4c09ET1lMNE80R1RkdzNBTnZBbUVHc3ZmMmJtNkdONXNYZ2pxcnBSWVZ3VDBrR05hX1dSRjlqTWFxb0dtRXBKbE15ZzZGU1BfTHdlM05WanpvUkJzdVpkX1F6QmZWYnBRMFFSV0gxbkJ2Ym40bmozS2tyWE55TGE4NFhY?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "rol": "Mencionado",
@@ -1038,6 +991,17 @@
       "tema": "Huachicol Fiscal",
       "nota": "⚡ Posible presión de Andrés Manuel López Obrador ('AMLO') — ‘Peores cosas se verán’: ‘Pepín’ López Obrador advierte más acusaciones contra Andy rumbo a 2027",
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/11/06/peores-cosas-se-veran-pepin-lopez-obrador-advierte-mas-acusaciones-contra-andy-rumbo-a-2027/",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Mencionado",
+      "tema": "Una situación caótica la que vive el sector salud del país, diputado del PRD - Q",
+      "nota": "Morena impone reunión a modo para sector salud - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQT3FIQk5vVGMxUVJVN2J2aURpaDFkV016RHp4VDZMclBob1ZVdWlCU2dLb21lekVrQk9TRWFoSnFtQWpiSWFaNG14TUhrUmhjbGRCMTRUdDJqRFNpOFVZSERoT0pHdVNGRTFDZ1BQa1A1TTFyTE8wcmd2SUVFNXJiUXFlVkJsazRLSms1WHl3?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1504,8 +1468,7 @@
           "x": 38,
           "y": 79
         }
-      ],
-      "fecha_reactivado": "2026-11-07"
+      ]
     },
     {
       "id": "trump",
@@ -1522,8 +1485,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9BRzFMRU5WT2VCaTJmTDV4bHVqNzh1aFdaOG9Vc09sYUdVN2pvVGVYR29MNGpITkxnZlpnaEFvRGpMcF9qTElEMkR6X0p5bzBWMFo1NFdKaTBOSnlHWGFXMUVzaV83Z3BNNGFQSnQ0RmJqSnE1VHZueXE1LWExNVU?oc=5",
-      "nota_texto": "Donald Trump y Mark Carney negocian el comercio bilateral - Revista Caretas",
+      "nota_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONXgwejhYby14Z2pTNWc0dGZWbmpJR1BoOHpKVm5OQThfNzJuQzFnWW5qRy1DSXRTajZfUnY1SE9WeUd0aGllZEk3aGpJaHg2SjRIRXkxc2hMaG9IdDQwcG9jVmNoVlVxZDJibHdONXNRQURJUXIzN29OUkZxSVg0N2E2SjhmcUM3M0FmdjRGLTkySkZGUEtsV1JnQmp0bG1SVTJRRW8tX2FxZUxxT09kbjFnclp4ZlJmbk9qZThBeWs3R003alF6Rk12NHU0Y2xE?oc=5",
+      "nota_texto": "Marco Rubio evalúa su salida del gobierno de Donald Trump - Intolerancia Diario",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
@@ -1823,5 +1786,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-07 06:00"
+  "hora_corte_publicada": "2026-11-07 08:16"
 }
