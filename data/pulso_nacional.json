@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-07T08:16:01.123826-06:00",
+  "generado_en": "2026-11-07T12:04:11.056336-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 12,
+  "n_notas_ventana": 16,
   "baja_confianza": false,
-  "tension_nacional": 12,
+  "tension_nacional": 11,
   "tension_anomalia": {
-    "z": -2.8,
+    "z": -3.07,
     "nivel": "baja",
     "media_periodo": 22.4,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 64,
+      "peso_pct": 61,
       "tema_principal": "Huachicol Fiscal",
       "tema_principal_id": "huachicol-fiscal",
-      "n_temas": 6,
-      "n_notas": 8,
+      "n_temas": 7,
+      "n_notas": 10,
       "notas": [
         {
           "texto": "Rocío Nahle niega vínculos con exregidora de Morena detenida en Veracruz",
@@ -38,16 +38,28 @@
           "medio": "Milenio"
         },
         {
-          "texto": "¿Guadalupe Taddei tiene vínculos con Morena? Citlalli Hernández aclara su relación con el partido",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/6/guadalupe-taddei-tiene-vinculos-con-morena-citlalli-hernandez-aclara-su-relacion-con-el-partido-2911500.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
+          "texto": "Barren a La Barredora - Periodismo digital",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE4xaGxHcVhRVnVTVFl4TVRVYnpxdjNMMTJGT01xZmtta0hudDdKTmkxUmtJT2RqYWRiYW5OZlFpS29zMjBWVGIxMFZ3eklsSEhVTng2UnBKcjh5TkdFRm84SlU2VQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "Periodismo digital"
         },
         {
           "texto": "Salomón Jara y Claudia Sheinbaum instalan Feria de Paz en Juchitán: qué servicios gratuitos ofrecen - El Heraldo de México",
           "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPcFJ0U1lXZlJ3R19xak5iRURKa1lpMml6MkxyRGN4ZjhqYkl0N1JVekZobVpMdGdHMWcyYUNWV1huQVBKUnlBYjNwaFBoMTJOYWY3Ri0tTEpwLTBDSFJYYlV1am45bDdDMUVzeVBGWWlJQ3ZmUVZGS3VtM242bU9SV0VYR1lkeXNJdXBrRkNzLTJOSWRqOFdtVHBUQzg5U2ZiMFdMckxMZzFtNW5tSFdnSGVTS09pNlBORHByZWZhcGJSUHJQSUdtel8wTmJWZ0pRd0hUYTdDNjcyVjZkb2pjQ1dTNzc2eHFUWkdOb3RQdER1WlBBUkE?oc=5",
           "intensidad": 5.0,
           "medio": "El Heraldo de México"
+        },
+        {
+          "texto": "El tropiezo de Ignacio Mier por la Ley Antimemes: ¿quién podrá bajar contenidos por uso indebido de la imagen gubernamental? - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOYThvNXZEQkxJU0ktZDFzaE8zUW5VRllEU0s2YjRJblJleXVRUkFteThUYkp2OXdidWEwUF9nZEp4V3UyN1BTbWtUQ3QzbTJoZEttUVVKWGNkNkFndXg2QXJVc1czQURtOTFvMWRrYVhLQ2tYVFFCSHRsR2lNUXlnZEdCOGZaWkNVTmsxQmxmMWlQYV9BTnJfSnRTXy1Cdzg4TDFNOUFaMlFqVlQ1QllqTE5SNk9ZaU5JaTFmWXVKZHZWZ1hTM0pQeXhLVl84ZzZLOWx4VjByQV9aTXdHaEw0SmwwQUpmY0lXeEt0bGFNT0pKcWM4azRJ0gGSAkFVX3lxTE4wQTd2X0hrcGVpcmtFMWFCYlp1d3lUVTRwczNBNVFmSlhqcW45OVFWbFF1RkJFSVJyY1FQaGRtNUZfYmlkN2w4RnNyS1dhdkVTOFBMODB3X1JVclVYTlNsMWVyRlJVYVR3c3Nzd0R1QWJkWDZGZ0twcUJEdE13LUt2cmhEODlYSU0yRkhDVXJaMnFOeEJ6WktFVVhWV1ZSZExBWHdBY0VSM2dJa2V2REJRRGQ1SEM0am83WXE4T2h2eU9aOUw3dFh1QmxLV1ROTXlLamxKeGRrS3hjenVkcVR3eUlYemd6ZXRMU2tsRnNjeTEtLWNFeC1JMC1SSEM4dEJFUFJockFrdkRxb0pfQVJab2c?oc=5",
+          "intensidad": 5.0,
+          "medio": "Infobae"
+        },
+        {
+          "texto": "Detienen a exregidora de Morena y al director de Unidad Familiar del IMSS en Veracruz tras Operativo Enjambre - Grupo Animal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQWGNZSDM5UEt3VmpkZDBsUks3Z3pwOEdtb0VOLXU1MEd0N2hXWXFuRzJDUTQ1bEg4NUxWbkREWWVUbUsyQmYxUmNHR2prVzNiMlloTkF2Yzd5cF9qdUttN1ZoT0RYaGVua2FuUlQ3NjhhemZPcW8zc3p2MzlIMkM4SnppUG5FbVY5NktuX01aMDN2dWZvN1pXZjNCNGJ4WnB6djFJWVhkclhQUQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "Grupo Animal"
         },
         {
           "texto": "¡Se libra de la cárcel! Orden contra Vadhir Derbez se cae, pero sigue investigado por la Fiscalía CDMX",
@@ -74,42 +86,54 @@
       "peso_pct": 21,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 2,
+      "n_temas": 2,
+      "n_notas": 3,
       "notas": [
-        {
-          "texto": "Richard Neal plantea revertir aranceles de Trump y priorizar el T-MEC: impacto - Mi bolsillo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOd1c5Mmd0SGJSVXBpMV90Z0NGcTFWSjBxZnYtdjVpMzA2bXhOeEVraEdHRjhnT2N5NWh4Y1lLZjZWNXp3Smc2VHZfQ2hoMnlaVU1HQWhwMnpRb1RBR1hIcmFxZkNDMXdkTXhoWG9waWZPWXZwNlhtMS1weVBBQXFDMU9mT0o0Z1hyaWhQVmV0TE5MUzVfQkNseUtrRTdwRTlvVkRPS2puWUE4TDNYWEZyZDk3STFESzZOd1Zwdkh6bzg5LVcyUFdaeWtXaVc?oc=5",
-          "intensidad": 7.0,
-          "medio": "Mi bolsillo"
-        },
         {
           "texto": "Richard Neal promete mantener el T-MEC y revertir aranceles de Trump - Infobae",
           "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOUGp4MjZyR0JKaTBzZm45eDd6UEZZRzRUdXdrVURYVk5iaDlGdkNxaEw5OUJ2MDlQNUlJRmNKaEpBTXhfd0FOTkNYSmVsWmZXZ0VsS1V3UVp2NVdudlh6eThETE9TY09QbUh1dVJneFR1UTNMa1JONC1GRk1hN01zNXBvN29taEZuZG11bzc0N3k0UFE5U3VMQlBFU0Z1ckJGRC1sUFFwRkZMRkNScXhUTNIBywFBVV95cUxNdnk0ano0aUs5WWU0ZW03MXJYdENQeUJaRllKb09vQjhKYm9rVnM0WHNPLXpiOE9tSkI0dGRRN19lU1hxMzVNT0x3LTdoZGNXUlItQUU5NG5tRjd0UzV6VWVKYVBsdDNjbU9uMXM0VmRuckVNR2dRNl82NG45WTJSVW90MUpxS1hxQ1QzX2FfRzQ0alRkclVCdm9CYUZEZ01GU0Y2VFpZTXAyRVlEbEhLQVVOUFphZkJ0R3ZLbzlNT1RXRzRMaVFJTE40VQ?oc=5",
           "intensidad": 7.0,
+          "medio": "Infobae"
+        },
+        {
+          "texto": "México, T-MEC y aranceles: lo que cambia con el Congreso demócrata - Estrella Digital",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQdEdqSExFZlBIODVXcnBRM1dyMkNzR1lKaXk0WW9JQ3A4djFlVnozUjZtdnZQMTJzUU9ySVhlN2d3VHAwQXFoTXpzVkRLejBsbHdvaXo1WS1vbHY0N0dLaS1iYTktaFVBZ0gxZjF2UC15VURhcG1kNExkX1U5VExqdGxRNEpaeUdMa1JTOHBNeC1helF1YmJ4QWFUNVZEZW5tNlltZmlFVW1LQUZpVXA1bENoQnJsVGxUbTMzbHRIWGlxZmpVYTktWEVRS1NaRUXSAdQBQVVfeXFMTmI2N0s5N3dzeEU1Z1dnWFoxRGlDclQ1aUJzRXpBMkw4ckRxWXlfV1pGM3EySzFmaEM4YjF3OGpLMlU2RThReE1Ba1I2aVBiWTFqNUUwQjRFVzZVSVhGNnBPeU5GT0s5N2hnNnRWbU9NdkZ4SWlzYVlkWndIZlFWTkR0d1d6VEpMOXMzODJDMGQxRXlNUTBhdlYwcVZwSnJPdmNrMGYtczk5dXU1VURTQk9ZOFlNUkhydk1zUFZISTkyUlRCVjloV1Y2YUhub2Y4NTFjOVI?oc=5",
+          "intensidad": 6.0,
+          "medio": "Estrella Digital"
+        },
+        {
+          "texto": "México no debe confiarse tras derrota de Donald Trump: aranceles y presiones de EEUU podrían continuar - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQY3FDLVhTNElRMlktX19WUmxJeWNxcmxPQS1GbGZ5SXNyRE9TcUUtOWZXUWE2dE9uX2JqUVRnMWdEeDJYaFVaOGNlOGM4NG5NNFBoMDNQenJGWUZmX2hTQi1wcllYbEt3RjhTMVAtQkRRcC12QU1RVE9uaThIdkhUQ0pYV3MzM2c5UFZKam04WVdOdEpTdkpjSGQxekYzNzYxN0dsMlJOOW1OQTRxWGdxTjNBekI0QXhsTjdPSmhWaDVmU0x5Q0ZOUTk3QmZZeGN6VzJxWEQ1cXRSWVZ40gH3AUFVX3lxTE01eWtpVW05U0JOVDlNdlZDcFQ2S2ZDNzZEdnhWeWlvTjRqSG92NzdYNGhkelBQWDJWMWQyUmg3cVVMalNoamJKV3I1NDZDcENFU29zOTB1VzNnczZhamRGUkVqVmZxR25GUTljSmxia0FzLVI4aUMtZTRIVnVlVHRLYkgzWUlYM241RnlfOGpGSkxTWGZXMTVfVW5qV0k3bzVHWVc5WE9jbERJV3U1Z3FvNmNnQVpDU1ZibDgycVVSdTI2SVpNcWlCNWZMT2NDTmtXTlI3N1RGMUcyLVJNMU5HLTZxcWVmcWxoMmh0S3FWZEZwVXoyRXM?oc=5",
+          "intensidad": 5.0,
           "medio": "Infobae"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 9,
+      "peso_pct": 14,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 1,
-      "n_notas": 1,
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "Otro clan: hijos de Rocha Moya ganan millones en Sinaloa - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNclh5Y2hKamFYZ0JUUnJjZHQyckUyN0hHR1NnQ1NhNkh5bnNTLS1USkYtVUM5Z09qTHRxYU9rY3VLZGRoaGxWck54Z0N4ZDhfQmx5VGZHaUNWUWxjVGhuaWd1d2NYMlhzelV5M0hnU3R1eWtlTkFYQ0JWX3h4N1FLMzJwdG40RERyNHVLVlJpOEJOVW9PNXRFZFNDOExCaEt2OVHSAbYBQVVfeXFMTTRSR1MzS2xCcUVJXy1JZDZhTk93WnpPZmR3aHVxbGtxWC1lblcyUVpfNjBoZURNY1U5S2F1LXBRYkRaOURmYjdYUm5CeHpQQUFhWE9WaTV2azJZV194ZDVkS2F2d0s3ZzllMkp0SlpYM2tMTWptU2tyNF92c24yVldBeHJGMldMdnE3bWc4ODNuU2pIbnM2d2lsSXlqclg5SC1VYTg1YndOSjAycmNsTjVhQVgySmc?oc=5",
           "intensidad": 6.0,
           "medio": "El Universal"
+        },
+        {
+          "texto": "Protegen demócratas comercio con México; abogarán a favor del T-MEC - El Mañana de Nuevo Laredo",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNdGt6dXVRbmc5b0xWTWpSNzhlZnpERHVnblF4QWFMcEI4b292WlNwemFIU0Z3LWFLSTJVTHZmTDZJUVBHLVU2dURzR1Q0YmxxLUM0TGFDclJ4VWVfOHZ1cV80S0E1RHBtLS1YS2ZZN3k3RzlpZ0ZDaHNPMW4tbTl4WDA4OXYtSHRyOWpQaC1nUW10OGtCb1dyY2JvM3B4UDFSSXRwV2tjeDY3ZGlPTU5udnpmMU1BZENvcGdZ?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Mañana de Nuevo Laredo"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 6,
+      "peso_pct": 5,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -818,7 +842,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 55
+          "peso_pct": 54
         },
         {
           "categoria": "Relación Bilateral",
@@ -843,7 +867,7 @@
       "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
       "motivo": "⚡ Posible presión de Andrés Manuel López Obrador ('AMLO') — ‘Peores cosas se verán’: ‘Pepín’ López Obrador advierte más acusaciones contra Andy rumbo a 2027",
       "peso": 19.0,
-      "n_temas_agrupados": 3,
+      "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 3,
@@ -875,14 +899,6 @@
   ],
   "temas_nuevos": [
     {
-      "id": "auto-d2018368bb",
-      "nombre": "Detienen en Alvarado a exregidora de Tierra Blanca; despliegan 60 patrullas fede",
-      "categoria": "Gobernabilidad",
-      "peso": 11.0,
-      "impacto": "alto",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQVpHNEpwelRrNGw3NG9YQS0zRWhvU2FWdmpSYlJGRnFEMTlxOF9HU3lZVDFFZGJwOW1KVVlHenhZMWk5Z0s2VU1TOHI3NlBqdWc5NEtiVWtpV2dZMkVYNjFmcWNLOFJMeHhXcVc1REdDOUhrMVJKNkQ2NkhwWU9LYlFFeFlIOGxjQ2xOYkY2VXo1Z0dPTUVr0gGXAUFVX3lxTE5KMGx5RE4xVGRaRHluR1I4NHFnS3dDa1hwZzZoMnBRRVFfVVNDUEtPVk1hd2d2TmxjbEtHSkUtQVJlNVJtRkNwOHhpNnJfbkNONTRaWHFzNHE4clVQZVhzSk1kN1VMZUJXSGRvSldvdjZjTHR0dVEyaGswRHlkYWdTTGE1b2NqODVaaEhoVy1GaU1keGNwdnM?oc=5"
-    },
-    {
       "id": "auto-5e2670adcc",
       "nombre": "Ignoran paradero de Taddei",
       "categoria": "Social",
@@ -899,12 +915,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE02WGM4MFk0QlNHczRQcXdCOS1qUm9EdWJDMVJyZFFBa3dZZ05lS0FWYTUyLXQ0R2RHNHkzS3pmQmxSaWwyWHZuSk80THZENDlrXzJBUTFKNXV5Ym5SSmNXa2VYQUlOem50TzFJ?oc=5"
     },
     {
-      "id": "auto-2cd6d173bb",
-      "nombre": "¡Por inclumplidos! Edomex retirará concesión a empresas que no den mantenimiento",
+      "id": "auto-628cf7f9a4",
+      "nombre": "Taddei: concebida a imagen y semejanza de Morena - MILENIO",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/11/06/por-inclumplidos-edomex-retirara-concesion-a-empresas-que-no-den-mantenimiento-a-carreteras/"
+      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNa2ZlaWpodG5aN1lZTWVvNmtVNjhlR3l6dFRJS0VueXV6elJJaGt0Mzc1d0lNWEVlc1d5UTAwcVhNVkhoQ0tBdEFESWZiYmNnUlJKTW1GSVZfRWpiaDV2OC1FaWRTcHN1N2F1X200Uk1OS01pSm1wSVZmV2hWNFRUanJQZlhPOG5JcVlrdk1MbTJIQzQwV2MwMnhrejRnMlk4QlZNQ2l6cE5XdmJ6V2x4OHdB0gGyAUFVX3lxTE1CdHFLdzA1MkJGTzNXaFhocVhjb2hOM2tyTU1vSzQtVEMxSlpUZk9VeGtCbEU4NHdHczZGYXpjcUNuUFc2b2RaRGVnQ2RWdTRoY3piMDVCQnlJRmdkMklyLUk4SjI5NXFCZjBUMVExLVBqalRqSWJyQ1pSWWljSnJMX0F6NkdZRlBqbVd5blRaS0c2UWt2SExWUUhqQlJzRnVjUm1nTVNxbTh3VzdMckI2eUE?oc=5"
     },
     {
       "id": "auto-0e55221f8f",
@@ -913,6 +929,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/morena-claudia-sheinbaum-respalda-reduccion-de-cinco-mil-millones-al-ine-20261107-0019.html"
+    },
+    {
+      "id": "auto-7c40cab435",
+      "nombre": "¡Ahora Morena asfixia al INE que arruinó! - El Universal",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQQ2x4bmR6bHJ3cHlPNlFCV21MblBweFVaQ3BQLUNjTmliUVo2ZzQ3WWNOWDMxNWxreHhEckNrRnlfRjhTS3QxVXFraTNnMHVQVkVLTlY2NWE5Y1JzRW9vVXVyWTRHZ1o1dDNOVjg3eGxVYUtJNlhHLTVRdWFkOUZGT0lZMHdZS21IU2p6U0tlWTJ1Yy1IeVMycjlZc1E?oc=5"
     }
   ],
   "temas_retomados": [
@@ -928,15 +952,15 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNUVRFelUtYkRZWnBQQUxuWGRUdGp1eTQtTmlSMjBob2hnWjEydlhjbTNWRmYyaW5hSnVuazhYWGRkSE4wNkw3akZ4elNIb0g4d1ZiSnBwNDI2ZHE0aEtielFkaDMtVFVTOENobXBBSWN6M0REcUFMT3ljV3RET01pc21jcnpuSzdVSEtyN0FxZWV3M0pnWHd5TDJEN2R0Tng1VUpPOTNKLW13VDlZY00tX2RCTENxZEtQMHRERTJXOVZwaTgtVTA0Sg?oc=5"
     },
     {
-      "id": "auto-2ce2d4b522",
-      "nombre": "Fiscalía de Chiapas busca a Humberto 'N', entregado a un cartel - Milenio",
+      "id": "auto-9c32adc4bd",
+      "nombre": "Anuncia Mara Lezama nuevas rutas y más vuelos internacionales hacia el Caribe Me",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 23,
-      "motivo": "Presidenta Claudia Sheinbaum entrega el ABC de las emociones en Conalep 022 de Chiapas como parte de la Jornada Nacional por la Paz - Gob MX",
+      "dias_silencio": 19,
+      "motivo": "Da Mara Lezama bienvenida a la Selección Mexicana que llegará mañana al Caribe Mexicano para preparar su partido ante Jamaica - Gobierno del Estado de Quintana Roo",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNUWdObTRXNkhhelpkbHdEd2Q4MnF6NTNRZmxqelotMVlIRnVvV2xpQ19CNGpySDl3VDZZanZGTTExelk2V3pDMUVJTmZiU21tTGhoVFRKWFZPdFR3QkE3YVhwa1BUSWpENlotZnR5aEtoc01PVjhYdHJJdE5PYnN5a21UMG9ZSUpNaUhGUkxXU1Z4SHJnM3dCTkpTZnIyX0p4bWN3akc4ck5uVkI3cjZodl9aYjBicEF2R2g5VUhSSlNIbHRqdXdEMkJJU3RVcE0wQnRrOVZSSUlsRWRvZG4wUkEtazZwNEFOanloQXV5RF82TXphQlJnbHVFbElQVVJoc1FTbHBKQWlvZw?oc=5",
-      "fecha_anterior": "2026-10-14",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPcHVOQnNYeEoxVXNmWkpUalJmcXZuRURKLTFUbnVJQm13RjdTaDAweGZEcEQ3Mk95czEtOVR1c3kxQVpLQzNqc0djNFNDZUItWGw5VjVqaHoza1N5Ni12TWxTb2JYT2U5WVI0US1oTmdNSms2aUtTcVVVTWZNbVNCWWJSXzNMdTBVbmJLRXhEMDBNbzF6bzFTWEJ4cXg1OFU4OGRFemkxZHZLLUh0SjN4RUd4cTRDMm9uLUdGMFUxV1dSUVVRZ1ZsN3locUJsaW5EdHdKaTIzVzJkVG5KcmMyMFd5bk0?oc=5",
+      "fecha_anterior": "2026-10-18",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOVjR1S0VmZHFsRkNmVUxOQ1JDeS1xM0RtTzcxX3hOekdSYllQOHFkMGttYTd0M1l0NkZEeGJpaHp2VTVlc2NFWmJyd1NjaWhtUjJHbHhVQU1MSHBkSGNfR3NRQVl4UGR2SEdYRWxObUttM0t0WDh4QUduZUMyNGd1d1ZuQ3djdDltOHZZdjJGNjhIckMzcUg4akRxUVM0VVVaT3ROVHRZWUFtb21XOXB3QlQtYVBPcVRENlpiRDJoOGVEQ1JsWVJvcA?oc=5"
     },
     {
       "id": "auto-756dd88be1",
@@ -948,6 +972,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNRzZnWVJrQXBkZ0lSWjdLbWhMUTZSdFNFYi12XzVEM3d5R3RkN0NrbHFwQUM0V3FRMk9QRXNKdTNZZERpVnctdTZjQzlOYnhjYlQ2aFhlSHg5Z1VtMURjNHpURWRUclRZUTVXOEtQdE40d2Jwb2l2dlZJQzNMbWt1Y1Y4ZVhJbnlVOWJmUE9PV1RVb3BY0gGUAUFVX3lxTE8xYmZ0WDZ1bzNpdGRYeXBsOVVQNUQ5YjN3ejFqd3BtWllRVk5wWnZyaXkzMHBTN0RQVzc0MEpxdXliN0Z4SGxOanRnNTdwTGV3azZDMldyNFo5V1d0N0ZidW5CM1NyLVJxZFkxM2g4V01xdVhtY3NUV0JCMlJ1eFdjWkVWNmxYaXhUcDhKcmhpczdRZEc?oc=5",
       "fecha_anterior": "2026-10-20",
       "fuente_url_anterior": ""
+    },
+    {
+      "id": "auto-67d790e2f9",
+      "nombre": "Embajada de Estados Unidos afirma que fracasan las caravanas migrantes bajo Trum",
+      "categoria": "Social",
+      "dias_silencio": 8,
+      "motivo": "🔔 ALERTA — Nueva caravana migrante ingresa a México desde Honduras con la mira en EU y un llamado a Claudia Sheinbaum - El Informador",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPU04yLThIaWRpZGx5VGVVOHhfcFdNTDhHZjRFcE5WaWFLbFJkZVJqSEo4QXYzM2ExVGd2TTIyQjNLQUI1SEdaWVZlZzR5TFBBYm1peHBvTkZSRUpjSUFwQ0lIN1BHV1lrQktMTzBlOXBvQ1ZRQ3hPYnlTRXJMMmxtaUk0czZxX2xaeWFINGFDaGZZZHg1QmdLb0lMOFhTd2dfbUQ1WlQ2SWpOaVhSQ1FyUU92UkVOa3JLMHVIYnF1RVhRX2doUHVFOHkwZ2xYenc3Q25nMF9XTjVvSUlkeE9zbFNnTnNuZ1dwcHBwenJWdw?oc=5",
+      "fecha_anterior": "2026-10-29",
+      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
@@ -955,12 +990,12 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Fiscalía de Chiapas busca a Humberto 'N', entregado a un cartel - Milenio",
-      "nota": "Presidenta Claudia Sheinbaum entrega el ABC de las emociones en Conalep 022 de Chiapas como parte de la Jornada Nacional por la Paz - Gob MX",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNUWdObTRXNkhhelpkbHdEd2Q4MnF6NTNRZmxqelotMVlIRnVvV2xpQ19CNGpySDl3VDZZanZGTTExelk2V3pDMUVJTmZiU21tTGhoVFRKWFZPdFR3QkE3YVhwa1BUSWpENlotZnR5aEtoc01PVjhYdHJJdE5PYnN5a21UMG9ZSUpNaUhGUkxXU1Z4SHJnM3dCTkpTZnIyX0p4bWN3akc4ck5uVkI3cjZodl9aYjBicEF2R2g5VUhSSlNIbHRqdXdEMkJJU3RVcE0wQnRrOVZSSUlsRWRvZG4wUkEtazZwNEFOanloQXV5RF82TXphQlJnbHVFbElQVVJoc1FTbHBKQWlvZw?oc=5",
+      "tema": "Embajada de Estados Unidos afirma que fracasan las caravanas migrantes bajo Trum",
+      "nota": "🔔 ALERTA — Nueva caravana migrante ingresa a México desde Honduras con la mira en EU y un llamado a Claudia Sheinbaum - El Informador",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPU04yLThIaWRpZGx5VGVVOHhfcFdNTDhHZjRFcE5WaWFLbFJkZVJqSEo4QXYzM2ExVGd2TTIyQjNLQUI1SEdaWVZlZzR5TFBBYm1peHBvTkZSRUpjSUFwQ0lIN1BHV1lrQktMTzBlOXBvQ1ZRQ3hPYnlTRXJMMmxtaUk0czZxX2xaeWFINGFDaGZZZHg1QmdLb0lMOFhTd2dfbUQ1WlQ2SWpOaVhSQ1FyUU92UkVOa3JLMHVIYnF1RVhRX2doUHVFOHkwZ2xYenc3Q25nMF9XTjVvSUlkeE9zbFNnTnNuZ1dwcHBwenJWdw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
-      "confianza": "alta"
+      "confianza": "media"
     },
     {
       "id": "rocha_moya",
@@ -969,6 +1004,17 @@
       "tema": "Acusación de Narcotráfico contra Rocha Moya",
       "nota": "Otro clan: hijos de Rocha Moya ganan millones en Sinaloa - El Universal",
       "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNclh5Y2hKamFYZ0JUUnJjZHQyckUyN0hHR1NnQ1NhNkh5bnNTLS1USkYtVUM5Z09qTHRxYU9rY3VLZGRoaGxWck54Z0N4ZDhfQmx5VGZHaUNWUWxjVGhuaWd1d2NYMlhzelV5M0hnU3R1eWtlTkFYQ0JWX3h4N1FLMzJwdG40RERyNHVLVlJpOEJOVW9PNXRFZFNDOExCaEt2OVHSAbYBQVVfeXFMTTRSR1MzS2xCcUVJXy1JZDZhTk93WnpPZmR3aHVxbGtxWC1lblcyUVpfNjBoZURNY1U5S2F1LXBRYkRaOURmYjdYUm5CeHpQQUFhWE9WaTV2azJZV194ZDVkS2F2d0s3ZzllMkp0SlpYM2tMTWptU2tyNF92c24yVldBeHJGMldMdnE3bWc4ODNuU2pIbnM2d2lsSXlqclg5SC1VYTg1YndOSjAycmNsTjVhQVgySmc?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "Trump y México: declaraciones y presión",
+      "nota": "México no debe confiarse tras derrota de Donald Trump: aranceles y presiones de EEUU podrían continuar - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQY3FDLVhTNElRMlktX19WUmxJeWNxcmxPQS1GbGZ5SXNyRE9TcUUtOWZXUWE2dE9uX2JqUVRnMWdEeDJYaFVaOGNlOGM4NG5NNFBoMDNQenJGWUZmX2hTQi1wcllYbEt3RjhTMVAtQkRRcC12QU1RVE9uaThIdkhUQ0pYV3MzM2c5UFZKam04WVdOdEpTdkpjSGQxekYzNzYxN0dsMlJOOW1OQTRxWGdxTjNBekI0QXhsTjdPSmhWaDVmU0x5Q0ZOUTk3QmZZeGN6VzJxWEQ1cXRSWVZ40gH3AUFVX3lxTE01eWtpVW05U0JOVDlNdlZDcFQ2S2ZDNzZEdnhWeWlvTjRqSG92NzdYNGhkelBQWDJWMWQyUmg3cVVMalNoamJKV3I1NDZDcENFU29zOTB1VzNnczZhamRGUkVqVmZxR25GUTljSmxia0FzLVI4aUMtZTRIVnVlVHRLYkgzWUlYM241RnlfOGpGSkxTWGZXMTVfVW5qV0k3bzVHWVc5WE9jbERJV3U1Z3FvNmNnQVpDU1ZibDgycVVSdTI2SVpNcWlCNWZMT2NDTmtXTlI3N1RGMUcyLVJNMU5HLTZxcWVmcWxoMmh0S3FWZEZwVXoyRXM?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -991,17 +1037,6 @@
       "tema": "Huachicol Fiscal",
       "nota": "⚡ Posible presión de Andrés Manuel López Obrador ('AMLO') — ‘Peores cosas se verán’: ‘Pepín’ López Obrador advierte más acusaciones contra Andy rumbo a 2027",
       "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/11/06/peores-cosas-se-veran-pepin-lopez-obrador-advierte-mas-acusaciones-contra-andy-rumbo-a-2027/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Mencionado",
-      "tema": "Una situación caótica la que vive el sector salud del país, diputado del PRD - Q",
-      "nota": "Morena impone reunión a modo para sector salud - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQT3FIQk5vVGMxUVJVN2J2aURpaDFkV016RHp4VDZMclBob1ZVdWlCU2dLb21lekVrQk9TRWFoSnFtQWpiSWFaNG14TUhrUmhjbGRCMTRUdDJqRFNpOFVZSERoT0pHdVNGRTFDZ1BQa1A1TTFyTE8wcmd2SUVFNXJiUXFlVkJsazRLSms1WHl3?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1228,10 +1263,10 @@
     },
     {
       "fecha": "2026-11-07",
-      "tension": 19,
-      "n_notas": 4,
+      "tension": 15,
+      "n_notas": 10,
       "n_alto_impacto": 1,
-      "n_medio_impacto": 3,
+      "n_medio_impacto": 9,
       "n_bajo_impacto": 0
     }
   ],
@@ -1300,8 +1335,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOMVVQQ2NrU2VuSXFPcnAxUDBFMGFUSXlNXzNTemk2YVBPYnNQN3JYQWtKRnpiM0YxTVY0UzR6NGJVLTFFdkJjY1VsSnZjc1B0clRfSGU5VkV6NUp6X205b2hKOTNOcDBKdmNhYmd5QlZMVzVqdFR4ZkZjYkR0Nk9HUl81RjhsSlVvblFwQnV3eFlJM0JLelppemVZODEtZVpSRGx0cG02NXhwTjVQbThPQ0IxOA?oc=5",
-      "nota_texto": "Rocío Nahle expresa respaldo a Claudia Sheinbaum y pide transparencia en caso del INE - MÁSNOTICIAS",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/6/el-ine-se-tiene-que-sanear-ataques-contra-el-instituto-electoral-son-para-afectar-a-morena-claudia-sheinbaum-2911450.html",
+      "nota_texto": "El INE se tiene que sanear; ataques contra el instituto electoral son para afectar a Morena: Claudia Sheinbaum",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1485,8 +1520,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONXgwejhYby14Z2pTNWc0dGZWbmpJR1BoOHpKVm5OQThfNzJuQzFnWW5qRy1DSXRTajZfUnY1SE9WeUd0aGllZEk3aGpJaHg2SjRIRXkxc2hMaG9IdDQwcG9jVmNoVlVxZDJibHdONXNRQURJUXIzN29OUkZxSVg0N2E2SjhmcUM3M0FmdjRGLTkySkZGUEtsV1JnQmp0bG1SVTJRRW8tX2FxZUxxT09kbjFnclp4ZlJmbk9qZThBeWs3R003alF6Rk12NHU0Y2xE?oc=5",
-      "nota_texto": "Marco Rubio evalúa su salida del gobierno de Donald Trump - Intolerancia Diario",
+      "nota_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9BRzFMRU5WT2VCaTJmTDV4bHVqNzh1aFdaOG9Vc09sYUdVN2pvVGVYR29MNGpITkxnZlpnaEFvRGpMcF9qTElEMkR6X0p5bzBWMFo1NFdKaTBOSnlHWGFXMUVzaV83Z3BNNGFQSnQ0RmJqSnE1VHZueXE1LWExNVU?oc=5",
+      "nota_texto": "Donald Trump y Mark Carney negocian el comercio bilateral - Revista Caretas",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 3,
@@ -1726,12 +1761,12 @@
   ],
   "tablero_semana_inicio": "2026-11-02",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "sin_mananera",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 0
   },
   "declaracion_presidenta_historial": [
     {
@@ -1786,5 +1821,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-07 08:16"
+  "hora_corte_publicada": "2026-11-07 12:04"
 }
