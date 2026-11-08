@@ -1,29 +1,35 @@
 {
-  "generado_en": "2026-11-07T18:00:51.013091-06:00",
+  "generado_en": "2026-11-08T00:02:41.523472-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 15,
+  "n_notas_ventana": 21,
   "baja_confianza": false,
-  "tension_nacional": 10,
+  "tension_nacional": 8,
   "tension_anomalia": {
-    "z": -3.36,
+    "z": -3.3,
     "nivel": "baja",
-    "media_periodo": 22.4,
+    "media_periodo": 21.9,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 48,
-      "tema_principal": "La Barredora",
-      "tema_principal_id": "la-barredora",
-      "n_temas": 5,
-      "n_notas": 8,
+      "peso_pct": 64,
+      "tema_principal": "Ley Antimemes y reforma de propiedad industrial",
+      "tema_principal_id": "ley-antimemes",
+      "n_temas": 9,
+      "n_notas": 14,
       "notas": [
         {
-          "texto": "Comerciantes denuncian llamadas de 'La Barredora' - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOWm9OVlZldnB1M0ozenhneW1zRFpGYktvRldWa2Rmb1NXTjRrcHp0X3YyNU9xZzVZcndvVndiTzNMcDZmbVVGcGhEX21XcUtDV1dZZFVKNVVKUGV2N0tBdEpmRWVOaVhUQXRFLTdRa01jYW9OZDNoMUhRSUF3NjlmMU96M2ZiUdIBhgFBVV95cUxOS2FjYVNxZjhoeDZMdF9xYlFSZm9HZ0xWWm5kcGxyeEZEbGdKUllQZDJ5aFFTT2lJWXNleTBnYXBra1VnQ2tSUTh1Q3BaR182enJkR0I3NklDWDcyXzNRZFJBWERfSHJCVkNISmtRRnJEd2lxQnA3NW5WcXVBLXV4eVFUT3cwZw?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
+          "texto": "José Ramiro López Obrador defiende a Andy López Beltrán de acusaciones por huachicol fiscal - Periódico Correo",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxObC1EZHY4dXB1RWVURWNObkJOYnl4MG9HbTI5SkZ4SDF1WWhJLUVnOTVMZ29fSUhISFBBTWtSZEZmSVhGYUFvMWpiS09GcTZDb2U1Qmx6QUxYQ1RWUzBZWnFnTFV6LTM5bWVfLUpkdjkteG1vOVFDR1c3RURfLXcwUVVFZUlJbUY1eXpfcmVPOUh3SkJLaEtmU1czZ2VEMjZDUFBDeEw3SG9fSHVtajE0cnl3R2RwM1Q2UmdkeC1LcXB1OExwSDZzM3RjUmRHbTZHQlItY0p1eW1hdVN4N01weDF6ZnIxZ2ZjTkl30gHwAUFVX3lxTE9RMWx3dzVKbWlQbERtUVhoeHVTUVdhck5rTTVSWVVHcjFjc2Y5MG54bl9OVXZDSmpvWjNrUTdGUzZtaU1YcHBHVm95STdKT0pScG5HTWRGeXZxc2FQX3hRT1pCby1veXN1aXpocDg4ckJiOUhCaW1lWkpZZGJ3dUZLZVR2Vi00dUU5bGx4c0wwdnJBTENfZ084UXJ6MDYzNUlYVEZ4UlhLR1pUYXFFTzQ2QzVrMXFTNWJwYWxDa0ktZVFzRDY4UktXOGs5eGF6bGtJRlVnZnNZUXZhdTc0V1o5QzFmR0lLTmFpRDVPeGxOVA?oc=5",
+          "intensidad": 7.0,
+          "medio": "Periódico Correo"
+        },
+        {
+          "texto": "Desde Yucatán se suman a los señalamientos a la “mafia electoral” y Lorenzo Córdova",
+          "fuente_url": "https://www.yucatan.com.mx/merida/2026/11/07/desde-yucatan-se-suman-a-los-senalamientos-a-la-mafia-electoral-y-lorenzo-cordova.html",
+          "intensidad": 7.0,
+          "medio": "yucatan.com.mx"
         },
         {
           "texto": "Barren a La Barredora - Periodismo digital",
@@ -50,10 +56,34 @@
           "medio": "tabascohoy.com"
         },
         {
-          "texto": "Fiscalía de Tabasco obtiene 12 órdenes contra exfuncionarios ligados a Adán Augusto y La Barredora - Sinaloahoy",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOQjRtdXNVUl9xTGFQRjgxV25DenZsUVZ5RkxuR05IYXA2TDIzT09CZHBfVDBFUnAyMGV5dnozbUdqTHlxTm15VWFFZHdRYW4xcUZCMUZrUUNGYmlhZFE5QnllUmgyOTgyM2Z1Y0FTOUIwX3JwQ2hHNHV5d01UUVh6d3I2Q1RVY0xPLXdFT3N6cE0wdXNVdFRVT2ZMX0pVMkpZM1Y3ZzQ3eURJZjY3amdFUUNrQXhIU1BXV2tRaDJkM2RiVjlVZVhrLTN3SGJRWGVnT1E?oc=5",
-          "intensidad": 4.0,
+          "texto": "PAN defiende triunfo en elecciones de 2006: Jorge Romero rechaza «fraude» tras dichos de Fox - Cúspide México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUVY5S2ZTdkduVndZY3RVRURmS25pTmFtWTlLUi1vWDgzWUMyX2g5LXQ4eEFSaDZVZzRPR3c2M05Mb2xUbUcyMmdCeVFaZlZwNUJHOW5vbEVBRzMzSjlYMkg2WUZIVUNETVE1SFhaSDVMQVE5TDJJZVRXN3Z5cmIwOHdqbFd2cnpuOFJ3VUdmY3ZkYS1YVkltZ2lSS1k1UUlZVm80SXFmRmt3ajJrM05SM2F2bmZHWnd0VmNucFVtYmwtR0VBakE?oc=5",
+          "intensidad": 5.0,
+          "medio": "Cúspide México"
+        },
+        {
+          "texto": "Fiscalía de Tabasco ejecuta 12 órdenes contra exfuncionarios de Adán Augusto López - El Independiente",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNWV9adk5mUENrMjAwZFRjMVBwRWRaOHlvc1dxeFNSNEozcDVtSVo3UjE4ZTRVUGpianJRRk40dWlnR1ZFa19ObUx2ZzZDS0lKTXdPNUNZNkJLSlY3NEJqMzZZZ0hJOHNzZVJqU3haX2hmSVNtOFJMaUdrVUlnNERVWUVxRUJOLUF6WHVLb093QWdRYkZzUktHNmxsOUxNUE5lU2hYYWFkeE82SWFCbTVUUERiWFJVNllVS3BRTk1ONDlfSWttU2w0RW53?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Independiente"
+        },
+        {
+          "texto": "Ignacio Mier Enfrenta Tropiezo por Iniciativa de Ley Antimemes - Diario CAMBIO 22",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQQ280TnY1UHVLc2NoeHhvdWJFeUxEVHJmNXRweTNUMkFuRW5TNXlXZEdwdEpvc1FlVkVyTUMtR0t2czlQOEdTOHVJUFI5c0NvM183U0duelNtRGRCcDBOenJXWUJMdkVhY1E3RkZ0Y3MzWWdZcHM1S1RZUzBKYXp5dHcyUTB0MUV2dDJJTm4yb3pIUWs?oc=5",
+          "intensidad": 5.0,
+          "medio": "Diario CAMBIO 22"
+        },
+        {
+          "texto": "José Ramiro López Obrador defiende a Andy y anticipa más acusaciones rumbo a 2027 - Sinaloahoy",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOaHVRcE5nOG9MbThKXzBScFNPZThxUFJDRmFIWl9HNVBDZDdLQWROZTVRZk9rUFNocFVKUURJekM4Q05BQ2VjNjRWSFJjcUJXZnlvOVVIcGZKQ1MtVl9LZ2VaSnptbUlUQkc0MDVsLUhwZU1TYW5MMWRaRXlkZC1RUExoMTJKOEl5OU5sZnloNjByQUNfazdTRW5yV2VhTEVrMkY5b1lHMDhOU2ZWdnVmMWZycEJpNW9MTWtZ?oc=5",
+          "intensidad": 5.0,
           "medio": "Sinaloahoy"
+        },
+        {
+          "texto": "Ignacio Mier no sabe responder cuestionamiento sobre Ley Antimemes, hora antes de discutirse en el Senado de la República - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNQlVQelZTbldXb3czRUdsZlhDdjdxVDV6eXVGV3FpazY5VHhCbl9mUTFObE9QeHNHeU53WTBGZjZiQ3dlRlNWZEtZVEdlcUVWRTZVaGRwTUFpb0dEakZnYXdrdnFFTHpHZC1Da2ZGbFFUam1ORDJvdmJQUVFjUkNia1VvalFXOEc5NHFFcFVpa3BWMmJHdVFhVHZtRXl3bmcyVnF0TDA5RURTRTNxcmNjNF9sTjVXT0ZlSGdsQ1JVVnR5eGU1QXJQSzgwVjY2MWowblNQT0pyWkJNWUFJSkkyYXFfNjJQdERkUlNOSE4xU1RLYlNndlpHbDdVQV9VclU2QVZ2VFZBVGJkZw?oc=5",
+          "intensidad": 5.0,
+          "medio": "Infobae"
         },
         {
           "texto": "Amparo deja sin efecto orden de aprehensión contra Vadhir Derbez",
@@ -66,28 +96,34 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOYkY1N2tLYUNJYy1KaXg5SnpOOHBQSW12YXZoNTlHdlF0QkZCZXgzYlNtT0pFdFIzenZfcm5nMWpKZVB5Vk0zLUtWekdmcTJnTjZ2VTlsSUVXYTI4eVpWR2h6TmVmajJYNnBIaE5hRk1GcG1HVHRVTkh5ZEVIUUNiUlYtdlc2NVNSYW13TWU2NFgyUURxY1MweHJUMG5RM3dZc2RketIBqgFBVV95cUxQY19Bd3VHSkNka0dsSEtuTWxISTlWNEczbTV1OGkzeUZVYS1YdzZ6M1dwTmpsczc0dXE4amVCWS0xa25JQlB3YS1XMWRhek5qUXh4bVZOOExua0dYV1hFSjFWU3ZmajlSWnFRR0Z3clhGTGpST1JSM0tzT2UwQzdBTEVRWjdXVUs2STRIbm5WWGJXajEzQkFvWVdEZVlSelJvTnY1WWVxY3hiZw?oc=5",
           "intensidad": 4.0,
           "medio": "sipse.com"
+        },
+        {
+          "texto": "Rocío Nahle fija postura sobre detención de exregidora: “La justicia no tiene colores”. - Billie Parker Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQNm00ZHpHN082OWYxNGs5M05YM3BSYzN5bEJUTGFEUVhuek0zSGlnRWRRcDFSRHNBY1FIVlRvbUtrdFo4d0tFcWxuVmpUTF9SdTBROUFXY2xITHZpNjdDVkpBU0gzYkJIY0p6Y3pGRFJQMmdFbzZfdk5HTmJ3YVhoU0kyMHdzcnBJQW5BcWhSeUZXZkhZTkc4R0RTTVVNSm84YzhwcWVza2FKeHlGek9EaEdJejdrWDd6?oc=5",
+          "intensidad": 4.0,
+          "medio": "Billie Parker Noticias"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 37,
+      "peso_pct": 27,
       "tema_principal": "¿Bailarina o científica?, el comentario de Donald Trump sobre Claudia Sheinbaum ",
       "tema_principal_id": "auto-140b0227c9",
       "n_temas": 3,
       "n_notas": 5,
       "notas": [
         {
-          "texto": "Richard Neal promete mantener el T-MEC y revertir aranceles de Trump - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOUGp4MjZyR0JKaTBzZm45eDd6UEZZRzRUdXdrVURYVk5iaDlGdkNxaEw5OUJ2MDlQNUlJRmNKaEpBTXhfd0FOTkNYSmVsWmZXZ0VsS1V3UVp2NVdudlh6eThETE9TY09QbUh1dVJneFR1UTNMa1JONC1GRk1hN01zNXBvN29taEZuZG11bzc0N3k0UFE5U3VMQlBFU0Z1ckJGRC1sUFFwRkZMRkNScXhUTNIBywFBVV95cUxNdnk0ano0aUs5WWU0ZW03MXJYdENQeUJaRllKb09vQjhKYm9rVnM0WHNPLXpiOE9tSkI0dGRRN19lU1hxMzVNT0x3LTdoZGNXUlItQUU5NG5tRjd0UzV6VWVKYVBsdDNjbU9uMXM0VmRuckVNR2dRNl82NG45WTJSVW90MUpxS1hxQ1QzX2FfRzQ0alRkclVCdm9CYUZEZ01GU0Y2VFpZTXAyRVlEbEhLQVVOUFphZkJ0R3ZLbzlNT1RXRzRMaVFJTE40VQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "Infobae"
-        },
-        {
           "texto": "Donald Trump le ofrece al presidente de la UFC, Dana White, el rol de secretario de prensa en EU - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQZlJQU2xfWEtudHJfeDNiUEotZXZremFORG1pdEdLcFVjT3dFZlpXR2VMNy1yZXVvNWtyOFhGU1A5VDhQazJRdlZnZXBUc0ozdjhtMWtQVno1eUkwOUhXVW15ZUx4aXY0WVhNM0otdGtyWGM2UXdWUjd4T0dkaUxlSjVQRVVOU1VGMnFsS195VGJIbEczNXpfT1lqX1RfMVZGcDBBeFctSXRONWPSAasBQVVfeXFMT1pSV2VGT015RjRqZkJRV0hFdUdJNUd6MGhaVjNIaVd2N2RYcjVjOUdlcDkyVGNMRUJtb2dHeE1rT00yZUQ2bjVvNFNiV3JkdDg1RFpKeUN5UFNfQ3lDRmtnZGxGcl9sRVJINnJCNEJIcDJLN3hrTmVzT0pPcUpwS2RBZHV2V2o3YkhNaE5yajcwdmV5VkFNVlRQRkotVXM4dmlmNGhtWlBQcE9V?oc=5",
           "intensidad": 7.0,
           "medio": "MILENIO"
+        },
+        {
+          "texto": "¿Quién le T-MEC ahora a Trump? - Diario Basta!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBiclFVbGQ3WXdkRXYwdzZtLThTcUh2eVNKTXpsMmM3N0kxYnR4VG45RkJ2QnZvQjF4MElDa2x1U3JuR3RkdXlqR0NXNW80cnlDVGtaQ1VqaXctOTZDaXgxMXJpaDVQYTZDbGQzbFBFdnh5Zw?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
         },
         {
           "texto": "México, T-MEC y aranceles: lo que cambia con el Congreso demócrata - Estrella Digital",
@@ -111,18 +147,12 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 15,
-      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
-      "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 2,
-      "n_notas": 2,
+      "peso_pct": 5,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
       "notas": [
-        {
-          "texto": "Otro clan: hijos de Rocha Moya ganan millones en Sinaloa - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNclh5Y2hKamFYZ0JUUnJjZHQyckUyN0hHR1NnQ1NhNkh5bnNTLS1USkYtVUM5Z09qTHRxYU9rY3VLZGRoaGxWck54Z0N4ZDhfQmx5VGZHaUNWUWxjVGhuaWd1d2NYMlhzelV5M0hnU3R1eWtlTkFYQ0JWX3h4N1FLMzJwdG40RERyNHVLVlJpOEJOVW9PNXRFZFNDOExCaEt2OVHSAbYBQVVfeXFMTTRSR1MzS2xCcUVJXy1JZDZhTk93WnpPZmR3aHVxbGtxWC1lblcyUVpfNjBoZURNY1U5S2F1LXBRYkRaOURmYjdYUm5CeHpQQUFhWE9WaTV2azJZV194ZDVkS2F2d0s3ZzllMkp0SlpYM2tMTWptU2tyNF92c24yVldBeHJGMldMdnE3bWc4ODNuU2pIbnM2d2lsSXlqclg5SC1VYTg1YndOSjAycmNsTjVhQVgySmc?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
-        },
         {
           "texto": "Protegen demócratas comercio con México; abogarán a favor del T-MEC - El Mañana de Nuevo Laredo",
           "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNdGt6dXVRbmc5b0xWTWpSNzhlZnpERHVnblF4QWFMcEI4b292WlNwemFIU0Z3LWFLSTJVTHZmTDZJUVBHLVU2dURzR1Q0YmxxLUM0TGFDclJ4VWVfOHZ1cV80S0E1RHBtLS1YS2ZZN3k3RzlpZ0ZDaHNPMW4tbTl4WDA4OXYtSHRyOWpQaC1nUW10OGtCb1dyY2JvM3B4UDFSSXRwV2tjeDY3ZGlPTU5udnpmMU1BZENvcGdZ?oc=5",
@@ -133,12 +163,19 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
+      "peso_pct": 4,
+      "tema_principal": "Amenazas de Intervención Militar de Trump",
+      "tema_principal_id": "intervencion-militar-eeuu",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Desafía Hegseth juicio político y defiende ataque a cárteles - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPTjVYUHRJbWh4MDJzS2Z3UmVxYTBZamttclpHVTF2OEFkRURtX09OblE5TjltTnU2OGxnTHBhLTJZREc0cmRmSDBoTEZVbWhmbmNlRGNZUmtZMDd0ZXlydTVaWndSWG44U0RaM1Q0TUpTa2hRdDVNLVJnNkFiRzdIU0Y0MFVNYTZhbFdsUEZxV190eDh2aDc3OWdB?oc=5",
+          "intensidad": 4.0,
+          "medio": "Reforma"
+        }
+      ]
     },
     {
       "categoria": "Social",
@@ -151,31 +188,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-11",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 75
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 6
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 3
-        }
-      ]
-    },
     {
       "fecha": "2026-10-12",
       "categorias": [
@@ -218,7 +230,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Social",
@@ -260,7 +272,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 70
+          "peso_pct": 71
         },
         {
           "categoria": "Relación Bilateral",
@@ -360,7 +372,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 70
+          "peso_pct": 71
         },
         {
           "categoria": "Relación Bilateral",
@@ -381,7 +393,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
@@ -510,7 +522,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -518,7 +530,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -581,7 +593,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -618,7 +630,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -660,7 +672,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -685,7 +697,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -693,11 +705,11 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
-          "peso_pct": 6
+          "peso_pct": 5
         }
       ]
     },
@@ -739,11 +751,11 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 17
+          "peso_pct": 16
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Social",
@@ -760,7 +772,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -810,7 +822,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 52
+          "peso_pct": 53
         },
         {
           "categoria": "Relación Bilateral",
@@ -835,7 +847,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 53
+          "peso_pct": 55
         },
         {
           "categoria": "Relación Bilateral",
@@ -843,103 +855,80 @@
         },
         {
           "categoria": "Economía",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 4
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-08",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 56
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 21
+        },
+        {
+          "categoria": "Economía",
           "peso_pct": 10
         },
         {
           "categoria": "Social",
-          "peso_pct": 5
+          "peso_pct": 4
         }
       ]
     }
   ],
   "top5_temas": [
     {
-      "id": "rocha-moya-acusacion",
-      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
-      "motivo": "Otro clan: hijos de Rocha Moya ganan millones en Sinaloa - El Universal",
-      "peso": 12.0,
-      "n_temas_agrupados": 5,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNclh5Y2hKamFYZ0JUUnJjZHQyckUyN0hHR1NnQ1NhNkh5bnNTLS1USkYtVUM5Z09qTHRxYU9rY3VLZGRoaGxWck54Z0N4ZDhfQmx5VGZHaUNWUWxjVGhuaWd1d2NYMlhzelV5M0hnU3R1eWtlTkFYQ0JWX3h4N1FLMzJwdG40RERyNHVLVlJpOEJOVW9PNXRFZFNDOExCaEt2OVHSAbYBQVVfeXFMTTRSR1MzS2xCcUVJXy1JZDZhTk93WnpPZmR3aHVxbGtxWC1lblcyUVpfNjBoZURNY1U5S2F1LXBRYkRaOURmYjdYUm5CeHpQQUFhWE9WaTV2azJZV194ZDVkS2F2d0s3ZzllMkp0SlpYM2tMTWptU2tyNF92c24yVldBeHJGMldMdnE3bWc4ODNuU2pIbnM2d2lsSXlqclg5SC1VYTg1YndOSjAycmNsTjVhQVgySmc?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
-    },
-    {
       "id": "auto-140b0227c9",
       "nombre": "¿Bailarina o científica?, el comentario de Donald Trump sobre Claudia Sheinbaum ",
       "categoria": "Relación Bilateral",
       "resumen": "¿Bailarina o científica?, el comentario de Donald Trump sobre Claudia Sheinbaum que se volvió viral - Mi bolsillo",
       "motivo": "Donald Trump le ofrece al presidente de la UFC, Dana White, el rol de secretario de prensa en EU - MILENIO",
-      "peso": 12.0,
-      "n_temas_agrupados": 1,
+      "peso": 16.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQZlJQU2xfWEtudHJfeDNiUEotZXZremFORG1pdEdLcFVjT3dFZlpXR2VMNy1yZXVvNWtyOFhGU1A5VDhQazJRdlZnZXBUc0ozdjhtMWtQVno1eUkwOUhXVW15ZUx4aXY0WVhNM0otdGtyWGM2UXdWUjd4T0dkaUxlSjVQRVVOU1VGMnFsS195VGJIbEczNXpfT1lqX1RfMVZGcDBBeFctSXRONWPSAasBQVVfeXFMT1pSV2VGT015RjRqZkJRV0hFdUdJNUd6MGhaVjNIaVd2N2RYcjVjOUdlcDkyVGNMRUJtb2dHeE1rT00yZUQ2bjVvNFNiV3JkdDg1RFpKeUN5UFNfQ3lDRmtnZGxGcl9sRVJINnJCNEJIcDJLN3hrTmVzT0pPcUpwS2RBZHV2V2o3YkhNaE5yajcwdmV5VkFNVlRQRkotVXM4dmlmNGhtWlBQcE9V?oc=5",
-      "actor_vinculado": {
-        "id": "trump",
-        "nombre": "Donald Trump"
-      }
+      "actor_vinculado": null
     },
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Richard Neal promete mantener el T-MEC y revertir aranceles de Trump - Infobae",
-      "peso": 7.0,
-      "n_temas_agrupados": 1,
+      "id": "ley-antimemes",
+      "nombre": "Ley Antimemes y reforma de propiedad industrial",
+      "categoria": "Gobernabilidad",
+      "resumen": "Reforma sobre propiedad industrial/derechos de autor apodada «Ley Antimemes»: aprobación en comisiones y Senado, críticas por riesgo de censura y aclaraciones de la presidenta.",
+      "motivo": "El tropiezo de Ignacio Mier por la Ley Antimemes: ¿quién podrá bajar contenidos por uso indebido de la imagen gubernamental? - Infobae",
+      "peso": 10.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOUGp4MjZyR0JKaTBzZm45eDd6UEZZRzRUdXdrVURYVk5iaDlGdkNxaEw5OUJ2MDlQNUlJRmNKaEpBTXhfd0FOTkNYSmVsWmZXZ0VsS1V3UVp2NVdudlh6eThETE9TY09QbUh1dVJneFR1UTNMa1JONC1GRk1hN01zNXBvN29taEZuZG11bzc0N3k0UFE5U3VMQlBFU0Z1ckJGRC1sUFFwRkZMRkNScXhUTNIBywFBVV95cUxNdnk0ano0aUs5WWU0ZW03MXJYdENQeUJaRllKb09vQjhKYm9rVnM0WHNPLXpiOE9tSkI0dGRRN19lU1hxMzVNT0x3LTdoZGNXUlItQUU5NG5tRjd0UzV6VWVKYVBsdDNjbU9uMXM0VmRuckVNR2dRNl82NG45WTJSVW90MUpxS1hxQ1QzX2FfRzQ0alRkclVCdm9CYUZEZ01GU0Y2VFpZTXAyRVlEbEhLQVVOUFphZkJ0R3ZLbzlNT1RXRzRMaVFJTE40VQ?oc=5",
-      "actor_vinculado": {
-        "id": "trump",
-        "nombre": "Donald Trump"
-      }
+      "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOYThvNXZEQkxJU0ktZDFzaE8zUW5VRllEU0s2YjRJblJleXVRUkFteThUYkp2OXdidWEwUF9nZEp4V3UyN1BTbWtUQ3QzbTJoZEttUVVKWGNkNkFndXg2QXJVc1czQURtOTFvMWRrYVhLQ2tYVFFCSHRsR2lNUXlnZEdCOGZaWkNVTmsxQmxmMWlQYV9BTnJfSnRTXy1Cdzg4TDFNOUFaMlFqVlQ1QllqTE5SNk9ZaU5JaTFmWXVKZHZWZ1hTM0pQeXhLVl84ZzZLOWx4VjByQV9aTXdHaEw0SmwwQUpmY0lXeEt0bGFNT0pKcWM4azRJ0gGSAkFVX3lxTE4wQTd2X0hrcGVpcmtFMWFCYlp1d3lUVTRwczNBNVFmSlhqcW45OVFWbFF1RkJFSVJyY1FQaGRtNUZfYmlkN2w4RnNyS1dhdkVTOFBMODB3X1JVclVYTlNsMWVyRlJVYVR3c3Nzd0R1QWJkWDZGZ0twcUJEdE13LUt2cmhEODlYSU0yRkhDVXJaMnFOeEJ6WktFVVhWV1ZSZExBWHdBY0VSM2dJa2V2REJRRGQ1SEM0am83WXE4T2h2eU9aOUw3dFh1QmxLV1ROTXlLamxKeGRrS3hjenVkcVR3eUlYemd6ZXRMU2tsRnNjeTEtLWNFeC1JMC1SSEM4dEJFUFJockFrdkRxb0pfQVJab2c?oc=5",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-5e2670adcc",
-      "nombre": "Ignoran paradero de Taddei",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/07/politica/004n2pol?partner=rss"
-    },
-    {
-      "id": "auto-38c6c1e901",
-      "nombre": "El buceo de las ranas , filme sobre desalojos y migración a causa de las mineras",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE02WGM4MFk0QlNHczRQcXdCOS1qUm9EdWJDMVJyZFFBa3dZZ05lS0FWYTUyLXQ0R2RHNHkzS3pmQmxSaWwyWHZuSk80THZENDlrXzJBUTFKNXV5Ym5SSmNXa2VYQUlOem50TzFJ?oc=5"
-    },
-    {
-      "id": "auto-628cf7f9a4",
-      "nombre": "Taddei: concebida a imagen y semejanza de Morena - MILENIO",
+      "id": "auto-05d7b0d681",
+      "nombre": "Claudia Sheinbaum afirma que ya hay catálogo de emisiones contaminantes de NL - ",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNa2ZlaWpodG5aN1lZTWVvNmtVNjhlR3l6dFRJS0VueXV6elJJaGt0Mzc1d0lNWEVlc1d5UTAwcVhNVkhoQ0tBdEFESWZiYmNnUlJKTW1GSVZfRWpiaDV2OC1FaWRTcHN1N2F1X200Uk1OS01pSm1wSVZmV2hWNFRUanJQZlhPOG5JcVlrdk1MbTJIQzQwV2MwMnhrejRnMlk4QlZNQ2l6cE5XdmJ6V2x4OHdB0gGyAUFVX3lxTE1CdHFLdzA1MkJGTzNXaFhocVhjb2hOM2tyTU1vSzQtVEMxSlpUZk9VeGtCbEU4NHdHczZGYXpjcUNuUFc2b2RaRGVnQ2RWdTRoY3piMDVCQnlJRmdkMklyLUk4SjI5NXFCZjBUMVExLVBqalRqSWJyQ1pSWWljSnJMX0F6NkdZRlBqbVd5blRaS0c2UWt2SExWUUhqQlJzRnVjUm1nTVNxbTh3VzdMckI2eUE?oc=5"
-    },
-    {
-      "id": "auto-0e55221f8f",
-      "nombre": "Claudia Sheinbaum respalda reducción de cinco mil millones al INE",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/morena-claudia-sheinbaum-respalda-reduccion-de-cinco-mil-millones-al-ine-20261107-0019.html"
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNOFdXR2lMc0o4MFFNa1RFWm5GUEM3STNlR3hhNml6VVdaTjJLNVJsU1hjRWlYcXZuU1dYcVdHdVZ3M0pCM20xc0hNdkVvcTk0SUl5WklZQkxyRGVoaFRyUDlaOWFHZElTQzBYbHdOSTJvQ0hBYVU2d1FtMTdpOTd1ei1QUkVsNUxFWTBoRWVnd1gtT19ULTJIZ19kZ1BkLTTSAZ8BQVVfeXFMUDVjQzVnMkZqSXh1d0pYOUc0bTF2cUlRbWlrMHI1MkhHdjBqR2ZlU3NTYlJIV3Zpa2lTbGdVY0hNTW15a2FNcHR0dHB2bmtTUVJKMUtNM0pISi1UXy1XMnUxQWYwNl9hNmtsV3U1cmcxLU42blByQ3Q3bVFYYTd0c3ZoZlkycjY2TFc4NFRnQzFyMTB0OHhneGk3T05jOTlV?oc=5"
     },
     {
       "id": "auto-7c40cab435",
@@ -948,19 +937,38 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQQ2x4bmR6bHJ3cHlPNlFCV21MblBweFVaQ3BQLUNjTmliUVo2ZzQ3WWNOWDMxNWxreHhEckNrRnlfRjhTS3QxVXFraTNnMHVQVkVLTlY2NWE5Y1JzRW9vVXVyWTRHZ1o1dDNOVjg3eGxVYUtJNlhHLTVRdWFkOUZGT0lZMHdZS21IU2p6U0tlWTJ1Yy1IeVMycjlZc1E?oc=5"
+    },
+    {
+      "id": "auto-4d37198722",
+      "nombre": "Cancún reúne a leyendas de las Grandes Ligas en el Juego de Leyendas - Gobierno ",
+      "categoria": "Gobernabilidad",
+      "peso": 4.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNkUzXzRnNEk4ak1jSHVzVFFNdmlpV0l1ZzZsYnc3X3hYWmlzcDdfdUxKVFBnZG5ldDNlaXc5a3RTUHFYYTJZa1JtV2dYY05VaHY1NkIwZDhLcDl5RXphRndXOHpWSWxHNDFOQmx5WXlDLW10TDUwTlFtRzNwMUJlS1ViakgxR2ZiUkF0aXQ3ZWlUMXFlS2gydw?oc=5"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-786c00a97f",
-      "nombre": "Chedraui esperará convocatoria de Morena para solicitar licencia para reelección",
+      "id": "auto-b134c2bded",
+      "nombre": "Medio siglo de cacicazgo en Tlaxcala con PRI, PRD, PAN y Morena - Línea Política",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 41,
-      "motivo": "🔔 ALERTA — Morena emplaza a la senadora Karina Ruiz a solicitar licencia",
+      "dias_silencio": 31,
+      "motivo": "Tras más de 50 años de espera, Claudia Sheinbaum inaugura el puente Rizo de Oro en Chiapas: “Una deuda histórica salvada” - Infobae",
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/07/politica/009n2pol?partner=rss",
-      "fecha_anterior": "2026-09-27",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNUVRFelUtYkRZWnBQQUxuWGRUdGp1eTQtTmlSMjBob2hnWjEydlhjbTNWRmYyaW5hSnVuazhYWGRkSE4wNkw3akZ4elNIb0g4d1ZiSnBwNDI2ZHE0aEtielFkaDMtVFVTOENobXBBSWN6M0REcUFMT3ljV3RET01pc21jcnpuSzdVSEtyN0FxZWV3M0pnWHd5TDJEN2R0Tng1VUpPOTNKLW13VDlZY00tX2RCTENxZEtQMHRERTJXOVZwaTgtVTA0Sg?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPWnhTRHc0d0pwYlBVb2FacGQ5R2lhZ2l0N1BzSnFYNmVRQ1RSUEZyd1BDYVJYbklhb3VGYnJZclJYNTBPWWtIMWVDZnVqeTVqZ3U0WGxxWU5HY05oRGN2ZDhRN25HZVExZlpNOERlalNUYVBzNXRLM1VFcEUtNDc1N2tIRXYtemxVZktaMm9FcG1aWElQaDBvQmpiV2tzVmh5cHUzdlhhd25pclh2bjA0TGtaeW1Gb0Q0bjBBdlFiS3p6b3BUNUVxVjhLYVpqWVhEMUFCaDc2bm5MVE9qZW1lQ1o5QkRIbjFIdl9ETEVCV2pvd9IBjAJBVV95cUxOZ183eFdxZXp6U0ZpWTlXWk05Vk5HVnVSZ3ZFOEhnNmlwQ2xKLTJsVlRUVW5Ydm91aDN3MEFfdGd6TmEyU1o0bkVBMzBIaW1FSjUtQU9qLWtza2hXbDR3eEdQNm1HN2pucDFCQnpVd2lOSW1LRjNnSnhrbktFN2x1Ymx0M25naU1EcXpGZko3TkdPdVJwUGF1Z0RKaGcySXhYWmQtSnJEaklrNUVnYVY2aE9aeDlKam5HWjktVXFfdEJieDg4R3pDM2RJQnFVeWl2QUN5SXJhN3BKOERGR1c0MHBpSTBBUTVwQlh3QThwMHdBWUFCS0doT04yTTFfVkVCM2V1SkFQUDBPekli?oc=5",
+      "fecha_anterior": "2026-10-07",
+      "fuente_url_anterior": ""
+    },
+    {
+      "id": "auto-2bce961819",
+      "nombre": "CONGRESO recuerda 73 años del voto femenino en Chiapas - El Sol de Chiapas",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 23,
+      "motivo": "Tras más de 50 años de espera, Sheinbaum inaugura el Puente Rizo de Oro en Chiapas",
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/chiapas-tras-mas-de-50-anos-de-espera-sheinbaum-inaugura-el-puente-rizo-de-oro-en-la-concordia-20261107-0082.html",
+      "fecha_anterior": "2026-10-15",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQUWcyUkRHR09XeGpTeWtFLXFvZUhSenI5TGQ3N2I1NlBvV1l4NkFZSXJEZDgyTWM2bXVCUVJpV1I5R0dGMk8zeEx1cHZxTFl5a2h0VFBwbEhqcGppQnRzYlJvNWRYTFdJYzZ3MlY1UmNLRFJTRTJGMGE5b0NFVXh0djB0RmxIaDU5clE?oc=5"
     },
     {
       "id": "auto-9c32adc4bd",
@@ -972,17 +980,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPcHVOQnNYeEoxVXNmWkpUalJmcXZuRURKLTFUbnVJQm13RjdTaDAweGZEcEQ3Mk95czEtOVR1c3kxQVpLQzNqc0djNFNDZUItWGw5VjVqaHoza1N5Ni12TWxTb2JYT2U5WVI0US1oTmdNSms2aUtTcVVVTWZNbVNCWWJSXzNMdTBVbmJLRXhEMDBNbzF6bzFTWEJ4cXg1OFU4OGRFemkxZHZLLUh0SjN4RUd4cTRDMm9uLUdGMFUxV1dSUVVRZ1ZsN3locUJsaW5EdHdKaTIzVzJkVG5KcmMyMFd5bk0?oc=5",
       "fecha_anterior": "2026-10-18",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOVjR1S0VmZHFsRkNmVUxOQ1JDeS1xM0RtTzcxX3hOekdSYllQOHFkMGttYTd0M1l0NkZEeGJpaHp2VTVlc2NFWmJyd1NjaWhtUjJHbHhVQU1MSHBkSGNfR3NRQVl4UGR2SEdYRWxObUttM0t0WDh4QUduZUMyNGd1d1ZuQ3djdDltOHZZdjJGNjhIckMzcUg4akRxUVM0VVVaT3ROVHRZWUFtb21XOXB3QlQtYVBPcVRENlpiRDJoOGVEQ1JsWVJvcA?oc=5"
-    },
-    {
-      "id": "la-barredora",
-      "nombre": "La Barredora",
-      "categoria": "Seguridad Nacional",
-      "dias_silencio": 10,
-      "motivo": "Comerciantes denuncian llamadas de 'La Barredora' - Milenio",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOWm9OVlZldnB1M0ozenhneW1zRFpGYktvRldWa2Rmb1NXTjRrcHp0X3YyNU9xZzVZcndvVndiTzNMcDZmbVVGcGhEX21XcUtDV1dZZFVKNVVKUGV2N0tBdEpmRWVOaVhUQXRFLTdRa01jYW9OZDNoMUhRSUF3NjlmMU96M2ZiUdIBhgFBVV95cUxOS2FjYVNxZjhoeDZMdF9xYlFSZm9HZ0xWWm5kcGxyeEZEbGdKUllQZDJ5aFFTT2lJWXNleTBnYXBra1VnQ2tSUTh1Q3BaR182enJkR0I3NklDWDcyXzNRZFJBWERfSHJCVkNISmtRRnJEd2lxQnA3NW5WcXVBLXV4eVFUT3cwZw?oc=5",
-      "fecha_anterior": "2026-10-28",
-      "fuente_url_anterior": ""
     },
     {
       "id": "auto-67d790e2f9",
@@ -997,17 +994,6 @@
     }
   ],
   "actores_destacados": [
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "rol": "Investigado",
-      "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "Otro clan: hijos de Rocha Moya ganan millones en Sinaloa - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNclh5Y2hKamFYZ0JUUnJjZHQyckUyN0hHR1NnQ1NhNkh5bnNTLS1USkYtVUM5Z09qTHRxYU9rY3VLZGRoaGxWck54Z0N4ZDhfQmx5VGZHaUNWUWxjVGhuaWd1d2NYMlhzelV5M0hnU3R1eWtlTkFYQ0JWX3h4N1FLMzJwdG40RERyNHVLVlJpOEJOVW9PNXRFZFNDOExCaEt2OVHSAbYBQVVfeXFMTTRSR1MzS2xCcUVJXy1JZDZhTk93WnpPZmR3aHVxbGtxWC1lblcyUVpfNjBoZURNY1U5S2F1LXBRYkRaOURmYjdYUm5CeHpQQUFhWE9WaTV2azJZV194ZDVkS2F2d0s3ZzllMkp0SlpYM2tMTWptU2tyNF92c24yVldBeHJGMldMdnE3bWc4ODNuU2pIbnM2d2lsSXlqclg5SC1VYTg1YndOSjAycmNsTjVhQVgySmc?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -1031,23 +1017,12 @@
       "confianza": "media"
     },
     {
-      "id": "pan_partido",
-      "nombre": "Partido Acción Nacional (PAN)",
-      "rol": "Reacción de oposición",
-      "tema": "Exhibe la Presidenta “hipocresía” del PAN  por deslindarse de Fox",
-      "nota": "Exhibe la Presidenta “hipocresía” del PAN  por deslindarse de Fox",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/07/politica/007n3pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Responsable institucional",
-      "tema": "Una situación caótica la que vive el sector salud del país, diputado del PRD - Q",
-      "nota": "Morena impone reunión a modo para sector salud - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQT3FIQk5vVGMxUVJVN2J2aURpaDFkV016RHp4VDZMclBob1ZVdWlCU2dLb21lekVrQk9TRWFoSnFtQWpiSWFaNG14TUhrUmhjbGRCMTRUdDJqRFNpOFVZSERoT0pHdVNGRTFDZ1BQa1A1TTFyTE8wcmd2SUVFNXJiUXFlVkJsazRLSms1WHl3?oc=5",
+      "tema": "Detienen a presunto acosador de mujeres en Veracruz; Brujas del Mar pide a más v",
+      "nota": "Detienen a cinco empleados del IMSS y a exregidora de Morena en Veracruz",
+      "fuente_url": "https://www.informador.mx/mexico/operativo-federal-en-veracruz-detienen-a-cinco-empleados-del-imss-y-a-exregidora-de-morena-20261107-0067.html",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1056,14 +1031,6 @@
   "declaracion_presidenta": null,
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-10-11",
-      "tension": 30,
-      "n_notas": 38,
-      "n_alto_impacto": 20,
-      "n_medio_impacto": 18,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-10-12",
       "tension": 21,
@@ -1075,16 +1042,16 @@
     {
       "fecha": "2026-10-13",
       "tension": 26,
-      "n_notas": 93,
+      "n_notas": 95,
       "n_alto_impacto": 40,
-      "n_medio_impacto": 53,
+      "n_medio_impacto": 55,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-14",
       "tension": 20,
-      "n_notas": 63,
-      "n_alto_impacto": 21,
+      "n_notas": 64,
+      "n_alto_impacto": 22,
       "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
@@ -1131,9 +1098,9 @@
     {
       "fecha": "2026-10-20",
       "tension": 27,
-      "n_notas": 65,
+      "n_notas": 66,
       "n_alto_impacto": 34,
-      "n_medio_impacto": 31,
+      "n_medio_impacto": 32,
       "n_bajo_impacto": 0
     },
     {
@@ -1147,17 +1114,17 @@
     {
       "fecha": "2026-10-22",
       "tension": 25,
-      "n_notas": 64,
-      "n_alto_impacto": 28,
+      "n_notas": 65,
+      "n_alto_impacto": 29,
       "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-23",
       "tension": 18,
-      "n_notas": 71,
+      "n_notas": 72,
       "n_alto_impacto": 26,
-      "n_medio_impacto": 45,
+      "n_medio_impacto": 46,
       "n_bajo_impacto": 0
     },
     {
@@ -1187,25 +1154,25 @@
     {
       "fecha": "2026-10-27",
       "tension": 17,
-      "n_notas": 65,
+      "n_notas": 66,
       "n_alto_impacto": 22,
-      "n_medio_impacto": 43,
+      "n_medio_impacto": 44,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-28",
-      "tension": 24,
-      "n_notas": 75,
-      "n_alto_impacto": 30,
+      "tension": 25,
+      "n_notas": 76,
+      "n_alto_impacto": 31,
       "n_medio_impacto": 45,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-29",
       "tension": 25,
-      "n_notas": 51,
-      "n_alto_impacto": 24,
-      "n_medio_impacto": 27,
+      "n_notas": 53,
+      "n_alto_impacto": 25,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
@@ -1226,9 +1193,9 @@
     },
     {
       "fecha": "2026-11-01",
-      "tension": 25,
-      "n_notas": 28,
-      "n_alto_impacto": 12,
+      "tension": 26,
+      "n_notas": 29,
+      "n_alto_impacto": 13,
       "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     },
@@ -1258,26 +1225,34 @@
     },
     {
       "fecha": "2026-11-05",
-      "tension": 26,
-      "n_notas": 45,
-      "n_alto_impacto": 15,
-      "n_medio_impacto": 30,
+      "tension": 27,
+      "n_notas": 47,
+      "n_alto_impacto": 16,
+      "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-06",
-      "tension": 21,
-      "n_notas": 34,
-      "n_alto_impacto": 15,
+      "tension": 22,
+      "n_notas": 35,
+      "n_alto_impacto": 16,
       "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-07",
       "tension": 10,
-      "n_notas": 15,
-      "n_alto_impacto": 2,
-      "n_medio_impacto": 13,
+      "n_notas": 25,
+      "n_alto_impacto": 5,
+      "n_medio_impacto": 20,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-11-08",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1286,14 +1261,14 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 62,
-      "y_lunes": 84,
+      "x_lunes": 64,
+      "y_lunes": 81,
       "x_hoy": 100,
-      "y_hoy": 82,
+      "y_hoy": 80,
       "delta_pts": 19.5,
-      "alcance": 18,
+      "alcance": 19,
       "n_alto": 12,
-      "n_medio": 12,
+      "n_medio": 13,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
@@ -1306,27 +1281,27 @@
         {
           "fecha": "2026-11-02",
           "x": 12,
-          "y": 91
+          "y": 90
         },
         {
           "fecha": "2026-11-03",
-          "x": 29,
-          "y": 86
+          "x": 28,
+          "y": 85
         },
         {
           "fecha": "2026-11-04",
-          "x": 46,
+          "x": 44,
           "y": 84
         },
         {
           "fecha": "2026-11-05",
-          "x": 62,
-          "y": 84
+          "x": 64,
+          "y": 81
         },
         {
           "fecha": "2026-11-06",
           "x": 100,
-          "y": 82
+          "y": 80
         }
       ],
       "fecha_apagado": "2026-11-07"
@@ -1335,19 +1310,19 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 62,
-      "y_lunes": 73,
+      "x_lunes": 60,
+      "y_lunes": 72,
       "x_hoy": 92,
-      "y_hoy": 74,
-      "delta_pts": 15.0,
-      "alcance": 19,
-      "n_alto": 8,
+      "y_hoy": 75,
+      "delta_pts": 18.0,
+      "alcance": 20,
+      "n_alto": 9,
       "n_medio": 14,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPcXVXVWZaMUpYNkFWUUxTZnVPVmhCejR5eExvdENNaVk5OS1DVTZxcWUyR0RIZm1HV0UyZjFSdUtnYUplbXBQY0NwMXBxOEc4RElXV3F5Q0RFMjM0M3hCaE5yYTFVZmdXNWh0XzN0bGV0NERMX2FlazVCV3hPRFk5V1hENjRDOFVLMEhEX3lFQUEteG9IdDN3QUpEME5FeGQ5TjBSbWwxaUpWck9yMi1Qem1ZRmlHZVB3?oc=5",
-      "nota_texto": "Elecciones. Claudia Sheinbaum afirmó que la derrota de Trump \"refleja el sentir\" de Estados Unidos - La Voz del Interior",
+      "nota_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUXlaQnJTbk1CTHlIRWlRYTBlOXVQeUF4V1hCMldNM0lfMVpHYl9jQnlxWmwxZjNybF9HZUF1ZTVqMG15Nk5MRjREeDc4dlFpQl85UFRHcXdUQ2h2R1JVTUp4ZzgtUm5vWlo3clY1QklLNWVVUEZrT2t6Q2RXVGtHOWdNcmxYYXFTZ2dVNDFLVmhWeXF6TkxNMmVoWTJfM1Ewc1NBbE1rYTlpb3MxanE2SkY1blp6WExZX21VdkhyeUtmeEw2ZDZjR1Y1SmgzTHZhWGxmVkdkSGZQR19hbXhPaFN4X2NyT05VWndFWA?oc=5",
+      "nota_texto": "Claudia Sheinbaum plantea recortar el presupuesto del INE para el año electoral tras caso Guadalupe Taddei - Diario de Yucatán",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1355,27 +1330,27 @@
         {
           "fecha": "2026-11-02",
           "x": 8,
-          "y": 55
+          "y": 54
         },
         {
           "fecha": "2026-11-03",
-          "x": 17,
-          "y": 55
+          "x": 16,
+          "y": 54
         },
         {
           "fecha": "2026-11-04",
-          "x": 25,
-          "y": 64
+          "x": 24,
+          "y": 63
         },
         {
           "fecha": "2026-11-05",
-          "x": 62,
-          "y": 73
+          "x": 60,
+          "y": 72
         },
         {
           "fecha": "2026-11-06",
           "x": 92,
-          "y": 74
+          "y": 75
         }
       ],
       "fecha_apagado": "2026-11-07"
@@ -1384,13 +1359,13 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 42,
-      "y_lunes": 98,
-      "x_hoy": 50,
+      "x_lunes": 48,
+      "y_lunes": 99,
+      "x_hoy": 52,
       "y_hoy": 100,
-      "delta_pts": 6.0,
-      "alcance": 11,
-      "n_alto": 10,
+      "delta_pts": 3.0,
+      "alcance": 12,
+      "n_alto": 11,
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
@@ -1399,7 +1374,7 @@
       "nota_texto": "Andrés Manuel López Beltrán prepara un anuncio importante para este martes - sdpnoticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 5,
+      "dias_activo": 6,
       "trayectoria": [
         {
           "fecha": "2026-11-02",
@@ -1408,22 +1383,27 @@
         },
         {
           "fecha": "2026-11-03",
-          "x": 25,
-          "y": 91
+          "x": 24,
+          "y": 90
         },
         {
           "fecha": "2026-11-04",
-          "x": 38,
-          "y": 97
+          "x": 36,
+          "y": 96
         },
         {
           "fecha": "2026-11-05",
-          "x": 42,
+          "x": 40,
           "y": 98
         },
         {
           "fecha": "2026-11-06",
-          "x": 50,
+          "x": 48,
+          "y": 99
+        },
+        {
+          "fecha": "2026-11-07",
+          "x": 52,
           "y": 100
         }
       ],
@@ -1433,64 +1413,64 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "iniciales": "DT",
-      "x_lunes": 38,
-      "y_lunes": 91,
-      "x_hoy": 42,
-      "y_hoy": 93,
+      "x_lunes": 36,
+      "y_lunes": 90,
+      "x_hoy": 40,
+      "y_hoy": 92,
       "delta_pts": 3.0,
       "alcance": 9,
       "n_alto": 7,
       "n_medio": 3,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOMjBoaThpMS1TbVpZcml3NHFRZ0ptWmJ2SE5iQTFKMTNLOFNJWjhSLUc0T3Q5dXlPbDJ3ejFncEdKbEN4ZFB0RDQwWXlQMWRtWFZROHdvVEZudkhxbVlzMV8wVTBsZzBjRmY1V2dYbFpvUF9NSGRRWHRrMXZhQXNfMnNFUU4wQXBYQmFUWG02LTFBTWZ4cUM2bllvUS1OS19TWmQ3Q0xUaGI1QQ?oc=5",
-      "nota_texto": "México recibe 47 mil 164 mdd de remesas, pese a los impuestos de Donald Trump - 24-horas",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9BRzFMRU5WT2VCaTJmTDV4bHVqNzh1aFdaOG9Vc09sYUdVN2pvVGVYR29MNGpITkxnZlpnaEFvRGpMcF9qTElEMkR6X0p5bzBWMFo1NFdKaTBOSnlHWGFXMUVzaV83Z3BNNGFQSnQ0RmJqSnE1VHZueXE1LWExNVU?oc=5",
+      "nota_texto": "Donald Trump y Mark Carney negocian el comercio bilateral - Revista Caretas",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 6,
       "trayectoria": [
         {
           "fecha": "2026-11-02",
-          "x": 17,
-          "y": 82
+          "x": 16,
+          "y": 81
         },
         {
           "fecha": "2026-11-03",
-          "x": 25,
-          "y": 91
+          "x": 24,
+          "y": 90
         },
         {
           "fecha": "2026-11-04",
-          "x": 29,
-          "y": 94
+          "x": 28,
+          "y": 93
         },
         {
           "fecha": "2026-11-05",
-          "x": 33,
-          "y": 89
+          "x": 32,
+          "y": 88
         },
         {
           "fecha": "2026-11-06",
-          "x": 38,
-          "y": 91
+          "x": 36,
+          "y": 90
         },
         {
           "fecha": "2026-11-07",
-          "x": 42,
-          "y": 93
+          "x": 40,
+          "y": 92
         }
       ],
-      "fecha_reactivado": "2026-11-07"
+      "fecha_apagado": "2026-11-08"
     },
     {
       "id": "amilcar_olan_aparicio",
       "nombre": "Amílcar Olán Aparicio",
       "iniciales": "AO",
-      "x_lunes": 21,
+      "x_lunes": 20,
       "y_lunes": 87,
-      "x_hoy": 29,
-      "y_hoy": 94,
+      "x_hoy": 28,
+      "y_hoy": 93,
       "delta_pts": 6.0,
       "alcance": 6,
       "n_alto": 5,
@@ -1506,18 +1486,18 @@
       "trayectoria": [
         {
           "fecha": "2026-11-03",
-          "x": 17,
-          "y": 82
+          "x": 16,
+          "y": 81
         },
         {
           "fecha": "2026-11-04",
-          "x": 21,
+          "x": 20,
           "y": 87
         },
         {
           "fecha": "2026-11-05",
-          "x": 29,
-          "y": 94
+          "x": 28,
+          "y": 93
         }
       ],
       "fecha_apagado": "2026-11-06"
@@ -1526,17 +1506,17 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 33,
-      "y_lunes": 82,
-      "x_hoy": 38,
-      "y_hoy": 79,
+      "x_lunes": 32,
+      "y_lunes": 81,
+      "x_hoy": 36,
+      "y_hoy": 78,
       "delta_pts": 1.5,
       "alcance": 8,
       "n_alto": 4,
       "n_medio": 5,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
       "nota_texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
       "es_nuevo": false,
@@ -1550,34 +1530,35 @@
         },
         {
           "fecha": "2026-11-03",
-          "x": 17,
+          "x": 16,
           "y": 95
         },
         {
           "fecha": "2026-11-04",
-          "x": 29,
-          "y": 86
+          "x": 28,
+          "y": 85
         },
         {
           "fecha": "2026-11-05",
-          "x": 33,
-          "y": 82
+          "x": 32,
+          "y": 81
         },
         {
           "fecha": "2026-11-07",
-          "x": 38,
-          "y": 79
+          "x": 36,
+          "y": 78
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-08"
     },
     {
       "id": "rubio",
       "nombre": "Marco Rubio",
       "iniciales": "MR",
       "x_lunes": 8,
-      "y_lunes": 82,
+      "y_lunes": 81,
       "x_hoy": 12,
-      "y_hoy": 91,
+      "y_hoy": 90,
       "delta_pts": 3.0,
       "alcance": 2,
       "n_alto": 2,
@@ -1594,12 +1575,12 @@
         {
           "fecha": "2026-11-05",
           "x": 8,
-          "y": 82
+          "y": 81
         },
         {
           "fecha": "2026-11-06",
           "x": 12,
-          "y": 91
+          "y": 90
         }
       ],
       "fecha_apagado": "2026-11-07"
@@ -1611,7 +1592,7 @@
       "x_lunes": 4,
       "y_lunes": 100,
       "x_hoy": 12,
-      "y_hoy": 91,
+      "y_hoy": 90,
       "delta_pts": 4.5,
       "alcance": 3,
       "n_alto": 2,
@@ -1633,7 +1614,7 @@
         {
           "fecha": "2026-11-04",
           "x": 12,
-          "y": 91
+          "y": 90
         }
       ],
       "fecha_apagado": "2026-11-05"
@@ -1642,14 +1623,14 @@
       "id": "rocio_nahle_garcia",
       "nombre": "Rocío Nahle García",
       "iniciales": "RN",
-      "x_lunes": 8,
-      "y_lunes": 82,
-      "x_hoy": 12,
-      "y_hoy": 91,
-      "delta_pts": 3.0,
-      "alcance": 3,
+      "x_lunes": 12,
+      "y_lunes": 90,
+      "x_hoy": 16,
+      "y_hoy": 81,
+      "delta_pts": 1.5,
+      "alcance": 4,
       "n_alto": 2,
-      "n_medio": 1,
+      "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
@@ -1657,22 +1638,27 @@
       "nota_texto": "Rocío Nahle expresa respaldo a Claudia Sheinbaum y pide transparencia en caso del INE - MÁSNOTICIAS",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 3,
+      "dias_activo": 4,
       "trayectoria": [
         {
           "fecha": "2026-11-03",
           "x": 4,
-          "y": 55
+          "y": 54
         },
         {
           "fecha": "2026-11-05",
           "x": 8,
-          "y": 82
+          "y": 81
         },
         {
           "fecha": "2026-11-06",
           "x": 12,
-          "y": 91
+          "y": 90
+        },
+        {
+          "fecha": "2026-11-07",
+          "x": 16,
+          "y": 81
         }
       ],
       "fecha_apagado": "2026-11-07"
@@ -1787,7 +1773,7 @@
   ],
   "tablero_semana_inicio": "2026-11-02",
   "resumen_mananera": [],
-  "mananera_estado": "sin_mananera",
+  "mananera_estado": "pendiente",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1847,5 +1833,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-07 18:00"
+  "hora_corte_publicada": "2026-11-08 00:02"
 }
