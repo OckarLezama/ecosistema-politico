@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-11-08T00:02:41.523472-06:00",
+  "generado_en": "2026-11-08T06:04:30.988716-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 21,
+  "n_notas_ventana": 18,
   "baja_confianza": false,
-  "tension_nacional": 8,
+  "tension_nacional": 14,
   "tension_anomalia": {
-    "z": -3.3,
-    "nivel": "baja",
+    "z": -1.87,
+    "nivel": "normal",
     "media_periodo": 21.9,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 64,
-      "tema_principal": "Ley Antimemes y reforma de propiedad industrial",
-      "tema_principal_id": "ley-antimemes",
-      "n_temas": 9,
-      "n_notas": 14,
+      "peso_pct": 70,
+      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
+      "tema_principal_id": "rocha-moya-acusacion",
+      "n_temas": 10,
+      "n_notas": 13,
       "notas": [
         {
           "texto": "José Ramiro López Obrador defiende a Andy López Beltrán de acusaciones por huachicol fiscal - Periódico Correo",
@@ -32,22 +32,16 @@
           "medio": "yucatan.com.mx"
         },
         {
-          "texto": "Barren a La Barredora - Periodismo digital",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE4xaGxHcVhRVnVTVFl4TVRVYnpxdjNMMTJGT01xZmtta0hudDdKTmkxUmtJT2RqYWRiYW5OZlFpS29zMjBWVGIxMFZ3eklsSEhVTng2UnBKcjh5TkdFRm84SlU2VQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "Periodismo digital"
+          "texto": "“No queremos volver a tener otro Rocha Moya”: PRI Mazatlán llama a sacar a Morena - El Sol de México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNSUtMN1F4QjY3ZWVVTk81RlFKU0xSb0ZHRnlkRnNmSEs5bjNoSGxKNG9zR19rSVhGdW1zWGU2akhPZDNQVXV3dkt3YTVTdWdVVVFPY0tSQ2dEOTV3OF9BY2lLXzlHeXg2QnBxdFA4c3NuQy1ua3o4U3JqbUhxUld6UzJiQzlKVTJxUzVHZko4c3hyVVdyQ3RSd3I0Z1RXTXpDLUZzbWc3WkFzUkJseC1CVFQ5UHppMVlaNWxPZm1fU3RoSklRd1l3?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Sol de México"
         },
         {
-          "texto": "El tropiezo de Ignacio Mier por la Ley Antimemes: ¿quién podrá bajar contenidos por uso indebido de la imagen gubernamental? - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOYThvNXZEQkxJU0ktZDFzaE8zUW5VRllEU0s2YjRJblJleXVRUkFteThUYkp2OXdidWEwUF9nZEp4V3UyN1BTbWtUQ3QzbTJoZEttUVVKWGNkNkFndXg2QXJVc1czQURtOTFvMWRrYVhLQ2tYVFFCSHRsR2lNUXlnZEdCOGZaWkNVTmsxQmxmMWlQYV9BTnJfSnRTXy1Cdzg4TDFNOUFaMlFqVlQ1QllqTE5SNk9ZaU5JaTFmWXVKZHZWZ1hTM0pQeXhLVl84ZzZLOWx4VjByQV9aTXdHaEw0SmwwQUpmY0lXeEt0bGFNT0pKcWM4azRJ0gGSAkFVX3lxTE4wQTd2X0hrcGVpcmtFMWFCYlp1d3lUVTRwczNBNVFmSlhqcW45OVFWbFF1RkJFSVJyY1FQaGRtNUZfYmlkN2w4RnNyS1dhdkVTOFBMODB3X1JVclVYTlNsMWVyRlJVYVR3c3Nzd0R1QWJkWDZGZ0twcUJEdE13LUt2cmhEODlYSU0yRkhDVXJaMnFOeEJ6WktFVVhWV1ZSZExBWHdBY0VSM2dJa2V2REJRRGQ1SEM0am83WXE4T2h2eU9aOUw3dFh1QmxLV1ROTXlLamxKeGRrS3hjenVkcVR3eUlYemd6ZXRMU2tsRnNjeTEtLWNFeC1JMC1SSEM4dEJFUFJockFrdkRxb0pfQVJab2c?oc=5",
-          "intensidad": 5.0,
-          "medio": "Infobae"
-        },
-        {
-          "texto": "Detienen a exregidora de Morena y al director de Unidad Familiar del IMSS en Veracruz tras Operativo Enjambre - Grupo Animal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQWGNZSDM5UEt3VmpkZDBsUks3Z3pwOEdtb0VOLXU1MEd0N2hXWXFuRzJDUTQ1bEg4NUxWbkREWWVUbUsyQmYxUmNHR2prVzNiMlloTkF2Yzd5cF9qdUttN1ZoT0RYaGVua2FuUlQ3NjhhemZPcW8zc3p2MzlIMkM4SnppUG5FbVY5NktuX01aMDN2dWZvN1pXZjNCNGJ4WnB6djFJWVhkclhQUQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "Grupo Animal"
+          "texto": "Surgen irregularidades en Cuenta Pública 2025 de Rubén Rocha - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWtJU0N1WHFMMzVCMDlzSHg5TWFQUGdmNHZBWnhoSTNldkxiS3VwVEptMnl6b1Z5c0ZzM2FuZDJuYnJwNkU3MlhLOFNIZ0JGNm01ZVlDU3lrQnBIdXB0aHlJQUVYZzEzM3NQNlpIZ3ZXcnNMbTJyUzl0QTNqS0p1N2N2aDJrcXJvMlRJR3pfcTMxc0oxNHViY25hT3I3Rm1taGdZUXRTczFnT28?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Universal"
         },
         {
           "texto": "Detienen en Operativo Enjambre a directivo del IMSS y personal hospitalario",
@@ -107,11 +101,11 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 27,
+      "peso_pct": 19,
       "tema_principal": "¿Bailarina o científica?, el comentario de Donald Trump sobre Claudia Sheinbaum ",
       "tema_principal_id": "auto-140b0227c9",
-      "n_temas": 3,
-      "n_notas": 5,
+      "n_temas": 2,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "Donald Trump le ofrece al presidente de la UFC, Dana White, el rol de secretario de prensa en EU - MILENIO",
@@ -126,18 +120,6 @@
           "medio": "news.google.com"
         },
         {
-          "texto": "México, T-MEC y aranceles: lo que cambia con el Congreso demócrata - Estrella Digital",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQdEdqSExFZlBIODVXcnBRM1dyMkNzR1lKaXk0WW9JQ3A4djFlVnozUjZtdnZQMTJzUU9ySVhlN2d3VHAwQXFoTXpzVkRLejBsbHdvaXo1WS1vbHY0N0dLaS1iYTktaFVBZ0gxZjF2UC15VURhcG1kNExkX1U5VExqdGxRNEpaeUdMa1JTOHBNeC1helF1YmJ4QWFUNVZEZW5tNlltZmlFVW1LQUZpVXA1bENoQnJsVGxUbTMzbHRIWGlxZmpVYTktWEVRS1NaRUXSAdQBQVVfeXFMTmI2N0s5N3dzeEU1Z1dnWFoxRGlDclQ1aUJzRXpBMkw4ckRxWXlfV1pGM3EySzFmaEM4YjF3OGpLMlU2RThReE1Ba1I2aVBiWTFqNUUwQjRFVzZVSVhGNnBPeU5GT0s5N2hnNnRWbU9NdkZ4SWlzYVlkWndIZlFWTkR0d1d6VEpMOXMzODJDMGQxRXlNUTBhdlYwcVZwSnJPdmNrMGYtczk5dXU1VURTQk9ZOFlNUkhydk1zUFZISTkyUlRCVjloV1Y2YUhub2Y4NTFjOVI?oc=5",
-          "intensidad": 6.0,
-          "medio": "Estrella Digital"
-        },
-        {
-          "texto": "México no debe confiarse tras derrota de Donald Trump: aranceles y presiones de EEUU podrían continuar - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQY3FDLVhTNElRMlktX19WUmxJeWNxcmxPQS1GbGZ5SXNyRE9TcUUtOWZXUWE2dE9uX2JqUVRnMWdEeDJYaFVaOGNlOGM4NG5NNFBoMDNQenJGWUZmX2hTQi1wcllYbEt3RjhTMVAtQkRRcC12QU1RVE9uaThIdkhUQ0pYV3MzM2c5UFZKam04WVdOdEpTdkpjSGQxekYzNzYxN0dsMlJOOW1OQTRxWGdxTjNBekI0QXhsTjdPSmhWaDVmU0x5Q0ZOUTk3QmZZeGN6VzJxWEQ1cXRSWVZ40gH3AUFVX3lxTE01eWtpVW05U0JOVDlNdlZDcFQ2S2ZDNzZEdnhWeWlvTjRqSG92NzdYNGhkelBQWDJWMWQyUmg3cVVMalNoamJKV3I1NDZDcENFU29zOTB1VzNnczZhamRGUkVqVmZxR25GUTljSmxia0FzLVI4aUMtZTRIVnVlVHRLYkgzWUlYM241RnlfOGpGSkxTWGZXMTVfVW5qV0k3bzVHWVc5WE9jbERJV3U1Z3FvNmNnQVpDU1ZibDgycVVSdTI2SVpNcWlCNWZMT2NDTmtXTlI3N1RGMUcyLVJNMU5HLTZxcWVmcWxoMmh0S3FWZEZwVXoyRXM?oc=5",
-          "intensidad": 5.0,
-          "medio": "Infobae"
-        },
-        {
           "texto": "¿Dana White dejará la UFC? Trump le ofrece el puesto de secretario de prensa de la Casa Blanca",
           "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/07/dana-white-dejara-la-ufc-trump-le-ofrece-el-puesto-de-secretario-de-prensa-de-la-casa-blanca/",
           "intensidad": 5.0,
@@ -146,29 +128,19 @@
       ]
     },
     {
-      "categoria": "Economía",
-      "peso_pct": 5,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "Protegen demócratas comercio con México; abogarán a favor del T-MEC - El Mañana de Nuevo Laredo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNdGt6dXVRbmc5b0xWTWpSNzhlZnpERHVnblF4QWFMcEI4b292WlNwemFIU0Z3LWFLSTJVTHZmTDZJUVBHLVU2dURzR1Q0YmxxLUM0TGFDclJ4VWVfOHZ1cV80S0E1RHBtLS1YS2ZZN3k3RzlpZ0ZDaHNPMW4tbTl4WDA4OXYtSHRyOWpQaC1nUW10OGtCb1dyY2JvM3B4UDFSSXRwV2tjeDY3ZGlPTU5udnpmMU1BZENvcGdZ?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Mañana de Nuevo Laredo"
-        }
-      ]
-    },
-    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 4,
+      "peso_pct": 11,
       "tema_principal": "Amenazas de Intervención Militar de Trump",
       "tema_principal_id": "intervencion-militar-eeuu",
-      "n_temas": 1,
-      "n_notas": 1,
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
+        {
+          "texto": "Líder demócrata promete mantener el T-MEC y revocar los aranceles «injustificados» de Trump - Cúspide México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQRDgxWW1KdFlNdmNUZlpmNFFnTHFacXNJeUczMlpoT29vZ2xZd0VRUGJaMjVpQ2VkN0Y1enljaUxWZHJack5mMGdQOW5FZ1FGRFBETmt2WWV4dkJvcVVSY1BaU0dTWnhHNHdpVzdyQ0ctWFcwNWp5VWp0Sm94bW9MeVBaWTFsZHd6TVRQajZkZUx5MHZqRFFsQ2tYakpPbW9YUFhDVFZRXzduMlhKRTNra0NlakRFejc2Y3pKRm5UdlpQdE10ZXc?oc=5",
+          "intensidad": 7.0,
+          "medio": "Cúspide México"
+        },
         {
           "texto": "Desafía Hegseth juicio político y defiende ataque a cárteles - Reforma",
           "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPTjVYUHRJbWh4MDJzS2Z3UmVxYTBZamttclpHVTF2OEFkRURtX09OblE5TjltTnU2OGxnTHBhLTJZREc0cmRmSDBoTEZVbWhmbmNlRGNZUmtZMDd0ZXlydTVaWndSWG44U0RaM1Q0TUpTa2hRdDVNLVJnNkFiRzdIU0Y0MFVNYTZhbFdsUEZxV190eDh2aDc3OWdB?oc=5",
@@ -176,6 +148,15 @@
           "medio": "Reforma"
         }
       ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -876,7 +857,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 21
+          "peso_pct": 20
         },
         {
           "categoria": "Economía",
@@ -906,37 +887,55 @@
       "actor_vinculado": null
     },
     {
+      "id": "rocha-moya-acusacion",
+      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
+      "motivo": "Surgen irregularidades en Cuenta Pública 2025 de Rubén Rocha - El Universal",
+      "peso": 7.0,
+      "n_temas_agrupados": 6,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWtJU0N1WHFMMzVCMDlzSHg5TWFQUGdmNHZBWnhoSTNldkxiS3VwVEptMnl6b1Z5c0ZzM2FuZDJuYnJwNkU3MlhLOFNIZ0JGNm01ZVlDU3lrQnBIdXB0aHlJQUVYZzEzM3NQNlpIZ3ZXcnNMbTJyUzl0QTNqS0p1N2N2aDJrcXJvMlRJR3pfcTMxc0oxNHViY25hT3I3Rm1taGdZUXRTczFnT28?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
+    },
+    {
       "id": "ley-antimemes",
       "nombre": "Ley Antimemes y reforma de propiedad industrial",
       "categoria": "Gobernabilidad",
       "resumen": "Reforma sobre propiedad industrial/derechos de autor apodada «Ley Antimemes»: aprobación en comisiones y Senado, críticas por riesgo de censura y aclaraciones de la presidenta.",
-      "motivo": "El tropiezo de Ignacio Mier por la Ley Antimemes: ¿quién podrá bajar contenidos por uso indebido de la imagen gubernamental? - Infobae",
-      "peso": 10.0,
+      "motivo": "Ignacio Mier no sabe responder cuestionamiento sobre Ley Antimemes, hora antes de discutirse en el Senado de la República - Infobae",
+      "peso": 5.0,
       "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOYThvNXZEQkxJU0ktZDFzaE8zUW5VRllEU0s2YjRJblJleXVRUkFteThUYkp2OXdidWEwUF9nZEp4V3UyN1BTbWtUQ3QzbTJoZEttUVVKWGNkNkFndXg2QXJVc1czQURtOTFvMWRrYVhLQ2tYVFFCSHRsR2lNUXlnZEdCOGZaWkNVTmsxQmxmMWlQYV9BTnJfSnRTXy1Cdzg4TDFNOUFaMlFqVlQ1QllqTE5SNk9ZaU5JaTFmWXVKZHZWZ1hTM0pQeXhLVl84ZzZLOWx4VjByQV9aTXdHaEw0SmwwQUpmY0lXeEt0bGFNT0pKcWM4azRJ0gGSAkFVX3lxTE4wQTd2X0hrcGVpcmtFMWFCYlp1d3lUVTRwczNBNVFmSlhqcW45OVFWbFF1RkJFSVJyY1FQaGRtNUZfYmlkN2w4RnNyS1dhdkVTOFBMODB3X1JVclVYTlNsMWVyRlJVYVR3c3Nzd0R1QWJkWDZGZ0twcUJEdE13LUt2cmhEODlYSU0yRkhDVXJaMnFOeEJ6WktFVVhWV1ZSZExBWHdBY0VSM2dJa2V2REJRRGQ1SEM0am83WXE4T2h2eU9aOUw3dFh1QmxLV1ROTXlLamxKeGRrS3hjenVkcVR3eUlYemd6ZXRMU2tsRnNjeTEtLWNFeC1JMC1SSEM4dEJFUFJockFrdkRxb0pfQVJab2c?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNQlVQelZTbldXb3czRUdsZlhDdjdxVDV6eXVGV3FpazY5VHhCbl9mUTFObE9QeHNHeU53WTBGZjZiQ3dlRlNWZEtZVEdlcUVWRTZVaGRwTUFpb0dEakZnYXdrdnFFTHpHZC1Da2ZGbFFUam1ORDJvdmJQUVFjUkNia1VvalFXOEc5NHFFcFVpa3BWMmJHdVFhVHZtRXl3bmcyVnF0TDA5RURTRTNxcmNjNF9sTjVXT0ZlSGdsQ1JVVnR5eGU1QXJQSzgwVjY2MWowblNQT0pyWkJNWUFJSkkyYXFfNjJQdERkUlNOSE4xU1RLYlNndlpHbDdVQV9VclU2QVZ2VFZBVGJkZw?oc=5",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-05d7b0d681",
-      "nombre": "Claudia Sheinbaum afirma que ya hay catálogo de emisiones contaminantes de NL - ",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-6b1deb0743",
+      "nombre": "Rescate en la frontera",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNOFdXR2lMc0o4MFFNa1RFWm5GUEM3STNlR3hhNml6VVdaTjJLNVJsU1hjRWlYcXZuU1dYcVdHdVZ3M0pCM20xc0hNdkVvcTk0SUl5WklZQkxyRGVoaFRyUDlaOWFHZElTQzBYbHdOSTJvQ0hBYVU2d1FtMTdpOTd1ei1QUkVsNUxFWTBoRWVnd1gtT19ULTJIZ19kZ1BkLTTSAZ8BQVVfeXFMUDVjQzVnMkZqSXh1d0pYOUc0bTF2cUlRbWlrMHI1MkhHdjBqR2ZlU3NTYlJIV3Zpa2lTbGdVY0hNTW15a2FNcHR0dHB2bmtTUVJKMUtNM0pISi1UXy1XMnUxQWYwNl9hNmtsV3U1cmcxLU42blByQ3Q3bVFYYTd0c3ZoZlkycjY2TFc4NFRnQzFyMTB0OHhneGk3T05jOTlV?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/11/08/politica/008n3pol?partner=rss"
     },
     {
-      "id": "auto-7c40cab435",
-      "nombre": "¡Ahora Morena asfixia al INE que arruinó! - El Universal",
+      "id": "auto-f7a4b86022",
+      "nombre": "Carlos Alberto Anaya revela venta ilegal de animales en León - MILENIO",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQQ2x4bmR6bHJ3cHlPNlFCV21MblBweFVaQ3BQLUNjTmliUVo2ZzQ3WWNOWDMxNWxreHhEckNrRnlfRjhTS3QxVXFraTNnMHVQVkVLTlY2NWE5Y1JzRW9vVXVyWTRHZ1o1dDNOVjg3eGxVYUtJNlhHLTVRdWFkOUZGT0lZMHdZS21IU2p6U0tlWTJ1Yy1IeVMycjlZc1E?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNTVYcFVRX0dsU0Z6dkY4a2F3TWkxc2Q0SE5CZS1LWmNya3gtQ0t5U2E2OW9TT09pblN3RXZhanNNYW9jaXo2R0xrakZlMlVqeWtBOWdFR0dxdXAtbnYyOGoxeVdVTXVRSEo1WTFnZmYtNXlBclR4VHp0U1EtbVR5bWZaTEpIZjhMUU9GNFhQTmRDTkg3ZmtqMm1ZWTh0OFXSAZ8BQVVfeXFMT0t4WG80MkItcVZDVTFIZE56UnpDSElzVk12bUdYemdVVnlCcGFHR0JZTDlvSzczUm5pc2pra2owamREcjVxQVM0QzJtTVMwYV9wZTRzT1E4Y191VUlRaFVpcUtfdGxWWi15MVpnQ3h5UW5CUUNOcGZTVlg1RWlrbEszcmtGNHgydk13NjFkV0JuVjlNQzZZSEk2VkExSjlF?oc=5"
     },
     {
       "id": "auto-4d37198722",
@@ -948,6 +947,17 @@
     }
   ],
   "temas_retomados": [
+    {
+      "id": "auto-8ff9c2d88b",
+      "nombre": "Abren registro para posgrado en Especialidad en Migración - diario.mx",
+      "categoria": "Social",
+      "dias_silencio": 32,
+      "motivo": "🔔 ALERTA — Migración, sin registro de que la ex titular del INE haya salido del país",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/08/politica/004n1pol?partner=rss",
+      "fecha_anterior": "2026-10-06",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPd2RqNjRnVDVsVWh5cDZId0JvWnpPY3lDR3ZUZDhKMmpGUF9TUmlIdjBSU3B3QUk5bll0N0Q0ZG1JNlJzb0EyN2I4dmp2SGg3NlVXcENLT3ZkOEpScVBITHVvXzJZMFJxZnlUbnBJR3VYUlhBR0c4OXRFV2ZFaUFQQTIyMTlmd3plQUZEaFFWOWV6S0MtNHA3eGFka0pwZV94YVNQdlBRa19CUmItTG1aRdIBsAFBVV95cUxPd2RqNjRnVDVsVWh5cDZId0JvWnpPY3lDR3ZUZDhKMmpGUF9TUmlIdjBSU3B3QUk5bll0N0Q0ZG1JNlJzb0EyN2I4dmp2SGg3NlVXcENLT3ZkOEpScVBITHVvXzJZMFJxZnlUbnBJR3VYUlhBR0c4OXRFV2ZFaUFQQTIyMTlmd3plQUZEaFFWOWV6S0MtNHA3eGFka0pwZV94YVNQdlBRa19CUmItTG1aRQ?oc=5"
+    },
     {
       "id": "auto-b134c2bded",
       "nombre": "Medio siglo de cacicazgo en Tlaxcala con PRI, PRD, PAN y Morena - Línea Política",
@@ -969,28 +979,6 @@
       "fuente_url": "https://www.informador.mx/mexico/chiapas-tras-mas-de-50-anos-de-espera-sheinbaum-inaugura-el-puente-rizo-de-oro-en-la-concordia-20261107-0082.html",
       "fecha_anterior": "2026-10-15",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQUWcyUkRHR09XeGpTeWtFLXFvZUhSenI5TGQ3N2I1NlBvV1l4NkFZSXJEZDgyTWM2bXVCUVJpV1I5R0dGMk8zeEx1cHZxTFl5a2h0VFBwbEhqcGppQnRzYlJvNWRYTFdJYzZ3MlY1UmNLRFJTRTJGMGE5b0NFVXh0djB0RmxIaDU5clE?oc=5"
-    },
-    {
-      "id": "auto-9c32adc4bd",
-      "nombre": "Anuncia Mara Lezama nuevas rutas y más vuelos internacionales hacia el Caribe Me",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 20,
-      "motivo": "Da Mara Lezama bienvenida a la Selección Mexicana que llegará mañana al Caribe Mexicano para preparar su partido ante Jamaica - Gobierno del Estado de Quintana Roo",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPcHVOQnNYeEoxVXNmWkpUalJmcXZuRURKLTFUbnVJQm13RjdTaDAweGZEcEQ3Mk95czEtOVR1c3kxQVpLQzNqc0djNFNDZUItWGw5VjVqaHoza1N5Ni12TWxTb2JYT2U5WVI0US1oTmdNSms2aUtTcVVVTWZNbVNCWWJSXzNMdTBVbmJLRXhEMDBNbzF6bzFTWEJ4cXg1OFU4OGRFemkxZHZLLUh0SjN4RUd4cTRDMm9uLUdGMFUxV1dSUVVRZ1ZsN3locUJsaW5EdHdKaTIzVzJkVG5KcmMyMFd5bk0?oc=5",
-      "fecha_anterior": "2026-10-18",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOVjR1S0VmZHFsRkNmVUxOQ1JDeS1xM0RtTzcxX3hOekdSYllQOHFkMGttYTd0M1l0NkZEeGJpaHp2VTVlc2NFWmJyd1NjaWhtUjJHbHhVQU1MSHBkSGNfR3NRQVl4UGR2SEdYRWxObUttM0t0WDh4QUduZUMyNGd1d1ZuQ3djdDltOHZZdjJGNjhIckMzcUg4akRxUVM0VVVaT3ROVHRZWUFtb21XOXB3QlQtYVBPcVRENlpiRDJoOGVEQ1JsWVJvcA?oc=5"
-    },
-    {
-      "id": "auto-67d790e2f9",
-      "nombre": "Embajada de Estados Unidos afirma que fracasan las caravanas migrantes bajo Trum",
-      "categoria": "Social",
-      "dias_silencio": 9,
-      "motivo": "🔔 ALERTA — Nueva caravana migrante ingresa a México desde Honduras con la mira en EU y un llamado a Claudia Sheinbaum - El Informador",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPU04yLThIaWRpZGx5VGVVOHhfcFdNTDhHZjRFcE5WaWFLbFJkZVJqSEo4QXYzM2ExVGd2TTIyQjNLQUI1SEdaWVZlZzR5TFBBYm1peHBvTkZSRUpjSUFwQ0lIN1BHV1lrQktMTzBlOXBvQ1ZRQ3hPYnlTRXJMMmxtaUk0czZxX2xaeWFINGFDaGZZZHg1QmdLb0lMOFhTd2dfbUQ1WlQ2SWpOaVhSQ1FyUU92UkVOa3JLMHVIYnF1RVhRX2doUHVFOHkwZ2xYenc3Q25nMF9XTjVvSUlkeE9zbFNnTnNuZ1dwcHBwenJWdw?oc=5",
-      "fecha_anterior": "2026-10-29",
-      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
@@ -998,9 +986,20 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Embajada de Estados Unidos afirma que fracasan las caravanas migrantes bajo Trum",
-      "nota": "🔔 ALERTA — Nueva caravana migrante ingresa a México desde Honduras con la mira en EU y un llamado a Claudia Sheinbaum - El Informador",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPU04yLThIaWRpZGx5VGVVOHhfcFdNTDhHZjRFcE5WaWFLbFJkZVJqSEo4QXYzM2ExVGd2TTIyQjNLQUI1SEdaWVZlZzR5TFBBYm1peHBvTkZSRUpjSUFwQ0lIN1BHV1lrQktMTzBlOXBvQ1ZRQ3hPYnlTRXJMMmxtaUk0czZxX2xaeWFINGFDaGZZZHg1QmdLb0lMOFhTd2dfbUQ1WlQ2SWpOaVhSQ1FyUU92UkVOa3JLMHVIYnF1RVhRX2doUHVFOHkwZ2xYenc3Q25nMF9XTjVvSUlkeE9zbFNnTnNuZ1dwcHBwenJWdw?oc=5",
+      "tema": "Medio siglo de cacicazgo en Tlaxcala con PRI, PRD, PAN y Morena - Línea Política",
+      "nota": "Tras más de 50 años de espera, Claudia Sheinbaum inaugura el puente Rizo de Oro en Chiapas: “Una deuda histórica salvada” - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPWnhTRHc0d0pwYlBVb2FacGQ5R2lhZ2l0N1BzSnFYNmVRQ1RSUEZyd1BDYVJYbklhb3VGYnJZclJYNTBPWWtIMWVDZnVqeTVqZ3U0WGxxWU5HY05oRGN2ZDhRN25HZVExZlpNOERlalNUYVBzNXRLM1VFcEUtNDc1N2tIRXYtemxVZktaMm9FcG1aWElQaDBvQmpiV2tzVmh5cHUzdlhhd25pclh2bjA0TGtaeW1Gb0Q0bjBBdlFiS3p6b3BUNUVxVjhLYVpqWVhEMUFCaDc2bm5MVE9qZW1lQ1o5QkRIbjFIdl9ETEVCV2pvd9IBjAJBVV95cUxOZ183eFdxZXp6U0ZpWTlXWk05Vk5HVnVSZ3ZFOEhnNmlwQ2xKLTJsVlRUVW5Ydm91aDN3MEFfdGd6TmEyU1o0bkVBMzBIaW1FSjUtQU9qLWtza2hXbDR3eEdQNm1HN2pucDFCQnpVd2lOSW1LRjNnSnhrbktFN2x1Ymx0M25naU1EcXpGZko3TkdPdVJwUGF1Z0RKaGcySXhYWmQtSnJEaklrNUVnYVY2aE9aeDlKam5HWjktVXFfdEJieDg4R3pDM2RJQnFVeWl2QUN5SXJhN3BKOERGR1c0MHBpSTBBUTVwQlh3QThwMHdBWUFCS0doT04yTTFfVkVCM2V1SkFQUDBPekli?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "rol": "Investigado",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "Surgen irregularidades en Cuenta Pública 2025 de Rubén Rocha - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWtJU0N1WHFMMzVCMDlzSHg5TWFQUGdmNHZBWnhoSTNldkxiS3VwVEptMnl6b1Z5c0ZzM2FuZDJuYnJwNkU3MlhLOFNIZ0JGNm01ZVlDU3lrQnBIdXB0aHlJQUVYZzEzM3NQNlpIZ3ZXcnNMbTJyUzl0QTNqS0p1N2N2aDJrcXJvMlRJR3pfcTMxc0oxNHViY25hT3I3Rm1taGdZUXRTczFnT28?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1249,9 +1248,9 @@
     },
     {
       "fecha": "2026-11-08",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
+      "tension": 50,
+      "n_notas": 3,
+      "n_alto_impacto": 3,
       "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
@@ -1321,8 +1320,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUXlaQnJTbk1CTHlIRWlRYTBlOXVQeUF4V1hCMldNM0lfMVpHYl9jQnlxWmwxZjNybF9HZUF1ZTVqMG15Nk5MRjREeDc4dlFpQl85UFRHcXdUQ2h2R1JVTUp4ZzgtUm5vWlo3clY1QklLNWVVUEZrT2t6Q2RXVGtHOWdNcmxYYXFTZ2dVNDFLVmhWeXF6TkxNMmVoWTJfM1Ewc1NBbE1rYTlpb3MxanE2SkY1blp6WExZX21VdkhyeUtmeEw2ZDZjR1Y1SmgzTHZhWGxmVkdkSGZQR19hbXhPaFN4X2NyT05VWndFWA?oc=5",
-      "nota_texto": "Claudia Sheinbaum plantea recortar el presupuesto del INE para el año electoral tras caso Guadalupe Taddei - Diario de Yucatán",
+      "nota_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObEZNbGota05IVHJTYksxRW1QdGVOSnl5SWlXMnk3UHQxMk9IVFYyd01TYkxHc1J1XzlFMWZmcy05TjVZZGtSckY3SWgtZm91alRUS2p2SFRZRi12X2g5RnhlaWhVYVdJRXBIOXFhVllwZGVpcWRyQ2UyU2xLXzQ4YWNqd0RaM2ZsSzBLMXFKV0dUOWxYbVVBVEl2R1RkWmZDR3BZNVp2VDZiVUsxcEE?oc=5",
+      "nota_texto": "Morena respalda a Claudia Sheinbaum en investigación a contratos del INE - SanDiegoRed",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
@@ -1370,8 +1369,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNelpSSXVvRlFIdDF2aXdaZFd5aE5iTXFyXzNqZE9HWHQ0eExkRDU4N2NMN0RVYVkzVVBzX3NfcGgwRnF6YzdaQm9tdE50ZmR0bHBUX0pFeXpDYW0wZUdVY2VTckNDZmxmbXk5WTNQSk5RMFZ3WGY1V1plQy1LalZ0Y1hrQ1lQMW93aTFtMEJScGlkUVBuUm80dnNIRDh2c1lMWGRHbXJFQXlGVVhMY1ZF?oc=5",
-      "nota_texto": "Andrés Manuel López Beltrán prepara un anuncio importante para este martes - sdpnoticias",
+      "nota_url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOZVYtZEw5X2xGWjk1ZFNTWUJ4LU01cmhNZzlNMWJxWXAxX0JmUjZuRUFtZEU1cWlJdWNEY2sxUnRWcGpEUVdUaUs3ZUxpVnBKdVRZU0E3MC01cFJReUwyUlRLcUZLNngtaTdDYjlScDJXaVlZMndCVldwQUpJZTlxRlJhRXVPNUg0eUdNTnN0TGJCZlNRZU1nekcwZFQyZVBXN1Q1VlU1Y1FZckM3OFM3MVc0Y2tQUWZBdHcwZThQNy10dzVYcVpHVWx0czRsTGphOXhyc3NOd0pCQ09tMVlOZ0U4aE5SUUo1UldLUFJ1aGVTNDJwRVp5Z2h3OWIzMlFWaTRqTNIBnwJBVV95cUxOeld4MHQ5c2cxbVlYV0FSMGlraDNhY1JwT1FseXd2Y21qRWtJVldmV2Zxa1BGVW5lYXhGUDliTGJpMUdDMFlnWm1EUTR1Y3VrZlJacTZyZDJzeDlxR2xUZEJFMllyNngxVUMzS2N2Sks2M1N5ZmVFd1dJSHZMSkRfQUJWaHlreWZPSVBZdnhDeFpTUTZIekhuTlJlRkh1TGhKZ1VtSXJnMjJPdDN3REtOQkJTV0I3OHVOTHJYZkZ1LWxmOFJXNHpHS1duYWg5bEdYQ1J2anRpdml0VHBQeXdyUGFMVkV4UVBzZWR4bTYtdFdENkVPVFhncjVwVlloLW1reXJDeXV5RGRZNEZvVmp1eGRlOUpqSngwWUtLenc5bw?oc=5",
+      "nota_texto": "Defensa de los Farías Laguna acusa contradicciones en la FGR por no investigar a Andy López Beltrán tras ser mencionado por testigo - Infobae",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 6,
@@ -1424,8 +1423,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9BRzFMRU5WT2VCaTJmTDV4bHVqNzh1aFdaOG9Vc09sYUdVN2pvVGVYR29MNGpITkxnZlpnaEFvRGpMcF9qTElEMkR6X0p5bzBWMFo1NFdKaTBOSnlHWGFXMUVzaV83Z3BNNGFQSnQ0RmJqSnE1VHZueXE1LWExNVU?oc=5",
-      "nota_texto": "Donald Trump y Mark Carney negocian el comercio bilateral - Revista Caretas",
+      "nota_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOMjBoaThpMS1TbVpZcml3NHFRZ0ptWmJ2SE5iQTFKMTNLOFNJWjhSLUc0T3Q5dXlPbDJ3ejFncEdKbEN4ZFB0RDQwWXlQMWRtWFZROHdvVEZudkhxbVlzMV8wVTBsZzBjRmY1V2dYbFpvUF9NSGRRWHRrMXZhQXNfMnNFUU4wQXBYQmFUWG02LTFBTWZ4cUM2bllvUS1OS19TWmQ3Q0xUaGI1QQ?oc=5",
+      "nota_texto": "México recibe 47 mil 164 mdd de remesas, pese a los impuestos de Donald Trump - 24-horas",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 6,
@@ -1462,6 +1461,60 @@
         }
       ],
       "fecha_apagado": "2026-11-08"
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 36,
+      "y_lunes": 78,
+      "x_hoy": 44,
+      "y_hoy": 84,
+      "delta_pts": 6.0,
+      "alcance": 8,
+      "n_alto": 6,
+      "n_medio": 5,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
+      "nota_texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 6,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-02",
+          "x": 4,
+          "y": 100
+        },
+        {
+          "fecha": "2026-11-03",
+          "x": 16,
+          "y": 95
+        },
+        {
+          "fecha": "2026-11-04",
+          "x": 28,
+          "y": 85
+        },
+        {
+          "fecha": "2026-11-05",
+          "x": 32,
+          "y": 81
+        },
+        {
+          "fecha": "2026-11-07",
+          "x": 36,
+          "y": 78
+        },
+        {
+          "fecha": "2026-11-08",
+          "x": 44,
+          "y": 84
+        }
+      ],
+      "fecha_reactivado": "2026-11-08"
     },
     {
       "id": "amilcar_olan_aparicio",
@@ -1501,55 +1554,6 @@
         }
       ],
       "fecha_apagado": "2026-11-06"
-    },
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 32,
-      "y_lunes": 81,
-      "x_hoy": 36,
-      "y_hoy": 78,
-      "delta_pts": 1.5,
-      "alcance": 8,
-      "n_alto": 4,
-      "n_medio": 5,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPeG00Vm1mcUZMWkd4a2dYUmlMOUNfTEk3aWswNEtYWDh6c2dTWmw3MGhJZ1Y0azBmOW1PTDZEUndLYVB6LUFnVDl1RDk5WjZCS3kzNjlkZDZTNmtuOW1oTUhiX2FwMG4wc1AwYThXTlVQUmxfSnRsRVhzdmIyMUFQVEM0ajI1blJ1Qm1jd2ZKdFhfc2tobkJsMXVoUDdQNVF5Mmdjd2FmaDg2RUR6czk5V3FKb3FackRwNmk3Tk0xWkExOHJyQWJseTR3?oc=5",
-      "nota_texto": "Malecón, puentes y más: las obras millonarias de Rocha Moya bajo revisión de la ASF - El Sol de México",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 5,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-02",
-          "x": 4,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-03",
-          "x": 16,
-          "y": 95
-        },
-        {
-          "fecha": "2026-11-04",
-          "x": 28,
-          "y": 85
-        },
-        {
-          "fecha": "2026-11-05",
-          "x": 32,
-          "y": 81
-        },
-        {
-          "fecha": "2026-11-07",
-          "x": 36,
-          "y": 78
-        }
-      ],
-      "fecha_apagado": "2026-11-08"
     },
     {
       "id": "rubio",
@@ -1774,11 +1778,20 @@
   "tablero_semana_inicio": "2026-11-02",
   "resumen_mananera": [],
   "mananera_estado": "pendiente",
-  "a_vigilar": [],
+  "a_vigilar": [
+    {
+      "id": "auto-b132e03aae",
+      "nombre": "Rosa Icela Rodríguez reporta entrega voluntaria de 673 armas como parte del Plan",
+      "categoria": "Gobernabilidad",
+      "resumen": "Rosa Icela Rodríguez reporta entrega voluntaria de 673 armas como parte del Plan Michoacán - Por Esto!",
+      "fuente_url": "",
+      "actor_vinculado": null
+    }
+  ],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1833,5 +1846,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-08 00:02"
+  "hora_corte_publicada": "2026-11-08 06:04"
 }
