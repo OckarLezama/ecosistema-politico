@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-09|escalo|amlo-agenda",
+   "ts": "2026-11-09T14:24:50-06:00",
+   "tipo": "escalo",
+   "tema_id": "amlo-agenda",
+   "texto": "↗ López Obrador: reaparición y declaraciones creció (impacto 4.9, 5 medios)"
+  },
+  {
    "id": "2026-11-09|nueva_anticipatoria|auto-dd329a3af6",
    "ts": "2026-11-09T11:15:30-06:00",
    "tipo": "nueva_anticipatoria",
@@ -414,13 +421,6 @@
    "tipo": "escalo",
    "tema_id": "trump-agenda",
    "texto": "↗ Trump y México: declaraciones y presión creció (impacto 8.1, 15 medios)"
-  },
-  {
-   "id": "2026-10-23|nueva_anticipatoria|auto-3a87904492",
-   "ts": "2026-10-23T08:37:23-06:00",
-   "tipo": "nueva_anticipatoria",
-   "tema_id": "auto-3a87904492",
-   "texto": "◐ Tema por vigilar: Claudia Sheinbaum desmiente regaño a Omar García Harfuch publicado en medios de  (impacto 7.7, 4 medios)"
   }
  ]
 }
