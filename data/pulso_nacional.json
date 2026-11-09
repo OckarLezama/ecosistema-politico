@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-09T00:00:01.607415-06:00",
+  "generado_en": "2026-11-09T06:02:57.936967-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 16,
+  "n_notas_ventana": 12,
   "baja_confianza": false,
-  "tension_nacional": 14,
+  "tension_nacional": 17,
   "tension_anomalia": {
-    "z": -1.91,
+    "z": -1.19,
     "nivel": "normal",
     "media_periodo": 21.7,
     "dias_base": 27
@@ -13,24 +13,12 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 69,
+      "peso_pct": 56,
       "tema_principal": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión",
       "tema_principal_id": "auto-5f57f7343d",
-      "n_temas": 8,
-      "n_notas": 11,
+      "n_temas": 6,
+      "n_notas": 7,
       "notas": [
-        {
-          "texto": "(Fotos) Lujo y opulencia que se respira: Así es Lugano, la joya de Suiza donde ubicaron a Amílcar Olán",
-          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/08/fotos-lujo-y-opulencia-que-se-respira-asi-es-lugano-la-joya-de-suiza-donde-ubicaron-a-amilcar-olan/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "Andrés Manuel López Beltrán llega al informe de Javier May - El Sol de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNMmNyRTJyS1ZCaWNiVWtGa2hXZ2w1U3FqUGtYeTZCSkJZUWlzTTRiVy13NjFPamllQ0NHdWI3TXBISkNfZWVLQm81M1kyNFdWcko2ZjdUSWpxQnBhcUdWdHJKd2luNGZyOUx6Z2JZX294Tkt4Y3hvaXhtWFpPVTZ6bGk1dWYzSDJQQlNMSkY3WEM4N2hCUlMwbDluaXk5YzRjWlVFTjk0WURUOGJ5S09uRw?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Sol de México"
-        },
         {
           "texto": "¡Reaparece Andy López Beltrán! Acude al informe de Javier May en Tabasco tras señalamientos por huachicol fiscal - TV Azteca",
           "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPRGRwbzVlOXpaOG9felJ3a0VJVTNxVGtYMHYyN3p0OVFZRVd6R1JieUpnWjl4YUxYYmp5X2lPbnRFdTVDVXZZSE1TY2I5MnJxX0dXWUYzZ3ViTC1tUzJCUXFFZ0xFRTd5aUZhT2g1eDVOd19mbVdGejJjcWlPX0NGMGlSZS04N3FGa1k3am9CSU9RTm1uRVhhdXNWX3ZsOWNzdUl6Rnp5cHRBMGI5TDFudndyUTMtNWpteXZ5WmZuUk1iZ0c2amhjYlFtakJmWURocFpYNnphUjY5OEYwY1JFM2F6cjNzZw?oc=5",
@@ -38,16 +26,10 @@
           "medio": "TV Azteca"
         },
         {
-          "texto": "Se desmorona el círculo de Rocha Moya: dos figuras clave y cercanas al morenista dejan el gobierno de Sinaloa - www.opinionciudadana.com.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPVVZkbGlINk9zRUtRYzNIT1VyYm8xbmppdGM2N2pXV3JUOE5hZ1FXNlU5bFBLMHlXRkxiRWIwanBDOWh4NmFJM2RCcEVuVGdOMFBzRmp5Wm0zYU5MdjFFZTg5bGRKbGZ5ME1mM2pSNTJSR01QWndvbTNBYkkxcnM0WkhfVHpzSFFMODRlQkwzQmZ6YU5VSDFjT3l0Y3R6OEpXdWJqRmo5RzRJR0NnU0lFNHJ4clNmTHpVMnQ2NVhraHhPTmpfTVVva3VScU90Smp1QWc3amlpUWlNVUhHWm1kV3gyZVVDTDhBbDYxX002NGpPUV82THU5MUt0eE41bnUza0E?oc=5",
-          "intensidad": 6.0,
-          "medio": "www.opinionciudadana.com.mx"
-        },
-        {
-          "texto": "Barren a La Barredora; hay 12 órdenes de aprehensión - Unomásuno",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPSl95V2V4NU5BamFBVEJTVC1ZNEhjWHpNV2lYZk1NMi05Tm9vX01IZjE5R1FUcHVvUEdSSnF3NXVib3ZXUDZsQ3NJNFFxdUd3bGdJSVNDRm4zS3BCY0hMQjNUNi1uckkwWURiZkplbVJoemt0ZFJuRmFnM2lIZFlwdGQ4Sjg3UENpaWRkeExtQQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "Unomásuno"
+          "texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
+          "intensidad": 7.0,
+          "medio": "Proyecto Puente"
         },
         {
           "texto": "Detienen a colaboradores de Adán Augusto vinculados con “La Barredora” en Tabasco - Palabra de Veracruzano",
@@ -68,12 +50,6 @@
           "medio": "MILENIO"
         },
         {
-          "texto": "Tabasco ocupa el primer lugar en transparencia fiscal en el sur sureste: May",
-          "fuente_url": "https://www.tabascohoy.com/tabasco-ocupa-el-primer-lugar-en-transparencia-fiscal-en-el-sur-sureste-may/",
-          "intensidad": 4.0,
-          "medio": "tabascohoy.com"
-        },
-        {
           "texto": "La Cuarta Transformación convirtió los apoyos en derechos: May",
           "fuente_url": "https://www.tabascohoy.com/la-cuarta-transformacion-convirtio-los-apoyos-en-derechos-may/",
           "intensidad": 4.0,
@@ -89,11 +65,11 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 19,
+      "peso_pct": 18,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 2,
-      "n_notas": 3,
+      "n_temas": 1,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "“Muralla” demócrata en frontera acelerará TMEC, prevé vicepresidenta de Index - Norte de Ciudad Juárez",
@@ -106,44 +82,44 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUEp6c3o4N0RHZ0V2NW1Cd25vSF9DS0VlSll0ZWRvRkc1c1g3T1FkOVV6aTZwQnd5LUtBdWV5ZEx5d2NaTVlXYkZraGtQVl9RdGJCWWdVckpjaURZbzVRaUxxcmtFVmpHSXlJcEp4c0MwRzZpbXI5R1dKbWVOZkhZYUZwbHhlSWRVQWI3aXdjSnNNSXBNVmtnTNIBmAFBVV95cUxQVmQ1aktoaGJsYW1WSGxhVFp1dGgxTGZlMDB5Mk12dVhzR2FmenljTmRISjI3WV9MT0lLT29INFdYZG1OOW5ZQmc2UThRYmZRMDM3VmdIOXVrNUlhajFfTlZTR3NjLW95cDRfUzF6aDZEODM4VDFUbW4wUnZEazhrRkxCVHFQZE5NdmFlZXJnQUpQVHJQa2tRSA?oc=5",
           "intensidad": 6.0,
           "medio": "MILENIO"
-        },
-        {
-          "texto": "Justicia laboral: Tabasco logra 11 mil conciliaciones y recupera 263 mdp",
-          "fuente_url": "https://www.tabascohoy.com/justicia-laboral-tabasco-logra-11-mil-conciliaciones-y-recupera-263-mdp/",
-          "intensidad": 5.0,
-          "medio": "tabascohoy.com"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 7,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "Aranceles de EU restan fuerza a la integración automotriz del T-MEC: CSIS - El Economista",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOOEd0V3lpRHUtdnR3aklWZjZLLVQxRlJqMTFiQkdvTmpmYXlna1BoU1FwOGhPZHZBc3ZxVkVLNlRSVDhTTjg3QXdrRlBRdUpmWXBEU2xlalFkMXZNOHZUWllKdmoxMzA2S3RqWEVub3JDT2dRM3lfV19pN0l4cFpCbTRIekJrMzFRNF9hY2tLel9aYXhXS2VkYVRwdk05MjlISkx4eHE0V3hLUGQyTHhhdGxGbEIzUnBOYmhNQzRVNNIBxAFBVV95cUxQdFZ2cnNVOEVGNDRZcWF0MHVSS0hMRXFwdGZEQ3lCZjdJZFhqZS04NVVkamZoTEVScjBMTWlHalA2UDRIdUdlUXM4Z1lvU042V2ZZMzJ6T1RmQXcwdjg2RGxyUnlvcWN4a0ZObzViTVdaQUJKMWgwMmprald1TFBLY0JuRFV5SkkyRDExeVBhQ1JSQVRwbHEzT29xMUs2VkY3c0x2dzJONTBwanhUOU41b2tCN1dPWkZiNWhVZW9RbFJDaUxu?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Economista"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 6,
+      "peso_pct": 16,
+      "tema_principal": "Abatimiento de \"El Mencho\"",
+      "tema_principal_id": "el-mencho",
+      "n_temas": 2,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "Operó cabecilla para 'El Mencho' y el CJNG - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5MbmJCbjVnZUJaZEpqbDhHVC0xV2FTQ3NZbHRyS29OV25zUEtKaW5HcWtpeVRCT3YzRmgtOW5pSWlxR1IwWkNwbWdNbmE3WUtYdXcyeC0yc1NOZUNaQzNVb3owVUI5Tjcwb25OY2JjRkVPcmg5a2RsN29BSTlQLXM?oc=5",
+          "intensidad": 6.0,
+          "medio": "Reforma"
+        },
+        {
+          "texto": "Detienen al “R2”, líder del CJNG presuntamente vinculado al asesinato de Carlos Manzo",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/8/detienen-a-r2-lider-del-cjng-presuntamente-vinculado-al-asesinato-de-carlos-manzo-2912545.html",
+          "intensidad": 5.0,
+          "medio": "heraldodemexico.com.mx"
+        }
+      ]
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 10,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Detienen al “R2”, líder del CJNG presuntamente vinculado al asesinato de Carlos Manzo",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/8/detienen-a-r2-lider-del-cjng-presuntamente-vinculado-al-asesinato-de-carlos-manzo-2912545.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
+          "texto": "Trump no dinamitará el T-MEC porque México es clave para EU: Santander - El Sol de México",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPMnNPSk9tYXV1MkZOZUdpTUpVVGhzTGxxdHFqOF9BazJwMTktbXQtMk9mMmRqeTBHU0NEVFBkMERFTzBxazZwclVUTFZwRGstb3RDaklWWXlfcGtuVEYzN0psd1Vsd1NISHZCMWtZeFpyMUNhbFRCM05pdEFwZDNlYnZ2ZmpuaFZYLVJOODVWeUMzbWNndkJrM1ZqYjVvdjlDNUc2M3pFQS1PQ050N0o3X3pXSVdGci1XZEwtUA?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Sol de México"
         }
       ]
     },
@@ -725,7 +701,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -796,7 +772,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 22
+          "peso_pct": 21
         },
         {
           "categoria": "Economía",
@@ -842,7 +818,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 56
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
@@ -861,28 +837,13 @@
   ],
   "top5_temas": [
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Aranceles de EU restan fuerza a la integración automotriz del T-MEC: CSIS - El Economista",
-      "peso": 12.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOOEd0V3lpRHUtdnR3aklWZjZLLVQxRlJqMTFiQkdvTmpmYXlna1BoU1FwOGhPZHZBc3ZxVkVLNlRSVDhTTjg3QXdrRlBRdUpmWXBEU2xlalFkMXZNOHZUWllKdmoxMzA2S3RqWEVub3JDT2dRM3lfV19pN0l4cFpCbTRIekJrMzFRNF9hY2tLel9aYXhXS2VkYVRwdk05MjlISkx4eHE0V3hLUGQyTHhhdGxGbEIzUnBOYmhNQzRVNNIBxAFBVV95cUxQdFZ2cnNVOEVGNDRZcWF0MHVSS0hMRXFwdGZEQ3lCZjdJZFhqZS04NVVkamZoTEVScjBMTWlHalA2UDRIdUdlUXM4Z1lvU042V2ZZMzJ6T1RmQXcwdjg2RGxyUnlvcWN4a0ZObzViTVdaQUJKMWgwMmprald1TFBLY0JuRFV5SkkyRDExeVBhQ1JSQVRwbHEzT29xMUs2VkY3c0x2dzJONTBwanhUOU41b2tCN1dPWkZiNWhVZW9RbFJDaUxu?oc=5",
-      "actor_vinculado": null
-    },
-    {
       "id": "auto-5f57f7343d",
       "nombre": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión",
       "categoria": "Gobernabilidad",
       "resumen": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión e IMSS-Bienestar",
       "motivo": "Jorge Álvarez Máynez confirma negociación con Morena por fondos extraordinarios para NL - MILENIO",
       "peso": 10.0,
-      "n_temas_agrupados": 4,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
@@ -891,37 +852,32 @@
       "actor_vinculado": null
     },
     {
-      "id": "huachicol-fiscal",
-      "nombre": "Huachicol Fiscal",
+      "id": "el-mencho",
+      "nombre": "Abatimiento de \"El Mencho\"",
       "categoria": "Seguridad Nacional",
-      "resumen": "Red de contrabando fiscal de combustibles operada desde la Semar y aduanas de Tampico y Altamira desde 2025. Ha dejado más de 300 mil millones de pesos en afectación estimada, decenas de detenidos y al menos dos altos mandos navales procesados. En agosto de 2026 Sheinbaum declaró el problema 'prácticamente terminado', mientras la FGR mantiene investigaciones abiertas y Fernando Farías Laguna fue trasladado a México tras su detención en Argentina.",
-      "motivo": "(Fotos) Lujo y opulencia que se respira: Así es Lugano, la joya de Suiza donde ubicaron a Amílcar Olán",
-      "peso": 7.0,
+      "resumen": "El 22 de febrero de 2026, fuerzas de seguridad mexicanas abatieron a Nemesio 'El Mencho' Oseguera Cervantes, líder del Cártel Jalisco Nueva Generación, durante un operativo militar en Tapalpa, Jalisco. El operativo detonó una ola de violencia, bloqueos e incendios en varios estados; su lugarteniente 'El Tuli' encabezó las represalias hasta ser abatido, con un saldo de al menos 25 elementos de la Guardia Nacional muertos y decenas de detenidos.",
+      "motivo": "Operó cabecilla para 'El Mencho' y el CJNG - Reforma",
+      "peso": 6.0,
       "n_temas_agrupados": 4,
-      "escalando": false,
+      "escalando": true,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/08/fotos-lujo-y-opulencia-que-se-respira-asi-es-lugano-la-joya-de-suiza-donde-ubicaron-a-amilcar-olan/",
-      "actor_vinculado": null
+      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5MbmJCbjVnZUJaZEpqbDhHVC0xV2FTQ3NZbHRyS29OV25zUEtKaW5HcWtpeVRCT3YzRmgtOW5pSWlxR1IwWkNwbWdNbmE3WUtYdXcyeC0yc1NOZUNaQzNVb3owVUI5Tjcwb25OY2JjRkVPcmg5a2RsN29BSTlQLXM?oc=5",
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-7ef447d359",
-      "nombre": "Migración, sin registro de que Guadalupe Taddei, ex titular del INE, haya salido",
+      "id": "auto-754a295166",
+      "nombre": "Planean 'Operativo Invernal 2026' en Gómez Palacio; refugios temporales estarán ",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQZTF3ZTY3SWc2cTQyYTBjVmkwcFdoX1lhcnZmMjN5S0VjOUhoNUtpWm5CUl81dzhwZXlBdV9iUV9Jd0k5UnRNTTlHS2JnSWs1aG9oMEdKZzFydnRJczNwbTZqN3NUVUZFUm9LU3Q2T2s4YWx2eHF4ZC1IODdVaThrWHcwYUk2aEZTWEZ5RW1RWkJoa3BGeTUtQ0htOFRVMEYzYXVGbGo4VGo1NlZjMVlNV2hfMDNGU1JyTGFnNWN2b3F4SmZtbEZuMThNOGF1U0MxWnhlMVRnOUg?oc=5"
-    },
-    {
-      "id": "auto-478200c4dd",
-      "nombre": "Lluvias torrenciales inundan 70 mil tiendas en Gaza y dejan sin refugio a famili",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQb05mYmtaTDRIR0pzSzAzZ2JXaU5ibFd1bkhscWIzMGxwU2RJY0xYN3VsbHBZc05yZVFPb0N6MmR1NE9TY2FITXJ2Z19mMEo3b09YZkhzNTIzMW5sRkFXM0R5Z1FBS1BMaVh0SXVVM0VhYk9GSlpjRW5CZ0hOUi16SVNDbVo1RGQxSGtZZ2NpSjdrS3NkUW5jZ3dkSEFZbFlNZXZjcFZuNlRJRHR60gGsAUFVX3lxTE02YmNNckpEVXRRWVNtVi1BQ0ZEV08zWlFNNjF4ZzByYl9xbE1lRXl2UDZwczBGMFpJZHViZk1CNnRocVpmMDBXaTFXckpCYUM5Q2hnWEkxUzNSNjB2UDBkUU9vVHBJSUY1TFozTDNSV1BLcWJmLU80c0YyTHlQbUdXTC1YS1ZWbmstRWZ5Vk00RGNGc19OQ1RxX3RObFZDWnZNbHFrS3huZFc1Nlk?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxObUFNQ1RrZ2I0R0t4MVFxLTd3RWcwME96ZlhMWU91bzZVdlNKU1hrdUw5SjNENWkzR3dyR0ZPT1RkSkMzd01TWlJPMkhxbURhMG1vaGEyNU1keDZKc1VzWlJycE8wOW5ELUJicUx5eDM2dFJvSXViNnhJS1lhTGhTLXFiNmx4cmM5aVcxV2FXMFlHYUQ4ckMyWUNzamZnQlF4M2fSAaIBQVVfeXFMUHJaZmVOYjZzMUdKaUxQYlZCbUVCMHV0ekRrR3hwZkVMb2lUUWZrTFNmbWVzd1I1cUd5cmgtaUxkb283RXYzWmdNR2tLc3U3OUphWGhsb1JLMUlKdkdhY0VCUGlyaUsxQ2lBQURSdjJqNnJ6T1Q0WmJZNnlaSmU1RTBJamhrOVhRSmJTMmxLWnROUHc3RVMwX0xxdGNsaERFaENn?oc=5"
     },
     {
       "id": "auto-f978df06a1",
@@ -938,6 +894,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/11/08/horacio-duarte-reconoce-a-diputados-federales-de-morena-defensoria-del-presupuesto-para-obras-en-edomex/"
+    },
+    {
+      "id": "auto-6a539e1ecc",
+      "nombre": "Delincuencia “corruptora”, alerta SSPC",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/010n2pol?partner=rss"
     }
   ],
   "temas_retomados": [
@@ -984,6 +948,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPZ1Y1S3JSNU9rYkVWWnlGVk0wV3ZmaTBFZFpLWEZROVZlOFdtWHRzd3Rva0lkWmZCbEtSeWtrbzc1cWdMMXlqb29HVlNEZ1h1Sms4ckZ6QUxseGw3M0VjYlJXeE9tZjUzU3liQkRzdnlJR1J4OHoyb3pZbHgwaW5XNFozdXYxMWlKcC1PUmJDMXR6TGM2aGs0RjZZeGdzbmR2ejR0YkJGcU5ZZTB0WEdrYk9xSXJydVRuZ0xiWGxEeC1rY0wzVFRtYXVhVEJ1QdIB4gFBVV95cUxNQmJjMHVfajMxRHJNRDBTNW9vd2NwTEhfbmk5UkRJekt5eUtSay10NnhiMmE2bDRsWTJDZkFPT0NMRmZLV1BvWWlBNUwtRVhac3lSX0xMNGUxZ3Ezcms5bWRRSGxweUh0ZFZnYnN3eXp3cGNJOTUzUEtOYWoyT2xNZ0Z4SmpTNHZzeTRlQUNvRnBBSUhkY200Q3RRMjVWbHMtQ2VLTHluNkFhY0xPV0UzRWhvOE9UYmppMHItUldyaTBkS0V6aG54R0lGV3E3ZDJkWHBpcUVRX3N5SzZpOWNmSWtn?oc=5",
       "fecha_anterior": "2026-10-14",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOeGY2YWNmbmVQaFozRExOVnJQanpkbTR3QnlJTGpQVHhZU09tNXhLSGF6cGRpQ1lPSkdVcFVnejdrcTlRTlhDV0JtTEltQmM2NlJpT2E5dEZqeTFTenlzbUVsbHp1NWJiUTk4V3JRNExpOGJOOTYxanVXb2tNVW45bUlJWHZ2SDFWNERPWlQtMHM5ZmtuRi00T3BYMmJlSWtLVFY3VDAzV2FlYUhoeFk4?oc=5"
+    },
+    {
+      "id": "auto-fa6d80b1ce",
+      "nombre": "Carlos Fazio: Vasallaje o exterminio  vs resistencia y dignidad",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 13,
+      "motivo": "Carlos Fazio: Bolsonaro, la Operación Alba y la CIA",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/014a1pol?partner=rss",
+      "fecha_anterior": "2026-10-26",
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/26/politica/019a2pol?partner=rss"
     }
   ],
   "actores_destacados": [
@@ -991,9 +966,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum visitará Yucatán este sábado: encabezará acto de Vivienda para",
-      "nota": "Claudia Sheinbaum encabeza programa de vivienda en Chiapas - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQWElFQWdyZE5PdEpRdTQ3T3dKOThTQTB5ZFRVUmFoWGQ0dV9PMmw3aXNteHBNbnBMZ1JUUmRCcThtaU1GWDBmNDFaTVQtSlVkRWF6bTNHMlplMkZKemltS1FoODhFUS1pV2pOdjE0OEtqZklnNW1RbXZMSFMxb1FBREdPR2ZjS0ZYeFRZTlZQSzdGODRLNzRzVVhaNkRuZldjSGRvSkJVcGZjcHdrMFJn0gGvAUFVX3lxTE5xOGFYTW9pOElkLUZjeXZmSWt0X1B3NmprakRrTkJFU1VUeE5zTnZranBkUFVRNFlrSFd2NlhxbDA5dUJLdENRTjZLclAzU1B6aUVaVXA4SGIyc29BVUR6alh5MmZXcUYyaHBFd3J3RGVWWERFTFJmMWhYZ21hbkpuY2FjNHdMNVlMTS1FbXpNMkMwaWQzbWpfUEtOZnFXMjdVVU40UlRGYkJnZU9iWFU?oc=5",
+      "tema": "Claudia Sheinbaum abraza a un niño que rompe en llanto durante un encuentro - In",
+      "nota": "Claudia Sheinbaum abraza a un niño que rompe en llanto durante un encuentro - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQSjBydDNoM1JsdGJBbk1uUnJicjlGNlJmMWhnenNQelJ2M1g4bUxhS20ybGJid1ZhVnFRYkVmY0k4MV8tZmlxRV9fQjJPcjRKM3dfdFhMMDBPMVhxblBnRHF0MUp2QUNfZ1lRR1NmT2JwMXA3WnRoR01RMG13eHE4b1FjV1p2SUo1YTNhM2JGeWtJeXp2U0JJalhUNDYyN0FSOUlqYk5PUEh1VTAwMms1VkpGSVpqWWphaUFTcmxhQkhNamN5X1BJcE40a01vUQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1010,34 +985,34 @@
       "confianza": "media"
     },
     {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "rol": "Mencionado",
-      "tema": "Andy Manuel López Beltrán se registra como aspirante a diputado en Tabasco - fom",
-      "nota": "Evita May saludar a 'Andy' López Beltrán en informe - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNak1EcERtc1dscVJKcjVuSGlOd3ZlODBxbTJXT2stWHpPeXRCaV9CV2FxeldhZ1hVUXJoZzNVbXlkV1FBLVBKdXc2dy1XMkV4Z0VxbUFSb1ZjUXdERWtLajktaHBRQjBvUjJkc19SUVhvc1ZVODNYekxfMkZOS3ppZDNGdkRDRm1jLW4w?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "amilcar_olan_aparicio",
-      "nombre": "Amílcar Olán Aparicio",
-      "rol": "Investigado",
-      "tema": "Huachicol Fiscal",
-      "nota": "(Fotos) Lujo y opulencia que se respira: Así es Lugano, la joya de Suiza donde ubicaron a Amílcar Olán",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/08/fotos-lujo-y-opulencia-que-se-respira-asi-es-lugano-la-joya-de-suiza-donde-ubicaron-a-amilcar-olan/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "alvarez_maynez",
       "nombre": "Jorge Álvarez Máynez",
       "rol": "Investigado",
       "tema": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión",
       "nota": "Jorge Álvarez Máynez confirma negociación con Morena por fondos extraordinarios para NL - MILENIO",
       "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQa29EZTZvVFIwc25VcllFbWNHVFhfQjJBZ0hDeTNyTlhoZHYtM194OWt1Wk9RLXJDQng1NHRiWGZMazRKT2RTa0MtNGtVNXhIRGQ5VnFjeTdMQ3ExVnN6bkJWSG81b25WTkJiRVRoVFZicHRUd2VVd2prMW5ZX296R3RUREZLcjhuMVcxM29xNUlIS0FzMVJ4RNIBmAFBVV95cUxNMEhlOXRzQVp4a25rSHZqV0phWE91U2pKWWZBTnZ5VDA2MU9ZdXlQSGJldmVsTVd0RFNKcG1PT21mazc2ZGpWVld0bW81Nkw0cjdMSGpJSXFxa25MQ25hRkpWWEtWTDY3UGdCTVphQm9RTm9qbUJVOTZBOG8wWUt4YU11T242ZVhpbll0amJhVDh3aTlSMnp2bQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Mencionado",
+      "tema": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión",
+      "nota": "Jorge Álvarez Máynez confirma negociación con Morena por fondos extraordinarios para NL - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQa29EZTZvVFIwc25VcllFbWNHVFhfQjJBZ0hDeTNyTlhoZHYtM194OWt1Wk9RLXJDQng1NHRiWGZMazRKT2RTa0MtNGtVNXhIRGQ5VnFjeTdMQ3ExVnN6bkJWSG81b25WTkJiRVRoVFZicHRUd2VVd2prMW5ZX296R3RUREZLcjhuMVcxM29xNUlIS0FzMVJ4RNIBmAFBVV95cUxNMEhlOXRzQVp4a25rSHZqV0phWE91U2pKWWZBTnZ5VDA2MU9ZdXlQSGJldmVsTVd0RFNKcG1PT21mazc2ZGpWVld0bW81Nkw0cjdMSGpJSXFxa25MQ25hRkpWWEtWTDY3UGdCTVphQm9RTm9qbUJVOTZBOG8wWUt4YU11T242ZVhpbll0amJhVDh3aTlSMnp2bQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "rol": "Mencionado",
+      "tema": "Andy Manuel López Beltrán se registra como aspirante a diputado en Tabasco - fom",
+      "nota": "Evita May saludar a 'Andy' López Beltrán en informe - Reforma",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNak1EcERtc1dscVJKcjVuSGlOd3ZlODBxbTJXT2stWHpPeXRCaV9CV2FxeldhZ1hVUXJoZzNVbXlkV1FBLVBKdXc2dy1XMkV4Z0VxbUFSb1ZjUXdERWtLajktaHBRQjBvUjJkc19SUVhvc1ZVODNYekxfMkZOS3ppZDNGdkRDRm1jLW4w?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1224,10 +1199,10 @@
     },
     {
       "fecha": "2026-11-04",
-      "tension": 27,
-      "n_notas": 50,
+      "tension": 26,
+      "n_notas": 51,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 30,
+      "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
@@ -1240,9 +1215,9 @@
     },
     {
       "fecha": "2026-11-06",
-      "tension": 22,
-      "n_notas": 35,
-      "n_alto_impacto": 16,
+      "tension": 23,
+      "n_notas": 36,
+      "n_alto_impacto": 17,
       "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
@@ -1256,35 +1231,55 @@
     },
     {
       "fecha": "2026-11-08",
-      "tension": 20,
-      "n_notas": 19,
-      "n_alto_impacto": 6,
+      "tension": 21,
+      "n_notas": 20,
+      "n_alto_impacto": 7,
       "n_medio_impacto": 13,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-09",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 42,
+      "n_notas": 3,
+      "n_alto_impacto": 2,
+      "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
   ],
-  "tablero_actores": [],
+  "tablero_actores": [
+    {
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "iniciales": "AL",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 100,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 1,
+      "n_alto": 1,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
+      "nota_texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 100,
+          "y": 100
+        }
+      ]
+    }
+  ],
   "tablero_semana_inicio": "2026-11-09",
   "resumen_mananera": [],
   "mananera_estado": "pendiente",
-  "a_vigilar": [
-    {
-      "id": "auto-b132e03aae",
-      "nombre": "Rosa Icela Rodríguez reporta entrega voluntaria de 673 armas como parte del Plan",
-      "categoria": "Gobernabilidad",
-      "resumen": "Rosa Icela Rodríguez reporta entrega voluntaria de 673 armas como parte del Plan Michoacán - Por Esto!",
-      "fuente_url": "",
-      "actor_vinculado": null
-    }
-  ],
+  "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
@@ -1343,5 +1338,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-09 00:00"
+  "hora_corte_publicada": "2026-11-09 06:02"
 }
