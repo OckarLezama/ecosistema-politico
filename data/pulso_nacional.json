@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-11-09T06:02:57.936967-06:00",
+  "generado_en": "2026-11-09T14:39:30.522442-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 12,
+  "n_notas_ventana": 25,
   "baja_confianza": false,
-  "tension_nacional": 17,
+  "tension_nacional": 21,
   "tension_anomalia": {
-    "z": -1.19,
+    "z": -0.24,
     "nivel": "normal",
-    "media_periodo": 21.7,
+    "media_periodo": 22.0,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 56,
-      "tema_principal": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión",
-      "tema_principal_id": "auto-5f57f7343d",
-      "n_temas": 6,
-      "n_notas": 7,
+      "peso_pct": 80,
+      "tema_principal": "López Obrador: reaparición y declaraciones",
+      "tema_principal_id": "amlo-agenda",
+      "n_temas": 11,
+      "n_notas": 20,
       "notas": [
         {
           "texto": "¡Reaparece Andy López Beltrán! Acude al informe de Javier May en Tabasco tras señalamientos por huachicol fiscal - TV Azteca",
@@ -32,54 +32,102 @@
           "medio": "Proyecto Puente"
         },
         {
-          "texto": "Detienen a colaboradores de Adán Augusto vinculados con “La Barredora” en Tabasco - Palabra de Veracruzano",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQNkdUMVd1VHo4R25sSHpSYnNjMXJXNVlFcFZtZld2bFNQS3lZemd2WUJaUk42RzNaNTVMajl6dFdIVS1EY19XdzBCT3Q0M3pvSUdlN1JyRUxGTml5SVVIX3lCR0dmSHhBTTYxOHhVXzF4RlV1VEgzcEIwai1RZDhJTHowSTdORy1ZZ1pzbzFmczhTSWhyTUZUbjJwemVvZFR2aklVSkVkNnYtSDd0QVljckhkX1MwMXIteF9DQ0lRWWxYRzRHV0E?oc=5",
-          "intensidad": 6.0,
-          "medio": "Palabra de Veracruzano"
+          "texto": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
+          "fuente_url": "https://www.informador.mx/mexico/cjng-el-r2-presunto-implicado-en-el-asesinato-de-carlos-manzo-20261109-0066.html",
+          "intensidad": 7.0,
+          "medio": "informador.mx"
         },
         {
-          "texto": "Jorge Álvarez Máynez confirma negociación con Morena por fondos extraordinarios para NL - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQa29EZTZvVFIwc25VcllFbWNHVFhfQjJBZ0hDeTNyTlhoZHYtM194OWt1Wk9RLXJDQng1NHRiWGZMazRKT2RTa0MtNGtVNXhIRGQ5VnFjeTdMQ3ExVnN6bkJWSG81b25WTkJiRVRoVFZicHRUd2VVd2prMW5ZX296R3RUREZLcjhuMVcxM29xNUlIS0FzMVJ4RNIBmAFBVV95cUxNMEhlOXRzQVp4a25rSHZqV0phWE91U2pKWWZBTnZ5VDA2MU9ZdXlQSGJldmVsTVd0RFNKcG1PT21mazc2ZGpWVld0bW81Nkw0cjdMSGpJSXFxa25MQ25hRkpWWEtWTDY3UGdCTVphQm9RTm9qbUJVOTZBOG8wWUt4YU11T242ZVhpbll0amJhVDh3aTlSMnp2bQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "Jorge Álvarez Máynez confirma negociación con Morena para fondos extraordinarios para NL - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNMEhlOXRzQVp4a25rSHZqV0phWE91U2pKWWZBTnZ5VDA2MU9ZdXlQSGJldmVsTVd0RFNKcG1PT21mazc2ZGpWVld0bW81Nkw0cjdMSGpJSXFxa25MQ25hRkpWWEtWTDY3UGdCTVphQm9RTm9qbUJVOTZBOG8wWUt4YU11T242ZVhpbll0amJhVDh3aTlSMnp2bdIBmAFBVV95cUxNMEhlOXRzQVp4a25rSHZqV0phWE91U2pKWWZBTnZ5VDA2MU9ZdXlQSGJldmVsTVd0RFNKcG1PT21mazc2ZGpWVld0bW81Nkw0cjdMSGpJSXFxa25MQ25hRkpWWEtWTDY3UGdCTVphQm9RTm9qbUJVOTZBOG8wWUt4YU11T242ZVhpbll0amJhVDh3aTlSMnp2bQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "La Cuarta Transformación convirtió los apoyos en derechos: May",
-          "fuente_url": "https://www.tabascohoy.com/la-cuarta-transformacion-convirtio-los-apoyos-en-derechos-may/",
-          "intensidad": 4.0,
+          "texto": "Andrés López Beltrán responde a Salinas Pliego y rechaza acusaciones",
+          "fuente_url": "https://www.tabascohoy.com/andres-lopez-beltran-responde-a-salinas-pliego-y-rechaza-acusaciones/",
+          "intensidad": 7.0,
           "medio": "tabascohoy.com"
         },
         {
-          "texto": "\"Yo no ando en campaña\": alcaldesa de Huimanguillo tras negar impulsar aspiración de Martha Colorada - XEVT",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPYXpwMnMzb1d1VU9iRUE0SDQ2RjlVTHZ2aEczQk1EUjBWVzVCX3Q1bTZrd08zOVU1LWR3NGsyVFJGZ0Rrd2pHSnNuTkFNYzlXSWk3WWVZMXNmTDE0N08tRlB2aE5UUlNjVmNCY1JXM1VoMmlpVnoyeFp6S3lsZzhZNExuY2YtZXRHUUdnY1FTbUg5dUl3TjRGY3RFMW82TE5DNjVkbFllZUMtQ2pjQXJBRTJDNWJ5cnJ5VTNiMWxQZUEyb2dWZWFnUmdickdfV28?oc=5",
-          "intensidad": 4.0,
-          "medio": "XEVT"
+          "texto": "Andy López Beltrán responde a Ricardo Salinas Pliego: niega vínculos con huachicol fiscal y le lanza cuestionario - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPU2FwYW5aaElmVklMQTR1ZlpaT0JXM0pua2pwT0I0ckhMV1U2S21YTzR3UjdzM2p0a1cwY1dXandlNm5aLS1YZkJkaV93bDU4ZTA3ejJNZFRNckt2SEVESERtRzQ2OUoyRm5DVjFSc1lxZF81RnNGM2tfN010NTdPcUJzcGV4WnNlRzVyM09WVUVJR1dRbUptYU9LeV96MG5JVWozQmxuWkNfSFQxQWQ4N2VaNjMxX09MY2JnaWNDWmZMS2lyLVd5bm1qbnFGelN3bko4dVQzZmh0VU4yN1BiVdIB5gFBVV95cUxPeXQtQU9rZUQ5QkdQamVJUnZQeTg4aUVheTJfSHU2VWdCM05jYXd4eHJnemZxVTVfT0h2OFczUzhzOFZlU2p0RlMwLWlrTmVWczQ2OFhnQ3hUQnBYV0cweTVxdEVCZF94S2htVV9yU3J6TDdWNzRhWHBMeUdrc05YdFYtbUQxTDM3bGlnbEJVelVuQTU3TzNxMVN1Y2hWeUk3eUJsMC1wdkZfRUtXcHVjRnROZFhmTi1wdmxkTUszQ1ZpNnh6Q2dXdXJwSUNfTGk4MHdaY185MUZocnJnX0ItLXBKazFiZw?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Andy López Beltrán responde a Salinas Pliego, defiende viaje a Japón y lo llama “buitre” - Municipios Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxON19vOTZfU19WWXg3WDV6bFptSFB3cjZjNktxYUJLZzFSWkJjel82Y0o5WGt1RGFHb2k0cUljU0tNSXhMOXdTcjl4Zkl0LXNSOUdmTzZGSWk4cUN2bUJncUktTnFlaWVOLVI4SFY4Z0FTVkRwNEFiR0tkSXB5OU02ODA3SHlSWl9UTjNDOWNTMXBHa25wcXdVVFprSFhfVldCS041cXptSC1Rdk9UWk13Sjh5OTJWekk4YkpKUENn?oc=5",
+          "intensidad": 7.0,
+          "medio": "Municipios Puebla"
+        },
+        {
+          "texto": "Impulso a pagos digitales, para combatir huachicol fiscal: Sheinbaum - La Silla Rota",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQNGtSck5TRzA4NzFFOGV3V01iWC0yQXJXVFZpQkY2ZXBSZlc2QlBmWFNNMHpPQUtUWWw2djloV0s0MEcwZlZMWVBNLURvdWgyLW12OXhlNnpNQVl3eXZxS1RqOEdhQzlNaHoxSTBnU2Q2blJMWnVscWF3dTd2QnBCWmhfcjB2T0s2cTlFOUJiSnV5R1JGWjFKVTJld1V2TmE0SzY4VU9xYld5ekktcmZJSkRMU1dHNzVuN19n?oc=5",
+          "intensidad": 7.0,
+          "medio": "La Silla Rota"
+        },
+        {
+          "texto": "Sheinbaum explica respaldo de López Obrador a Taddei - El Informador",
+          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQk5RQ3NMMm9DeEYwaTFiaXVKMkRBcENOVWVFT19GOTlQY2ZxTkVORkcwS1lyTUNaNU1KS1BydUExaDNOUUJWN0RkU0hnR1VYMlpDdlExa2FOS255T18wNG9ST0pQek5BR1FKWUJ3YW8wUmJPZUUyUkFxVy1nRkU4Q1VxUWtiYm13V2FpVlZkUXNONktKYTRxbWRJNzBrZw?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Informador"
+        },
+        {
+          "texto": "¿Por qué Taddei sí, pero Rocha Moya y Adán Augusto no? - Unomasuno",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNMDZxNEtUYjI2WF9KcWp0c1hLTGFDQ1ZoT0NqQVFSWkluS1NuN3NmYUwtalpqd29aN1ViemJ0aHRXSHEyN19TTmFsazBocjQxeGU3aEhHX2lBTlNvZUxzX0s3ZGhPTHZIenZfVG1GR044RlZwcG1KV09uZ1owcmRhN0NZb3BTaHZwMkZkdQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "Unomasuno"
+        },
+        {
+          "texto": "Morena rechaza acusaciones por presuntos actos anticipados de campaña en Yucatán",
+          "fuente_url": "https://www.yucatan.com.mx/merida/2026/11/09/morena-rechaza-acusaciones-por-presuntos-actos-anticipados-de-campana-en-yucatan.html",
+          "intensidad": 5.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "Ricardo Salinas Pliego, multimillonario opositor a Claudia Sheinbaum, lanza nuevo guiño como posible candidato en 2030: \"No me dejen solo\" - Ambito",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOXzdBRXNfN3dZbUZhYTNwN0VIbndKbXVlU0phalNSYnJRXzlYam0tRTFnMXRabUtTWWh5cE5oOGFJWEtPa2hTY0FkS1ZNeFpEak5XLUFwZlVnSmdHWDJsR2xCb2lFaWtMbUhGVTdlVWxNWFNtRElqZVFETG02a3ZiQ296NkNiMnBmQ3YtcUVLN1hZNkN6QkZLNjlub2c4aEMzd2d6VF9LOTliRHVHZ2ZpV2YzMzhBcjlQelVJckx2VUMtNHdMeFFIN09YRVd0bncwTzZaazBfaE8tYnVvU2R5TWxmZzNzTVBuakV4VXZSWU90S2lhM2JPWUs0WGtmSGtNUE5YbEIzaWNVU2QzeUNMTXFZaUo0d9IBmwJBVV95cUxOVFFlbzR6cGFSa1RaQ0p0YXdvNjA2VENOeURtS2l6Q0g4VTIxWGZjbzUyWTR4eW4wTXNjOFpURmxIRHlFbFJDWk0tTVh2LWhROW1lUkp1ekVJa3JxOWdCSGVKMVQ1REt1SmdqNmZ3enpwSU1QN3VRVWtSQXVMeDUwQVlUSXlhd20xZXJLcW42M3ZwNjZnOS10Szc3UkhSRE1jYnVZQWp4cnM0bUF6M3ZKNE5rTUhJM2docnhFd3pHWHEzcjd2LTV3aVB5MEoxSnZLNkZOQ3ZsbkVzdzN2T3Mwa3k5aGxVV2UzTTRsME5kNkNfbHQtRGFSM1p5WHJrYXVHOE1WQXJvejNaWmx3QmtVMzR0cGdhTkhNS1dj?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ambito"
+        },
+        {
+          "texto": "Ricardo Salinas Pliego, multimillonario opositor a Claudia Sheinbaum, lanza nuevo guiño como posible candidato en 2030: No me dejen solo - Ambito",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOXzdBRXNfN3dZbUZhYTNwN0VIbndKbXVlU0phalNSYnJRXzlYam0tRTFnMXRabUtTWWh5cE5oOGFJWEtPa2hTY0FkS1ZNeFpEak5XLUFwZlVnSmdHWDJsR2xCb2lFaWtMbUhGVTdlVWxNWFNtRElqZVFETG02a3ZiQ296NkNiMnBmQ3YtcUVLN1hZNkN6QkZLNjlub2c4aEMzd2d6VF9LOTliRHVHZ2ZpV2YzMzhBcjlQelVJckx2VUMtNHdMeFFIN09YRVd0bncwTzZaazBfaE8tYnVvU2R5TWxmZzNzTVBuakV4VXZSWU90S2lhM2JPWUs0WGtmSGtNUE5YbEIzaWNVU2QzeUNMTXFZaUo0dw?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ambito"
+        },
+        {
+          "texto": "Morena responde a las acusaciones en Yucatán: Descarta actos anticipados de campaña y fija postura - Debate",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPa0UwZzVHQlR0NVJLUkF1eGR1dzhLWktWUXlFbGoyem9DRjVEOTZzVWVHd1JZVkM3aFFxdDAxcVhoVnFrQzlIa3R6YVUwVkluMEg2M2NnaDlfcEtoVlc5aXByMDJ2d0QtRFV3YzZiNnF5dVNtbWRPMTZES1dZRVVCallreHB5NHBBX3E4N2F3R3g5OUZSbXhYaEQ4Z3g0SjVoRFFxUklnV09rSXlsakNfQVV6cGFWbmh5TjVqbzZIOF80U2NoLWNPcE5aalN5OUVFS0l4dHRxS3hZY09vT0RYNW9UcFVuQQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "Debate"
+        },
+        {
+          "texto": "Capital Política: Aspirantes a coordinadores de Morena en OPB no pueden solos - Ruptura360",
+          "fuente_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBkWDZyTTktVmlvdGNSTTVPWGVzSGMzWDdkZ3N2Z0V5cTlJRDcyN2pkY2hrTjZtSUJNRDR2M0xONHNacTEwdExFRHdoNkhmelctblUyYkkzdDVOSXhBMXFHbDd4S211dzA2RXJfb2tSSWxfZ2JOa3c?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ruptura360"
+        },
+        {
+          "texto": "Afirma Nahle que en “operativo enjambre”, Harfuch sí tomó en cuenta al gobierno de Veracruz; hubo “coordinación”, asegura la Gobernadora - Versiones",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNd3hKM0x3MjhJY2xKNDBVN0IxTF9HSVhGeWttT0J4SjcxM2E1eGw2U1o1LU53bHRybHN0Rm9Kd2xydi1WT1BFZlR0UEpOcDB5STF6akxudzNTQzVmWlJlbm5hZlFTNEhPM3JJVkgxcmxjLVE0RnU5bzE5VWh3bzlNSHFILS1MTHRRTUsxRGhScmF2bG1LLUFwSFhNcUxwdzBLT0lnTGhtSUJ2eDdFTERtYlZTeC1Qd2xZUXNUQS15U0RsZnNtZDNyUlplRnJtUDVORnFtRnh5dllYNHc5RXpBYlBjeFZOd3JOTzNTRFByZHQ5R1FQUU5jdkxB?oc=5",
+          "intensidad": 5.0,
+          "medio": "Versiones"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 18,
+      "peso_pct": 8,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
       "n_notas": 2,
       "notas": [
         {
-          "texto": "“Muralla” demócrata en frontera acelerará TMEC, prevé vicepresidenta de Index - Norte de Ciudad Juárez",
-          "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQUlV3NTRjNV9LZlNaTk13NDdBaEZWbUNIYjZsUC1fcVdSZmR2ZlZlN05PUDRlb1JXdXpnUVBIeURqb0VOVjZlTlliTjZaTnM2emFoc2NVdnU3TEVOb0xwTnBYOHRwdURseXZ6WDJQSldGUE1rVFFCVUE3THVEQVFvNDkwM2k1Umx4Y3RLRlZjZ0gtSFlTRXNULUJJNGJvSE9R?oc=5",
+          "texto": "Crece brecha fiscal con socios T-MEC - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9ERmJFMUdpTGFuTjhYdnV5M1RmN3dkNVlNMUh1clRqUlpKTkFHZXRJYkVhX3BRNW1rOVIxS2dfX0ZCb05iYmd1M2M3eFRsVER6QXVRVExjb3MzbWtCVE1kNTR5SXQxT180V3gzYzNrcmc3UkJIb1F6cnBBWjNIYjQ?oc=5",
           "intensidad": 6.0,
-          "medio": "Norte de Ciudad Juárez"
+          "medio": "Reforma"
         },
         {
-          "texto": "ANAM y CBP detectan irregularidades en carga comercial bajo el T-MEC - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUEp6c3o4N0RHZ0V2NW1Cd25vSF9DS0VlSll0ZWRvRkc1c1g3T1FkOVV6aTZwQnd5LUtBdWV5ZEx5d2NaTVlXYkZraGtQVl9RdGJCWWdVckpjaURZbzVRaUxxcmtFVmpHSXlJcEp4c0MwRzZpbXI5R1dKbWVOZkhZYUZwbHhlSWRVQWI3aXdjSnNNSXBNVmtnTNIBmAFBVV95cUxQVmQ1aktoaGJsYW1WSGxhVFp1dGgxTGZlMDB5Mk12dVhzR2FmenljTmRISjI3WV9MT0lLT29INFdYZG1OOW5ZQmc2UThRYmZRMDM3VmdIOXVrNUlhajFfTlZTR3NjLW95cDRfUzF6aDZEODM4VDFUbW4wUnZEazhrRkxCVHFQZE5NdmFlZXJnQUpQVHJQa2tRSA?oc=5",
+          "texto": "Empresarios mexicanos buscarán certidumbre para el T-MEC durante cumbre en EU: CCE - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQT0lNcnVubzNENjBFaVFNR2pLLUgzTmhKOUk2ZnVJN2hFWDFBeEtWQlNCVU5SdnRPZW12TGUwNHBTZXJDTTVVVGlMZU9JZHR5OHg2cUhxUFNaSVlTZGQ0ODlCQ3VNXy14RkFfd3hPWVFidkdkaWpIMGJ0V0dnSkxMT2Y0eVowMGtJTDFfQXNEZGJoSU3SAZMBQVVfeXFMTXpuekxBVTBLY2NCNFF4c3dSV1hyclNQemNaRy1iTHNhZXI5c2RDeGY5dnRobGJyQWtsNVIxUG5lenN5ajk5cVhrWFlXNlBjWU55UlFUTERyaDVpT2ZfVDlLYWNqZ1NFcVRqTHR3UnZ4M1BxOVl5V05Na1lXVl93Z2FNTUxQV1NhU05laFE0cmdaLUJZ?oc=5",
           "intensidad": 6.0,
           "medio": "MILENIO"
         }
@@ -87,7 +135,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 16,
+      "peso_pct": 7,
       "tema_principal": "Abatimiento de \"El Mencho\"",
       "tema_principal_id": "el-mencho",
       "n_temas": 2,
@@ -100,16 +148,16 @@
           "medio": "Reforma"
         },
         {
-          "texto": "Detienen al “R2”, líder del CJNG presuntamente vinculado al asesinato de Carlos Manzo",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/8/detienen-a-r2-lider-del-cjng-presuntamente-vinculado-al-asesinato-de-carlos-manzo-2912545.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
+          "texto": "Violencia en Sinaloa: gobierno reconoce que aún no logra recuperar la paz",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/09/violencia-en-sinaloa-gobierno-reconoce-que-aun-no-logra-recuperar-la-paz.html",
+          "intensidad": 4.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 10,
+      "peso_pct": 5,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -214,11 +262,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 70
+          "peso_pct": 71
         },
         {
           "categoria": "Relación Bilateral",
@@ -243,7 +291,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 70
+          "peso_pct": 71
         },
         {
           "categoria": "Relación Bilateral",
@@ -268,7 +316,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 69
+          "peso_pct": 70
         },
         {
           "categoria": "Relación Bilateral",
@@ -289,11 +337,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 70
         },
         {
           "categoria": "Relación Bilateral",
@@ -301,11 +349,11 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 5
         }
       ]
     },
@@ -330,7 +378,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 5
         }
       ]
     },
@@ -355,7 +403,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 5
         }
       ]
     },
@@ -405,7 +453,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 5
         }
       ]
     },
@@ -430,7 +478,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 3
+          "peso_pct": 4
         }
       ]
     },
@@ -447,7 +495,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 15
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -455,7 +503,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 2
+          "peso_pct": 3
         }
       ]
     },
@@ -501,7 +549,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -514,7 +562,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
@@ -555,7 +603,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 3
         }
       ]
     },
@@ -576,7 +624,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -614,7 +662,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
@@ -639,7 +687,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -668,7 +716,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
@@ -693,11 +741,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 18
+          "peso_pct": 17
         },
         {
           "categoria": "Economía",
@@ -718,11 +766,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 56
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 19
+          "peso_pct": 18
         },
         {
           "categoria": "Economía",
@@ -743,15 +791,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 53
+          "peso_pct": 54
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 21
+          "peso_pct": 20
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -768,7 +816,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 55
+          "peso_pct": 56
         },
         {
           "categoria": "Relación Bilateral",
@@ -789,11 +837,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 57
+          "peso_pct": 58
         },
         {
           "categoria": "Relación Bilateral",
@@ -814,56 +862,110 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 57
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 19
+          "peso_pct": 17
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
-          "peso_pct": 4
+          "peso_pct": 3
         }
       ]
     }
   ],
   "top5_temas": [
     {
-      "id": "auto-5f57f7343d",
-      "nombre": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión",
+      "id": "amlo-agenda",
+      "nombre": "López Obrador: reaparición y declaraciones",
       "categoria": "Gobernabilidad",
-      "resumen": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión e IMSS-Bienestar",
-      "motivo": "Jorge Álvarez Máynez confirma negociación con Morena por fondos extraordinarios para NL - MILENIO",
-      "peso": 10.0,
-      "n_temas_agrupados": 3,
+      "resumen": "Declaraciones, apariciones y señalamientos que involucran al expresidente Andrés Manuel López Obrador y su influencia en el gobierno y en Morena.",
+      "motivo": "Sheinbaum explica respaldo de López Obrador a Taddei - El Informador",
+      "peso": 17.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQk5RQ3NMMm9DeEYwaTFiaXVKMkRBcENOVWVFT19GOTlQY2ZxTkVORkcwS1lyTUNaNU1KS1BydUExaDNOUUJWN0RkU0hnR1VYMlpDdlExa2FOS255T18wNG9ST0pQek5BR1FKWUJ3YW8wUmJPZUUyUkFxVy1nRkU4Q1VxUWtiYm13V2FpVlZkUXNONktKYTRxbWRJNzBrZw?oc=5",
+      "actor_vinculado": null
+    },
+    {
+      "id": "carlos-manzo",
+      "nombre": "Asesinato de Carlos Manzo",
+      "categoria": "Seguridad Nacional",
+      "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
+      "motivo": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
+      "peso": 13.0,
+      "n_temas_agrupados": 7,
+      "escalando": true,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://www.informador.mx/mexico/cjng-el-r2-presunto-implicado-en-el-asesinato-de-carlos-manzo-20261109-0066.html",
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Crece brecha fiscal con socios T-MEC - Reforma",
+      "peso": 12.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9ERmJFMUdpTGFuTjhYdnV5M1RmN3dkNVlNMUh1clRqUlpKTkFHZXRJYkVhX3BRNW1rOVIxS2dfX0ZCb05iYmd1M2M3eFRsVER6QXVRVExjb3MzbWtCVE1kNTR5SXQxT180V3gzYzNrcmc3UkJIb1F6cnBBWjNIYjQ?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
+      "id": "visa-de-andy",
+      "nombre": "Visa de Andy",
+      "categoria": "Relación Bilateral",
+      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
+      "motivo": "López Beltrán llama \"buitre\" a Salinas Pliego y lo cuestiona por sus vínculos con Epstein, García Luna y Marcial Maciel - La Jornada",
+      "peso": 5.0,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQa29EZTZvVFIwc25VcllFbWNHVFhfQjJBZ0hDeTNyTlhoZHYtM194OWt1Wk9RLXJDQng1NHRiWGZMazRKT2RTa0MtNGtVNXhIRGQ5VnFjeTdMQ3ExVnN6bkJWSG81b25WTkJiRVRoVFZicHRUd2VVd2prMW5ZX296R3RUREZLcjhuMVcxM29xNUlIS0FzMVJ4RNIBmAFBVV95cUxNMEhlOXRzQVp4a25rSHZqV0phWE91U2pKWWZBTnZ5VDA2MU9ZdXlQSGJldmVsTVd0RFNKcG1PT21mazc2ZGpWVld0bW81Nkw0cjdMSGpJSXFxa25MQ25hRkpWWEtWTDY3UGdCTVphQm9RTm9qbUJVOTZBOG8wWUt4YU11T242ZVhpbll0amJhVDh3aTlSMnp2bQ?oc=5",
-      "actor_vinculado": null
+      "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNSlVCUGpJWUl2N0gxcW1VYk5YLXNVWG53VW9KZVFjNmJaZFY5a1FLV0JXcEMySm9hdTdDdG5PMHRZaERGUTZ1dHZZeVZQTGdDWTZKRTdfZTBwa3A2Z2RoNTFjWGNuRU92N255WWlOUkROZGRGZnV0d3VlZlRtSnhJUGtUYS1VY0pjUEptcllmNWFxd09CNXUzcWUyTTZlZUMwUVQxQ3UycE1hcjUzc2FidzhHUEw0RFg2ZWs5Q2tWOFg3YTFWd282YU52UEtRZTIxZmtoTmkyM25RZXFHdnhMNUg5OGlBYjVLdFM3QXZGRWRFMkJkTVZnWXlsTm5CT1Bm?oc=5",
+      "actor_vinculado": {
+        "id": "andy",
+        "nombre": "Andrés Manuel López Beltrán ('Andy')"
+      }
     },
     {
-      "id": "el-mencho",
-      "nombre": "Abatimiento de \"El Mencho\"",
-      "categoria": "Seguridad Nacional",
-      "resumen": "El 22 de febrero de 2026, fuerzas de seguridad mexicanas abatieron a Nemesio 'El Mencho' Oseguera Cervantes, líder del Cártel Jalisco Nueva Generación, durante un operativo militar en Tapalpa, Jalisco. El operativo detonó una ola de violencia, bloqueos e incendios en varios estados; su lugarteniente 'El Tuli' encabezó las represalias hasta ser abatido, con un saldo de al menos 25 elementos de la Guardia Nacional muertos y decenas de detenidos.",
-      "motivo": "Operó cabecilla para 'El Mencho' y el CJNG - Reforma",
-      "peso": 6.0,
-      "n_temas_agrupados": 4,
-      "escalando": true,
+      "id": "auto-756ae60dca",
+      "nombre": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s",
+      "categoria": "Gobernabilidad",
+      "resumen": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality show: “No está bien si viola regulaciones” - Infobae",
+      "motivo": "Carlos Manzo, Sheinbaum y Salinas Pliego - Sin Embargo",
+      "peso": 5.0,
+      "n_temas_agrupados": 5,
+      "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5MbmJCbjVnZUJaZEpqbDhHVC0xV2FTQ3NZbHRyS29OV25zUEtKaW5HcWtpeVRCT3YzRmgtOW5pSWlxR1IwWkNwbWdNbmE3WUtYdXcyeC0yc1NOZUNaQzNVb3owVUI5Tjcwb25OY2JjRkVPcmg5a2RsN29BSTlQLXM?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE45Q3R2RERQT1pGWWF5eGJkbkgyQjZ0azcxaWdwT054MnYyWlVSN19PUVA4dVkwSF9rV3Y5X0lqeUdPUTFzY1RWUWU5ZldPWEF4Uy1iMk81djdERk9BQU1jekhXTE4ySTdiaTBXS2FhSU80RHZqOUdXQWtyOVhjQmc?oc=5",
       "actor_vinculado": {
         "id": "andy",
         "nombre": "Andrés Manuel López Beltrán ('Andy')"
@@ -872,28 +974,20 @@
   ],
   "temas_nuevos": [
     {
-      "id": "auto-754a295166",
-      "nombre": "Planean 'Operativo Invernal 2026' en Gómez Palacio; refugios temporales estarán ",
+      "id": "auto-2a2c4dd254",
+      "nombre": "Canarias reclama al Estado un paquete extraordinario para El Hierro y reuniones ",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxObUFNQ1RrZ2I0R0t4MVFxLTd3RWcwME96ZlhMWU91bzZVdlNKU1hrdUw5SjNENWkzR3dyR0ZPT1RkSkMzd01TWlJPMkhxbURhMG1vaGEyNU1keDZKc1VzWlJycE8wOW5ELUJicUx5eDM2dFJvSXViNnhJS1lhTGhTLXFiNmx4cmM5aVcxV2FXMFlHYUQ4ckMyWUNzamZnQlF4M2fSAaIBQVVfeXFMUHJaZmVOYjZzMUdKaUxQYlZCbUVCMHV0ekRrR3hwZkVMb2lUUWZrTFNmbWVzd1I1cUd5cmgtaUxkb283RXYzWmdNR2tLc3U3OUphWGhsb1JLMUlKdkdhY0VCUGlyaUsxQ2lBQURSdjJqNnJ6T1Q0WmJZNnlaSmU1RTBJamhrOVhRSmJTMmxLWnROUHc3RVMwX0xxdGNsaERFaENn?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNWFlvV0FHNmVFZTduOEZHWWJGMXByUTVqU2hxZlh6dTJ6dnRzM2xQU3VZTHNTcWNiTktpZkp4cDhvaWUtV3RjZThjYnM1b3MwRHRxVXYweXYxa1gwYzI0WjMzWkhucjlqTmdfaDJhcWI4ZFk2R2diR3dwbkM1YmNfZGtubGNjQmxCUHYtYXhIZ09oMENpWGR6NzNmeU93TGpWdFNrY1VlUkpnNEhwcWhMQU9lb25TcUxQX2VTTE1PRUFGdjdOYmJncGpJVHEtNjNsbnlHX1hoY2ZrTl9PbE53VU5jMzU4SzFXZEVqcNIBgAJBVV95cUxPd1hqNVE0RVBzU3hpNmdTZm9jZDlyczRaVkpaRlROVFcyRnp6SGs2NVBZeFRSSUdib3FPaVNJckpiaFZDR2FEWmdnR2VnaG80dVlJMkdrb2MzbURQejdtNV91aEQwaHFFcUFVVkZzQXEtTGtFMExGcG5TYW9rZDFFLVM5UGxQMkprNUg4Nm1SMHJZMm5DRDJuelVDb25jYTNBOElaRDU1RXdqbVBYa3hhQmxvOC01emRzb0RKeXpFUU9GclM1YUxjNkwxRF9EWVdKa1RZeTZ5V2tCQTZ0bkxzNzFBaFhLX1d1ejZobFJXcWlaLVpZSUMzaXZiQkV0UE1v?oc=5"
     },
     {
-      "id": "auto-f978df06a1",
-      "nombre": "Claudia Sheinbaum abraza a un niño que rompe en llanto durante un encuentro - In",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-9873e436de",
+      "nombre": "México concede asilo a Nadia Beller, expareja de Fernando Cerimedo investigado p",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQSjBydDNoM1JsdGJBbk1uUnJicjlGNlJmMWhnenNQelJ2M1g4bUxhS20ybGJid1ZhVnFRYkVmY0k4MV8tZmlxRV9fQjJPcjRKM3dfdFhMMDBPMVhxblBnRHF0MUp2QUNfZ1lRR1NmT2JwMXA3WnRoR01RMG13eHE4b1FjV1p2SUo1YTNhM2JGeWtJeXp2U0JJalhUNDYyN0FSOUlqYk5PUEh1VTAwMms1VkpGSVpqWWphaUFTcmxhQkhNamN5X1BJcE40a01vUQ?oc=5"
-    },
-    {
-      "id": "auto-834533e6f7",
-      "nombre": "Horacio Duarte reconoce a diputados federales de Morena defensoría del presupues",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/11/08/horacio-duarte-reconoce-a-diputados-federales-de-morena-defensoria-del-presupuesto-para-obras-en-edomex/"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQXFsSmF4MWs1NXdQdTFsVmUyU1BuazNzUHB1VEZ6cFN6Y28xb1NXb3ZQejA3QWN3S2NMUUhIWjgzcDJ2X1ZZbzdDZnBjd2VuTU9CVTI5c3V0LVpBRVNqNWRXZENXNWZZeVFOZkJhOU5sdmtOQS1NZklxakdBYm5vbm5WbTZNVmdJd0JUWVBYVU05d2thcjhqckRNV3UyeWlEb3ByV3BISTdzQdIBqgFBVV95cUxNSGtiNHdyLW9sSHpkSFRxb3pZZnp1UkgwMUpGVHlGdG1MRFhZbFpTSnB4alNXOU1IT3RRREdjMUpYQXg5dXRKOVFyeEZ1TExyUmxGT3JKUlU3UkRwelR5MG11UE1Tbm9hQmlVeFg4ZHk0ZWk3N2N0b2dTdE9lZGo4a1NTaXQ0R2tmZGFNNlJFOURmN0RZYzc2UkxOUDREajBhaGFCSHI5ZGFwdw?oc=5"
     },
     {
       "id": "auto-6a539e1ecc",
@@ -902,52 +996,35 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/010n2pol?partner=rss"
+    },
+    {
+      "id": "auto-640d4a05c3",
+      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOaUo4Z2hpaG5lQkhQVWp4SWYtNnVHR2Z3SE5UN2ZGVU5uQ0cyQWc5NDJZUFN0SFVpd2o5d3pVMHM5ZVZ6ZXdpSkVHaDUxTVAteGQzRElMWXc3NGN2X25na2M3S3FRSGZrOVJqNGRXX21UZmJxVmdFZVRlM3BNVE1fbHRkdjZsN2hNbDFSQmdjcDNzX1FOSzdSZ2R3SlpCM3pIYUxtaFNFMUFQY3BU?oc=5"
+    },
+    {
+      "id": "auto-a6c4023664",
+      "nombre": "Claudia Sheinbaum se contradice con acuerdo de río Sonora con Grupo México: “No ",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQdTFYSzlOZFFlLWFIZVRQdVFzVVZLTWdMTFNLcGl5TDZJUExkNDFqMzB4dy05aFl1VkduUXEtR0N6NVVHMGtKS3EyR3JfY3IyLWkwREx1UmZLY2VacHFwUFdJSy1IMXZXM0djSlhTTVI0bXIxTm4zc2hFeWRxdVpqd1JXbi1iNm1WRW1DQ25QeXFmUmM5VGlYcW5hS1ptUXh2MGRHeVhVZkpwdDR3ejV3aVhZeVYwcVVZWGZZVGt1RFJNOFQ1QzAtMjdzakx0MTFKN2lZV2lGMlM5b2QycG4zUdIB-wFBVV95cUxNbmZGcy1OQ3BwaUNyNHJjb2ZMU050c05ZeTFfY2xISWtKZ0ZZTy1DM3I2dEc4eldIOHRsWEJZWHZvaEZ4WXAzZ3RMQkVyeVZGRXkxVC0zV3FqVFgyQlktcFZ2N1BFM1hSeDVVQzBhNVhEUUdQWDd1LUJROTVRQnVVeUEtaU5ibGlCMXpyaENZU0sxcTVvNWVsSkR5RkhYQ0Nibk9TQ0ljWEJ0eno0bHVYXzRZUlJSb2lPYTh5Vk1fMzBPeFVPT05OV1Z4MEl2ODFPWVRKcVJmNU5PRElfcG1LQVFfaEJ2OTRWOVBTTG1jaXRIS2QybDdWN1E0QQ?oc=5"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-73f6aaa4f4",
-      "nombre": "Entrega Gobierno del Estado más de mil 500 lentes a personas con problemas visua",
+      "id": "auto-075b81747a",
+      "nombre": "EU ubica al \"número dos\" de la 4T, comparte Riva Palacio",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 34,
-      "motivo": "Estamos entregando casas a personas que nunca imaginaron tenerlas: presidenta Claudia Sheinbaum - Excélsior",
+      "dias_silencio": 13,
+      "motivo": "Riva Palacio expone el lodazal político de la 4T",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1wdC1tSWxKMXBIanowbjBVY2drcmpRS1RXSUxmei12TGpTYTVNbzA3QXlfcTJ4UFI3dUxyamw5VDVGelVxdUU3eXRnM18teXVvNlNGT0laeVlKRFVPbVB0ZlRNNUZqNHA2Ymw5aXFFTjY1QWZ2ekZZcNIBfkFVX3lxTE96RHo0UFpoOVkwWVB1ZjFCeGRXYXl3NUVhRHdJVktJRFNnUnBUZzJPRFFkdUxYZDBKT05TOVFjSXExV0U4c1FvZUc1dXpuV2JEdXpyTUdDSWlOTndpNnBtMTFfbDJ0UXZ6UlhnS2M3LWNqeWNBTW4wYzFwZUtUUQ?oc=5",
-      "fecha_anterior": "2026-10-05",
-      "fuente_url_anterior": ""
-    },
-    {
-      "id": "auto-114acb3463",
-      "nombre": "Andy Manuel López Beltrán se registra como aspirante a diputado en Tabasco - fom",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 28,
-      "motivo": "Evita May saludar a 'Andy' López Beltrán en informe - Reforma",
-      "impacto": "alto",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNak1EcERtc1dscVJKcjVuSGlOd3ZlODBxbTJXT2stWHpPeXRCaV9CV2FxeldhZ1hVUXJoZzNVbXlkV1FBLVBKdXc2dy1XMkV4Z0VxbUFSb1ZjUXdERWtLajktaHBRQjBvUjJkc19SUVhvc1ZVODNYekxfMkZOS3ppZDNGdkRDRm1jLW4w?oc=5",
-      "fecha_anterior": "2026-10-11",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPdHd0TDFtajR0NzM4RlBmLWtfRnBzYUVCd1RVVWZuVXNHOHNTX0x6NF9McnJ6NHd6aEVpZ2E2NHo1SkZudjJxM2w0THo1Z0tPZFhQX2VuekxCZi1XUFpMMGFFZjM4cndqTTJVVGEyOUVHeFozbjk1ZFZtcUFNWEFrakYzUmk3WDEyQ1FvSDB4MkpqSHFGZ2p3RlpMUDBNRHRNZDl1RGhSNDZHZUJEcVBr?oc=5"
-    },
-    {
-      "id": "auto-1af88799a2",
-      "nombre": "Víctor Castro y Claudia Sheinbaum acuerdan impulsar obras de agua y salud priori",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 28,
-      "motivo": "Morena priorizará inversión en infraestructura en el Presupuesto 2027; destacan obras de salud y trenes - MILENIO",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQR0xobS1KTmFHdExlZ3FPRjM0VEpHby13MXVwX3l6LWFRdzk2UmUwdWJVbFhXYklPYjhSYW9maEZYRk9BX1lEbE5SQTVRT3N5UFFEeThHMzFLeVZLbURqTVhZcUh4THB5ZVJNc2Q3S1o5dVlSbHJBZWFKcDNoVDh6aEJQVFBGWVF3czgxWWNGbXlfRnZlMEM2Q9IBmAFBVV95cUxNWlFGa3VUWmhBTVBOS2N0SEg1LU5VMU8xVXJ3NDNQMmUzR2xWbFQwTEUzMkt3UnFjRGNySzh6azFzWXRndW5EV3IycVluR0huNUt1MGF1SjdFdVBfdkNzeUs1UjF6ZHQ3TS03dmRpYlREV2c4QldpWkNVM3ZNZkFWTUZuY0tXdUdkMjRwbEhhT3BsMVRTdE9OXw?oc=5",
-      "fecha_anterior": "2026-10-11",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQQnpRTVk1UHVpM0ZuX1I4aEMwdF9WbjhBMjB1UVVXZlJJREgzeGJZeEtOSUtORjA1Y1VVT2J4Z3FXX2ZXRnJqcHJ1S2dZRkg1RDFQa2VfWDVnRHhCS3poSldJaFBPNG1UMXd0Nm1IaHBJaE5XN25JTXFIbC03QTl6Mm1SMGFZM1lyS3FjR0RB?oc=5"
-    },
-    {
-      "id": "auto-9287040303",
-      "nombre": "🇲🇽 Clara Brugada dio la bienvenida a Claudia Sheinbaum durante el acto en el Zóc",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 25,
-      "motivo": "Clara Brugada llama a la unidad de Morena en Azcapotzalco - El Universal",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPZ1Y1S3JSNU9rYkVWWnlGVk0wV3ZmaTBFZFpLWEZROVZlOFdtWHRzd3Rva0lkWmZCbEtSeWtrbzc1cWdMMXlqb29HVlNEZ1h1Sms4ckZ6QUxseGw3M0VjYlJXeE9tZjUzU3liQkRzdnlJR1J4OHoyb3pZbHgwaW5XNFozdXYxMWlKcC1PUmJDMXR6TGM2aGs0RjZZeGdzbmR2ejR0YkJGcU5ZZTB0WEdrYk9xSXJydVRuZ0xiWGxEeC1rY0wzVFRtYXVhVEJ1QdIB4gFBVV95cUxNQmJjMHVfajMxRHJNRDBTNW9vd2NwTEhfbmk5UkRJekt5eUtSay10NnhiMmE2bDRsWTJDZkFPT0NMRmZLV1BvWWlBNUwtRVhac3lSX0xMNGUxZ3Ezcms5bWRRSGxweUh0ZFZnYnN3eXp3cGNJOTUzUEtOYWoyT2xNZ0Z4SmpTNHZzeTRlQUNvRnBBSUhkY200Q3RRMjVWbHMtQ2VLTHluNkFhY0xPV0UzRWhvOE9UYmppMHItUldyaTBkS0V6aG54R0lGV3E3ZDJkWHBpcUVRX3N5SzZpOWNmSWtn?oc=5",
-      "fecha_anterior": "2026-10-14",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOeGY2YWNmbmVQaFozRExOVnJQanpkbTR3QnlJTGpQVHhZU09tNXhLSGF6cGRpQ1lPSkdVcFVnejdrcTlRTlhDV0JtTEltQmM2NlJpT2E5dEZqeTFTenlzbUVsbHp1NWJiUTk4V3JRNExpOGJOOTYxanVXb2tNVW45bUlJWHZ2SDFWNERPWlQtMHM5ZmtuRi00T3BYMmJlSWtLVFY3VDAzV2FlYUhoeFk4?oc=5"
+      "fuente_url": "https://www.informador.mx/mexico/taddei-una-batalla-perdida-para-sheinbaum-raymundo-riva-palacio-expone-el-lodazal-politico-de-la-4t-20261109-0047.html",
+      "fecha_anterior": "2026-10-26",
+      "fuente_url_anterior": "https://www.informador.mx/mexico/raymundo-riva-palacio-asegura-que-guadalupe-taddei-es-un-instrumento-desechable-al-servicio-de-morena-20261026-0046.html"
     },
     {
       "id": "auto-fa6d80b1ce",
@@ -959,53 +1036,31 @@
       "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/014a1pol?partner=rss",
       "fecha_anterior": "2026-10-26",
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/26/politica/019a2pol?partner=rss"
+    },
+    {
+      "id": "amlo-agenda",
+      "nombre": "López Obrador: reaparición y declaraciones",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 9,
+      "motivo": "Sheinbaum explica respaldo de López Obrador a Taddei - El Informador",
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQk5RQ3NMMm9DeEYwaTFiaXVKMkRBcENOVWVFT19GOTlQY2ZxTkVORkcwS1lyTUNaNU1KS1BydUExaDNOUUJWN0RkU0hnR1VYMlpDdlExa2FOS255T18wNG9ST0pQek5BR1FKWUJ3YW8wUmJPZUUyUkFxVy1nRkU4Q1VxUWtiYm13V2FpVlZkUXNONktKYTRxbWRJNzBrZw?oc=5",
+      "fecha_anterior": "2026-10-30",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQaUlMcWwtTW9ic1hBaE5hQjFvWk5rN3ZsQnU0RWRKSEthQnhxQ3JkU3cxQnZ2YmEzOTdZNUpfZ0swUm5Rc2FsejlheXByeFphZHFYbUVDMU15R2NVLVlXRkk0eGpfQUhsZGl4U3lLdzRrc3VCcGowcnVQVHlZTTBXaFZqc1R5ZU1ZZVFTQUhrTnpMcDBRYmZmWXVSZENwckw5R3lmMDhLMHVWdUFucjZVUjRCd216c2owd3VkUUlwZkpFQ0dWTE1oQlVUOXVPTmJuVkpZTjd2Vnc5MDY2WTlrejlSbFQ3WGZLWUMyeDZaVV9VNTl3NjhjajJMQ05YTzhqVU5uZFhUTDljMGZsR3d1Q1Fad09aX1Z4bk9aTDcxTXnSAbsCQVVfeXFMTk1DZEhNUG5HZ0JrQTFZbm9sS1VOTFA4ZGFmTlBzeFQ1cGpvSVNoVFFQTGQ1QW1sLWpfdFY1c2xMbmR4WHdRZHZDNlhrYm1VUVFHa3V3WkFhSzhhV1BfNVpXRE14VUpaMVc0WThEd0sySXJ1V2l6TUVqVXpxRDBld3dtSjhBdnNXbzJCLV9XNnR5ZDl1djBsalRQYTF0dHg4U095Yi1TR19BUEctQTJSLUVLN0s5WDdBdEQyNU1lLTQxb1RqOE8xR2pmbHpqd3lXcUx4YTEtOHZvVXI0N2djR0tXMVRBWGx2VGo4NlRpVDRvcjF4VElwc1VYTnQ4YTM2YW1zUFoyVHM5TXVFZ1JjdnV0U01XVmVPRGpuRExyT0JXQnBvVGJaWkpNa3VXcW5qaGJFRlB3RU1MMGRV?oc=5"
+    },
+    {
+      "id": "auto-3fcf79204c",
+      "nombre": "Alistan iniciativa sobre bienestar digital, anuncia la diputada Ana Laura Gómez ",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 7,
+      "motivo": "Morena en Diputados alista entrega de paquete de iniciativas anticorrupción; buscan cerrar vacíos legales - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPeGZDZ2dHaS1pSzZlNkd1Ymw1bGluWWZmWFZ5VUV5VGNMbmV0cjFkQjZic1dRNlBFM2tpNDN5OGJDR0NKbzRYOE5scldMaG5hekNPSHlodHRUMVdGUnlsWXBlMENxS09VVkE1V2lCNkVqbjZyeThzalVMZTdyTjhNbEhSRThZbk4wLUVTRDlLb09xZmVyNWp6ZGdEbld2eUNXMUU0dWR6TnBxTWtsM0Y2R18zQWxSeW8wXzRiclB3MTU3M19NTEo1cVJSVXJ5emc2cVlwMkpudkhqSlk?oc=5",
+      "fecha_anterior": "2026-11-01",
+      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
-    {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum abraza a un niño que rompe en llanto durante un encuentro - In",
-      "nota": "Claudia Sheinbaum abraza a un niño que rompe en llanto durante un encuentro - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQSjBydDNoM1JsdGJBbk1uUnJicjlGNlJmMWhnenNQelJ2M1g4bUxhS20ybGJid1ZhVnFRYkVmY0k4MV8tZmlxRV9fQjJPcjRKM3dfdFhMMDBPMVhxblBnRHF0MUp2QUNfZ1lRR1NmT2JwMXA3WnRoR01RMG13eHE4b1FjV1p2SUo1YTNhM2JGeWtJeXp2U0JJalhUNDYyN0FSOUlqYk5PUEh1VTAwMms1VkpGSVpqWWphaUFTcmxhQkhNamN5X1BJcE40a01vUQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Donald Trump ve \"muy improbable\" reanudar ataques a gran escala contra Irán si h",
-      "nota": "Donald Trump ve \"muy improbable\" reanudar ataques a gran escala contra Irán si hay avances nucleares - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOVDFVb1BPeUpnWTZfcFE5VVozNkdxZVR0T1JHZDBiNE9WMWVYTlJDRE5oejJnemxHYUc1RmZ1Z2RBRjZzQVdZN1VPQi1PUC1WSHpZSzh5Rklwd3NMSXA1T2hLMldNZF9aSWFXd295bk9qT0VOdzIxRGxFLWxpNGtuVmRuczZ6blFQZFdyNWpTazZkOUFQNkx2RUpaNkVYenPSAZ8BQVVfeXFMUDBOWm5SQnZ3MnM1XzdKbFppWDJ1c05PanYzZEJ2aXMwcERoeVU3UklfQ2VfSFJFcmNwSndlYWt4OXRpcVNSTkxSbmZRZWt2UkthOW5wb1p5MVVIN2ZuTjhfYVBjdTdfWVBQWHdDZ1RXOXdhdEJLWWhJaTc3UGZ3VWRBcV9IQjZMMWFsRkFtVDFLQmVTSXZVQ0R3WUY0b19Z?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "alvarez_maynez",
-      "nombre": "Jorge Álvarez Máynez",
-      "rol": "Investigado",
-      "tema": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión",
-      "nota": "Jorge Álvarez Máynez confirma negociación con Morena por fondos extraordinarios para NL - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQa29EZTZvVFIwc25VcllFbWNHVFhfQjJBZ0hDeTNyTlhoZHYtM194OWt1Wk9RLXJDQng1NHRiWGZMazRKT2RTa0MtNGtVNXhIRGQ5VnFjeTdMQ3ExVnN6bkJWSG81b25WTkJiRVRoVFZicHRUd2VVd2prMW5ZX296R3RUREZLcjhuMVcxM29xNUlIS0FzMVJ4RNIBmAFBVV95cUxNMEhlOXRzQVp4a25rSHZqV0phWE91U2pKWWZBTnZ5VDA2MU9ZdXlQSGJldmVsTVd0RFNKcG1PT21mazc2ZGpWVld0bW81Nkw0cjdMSGpJSXFxa25MQ25hRkpWWEtWTDY3UGdCTVphQm9RTm9qbUJVOTZBOG8wWUt4YU11T242ZVhpbll0amJhVDh3aTlSMnp2bQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Mencionado",
-      "tema": "Diputados de Veracruz se enfrentan por falta de medicamentos, brote de sarampión",
-      "nota": "Jorge Álvarez Máynez confirma negociación con Morena por fondos extraordinarios para NL - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQa29EZTZvVFIwc25VcllFbWNHVFhfQjJBZ0hDeTNyTlhoZHYtM194OWt1Wk9RLXJDQng1NHRiWGZMazRKT2RTa0MtNGtVNXhIRGQ5VnFjeTdMQ3ExVnN6bkJWSG81b25WTkJiRVRoVFZicHRUd2VVd2prMW5ZX296R3RUREZLcjhuMVcxM29xNUlIS0FzMVJ4RNIBmAFBVV95cUxNMEhlOXRzQVp4a25rSHZqV0phWE91U2pKWWZBTnZ5VDA2MU9ZdXlQSGJldmVsTVd0RFNKcG1PT21mazc2ZGpWVld0bW81Nkw0cjdMSGpJSXFxa25MQ25hRkpWWEtWTDY3UGdCTVphQm9RTm9qbUJVOTZBOG8wWUt4YU11T242ZVhpbll0amJhVDh3aTlSMnp2bQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
     {
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
@@ -1013,6 +1068,50 @@
       "tema": "Andy Manuel López Beltrán se registra como aspirante a diputado en Tabasco - fom",
       "nota": "Evita May saludar a 'Andy' López Beltrán en informe - Reforma",
       "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNak1EcERtc1dscVJKcjVuSGlOd3ZlODBxbTJXT2stWHpPeXRCaV9CV2FxeldhZ1hVUXJoZzNVbXlkV1FBLVBKdXc2dy1XMkV4Z0VxbUFSb1ZjUXdERWtLajktaHBRQjBvUjJkc19SUVhvc1ZVODNYekxfMkZOS3ppZDNGdkRDRm1jLW4w?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "rol": "Responsable institucional",
+      "tema": "Desde el penal del Altiplano, líder del CIPOG-EZ pide a la presidenta Claudia Sh",
+      "nota": "Desde el penal del Altiplano, líder del CIPOG-EZ pide a la presidenta Claudia Sheinbaum Pardo que revise su ca - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNU19QdEEwTk5kY0FKcE1NT3dpdzl4U2J4RVlmTzVaaVNDQk9iZXJwYTU2SFVaTlBNTWN1ZjZ1dTBSbFZSNUZ4YWR4TjZZOXN3eEVrT0h4YkFBVlVLb1JEdkJORXBxNXdIejhoM09tUDc0cFRodlhRN1Rlb3JXNE1wbWZsSHhGS25OeE5PTDB0VGN6OFXSAZMBQVVfeXFMTVNfUHRBME5OZGNBSnBNTU93aXc5eFNieEVZZk81WmlTQ0JPYmVycGE1NkhVWk5QTU1jdWY2dXUwUmxWUjVGeGFkeE42WTlzd3hFa09IeGJBQVZVS29SRHZCTkVwcTV3SHo4aDNPbVA3NHBUaHZYUTdUZW9yVzRNcG1mbEh4RktuTnhOT0wwdFRjejhV?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "amlo",
+      "nombre": "Andrés Manuel López Obrador ('AMLO')",
+      "rol": "Reacción social/mediática",
+      "tema": "López Obrador: reaparición y declaraciones",
+      "nota": "\"Traicionó al pueblo\": Sheinbaum reconoce que AMLO avaló a Taddei",
+      "fuente_url": "https://www.informador.mx/mexico/traiciono-al-pueblo-claudia-sheinbaum-reconoce-que-amlo-avalo-a-guadalupe-taddei-y-vuelve-a-deslindarla-de-morena-20261109-0108.html",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "ricardo_salinas_pliego",
+      "nombre": "Ricardo Salinas Pliego",
+      "rol": "Responsable institucional",
+      "tema": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s",
+      "nota": "Carlos Manzo, Sheinbaum y Salinas Pliego - Sin Embargo",
+      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE45Q3R2RERQT1pGWWF5eGJkbkgyQjZ0azcxaWdwT054MnYyWlVSN19PUVA4dVkwSF9rV3Y5X0lqeUdPUTFzY1RWUWU5ZldPWEF4Uy1iMk81djdERk9BQU1jekhXTE4ySTdiaTBXS2FhSU80RHZqOUdXQWtyOVhjQmc?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Investigado",
+      "tema": "Alistan iniciativa sobre bienestar digital, anuncia la diputada Ana Laura Gómez ",
+      "nota": "Morena en Diputados alista entrega de paquete de iniciativas anticorrupción; buscan cerrar vacíos legales - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPeGZDZ2dHaS1pSzZlNkd1Ymw1bGluWWZmWFZ5VUV5VGNMbmV0cjFkQjZic1dRNlBFM2tpNDN5OGJDR0NKbzRYOE5scldMaG5hekNPSHlodHRUMVdGUnlsWXBlMENxS09VVkE1V2lCNkVqbjZyeThzalVMZTdyTjhNbEhSRThZbk4wLUVTRDlLb09xZmVyNWp6ZGdEbld2eUNXMUU0dWR6TnBxTWtsM0Y2R18zQWxSeW8wXzRiclB3MTU3M19NTEo1cVJSVXJ5emc2cVlwMkpudkhqSlk?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1024,24 +1123,24 @@
     {
       "fecha": "2026-10-13",
       "tension": 26,
-      "n_notas": 95,
-      "n_alto_impacto": 40,
+      "n_notas": 97,
+      "n_alto_impacto": 42,
       "n_medio_impacto": 55,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-14",
-      "tension": 20,
-      "n_notas": 64,
-      "n_alto_impacto": 22,
+      "tension": 21,
+      "n_notas": 65,
+      "n_alto_impacto": 23,
       "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-15",
       "tension": 19,
-      "n_notas": 64,
-      "n_alto_impacto": 22,
+      "n_notas": 65,
+      "n_alto_impacto": 23,
       "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
@@ -1071,10 +1170,10 @@
     },
     {
       "fecha": "2026-10-19",
-      "tension": 22,
-      "n_notas": 57,
+      "tension": 23,
+      "n_notas": 60,
       "n_alto_impacto": 21,
-      "n_medio_impacto": 36,
+      "n_medio_impacto": 39,
       "n_bajo_impacto": 0
     },
     {
@@ -1087,17 +1186,17 @@
     },
     {
       "fecha": "2026-10-21",
-      "tension": 26,
-      "n_notas": 65,
+      "tension": 25,
+      "n_notas": 67,
       "n_alto_impacto": 28,
-      "n_medio_impacto": 37,
+      "n_medio_impacto": 39,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-22",
-      "tension": 25,
-      "n_notas": 65,
-      "n_alto_impacto": 29,
+      "tension": 26,
+      "n_notas": 67,
+      "n_alto_impacto": 31,
       "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
@@ -1111,10 +1210,10 @@
     },
     {
       "fecha": "2026-10-24",
-      "tension": 26,
-      "n_notas": 28,
+      "tension": 24,
+      "n_notas": 30,
       "n_alto_impacto": 12,
-      "n_medio_impacto": 16,
+      "n_medio_impacto": 18,
       "n_bajo_impacto": 0
     },
     {
@@ -1136,41 +1235,41 @@
     {
       "fecha": "2026-10-27",
       "tension": 17,
-      "n_notas": 66,
-      "n_alto_impacto": 22,
-      "n_medio_impacto": 44,
+      "n_notas": 69,
+      "n_alto_impacto": 23,
+      "n_medio_impacto": 46,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-28",
-      "tension": 24,
-      "n_notas": 77,
-      "n_alto_impacto": 31,
-      "n_medio_impacto": 46,
+      "tension": 23,
+      "n_notas": 81,
+      "n_alto_impacto": 32,
+      "n_medio_impacto": 49,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-29",
       "tension": 25,
-      "n_notas": 53,
-      "n_alto_impacto": 25,
+      "n_notas": 54,
+      "n_alto_impacto": 26,
       "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-30",
-      "tension": 17,
-      "n_notas": 54,
-      "n_alto_impacto": 15,
-      "n_medio_impacto": 39,
+      "tension": 18,
+      "n_notas": 56,
+      "n_alto_impacto": 16,
+      "n_medio_impacto": 40,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-31",
-      "tension": 17,
-      "n_notas": 49,
-      "n_alto_impacto": 14,
-      "n_medio_impacto": 35,
+      "tension": 18,
+      "n_notas": 53,
+      "n_alto_impacto": 16,
+      "n_medio_impacto": 37,
       "n_bajo_impacto": 0
     },
     {
@@ -1183,33 +1282,33 @@
     },
     {
       "fecha": "2026-11-02",
-      "tension": 22,
-      "n_notas": 29,
-      "n_alto_impacto": 11,
+      "tension": 23,
+      "n_notas": 30,
+      "n_alto_impacto": 12,
       "n_medio_impacto": 18,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-03",
-      "tension": 24,
-      "n_notas": 43,
-      "n_alto_impacto": 18,
+      "tension": 26,
+      "n_notas": 45,
+      "n_alto_impacto": 20,
       "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-04",
-      "tension": 26,
-      "n_notas": 51,
-      "n_alto_impacto": 20,
+      "tension": 27,
+      "n_notas": 53,
+      "n_alto_impacto": 22,
       "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-05",
-      "tension": 27,
-      "n_notas": 47,
-      "n_alto_impacto": 16,
+      "tension": 28,
+      "n_notas": 48,
+      "n_alto_impacto": 17,
       "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
@@ -1239,10 +1338,10 @@
     },
     {
       "fecha": "2026-11-09",
-      "tension": 42,
-      "n_notas": 3,
-      "n_alto_impacto": 2,
-      "n_medio_impacto": 1,
+      "tension": 20,
+      "n_notas": 24,
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     }
   ],
@@ -1253,7 +1352,63 @@
       "iniciales": "AL",
       "x_lunes": 0,
       "y_lunes": 0,
+      "x_hoy": 75,
+      "y_hoy": 100,
+      "delta_pts": 9,
+      "alcance": 3,
+      "n_alto": 3,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPU2FwYW5aaElmVklMQTR1ZlpaT0JXM0pua2pwT0I0ckhMV1U2S21YTzR3UjdzM2p0a1cwY1dXandlNm5aLS1YZkJkaV93bDU4ZTA3ejJNZFRNckt2SEVESERtRzQ2OUoyRm5DVjFSc1lxZF81RnNGM2tfN010NTdPcUJzcGV4WnNlRzVyM09WVUVJR1dRbUptYU9LeV96MG5JVWozQmxuWkNfSFQxQWQ4N2VaNjMxX09MY2JnaWNDWmZMS2lyLVd5bm1qbnFGelN3bko4dVQzZmh0VU4yN1BiVdIB5gFBVV95cUxPeXQtQU9rZUQ5QkdQamVJUnZQeTg4aUVheTJfSHU2VWdCM05jYXd4eHJnemZxVTVfT0h2OFczUzhzOFZlU2p0RlMwLWlrTmVWczQ2OFhnQ3hUQnBYV0cweTVxdEVCZF94S2htVV9yU3J6TDdWNzRhWHBMeUdrc05YdFYtbUQxTDM3bGlnbEJVelVuQTU3TzNxMVN1Y2hWeUk3eUJsMC1wdkZfRUtXcHVjRnROZFhmTi1wdmxkTUszQ1ZpNnh6Q2dXdXJwSUNfTGk4MHdaY185MUZocnJnX0ItLXBKazFiZw?oc=5",
+      "nota_texto": "Andy López Beltrán responde a Ricardo Salinas Pliego: niega vínculos con huachicol fiscal y le lanza cuestionario - Por Esto!",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 75,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
+      "x_lunes": 0,
+      "y_lunes": 0,
       "x_hoy": 100,
+      "y_hoy": 50,
+      "delta_pts": 6.0,
+      "alcance": 4,
+      "n_alto": 0,
+      "n_medio": 4,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPa0UwZzVHQlR0NVJLUkF1eGR1dzhLWktWUXlFbGoyem9DRjVEOTZzVWVHd1JZVkM3aFFxdDAxcVhoVnFrQzlIa3R6YVUwVkluMEg2M2NnaDlfcEtoVlc5aXByMDJ2d0QtRFV3YzZiNnF5dVNtbWRPMTZES1dZRVVCallreHB5NHBBX3E4N2F3R3g5OUZSbXhYaEQ4Z3g0SjVoRFFxUklnV09rSXlsakNfQVV6cGFWbmh5TjVqbzZIOF80U2NoLWNPcE5aalN5OUVFS0l4dHRxS3hZY09vT0RYNW9UcFVuQQ?oc=5",
+      "nota_texto": "Morena responde a las acusaciones en Yucatán: Descarta actos anticipados de campaña y fija postura - Debate",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 100,
+          "y": 50
+        }
+      ]
+    },
+    {
+      "id": "manzo",
+      "nombre": "Carlos Manzo Rodríguez",
+      "iniciales": "CM",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 25,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1262,28 +1417,157 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
-      "nota_texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
+      "nota_url": "https://www.informador.mx/mexico/cjng-el-r2-presunto-implicado-en-el-asesinato-de-carlos-manzo-20261109-0066.html",
+      "nota_texto": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 100,
+          "x": 25,
           "y": 100
+        }
+      ]
+    },
+    {
+      "id": "ricardo_salinas_pliego",
+      "nombre": "Ricardo Salinas Pliego",
+      "iniciales": "RS",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 25,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 1,
+      "n_alto": 1,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://www.tabascohoy.com/andres-lopez-beltran-responde-a-salinas-pliego-y-rechaza-acusaciones/",
+      "nota_texto": "Andrés López Beltrán responde a Salinas Pliego y rechaza acusaciones",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 25,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 50,
+      "y_hoy": 50,
+      "delta_pts": 3.0,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOXzdBRXNfN3dZbUZhYTNwN0VIbndKbXVlU0phalNSYnJRXzlYam0tRTFnMXRabUtTWWh5cE5oOGFJWEtPa2hTY0FkS1ZNeFpEak5XLUFwZlVnSmdHWDJsR2xCb2lFaWtMbUhGVTdlVWxNWFNtRElqZVFETG02a3ZiQ296NkNiMnBmQ3YtcUVLN1hZNkN6QkZLNjlub2c4aEMzd2d6VF9LOTliRHVHZ2ZpV2YzMzhBcjlQelVJckx2VUMtNHdMeFFIN09YRVd0bncwTzZaazBfaE8tYnVvU2R5TWxmZzNzTVBuakV4VXZSWU90S2lhM2JPWUs0WGtmSGtNUE5YbEIzaWNVU2QzeUNMTXFZaUo0d9IBmwJBVV95cUxOVFFlbzR6cGFSa1RaQ0p0YXdvNjA2VENOeURtS2l6Q0g4VTIxWGZjbzUyWTR4eW4wTXNjOFpURmxIRHlFbFJDWk0tTVh2LWhROW1lUkp1ekVJa3JxOWdCSGVKMVQ1REt1SmdqNmZ3enpwSU1QN3VRVWtSQXVMeDUwQVlUSXlhd20xZXJLcW42M3ZwNjZnOS10Szc3UkhSRE1jYnVZQWp4cnM0bUF6M3ZKNE5rTUhJM2docnhFd3pHWHEzcjd2LTV3aVB5MEoxSnZLNkZOQ3ZsbkVzdzN2T3Mwa3k5aGxVV2UzTTRsME5kNkNfbHQtRGFSM1p5WHJrYXVHOE1WQXJvejNaWmx3QmtVMzR0cGdhTkhNS1dj?oc=5",
+      "nota_texto": "Ricardo Salinas Pliego, multimillonario opositor a Claudia Sheinbaum, lanza nuevo guiño como posible candidato en 2030: \"No me dejen solo\" - Ambito",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 50,
+          "y": 50
+        }
+      ]
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 25,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNMDZxNEtUYjI2WF9KcWp0c1hLTGFDQ1ZoT0NqQVFSWkluS1NuN3NmYUwtalpqd29aN1ViemJ0aHRXSHEyN19TTmFsazBocjQxeGU3aEhHX2lBTlNvZUxzX0s3ZGhPTHZIenZfVG1GR044RlZwcG1KV09uZ1owcmRhN0NZb3BTaHZwMkZkdQ?oc=5",
+      "nota_texto": "¿Por qué Taddei sí, pero Rocha Moya y Adán Augusto no? - Unomasuno",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 25,
+          "y": 50
         }
       ]
     }
   ],
   "tablero_semana_inicio": "2026-11-09",
-  "resumen_mananera": [],
-  "mananera_estado": "pendiente",
-  "a_vigilar": [],
+  "resumen_mananera": [
+    {
+      "texto": "El programa \"La Clínica es Nuestra\" ha invertido 699 millones de pesos en dos años para mejorar centros de salud del IMSS-Bienestar e Issste. Se han adquirido 17 mil 537 equipos e instrumental médicos",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Se anunció el arranque 2026 de \"La Clínica es Nuestra\" con la incorporación del estado de Yucatán a la red de servicios públicos de bienestar por primera vez. Los 153 centros de salud del estado recib",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "En el segmento \"Quién es Quién en los Precios\", se informó que Finavien sigue siendo la remesadora que más pesos da por dólares en modalidad de depósito a cuenta, ofreciendo 7 mil 523 pesos con 34 cen",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "Respecto a la estrategia nacional de estabilización de precios de combustibles, la gasolina regular tiene un precio promedio de 23 pesos con 69 centavos, con 11 mil 778 estaciones vendiendo por debajo",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "En el monitoreo de la canasta básica PASIC, la más barata identificada fue Bodega Obrera Las Fuentes en Reynosa, Tamaulipas, con 754 pesos por los 24 productos. La más cara fue HB Saltillo República e",
+      "categoria": "Economía",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    }
+  ],
+  "mananera_estado": "ok",
+  "a_vigilar": [
+    {
+      "id": "auto-d3c076e323",
+      "nombre": "“Queremos justicia”: familias del 11S reclaman investigar papel de Arabia Saudí",
+      "categoria": "Relación Bilateral",
+      "resumen": "“Queremos justicia”: familias del 11S reclaman investigar papel de Arabia Saudí",
+      "fuente_url": "",
+      "actor_vinculado": null
+    }
+  ],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 2
   },
   "declaracion_presidenta_historial": [
     {
@@ -1338,5 +1622,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-09 06:02"
+  "hora_corte_publicada": "2026-11-09 14:39"
 }
