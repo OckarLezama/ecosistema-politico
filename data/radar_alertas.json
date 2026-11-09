@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-09|actor_clave|garcia_harfuch|operacion-enjambre",
+   "ts": "2026-11-09T11:00:44-06:00",
+   "tipo": "actor_clave",
+   "tema_id": "operacion-enjambre",
+   "texto": "◉ Omar García Harfuch aparece por primera vez en «Operación Enjambre: alcaldes y funcionarios detenidos»: Afirma Nahle que en “operativo enjambre”, Harfuch sí tomó en cuenta al gobierno de Veracru"
+  },
+  {
    "id": "2026-11-07|actor_clave|trump|auto-140b0227c9",
    "ts": "2026-11-07T16:27:56-06:00",
    "tipo": "actor_clave",
@@ -414,13 +421,6 @@
    "tipo": "nueva_anticipatoria",
    "tema_id": "carlos-manzo",
    "texto": "◐ Tema por vigilar: Asesinato de Carlos Manzo (impacto 8.3, 4 medios)"
-  },
-  {
-   "id": "2026-10-22|nueva_anticipatoria|carlos-manzo",
-   "ts": "2026-10-22T18:01:14-06:00",
-   "tipo": "nueva_anticipatoria",
-   "tema_id": "carlos-manzo",
-   "texto": "◐ Tema por vigilar: Asesinato de Carlos Manzo (impacto 8.2, 3 medios)"
   }
  ]
 }
