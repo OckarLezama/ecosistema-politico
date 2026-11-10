@@ -1,48 +1,24 @@
 {
-  "generado_en": "2026-11-10T06:02:32.778631-06:00",
+  "generado_en": "2026-11-10T08:23:12.951701-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 21,
+  "n_notas_ventana": 8,
   "baja_confianza": false,
-  "tension_nacional": 19,
+  "tension_nacional": 31,
   "tension_anomalia": {
-    "z": -0.54,
-    "nivel": "normal",
+    "z": 2.46,
+    "nivel": "alta",
     "media_periodo": 21.1,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 75,
-      "tema_principal": "López Obrador: reaparición y declaraciones",
-      "tema_principal_id": "amlo-agenda",
-      "n_temas": 7,
-      "n_notas": 16,
+      "peso_pct": 48,
+      "tema_principal": "Visa de Andy",
+      "tema_principal_id": "visa-de-andy",
+      "n_temas": 3,
+      "n_notas": 4,
       "notas": [
-        {
-          "texto": "Ricardo Monreal perfila 128 mil mdp para Puebla en 2027 - Sucesos Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNNDVDZVVNUHBOenJDN0oza3VLcGx4LW04a2xGY3dQeWJlR0paTzdRY3NCQVZYdE85LUJWUFMtZVp6cnRZVzE5X2QzaXJBWXdNSERkT1dZQkJXY0Nua3RhSTNfQTZBRlRFU2daZktKem5PeTExSGRqRGVfVmdMdmVwSC1ISTV5QTFRVmc?oc=5",
-          "intensidad": 7.0,
-          "medio": "Sucesos Puebla"
-        },
-        {
-          "texto": "Andy López Beltrán responde a Salinas Pliego, defiende viaje a Japón y lo llama “buitre” - Municipios Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxON19vOTZfU19WWXg3WDV6bFptSFB3cjZjNktxYUJLZzFSWkJjel82Y0o5WGt1RGFHb2k0cUljU0tNSXhMOXdTcjl4Zkl0LXNSOUdmTzZGSWk4cUN2bUJncUktTnFlaWVOLVI4SFY4Z0FTVkRwNEFiR0tkSXB5OU02ODA3SHlSWl9UTjNDOWNTMXBHa25wcXdVVFprSFhfVldCS041cXptSC1Rdk9UWk13Sjh5OTJWekk4YkpKUENn?oc=5",
-          "intensidad": 7.0,
-          "medio": "Municipios Puebla"
-        },
-        {
-          "texto": "Impulso a pagos digitales, para combatir huachicol fiscal: Sheinbaum - La Silla Rota",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQNGtSck5TRzA4NzFFOGV3V01iWC0yQXJXVFZpQkY2ZXBSZlc2QlBmWFNNMHpPQUtUWWw2djloV0s0MEcwZlZMWVBNLURvdWgyLW12OXhlNnpNQVl3eXZxS1RqOEdhQzlNaHoxSTBnU2Q2blJMWnVscWF3dTd2QnBCWmhfcjB2T0s2cTlFOUJiSnV5R1JGWjFKVTJld1V2TmE0SzY4VU9xYld5ekktcmZJSkRMU1dHNzVuN19n?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Silla Rota"
-        },
-        {
-          "texto": "Sheinbaum explica respaldo de López Obrador a Taddei - El Informador",
-          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQk5RQ3NMMm9DeEYwaTFiaXVKMkRBcENOVWVFT19GOTlQY2ZxTkVORkcwS1lyTUNaNU1KS1BydUExaDNOUUJWN0RkU0hnR1VYMlpDdlExa2FOS255T18wNG9ST0pQek5BR1FKWUJ3YW8wUmJPZUUyUkFxVy1nRkU4Q1VxUWtiYm13V2FpVlZkUXNONktKYTRxbWRJNzBrZw?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Informador"
-        },
         {
           "texto": "Andrés Manuel López Beltrán califica de “buitre” y “miserable” a Salinas Pliego",
           "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/007n1pol?partner=rss",
@@ -54,48 +30,6 @@
           "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/009n2pol?partner=rss",
           "intensidad": 7.0,
           "medio": "jornada.com.mx"
-        },
-        {
-          "texto": "López Beltrán llama \"buitre\" a Salinas Pliego y lo cuestiona por sus vínculos con Epstein, García Luna y Marcial Maciel - La Jornada",
-          "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNSlVCUGpJWUl2N0gxcW1VYk5YLXNVWG53VW9KZVFjNmJaZFY5a1FLV0JXcEMySm9hdTdDdG5PMHRZaERGUTZ1dHZZeVZQTGdDWTZKRTdfZTBwa3A2Z2RoNTFjWGNuRU92N255WWlOUkROZGRGZnV0d3VlZlRtSnhJUGtUYS1VY0pjUEptcllmNWFxd09CNXUzcWUyTTZlZUMwUVQxQ3UycE1hcjUzc2FidzhHUEw0RFg2ZWs5Q2tWOFg3YTFWd282YU52UEtRZTIxZmtoTmkyM25RZXFHdnhMNUg5OGlBYjVLdFM3QXZGRWRFMkJkTVZnWXlsTm5CT1Bm?oc=5",
-          "intensidad": 5.0,
-          "medio": "La Jornada"
-        },
-        {
-          "texto": "Sheinbaum admite que López Obrador respaldó a Taddei en el INE",
-          "fuente_url": "https://www.informador.mx/mexico/sheinbaum-admite-que-amlo-respaldo-a-taddei-en-el-ine-no-sabia-lo-que-ocurriria-dos-anos-despues-20261109-0094.html",
-          "intensidad": 5.0,
-          "medio": "informador.mx"
-        },
-        {
-          "texto": "TET confirma desechamiento de denuncia del PRD contra Morena y funcionarios",
-          "fuente_url": "https://www.tabascohoy.com/tet-confirma-desechamiento-de-denuncia-del-prd-contra-morena-y-funcionarios/",
-          "intensidad": 5.0,
-          "medio": "tabascohoy.com"
-        },
-        {
-          "texto": "Sheinbaum pide a senador de Morena aclarar señalamientos por relleno sanitario de Cholula - Intolerancia Diario",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxON2tiaHladkVHUkdkeFE0NllOeE1kZ0xuZzNqcjlLb25QdHF6UThWUU9paDR6UkNncXFRNmUweWRnZmZSR3RJeFFoVUFtWHRROWUyblc5MTYzTlN2RkdXWFJjT3NHQVJlSW9NaVhzRno3N3VIdi1JUXBzWVRrNldqeVRGV2ZpOXZuYnVMWDJqSWEzaDAyVEszNURsejE0RmM4bnluZEg1WmQ0Z0hjWGdKMm5HQVJROGtSem9TMXltVDNta1p5NEtXRzRRbTBiNm5za0hmbEhDUFRMZ0NrbWJKM01UaEZQd0lwYnA4cEFNUXQ4YXY2?oc=5",
-          "intensidad": 5.0,
-          "medio": "Intolerancia Diario"
-        },
-        {
-          "texto": "\"Traicionó al pueblo\": Sheinbaum reconoce que AMLO avaló a Taddei",
-          "fuente_url": "https://www.informador.mx/mexico/traiciono-al-pueblo-claudia-sheinbaum-reconoce-que-amlo-avalo-a-guadalupe-taddei-y-vuelve-a-deslindarla-de-morena-20261109-0108.html",
-          "intensidad": 5.0,
-          "medio": "informador.mx"
-        },
-        {
-          "texto": "Sheinbaum pide al senador Cuauhtémoc Ochoa aclarar si es dueño del relleno de Cholula - Ambas Manos",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxObTduakZrdFpoTGQ1SU96TnYwTDl1b3lIQVVuU1FqZF9JTzUzdkI1ZHlIbUpKVC1MV2VYTDlkYmZLaE5rVzlVWVdieUFvT3dRWlE2RlU1Qk03S25CMTdleDlTaDNFd0lSa21oRk5pcnJNMWI0ZXdTUWp1U1hfeFlheFdOWDU3Mkp0ZEE1TjQ4WUJDRmtXM1dTWWx3RF81WENiVVJoaUxZZkxGRGI0MW8tQ24xTXRDcUFoT25mX0ZUZ1FXNXdK?oc=5",
-          "intensidad": 5.0,
-          "medio": "Ambas Manos"
-        },
-        {
-          "texto": "Sheinbaum pide al senador Cuauhtémoc Ochoa aclarar conflicto del relleno sanitario de Cholula - La Jornada de Oriente",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPcVZaejVDd0dxZFBMRUtxXzJndXg4NFNWMThKU1JmVWRvNlNxU0lINU1hSjFlSnZEbjJPbVctUVhKYlNnOEFKeThRMkRvdjREYlczTDQ2RjVxTVpiVjlKSUZXYVdfZWpveGZxdGl6eVYtR0FucXN6cUZXSHVLZWdqcFdEelVBOFJHWmlQTDF3cHI1S0VSODhZTjY4RjVBQlBLRGd6eWxHRjlmNDR2Y0ZaSUM5YkdiOWN1dXY0Y2lRa21KejFsMHdkN282cnVfMVZGWHlZbE1R?oc=5",
-          "intensidad": 5.0,
-          "medio": "La Jornada de Oriente"
         },
         {
           "texto": "Comunicación Social - Versión estenográfica del mensaje del senador Higinio Martínez Miranda, presidente del Senado de la República, en la entrega del Paquete de Iniciativas en Materia de Combate a la",
@@ -113,7 +47,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 17,
+      "peso_pct": 40,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 3,
@@ -141,7 +75,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 5,
+      "peso_pct": 12,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -157,19 +91,12 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 3,
+      "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "Violencia en Sinaloa: gobierno reconoce que aún no logra recuperar la paz",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/09/violencia-en-sinaloa-gobierno-reconoce-que-aun-no-logra-recuperar-la-paz.html",
-          "intensidad": 4.0,
-          "medio": "yucatan.com.mx"
-        }
-      ]
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -885,47 +812,44 @@
   ],
   "top5_temas": [
     {
-      "id": "amlo-agenda",
-      "nombre": "López Obrador: reaparición y declaraciones",
+      "id": "auto-1e2b57c0f7",
+      "nombre": "Nahle se solidariza con Andy y también ataca a Ricardo Salinas Pliego - Versione",
       "categoria": "Gobernabilidad",
-      "resumen": "Declaraciones, apariciones y señalamientos que involucran al expresidente Andrés Manuel López Obrador y su influencia en el gobierno y en Morena.",
-      "motivo": "Sheinbaum explica respaldo de López Obrador a Taddei - El Informador",
-      "peso": 17.0,
+      "resumen": "Nahle se solidariza con Andy y también ataca a Ricardo Salinas Pliego - Versiones",
+      "motivo": "“Mi trayectoria está a la vista de todos”; Ricardo Salinas revira a Andy - El Universal",
+      "peso": 14.0,
       "n_temas_agrupados": 1,
       "escalando": false,
-      "ultima_hora": false,
+      "ultima_hora": true,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQk5RQ3NMMm9DeEYwaTFiaXVKMkRBcENOVWVFT19GOTlQY2ZxTkVORkcwS1lyTUNaNU1KS1BydUExaDNOUUJWN0RkU0hnR1VYMlpDdlExa2FOS255T18wNG9ST0pQek5BR1FKWUJ3YW8wUmJPZUUyUkFxVy1nRkU4Q1VxUWtiYm13V2FpVlZkUXNONktKYTRxbWRJNzBrZw?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQY2ZzaWc5Qjljd0paSXp0cTZZeVpuSGF3b2RiNUZzNy0wSV9hZFBhRHk3eDFtUm1EUjZCTnllRzRTNnhOdm5fSWY4OVgyRFlIV2hGd2dzNlJzNEthMnhTM0x6QmdHRGZodjQ4dkdvcWlKY05FZlVIRndjMVV0eGIxclJRNWtOamk3VWEtWHE0cy1FUlZ2TWVuTmtVYVJ4aVhObF83MUJkc3hRZzNh?oc=5",
       "actor_vinculado": null
     },
     {
-      "id": "visa-de-andy",
-      "nombre": "Visa de Andy",
-      "categoria": "Relación Bilateral",
-      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
-      "motivo": "Andrés Manuel López Beltrán califica de “buitre” y “miserable” a Salinas Pliego",
-      "peso": 12.0,
+      "id": "auto-d96c592a80",
+      "nombre": "Senadora del PRI señala obstáculos para la inversión, el empleo y el crecimiento",
+      "categoria": "Gobernabilidad",
+      "resumen": "Senadora del PRI señala obstáculos para la inversión, el empleo y el crecimiento - Capital México",
+      "motivo": "Reporta IMSS crecimiento récord de empleos formales",
+      "peso": 7.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/007n1pol?partner=rss",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/009n2pol?partner=rss",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-9873e436de",
-      "nombre": "México concede asilo a Nadia Beller, expareja de Fernando Cerimedo investigado p",
-      "categoria": "Social",
-      "peso": 12.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQXFsSmF4MWs1NXdQdTFsVmUyU1BuazNzUHB1VEZ6cFN6Y28xb1NXb3ZQejA3QWN3S2NMUUhIWjgzcDJ2X1ZZbzdDZnBjd2VuTU9CVTI5c3V0LVpBRVNqNWRXZENXNWZZeVFOZkJhOU5sdmtOQS1NZklxakdBYm5vbm5WbTZNVmdJd0JUWVBYVU05d2thcjhqckRNV3UyeWlEb3ByV3BISTdzQdIBqgFBVV95cUxNSGtiNHdyLW9sSHpkSFRxb3pZZnp1UkgwMUpGVHlGdG1MRFhZbFpTSnB4alNXOU1IT3RRREdjMUpYQXg5dXRKOVFyeEZ1TExyUmxGT3JKUlU3UkRwelR5MG11UE1Tbm9hQmlVeFg4ZHk0ZWk3N2N0b2dTdE9lZGo4a1NTaXQ0R2tmZGFNNlJFOURmN0RZYzc2UkxOUDREajBhaGFCSHI5ZGFwdw?oc=5"
+      "id": "auto-1e2b57c0f7",
+      "nombre": "Nahle se solidariza con Andy y también ataca a Ricardo Salinas Pliego - Versione",
+      "categoria": "Gobernabilidad",
+      "peso": 19.0,
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQY2ZzaWc5Qjljd0paSXp0cTZZeVpuSGF3b2RiNUZzNy0wSV9hZFBhRHk3eDFtUm1EUjZCTnllRzRTNnhOdm5fSWY4OVgyRFlIV2hGd2dzNlJzNEthMnhTM0x6QmdHRGZodjQ4dkdvcWlKY05FZlVIRndjMVV0eGIxclJRNWtOamk3VWEtWHE0cy1FUlZ2TWVuTmtVYVJ4aVhObF83MUJkc3hRZzNh?oc=5"
     },
     {
       "id": "auto-0341c7901f",
@@ -944,20 +868,20 @@
       "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/016n2pol?partner=rss"
     },
     {
-      "id": "auto-a6c4023664",
-      "nombre": "Claudia Sheinbaum se contradice con acuerdo de río Sonora con Grupo México: “No ",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQdTFYSzlOZFFlLWFIZVRQdVFzVVZLTWdMTFNLcGl5TDZJUExkNDFqMzB4dy05aFl1VkduUXEtR0N6NVVHMGtKS3EyR3JfY3IyLWkwREx1UmZLY2VacHFwUFdJSy1IMXZXM0djSlhTTVI0bXIxTm4zc2hFeWRxdVpqd1JXbi1iNm1WRW1DQ25QeXFmUmM5VGlYcW5hS1ptUXh2MGRHeVhVZkpwdDR3ejV3aVhZeVYwcVVZWGZZVGt1RFJNOFQ1QzAtMjdzakx0MTFKN2lZV2lGMlM5b2QycG4zUdIB-wFBVV95cUxNbmZGcy1OQ3BwaUNyNHJjb2ZMU050c05ZeTFfY2xISWtKZ0ZZTy1DM3I2dEc4eldIOHRsWEJZWHZvaEZ4WXAzZ3RMQkVyeVZGRXkxVC0zV3FqVFgyQlktcFZ2N1BFM1hSeDVVQzBhNVhEUUdQWDd1LUJROTVRQnVVeUEtaU5ibGlCMXpyaENZU0sxcTVvNWVsSkR5RkhYQ0Nibk9TQ0ljWEJ0eno0bHVYXzRZUlJSb2lPYTh5Vk1fMzBPeFVPT05OV1Z4MEl2ODFPWVRKcVJmNU5PRElfcG1LQVFfaEJ2OTRWOVBTTG1jaXRIS2QybDdWN1E0QQ?oc=5"
-    },
-    {
       "id": "auto-b841c3f26c",
       "nombre": "Ponen en marcha Mara Lezama y Rocío Bárcena, Feria de Paz y Desarme Voluntario e",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNTE9WNVFTZV9aU2hYVHhmYk53SDJfaWxvSVRvR3RVUHdSa1Ywekx1dDJMUlg5bDVzSTZmeEluV3JpNkQ1WHdaNWFBblRzUTZna3V3ZFNtNUFVdGQ5alNra25WeXNqZk9nZTFzUE8wbmFJSE9QZU5HWjR0QXFheGNRSWJNSk5ERXNRNFN1ME8tX3ZoRFRYNWZ0SEwyQXM5elp4eDktWWp4Xy1zaDNmenpwYU1Ubkh2enY4aXhZTzlPUQ?oc=5"
+    },
+    {
+      "id": "auto-8420484939",
+      "nombre": "Tras sus dichos, Fox niega fraude en elección de 2006 a favor de Calderón",
+      "categoria": "Social",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/tras-sus-dichos-fox-niega-fraude-en-eleccion-de-2006-a-favor-de-fch-20261109-0124.html"
     }
   ],
   "temas_retomados": [
@@ -984,17 +908,6 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "amlo-agenda",
-      "nombre": "López Obrador: reaparición y declaraciones",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 10,
-      "motivo": "Sheinbaum explica respaldo de López Obrador a Taddei - El Informador",
-      "impacto": "alto",
-      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQk5RQ3NMMm9DeEYwaTFiaXVKMkRBcENOVWVFT19GOTlQY2ZxTkVORkcwS1lyTUNaNU1KS1BydUExaDNOUUJWN0RkU0hnR1VYMlpDdlExa2FOS255T18wNG9ST0pQek5BR1FKWUJ3YW8wUmJPZUUyUkFxVy1nRkU4Q1VxUWtiYm13V2FpVlZkUXNONktKYTRxbWRJNzBrZw?oc=5",
-      "fecha_anterior": "2026-10-30",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQaUlMcWwtTW9ic1hBaE5hQjFvWk5rN3ZsQnU0RWRKSEthQnhxQ3JkU3cxQnZ2YmEzOTdZNUpfZ0swUm5Rc2FsejlheXByeFphZHFYbUVDMU15R2NVLVlXRkk0eGpfQUhsZGl4U3lLdzRrc3VCcGowcnVQVHlZTTBXaFZqc1R5ZU1ZZVFTQUhrTnpMcDBRYmZmWXVSZENwckw5R3lmMDhLMHVWdUFucjZVUjRCd216c2owd3VkUUlwZkpFQ0dWTE1oQlVUOXVPTmJuVkpZTjd2Vnc5MDY2WTlrejlSbFQ3WGZLWUMyeDZaVV9VNTl3NjhjajJMQ05YTzhqVU5uZFhUTDljMGZsR3d1Q1Fad09aX1Z4bk9aTDcxTXnSAbsCQVVfeXFMTk1DZEhNUG5HZ0JrQTFZbm9sS1VOTFA4ZGFmTlBzeFQ1cGpvSVNoVFFQTGQ1QW1sLWpfdFY1c2xMbmR4WHdRZHZDNlhrYm1VUVFHa3V3WkFhSzhhV1BfNVpXRE14VUpaMVc0WThEd0sySXJ1V2l6TUVqVXpxRDBld3dtSjhBdnNXbzJCLV9XNnR5ZDl1djBsalRQYTF0dHg4U095Yi1TR19BUEctQTJSLUVLN0s5WDdBdEQyNU1lLTQxb1RqOE8xR2pmbHpqd3lXcUx4YTEtOHZvVXI0N2djR0tXMVRBWGx2VGo4NlRpVDRvcjF4VElwc1VYTnQ4YTM2YW1zUFoyVHM5TXVFZ1JjdnV0U01XVmVPRGpuRExyT0JXQnBvVGJaWkpNa3VXcW5qaGJFRlB3RU1MMGRV?oc=5"
-    },
-    {
       "id": "auto-7ff9f70a7e",
       "nombre": "El cablebús más largo y más peligroso del mundo (Línea 5), escribe Margarita Zav",
       "categoria": "Gobernabilidad",
@@ -1011,9 +924,20 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Investigado",
-      "tema": "Reyna Reyes afirma que seguirá en bancada de Morena; acusa 'ataque' tras foto co",
-      "nota": "Reyna Reyes afirma que seguirá en bancada de Morena; acusa 'ataque' tras foto con IA junto a Miguel Flores - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQYTFReHA0aWNFaGVYYTYwcVB5aDcxaDVIRFNrTFR6YVhRSTBYakU4TEFjWlhJTzR6SXdiVXhuMW1GR1ZFNTIzQU1SUTAyMWM2c2VrYmRwUWJPcHNfejJIb0xXdUF5MEROMmlTNTh6SGNXaFlrdVFCTFhMN1p2dVdvRlNpUVZnTnNJc1lJWTh1Y9IBjwFBVV95cUxNVVFNOXZBcWR4QWhNeVlTdVA0VGp1MGhweTI2RXlZTHU1cnhBS1dRY0JaTDJPZjRtNks1R2xhdU9UaFZxOWZieUlBTnZ1VjJzaGdrbnF5UlNrR2JsZmZ2TWdmSlQ3NXFTa2stYUhxMWx1c014QlRVUVJGaXFfeDhTLVJvTUZ4bkZ0YXluX3VoTQ?oc=5",
+      "tema": "Movimiento Ciudadano es el único que puede ganarle a Morena en 2027, dice Alejan",
+      "nota": "Movimiento Ciudadano es el único que puede ganarle a Morena en 2027, dice Alejandra Barrales - Expansión Política",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOWGxrTHRHeUtZekdVT1o5enBwWGk2R3IxSUZsUHFpQXpYTzRwRTJCMEllOThTTlBZRlhhUDFJOWp5a0R5eXlDRWhLRGtTbWpXWUR4TTVrbmZkNVA3RkI0eFl0cWNIMGhpQ2trWHY3c3Q1Y0NpWnFtSzVtQjZMNXpEdkZJckFJYko2MTFHR1FVa2hiV1lQWUFEcDJHVnk5WmhPNHVsajlNVEY2elQwOUVNeGxueFVabTDSAbcBQVVfeXFMTlhsa0x0R3lLWXpHVU9aOXpwcFhpNkdyMUlGbFBxaUF6WE80cEUyQjBJZTk4U05QWUZYYVAxSTlqeWtEeXl5Q0VoS0RrU21qV1lEeE01a25mZDVQN0ZCNHhZdHFjSDBoaUNra1h2N3N0NWNDaVpxbUs1bUI2TDV6RHZGSXJBSWJKNjExR0dRVWtoYldZUFlBRHAyR1Z5OVpoTzR1bGo5TVRGNnpUMDlFTXhsbnhVWm0w?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "rol": "Responsable institucional",
+      "tema": "EN VIVO: La Mañanera de la presidenta Claudia Sheinbaum hoy martes 6 de septiemb",
+      "nota": "Conferencia ‘mañanera’ de Claudia Sheinbaum hoy 10 de noviembre: Síguela aquí en vivo - El Financiero",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSE9PTDduR0t5akQ1YVA4S0hNWWxQa0phbE9xVDBQSkNoZ1BzUTBjWHhHSVFOR3BjRmtnSWw4c092bXFfUVU4V0tpOVZWbjlRUDFDUnhocVc1Y0J0VmNlZkFxN3dLNmp0Y1NqUFJweWduSFJTVWZBVVpJV0s5MXJrVDB4d2lZczdzZXZmTksxRzJ2YkxIcm9BaXV3WjZXNVVWZDg3akwzcHZHeko5MWlrYmk5SFYtVHVjRkZCbFV3?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1030,23 +954,12 @@
       "confianza": "media"
     },
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum se contradice con acuerdo de río Sonora con Grupo México: “No ",
-      "nota": "Claudia Sheinbaum se contradice con acuerdo de río Sonora con Grupo México: “No hay nada firmado con ellos” - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQdTFYSzlOZFFlLWFIZVRQdVFzVVZLTWdMTFNLcGl5TDZJUExkNDFqMzB4dy05aFl1VkduUXEtR0N6NVVHMGtKS3EyR3JfY3IyLWkwREx1UmZLY2VacHFwUFdJSy1IMXZXM0djSlhTTVI0bXIxTm4zc2hFeWRxdVpqd1JXbi1iNm1WRW1DQ25QeXFmUmM5VGlYcW5hS1ptUXh2MGRHeVhVZkpwdDR3ejV3aVhZeVYwcVVZWGZZVGt1RFJNOFQ1QzAtMjdzakx0MTFKN2lZV2lGMlM5b2QycG4zUdIB-wFBVV95cUxNbmZGcy1OQ3BwaUNyNHJjb2ZMU050c05ZeTFfY2xISWtKZ0ZZTy1DM3I2dEc4eldIOHRsWEJZWHZvaEZ4WXAzZ3RMQkVyeVZGRXkxVC0zV3FqVFgyQlktcFZ2N1BFM1hSeDVVQzBhNVhEUUdQWDd1LUJROTVRQnVVeUEtaU5ibGlCMXpyaENZU0sxcTVvNWVsSkR5RkhYQ0Nibk9TQ0ljWEJ0eno0bHVYXzRZUlJSb2lPYTh5Vk1fMzBPeFVPT05OV1Z4MEl2ODFPWVRKcVJmNU5PRElfcG1LQVFfaEJ2OTRWOVBTTG1jaXRIS2QybDdWN1E0QQ?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
       "rol": "Mencionado",
-      "tema": "López Obrador: reaparición y declaraciones",
-      "nota": "\"Traicionó al pueblo\": Sheinbaum reconoce que AMLO avaló a Taddei",
-      "fuente_url": "https://www.informador.mx/mexico/traiciono-al-pueblo-claudia-sheinbaum-reconoce-que-amlo-avalo-a-guadalupe-taddei-y-vuelve-a-deslindarla-de-morena-20261109-0108.html",
+      "tema": "Hijo de AMLO reta a Salinas Pliego: explique nexos con García Luna, Raúl Salinas",
+      "nota": "Hijo de AMLO reta a Salinas Pliego: explique nexos con García Luna, Raúl Salinas, etc - Sin Embargo",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNaGRjRS13bjA4OXJoVnhZQ2tfWndERlAwM053cExxOW02RlVSYkpSOWNGWk1qMEx0Q3R6VFZPaXMxbjE3UlJjd0RaTjRESDRuVUJaNjl0alJHczVQU0Fnak9KcmwzNVJSWTZzZHh0a2Y0T0hsUHJ1aDJSVU9FYTMzNTdqRjNNb1V4cjQ5enkwYVAyR0NOYi1Ibkdnd2dlZURFTVNZZkZRempndHAyNFlRUjFLUERPeS1H?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1314,8 +1227,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
-      "nota_texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
+      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPU2FwYW5aaElmVklMQTR1ZlpaT0JXM0pua2pwT0I0ckhMV1U2S21YTzR3UjdzM2p0a1cwY1dXandlNm5aLS1YZkJkaV93bDU4ZTA3ejJNZFRNckt2SEVESERtRzQ2OUoyRm5DVjFSc1lxZF81RnNGM2tfN010NTdPcUJzcGV4WnNlRzVyM09WVUVJR1dRbUptYU9LeV96MG5JVWozQmxuWkNfSFQxQWQ4N2VaNjMxX09MY2JnaWNDWmZMS2lyLVd5bm1qbnFGelN3bko4dVQzZmh0VU4yN1BiVdIB5gFBVV95cUxPeXQtQU9rZUQ5QkdQamVJUnZQeTg4aUVheTJfSHU2VWdCM05jYXd4eHJnemZxVTVfT0h2OFczUzhzOFZlU2p0RlMwLWlrTmVWczQ2OFhnQ3hUQnBYV0cweTVxdEVCZF94S2htVV9yU3J6TDdWNzRhWHBMeUdrc05YdFYtbUQxTDM3bGlnbEJVelVuQTU3TzNxMVN1Y2hWeUk3eUJsMC1wdkZfRUtXcHVjRnROZFhmTi1wdmxkTUszQ1ZpNnh6Q2dXdXJwSUNfTGk4MHdaY185MUZocnJnX0ItLXBKazFiZw?oc=5",
+      "nota_texto": "Andy López Beltrán responde a Ricardo Salinas Pliego: niega vínculos con huachicol fiscal y le lanza cuestionario - Por Esto!",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1330,8 +1243,7 @@
           "x": 67,
           "y": 100
         }
-      ],
-      "fecha_reactivado": "2026-11-10"
+      ]
     },
     {
       "id": "morena_partido",
@@ -1348,8 +1260,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://www.yucatan.com.mx/merida/2026/11/09/morena-rechaza-acusaciones-por-presuntos-actos-anticipados-de-campana-en-yucatan.html",
-      "nota_texto": "Morena rechaza acusaciones por presuntos actos anticipados de campaña en Yucatán",
+      "nota_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPa0UwZzVHQlR0NVJLUkF1eGR1dzhLWktWUXlFbGoyem9DRjVEOTZzVWVHd1JZVkM3aFFxdDAxcVhoVnFrQzlIa3R6YVUwVkluMEg2M2NnaDlfcEtoVlc5aXByMDJ2d0QtRFV3YzZiNnF5dVNtbWRPMTZES1dZRVVCallreHB5NHBBX3E4N2F3R3g5OUZSbXhYaEQ4Z3g0SjVoRFFxUklnV09rSXlsakNfQVV6cGFWbmh5TjVqbzZIOF80U2NoLWNPcE5aalN5OUVFS0l4dHRxS3hZY09vT0RYNW9UcFVuQQ?oc=5",
+      "nota_texto": "Morena responde a las acusaciones en Yucatán: Descarta actos anticipados de campaña y fija postura - Debate",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1548,7 +1460,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1602,11 +1514,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-11-10T00:04:12.197797-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Andrés Manuel López Obrador ('AMLO')"
-    ]
-  },
-  "hora_corte_publicada": "2026-11-10 06:02"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-11-10 08:23"
 }
