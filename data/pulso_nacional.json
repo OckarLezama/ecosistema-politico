@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-11-09T14:39:30.522442-06:00",
+  "generado_en": "2026-11-09T18:00:31.471223-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 25,
   "baja_confianza": false,
   "tension_nacional": 21,
   "tension_anomalia": {
-    "z": -0.24,
+    "z": -0.2,
     "nivel": "normal",
-    "media_periodo": 22.0,
+    "media_periodo": 21.8,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 80,
+      "peso_pct": 75,
       "tema_principal": "López Obrador: reaparición y declaraciones",
       "tema_principal_id": "amlo-agenda",
       "n_temas": 11,
-      "n_notas": 20,
+      "n_notas": 19,
       "notas": [
-        {
-          "texto": "¡Reaparece Andy López Beltrán! Acude al informe de Javier May en Tabasco tras señalamientos por huachicol fiscal - TV Azteca",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPRGRwbzVlOXpaOG9felJ3a0VJVTNxVGtYMHYyN3p0OVFZRVd6R1JieUpnWjl4YUxYYmp5X2lPbnRFdTVDVXZZSE1TY2I5MnJxX0dXWUYzZ3ViTC1tUzJCUXFFZ0xFRTd5aUZhT2g1eDVOd19mbVdGejJjcWlPX0NGMGlSZS04N3FGa1k3am9CSU9RTm1uRVhhdXNWX3ZsOWNzdUl6Rnp5cHRBMGI5TDFudndyUTMtNWpteXZ5WmZuUk1iZ0c2amhjYlFtakJmWURocFpYNnphUjY5OEYwY1JFM2F6cjNzZw?oc=5",
-          "intensidad": 7.0,
-          "medio": "TV Azteca"
-        },
         {
           "texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
           "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
@@ -108,17 +102,29 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNd3hKM0x3MjhJY2xKNDBVN0IxTF9HSVhGeWttT0J4SjcxM2E1eGw2U1o1LU53bHRybHN0Rm9Kd2xydi1WT1BFZlR0UEpOcDB5STF6akxudzNTQzVmWlJlbm5hZlFTNEhPM3JJVkgxcmxjLVE0RnU5bzE5VWh3bzlNSHFILS1MTHRRTUsxRGhScmF2bG1LLUFwSFhNcUxwdzBLT0lnTGhtSUJ2eDdFTERtYlZTeC1Qd2xZUXNUQS15U0RsZnNtZDNyUlplRnJtUDVORnFtRnh5dllYNHc5RXpBYlBjeFZOd3JOTzNTRFByZHQ5R1FQUU5jdkxB?oc=5",
           "intensidad": 5.0,
           "medio": "Versiones"
+        },
+        {
+          "texto": "Morena rechaza acusaciones por presuntos actos anticipados de campaña en Yucatán - Diario de Yucatán",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUzJmN3BoaU9XbTZab3JXSEFyRDhKT19hdWp4Mm8wdGxxYVB3cHRHYVRwX3ctOFdEel93QWp1eDlyUlMzZWVGWUxURTVBbnBTbXRLa1FkM0ViUG5oUW9aR1lUTEhXNlRvYTYwQnNOQVhxLWJfSXlzVnV3M1RSSElXV0VBOVpTN2pYQW5ZNkRVbUp1bmM4eXZoZ2lPNmlMSUxlNkRrcU1SRDc0SUNqSXJONVZmWElvUEZ5UE1PMjFzVHRCeHB4c1pXaVJB?oc=5",
+          "intensidad": 5.0,
+          "medio": "Diario de Yucatán"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 8,
+      "peso_pct": 13,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
-      "n_notas": 2,
+      "n_temas": 2,
+      "n_notas": 3,
       "notas": [
+        {
+          "texto": "Hijos de Rubén Rocha Moya obtuvieron 94 millones de pesos en contratos públicos - Diario de Yucatán",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPdmE5VlVUcWs2aWRURjJZS19nczNhQW9MbjByRWNYMEhvMV9yRXlHZmlPRVI3VWl6YlozOTZ3dnhIY2RMZ2w1R1lUaHBBWXZhcnpTSk1kdUVxVERaa0ZqOVFGZl8tZlBxamhzTHdKY0poNXR5aXhWVTBSdWUzTi1GZHJDXzRRSG1BbGtnbVhIWmM1MmFGNXR5YTM2QzVXdUZkZ0JHb3NWRUhncXBOTGtMOXU3Z0dJblBJTHZ1MFdKQnBIV21yRjZBbg?oc=5",
+          "intensidad": 7.0,
+          "medio": "Diario de Yucatán"
+        },
         {
           "texto": "Crece brecha fiscal con socios T-MEC - Reforma",
           "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9ERmJFMUdpTGFuTjhYdnV5M1RmN3dkNVlNMUh1clRqUlpKTkFHZXRJYkVhX3BRNW1rOVIxS2dfX0ZCb05iYmd1M2M3eFRsVER6QXVRVExjb3MzbWtCVE1kNTR5SXQxT180V3gzYzNrcmc3UkJIb1F6cnBBWjNIYjQ?oc=5",
@@ -262,11 +268,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 7
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 70
         },
         {
           "categoria": "Relación Bilateral",
@@ -291,7 +297,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 71
+          "peso_pct": 70
         },
         {
           "categoria": "Relación Bilateral",
@@ -316,7 +322,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 70
+          "peso_pct": 69
         },
         {
           "categoria": "Relación Bilateral",
@@ -366,7 +372,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 69
+          "peso_pct": 68
         },
         {
           "categoria": "Relación Bilateral",
@@ -466,7 +472,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
@@ -495,7 +501,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 14
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
@@ -566,7 +572,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
@@ -595,7 +601,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 14
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
@@ -641,7 +647,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -837,7 +843,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
@@ -866,7 +872,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -874,7 +880,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Social",
@@ -931,8 +937,8 @@
       "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9ERmJFMUdpTGFuTjhYdnV5M1RmN3dkNVlNMUh1clRqUlpKTkFHZXRJYkVhX3BRNW1rOVIxS2dfX0ZCb05iYmd1M2M3eFRsVER6QXVRVExjb3MzbWtCVE1kNTR5SXQxT180V3gzYzNrcmc3UkJIb1F6cnBBWjNIYjQ?oc=5",
       "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
       }
     },
     {
@@ -1016,10 +1022,21 @@
   ],
   "temas_retomados": [
     {
+      "id": "auto-653892b975",
+      "nombre": "Delia González Cobos presenta su balance final al frente del Orfis y destaca 181",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 37,
+      "motivo": "El balance de empleo presentado por Claudia Sheinbaum - MILENIO",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOaWRwc0g1S0xwOFNBcGpwV21QZlNXUzhYVU9ZZUpMdFo1V2pRalNHcUlKQXg4M2JRdW03MnE1UnFZY1JPMi13VkhQUlQwQlhYdXdRZWttOUVnV2ZzVUNKM2dDd18yZXlFTTBIcmowU3Z2VUNGNmJEOWowVFRqcTJ6VXBqR0ZGVm42SEkza1Z30gGOAUFVX3lxTE9IbHQxcDdPTTU2U2NFaUZjYnh4RHRJZ2Q4eElILU5SbEI4WVp6ZGIwVl85SklMNDFKTDNubW9mb2dKMkRCRnhERGFfLXdjMUE1aDZnY2N0MWN5bV9GVXpBMFYxQzVPa3Y0RE1FNXQzQkFrZnQtczVSUnZkcmZKc3pmSnJ0b1BCTnBqTGJIakE?oc=5",
+      "fecha_anterior": "2026-10-03",
+      "fuente_url_anterior": ""
+    },
+    {
       "id": "auto-075b81747a",
       "nombre": "EU ubica al \"número dos\" de la 4T, comparte Riva Palacio",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 13,
+      "dias_silencio": 14,
       "motivo": "Riva Palacio expone el lodazal político de la 4T",
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/taddei-una-batalla-perdida-para-sheinbaum-raymundo-riva-palacio-expone-el-lodazal-politico-de-la-4t-20261109-0047.html",
@@ -1030,7 +1047,7 @@
       "id": "auto-fa6d80b1ce",
       "nombre": "Carlos Fazio: Vasallaje o exterminio  vs resistencia y dignidad",
       "categoria": "Relación Bilateral",
-      "dias_silencio": 13,
+      "dias_silencio": 14,
       "motivo": "Carlos Fazio: Bolsonaro, la Operación Alba y la CIA",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/014a1pol?partner=rss",
@@ -1041,7 +1058,7 @@
       "id": "amlo-agenda",
       "nombre": "López Obrador: reaparición y declaraciones",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 9,
+      "dias_silencio": 10,
       "motivo": "Sheinbaum explica respaldo de López Obrador a Taddei - El Informador",
       "impacto": "alto",
       "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQk5RQ3NMMm9DeEYwaTFiaXVKMkRBcENOVWVFT19GOTlQY2ZxTkVORkcwS1lyTUNaNU1KS1BydUExaDNOUUJWN0RkU0hnR1VYMlpDdlExa2FOS255T18wNG9ST0pQek5BR1FKWUJ3YW8wUmJPZUUyUkFxVy1nRkU4Q1VxUWtiYm13V2FpVlZkUXNONktKYTRxbWRJNzBrZw?oc=5",
@@ -1049,29 +1066,18 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQaUlMcWwtTW9ic1hBaE5hQjFvWk5rN3ZsQnU0RWRKSEthQnhxQ3JkU3cxQnZ2YmEzOTdZNUpfZ0swUm5Rc2FsejlheXByeFphZHFYbUVDMU15R2NVLVlXRkk0eGpfQUhsZGl4U3lLdzRrc3VCcGowcnVQVHlZTTBXaFZqc1R5ZU1ZZVFTQUhrTnpMcDBRYmZmWXVSZENwckw5R3lmMDhLMHVWdUFucjZVUjRCd216c2owd3VkUUlwZkpFQ0dWTE1oQlVUOXVPTmJuVkpZTjd2Vnc5MDY2WTlrejlSbFQ3WGZLWUMyeDZaVV9VNTl3NjhjajJMQ05YTzhqVU5uZFhUTDljMGZsR3d1Q1Fad09aX1Z4bk9aTDcxTXnSAbsCQVVfeXFMTk1DZEhNUG5HZ0JrQTFZbm9sS1VOTFA4ZGFmTlBzeFQ1cGpvSVNoVFFQTGQ1QW1sLWpfdFY1c2xMbmR4WHdRZHZDNlhrYm1VUVFHa3V3WkFhSzhhV1BfNVpXRE14VUpaMVc0WThEd0sySXJ1V2l6TUVqVXpxRDBld3dtSjhBdnNXbzJCLV9XNnR5ZDl1djBsalRQYTF0dHg4U095Yi1TR19BUEctQTJSLUVLN0s5WDdBdEQyNU1lLTQxb1RqOE8xR2pmbHpqd3lXcUx4YTEtOHZvVXI0N2djR0tXMVRBWGx2VGo4NlRpVDRvcjF4VElwc1VYTnQ4YTM2YW1zUFoyVHM5TXVFZ1JjdnV0U01XVmVPRGpuRExyT0JXQnBvVGJaWkpNa3VXcW5qaGJFRlB3RU1MMGRV?oc=5"
     },
     {
-      "id": "auto-3fcf79204c",
-      "nombre": "Alistan iniciativa sobre bienestar digital, anuncia la diputada Ana Laura Gómez ",
+      "id": "auto-7ff9f70a7e",
+      "nombre": "El cablebús más largo y más peligroso del mundo (Línea 5), escribe Margarita Zav",
       "categoria": "Gobernabilidad",
       "dias_silencio": 7,
-      "motivo": "Morena en Diputados alista entrega de paquete de iniciativas anticorrupción; buscan cerrar vacíos legales - El Universal",
+      "motivo": "La no comparecencia de los funcionarios de Salud, escribe Margarita Zavala - El Universal",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPeGZDZ2dHaS1pSzZlNkd1Ymw1bGluWWZmWFZ5VUV5VGNMbmV0cjFkQjZic1dRNlBFM2tpNDN5OGJDR0NKbzRYOE5scldMaG5hekNPSHlodHRUMVdGUnlsWXBlMENxS09VVkE1V2lCNkVqbjZyeThzalVMZTdyTjhNbEhSRThZbk4wLUVTRDlLb09xZmVyNWp6ZGdEbld2eUNXMUU0dWR6TnBxTWtsM0Y2R18zQWxSeW8wXzRiclB3MTU3M19NTEo1cVJSVXJ5emc2cVlwMkpudkhqSlk?oc=5",
-      "fecha_anterior": "2026-11-01",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNelFWeDhVa2FxUEtfVUVnc0ZZZVlRamdGZE9RWFJNZDJ3bW5naVItTWp4QXRwUEpyQm5hWTJ6dElGMXZXOVQ4ZnBKaEVnMTB3VHVnSmxIcC0wTUtrY3ZuUXBCUU1nZklZWDVxLXN1WkNuUU8zZkFLQ2hlUG5WUGR2R20wSFpfNDlqOHBwYURLM0JFRnN0TTc0dDZiYWdzWEFfNnZwcWcyZnc?oc=5",
+      "fecha_anterior": "2026-11-02",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOUFFfaHJJRE9fTXU5Zklyb0Z3MXdEby1xMXp5Nkl6MExkXzlzOUJqbFFGX0hja2pYcUhseUh2Z3JyN05kSWVpcDB0ZDBockFJVDZpVzN1UDkyOE9OTmtTOW9Iam5DajBHNTNlaHJ1amRHaUt3QzlGMUVHRzlXclFXaVVYVQ?oc=5"
     }
   ],
   "actores_destacados": [
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "rol": "Mencionado",
-      "tema": "Andy Manuel López Beltrán se registra como aspirante a diputado en Tabasco - fom",
-      "nota": "Evita May saludar a 'Andy' López Beltrán en informe - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNak1EcERtc1dscVJKcjVuSGlOd3ZlODBxbTJXT2stWHpPeXRCaV9CV2FxeldhZ1hVUXJoZzNVbXlkV1FBLVBKdXc2dy1XMkV4Z0VxbUFSb1ZjUXdERWtLajktaHBRQjBvUjJkc19SUVhvc1ZVODNYekxfMkZOS3ppZDNGdkRDRm1jLW4w?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -1086,10 +1092,21 @@
     {
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Reacción social/mediática",
+      "rol": "Mencionado",
       "tema": "López Obrador: reaparición y declaraciones",
       "nota": "\"Traicionó al pueblo\": Sheinbaum reconoce que AMLO avaló a Taddei",
       "fuente_url": "https://www.informador.mx/mexico/traiciono-al-pueblo-claudia-sheinbaum-reconoce-que-amlo-avalo-a-guadalupe-taddei-y-vuelve-a-deslindarla-de-morena-20261109-0108.html",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "garcia_harfuch",
+      "nombre": "Omar García Harfuch",
+      "rol": "Responsable institucional",
+      "tema": "Delincuencia “corruptora”, alerta SSPC",
+      "nota": "⚡ Posible presión de Omar García Harfuch — Delincuencia “corruptora”, alerta SSPC",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/010n2pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1109,9 +1126,9 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Investigado",
-      "tema": "Alistan iniciativa sobre bienestar digital, anuncia la diputada Ana Laura Gómez ",
-      "nota": "Morena en Diputados alista entrega de paquete de iniciativas anticorrupción; buscan cerrar vacíos legales - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPeGZDZ2dHaS1pSzZlNkd1Ymw1bGluWWZmWFZ5VUV5VGNMbmV0cjFkQjZic1dRNlBFM2tpNDN5OGJDR0NKbzRYOE5scldMaG5hekNPSHlodHRUMVdGUnlsWXBlMENxS09VVkE1V2lCNkVqbjZyeThzalVMZTdyTjhNbEhSRThZbk4wLUVTRDlLb09xZmVyNWp6ZGdEbld2eUNXMUU0dWR6TnBxTWtsM0Y2R18zQWxSeW8wXzRiclB3MTU3M19NTEo1cVJSVXJ5emc2cVlwMkpudkhqSlk?oc=5",
+      "tema": "Serán sus propios desplazados la oposición para Morena en 2027, no están mancos ",
+      "nota": "Morena y oposición usan tema INE rumbo a 2027",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/004n2pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1123,24 +1140,24 @@
     {
       "fecha": "2026-10-13",
       "tension": 26,
-      "n_notas": 97,
-      "n_alto_impacto": 42,
+      "n_notas": 95,
+      "n_alto_impacto": 40,
       "n_medio_impacto": 55,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-14",
-      "tension": 21,
-      "n_notas": 65,
-      "n_alto_impacto": 23,
+      "tension": 20,
+      "n_notas": 64,
+      "n_alto_impacto": 22,
       "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-15",
       "tension": 19,
-      "n_notas": 65,
-      "n_alto_impacto": 23,
+      "n_notas": 64,
+      "n_alto_impacto": 22,
       "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
@@ -1187,16 +1204,16 @@
     {
       "fecha": "2026-10-21",
       "tension": 25,
-      "n_notas": 67,
+      "n_notas": 66,
       "n_alto_impacto": 28,
-      "n_medio_impacto": 39,
+      "n_medio_impacto": 38,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-22",
-      "tension": 26,
-      "n_notas": 67,
-      "n_alto_impacto": 31,
+      "tension": 25,
+      "n_notas": 66,
+      "n_alto_impacto": 30,
       "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
@@ -1242,33 +1259,33 @@
     },
     {
       "fecha": "2026-10-28",
-      "tension": 23,
-      "n_notas": 81,
+      "tension": 24,
+      "n_notas": 79,
       "n_alto_impacto": 32,
-      "n_medio_impacto": 49,
+      "n_medio_impacto": 47,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-29",
       "tension": 25,
-      "n_notas": 54,
-      "n_alto_impacto": 26,
+      "n_notas": 53,
+      "n_alto_impacto": 25,
       "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-30",
-      "tension": 18,
-      "n_notas": 56,
-      "n_alto_impacto": 16,
+      "tension": 17,
+      "n_notas": 55,
+      "n_alto_impacto": 15,
       "n_medio_impacto": 40,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-31",
       "tension": 18,
-      "n_notas": 53,
-      "n_alto_impacto": 16,
+      "n_notas": 52,
+      "n_alto_impacto": 15,
       "n_medio_impacto": 37,
       "n_bajo_impacto": 0
     },
@@ -1282,33 +1299,33 @@
     },
     {
       "fecha": "2026-11-02",
-      "tension": 23,
-      "n_notas": 30,
-      "n_alto_impacto": 12,
+      "tension": 22,
+      "n_notas": 29,
+      "n_alto_impacto": 11,
       "n_medio_impacto": 18,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-03",
-      "tension": 26,
-      "n_notas": 45,
-      "n_alto_impacto": 20,
+      "tension": 25,
+      "n_notas": 44,
+      "n_alto_impacto": 19,
       "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-04",
       "tension": 27,
-      "n_notas": 53,
-      "n_alto_impacto": 22,
+      "n_notas": 52,
+      "n_alto_impacto": 21,
       "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-05",
-      "tension": 28,
-      "n_notas": 48,
-      "n_alto_impacto": 17,
+      "tension": 27,
+      "n_notas": 47,
+      "n_alto_impacto": 16,
       "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
@@ -1338,9 +1355,9 @@
     },
     {
       "fecha": "2026-11-09",
-      "tension": 20,
-      "n_notas": 24,
-      "n_alto_impacto": 8,
+      "tension": 21,
+      "n_notas": 25,
+      "n_alto_impacto": 9,
       "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     }
@@ -1361,8 +1378,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPU2FwYW5aaElmVklMQTR1ZlpaT0JXM0pua2pwT0I0ckhMV1U2S21YTzR3UjdzM2p0a1cwY1dXandlNm5aLS1YZkJkaV93bDU4ZTA3ejJNZFRNckt2SEVESERtRzQ2OUoyRm5DVjFSc1lxZF81RnNGM2tfN010NTdPcUJzcGV4WnNlRzVyM09WVUVJR1dRbUptYU9LeV96MG5JVWozQmxuWkNfSFQxQWQ4N2VaNjMxX09MY2JnaWNDWmZMS2lyLVd5bm1qbnFGelN3bko4dVQzZmh0VU4yN1BiVdIB5gFBVV95cUxPeXQtQU9rZUQ5QkdQamVJUnZQeTg4aUVheTJfSHU2VWdCM05jYXd4eHJnemZxVTVfT0h2OFczUzhzOFZlU2p0RlMwLWlrTmVWczQ2OFhnQ3hUQnBYV0cweTVxdEVCZF94S2htVV9yU3J6TDdWNzRhWHBMeUdrc05YdFYtbUQxTDM3bGlnbEJVelVuQTU3TzNxMVN1Y2hWeUk3eUJsMC1wdkZfRUtXcHVjRnROZFhmTi1wdmxkTUszQ1ZpNnh6Q2dXdXJwSUNfTGk4MHdaY185MUZocnJnX0ItLXBKazFiZw?oc=5",
-      "nota_texto": "Andy López Beltrán responde a Ricardo Salinas Pliego: niega vínculos con huachicol fiscal y le lanza cuestionario - Por Esto!",
+      "nota_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
+      "nota_texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1389,8 +1406,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPa0UwZzVHQlR0NVJLUkF1eGR1dzhLWktWUXlFbGoyem9DRjVEOTZzVWVHd1JZVkM3aFFxdDAxcVhoVnFrQzlIa3R6YVUwVkluMEg2M2NnaDlfcEtoVlc5aXByMDJ2d0QtRFV3YzZiNnF5dVNtbWRPMTZES1dZRVVCallreHB5NHBBX3E4N2F3R3g5OUZSbXhYaEQ4Z3g0SjVoRFFxUklnV09rSXlsakNfQVV6cGFWbmh5TjVqbzZIOF80U2NoLWNPcE5aalN5OUVFS0l4dHRxS3hZY09vT0RYNW9UcFVuQQ?oc=5",
-      "nota_texto": "Morena responde a las acusaciones en Yucatán: Descarta actos anticipados de campaña y fija postura - Debate",
+      "nota_url": "https://www.tabascohoy.com/tet-confirma-desechamiento-de-denuncia-del-prd-contra-morena-y-funcionarios/",
+      "nota_texto": "TET confirma desechamiento de denuncia del PRD contra Morena y funcionarios",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1399,6 +1416,34 @@
           "fecha": "2026-11-09",
           "x": 100,
           "y": 50
+        }
+      ]
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 50,
+      "y_hoy": 75,
+      "delta_pts": 4.5,
+      "alcance": 2,
+      "n_alto": 1,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPdmE5VlVUcWs2aWRURjJZS19nczNhQW9MbjByRWNYMEhvMV9yRXlHZmlPRVI3VWl6YlozOTZ3dnhIY2RMZ2w1R1lUaHBBWXZhcnpTSk1kdUVxVERaa0ZqOVFGZl8tZlBxamhzTHdKY0poNXR5aXhWVTBSdWUzTi1GZHJDXzRRSG1BbGtnbVhIWmM1MmFGNXR5YTM2QzVXdUZkZ0JHb3NWRUhncXBOTGtMOXU3Z0dJblBJTHZ1MFdKQnBIV21yRjZBbg?oc=5",
+      "nota_texto": "Hijos de Rubén Rocha Moya obtuvieron 94 millones de pesos en contratos públicos - Diario de Yucatán",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 50,
+          "y": 75
         }
       ]
     },
@@ -1482,34 +1527,6 @@
         {
           "fecha": "2026-11-09",
           "x": 50,
-          "y": 50
-        }
-      ]
-    },
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 25,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNMDZxNEtUYjI2WF9KcWp0c1hLTGFDQ1ZoT0NqQVFSWkluS1NuN3NmYUwtalpqd29aN1ViemJ0aHRXSHEyN19TTmFsazBocjQxeGU3aEhHX2lBTlNvZUxzX0s3ZGhPTHZIenZfVG1GR044RlZwcG1KV09uZ1owcmRhN0NZb3BTaHZwMkZkdQ?oc=5",
-      "nota_texto": "¿Por qué Taddei sí, pero Rocha Moya y Adán Augusto no? - Unomasuno",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 25,
           "y": 50
         }
       ]
@@ -1622,5 +1639,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-09 14:39"
+  "hora_corte_publicada": "2026-11-09 18:00"
 }
