@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-11-09T18:00:31.471223-06:00",
+  "generado_en": "2026-11-10T00:04:12.197797-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 25,
+  "n_notas_ventana": 24,
   "baja_confianza": false,
-  "tension_nacional": 21,
+  "tension_nacional": 18,
   "tension_anomalia": {
-    "z": -0.2,
+    "z": -0.93,
     "nivel": "normal",
-    "media_periodo": 21.8,
+    "media_periodo": 21.5,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 75,
+      "peso_pct": 79,
       "tema_principal": "López Obrador: reaparición y declaraciones",
       "tema_principal_id": "amlo-agenda",
-      "n_temas": 11,
+      "n_temas": 13,
       "n_notas": 19,
       "notas": [
-        {
-          "texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
-          "intensidad": 7.0,
-          "medio": "Proyecto Puente"
-        },
         {
           "texto": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
           "fuente_url": "https://www.informador.mx/mexico/cjng-el-r2-presunto-implicado-en-el-asesinato-de-carlos-manzo-20261109-0066.html",
@@ -68,12 +62,6 @@
           "medio": "Unomasuno"
         },
         {
-          "texto": "Morena rechaza acusaciones por presuntos actos anticipados de campaña en Yucatán",
-          "fuente_url": "https://www.yucatan.com.mx/merida/2026/11/09/morena-rechaza-acusaciones-por-presuntos-actos-anticipados-de-campana-en-yucatan.html",
-          "intensidad": 5.0,
-          "medio": "yucatan.com.mx"
-        },
-        {
           "texto": "Ricardo Salinas Pliego, multimillonario opositor a Claudia Sheinbaum, lanza nuevo guiño como posible candidato en 2030: \"No me dejen solo\" - Ambito",
           "fuente_url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOXzdBRXNfN3dZbUZhYTNwN0VIbndKbXVlU0phalNSYnJRXzlYam0tRTFnMXRabUtTWWh5cE5oOGFJWEtPa2hTY0FkS1ZNeFpEak5XLUFwZlVnSmdHWDJsR2xCb2lFaWtMbUhGVTdlVWxNWFNtRElqZVFETG02a3ZiQ296NkNiMnBmQ3YtcUVLN1hZNkN6QkZLNjlub2c4aEMzd2d6VF9LOTliRHVHZ2ZpV2YzMzhBcjlQelVJckx2VUMtNHdMeFFIN09YRVd0bncwTzZaazBfaE8tYnVvU2R5TWxmZzNzTVBuakV4VXZSWU90S2lhM2JPWUs0WGtmSGtNUE5YbEIzaWNVU2QzeUNMTXFZaUo0d9IBmwJBVV95cUxOVFFlbzR6cGFSa1RaQ0p0YXdvNjA2VENOeURtS2l6Q0g4VTIxWGZjbzUyWTR4eW4wTXNjOFpURmxIRHlFbFJDWk0tTVh2LWhROW1lUkp1ekVJa3JxOWdCSGVKMVQ1REt1SmdqNmZ3enpwSU1QN3VRVWtSQXVMeDUwQVlUSXlhd20xZXJLcW42M3ZwNjZnOS10Szc3UkhSRE1jYnVZQWp4cnM0bUF6M3ZKNE5rTUhJM2docnhFd3pHWHEzcjd2LTV3aVB5MEoxSnZLNkZOQ3ZsbkVzdzN2T3Mwa3k5aGxVV2UzTTRsME5kNkNfbHQtRGFSM1p5WHJrYXVHOE1WQXJvejNaWmx3QmtVMzR0cGdhTkhNS1dj?oc=5",
           "intensidad": 5.0,
@@ -84,6 +72,12 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOXzdBRXNfN3dZbUZhYTNwN0VIbndKbXVlU0phalNSYnJRXzlYam0tRTFnMXRabUtTWWh5cE5oOGFJWEtPa2hTY0FkS1ZNeFpEak5XLUFwZlVnSmdHWDJsR2xCb2lFaWtMbUhGVTdlVWxNWFNtRElqZVFETG02a3ZiQ296NkNiMnBmQ3YtcUVLN1hZNkN6QkZLNjlub2c4aEMzd2d6VF9LOTliRHVHZ2ZpV2YzMzhBcjlQelVJckx2VUMtNHdMeFFIN09YRVd0bncwTzZaazBfaE8tYnVvU2R5TWxmZzNzTVBuakV4VXZSWU90S2lhM2JPWUs0WGtmSGtNUE5YbEIzaWNVU2QzeUNMTXFZaUo0dw?oc=5",
           "intensidad": 5.0,
           "medio": "Ambito"
+        },
+        {
+          "texto": "Lleva Claudia Sheinbaum justicia social a familias - Cuarto Poder Chiapas",
+          "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPdnM3WGNMZ1ZtQUZVVkpVZ200VHRLMVRXdWNwaUppWHRVX1hhOE10ZzlKZjdnVUExRTAxNXYyOGxRa2dxNl9yWDFvSnM0SElPek9jM3R6WHV4NzVEZnI3R3c3ZEhHX2pTM1JZdUJWWV9qc2tTZFl5R3ZMV01GU0NPQW1LdTRtZlV4dWtsUUV5bFc2S3ExU2xuR1d3U0TSAZwBQVVfeXFMT3ZzN1hjTGdWbUFGVVZKVWdtNFR0SzFUV3VjcGlKaVh0VV9YYThNdGc5SmY3Z1VBMUUwMTV2MjhsUWtncTZfclgxb0pzNEhJT3pPYzN0elh1eDc1RGZyN0d3N2RIR19qUzNSWXVCVllfanNrU2RZeUd2TFdNRlNDT0FtS3U0bWZVeHVrbFFFeWxXNktxMVNsbkdXd1NE?oc=5",
+          "intensidad": 5.0,
+          "medio": "Cuarto Poder Chiapas"
         },
         {
           "texto": "Morena responde a las acusaciones en Yucatán: Descarta actos anticipados de campaña y fija postura - Debate",
@@ -108,12 +102,18 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUzJmN3BoaU9XbTZab3JXSEFyRDhKT19hdWp4Mm8wdGxxYVB3cHRHYVRwX3ctOFdEel93QWp1eDlyUlMzZWVGWUxURTVBbnBTbXRLa1FkM0ViUG5oUW9aR1lUTEhXNlRvYTYwQnNOQVhxLWJfSXlzVnV3M1RSSElXV0VBOVpTN2pYQW5ZNkRVbUp1bmM4eXZoZ2lPNmlMSUxlNkRrcU1SRDc0SUNqSXJONVZmWElvUEZ5UE1PMjFzVHRCeHB4c1pXaVJB?oc=5",
           "intensidad": 5.0,
           "medio": "Diario de Yucatán"
+        },
+        {
+          "texto": "López Beltrán llama \"buitre\" a Salinas Pliego y lo cuestiona por sus vínculos con Epstein, García Luna y Marcial Maciel - La Jornada",
+          "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNSlVCUGpJWUl2N0gxcW1VYk5YLXNVWG53VW9KZVFjNmJaZFY5a1FLV0JXcEMySm9hdTdDdG5PMHRZaERGUTZ1dHZZeVZQTGdDWTZKRTdfZTBwa3A2Z2RoNTFjWGNuRU92N255WWlOUkROZGRGZnV0d3VlZlRtSnhJUGtUYS1VY0pjUEptcllmNWFxd09CNXUzcWUyTTZlZUMwUVQxQ3UycE1hcjUzc2FidzhHUEw0RFg2ZWs5Q2tWOFg3YTFWd282YU52UEtRZTIxZmtoTmkyM25RZXFHdnhMNUg5OGlBYjVLdFM3QXZGRWRFMkJkTVZnWXlsTm5CT1Bm?oc=5",
+          "intensidad": 5.0,
+          "medio": "La Jornada"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 13,
+      "peso_pct": 14,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 2,
@@ -140,40 +140,34 @@
       ]
     },
     {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 7,
-      "tema_principal": "Abatimiento de \"El Mencho\"",
-      "tema_principal_id": "el-mencho",
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Operó cabecilla para 'El Mencho' y el CJNG - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5MbmJCbjVnZUJaZEpqbDhHVC0xV2FTQ3NZbHRyS29OV25zUEtKaW5HcWtpeVRCT3YzRmgtOW5pSWlxR1IwWkNwbWdNbmE3WUtYdXcyeC0yc1NOZUNaQzNVb3owVUI5Tjcwb25OY2JjRkVPcmg5a2RsN29BSTlQLXM?oc=5",
-          "intensidad": 6.0,
-          "medio": "Reforma"
-        },
-        {
-          "texto": "Violencia en Sinaloa: gobierno reconoce que aún no logra recuperar la paz",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/09/violencia-en-sinaloa-gobierno-reconoce-que-aun-no-logra-recuperar-la-paz.html",
-          "intensidad": 4.0,
-          "medio": "yucatan.com.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Relación Bilateral",
-      "peso_pct": 5,
+      "peso_pct": 4,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Trump no dinamitará el T-MEC porque México es clave para EU: Santander - El Sol de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPMnNPSk9tYXV1MkZOZUdpTUpVVGhzTGxxdHFqOF9BazJwMTktbXQtMk9mMmRqeTBHU0NEVFBkMERFTzBxazZwclVUTFZwRGstb3RDaklWWXlfcGtuVEYzN0psd1Vsd1NISHZCMWtZeFpyMUNhbFRCM05pdEFwZDNlYnZ2ZmpuaFZYLVJOODVWeUMzbWNndkJrM1ZqYjVvdjlDNUc2M3pFQS1PQ050N0o3X3pXSVdGci1XZEwtUA?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Sol de México"
+          "texto": "Aranceles de EU golpean al acero mexicano; su apuesta verde cobra fuerza rumbo al T-MEC - 24-horas",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNWFh6SC1aRnczZzhtd3J6YnVfOEE4Nk9lVmpOaVFqaWdqbC1VTXFhcHJXdGJOZml6QWVvRnFHSTZwdUIzUnNSVDNYWTd0anRWU29fU0wwUmhkdjEwWTkxbC1KdXBPa2J4ak0tbDc1Q29rTFpKMTE5ZmoxNTRtYmg5VDJBaWFxNk5FeGlHd0VVS3IzZWE3Uk1ucENobUtINVY5Rmk1QnRmSTYtRnhCU2hCUFNUQy1zTW8?oc=5",
+          "intensidad": 6.0,
+          "medio": "news.google.com"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 3,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Violencia en Sinaloa: gobierno reconoce que aún no logra recuperar la paz",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/09/violencia-en-sinaloa-gobierno-reconoce-que-aun-no-logra-recuperar-la-paz.html",
+          "intensidad": 4.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
@@ -188,31 +182,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-13",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 73
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 7
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 3
-        }
-      ]
-    },
     {
       "fecha": "2026-10-14",
       "categorias": [
@@ -843,7 +812,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
@@ -872,7 +841,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
@@ -881,6 +850,31 @@
         {
           "categoria": "Economía",
           "peso_pct": 11
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 3
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-10",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 7
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 60
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 18
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 12
         },
         {
           "categoria": "Social",
@@ -906,24 +900,6 @@
       "actor_vinculado": null
     },
     {
-      "id": "carlos-manzo",
-      "nombre": "Asesinato de Carlos Manzo",
-      "categoria": "Seguridad Nacional",
-      "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
-      "motivo": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
-      "peso": 13.0,
-      "n_temas_agrupados": 7,
-      "escalando": true,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.informador.mx/mexico/cjng-el-r2-presunto-implicado-en-el-asesinato-de-carlos-manzo-20261109-0066.html",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
-    },
-    {
       "id": "tmec-revision",
       "nombre": "Revisión del T-MEC",
       "categoria": "Economía",
@@ -936,10 +912,22 @@
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9ERmJFMUdpTGFuTjhYdnV5M1RmN3dkNVlNMUh1clRqUlpKTkFHZXRJYkVhX3BRNW1rOVIxS2dfX0ZCb05iYmd1M2M3eFRsVER6QXVRVExjb3MzbWtCVE1kNTR5SXQxT180V3gzYzNrcmc3UkJIb1F6cnBBWjNIYjQ?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "actor_vinculado": null
+    },
+    {
+      "id": "carlos-manzo",
+      "nombre": "Asesinato de Carlos Manzo",
+      "categoria": "Seguridad Nacional",
+      "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
+      "motivo": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
+      "peso": 7.0,
+      "n_temas_agrupados": 6,
+      "escalando": true,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.informador.mx/mexico/cjng-el-r2-presunto-implicado-en-el-asesinato-de-carlos-manzo-20261109-0066.html",
+      "actor_vinculado": null
     },
     {
       "id": "visa-de-andy",
@@ -948,34 +936,13 @@
       "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
       "motivo": "López Beltrán llama \"buitre\" a Salinas Pliego y lo cuestiona por sus vínculos con Epstein, García Luna y Marcial Maciel - La Jornada",
       "peso": 5.0,
-      "n_temas_agrupados": 1,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNSlVCUGpJWUl2N0gxcW1VYk5YLXNVWG53VW9KZVFjNmJaZFY5a1FLV0JXcEMySm9hdTdDdG5PMHRZaERGUTZ1dHZZeVZQTGdDWTZKRTdfZTBwa3A2Z2RoNTFjWGNuRU92N255WWlOUkROZGRGZnV0d3VlZlRtSnhJUGtUYS1VY0pjUEptcllmNWFxd09CNXUzcWUyTTZlZUMwUVQxQ3UycE1hcjUzc2FidzhHUEw0RFg2ZWs5Q2tWOFg3YTFWd282YU52UEtRZTIxZmtoTmkyM25RZXFHdnhMNUg5OGlBYjVLdFM3QXZGRWRFMkJkTVZnWXlsTm5CT1Bm?oc=5",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
-    },
-    {
-      "id": "auto-756ae60dca",
-      "nombre": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s",
-      "categoria": "Gobernabilidad",
-      "resumen": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality show: “No está bien si viola regulaciones” - Infobae",
-      "motivo": "Carlos Manzo, Sheinbaum y Salinas Pliego - Sin Embargo",
-      "peso": 5.0,
-      "n_temas_agrupados": 5,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE45Q3R2RERQT1pGWWF5eGJkbkgyQjZ0azcxaWdwT054MnYyWlVSN19PUVA4dVkwSF9rV3Y5X0lqeUdPUTFzY1RWUWU5ZldPWEF4Uy1iMk81djdERk9BQU1jekhXTE4ySTdiaTBXS2FhSU80RHZqOUdXQWtyOVhjQmc?oc=5",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -996,12 +963,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQXFsSmF4MWs1NXdQdTFsVmUyU1BuazNzUHB1VEZ6cFN6Y28xb1NXb3ZQejA3QWN3S2NMUUhIWjgzcDJ2X1ZZbzdDZnBjd2VuTU9CVTI5c3V0LVpBRVNqNWRXZENXNWZZeVFOZkJhOU5sdmtOQS1NZklxakdBYm5vbm5WbTZNVmdJd0JUWVBYVU05d2thcjhqckRNV3UyeWlEb3ByV3BISTdzQdIBqgFBVV95cUxNSGtiNHdyLW9sSHpkSFRxb3pZZnp1UkgwMUpGVHlGdG1MRFhZbFpTSnB4alNXOU1IT3RRREdjMUpYQXg5dXRKOVFyeEZ1TExyUmxGT3JKUlU3UkRwelR5MG11UE1Tbm9hQmlVeFg4ZHk0ZWk3N2N0b2dTdE9lZGo4a1NTaXQ0R2tmZGFNNlJFOURmN0RZYzc2UkxOUDREajBhaGFCSHI5ZGFwdw?oc=5"
     },
     {
-      "id": "auto-6a539e1ecc",
-      "nombre": "Delincuencia “corruptora”, alerta SSPC",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-0341c7901f",
+      "nombre": "Suspenden diligencia judicial en Refugio Franciscano - Reforma",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/010n2pol?partner=rss"
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNd1kzN1lxS1h4LU1mdE1VeWFydktCTXVRVmtHTkltd2Nid2p6aVF6R2RRUmUxWFRZanJkRzZ5cHdETjZWWnMwUWtFN3RzZW9oSS1vbTNvaVB4dzVNSllpVW1tSVgyREVYTVM0MXItRkZNUFhjSDFKNVMxNmpicFlEMTNjcDJXQktjZXJKVjEtYw?oc=5"
     },
     {
       "id": "auto-640d4a05c3",
@@ -1044,17 +1011,6 @@
       "fuente_url_anterior": "https://www.informador.mx/mexico/raymundo-riva-palacio-asegura-que-guadalupe-taddei-es-un-instrumento-desechable-al-servicio-de-morena-20261026-0046.html"
     },
     {
-      "id": "auto-fa6d80b1ce",
-      "nombre": "Carlos Fazio: Vasallaje o exterminio  vs resistencia y dignidad",
-      "categoria": "Relación Bilateral",
-      "dias_silencio": 14,
-      "motivo": "Carlos Fazio: Bolsonaro, la Operación Alba y la CIA",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/014a1pol?partner=rss",
-      "fecha_anterior": "2026-10-26",
-      "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/26/politica/019a2pol?partner=rss"
-    },
-    {
       "id": "amlo-agenda",
       "nombre": "López Obrador: reaparición y declaraciones",
       "categoria": "Gobernabilidad",
@@ -1082,9 +1038,20 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Desde el penal del Altiplano, líder del CIPOG-EZ pide a la presidenta Claudia Sh",
-      "nota": "Desde el penal del Altiplano, líder del CIPOG-EZ pide a la presidenta Claudia Sheinbaum Pardo que revise su ca - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNU19QdEEwTk5kY0FKcE1NT3dpdzl4U2J4RVlmTzVaaVNDQk9iZXJwYTU2SFVaTlBNTWN1ZjZ1dTBSbFZSNUZ4YWR4TjZZOXN3eEVrT0h4YkFBVlVLb1JEdkJORXBxNXdIejhoM09tUDc0cFRodlhRN1Rlb3JXNE1wbWZsSHhGS25OeE5PTDB0VGN6OFXSAZMBQVVfeXFMTVNfUHRBME5OZGNBSnBNTU93aXc5eFNieEVZZk81WmlTQ0JPYmVycGE1NkhVWk5QTU1jdWY2dXUwUmxWUjVGeGFkeE42WTlzd3hFa09IeGJBQVZVS29SRHZCTkVwcTV3SHo4aDNPbVA3NHBUaHZYUTdUZW9yVzRNcG1mbEh4RktuTnhOT0wwdFRjejhV?oc=5",
+      "tema": "Claudia Sheinbaum se contradice con acuerdo de río Sonora con Grupo México: “No ",
+      "nota": "Claudia Sheinbaum se contradice con acuerdo de río Sonora con Grupo México: “No hay nada firmado con ellos” - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQdTFYSzlOZFFlLWFIZVRQdVFzVVZLTWdMTFNLcGl5TDZJUExkNDFqMzB4dy05aFl1VkduUXEtR0N6NVVHMGtKS3EyR3JfY3IyLWkwREx1UmZLY2VacHFwUFdJSy1IMXZXM0djSlhTTVI0bXIxTm4zc2hFeWRxdVpqd1JXbi1iNm1WRW1DQ25QeXFmUmM5VGlYcW5hS1ptUXh2MGRHeVhVZkpwdDR3ejV3aVhZeVYwcVVZWGZZVGt1RFJNOFQ1QzAtMjdzakx0MTFKN2lZV2lGMlM5b2QycG4zUdIB-wFBVV95cUxNbmZGcy1OQ3BwaUNyNHJjb2ZMU050c05ZeTFfY2xISWtKZ0ZZTy1DM3I2dEc4eldIOHRsWEJZWHZvaEZ4WXAzZ3RMQkVyeVZGRXkxVC0zV3FqVFgyQlktcFZ2N1BFM1hSeDVVQzBhNVhEUUdQWDd1LUJROTVRQnVVeUEtaU5ibGlCMXpyaENZU0sxcTVvNWVsSkR5RkhYQ0Nibk9TQ0ljWEJ0eno0bHVYXzRZUlJSb2lPYTh5Vk1fMzBPeFVPT05OV1Z4MEl2ODFPWVRKcVJmNU5PRElfcG1LQVFfaEJ2OTRWOVBTTG1jaXRIS2QybDdWN1E0QQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "trump",
+      "nombre": "Donald Trump",
+      "rol": "Responsable institucional",
+      "tema": "“Resucitamos a Cristóbal Colón”, dice Donald Trump durante un homenaje en la Cas",
+      "nota": "\"Es extorsión\": Donald Trump arremete contra demócratas - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOVVN5c2R2VlNLNDdmdUh5WjJPbHJ3ZFp5emdZbVg5X1Y2dC1jMDZNRWduTnRBSER3dkw2ZGtPUjJSZ1MyVHV2MW9nNkotNzVqdFFMWVlJTXpzNmdmSDcxT19lUWJWMzNfdnhMSHJ0M1JKdDFaUDN0MEF3cWUtN3E4eDVsR1VDN0dScTdCMDhJS3c1Z2MtRGJFZE5ZNVlzQnZteHZHTDFoUDJ6d9IBqgFBVV95cUxQc2pmVTVVSWp2UnBzOXh2bzR6NEtQWktZdzJkbG5OdkVqSjRnbWZ2R3Q5QkpFWUpxdlhhUElDRm5XdzdIeDh1SUZaX0FERTl6VVYzVklnU19tRmdBQ1M1U3R4djNmLWstX0tSYUxVSlFvU0FtMEhJVGtRQTNCQWRTWmhjNi1EWFdUd1lyaFVpUkRicUM3VXVkQXcxODdiV3VOb1ljMzctSkFqQQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1092,7 +1059,7 @@
     {
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Mencionado",
+      "rol": "Reacción social/mediática",
       "tema": "López Obrador: reaparición y declaraciones",
       "nota": "\"Traicionó al pueblo\": Sheinbaum reconoce que AMLO avaló a Taddei",
       "fuente_url": "https://www.informador.mx/mexico/traiciono-al-pueblo-claudia-sheinbaum-reconoce-que-amlo-avalo-a-guadalupe-taddei-y-vuelve-a-deslindarla-de-morena-20261109-0108.html",
@@ -1104,31 +1071,20 @@
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "rol": "Responsable institucional",
-      "tema": "Delincuencia “corruptora”, alerta SSPC",
-      "nota": "⚡ Posible presión de Omar García Harfuch — Delincuencia “corruptora”, alerta SSPC",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/010n2pol?partner=rss",
+      "tema": "Omar García Harfuch confirma detención en Jalisco de “R2”, presunto mando de una",
+      "nota": "Omar García Harfuch revela reunión con Terrance Cole; ¿Qué acuerdos hubo entre México y la DEA?",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/09/omar-garcia-harfuch-revela-reunion-con-terrance-cole-que-acuerdos-hubo-entre-mexico-y-la-dea/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "ricardo_salinas_pliego",
-      "nombre": "Ricardo Salinas Pliego",
-      "rol": "Responsable institucional",
-      "tema": "Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s",
-      "nota": "Carlos Manzo, Sheinbaum y Salinas Pliego - Sin Embargo",
-      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE45Q3R2RERQT1pGWWF5eGJkbkgyQjZ0azcxaWdwT054MnYyWlVSN19PUVA4dVkwSF9rV3Y5X0lqeUdPUTFzY1RWUWU5ZldPWEF4Uy1iMk81djdERk9BQU1jekhXTE4ySTdiaTBXS2FhSU80RHZqOUdXQWtyOVhjQmc?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
+      "id": "mc_partido",
+      "nombre": "Movimiento Ciudadano (MC)",
       "rol": "Investigado",
-      "tema": "Serán sus propios desplazados la oposición para Morena en 2027, no están mancos ",
-      "nota": "Morena y oposición usan tema INE rumbo a 2027",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/09/politica/004n2pol?partner=rss",
+      "tema": "Movimiento Ciudadano es el único que puede ganarle a Morena en 2027, dice Alejan",
+      "nota": "Movimiento Ciudadano es el único que puede ganarle a Morena en 2027, dice Alejandra Barrales - Expansión Política",
+      "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOWGxrTHRHeUtZekdVT1o5enBwWGk2R3IxSUZsUHFpQXpYTzRwRTJCMEllOThTTlBZRlhhUDFJOWp5a0R5eXlDRWhLRGtTbWpXWUR4TTVrbmZkNVA3RkI0eFl0cWNIMGhpQ2trWHY3c3Q1Y0NpWnFtSzVtQjZMNXpEdkZJckFJYko2MTFHR1FVa2hiV1lQWUFEcDJHVnk5WmhPNHVsajlNVEY2elQwOUVNeGxueFVabTDSAbcBQVVfeXFMTlhsa0x0R3lLWXpHVU9aOXpwcFhpNkdyMUlGbFBxaUF6WE80cEUyQjBJZTk4U05QWUZYYVAxSTlqeWtEeXl5Q0VoS0RrU21qV1lEeE01a25mZDVQN0ZCNHhZdHFjSDBoaUNra1h2N3N0NWNDaVpxbUs1bUI2TDV6RHZGSXJBSWJKNjExR0dRVWtoYldZUFlBRHAyR1Z5OVpoTzR1bGo5TVRGNnpUMDlFTXhsbnhVWm0w?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1137,14 +1093,6 @@
   "declaracion_presidenta": null,
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-10-13",
-      "tension": 26,
-      "n_notas": 95,
-      "n_alto_impacto": 40,
-      "n_medio_impacto": 55,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-10-14",
       "tension": 20,
@@ -1315,18 +1263,18 @@
     },
     {
       "fecha": "2026-11-04",
-      "tension": 27,
-      "n_notas": 52,
+      "tension": 26,
+      "n_notas": 53,
       "n_alto_impacto": 21,
-      "n_medio_impacto": 31,
+      "n_medio_impacto": 32,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-05",
       "tension": 27,
-      "n_notas": 47,
-      "n_alto_impacto": 16,
-      "n_medio_impacto": 31,
+      "n_notas": 49,
+      "n_alto_impacto": 17,
+      "n_medio_impacto": 32,
       "n_bajo_impacto": 0
     },
     {
@@ -1355,10 +1303,18 @@
     },
     {
       "fecha": "2026-11-09",
-      "tension": 21,
-      "n_notas": 25,
+      "tension": 20,
+      "n_notas": 28,
       "n_alto_impacto": 9,
-      "n_medio_impacto": 16,
+      "n_medio_impacto": 19,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-11-10",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1377,9 +1333,9 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
-      "nota_texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPU2FwYW5aaElmVklMQTR1ZlpaT0JXM0pua2pwT0I0ckhMV1U2S21YTzR3UjdzM2p0a1cwY1dXandlNm5aLS1YZkJkaV93bDU4ZTA3ejJNZFRNckt2SEVESERtRzQ2OUoyRm5DVjFSc1lxZF81RnNGM2tfN010NTdPcUJzcGV4WnNlRzVyM09WVUVJR1dRbUptYU9LeV96MG5JVWozQmxuWkNfSFQxQWQ4N2VaNjMxX09MY2JnaWNDWmZMS2lyLVd5bm1qbnFGelN3bko4dVQzZmh0VU4yN1BiVdIB5gFBVV95cUxPeXQtQU9rZUQ5QkdQamVJUnZQeTg4aUVheTJfSHU2VWdCM05jYXd4eHJnemZxVTVfT0h2OFczUzhzOFZlU2p0RlMwLWlrTmVWczQ2OFhnQ3hUQnBYV0cweTVxdEVCZF94S2htVV9yU3J6TDdWNzRhWHBMeUdrc05YdFYtbUQxTDM3bGlnbEJVelVuQTU3TzNxMVN1Y2hWeUk3eUJsMC1wdkZfRUtXcHVjRnROZFhmTi1wdmxkTUszQ1ZpNnh6Q2dXdXJwSUNfTGk4MHdaY185MUZocnJnX0ItLXBKazFiZw?oc=5",
+      "nota_texto": "Andy López Beltrán responde a Ricardo Salinas Pliego: niega vínculos con huachicol fiscal y le lanza cuestionario - Por Esto!",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1389,7 +1345,8 @@
           "x": 75,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-10"
     },
     {
       "id": "morena_partido",
@@ -1405,9 +1362,9 @@
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://www.tabascohoy.com/tet-confirma-desechamiento-de-denuncia-del-prd-contra-morena-y-funcionarios/",
-      "nota_texto": "TET confirma desechamiento de denuncia del PRD contra Morena y funcionarios",
+      "apagado": true,
+      "nota_url": "https://www.yucatan.com.mx/merida/2026/11/09/morena-rechaza-acusaciones-por-presuntos-actos-anticipados-de-campana-en-yucatan.html",
+      "nota_texto": "Morena rechaza acusaciones por presuntos actos anticipados de campaña en Yucatán",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1417,7 +1374,37 @@
           "x": 100,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-10"
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 75,
+      "y_hoy": 50,
+      "delta_pts": 4.5,
+      "alcance": 2,
+      "n_alto": 0,
+      "n_medio": 3,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPdnM3WGNMZ1ZtQUZVVkpVZ200VHRLMVRXdWNwaUppWHRVX1hhOE10ZzlKZjdnVUExRTAxNXYyOGxRa2dxNl9yWDFvSnM0SElPek9jM3R6WHV4NzVEZnI3R3c3ZEhHX2pTM1JZdUJWWV9qc2tTZFl5R3ZMV01GU0NPQW1LdTRtZlV4dWtsUUV5bFc2S3ExU2xuR1d3U0TSAZwBQVVfeXFMT3ZzN1hjTGdWbUFGVVZKVWdtNFR0SzFUV3VjcGlKaVh0VV9YYThNdGc5SmY3Z1VBMUUwMTV2MjhsUWtncTZfclgxb0pzNEhJT3pPYzN0elh1eDc1RGZyN0d3N2RIR19qUzNSWXVCVllfanNrU2RZeUd2TFdNRlNDT0FtS3U0bWZVeHVrbFFFeWxXNktxMVNsbkdXd1NE?oc=5",
+      "nota_texto": "Lleva Claudia Sheinbaum justicia social a familias - Cuarto Poder Chiapas",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 75,
+          "y": 50
+        }
+      ],
+      "fecha_apagado": "2026-11-10"
     },
     {
       "id": "rocha_moya",
@@ -1433,7 +1420,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPdmE5VlVUcWs2aWRURjJZS19nczNhQW9MbjByRWNYMEhvMV9yRXlHZmlPRVI3VWl6YlozOTZ3dnhIY2RMZ2w1R1lUaHBBWXZhcnpTSk1kdUVxVERaa0ZqOVFGZl8tZlBxamhzTHdKY0poNXR5aXhWVTBSdWUzTi1GZHJDXzRRSG1BbGtnbVhIWmM1MmFGNXR5YTM2QzVXdUZkZ0JHb3NWRUhncXBOTGtMOXU3Z0dJblBJTHZ1MFdKQnBIV21yRjZBbg?oc=5",
       "nota_texto": "Hijos de Rubén Rocha Moya obtuvieron 94 millones de pesos en contratos públicos - Diario de Yucatán",
       "es_nuevo": false,
@@ -1445,7 +1432,8 @@
           "x": 50,
           "y": 75
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-10"
     },
     {
       "id": "manzo",
@@ -1461,7 +1449,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.informador.mx/mexico/cjng-el-r2-presunto-implicado-en-el-asesinato-de-carlos-manzo-20261109-0066.html",
       "nota_texto": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
       "es_nuevo": false,
@@ -1473,7 +1461,8 @@
           "x": 25,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-10"
     },
     {
       "id": "ricardo_salinas_pliego",
@@ -1489,7 +1478,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.tabascohoy.com/andres-lopez-beltran-responde-a-salinas-pliego-y-rechaza-acusaciones/",
       "nota_texto": "Andrés López Beltrán responde a Salinas Pliego y rechaza acusaciones",
       "es_nuevo": false,
@@ -1501,86 +1490,43 @@
           "x": 25,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-10"
     },
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
+      "id": "higinio_martinez",
+      "nombre": "Higinio Martínez Miranda",
+      "iniciales": "HM",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 50,
+      "x_hoy": 25,
       "y_hoy": 50,
-      "delta_pts": 3.0,
+      "delta_pts": 1.5,
       "alcance": 1,
       "n_alto": 0,
-      "n_medio": 2,
+      "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOXzdBRXNfN3dZbUZhYTNwN0VIbndKbXVlU0phalNSYnJRXzlYam0tRTFnMXRabUtTWWh5cE5oOGFJWEtPa2hTY0FkS1ZNeFpEak5XLUFwZlVnSmdHWDJsR2xCb2lFaWtMbUhGVTdlVWxNWFNtRElqZVFETG02a3ZiQ296NkNiMnBmQ3YtcUVLN1hZNkN6QkZLNjlub2c4aEMzd2d6VF9LOTliRHVHZ2ZpV2YzMzhBcjlQelVJckx2VUMtNHdMeFFIN09YRVd0bncwTzZaazBfaE8tYnVvU2R5TWxmZzNzTVBuakV4VXZSWU90S2lhM2JPWUs0WGtmSGtNUE5YbEIzaWNVU2QzeUNMTXFZaUo0d9IBmwJBVV95cUxOVFFlbzR6cGFSa1RaQ0p0YXdvNjA2VENOeURtS2l6Q0g4VTIxWGZjbzUyWTR4eW4wTXNjOFpURmxIRHlFbFJDWk0tTVh2LWhROW1lUkp1ekVJa3JxOWdCSGVKMVQ1REt1SmdqNmZ3enpwSU1QN3VRVWtSQXVMeDUwQVlUSXlhd20xZXJLcW42M3ZwNjZnOS10Szc3UkhSRE1jYnVZQWp4cnM0bUF6M3ZKNE5rTUhJM2docnhFd3pHWHEzcjd2LTV3aVB5MEoxSnZLNkZOQ3ZsbkVzdzN2T3Mwa3k5aGxVV2UzTTRsME5kNkNfbHQtRGFSM1p5WHJrYXVHOE1WQXJvejNaWmx3QmtVMzR0cGdhTkhNS1dj?oc=5",
-      "nota_texto": "Ricardo Salinas Pliego, multimillonario opositor a Claudia Sheinbaum, lanza nuevo guiño como posible candidato en 2030: \"No me dejen solo\" - Ambito",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMiggNBVV95cUxOanhGNXVmak95cmRSWWE3U3ZQMDh4UTVyenJCYzRIV2E1eTdRTUMydC1lbDRibi1rQzVDbDJzRlcxQi0zNlBXOWhWT09DMHg3LUhWeTZuZVNRSnRzWlIwZnE3ZFRwaS01SklndGhEdzJtdnJHelZ4TzIzZ1Jzd0dpYTZ1ZnBLQ05fQlJ2c0tuMkVLZlVCU1ZFZ0UtX0xUSVlnMkZLM01mRF9mcERpdUhLVGxiTTRISUxfNFRQVHFtUUNwUUtMeVU1U2RobFJQeXdBWk9TX3czOVNSMW5oLW5CWmpSR0dLUjR2SjktTlIxWFRFLWRTUzY5cmd2S3hGbFZ4NC13d0xrS2c0dTgzXzlzUHFONHVNNmlEY2ZmYndSeExtajh1a0c1eWxFWUx4SU5YTjV6Q3BlZjFnR1U4OXAyYllOam1NMDdLMnNFVkVRYnJ5SUlBdXZIVWVxRm4wXzdpRTM1bVpNZTNTdnlEMl8tOThqMFlfeEVlcFVxOWFpVHltdw?oc=5",
+      "nota_texto": "Comunicación Social - Versión estenográfica del mensaje del senador Higinio Martínez Miranda, presidente del Senado de la República, en la entrega del Paquete de Iniciativas en Materia de Combate a la",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 50,
+          "x": 25,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-10"
     }
   ],
   "tablero_semana_inicio": "2026-11-09",
-  "resumen_mananera": [
-    {
-      "texto": "El programa \"La Clínica es Nuestra\" ha invertido 699 millones de pesos en dos años para mejorar centros de salud del IMSS-Bienestar e Issste. Se han adquirido 17 mil 537 equipos e instrumental médicos",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Se anunció el arranque 2026 de \"La Clínica es Nuestra\" con la incorporación del estado de Yucatán a la red de servicios públicos de bienestar por primera vez. Los 153 centros de salud del estado recib",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "En el segmento \"Quién es Quién en los Precios\", se informó que Finavien sigue siendo la remesadora que más pesos da por dólares en modalidad de depósito a cuenta, ofreciendo 7 mil 523 pesos con 34 cen",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "Respecto a la estrategia nacional de estabilización de precios de combustibles, la gasolina regular tiene un precio promedio de 23 pesos con 69 centavos, con 11 mil 778 estaciones vendiendo por debajo",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    },
-    {
-      "texto": "En el monitoreo de la canasta básica PASIC, la más barata identificada fue Bodega Obrera Las Fuentes en Reynosa, Tamaulipas, con 754 pesos por los 24 productos. La más cara fue HB Saltillo República e",
-      "categoria": "Economía",
-      "intensidad": 5.0,
-      "alerta": false,
-      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
-    }
-  ],
-  "mananera_estado": "ok",
-  "a_vigilar": [
-    {
-      "id": "auto-d3c076e323",
-      "nombre": "“Queremos justicia”: familias del 11S reclaman investigar papel de Arabia Saudí",
-      "categoria": "Relación Bilateral",
-      "resumen": "“Queremos justicia”: familias del 11S reclaman investigar papel de Arabia Saudí",
-      "fuente_url": "",
-      "actor_vinculado": null
-    }
-  ],
+  "resumen_mananera": [],
+  "mananera_estado": "pendiente",
+  "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
@@ -1639,5 +1585,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-09 18:00"
+  "hora_corte_publicada": "2026-11-10 00:04"
 }
