@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-11-10T13:39:05.776293-06:00",
+  "generado_en": "2026-11-10T18:00:07.079268-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 14,
+  "n_notas_ventana": 25,
   "baja_confianza": false,
-  "tension_nacional": 25,
+  "tension_nacional": 24,
   "tension_anomalia": {
-    "z": 0.98,
+    "z": 0.76,
     "nivel": "normal",
-    "media_periodo": 21.1,
+    "media_periodo": 21.0,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 45,
+      "peso_pct": 48,
       "tema_principal": "Visa de Andy",
       "tema_principal_id": "visa-de-andy",
-      "n_temas": 4,
-      "n_notas": 6,
+      "n_temas": 8,
+      "n_notas": 11,
       "notas": [
         {
           "texto": "Andrés Manuel López Beltrán califica de “buitre” y “miserable” a Salinas Pliego",
@@ -44,6 +44,30 @@
           "medio": "TV Azteca"
         },
         {
+          "texto": "Andy López Beltrán niega huachicol fiscal y se deslinda de Amílcar Olán - MVS Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZUF6Y211Q2JyUC1VMzJxR0xkdTdFOUZWeGhYc0lCdEZiaXE1LUdnOTZGNjJDZ2hBOUxkVHZSQzQ1c2M3cmFhYzcxVjRYX1B6ZTA5QVI0U3UzNGE2RGNQOHFSa1M2Q21nS3BLei1manB3NnRMcTFuT2tpUkIzbWd3N2NxYW01MkRIeHdXRThpYlV6Q3IyQlJyMGplb0w0UDRUNldGNWFHNzFLRWVQYl9MMElzN3RfRDR0aHJibHI5RnJOdw?oc=5",
+          "intensidad": 7.0,
+          "medio": "MVS Noticias"
+        },
+        {
+          "texto": "A 20 años de la elección de 2006, Morena propone investigar presunto fraude",
+          "fuente_url": "https://www.tabascohoy.com/?p=841778",
+          "intensidad": 7.0,
+          "medio": "tabascohoy.com"
+        },
+        {
+          "texto": "Presidenta Claudia Sheinbaum anuncia apoyos a estudiantes de ciencias: financiamiento, beca Gertrudis Bocanegra y más recursos a La Escuela es Nuestra - Edomex Al Día",
+          "fuente_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQXzR6Tk5hdHQ2MmhJNllnOVBXbmZwbzNGVGxuVm54QXZHSFZwTHo2WmMyOThBRVJua25yUFdNNXpENTVEQ2h1SEJxeGdsd0FHS25LU2VydHNuRDlqS2duMVNILURtMzdsaDdXanJrdlcyMFltdE9jaTBMN3d2cXNSaEZLUXJ5ampJdWtJU0JybWhmWlJCdGdHS0E0TktHVk5pY0Zad0VCbnJwRlJTYVlUSEJfY29KZkxmck84QTIxMFJ5dGtKLWp0SDc0ZGtsWjJpRDdSYm1kOEhtTThNVDNmRWphZVdOcVNOTXNVZmk4ZGhfVVVjRWlrRi1BWHY5a3oxTmY0?oc=5",
+          "intensidad": 7.0,
+          "medio": "Edomex Al Día"
+        },
+        {
+          "texto": "Prevé Morena definición de coordinador en Puebla capital en 15 días - e-consulta.com",
+          "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPamVaTmlNdmU0LUluOTBNTk9Wd1oxOHF1aHR1WE5nVzJSbFFkMXhVNW8yYnpOZV80ZWk0MzFyRnlNQzZUSnM3OW5fWVJ2UGVqMFRWT05WU0tSOGJPQjRfVnY1TUpjSkhXQVd4ZkdEZzh5Z1pQUGYxa2FZZ0tVQlR5dE10TU1wTEpaenpoTHZEUGlHeE5tb1FPa0U1ZzlqZnZ4dlhIQnlB?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
+        },
+        {
           "texto": "Claudia Sheinbaum anuncia que retomará en 2027 el Plan A de reforma electoral y celebra récord histórico de empleo formal - Revista GENTE",
           "fuente_url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQOGpjT2k5Y1JVbU96UmdzQThaYkpMVTlXLXZfdFVBeGNQSm4xLVZHZS1LdFhmaE9CcjBSRTVleERDUjR5bVIwZW1qeE5CYkNjYVQtZllqQzhMdXMzOWFPZlpKZnVZVzV3RnhIQVdHYXZhQk1hMUZ1eUVwcEZQa2dkNm9jbVBIX3VJbC1ORkRpSk5iQnBFc0dfcDl6Q05MSUNUcWlpTHRhUGF1d1lSUl9WM2RUa1VhRFV6U09sMkhDaVBhOWR1N25EOEQwdGFjampSTmNaUzQwTzUxd1FTN0dtN0FMVGNleHBlOUc5OUVRaUV6NFdUQUJtZ0tDUVY1T3Npc3NlNw?oc=5",
           "intensidad": 5.0,
@@ -54,12 +78,98 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOT3ZDc2taQWt3S055NkUzcjNXOURCU1VYUURIdjBCZlkwM2VmNnJnVVNXWEloNUhObnNnb3R4NXZndU1fVmhIQzVNTElSdVl2bnNCdklDRjd3OWNQR1FhWmV5am5VSTNsNzJtLV94ajJINzVEX2ZXNmgtbTI2WXlxWWlJZnNwelNYUk5fdkdPUjlwekJFbGRrOUZ0UHRyNGcxVE9NWWdfSnY?oc=5",
           "intensidad": 5.0,
           "medio": "Debate"
+        },
+        {
+          "texto": "Acatará Pepe Chedraui resultados de la encuesta de Morena - Contraparte | Periodismo en Equilibrio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPVE1qMWg4ZkpiVzZCd1VEbkc4ZDNVRi0wZV94X2ozcHIydUlJTGkyS0ZPWmxUbDE0QWkyT2w2UUdWbEtmYURIZlJUeEZRWWJPWGdyUkdkellKRWdoQWhkUFJzY08xaGxZV0hLUGlpS21fdnllVFR6U1o1T24tYUNBa3lZRnBHcGlvTW9yM3ZRWjlCeUJtbGNuRGxEOVJLMnF4SXVpN1lJQUFrZ3M?oc=5",
+          "intensidad": 5.0,
+          "medio": "Contraparte | Periodismo en Equilibrio"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 21,
+      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
+      "tema_principal_id": "sinaloa-crisis",
+      "n_temas": 3,
+      "n_notas": 6,
+      "notas": [
+        {
+          "texto": "Detienen a 'El Wicho', presunto operador de Los Chapitos implicado en la desaparición de 10 mineros en Concord - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRWNKaVdpVTREckVJQWlQbmlGaWFEV0dpd0wxOTAwRlVXQXVkQng0TWNabXVoSzNsLU01T2VLN2hUTWxpaDdKR0F0VE5xQ1pwMWkzRkZsYTdkcE5NX2JRbk5taFJ5cE9adzcyQzZNM3ZYbS1vekhTbTlHb3dSaWxSSXQ1SnBaeFkzYVZoVHJBU3p2Z9IBkgFBVV95cUxOVXI5YWh0QVZQMEg5UE9jYlhiQTFDVVFWS1AxRU05ZUt0R1RSZHBNaEhaeEJtaEhZRWlVOFMtNTUyVzd0cWstMVkwWjljTGNEcGNRZ1RlSG5oVmhZRG8zVk12ZjhnZF9LcE51ZHZ0M1hhc1p3b205YkNQVE9EWHZoQ0lwRlY3d09VcGM1WTVLRXJ1dw?oc=5",
+          "intensidad": 6.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "Claudia Sheinbaum reporta caída de 50% en homicidios dolosos - Hipócrita Lector",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMlpXeDUtd2VKcTJnS1lzS09YTGduQ3FzUTd1b1dVYUtKdkh3UGNpdmhsSjBsUmE4NWtuWkg0bnp1dlVacnlFUGM1NjdrZ2JXM3hxZ1ItMy1ETk12SnZTT0pKWmdsTFlWN0l5eklGMVdtLUdTOHl5M3JSbm1USmZDcHFFMXJxU01IaUd5Z2FXLThwOHFFQjA0Mg?oc=5",
+          "intensidad": 5.0,
+          "medio": "Hipócrita Lector"
+        },
+        {
+          "texto": "Bajan 50% los homicidios dolosos en México; Michoacán registra reducción del 42%",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/10/bajan-50-los-homicidios-dolosos-en-mexico-michoacan-registra-reduccion-del-42.html",
+          "intensidad": 5.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "FGR ya le informó a la presidenta Claudia Sheinbaum de investigación sobre presunta corrupción en el INE - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOT0ZFZUhZd3dHX0hVazZ1TVZkVEdkaGV4NU1XU2dVeGYtRU1pU2R0YXBORWNKTFIxTzhJUmdpcHN6WDFUdUdIaVhNejRNQ2M5RXgzbkNLUnA2S0pCaDJQUG10ZGFjZXlVWjBCZnVjWGFHZTVjbWk0UWpBX2tXTzhvelUtUF9oYzlYOV9NbUNuUFlJeWxPVlFSV3Znelc5Qkl0dGJnaEtJazl4VUxObjlCeGw3RkVYWjhC0gG-AUFVX3lxTE45cjRoSzh3ZTZsRktXLUFlRzl2UkFkUG5xTlBDOWdiMHd5NV91Z2l1QkNqVG52X3dWVlFlbEppems2TTdNU2RUZC1hNDlrSVhrZUZDdG45aWoxZ3hyYWlrdzNpQUtYeDlFNVB6US1GRVBqOENmUERFak1XMi10WEdQRmliR1hHTGs0ZnY5dGdDLXVvUTZ2N0Z6TS1ISDgtZ2lTVjlSZHFMb0xxTU9ic3JWYzVpWjdDcWtMTW9GeFE?oc=5",
+          "intensidad": 5.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "PRESIDENTA CLAUDIA SHEINBAUM DESTACA DISMINUCIÓN DE 50% EN LOS HOMICIDIOS DOLOSOS DE SEPTIEMBRE DE 2024 A OCTUBRE DE 2026; 43 HOMICIDIOS DOLOSOS MENOS DIARIOS - Tinta Pública Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPbUhjeWZySWE4LW4yUVdxVUhMLW0wcl8tQ2tNNnh6RVlmSVlrOUNrMS1TQkRVQWJFZC1rdEwydlJRZjYyb01DX1E3SzFScklXM1dkRlNoUU1mblRDQlVCUm5tOFNTdWo3bUk3eTNnUnFxUDlXRlhobEZkMFg3UWhSZlVsRFhyNkRSWVhGYkVyUGV5TE8xN1lQaHRwRnhteXpPcFJRdFJFYnlucldVSmEzMVhXUXhXb1cwdVFJY0hXeEUtMjE0bUZCWWpueGdUM2prbi1oTWQ1V2lEYUJldDRkRG5yTkg1bzFrVHgxeVdDdU5odmJXdVF1UW5GVG5CU3NIdy02bGhRM01ZRUJ2WTk2WVVQdXhVb0h0QWc?oc=5",
+          "intensidad": 5.0,
+          "medio": "Tinta Pública Noticias"
+        },
+        {
+          "texto": "Claudia Sheinbaum destaca disminución de 50% en los homicidios dolosos de septiembre de 2024 a octubre de 2026; 43 homicidios dolosos menos diarios - Acustik Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNS2xqVUQ3MFVtMHdKWHZQWU12QzlvT2hMTVUtMnY2czFRSjNxVnBNMkNyQ05wM3BZSDRtRzB4WlJjanEzQU90R3YzM01Ja2RnVHAyMXFySFhJa0F1NEJ3NTFKZVRLcGlLUUUxQ1JBSGw4OTdGSHZ0VUJxSDNna1NxbVhlQnBnWDFFeGtpU0tDT2FHUWNhbGZscWVIZVozN0h1UW1oeDA0ZkpiVGoyMWJMdHVGSHRGdkx1UW5BYmpHaHlVWmJnZzJ3TERVWEJqZUZvX3FPNVFkU0FqUTVfNjdaZW9OTC1uWnVKTmFHZUNVcXFnQ2o0eG93b05aOG1iazFRMmVyVkN6MTFucWFDNWFz?oc=5",
+          "intensidad": 5.0,
+          "medio": "Acustik Noticias"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 16,
+      "tema_principal": "Padres exigen cuentas por recursos de “La Escuela Es Nuestra” en secundaria",
+      "tema_principal_id": "auto-b3ec61dc96",
+      "n_temas": 4,
+      "n_notas": 4,
+      "notas": [
+        {
+          "texto": "PEF 2027 destinará 128 mil millones de pesos para Puebla, adelanta Ricardo Monreal - Diario Cambio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMUVPemxFclhxU1BnSUItMXdUS1NYcWtUQWVpZzFTbFgxeEhGT2pOLW5YbTY5VmRWTDFjdVhpQTJZOWw4U2ZjUllhWXJUb2t5T1owT1NUQ3h3Y2NWMHVHWUo4eXVlcW9YbnNuOC01a2E4SzNGeV9oZXI1RmFKdVNLVy1RMmxrVFdtTDR1MFpGbTM4Nmgtc2owVWFIOG9EVy0tNmVKRHI2MXNld2RPRUhhQ1dCNTJyNEp3N2lpeEZycTNFNnp1?oc=5",
+          "intensidad": 7.0,
+          "medio": "Diario Cambio"
+        },
+        {
+          "texto": "Alistan financiamiento, sin nuevos impuestos",
+          "fuente_url": "https://www.yucatan.com.mx/merida/2026/11/10/alistan-financiamiento-sin-nuevos-impuestos.html",
+          "intensidad": 6.0,
+          "medio": "yucatan.com.mx"
+        },
+        {
+          "texto": "Antorcha denuncia persecución y amenazas a sus dirigentes - Contigo Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOMGVmT3VnVW1fczFIMV94OEdDaHdISVRlZmYzZFp0WlJ0WGlLYmtuNDdubEl5QzlsSktpWjZuV3dJNEJuZXZFZHpXTURBNHJqT21ITmU5TzdtNVB2M3d6cmZNNTgzMUhtUElGQXZiSU1RaDNPU1BUcWtmeC1mZjcwS2FCWQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "Contigo Puebla"
+        },
+        {
+          "texto": "Inversión en Escuela y Clínica es Nuestra será de 29 mil mdp para este año",
+          "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/006n3pol?partner=rss",
+          "intensidad": 5.0,
+          "medio": "jornada.com.mx"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 27,
+      "peso_pct": 15,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 4,
@@ -86,50 +196,6 @@
         {
           "texto": "¿Cambiará la relación con Trump tras las elecciones en Estados Unidos? Claudia Sheinbaum responde",
           "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/10/cambiara-la-relacion-con-trump-tras-las-elecciones-en-estados-unidos-claudia-sheinbaum-responde.html",
-          "intensidad": 5.0,
-          "medio": "yucatan.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 15,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "PEF 2027 destinará 128 mil millones de pesos para Puebla, adelanta Ricardo Monreal - Diario Cambio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMUVPemxFclhxU1BnSUItMXdUS1NYcWtUQWVpZzFTbFgxeEhGT2pOLW5YbTY5VmRWTDFjdVhpQTJZOWw4U2ZjUllhWXJUb2t5T1owT1NUQ3h3Y2NWMHVHWUo4eXVlcW9YbnNuOC01a2E4SzNGeV9oZXI1RmFKdVNLVy1RMmxrVFdtTDR1MFpGbTM4Nmgtc2owVWFIOG9EVy0tNmVKRHI2MXNld2RPRUhhQ1dCNTJyNEp3N2lpeEZycTNFNnp1?oc=5",
-          "intensidad": 7.0,
-          "medio": "Diario Cambio"
-        },
-        {
-          "texto": "Alistan financiamiento, sin nuevos impuestos",
-          "fuente_url": "https://www.yucatan.com.mx/merida/2026/11/10/alistan-financiamiento-sin-nuevos-impuestos.html",
-          "intensidad": 6.0,
-          "medio": "yucatan.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 12,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "Claudia Sheinbaum reporta caída de 50% en homicidios dolosos - Hipócrita Lector",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMlpXeDUtd2VKcTJnS1lzS09YTGduQ3FzUTd1b1dVYUtKdkh3UGNpdmhsSjBsUmE4NWtuWkg0bnp1dlVacnlFUGM1NjdrZ2JXM3hxZ1ItMy1ETk12SnZTT0pKWmdsTFlWN0l5eklGMVdtLUdTOHl5M3JSbm1USmZDcHFFMXJxU01IaUd5Z2FXLThwOHFFQjA0Mg?oc=5",
-          "intensidad": 5.0,
-          "medio": "Hipócrita Lector"
-        },
-        {
-          "texto": "Bajan 50% los homicidios dolosos en México; Michoacán registra reducción del 42%",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/10/bajan-50-los-homicidios-dolosos-en-mexico-michoacan-registra-reduccion-del-42.html",
           "intensidad": 5.0,
           "medio": "yucatan.com.mx"
         }
@@ -330,7 +396,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
@@ -380,7 +446,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -426,7 +492,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -826,7 +892,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 7
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
@@ -864,39 +930,39 @@
       "actor_vinculado": null
     },
     {
-      "id": "visa-de-andy",
-      "nombre": "Visa de Andy",
-      "categoria": "Relación Bilateral",
-      "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
-      "motivo": "Andrés Manuel López Beltrán califica de “buitre” y “miserable” a Salinas Pliego",
-      "peso": 7.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/007n1pol?partner=rss",
-      "actor_vinculado": {
-        "id": "andy",
-        "nombre": "Andrés Manuel López Beltrán ('Andy')"
-      }
-    },
-    {
       "id": "carlos-manzo",
       "nombre": "Asesinato de Carlos Manzo",
       "categoria": "Seguridad Nacional",
       "resumen": "El presidente municipal independiente de Uruapan, Carlos Manzo, crítico frontal del crimen organizado, fue asesinado a tiros el 1 de noviembre de 2025 durante el Festival de las Velas. El caso detonó protestas nacionales y el Plan Michoacán por la Paz y la Justicia, con más de 57 mil millones de pesos de inversión federal y 5,000 elementos de Guardia Nacional y Sedena desplegados. Al 21 de agosto de 2026 hay 31 personas detenidas y la investigación sigue activa.",
       "motivo": "Suman 34 detenidos por asesinato de Carlos Manzo: Harfuch",
-      "peso": 7.0,
+      "peso": 13.0,
+      "n_temas_agrupados": 6,
+      "escalando": true,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://www.informador.mx/mexico/carlos-manzo-harfuch-destaca-la-suma-de-34-detenidos-por-el-asesinato-del-alcalde-de-uruapan-20261110-0054.html",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
+      "id": "auto-b3ec61dc96",
+      "nombre": "Padres exigen cuentas por recursos de “La Escuela Es Nuestra” en secundaria",
+      "categoria": "Gobernabilidad",
+      "resumen": "Padres exigen cuentas por recursos de “La Escuela Es Nuestra” en secundaria",
+      "motivo": "Inversión en Escuela y Clínica es Nuestra será de 29 mil mdp para este año",
+      "peso": 10.0,
       "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.informador.mx/mexico/carlos-manzo-harfuch-destaca-la-suma-de-34-detenidos-por-el-asesinato-del-alcalde-de-uruapan-20261110-0054.html",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/006n3pol?partner=rss",
       "actor_vinculado": {
-        "id": "manzo",
-        "nombre": "Carlos Manzo Rodríguez"
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
       }
     }
   ],
@@ -908,14 +974,6 @@
       "peso": 6.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/016n2pol?partner=rss"
-    },
-    {
-      "id": "auto-a6b0c3d683",
-      "nombre": "Avanza repavimentación en Edomex: a Periférico Norte se suman Periférico Oriente",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/11/09/avanza-repavimentacion-en-edomex-a-periferico-norte-se-suman-periferico-oriente-avenida-central-via-morelos-y-vialidad-mexiquense/"
     },
     {
       "id": "auto-8d745a8253",
@@ -940,6 +998,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-sobre-denuncias-en-el-ine-ellos-tienen-que-hacer-sus-investigaciones-para-saber-si-hay-elementos-20261110-0059.html"
+    },
+    {
+      "id": "auto-411462e2a8",
+      "nombre": "Sheinbaum justifica millonaria compra de aviones Black Hawk y Super Hercules: ‘S",
+      "categoria": "Seguridad Nacional",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/10/sheinbaum-justifica-millonaria-compra-de-aviones-black-hawk-y-super-hercules-son-para-seguridad/"
     }
   ],
   "temas_retomados": [
@@ -947,7 +1013,7 @@
       "id": "auto-337120a287",
       "nombre": "A ordenar estacionamientos en plazas comerciales: diputados",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 67,
+      "dias_silencio": 68,
       "motivo": "Ordenan a diputados de Morena lanzar campaña para sacudirse a Taddei - El Universal",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOMGhSMWJZdnN5ajExZHBPZU9JWkc3dDJ0bW1VeWoxWUNkTTk3RERZLW5MNGFsMFExbG1VU3NKeW9IdEZGTGZqSWF1UFJrdTB5WlJLS0JSaEhJb0lwT1hQTDNHQ2w3bUhTQ05XZnhqVU04YjhpcC00d1VzY24wSU9ZSkRCRHVIZ1JkMlhfMVBrRFM5UdIBpgFBVV95cUxNNTN2Q211MG9xZF9JRmdHQndKS1RiUHZLdmpROEliMHhQZjN2SnNubHlmaXE4YkJod0t4c1MxZEN2T2plcnhZdXV2NjdsWE53VUxHYWZKbWFtWlVwNU9yUDZSMjUzWjZzci15Z1hsT3I0bW9WS204eFAtQ3V6TGZjRk40V1g4UlpUUElNUDZUY21HZ1U3ZXhSbEZFaTBrc2xleUdtUkp3?oc=5",
@@ -958,7 +1024,7 @@
       "id": "auto-b3ec61dc96",
       "nombre": "Padres exigen cuentas por recursos de “La Escuela Es Nuestra” en secundaria",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 67,
+      "dias_silencio": 68,
       "motivo": "Inversión en Escuela y Clínica es Nuestra será de 29 mil mdp para este año",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/006n3pol?partner=rss",
@@ -966,32 +1032,32 @@
       "fuente_url_anterior": "https://www.tabascohoy.com/padres-exigen-cuentas-por-recursos-de-la-escuela-es-nuestra-en-secundaria/"
     },
     {
-      "id": "auto-d34820a416",
-      "nombre": "Desde el Norte. Campeche y su tragedia presupuestal. Por Rubén Moreira Valdez - ",
+      "id": "auto-9efd6a7c71",
+      "nombre": "#NoEsNormal | “La batalla electoral del país se ha adelantado y está dándose, no",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 47,
-      "motivo": "⚡ Posible presión de Rubén Moreira Valdez — Rubén Moreira exige auditar al INE antes de elegir presidencia - MILENIO",
+      "dias_silencio": 57,
+      "motivo": "Colosio critica a Morena, PRI y PAN por adelantarse a tiempos electorales; dice que él esperará - MILENIO",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMTNTcm1Cc2FKdUNLN0tQbzZPMXl3YUJIZ245cHRGU0lWNjAxcFBHc0l6ZFVWbTdNSkRKUms0ZnNIMi0tOFdHdWJIQ1J6Ukl3eGQyeENITVppZnZHd1VTNTJVaGZnUmdxVDVCVzlvdFAwRXRoNktHbl9iVmk1TzQtT3FSVGNZczVDVUdxZG1FU0Q4MUZwOWtWYUdINTJ5TV9kZlFGdnlzMNIBpwFBVV95cUxQZTlHRm1wa25iN3M0eGhWUV9KSDI5SHRfZXpLXzdBbzVBSU9tVlJmVFFCVUxOR1BlOXpMcjNSaUR6MFZUZThNZXp0ZUpKQkVTRC0weDFyYkR6ckxMTEsxOElJOC1QcUVyVVBNbEtNOEpsUVVpMHFLSEhuRkxWdC1IRmZkc1k5TV84cXlsa2hsR0Z2a3dDLU40SVhZLTJyWXhkbmhEWmxsQQ?oc=5",
-      "fecha_anterior": "2026-09-23",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirgFBVV95cUxONTdRV0pnWFhVUlF6TkhVQy1lSTdpTXZCT19JcG93QzBHTHNNZXZpLVlzY201QmNhVjZydHpEalhDem1nRTRsRUVjWlhNVkJOLVQxa0MyT3pMUXBGWnhjNjExSUhCejlONWJzandHWFNWVkcxZ1lMajN3aVFqT3VveWZaMUxhM25FaFAxLUZNYTJDaVlGMVFZSm51ajdodXUzOFFuVnFWemZxa3U1bkE?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOY2ZhRXJDUWQ1V0IxTElSN3NiWjlKektBMzB4cGR1X3Y3RnBaU3gteHlId3hNNElaa1RxbGk2OXRQYkdyaVhPbnNjQlljcm4wb25jaldZM3lqT2ZmVkQzYTZmRFBpODU5THlRSjlZeG9Rcl90Vk9wM2FSVXNZaEFFdHQ0S3VEWnJQdlQ0dHBsRnRvRUxwUkZv0gGXAUFVX3lxTE9yVTJQSHpITGk1TjlvS3hhVjdCM3VNcTE5eFpHWW9VeTVOVi0wVEFqZWZQcEZyYzVrcGFYaFEyOTBWeHVFNmRuSHN4cXl3b0x2ZFZhOTBXNVBnQ0g4MmZMWnE5b05DM0dXejlSc0JiTEViNThsV192amphWTNYY2JjQ0dxWnBzeTZEWmdMWFdaYnBkcGZEWDQ?oc=5",
+      "fecha_anterior": "2026-09-14",
+      "fuente_url_anterior": ""
     },
     {
-      "id": "auto-3a9526d815",
-      "nombre": "¿Qué temas hablará la presidenta Claudia Sheinbaum en su reunión privada con gob",
+      "id": "auto-3336ab2041",
+      "nombre": "Javier May se une al llamado de unidad en el Consejo Nacional de Morena - Diario",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 19,
-      "motivo": "Tres secretarios viajarán con Claudia Sheinbaum a China: quiénes son y de qué temas podrían hablar - Infobae",
+      "dias_silencio": 31,
+      "motivo": "¿Consejeros del INE cercanos a Morena? Jorge Montaño defiende su presencia en informe de Javier May - Infobae",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNYXRRNGF3U3NOTHNKNEZSUTZDM1ZSMWdPQ0hhUlhlRjJLdTJqSno0YTVhYno5T1AwWkp5UnhwRkJfQVlSMzNuVnhNRjB5TTNESV9rVmxTYjVUZ3dScTJrTHdNNGxsSmpqRExjakZvOGZ6OWh4VS1BcDdhb1M0U0N4WEF1UXZlZzFaR25IWnl4U1RiRTJHQ1VPdUl3U2txVUxFN0JoZzlfc3ByYTB1UDVSVElGNms0YlJHU3RtTU9NcnBycmRFTkcybktGbHhNaG95S25XUkxYcw?oc=5",
-      "fecha_anterior": "2026-10-21",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNVXVhUGRrTVM3X2VWSm82TUc4NG1HbzJLa3k4MjVGWFdrMG5vQnNxXzFqSjduTjVZd19UU1pKVG9JMko1WXprcm9IQkFOWWhnRmFBQ1VoTVotU0N2WVhwXzBxU1VSZFludmx4Y3RhQ1NrekZEeEt6a0RIcnY4enJVTG5xc2c4bndGbjdNdjZxdllaWEd0dHk1ZkNLblZlcDRTX3BRbU1VT2I5THVzVEFGaHNnTW1LODJ1M1FPSGkySW5UOXhNUHg5NkpOZmxSX2tBblAwZV9lONIB8gFBVV95cUxQNXBXd3ZuNGhfaF9WaUNuSFJmX1RVSjVOaTBxYlpKUEVOWFU0M2NEZTlHU1RCY3FKSGFud3hjNTNwV1A0UDh3bXpOWkowMFhTN1lvbFpqejBLS19uVUVreFVXeVFQYTBuVlZvTVlLbC1zandMUkphMDd1N0YwSll3ZENINGpsZW5DbmxmY1RVZjJWRGthVzJJTjItckRwY29uaTFJaUEwcHd1Q2tJMG54Nm4zQU9TRkFhZE9hTTdLcnVWYXI3TWpRd0N6MzU1TjJfb1BSV0xkOWVjSlBRelhRS3RTb0NWNmk0SEJoajVLSUN4UQ?oc=5",
+      "fecha_anterior": "2026-10-10",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOZzR1enU3ZkYyVWlwUUd2YmFFbmRjZ3EtYW1jbGVZOEdUNFA4Mkh0M1RwSGhXWFNXajUzaTJHMzRWZGlKcll3bEdWcXVUa0Zka1ZkWE1LOTZMMXllZ1hWZ2NPRUlWNmxqanE0U0t6TFVvbTljZkR1eEZ5QlJZX0RvUUE4bTBhTmNTWkxMSmsxUHhMaDlVT2h5c09jMS12S0p1X2dtSWxGWXFCWmx2cGFnbzZuaw?oc=5"
     },
     {
       "id": "auto-896b902a42",
       "nombre": "EE. UU. presiona a México en busca de un logro que ostentar antes de las eleccio",
       "categoria": "Relación Bilateral",
-      "dias_silencio": 16,
+      "dias_silencio": 17,
       "motivo": "Sheinbaum descarta mayores presiones de EU tras elecciones",
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/sheinbaum-descarta-mayores-presiones-de-eu-tras-elecciones-hasta-ahora-no-hay-evidencia-20261110-0069.html",
@@ -1000,17 +1066,6 @@
     }
   ],
   "actores_destacados": [
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "rol": "Mencionado",
-      "tema": "Visa de Andy",
-      "nota": "Andrés Manuel López Beltrán califica de “buitre” y “miserable” a Salinas Pliego",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/007n1pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -1023,34 +1078,45 @@
       "confianza": "media"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "Gracias Fox por el 2006… atte Morena - El Informador",
-      "nota": "Gracias Fox por el 2006… atte Morena - El Informador",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQaHVPdFJ1NGJ0enRqbjFjVUYteTkxcXhsYVp2ZVFadHdMaGhBYzF6TV9YU2Y2X1VKMVhkZlUyc2w3dFdiSk1ibkVpQllWTDN5NG9IZDlweU53aHV1LU01N2tobjItS3YwZzN6MU9tNjlpT3diVThkbzhkSVQwdTBTRC1Dc2poQUZ6MnNTclVvVdIBlAFBVV95cUxOamFkZnZrLXpZVF94dWpDVkZoYlY5d3Y1TE4yNG9fZzdKRDFHWmFBQXRqaE1RUmlJTzRINzdaSEMxT3cwc05aTlVOWlU4XzdEQzJmZDR4cXZjT0RmRjBQZ0R1SUNfWUhFb005UndBbjlrRDBzZThEM0p4TFJubWFraE9DLUVEU0JBUzBEcW9mU19TeTBn?oc=5",
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "rol": "Mencionado",
+      "tema": "Visa de Andy",
+      "nota": "Andrés Manuel López Beltrán califica de “buitre” y “miserable” a Salinas Pliego",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/10/politica/007n1pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "ruben_moreira",
-      "nombre": "Rubén Moreira Valdez",
-      "rol": "Mencionado",
-      "tema": "Desde el Norte. Campeche y su tragedia presupuestal. Por Rubén Moreira Valdez - ",
-      "nota": "⚡ Posible presión de Rubén Moreira Valdez — Rubén Moreira exige auditar al INE antes de elegir presidencia - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMTNTcm1Cc2FKdUNLN0tQbzZPMXl3YUJIZ245cHRGU0lWNjAxcFBHc0l6ZFVWbTdNSkRKUms0ZnNIMi0tOFdHdWJIQ1J6Ukl3eGQyeENITVppZnZHd1VTNTJVaGZnUmdxVDVCVzlvdFAwRXRoNktHbl9iVmk1TzQtT3FSVGNZczVDVUdxZG1FU0Q4MUZwOWtWYUdINTJ5TV9kZlFGdnlzMNIBpwFBVV95cUxQZTlHRm1wa25iN3M0eGhWUV9KSDI5SHRfZXpLXzdBbzVBSU9tVlJmVFFCVUxOR1BlOXpMcjNSaUR6MFZUZThNZXp0ZUpKQkVTRC0weDFyYkR6ckxMTEsxOElJOC1QcUVyVVBNbEtNOEpsUVVpMHFLSEhuRkxWdC1IRmZkc1k5TV84cXlsa2hsR0Z2a3dDLU40SVhZLTJyWXhkbmhEWmxsQQ?oc=5",
-      "reaparece": true,
+      "id": "montiel",
+      "nombre": "Ariadna Montiel",
+      "rol": "Responsable institucional",
+      "tema": "EL UNIVERSAL se deslinda de supuestas fotografías de Ariadna Montiel - El Univer",
+      "nota": "⚡ Posible presión de Ariadna Montiel Reyes — Ariadna Montiel exige investigar fraude electoral de 2006 ante INE - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNWXY5Tk5VS08xU0lCcVJkRDhnX3lPY2Z1dnd1U3BPbHNzWUFJTXFvRmZ4OFRYVUNHN2lJeE9VeXQtMnVzR3M5cDlqLU91ejRrMjZOSHNGbXpLYlUydndjVXJHdjBPbDNxNG4teUprejRyclo1WWtENVMwMEc2RTBYNmtVSTFFRTNONlhRZ3N4SThuRU5fZXfSAZYBQVVfeXFMUDlSTFpwd0hOUXBzUEsxR0NraWMyMjdhS2FPd3R4VEhoNTQwUFdQaksxNlBHNDloODFxbGFwTUQzeWFuMHNUaE81dnRYb0RXMkNyQVhwZXc5eHF0WWRxaUtiQ0JSV2h3M01VY1l4RWpwYW9QZ2ZCSUw2V19idEw1dnBOZ0tsU1dJLWh1ZTNGVmFueVRKUzNB?oc=5",
+      "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "manzo",
-      "nombre": "Carlos Manzo Rodríguez",
+      "id": "pri_partido",
+      "nombre": "Partido Revolucionario Institucional (PRI)",
+      "rol": "Reacción de oposición",
+      "tema": "#NoEsNormal | “La batalla electoral del país se ha adelantado y está dándose, no",
+      "nota": "Colosio critica a Morena, PRI y PAN por adelantarse a tiempos electorales; dice que él esperará - MILENIO",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOY2ZhRXJDUWQ1V0IxTElSN3NiWjlKektBMzB4cGR1X3Y3RnBaU3gteHlId3hNNElaa1RxbGk2OXRQYkdyaVhPbnNjQlljcm4wb25jaldZM3lqT2ZmVkQzYTZmRFBpODU5THlRSjlZeG9Rcl90Vk9wM2FSVXNZaEFFdHQ0S3VEWnJQdlQ0dHBsRnRvRUxwUkZv0gGXAUFVX3lxTE9yVTJQSHpITGk1TjlvS3hhVjdCM3VNcTE5eFpHWW9VeTVOVi0wVEFqZWZQcEZyYzVrcGFYaFEyOTBWeHVFNmRuSHN4cXl3b0x2ZFZhOTBXNVBnQ0g4MmZMWnE5b05DM0dXejlSc0JiTEViNThsV192amphWTNYY2JjQ0dxWnBzeTZEWmdMWFdaYnBkcGZEWDQ?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
       "rol": "Investigado",
-      "tema": "Asesinato de Carlos Manzo",
-      "nota": "Suman 34 detenidos por asesinato de Carlos Manzo: Harfuch",
-      "fuente_url": "https://www.informador.mx/mexico/carlos-manzo-harfuch-destaca-la-suma-de-34-detenidos-por-el-asesinato-del-alcalde-de-uruapan-20261110-0054.html",
+      "tema": "Morena acusa al IEPCT de filtrar información al PRD",
+      "nota": "Morena ‘pega el grito en el cielo’: Acusa a Somos de tener ‘información confidencial’ del INE",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/10/morena-acusa-a-partido-somos-de-tener-informacion-confidencial-del-ine/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1108,18 +1174,18 @@
     },
     {
       "fecha": "2026-10-19",
-      "tension": 22,
-      "n_notas": 61,
+      "tension": 21,
+      "n_notas": 62,
       "n_alto_impacto": 21,
-      "n_medio_impacto": 40,
+      "n_medio_impacto": 41,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-20",
-      "tension": 26,
-      "n_notas": 68,
+      "tension": 25,
+      "n_notas": 69,
       "n_alto_impacto": 34,
-      "n_medio_impacto": 34,
+      "n_medio_impacto": 35,
       "n_bajo_impacto": 0
     },
     {
@@ -1173,9 +1239,9 @@
     {
       "fecha": "2026-10-27",
       "tension": 16,
-      "n_notas": 70,
+      "n_notas": 71,
       "n_alto_impacto": 23,
-      "n_medio_impacto": 47,
+      "n_medio_impacto": 48,
       "n_bajo_impacto": 0
     },
     {
@@ -1284,10 +1350,10 @@
     },
     {
       "fecha": "2026-11-10",
-      "tension": 25,
-      "n_notas": 14,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 8,
+      "tension": 24,
+      "n_notas": 25,
+      "n_alto_impacto": 10,
+      "n_medio_impacto": 15,
       "n_bajo_impacto": 0
     }
   ],
@@ -1296,32 +1362,65 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 43,
+      "x_lunes": 33,
       "y_lunes": 100,
-      "x_hoy": 71,
+      "x_hoy": 67,
       "y_hoy": 100,
-      "delta_pts": 6,
-      "alcance": 5,
-      "n_alto": 5,
+      "delta_pts": 9,
+      "alcance": 6,
+      "n_alto": 6,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPU2FwYW5aaElmVklMQTR1ZlpaT0JXM0pua2pwT0I0ckhMV1U2S21YTzR3UjdzM2p0a1cwY1dXandlNm5aLS1YZkJkaV93bDU4ZTA3ejJNZFRNckt2SEVESERtRzQ2OUoyRm5DVjFSc1lxZF81RnNGM2tfN010NTdPcUJzcGV4WnNlRzVyM09WVUVJR1dRbUptYU9LeV96MG5JVWozQmxuWkNfSFQxQWQ4N2VaNjMxX09MY2JnaWNDWmZMS2lyLVd5bm1qbnFGelN3bko4dVQzZmh0VU4yN1BiVdIB5gFBVV95cUxPeXQtQU9rZUQ5QkdQamVJUnZQeTg4aUVheTJfSHU2VWdCM05jYXd4eHJnemZxVTVfT0h2OFczUzhzOFZlU2p0RlMwLWlrTmVWczQ2OFhnQ3hUQnBYV0cweTVxdEVCZF94S2htVV9yU3J6TDdWNzRhWHBMeUdrc05YdFYtbUQxTDM3bGlnbEJVelVuQTU3TzNxMVN1Y2hWeUk3eUJsMC1wdkZfRUtXcHVjRnROZFhmTi1wdmxkTUszQ1ZpNnh6Q2dXdXJwSUNfTGk4MHdaY185MUZocnJnX0ItLXBKazFiZw?oc=5",
-      "nota_texto": "Andy López Beltrán responde a Ricardo Salinas Pliego: niega vínculos con huachicol fiscal y le lanza cuestionario - Por Esto!",
+      "nota_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
+      "nota_texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 43,
+          "x": 33,
           "y": 100
         },
         {
           "fecha": "2026-11-10",
-          "x": 71,
+          "x": 67,
           "y": 100
+        }
+      ]
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 33,
+      "y_lunes": 50,
+      "x_hoy": 100,
+      "y_hoy": 56,
+      "delta_pts": 10.5,
+      "alcance": 8,
+      "n_alto": 1,
+      "n_medio": 8,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQXzR6Tk5hdHQ2MmhJNllnOVBXbmZwbzNGVGxuVm54QXZHSFZwTHo2WmMyOThBRVJua25yUFdNNXpENTVEQ2h1SEJxeGdsd0FHS25LU2VydHNuRDlqS2duMVNILURtMzdsaDdXanJrdlcyMFltdE9jaTBMN3d2cXNSaEZLUXJ5ampJdWtJU0JybWhmWlJCdGdHS0E0TktHVk5pY0Zad0VCbnJwRlJTYVlUSEJfY29KZkxmck84QTIxMFJ5dGtKLWp0SDc0ZGtsWjJpRDdSYm1kOEhtTThNVDNmRWphZVdOcVNOTXNVZmk4ZGhfVVVjRWlrRi1BWHY5a3oxTmY0?oc=5",
+      "nota_texto": "Presidenta Claudia Sheinbaum anuncia apoyos a estudiantes de ciencias: financiamiento, beca Gertrudis Bocanegra y más recursos a La Escuela es Nuestra - Edomex Al Día",
+      "es_nuevo": false,
+      "categoria": "Seguridad Nacional",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 33,
+          "y": 50
+        },
+        {
+          "fecha": "2026-11-10",
+          "x": 100,
+          "y": 56
         }
       ]
     },
@@ -1329,43 +1428,42 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 86,
+      "x_lunes": 67,
       "y_lunes": 50,
-      "x_hoy": 100,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
+      "x_hoy": 89,
+      "y_hoy": 56,
+      "delta_pts": 4.5,
       "alcance": 6,
-      "n_alto": 0,
+      "n_alto": 1,
       "n_medio": 7,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPa0UwZzVHQlR0NVJLUkF1eGR1dzhLWktWUXlFbGoyem9DRjVEOTZzVWVHd1JZVkM3aFFxdDAxcVhoVnFrQzlIa3R6YVUwVkluMEg2M2NnaDlfcEtoVlc5aXByMDJ2d0QtRFV3YzZiNnF5dVNtbWRPMTZES1dZRVVCallreHB5NHBBX3E4N2F3R3g5OUZSbXhYaEQ4Z3g0SjVoRFFxUklnV09rSXlsakNfQVV6cGFWbmh5TjVqbzZIOF80U2NoLWNPcE5aalN5OUVFS0l4dHRxS3hZY09vT0RYNW9UcFVuQQ?oc=5",
-      "nota_texto": "Morena responde a las acusaciones en Yucatán: Descarta actos anticipados de campaña y fija postura - Debate",
+      "nota_url": "https://www.tabascohoy.com/?p=841778",
+      "nota_texto": "A 20 años de la elección de 2006, Morena propone investigar presunto fraude",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 86,
+          "x": 67,
           "y": 50
         },
         {
           "fecha": "2026-11-10",
-          "x": 100,
-          "y": 50
+          "x": 89,
+          "y": 56
         }
-      ],
-      "fecha_reactivado": "2026-11-10"
+      ]
     },
     {
       "id": "monreal",
       "nombre": "Ricardo Monreal",
       "iniciales": "RM",
-      "x_lunes": 14,
+      "x_lunes": 11,
       "y_lunes": 100,
-      "x_hoy": 29,
+      "x_hoy": 22,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 2,
@@ -1374,20 +1472,20 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNNDVDZVVNUHBOenJDN0oza3VLcGx4LW04a2xGY3dQeWJlR0paTzdRY3NCQVZYdE85LUJWUFMtZVp6cnRZVzE5X2QzaXJBWXdNSERkT1dZQkJXY0Nua3RhSTNfQTZBRlRFU2daZktKem5PeTExSGRqRGVfVmdMdmVwSC1ISTV5QTFRVmc?oc=5",
-      "nota_texto": "Ricardo Monreal perfila 128 mil mdp para Puebla en 2027 - Sucesos Puebla",
+      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMUVPemxFclhxU1BnSUItMXdUS1NYcWtUQWVpZzFTbFgxeEhGT2pOLW5YbTY5VmRWTDFjdVhpQTJZOWw4U2ZjUllhWXJUb2t5T1owT1NUQ3h3Y2NWMHVHWUo4eXVlcW9YbnNuOC01a2E4SzNGeV9oZXI1RmFKdVNLVy1RMmxrVFdtTDR1MFpGbTM4Nmgtc2owVWFIOG9EVy0tNmVKRHI2MXNld2RPRUhhQ1dCNTJyNEp3N2lpeEZycTNFNnp1?oc=5",
+      "nota_texto": "PEF 2027 destinará 128 mil millones de pesos para Puebla, adelanta Ricardo Monreal - Diario Cambio",
       "es_nuevo": false,
-      "categoria": "Gobernabilidad",
+      "categoria": "Economía",
       "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 14,
+          "x": 11,
           "y": 100
         },
         {
           "fecha": "2026-11-10",
-          "x": 29,
+          "x": 22,
           "y": 100
         }
       ]
@@ -1396,9 +1494,9 @@
       "id": "manzo",
       "nombre": "Carlos Manzo Rodríguez",
       "iniciales": "CM",
-      "x_lunes": 14,
+      "x_lunes": 11,
       "y_lunes": 100,
-      "x_hoy": 29,
+      "x_hoy": 22,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1415,50 +1513,43 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 14,
+          "x": 11,
           "y": 100
         },
         {
           "fecha": "2026-11-10",
-          "x": 29,
+          "x": 22,
           "y": 100
         }
-      ],
-      "fecha_reactivado": "2026-11-10"
+      ]
     },
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 43,
-      "y_lunes": 50,
-      "x_hoy": 71,
-      "y_hoy": 50,
-      "delta_pts": 3.0,
-      "alcance": 4,
-      "n_alto": 0,
-      "n_medio": 5,
+      "id": "amilcar_olan_aparicio",
+      "nombre": "Amílcar Olán Aparicio",
+      "iniciales": "AO",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 11,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 1,
+      "n_alto": 1,
+      "n_medio": 0,
       "n_bajo": 0,
-      "impacto_nivel": "medio",
+      "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPdnM3WGNMZ1ZtQUZVVkpVZ200VHRLMVRXdWNwaUppWHRVX1hhOE10ZzlKZjdnVUExRTAxNXYyOGxRa2dxNl9yWDFvSnM0SElPek9jM3R6WHV4NzVEZnI3R3c3ZEhHX2pTM1JZdUJWWV9qc2tTZFl5R3ZMV01GU0NPQW1LdTRtZlV4dWtsUUV5bFc2S3ExU2xuR1d3U0TSAZwBQVVfeXFMT3ZzN1hjTGdWbUFGVVZKVWdtNFR0SzFUV3VjcGlKaVh0VV9YYThNdGc5SmY3Z1VBMUUwMTV2MjhsUWtncTZfclgxb0pzNEhJT3pPYzN0elh1eDc1RGZyN0d3N2RIR19qUzNSWXVCVllfanNrU2RZeUd2TFdNRlNDT0FtS3U0bWZVeHVrbFFFeWxXNktxMVNsbkdXd1NE?oc=5",
-      "nota_texto": "Lleva Claudia Sheinbaum justicia social a familias - Cuarto Poder Chiapas",
+      "nota_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZUF6Y211Q2JyUC1VMzJxR0xkdTdFOUZWeGhYc0lCdEZiaXE1LUdnOTZGNjJDZ2hBOUxkVHZSQzQ1c2M3cmFhYzcxVjRYX1B6ZTA5QVI0U3UzNGE2RGNQOHFSa1M2Q21nS3BLei1manB3NnRMcTFuT2tpUkIzbWd3N2NxYW01MkRIeHdXRThpYlV6Q3IyQlJyMGplb0w0UDRUNldGNWFHNzFLRWVQYl9MMElzN3RfRDR0aHJibHI5RnJOdw?oc=5",
+      "nota_texto": "Andy López Beltrán niega huachicol fiscal y se deslinda de Amílcar Olán - MVS Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 2,
+      "dias_activo": 1,
       "trayectoria": [
         {
-          "fecha": "2026-11-09",
-          "x": 43,
-          "y": 50
-        },
-        {
           "fecha": "2026-11-10",
-          "x": 71,
-          "y": 50
+          "x": 11,
+          "y": 100
         }
-      ],
-      "fecha_reactivado": "2026-11-10"
+      ]
     },
     {
       "id": "ricardo_salinas_pliego",
@@ -1466,7 +1557,7 @@
       "iniciales": "RS",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 11,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1483,7 +1574,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 14,
+          "x": 11,
           "y": 100
         }
       ],
@@ -1495,7 +1586,7 @@
       "iniciales": "RR",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 29,
+      "x_hoy": 22,
       "y_hoy": 75,
       "delta_pts": 4.5,
       "alcance": 2,
@@ -1512,7 +1603,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 29,
+          "x": 22,
           "y": 75
         }
       ],
@@ -1524,7 +1615,7 @@
       "iniciales": "HB",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 14,
+      "x_hoy": 11,
       "y_hoy": 50,
       "delta_pts": 1.5,
       "alcance": 1,
@@ -1541,7 +1632,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-10",
-          "x": 14,
+          "x": 11,
           "y": 50
         }
       ]
@@ -1628,7 +1719,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 1
+    "pendientes": 2
   },
   "declaracion_presidenta_historial": [
     {
@@ -1683,5 +1774,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-10 13:39"
+  "hora_corte_publicada": "2026-11-10 18:00"
 }
