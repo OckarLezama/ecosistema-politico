@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-10 14:54",
+ "actualizado": "2026-11-11 15:28",
  "fuentes": [
   {
    "nombre": "Google Noticias DOF",
@@ -13,22 +13,22 @@
   },
   {
    "nombre": "Google Noticias Senado",
-   "entradas": 35,
+   "entradas": 36,
    "error": ""
   },
   {
    "nombre": "Google Noticias Congreso (prensa)",
-   "entradas": 53,
+   "entradas": 100,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: ley-egresos-2027",
-   "entradas": 98,
+   "entradas": 100,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-doble-nacionalidad",
-   "entradas": 5,
+   "entradas": 3,
    "error": ""
   },
   {
@@ -38,17 +38,17 @@
   },
   {
    "nombre": "Búsqueda dirigida: ley-catastral-2026",
-   "entradas": 12,
+   "entradas": 10,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-propiedad-industrial-antimemes-2026",
-   "entradas": 30,
+   "entradas": 9,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-educacion-celulares-escuelas-2025",
-   "entradas": 3,
+   "entradas": 4,
    "error": ""
   }
  ],
@@ -57,17 +57,17 @@
    "id": "ley-egresos-2027",
    "nombre": "Ley de Egresos de la Federación 2027",
    "etapa": "Pleno",
-   "notas_recientes": 45,
-   "ultima_nota": "2026-11-10",
-   "dias_sin_actualizar": 4
+   "notas_recientes": 42,
+   "ultima_nota": "2026-11-11",
+   "dias_sin_actualizar": 5
   },
   {
    "id": "reforma-doble-nacionalidad",
    "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas a Presidencia y gubernaturas",
    "etapa": "Aprobada",
-   "notas_recientes": 1,
-   "ultima_nota": "2026-11-09",
-   "dias_sin_actualizar": 35
+   "notas_recientes": 0,
+   "ultima_nota": "",
+   "dias_sin_actualizar": 36
   },
   {
    "id": "reforma-ley-aduanera-2026",
@@ -75,7 +75,7 @@
    "etapa": "Presentada",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 63
+   "dias_sin_actualizar": 64
   },
   {
    "id": "ley-catastral-2026",
@@ -83,15 +83,15 @@
    "etapa": "Pleno",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 46
+   "dias_sin_actualizar": 47
   },
   {
    "id": "reforma-propiedad-industrial-antimemes-2026",
    "nombre": "Reforma al Código Penal Federal y a la Ley Federal de Protección a la Propiedad Industrial (\"Ley Antimemes\")",
    "etapa": "Pleno",
    "notas_recientes": 2,
-   "ultima_nota": "2026-11-04",
-   "dias_sin_actualizar": 41
+   "ultima_nota": "2026-11-07",
+   "dias_sin_actualizar": 42
   },
   {
    "id": "reforma-ley-educacion-celulares-escuelas-2025",
@@ -99,14 +99,14 @@
    "etapa": "Presentada",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 50
+   "dias_sin_actualizar": 51
   }
  ],
  "actualizaciones_etapa": 0,
  "votos_actualizados": 0,
- "candidatos_nuevos": 79,
+ "candidatos_nuevos": 82,
  "candidatos_podados": 42,
  "altas_automaticas": [],
- "ruido_descartado": 64,
+ "ruido_descartado": 100,
  "alertas": []
 }
