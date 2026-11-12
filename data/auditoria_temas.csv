@@ -2,7 +2,7 @@ tema_id,nombre,nivel,tipo,notas,coherentes,pct,estado
 reconfiguracion-gabinete-2026,Reconfiguración del Gabinete 2026,3,completo,3,0,0.0,mezcla historias
 auto-6c7b2d5a2f,"Sicarios digitales, responsables de manchar nombre del gobernador A... - contrap",3,informativo,84,2,0.02,mezcla historias
 auto-a5f462d686,"Para protección de familias, gobierno estatal transforma la seguridad con tecnol",3,informativo,79,3,0.04,mezcla historias
-auto-72dbfdc823,Defensa debe responder sobre desaparición de integrante de la Liga Comunista: Sh,3,informativo,25,1,0.04,mezcla historias
+auto-72dbfdc823,Defensa debe responder sobre desaparición de integrante de la Liga Comunista: Sh,3,informativo,26,1,0.04,mezcla historias
 auto-f13f987d4c,Denuncian “huachicol azucarero”: entraron miles de toneladas de contrabando a Mé,3,informativo,24,1,0.04,mezcla historias
 auto-80ca4d56b6,"Proyectos ferroviarios generan desarrollo económico, asegura la Presidenta",3,informativo,48,4,0.08,mezcla historias
 auto-f3c7c3cb43,El futbol mexicano será investigado por el Gobierno de Sheinbaum tras acusacione,3,informativo,10,1,0.1,mezcla historias
@@ -382,7 +382,6 @@ auto-ffb1bc3143,Caso del niño Daniel Maximiliano en Xalapa: Fiscalía acusa a u
 auto-b86c9c718a,Aprueban reforma para regular alojamientos temporales y fortalecer la prevención,3,informativo,5,4,0.8,ok
 auto-f8081d6ba1,Registra gobernador May 43.1 por ciento de aprobación y se posiciona en el lugar,1,completo,5,4,0.8,ok
 auto-dd08f5aaf5,Alfonso Durazo adelanta agenda de Claudia Sheinbaum en Sonora: revisará obras es,3,informativo,5,4,0.8,ok
-auto-0cb7d4d5b8,Expertos de la ONU advierten sobre la racialización de la migración - ohchr,3,informativo,5,4,0.8,ok
 auto-c9bfdea961,"Remesas sí, derechos políticos no, ¿así trata México a sus migrantes?, escribe E",3,informativo,5,4,0.8,ok
 auto-af8be829f1,Congreso define calendario para informes de diputados; recibirán 206 mil pesos c,3,informativo,5,4,0.8,ok
 auto-e6989f1ed8,Denunciará vocera de las mamás de niños con cáncer a escolta de la gobernadora p,3,informativo,5,4,0.8,ok
@@ -411,6 +410,7 @@ auto-071957561c,"Con coordinación e inteligencia, gobierno estatal registra res
 auto-61ebcbffe0,Diputada de MC de Puebla entrega reconocimiento a Pegasso pese a caso de violenc,3,informativo,6,5,0.83,ok
 auto-9b5da3d9cb,"Promovido por el PAN, realizarán en la CDMX foro internacional de la derecha",3,informativo,6,5,0.83,ok
 auto-a5afbdfc4e,¿Gobernador de 10? Bertruy cuestiona el bienestar oficial ante familias que elig,3,informativo,6,5,0.83,ok
+auto-0cb7d4d5b8,Expertos de la ONU advierten sobre la racialización de la migración - ohchr,3,informativo,6,5,0.83,ok
 auto-7e929a205f,Sindicato del Seguro Social anuncia consulta nacional  sobre aumento al salario,1,completo,6,5,0.83,ok
 auto-26c288ed31,Pelea por diputación migrante - Milenio,3,informativo,6,5,0.83,ok
 auto-8244ae9d2e,Gobernadora reafirma respaldo a los 60 municipios para ampliar obra pública - La,3,informativo,6,5,0.83,ok
@@ -427,7 +427,6 @@ auto-09750f0991,Pável Gaspar abre la puerta a dirigencia de Morena o al distrit
 auto-5d5bee8c77,Fiscalía de Puebla investiga muerte de director escolar en San Miguel Xoxtla; pa,3,informativo,13,11,0.85,ok
 auto-78c23fb19c,El gobierno estatal destina 71.3 millones de pesos a la mejora de calles del Cen,1,completo,56,48,0.86,ok
 auto-9c6672530a,Congreso de Oaxaca alista consulta ciudadana sobre nueva Constitución; iniciará ,3,informativo,22,19,0.86,ok
-auto-88f1d051f2,Chedraui ante la oportunidad de ser el primer alcalde de Puebla en reelegirse en,3,informativo,22,19,0.86,ok
 auto-3f93c7ac8d,Así cambió la relación entre Canadá y EU desde el 11S hasta Trump,1,completo,14,12,0.86,ok
 auto-b939368c74,Destaca Carmen Lilia resultados de Sheinbaum en Tamaulipas y su vision estrategi,3,informativo,14,12,0.86,ok
 auto-7d63c5d887,Un hombre fue ejecutado a balazos en Juchitán de Zaragoza; fue identificado como,3,informativo,14,12,0.86,ok
@@ -456,6 +455,7 @@ auto-756dd88be1,Morena pide a aspirantes respetar tiempos y la ley electoral,3,i
 auto-64b12cd17b,Guillermo del Toro exige resolver la crisis del agua en Jalisco (VÍDEO),3,informativo,7,6,0.86,ok
 sinaloa-crisis,Crisis de Violencia en Sinaloa (Chapitos vs. Mayos),1,completo,78,68,0.87,ok
 carlos-manzo,Asesinato de Carlos Manzo,1,completo,47,41,0.87,ok
+auto-88f1d051f2,Chedraui ante la oportunidad de ser el primer alcalde de Puebla en reelegirse en,3,informativo,23,20,0.87,ok
 auto-0e1d86aac0,"García Harfuch aclara cómo es la coordinación con EU en materia de seguridad: ""N",1,completo,23,20,0.87,ok
 trump-agenda,Trump y México: declaraciones y presión,1,completo,72,63,0.88,ok
 auto-14e90f3ff5,Diputado José Luis Figueroa propone fortalecer educación en historia y civismo -,3,informativo,26,23,0.88,ok
@@ -479,7 +479,7 @@ auto-c61469485e,El cinismo de un alcalde cuestionado - e-consulta.com,3,informat
 auto-8930df37f9,MAS LUZ PARA CIUDAD DEL CARMEN Y ATASTA,3,informativo,8,7,0.88,ok
 morena-coordinadores-2027,Coordinadores estatales de Morena rumbo a 2027,1,completo,482,430,0.89,ok
 rocha-moya-acusacion,Acusación de Narcotráfico contra Rocha Moya,1,completo,136,121,0.89,ok
-auto-c86c133062,"Noticias para el fin de semana: Alerta de posible huracán, Claudia Sheinbaum, IC",3,informativo,35,31,0.89,ok
+auto-c86c133062,"Noticias para el fin de semana: Alerta de posible huracán, Claudia Sheinbaum, IC",3,informativo,36,32,0.89,ok
 auto-202106e8eb,Nabil Eljure se registra para la Coordinación Municipal de Morena en Othón P. Bl,3,informativo,27,24,0.89,ok
 auto-a7b2e4627d,Gobernador de Puebla cuestiona que mujeres encabecen municipios con presencia cr,3,informativo,18,16,0.89,ok
 auto-140b0227c9,"¿Bailarina o científica?, el comentario de Donald Trump sobre Claudia Sheinbaum ",1,completo,18,16,0.89,ok
@@ -568,7 +568,7 @@ auto-c092a6fca7,Sheinbaum minimiza el crecimiento económico y prioriza la redis
 auto-69a1927adc,"Se informó sobre la entrega de viviendas en Durango, específicamente en Lerdo, d",1,completo,136,135,0.99,ok
 auto-fb7a7b4ab7,El diputado federal Daniel Asaf evitó responder a los cuestionamientos de la rep,3,informativo,80,79,0.99,ok
 auto-3de5902549,La presidenta Claudia Sheinbaum abordó el tema de la intervención de la embajada,3,informativo,784,784,1.0,ok
-auto-40de66980c,Se presentó la expansión importante en proyectos renovables con 58 proyectos de ,3,informativo,267,267,1.0,ok
+auto-40de66980c,Se presentó la expansión importante en proyectos renovables con 58 proyectos de ,3,informativo,268,268,1.0,ok
 auto-821abb5ba4,Gustavo Leal F.*: Servicio Universal de Salud: ¿12 mil 750 consultorios “nuevos”,3,informativo,240,240,1.0,ok
 auto-36ae9b3a24,"“Sembrando Vida, una bendición para el campo”: Javier May",1,completo,238,238,1.0,ok
 auto-5cbd3ffc2f,Se anunció que para la próxima semana se trabajará en un decreto presidencial qu,3,informativo,223,222,1.0,ok
@@ -588,9 +588,9 @@ auto-94fed3d32c,"Respecto a la polémica sobre la presidenta del INE, Guadalupe 
 auto-684ea982ed,Fortalece FGEO combate a delitos de alto impacto con el grupo de élite “Binnizá”,3,informativo,121,121,1.0,ok
 auto-131ccbf1f7,"Se informó sobre operativos exitosos de detención de líderes criminales, incluye",3,informativo,118,118,1.0,ok
 auto-3520faacac,Programas sociales benefician a más de 1.6 millones en Guerrero: Presidenta,1,completo,106,106,1.0,ok
-auto-910700fcf5,"Se presentó la entrega de viviendas en Playa del Carmen, Quintana Roo, como part",3,informativo,102,102,1.0,ok
+auto-910700fcf5,"Se presentó la entrega de viviendas en Playa del Carmen, Quintana Roo, como part",3,informativo,103,103,1.0,ok
 auto-75bf58dc44,Se informó sobre avances en la búsqueda de justicia para desaparecidos de la Gue,3,informativo,101,101,1.0,ok
-auto-5b4b1069ae,La presidenta Sheinbaum abordó temas de transparencia y auditoría en el Institut,3,informativo,95,95,1.0,ok
+auto-5b4b1069ae,La presidenta Sheinbaum abordó temas de transparencia y auditoría en el Institut,3,informativo,96,96,1.0,ok
 auto-8ec13057e3,Se informó sobre la Estrategia Nacional para Promover la Estabilización del Prec,3,informativo,90,90,1.0,ok
 auto-754048b435,Renuncia Claudia Espino al INE; Guadalupe Taddei nombra a Roberto Félix como enc,1,completo,88,88,1.0,ok
 auto-a7b936311e,Claudia Sheinbaum justifica regulación de la Modalidad 40 del IMSS,3,informativo,86,86,1.0,ok
@@ -651,7 +651,7 @@ auto-823a9617e3,Comisión del Congreso de Puebla avala acuerdo para fortalecer a
 auto-a177922820,Es positivo para Jalisco el anuncio de Claudia Sheinbaum sobre la inversión para,3,informativo,61,61,1.0,ok
 auto-3a6870a8a0,Pablo Lemus y Claudia Sheinbaum anuncian en la Mañanera un plan histórico para m,3,informativo,61,61,1.0,ok
 auto-f4bff265ab,Reporta SICT avance de más de 560 obras viales en primeros dos años del gobierno,3,informativo,58,58,1.0,ok
-auto-81a4d6f074,Se documentó un caso de sobrecosto en la distribución de medicamentos en el Esta,3,informativo,54,54,1.0,ok
+auto-81a4d6f074,Se documentó un caso de sobrecosto en la distribución de medicamentos en el Esta,3,informativo,55,55,1.0,ok
 auto-cd49aa949b,Se informó sobre la rehabilitación y modernización de 650 quirófanos en las inst,3,informativo,51,51,1.0,ok
 auto-48a528c42b,Xalapa prevé entregar 110 obras con una inversión cercana a 500 millones de peso,3,informativo,50,50,1.0,ok
 auto-fa106fee68,Encabeza gobernador entrega de apoyos a agremiados al SUTSET - XEVA,3,informativo,50,50,1.0,ok
@@ -700,17 +700,17 @@ auto-8cb61efd82,Plan de acción,3,informativo,27,27,1.0,ok
 auto-c572abea68,Mañanera de la presidenta Claudia Sheinbaum minuto a minuto | 5 de octubre - Gru,3,informativo,27,27,1.0,ok
 auto-5f2f4c8c21,Claudia Tacoronte: un crimen que deja preguntas sobre seguridad y atención de em,3,informativo,26,26,1.0,ok
 auto-2e8df6b4f9,Cinco diputados de Morena se registraron por candidaturas federales rumbo a 2027,3,informativo,26,26,1.0,ok
+auto-f9ce0d7f66,Empezar de nuevo: una historia de migración y acceso a la salud en Perú - Pan Am,3,informativo,26,26,1.0,ok
 auto-6ac63efaf0,PAN Puebla definirá en noviembre a su candidato para la alcaldía en 2027 - Perió,1,completo,25,25,1.0,ok
 auto-815ddd4e80,Flávio Bolsonaro desafía a Lula a debatir antes de las elecciones en Brasil,1,completo,25,25,1.0,ok
 auto-636e1e315c,Alcaldesa de Isla Mujeres pide licencia para buscar ‘coordinación’ de Morena en ,3,informativo,25,25,1.0,ok
 auto-24192425ec,Donald Trump imita a Claudia Sheinbaum al asegurar que con su “hermosa voz” le p,3,completo,25,25,1.0,ok
 auto-4aad654dc2,"Karina Pérez descarta reelegirse como diputada, pero analiza buscar la alcaldía ",3,informativo,25,25,1.0,ok
 auto-96f6f0dfdd,Karla Rabelo responde a críticas de Palomeque por coordinadores de MC,3,informativo,25,25,1.0,ok
-auto-f9ce0d7f66,Empezar de nuevo: una historia de migración y acceso a la salud en Perú - Pan Am,3,informativo,25,25,1.0,ok
+auto-ebd026bf1b,"Se presentó el programa ""Todo en tu Clínica"" que llevará laboratorio, internet, ",3,informativo,25,25,1.0,ok
+auto-c9804a6461,"Se anunció la estrategia ""Nacer con Bienestar"" para reducir la mortalidad matern",3,informativo,25,25,1.0,ok
 auto-f9721ddfeb,Rocío Nahle envía iniciativa al Congreso de Veracruz para eliminar declaración d,1,completo,24,24,1.0,ok
 auto-d38c97908b,Acusan a Angélica Gómez Tello y Fiscalía de Puebla por entorpecer caso de Ley Ol,3,informativo,24,24,1.0,ok
-auto-ebd026bf1b,"Se presentó el programa ""Todo en tu Clínica"" que llevará laboratorio, internet, ",3,informativo,24,24,1.0,ok
-auto-c9804a6461,"Se anunció la estrategia ""Nacer con Bienestar"" para reducir la mortalidad matern",3,informativo,24,24,1.0,ok
 auto-f23ced8b4e,CON LA MIRA EN LA ELECCIÓN DE 2027: Determina Tercera Sala del TSJ archivar como,1,completo,23,23,1.0,ok
 auto-756ae60dca,Sheinbaum sobre el uso de Salinas Pliego de una playa en Honduras para reality s,3,informativo,23,23,1.0,ok
 auto-ea5a0e5da2,Estrategia Nacional de Seguridad en Tabasco contribuye a reducir 54% el homicidi,1,completo,23,23,1.0,ok
@@ -1405,6 +1405,7 @@ auto-404012003c,Congreso de Tabasco sigue sin recibir propuestas de ingresos mun
 auto-87b2b4a1a9,Los Tigres del Norte llegan al Tiny Desk con mensaje en defensa de los migrantes,3,informativo,4,4,1.0,ok
 auto-d5fe589905,Ayuntamiento de Puebla prevé cifra histórica de turistas durante noviembre de 20,3,informativo,4,4,1.0,ok
 auto-042f351c24,Difamaciones y calumnias son las que recibe Rocío Nahle García y sus familiares ,3,informativo,4,4,1.0,ok
+auto-e1725b2982,Exigen justicia para Kimberly en Ixcotel,3,informativo,4,4,1.0,ok
 auto-3525589187,"Autos deportivos, placas clonadas y vehículos robados: Fiscalía investiga hallaz",3,informativo,4,4,1.0,ok
 auto-61995d1eab,Llega CSP a Quintana Roo a supervisar hospitales - Reforma,3,informativo,4,4,1.0,ok
 auto-22c3bfa650,Claudia Sheinbaum recorre centros de salud en Yucatán y promete modernización y ,3,informativo,4,4,1.0,ok
@@ -1714,7 +1715,6 @@ auto-5a0a2ee302,Detienen a 5 cubanos en Cancún por vender narcóticos; tenían 
 auto-525023edbb,Diputada Xel Arianna Hernández promueve reformas para implementar un Sistema Cui,3,informativo,3,3,1.0,ok
 auto-1a30b20b8d,"Una situación caótica la que vive el sector salud del país, diputado del PRD - Q",3,informativo,3,3,1.0,ok
 auto-ad9997347e,Mujer de la tercera edad es captada protestando frente al Palacio de Gobierno de,3,informativo,3,3,1.0,ok
-auto-e1725b2982,Exigen justicia para Kimberly en Ixcotel,3,informativo,3,3,1.0,ok
 auto-881079af2e,Gobierno de Veracruz busca vender otro helicóptero; pide autorización al Congres,3,informativo,3,3,1.0,ok
 auto-cb69ea04f5,Ricardo Gallardo buscará cargo en 2027; su esposa a la gubernatura por SLP,3,informativo,3,3,1.0,ok
 auto-8b6f8d21cb,Marcelo Ebrard advierte cambios en el comercio con Estados Unidos: ya no serán s,3,informativo,3,3,1.0,ok
@@ -1784,6 +1784,7 @@ auto-51a940a763,"INÉS GÓMEZ MONT, CASI IRRECONOCIBLE, LIGADA AL AVE NEGRA DE L
 auto-73c876c487,Elecciones en EU 2026: Donald Trump llega con baja popularidad y descontento soc,3,informativo,3,3,1.0,ok
 auto-2a5e93574f,SCJN plantea dar más espacios a partidos minoritarios en Cabildo de Puebla - Per,3,informativo,3,3,1.0,ok
 auto-85107ceef9,APUNTES | Gutiérrez Luna del clan Tadeii - Formato Siete,3,informativo,3,3,1.0,ok
+auto-dd36c93038,A rendir cuentas: Agua de Puebla y SOAPAP comparecerán ante el Congreso el 10 de,3,informativo,3,3,1.0,ok
 auto-96a6c50c8d,"Morena en Puebla minimiza denuncias contra ""Gaby La Bonita"" por desechamiento de",3,informativo,3,3,1.0,ok
 auto-1a8ef6828b,Claudia Sheinbaum reacciona a resultados de las elecciones de Estados Unidos en ,3,informativo,3,3,1.0,ok
 auto-fce3a3a7d3,Demócratas recuperan el Congreso de EEUU y aseguran gubernaturas históricas en l,3,informativo,3,3,1.0,ok
