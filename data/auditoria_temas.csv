@@ -1,7 +1,7 @@
 tema_id,nombre,nivel,tipo,notas,coherentes,pct,estado
 reconfiguracion-gabinete-2026,Reconfiguración del Gabinete 2026,3,completo,3,0,0.0,mezcla historias
-auto-6c7b2d5a2f,"Sicarios digitales, responsables de manchar nombre del gobernador A... - contrap",3,informativo,84,2,0.02,mezcla historias
 auto-72dbfdc823,Defensa debe responder sobre desaparición de integrante de la Liga Comunista: Sh,3,informativo,39,1,0.03,mezcla historias
+auto-6c7b2d5a2f,"Sicarios digitales, responsables de manchar nombre del gobernador A... - contrap",3,informativo,85,3,0.04,mezcla historias
 auto-a5f462d686,"Para protección de familias, gobierno estatal transforma la seguridad con tecnol",3,informativo,79,3,0.04,mezcla historias
 auto-f13f987d4c,Denuncian “huachicol azucarero”: entraron miles de toneladas de contrabando a Mé,3,informativo,25,1,0.04,mezcla historias
 auto-80ca4d56b6,"Proyectos ferroviarios generan desarrollo económico, asegura la Presidenta",3,informativo,48,4,0.08,mezcla historias
@@ -176,6 +176,7 @@ auto-5119986564,Destaca Claudia Sheinbaum fortaleza económica de México frente
 auto-bc5a2e53ba,Muerte del hermano de AMLO: investigación revela contradictorias versiones del a,1,completo,5,3,0.6,revisar
 auto-e21324a4ab,Empresa de Guanajuato intervenida por la FGR por presunto ''huachicol'' cuenta c,3,informativo,5,3,0.6,revisar
 auto-1cd82e22dd,"Detienen a 'El amarillo', líder de una célula criminal vinculada con 'Los Rusos'",3,informativo,23,14,0.61,revisar
+auto-c5eb1bfea6,"“Resucitamos a Cristóbal Colón”, dice Donald Trump durante un homenaje en la Cas",3,informativo,18,11,0.61,revisar
 auto-a8878973bc,Localizan sin vida a dos jóvenes reportados como desaparecidos en Suchiate,1,completo,16,10,0.62,revisar
 auto-9dfdb95494,"Tijuana y Reynosa, municipios con más desapariciones en el país",3,informativo,8,5,0.62,revisar
 auto-438611b2be,¿Renuncia o cese?: versiones encontradas por la salida de un funcionario del Cat,3,informativo,8,5,0.62,revisar
@@ -188,7 +189,6 @@ auto-e2212e7fb3,Claudia Sheinbaum niega acuerdo con Maru Campos tras detención 
 auto-1641840940,Niega Gino operación de Mara y se burla de la oposición - Caribe Peninsular,3,informativo,11,7,0.64,revisar
 auto-40b70ba56b,“Es delicado exponer a una mujer”: gobernador de Puebla justificar exclusión fem,3,informativo,11,7,0.64,revisar
 intervencion-militar-eeuu,Amenazas de Intervención Militar de Trump,1,completo,17,11,0.65,revisar
-auto-c5eb1bfea6,"“Resucitamos a Cristóbal Colón”, dice Donald Trump durante un homenaje en la Cas",3,informativo,17,11,0.65,revisar
 auto-f44cdb2951,Presidenta Sheinbaum y Pablo Gómez alistan nueva reforma electoral tras caso Tad,3,informativo,67,44,0.66,revisar
 auto-fe690c7c13,Protección Civil alerta por lluvias intensas y riesgo de inundaciones en 21 esta,3,informativo,15,10,0.67,revisar
 auto-58dd95cf8e,Farid Rentería coincide con liderazgos de Morena y respalda llamado a la congrue,1,completo,9,6,0.67,revisar
@@ -255,7 +255,6 @@ auto-b134c2bded,"Medio siglo de cacicazgo en Tlaxcala con PRI, PRD, PAN y Morena
 auto-80beef7668,"Mara Lezama propone construir un Centro financiero en Cancún, informa Sheinbaum",3,completo,16,11,0.69,revisar
 segundo-informe-gobierno-2026,Segundo Informe de Gobierno de Claudia Sheinbaum,1,completo,13,9,0.69,revisar
 ley-antimemes,Ley Antimemes y reforma de propiedad industrial,1,completo,46,32,0.7,revisar
-auto-e8e86c177d,"🌎 Ellos son Luis Olivares, secretario de Economía del Gobierno del Estado de Coa",3,informativo,10,7,0.7,ok
 la-barredora,La Barredora,1,completo,35,25,0.71,ok
 auto-1e914fa5d8,FGE Veracruz continuará investigación del llamado “cártel inmobiliario” - Billie,3,informativo,14,10,0.71,ok
 auto-ca38aebd28,"""Hay varias líneas de investigación, una proviene del buque detenido en Tampico""",3,informativo,7,5,0.71,ok
@@ -276,6 +275,7 @@ auto-063cb18044,Benjamín Piña Pavón se registra rumbo a la alcaldía de Balan
 auto-6ac4382e1a,Claudia Sheinbaum visitará Yucatán este sábado: encabezará acto de Vivienda para,3,informativo,7,5,0.71,ok
 auto-d2018368bb,Detienen en Alvarado a exregidora de Tierra Blanca; despliegan 60 patrullas fede,3,informativo,7,5,0.71,ok
 auto-4822c9492f,Ayuntamiento de Mérida coloca topes en cruce peligroso tras petición vecinal,3,informativo,11,8,0.73,ok
+auto-e8e86c177d,"🌎 Ellos son Luis Olivares, secretario de Economía del Gobierno del Estado de Coa",3,informativo,11,8,0.73,ok
 auto-d002368d15,Economía circular y gestión de residuos: Se presentó el programa de economía cir,3,informativo,238,179,0.75,ok
 auto-f82dd57434,Congreso reconoce nuevas agencias municipales y de policía en Costa e Istmo - Me,3,informativo,20,15,0.75,ok
 auto-f517e64944,"En dos semanas, Morena podría publicar convocatoria para coordinaciones municipa",1,completo,20,15,0.75,ok
@@ -515,7 +515,7 @@ auto-f66c5a4c05,PT pone pausa a proceso de Morena; cuestiona rumbo de la 4T - Ca
 auto-280d4466cb,El secretario de Seguridad Pública del Estado participó en el Encuentro Nacional,1,completo,11,10,0.91,ok
 auto-a011fce25d,"Por qué no hay Mañanera de Claudia Sheinbaum hoy, lunes 2 de noviembre 2026 - Am",3,informativo,11,10,0.91,ok
 auto-c86c133062,"Noticias para el fin de semana: Alerta de posible huracán, Claudia Sheinbaum, IC",3,informativo,49,45,0.92,ok
-auto-796ebb5b06,Lo que dijo ayer el gobernador Alejandro Armenta en su Mañanera - Hipócrita Lect,3,informativo,38,35,0.92,ok
+auto-796ebb5b06,Lo que dijo ayer el gobernador Alejandro Armenta en su Mañanera - Hipócrita Lect,3,informativo,39,36,0.92,ok
 auto-ee6efd9cf7,"Sheinbaum y Rosa Icela sostienen primera reunión con gobernadora de Sinaloa, Gra",1,completo,25,23,0.92,ok
 auto-5d0a3874f7,El regreso de ‘la maestra’ Laura Artemisa al Congreso - MTP Noticias,3,informativo,25,23,0.92,ok
 auto-e18c9198f7,Suman 10 las renuncias al Gobierno de Puebla para buscar candidaturas de Morena;,3,informativo,25,23,0.92,ok
@@ -568,7 +568,7 @@ auto-3ef3182f28,Polémica en Tabasco: secretario del Instituto Electoral habría
 auto-b11bb033dd,Concesionarios de verificentros entregan a gobernadora Rocío Nahle evidencias de,3,informativo,54,53,0.98,ok
 auto-f5acf0abf1,Se presentó el avance en la meta de garantizar que la CFE genere al menos el 54%,3,informativo,48,47,0.98,ok
 auto-9b5c9de460,Se discutió la historia de fraudes electorales en México y el papel del INE en e,3,informativo,43,42,0.98,ok
-auto-c092a6fca7,Sheinbaum minimiza el crecimiento económico y prioriza la redistribución social ,3,informativo,203,201,0.99,ok
+auto-c092a6fca7,Sheinbaum minimiza el crecimiento económico y prioriza la redistribución social ,3,informativo,204,202,0.99,ok
 auto-69a1927adc,"Se informó sobre la entrega de viviendas en Durango, específicamente en Lerdo, d",1,completo,136,135,0.99,ok
 auto-fb7a7b4ab7,El diputado federal Daniel Asaf evitó responder a los cuestionamientos de la rep,3,informativo,80,79,0.99,ok
 auto-3de5902549,La presidenta Claudia Sheinbaum abordó el tema de la intervención de la embajada,3,informativo,784,784,1.0,ok
@@ -606,7 +606,7 @@ auto-0c5c351c9c,"La Comisión Nacional de Energía ha logrado registrar, identif
 auto-d88f4a7794,"Se aborda el tema del robo de gas a Pemex, que ha aumentado 11% en el primer sem",3,informativo,83,83,1.0,ok
 auto-51076941c0,Se anunció la compra de aproximadamente 800 equipos médicos de alta tecnología p,3,informativo,82,82,1.0,ok
 auto-fab018cef0,"Se presentó un video sobre la tradición de Huamantla, Tlaxcala, donde se crean a",3,informativo,82,82,1.0,ok
-auto-2e8fe87a85,Claudia Sheinbaum confirma aumento para la Pensión del Bienestar en 2027: de cuá,3,informativo,80,80,1.0,ok
+auto-2e8fe87a85,Claudia Sheinbaum confirma aumento para la Pensión del Bienestar en 2027: de cuá,3,informativo,81,81,1.0,ok
 auto-e3a5e87d85,Gobierno de Yucatán reporta saldo blanco tras el alejamiento del huracán Isaías ,3,informativo,80,80,1.0,ok
 auto-abf49813b8,Panistas cobijan a Maru en el Congreso de Chihuahua,3,informativo,80,80,1.0,ok
 auto-20898af6a3,"#EnPrivado | “El 1 de septiembre de 2024, en el Zócalo, en su último Informe de ",3,informativo,79,79,1.0,ok
@@ -829,6 +829,7 @@ auto-25cc058b53,Vinculan a proceso a presunto halcón criminal por homicidio de 
 auto-337f3006d2,Donald Trump acusa a gobernadora de Arizona de presuntos vínculos con cárteles d,3,informativo,10,10,1.0,ok
 auto-525b48a4d7,📣 ¡Exigen respuestas y la presencia del gobernador morenista Joaquín Díaz Mena!⁣,3,informativo,10,10,1.0,ok
 auto-0998fac3ef,Corresponde a la ASF investigar a Taddei: presidenta de Morena,1,completo,10,10,1.0,ok
+auto-991b75179d,El Banco del Bienestar presentó su nueva aplicación móvil que permite a 42 millo,3,informativo,10,10,1.0,ok
 auto-995d1fce6a,“Son tiempos de zopilotes”: May acusa aprovechamiento político por falta de agua,3,informativo,9,9,1.0,ok
 auto-c5d1916fd5,"Un acuerdo entre Rusia y Ucrania,  improbable",3,informativo,9,9,1.0,ok
 auto-b2a7a912a5,"Fundación Carlos Slim presenta &quot;Hoy Va Por Ti&quot; con Majo Aguilar, Karol",3,informativo,9,9,1.0,ok
@@ -864,6 +865,7 @@ auto-e5e1f0c80c,¡Plomo contra un Volkswagen! Detienen a sospechoso de tentativa
 auto-7508d76494,«Chanito» se toma la foto con Jorge Romero - Caribe Peninsular,3,informativo,9,9,1.0,ok
 auto-8206bdbe1a,ICE mantiene bajo custodia a Miguel Parra tras atropellarlo - MILENIO,3,informativo,9,9,1.0,ok
 auto-71e96480e1,Trump advierte que una victoria demócrata reabriría la frontera a inmigrantes in,3,informativo,9,9,1.0,ok
+auto-f80e4c8410,Sheinbaum exige auditoría total al INE por corrupción electoral - MILENIO,3,informativo,9,9,1.0,ok
 auto-b75e7ba45b,Caso Paola Buenrostro: Fiscalía CDMX buscará reclasificar el crimen como feminic,3,informativo,8,8,1.0,ok
 auto-25972bdda2,Ebrard viaja seguido a EU en busca de acuerdo para reducir aranceles al aluminio,3,completo,8,8,1.0,ok
 auto-2570dff348,Monreal rechaza penas de hasta 140 años de cárcel a narcopolíticos: ‘Yo no soy d,1,completo,8,8,1.0,ok
@@ -914,8 +916,6 @@ auto-444f65c3ad,Los alcaldes que van por la reelección en Morena - El Universal
 auto-fb7f7447f0,Ayuntamiento mantendrá operativos contra ambulantes durante Día de Muertos en la,3,informativo,8,8,1.0,ok
 auto-ad8b8a1d91,No se salva Lorenzo Córdova; auditoría va también por él,1,completo,8,8,1.0,ok
 auto-38fc9446f5,Caso Guadalupe Taddei: Lorenzo Córdova responde a Sheinbaum y defiende su gestió,1,completo,8,8,1.0,ok
-auto-f80e4c8410,Sheinbaum exige auditoría total al INE por corrupción electoral - MILENIO,3,informativo,8,8,1.0,ok
-auto-991b75179d,El Banco del Bienestar presentó su nueva aplicación móvil que permite a 42 millo,3,informativo,8,8,1.0,ok
 auto-7539214bf2,Sheinbaum acusa a EE.UU. de usar tácticas de 'injerencia' para dividir a su Gobi,1,completo,7,7,1.0,ok
 auto-ddddfbc34d,Rosa Icela Rodríguez: con diálogo dimos atención prioritaria a 8 mil 38 grupos,3,completo,7,7,1.0,ok
 auto-48624a5e73,Anuncian creación del “Central Park Mixteco” y obras viales por 43.2 mdp en Izúc,3,informativo,7,7,1.0,ok
@@ -966,6 +966,7 @@ auto-c2d45d710f,“Tenemos que hacer un buen gobierno”: Armenta llama a la uni
 auto-66aee2505b,SCJN exhibe al Congreso: invalida disposiciones de 33 leyes de ingresos y suma o,3,informativo,7,7,1.0,ok
 auto-da3427ac40,"Sin alianzas, PVEM perdería todo",3,informativo,7,7,1.0,ok
 auto-89f16e668a,Presidenta de México pide pruebas a EU sobre presunta infiltración del Cártel de,3,informativo,7,7,1.0,ok
+auto-dabf085f01,APEC 2026: Claudia Sheinbaum y otros presidentes mexicanos que han acudido al fo,3,informativo,7,7,1.0,ok
 auto-1910237c29,Detienen a presunto acosador de mujeres en Veracruz; Brujas del Mar pide a más v,1,completo,7,7,1.0,ok
 auto-a5e8ddae58,Consigue FGET penas de 20 y 10 años de prisión por homicidio y pederastia - Quad,3,informativo,7,7,1.0,ok
 auto-ec43c6dc7f,"Detienen a alcalde de Puerto Aventuras, Quintana Roo, por presunta red de extors",3,informativo,7,7,1.0,ok
@@ -1028,6 +1029,7 @@ auto-6c3d39c181,"Roció Nahle García: “En mi gobierno la educación es priori
 auto-66b200615c,Video: Gobernadora de Veracruz atiende denuncia contra el alcalde José Luis Pére,3,informativo,6,6,1.0,ok
 auto-dad17feaf1,"Cabildo municipal de Suchiapa, Chiapas propone a nueva presidenta municipal - Jo",3,informativo,6,6,1.0,ok
 auto-86ef712902,May anuncia agenda de trabajo territorial y acciones de bienestar en Tabasco,3,informativo,6,6,1.0,ok
+auto-421ce7c2c2,Migración. Cinco caravanas migrantes en 2026: Una misma lucha contra el imperial,3,informativo,6,6,1.0,ok
 auto-7204a86afc,Ayuntamiento de Tapachula refrenda compromiso con la profesionalización de polic,3,informativo,6,6,1.0,ok
 auto-cbb0339939,Marath debe explicar corrupción laboral - Diario de Chiapas,3,informativo,6,6,1.0,ok
 auto-de751c0fe8,Alejandro Moreno respalda a Adrián de la Garza en Nuevo León - Milenio,3,informativo,6,6,1.0,ok
@@ -1060,7 +1062,6 @@ auto-8aeb439846,"El acuerdo de la FIFA con la Torre Trump: 7 años, 4 millones d
 auto-6e8117105f,Claudia Sheinbaum destaca crecimiento del PIB de México en el 50 Aniversario del,3,informativo,6,6,1.0,ok
 auto-f2dac9c1e2,ISSSTEP aún no calcula cuánto costará la reforma a pensiones pese a fondo agotad,3,informativo,6,6,1.0,ok
 auto-b9ce2cd82e,"En medio de la crisis del sistema de salud en #México, el Partido Acción Naciona",3,informativo,6,6,1.0,ok
-auto-dabf085f01,APEC 2026: Claudia Sheinbaum y otros presidentes mexicanos que han acudido al fo,3,informativo,6,6,1.0,ok
 auto-e3f8ad11a8,IMSS hará contrapropuesta de aumento salarial a trabajadores: ‘Tiene que estar e,1,completo,6,6,1.0,ok
 auto-2bce961819,CONGRESO recuerda 73 años del voto femenino en Chiapas - El Sol de Chiapas,3,informativo,6,6,1.0,ok
 auto-65e8a0b114,Ex fiscal de Chihuahua habría cometido traición a la patria: FGR,1,completo,6,6,1.0,ok
@@ -1076,6 +1077,8 @@ auto-8e0bffc2a9,Designan a Blanca Cruz como presidenta provisional del INE,3,inf
 auto-994c0ba339,La Presidenta Claudia Sheinbaum inaugura el puente Amado Nervo que conecta a Nay,3,informativo,6,6,1.0,ok
 auto-200fa0b9c7,La gobernadora Mara Lezama Espinosa invitó a las y los quintanarroenses a disfru,3,informativo,6,6,1.0,ok
 auto-ae99381b72,Denuncian a Samuel García por desvío de 7 mil 200 mdp,3,informativo,6,6,1.0,ok
+auto-0d5a7eb996,"Mujeres, latinos, migrantes, una afroestadunidense y un musulmán logran históric",3,informativo,6,6,1.0,ok
+auto-f9f28a08f0,Alista Claudia Sheinbaum participación en la APEC; será oradora principal ante C,3,informativo,6,6,1.0,ok
 reforma-judicial-jueces,Reforma Judicial — Elección de Jueces,1,completo,5,5,1.0,ok
 auto-cf305ce8bf,"Sheinbaum acusa intentos de división desde EU y afirma que ""se topan con pared"" ",3,completo,5,5,1.0,ok
 auto-422c0710a5,Unidad 4T: del dicho al hecho,3,informativo,5,5,1.0,ok
@@ -1120,11 +1123,13 @@ auto-47e00c49c7,"Amílcar Olán, amigo del hijo de AMLO, habría financiado camp
 auto-c554fc10b9,Aprueban en comisiones la integración del Concejo de Esperanza tras detención de,3,completo,5,5,1.0,ok
 auto-31142b1965,‘¿Un ratero hablando de robar la eleccion?’: Hermano de AMLO responde a acusacio,1,completo,5,5,1.0,ok
 auto-b056bd5bf8,Sheinbaum: “es absurda” la supuesta encuesta de EU sobre apoyo de mexicanos a un,1,completo,5,5,1.0,ok
+auto-7e7d897c4a,"Ingenio San Pedro se reactivará con el inicio de la zafra en noviembre, señala S",3,informativo,5,5,1.0,ok
 auto-d751ccd50e,Avala Senado ingreso de  139 soldados de EU con armas,3,informativo,5,5,1.0,ok
 auto-ee75c21d30,Hay críticas tanto de la oposición como del propio partido en el poder.,3,informativo,5,5,1.0,ok
 auto-8b1d9f44c2,Claudia Tacoronte: Universidad de Granada suspende intercambios a la UAEM,3,completo,5,5,1.0,ok
 auto-95d5a6580d,Anuncian desde el Congreso la “Ruta Puebla 2050” para construir una agenda cient,3,informativo,5,5,1.0,ok
 auto-40bd63a8c7,MORENA: Rafael Marín acepta tercer lugar y señala que empezó tarde - Caribe Peni,3,informativo,5,5,1.0,ok
+auto-2f903110c9,Fed da revés a Trump: eleva tasas de interés por presiones de aranceles y crisis,3,informativo,5,5,1.0,ok
 auto-04cf34cf84,"Que viva la vida, la verdad y la libertad: Maru Campos",3,completo,5,5,1.0,ok
 auto-65764658fa,Estos son los deudores que mantienen en crisis a la Unión de Crédito Ganadero de,3,informativo,5,5,1.0,ok
 auto-2e4c7f19ee,¿Quiénes son ‘El Fiera’ y ‘El Coreano’? Los detienen por extorsión a carnicerías,3,informativo,5,5,1.0,ok
@@ -1163,7 +1168,6 @@ auto-05b4bf90bf,"Gobernador de Nayarit, posible blanco de atentado tras caída d
 auto-ca6d8c69c3,Fijan plazo a la Fiscalía General del Estado para concluir investigación contra ,3,informativo,5,5,1.0,ok
 auto-d00a96b06a,Pide Armenta al Ayuntamiento de Puebla recuperar barrios; desconoce proyecto de ,3,informativo,5,5,1.0,ok
 auto-dcfe640980,El que implicó a Andy en el 'huachicol' - Milenio,3,informativo,5,5,1.0,ok
-auto-421ce7c2c2,Migración. Cinco caravanas migrantes en 2026: Una misma lucha contra el imperial,3,informativo,5,5,1.0,ok
 auto-c95bc4542a,Claudia Sheinbaum Pardo. . Avanzamos en la atención a la salud. - facebook.com,3,informativo,5,5,1.0,ok
 embajador-johnson-queretaro,Embajador Johnson en Querétaro: invitación del gobernador Kuri,1,completo,5,5,1.0,ok
 auto-5fcee82621,"Con casi 150 iniciativas pendientes, Congreso de Veracruz es de los peores evalu",3,informativo,5,5,1.0,ok
@@ -1217,9 +1221,7 @@ auto-ea36a23319,Ramírez Cuéllar pide cárcel para Guadalupe Taddei por presunt
 auto-6555bb4674,Elecciones en EU 2026: ¿qué pasa si Trump pierde el control del Congreso y cómo ,3,informativo,5,5,1.0,ok
 auto-9c99770297,Inicia difusión de spots del Segundo Informe de Gobierno de Javier May,3,informativo,5,5,1.0,ok
 auto-a552de0434,Que se investigue el caso del INE y se aplique todo el peso de la ley: diputado ,3,informativo,5,5,1.0,ok
-auto-0d5a7eb996,"Mujeres, latinos, migrantes, una afroestadunidense y un musulmán logran históric",3,informativo,5,5,1.0,ok
 auto-0b8c5ef1db,Somos demandará a Claudia Sheinbaum y Raquel Buenrostro por difamación y daño mo,3,informativo,5,5,1.0,ok
-auto-f9f28a08f0,Alista Claudia Sheinbaum participación en la APEC; será oradora principal ante C,3,informativo,5,5,1.0,ok
 aranceles-trump-mexico,Guerra de Aranceles de Trump contra México,1,completo,4,4,1.0,ok
 auto-e3d9250680,Fiestas patrias ya tiene a su representante en Nacajuca,3,completo,4,4,1.0,ok
 auto-9317990416,Diputados de Veracruz ganan hasta 65 mil pesos mensuales; Congreso detiene descu,3,completo,4,4,1.0,ok
@@ -1292,12 +1294,10 @@ auto-5d76746659,"En cateo, detienen a 5 integrantes de familia en Zacatlán; acu
 auto-6b56e3c643,"Fallece Eugenio Amat de la Fuente, quien fue 2 veces alcalde de Cárdenas - XEVT",3,informativo,4,4,1.0,ok
 auto-ce0fc069f1,"Carlos Fazio: Trump, el procónsul Rubio y sus yes men",1,completo,4,4,1.0,ok
 auto-5978de66aa,Morena prevé definir 12 coordinaciones en próximas semanas; Guerrero y Michoacán,3,completo,4,4,1.0,ok
-auto-7e7d897c4a,"Ingenio San Pedro se reactivará con el inicio de la zafra en noviembre, señala S",3,informativo,4,4,1.0,ok
 auto-344a22ac7e,Alcalde de Tlaola tendrá que explicar por qué no denunció las granjas dé criptom,3,informativo,4,4,1.0,ok
 auto-6fd9ec967d,FRENTE OPOSITOR: Gustavo Miranda llama a recuperar el autogobierno de Quintana R,3,informativo,4,4,1.0,ok
 auto-f42eb24a22,SSPC reforzará seguridad en Mazatlán con más de 1800 elementos; serían 20 mil en,3,informativo,4,4,1.0,ok
 auto-8b8cd97c82,Melania Trump anuncia acuerdo con Nvidia para incorporar IA en las escuelas: ‘Su,1,completo,4,4,1.0,ok
-auto-2f903110c9,Fed da revés a Trump: eleva tasas de interés por presiones de aranceles y crisis,3,informativo,4,4,1.0,ok
 auto-515ab28a5a,Kimberly Flores reaparece y presume cómo celebró el Grito de Independencia tras ,3,completo,4,4,1.0,ok
 auto-f0c01ee0f4,Liberan a 43 personas privadas de su libertad.,3,informativo,4,4,1.0,ok
 auto-a1e6b71463,"Arenga sobre madres buscadoras, para reconocer labor; hay seguimiento a sus caso",3,informativo,4,4,1.0,ok
@@ -1403,6 +1403,7 @@ auto-c9348e6b3d,VIDEO Congreso del Estado de Puebla invita al Foro Derecho Integ
 auto-6d79e15366,"Mexicano fue arrollado ""intencionalmente"" por agente del ICE en Texas, denuncia ",3,informativo,4,4,1.0,ok
 auto-34ad6f6697,"Hay demandas legítimas en el IMSS que deben atenderse, afirma Sheinbaum",3,informativo,4,4,1.0,ok
 auto-e69f40c0f4,Martes y Miércoles del Campo de Soriana HOY 13 y 14 de octubre 2026 | Lista de p,3,informativo,4,4,1.0,ok
+auto-528ac6f7c6,Harfuch destaca detención de presunto integrante de Mara 18 en Tabasco,3,informativo,4,4,1.0,ok
 auto-de3089f5bf,Pepe y Gaby en la final de Morena por la alcaldía - Municipios Puebla,3,informativo,4,4,1.0,ok
 auto-ad2a5c38bc,Ayuntamiento de Puebla clausura Terraza BKO en San Manuel por deficiencias de se,3,informativo,4,4,1.0,ok
 auto-a176a54bd1,"Detienen en Tapachula a El Negrito, señalado por homicidio del dueño de Chachito",3,informativo,4,4,1.0,ok
@@ -1708,7 +1709,6 @@ auto-3b196caf61,Claudia Sheinbaum admite problemas en el IMSS - El Heraldo de Sa
 auto-074b013fa8,Juan Rivera Trejo reconoce coordinación estatal y federal tras detención de “El ,3,informativo,3,3,1.0,ok
 auto-887ee4aa55,Es una realidad: la presidenta Claudia Sheinbaum inaugura campus de la UNRC en N,3,informativo,3,3,1.0,ok
 auto-25b8b9883f,"¿Cuál es el grado de estudios de Meli Espinoza, aspirante de Morena en Tijuana q",3,informativo,3,3,1.0,ok
-auto-528ac6f7c6,Harfuch destaca detención de presunto integrante de Mara 18 en Tabasco,3,informativo,3,3,1.0,ok
 auto-457e0caf23,La carne ahumada de Temozón y la guayabera avanzan para ser patrimonio cultural ,3,informativo,3,3,1.0,ok
 auto-c6808917cb,Contratos millonarios y señalamientos fiscales rodean a empresa del sobrino de I,1,completo,3,3,1.0,ok
 auto-241b865504,Elecciones 2027 en Chiapas: qué es el PREP y cómo consultar los primeros resulta,3,informativo,3,3,1.0,ok
