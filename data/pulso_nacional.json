@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-11-11T12:00:51.689699-06:00",
+  "generado_en": "2026-11-11T18:01:03.479700-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 19,
+  "n_notas_ventana": 27,
   "baja_confianza": false,
-  "tension_nacional": 25,
+  "tension_nacional": 28,
   "tension_anomalia": {
-    "z": 1.0,
+    "z": 1.76,
     "nivel": "normal",
-    "media_periodo": 20.9,
+    "media_periodo": 20.8,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 61,
-      "tema_principal": "Agradece el rector de la máxima casa de estudios presupuesto para 2027",
-      "tema_principal_id": "auto-fff5d34a68",
-      "n_temas": 8,
-      "n_notas": 12,
+      "peso_pct": 64,
+      "tema_principal": "Visa de Andy",
+      "tema_principal_id": "visa-de-andy",
+      "n_temas": 10,
+      "n_notas": 17,
       "notas": [
         {
           "texto": "Cuentas públicas 2025 de Rocha Moya libran fiscalización; cinco juntas de agua quedan reprobadas - ADN Informativo MX",
@@ -44,34 +44,46 @@
           "medio": "TV Azteca"
         },
         {
+          "texto": "Claudia Sheinbaum acusa a la oposición de buscar desacreditar las elecciones de 2027 - Caribe Peninsular",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQYzg5a3FQV1hGQjFUN1ZscmVmSGx5M3pHeGtJeUw5aUNIUUdKNFRMdmJXdVZDNTRidkpmUWFqd3EydHhRTzlPVDhHUzZGaGNra0hqNnpxWjBxUnJ4N09WU2N0VWsyLWJraHkybGVSWm9NN0FfUGJCV3B4a096MG9XSGdBYVZGZDNnaTA1RklScXc3bTlLM3h5T1JhNUdwVjlBTEZPUGZwVmNPUlVBdUgwWGtyQQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "Caribe Peninsular"
+        },
+        {
+          "texto": "🔴 SHEINBAUM CELEBRA APROBACIÓN DEL PRESUPUESTO 2027; INCLUYE RECORTE DE SEIS MIL MDP AL INE La presidenta Claudia Sheinbaum celebró este miércoles la aprobación del Presupuesto de Egresos 2027 en la C",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPQkFENHBFUXpkVzBscGp3cWExeTFqV01kMmQxVzVfNkFSbVdZV0RfaEVadHdLQmZtZ1g5Y0dZTV9WbHppRDQ3RFZsTWJqWnpIdWxpUXBveDVHVmE0QUd5X1MxcmZLNW9PZWhCMmhmSks1M1ppVWxqRDZPNWxxdUJPbUhPN0I5bWlGb2psSFdmX01pcEZIYU1sNkNYcDM3NVg5Y2cweU5LU3VpczI3YnA4bG9xZkR5UmM5ZnpUQncwQjNjN2FpdzltR0V1V21SdmgzZ1Nmdk9oVEhyc2J5WUZNMl9fOA?oc=5",
+          "intensidad": 7.0,
+          "medio": "Facebook"
+        },
+        {
+          "texto": "Somos Mx presenta queja ante el INE contra Claudia Sheinbaum y 12 gobernadores, incluido Yucatán - Diario de Yucatán",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPbXFoYTN2dXlCSkVEQWpoMFM3VWhwTXJkR3pkc3pVOUZ0Y3dlZnJqNmMtODFsMjdhR294UnVNbDFQcVpoU0VaT0pTcFJjTHVjU3NvOUx2NlRSZ0RjSmMwcGJRM0phRUlpVlpGSGdBaXF3YmJTSGVUSC1xY2hvMlZJR0pyU0RCOXQxZ1lnWmpBcjFMS0VUMFJKa3M4dmZNV0pZRHVaSnFvYTNUWUpxSklMSk5mUm9MQlFiME5RcjVXUnRIMDNweHRQLXp4MThudE1iYTlTUkdKNGp3aFBiUmc?oc=5",
+          "intensidad": 7.0,
+          "medio": "Diario de Yucatán"
+        },
+        {
+          "texto": "Claudia Sheinbaum entrega 72 casas en Aguascalientes como parte de Vivienda para el Bienestar",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/11/claudia-sheinbaum-entrega-72-casas-en-aguascalientes-como-parte-de-vivienda-para-el-bienestar-2917208.html",
+          "intensidad": 7.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
           "texto": "Encuentran sin vida a abuelita desaparecida en Magdalena Loxicha",
           "fuente_url": "https://imparcialoaxaca.mx/policiaca/encuentran-sin-vida-a-abuelita-desaparecida-en-magdalena-loxicha/",
           "intensidad": 6.0,
           "medio": "imparcialoaxaca.mx"
         },
         {
-          "texto": "Pepe Chedraui desconoce encuestas de Morena para la alcaldía de Puebla y espera definición del partido - Curul Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWFBXTlctWHVRdW44R3ZwR00yTjV5RGRySXktdW9mUUNOU0VBV21qeHk4UGI2a3U3MHAwcnFXMS1WT2dPSzNOcmNyWnlIRnFJd201RzBnRldGTV9ybDktWGtiZGNYQXl4eEhaU0RVLTA3UVFtSFpSaUdsQk0yVnJ6MU1EN2ZmRVNUcmI4THlZWFJocVlnc28tdkhkMWR2Rmg3OE1SemlnQkF4V1RYMTVhS1Z6WFQtRGRzV1ZRdkhVV0pTQQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "Curul Puebla"
+          "texto": "PAN exige seguridad, transparencia y equidad rumbo a las elecciones de 2027",
+          "fuente_url": "https://oem.com.mx/diariodexalapa/local/pan-exige-seguridad-transparencia-y-equidad-rumbo-a-las-elecciones-de-2027-33080438",
+          "intensidad": 6.0,
+          "medio": "oem.com.mx"
         },
         {
-          "texto": "Morena defiende recorte por seis mil MDP al INE en el Presupuesto Federal 2027",
-          "fuente_url": "https://www.informador.mx/mexico/ine-morena-defiende-millonario-recorte-al-instituto-en-el-presupuesto-federal-2027-20261110-0176.html",
-          "intensidad": 5.0,
-          "medio": "informador.mx"
-        },
-        {
-          "texto": "Tatiana Clouthier acusa imposición de Morena para Nuevo León - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPNlF3TExFaW5rekdBSFl5T0lJUFQyVEpWSXNFVDN6OXZycGVhNjhUZDREN0dPU0FIVVZyOVRNWFQ1SWZ5UzlLRFNIOFMxY0tSSnZWMkhQYVpraXllZW0wNVpsSGFCeHhmbWN0bVhPQXhIS24wNnJqZ1RReTdqQk5PRjdlX2ZYc2otcEw0elhCYmJXdnNOaGt6d005d9IBmwFBVV95cUxOSDVYVWdiMG1fdFRpa3dPQnJnLThZdlJWUHFCZ3hZY1ItaEdMVUtPMW10dTJ4dldkQXRCMEFZTGpGc2oyOEkyR29ZUThCdzlEbG1hYjByM0ZjaHdCT1R0Rmh3Q3BZV3RXNDEwaWpDVHBkTExQdU1HeVV3VEdka2tiTlNxUE9PejNZenRfUlJ1TXRlZlBJdHMyVDRmdw?oc=5",
-          "intensidad": 5.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "⚡ Posible presión de Morena (partido político) — \"Morena está destinando recursos que no nos van a hacer crecer como país\": Rubén Moreira cuestiona presupuesto de Morena y recortes al INE",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/10/morena-esta-destinando-recursos-que-no-nos-van-a-hacer-crecer-como-pais-ruben-moreira-cuestiona-presupuesto-de-morena-y-recortes-a-2916669.html",
-          "intensidad": 5.0,
-          "medio": "heraldodemexico.com.mx"
+          "texto": "Senadora Paloma Sánchez señala irregularidades en contratos del gobierno de Rocha Moya - Revista Espejo",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNb096eW1fbWhiVFRoSDR5ZjBVSGZpS1NfUDJBNWt3NmhJV1hrVDg1VWdja1huUVNHNnkydm4ySVhiVEpkbnRSeWJobkh6TkpiR1g0UGxrdzU0WEJfdkczTGtRaEdtQXZFNzBNQ0VlbHllQWRwSHlhSkNaU2FUUC0tNlBHcmY2cGxVTDVtUldEclZvT1lVbWV4UEtSX0ZqYkNDcV9pLUN6Ykc2VTYwTHRUajhEU1c2NVV0aGhheVRDTm5GUQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "Revista Espejo"
         },
         {
           "texto": "Sheinbaum, a favor de abrir archivos del IPAB; \"aunque lo niegue, Salinas Pliego se benefició del Fobaproa\", dice - La Jornada",
@@ -86,20 +98,26 @@
           "medio": "tabascohoy.com"
         },
         {
-          "texto": "Investiga FGET presunta agresión contra un ciudadano durante revisión vehicular",
-          "fuente_url": "https://www.tabascohoy.com/investiga-fget-presunta-agresion-contra-un-ciudadano-durante-revision-vehicular/",
-          "intensidad": 4.0,
-          "medio": "tabascohoy.com"
+          "texto": "Sheinbaum cuestiona beneficios de Salinas Pliego con el Fobaproa y propone hacer públicos los expedientes - Reto Diario",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQVmpkWUlXWlBKTmtLRnRjaERUZjNzX29HU3ExTnFfRC00V09BbVV4VnlBMnRMRlNtNUFUZHdkZk1MRGkya0l2dHpxRTJrMkE2VDI1c2k4eTdoZ0czQzNrSFc4VUF0YWJsOXF3eGZxQTVhTTNBeGtrR2o3ZURrTFhEOFpfazVwYkNLUGFCMEpRYUVDZFFpSTNGSzBWdlcySFFZeGY3aFdDYWtXazBGbmR5bnp6Zm9TTGVFemcwWERJX0lvWnA0eWFqMTcySFhwUS1jZlRueWdBLWg3ZVpoOS1lZ3pXQQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "Reto Diario"
+        },
+        {
+          "texto": "Sheinbaum pide abrir archivos del IPAB y acusa a Salinas Pliego de beneficiarse del Fobaproa - Ríodoce",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQNS12VEgwVWpCZ2lYX0ZDcGZrSzFxYXJCcWp6SWdKazZMbWszVjB2YlRkOHIzNG9QT2xXalJDd1RrdzBrdnZkb3d3S3N1aVBTMnp6NkxkWmd2Zkh1R0R2UGdkT255MzNSZTVxaW81TlRiS3lYRFdCM2Y2dFNGc0Z3bjhfUFNTS3ZRX2ZvYnVoYVNCTnJYcWF6X2hTZjVwRjhMZVJRblJCWHdvaGwycWdFUTBHMG1DQ2NWTHNEQ3BoSWo?oc=5",
+          "intensidad": 5.0,
+          "medio": "Ríodoce"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 11,
+      "peso_pct": 18,
       "tema_principal": "García Harfuch anuncia operativo con la Guardia Nacional para blindar las elecci",
       "tema_principal_id": "auto-074689108b",
-      "n_temas": 2,
-      "n_notas": 2,
+      "n_temas": 3,
+      "n_notas": 5,
       "notas": [
         {
           "texto": "Confirma García Harfuch órdenes de arresto contra Zuany",
@@ -108,38 +126,56 @@
           "medio": "jornada.com.mx"
         },
         {
+          "texto": "Renuncia Dámaso Castro a la Vicefiscalía de Sinaloa tras acusaciones de presuntos nexos con Los Chapitos",
+          "fuente_url": "https://imparcialoaxaca.mx/nacional/renuncia-damaso-castro-a-la-vicefiscalia-de-sinaloa-tras-acusaciones-de-presuntos-nexos-con-los-chapitos/",
+          "intensidad": 7.0,
+          "medio": "imparcialoaxaca.mx"
+        },
+        {
           "texto": "Continúa la violencia en Sinaloa: reportan dos muertos y dos heridos en Culiacán - El Universal",
           "fuente_url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQTDRwNUhlWWtMa2ZHUzNjN0ZzTzA2VkFFZFBSY3JDelpjY3VRRG5YZl9fZW96MjZGZWd3WTVfWjVNOV9PMzYxU05hbktQR2l0d01hQlhBd0cxY011ODRJNzI0bzE0ZFFrTFhGQ1FucF9KbVpDdzNKTU5jNkVObjJ1WHRLM3JreEV2a2l4amRkaXhJdDAzQmw2SFBHZWZGMVN6V1hiNE1SQkpkV0o5M0RaczVKb256SlVYSlZMbmp5MGt3RGY0NkFhMzg2WE5Jck9lYTJ0WVhVV2U4YzN4RkZ6Y2JIVUJfM2tFTWFRRDVna3N3cWl2a2F3Y3JSb1_SAZACQVVfeXFMUHBRR1NvNnFvTGM4VFZDTGtZTHFKR0dnamhlcmdNRjF3cFFoUU1lZW85OGpIMW1wUnJmUDZzWk9fTTBjdUkwSEFHbzVZWUxlSkpNb2dKdHk3VHdRdFhMQ016OUNSSEVETml5aTBxZlJyNEQ2dW5aLWplN0VSbmRXRW9ydnhvOFd5eV9zd0NPYjJjcVV4SkZsMjNUX2VrYjhQQzlyZTlXckJwN19PeURobmhHWTRGQkJFb09zYVB3eHBFNDhCZXBoWjM4cTdKeTN0TnBBbDlMSmNKVl8xeG9PYTVlalBnTkxoVlRuRHZYaEl1VGFBcm9NekE0NmI5ZmlhdmQyWTNQbGs5cy14N185QVg?oc=5",
           "intensidad": 6.0,
           "medio": "El Universal"
+        },
+        {
+          "texto": "Detienen a 14 presuntos integrantes del Cártel de Sinaloa en Chiapas; aseguran armas y equipo táctico (Redacción Astillero Informa) - julioastillero.com",
+          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQOHZlTzh2WHJfY3hzY0FhTDRzMHZiTmpvUl9FM3A2Tm1ONFBnZ0hXa1BNZFY4RVBWUTlfaTAtbVFHcHhUVFNHeFVqZ1cyZGstQUlYNVZ3Ujd3TnZXdF95cDhVY3RsRWxRTmlCOC1MOXBOd0VBNzY0WGJIU2NHR0lWYnplREU1NnlWTHRtelZfaHpPQzN0M2tXRGJjVmUzalI2cEZmYnFzdXZycGJxRUVMZ1lMQlRFY2RCU0t3a19jempZc18yMjJF?oc=5",
+          "intensidad": 5.0,
+          "medio": "julioastillero.com"
+        },
+        {
+          "texto": "Dámaso Castro renuncia como vicefiscal de Sinaloa; Estados Unidos lo vinculó con el narcotráfico",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/11/damaso-castro-renuncia-como-vicefiscal-de-sinaloa-estados-unidos-lo-vinculo-con-el-narcotrafico.html",
+          "intensidad": 5.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
     {
-      "categoria": "Economía",
-      "peso_pct": 11,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 1,
+      "categoria": "Relación Bilateral",
+      "peso_pct": 7,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
+      "n_temas": 2,
       "n_notas": 2,
       "notas": [
         {
-          "texto": "Morena plantea nuevo recorte de 500 millones de pesos al INE para 2027 - Municipios Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNaGJjaFg0NC1lYS1sVURfOUZfS1FCbjVvVHFXYlZQMW83VHBBa0RjYlZNNm5IRGctWkNtQURzb2ZHdWtNbGdEVy1HVmg1dWF0V3Y1UHdmMzg3Y0ZRU2JPcGhzMGV4R0lqV1MtOHVGWUdtOGNhbm5QeFZRTmtvbFlsUkJTMU9LUklBVDh1bWt4SS1qLTJTc3hBMTRQM19VbVQ5Z3pHMncza2ZzdDFZSHVv?oc=5",
+          "texto": "Nada cambió con EU tras debacle electoral de Trump, dice Sheinbaum",
+          "fuente_url": "https://www.jornada.com.mx/2026/11/11/politica/008n1pol?partner=rss",
           "intensidad": 7.0,
-          "medio": "Municipios Puebla"
+          "medio": "jornada.com.mx"
         },
         {
-          "texto": "Cuesta la delincuencia 3.6 mil millones de pesos a oaxaqueños",
-          "fuente_url": "https://imparcialoaxaca.mx/oaxaca/cuesta-la-delincuencia-3-6-mil-millones-de-pesos-a-oaxaquenos/",
-          "intensidad": 6.0,
-          "medio": "imparcialoaxaca.mx"
+          "texto": "Propone Claudia Sheinbaum abrir archivos del Fobaproa para revisar rescate y compra de Salinas y Rocha - SPR Informa",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWxvbUFFclB4MUtndExianJCcVdadUhVWXJ1SjBQTDFrTXJiTFRabUFiQUZiazFLY1EzOERVbmNxSUV0T1ZKQ2pFa1YtY1dKZHNwbXoyT3I1Tlp5NC1JZEFvNjRSMXJDNDlfZjlGQkFlZmktc2YxVHl5d1JLektaelNjOFU1dWZiOHk1MXVSWUhGWmdSQ2dzNXFOcThZclo3T3ZJSGF4MEU4QVRYN0VMQmlvUWNuaWZsVlhjLUMyU2lrVGNlY3Y1SE1JTDZrVlpQSkE?oc=5",
+          "intensidad": 5.0,
+          "medio": "SPR Informa"
         }
       ]
     },
     {
       "categoria": "Social",
-      "peso_pct": 11,
+      "peso_pct": 7,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
@@ -160,18 +196,18 @@
       ]
     },
     {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 6,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
+      "categoria": "Economía",
+      "peso_pct": 4,
+      "tema_principal": null,
+      "tema_principal_id": null,
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Nada cambió con EU tras debacle electoral de Trump, dice Sheinbaum",
-          "fuente_url": "https://www.jornada.com.mx/2026/11/11/politica/008n1pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
+          "texto": "Cuesta la delincuencia 3.6 mil millones de pesos a oaxaqueños",
+          "fuente_url": "https://imparcialoaxaca.mx/oaxaca/cuesta-la-delincuencia-3-6-mil-millones-de-pesos-a-oaxaquenos/",
+          "intensidad": 6.0,
+          "medio": "imparcialoaxaca.mx"
         }
       ]
     }
@@ -211,7 +247,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 69
+          "peso_pct": 70
         },
         {
           "categoria": "Relación Bilateral",
@@ -236,7 +272,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 69
+          "peso_pct": 70
         },
         {
           "categoria": "Relación Bilateral",
@@ -269,7 +305,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -336,7 +372,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
@@ -357,7 +393,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
@@ -386,11 +422,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -415,7 +451,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 15
+          "peso_pct": 14
         },
         {
           "categoria": "Economía",
@@ -432,11 +468,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -461,7 +497,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -486,11 +522,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 16
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
@@ -515,7 +551,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 16
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
@@ -532,11 +568,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -573,7 +609,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 3
+          "peso_pct": 4
         }
       ]
     },
@@ -611,7 +647,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -619,7 +655,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Social",
@@ -736,11 +772,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 56
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 19
+          "peso_pct": 18
         },
         {
           "categoria": "Economía",
@@ -748,7 +784,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 7
+          "peso_pct": 6
         }
       ]
     },
@@ -761,7 +797,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -782,15 +818,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 17
+          "peso_pct": 16
         },
         {
           "categoria": "Economía",
@@ -811,7 +847,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -819,7 +855,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Social",
@@ -832,11 +868,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -861,15 +897,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Economía",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Social",
@@ -895,66 +931,25 @@
       "actor_vinculado": null
     },
     {
-      "id": "auto-2b62a726e9",
-      "nombre": "PRD afirma que May integró una comisión electoral de funcionarios para revisar c",
-      "categoria": "Relación Bilateral",
-      "resumen": "PRD afirma que May integró una comisión electoral de funcionarios para revisar candidatos de Morena - XEVT",
-      "motivo": "⚡ Posible presión de Ariadna Montiel Reyes — Ariadna Montiel exige comisión especial por fraude electoral 2006 - Milenio",
-      "peso": 14.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": true,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNam03bzRzVTJrM0d2dXlaWnFVclJkQWt2dzdxSlNJZ3dKNVdMQk52LWFXd2RVTEVUUWVDb3BPMzE0V2d5R3pkLU5OelZmMkVYVmotSWpncmc1R2ZhblFtc0J4Q0gxQ2NQbDBfbk9WWmtMZ0dtSmtObHFLRl8xM3A5UEJVdXVCblF3d0xTOEpNTGR4N19PcXBEMENGNDBSVzk4Y0hZ0gGjAUFVX3lxTE9xUHVld1JaZHZsMzFHc2FPdUtKb01PWFh6R1JLenhwXzR4ZXNSNkdSUm8yc3FPeG5vS0xxdTJZNnl6NnRON19VbHNDQVNQSjlsV244V2lvVVdyV0FINy1kRGFyZVMwT0lSU25BRGxfclh3T3NMVnNGR1ZGTVFhRkw4NGVNY3I4a1FPWTlVQWhIMHplRE4xdDVwcmVGZ1E4MEhKdGM?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-fff5d34a68",
-      "nombre": "Agradece el rector de la máxima casa de estudios presupuesto para 2027",
-      "categoria": "Economía",
-      "resumen": "Agradece el rector de la máxima casa de estudios presupuesto para 2027",
-      "motivo": "Morena defiende recorte por seis mil MDP al INE en el Presupuesto Federal 2027",
-      "peso": 5.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.informador.mx/mexico/ine-morena-defiende-millonario-recorte-al-instituto-en-el-presupuesto-federal-2027-20261110-0176.html",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
-    {
       "id": "visa-de-andy",
       "nombre": "Visa de Andy",
       "categoria": "Relación Bilateral",
       "resumen": "Estados Unidos revocó en agosto de 2026 la visa de Andrés Manuel López Beltrán, hijo de AMLO, con versiones de que sus hermanos José Ramón y Gonzalo también fueron notificados. Sheinbaum calificó el hecho como 'injerencia' política; Andy acusó por carta a Marco Rubio y Christopher Landau. El caso se lee en Palacio Nacional como una señal dirigida al propio AMLO.",
       "motivo": "Sheinbaum, a favor de abrir archivos del IPAB; \"aunque lo niegue, Salinas Pliego se benefició del Fobaproa\", dice - La Jornada",
       "peso": 5.0,
-      "n_temas_agrupados": 2,
+      "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxNcVo3Tk83eXc5MTVQeHBWb0gyWUkyaXREM283bXpMTktLbTdmX0VHYnR2MHphMXozcFFKUG15T012SktrbE5FQmhJbndRcXRjekNsQXlpQWVwMTJCek5rdTM5UXVJY0ZWb0d2TU1UZWZwSlhGaDV1dlE5WUJ4clYxdEVvWEFQdXA2NDBQaHVDRDN6X0JaQTZkZmRoVG9nMUo3N0ZjR0VsQVlPamwxRzNsZXdZcHJJM0ZiVmRoM0lkOGttamdGdllvUXpzd2tKaFZJd1VDa2w0U1lZYkZDLW9iMHhzOVd6ZGpTc21VeXpwZGgyMlhEa3ZWcmxEeHlXN001Q1FJeFBRYWwxYlU?oc=5",
       "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
       }
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-f7f2033607",
-      "nombre": "Morena defiende recorte por 6 mil mdp al INE en PEF 2027; oposición acusa \"venga",
-      "categoria": "Gobernabilidad",
-      "peso": 12.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNbzVneDFiOWVGczRQNW5nWVFkYUJ5VW4xSEw3emNfc2tPZmhaRjJqaVVmeVJDc1pKZEhwOU80X1gzd2NURl9nMHhqQTFKWWdKRmRBc3U4UkxFQW90c19RSVB1WF96WktaTUtybGc2TFhJVUtIaHFlWC03ZEF3RVhnWHFNNmZ2V0RweEhXNGNDWExqUDNMdUw4bXJBbmlreFFGYzZWdXB5aFVkTlYwV0tlS1I1OUJza1hOYUwxSjhLanFyaEtxQzZpTHJId1NmcnNCNXc?oc=5"
-    },
     {
       "id": "auto-d5d21c1cfc",
       "nombre": "Sin asistir tres meses, senadora migrante pide polémica licencia",
@@ -986,6 +981,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/morena-claudia-sheinbaum-define-comitiva-que-la-acompana-a-china-20261111-0019.html"
+    },
+    {
+      "id": "auto-844dd5ba28",
+      "nombre": "Perciben a Morena impaciente por negar a Taddei - El Universal",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPYlZMc3R2Q0pCWFBOQ3Z4X3hqQ0tJeUVqU3ZmVG1kMEZrb3RJOFZfckNJUUZxdUFBdllQMUJUVVd2azFIUnpHQ0NCR3paTkIweGlVWlBJZVBpcXBBbllCR19iR0VuTzU5NUczZFVnSnVzUThvbDVMTERaSVh6RVJxV09lVUkwdEFHVUQxSWpJNTNVSVVJOFB2VFd4dUIyYU1kUjRuN1dSaEk4Q19KeDI2WVk4V3RzRVFVZzJzX0J5WklBdE83dm45bUh3MlZMVlhpY0JzenhzdEHSAewBQVVfeXFMUEZGN2xyTVdIVW1QbkZxdThkTk5yUDl3WHRpUkVweUtWd3lLRG9iYl9VMVNCeXRrTC05R1pNZGx2TExLY3JPMDdnbzhDM3FUcXpjT0MzQ0VHdVVFRkhuWUl0ZjhDY3A3SEtqenN4MzFSOTd0NlUzeDVpOHVGTVlBVWhiSFE1ekVyT2FnSXptMEg5Zm5oX1hyb0RwQzItQlN5RzlWWVJWU1Q4R1Q4OFZwZXI2MWZDdE5rcFJaNlluVGVTRnZkY0ItQlljSklCM0FaMUhRWDdfdFlvRldXU2dRR3RMcnNraW1sc1FWQ2w?oc=5"
     }
   ],
   "temas_retomados": [
@@ -993,7 +996,7 @@
       "id": "auto-07f10b24fe",
       "nombre": "Baja cabildo a comunidades en Nacajuca",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 64,
+      "dias_silencio": 65,
       "motivo": "Prevención y trabajo comunitario, ligados a baja del 50% en homicidios",
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/prevencion-y-trabajo-comunitario-ligados-a-baja-del-50-en-homicidios-20261111-0022.html",
@@ -1004,7 +1007,7 @@
       "id": "auto-8cb61efd82",
       "nombre": "Plan de acción",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 45,
+      "dias_silencio": 46,
       "motivo": "Presidenta Claudia Sheinbaum presenta el plan de consolidación del IMSS Bienestar con 12 acciones en 120 días - Gob MX",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPZ3B4RHprODFTUGNBNDE4ZTZPZ09KTXo0d0dmZDJvTnktcXEyUzh1RXFyck1faGxZSk9XZXRrLTc1RkJ0TVpVSjN5Q3dhY3VaMmhuS1NqeUZ0ZEltMlAwTFZwc1JuTFlFaFdodEdOdVJxYThzbURCbWRORWJ1NzI4RVUxT25xSEF0QmZMZjZfV09HZTRDOGp2dzl3enRGdFBtOXh5STdsNzZfWmtBX082bTgzbDlrTWNseF9nODZ4N0had2lNUjAtUElvQ3hHYkJJRDJtcGY5QzZnWEdxWmtXRA?oc=5",
@@ -1012,36 +1015,36 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-defbaf30d6",
-      "nombre": "Interceptan a 42 migrantes a bordo de tres embarcaciones frente a costa de Calif",
-      "categoria": "Social",
-      "dias_silencio": 35,
-      "motivo": "🔔 ALERTA — Interceptan embarcación con 18 migrantes frente a las costas de California - Milenio",
+      "id": "auto-7f7c69e0b9",
+      "nombre": "Anuncia Mara Lezama inversión de 3 mil 600 mdp de la CFE para cableado submarino",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 36,
+      "motivo": "Da Mara Lezama la bienvenida a la Selección Mexicana durante su concentración en el Caribe Mexicano - Gobierno del Estado de Quintana Roo",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOVHBUZVlPUGRYVnZHT2R1b1AxWWdLekFfbzlrVGFNVFVjVFFCWXM1cmZLYTZiTkJmN2RDdlZmX0xtSjJGMm5nZ09YeXc1SUVjX0Y1Qi1BSGEyV1N6bDUtUWxvQlp2QnpiWUpaU0NUeVNBTHhmeTIySk5zMmtPWXRDUF9NVkR4V0QtblVNQU9vczgyVGNBNUVEbkg4aTBXYTQ00gGgAUFVX3lxTE9oZVVMazJjN3JMYjBjei1KcGNrMzlaeV9pUlFhVVhiMjZROUF2S0w4am1HZzdSRnV5Y0loeXhnb2E3T3ZnTkZRNVc2cHNnbTZVb0RJZy1USnRRaDJ1aVRuRnFSNkIySmhaZVZFQ2NSaS0yV1ZKNUpqQ3JjYnMxZ1V3MDIxYWR1QVE3c2xPMVlJcXl1NTVReEFIYVdBbmpHVlc?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNS2ZJTjVVcUsxM2F3cU96dHB1alYtQnJSWWppVG5uN1ZHeERCS2VVVVZzbThGbWxiblRrMmgxV1doMUlhWTlPLWVYMGhXNmxBSHJtVV9Tb1d1cmpHRUpGZzEwazY0eHQyODNXNnJFRWpZUGN3R2NSVW1pdzVKeVNmYThmRUN6TnZMZGpWWmpkbmhNZERxQTlNNW5iZmpZVTNKRThJWktNek4ySE5xSG9IYkN1clY4bXIwOWJhag?oc=5",
       "fecha_anterior": "2026-10-06",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQek5SeXY2djlDLW5QOG53cVUtcjY4eWZOYlpURU9BTlB6RlZQckp5T0NWZXpxY1cxWEppaUVYUmlaTVJoVFU5NlcwLVl3Sm9yTHVxQm4yVHJQSTJUVFFqZTlUWFNfR25oN1JYVVpHOExqOWlZRUI5Q05ad0dYNk5hcExRXzVOZjQ4R2ZLYU83TEVQZ9IBkgFBVV95cUxPenI2VXBSMk5EM2VIZ293MElwaS1Yb1JfREdHUTc5S1V4Vk40TjFJWXIzdGNiUkZYX2o3T1YzM0NtNktBRVVtd01QVkU3OWFvaU4xU1JoN05wcnFFUzJjZkY1R2VaX0J6WUdCY3M2cXdjMUxqTWFOaTRTd0xtajJBbl9MSm9xY1M3dUliRDQycHpqdw?oc=5"
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNbFlzSHpwQXFVX29lQlFyNjhsZE9hUDdTVFRVVjF1eFhWOWdZeHd0VHV4WUdvbzZZYzhBbUJZQU5GeFZjU2tZQlozWmw4WWQzQTVqUnJSWC1zRmJkTmliZTdDT3E2VDFTSlZSVkQ3OUoyVW1TVnhWSlRtdmtKejVNamxNNkdKcG1CZ2Z5SFJlS3dZS1pQTEE5VWZ5X1pjSEp4U09zNk5MVE5PMGpEYkl0cDJxeWZ3QzJMbEFnOG5Xc09FUkZRZW9haDV2SDJLTk1sLTFRS0UwRGJqZW9pZHR5dmlSLTBsMjNxQ0hlekY3YzJZUQ?oc=5"
     },
     {
-      "id": "auto-887ee4aa55",
-      "nombre": "Es una realidad: la presidenta Claudia Sheinbaum inaugura campus de la UNRC en N",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 24,
-      "motivo": "Inaugura Mara Lezama domo en el campus Playa del Carmen de la UQROO - Gobierno del Estado de Quintana Roo",
+      "id": "auto-fdfb322ed6",
+      "nombre": "Refugios por huracán 'Simón' en Jalisco | Ubicaciones y todo lo que debes saber ",
+      "categoria": "Social",
+      "dias_silencio": 33,
+      "motivo": "🔔 ALERTA — Jalisco, refugio criminal - Milenio",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNeDhRUDdwNVVtOWNScjUyS244RTlQdXhPRE5HWVNrZldkZlB2RnJ5SmktemRST3MwNzZ3aFk4Rm4yS0RIRUtHSDlqNkUwMm9ORWI0Z1JSa3V1WDZab3dSU1BxaW9QdExrdmhRTmtHWDI2MktRdFZyd1VYQklDZENFUmxucHZfdU5yUmhsUjZRQWs5QQ?oc=5",
-      "fecha_anterior": "2026-10-17",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNRkpWOHhJSVBrcm0xVHdNZGtmRmxua1lqZWEwUVRRVEJnZ0tqRlpramlOMFdka00wMnVpWEI4dmlpOHFYNV9hRVA2cUZ4VGtrRWZFUV9UM2Q5QW9fRDRURmwtMUc3Y1dGSW1oNkJrVHlPbDVtNG5uTHNlcEhUTGhxaHh5eS1HWmdzZmdBU1NKOGlybU54cHRrSUNrTU0zejFOZkxzMWZIdmRfXzg?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPTjNXNVZJSUxHSWtGR2JscmM0OG01WGU4VWF1cGlhZGtSZ3ZpWFMyWkFWS1RpakFhTTYyRXBjZk1IMHNXOHprUWZtQVlsdTgxMnhlVHFkUTRXTm92YnRNM3YxQXJHLTZLczdXRUd1Mm9mRFdzb010UlZjdUpVZW5JN0dtMlpYMG50dHgycDVTMNIBjwFBVV95cUxQWmZIb0o3cTdVSzdkdGlNX284M2R0dlZBSDJHRWdfNTNybFU2RDdUM2s1MFFicVRHbWtsNENWaW14cGtPcm9pczc3WTdSYkkwVEhMVkJnNE9nZXBRZU4zV1U2Wlh5MW1RNWlVYm1rTnItS2NySU5JQ09ERndVbEJVN1hfaWl1cUdPS0FNZTl2SQ?oc=5",
+      "fecha_anterior": "2026-10-09",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQeFFHcjdMZmg4Ui1VdV9FS3BCWkFVdnRWLUE4cmFjQXlwZzMyZHl5Z1lmWHIycWpRNjFEZ2RrWUlkajBqNUNfQXRxSHQ2UklXZXdzYkFLMk9MaDJYRW5fMms4RVB5dVpzTV94TlN2TDZXN1NLbzFiSHVxd1d5VWwzR09tZFBBa2pZVUQ4c25B0gGOAUFVX3lxTFB4UUdyN0xmaDhSLVV1X0VLcEJaQVV2dFYtQThyYWNBeXBnMzJkeXlnWWZYcjJxalE2MURnZGtZSWRqMGo1Q19BdHFIdDZSSVdld3NiQUsyT0xoMlhFbl8yazhFUHl1WnNNX3hOU3ZMNlc3U0tvMWJIdXF3V3lVbDNHT21kUEFrallVRDhzbkE?oc=5"
     },
     {
-      "id": "auto-b1c48307e6",
-      "nombre": "El gobernador morenista que hizo coincidir al PAN con Palacio, escribe Claudio O",
+      "id": "auto-fd93a9b020",
+      "nombre": "Realizan habitantes de Sacxan y Ramonal bloqueo carretero; exigen el pago de sus",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 23,
-      "motivo": "Morenistas se reúnen de emergencia en Gobernación por Taddei, escribe Carlos Loret de Mola - El Universal",
+      "dias_silencio": 28,
+      "motivo": "🔔 ALERTA — Habitantes bloquean Circuito Interior exigen retiro de campamento migrante en Calzada Vallejo - El Universal",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQSG95VFFTRUtNM25kekdmXzhHMktUbE9tbVNDRFJWT205NTY1V2RQaDU0eTZGYlhjX1NLdXZwcVlZVThlV3lMajdsRkp6amVkUC1La2FSQWxlXzJYWDZiUnZmYmN6cUd1dXhwLVBVSTFFYklXMjZVRXNibl9VTThHbVZobUFZdEhUOUtpand1YUIyYXNuc0ZvbVNZczJ6YVdCanFDaGY2NkZuVU9Rb2NvSFhJZ0wwU0JOWDh5cWRn?oc=5",
-      "fecha_anterior": "2026-10-18",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOak9NT1lxa0Nxd2F2aHhRSTRxb19pZzdweVFDZzVSc3h5allNUzF0V19aamV4V1RDOER5eFFOQVRXVkI2T1l3VnBLQUFjVWxWdF8yVElmWGlHMXRCb0N5bkVIdDNwMW9IMmwtaGlOLUlSX3MxbWZZVEhOZ2s2OGpmZHZOX01wUWVhOWMwT2tmdzBhOGstRUQ3Nkg1aUUzZXJSTV9hVVhOQTVralZFaEJpaW1oZGFiWVhVNTRZQ3BpNW1tdWt6SmJvX09n0gHeAUFVX3lxTE5YZzlBOF8tUU92ZU1sUHc0aHlTcXAzcWszSUVWNVBaMGpqcUxCQmtZTjNwNUx2aHY2cTZmaTZTMlpuZWtlU0VfVUZ0NDh3elJGajZfdHd2U0RickoyS0J3Rk1LbHlhZE1pbTlENjVHWGpOMWtkNVZONzhGN2hibVlUYS1USkZ4UFFtamIybDBGemFVNnY1cEhfRjAzcEluSGxTMXdhM3pVWEdPdU1xUTM3SWlsNmxQRThScVhYUnFPWWZhZ2dHX0xSaVpnWnBLQXhIOGE1ODZiRGNFNFA2QQ?oc=5",
+      "fecha_anterior": "2026-10-14",
       "fuente_url_anterior": ""
     }
   ],
@@ -1069,34 +1072,12 @@
       "confianza": "media"
     },
     {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "rol": "Responsable institucional",
-      "tema": "PRD afirma que May integró una comisión electoral de funcionarios para revisar c",
-      "nota": "⚡ Posible presión de Ariadna Montiel Reyes — Ariadna Montiel exige comisión especial por fraude electoral 2006 - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNam03bzRzVTJrM0d2dXlaWnFVclJkQWt2dzdxSlNJZ3dKNVdMQk52LWFXd2RVTEVUUWVDb3BPMzE0V2d5R3pkLU5OelZmMkVYVmotSWpncmc1R2ZhblFtc0J4Q0gxQ2NQbDBfbk9WWmtMZ0dtSmtObHFLRl8xM3A5UEJVdXVCblF3d0xTOEpNTGR4N19PcXBEMENGNDBSVzk4Y0hZ0gGjAUFVX3lxTE9xUHVld1JaZHZsMzFHc2FPdUtKb01PWFh6R1JLenhwXzR4ZXNSNkdSUm8yc3FPeG5vS0xxdTJZNnl6NnRON19VbHNDQVNQSjlsV244V2lvVVdyV0FINy1kRGFyZVMwT0lSU25BRGxfclh3T3NMVnNGR1ZGTVFhRkw4NGVNY3I4a1FPWTlVQWhIMHplRE4xdDVwcmVGZ1E4MEhKdGM?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "rol": "Mencionado",
-      "tema": "Agradece el rector de la máxima casa de estudios presupuesto para 2027",
-      "nota": "Morena defiende recorte por seis mil MDP al INE en el Presupuesto Federal 2027",
-      "fuente_url": "https://www.informador.mx/mexico/ine-morena-defiende-millonario-recorte-al-instituto-en-el-presupuesto-federal-2027-20261110-0176.html",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "tatiana_clouthier",
-      "nombre": "Tatiana Clouthier",
-      "rol": "Reacción de oposición",
-      "tema": "Coordinadores estatales de Morena rumbo a 2027",
-      "nota": "Tatiana Clouthier acusa imposición de Morena para Nuevo León - MILENIO",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPNlF3TExFaW5rekdBSFl5T0lJUFQyVEpWSXNFVDN6OXZycGVhNjhUZDREN0dPU0FIVVZyOVRNWFQ1SWZ5UzlLRFNIOFMxY0tSSnZWMkhQYVpraXllZW0wNVpsSGFCeHhmbWN0bVhPQXhIS24wNnJqZ1RReTdqQk5PRjdlX2ZYc2otcEw0elhCYmJXdnNOaGt6d005d9IBmwFBVV95cUxOSDVYVWdiMG1fdFRpa3dPQnJnLThZdlJWUHFCZ3hZY1ItaEdMVUtPMW10dTJ4dldkQXRCMEFZTGpGc2oyOEkyR29ZUThCdzlEbG1hYjByM0ZjaHdCT1R0Rmh3Q3BZV3RXNDEwaWpDVHBkTExQdU1HeVV3VEdka2tiTlNxUE9PejNZenRfUlJ1TXRlZlBJdHMyVDRmdw?oc=5",
+      "tema": "PRD afirma que May integró una comisión electoral de funcionarios para revisar c",
+      "nota": "Solicitará Morena formar comisión investigadora del fraude electoral de 2006",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/11/politica/005n3pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1122,26 +1103,26 @@
     },
     {
       "fecha": "2026-10-16",
-      "tension": 17,
-      "n_notas": 62,
-      "n_alto_impacto": 17,
+      "tension": 18,
+      "n_notas": 63,
+      "n_alto_impacto": 18,
       "n_medio_impacto": 45,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-17",
-      "tension": 23,
-      "n_notas": 34,
-      "n_alto_impacto": 14,
+      "tension": 24,
+      "n_notas": 35,
+      "n_alto_impacto": 15,
       "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-18",
       "tension": 20,
-      "n_notas": 43,
-      "n_alto_impacto": 15,
-      "n_medio_impacto": 28,
+      "n_notas": 46,
+      "n_alto_impacto": 16,
+      "n_medio_impacto": 30,
       "n_bajo_impacto": 0
     },
     {
@@ -1155,25 +1136,25 @@
     {
       "fecha": "2026-10-20",
       "tension": 25,
-      "n_notas": 70,
+      "n_notas": 71,
       "n_alto_impacto": 34,
-      "n_medio_impacto": 36,
+      "n_medio_impacto": 37,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-21",
       "tension": 25,
-      "n_notas": 67,
-      "n_alto_impacto": 28,
+      "n_notas": 68,
+      "n_alto_impacto": 29,
       "n_medio_impacto": 39,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-22",
-      "tension": 24,
-      "n_notas": 71,
-      "n_alto_impacto": 30,
-      "n_medio_impacto": 41,
+      "tension": 25,
+      "n_notas": 74,
+      "n_alto_impacto": 32,
+      "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
     {
@@ -1186,25 +1167,25 @@
     },
     {
       "fecha": "2026-10-24",
-      "tension": 25,
-      "n_notas": 31,
+      "tension": 23,
+      "n_notas": 33,
       "n_alto_impacto": 13,
-      "n_medio_impacto": 18,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-25",
-      "tension": 20,
-      "n_notas": 32,
-      "n_alto_impacto": 10,
+      "tension": 21,
+      "n_notas": 33,
+      "n_alto_impacto": 11,
       "n_medio_impacto": 22,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-26",
       "tension": 20,
-      "n_notas": 60,
-      "n_alto_impacto": 19,
+      "n_notas": 61,
+      "n_alto_impacto": 20,
       "n_medio_impacto": 41,
       "n_bajo_impacto": 0
     },
@@ -1219,17 +1200,17 @@
     {
       "fecha": "2026-10-28",
       "tension": 24,
-      "n_notas": 82,
+      "n_notas": 83,
       "n_alto_impacto": 34,
-      "n_medio_impacto": 48,
+      "n_medio_impacto": 49,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-10-29",
-      "tension": 25,
-      "n_notas": 56,
+      "tension": 24,
+      "n_notas": 57,
       "n_alto_impacto": 26,
-      "n_medio_impacto": 30,
+      "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
@@ -1242,10 +1223,10 @@
     },
     {
       "fecha": "2026-10-31",
-      "tension": 18,
-      "n_notas": 54,
+      "tension": 17,
+      "n_notas": 55,
       "n_alto_impacto": 15,
-      "n_medio_impacto": 39,
+      "n_medio_impacto": 40,
       "n_bajo_impacto": 0
     },
     {
@@ -1258,10 +1239,10 @@
     },
     {
       "fecha": "2026-11-02",
-      "tension": 22,
-      "n_notas": 29,
+      "tension": 21,
+      "n_notas": 30,
       "n_alto_impacto": 11,
-      "n_medio_impacto": 18,
+      "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
     {
@@ -1283,68 +1264,106 @@
     {
       "fecha": "2026-11-05",
       "tension": 25,
-      "n_notas": 61,
+      "n_notas": 63,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 41,
+      "n_medio_impacto": 43,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-06",
-      "tension": 24,
-      "n_notas": 37,
-      "n_alto_impacto": 18,
-      "n_medio_impacto": 19,
+      "tension": 23,
+      "n_notas": 39,
+      "n_alto_impacto": 19,
+      "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-07",
-      "tension": 9,
-      "n_notas": 30,
+      "tension": 8,
+      "n_notas": 36,
       "n_alto_impacto": 6,
-      "n_medio_impacto": 24,
+      "n_medio_impacto": 30,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-08",
       "tension": 20,
-      "n_notas": 25,
-      "n_alto_impacto": 7,
-      "n_medio_impacto": 18,
+      "n_notas": 27,
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 19,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-09",
       "tension": 16,
-      "n_notas": 37,
-      "n_alto_impacto": 10,
-      "n_medio_impacto": 27,
+      "n_notas": 39,
+      "n_alto_impacto": 11,
+      "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-10",
-      "tension": 20,
-      "n_notas": 34,
+      "tension": 19,
+      "n_notas": 35,
       "n_alto_impacto": 11,
-      "n_medio_impacto": 23,
+      "n_medio_impacto": 24,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-11",
-      "tension": 35,
-      "n_notas": 13,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 7,
+      "tension": 28,
+      "n_notas": 27,
+      "n_alto_impacto": 11,
+      "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
     {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 62,
+      "y_lunes": 60,
+      "x_hoy": 100,
+      "y_hoy": 72,
+      "delta_pts": 16.5,
+      "alcance": 14,
+      "n_alto": 7,
+      "n_medio": 9,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/11/claudia-sheinbaum-entrega-72-casas-en-aguascalientes-como-parte-de-vivienda-para-el-bienestar-2917208.html",
+      "nota_texto": "Claudia Sheinbaum entrega 72 casas en Aguascalientes como parte de Vivienda para el Bienestar",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 25,
+          "y": 62
+        },
+        {
+          "fecha": "2026-11-10",
+          "x": 62,
+          "y": 60
+        },
+        {
+          "fecha": "2026-11-11",
+          "x": 100,
+          "y": 72
+        }
+      ]
+    },
+    {
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 55,
+      "x_lunes": 38,
       "y_lunes": 100,
-      "x_hoy": 73,
+      "x_hoy": 50,
       "y_hoy": 100,
       "delta_pts": 6,
       "alcance": 7,
@@ -1353,25 +1372,25 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY09iblpYN2I3bGRFdVFDWl96V2p0ZHlLS0ZHdmp3bnR1cUs3SG5OU3NEMkg1YkJfUzJzUXotS2ZXdE1HT0gwUW9wcUJ2RUtfT3RjWUtIOGJZdnZ1TGNPMWt2RnBwZ2lGMGVBSHBvLVNhU0FQc05vY0d3OVg3RkxETVp5NS02aEJsT181bmNuVzljblh4OVoxeU5aZ0lESUFkZmVFOV9CM3picVVDUGdSRkRPbzRhcllMUXNYbVIxcWh6V0hBMWxXY2swNno4dTNVZWtiS25oOA?oc=5",
-      "nota_texto": "Andy López Beltrán reaparece en Tabasco entre señalamientos de corrupción y tráfico de influencias - Proyecto Puente",
+      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPU2FwYW5aaElmVklMQTR1ZlpaT0JXM0pua2pwT0I0ckhMV1U2S21YTzR3UjdzM2p0a1cwY1dXandlNm5aLS1YZkJkaV93bDU4ZTA3ejJNZFRNckt2SEVESERtRzQ2OUoyRm5DVjFSc1lxZF81RnNGM2tfN010NTdPcUJzcGV4WnNlRzVyM09WVUVJR1dRbUptYU9LeV96MG5JVWozQmxuWkNfSFQxQWQ4N2VaNjMxX09MY2JnaWNDWmZMS2lyLVd5bm1qbnFGelN3bko4dVQzZmh0VU4yN1BiVdIB5gFBVV95cUxPeXQtQU9rZUQ5QkdQamVJUnZQeTg4aUVheTJfSHU2VWdCM05jYXd4eHJnemZxVTVfT0h2OFczUzhzOFZlU2p0RlMwLWlrTmVWczQ2OFhnQ3hUQnBYV0cweTVxdEVCZF94S2htVV9yU3J6TDdWNzRhWHBMeUdrc05YdFYtbUQxTDM3bGlnbEJVelVuQTU3TzNxMVN1Y2hWeUk3eUJsMC1wdkZfRUtXcHVjRnROZFhmTi1wdmxkTUszQ1ZpNnh6Q2dXdXJwSUNfTGk4MHdaY185MUZocnJnX0ItLXBKazFiZw?oc=5",
+      "nota_texto": "Andy López Beltrán responde a Ricardo Salinas Pliego: niega vínculos con huachicol fiscal y le lanza cuestionario - Por Esto!",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 27,
+          "x": 19,
           "y": 100
         },
         {
           "fecha": "2026-11-10",
-          "x": 55,
+          "x": 38,
           "y": 100
         },
         {
           "fecha": "2026-11-11",
-          "x": 73,
+          "x": 50,
           "y": 100
         }
       ]
@@ -1380,9 +1399,9 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 55,
+      "x_lunes": 38,
       "y_lunes": 50,
-      "x_hoy": 100,
+      "x_hoy": 69,
       "y_hoy": 59,
       "delta_pts": 10.5,
       "alcance": 8,
@@ -1399,67 +1418,29 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 55,
+          "x": 38,
           "y": 50
         },
         {
           "fecha": "2026-11-10",
-          "x": 100,
+          "x": 69,
           "y": 59
         }
       ],
       "fecha_apagado": "2026-11-11"
     },
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 82,
-      "y_lunes": 56,
-      "x_hoy": 91,
-      "y_hoy": 60,
-      "delta_pts": 3.0,
-      "alcance": 8,
-      "n_alto": 2,
-      "n_medio": 8,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPY2NILW9Tdms3VW1sa25aME03OHZHTU9Mc1VKbGtJSVR4SEpnRTdqcERPd0NESWdGY3pBSDRTOFNGN1pmVHlMdFpqLTFHQXRVVmd0bUo3SlZRZGlEVDQtU0lTR0R2QkduNWNSSndwd3FQMDE2UzVZODZTUl80SEp1d3I1LXdSZ1hfdFBGa3NjUWY4OEN3Nlo2NlE2M1dpSmdlYmtIQlVpV190c2IyQnJsZlBuTU4taDZmOTFaR3dGdnl1ZUhHRVQyOWdqUHgxLXFibnVEbkFDdUdJcUXSAeABQVVfeXFMTXE0N2hTV0h5b3YzOFcxSUZ3S09weVRQcHE5akV6ZFNhbXFDNHlVWjVkOTF6VUg4b2lzelpRUGZ6OTFSLWgwdF80SGR3dEQ1RzdMWGpzb0hIZ2E4SFpVNTJHVnRia3c2LTY2OENuM1FNVEVVcmhYR2VjWmVCQkZNVTF3LUxySkJadE0zdmhTcW5kdFNwLV9yaXFSNXk0VTVlWnViWWNEbVlTYVJOYWg4T3FoSE5weUtSOElPN3RhelA4T2kzTGNLYUs2OFJWQlZHRnc5UnZFVjBUSkhrS2dxWC0?oc=5",
-      "nota_texto": "Sheinbaum Pardo respalda video de Andy López Beltrán contra Salinas Pliego y propone abrir archivos del Fobaproa - Por Esto!",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 27,
-          "y": 50
-        },
-        {
-          "fecha": "2026-11-10",
-          "x": 82,
-          "y": 56
-        },
-        {
-          "fecha": "2026-11-11",
-          "x": 91,
-          "y": 60
-        }
-      ]
-    },
-    {
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 27,
+      "x_lunes": 19,
       "y_lunes": 67,
-      "x_hoy": 55,
-      "y_hoy": 83,
-      "delta_pts": 9.0,
-      "alcance": 6,
+      "x_hoy": 44,
+      "y_hoy": 79,
+      "delta_pts": 10.5,
+      "alcance": 7,
       "n_alto": 4,
-      "n_medio": 2,
+      "n_medio": 3,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
@@ -1471,18 +1452,18 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 18,
+          "x": 12,
           "y": 75
         },
         {
           "fecha": "2026-11-10",
-          "x": 27,
+          "x": 19,
           "y": 67
         },
         {
           "fecha": "2026-11-11",
-          "x": 55,
-          "y": 83
+          "x": 44,
+          "y": 79
         }
       ]
     },
@@ -1490,9 +1471,9 @@
       "id": "monreal",
       "nombre": "Ricardo Monreal",
       "iniciales": "RM",
-      "x_lunes": 9,
+      "x_lunes": 6,
       "y_lunes": 100,
-      "x_hoy": 18,
+      "x_hoy": 12,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 2,
@@ -1509,12 +1490,12 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 9,
+          "x": 6,
           "y": 100
         },
         {
           "fecha": "2026-11-10",
-          "x": 18,
+          "x": 12,
           "y": 100
         }
       ],
@@ -1524,9 +1505,9 @@
       "id": "manzo",
       "nombre": "Carlos Manzo Rodríguez",
       "iniciales": "CM",
-      "x_lunes": 9,
+      "x_lunes": 6,
       "y_lunes": 100,
-      "x_hoy": 18,
+      "x_hoy": 12,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1543,12 +1524,12 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 9,
+          "x": 6,
           "y": 100
         },
         {
           "fecha": "2026-11-10",
-          "x": 18,
+          "x": 12,
           "y": 100
         }
       ],
@@ -1560,7 +1541,7 @@
       "iniciales": "AO",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 9,
+      "x_hoy": 6,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1577,7 +1558,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-10",
-          "x": 9,
+          "x": 6,
           "y": 100
         }
       ],
@@ -1589,7 +1570,7 @@
       "iniciales": "RS",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 9,
+      "x_hoy": 6,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1606,7 +1587,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 9,
+          "x": 6,
           "y": 100
         }
       ],
@@ -1616,9 +1597,9 @@
       "id": "garcia_harfuch",
       "nombre": "Omar García Harfuch",
       "iniciales": "OG",
-      "x_lunes": 9,
+      "x_lunes": 6,
       "y_lunes": 50,
-      "x_hoy": 18,
+      "x_hoy": 12,
       "y_hoy": 75,
       "delta_pts": 3.0,
       "alcance": 2,
@@ -1635,12 +1616,12 @@
       "trayectoria": [
         {
           "fecha": "2026-11-09",
-          "x": 9,
+          "x": 6,
           "y": 50
         },
         {
           "fecha": "2026-11-11",
-          "x": 18,
+          "x": 12,
           "y": 75
         }
       ]
@@ -1756,7 +1737,7 @@
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1811,5 +1792,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-11 12:00"
+  "hora_corte_publicada": "2026-11-11 18:01"
 }
