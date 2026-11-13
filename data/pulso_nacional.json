@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-13T12:02:56.522564-06:00",
+  "generado_en": "2026-11-13T12:43:10.426811-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 20,
+  "n_notas_ventana": 23,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 25,
   "tension_anomalia": {
-    "z": 1.26,
+    "z": 1.02,
     "nivel": "normal",
     "media_periodo": 20.8,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 64,
+      "peso_pct": 60,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
       "n_temas": 7,
-      "n_notas": 13,
+      "n_notas": 14,
       "notas": [
         {
           "texto": "UIF descongela cuentas de Rubén Rocha por orden del tribunal - MILENIO",
@@ -62,6 +62,12 @@
           "medio": "Semanario ZETA"
         },
         {
+          "texto": "Combaten embargo aduanero de barcaza “Poseidón” por huachicol fiscal - Semanario ZETA",
+          "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQd2gwR0VQS1M0ck5SZXJJQjNMdGdZdFBTY2tSUlBXMXppdWV2U2MtQWZ0WDB2b0NzVG0zcXlQUjFNd0VxbktuSXdRNkxQcmxaWjhGazFFaDhBd21TQmRrQzE2UU0xRFhWUHFDSi02cFoyb1loaHZUUVQwaW9nQWlMTHI0Xy0tOUtDbkU1UzNPcGlib2lTU19KVmg2QzVhVjdV?oc=5",
+          "intensidad": 6.0,
+          "medio": "Semanario ZETA"
+        },
+        {
           "texto": "Consejo Mundial de Boxeo reconoce a Ricardo Salinas Méndez por su labor humanitaria en Acapulco",
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/12/consejo-mundial-de-boxeo-reconoce-a-ricardo-salinas-mendez-por-su-labor-humanitaria-en-acapulco-2918025.html",
           "intensidad": 5.0,
@@ -101,11 +107,11 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 21,
+      "peso_pct": 22,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
-      "n_temas": 3,
-      "n_notas": 4,
+      "n_temas": 4,
+      "n_notas": 5,
       "notas": [
         {
           "texto": "Revisión del T-MEC está por concluir; aranceles al acero y autos centran negociación con EU: Ebrard - Milenio",
@@ -130,12 +136,18 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNSUVIWWlqdW1JaDZheExiVmNicnJXaVZaNGRhNWttOEttM3pXbnF6U2hyZk1yUV9GM2tGWElzV3hQRW9mMmZqd2JmQl9LYS00eVgtN1I3b2Y5NEpvOWFFb0M1NWZqdlhSNUE3WHo0S3FuQ3VoMUdOTVQ4NUp3eFRFcHB0TlFCcWxJVy1TYlJpME0zNnpaQTV4UERXakVSN3pQODJpS09YdlYwOUNhMC0yLWRvYU1hZ0MwWHFZ?oc=5",
           "intensidad": 5.0,
           "medio": "NVI Noticias"
+        },
+        {
+          "texto": "‘Tony Montana’, hermano de ‘El Mencho’, recibe sentencia de EU: ¿A cuántos años fue condenado a prisión?",
+          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/13/tony-montana-hermano-de-el-mencho-recibe-sentencia-de-eu-a-cuantos-anos-fue-condenado-a-prision/",
+          "intensidad": 5.0,
+          "medio": "elfinanciero.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 10,
+      "peso_pct": 9,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -156,8 +168,24 @@
       ]
     },
     {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 4,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "EU prevé acuerdos comerciales con México y Canadá pese a incertidumbre por el T-MEC: Scott Bessent - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQaGd0c2EwYjlCZFhSaE1HTk9ONlRNc3dHRkIwWFpYODYyQ0FNUUpXWDB2eE5ZZGJnX24wTmZOd3dmLUEwcVg1QkdiUUJudGNyNzJRRm5CS2hyLUx5UXlrWGtmZ2dPOHV1MzFnd1VQMExNZnRmRzBLZ1ZzX2pOdkxTS1dud3Q0a3dmWVMtRFRsZ1lNZnpFZGRHMDc0WTNpcGZjSEFteFNHSGIwMjJqU3lIV0FUS3hZRTRCYURYMUtQUUNWQ1E3UktXbTUxRzZ5YTdIY0HSAdcBQVVfeXFMTUdua2RxYUVIenFGR2o4NFJrU2E0enZkQ0dqU1h2MTdBeEtwN0Jad1QyS19BSEJCaVZfMXI4cmRYSXRHZVBmVjNNTmtxY1NndlNCT1pPczB0M09kSWJ6ZzRKRHROQXdOZ0pCbHFhLU5uOVpvU1B0VFJURDhxZllIczhlQVlZNkZpRHJEVC1sU3JKZEM0c2ludS03a2JFRHI4OUUyTmhVOTYzVERUZDRZaEV3c1hwdVNMaGluNmFQZlVRR0VsR0YxRnlFYTdrbmFCR0gwOWR6amc?oc=5",
+          "intensidad": 6.0,
+          "medio": "news.google.com"
+        }
+      ]
+    },
+    {
       "categoria": "Social",
-      "peso_pct": 5,
+      "peso_pct": 4,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 1,
@@ -170,15 +198,6 @@
           "medio": "El Universal"
         }
       ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
     }
   ],
   "categorias_tendencia_4sem": [
@@ -866,7 +885,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -890,11 +909,11 @@
       "categoria": "Seguridad Nacional",
       "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
       "motivo": "UIF descongela cuentas de Rubén Rocha por orden del tribunal - MILENIO",
-      "peso": 27.0,
-      "n_temas_agrupados": 2,
+      "peso": 32.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 4,
+      "medios_corroborantes": 5,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQWnNPWnpqaVBJUW53ZzFQTW1Nd2pKenRXUVJFM2FiM05ONmtnemg3Q0ZHaTdZQWJnT3c3SF9qUVJhYWZxcDc4NTBWYklSaEFNcjd4eUxlekJoelJXVS1NaU5Pczl1YU5qd3JVSGIwOVIzVTdEVWNPWTg3SVUxTlNYcWNLLXpncW1wTjRDZG1OY9IBjwFBVV95cUxQTnZweWgwX21lTkYxcXdLcmNValAzaFFWRmFJUlJMZnFFMi1mVFYwN2FwTk5IcUVRam1rQlBuc3pZMHRsQzlfT0JaTVhtV0RFc0NKeHFKUVoyTS13YmplaldZdUd5MHRRVm05WFdIeDh2bHNEbTQ3UUltQzhJUEpQUm9YY3p5VEJQUEFGWlFNdw?oc=5",
       "actor_vinculado": {
@@ -1015,9 +1034,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "“Resucitamos a Cristóbal Colón”, dice Donald Trump durante un homenaje en la Cas",
-      "nota": "⚡ Posible presión de Claudia Sheinbaum Pardo — Claudia Sheinbaum FRENA en seco AMENAZA de Donald Trump - El Financiero",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTkJXZFdpMUxTOFZIUUtnZEI4a3IySGk3V3BTc1pnaFpEaVR0ZkIxaHBVeFFjUzhjM0h6bk81aTJpS3NlU2ZTcXdPdURoZHlxSGN0WnFNT0RlWGN4Y25hZ3hZeWdrVXRQNExjeHEzQXVwZnJXWl85Qk9Oa082V25VU1liR1hjVjBOQjgyUnVXRTkyTjNRY3dxX24weFh5aXNlUkNqbWtfbzBNOUhMcXMwNjBuSnY?oc=5",
+      "tema": "Beñat Zaldua: Pedro Sánchez, a un suspiro de las elecciones",
+      "nota": "Claudia Sheinbaum y Pedro Sánchez estrechan lazos diplomáticos",
+      "fuente_url": "https://www.informador.mx/mexico/morena-claudia-sheinbaum-y-pedro-sanchez-estrechan-lazos-diplomaticos-20261113-0022.html",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1059,9 +1078,9 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
-      "tema": "“Resucitamos a Cristóbal Colón”, dice Donald Trump durante un homenaje en la Cas",
-      "nota": "⚡ Posible presión de Claudia Sheinbaum Pardo — Claudia Sheinbaum FRENA en seco AMENAZA de Donald Trump - El Financiero",
-      "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTkJXZFdpMUxTOFZIUUtnZEI4a3IySGk3V3BTc1pnaFpEaVR0ZkIxaHBVeFFjUzhjM0h6bk81aTJpS3NlU2ZTcXdPdURoZHlxSGN0WnFNT0RlWGN4Y25hZ3hZeWdrVXRQNExjeHEzQXVwZnJXWl85Qk9Oa082V25VU1liR1hjVjBOQjgyUnVXRTkyTjNRY3dxX24weFh5aXNlUkNqbWtfbzBNOUhMcXMwNjBuSnY?oc=5",
+      "tema": "Trump y México: declaraciones y presión",
+      "nota": "Sheinbaum y Donald Trump podrían reunirse en cumbre de Miami - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQeFRscWZVRnhXZEhqemFMVkNKQlIydUFPZ1c5N0ZfbXZMaFVBS2JzbGJQeXNkTmlzUXVpQ0c3YldRbGpOR0JvMWIxZ0tqUVBBeGdKazlfQUdWMzVpODRlVW42MFVtaHBtcUNBR1lfVVNHZ0JSZWZxWl93b3Y1aHBRUzQtTTkzZVhqRjdScWVNZ3hOTkt5Z2NmQXZkSk9YcjFSXzB4RtIBpAFBVV95cUxOUXZiMTNBeWM3dmhzYUd6TzdYc2pka2NYXzZWS0FpZG5tcVNFWmYxc1JkWWtJLTR2eE1sOGNuYkUwcFdXQlNucmQ0MFNRUjJKSThweDJsdlJuaFRCX2kzNGhSSnl1UmRlZWwwV0xCd0dwd01mcnNQZGVrem5SNjZVcUJsSHltSnRtclVwSk83by1iTWgtYlpFYmpmbTFaamstUFg3SQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1288,10 +1307,10 @@
     },
     {
       "fecha": "2026-11-13",
-      "tension": 32,
-      "n_notas": 14,
+      "tension": 29,
+      "n_notas": 17,
       "n_alto_impacto": 7,
-      "n_medio_impacto": 7,
+      "n_medio_impacto": 10,
       "n_bajo_impacto": 0
     }
   ],
@@ -1311,8 +1330,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPQkFENHBFUXpkVzBscGp3cWExeTFqV01kMmQxVzVfNkFSbVdZV0RfaEVadHdLQmZtZ1g5Y0dZTV9WbHppRDQ3RFZsTWJqWnpIdWxpUXBveDVHVmE0QUd5X1MxcmZLNW9PZWhCMmhmSks1M1ppVWxqRDZPNWxxdUJPbUhPN0I5bWlGb2psSFdmX01pcEZIYU1sNkNYcDM3NVg5Y2cweU5LU3VpczI3YnA4bG9xZkR5UmM5ZnpUQncwQjNjN2FpdzltR0V1V21SdmgzZ1Nmdk9oVEhyc2J5WUZNMl9fOA?oc=5",
-      "nota_texto": "🔴 SHEINBAUM CELEBRA APROBACIÓN DEL PRESUPUESTO 2027; INCLUYE RECORTE DE SEIS MIL MDP AL INE La presidenta Claudia Sheinbaum celebró este miércoles la aprobación del Presupuesto de Egresos 2027 en la C",
+      "nota_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPbXFoYTN2dXlCSkVEQWpoMFM3VWhwTXJkR3pkc3pVOUZ0Y3dlZnJqNmMtODFsMjdhR294UnVNbDFQcVpoU0VaT0pTcFJjTHVjU3NvOUx2NlRSZ0RjSmMwcGJRM0phRUlpVlpGSGdBaXF3YmJTSGVUSC1xY2hvMlZJR0pyU0RCOXQxZ1lnWmpBcjFMS0VUMFJKa3M4dmZNV0pZRHVaSnFvYTNUWUpxSklMSk5mUm9MQlFiME5RcjVXUnRIMDNweHRQLXp4MThudE1iYTlTUkdKNGp3aFBiUmc?oc=5",
+      "nota_texto": "Somos Mx presenta queja ante el INE contra Claudia Sheinbaum y 12 gobernadores, incluido Yucatán - Diario de Yucatán",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1386,8 +1405,7 @@
           "x": 55,
           "y": 100
         }
-      ],
-      "fecha_reactivado": "2026-11-13"
+      ]
     },
     {
       "id": "rocha_moya",
@@ -1452,8 +1470,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNaGJjaFg0NC1lYS1sVURfOUZfS1FCbjVvVHFXYlZQMW83VHBBa0RjYlZNNm5IRGctWkNtQURzb2ZHdWtNbGdEVy1HVmg1dWF0V3Y1UHdmMzg3Y0ZRU2JPcGhzMGV4R0lqV1MtOHVGWUdtOGNhbm5QeFZRTmtvbFlsUkJTMU9LUklBVDh1bWt4SS1qLTJTc3hBMTRQM19VbVQ5Z3pHMncza2ZzdDFZSHVv?oc=5",
-      "nota_texto": "Morena plantea nuevo recorte de 500 millones de pesos al INE para 2027 - Municipios Puebla",
+      "nota_url": "https://www.tabascohoy.com/?p=841778",
+      "nota_texto": "A 20 años de la elección de 2006, Morena propone investigar presunto fraude",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1525,10 +1543,10 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMUVPemxFclhxU1BnSUItMXdUS1NYcWtUQWVpZzFTbFgxeEhGT2pOLW5YbTY5VmRWTDFjdVhpQTJZOWw4U2ZjUllhWXJUb2t5T1owT1NUQ3h3Y2NWMHVHWUo4eXVlcW9YbnNuOC01a2E4SzNGeV9oZXI1RmFKdVNLVy1RMmxrVFdtTDR1MFpGbTM4Nmgtc2owVWFIOG9EVy0tNmVKRHI2MXNld2RPRUhhQ1dCNTJyNEp3N2lpeEZycTNFNnp1?oc=5",
-      "nota_texto": "PEF 2027 destinará 128 mil millones de pesos para Puebla, adelanta Ricardo Monreal - Diario Cambio",
+      "nota_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNNDVDZVVNUHBOenJDN0oza3VLcGx4LW04a2xGY3dQeWJlR0paTzdRY3NCQVZYdE85LUJWUFMtZVp6cnRZVzE5X2QzaXJBWXdNSERkT1dZQkJXY0Nua3RhSTNfQTZBRlRFU2daZktKem5PeTExSGRqRGVfVmdMdmVwSC1ISTV5QTFRVmc?oc=5",
+      "nota_texto": "Ricardo Monreal perfila 128 mil mdp para Puebla en 2027 - Sucesos Puebla",
       "es_nuevo": false,
-      "categoria": "Economía",
+      "categoria": "Gobernabilidad",
       "dias_activo": 2,
       "trayectoria": [
         {
@@ -1648,8 +1666,7 @@
           "x": 20,
           "y": 62
         }
-      ],
-      "fecha_reactivado": "2026-11-13"
+      ]
     },
     {
       "id": "montiel",
@@ -1755,8 +1772,44 @@
     }
   ],
   "tablero_semana_inicio": "2026-11-09",
-  "resumen_mananera": [],
-  "mananera_estado": "fuente_retrasada",
+  "resumen_mananera": [
+    {
+      "texto": "La presidenta aborda el tema de las caravanas migrantes, informando que se han desintegrado 24 caravanas desde la llegada del presidente Trump al gobierno, gracias a información pr",
+      "categoria": "Social",
+      "intensidad": 6.0,
+      "alerta": true,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "El sector de cruceros también registra cifras históricas con 9 millones de cruceristas en puertos mexicanos, un aumento del 12.3% respecto al año anterior. El gasto de los cruceristas alcanzó 770 mill",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "México abre 211 nuevas rutas aéreas, siendo 112 internacionales y 99 nacionales, demostrando que el país no se detiene a pesar de los retos globales en la reducción de frecuencias aéreas. El Aeropuert",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "El turismo nacional también muestra fortaleza con 80.6 millones de mexicanos viajando dentro del país, representando 713 mil turistas más que en el mismo período del año anterior. Se invita a los mexi",
+      "categoria": "Gobernabilidad",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    },
+    {
+      "texto": "El Instituto Nacional para Devolver al Pueblo lo Robado (INDEP) ha recaudado 407 millones de pesos a través de subastas y comercialización de bienes incautados. En una subasta histórica presencial rea",
+      "categoria": "Seguridad Nacional",
+      "intensidad": 5.0,
+      "alerta": false,
+      "fuente_url": "https://mananeradehoy.com/mananera-de-hoy"
+    }
+  ],
+  "mananera_estado": "ok",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
@@ -1816,5 +1869,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-13 12:02"
+  "hora_corte_publicada": "2026-11-13 12:43"
 }
