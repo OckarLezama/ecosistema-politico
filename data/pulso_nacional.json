@@ -1,36 +1,24 @@
 {
-  "generado_en": "2026-11-14T06:02:27.044392-06:00",
+  "generado_en": "2026-11-14T10:42:29.807938-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 22,
+  "n_notas_ventana": 6,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 38,
   "tension_anomalia": {
-    "z": 1.18,
-    "nivel": "normal",
+    "z": 4.02,
+    "nivel": "alta",
     "media_periodo": 21.0,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 38,
+      "peso_pct": 67,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 7,
-      "n_notas": 8,
+      "n_temas": 3,
+      "n_notas": 4,
       "notas": [
-        {
-          "texto": "Joaquín Díaz Mena se disculpa por la ausencia de la alcaldesa Cecilia Patrón en la inauguración de la Feria Xmatkuil - Yucatán a la mano",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOSTJwbF9UTTAzZ1VGM3d3WDZxbXRSdVBETDN4NUFyMVZlYU5qeTh0cGszbVJlRHBHZFZTbTNjRHRRUzJNMTkxdVlUYVlpLW5oUWpDSjV6YXREcEZKa2stTExxNHRkNFFhb3R2MjI1TDBFUWJtQndxcEdrbGprbWdBWDdySzktYlhEeTZORDQ2a0lEMFBPbkNMbmhjd2tCRE52U0xWb1BISEdDU2x2QndOakJXUDlsRTJydlp3QU02ZDNIS2h0Q1NsME9IZHowWTdxczZYTFcyelVlemgx?oc=5",
-          "intensidad": 7.0,
-          "medio": "Yucatán a la mano"
-        },
-        {
-          "texto": "Cecilia Patrón lleva la estrategia de seguridad de Mérida a reunión nacional con Omar García Harfuch - El Heraldo de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPMVN1VG43MVdYZjNTNWxpNTN6OVRiWjh1aDlHMmtaNW5FNDA4SEE1T0tuZnAtR2xmY3VrSVZFYnNPRVRidWM4TDgyVktQYzZ5MU16aFQ5bEFGTjFpYU9UVmpnZDh4REhpYmt2Q2JHVXBHdWd6NWM2djFnYmwybUdPZW5nWFZkV1I0eURaOGlzLWR2THduc044dFVkZDFsTHd3QVlwWXNza2JLOGswdTJkbkFPTGNBUjFQVkZFS3lNSGlSaWlTQWJZVkdsV1hJMHlMTlp2TDlzWTlRUkhJSktFX2RNQ0MyeENTZExFMEs2NDhjaUxtS19QQUI0Y2VzQQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Heraldo de México"
-        },
         {
           "texto": "Descongelan de forma parcial cuentas de Rubén Rocha Moya",
           "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n2pol?partner=rss",
@@ -44,51 +32,27 @@
           "medio": "tabascohoy.com"
         },
         {
-          "texto": "Combaten embargo aduanero de barcaza “Poseidón” por huachicol fiscal - Semanario ZETA",
-          "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQd2gwR0VQS1M0ck5SZXJJQjNMdGdZdFBTY2tSUlBXMXppdWV2U2MtQWZ0WDB2b0NzVG0zcXlQUjFNd0VxbktuSXdRNkxQcmxaWjhGazFFaDhBd21TQmRrQzE2UU0xRFhWUHFDSi02cFoyb1loaHZUUVQwaW9nQWlMTHI0Xy0tOUtDbkU1UzNPcGlib2lTU19KVmg2QzVhVjdV?oc=5",
-          "intensidad": 6.0,
-          "medio": "Semanario ZETA"
-        },
-        {
           "texto": "Presunto ahijado de 'El Mencho' huye en vehículo con placas de EU tras enfrentamiento en Ocotlán y autoridades - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQby1sNGhrdzZYaHZGWTFBOHo2YW00Ri1YWGpwWXg5dHNfUmNkWTFfaHJSZlQ2OUF3bFdtQlVuMlBLX2FuOW9lTVpFTkpzNmpxWUw3Zk1EWV82VkV0M0drMUQ3ZmkxY2syZEdqeVJKRGhZZUVHazlzY3hmZjZ6ZFlCUGtTaEUtZ9IBhgFBVV95cUxQby1sNGhrdzZYaHZGWTFBOHo2YW00Ri1YWGpwWXg5dHNfUmNkWTFfaHJSZlQ2OUF3bFdtQlVuMlBLX2FuOW9lTVpFTkpzNmpxWUw3Zk1EWV82VkV0M0drMUQ3ZmkxY2syZEdqeVJKRGhZZUVHazlzY3hmZjZ6ZFlCUGtTaEUtZw?oc=5",
           "intensidad": 6.0,
           "medio": "MILENIO"
         },
         {
-          "texto": "Fortalecen Guardianes del Campo la vigilancia ciudadana para garantizar apoyos transparentes al campo - Quinta Fuerza",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQZExUSU1OMFJ5cUVrR3Bha2VyVXB3UHRsR0dZb1hpUTliOG5zdGptZy1oNk1kSng4dDlPR3R5dzA2S0pWNnJUZE9wNVZmRTdMQXRKeTBPS1FHazJTa25JRHpUWnhWeHI0NTNqaWNpM3RONDEyM1FKYjFOUWJXUm5GU3doakJnTGE0cER4bFI0Y3dxUlJmeF8xa2hKT1A4YUZnaWNCU1pLUUNkWXdwblQ1WkRDR05YSVJlWmpPZHM1N3o2amUtQl84NUFVdkFONGZaUlI4aUNpWjhFTDRpZ1dj?oc=5",
-          "intensidad": 5.0,
-          "medio": "Quinta Fuerza"
-        },
-        {
-          "texto": "“Lo queremos mucho”: Andrea Chávez felicita a López Obrador por su cumpleaños 73 👉 Local - En blanco y Negro | Noticias de Chihuahua",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNU0NXV2dzelBlWUxEaW9iVlF2dUtuYTNSNGRZdzBpUk5JNmIzUXY4T1E3b3pjcllMdXdhdlJDU2lGRjV3V1ZnemNYNURJckI3TVppMndNbmVOR1BZaG0tcHhFMmFGeWFmTHlhOUJVME0wWGhRWnY1QzZvSVZWbmdXWVJacjF4dFYwLWsxa3pHSlRVbWlYbnU4U1UwNHJ3bEtVZmNoM2JRUVY1MUJwc1VYUnJPREJJSVhZa2FB?oc=5",
-          "intensidad": 5.0,
-          "medio": "En blanco y Negro | Noticias de Chihuahua"
+          "texto": "¿De cuánto son las tres pensiones a las que Rocha Moya volverá a tener acceso? - El Informador",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQNXVzNFNZTHA4SUZReElRMl9tTzFGLXRBd0tua2VhVkd0VkpjVXlueDlMdkRoZzM2NW9CUFozb3hBU0theFVjRUY1alVlbmV2WTMxR1Boa1NtbExENDhObW40R2o0MDNTek5ZcGlabmNuVTZMT3Y5U2VpY1BhY0VFVEJXeUNxbUFvQkdxVTVEWjZVamNvR0ZsRXVrVEUwY1JaSzVwOUdHQ3ZkNzdVX1hoTHRYQThsUUlQNkR0dmxraTVvb2FsUnEzT1MteTNoUW54Q25jQVRlTE9fdktmWWlxSGFsYlkzTDVkODJmZi0tYjhSTVdDall6MnNSRmRXT3RBdmIybmhuUEllY1hCNkHSAZMCQVVfeXFMTk5GTVY2R3RqSmhxQXRzMGVlMmRCa0FVblRzeGtvT2xtd3hlZFRqMnFyRkZGSlc3bmxRQ2ZtR255ZTRVZHZvSU1wWnJmSHUwbGV0MTlNdEdqSTAyc01vTV84QzhLZmxQNndvNU5xUFB6X2xwb0tRLWNsOWVNbHFpVlZ1eXZkTk1nRXFOc3FfYk9acS05Y2s5M3ZYemtRSUhvRWNreWdybmJzN1M3dVRoTmRwWmwwcUptZFBKN0hJd1BSazJHa1V6N1RTRmdwajBKMmF2YktRZmU5QWNzVlVGOFNFaktIZzMzd3FSdXhFN2tiOEJ0VmwxalJmdFhrOUtkWThBdV9WOWpIeFlkbkZTQmdRM2M?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Informador"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 32,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
-      "n_temas": 5,
-      "n_notas": 7,
+      "peso_pct": 33,
+      "tema_principal": "Abatimiento de \"El Mencho\"",
+      "tema_principal_id": "el-mencho",
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
-        {
-          "texto": "Si Morena va por comisiones, que acompañe la de huachicol fiscal y narcogobernadores: PAN - Xpectro FM",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQbFUzS25ENmRmOC1NeFBPaUE3QVJyeGhBWDl4MlZTMldYaUFpYlZYNVBtaUVlN2t4YmtRWjF5WXdFQXNyVHFmUG53RzFCd3R2dWJuWnY2ME9sNi1EcjFCbUZNc08tcURKZURUemdZUHo5cTZ3ZlFyRlB6eTY1M1pac2hJSEt5bElTc0JTSVpWSlJIZng1SEp3U3kwNlMwblRXNmV3R1QwSS03SFVUSTVR?oc=5",
-          "intensidad": 7.0,
-          "medio": "Xpectro FM"
-        },
-        {
-          "texto": "Privilegios para Rocha Moya, impunidad para Morena y violencia para Sinaloa: Sergio “Pío” Esquer - Cafe Negro Portal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQVmQ5QXRGQW5NMWlLclpvbDhmVkNQTEt6d09yU25TcnZadXNnYXVKLUxzUE94NThNRTd1U0t6amlwN2t2Q2xiWnZ0QU5LZFFqU0pZYkZSV0xRNlZvcGxRdlhabTN1aFdSTGFQWFJHanRIVzQyVFc0SlRTSFVGZDU2T01oRGlNVU43VVpPLWN1TlFSNWNiNjlHcHg4U3JERlNOaGI2TWJ2MWJ1dzRSaGVvQTI4cDFrWVBNczJoMkdR?oc=5",
-          "intensidad": 7.0,
-          "medio": "Cafe Negro Portal"
-        },
         {
           "texto": "Condenan en EU a Tony Montana",
           "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n3pol?partner=rss",
@@ -96,95 +60,33 @@
           "medio": "jornada.com.mx"
         },
         {
-          "texto": "EU prevé acuerdos comerciales con México y Canadá pese a incertidumbre por el T-MEC: Scott Bessent - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQaGd0c2EwYjlCZFhSaE1HTk9ONlRNc3dHRkIwWFpYODYyQ0FNUUpXWDB2eE5ZZGJnX24wTmZOd3dmLUEwcVg1QkdiUUJudGNyNzJRRm5CS2hyLUx5UXlrWGtmZ2dPOHV1MzFnd1VQMExNZnRmRzBLZ1ZzX2pOdkxTS1dud3Q0a3dmWVMtRFRsZ1lNZnpFZGRHMDc0WTNpcGZjSEFteFNHSGIwMjJqU3lIV0FUS3hZRTRCYURYMUtQUUNWQ1E3UktXbTUxRzZ5YTdIY0HSAdcBQVVfeXFMTUdua2RxYUVIenFGR2o4NFJrU2E0enZkQ0dqU1h2MTdBeEtwN0Jad1QyS19BSEJCaVZfMXI4cmRYSXRHZVBmVjNNTmtxY1NndlNCT1pPczB0M09kSWJ6ZzRKRHROQXdOZ0pCbHFhLU5uOVpvU1B0VFJURDhxZllIczhlQVlZNkZpRHJEVC1sU3JKZEM0c2ludS03a2JFRHI4OUUyTmhVOTYzVERUZDRZaEV3c1hwdVNMaGluNmFQZlVRR0VsR0YxRnlFYTdrbmFCR0gwOWR6amc?oc=5",
-          "intensidad": 6.0,
-          "medio": "news.google.com"
-        },
-        {
           "texto": "Arizona abastece al crimen y alimenta la violencia en Sinaloa con venta de armas - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNcXljNE41Zld1SGFYNDVZeWlsNXR3UzA5YjdWcE1ISEROYzhLRGd3V2w1OEMxOFk2bXQ1SDVtZXN2UzdwWWFuUXZVX2FybmhQN2htbGZQZnNNa3pIOGUtMXlPZmVFZXRzM0wzdGp6QzNYWFpvVlRLaHlFZnlSU29oeEFFSFNXem9RMzlQOEEyOEt6UzNtN1p2cjV3STNPS1lldE5ketIBpAFBVV95cUxQY3R4UHB6eFl0UFJIU3Z2WFVsR0hUNjhaWTlPc05mN1lEcTZFWTBkTFZYLWV5T3dIQVdzYUZrbGd6bzVMdUJocUlDSGp0V2pBbS1NU0ZXUUVYX3RsNkxpaW91bXlsaV9GUUEyRmpxRVhzWmQxZUthcXRSWlZoZG1sS2I0NlpWMXJvWEJqOUkyRGNseWd0N2xXTi1LQi1HMFhDRm9ITA?oc=5",
           "intensidad": 6.0,
           "medio": "Milenio"
-        },
-        {
-          "texto": "Dámaso Castro sigue en la mira: Fiscalía de Sinaloa mantiene dos investigaciones en su contra",
-          "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/11/13/damaso-castro-sigue-en-la-mira-fiscalia-de-sinaloa-mantiene-dos-investigaciones-en-su-contra/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "Tony Montana es condenado en EU por narcotráfico; pasará 22 años preso - Municipios Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOa2FtV1Y4TXNMQkR3dHRLaENNRzMyVWFhQ0R5a2xNeXR2M2JXUmV5RFFhb1FiZ0ZhbVB3bFRndUN5cFR2NUZFNFh5ZWI3dUxDbXNJWGRlQkU0WXktOS1vSHczQzNVSWkyNjZJTTIwWUJJbGpuWnpjQTVXMVB2U3RMTkRSaHV1REdnR2gySVozbDNnVWJhZGF4R0thSE9OclB3ODNNWlZPeTV6NkwyRVE?oc=5",
-          "intensidad": 4.0,
-          "medio": "Municipios Puebla"
-        }
-      ]
-    },
-    {
-      "categoria": "Social",
-      "peso_pct": 27,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 2,
-      "n_notas": 6,
-      "notas": [
-        {
-          "texto": "🔔 ALERTA — La Corte Suprema examinará la orden ejecutiva de Trump que suspende el acceso al asilo en la frontera sur - Univision",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQSzlUT3Z0a1lnYWlUeDlfdC1lb1VoVDNOMjZLU3VNSmpfVFVNSnZIeHU0dnBrZ281LUV1QVRXRUx1VVNUN083bjlSS2RsVEdNc0ZuVHRrUzVqUy1HS1JGSEZxcC1HRmY5c29KQ0QtS21lN1NrY2NWOVRaNTZfMzByZU41RTRpTHNBUHdrY0FKWDVYWHVCRm1JZDE0b2t4dmZNdFVJTjlCQjUtYWFmRmN5OG94N1d6cnBpSktGV09qT2ZQS3BpMmtiVGVOcEVTQUY3ODFBMnIwazhtTVJMTlRNX2JBLUNRLU0?oc=5",
-          "intensidad": 6.0,
-          "medio": "Univision"
-        },
-        {
-          "texto": "🔔 ALERTA — Corte de EU analizará restricciones de Trump al asilo en frontera con México • Internacional - Forbes México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNcEdrblBocUhEWXdRZWd1Zk4tdlJWRzhOakt2bHdmYzlGdTRNM0dSS3YzTFVSc3kxTnZ3Q1NwcHR4bkxBYmF2UTQyTDhNZkh5NVdiMEFMUVdXYkFlMHRtYXRkeW5pV3o3cE8yNVVWZkhSanVPaUpqSGpIOHZhTDI2dmhLZ0FYUWhaNkZtVGJaWlZSeW9fTEpZVThLcXNPVWlk?oc=5",
-          "intensidad": 6.0,
-          "medio": "Forbes México"
-        },
-        {
-          "texto": "🔔 ALERTA — Revisará Corte de EU orden que suspende asilo en la frontera - El Diario",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPS3JEa255SXZVUUxvdk9zc1ZqdFpNMmpZcWtDVXIzWXY2ZHdRb1djbXJIWU5IQjJtZGlfeDg1T2dwNi00ay1zM29WZ2t2MWVzQkJTRkJvQjdMYUhtUWE1eW9ES2EwUE9wN1hXUEJUMTlJSy1XMXFhVUF2WjJWdWV6Zk1WaDRMWkNLaFEzcWZrWGxVYXM1S3pHZzBFRlI1LXQ3Sy1WSXU5T0U3R1h1S2cxWGxpWjBhVWQ1MEHSAb8BQVVfeXFMUFRaZ0o1aE5lVDVwMXgyVllHYXNtcXdOdjB1MloyOFl6UGJpVFkwMEdtdHAzajA5N0Zxczk5RTJsMnd5V2JuWXE0Y3lONkFIX0dyVUFERmF6WmVwTVl1MmdVUzYzajhuTmFYR0JLeUtIS2VuRk9HSFplUEw2UmJHaDVUTTR4X0JOOXNqZnJtWnJnaVlvTU9SLW05M0psV1FyMGU1cEpXeUJUeFMzWWxCREtfZTdkZkhRYXc3bHRxMXc?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Diario"
-        },
-        {
-          "texto": "🔔 ALERTA — Corte Suprema revisará orden de Trump que suspende acceso al asilo en la frontera sur - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQdjU4Q0hzbzZBdTVoOW9DQVJYTnVOV3pFWWpFMk5fSDM5UVZaUm1Pd0gyUFJMejJ5VC00QlR6a3hpcmZ4YXhEY3hwWVpQUzVXdFlaLU5vc29LdmxncllHc1lLTUhOVWhLeGx3bEZjTk8tWjAzZjhCV1lmZzNzRWlhVG5lQmNIbXF2SU5weElIS0Z0cTVUWEg0N0RjRVNMSmJ6bEU0RGxhUkdwSkhvXy03SEJBRTVQdHpMYTZ0dEYwMnBPcElnWkJhRmJIQlFkM2NVY3YwT001UC1COHl5M2lkempzRkktMGxiMmxVV2twSHVNYllSSXVaQW1B0gGOAkFVX3lxTE1BUHFFQzJQWlZTMk9QM1RKSHByTUtQTTY5VkVMWUttcUZXVDg2VENTdWJUUGRZczRFdlRBLVNtX2xGU000Q1JpUVlBbXNheFJGVXcwRmhMWVhpemxMYm1IS2JzWFdUa0NXLVh0Qm5PM0VqeTZPdk5YUHQ5SUVPdXlDSWd1UlN0QUF0bnpZY3paU29oZXQ0ajFNVnRSSjdrZ0VWWnVKV2JkTnBUTEh2akQ5QmgtaUNLUlRUVWlkUmhmclpCbEN2U0pCS2dINkMyNHlQVzlsajJaQjBadUt3dnlvdmV3QXZLMWZBRnZLdjA0TEZ4NlhHZnRFeVItRkNWcmYzVEJ0Ti1zTWZEWWZqdw?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
-        },
-        {
-          "texto": "🔔 ALERTA — El Tribunal Supremo accede a revisar la orden de Trump para prohibir el acceso al asilo en la frontera sur - EL PAÍS",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQNXJEb1JXYzNsUmtDQ0QwdGw3WFNkSk5uWjZyTVlVVGtBMkYzaGRYenc4N1VMc1dZUGFvZUZFWDBEZEFMRlR5QWpmcEw4SFpsbGVPSW5iUXB6RHVnOFRFSHN4MTBCYVZqY2R4SVc3enA0RHFCOW9qcktfem5hLU1wS3hyR2hyc1VQVXFGZDFHclAwb1VobGRobklYWGQ3bHFBYzV1SmgzaHJjbUVmd201NTV2MDRyb0VtaHNVaDFVYmJ4eUFtWmxQOFhYQXRwSmktbXlydDhnOVppNVVpQVQzNlR1YTFVRHdOUmfSAf4BQVVfeXFMTlVtV1hmalRQd01JbldiV3FhRk9BbGktZ2dKZ3l3U2JBLWszbVV5bk9kaHFneVhDbXpBTkZyZnJ1WWZDMnQ5UlotSEVUelY3WEFrNWo1UV9oUTZFclpteVFGbjBMMUN2RklmY3A2aFZaeHM0dGRUTDkyNW5pN0twMC05S3dZeEJEYXZHZk14NUhkUFhEODQ4NXl1bUdRM1l4Q01GeVlKRmY2OHZaZXVVUEVCS3E0SUNGbWJsQWdoQ1U2QmVmV1g3aTdCaHQ2NUtUcWQ0Ny13Sl9WdDVmaUNIaDNXQnhZQ2RwenZsU2VzeTAxblhzMUJya000eHRZMWc?oc=5",
-          "intensidad": 6.0,
-          "medio": "EL PAÍS"
-        },
-        {
-          "texto": "🔔 ALERTA — Corte Suprema de EE.UU. evaluará mantener la prohibición de Trump a solicitudes de asilo en la frontera sur - Bloomberg Línea",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQV2lMVkVLYWdVVlYzVl9LeXB4OExUZ2RlNEhMYk1iWVZ4bzNueEFyM2dOenBKSWRZeTFEc1prS2YzcVg2Q2R6N2tKeWFQS2x1UmJ5emFkVHBhOWtmWVMtN3pOX3RoRXpVN2gzZFFndFhmeUVWSUxabmhldEhBRDc2NzJuTnFha0hCaDJzQ183WlJ5WWRBaC0zU2UxaExtQ3FGdmZnaE43Mko0cDBxRUxTM3E0TG0xU2FqazcxY1pzdXA3Vzd3eEtwb1hVYW1udlN4RWtnaEJzUXJ1bmJUa2E3UXZ4dEotUkk0cENYSENWUdIBgwJBVV95cUxNX0RoNmtveDFRb1JRRmtOY1VSbGkyNHVlYmhKa2VZX0ZmS1pSSUN1SnFGMXVtcHd1WUI1a1JrZTlzcmJtS0ZXMFYxei02d0JFbUtrUmNHell6bV9PYkVDY1pDV1dmcDJUY3dqMWpDR1dGVXVuYlRsaEVXOUNOcDhKaWxLXzNXVElqYzdYNlpoS0NaMlI4VktGcHdyNU9oUlRtWG52VlFxUmp0SkpvNExGZFl5SnNIX3lWMW5PeUJTb3JycnNRRXhJSkVnMHNTbXZNeENWTDhSSzBRcEVjdWxVdTJ1N2RSeE5WaE9Eem0xY3hJM2xTeGxnRllRQU1pc3hWd0RV?oc=5",
-          "intensidad": 6.0,
-          "medio": "Bloomberg Línea"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 4,
-      "tema_principal": "Abatimiento de \"El Mencho\"",
-      "tema_principal_id": "el-mencho",
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "‘Tony Montana’, hermano de ‘El Mencho’, recibe sentencia de EU: ¿A cuántos años fue condenado a prisión?",
-          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/13/tony-montana-hermano-de-el-mencho-recibe-sentencia-de-eu-a-cuantos-anos-fue-condenado-a-prision/",
-          "intensidad": 5.0,
-          "medio": "elfinanciero.com.mx"
-        }
-      ]
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Economía",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
+    },
+    {
+      "categoria": "Social",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -902,9 +804,9 @@
       "categoria": "Seguridad Nacional",
       "resumen": "El 22 de febrero de 2026, fuerzas de seguridad mexicanas abatieron a Nemesio 'El Mencho' Oseguera Cervantes, líder del Cártel Jalisco Nueva Generación, durante un operativo militar en Tapalpa, Jalisco. El operativo detonó una ola de violencia, bloqueos e incendios en varios estados; su lugarteniente 'El Tuli' encabezó las represalias hasta ser abatido, con un saldo de al menos 25 elementos de la Guardia Nacional muertos y decenas de detenidos.",
       "motivo": "Condenan en EU a Tony Montana",
-      "peso": 36.0,
-      "n_temas_agrupados": 5,
-      "escalando": false,
+      "peso": 32.0,
+      "n_temas_agrupados": 3,
+      "escalando": true,
       "ultima_hora": false,
       "medios_corroborantes": 3,
       "confianza": "alta",
@@ -913,81 +815,62 @@
         "id": "rocha_moya",
         "nombre": "Rubén Rocha Moya"
       }
-    },
-    {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "🔔 ALERTA — Corte de EU analizará restricciones de Trump al asilo en frontera con México • Internacional - Forbes México",
-      "peso": 24.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 4,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNcEdrblBocUhEWXdRZWd1Zk4tdlJWRzhOakt2bHdmYzlGdTRNM0dSS3YzTFVSc3kxTnZ3Q1NwcHR4bkxBYmF2UTQyTDhNZkh5NVdiMEFMUVdXYkFlMHRtYXRkeW5pV3o3cE8yNVVWZkhSanVPaUpqSGpIOHZhTDI2dmhLZ0FYUWhaNkZtVGJaWlZSeW9fTEpZVThLcXNPVWlk?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-15914cd38c",
-      "nombre": "Impulsa Mara Lezama productividad del campo con entrega de nuevo equipamiento ga",
-      "categoria": "Gobernabilidad",
-      "resumen": "Impulsa Mara Lezama productividad del campo con entrega de nuevo equipamiento ganadero - Gobierno del Estado de Quintana Roo",
-      "motivo": "Entrega Mara Lezama 161 apoyos funcionales gratuitos a personas con discapacidad de Othón P. Blanco y Bacalar - Gobierno del Estado de Quintana Roo",
-      "peso": 6.0,
-      "n_temas_agrupados": 3,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPY0NJaHRVU1JKRWpRdElpXzFtLWpWOGMwbFBlNFJsWkJnRXJGRldwRGJiX0FlUGx0d2VxOHY3ZDJhdXAtX2RIM2FqX21vOE8zdExaUXVBWmtFMXFLVzRST2I2TUZBRVhZSFVWZEZQbldqN3pYSXpsRWVucy1YR0hTZ2VzU25ydDBWT3owYm1MZS1Ja2otZWFmYWV6VjRfRXc5R3pkVEtmaHdReklqak1xOXo0V3EwbUx4OHdsejROLTZEVzNKbHBRYkhyTV9LQQ?oc=5",
-      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-fcaa640259",
-      "nombre": "Escuelas y becas hacen un México mejor, asegura Claudia Sheinbaum",
-      "categoria": "Seguridad Nacional",
-      "peso": 12.0,
-      "impacto": "alto",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/006n3pol?partner=rss"
-    },
-    {
-      "id": "auto-696edf7e2b",
-      "nombre": "Revisará Corte de EU orden que suspende asilo en la frontera - Reforma",
+      "id": "auto-f39ea48fc1",
+      "nombre": "¿Pueden rastrear tu celular por anuncios? Así funciona Webloc, herramienta cread",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPZXZiLVdpdkJBTjVpUzI4YmFrZFVWTzZjS3hlSlo0M0NjWVcyTjFVNV95RURfSFlHZ1J3eEl4aXBQUGJESElmVTh5d3dFbUdzcE5fOEUwakNWR2pSNEF1elBEaHllWDU4ekRfb3BkV3hqdWJwU1dsRE55cDJjTC1RbTZwdlUwdC1OR1AtSC10MWZ4ZXBoT0VRN2tR?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/tech/2026/11/14/pueden-rastrear-tu-celular-por-anuncios-asi-funciona-webloc-herramienta-creada-por-exsoldados-de-israel/"
     },
     {
-      "id": "auto-744ac1f695",
-      "nombre": "VIDEO: Hombre toca el cabello de Sheinbaum y reabre debate sobre su seguridad",
+      "id": "auto-195fba3bd3",
+      "nombre": "Improvisan refugio de gatos en estación Zapata del Metro - Reforma",
+      "categoria": "Social",
+      "peso": 6.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZUlXcDgwQUdPVmRTN1U1RlgtcGNPOTZQZ3RodUp0ZWpLbGxEbU05WmJIT2F1ZWlhT0VSZW56NWhfQ3R5VXUyVXg1cXVOSC02LTI1Wmxzckh3VlAzd0FtYkUtdkpKRzkyWHozc2hSN18tZ3pka19pZWliUmY2SEQxY0YwUXUyVVg0WTZyeXBWVUkzdngt?oc=5"
+    },
+    {
+      "id": "auto-ea29e1b5a1",
+      "nombre": "Ríos Peter acusa a Morena de hacer campaña anticipada en Guerrero - Milenio",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/video-hombre-toca-el-cabello-de-sheinbaum-y-reabre-debate-sobre-su-seguridad-20261113-0083.html"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOZjlSLWpzWElVM1YwOHhMVmQyZzhDZ1NjcXdaVk1sUV80eG9ZdDBNU2VxTmk0ZnZCdU5hUjNUb3JjSXFDZ0ROa2xPNnFDeGJGSDgtREUtQ04yU2ZrWDhzWnFvYTFjbTZXWmpwMHNkRzNmV1l1Z2Y5S0FzTFZFdTk2UG9IRnlhcjd2Vm9kNGNCT2NWNHZael8tbkhrcF8wMjF0ZWI40gGjAUFVX3lxTFBSYUF5Rl9KODFTRWJXOW5hUnZfRlhra0VhQmthNEtLWTh5UXNYNXc2U3cyY0RqT21ONGs5S25sSTBkTzhTWVNlR1dTbUZ3eVBNUGp1a0VDdUFodEc0Yzl6SVQ3UVNMQzB0OHlCM2FSRGRjN2RKSjFEOEtHeGlQdk16dTVTUi1rSHQ2NUN1Vktya1gxbVVoUWRTVUg0cEdFR1A3TDg?oc=5"
     },
     {
-      "id": "auto-a08b751723",
-      "nombre": "‘No es tanto’: Sheinbaum minimiza acusaciones de dumping contra China previo a r",
-      "categoria": "Economía",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/11/13/no-es-tanto-sheinbaum-minimiza-acusaciones-de-dumping-contra-china-previo-a-reunion-con-xi-jinping/"
-    },
-    {
-      "id": "auto-b7a013c2d7",
-      "nombre": "Con Broxel, Morena replica modus operandi de desvío de recursos, acusa Döring - ",
+      "id": "auto-c24963ca36",
+      "nombre": "Líder sindical minero fortalece lazos con sus pares en Brasil",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPZDBrX2Rxd1hBSng1QWJPS2ZyOExUS0tRVFNyM19JTHh3bVBYenZFZU1FeHdyOElMVnpMTUtZR0drblpKc0I0a09lVnB3Q3dCQzBrR19mSDlpQUtDZ3FlSDQ5b3NzaUlRaWtSN3JXV1hKWFhRTllHTDE5U1IycmkxZmw1ZzdVcUlhVnZiYkZUbW9Qc2NiUmFXLW9fcTBxVXVXUVNiNjhyUWhyRkM2WlotYnd1ZXoxaVVMM0pFQnhQcmw2ZFN6c2lQMzNDT09sdXVmMklidHFXQWxzanp1dHF1bzVjOFAyd1lwWUHSAf4BQVVfeXFMTnY0Z2hiVUNIbHc0VGxJQy1uSmZKblppTHV6TEpFaHNlbUpSM1RZZVF1N1U1dkZkM0E0WXc4Y3Myb3UySWQwTWdTZFBoWHhDLXVTQTFFMW1Ld0lHM3lDVXZYdElPc3hjdkp4WVktaTczcEJGX3g4anRsVzRZVGtUTm40WWtQN1lzSTd0eS1URmZjUjh5NHhpcGpuXzAxaTVYYkFOSGExLWxhejR5UnF0eUFhR0ZsRWpsZ2UzeTNmZ01sX1c1ZnhWWER3alltblJ4b19ESTJ0V2l6Q3RqRUcxTGkyTUFucjFkbFpJM0dLcEJ0Wk00dGQxeXJPd3RnUXc?oc=5"
+      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/009n4pol?partner=rss"
+    },
+    {
+      "id": "auto-06405c6ad7",
+      "nombre": "La división de Morena en Nuevo León no cicatriza - EL PAÍS",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNRzIyQ0prT1Z4bFVUMkd5TE5BY2ZCbjVfb29WVjA1VDhNR0xISU9tbEFRY1JBQ0lzNjgwd1VhLTdZaWVsQVBYOExrSFFpOVh3b1BreFl3dElxaEhtMXRBRlRZWUFBTTlNdnU0TFdBaG5BMW16X2dTVU1KR0FkU243QUtWQ1NlZkl2N1dELXNfQ0p5RUpDdkhQR3RuVERNdXfSAbMBQVVfeXFMTi1WY21EZFBfMWtmNlVJdWhPUk1sWkxYUWFqbmdkNXpZZmY1cFVWYkc1RDdHRWNtNE5yVG5xUUZuUGd2eE9qZmR2d3Y5Z1lhZm1NZkxTWjNjcGxhalBvWm5uUTQtUTRqRGNWSXYtNHZCODhXOExkV3NUblRqUF9YWlhWcWRNS19LRTg2dnZ3N0JPejh4TlhEUTVxcWpSUlAzdk1TMVp3Zzh2czg5MHh6VjVMMmc?oc=5"
     }
   ],
   "temas_retomados": [
+    {
+      "id": "auto-708aa69705",
+      "nombre": "“La migración no es un problema, el verdadero problema es el racismo”: María Emi",
+      "categoria": "Social",
+      "dias_silencio": 67,
+      "motivo": "🔔 ALERTA — Montero sobre la migración: el problema no son las personas sino cómo nos tratamos - Infobae",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPWVg5N0FubWhXSENjZS1DTzNManV2emhpbENGOThxdzE1MDBYUm1zNVFqLTVIX25Pd010VEVIbWZPZDduWkkwUzFJOUthUjNHQUlCci1HNGRBZ0FqRHZBNm1iMl9BOTFPTFh6SmJGY0FJMVVObVpNUUxkMlZrMkhIS1pibWZoajVDU2JiWTJfVnhZYUptWnZQTmR6ekxUWGRfbmYycUxpZW1rMnR5QURfczJHYjRUaVJjQ0NRclBCN2dGcWhaQ3cxcmg4eXhsd9IB6AFBVV95cUxNV0NYYS1sZC05WGhZcVlHM2Z2aTdUUHhTZ0NfN3o5ajAzenhRWk9CNDlqNkNGdDRvY0NIaFQ2UWpHcEZkdzI5ajB4eFFBdVV3Zncyb21CZUFCdlhlWjQwVk9jRkFZdXV0NXJmS0JKemlkblZvemZWZHoxcFFua2tfTW54b0JueGJZQ0JKNk85cTFPZjVyZ0VfTks4UEM2emFVN0x2TDhnODZteEpSU2FUbDNIRTQ0X1c0SWRFY3lFb2ZLOU1lWUk1Ni1sbnRKdHp4OVVTNkNtOE9vSVVsVHJFZ0Q0M00wWF9K?oc=5",
+      "fecha_anterior": "2026-09-07",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQTFY1QmZjUlFQYlV0a2JMZmFxVmp1bjFNV3ZqeFhrdHE5THdHQnZFZ19LYmxSRnFDeVNZMG90YWVDNE9WVFZNWm5XOU9nUHU2ZmxjS0dmdkNlSGhlWnFNcDh4Mk00dkJJUFJDUlZjWk9MNGJGVXJkd0VpYktaRFhhelFnaVRPc010SDBMVVprYmNFVURrelM0dXAtZW13bFM1OHVjQ3AxNkgtS0F4UUFzTTRaN2FxV3E0S0xiWUh5WDJWZWRLN2JDWEZ30gHPAUFVX3lxTE80YVBzZmp0elZNNkc3TGktQ3drSnRGYlpCNnA1TVM2MlEyV05LU21KeTNqRFRhZlNjcldCcGdqSDVNUXNmUUxvZnBzdkhlUHcybnZxTWtva3UtcE5ETkdqcG1tS2JsZzBvc2lhQ3NjOG1xaGtXR1I5cy1QUHA1bXd2MzFaYjVEUXl5MnRmOHVUdHFTVkx1WURTT1hkWnRwTUtTeWdTd3dSV2FoUEdmcTJyV2J2dTRUWVZXam1PWlhibUwwNnJTRVJwcFBHczQ1aw?oc=5"
+    },
     {
       "id": "auto-f373694b21",
       "nombre": "El secretario del ayuntamiento de Bacalar alza la mano para contender por la pre",
@@ -1011,28 +894,6 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-d1f2a7f7b3",
-      "nombre": "Detecta Anticorrupción fraude en becas Benito Juárez por 592.3 mdp",
-      "categoria": "Economía",
-      "dias_silencio": 37,
-      "motivo": "Claudia Sheinbaum entrega Becas Benito Juárez en Puebla y desmiente que aumente la deserción escolar: “Es completamente falso” - Infobae",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQcjRDc2ZLMEJKeWlnWkQ3WDZlWjRCVUlhOE9aOTUtbWdWSFNIYm5mYlRfRF80eFdURUpVcXozR2tFcGNPLVc5ejg1Z3dqYUZVSVB3UFcyeHdiNlhqQm1OLWNZR294aGlIa0t4Y204VXE4VmxfMzZkQm9xSV9uZGlrUzJmUTJXRWdyS25Wb0pJQm5NUEFGMVg0STBDRG5EaFNXWXgycjUzcjhvSVlLSkVhd0NLNV9uRnZEOGhMM3dCcjFWTmljb0ppS3ktU2NiQWFObHp0OVU3aHl3dmJQb2dQcDVsZVFmV0c0R0lOV042aWdqZ1phYm5ZWkpn0gGUAkFVX3lxTE5OQkhETmlFMWY1a3F3QTA3bFFjUEVaaXZZVmZvRC01d1hqT1VoNDN4cGRIM2hELTdhWkFqbnRSN1kyZVlweGR4WDhWSDZ2am91SUp4RU5iWnpzbENGeVpCTWtoLTg1MUNZaXlTaHJ5YUlsYVlCS2hKdy1rdHU5Q0ZKRlJXNmlNVkRPb1BQc1dNMWRzWS15S3llVWdWQjFaTzViRnVFUjN1S0YtVUhnU3FyYkZSY2l1Y3hhLUtlT2tYUzhfSkQxdzI4Tm9jUW5LOXBFYXNmY2RzZEVUZjY2RTlLeGdCeDh4QWNGRWhGMC1uRXFndXdaZi15eVNtR21ha09zNzhrRnlYTFRnb1dOenlicnRyRg?oc=5",
-      "fecha_anterior": "2026-10-07",
-      "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/07/politica/005n1pol?partner=rss"
-    },
-    {
-      "id": "auto-101eae9a6e",
-      "nombre": "Invita Mara Lezama a prestadores de servicios del Parque del Jaguar de Tulum a i",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 23,
-      "motivo": "Invita Mara Lezama a disfrutar del Festival de Cine del Sur con funciones gratuitas del 19 al 29 de noviembre - Gobierno del Estado de Quintana Roo",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOOHZRQ2hlZEpZdjhwaVFnWXcwckpvMWJPN0lXdUtHcHN2N1BjOEk3X0xYOXAxMzRMVFY4ZVBVN2lpc1pra0p5TkI4NWw5S2RLQXVCeTF5OENvS2lzNkdzdHNMTHo4c1huNTQ4QlZHX2s1dHBYeUN4TGtYUXZJcWktcXU2MFJZUDVFbWhkQXlqOWh6VW1DcnhSb0FyRng4ZkZLVHo1cndoLXpIeTc1QnlCbk1HUTJJY3gwc2NYdEU5YWdwZEgtMmtBcHJxdVN4ZWs?oc=5",
-      "fecha_anterior": "2026-10-21",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPdERjMWJ3UGRFSHFOZXRtbHc4cnprTzVPelhwc1BlU00tbVpEb2VORjYxejBuNEdfUVNRay1QME80REFDLVRLUllacGZCWjhjVy02Q1VFQTRtbEk4dzBQajg2c0xfUFZKOG1PWVFrWk9jRzFLbGNEQUJlZDl2MnRKa3dLNXZ4cEVRQXoxeFVoX3dZeVdVWTMwVVpBd0Y1SVUtWWE4eVVGUTl2dw?oc=5"
-    },
-    {
       "id": "auto-f810cfe3f4",
       "nombre": "Armenta aborda retos migratorios con Sergio Salomón Céspedes; días antes se reun",
       "categoria": "Gobernabilidad",
@@ -1042,19 +903,30 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQOWVOTGpvWGYzQm9nQnpvTzNYQjFiallKN0VVeW1FQ0dkX205SVA1V1U2dHpiLUM5SGZJaU42Rzd5R1VxdmFPNDNNUEJKZVZhWkN2ckhnc1FxQzBqeVUwNjZvazZwTnBMNGRHYk1YN2liWFhJbFA2NWZDQXdCY0F4UjFtb1BtNFAyQl9xTloxOTNfWGd1aWRTSmRSaXZRaURBeFdSQVd5czI4UWhOWWF4N1lVZUprVjI2b292UVlPdw?oc=5",
       "fecha_anterior": "2026-10-25",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxObjVDYnYtWGJ4bjRtd3piNE5XUHJyc1NsVldTUXQwSGs3SnJqbk55Z1AwUDluUlJlWXdLTlJiNmgzRHNYczZFT2tNU3JZOVJjRmlNWGdXU05yVmU4a0tjWnZlcTlFNlZIeF9rTnczQTdjV2NsTk04ZEVzb1BQY2xBVjAzSzc1YVNwWXQxTHYyVUxzajh6TEd0Zzk5cUh5aXhuNlBacEZxT2p5RFl5RWlDbzcteXBzNmExb0Z1cGkyS29HN0V2azVTZzNmWFJVMW9NcTJiOFptempOZnc?oc=5"
+    },
+    {
+      "id": "auto-0e7f079f97",
+      "nombre": "#HuayNius 📲 | En el gobierno de ‘Huacho’ Díaz Mena puedes ser lo que quieras ser",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 8,
+      "motivo": "Reparten recursos de la Conade para el hermano del gobernador “Huacho” Díaz Mena - Proceso",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQTEpIckRzUG4wSDg1RkRDU1QtRjhYdDZWTVEtbDUzaWlnbU5TTF9NSkJkeG9ha3FZSWZELTdMZDRvX3h2N1dmT0daUmVSYVJ0Mm50ak1pZTh3dEdhVWtPVDFnaUxfZGFfak5xQTkzZEtrZGw4Q0ZXWkx1RlVVM210ZWtaOWZXLUYzRWtmUEZ4Z1YzOGprbzJOSHp1TEdrUzVFOTRkLUxRLWR1LXZJZ3o4SE1QWDlKeTZwTEpoem1FRnN4b3FxNVNTMWZBSS1MLWNseVdN?oc=5",
+      "fecha_anterior": "2026-11-05",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQY19xTWRnb09ZcmpZaVYwcEc2VDRSVXVIa3NTX1BGNDRNTnVWQWlZaGdfTDRQcEw0UmltQ2lkaFZSckFtcWZGS0hWRDJocWIxYjk0UnpJaWtQVUlXMm1kdVlxclE3V2Z4cGladXlYcTJNeFJnbGF1UG04TTNlWVB5eTVqQ1EyYkdpV2tyZ3N6cjBqVjVmV0J3UjJZSExsdU5JYlNjVU5OMjN4cnlpTlYxOURxMnJLcjdlUG1LSHg1MFAtZDNC?oc=5"
     }
   ],
   "actores_destacados": [
     {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
+      "id": "alejandro_armenta",
+      "nombre": "Alejandro Armenta Mier",
       "rol": "Responsable institucional",
-      "tema": "La Universidad de la Experiencia inaugura su sexto curso en La Puebla de Alfindé",
-      "nota": "Presidenta Claudia Sheinbaum inaugura Universidad del Deporte en Puebla; todos los estudiantes tendrán la beca Gertrudis Bocanegra - Gob MX",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNRWM3OFZnbTVBbk8tMFAweHFuZGV3OU92TXpBd1hNOTdJZ2k5XzZQWDR5MWE5SXJFVS1XT1ZIalFMQkt4aVkyZk9CbGs4WGd5MVZoRW9OSVdLMjlqNlZRTGVqcXltV2Y0eF8tWGlmdlVyUmJpdjFOM25Bek1Jemt4VDFPbTF1ak1VVGwwMkRxMUtGd0hNY05tdTdGX1JCUWw1eUJKSUVXR2M0WXZjbEU5RFY0SkFvZEZqOEZVZkJvalY0eGI2aS1HWG51cHM4Wi1QN2ZHVzloTXJ4bzg1a1ZsOExBakt5OXF5cnV3enNFOGVtdmpKbE1iNkp0bw?oc=5",
+      "tema": "El gobernador de Puebla, Alejandro Armenta, repite viejas fórmulas y ERRORES: po",
+      "nota": "Alejandro Armenta y Claudia Sheinbaum encabezan entrega de becas de educación media, en Puebla - Excélsior",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQU1VldEVxMm03dk8tYkdLV1BUb0czcG1hSWhGeEt3YTRmSUYyN0lTa05NcVNFREVHaGoydVRaTDlmWHozOGRSdDZSbjdBUnpuM01CZUZ3RzdZdW5vLURJN01sTzJyTUEzZVlBTXZybmZCUGlYWmxxV3Bac3EzQzVjNUp1QWVrSnlmNzVYSG5kSFJHd1A1VHNXVGhidVl0MjR0bVdYMl80a2tieGVRN2JVaV9XY01ITkdNMk4wTlJNa9IBxAFBVV95cUxOR1A2bmMtSmppMHpCOEFEWkotOTZpUlZnWE5TeDNCN1hJNXlJeTRpTDk5VEdWbXRlT3l0aGZuaFUwUU95T3o4WEJHZ2pLSk4yOXlxNlY0NkFxUWp1Wks2Qk90NUpSY0dWSkJDT21xcElub3RTdTJpMmZEY0xvckhqLVl2aWxBTURsVWM4cXJ2UjRNeTRtMnJJRzRMb29MYkpmN2o0UDE1cHFaNU1nd3lDdUNOaUNLSlFXZ1BMWkVqWHk3TFdX?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
-      "confianza": "alta"
+      "confianza": "media"
     },
     {
       "id": "rocha_moya",
@@ -1068,34 +940,23 @@
       "confianza": "media"
     },
     {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "Exige PT a Morena repetir 17 encuestas, o en Michoacán irá con Morón, advierte",
-      "nota": "Desmiente Morena acuerdo con PT para repetir encuesta en Michoacán",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n1pol?partner=rss",
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "rol": "Responsable institucional",
+      "tema": "La Universidad de la Experiencia inaugura su sexto curso en La Puebla de Alfindé",
+      "nota": "Presidenta Claudia Sheinbaum inaugura Universidad del Deporte en Puebla; todos los estudiantes tendrán la beca Gertrudis Bocanegra - Gob MX",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNRWM3OFZnbTVBbk8tMFAweHFuZGV3OU92TXpBd1hNOTdJZ2k5XzZQWDR5MWE5SXJFVS1XT1ZIalFMQkt4aVkyZk9CbGs4WGd5MVZoRW9OSVdLMjlqNlZRTGVqcXltV2Y0eF8tWGlmdlVyUmJpdjFOM25Bek1Jemt4VDFPbTF1ak1VVGwwMkRxMUtGd0hNY05tdTdGX1JCUWw1eUJKSUVXR2M0WXZjbEU5RFY0SkFvZEZqOEZVZkJvalY0eGI2aS1HWG51cHM4Wi1QN2ZHVzloTXJ4bzg1a1ZsOExBakt5OXF5cnV3enNFOGVtdmpKbE1iNkp0bw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
-      "confianza": "media"
+      "confianza": "alta"
     },
     {
       "id": "amlo",
       "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Reacción social/mediática",
+      "rol": "Mencionado",
       "tema": "Nino Morales felicita a San Blas Atempa por 158 años de historia y dignidad indí",
       "nota": "Felicitan a AMLO por sus 73 años",
       "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/005n2pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "pt_partido",
-      "nombre": "Partido del Trabajo (PT)",
-      "rol": "Reacción de oposición",
-      "tema": "Exige PT a Morena repetir 17 encuestas, o en Michoacán irá con Morón, advierte",
-      "nota": "Desmiente Morena acuerdo con PT para repetir encuesta en Michoacán",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n1pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1322,10 +1183,10 @@
     },
     {
       "fecha": "2026-11-14",
-      "tension": 40,
-      "n_notas": 5,
+      "tension": 38,
+      "n_notas": 6,
       "n_alto_impacto": 3,
-      "n_medio_impacto": 2,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
@@ -1345,8 +1206,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQXzR6Tk5hdHQ2MmhJNllnOVBXbmZwbzNGVGxuVm54QXZHSFZwTHo2WmMyOThBRVJua25yUFdNNXpENTVEQ2h1SEJxeGdsd0FHS25LU2VydHNuRDlqS2duMVNILURtMzdsaDdXanJrdlcyMFltdE9jaTBMN3d2cXNSaEZLUXJ5ampJdWtJU0JybWhmWlJCdGdHS0E0TktHVk5pY0Zad0VCbnJwRlJTYVlUSEJfY29KZkxmck84QTIxMFJ5dGtKLWp0SDc0ZGtsWjJpRDdSYm1kOEhtTThNVDNmRWphZVdOcVNOTXNVZmk4ZGhfVVVjRWlrRi1BWHY5a3oxTmY0?oc=5",
-      "nota_texto": "Presidenta Claudia Sheinbaum anuncia apoyos a estudiantes de ciencias: financiamiento, beca Gertrudis Bocanegra y más recursos a La Escuela es Nuestra - Edomex Al Día",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/11/claudia-sheinbaum-entrega-72-casas-en-aguascalientes-como-parte-de-vivienda-para-el-bienestar-2917208.html",
+      "nota_texto": "Claudia Sheinbaum entrega 72 casas en Aguascalientes como parte de Vivienda para el Bienestar",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1373,6 +1234,59 @@
         }
       ],
       "fecha_apagado": "2026-11-13"
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 70,
+      "y_lunes": 75,
+      "x_hoy": 80,
+      "y_hoy": 75,
+      "delta_pts": 4.5,
+      "alcance": 15,
+      "n_alto": 8,
+      "n_medio": 8,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQc0U2NXZNZHZkWmNOMmhCSmhpQkVBb204aDcwb3RySXA1V3BlNHhSeUk1TTV4M1VlelBDX1pVaHJRN0JweVBGTi1iYTlPdjU1VVV5WXlJczBKU3lDVUQzTm1WOGhnRHFLVVVTZWtMN0p0TERHbjZOem9xRWE3aDhnZ3ByU05jcDFxckRPejRLbXNxNEREN01BSzhJSWFmT1MxNzJVR2ozekMxX293VG02bG1oUlFDZS11?oc=5",
+      "nota_texto": "Cuentas públicas 2025 de Rocha Moya libran fiscalización; cinco juntas de agua quedan reprobadas - ADN Informativo MX",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 6,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-09",
+          "x": 10,
+          "y": 75
+        },
+        {
+          "fecha": "2026-11-10",
+          "x": 15,
+          "y": 67
+        },
+        {
+          "fecha": "2026-11-11",
+          "x": 40,
+          "y": 75
+        },
+        {
+          "fecha": "2026-11-12",
+          "x": 50,
+          "y": 75
+        },
+        {
+          "fecha": "2026-11-13",
+          "x": 70,
+          "y": 75
+        },
+        {
+          "fecha": "2026-11-14",
+          "x": 80,
+          "y": 75
+        }
+      ]
     },
     {
       "id": "andy",
@@ -1424,60 +1338,6 @@
       "fecha_apagado": "2026-11-14"
     },
     {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 70,
-      "y_lunes": 75,
-      "x_hoy": 75,
-      "y_hoy": 77,
-      "delta_pts": 3.0,
-      "alcance": 14,
-      "n_alto": 8,
-      "n_medio": 7,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQc0U2NXZNZHZkWmNOMmhCSmhpQkVBb204aDcwb3RySXA1V3BlNHhSeUk1TTV4M1VlelBDX1pVaHJRN0JweVBGTi1iYTlPdjU1VVV5WXlJczBKU3lDVUQzTm1WOGhnRHFLVVVTZWtMN0p0TERHbjZOem9xRWE3aDhnZ3ByU05jcDFxckRPejRLbXNxNEREN01BSzhJSWFmT1MxNzJVR2ozekMxX293VG02bG1oUlFDZS11?oc=5",
-      "nota_texto": "Cuentas públicas 2025 de Rocha Moya libran fiscalización; cinco juntas de agua quedan reprobadas - ADN Informativo MX",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 6,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 10,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-10",
-          "x": 15,
-          "y": 67
-        },
-        {
-          "fecha": "2026-11-11",
-          "x": 40,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 50,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-13",
-          "x": 70,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-14",
-          "x": 75,
-          "y": 77
-        }
-      ],
-      "fecha_reactivado": "2026-11-14"
-    },
-    {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
@@ -1492,8 +1352,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNaGJjaFg0NC1lYS1sVURfOUZfS1FCbjVvVHFXYlZQMW83VHBBa0RjYlZNNm5IRGctWkNtQURzb2ZHdWtNbGdEVy1HVmg1dWF0V3Y1UHdmMzg3Y0ZRU2JPcGhzMGV4R0lqV1MtOHVGWUdtOGNhbm5QeFZRTmtvbFlsUkJTMU9LUklBVDh1bWt4SS1qLTJTc3hBMTRQM19VbVQ5Z3pHMncza2ZzdDFZSHVv?oc=5",
-      "nota_texto": "Morena plantea nuevo recorte de 500 millones de pesos al INE para 2027 - Municipios Puebla",
+      "nota_url": "https://www.tabascohoy.com/?p=841778",
+      "nota_texto": "A 20 años de la elección de 2006, Morena propone investigar presunto fraude",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1570,10 +1430,10 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMUVPemxFclhxU1BnSUItMXdUS1NYcWtUQWVpZzFTbFgxeEhGT2pOLW5YbTY5VmRWTDFjdVhpQTJZOWw4U2ZjUllhWXJUb2t5T1owT1NUQ3h3Y2NWMHVHWUo4eXVlcW9YbnNuOC01a2E4SzNGeV9oZXI1RmFKdVNLVy1RMmxrVFdtTDR1MFpGbTM4Nmgtc2owVWFIOG9EVy0tNmVKRHI2MXNld2RPRUhhQ1dCNTJyNEp3N2lpeEZycTNFNnp1?oc=5",
-      "nota_texto": "PEF 2027 destinará 128 mil millones de pesos para Puebla, adelanta Ricardo Monreal - Diario Cambio",
+      "nota_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNNDVDZVVNUHBOenJDN0oza3VLcGx4LW04a2xGY3dQeWJlR0paTzdRY3NCQVZYdE85LUJWUFMtZVp6cnRZVzE5X2QzaXJBWXdNSERkT1dZQkJXY0Nua3RhSTNfQTZBRlRFU2daZktKem5PeTExSGRqRGVfVmdMdmVwSC1ISTV5QTFRVmc?oc=5",
+      "nota_texto": "Ricardo Monreal perfila 128 mil mdp para Puebla en 2027 - Sucesos Puebla",
       "es_nuevo": false,
-      "categoria": "Economía",
+      "categoria": "Gobernabilidad",
       "dias_activo": 2,
       "trayectoria": [
         {
@@ -1604,8 +1464,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://www.jornada.com.mx/2026/11/11/politica/004n2pol?partner=rss",
-      "nota_texto": "Confirma García Harfuch órdenes de arresto contra Zuany",
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/11/garcia-harfuch-confirma-detencion-de-beto-leyva-peligroso-operador-del-cartel-de-sinaloa-2917114.html",
+      "nota_texto": "García Harfuch confirma detención de “Beto Leyva”, peligroso operador del Cártel de Sinaloa",
       "es_nuevo": false,
       "categoria": "Seguridad Nacional",
       "dias_activo": 3,
@@ -1806,12 +1666,12 @@
   ],
   "tablero_semana_inicio": "2026-11-09",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "sin_mananera",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1866,5 +1726,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-14 06:02"
+  "hora_corte_publicada": "2026-11-14 10:42"
 }
