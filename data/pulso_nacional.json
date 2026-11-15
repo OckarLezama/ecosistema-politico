@@ -1,41 +1,35 @@
 {
-  "generado_en": "2026-11-14T18:04:56.893642-06:00",
+  "generado_en": "2026-11-15T00:01:38.458367-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 11,
   "baja_confianza": false,
-  "tension_nacional": 30,
+  "tension_nacional": 20,
   "tension_anomalia": {
-    "z": 2.13,
-    "nivel": "alta",
-    "media_periodo": 21.0,
+    "z": -0.28,
+    "nivel": "normal",
+    "media_periodo": 21.2,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 46,
+      "peso_pct": 53,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
       "n_temas": 4,
-      "n_notas": 5,
+      "n_notas": 6,
       "notas": [
         {
-          "texto": "Descongelan de forma parcial cuentas de Rubén Rocha Moya",
-          "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n2pol?partner=rss",
+          "texto": "Detienen a 'Diego-relacionado con el asesinato de Carlos Manzo - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNYUNMYk1TOXZOcEJoVFVReXVxcXdyYTRYVmwwRUQ4cGt4NGNqcHlPWThuR2FQOHljOVdRbnRlQjdCYkdHSEpfNkxfQWZyamhlNjhZTndkQ3hYY0xQT1ljVGhESW92dHFWb3pxTjAwYXF5VlpIeTUtS0x3Zy1RN2hwOFYzSFB6Z2xsQUpOVXIyaFFwMkpDVzVjRQ?oc=5",
           "intensidad": 7.0,
-          "medio": "jornada.com.mx"
+          "medio": "Milenio"
         },
         {
-          "texto": "Andy ya es Andrés",
-          "fuente_url": "https://www.tabascohoy.com/?p=843366",
+          "texto": "Álvarez Máynez explota contra Morena y la 4T tras el arresto de Gabito Ballesteros",
+          "fuente_url": "https://www.informador.mx/mexico/gabito-ballesteros-alvarez-maynez-se-lanza-contra-morena-y-la-4t-tras-la-detencion-del-cantante-20261114-0091.html",
           "intensidad": 7.0,
-          "medio": "tabascohoy.com"
-        },
-        {
-          "texto": "Presunto ahijado de 'El Mencho' huye en vehículo con placas de EU tras enfrentamiento en Ocotlán y autoridades - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQby1sNGhrdzZYaHZGWTFBOHo2YW00Ri1YWGpwWXg5dHNfUmNkWTFfaHJSZlQ2OUF3bFdtQlVuMlBLX2FuOW9lTVpFTkpzNmpxWUw3Zk1EWV82VkV0M0drMUQ3ZmkxY2syZEdqeVJKRGhZZUVHazlzY3hmZjZ6ZFlCUGtTaEUtZ9IBhgFBVV95cUxQby1sNGhrdzZYaHZGWTFBOHo2YW00Ri1YWGpwWXg5dHNfUmNkWTFfaHJSZlQ2OUF3bFdtQlVuMlBLX2FuOW9lTVpFTkpzNmpxWUw3Zk1EWV82VkV0M0drMUQ3ZmkxY2syZEdqeVJKRGhZZUVHazlzY3hmZjZ6ZFlCUGtTaEUtZw?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
+          "medio": "informador.mx"
         },
         {
           "texto": "¿De cuánto son las tres pensiones a las que Rocha Moya volverá a tener acceso? - El Informador",
@@ -48,44 +42,28 @@
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/14/prd-michoacan-anuncia-alianza-con-morena-respalda-a-coordinador-carlos-torres-pina-2919114.html",
           "intensidad": 5.0,
           "medio": "heraldodemexico.com.mx"
-        }
-      ]
-    },
-    {
-      "categoria": "Seguridad Nacional",
-      "peso_pct": 28,
-      "tema_principal": "Abatimiento de \"El Mencho\"",
-      "tema_principal_id": "el-mencho",
-      "n_temas": 2,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Condenan en EU a Tony Montana",
-          "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n3pol?partner=rss",
-          "intensidad": 7.0,
-          "medio": "jornada.com.mx"
         },
         {
-          "texto": "Arizona abastece al crimen y alimenta la violencia en Sinaloa con venta de armas - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNcXljNE41Zld1SGFYNDVZeWlsNXR3UzA5YjdWcE1ISEROYzhLRGd3V2w1OEMxOFk2bXQ1SDVtZXN2UzdwWWFuUXZVX2FybmhQN2htbGZQZnNNa3pIOGUtMXlPZmVFZXRzM0wzdGp6QzNYWFpvVlRLaHlFZnlSU29oeEFFSFNXem9RMzlQOEEyOEt6UzNtN1p2cjV3STNPS1lldE5ketIBpAFBVV95cUxQY3R4UHB6eFl0UFJIU3Z2WFVsR0hUNjhaWTlPc05mN1lEcTZFWTBkTFZYLWV5T3dIQVdzYUZrbGd6bzVMdUJocUlDSGp0V2pBbS1NU0ZXUUVYX3RsNkxpaW91bXlsaV9GUUEyRmpxRVhzWmQxZUthcXRSWlZoZG1sS2I0NlpWMXJvWEJqOUkyRGNseWd0N2xXTi1LQi1HMFhDRm9ITA?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
+          "texto": "Álvarez Máynez explota contra Morena y la 4T tras el arresto de Gabito Ballesteros - El Informador",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNOWIwQ09QVU5XV3NoX2Q0OWtoRnl4M25NTkRfUnpjQ1dIVUl3NWFpcVktRTJDeDR2MzhzRkp5U3NyZnBhWmx1VlprdVBGVEpENElMZU9ScUhwbHc0R2NBQTdGWGNNSE5KVG5DeC1laVBXbGx1NnZxUjlDTEIzSnVuNGhPOWpmNi1VZG1WQktqU0g1Tm5GbG8xbExhSlFXWTdvRkUyeVJrZTB2NENZaU9wYlpydHUxZ0loWW9sLUQzNGdLNm8yNjFfeG9JZ2RzakUxd3FTbVNMR0NqZE9CX1UwVdIB5gFBVV95cUxOdXIxUVhWbjJDNFdBUE40b2UxcXBqOE4tMnFQbVg3RzN4WkdzS3NjVWFnbXJpYkIxUm14U0tCQTdEY3lzWF9WaHMxS1IwYWJjVy1mT216UjY0RHNYQWd0NG9FYkltNGlrWGJKaDRnZmQ1SDVLMnBMczdiaG4waTBRcjgtOWdkN0hxaWNoUnhmNE9VZmc1R2ZRV0d1OWxHUjh1aVl4Z2M3bC1MeTI3Tjd3Yl9hU1JWXzZ3SXVoclhrVVNPY2M1YzMtbkJVMjBkTTNCeVBZNUNkZnQ2SWJXUWZQOXdNNHpxUQ?oc=5",
+          "intensidad": 5.0,
+          "medio": "El Informador"
         },
         {
-          "texto": "EU solicita extradición del \"R1\", hombre cercano a \"El Mencho\" preso en el Altiplano - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPTHAyR096czVUNDM2cFFWS0FxYl82eGhOV1d1YXp1dVB5eWRHTm9XbXVGTVVFV0Fyd2d4c2NnLURGS1FuTzZrRUVEUjFPU3J2SHoyd243WXBYR2NjbnRvdngwbDRyTEdiMUozMjFNOUhkbUwydnd0Mm5uSmF1cmdleEJJWkNzOVVkR21hQXBkZi1GZDF6U3RkcThsS2dkRk5WRU9XQlpMWmd4dWJVcldzelNTRzF4b0diUmsyTWVhd25mcDRaaVBVTzBTN291ZF9KZlVYNzFXZHbSAewBQVVfeXFMUFVETWNwNTk3bUo4VXdjNG9vLTVZaVdvcFF4TVhjSG1sOGpnb0QwUkJIYllQVHpGbnV5WUw3SFJERFowNldRemhnMzRoSWk2S2ZCYmtjcm53UXcxeXF1aXlSMzRjR1FhQjJCRzNoblhqUmlBc3c1QkZOUWlsWTVPdmk0b2hHdnhldVN5TUg4SUNNN01JSWxFWURLaHkxbFd3dFVlZmJQM1h3ck1Xd1laV01nQ3NfV3BaUFpQQnAwb1NOd2FRNEc2NTgtYmhncW9EVDdfYmlvZ3hkUXN3bmFGRDd2UERUaDFzeXVIUGM?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
+          "texto": "Ley “antimemes” entra en vigor: qué castiga y de cuánto son las penas o multas",
+          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/14/ley-antimemes-entra-en-vigor-que-castiga-y-de-cuanto-son-las-penas-o-multas.html",
+          "intensidad": 4.0,
+          "medio": "yucatan.com.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 18,
+      "peso_pct": 28,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 2,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "Renegociación del T-MEC: La nueva y nada amistosa cara que perturba las negociaciones entre México y EU - El Financiero",
@@ -98,6 +76,28 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQSHU0bFo1UjJ6eEE2N2FmQmxHci1pejRqaHFBUHI4NndtWU52ODJhaHNjQUV4Q3JFcWxxZ2V5R1dMYlNtMUdDeV9ERFN0UnJUYUpBd0t3QWFPWk8wWXVXSjVPUW9JYnpYQlFidUt6a283OTRoOFAyQVYwSDd2NERnd2FOV2RTOFBvY1I5QTRvRF9ZenU0S0FBMUtQUdIBmwFBVV95cUxNS2pzVlR5cWRlZ2REQnRUaVZOOFo4R1JyT0RoQW9wTlJrVTBiMEJucDZEXzJkaGVOWU1BNXp6WkhuMnlET3lMOTFIYzIyZ1dHU3c2QUhxT0t2SGlJN3I1RUxPbXFTM2tXM1FQM1FZOGpQeHhCQksyVGhiOXpqWDd4U292MXBiYksxdW16ckZZYmJTQkRjNmh5dFNTOA?oc=5",
           "intensidad": 6.0,
           "medio": "Milenio"
+        },
+        {
+          "texto": "El T-MEC después de las elecciones: ¿qué cambia para México? - El Economista",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNRjNITUU5ZFFTb3hXX0t1Vk9KZE44bVJUZy1vQXowY0lVaW9DZUlEYTJ0WnRKTGg4X1NQY25SM19QZDNVQ2xmWnFjQkRYRS1PUGE3SU44cUotWWFYb193ZmtaODZ2ejVLQXB1bFFnOC1aTGtmRTRRalM0ajQ0WXlxWnl2cUNraWR3QXg5aWpBRlpvbVJlaWfSAZsBQVVfeXFMUG1OM3ZBSzZhd2ktTzF4V1g5NTVUaHVLRlgyeXRDdnduNjBuME1qbWdrajIxd1lLbkd2NkFQNnJ2M3lDbHVIT1MtRnNzV3pKaXozbWFOeGk0SkQ0VXhVdlYxSWR6S2ZtT1VYVW1ta0ZQTHl3cHJnN3RBME95SUFjcXhJOWFQZHAzdWJZa2NlR190WGRSY2pmOGtMM3M?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Economista"
+        }
+      ]
+    },
+    {
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 9,
+      "tema_principal": "Abatimiento de \"El Mencho\"",
+      "tema_principal_id": "el-mencho",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "EU solicita extradición del \"R1\", hombre cercano a \"El Mencho\" preso en el Altiplano - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPTHAyR096czVUNDM2cFFWS0FxYl82eGhOV1d1YXp1dVB5eWRHTm9XbXVGTVVFV0Fyd2d4c2NnLURGS1FuTzZrRUVEUjFPU3J2SHoyd243WXBYR2NjbnRvdngwbDRyTEdiMUozMjFNOUhkbUwydnd0Mm5uSmF1cmdleEJJWkNzOVVkR21hQXBkZi1GZDF6U3RkcThsS2dkRk5WRU9XQlpMWmd4dWJVcldzelNTRzF4b0diUmsyTWVhd25mcDRaaVBVTzBTN291ZF9KZlVYNzFXZHbSAewBQVVfeXFMUFVETWNwNTk3bUo4VXdjNG9vLTVZaVdvcFF4TVhjSG1sOGpnb0QwUkJIYllQVHpGbnV5WUw3SFJERFowNldRemhnMzRoSWk2S2ZCYmtjcm53UXcxeXF1aXlSMzRjR1FhQjJCRzNoblhqUmlBc3c1QkZOUWlsWTVPdmk0b2hHdnhldVN5TUg4SUNNN01JSWxFWURLaHkxbFd3dFVlZmJQM1h3ck1Xd1laV01nQ3NfV3BaUFpQQnAwb1NOd2FRNEc2NTgtYmhncW9EVDdfYmlvZ3hkUXN3bmFGRDd2UERUaDFzeXVIUGM?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Universal"
         }
       ]
     },
@@ -128,31 +128,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-18",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 69
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 5
-        }
-      ]
-    },
     {
       "fecha": "2026-10-19",
       "categorias": [
@@ -808,7 +783,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
@@ -816,37 +791,59 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 11
         },
         {
           "categoria": "Social",
           "peso_pct": 11
         }
       ]
+    },
+    {
+      "fecha": "2026-11-15",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 13
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 56
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 12
+        }
+      ]
     }
   ],
   "top5_temas": [
     {
-      "id": "el-mencho",
-      "nombre": "Abatimiento de \"El Mencho\"",
+      "id": "rocha-moya-acusacion",
+      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
       "categoria": "Seguridad Nacional",
-      "resumen": "El 22 de febrero de 2026, fuerzas de seguridad mexicanas abatieron a Nemesio 'El Mencho' Oseguera Cervantes, líder del Cártel Jalisco Nueva Generación, durante un operativo militar en Tapalpa, Jalisco. El operativo detonó una ola de violencia, bloqueos e incendios en varios estados; su lugarteniente 'El Tuli' encabezó las represalias hasta ser abatido, con un saldo de al menos 25 elementos de la Guardia Nacional muertos y decenas de detenidos.",
-      "motivo": "Condenan en EU a Tony Montana",
-      "peso": 38.0,
+      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
+      "motivo": "Álvarez Máynez explota contra Morena y la 4T tras el arresto de Gabito Ballesteros",
+      "peso": 31.0,
       "n_temas_agrupados": 3,
-      "escalando": true,
+      "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 4,
       "confianza": "alta",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n3pol?partner=rss",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "fuente_url": "https://www.informador.mx/mexico/gabito-ballesteros-alvarez-maynez-se-lanza-contra-morena-y-la-4t-tras-la-detencion-del-cantante-20261114-0091.html",
+      "actor_vinculado": null
     },
     {
       "id": "tmec-revision",
@@ -854,17 +851,29 @@
       "categoria": "Economía",
       "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
       "motivo": "Renegociación del T-MEC: La nueva y nada amistosa cara que perturba las negociaciones entre México y EU - El Financiero",
-      "peso": 12.0,
+      "peso": 18.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPbDFZWmhhbGhkekpSekp0ajJJVHkySHBld1hnQUVZTHVlYktEYW1WTzBwY3lNLUVoanhWRHMtZEEyQ2pBNUZudVctbVd0MElDYXJyVmhBLUxRQzQxLVZwY3RRUGxrdnZRVjRfaVJGSmJ1a0gtS1VWREJpUUtiSmRSZjcxU0lfQ2ZDUzN1bUEzcW5vLTdycTB6X2RkbUpmRmhvTFVKZ1NoZnBTRjZXS2ZGcE5ENEtKWTN1Smp2dEV5VmgtR1Nab0JNbm4yZGoyQXJXbnRLSFhEQ01YRFdtTF9LMGVRMWp6aDllMFhV?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "actor_vinculado": null
+    },
+    {
+      "id": "auto-a7761b0ff1",
+      "nombre": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó q",
+      "categoria": "Gobernabilidad",
+      "resumen": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó que el director del IMSS, Zoé Robledo, ya atiende e investiga el caso de los bebés que fallecieron en el HGZ de Durango. #MILENIO16h con Ady Cabriales - facebook.com",
+      "motivo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 05 de junio de 2026 - Gob MX",
+      "peso": 7.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQZ21STlVLdEZlUk1hQjl2V2pXbldiSmZEZzdrNFd3WHBTTVFDWUNWdkFsOHhqMkFnM1dyV3VqME5qeTZfTU1zWGpEZ0pWU2NHcHJkbk1HSG91dDQtaTVSVDlvMWh1WlRQYy1Bd2JzVEhXS0VCWmt5Vm9OcE5Uaks3ak9MM01scTY0ZFFrR2U1Z0RFNkxONWtXY1pyaVNEUkFrdDNYR0xSM2prUHc2V2kxVHZIZ3FlY1BnR3ZBcVVrbkpXQWxsdVpwZ1RMTkVVOWI1Rmh1akdONU9EeWFPSWVfVlFEZjl6N1BNVFE?oc=5",
+      "actor_vinculado": null
     },
     {
       "id": "trump-agenda",
@@ -908,20 +917,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNNHh1ZXgtbnNEMVV1MnlPaXg1VDhuMUs2VjFCTzRGTkZKQ2RwRi04QVBpOEt4Smt2WW16Y3JqLUVNQldYcW5Mcmg5ei1BUmJKeUZwT08zeENURWxLa0ExQnNCQXJMLXhWcWZZR3U3aTJndTRNTGtzcm9jUF9lR0VIc1RkWEMtOW9fVkRV0gGLAUFVX3lxTFBWTWg5elpDNkhvcTRzdFhOdWRVck1zVjlrSHFfMHhvOVRoWGNodzdjcTgzX3k4VzFHc3RoRk9VVG5vXzVuYkx0cF9QQ2tLdkxGT2d4UnJ3SWZKRnN5Vl94bGx4U2EtdHRPVFdpMHZmVWR1YnhTRUNheDNwUGFLVzJ3bTJOTzNqLTU3cjg?oc=5"
     },
     {
-      "id": "auto-c24963ca36",
-      "nombre": "Líder sindical minero fortalece lazos con sus pares en Brasil",
-      "categoria": "Gobernabilidad",
+      "id": "auto-4be6954895",
+      "nombre": "Juez gira orden de extradición contra \"El R1\" y le niegan amparo",
+      "categoria": "Seguridad Nacional",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/009n4pol?partner=rss"
-    },
-    {
-      "id": "auto-06405c6ad7",
-      "nombre": "La división de Morena en Nuevo León no cicatriza - EL PAÍS",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNRzIyQ0prT1Z4bFVUMkd5TE5BY2ZCbjVfb29WVjA1VDhNR0xISU9tbEFRY1JBQ0lzNjgwd1VhLTdZaWVsQVBYOExrSFFpOVh3b1BreFl3dElxaEhtMXRBRlRZWUFBTTlNdnU0TFdBaG5BMW16X2dTVU1KR0FkU243QUtWQ1NlZkl2N1dELXNfQ0p5RUpDdkhQR3RuVERNdXfSAbMBQVVfeXFMTi1WY21EZFBfMWtmNlVJdWhPUk1sWkxYUWFqbmdkNXpZZmY1cFVWYkc1RDdHRWNtNE5yVG5xUUZuUGd2eE9qZmR2d3Y5Z1lhZm1NZkxTWjNjcGxhalBvWm5uUTQtUTRqRGNWSXYtNHZCODhXOExkV3NUblRqUF9YWlhWcWRNS19LRTg2dnZ3N0JPejh4TlhEUTVxcWpSUlAzdk1TMVp3Zzh2czg5MHh6VjVMMmc?oc=5"
+      "fuente_url": "https://www.informador.mx/mexico/juez-gira-orden-de-extradicion-contra-el-r1-exoperador-clave-de-el-mencho-y-le-niegan-amparo-20261114-0071.html"
     }
   ],
   "temas_retomados": [
@@ -959,17 +960,6 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNT2w1SVJmV2ZYdXBqaUtYMDZJckpVZ3dkUk9sRExUR2hyTjNvaC13VS1mT0M3NWd6d2NJOU5JN0dXVWhnOWdBSUhWREZvVTNyOTc3aWpNR3FhYU80S3llMlBkcmpkcENKX1FvRGpFdl9vLWJKQjVfdkw1Z05aTUpiZzV5bEJKZjhKeG5NdGZkTHVWMTNuS2R3dWNGM0lGcEJ3TEdfa01iSENNS1hWTmM4c1VPSE9rUFdjSkpkajFn?oc=5"
     },
     {
-      "id": "auto-0326a91440",
-      "nombre": "Nino Morales felicita a San Blas Atempa por 158 años de historia y dignidad indí",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 43,
-      "motivo": "Felicitan a AMLO por sus 73 años",
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/005n2pol?partner=rss",
-      "fecha_anterior": "2026-10-02",
-      "fuente_url_anterior": ""
-    },
-    {
       "id": "auto-97af22686a",
       "nombre": "Madre e hijos migrantes se quedan en Aguascalientes con programa de la ONU",
       "categoria": "Social",
@@ -979,6 +969,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQcFU5aXZicnVpOUs4dWxuRmxEVkU1RmUyU2VfZno1R1c0SFJTbzZMQTR1RnJrWFZzSEJleGJPM0I1X2hiNzBDUUgtdzhMcU5qc2E3VkFRWmphUGJnM2hXekVISl9MNW5EQmprQWlSRVZmN3NIMTJWdTgybEphd2NVLVhLWWl3X29nclo0ZWFDMnRuY3lzVmJPUnFPMG9ZbUtpNTlFdjNoWnRpUmFBeVVkYUdGYUlkVXR5dnVabHVmRERHQWwxemtjTmxST2dWMWViSGVyeUoySlNCVzV2bGRSUmQyR0RxaFpqa1Vn0gH_AUFVX3lxTE1BbHhOSjJjRk5Jbk5mcXZvWUpKU3ZrWGZsNGl1dVVtM3drREl5WUluUmw5N2J5ZzFCMWc2RFBFSUluSjFYUEx4d01ZWTFWeVZRS0pBZl9KaEtmckNmNEY3dVlPWjFFMklaUGNrRFdxMERDb29iOGRlbnBtclNFZ3d1UUZNTHdNcmJrekZOYUw3N19FajF0VVZ0clZuSk9VN09HbGI3MnFCdm50WjEtbWJjSTJxMlFlOGhLbVRKLVZ5cDJNdzhZWXgzdkJ4cl9pVVg4VGNfbWNxZXBORXBfWGp5ZlZ5WW1uQTdQb1dRMWhOYnZYSW5oU0NqRFZkdXljSQ?oc=5",
       "fecha_anterior": "2026-10-04",
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/04/politica/009n2pol?partner=rss"
+    },
+    {
+      "id": "auto-3d03f8fd4e",
+      "nombre": "Urge renovar al IMSS; usa esquemas de hace 40 años, lamenta Sheinbaum",
+      "categoria": "Social",
+      "dias_silencio": 25,
+      "motivo": "Claudia Sheinbaum comparte fotografía de hace 40 años en el CEU: \"En una asamblea\" - Milenio",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPSlNsanpHc3E4WDZhdmdZQjVhbGJRbXQ2YVF4WW9MV1NTQmFyblhZekljd3lyYk9UY2NEVmZLSURSWC1mMXlidFotZ1l3UWpYWTk5X2dZN3k2TDgzTmtva21vdV82S09sWlJ0RHY0cS1pWWZvQkN1T2RvX0RXQVN0Z0JwMkQwaVcxSDBkWFN30gGOAUFVX3lxTFBscC0xNTgzU3RRcjdXcHk4SXVfaUdFaTdZNTQzUGEtQ3pCSmNLWEEtbTNTNFFhRnRYZjdSbmRHTWZJNFpESElfNzYyVnBxbXdfSlhuaFFUc1BRQ0t2TEpDMUczQVQ3N01vd25UODBkNUZNMmZPWDEycVAwTGF2UGRWVHBqc3FqSUNudVJ6Qmc?oc=5",
+      "fecha_anterior": "2026-10-20",
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/20/politica/004n1pol?partner=rss"
     }
   ],
   "actores_destacados": [
@@ -987,8 +988,8 @@
       "nombre": "Rubén Rocha Moya",
       "rol": "Investigado",
       "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "Descongelan de forma parcial cuentas de Rubén Rocha Moya",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n2pol?partner=rss",
+      "nota": "¿De cuánto son las tres pensiones a las que Rocha Moya volverá a tener acceso? - El Informador",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQNXVzNFNZTHA4SUZReElRMl9tTzFGLXRBd0tua2VhVkd0VkpjVXlueDlMdkRoZzM2NW9CUFozb3hBU0theFVjRUY1alVlbmV2WTMxR1Boa1NtbExENDhObW40R2o0MDNTek5ZcGlabmNuVTZMT3Y5U2VpY1BhY0VFVEJXeUNxbUFvQkdxVTVEWjZVamNvR0ZsRXVrVEUwY1JaSzVwOUdHQ3ZkNzdVX1hoTHRYQThsUUlQNkR0dmxraTVvb2FsUnEzT1MteTNoUW54Q25jQVRlTE9fdktmWWlxSGFsYlkzTDVkODJmZi0tYjhSTVdDall6MnNSRmRXT3RBdmIybmhuUEllY1hCNkHSAZMCQVVfeXFMTk5GTVY2R3RqSmhxQXRzMGVlMmRCa0FVblRzeGtvT2xtd3hlZFRqMnFyRkZGSlc3bmxRQ2ZtR255ZTRVZHZvSU1wWnJmSHUwbGV0MTlNdEdqSTAyc01vTV84QzhLZmxQNndvNU5xUFB6X2xwb0tRLWNsOWVNbHFpVlZ1eXZkTk1nRXFOc3FfYk9acS05Y2s5M3ZYemtRSUhvRWNreWdybmJzN1M3dVRoTmRwWmwwcUptZFBKN0hJd1BSazJHa1V6N1RTRmdwajBKMmF2YktRZmU5QWNzVlVGOFNFaktIZzMzd3FSdXhFN2tiOEJ0VmwxalJmdFhrOUtkWThBdV9WOWpIeFlkbkZTQmdRM2M?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -997,31 +998,20 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "El gobernador de Puebla, Alejandro Armenta, repite viejas fórmulas y ERRORES: po",
-      "nota": "Alejandro Armenta y Claudia Sheinbaum encabezan entrega de becas de educación media, en Puebla - Excélsior",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQU1VldEVxMm03dk8tYkdLV1BUb0czcG1hSWhGeEt3YTRmSUYyN0lTa05NcVNFREVHaGoydVRaTDlmWHozOGRSdDZSbjdBUnpuM01CZUZ3RzdZdW5vLURJN01sTzJyTUEzZVlBTXZybmZCUGlYWmxxV3Bac3EzQzVjNUp1QWVrSnlmNzVYSG5kSFJHd1A1VHNXVGhidVl0MjR0bVdYMl80a2tieGVRN2JVaV9XY01ITkdNMk4wTlJNa9IBxAFBVV95cUxOR1A2bmMtSmppMHpCOEFEWkotOTZpUlZnWE5TeDNCN1hJNXlJeTRpTDk5VEdWbXRlT3l0aGZuaFUwUU95T3o4WEJHZ2pLSk4yOXlxNlY0NkFxUWp1Wks2Qk90NUpSY0dWSkJDT21xcElub3RTdTJpMmZEY0xvckhqLVl2aWxBTURsVWM4cXJ2UjRNeTRtMnJJRzRMb29MYkpmN2o0UDE1cHFaNU1nd3lDdUNOaUNLSlFXZ1BMWkVqWHk3TFdX?oc=5",
+      "tema": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó q",
+      "nota": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 05 de junio de 2026 - Gob MX",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQZ21STlVLdEZlUk1hQjl2V2pXbldiSmZEZzdrNFd3WHBTTVFDWUNWdkFsOHhqMkFnM1dyV3VqME5qeTZfTU1zWGpEZ0pWU2NHcHJkbk1HSG91dDQtaTVSVDlvMWh1WlRQYy1Bd2JzVEhXS0VCWmt5Vm9OcE5Uaks3ak9MM01scTY0ZFFrR2U1Z0RFNkxONWtXY1pyaVNEUkFrdDNYR0xSM2prUHc2V2kxVHZIZ3FlY1BnR3ZBcVVrbkpXQWxsdVpwZ1RMTkVVOWI1Rmh1akdONU9EeWFPSWVfVlFEZjl6N1BNVFE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
-      "confianza": "media"
+      "confianza": "alta"
     },
     {
-      "id": "amlo",
-      "nombre": "Andrés Manuel López Obrador ('AMLO')",
-      "rol": "Mencionado",
-      "tema": "Nino Morales felicita a San Blas Atempa por 158 años de historia y dignidad indí",
-      "nota": "Felicitan a AMLO por sus 73 años",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/005n2pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "alito_moreno",
-      "nombre": "Alejandro Moreno Cárdenas",
-      "rol": "Responsable institucional",
-      "tema": "Alejandro Moreno respalda a Adrián de la Garza en Nuevo León - Milenio",
-      "nota": "2027: un presupuesto que empobrece, escribe Alejandro Moreno - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOZ2FjVVJpQ0FTSlBIZ3A2QklyVEZoY2daNDd3emtTYlp0YnBNZ1pRRURpV3RxU0ZTNF9qSjJmc240Q1YtbGN3VEgwVUdwZnNpQjJ5WEJIWUFtY0lCLUJicV85dFJ2aTZEWUE4N3k2WmloZ2xhb2RQcllaNUdRbDJHNV9jOVVQVngwT0IybnpLcnJ6WXhT?oc=5",
+      "id": "manzo",
+      "nombre": "Carlos Manzo Rodríguez",
+      "rol": "Investigado",
+      "tema": "Asesinato de Carlos Manzo",
+      "nota": "Detienen a 'Diego-relacionado con el asesinato de Carlos Manzo - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNYUNMYk1TOXZOcEJoVFVReXVxcXdyYTRYVmwwRUQ4cGt4NGNqcHlPWThuR2FQOHljOVdRbnRlQjdCYkdHSEpfNkxfQWZyamhlNjhZTndkQ3hYY0xQT1ljVGhESW92dHFWb3pxTjAwYXF5VlpIeTUtS0x3Zy1RN2hwOFYzSFB6Z2xsQUpOVXIyaFFwMkpDVzVjRQ?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1036,19 +1026,22 @@
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
+    },
+    {
+      "id": "pri_partido",
+      "nombre": "Partido Revolucionario Institucional (PRI)",
+      "rol": "Reacción de oposición",
+      "tema": "Afirma Sheinbaum que asesinato de regidor fue por encargo - El Sur Acapulco sura",
+      "nota": "Asesinan a regidora de San Juan Texhuacan y a su esposo, excandidato del PRI, en Veracruz",
+      "fuente_url": "https://www.elfinanciero.com.mx/estados/2026/11/14/asesinan-a-regidora-de-san-juan-texhuacan-y-a-su-esposo-excandidato-del-pri-en-veracruz/",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
     }
   ],
   "declaracion_presidenta": null,
   "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-10-18",
-      "tension": 21,
-      "n_notas": 49,
-      "n_alto_impacto": 17,
-      "n_medio_impacto": 32,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-10-19",
       "tension": 21,
@@ -1259,10 +1252,18 @@
     },
     {
       "fecha": "2026-11-14",
-      "tension": 30,
-      "n_notas": 11,
-      "n_alto_impacto": 3,
-      "n_medio_impacto": 8,
+      "tension": 27,
+      "n_notas": 16,
+      "n_alto_impacto": 5,
+      "n_medio_impacto": 11,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-11-15",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1282,8 +1283,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPbXFoYTN2dXlCSkVEQWpoMFM3VWhwTXJkR3pkc3pVOUZ0Y3dlZnJqNmMtODFsMjdhR294UnVNbDFQcVpoU0VaT0pTcFJjTHVjU3NvOUx2NlRSZ0RjSmMwcGJRM0phRUlpVlpGSGdBaXF3YmJTSGVUSC1xY2hvMlZJR0pyU0RCOXQxZ1lnWmpBcjFMS0VUMFJKa3M4dmZNV0pZRHVaSnFvYTNUWUpxSklMSk5mUm9MQlFiME5RcjVXUnRIMDNweHRQLXp4MThudE1iYTlTUkdKNGp3aFBiUmc?oc=5",
-      "nota_texto": "Somos Mx presenta queja ante el INE contra Claudia Sheinbaum y 12 gobernadores, incluido Yucatán - Diario de Yucatán",
+      "nota_url": "https://www.informador.mx/mexico/deteriora-su-autoridad-moral-raymundo-riva-palacio-advierte-que-la-defensa-de-guadalupe-taddei-y-el-deslinde-de-morena-danan-la-investidura-presidencial-20261112-0050.html",
+      "nota_texto": "⚡ Posible presión de Claudia Sheinbaum Pardo — Riva Palacio advierte que defensa de Taddei daña la investidura presidencial",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1325,7 +1326,7 @@
       "n_medio": 8,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQc0U2NXZNZHZkWmNOMmhCSmhpQkVBb204aDcwb3RySXA1V3BlNHhSeUk1TTV4M1VlelBDX1pVaHJRN0JweVBGTi1iYTlPdjU1VVV5WXlJczBKU3lDVUQzTm1WOGhnRHFLVVVTZWtMN0p0TERHbjZOem9xRWE3aDhnZ3ByU05jcDFxckRPejRLbXNxNEREN01BSzhJSWFmT1MxNzJVR2ozekMxX293VG02bG1oUlFDZS11?oc=5",
       "nota_texto": "Cuentas públicas 2025 de Rocha Moya libran fiscalización; cinco juntas de agua quedan reprobadas - ADN Informativo MX",
       "es_nuevo": false,
@@ -1362,7 +1363,8 @@
           "x": 80,
           "y": 75
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-15"
     },
     {
       "id": "andy",
@@ -1428,8 +1430,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://www.tabascohoy.com/?p=841778",
-      "nota_texto": "A 20 años de la elección de 2006, Morena propone investigar presunto fraude",
+      "nota_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRURaY3VwZndXd0tFQXN2T2EzWEw4SXZOMTU3QjZVR3ZDRVMwd3JuNXA3U0VyZ2cyajFkdmxjMzlzMlNPMVVhRVp1c1dES1pXcUNrMkEwSlBkTi1tN2FqcXVyempGMkFzZ3FTNGxfMmhaNzVmb0tEaTAxLWwyUkh0YUxEbjhWdkg5SDB0aVpnbUhlUQ?oc=5",
+      "nota_texto": "Cecilia Patrón aventaja a Morena rumbo a 2027 en Mérida, según encuesta de Sondia - Reporteros Hoy",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1456,13 +1458,13 @@
       "id": "manzo",
       "nombre": "Carlos Manzo Rodríguez",
       "iniciales": "CM",
-      "x_lunes": 10,
+      "x_lunes": 15,
       "y_lunes": 100,
-      "x_hoy": 15,
+      "x_hoy": 20,
       "y_hoy": 100,
       "delta_pts": 3,
-      "alcance": 2,
-      "n_alto": 3,
+      "alcance": 3,
+      "n_alto": 4,
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
@@ -1471,7 +1473,7 @@
       "nota_texto": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 3,
+      "dias_activo": 4,
       "trayectoria": [
         {
           "fecha": "2026-11-09",
@@ -1486,6 +1488,11 @@
         {
           "fecha": "2026-11-12",
           "x": 15,
+          "y": 100
+        },
+        {
+          "fecha": "2026-11-14",
+          "x": 20,
           "y": 100
         }
       ],
@@ -1742,8 +1749,17 @@
   ],
   "tablero_semana_inicio": "2026-11-09",
   "resumen_mananera": [],
-  "mananera_estado": "sin_mananera",
-  "a_vigilar": [],
+  "mananera_estado": "pendiente",
+  "a_vigilar": [
+    {
+      "id": "auto-b9379494ab",
+      "nombre": "Sheinbaum responde a Fox tras decir que hizo ganar a Calderón en 2006 y recuerda",
+      "categoria": "Gobernabilidad",
+      "resumen": "Sheinbaum responde a Fox tras decir que hizo ganar a Calderón en 2006 y recuerda cómo se impidió el triunfo de López Obrador - El Imparcial",
+      "fuente_url": "",
+      "actor_vinculado": null
+    }
+  ],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
@@ -1802,5 +1818,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-14 18:04"
+  "hora_corte_publicada": "2026-11-15 00:01"
 }
