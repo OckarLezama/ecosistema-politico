@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-14T12:02:56.830991-06:00",
+  "generado_en": "2026-11-14T18:04:56.893642-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 6,
+  "n_notas_ventana": 11,
   "baja_confianza": false,
-  "tension_nacional": 38,
+  "tension_nacional": 30,
   "tension_anomalia": {
-    "z": 4.02,
+    "z": 2.13,
     "nivel": "alta",
     "media_periodo": 21.0,
     "dias_base": 27
@@ -13,11 +13,11 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 67,
+      "peso_pct": 46,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 3,
-      "n_notas": 4,
+      "n_temas": 4,
+      "n_notas": 5,
       "notas": [
         {
           "texto": "Descongelan de forma parcial cuentas de Rubén Rocha Moya",
@@ -42,16 +42,22 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQNXVzNFNZTHA4SUZReElRMl9tTzFGLXRBd0tua2VhVkd0VkpjVXlueDlMdkRoZzM2NW9CUFozb3hBU0theFVjRUY1alVlbmV2WTMxR1Boa1NtbExENDhObW40R2o0MDNTek5ZcGlabmNuVTZMT3Y5U2VpY1BhY0VFVEJXeUNxbUFvQkdxVTVEWjZVamNvR0ZsRXVrVEUwY1JaSzVwOUdHQ3ZkNzdVX1hoTHRYQThsUUlQNkR0dmxraTVvb2FsUnEzT1MteTNoUW54Q25jQVRlTE9fdktmWWlxSGFsYlkzTDVkODJmZi0tYjhSTVdDall6MnNSRmRXT3RBdmIybmhuUEllY1hCNkHSAZMCQVVfeXFMTk5GTVY2R3RqSmhxQXRzMGVlMmRCa0FVblRzeGtvT2xtd3hlZFRqMnFyRkZGSlc3bmxRQ2ZtR255ZTRVZHZvSU1wWnJmSHUwbGV0MTlNdEdqSTAyc01vTV84QzhLZmxQNndvNU5xUFB6X2xwb0tRLWNsOWVNbHFpVlZ1eXZkTk1nRXFOc3FfYk9acS05Y2s5M3ZYemtRSUhvRWNreWdybmJzN1M3dVRoTmRwWmwwcUptZFBKN0hJd1BSazJHa1V6N1RTRmdwajBKMmF2YktRZmU5QWNzVlVGOFNFaktIZzMzd3FSdXhFN2tiOEJ0VmwxalJmdFhrOUtkWThBdV9WOWpIeFlkbkZTQmdRM2M?oc=5",
           "intensidad": 6.0,
           "medio": "El Informador"
+        },
+        {
+          "texto": "PRD Michoacán anuncia alianza con Morena; respalda a coordinador Carlos Torres Piña",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/14/prd-michoacan-anuncia-alianza-con-morena-respalda-a-coordinador-carlos-torres-pina-2919114.html",
+          "intensidad": 5.0,
+          "medio": "heraldodemexico.com.mx"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 33,
+      "peso_pct": 28,
       "tema_principal": "Abatimiento de \"El Mencho\"",
       "tema_principal_id": "el-mencho",
       "n_temas": 2,
-      "n_notas": 2,
+      "n_notas": 3,
       "notas": [
         {
           "texto": "Condenan en EU a Tony Montana",
@@ -64,29 +70,55 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNcXljNE41Zld1SGFYNDVZeWlsNXR3UzA5YjdWcE1ISEROYzhLRGd3V2w1OEMxOFk2bXQ1SDVtZXN2UzdwWWFuUXZVX2FybmhQN2htbGZQZnNNa3pIOGUtMXlPZmVFZXRzM0wzdGp6QzNYWFpvVlRLaHlFZnlSU29oeEFFSFNXem9RMzlQOEEyOEt6UzNtN1p2cjV3STNPS1lldE5ketIBpAFBVV95cUxQY3R4UHB6eFl0UFJIU3Z2WFVsR0hUNjhaWTlPc05mN1lEcTZFWTBkTFZYLWV5T3dIQVdzYUZrbGd6bzVMdUJocUlDSGp0V2pBbS1NU0ZXUUVYX3RsNkxpaW91bXlsaV9GUUEyRmpxRVhzWmQxZUthcXRSWlZoZG1sS2I0NlpWMXJvWEJqOUkyRGNseWd0N2xXTi1LQi1HMFhDRm9ITA?oc=5",
           "intensidad": 6.0,
           "medio": "Milenio"
+        },
+        {
+          "texto": "EU solicita extradición del \"R1\", hombre cercano a \"El Mencho\" preso en el Altiplano - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPTHAyR096czVUNDM2cFFWS0FxYl82eGhOV1d1YXp1dVB5eWRHTm9XbXVGTVVFV0Fyd2d4c2NnLURGS1FuTzZrRUVEUjFPU3J2SHoyd243WXBYR2NjbnRvdngwbDRyTEdiMUozMjFNOUhkbUwydnd0Mm5uSmF1cmdleEJJWkNzOVVkR21hQXBkZi1GZDF6U3RkcThsS2dkRk5WRU9XQlpMWmd4dWJVcldzelNTRzF4b0diUmsyTWVhd25mcDRaaVBVTzBTN291ZF9KZlVYNzFXZHbSAewBQVVfeXFMUFVETWNwNTk3bUo4VXdjNG9vLTVZaVdvcFF4TVhjSG1sOGpnb0QwUkJIYllQVHpGbnV5WUw3SFJERFowNldRemhnMzRoSWk2S2ZCYmtjcm53UXcxeXF1aXlSMzRjR1FhQjJCRzNoblhqUmlBc3c1QkZOUWlsWTVPdmk0b2hHdnhldVN5TUg4SUNNN01JSWxFWURLaHkxbFd3dFVlZmJQM1h3ck1Xd1laV01nQ3NfV3BaUFpQQnAwb1NOd2FRNEc2NTgtYmhncW9EVDdfYmlvZ3hkUXN3bmFGRDd2UERUaDFzeXVIUGM?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Universal"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 18,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 2,
+      "notas": [
+        {
+          "texto": "Renegociación del T-MEC: La nueva y nada amistosa cara que perturba las negociaciones entre México y EU - El Financiero",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPbDFZWmhhbGhkekpSekp0ajJJVHkySHBld1hnQUVZTHVlYktEYW1WTzBwY3lNLUVoanhWRHMtZEEyQ2pBNUZudVctbVd0MElDYXJyVmhBLUxRQzQxLVZwY3RRUGxrdnZRVjRfaVJGSmJ1a0gtS1VWREJpUUtiSmRSZjcxU0lfQ2ZDUzN1bUEzcW5vLTdycTB6X2RkbUpmRmhvTFVKZ1NoZnBTRjZXS2ZGcE5ENEtKWTN1Smp2dEV5VmgtR1Nab0JNbm4yZGoyQXJXbnRLSFhEQ01YRFdtTF9LMGVRMWp6aDllMFhV?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Financiero"
+        },
+        {
+          "texto": "EU activa mecanismo del T-MEC por derechos laborales en Industrias FG en Morelos - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQSHU0bFo1UjJ6eEE2N2FmQmxHci1pejRqaHFBUHI4NndtWU52ODJhaHNjQUV4Q3JFcWxxZ2V5R1dMYlNtMUdDeV9ERFN0UnJUYUpBd0t3QWFPWk8wWXVXSjVPUW9JYnpYQlFidUt6a283OTRoOFAyQVYwSDd2NERnd2FOV2RTOFBvY1I5QTRvRF9ZenU0S0FBMUtQUdIBmwFBVV95cUxNS2pzVlR5cWRlZ2REQnRUaVZOOFo4R1JyT0RoQW9wTlJrVTBiMEJucDZEXzJkaGVOWU1BNXp6WkhuMnlET3lMOTFIYzIyZ1dHU3c2QUhxT0t2SGlJN3I1RUxPbXFTM2tXM1FQM1FZOGpQeHhCQksyVGhiOXpqWDd4U292MXBiYksxdW16ckZZYmJTQkRjNmh5dFNTOA?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
+        }
+      ]
+    },
+    {
+      "categoria": "Social",
+      "peso_pct": 9,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "🔔 ALERTA — Trump amenaza aranceles a México si no detiene caravana migrante - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPckd0X3RjS2EtRUVBVlAtQlZyellaLWNWbE1zaWloUkRBSDU3NWh3bHNWRUppMC05d19jUy1pQ21NWURQeGo1eS1ubklJSHhnZjdadGNjb1I3OW9VTTBzX0wxSGJmUmU2M3B5amxOdXlCSmc0czdIVXNaUW5yY1dtLVRrb013N1Y5RVh1YlliS3Q0cmV1SURLeHRrQdIBmwFBVV95cUxQVTlFUVU3NE5SODhfMklPR2x2ck1CNXNhTkx3OTA2aXhlMU40T2ltX1l4Ry1MQjIwN0tsMUcyLTFmanZiaXJKRUI1MUJ0R25rTTBtRXJVSVJCZmVyOVdRNGdOLTA1N3daU1JHejZmR3FDcGIxRUF4ekJrcExxOW1rMWp0Y21jb3M2enFzT2NFY185MFZtNVdncnZCNA?oc=5",
+          "intensidad": 6.0,
+          "medio": "MILENIO"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
-    },
-    {
-      "categoria": "Economía",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
-    },
-    {
-      "categoria": "Social",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -776,11 +808,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
@@ -804,17 +836,50 @@
       "categoria": "Seguridad Nacional",
       "resumen": "El 22 de febrero de 2026, fuerzas de seguridad mexicanas abatieron a Nemesio 'El Mencho' Oseguera Cervantes, líder del Cártel Jalisco Nueva Generación, durante un operativo militar en Tapalpa, Jalisco. El operativo detonó una ola de violencia, bloqueos e incendios en varios estados; su lugarteniente 'El Tuli' encabezó las represalias hasta ser abatido, con un saldo de al menos 25 elementos de la Guardia Nacional muertos y decenas de detenidos.",
       "motivo": "Condenan en EU a Tony Montana",
-      "peso": 32.0,
+      "peso": 38.0,
       "n_temas_agrupados": 3,
       "escalando": true,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
+      "medios_corroborantes": 4,
       "confianza": "alta",
       "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/007n3pol?partner=rss",
       "actor_vinculado": {
         "id": "rocha_moya",
         "nombre": "Rubén Rocha Moya"
       }
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Renegociación del T-MEC: La nueva y nada amistosa cara que perturba las negociaciones entre México y EU - El Financiero",
+      "peso": 12.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPbDFZWmhhbGhkekpSekp0ajJJVHkySHBld1hnQUVZTHVlYktEYW1WTzBwY3lNLUVoanhWRHMtZEEyQ2pBNUZudVctbVd0MElDYXJyVmhBLUxRQzQxLVZwY3RRUGxrdnZRVjRfaVJGSmJ1a0gtS1VWREJpUUtiSmRSZjcxU0lfQ2ZDUzN1bUEzcW5vLTdycTB6X2RkbUpmRmhvTFVKZ1NoZnBTRjZXS2ZGcE5ENEtKWTN1Smp2dEV5VmgtR1Nab0JNbm4yZGoyQXJXbnRLSFhEQ01YRFdtTF9LMGVRMWp6aDllMFhV?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
+    },
+    {
+      "id": "trump-agenda",
+      "nombre": "Trump y México: declaraciones y presión",
+      "categoria": "Relación Bilateral",
+      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
+      "motivo": "🔔 ALERTA — Trump amenaza aranceles a México si no detiene caravana migrante - MILENIO",
+      "peso": 6.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPckd0X3RjS2EtRUVBVlAtQlZyellaLWNWbE1zaWloUkRBSDU3NWh3bHNWRUppMC05d19jUy1pQ21NWURQeGo1eS1ubklJSHhnZjdadGNjb1I3OW9VTTBzX0wxSGJmUmU2M3B5amxOdXlCSmc0czdIVXNaUW5yY1dtLVRrb013N1Y5RVh1YlliS3Q0cmV1SURLeHRrQdIBmwFBVV95cUxQVTlFUVU3NE5SODhfMklPR2x2ck1CNXNhTkx3OTA2aXhlMU40T2ltX1l4Ry1MQjIwN0tsMUcyLTFmanZiaXJKRUI1MUJ0R25rTTBtRXJVSVJCZmVyOVdRNGdOLTA1N3daU1JHejZmR3FDcGIxRUF4ekJrcExxOW1rMWp0Y21jb3M2enFzT2NFY185MFZtNVdncnZCNA?oc=5",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -835,12 +900,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQZUlXcDgwQUdPVmRTN1U1RlgtcGNPOTZQZ3RodUp0ZWpLbGxEbU05WmJIT2F1ZWlhT0VSZW56NWhfQ3R5VXUyVXg1cXVOSC02LTI1Wmxzckh3VlAzd0FtYkUtdkpKRzkyWHozc2hSN18tZ3pka19pZWliUmY2SEQxY0YwUXUyVVg0WTZyeXBWVUkzdngt?oc=5"
     },
     {
-      "id": "auto-ea29e1b5a1",
-      "nombre": "Ríos Peter acusa a Morena de hacer campaña anticipada en Guerrero - Milenio",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-b7dc3beefa",
+      "nombre": "Centro para Migrantes Jesús Torres se mantiene atento ante posible aumento de vi",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOZjlSLWpzWElVM1YwOHhMVmQyZzhDZ1NjcXdaVk1sUV80eG9ZdDBNU2VxTmk0ZnZCdU5hUjNUb3JjSXFDZ0ROa2xPNnFDeGJGSDgtREUtQ04yU2ZrWDhzWnFvYTFjbTZXWmpwMHNkRzNmV1l1Z2Y5S0FzTFZFdTk2UG9IRnlhcjd2Vm9kNGNCT2NWNHZael8tbkhrcF8wMjF0ZWI40gGjAUFVX3lxTFBSYUF5Rl9KODFTRWJXOW5hUnZfRlhra0VhQmthNEtLWTh5UXNYNXc2U3cyY0RqT21ONGs5S25sSTBkTzhTWVNlR1dTbUZ3eVBNUGp1a0VDdUFodEc0Yzl6SVQ3UVNMQzB0OHlCM2FSRGRjN2RKSjFEOEtHeGlQdk16dTVTUi1rSHQ2NUN1Vktya1gxbVVoUWRTVUg0cEdFR1A3TDg?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNNHh1ZXgtbnNEMVV1MnlPaXg1VDhuMUs2VjFCTzRGTkZKQ2RwRi04QVBpOEt4Smt2WW16Y3JqLUVNQldYcW5Mcmg5ei1BUmJKeUZwT08zeENURWxLa0ExQnNCQXJMLXhWcWZZR3U3aTJndTRNTGtzcm9jUF9lR0VIc1RkWEMtOW9fVkRV0gGLAUFVX3lxTFBWTWg5elpDNkhvcTRzdFhOdWRVck1zVjlrSHFfMHhvOVRoWGNodzdjcTgzX3k4VzFHc3RoRk9VVG5vXzVuYkx0cF9QQ2tLdkxGT2d4UnJ3SWZKRnN5Vl94bGx4U2EtdHRPVFdpMHZmVWR1YnhTRUNheDNwUGFLVzJ3bTJOTzNqLTU3cjg?oc=5"
     },
     {
       "id": "auto-c24963ca36",
@@ -864,7 +929,7 @@
       "id": "auto-708aa69705",
       "nombre": "“La migración no es un problema, el verdadero problema es el racismo”: María Emi",
       "categoria": "Social",
-      "dias_silencio": 67,
+      "dias_silencio": 68,
       "motivo": "🔔 ALERTA — Montero sobre la migración: el problema no son las personas sino cómo nos tratamos - Infobae",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPWVg5N0FubWhXSENjZS1DTzNManV2emhpbENGOThxdzE1MDBYUm1zNVFqLTVIX25Pd010VEVIbWZPZDduWkkwUzFJOUthUjNHQUlCci1HNGRBZ0FqRHZBNm1iMl9BOTFPTFh6SmJGY0FJMVVObVpNUUxkMlZrMkhIS1pibWZoajVDU2JiWTJfVnhZYUptWnZQTmR6ekxUWGRfbmYycUxpZW1rMnR5QURfczJHYjRUaVJjQ0NRclBCN2dGcWhaQ3cxcmg4eXhsd9IB6AFBVV95cUxNV0NYYS1sZC05WGhZcVlHM2Z2aTdUUHhTZ0NfN3o5ajAzenhRWk9CNDlqNkNGdDRvY0NIaFQ2UWpHcEZkdzI5ajB4eFFBdVV3Zncyb21CZUFCdlhlWjQwVk9jRkFZdXV0NXJmS0JKemlkblZvemZWZHoxcFFua2tfTW54b0JueGJZQ0JKNk85cTFPZjVyZ0VfTks4UEM2emFVN0x2TDhnODZteEpSU2FUbDNIRTQ0X1c0SWRFY3lFb2ZLOU1lWUk1Ni1sbnRKdHp4OVVTNkNtOE9vSVVsVHJFZ0Q0M00wWF9K?oc=5",
@@ -872,21 +937,21 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQTFY1QmZjUlFQYlV0a2JMZmFxVmp1bjFNV3ZqeFhrdHE5THdHQnZFZ19LYmxSRnFDeVNZMG90YWVDNE9WVFZNWm5XOU9nUHU2ZmxjS0dmdkNlSGhlWnFNcDh4Mk00dkJJUFJDUlZjWk9MNGJGVXJkd0VpYktaRFhhelFnaVRPc010SDBMVVprYmNFVURrelM0dXAtZW13bFM1OHVjQ3AxNkgtS0F4UUFzTTRaN2FxV3E0S0xiWUh5WDJWZWRLN2JDWEZ30gHPAUFVX3lxTE80YVBzZmp0elZNNkc3TGktQ3drSnRGYlpCNnA1TVM2MlEyV05LU21KeTNqRFRhZlNjcldCcGdqSDVNUXNmUUxvZnBzdkhlUHcybnZxTWtva3UtcE5ETkdqcG1tS2JsZzBvc2lhQ3NjOG1xaGtXR1I5cy1QUHA1bXd2MzFaYjVEUXl5MnRmOHVUdHFTVkx1WURTT1hkWnRwTUtTeWdTd3dSV2FoUEdmcTJyV2J2dTRUWVZXam1PWlhibUwwNnJTRVJwcFBHczQ1aw?oc=5"
     },
     {
-      "id": "auto-f373694b21",
-      "nombre": "El secretario del ayuntamiento de Bacalar alza la mano para contender por la pre",
+      "id": "auto-e1c3b9234b",
+      "nombre": "Atacan a equipo de alcaldesa de Tecámac, Estado de México - Meganoticias.mx",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 64,
-      "motivo": "Renuncia de secretario del Ayuntamiento de León genera confrontaciones entre PAN, MC y Morena - Milenio",
+      "dias_silencio": 54,
+      "motivo": "Atacan casa de Alcalde de Morena en Hidalgo; muere policía - Reforma",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdnR2SjVyWURxSWJVbWVXQ1hwUnBrenB0OVJVSGFyalJhbmI1cXBEM1NTS2g3dXk1OFkwZVlTTS1ZWUpZMHBVQXhZZnV3azBqUy0yQ0FXMmh2dDRNRmxkZ2Q3a3VGeExFb3RxVzdnZjVIRFU3SUp1WjBRallJMGRZZXhfajd5RnRkdWhQSHRkbldQdWoxV0F3RmdlZ3lHT1Q4VUHSAaIBQVVfeXFMTmUxc2tBT09RSk5JUHFCVFhfY1B6UVdNenhUNnRPUFkyVU1hcGRJeVh5cDFDdVFiWkNiUW9ob180cmM4WUxWc2lmZjh4NkxnZzFvblp5NTVnRjJPbEFUeEJiUHE2MzR2WHAzMzBRR1hpc2Z6LUxVYXR6RzFZbklvN1BKaEl3T3daTGVNdFVIZG5kOGJ5enFvT3dmTUs4MEUyMU9R?oc=5",
-      "fecha_anterior": "2026-09-10",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPOEFXX0tOamVEZWQzQ3NZWU42clBLX0NNM3dITGVrMFJObXR2bVNIMDFfbkZzVml1SXpEVGU4TWJ0TUhrTVZMbVhManVYdDhTWGJSRGZSSnJoRGUxY1B3LWZFdkhLci1yU1g4Y1FBNlFicUtSU05uTlRsZTZxQ3lMcmowcFVxZkdfdkN6TElzeGx3OTRnb2M0dWptNlFSRGNGeld2ampfS2FOeEZoYXJKQUxwVDhnZWxvdWxtRV9HT08wUVpVZC1kWVZtaVdRSFBjekpWZWFaY0tjaUNEUWVXQjg1UTVzckE?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPR0RmS2U2NUhNZEw4UkRsVEtQRVhuYjQxbHNkVkFUQUlUa1hvS05ReE5kclYySDhoNWFaUndsM2QwTm5fQkZyc3gxUjBnU3VsODZ5WDlURmxHM0NmZE9XLWNFalgwN2JOeWpDT3B6NWtaTVI2RWxOT1o2ajVyZVlJMmEtX2NmT1pWOGpKV3pTTTZrSzBCYWc?oc=5",
+      "fecha_anterior": "2026-09-21",
+      "fuente_url_anterior": "https://www.yucatan.com.mx/mexico/2026/09/21/alcalde-de-tonatico-estado-de-mexico-muere-tras-accidente-de-motocicleta.html"
     },
     {
       "id": "auto-2d8057a405",
       "nombre": "Construirán en Perú una estatua de 14 metros de altura del papa León XIV",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 45,
+      "dias_silencio": 46,
       "motivo": "🔔 ALERTA — Papa León XIV alerta por pobreza y migración que vacían los pueblos rurales de Perú - El Economista",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOM0x0Qm04S1ZPV01lNjdmNzQxbjBSN184cFJwTzRYRHBJWTdiTnZIeGxFQ3lVaE9QdjJfT3BhLUJlNVhLT2UwZzR2TmNsQkRaVV90TWgzdkh5TE9vU1FVbGJTV3FUZmZGdm8zTEhFTXdTNjk4MUE3WkxTanMxTllvMjNOMldTZ1EzMVVhRWZMbHJ6UkVxcHh1YUN2Xzc5VTlDYzhHOU5jNHhXb1dKQkxKNEtGbUxUWXFadV9yUE9JM0gzd0xBLTdlOUJDNGhhbnpp0gHWAUFVX3lxTE12Z2lUVmp4TGlidHZjVnFpWF9PM2FnbFQtVW4zWmliTlE5VjZmZ2V2MG1OYWZFQjRMTTJic3B1VjE2RFJCTHpXQzlWeS1ERkQ3OEo2R2tNQ0hJa1FqT2c4c3VsVURBVF9rQTAwWVBYeDhfaGMyZkV3c2hzQW1FTVpMeEkyNjhIVVJqdjhnR2diMHlkZHpxekJ2bzJVa0dNZ0xwczFBV0FSOENDS0pnN2NjVmpDRVNWZUU5RjJ3cmFhbjdPZW52QV9vRkNWekZfSkRYT1BVVHc?oc=5",
@@ -897,7 +962,7 @@
       "id": "auto-0326a91440",
       "nombre": "Nino Morales felicita a San Blas Atempa por 158 años de historia y dignidad indí",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 42,
+      "dias_silencio": 43,
       "motivo": "Felicitan a AMLO por sus 73 años",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/005n2pol?partner=rss",
@@ -905,29 +970,18 @@
       "fuente_url_anterior": ""
     },
     {
-      "id": "auto-f810cfe3f4",
-      "nombre": "Armenta aborda retos migratorios con Sergio Salomón Céspedes; días antes se reun",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 19,
-      "motivo": "🔔 ALERTA — México actúa con autonomía ante amenazas de aranceles de EU: Sergio Salomón Céspedes - La Jornada",
-      "impacto": "alto",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQOWVOTGpvWGYzQm9nQnpvTzNYQjFiallKN0VVeW1FQ0dkX205SVA1V1U2dHpiLUM5SGZJaU42Rzd5R1VxdmFPNDNNUEJKZVZhWkN2ckhnc1FxQzBqeVUwNjZvazZwTnBMNGRHYk1YN2liWFhJbFA2NWZDQXdCY0F4UjFtb1BtNFAyQl9xTloxOTNfWGd1aWRTSmRSaXZRaURBeFdSQVd5czI4UWhOWWF4N1lVZUprVjI2b292UVlPdw?oc=5",
-      "fecha_anterior": "2026-10-25",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxObjVDYnYtWGJ4bjRtd3piNE5XUHJyc1NsVldTUXQwSGs3SnJqbk55Z1AwUDluUlJlWXdLTlJiNmgzRHNYczZFT2tNU3JZOVJjRmlNWGdXU05yVmU4a0tjWnZlcTlFNlZIeF9rTnczQTdjV2NsTk04ZEVzb1BQY2xBVjAzSzc1YVNwWXQxTHYyVUxzajh6TEd0Zzk5cUh5aXhuNlBacEZxT2p5RFl5RWlDbzcteXBzNmExb0Z1cGkyS29HN0V2azVTZzNmWFJVMW9NcTJiOFptempOZnc?oc=5"
+      "id": "auto-97af22686a",
+      "nombre": "Madre e hijos migrantes se quedan en Aguascalientes con programa de la ONU",
+      "categoria": "Social",
+      "dias_silencio": 41,
+      "motivo": "🔔 ALERTA — Gobernador de Chiapas anuncia programa de empleo temporal para migrantes - El Universal",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQcFU5aXZicnVpOUs4dWxuRmxEVkU1RmUyU2VfZno1R1c0SFJTbzZMQTR1RnJrWFZzSEJleGJPM0I1X2hiNzBDUUgtdzhMcU5qc2E3VkFRWmphUGJnM2hXekVISl9MNW5EQmprQWlSRVZmN3NIMTJWdTgybEphd2NVLVhLWWl3X29nclo0ZWFDMnRuY3lzVmJPUnFPMG9ZbUtpNTlFdjNoWnRpUmFBeVVkYUdGYUlkVXR5dnVabHVmRERHQWwxemtjTmxST2dWMWViSGVyeUoySlNCVzV2bGRSUmQyR0RxaFpqa1Vn0gH_AUFVX3lxTE1BbHhOSjJjRk5Jbk5mcXZvWUpKU3ZrWGZsNGl1dVVtM3drREl5WUluUmw5N2J5ZzFCMWc2RFBFSUluSjFYUEx4d01ZWTFWeVZRS0pBZl9KaEtmckNmNEY3dVlPWjFFMklaUGNrRFdxMERDb29iOGRlbnBtclNFZ3d1UUZNTHdNcmJrekZOYUw3N19FajF0VVZ0clZuSk9VN09HbGI3MnFCdm50WjEtbWJjSTJxMlFlOGhLbVRKLVZ5cDJNdzhZWXgzdkJ4cl9pVVg4VGNfbWNxZXBORXBfWGp5ZlZ5WW1uQTdQb1dRMWhOYnZYSW5oU0NqRFZkdXljSQ?oc=5",
+      "fecha_anterior": "2026-10-04",
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/04/politica/009n2pol?partner=rss"
     }
   ],
   "actores_destacados": [
-    {
-      "id": "alejandro_armenta",
-      "nombre": "Alejandro Armenta Mier",
-      "rol": "Responsable institucional",
-      "tema": "El gobernador de Puebla, Alejandro Armenta, repite viejas fórmulas y ERRORES: po",
-      "nota": "Alejandro Armenta y Claudia Sheinbaum encabezan entrega de becas de educación media, en Puebla - Excélsior",
-      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQU1VldEVxMm03dk8tYkdLV1BUb0czcG1hSWhGeEt3YTRmSUYyN0lTa05NcVNFREVHaGoydVRaTDlmWHozOGRSdDZSbjdBUnpuM01CZUZ3RzdZdW5vLURJN01sTzJyTUEzZVlBTXZybmZCUGlYWmxxV3Bac3EzQzVjNUp1QWVrSnlmNzVYSG5kSFJHd1A1VHNXVGhidVl0MjR0bVdYMl80a2tieGVRN2JVaV9XY01ITkdNMk4wTlJNa9IBxAFBVV95cUxOR1A2bmMtSmppMHpCOEFEWkotOTZpUlZnWE5TeDNCN1hJNXlJeTRpTDk5VEdWbXRlT3l0aGZuaFUwUU95T3o4WEJHZ2pLSk4yOXlxNlY0NkFxUWp1Wks2Qk90NUpSY0dWSkJDT21xcElub3RTdTJpMmZEY0xvckhqLVl2aWxBTURsVWM4cXJ2UjRNeTRtMnJJRzRMb29MYkpmN2o0UDE1cHFaNU1nd3lDdUNOaUNLSlFXZ1BMWkVqWHk3TFdX?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
     {
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
@@ -957,6 +1011,28 @@
       "tema": "Nino Morales felicita a San Blas Atempa por 158 años de historia y dignidad indí",
       "nota": "Felicitan a AMLO por sus 73 años",
       "fuente_url": "https://www.jornada.com.mx/2026/11/14/politica/005n2pol?partner=rss",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "alito_moreno",
+      "nombre": "Alejandro Moreno Cárdenas",
+      "rol": "Responsable institucional",
+      "tema": "Alejandro Moreno respalda a Adrián de la Garza en Nuevo León - Milenio",
+      "nota": "2027: un presupuesto que empobrece, escribe Alejandro Moreno - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOZ2FjVVJpQ0FTSlBIZ3A2QklyVEZoY2daNDd3emtTYlp0YnBNZ1pRRURpV3RxU0ZTNF9qSjJmc240Q1YtbGN3VEgwVUdwZnNpQjJ5WEJIWUFtY0lCLUJicV85dFJ2aTZEWUE4N3k2WmloZ2xhb2RQcllaNUdRbDJHNV9jOVVQVngwT0IybnpLcnJ6WXhT?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "alejandro_armenta",
+      "nombre": "Alejandro Armenta Mier",
+      "rol": "Responsable institucional",
+      "tema": "El gobernador de Puebla, Alejandro Armenta, repite viejas fórmulas y ERRORES: po",
+      "nota": "Alejandro Armenta y Claudia Sheinbaum encabezan entrega de becas de educación media, en Puebla - Excélsior",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQU1VldEVxMm03dk8tYkdLV1BUb0czcG1hSWhGeEt3YTRmSUYyN0lTa05NcVNFREVHaGoydVRaTDlmWHozOGRSdDZSbjdBUnpuM01CZUZ3RzdZdW5vLURJN01sTzJyTUEzZVlBTXZybmZCUGlYWmxxV3Bac3EzQzVjNUp1QWVrSnlmNzVYSG5kSFJHd1A1VHNXVGhidVl0MjR0bVdYMl80a2tieGVRN2JVaV9XY01ITkdNMk4wTlJNa9IBxAFBVV95cUxOR1A2bmMtSmppMHpCOEFEWkotOTZpUlZnWE5TeDNCN1hJNXlJeTRpTDk5VEdWbXRlT3l0aGZuaFUwUU95T3o4WEJHZ2pLSk4yOXlxNlY0NkFxUWp1Wks2Qk90NUpSY0dWSkJDT21xcElub3RTdTJpMmZEY0xvckhqLVl2aWxBTURsVWM4cXJ2UjRNeTRtMnJJRzRMb29MYkpmN2o0UDE1cHFaNU1nd3lDdUNOaUNLSlFXZ1BMWkVqWHk3TFdX?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1183,10 +1259,10 @@
     },
     {
       "fecha": "2026-11-14",
-      "tension": 38,
-      "n_notas": 6,
+      "tension": 30,
+      "n_notas": 11,
       "n_alto_impacto": 3,
-      "n_medio_impacto": 3,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
   ],
@@ -1206,8 +1282,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQXzR6Tk5hdHQ2MmhJNllnOVBXbmZwbzNGVGxuVm54QXZHSFZwTHo2WmMyOThBRVJua25yUFdNNXpENTVEQ2h1SEJxeGdsd0FHS25LU2VydHNuRDlqS2duMVNILURtMzdsaDdXanJrdlcyMFltdE9jaTBMN3d2cXNSaEZLUXJ5ampJdWtJU0JybWhmWlJCdGdHS0E0TktHVk5pY0Zad0VCbnJwRlJTYVlUSEJfY29KZkxmck84QTIxMFJ5dGtKLWp0SDc0ZGtsWjJpRDdSYm1kOEhtTThNVDNmRWphZVdOcVNOTXNVZmk4ZGhfVVVjRWlrRi1BWHY5a3oxTmY0?oc=5",
-      "nota_texto": "Presidenta Claudia Sheinbaum anuncia apoyos a estudiantes de ciencias: financiamiento, beca Gertrudis Bocanegra y más recursos a La Escuela es Nuestra - Edomex Al Día",
+      "nota_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPbXFoYTN2dXlCSkVEQWpoMFM3VWhwTXJkR3pkc3pVOUZ0Y3dlZnJqNmMtODFsMjdhR294UnVNbDFQcVpoU0VaT0pTcFJjTHVjU3NvOUx2NlRSZ0RjSmMwcGJRM0phRUlpVlpGSGdBaXF3YmJTSGVUSC1xY2hvMlZJR0pyU0RCOXQxZ1lnWmpBcjFMS0VUMFJKa3M4dmZNV0pZRHVaSnFvYTNUWUpxSklMSk5mUm9MQlFiME5RcjVXUnRIMDNweHRQLXp4MThudE1iYTlTUkdKNGp3aFBiUmc?oc=5",
+      "nota_texto": "Somos Mx presenta queja ante el INE contra Claudia Sheinbaum y 12 gobernadores, incluido Yucatán - Diario de Yucatán",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1352,8 +1428,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRURaY3VwZndXd0tFQXN2T2EzWEw4SXZOMTU3QjZVR3ZDRVMwd3JuNXA3U0VyZ2cyajFkdmxjMzlzMlNPMVVhRVp1c1dES1pXcUNrMkEwSlBkTi1tN2FqcXVyempGMkFzZ3FTNGxfMmhaNzVmb0tEaTAxLWwyUkh0YUxEbjhWdkg5SDB0aVpnbUhlUQ?oc=5",
-      "nota_texto": "Cecilia Patrón aventaja a Morena rumbo a 2027 en Mérida, según encuesta de Sondia - Reporteros Hoy",
+      "nota_url": "https://www.tabascohoy.com/?p=841778",
+      "nota_texto": "A 20 años de la elección de 2006, Morena propone investigar presunto fraude",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
@@ -1464,8 +1540,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/11/garcia-harfuch-confirma-detencion-de-beto-leyva-peligroso-operador-del-cartel-de-sinaloa-2917114.html",
-      "nota_texto": "García Harfuch confirma detención de “Beto Leyva”, peligroso operador del Cártel de Sinaloa",
+      "nota_url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPMVN1VG43MVdYZjNTNWxpNTN6OVRiWjh1aDlHMmtaNW5FNDA4SEE1T0tuZnAtR2xmY3VrSVZFYnNPRVRidWM4TDgyVktQYzZ5MU16aFQ5bEFGTjFpYU9UVmpnZDh4REhpYmt2Q2JHVXBHdWd6NWM2djFnYmwybUdPZW5nWFZkV1I0eURaOGlzLWR2THduc044dFVkZDFsTHd3QVlwWXNza2JLOGswdTJkbkFPTGNBUjFQVkZFS3lNSGlSaWlTQWJZVkdsV1hJMHlMTlp2TDlzWTlRUkhJSktFX2RNQ0MyeENTZExFMEs2NDhjaUxtS19QQUI0Y2VzQQ?oc=5",
+      "nota_texto": "Cecilia Patrón lleva la estrategia de seguridad de Mérida a reunión nacional con Omar García Harfuch - El Heraldo de México",
       "es_nuevo": false,
       "categoria": "Seguridad Nacional",
       "dias_activo": 3,
@@ -1726,5 +1802,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-14 12:02"
+  "hora_corte_publicada": "2026-11-14 18:04"
 }
