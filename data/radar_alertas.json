@@ -3,6 +3,13 @@
  "ultimo_brief_enviado": "",
  "alertas": [
   {
+   "id": "2026-11-15|inflexion|rocha-moya-acusacion|2026-11-15|trigger",
+   "ts": "2026-11-15T16:11:09-06:00",
+   "tipo": "inflexion",
+   "tema_id": "rocha-moya-acusacion",
+   "texto": "⚡ Posible trigger en «Acusación de Narcotráfico contra Rocha Moya» (11-15): Varios días seguidos por encima de lo normal (~2.1 notas al día) acumularon un aumento sostenido; ese día fueron 5. Quién lo protagoniza: Rubén Rocha "
+  },
+  {
    "id": "2026-11-15|escalo|auto-b18c707430",
    "ts": "2026-11-15T08:46:13-06:00",
    "tipo": "escalo",
@@ -414,13 +421,6 @@
    "tipo": "entro_critica",
    "tema_id": "auto-b739bf9715",
    "texto": "▲ Beatriz Mojica se reúne con Ariadna Montiel en Guerrero; acusa a oposición de “g pasó a crítico (impacto 7.2, 8 medios)"
-  },
-  {
-   "id": "2026-10-27|actor_clave|morena_partido|auto-b739bf9715",
-   "ts": "2026-10-27T09:50:21-06:00",
-   "tipo": "actor_clave",
-   "tema_id": "auto-b739bf9715",
-   "texto": "◉ Morena aparece por primera vez en «Beatriz Mojica se reúne con Ariadna Montiel en Guerrero; acusa a oposición de “g»: Ariadna Montiel niega reunión con 'El Guano' y acusa campaña para desacreditar a Morena - "
   }
  ]
 }
