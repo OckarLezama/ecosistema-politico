@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-11-16T00:00:38.647313-06:00",
+  "generado_en": "2026-11-16T05:57:36.776914-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 14,
+  "n_notas_ventana": 9,
   "baja_confianza": false,
-  "tension_nacional": 34,
+  "tension_nacional": 22,
   "tension_anomalia": {
-    "z": 2.53,
-    "nivel": "alta",
-    "media_periodo": 21.6,
+    "z": 0.13,
+    "nivel": "normal",
+    "media_periodo": 21.4,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 49,
+      "peso_pct": 77,
       "tema_principal": "Amenazas de Intervención Militar de Trump",
       "tema_principal_id": "intervencion-militar-eeuu",
-      "n_temas": 4,
+      "n_temas": 6,
       "n_notas": 7,
       "notas": [
-        {
-          "texto": "Máynez: “A Gabito lo detienen por cantar AMG. A Taddei y a Rocha Moya los protegen para que no canten” - Debate",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxONEREQjdtdVNuQ2FzcUVJNEFfLWdBVHdZNGZVM0FTYldZWDktVGdSS0pPREgyRS1OZ08ybWl5TFg3OF9ZUEluNTFPQ2xSYXc0ellyZ1FKZ2dmRElSRlAzemE0Ukdqc1VaaDExd1lSYWQyWWt2Q1pkZE5Mb29TZ2dCMG95aDFCR2l5SXg4M2pDVVpXbzlRYkpBaWp6aDhNLUdCWExRSjdva0hTdTVJZDlGOU4zNDJFaXU4cy1lYnF3VldXRFBzRm1MZU5OZ2lMaUFjbnpsYVIxcl96WTRpaWlocDZkWURCVTRu?oc=5",
-          "intensidad": 7.0,
-          "medio": "Debate"
-        },
         {
           "texto": "Participación de la presidenta Claudia Sheinbaum en la APEC fortalecerá el Plan México: Lorenia Valles - INFOSON",
           "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOMDN3bEdjbUdFVG9ldmg1VlAzOTUydVA1cWFsVmxSVklTSGFza05fbW1rc3N3UThsV041aUVDdXN4QTg3UzU4ZWtoekt3ZGFiWS0xdDJZRnhRRDVudXBDOUF6MDFTWWxyQm5NMkZCRjhEOWRJQzFBdmNqQnk3SlJlTkREd0JVaWJVTTQzaU5UTkdENm1IMWV1Z1dZNUJsOWlFUUtfVkxCcnRjd2xrdkR6cm5rdkZrUkpsVnk0LTRSTFI0NUpOd1d6djJwSXlFVWloM2c?oc=5",
@@ -36,12 +30,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNWm9YVUtQTVdUYXNlVjhIM1JtY3VVTVBiS2lGTVBqTjctM1lYbnMweHdjUG96MU04RDA0VTBPMGZhd09jTm5zMzZ6b1VxcWJZNHJhZjhWLVltX01yWlBsb2VIQWswdXlpTG1weE8ycGJ3WmdNR3FKczIxQXFfTkhDaExVSWdFeFJSLWhLMVppYlRjUzZyNnhvRzhpR1Rpd2dJQVVjMERxcGtwbVhrU2s4VWZ3Q256dFQtNTRyTllCSkdCeGtVbXlBS2kyMkFtNFZFWElmZlJTbGZIZzRrOVB4UWJ30gH8AUFVX3lxTE11QkpXVld0eWJSdUljNW15M1p1SGcyaW9QaHM0QjMtdXVPdFJneTQ1aFlHVENMWUtCdXBoREc0NExEdWthRDFBTEJmbFZsb2lJQzdOandWeDB0cWUyOUtqMThOOGRWY3R3OFljV1B3cFZHZkxmVU5hUjRoUFpidWNDaTZiUVNJTUgzd0V4azd5X0s1UFFvd3gybTJQMzlQY21TX3oxV1JNOGNWRWN0SkppWUlaNUdieGV4RmI2ZUhRMlZ1T1R2Xzl2dmxhNTlzeDJManV5UkdvNUtMemtmZGVZcW9NT1owZVZsZmR4QzBScHFoTzBjazFFTS1yaw?oc=5",
           "intensidad": 7.0,
           "medio": "El Imparcial"
-        },
-        {
-          "texto": "Libran orden de captura a hombre cercano a “El Mencho” - Cuarto Poder Chiapas",
-          "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOSjBqT2NwZlJLQW5LVmRhVkZWcFhubF9KdW1rQXNtTnNnQVJESHlud3c3eW0wdUtXR3QwNGo5SE0xclh0MEkwbk1sS29vRzM2WkJLb2Z6M2Q4VHk0SkhVcm1GYjJ3TzctT0Fkem5KYUFKNW1MRkloSVJkM3lrNU9TNGNMTVI5RXVCRmNHdDBJNnoyZEFRaHpaRWpka9IBoAFBVV95cUxOSy1qU1J1b05FSUNiN04wdkVwTnhwYTBtU3ItVmJwc2ZoYTl1LTlzdVpaWlotSkNCNmNGRjllN2J3eFJXNWg2QU1rVFNJUEYzZVRLbXVDdTM3SWR0WVc0d0dpNjhJWHlxQlE4eHVibHVrMklrQ1VtSGY3YWhFZFZob0phVGVuTi1sRFhUQl9TNS1LN3BoTGNtYnJ2ODRyWU15?oc=5",
-          "intensidad": 6.0,
-          "medio": "Cuarto Poder Chiapas"
         },
         {
           "texto": "¿Qué hay detrás de la intervención militar de Bukele en Haití? - Milenio",
@@ -60,80 +48,60 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTDJIbkg2cTdmYlZ0VUQwZDRTd2xJM25wYmV5QXlJSENnQ2hZQ1ZzRGpIZWlzd1U3dXdXMlp3aXFJZFJmYnlJaHFqa05GeWZVcG5ySHp6VkFQYllLTEtxMWJwQUdSaU82dWJPaEdjakZvd0Y5YVNkQ0dKOW0wdHN0TW4zQ1JPbHM0SFprY05yS1Q5UjVTQ3JIa1BwZGo2anRTLVhpeTVTNEJKRnB3UGtzYVFJN19rc2JQ?oc=5",
           "intensidad": 5.0,
           "medio": "Al Calor Político"
-        }
-      ]
-    },
-    {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 21,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 3,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Stephen Miller, el \"halcón\" de Trump que complica el T-MEC - PalabrasClaras.mx",
-          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQWkyc3ljZXBOX1ZOVmxvZEVyc2dSMmcxR21yVHZaVjlGR2MyMkZORUdDSkhGRE1OSU8wdGFmTC13dm92bG5EZVhhVHQyYXBwbnBqMlVKU2hRcDloOU5fRGw0M08zTmZqZkNsYm1zZTNMc0JCSmlES0lkeThlYjhkaXVIRzZPTXlpWXJwUERKektJSHdPWkE?oc=5",
-          "intensidad": 7.0,
-          "medio": "PalabrasClaras.mx"
         },
         {
-          "texto": "Oposición exige revisar la actuación de Hacienda tras la orden judicial que permitió a Rubén Rocha Moya volver a cobrar tres pensiones que suman 1.5 millones de pesos, mientras se aplican recortes ret",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuANBVV95cUxNSW1IbzZLQW9JTllFblBzWldGNUt6VEloS00yeUVTdDRKR2xUeVZfbGVCRWVLWGZyOFVMSlVLU2RWRjdpb0phclJQQ3dhem5CbFk1WV9XbjBuX3c1c2drWHBmSDNEcE00NWc3OTRPQnB3MXJjOXRjU3JhZ1V2ajdSRFUyQ0s3cVJoai00MU11eTE4SkdLOW9Yb0hKeDFvRjhEd1lwU3JPWHp0dGwzeTBpdWh1QlpjV2swVVhrc0tGbVZvWE51ZTBCOWtzaXlnajRybEVLUEZtUkVIRTJ2bklsUlN6M2ZmcUFZanZkdDgzVW14WUIzNXl5RFNJMHhweElXTDVDYWJzcmhaVFhxc1lZcW1MX2RjS1BObEkzeWxkeTJRbVFQN1hYc0haT3dfZjNyS3dxQ3VhUGkzYmF1VVh3VXVmTnRnTzhNQng4cHU2TE1UUEJSY0lWT09OYzJPM29IaVdidk5Ud184d2xFdTVrSV9XT1dnLWhBdURCQWg3M1pyeEtWWlVKbzdtdlBMQ0gtUWh1aGlVdG5VUW0yOXlobDV4amdWa0xZVEZidFBDTTdlVU5pUHBRZdIB0wNBVV95cUxNRnZwT25wZVVjQjdBOE1PZmp1ZnVUbGRXNXlVdmM0NkV4QU5MLUlLUG1icHVwTUJiZ3hqRkdlTV9sVFJTUm05OW1EeWF2SnhjRWYyRFJhUFU3djVIWHlKNG04cUVxcjZNdUZSWG9HMndEZG1Ca1dPOU1WUGRRVXNlMG9iS1hIYlVIdWlWeWo2dWprVjRta25taUd0RHFiTVdob3hXOWotamdIODJBVnAzWWFDWWVoajJPOUxpRjNqSlNCNGV1NzZxdFZFWjNFak9sNVhTMlctMkFZMjRMUldhdEkyLXJ5VFV0aGx3UGZiUnBXMTIweEZfRFVadmEwMmFadTU2QUxucEdBSlg3VmRLNWh5cEcwRWtuWkZSWUs1eFNzN1NSSEtPM0swZ2hYX0puaThDQXNSWS1DNFl5cEIyZnkzOXJUalVURUp6UW13UHByNnZmQ2hKN201MWNGNWotV3BuQXlBdnR6cVBpNjNPNEF0ejVHQmlCSkRoYzRpQVhWRGxHNjFMemZWdVZRV2pleUVWNXVtMXBtWkpSNnlzTWRneTdRcTkxNzdVYXBYQmtQSkYxaW9Ia0ZsU0s3cmc1RUs1aHdXeW5iTW01bl82cHhxNA?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Imparcial"
-        },
-        {
-          "texto": "Ni Trump ni presiones: La verdadera razón del viaje de Sheinbaum a China",
-          "fuente_url": "https://www.informador.mx/mexico/sheinbaum-viaja-a-china-la-verdadera-razon-del-viaje-de-la-presidenta-a-shenzhen-20261115-0056.html",
+          "texto": "Ariadna Montiel llama “traidor a la democracia” a Vicente Fox por sus dichos sobre la elección de 2006 - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQelNFNmxERFB4Z3pSNnFIUXE3S01mV1VHNlJfWWhmaTZha09Ib0Y2VmkwNzduU1plQW05YU1xNnEtRFo5OXBiX2I4bzd6bHZhUkhVRTJoWmpSNkdJNnJzNkZtQUVSQ0x0Y01kYThNUWZhTktBanZIdjBiblE2dzZsWmdtN19BN25NTHNDdGR4UXMxUkp1cy1oQTBWM3RydER6endmRWtVUW5xc1JweTZub1BpNmhLaGJI0gG-AUFVX3lxTE5qSkx0Nlo5d1RheGIxVFFlUnJnUmlXZEtFMUNHUUFfcWFKRjJ5U0xEZ1JQT01fakVndGtoZ1dYaFJRUFJTQ2d3V2tQMU5rTkJPTW5qRFlPUldNZk1PNGs1XzVQYjZaNE1EejdnMWlrWUIzUHZDX2lBRklsYWl0Mnk5RG96ZGRiSnMyOWhVOWlUenUtMkMzOGhiZTNRaDV1R0lLckJpc2pianZfNnpqT2lNUTdLdks5andTdnhabGc?oc=5",
           "intensidad": 5.0,
-          "medio": "informador.mx"
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Reconoce Horacio Duarte a la presidenta Claudia Sheinbaum construcción de Conservatorio de Música en el Estado de México - Reporte Indigo",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxOdWQzLVhkM29OcE9RcXpYYnREZWJ3aDZMalA3Wm92dTUzRnlBaEUzQzd2aEhYdFYxdTZKeVh2QkdqVU85SWgwT2IyS2lYSk5YSzdiZENDaV9HTnlpcnBRZGp6ODZNdDRxNXY0cjZFZDloY1F1SHQ5ZVJ4LUlET2JMbVY5STR5dmlsUVJQUmxnOVRBeG1VRDFQTkhPMkxZeFJOQkltN0luNThPRGtGMklCUDl0YzdERjhfRXJuODJjRGx4RjBrbnZ4UzBualJwdEJEV25MbHVhdGFTLXhEYnZtRUxvaEduOXhXVEZUbzAzUWJEUDFSYUxsTWl5X1d5MHp0SDQxQTNnZ3Uwdw?oc=5",
+          "intensidad": 5.0,
+          "medio": "Reporte Indigo"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 21,
+      "peso_pct": 23,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 3,
+      "n_notas": 2,
       "notas": [
-        {
-          "texto": "Sheinbaum viaja a China con una apuesta: atraer inversiones sin comprometer el T-MEC - UnoTV",
-          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPUVA1M09fSmEybC1ONnV5NkFWRi1DdXJMcVBoeTdOQUkyaUxPNlRVWDVhNERFXzB1TXc3TktQQWVYQXVOMWNWLTFCMlFNNDg1amxDVzVlWGs3R3V3RUpEYUlGS04tdDc5VTJaWlBGMTBaMEduZk9BYnRwdEZVcDQxSDF0SjhuMU9jYmlCOC13dUpXVVRBUjRtdU1QamZGakNWWmVCNnNpT0VnRUhjNzY1SnZ2YlBadw?oc=5",
-          "intensidad": 7.0,
-          "medio": "UnoTV"
-        },
-        {
-          "texto": "Renegociación del T-MEC: La nueva y nada amistosa cara que perturba las negociaciones entre México y EU",
-          "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/11/14/renegociacion-del-t-mec-la-nueva-y-nada-amistosa-cara-que-perturba-las-negociaciones-entre-mexico-y-eu/",
-          "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
-        },
         {
           "texto": "Empresarios y autoridades analizarán revisión del T-MEC y cadenas de suministro en Tijuana - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNQWVuVzNJc3ZIa3JoS0x4NmlZQVJqMl84N1V0blcyT3RBMGU1M08well2TzVEUElUd19DSEFyNm1xeW9kcTQ5V2diNWFlNVN0eldjaC1hSERsb3A1eTJPWndPeFZjZ0p4bzZOMkVVS0huMDVwRkFveDlTOUFvSzZFcHFDcFRjbTBjZWMyWXNiOS1Ka3hqNzhCOEhEYjBiUQ?oc=5",
           "intensidad": 6.0,
           "medio": "Milenio"
+        },
+        {
+          "texto": "Presionará T-MEC a revertir reformas - Reforma",
+          "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE81RnNReU1hNWltUHMwTjZZenFFS01Ta2czSGZpN0gtMzZrWnZyUmg1Sm1MSkx0U2tpell5OUVoQlRyVXZUX1NBS1ZydlFqQmE0T0NJY25hWW9xOGtkU0RuSlJSeUNPc1kzZEhLTkdYUDlzc0xQVnZ0UFowRmZrV3M?oc=5",
+          "intensidad": 6.0,
+          "medio": "Reforma"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 8,
+      "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "Violencia en Sinaloa: ataques armados dejan cuatro muertos y cinco heridos en Mazatlán",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/15/violencia-en-sinaloa-ataques-armados-dejan-cuatro-muertos-y-cinco-heridos-en-mazatlan.html",
-          "intensidad": 7.0,
-          "medio": "yucatan.com.mx"
-        }
-      ]
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
+    },
+    {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
       "categoria": "Social",
@@ -680,11 +648,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Economía",
@@ -692,7 +660,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 5
+          "peso_pct": 6
         }
       ]
     },
@@ -751,11 +719,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -776,11 +744,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 57
+          "peso_pct": 58
         },
         {
           "categoria": "Relación Bilateral",
@@ -788,7 +756,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -805,15 +773,15 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 56
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -830,11 +798,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 53
+          "peso_pct": 54
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -849,60 +817,22 @@
   ],
   "top5_temas": [
     {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Renegociación del T-MEC: La nueva y nada amistosa cara que perturba las negociaciones entre México y EU",
-      "peso": 12.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/11/14/renegociacion-del-t-mec-la-nueva-y-nada-amistosa-cara-que-perturba-las-negociaciones-entre-mexico-y-eu/",
-      "actor_vinculado": null
-    },
-    {
       "id": "intervencion-militar-eeuu",
       "nombre": "Amenazas de Intervención Militar de Trump",
       "categoria": "Relación Bilateral",
       "resumen": "Trump ha amenazado en repetidas ocasiones (mayo y agosto de 2026, entre otras) con atacar cárteles mexicanos en territorio nacional si el gobierno de Sheinbaum 'no hace la tarea', llegando a declarar que 'los cárteles gobiernan México'. Sheinbaum ha rechazado sistemáticamente cualquier despliegue de tropas estadounidenses, calificándolo como no negociable para la soberanía nacional, mientras exige a Washington frenar el tráfico de armas hacia México.",
       "motivo": "¿Qué hay detrás de la intervención militar de Bukele en Haití? - Milenio",
-      "peso": 12.0,
-      "n_temas_agrupados": 2,
+      "peso": 17.0,
+      "n_temas_agrupados": 3,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
+      "medios_corroborantes": 3,
+      "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWNsZlYyUXA0eWdSOVhKcGprU2x2bGM5dGRiYXA2d2VrSkhDOF9naExONllvZXNCZl9uTnlVV2JqRUc2eXBFNUtYUHRjQzlFcHBNVXQ3X2o2ckg2U1ZlMkt6UGc2ZTFFbzVEYW43WFUwRDU4NUZiV0U0TzRjX3B3a1ZTNzVMeG43TFR1am0yWWU2TllTdnNWUmxpVjc5QjBXQXVSTVFvOEM3clXSAasBQVVfeXFMTWRpSG1GUUZlajBiREo4UUF3aFQxU0lCZ2JFQk9wWHNnMHhWOWRHemYyZTc3cjVaV0pwYnhQSlcwTktXd19sRDJ5UFdVNUVzdWtycFJYNDdTR1hfdTFTMjJOb2FYREtDSHhQcndid2FXQVN1U0w1UXFGM296R2ZwVF9SR2w3SXlzVTg4NU04ZXhWM3Z5VHNhOFgwX29Jd0cxczNPVzlUbzhRejlN?oc=5",
-      "actor_vinculado": null
-    },
-    {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "Ni Trump ni presiones: La verdadera razón del viaje de Sheinbaum a China",
-      "peso": 5.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.informador.mx/mexico/sheinbaum-viaja-a-china-la-verdadera-razon-del-viaje-de-la-presidenta-a-shenzhen-20261115-0056.html",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-865e94b181",
-      "nombre": "Guatemala y Honduras avanzan en un plan conjunto para ordenar la migración labor",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOeUpRMDJuaGptVURPaHRtS3hRTXR6TVFuQm9TRnZCek4zeFdWVGtLT0dNNXdsUUVzclg0c1hwZVhFRUhkbXF0NHhJcWo2ZzB4SkRRRU5VTWl3TlJHaWgtbVNzZElIZVhybGVnS3FWSThEQkI0cnZxSlhtVHNpOVNiaXF2YUNkOWliRlg2VWc5Mkg4WWRxblNxYkg2NF9SRHRfZ1JSd2Y0Sk9NS2Jxd3dfaEJRUE9NX2FFQVQ1T21RZUFPSjZUV1RZ0gHiAUFVX3lxTFBQRkFPdlI4Qy15aE14aVdmRmx6UUR0X084Umt0cDR3QWczZVFfZXViejNFWlUtWS1PVFVPS1JQTGxKdG9xbS1hSVV4Q2VJOUw3ZlpySnFTMjZzTFZNUFFmeC1CeWdKQmtLcm9wRUVDV1pORUhQTDhTSE1VY3hZeFBXS1ExdEw3ZnByRk9qM3ZERzNwd0tWOWtJc2hmV01mZHNQcDJzWmZqQnB3NEhlYndxcGQ0QmhTN2xNT2ZjRWNadGEwQjBObm5GaVdja3NMLTkzaHBCb1R4VGtzVmY4VlU4NlE?oc=5"
-    },
     {
       "id": "auto-c2ca8cad73",
       "nombre": "Curan migrantes sus pies...y reinician caminata en Chiapas - Reforma",
@@ -912,12 +842,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQTVBvR3NzQ0hwRTBDclNVSHNVMjgyZE92LTRQNU1ucjR0bkRlalc4bEU3eV9NN3pOV0NhYzl5YWNBdW5mbjhMcUV1bEdvcWRqbzRhWHliS1p5cFVuNzl5VWpTV1RSTDhLZVlzblhIRDZyclNtQTFjMHEtRlZ3dXQzY0RnaU1RQl9GV0VJREpFbEMyMVZQ?oc=5"
     },
     {
-      "id": "auto-db39393e35",
-      "nombre": "La Presidenta Claudia Sheinbaum va rumbo a China - El Informador",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-82de2bced7",
+      "nombre": "El mapa, el refugio y la pradera - Milenio",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5IM01fTDJfZG1OYndTck9DbW5fQ2h6ZHNxY3dzdDA3cmtUM05kcC1ZQnVwNGppdDJUa0h1Y0xkRUFXZmZMclRKS3hHeW5Fd1ZNNDZBNjBSUFF1eVFxWmo5WUNkckhNU3E4NThDMXA2U3dVLUdnNnU3cW5xUQ?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxONEJLZjUwNE0tZlJHZFc0WDk3SXFkenptMEptT1NPSXZrNnEzenJZS0hRNWpIUGdraXlWc2hqbkdmVEhSanlHRERMNWdCZ1hBN1ZuWms5NHBwdDY3a2gyc1VTeUtjZEdzZGdRekc5MlZlVWhjeU1FdFgzLUdkZ2R0YlRGWGg0c21jWEUzRXczXzJ0RG95UmfSAZYBQVVfeXFMTl9yTEU5NUxfZzRuUk5BV3JnbWozZGFZck5GeXczdDhzSGdhS0dackxtNEM0WmtpV2ZOM2M2aHBERDUzQzNtNjRZMS04UExFM1J2YWpGbVpuTFRhV3BKckg3MnAtb0dLQ29Zcm45VlhQVTZ2amViaG1MU25RbjJ1WENXTU9kX1JhbDFOdC1pY2NsdVdsVE1n?oc=5"
     },
     {
       "id": "auto-08c4947f3f",
@@ -928,15 +858,34 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPSGlOZ0k5WVFWTkVQWHVMMGlySHRMRmNGS3h6ZVJlYzkxUnJDNnhySzhXazhYTnBicnphRFFOUWM5VmFVVGFBam9rVW5aNUlLMTZKanRIV3NRRHBaZTRxSWV6Zm9tZi13NzJxNGlzeHNsVTREeXpYdmIyZDhZWTFuc0xwa0N0YXBSdmpQMTlOcHB6VDdlbmhDMGFIR3hNTTB2Q19yb0dQcVBUbllXUWU4VmdpaWJqcTR3Y3ZFVzdOUFVKM2pNc2w3Vk82ZXhSSFN1Y0p6TFBHWE42aHFYc2JVbU9JbU11LVZscnFz?oc=5"
     },
     {
-      "id": "auto-3cb23f1c60",
-      "nombre": "México expondrá el Plan México y avances económicos en Foro Asia-Pacífico: Marce",
+      "id": "auto-c18785ac28",
+      "nombre": "Recepción oficial a la presidenta Claudia Sheinbaum Pardo. Shenzhen, China - Gob",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQdTZDMFJvSXJITmVKX0FUVW52VTF1V25KT0N6LUhhZDBQU3VVazl6NzN3V191Q2k1d0tGb3NvanJTUlRfUlJzQURVaXFXSjBNZjhtTl9ZTkxHNi0xckxkVDVKZGFSQTNBNnh3YlpoejJmZmM0el82bmRjaGRzVWJpU1cyRVNRSG1xQmNyNWtxcmZzN09KUEVBS2dtVWZQQlHSAZ8BQVVfeXFMTmtzX3o1SUMweDd0dGZTeTdIa2Z6ZXBEb1M5aVczbWpDTkotNm5aUGJLRlZxa00ybXJHYTY3SmhlemxMY1ZOd3Q3NjZvSHFhY1dwanJERXhnMFdPaFlXMXVJVlVQamdKMXNiNm9Mazl1MVE5S3gyY01jSUNwZkY5aE4xTFJEemVFY2hFeU8wT1pEbjhXLWlCUzZQaE03bGcw?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPRmYySlZKYjhZbVNBU0phS0hYRE9SNlcxTUZ2YzNyMkFPS0wxWk1Uc1J1bl9HQmxPRThoQllFZGd4WS1MS0NEczNCdzAxeWZLOTF0QTRQYWIycjFtMHU3YjRHMmxqZGZSUU94UGk2Mmljalp6RnJzVXNEN3hqN2g0WEMyWkhtUGdLSm9iSlVRbUFNSFE3d0hDYWJoOEl2dkF1QWppY3VOdVRGeU05dW1WdmZR?oc=5"
+    },
+    {
+      "id": "auto-96f6054147",
+      "nombre": "Ahora por comercio con nuestro país, disputa Washington-Pekín",
+      "categoria": "Relación Bilateral",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/006n2pol?partner=rss"
     }
   ],
   "temas_retomados": [
+    {
+      "id": "auto-fb07959a0a",
+      "nombre": "Manuel Pérez Rocha L.*: Unidad ante el despojo y racismo en Honduras",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 69,
+      "motivo": "Manuel Pérez Rocha L.*: Estados Unidos y su necesitada T",
+      "impacto": "medio",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/023a1pol?partner=rss",
+      "fecha_anterior": "2026-09-07",
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/07/politica/015a1pol?partner=rss"
+    },
     {
       "id": "auto-124dc94969",
       "nombre": "Ciudadanos reclaman a autoridades de Balancán durante entrega de obra con el gob",
@@ -976,9 +925,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum asistirá al foro de APEC en China con los secretarios de Exter",
-      "nota": "Claudia Sheinbaum parte rumbo a China para representar a México en el foro APEC 2026: estos son los encuentros previstos - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOMTY0MTJkNzRZd3pUX0tUc21vTmthSFZKODZMSl9UTDdoS2RLcTNpbW9vYktWbFJZMkRhcFVqLVJKVEs5T2ROQTYwTUxiZDBFOVZXeHlCUmFvT1VGQkRiZVBENmt1Q0dXUmhjZlg2bGlOX1lZZU1zcXlEWmtaM29aTndRUmt1UmNSb0tRRFpzdVh3bDRHOGEtVE54YlVfdXZMUlc0c05yakVDUlNlenFCamROWVZwSEE3NTNDdHNyWEFZT3JkRkhZMVFMUTBCNVdGYTM4YWZpRU5xczhHOVVqRUVTR2t6bnN2bnhVWGl1NjBBRmk00gGPAkFVX3lxTE9VUVItelVXdEJ1Uzk2V29oVE1TRXRzSFh3aFJmeGtncWRaUUlGdGZPRXlmY2J0X21nYnlDUkNDcWVwemJnNFZHTUZIN2pRRGhNME9ncDF3WU1Uc2tvbzZrQVdfUFVEeS1VM1JlNWV4bDlBSnFUR0hGRUVzMXhhbDJVTUlYRTJEcV9XTjZTcDBabjNKWHRpajMzR09MNlUxenlhWTV3V2tXSDBpQWluUUotQ1FJWTZWNG84TkxCd1pHem5fWHVmWTJUZmRXVnVEVnZ0LWdlTk5WUWozSG9rcWdLcGNOMjFVWUJLa1QwSWVXbFFFb0p0aW9aOXRvQThrcmdHc1hseVhGVzVNZ1VBX0k?oc=5",
+      "tema": "Claudia Sheinbaum recibe en Palacio Nacional a mujeres de Naucalpan - Sistema Me",
+      "nota": "Claudia Sheinbaum recibe en Palacio Nacional a Dylan, niño emprendedor que quiere llegar a la NASA - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNUklJOHgyaHhfbnp0VS1ncFlmT3k3Nzd5bTk2TThsYzJzcHotN3l6ckVSX3pSWmk2ZXc4cEdGbHRPN2ZUT2dpWFB5VlBQUmFwZGlpa2EtcmJnTWpKeTdKNl9yNmhzM1VIMExfaVEzRkFMT1RGSEJtUEpuQm12SEZsZ1EwV1RSaGw2OEhKWlNaVkNURjhoRWNVTThCR0NZRVBOVnJrZ3dfSm8yYkxGNXVPRVFielk0ZE1nWXZfeWxsYmNBN1Z0elhiaHl6S3J0LXN6NkdqMDVoekYzOEtfaGl1VlFLZ3o3QVhXSFhV?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -990,6 +939,28 @@
       "tema": "México expondrá el Plan México y avances económicos en Foro Asia-Pacífico: Marce",
       "nota": "México expondrá el Plan México y avances económicos en Foro Asia-Pacífico: Marcelo Ebrard - Milenio",
       "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQdTZDMFJvSXJITmVKX0FUVW52VTF1V25KT0N6LUhhZDBQU3VVazl6NzN3V191Q2k1d0tGb3NvanJTUlRfUlJzQURVaXFXSjBNZjhtTl9ZTkxHNi0xckxkVDVKZGFSQTNBNnh3YlpoejJmZmM0el82bmRjaGRzVWJpU1cyRVNRSG1xQmNyNWtxcmZzN09KUEVBS2dtVWZQQlHSAZ8BQVVfeXFMTmtzX3o1SUMweDd0dGZTeTdIa2Z6ZXBEb1M5aVczbWpDTkotNm5aUGJLRlZxa00ybXJHYTY3SmhlemxMY1ZOd3Q3NjZvSHFhY1dwanJERXhnMFdPaFlXMXVJVlVQamdKMXNiNm9Mazl1MVE5S3gyY01jSUNwZkY5aE4xTFJEemVFY2hFeU8wT1pEbjhXLWlCUzZQaE03bGcw?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "ramirez_cuellar",
+      "nombre": "Alfonso Ramírez Cuéllar",
+      "rol": "Mencionado",
+      "tema": "Ramírez Cuéllar entrega al Senado paquete de reformas anticorrupción",
+      "nota": "Anuncia Ramírez Cuéllar una reforma para reforzar combate a corrupción y huachicol",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/007n2pol?partner=rss",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Mencionado",
+      "tema": "Morena impulsa Fiscalía Especializada en Asuntos Indígenas a nivel nacional; bus",
+      "nota": "Morena impulsa Fiscalía Especializada en Asuntos Indígenas a nivel nacional; busca replicar modelo de Baja California - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPSGlOZ0k5WVFWTkVQWHVMMGlySHRMRmNGS3h6ZVJlYzkxUnJDNnhySzhXazhYTnBicnphRFFOUWM5VmFVVGFBam9rVW5aNUlLMTZKanRIV3NRRHBaZTRxSWV6Zm9tZi13NzJxNGlzeHNsVTREeXpYdmIyZDhZWTFuc0xwa0N0YXBSdmpQMTlOcHB6VDdlbmhDMGFIR3hNTTB2Q19yb0dQcVBUbllXUWU4VmdpaWJqcTR3Y3ZFVzdOUFVKM2pNc2w3Vk82ZXhSSFN1Y0p6TFBHWE42aHFYc2JVbU9JbU11LVZscnFz?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1159,25 +1130,25 @@
     },
     {
       "fecha": "2026-11-08",
-      "tension": 20,
-      "n_notas": 32,
+      "tension": 19,
+      "n_notas": 33,
       "n_alto_impacto": 8,
-      "n_medio_impacto": 24,
+      "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-09",
       "tension": 15,
-      "n_notas": 46,
-      "n_alto_impacto": 11,
-      "n_medio_impacto": 35,
+      "n_notas": 48,
+      "n_alto_impacto": 12,
+      "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-10",
-      "tension": 18,
-      "n_notas": 40,
-      "n_alto_impacto": 12,
+      "tension": 19,
+      "n_notas": 41,
+      "n_alto_impacto": 13,
       "n_medio_impacto": 28,
       "n_bajo_impacto": 0
     },
@@ -1215,18 +1186,18 @@
     },
     {
       "fecha": "2026-11-15",
-      "tension": 34,
-      "n_notas": 16,
+      "tension": 29,
+      "n_notas": 19,
       "n_alto_impacto": 8,
-      "n_medio_impacto": 8,
+      "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-16",
-      "tension": null,
-      "n_notas": 0,
+      "tension": 25,
+      "n_notas": 1,
       "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
   ],
@@ -1234,28 +1205,11 @@
   "tablero_semana_inicio": "2026-11-16",
   "resumen_mananera": [],
   "mananera_estado": "pendiente",
-  "a_vigilar": [
-    {
-      "id": "auto-834533e6f7",
-      "nombre": "Horacio Duarte reconoce a diputados federales de Morena defensoría del presupues",
-      "categoria": "Gobernabilidad",
-      "resumen": "Horacio Duarte reconoce a diputados federales de Morena defensoría del presupuesto para obras en Edomex",
-      "fuente_url": "",
-      "actor_vinculado": null
-    },
-    {
-      "id": "auto-8420484939",
-      "nombre": "Tras sus dichos, Fox niega fraude en elección de 2006 a favor de Calderón",
-      "categoria": "Social",
-      "resumen": "Tras sus dichos, Fox niega fraude en elección de 2006 a favor de Calderón",
-      "fuente_url": "",
-      "actor_vinculado": null
-    }
-  ],
+  "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 0
   },
   "declaracion_presidenta_historial": [
     {
@@ -1310,5 +1264,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-16 00:00"
+  "hora_corte_publicada": "2026-11-16 05:57"
 }
