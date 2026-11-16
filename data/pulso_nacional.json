@@ -1,22 +1,22 @@
 {
-  "generado_en": "2026-11-16T06:02:42.011184-06:00",
+  "generado_en": "2026-11-16T12:23:24.698514-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 9,
+  "n_notas_ventana": 10,
   "baja_confianza": false,
-  "tension_nacional": 22,
+  "tension_nacional": 38,
   "tension_anomalia": {
-    "z": 0.13,
-    "nivel": "normal",
-    "media_periodo": 21.4,
+    "z": 3.47,
+    "nivel": "alta",
+    "media_periodo": 21.6,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 77,
-      "tema_principal": "Amenazas de Intervención Militar de Trump",
-      "tema_principal_id": "intervencion-militar-eeuu",
-      "n_temas": 6,
+      "peso_pct": 71,
+      "tema_principal": "Tribunal Electoral debatirá negativa del INE a investigar presuntas campañas ade",
+      "tema_principal_id": "auto-8ca980ce3b",
+      "n_temas": 5,
       "n_notas": 7,
       "notas": [
         {
@@ -32,6 +32,18 @@
           "medio": "El Imparcial"
         },
         {
+          "texto": "La mañanera de Claudia Sheinbaum, 16 de noviembre de 2026: hoy encabeza Rosa Icela Rodríguez Velázquez - UnoTV",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQVThZaXk1QmpmNEdTeXAzWG83ajMxSGU5a054UkM4cFdraWN3UVRNUGlHOXBLYjV3U3lQRDY1WjhfV0ZXN3BsT3VoeDRvVmZsWmNyN0Fwa09DbTFWMmwyaGtYeEdvbklSOFlQck5paURiV1NNNzIwUThBTThqc2ZnSHM5QWxTS1M4am5iQUpLaEZkTGlDNGhocS1mTzVmNmZ6ckZCQnk4LUtwUGVTdGpScDlOM0ExNjFmYVBnYVZiOHN5bFZKQ0gydzBKUkw?oc=5",
+          "intensidad": 7.0,
+          "medio": "UnoTV"
+        },
+        {
+          "texto": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
+          "intensidad": 7.0,
+          "medio": "La Jornada"
+        },
+        {
           "texto": "¿Qué hay detrás de la intervención militar de Bukele en Haití? - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWNsZlYyUXA0eWdSOVhKcGprU2x2bGM5dGRiYXA2d2VrSkhDOF9naExONllvZXNCZl9uTnlVV2JqRUc2eXBFNUtYUHRjQzlFcHBNVXQ3X2o2ckg2U1ZlMkt6UGc2ZTFFbzVEYW43WFUwRDU4NUZiV0U0TzRjX3B3a1ZTNzVMeG43TFR1am0yWWU2TllTdnNWUmxpVjc5QjBXQXVSTVFvOEM3clXSAasBQVVfeXFMTWRpSG1GUUZlajBiREo4UUF3aFQxU0lCZ2JFQk9wWHNnMHhWOWRHemYyZTc3cjVaV0pwYnhQSlcwTktXd19sRDJ5UFdVNUVzdWtycFJYNDdTR1hfdTFTMjJOb2FYREtDSHhQcndid2FXQVN1U0w1UXFGM296R2ZwVF9SR2w3SXlzVTg4NU04ZXhWM3Z5VHNhOFgwX29Jd0cxczNPVzlUbzhRejlN?oc=5",
           "intensidad": 6.0,
@@ -44,38 +56,26 @@
           "medio": "Milenio"
         },
         {
-          "texto": "Máynez procede ante CNDH tras detención de Gabito Ballesteros - Al Calor Político",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTDJIbkg2cTdmYlZ0VUQwZDRTd2xJM25wYmV5QXlJSENnQ2hZQ1ZzRGpIZWlzd1U3dXdXMlp3aXFJZFJmYnlJaHFqa05GeWZVcG5ySHp6VkFQYllLTEtxMWJwQUdSaU82dWJPaEdjakZvd0Y5YVNkQ0dKOW0wdHN0TW4zQ1JPbHM0SFprY05yS1Q5UjVTQ3JIa1BwZGo2anRTLVhpeTVTNEJKRnB3UGtzYVFJN19rc2JQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "Al Calor Político"
-        },
-        {
-          "texto": "Ariadna Montiel llama “traidor a la democracia” a Vicente Fox por sus dichos sobre la elección de 2006 - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQelNFNmxERFB4Z3pSNnFIUXE3S01mV1VHNlJfWWhmaTZha09Ib0Y2VmkwNzduU1plQW05YU1xNnEtRFo5OXBiX2I4bzd6bHZhUkhVRTJoWmpSNkdJNnJzNkZtQUVSQ0x0Y01kYThNUWZhTktBanZIdjBiblE2dzZsWmdtN19BN25NTHNDdGR4UXMxUkp1cy1oQTBWM3RydER6endmRWtVUW5xc1JweTZub1BpNmhLaGJI0gG-AUFVX3lxTE5qSkx0Nlo5d1RheGIxVFFlUnJnUmlXZEtFMUNHUUFfcWFKRjJ5U0xEZ1JQT01fakVndGtoZ1dYaFJRUFJTQ2d3V2tQMU5rTkJPTW5qRFlPUldNZk1PNGs1XzVQYjZaNE1EejdnMWlrWUIzUHZDX2lBRklsYWl0Mnk5RG96ZGRiSnMyOWhVOWlUenUtMkMzOGhiZTNRaDV1R0lLckJpc2pianZfNnpqT2lNUTdLdks5andTdnhabGc?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Reconoce Horacio Duarte a la presidenta Claudia Sheinbaum construcción de Conservatorio de Música en el Estado de México - Reporte Indigo",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiigJBVV95cUxOdWQzLVhkM29OcE9RcXpYYnREZWJ3aDZMalA3Wm92dTUzRnlBaEUzQzd2aEhYdFYxdTZKeVh2QkdqVU85SWgwT2IyS2lYSk5YSzdiZENDaV9HTnlpcnBRZGp6ODZNdDRxNXY0cjZFZDloY1F1SHQ5ZVJ4LUlET2JMbVY5STR5dmlsUVJQUmxnOVRBeG1VRDFQTkhPMkxZeFJOQkltN0luNThPRGtGMklCUDl0YzdERjhfRXJuODJjRGx4RjBrbnZ4UzBualJwdEJEV25MbHVhdGFTLXhEYnZtRUxvaEduOXhXVEZUbzAzUWJEUDFSYUxsTWl5X1d5MHp0SDQxQTNnZ3Uwdw?oc=5",
-          "intensidad": 5.0,
-          "medio": "Reporte Indigo"
+          "texto": "“Tony Montana”, hermano de “El Mencho”, recibe 22 años y 6 meses de cárcel en EU - NVI Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWkRnY2F4WXJCeFlpTzBhU3RQcFB3QUhKdDZ2QmxPM19KNlFGOVVyWlVsQU9wdklWVHMyWkpJX29tQWVqMEFEd3hHM1BfckVqYTEza2I4MHk1emdrVFhndmlyemJydHNmcUZwZmY1YldOczRueTRKWHhrdVVBZzNYV0hZR1JQWlFLdEpxakxaR2ViaDBDQWZMNGYtamJScENOSjV0YXIzd1NZbEhkUThxSjZBc3U4QQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "NVI Noticias"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 23,
+      "peso_pct": 20,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
       "n_notas": 2,
       "notas": [
         {
-          "texto": "Empresarios y autoridades analizarán revisión del T-MEC y cadenas de suministro en Tijuana - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNQWVuVzNJc3ZIa3JoS0x4NmlZQVJqMl84N1V0blcyT3RBMGU1M08well2TzVEUElUd19DSEFyNm1xeW9kcTQ5V2diNWFlNVN0eldjaC1hSERsb3A1eTJPWndPeFZjZ0p4bzZOMkVVS0huMDVwRkFveDlTOUFvSzZFcHFDcFRjbTBjZWMyWXNiOS1Ka3hqNzhCOEhEYjBiUQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
+          "texto": "Sheinbaum esquiva el tema comercial con China ante las presiones del T-MEC: apuesta por tecnología y cultura - La Política Online",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQUkNlalRzQkJhcHlXSFRybnExMGRwZGZ5OG1PT0kzaDlWcjhRZWNoNWdUd1RVWHVEX1g0S1Rma0FTNHVVR25TdkQxdEU5emFRcjd1WDQ3Qzk5REh4RzQ2ZVNXNnNvaHdUV1pMZ1g3SDZ3QWhfMTN5VTdLSmsxaHJ4V1Z4eDM2NWRrNDg1UVJBM1ZDbjR6eDl2NU5vTlRyaVhxQVBCaW1iUDh2SmJWWGx1TjctYTJnaUJ3RFUyREZQNWhnR3ZCUVRyVjFLeUJ1aTR0cU1WX0d1blRTWWlpY3d5Q1J1R1NXazRoNTE4TndfSndYdw?oc=5",
+          "intensidad": 7.0,
+          "medio": "La Política Online"
         },
         {
           "texto": "Presionará T-MEC a revertir reformas - Reforma",
@@ -87,12 +87,19 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 0,
+      "peso_pct": 9,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "FGR investiga a más de 50 personas por presunta corrupción en el INE - NVI Noticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPa3YtbkRDY1ZBMnpDam1HTm9QZnU5em1PZFNlUXVNNUJkeXFVWVVUT3B3R19qSElnRmpIbHlvSnp5UzJMVnlnOEVHcUVrb1hLMWlKTFBsVGVKU0V3NW1reE9vM0hYbWgzcUl4dHc5eHUtSU1hR21Fa1JiOE1DZkN3NFctdHlHSGthNVJIcld2SWR1eHF6V05kWVBrUmhqT3FFMjltR1dsc3k0RHl2RFpJ?oc=5",
+          "intensidad": 6.0,
+          "medio": "NVI Noticias"
+        }
+      ]
     },
     {
       "categoria": "Relación Bilateral",
@@ -348,7 +355,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 63
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -456,7 +463,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Social",
@@ -473,7 +480,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -502,7 +509,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 16
+          "peso_pct": 15
         },
         {
           "categoria": "Economía",
@@ -523,7 +530,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
@@ -548,7 +555,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 57
+          "peso_pct": 58
         },
         {
           "categoria": "Relación Bilateral",
@@ -556,11 +563,11 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Social",
-          "peso_pct": 7
+          "peso_pct": 6
         }
       ]
     },
@@ -573,7 +580,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
@@ -598,7 +605,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -623,7 +630,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -631,7 +638,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Social",
@@ -648,7 +655,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -660,7 +667,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 6
+          "peso_pct": 5
         }
       ]
     },
@@ -669,15 +676,15 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -694,11 +701,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 64
         },
         {
           "categoria": "Relación Bilateral",
@@ -706,7 +713,7 @@
         },
         {
           "categoria": "Economía",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Social",
@@ -723,7 +730,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
@@ -735,7 +742,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 11
+          "peso_pct": 10
         }
       ]
     },
@@ -748,7 +755,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -769,11 +776,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 13
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 57
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -794,11 +801,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 14
+          "peso_pct": 13
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 54
+          "peso_pct": 56
         },
         {
           "categoria": "Relación Bilateral",
@@ -810,7 +817,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 12
+          "peso_pct": 11
         }
       ]
     }
@@ -829,7 +836,46 @@
       "medios_corroborantes": 3,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWNsZlYyUXA0eWdSOVhKcGprU2x2bGM5dGRiYXA2d2VrSkhDOF9naExONllvZXNCZl9uTnlVV2JqRUc2eXBFNUtYUHRjQzlFcHBNVXQ3X2o2ckg2U1ZlMkt6UGc2ZTFFbzVEYW43WFUwRDU4NUZiV0U0TzRjX3B3a1ZTNzVMeG43TFR1am0yWWU2TllTdnNWUmxpVjc5QjBXQXVSTVFvOEM3clXSAasBQVVfeXFMTWRpSG1GUUZlajBiREo4UUF3aFQxU0lCZ2JFQk9wWHNnMHhWOWRHemYyZTc3cjVaV0pwYnhQSlcwTktXd19sRDJ5UFdVNUVzdWtycFJYNDdTR1hfdTFTMjJOb2FYREtDSHhQcndid2FXQVN1U0w1UXFGM296R2ZwVF9SR2w3SXlzVTg4NU04ZXhWM3Z5VHNhOFgwX29Jd0cxczNPVzlUbzhRejlN?oc=5",
-      "actor_vinculado": null
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
+      "id": "auto-8ca980ce3b",
+      "nombre": "Tribunal Electoral debatirá negativa del INE a investigar presuntas campañas ade",
+      "categoria": "Gobernabilidad",
+      "resumen": "Tribunal Electoral debatirá negativa del INE a investigar presuntas campañas adelantadas de Morena - Proceso",
+      "motivo": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
+      "peso": 7.0,
+      "n_temas_agrupados": 3,
+      "escalando": true,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
+      "actor_vinculado": {
+        "id": "rosa_icela",
+        "nombre": "Rosa Icela Rodríguez"
+      }
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Presionará T-MEC a revertir reformas - Reforma",
+      "peso": 6.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE81RnNReU1hNWltUHMwTjZZenFFS01Ta2czSGZpN0gtMzZrWnZyUmg1Sm1MSkx0U2tpell5OUVoQlRyVXZUX1NBS1ZydlFqQmE0T0NJY25hWW9xOGtkU0RuSlJSeUNPc1kzZEhLTkdYUDlzc0xQVnZ0UFowRmZrV3M?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
     }
   ],
   "temas_nuevos": [
@@ -850,14 +896,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxONEJLZjUwNE0tZlJHZFc0WDk3SXFkenptMEptT1NPSXZrNnEzenJZS0hRNWpIUGdraXlWc2hqbkdmVEhSanlHRERMNWdCZ1hBN1ZuWms5NHBwdDY3a2gyc1VTeUtjZEdzZGdRekc5MlZlVWhjeU1FdFgzLUdkZ2R0YlRGWGg0c21jWEUzRXczXzJ0RG95UmfSAZYBQVVfeXFMTl9yTEU5NUxfZzRuUk5BV3JnbWozZGFZck5GeXczdDhzSGdhS0dackxtNEM0WmtpV2ZOM2M2aHBERDUzQzNtNjRZMS04UExFM1J2YWpGbVpuTFRhV3BKckg3MnAtb0dLQ29Zcm45VlhQVTZ2amViaG1MU25RbjJ1WENXTU9kX1JhbDFOdC1pY2NsdVdsVE1n?oc=5"
     },
     {
-      "id": "auto-08c4947f3f",
-      "nombre": "Morena impulsa Fiscalía Especializada en Asuntos Indígenas a nivel nacional; bus",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPSGlOZ0k5WVFWTkVQWHVMMGlySHRMRmNGS3h6ZVJlYzkxUnJDNnhySzhXazhYTnBicnphRFFOUWM5VmFVVGFBam9rVW5aNUlLMTZKanRIV3NRRHBaZTRxSWV6Zm9tZi13NzJxNGlzeHNsVTREeXpYdmIyZDhZWTFuc0xwa0N0YXBSdmpQMTlOcHB6VDdlbmhDMGFIR3hNTTB2Q19yb0dQcVBUbllXUWU4VmdpaWJqcTR3Y3ZFVzdOUFVKM2pNc2w3Vk82ZXhSSFN1Y0p6TFBHWE42aHFYc2JVbU9JbU11LVZscnFz?oc=5"
-    },
-    {
       "id": "auto-c18785ac28",
       "nombre": "Recepción oficial a la presidenta Claudia Sheinbaum Pardo. Shenzhen, China - Gob",
       "categoria": "Gobernabilidad",
@@ -872,6 +910,14 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/006n2pol?partner=rss"
+    },
+    {
+      "id": "auto-32e69cf092",
+      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPMllTMEV4U215amdkYTFvUjBUeG1vUnpDaXpqS0dFQ3FGWm16amM1aUQtU0ZfTC14ZENJallLQ3NucVhnaGVsQXRON2paSGpXN0ZIcmdDQVhYYlNpNXFUS2JKSHExZGRTdUN1ME02NmlPTHVaMm1TbUhyNGFJUjFWcTc4RHE2V0lzczlUWlRQMEJSSzZVeGNSQVM1OHhteXhPTEhyQktGd2VwTkJr?oc=5"
     }
   ],
   "temas_retomados": [
@@ -918,6 +964,17 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxObHMtMzlScTI1ZVBfSXNGX3dXdGRLWkN0SDRlZWJONkd3NUNuZ1h2NnlHR0NjVzRiQWpZVGxTVHF3VG5mWjJVUkdpMzZ1ellRNDctQ2JJd1NCVnB1clprNDI4SUUyMmtkekdkSDE4elN1NmVac0pLT0p2aEtZTEM2ODVyR0ZwaEdrVTZ2dURGN250aGZYbDdPdzBSeFNINl80NGlCLWVqUGxCZmVwUmdqbW80aXhSQVpEUWpGQU42REc3dE0xYWxTVkNkSm5DZi03d3ZaZG530gHwAUFVX3lxTE5NaTk5dXRVOXdZZnRGVzJmbjExMnk1NTlFZUJRUWp1dUMxVkhOb0tuVDBuMDVfZVdwdl9OZlRxVmZBZXZKVmltWFpaR2hRQ2MxX2p3VjYyZllUaGpSRWMyQW5Jd3NPa3NBWUxjN0NiUVBkV3h2dkx1ZmpkYjlMVXVuVzExbDFQcHN3SVYwMTRPN2dsbmx3TlBkd1EyVTBMMFZ5SHNIamRSWTFOWGozenphSENfcDFVcTM0d3h4ZXFRaW5Vc1lPaFE0NmVxajlaLWs3ZUo5QU00YzZHc3cwcW5fMGlWemdYY0NmUjFhVDFzLQ?oc=5",
       "fecha_anterior": "2026-10-14",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQRWl3RnFwYktKdEROeTZWM3VGYy1vdFp0endhV053MWdjZ05RR2xhUE1TOGkxY3RyVXlmck5yUVJFV2lwVk1NMFJ6aEJtYlpaR19QejJqZUV4eEEwbzhDLTdkWjZBdjB2QkZSYVB0NEF4dDlnOTZOYVNNYTRHb0FMeGtoU1ZvS0MyakNxQW4tc3VUckw5U3QyMm5Ga043X3ptOWY1Q1Z6SVBKUDZGMEE?oc=5"
+    },
+    {
+      "id": "auto-b31fd4e979",
+      "nombre": "La presidenta Claudia Sheinbaum destacó durante la mañanera de este 8 de octubre",
+      "categoria": "Seguridad Nacional",
+      "dias_silencio": 11,
+      "motivo": "Rosa Icela Rodríguez encabeza las Mañaneras durante viaje de Sheinbaum a China",
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/rosa-icela-rodriguez-encabeza-las-mananeras-durante-viaje-de-sheinbaum-a-china-20261116-0047.html",
+      "fecha_anterior": "2026-11-04",
+      "fuente_url_anterior": ""
     }
   ],
   "actores_destacados": [
@@ -925,9 +982,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum recibe en Palacio Nacional a mujeres de Naucalpan - Sistema Me",
-      "nota": "Claudia Sheinbaum recibe en Palacio Nacional a Dylan, niño emprendedor que quiere llegar a la NASA - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNUklJOHgyaHhfbnp0VS1ncFlmT3k3Nzd5bTk2TThsYzJzcHotN3l6ckVSX3pSWmk2ZXc4cEdGbHRPN2ZUT2dpWFB5VlBQUmFwZGlpa2EtcmJnTWpKeTdKNl9yNmhzM1VIMExfaVEzRkFMT1RGSEJtUEpuQm12SEZsZ1EwV1RSaGw2OEhKWlNaVkNURjhoRWNVTThCR0NZRVBOVnJrZ3dfSm8yYkxGNXVPRVFielk0ZE1nWXZfeWxsYmNBN1Z0elhiaHl6S3J0LXN6NkdqMDVoekYzOEtfaGl1VlFLZ3o3QVhXSFhV?oc=5",
+      "tema": "Ceremonia oficial: China recibe a la presidenta Claudia Sheinbaum - Milenio",
+      "nota": "Ceremonia oficial: China recibe a la presidenta Claudia Sheinbaum - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNZUR3cEhwdFljQmVDSXdpeG0wWklORE8wQ25oVHh5V0xuTmgzcG0zN0l1NURDYThPUnoyNmhkTkNBX1hGTWxlbldTNjNIWm9UdE8xVGJqYlluUVJJQXdKQUhFLUFWX1puS0owWG9zd21mSHU1STFnTFp5Rmp1di05SzVGVFN0ZFdyQnk2eTB4LWRSMlZP0gGUAUFVX3lxTE1DakdYTnl3cVpKY1pIQ3FBb1lmS21lZkpablZhTVVtSl9Ra21uMERJZFgyQ19LdTJNZnp6eHIzczdkLXFPVU9mMHF6MW9vTHA1R1N4RlctbXk4N0w0QTFkX0l0QmJfeVBtUnFId1BCdEFTZmdUVllrOGxROElTM0JFQ1JMV29oWWdWZ1NMLWM2cGxnd24?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -944,12 +1001,23 @@
       "confianza": "media"
     },
     {
-      "id": "ramirez_cuellar",
-      "nombre": "Alfonso Ramírez Cuéllar",
-      "rol": "Mencionado",
-      "tema": "Ramírez Cuéllar entrega al Senado paquete de reformas anticorrupción",
-      "nota": "Anuncia Ramírez Cuéllar una reforma para reforzar combate a corrupción y huachicol",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/007n2pol?partner=rss",
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "rol": "Responsable institucional",
+      "tema": "Tribunal Electoral debatirá negativa del INE a investigar presuntas campañas ade",
+      "nota": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "higinio_martinez",
+      "nombre": "Higinio Martínez Miranda",
+      "rol": "Investigado",
+      "tema": "Pide Pedro Gutiérrez que se investigue a May por sus \"mapacherías\" en al elecció",
+      "nota": "Respalda Higinio Martínez investigar injerencia de Fox  en las elecciones de 2006",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/007n3pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -957,22 +1025,29 @@
     {
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
-      "rol": "Mencionado",
-      "tema": "Morena impulsa Fiscalía Especializada en Asuntos Indígenas a nivel nacional; bus",
-      "nota": "Morena impulsa Fiscalía Especializada en Asuntos Indígenas a nivel nacional; busca replicar modelo de Baja California - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPSGlOZ0k5WVFWTkVQWHVMMGlySHRMRmNGS3h6ZVJlYzkxUnJDNnhySzhXazhYTnBicnphRFFOUWM5VmFVVGFBam9rVW5aNUlLMTZKanRIV3NRRHBaZTRxSWV6Zm9tZi13NzJxNGlzeHNsVTREeXpYdmIyZDhZWTFuc0xwa0N0YXBSdmpQMTlOcHB6VDdlbmhDMGFIR3hNTTB2Q19yb0dQcVBUbllXUWU4VmdpaWJqcTR3Y3ZFVzdOUFVKM2pNc2w3Vk82ZXhSSFN1Y0p6TFBHWE42aHFYc2JVbU9JbU11LVZscnFz?oc=5",
+      "rol": "Investigado",
+      "tema": "Gobernadora No Cumplió con Campesinos: Tribunal Agrario Sigue Fuera de Campeche;",
+      "nota": "'Fuera Morena', le gritan a Gobernadora en Colima - Reforma",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNblc2QVhrZ0cxcE9qWG8zVFZ3WFFUZWQxQzQzRk9GQ2xFUFp5QS1XNWgzZnhUVFJnZ0Q0bDd6X3RkazNVX214bjRTa2gtTnpLRk9udWZzX2hqOGpjYlRsOEU3RFpQQ2sxWmJ0dzkycnN0SzNwVDRrbGZQQjdKZ0VBdWpSTE5JQmY3TUtvag?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     }
   ],
-  "declaracion_presidenta": null,
-  "declaracion_otro": {
-    "actor": "Higinio Martínez Miranda",
-    "texto": "Higinio Martínez respalda creación de comisión para investigar \"fraude electoral\" de 2006 - El Universal",
-    "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxObkdQeVhHOWFBZzVmcWd5MFNXOTd6d1BSZFV3SmtWS1ZpQjR3dG9MRVpDR2lpWm5BdGJDY3pUOFVROWtDN1lYaUM4SkgxVTV4WmlwaWl2X2tBZ3FxLVFzZm1iOHhrM2hBdm81MmJ1dE44ZkJNX2NJb1E0VlZOUlRoM0tOQ0cweW1IWkgtOVYxR2ZKYmNDRGVTYTZWYUUwdWQyZ2c1cmt0Nk1RMXhxUlFQdERSeFRGRVhaaTBoSW5jbE1oNXhGSTNreG83STZhS0ZwdWdoLVd0ajhkUEY3WF9RaDVvanhMM0HSAfsBQVVfeXFMUHpvYVlDRDBPRDkxZGpLcm15aU9vZmRiUkNlZmx1WDFyemNwdW1MZDhmYWIwM0dWMnBRYTdhX3Y1MUVUY0lOWXFaSGtjdFc3OFZyOEQ5MVBhSjNVZndaUm1lZUF0blA5dU5EOG9yUFQ2bDBfNWlZQW1qeG1QSDVTQXhxNDRwcElDMUEzNF8tWUtrZWJBNlhBeTF2cjFUYmo2Y09VR3R5Rk5OSmlrSl9hUHZwQ3JsUzAzXzdiWnJFVC1BUGZsUGhYV2Z4WktJa0FPUGxmSHBQVnBZckpUSWpVaUVBbXFfdzlmdE1EU1gwWVcwNlozWVlzdU9JNmM?oc=5",
+  "declaracion_presidenta": {
+    "actor": "Claudia Sheinbaum Pardo",
+    "texto": "Sheinbaum ya está en China por cumbre de la APEC: Sigue las últimas noticias de la ‘mañanera’ HOY",
+    "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/16/claudia-sheinbaum-mananera-temas-hoy-16-de-noviembre-de-2026-en-vivo/",
     "intensidad": 7.0,
-    "fecha": "2026-11-15",
+    "fecha": "2026-11-16",
+    "nivel_fuente": "ALTA"
+  },
+  "declaracion_otro": {
+    "actor": "Rosa Icela Rodríguez",
+    "texto": "Rosa Icela Rodríguez respalda comisión para investigar \"fraude electoral\" de 2006 - El Universal",
+    "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPUHdvR0s3eFZFejd6Ynd3NG54dUJoQ3ZuM0VpRzlJUkNOSGt4MmZlNl9zRm14TXZtTzNicXNjdXlEdXk1TUVLaTFoWDQzR2lUVlRaVmRZaWhPSFBYMWRhNkVmeDE1SEpGUVA4N3p3M1F6cTlDcjFmWGJpbkJQdmpLbVFDdnM3WVVRUVZPZGVaaGxsTXBKUkZiRHpoRDMyMDdmNlFqY2xTaUlyanBrY2NIQkRXVm5uWU5hNFlsSWRQM0hsQVhHNHU0ZFBEYjJ4VFpQcGVIa0Jnd9IB6wFBVV95cUxNeG9ad1BkWUttc1hZM0d2Z2ZySTZiZGZMajZOOE9Gb3F3cTlqNHVxcndmbTNMZ09OR1RLaUo1Q2ZXeGxnVktyS2twR3pBcnM5WU5MOW0zYW1iTFpIOWlBalRHNjhubmduZ3ZEanBJaG4zR19FRGxTUGZHbEt2Wk02R09aN1ZMNjFhUHlJUFdXNzlxTU52bk9YdmNhcm5nOWZ1cDV4NlZ5VnZwTXJON2JXMXBTVDFsX2NsWUYwMVVMd3J2aVh4cHlDZXNRX095MFBtWk9BaVBRS0huc3dlRzZCcHdqc0xpd2RVM2d3?oc=5",
+    "intensidad": 7.0,
+    "fecha": "2026-11-16",
     "nivel_fuente": "ALTA"
   },
   "patron_historico_4sem": [
@@ -1026,10 +1101,10 @@
     },
     {
       "fecha": "2026-10-26",
-      "tension": 21,
-      "n_notas": 62,
+      "tension": 20,
+      "n_notas": 63,
       "n_alto_impacto": 20,
-      "n_medio_impacto": 42,
+      "n_medio_impacto": 43,
       "n_bajo_impacto": 0
     },
     {
@@ -1082,41 +1157,41 @@
     },
     {
       "fecha": "2026-11-02",
-      "tension": 20,
-      "n_notas": 33,
+      "tension": 19,
+      "n_notas": 34,
       "n_alto_impacto": 11,
-      "n_medio_impacto": 22,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-03",
-      "tension": 24,
-      "n_notas": 52,
-      "n_alto_impacto": 22,
+      "tension": 25,
+      "n_notas": 53,
+      "n_alto_impacto": 23,
       "n_medio_impacto": 30,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-04",
-      "tension": 25,
-      "n_notas": 62,
-      "n_alto_impacto": 24,
-      "n_medio_impacto": 38,
+      "tension": 24,
+      "n_notas": 64,
+      "n_alto_impacto": 25,
+      "n_medio_impacto": 39,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-05",
       "tension": 24,
-      "n_notas": 67,
-      "n_alto_impacto": 21,
+      "n_notas": 69,
+      "n_alto_impacto": 23,
       "n_medio_impacto": 46,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-06",
-      "tension": 24,
-      "n_notas": 43,
-      "n_alto_impacto": 22,
+      "tension": 25,
+      "n_notas": 45,
+      "n_alto_impacto": 24,
       "n_medio_impacto": 21,
       "n_bajo_impacto": 0
     },
@@ -1130,88 +1205,153 @@
     },
     {
       "fecha": "2026-11-08",
-      "tension": 19,
-      "n_notas": 33,
-      "n_alto_impacto": 8,
+      "tension": 20,
+      "n_notas": 34,
+      "n_alto_impacto": 9,
       "n_medio_impacto": 25,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-09",
-      "tension": 15,
-      "n_notas": 48,
-      "n_alto_impacto": 12,
-      "n_medio_impacto": 36,
+      "tension": 16,
+      "n_notas": 50,
+      "n_alto_impacto": 13,
+      "n_medio_impacto": 37,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-10",
       "tension": 19,
-      "n_notas": 41,
-      "n_alto_impacto": 13,
-      "n_medio_impacto": 28,
+      "n_notas": 43,
+      "n_alto_impacto": 14,
+      "n_medio_impacto": 29,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-11",
-      "tension": 24,
-      "n_notas": 52,
-      "n_alto_impacto": 16,
+      "tension": 25,
+      "n_notas": 54,
+      "n_alto_impacto": 18,
       "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-12",
-      "tension": 24,
-      "n_notas": 47,
-      "n_alto_impacto": 15,
-      "n_medio_impacto": 32,
+      "tension": 25,
+      "n_notas": 50,
+      "n_alto_impacto": 17,
+      "n_medio_impacto": 33,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-13",
-      "tension": 27,
-      "n_notas": 31,
-      "n_alto_impacto": 11,
+      "tension": 28,
+      "n_notas": 33,
+      "n_alto_impacto": 13,
       "n_medio_impacto": 20,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-14",
       "tension": 24,
-      "n_notas": 18,
+      "n_notas": 19,
       "n_alto_impacto": 5,
-      "n_medio_impacto": 13,
+      "n_medio_impacto": 14,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-15",
-      "tension": 29,
-      "n_notas": 19,
-      "n_alto_impacto": 8,
+      "tension": 31,
+      "n_notas": 21,
+      "n_alto_impacto": 10,
       "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-16",
-      "tension": 25,
-      "n_notas": 1,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 1,
+      "tension": 38,
+      "n_notas": 6,
+      "n_alto_impacto": 3,
+      "n_medio_impacto": 3,
       "n_bajo_impacto": 0
     }
   ],
-  "tablero_actores": [],
+  "tablero_actores": [
+    {
+      "id": "rosa_icela",
+      "nombre": "Rosa Icela Rodríguez",
+      "iniciales": "RI",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 100,
+      "y_hoy": 100,
+      "delta_pts": 6,
+      "alcance": 2,
+      "n_alto": 2,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
+      "nota_texto": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 100,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 50,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 1,
+      "n_alto": 1,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQVThZaXk1QmpmNEdTeXAzWG83ajMxSGU5a054UkM4cFdraWN3UVRNUGlHOXBLYjV3U3lQRDY1WjhfV0ZXN3BsT3VoeDRvVmZsWmNyN0Fwa09DbTFWMmwyaGtYeEdvbklSOFlQck5paURiV1NNNzIwUThBTThqc2ZnSHM5QWxTS1M4am5iQUpLaEZkTGlDNGhocS1mTzVmNmZ6ckZCQnk4LUtwUGVTdGpScDlOM0ExNjFmYVBnYVZiOHN5bFZKQ0gydzBKUkw?oc=5",
+      "nota_texto": "La mañanera de Claudia Sheinbaum, 16 de noviembre de 2026: hoy encabeza Rosa Icela Rodríguez Velázquez - UnoTV",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 50,
+          "y": 100
+        }
+      ]
+    }
+  ],
   "tablero_semana_inicio": "2026-11-16",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "fuente_retrasada",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
+    {
+      "actor": "Claudia Sheinbaum Pardo",
+      "texto": "Sheinbaum ya está en China por cumbre de la APEC: Sigue las últimas noticias de la ‘mañanera’ HOY",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/16/claudia-sheinbaum-mananera-temas-hoy-16-de-noviembre-de-2026-en-vivo/",
+      "intensidad": 7.0,
+      "fecha": "2026-11-16",
+      "nivel_fuente": "ALTA"
+    },
     {
       "actor": "Claudia Sheinbaum Pardo",
       "texto": "Sheinbaum descarta acuerdo comercial con China, afirma que reunión con Xi Jinping “no afectará” T-MEC: aplaza encuentro con Trump - Infobae",
@@ -1227,17 +1367,17 @@
       "intensidad": 7.0,
       "fecha": "2026-11-05",
       "nivel_fuente": "OFICIAL"
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
-      "texto": "Sheinbaum acusa \"coyotaje electoral\" desde 1999 y deslinda a Morena de Guadalupe Taddei - La Jornada",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPRVZsdDRiWFNLb0JsNlBzaEdUQ3pxQW9rd1pLUGpvUHVWaFNVZEtjNl9XS2hLRHI2YkU1aW1GNmJZa0F5ZjFVUmtHQU56b0JXLWoyYUFEX1NSOFVNa19jOWdKNXNxQTFuUENReEhOcTdXSDN6VXRqOEhoWHVaZFdRbHptN3hvSUdPb0JDeFpIdzRKQ09BSjJRY1VzVmhRVUJ1b1dpcUlGLTEtQ3djUThHMlU3bG9MSWZ0bHhTdlc2UVZVRnpLR0I5X3VLaTV2Y1NYUkhkcTQwTHppQQ?oc=5",
-      "intensidad": 7.0,
-      "fecha": "2026-10-28",
-      "nivel_fuente": "ALTA"
     }
   ],
   "declaracion_otro_historial": [
+    {
+      "actor": "Rosa Icela Rodríguez",
+      "texto": "Rosa Icela Rodríguez respalda comisión para investigar \"fraude electoral\" de 2006 - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPUHdvR0s3eFZFejd6Ynd3NG54dUJoQ3ZuM0VpRzlJUkNOSGt4MmZlNl9zRm14TXZtTzNicXNjdXlEdXk1TUVLaTFoWDQzR2lUVlRaVmRZaWhPSFBYMWRhNkVmeDE1SEpGUVA4N3p3M1F6cTlDcjFmWGJpbkJQdmpLbVFDdnM3WVVRUVZPZGVaaGxsTXBKUkZiRHpoRDMyMDdmNlFqY2xTaUlyanBrY2NIQkRXVm5uWU5hNFlsSWRQM0hsQVhHNHU0ZFBEYjJ4VFpQcGVIa0Jnd9IB6wFBVV95cUxNeG9ad1BkWUttc1hZM0d2Z2ZySTZiZGZMajZOOE9Gb3F3cTlqNHVxcndmbTNMZ09OR1RLaUo1Q2ZXeGxnVktyS2twR3pBcnM5WU5MOW0zYW1iTFpIOWlBalRHNjhubmduZ3ZEanBJaG4zR19FRGxTUGZHbEt2Wk02R09aN1ZMNjFhUHlJUFdXNzlxTU52bk9YdmNhcm5nOWZ1cDV4NlZ5VnZwTXJON2JXMXBTVDFsX2NsWUYwMVVMd3J2aVh4cHlDZXNRX095MFBtWk9BaVBRS0huc3dlRzZCcHdqc0xpd2RVM2d3?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-11-16",
+      "nivel_fuente": "ALTA"
+    },
     {
       "actor": "Higinio Martínez Miranda",
       "texto": "Higinio Martínez respalda creación de comisión para investigar \"fraude electoral\" de 2006 - El Universal",
@@ -1253,16 +1393,14 @@
       "intensidad": 7.0,
       "fecha": "2026-11-11",
       "nivel_fuente": "ALTA"
-    },
-    {
-      "actor": "Morena (partido político)",
-      "texto": "Morena ‘pega el grito en el cielo’: Acusa a Somos de tener ‘información confidencial’ del INE",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/10/morena-acusa-a-partido-somos-de-tener-informacion-confidencial-del-ine/",
-      "intensidad": 7.0,
-      "fecha": "2026-11-10",
-      "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-16 06:02"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-11-16T06:02:42.011184-06:00",
+    "cambios": [
+      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo",
+      "Nueva declaración relevante (otro actor): Rosa Icela Rodríguez"
+    ]
+  },
+  "hora_corte_publicada": "2026-11-16 12:23"
 }
