@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-11-15T18:03:42.364951-06:00",
+  "generado_en": "2026-11-16T00:00:38.647313-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 12,
+  "n_notas_ventana": 14,
   "baja_confianza": false,
-  "tension_nacional": 33,
+  "tension_nacional": 34,
   "tension_anomalia": {
-    "z": 2.76,
+    "z": 2.53,
     "nivel": "alta",
-    "media_periodo": 21.1,
+    "media_periodo": 21.6,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 41,
-      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
-      "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 2,
-      "n_notas": 5,
+      "peso_pct": 49,
+      "tema_principal": "Amenazas de Intervención Militar de Trump",
+      "tema_principal_id": "intervencion-militar-eeuu",
+      "n_temas": 4,
+      "n_notas": 7,
       "notas": [
-        {
-          "texto": "El Estado mexicano al servicio de Rubén Rocha Moya, escribe Vania Pérez Morales - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQS185OFNLYVo3bFI2UVpRNDVPSWhMYVFkZlJoS1lVU3ZlcExMVHN5UUE4SW95WTZFNmFqSUMzMEFLRmJpYllJalAxQ19oU2t1Z08yMGp0RlBnY29CN2NGbUo5OHV0QzQySzV1TjNxa09uNHBVUWF3b2JLM3NjVnh3Z2R4UFVaZFNGTHh6YThZR3NBZU5zbzFzYWpmU1ZFNE5CMTdJREpmQVJ4TzJoVkpj?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
-        },
         {
           "texto": "Máynez: “A Gabito lo detienen por cantar AMG. A Taddei y a Rocha Moya los protegen para que no canten” - Debate",
           "fuente_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxONEREQjdtdVNuQ2FzcUVJNEFfLWdBVHdZNGZVM0FTYldZWDktVGdSS0pPREgyRS1OZ08ybWl5TFg3OF9ZUEluNTFPQ2xSYXc0ellyZ1FKZ2dmRElSRlAzemE0Ukdqc1VaaDExd1lSYWQyWWt2Q1pkZE5Mb29TZ2dCMG95aDFCR2l5SXg4M2pDVVpXbzlRYkpBaWp6aDhNLUdCWExRSjdva0hTdTVJZDlGOU4zNDJFaXU4cy1lYnF3VldXRFBzRm1MZU5OZ2lMaUFjbnpsYVIxcl96WTRpaWlocDZkWURCVTRu?oc=5",
@@ -32,16 +26,34 @@
           "medio": "Debate"
         },
         {
-          "texto": "UIF desbloquea cuentas para pensiones de Rocha Moya - PSN Noticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQSDF0SnB0Y2xrMXdOeGhrM1NqSHZ4Z1htNTNMWlRVTmk1NGp5M0t3U3ZfSFREbmRZM0xkY0VLM0dwaGU5UzJqWUIzcDBjQ0VKZGVkNlJqZC16NGFKeWtnNVBGVUJ5SDlNZno2eDZ5NVFXTEJTR05iY0F5cmJpUjcyU09yTGJBemtlQVozUA?oc=5",
-          "intensidad": 6.0,
-          "medio": "PSN Noticias"
+          "texto": "Participación de la presidenta Claudia Sheinbaum en la APEC fortalecerá el Plan México: Lorenia Valles - INFOSON",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOMDN3bEdjbUdFVG9ldmg1VlAzOTUydVA1cWFsVmxSVklTSGFza05fbW1rc3N3UThsV041aUVDdXN4QTg3UzU4ZWtoekt3ZGFiWS0xdDJZRnhRRDVudXBDOUF6MDFTWWxyQm5NMkZCRjhEOWRJQzFBdmNqQnk3SlJlTkREd0JVaWJVTTQzaU5UTkdENm1IMWV1Z1dZNUJsOWlFUUtfVkxCcnRjd2xrdkR6cm5rdkZrUkpsVnk0LTRSTFI0NUpOd1d6djJwSXlFVWloM2c?oc=5",
+          "intensidad": 7.0,
+          "medio": "INFOSON"
+        },
+        {
+          "texto": "Participación de la presidenta Claudia Sheinbaum en la APEC fortalecerá el Plan México: Lorenia Valles - El Imparcial",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNWm9YVUtQTVdUYXNlVjhIM1JtY3VVTVBiS2lGTVBqTjctM1lYbnMweHdjUG96MU04RDA0VTBPMGZhd09jTm5zMzZ6b1VxcWJZNHJhZjhWLVltX01yWlBsb2VIQWswdXlpTG1weE8ycGJ3WmdNR3FKczIxQXFfTkhDaExVSWdFeFJSLWhLMVppYlRjUzZyNnhvRzhpR1Rpd2dJQVVjMERxcGtwbVhrU2s4VWZ3Q256dFQtNTRyTllCSkdCeGtVbXlBS2kyMkFtNFZFWElmZlJTbGZIZzRrOVB4UWJ30gH8AUFVX3lxTE11QkpXVld0eWJSdUljNW15M1p1SGcyaW9QaHM0QjMtdXVPdFJneTQ1aFlHVENMWUtCdXBoREc0NExEdWthRDFBTEJmbFZsb2lJQzdOandWeDB0cWUyOUtqMThOOGRWY3R3OFljV1B3cFZHZkxmVU5hUjRoUFpidWNDaTZiUVNJTUgzd0V4azd5X0s1UFFvd3gybTJQMzlQY21TX3oxV1JNOGNWRWN0SkppWUlaNUdieGV4RmI2ZUhRMlZ1T1R2Xzl2dmxhNTlzeDJManV5UkdvNUtMemtmZGVZcW9NT1owZVZsZmR4QzBScHFoTzBjazFFTS1yaw?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Imparcial"
         },
         {
           "texto": "Libran orden de captura a hombre cercano a “El Mencho” - Cuarto Poder Chiapas",
           "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOSjBqT2NwZlJLQW5LVmRhVkZWcFhubF9KdW1rQXNtTnNnQVJESHlud3c3eW0wdUtXR3QwNGo5SE0xclh0MEkwbk1sS29vRzM2WkJLb2Z6M2Q4VHk0SkhVcm1GYjJ3TzctT0Fkem5KYUFKNW1MRkloSVJkM3lrNU9TNGNMTVI5RXVCRmNHdDBJNnoyZEFRaHpaRWpka9IBoAFBVV95cUxOSy1qU1J1b05FSUNiN04wdkVwTnhwYTBtU3ItVmJwc2ZoYTl1LTlzdVpaWlotSkNCNmNGRjllN2J3eFJXNWg2QU1rVFNJUEYzZVRLbXVDdTM3SWR0WVc0d0dpNjhJWHlxQlE4eHVibHVrMklrQ1VtSGY3YWhFZFZob0phVGVuTi1sRFhUQl9TNS1LN3BoTGNtYnJ2ODRyWU15?oc=5",
           "intensidad": 6.0,
           "medio": "Cuarto Poder Chiapas"
+        },
+        {
+          "texto": "¿Qué hay detrás de la intervención militar de Bukele en Haití? - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWNsZlYyUXA0eWdSOVhKcGprU2x2bGM5dGRiYXA2d2VrSkhDOF9naExONllvZXNCZl9uTnlVV2JqRUc2eXBFNUtYUHRjQzlFcHBNVXQ3X2o2ckg2U1ZlMkt6UGc2ZTFFbzVEYW43WFUwRDU4NUZiV0U0TzRjX3B3a1ZTNzVMeG43TFR1am0yWWU2TllTdnNWUmxpVjc5QjBXQXVSTVFvOEM3clXSAasBQVVfeXFMTWRpSG1GUUZlajBiREo4UUF3aFQxU0lCZ2JFQk9wWHNnMHhWOWRHemYyZTc3cjVaV0pwYnhQSlcwTktXd19sRDJ5UFdVNUVzdWtycFJYNDdTR1hfdTFTMjJOb2FYREtDSHhQcndid2FXQVN1U0w1UXFGM296R2ZwVF9SR2w3SXlzVTg4NU04ZXhWM3Z5VHNhOFgwX29Jd0cxczNPVzlUbzhRejlN?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
+        },
+        {
+          "texto": "Funeraria que veló a 'El Mencho' recibe cuerpo de Félix Gallardo - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOek5JSU9QV2tpemxJTXZUY1JqdVZvSk1kRkhrSF9tV29uTjFyWHI1UnNteHV6Z0pMOEhaTkp4VkppQ1ZCYy1pY3hCb2hMN18wU0xxMk96TXVSLXJNaWNfWlQ2RTlZY1NEeE4tc2NGWXZxaXhwLVphYk1YZl9GVWNzOVZxa3A3Wi0zRFJLTDdYdi1qTzBpUzlhR1RjbTBRcW5tVmZTcdIBpAFBVV95cUxNb2E5SXJuRVpMTkNDM2NMUEY5RTkwZHFmdUZLQ2c4NGlsUHg5bkE5STBTb0VpNzlVRjctTy1aYkZoNVJRZ0pONkcyNzhkdTFDSl9CV3lMZE1DSHktU3NqR3JENEhOX0RqR3U5cHJIYnhET1lKYzlfS19LTjZQaEVsQlp3LTNnQzJEYm1aTGZMV05HckQtTWlSeElSQUNHVmhWalJ4dg?oc=5",
+          "intensidad": 6.0,
+          "medio": "Milenio"
         },
         {
           "texto": "Máynez procede ante CNDH tras detención de Gabito Ballesteros - Al Calor Político",
@@ -53,7 +65,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 25,
+      "peso_pct": 21,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 3,
@@ -81,7 +93,7 @@
     },
     {
       "categoria": "Economía",
-      "peso_pct": 25,
+      "peso_pct": 21,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -109,7 +121,7 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 9,
+      "peso_pct": 8,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -134,31 +146,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-19",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 69
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 9
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 5
-        }
-      ]
-    },
     {
       "fecha": "2026-10-20",
       "categorias": [
@@ -789,11 +776,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 13
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
@@ -830,6 +817,31 @@
         },
         {
           "categoria": "Social",
+          "peso_pct": 11
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-16",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 14
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 53
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 11
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Social",
           "peso_pct": 12
         }
       ]
@@ -849,28 +861,22 @@
       "medios_corroborantes": 2,
       "confianza": "media",
       "fuente_url": "https://www.elfinanciero.com.mx/economia/2026/11/14/renegociacion-del-t-mec-la-nueva-y-nada-amistosa-cara-que-perturba-las-negociaciones-entre-mexico-y-eu/",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "actor_vinculado": null
     },
     {
-      "id": "rocha-moya-acusacion",
-      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
-      "motivo": "El Estado mexicano al servicio de Rubén Rocha Moya, escribe Vania Pérez Morales - El Universal",
-      "peso": 7.0,
-      "n_temas_agrupados": 3,
+      "id": "intervencion-militar-eeuu",
+      "nombre": "Amenazas de Intervención Militar de Trump",
+      "categoria": "Relación Bilateral",
+      "resumen": "Trump ha amenazado en repetidas ocasiones (mayo y agosto de 2026, entre otras) con atacar cárteles mexicanos en territorio nacional si el gobierno de Sheinbaum 'no hace la tarea', llegando a declarar que 'los cárteles gobiernan México'. Sheinbaum ha rechazado sistemáticamente cualquier despliegue de tropas estadounidenses, calificándolo como no negociable para la soberanía nacional, mientras exige a Washington frenar el tráfico de armas hacia México.",
+      "motivo": "¿Qué hay detrás de la intervención militar de Bukele en Haití? - Milenio",
+      "peso": 12.0,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQS185OFNLYVo3bFI2UVpRNDVPSWhMYVFkZlJoS1lVU3ZlcExMVHN5UUE4SW95WTZFNmFqSUMzMEFLRmJpYllJalAxQ19oU2t1Z08yMGp0RlBnY29CN2NGbUo5OHV0QzQySzV1TjNxa09uNHBVUWF3b2JLM3NjVnh3Z2R4UFVaZFNGTHh6YThZR3NBZU5zbzFzYWpmU1ZFNE5CMTdJREpmQVJ4TzJoVkpj?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWNsZlYyUXA0eWdSOVhKcGprU2x2bGM5dGRiYXA2d2VrSkhDOF9naExONllvZXNCZl9uTnlVV2JqRUc2eXBFNUtYUHRjQzlFcHBNVXQ3X2o2ckg2U1ZlMkt6UGc2ZTFFbzVEYW43WFUwRDU4NUZiV0U0TzRjX3B3a1ZTNzVMeG43TFR1am0yWWU2TllTdnNWUmxpVjc5QjBXQXVSTVFvOEM3clXSAasBQVVfeXFMTWRpSG1GUUZlajBiREo4UUF3aFQxU0lCZ2JFQk9wWHNnMHhWOWRHemYyZTc3cjVaV0pwYnhQSlcwTktXd19sRDJ5UFdVNUVzdWtycFJYNDdTR1hfdTFTMjJOb2FYREtDSHhQcndid2FXQVN1U0w1UXFGM296R2ZwVF9SR2w3SXlzVTg4NU04ZXhWM3Z5VHNhOFgwX29Jd0cxczNPVzlUbzhRejlN?oc=5",
+      "actor_vinculado": null
     },
     {
       "id": "trump-agenda",
@@ -890,14 +896,6 @@
   ],
   "temas_nuevos": [
     {
-      "id": "auto-29d83a6d6f",
-      "nombre": "Un niño de ocho años fue separado de su familia y detenido por ICE durante una c",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxORUNRTkRtLWFtcXNVNGFOU2xzb2F2bzJkMHZhM21XTVFtRE9MSWtPVkpOaUlxZFgyYWtqYU9zcEhkeXYzZkJqWEh2azh5aS0xa1RDYUN5ZV85eE53T01FdUg3NTlOSnU4cTZCSnV6OENQT01kQkh0RXFKRElreUdjUHloVkFGU0xmUDJCZ9IBjAFBVV95cUxONlNTQlY1QkMzMDNLa0JTQjNBM0l1TUI0amY5LTdUaVhtTUVBUzBhcFdybjY2dmRvZV9kQUU4Y242RmJCUzRuYThPM3dmbDhERl9NQmtwZXZkWmkzbFZXckxncWdZdmk2NVZLcDU1dnB6eF91SC1LOVlBUl8yS2RpUmNfWXItQ3RDbnBGdQ?oc=5"
-    },
-    {
       "id": "auto-865e94b181",
       "nombre": "Guatemala y Honduras avanzan en un plan conjunto para ordenar la migración labor",
       "categoria": "Social",
@@ -906,20 +904,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOeUpRMDJuaGptVURPaHRtS3hRTXR6TVFuQm9TRnZCek4zeFdWVGtLT0dNNXdsUUVzclg0c1hwZVhFRUhkbXF0NHhJcWo2ZzB4SkRRRU5VTWl3TlJHaWgtbVNzZElIZVhybGVnS3FWSThEQkI0cnZxSlhtVHNpOVNiaXF2YUNkOWliRlg2VWc5Mkg4WWRxblNxYkg2NF9SRHRfZ1JSd2Y0Sk9NS2Jxd3dfaEJRUE9NX2FFQVQ1T21RZUFPSjZUV1RZ0gHiAUFVX3lxTFBQRkFPdlI4Qy15aE14aVdmRmx6UUR0X084Umt0cDR3QWczZVFfZXViejNFWlUtWS1PVFVPS1JQTGxKdG9xbS1hSVV4Q2VJOUw3ZlpySnFTMjZzTFZNUFFmeC1CeWdKQmtLcm9wRUVDV1pORUhQTDhTSE1VY3hZeFBXS1ExdEw3ZnByRk9qM3ZERzNwd0tWOWtJc2hmV01mZHNQcDJzWmZqQnB3NEhlYndxcGQ0QmhTN2xNT2ZjRWNadGEwQjBObm5GaVdja3NMLTkzaHBCb1R4VGtzVmY4VlU4NlE?oc=5"
     },
     {
-      "id": "auto-f7855da759",
-      "nombre": "Entra en vigor la ley de derechos de autor; no hay censura a memes",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
+      "id": "auto-c2ca8cad73",
+      "nombre": "Curan migrantes sus pies...y reinician caminata en Chiapas - Reforma",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/15/politica/007n1pol?partner=rss"
-    },
-    {
-      "id": "auto-808542f3ba",
-      "nombre": "Medioevo estilo Morena - Reforma",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBLWXR6UDFELTM0NXRlRkFMTFE5cTFHYjJjazFZRmFWc0pMZUlKNmkySi1iUlJsQXphby1MTU40bHNCekU0cXBaSU54Y1BaeDlLMFVLMUhkZFVPR21yTUVtaEJPLWFrOGh1TUN5VTV6amMwX0Y2?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQTVBvR3NzQ0hwRTBDclNVSHNVMjgyZE92LTRQNU1ucjR0bkRlalc4bEU3eV9NN3pOV0NhYzl5YWNBdW5mbjhMcUV1bEdvcWRqbzRhWHliS1p5cFVuNzl5VWpTV1RSTDhLZVlzblhIRDZyclNtQTFjMHEtRlZ3dXQzY0RnaU1RQl9GV0VJREpFbEMyMVZQ?oc=5"
     },
     {
       "id": "auto-db39393e35",
@@ -928,44 +918,60 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5IM01fTDJfZG1OYndTck9DbW5fQ2h6ZHNxY3dzdDA3cmtUM05kcC1ZQnVwNGppdDJUa0h1Y0xkRUFXZmZMclRKS3hHeW5Fd1ZNNDZBNjBSUFF1eVFxWmo5WUNkckhNU3E4NThDMXA2U3dVLUdnNnU3cW5xUQ?oc=5"
+    },
+    {
+      "id": "auto-08c4947f3f",
+      "nombre": "Morena impulsa Fiscalía Especializada en Asuntos Indígenas a nivel nacional; bus",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPSGlOZ0k5WVFWTkVQWHVMMGlySHRMRmNGS3h6ZVJlYzkxUnJDNnhySzhXazhYTnBicnphRFFOUWM5VmFVVGFBam9rVW5aNUlLMTZKanRIV3NRRHBaZTRxSWV6Zm9tZi13NzJxNGlzeHNsVTREeXpYdmIyZDhZWTFuc0xwa0N0YXBSdmpQMTlOcHB6VDdlbmhDMGFIR3hNTTB2Q19yb0dQcVBUbllXUWU4VmdpaWJqcTR3Y3ZFVzdOUFVKM2pNc2w3Vk82ZXhSSFN1Y0p6TFBHWE42aHFYc2JVbU9JbU11LVZscnFz?oc=5"
+    },
+    {
+      "id": "auto-3cb23f1c60",
+      "nombre": "México expondrá el Plan México y avances económicos en Foro Asia-Pacífico: Marce",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQdTZDMFJvSXJITmVKX0FUVW52VTF1V25KT0N6LUhhZDBQU3VVazl6NzN3V191Q2k1d0tGb3NvanJTUlRfUlJzQURVaXFXSjBNZjhtTl9ZTkxHNi0xckxkVDVKZGFSQTNBNnh3YlpoejJmZmM0el82bmRjaGRzVWJpU1cyRVNRSG1xQmNyNWtxcmZzN09KUEVBS2dtVWZQQlHSAZ8BQVVfeXFMTmtzX3o1SUMweDd0dGZTeTdIa2Z6ZXBEb1M5aVczbWpDTkotNm5aUGJLRlZxa00ybXJHYTY3SmhlemxMY1ZOd3Q3NjZvSHFhY1dwanJERXhnMFdPaFlXMXVJVlVQamdKMXNiNm9Mazl1MVE5S3gyY01jSUNwZkY5aE4xTFJEemVFY2hFeU8wT1pEbjhXLWlCUzZQaE03bGcw?oc=5"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-446e81ed93",
-      "nombre": "Jorge Durand: Adiós al muro",
-      "categoria": "Social",
-      "dias_silencio": 28,
-      "motivo": "🔔 ALERTA — Jorge Durand: Los migrantes: ciudadanos del futuro",
+      "id": "auto-124dc94969",
+      "nombre": "Ciudadanos reclaman a autoridades de Balancán durante entrega de obra con el gob",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 43,
+      "motivo": "🔔 ALERTA — 5 migrantes se entregan a autoridades en Chiapas por lesiones - Milenio",
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/15/politica/015a1pol?partner=rss",
-      "fecha_anterior": "2026-10-18",
-      "fuente_url_anterior": "https://www.jornada.com.mx/2026/10/18/politica/011a1pol?partner=rss"
+      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPYXdmeVE5eTZHRVJHa0FPWTJ4X3JXMDRXZXBBeVdwaWEzQ0ZhejI3dkNUdTg2X1ZSNGFpU0d5YnZReE9ZSnZVd0h5bHFHWDlDeUN6RzVYai1XRWpVQXc1NVBMdnRtTm55THB0aWgxUzltZ29uSHNCczAxenNOeXhqMUVfQ2ROSEtiS0ZBX1htYzhxclNWY25lS2hLNy03UdIBngFBVV95cUxOODZkZ2NzNXpja2VQTUNEU2llZ1hLclpmRldaM1ZLY2ZoQnh5X2c0RWUyZGNlTGJMOFVPYlgwZ1VXQlN0RUh0WDJNdEx3ZWVLb0ZtaDRHMzQ4U2FJT1NyMVJRTFowRlFfNW1iZVJqYzh5OTN6U2hMQ0k4QXVnTnMwZll5VDN1U3Z6QzNjcGh4WGJoSGxZcXh6Z3daR3N4QQ?oc=5",
+      "fecha_anterior": "2026-10-03",
+      "fuente_url_anterior": ""
     },
     {
-      "id": "auto-990dcf033d",
-      "nombre": "Agreden a alcalde galo, piden detener a responsables - Cuarto Poder Chiapas",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 23,
-      "motivo": "⚡ Posible presión de Morena (partido político) — Alcaldes y Morena exigen que se dé con los responsables del ataque al domicilio del presidente municipal de Te - Milenio",
+      "id": "auto-5576be7f59",
+      "nombre": "«México por el Clima: naturaleza y migración: UAT» - TAMPICO",
+      "categoria": "Social",
+      "dias_silencio": 40,
+      "motivo": "🔔 ALERTA — Clima y migración, un círculo vicioso - EL PAÍS",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxON21DZ2d2aHJaUEFUZm9lSkhicHZpZWRIMl9hVmxYd29tWlJmb3dhdFZHWnBULUg1LUFXSEtHVm5UX0xGSnZwU1N3dmd4SXItTnk3TkhxWFZTczMyRTkwQlRQUjZyZEpxUXdTWVA1VkNrcFZXMGZlQ1Zod1NIRWhZNWNzbDBtYXZEUHfSAYoBQVVfeXFMTjBmd2ZlSEtIeTRFWUNoTUJHRWxqSUltQ3d3aGVPalgyUDBNQW1TQkZXdnBLQlNqVWJzd3VqM2JDRjJWbUtmVjV1TXFkZlNKZFptQjdaZnh3ZW9iVFhCRm16S3VGRFN5ZjFyOTNJTGVBU1JqSFluRXdjb2FPcTNTbGRuWGhHVnV0TTlR?oc=5",
-      "fecha_anterior": "2026-10-23",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTFhzTHpsYlBqXzJYd2ZDSzZKZlRBeDRuQlhTbDZBSzRFcXE2VXRHM0V4Mm9sU3pCdG1wbVpWcVJvVDVMX3FETHVhMFVtbzNnUGEzazJDcm5BU2otUnRDQUpJSzBHUXQ1RjcyUzNYUDFVekpOY2xqZTRrTE1zb3U5MnNYSG9TZ190THdCWVJZQdIBowFBVV95cUxNVERyMVhReHJ0bHB2OXlSbHVnMGZwWWNzcVo0NmwwWXVUa21qNVd2b3htbUhDWk80TER0MTV0OGI3Z2FhQ2hRUE1Nd3ZEdXZJdzZpaGtURjFZTW82al9CQmZzZElEb00zNEpLMW5MN1laUk1JTU1Ma2NoUlZXQVpPX3lORHVxbl9JVWpBOENhcWs0MFJIT3pEandNMmVpRElPVk5V?oc=5",
+      "fecha_anterior": "2026-10-06",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNNlJraUUtT3hmSXZYY3IwOWI5SE5EVVh5SHlBY01BTWZBa3ZoUkVWWG5zeHhsVDZhN1IxV1RHcGE4SnpseWVZejR5WXZfbHktWi16Z3dHam1tei1NQ3VzTzVjSng2QTF0V0xZSldibi0yckpzbG1WWkR6Snh0NjNVbktR?oc=5"
+    },
+    {
+      "id": "auto-9409afa73d",
+      "nombre": "Marcelo Ebrard destaca que México paga menos aranceles que otros países a EEUU y",
+      "categoria": "Relación Bilateral",
+      "dias_silencio": 32,
+      "motivo": "Marcelo Ebrard viaja a China para participar en la APEC y destaca reducción de pobreza en México - Infobae",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxObHMtMzlScTI1ZVBfSXNGX3dXdGRLWkN0SDRlZWJONkd3NUNuZ1h2NnlHR0NjVzRiQWpZVGxTVHF3VG5mWjJVUkdpMzZ1ellRNDctQ2JJd1NCVnB1clprNDI4SUUyMmtkekdkSDE4elN1NmVac0pLT0p2aEtZTEM2ODVyR0ZwaEdrVTZ2dURGN250aGZYbDdPdzBSeFNINl80NGlCLWVqUGxCZmVwUmdqbW80aXhSQVpEUWpGQU42REc3dE0xYWxTVkNkSm5DZi03d3ZaZG530gHwAUFVX3lxTE5NaTk5dXRVOXdZZnRGVzJmbjExMnk1NTlFZUJRUWp1dUMxVkhOb0tuVDBuMDVfZVdwdl9OZlRxVmZBZXZKVmltWFpaR2hRQ2MxX2p3VjYyZllUaGpSRWMyQW5Jd3NPa3NBWUxjN0NiUVBkV3h2dkx1ZmpkYjlMVXVuVzExbDFQcHN3SVYwMTRPN2dsbmx3TlBkd1EyVTBMMFZ5SHNIamRSWTFOWGozenphSENfcDFVcTM0d3h4ZXFRaW5Vc1lPaFE0NmVxajlaLWs3ZUo5QU00YzZHc3cwcW5fMGlWemdYY0NmUjFhVDFzLQ?oc=5",
+      "fecha_anterior": "2026-10-14",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQRWl3RnFwYktKdEROeTZWM3VGYy1vdFp0endhV053MWdjZ05RR2xhUE1TOGkxY3RyVXlmck5yUVJFV2lwVk1NMFJ6aEJtYlpaR19QejJqZUV4eEEwbzhDLTdkWjZBdjB2QkZSYVB0NEF4dDlnOTZOYVNNYTRHb0FMeGtoU1ZvS0MyakNxQW4tc3VUckw5U3QyMm5Ga043X3ptOWY1Q1Z6SVBKUDZGMEE?oc=5"
     }
   ],
   "actores_destacados": [
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "rol": "Investigado",
-      "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "El Estado mexicano al servicio de Rubén Rocha Moya, escribe Vania Pérez Morales - El Universal",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQS185OFNLYVo3bFI2UVpRNDVPSWhMYVFkZlJoS1lVU3ZlcExMVHN5UUE4SW95WTZFNmFqSUMzMEFLRmJpYllJalAxQ19oU2t1Z08yMGp0RlBnY29CN2NGbUo5OHV0QzQySzV1TjNxa09uNHBVUWF3b2JLM3NjVnh3Z2R4UFVaZFNGTHh6YThZR3NBZU5zbzFzYWpmU1ZFNE5CMTdJREpmQVJ4TzJoVkpj?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -978,12 +984,12 @@
       "confianza": "media"
     },
     {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
+      "id": "ebrard",
+      "nombre": "Marcelo Ebrard",
       "rol": "Responsable institucional",
-      "tema": "Tras sus dichos, Fox niega fraude en elección de 2006 a favor de Calderón",
-      "nota": "Ariadna Montiel recrimina carta de Vicente Fox; “eres un traidor a la democracia”",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/15/politica/006n3pol?partner=rss",
+      "tema": "México expondrá el Plan México y avances económicos en Foro Asia-Pacífico: Marce",
+      "nota": "México expondrá el Plan México y avances económicos en Foro Asia-Pacífico: Marcelo Ebrard - Milenio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQdTZDMFJvSXJITmVKX0FUVW52VTF1V25KT0N6LUhhZDBQU3VVazl6NzN3V191Q2k1d0tGb3NvanJTUlRfUlJzQURVaXFXSjBNZjhtTl9ZTkxHNi0xckxkVDVKZGFSQTNBNnh3YlpoejJmZmM0el82bmRjaGRzVWJpU1cyRVNRSG1xQmNyNWtxcmZzN09KUEVBS2dtVWZQQlHSAZ8BQVVfeXFMTmtzX3o1SUMweDd0dGZTeTdIa2Z6ZXBEb1M5aVczbWpDTkotNm5aUGJLRlZxa00ybXJHYTY3SmhlemxMY1ZOd3Q3NjZvSHFhY1dwanJERXhnMFdPaFlXMXVJVlVQamdKMXNiNm9Mazl1MVE5S3gyY01jSUNwZkY5aE4xTFJEemVFY2hFeU8wT1pEbjhXLWlCUzZQaE03bGcw?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -999,14 +1005,6 @@
     "nivel_fuente": "ALTA"
   },
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-10-19",
-      "tension": 21,
-      "n_notas": 68,
-      "n_alto_impacto": 23,
-      "n_medio_impacto": 45,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-10-20",
       "tension": 24,
@@ -1209,514 +1207,42 @@
     },
     {
       "fecha": "2026-11-14",
-      "tension": 25,
-      "n_notas": 17,
+      "tension": 24,
+      "n_notas": 18,
       "n_alto_impacto": 5,
-      "n_medio_impacto": 12,
+      "n_medio_impacto": 13,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-15",
-      "tension": 33,
-      "n_notas": 12,
-      "n_alto_impacto": 6,
-      "n_medio_impacto": 6,
+      "tension": 34,
+      "n_notas": 16,
+      "n_alto_impacto": 8,
+      "n_medio_impacto": 8,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-11-16",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
-  "tablero_actores": [
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 80,
-      "y_lunes": 75,
-      "x_hoy": 100,
-      "y_hoy": 78,
-      "delta_pts": 10.5,
-      "alcance": 19,
-      "n_alto": 11,
-      "n_medio": 9,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQc0U2NXZNZHZkWmNOMmhCSmhpQkVBb204aDcwb3RySXA1V3BlNHhSeUk1TTV4M1VlelBDX1pVaHJRN0JweVBGTi1iYTlPdjU1VVV5WXlJczBKU3lDVUQzTm1WOGhnRHFLVVVTZWtMN0p0TERHbjZOem9xRWE3aDhnZ3ByU05jcDFxckRPejRLbXNxNEREN01BSzhJSWFmT1MxNzJVR2ozekMxX293VG02bG1oUlFDZS11?oc=5",
-      "nota_texto": "Cuentas públicas 2025 de Rocha Moya libran fiscalización; cinco juntas de agua quedan reprobadas - ADN Informativo MX",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 7,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 10,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-10",
-          "x": 15,
-          "y": 67
-        },
-        {
-          "fecha": "2026-11-11",
-          "x": 40,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 50,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-13",
-          "x": 70,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-14",
-          "x": 80,
-          "y": 75
-        },
-        {
-          "fecha": "2026-11-15",
-          "x": 100,
-          "y": 78
-        }
-      ]
-    },
-    {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 90,
-      "y_lunes": 69,
-      "x_hoy": 100,
-      "y_hoy": 70,
-      "delta_pts": 4.5,
-      "alcance": 18,
-      "n_alto": 8,
-      "n_medio": 12,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdUNuT3dpN3VkN2FLOTh5OWFLMFNiUnJtczdtN2FzdWZfcmtSQ0FDd0FRXzhjR3kxWmpSX3RQUS1tVGFfa1B5cmJTRGJxX3NGbUlacXBJcEN0U1lvd0lVeXpGSlo1UE5GMnk4NW43bzBZSU1pQmNabTZvZDh3ODk4bnlhS0NKVmppWWgyYXVUVU9pZmxWMVRlc3Q3NzVHTU9wX0E?oc=5",
-      "nota_texto": "Retomará Claudia Sheinbaum reforma electoral después de las elecciones de 2027 - Almomento.mx",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 4,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 20,
-          "y": 62
-        },
-        {
-          "fecha": "2026-11-10",
-          "x": 50,
-          "y": 60
-        },
-        {
-          "fecha": "2026-11-11",
-          "x": 90,
-          "y": 69
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 100,
-          "y": 70
-        }
-      ],
-      "fecha_apagado": "2026-11-13"
-    },
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "iniciales": "AL",
-      "x_lunes": 45,
-      "y_lunes": 100,
-      "x_hoy": 55,
-      "y_hoy": 100,
-      "delta_pts": 6,
-      "alcance": 9,
-      "n_alto": 11,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPU2FwYW5aaElmVklMQTR1ZlpaT0JXM0pua2pwT0I0ckhMV1U2S21YTzR3UjdzM2p0a1cwY1dXandlNm5aLS1YZkJkaV93bDU4ZTA3ejJNZFRNckt2SEVESERtRzQ2OUoyRm5DVjFSc1lxZF81RnNGM2tfN010NTdPcUJzcGV4WnNlRzVyM09WVUVJR1dRbUptYU9LeV96MG5JVWozQmxuWkNfSFQxQWQ4N2VaNjMxX09MY2JnaWNDWmZMS2lyLVd5bm1qbnFGelN3bko4dVQzZmh0VU4yN1BiVdIB5gFBVV95cUxPeXQtQU9rZUQ5QkdQamVJUnZQeTg4aUVheTJfSHU2VWdCM05jYXd4eHJnemZxVTVfT0h2OFczUzhzOFZlU2p0RlMwLWlrTmVWczQ2OFhnQ3hUQnBYV0cweTVxdEVCZF94S2htVV9yU3J6TDdWNzRhWHBMeUdrc05YdFYtbUQxTDM3bGlnbEJVelVuQTU3TzNxMVN1Y2hWeUk3eUJsMC1wdkZfRUtXcHVjRnROZFhmTi1wdmxkTUszQ1ZpNnh6Q2dXdXJwSUNfTGk4MHdaY185MUZocnJnX0ItLXBKazFiZw?oc=5",
-      "nota_texto": "Andy López Beltrán responde a Ricardo Salinas Pliego: niega vínculos con huachicol fiscal y le lanza cuestionario - Por Esto!",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 5,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 15,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-10",
-          "x": 30,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-11",
-          "x": 40,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 45,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-13",
-          "x": 55,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-11-14"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "iniciales": "MO",
-      "x_lunes": 65,
-      "y_lunes": 62,
-      "x_hoy": 70,
-      "y_hoy": 61,
-      "delta_pts": 1.5,
-      "alcance": 11,
-      "n_alto": 3,
-      "n_medio": 11,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNaGJjaFg0NC1lYS1sVURfOUZfS1FCbjVvVHFXYlZQMW83VHBBa0RjYlZNNm5IRGctWkNtQURzb2ZHdWtNbGdEVy1HVmg1dWF0V3Y1UHdmMzg3Y0ZRU2JPcGhzMGV4R0lqV1MtOHVGWUdtOGNhbm5QeFZRTmtvbFlsUkJTMU9LUklBVDh1bWt4SS1qLTJTc3hBMTRQM19VbVQ5Z3pHMncza2ZzdDFZSHVv?oc=5",
-      "nota_texto": "Morena plantea nuevo recorte de 500 millones de pesos al INE para 2027 - Municipios Puebla",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 4,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 30,
-          "y": 50
-        },
-        {
-          "fecha": "2026-11-10",
-          "x": 60,
-          "y": 58
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 65,
-          "y": 62
-        },
-        {
-          "fecha": "2026-11-14",
-          "x": 70,
-          "y": 61
-        }
-      ],
-      "fecha_apagado": "2026-11-11"
-    },
-    {
-      "id": "manzo",
-      "nombre": "Carlos Manzo Rodríguez",
-      "iniciales": "CM",
-      "x_lunes": 15,
-      "y_lunes": 100,
-      "x_hoy": 20,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 3,
-      "n_alto": 4,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://www.informador.mx/mexico/cjng-el-r2-presunto-implicado-en-el-asesinato-de-carlos-manzo-20261109-0066.html",
-      "nota_texto": "El \"R2\", presunto implicado en el asesinato de Carlos Manzo",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 4,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 5,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-10",
-          "x": 10,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 15,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-14",
-          "x": 20,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-11-13"
-    },
-    {
-      "id": "monreal",
-      "nombre": "Ricardo Monreal",
-      "iniciales": "RM",
-      "x_lunes": 5,
-      "y_lunes": 100,
-      "x_hoy": 10,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 2,
-      "n_alto": 2,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNNDVDZVVNUHBOenJDN0oza3VLcGx4LW04a2xGY3dQeWJlR0paTzdRY3NCQVZYdE85LUJWUFMtZVp6cnRZVzE5X2QzaXJBWXdNSERkT1dZQkJXY0Nua3RhSTNfQTZBRlRFU2daZktKem5PeTExSGRqRGVfVmdMdmVwSC1ISTV5QTFRVmc?oc=5",
-      "nota_texto": "Ricardo Monreal perfila 128 mil mdp para Puebla en 2027 - Sucesos Puebla",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 5,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-10",
-          "x": 10,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-11-11"
-    },
-    {
-      "id": "garcia_harfuch",
-      "nombre": "Omar García Harfuch",
-      "iniciales": "OG",
-      "x_lunes": 15,
-      "y_lunes": 83,
-      "x_hoy": 20,
-      "y_hoy": 88,
-      "delta_pts": 3.0,
-      "alcance": 3,
-      "n_alto": 3,
-      "n_medio": 1,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://www.jornada.com.mx/2026/11/11/politica/004n2pol?partner=rss",
-      "nota_texto": "Confirma García Harfuch órdenes de arresto contra Zuany",
-      "es_nuevo": false,
-      "categoria": "Seguridad Nacional",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 5,
-          "y": 50
-        },
-        {
-          "fecha": "2026-11-11",
-          "x": 15,
-          "y": 83
-        },
-        {
-          "fecha": "2026-11-13",
-          "x": 20,
-          "y": 88
-        }
-      ],
-      "fecha_apagado": "2026-11-14"
-    },
-    {
-      "id": "higinio_martinez",
-      "nombre": "Higinio Martínez Miranda",
-      "iniciales": "HM",
-      "x_lunes": 5,
-      "y_lunes": 50,
-      "x_hoy": 35,
-      "y_hoy": 50,
-      "delta_pts": 9.0,
-      "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 7,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiggNBVV95cUxOanhGNXVmak95cmRSWWE3U3ZQMDh4UTVyenJCYzRIV2E1eTdRTUMydC1lbDRibi1rQzVDbDJzRlcxQi0zNlBXOWhWT09DMHg3LUhWeTZuZVNRSnRzWlIwZnE3ZFRwaS01SklndGhEdzJtdnJHelZ4TzIzZ1Jzd0dpYTZ1ZnBLQ05fQlJ2c0tuMkVLZlVCU1ZFZ0UtX0xUSVlnMkZLM01mRF9mcERpdUhLVGxiTTRISUxfNFRQVHFtUUNwUUtMeVU1U2RobFJQeXdBWk9TX3czOVNSMW5oLW5CWmpSR0dLUjR2SjktTlIxWFRFLWRTUzY5cmd2S3hGbFZ4NC13d0xrS2c0dTgzXzlzUHFONHVNNmlEY2ZmYndSeExtajh1a0c1eWxFWUx4SU5YTjV6Q3BlZjFnR1U4OXAyYllOam1NMDdLMnNFVkVRYnJ5SUlBdXZIVWVxRm4wXzdpRTM1bVpNZTNTdnlEMl8tOThqMFlfeEVlcFVxOWFpVHltdw?oc=5",
-      "nota_texto": "Comunicación Social - Versión estenográfica del mensaje del senador Higinio Martínez Miranda, presidente del Senado de la República, en la entrega del Paquete de Iniciativas en Materia de Combate a la",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 5,
-          "y": 50
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 35,
-          "y": 50
-        }
-      ],
-      "fecha_apagado": "2026-11-13"
-    },
-    {
-      "id": "ricardo_salinas_pliego",
-      "nombre": "Ricardo Salinas Pliego",
-      "iniciales": "RS",
-      "x_lunes": 15,
-      "y_lunes": 67,
-      "x_hoy": 20,
-      "y_hoy": 62,
-      "delta_pts": 1.5,
-      "alcance": 3,
-      "n_alto": 1,
-      "n_medio": 3,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://www.tabascohoy.com/andres-lopez-beltran-responde-a-salinas-pliego-y-rechaza-acusaciones/",
-      "nota_texto": "Andrés López Beltrán responde a Salinas Pliego y rechaza acusaciones",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-09",
-          "x": 5,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 15,
-          "y": 67
-        },
-        {
-          "fecha": "2026-11-13",
-          "x": 20,
-          "y": 62
-        }
-      ],
-      "fecha_apagado": "2026-11-14"
-    },
-    {
-      "id": "montiel",
-      "nombre": "Ariadna Montiel",
-      "iniciales": "AM",
-      "x_lunes": 5,
-      "y_lunes": 100,
-      "x_hoy": 10,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 2,
-      "n_alto": 2,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNWXY5Tk5VS08xU0lCcVJkRDhnX3lPY2Z1dnd1U3BPbHNzWUFJTXFvRmZ4OFRYVUNHN2lJeE9VeXQtMnVzR3M5cDlqLU91ejRrMjZOSHNGbXpLYlUydndjVXJHdjBPbDNxNG4teUprejRyclo1WWtENVMwMEc2RTBYNmtVSTFFRTNONlhRZ3N4SThuRU5fZXfSAZYBQVVfeXFMUDlSTFpwd0hOUXBzUEsxR0NraWMyMjdhS2FPd3R4VEhoNTQwUFdQaksxNlBHNDloODFxbGFwTUQzeWFuMHNUaE81dnRYb0RXMkNyQVhwZXc5eHF0WWRxaUtiQ0JSV2h3M01VY1l4RWpwYW9QZ2ZCSUw2V19idEw1dnBOZ0tsU1dJLWh1ZTNGVmFueVRKUzNB?oc=5",
-      "nota_texto": "⚡ Posible presión de Ariadna Montiel Reyes — Ariadna Montiel exige investigar fraude electoral de 2006 ante INE - MILENIO",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-10",
-          "x": 5,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-11",
-          "x": 10,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-11-12"
-    },
-    {
-      "id": "bolanoscacho_cue",
-      "nombre": "Raúl Bolaños-Cacho Cué",
-      "iniciales": "",
-      "x_lunes": 16,
-      "y_lunes": 50,
-      "x_hoy": 21,
-      "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 3,
-      "n_alto": 0,
-      "n_medio": 4,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNWEJqRkNDNjhaRGp3a1RfblR5OU5rOG8xeWxMY1VTeTl3OWowWTk0dXBvTUgyVW45NXdvem0zV0xTR1dTZmhuM2lLU2MzYkpjYnhPNGxNN2F6ZzlGbHQtLWhhd3YyVlpOc0JsODFOeklWUE1BOHdIQVM3cHp0UW9zejhpRHBiemRXMDQtVkFVUUJiY3BYMlF3Ml83MHNRZHg4aVo1YVZRUUZQQUE3THZUWUE1RW5qTjZxQjhaQktFcmZzUHR1NDIxa1pxYmZuc2l2SDJPN3JDQ1JET19KRDZMT2JiOFV3WUZ4UlhyWmN1Q2NHeTRaUGpFeURHVDNyWEZ1NWVDbnpuYzk?oc=5",
-      "nota_texto": "Cuando se apruebe el PEF 2027, diré a mis paisanas y paisanos del Distrito 8 de Oaxaca del papel fundamental que he jugado: Raúl Bolaños-Cacho - RiOaxaca",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-10",
-          "x": 5,
-          "y": 50
-        },
-        {
-          "fecha": "2026-11-11",
-          "x": 16,
-          "y": 50
-        },
-        {
-          "fecha": "2026-11-12",
-          "x": 21,
-          "y": 50
-        }
-      ],
-      "fecha_apagado": "2026-11-12"
-    },
-    {
-      "id": "amilcar_olan_aparicio",
-      "nombre": "Amílcar Olán Aparicio",
-      "iniciales": "AO",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 6,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 1,
-      "n_alto": 1,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZUF6Y211Q2JyUC1VMzJxR0xkdTdFOUZWeGhYc0lCdEZiaXE1LUdnOTZGNjJDZ2hBOUxkVHZSQzQ1c2M3cmFhYzcxVjRYX1B6ZTA5QVI0U3UzNGE2RGNQOHFSa1M2Q21nS3BLei1manB3NnRMcTFuT2tpUkIzbWd3N2NxYW01MkRIeHdXRThpYlV6Q3IyQlJyMGplb0w0UDRUNldGNWFHNzFLRWVQYl9MMElzN3RfRDR0aHJibHI5RnJOdw?oc=5",
-      "nota_texto": "Andy López Beltrán niega huachicol fiscal y se deslinda de Amílcar Olán - MVS Noticias",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-10",
-          "x": 6,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-11-11"
-    }
-  ],
-  "tablero_semana_inicio": "2026-11-09",
+  "tablero_actores": [],
+  "tablero_semana_inicio": "2026-11-16",
   "resumen_mananera": [],
-  "mananera_estado": "sin_mananera",
+  "mananera_estado": "pendiente",
   "a_vigilar": [
+    {
+      "id": "auto-834533e6f7",
+      "nombre": "Horacio Duarte reconoce a diputados federales de Morena defensoría del presupues",
+      "categoria": "Gobernabilidad",
+      "resumen": "Horacio Duarte reconoce a diputados federales de Morena defensoría del presupuesto para obras en Edomex",
+      "fuente_url": "",
+      "actor_vinculado": null
+    },
     {
       "id": "auto-8420484939",
       "nombre": "Tras sus dichos, Fox niega fraude en elección de 2006 a favor de Calderón",
@@ -1783,11 +1309,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-11-15T12:01:52.037683-06:00",
-    "cambios": [
-      "Nueva declaración relevante (otro actor): Higinio Martínez Miranda"
-    ]
-  },
-  "hora_corte_publicada": "2026-11-15 18:03"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-11-16 00:00"
 }
