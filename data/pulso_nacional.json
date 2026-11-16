@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-16T12:23:24.698514-06:00",
+  "generado_en": "2026-11-16T16:09:16.717118-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 10,
+  "n_notas_ventana": 17,
   "baja_confianza": false,
-  "tension_nacional": 38,
+  "tension_nacional": 35,
   "tension_anomalia": {
-    "z": 3.47,
+    "z": 2.8,
     "nivel": "alta",
     "media_periodo": 21.6,
     "dias_base": 27
@@ -13,23 +13,29 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 71,
-      "tema_principal": "Tribunal Electoral debatirá negativa del INE a investigar presuntas campañas ade",
-      "tema_principal_id": "auto-8ca980ce3b",
-      "n_temas": 5,
-      "n_notas": 7,
+      "peso_pct": 72,
+      "tema_principal": "Pide Pedro Gutiérrez que se investigue a May por sus \"mapacherías\" en al elecció",
+      "tema_principal_id": "auto-5b29a6ff8e",
+      "n_temas": 6,
+      "n_notas": 12,
       "notas": [
         {
-          "texto": "Participación de la presidenta Claudia Sheinbaum en la APEC fortalecerá el Plan México: Lorenia Valles - INFOSON",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOMDN3bEdjbUdFVG9ldmg1VlAzOTUydVA1cWFsVmxSVklTSGFza05fbW1rc3N3UThsV041aUVDdXN4QTg3UzU4ZWtoekt3ZGFiWS0xdDJZRnhRRDVudXBDOUF6MDFTWWxyQm5NMkZCRjhEOWRJQzFBdmNqQnk3SlJlTkREd0JVaWJVTTQzaU5UTkdENm1IMWV1Z1dZNUJsOWlFUUtfVkxCcnRjd2xrdkR6cm5rdkZrUkpsVnk0LTRSTFI0NUpOd1d6djJwSXlFVWloM2c?oc=5",
-          "intensidad": 7.0,
-          "medio": "INFOSON"
+          "texto": "“¡Devuelve la diputación que te robaste!”: Pedro Gutiérrez contra Erubiel",
+          "fuente_url": "https://www.tabascohoy.com/devuelve-la-diputacion-que-te-robaste-pedro-gutierrez-contra-erubiel/",
+          "intensidad": 9.0,
+          "medio": "tabascohoy.com"
         },
         {
           "texto": "Participación de la presidenta Claudia Sheinbaum en la APEC fortalecerá el Plan México: Lorenia Valles - El Imparcial",
           "fuente_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNWm9YVUtQTVdUYXNlVjhIM1JtY3VVTVBiS2lGTVBqTjctM1lYbnMweHdjUG96MU04RDA0VTBPMGZhd09jTm5zMzZ6b1VxcWJZNHJhZjhWLVltX01yWlBsb2VIQWswdXlpTG1weE8ycGJ3WmdNR3FKczIxQXFfTkhDaExVSWdFeFJSLWhLMVppYlRjUzZyNnhvRzhpR1Rpd2dJQVVjMERxcGtwbVhrU2s4VWZ3Q256dFQtNTRyTllCSkdCeGtVbXlBS2kyMkFtNFZFWElmZlJTbGZIZzRrOVB4UWJ30gH8AUFVX3lxTE11QkpXVld0eWJSdUljNW15M1p1SGcyaW9QaHM0QjMtdXVPdFJneTQ1aFlHVENMWUtCdXBoREc0NExEdWthRDFBTEJmbFZsb2lJQzdOandWeDB0cWUyOUtqMThOOGRWY3R3OFljV1B3cFZHZkxmVU5hUjRoUFpidWNDaTZiUVNJTUgzd0V4azd5X0s1UFFvd3gybTJQMzlQY21TX3oxV1JNOGNWRWN0SkppWUlaNUdieGV4RmI2ZUhRMlZ1T1R2Xzl2dmxhNTlzeDJManV5UkdvNUtMemtmZGVZcW9NT1owZVZsZmR4QzBScHFoTzBjazFFTS1yaw?oc=5",
           "intensidad": 7.0,
           "medio": "El Imparcial"
+        },
+        {
+          "texto": "Respalda Higinio Martínez investigar injerencia de Fox  en las elecciones de 2006",
+          "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/007n3pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
         },
         {
           "texto": "La mañanera de Claudia Sheinbaum, 16 de noviembre de 2026: hoy encabeza Rosa Icela Rodríguez Velázquez - UnoTV",
@@ -44,10 +50,16 @@
           "medio": "La Jornada"
         },
         {
-          "texto": "¿Qué hay detrás de la intervención militar de Bukele en Haití? - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWNsZlYyUXA0eWdSOVhKcGprU2x2bGM5dGRiYXA2d2VrSkhDOF9naExONllvZXNCZl9uTnlVV2JqRUc2eXBFNUtYUHRjQzlFcHBNVXQ3X2o2ckg2U1ZlMkt6UGc2ZTFFbzVEYW43WFUwRDU4NUZiV0U0TzRjX3B3a1ZTNzVMeG43TFR1am0yWWU2TllTdnNWUmxpVjc5QjBXQXVSTVFvOEM3clXSAasBQVVfeXFMTWRpSG1GUUZlajBiREo4UUF3aFQxU0lCZ2JFQk9wWHNnMHhWOWRHemYyZTc3cjVaV0pwYnhQSlcwTktXd19sRDJ5UFdVNUVzdWtycFJYNDdTR1hfdTFTMjJOb2FYREtDSHhQcndid2FXQVN1U0w1UXFGM296R2ZwVF9SR2w3SXlzVTg4NU04ZXhWM3Z5VHNhOFgwX29Jd0cxczNPVzlUbzhRejlN?oc=5",
-          "intensidad": 6.0,
-          "medio": "Milenio"
+          "texto": "PAN acusa trato privilegiado a Rubén Rocha Moya y advierte posible financiamiento político rumbo a 2027 - Central Municipal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSmNHRmhOR3UyMExoQ2Q2TFpzXzg1VUpSWVUwNWZnX0stNlpCVVVacmVWUzFLTUVHSmtjRjRzWUYya1B1V3RLNmY1cktHZFlBSkl0a2k4cXdqU1Z4eEJLUjdIb2JidFhhcU1JdV9HVHd4c0ZPcHNCZUxQQy1haXBiYmtUX0k2NVE3TTlwQVUtSEVieDlDTWFXNGxYX1dGRWdaNmVsaVhQSFlsM2x3TTFFaXZtRXpVXzg2R0xrUlcyYWpkWHhfWmdKUlp2VVFJa1ozWHZ2OUtWRDJHcko0eVBBT0huNE5mR1E?oc=5",
+          "intensidad": 7.0,
+          "medio": "Central Municipal"
+        },
+        {
+          "texto": "Pensión dorada de Rocha Moya, protegida por Sheinbaum y Poder Judicial, señala PAN - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOaGFWRmJ1QmxISkRCcXI2bVpGWHBBNU5qM0wxVlpVdkFGZEZCUWtSb3lVanJ0Tm5yZ2xhU0JFRWdLMjFKSzF2U29qekVteHItNm90Y2xFNS1jU0EzSmVPNWNfNXVCNnJjaTBnVzVTX1IySUxTQlAyQm9aTGYxZ1ZqMndHVmZieDRhX1ZsVW9DU3RuVWM0amE3OEdkU09Fbm5lOFpZcV9oc19kcEp4RTFJY1VJZURvWGpMV0t4bE1WZGpqMlowNHVMaDBSNzljSjRYaG5vY241Wmtxci1iRWdzVkxfRk7SAfgBQVVfeXFMTVp5WVZGRzNEdHdlSnlxMEgzQkJLS1ExSlpkLVlZektuZGc5U2l3S2c2ZXpwUEl5NTJNYV9GamttTHFOb1NYMUJObVJZazZEbGxzRk1nOGJVWHJ0TW1mODBXSFBaSGQ1czF5Y0ZhbVVwZG94S2Rqd2F4ZU1YSUluQUdRdWxvU2pOOG80WTZmcEkzQng4VHl0Mkpqc0hKQ0NRSzVROTZvRUlVQjhsd3dYZWtJYzFleDRfa3FuWmRzYXR5M2NMbE1MN1RqR3g4TjBKaFNtZUFFN1lEMXVQTWhxRzdHb2cyNmRFelRSOVl4Z0RZaVRQaW1SMG4?oc=5",
+          "intensidad": 7.0,
+          "medio": "El Universal"
         },
         {
           "texto": "Funeraria que veló a 'El Mencho' recibe cuerpo de Félix Gallardo - Milenio",
@@ -60,12 +72,30 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWkRnY2F4WXJCeFlpTzBhU3RQcFB3QUhKdDZ2QmxPM19KNlFGOVVyWlVsQU9wdklWVHMyWkpJX29tQWVqMEFEd3hHM1BfckVqYTEza2I4MHk1emdrVFhndmlyemJydHNmcUZwZmY1YldOczRueTRKWHhrdVVBZzNYV0hZR1JQWlFLdEpxakxaR2ViaDBDQWZMNGYtamJScENOSjV0YXIzd1NZbEhkUThxSjZBc3U4QQ?oc=5",
           "intensidad": 6.0,
           "medio": "NVI Noticias"
+        },
+        {
+          "texto": "Participación de Sheinbaum en APEC fortalecerá el Plan México, destaca Lorenia Valles",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/16/participacion-de-sheinbaum-en-apec-fortalecera-el-plan-mexico-destaca-lorenia-valles-2919932.html",
+          "intensidad": 5.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "Fortalecer la organización territorial y la unidad en Morena, primordial para lograr la transformación: Ana Lilia Rivera - La Jornada de Oriente – Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOOFJsWUx3SW5HdFV1M0FubWU3bFk3dS1RMkFKbkZjZzRUaWpMY2tOYm5lbnhhWG9EaEVBcDhTS0RpRmRGRHROdnROUlVuaTRFZzJTb0ZSYmFXTk9vdjdYQW5GRmEzU2QxYW43dDR6V215TXNSNmkybkFkTThhdkF2Tm9xTHA3emtrai00Qm1qQnZzQzRkRWFNeFdQMWpSUzBQV2lwRk8zeElQa3FydFU1OEEwc0dnRU1LSzFnZUIwME1XWmtvYU85eG5vSU9EVFE5MEdyZHFMWExqc0JzRkRfdGFpcm1iWHc1TTB1eXNWaHFjLUt5VXQtSWp3?oc=5",
+          "intensidad": 5.0,
+          "medio": "news.google.com"
+        },
+        {
+          "texto": "Morena descarta segunda encuesta para elegir candidato en NL; respaldan a Clara Luz - abcnoticias.mx",
+          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPNWRvbFctQmhNcDFvdld0QmZ0U1BxT2VHVXVteS1iZjFZejZNaVpwRXRYbFVSLTNMOFdUckttZ3dHNGZMVjdveTh5M0NfY2xrRVFpWDQwVXNYcWQ5bGkyX1loNVhrV215QnNIS0FhelJDTjRna01RSHlhQW1tbmhVbC1xdjJNZXR3bVl1SmhZOXJNSWhEYWIxbktxQl9aWHk0UGdvTmN1MW9raldRNW1CQU0tSEttOHJxelEwNkNXaU5nODNnNE1KUTJWX29hMXc?oc=5",
+          "intensidad": 5.0,
+          "medio": "abcnoticias.mx"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 20,
+      "peso_pct": 12,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -87,31 +117,44 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 9,
+      "peso_pct": 11,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 1,
-      "n_notas": 1,
+      "n_temas": 2,
+      "n_notas": 2,
       "notas": [
         {
           "texto": "FGR investiga a más de 50 personas por presunta corrupción en el INE - NVI Noticias",
           "fuente_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPa3YtbkRDY1ZBMnpDam1HTm9QZnU5em1PZFNlUXVNNUJkeXFVWVVUT3B3R19qSElnRmpIbHlvSnp5UzJMVnlnOEVHcUVrb1hLMWlKTFBsVGVKU0V3NW1reE9vM0hYbWgzcUl4dHc5eHUtSU1hR21Fa1JiOE1DZkN3NFctdHlHSGthNVJIcld2SWR1eHF6V05kWVBrUmhqT3FFMjltR1dsc3k0RHl2RFpJ?oc=5",
           "intensidad": 6.0,
           "medio": "NVI Noticias"
+        },
+        {
+          "texto": "Critican diputados del PAN ‘desbloqueo’ de cuentas de Rocha Moya pese a nexos con el narco - 88.9 Noticias | Noticias en Vivo | Información Que Sirve",
+          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNeWpFV2lSaTBReW83RkpHTGtCMUNQSmZoOGF0cHBycE9KM2xaOE9CSnE0M3R0aUFkNzBPQUFfSl9JOF9WbnlCYXo0Q25nRzJ0RzdkUEo2Y0RYY3JTYWFnUDZtRFdtTEQtZzlWTWdnSy1XMGhoa0p3VUFzWWU5cWw2ek5rWDB6TU4zeXhwRzh1T1drVXVUZXEwTUV0YVNMakNXVktPWUpwUl9zSm96V3FQX0ZQYjNETzJjRDVRaTVR?oc=5",
+          "intensidad": 6.0,
+          "medio": "Noticias en Vivo | Información Que Sirve"
+        }
+      ]
+    },
+    {
+      "categoria": "Social",
+      "peso_pct": 6,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "🔔 ALERTA — Trump amenaza con imponer aranceles a México si no detiene la caravana migrante - Proceso",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPYVlSZy12TDV3TWhWWDNnUmplVXFUTjFtUWhWam12Ml9Va1R1X24wcUxxMFRMVEtGTGZic2tDMmw5R1Y4T3dhT1J1eHU0bU1NbWZfZVUxR3l5dU9UcGcwVFFoWWtyVEJHbHVYcWJCcWpiX1FVUTZ0TE9jdTdTcjVINHV1cTN1N2piWERFVnlZUkRKT2JDUkdPNTNES0pDV212UHpycld4dE5YX3lZN1NYRUVzRkZ5MEpOTWdmMEpLU0laM2NqNDBUbWFWa01uYll0aGV3eA?oc=5",
+          "intensidad": 6.0,
+          "medio": "Proceso"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 0,
-      "tema_principal": null,
-      "tema_principal_id": null,
-      "n_temas": 0,
-      "n_notas": 0,
-      "notas": []
-    },
-    {
-      "categoria": "Social",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -555,7 +598,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 58
+          "peso_pct": 59
         },
         {
           "categoria": "Relación Bilateral",
@@ -755,7 +798,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
@@ -805,11 +848,11 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 56
+          "peso_pct": 57
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -824,39 +867,39 @@
   ],
   "top5_temas": [
     {
-      "id": "intervencion-militar-eeuu",
-      "nombre": "Amenazas de Intervención Militar de Trump",
-      "categoria": "Relación Bilateral",
-      "resumen": "Trump ha amenazado en repetidas ocasiones (mayo y agosto de 2026, entre otras) con atacar cárteles mexicanos en territorio nacional si el gobierno de Sheinbaum 'no hace la tarea', llegando a declarar que 'los cárteles gobiernan México'. Sheinbaum ha rechazado sistemáticamente cualquier despliegue de tropas estadounidenses, calificándolo como no negociable para la soberanía nacional, mientras exige a Washington frenar el tráfico de armas hacia México.",
-      "motivo": "¿Qué hay detrás de la intervención militar de Bukele en Haití? - Milenio",
-      "peso": 17.0,
-      "n_temas_agrupados": 3,
+      "id": "auto-5b29a6ff8e",
+      "nombre": "Pide Pedro Gutiérrez que se investigue a May por sus \"mapacherías\" en al elecció",
+      "categoria": "Gobernabilidad",
+      "resumen": "Pide Pedro Gutiérrez que se investigue a May por sus \"mapacherías\" en al elección del 2012 tras revelaciones de Dante Delgado - XEVT",
+      "motivo": "Respalda Higinio Martínez investigar injerencia de Fox  en las elecciones de 2006",
+      "peso": 21.0,
+      "n_temas_agrupados": 5,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 3,
       "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRWNsZlYyUXA0eWdSOVhKcGprU2x2bGM5dGRiYXA2d2VrSkhDOF9naExONllvZXNCZl9uTnlVV2JqRUc2eXBFNUtYUHRjQzlFcHBNVXQ3X2o2ckg2U1ZlMkt6UGc2ZTFFbzVEYW43WFUwRDU4NUZiV0U0TzRjX3B3a1ZTNzVMeG43TFR1am0yWWU2TllTdnNWUmxpVjc5QjBXQXVSTVFvOEM3clXSAasBQVVfeXFMTWRpSG1GUUZlajBiREo4UUF3aFQxU0lCZ2JFQk9wWHNnMHhWOWRHemYyZTc3cjVaV0pwYnhQSlcwTktXd19sRDJ5UFdVNUVzdWtycFJYNDdTR1hfdTFTMjJOb2FYREtDSHhQcndid2FXQVN1U0w1UXFGM296R2ZwVF9SR2w3SXlzVTg4NU04ZXhWM3Z5VHNhOFgwX29Jd0cxczNPVzlUbzhRejlN?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
-    {
-      "id": "auto-8ca980ce3b",
-      "nombre": "Tribunal Electoral debatirá negativa del INE a investigar presuntas campañas ade",
-      "categoria": "Gobernabilidad",
-      "resumen": "Tribunal Electoral debatirá negativa del INE a investigar presuntas campañas adelantadas de Morena - Proceso",
-      "motivo": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
-      "peso": 7.0,
-      "n_temas_agrupados": 3,
-      "escalando": true,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/007n3pol?partner=rss",
       "actor_vinculado": {
         "id": "rosa_icela",
         "nombre": "Rosa Icela Rodríguez"
+      }
+    },
+    {
+      "id": "rocha-moya-acusacion",
+      "nombre": "Acusación de Narcotráfico contra Rocha Moya",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
+      "motivo": "Pensión dorada de Rocha Moya, protegida por Sheinbaum y Poder Judicial, señala PAN - El Universal",
+      "peso": 13.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOaGFWRmJ1QmxISkRCcXI2bVpGWHBBNU5qM0wxVlpVdkFGZEZCUWtSb3lVanJ0Tm5yZ2xhU0JFRWdLMjFKSzF2U29qekVteHItNm90Y2xFNS1jU0EzSmVPNWNfNXVCNnJjaTBnVzVTX1IySUxTQlAyQm9aTGYxZ1ZqMndHVmZieDRhX1ZsVW9DU3RuVWM0amE3OEdkU09Fbm5lOFpZcV9oc19kcEp4RTFJY1VJZURvWGpMV0t4bE1WZGpqMlowNHVMaDBSNzljSjRYaG5vY241Wmtxci1iRWdzVkxfRk7SAfgBQVVfeXFMTVp5WVZGRzNEdHdlSnlxMEgzQkJLS1ExSlpkLVlZektuZGc5U2l3S2c2ZXpwUEl5NTJNYV9GamttTHFOb1NYMUJObVJZazZEbGxzRk1nOGJVWHJ0TW1mODBXSFBaSGQ1czF5Y0ZhbVVwZG94S2Rqd2F4ZU1YSUluQUdRdWxvU2pOOG80WTZmcEkzQng4VHl0Mkpqc0hKQ0NRSzVROTZvRUlVQjhsd3dYZWtJYzFleDRfa3FuWmRzYXR5M2NMbE1MN1RqR3g4TjBKaFNtZUFFN1lEMXVQTWhxRzdHb2cyNmRFelRSOVl4Z0RZaVRQaW1SMG4?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
       }
     },
     {
@@ -873,19 +916,42 @@
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE81RnNReU1hNWltUHMwTjZZenFFS01Ta2czSGZpN0gtMzZrWnZyUmg1Sm1MSkx0U2tpell5OUVoQlRyVXZUX1NBS1ZydlFqQmE0T0NJY25hWW9xOGtkU0RuSlJSeUNPc1kzZEhLTkdYUDlzc0xQVnZ0UFowRmZrV3M?oc=5",
       "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
       }
+    },
+    {
+      "id": "trump-agenda",
+      "nombre": "Trump y México: declaraciones y presión",
+      "categoria": "Relación Bilateral",
+      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
+      "motivo": "🔔 ALERTA — Trump amenaza con imponer aranceles a México si no detiene la caravana migrante - Proceso",
+      "peso": 6.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPYVlSZy12TDV3TWhWWDNnUmplVXFUTjFtUWhWam12Ml9Va1R1X24wcUxxMFRMVEtGTGZic2tDMmw5R1Y4T3dhT1J1eHU0bU1NbWZfZVUxR3l5dU9UcGcwVFFoWWtyVEJHbHVYcWJCcWpiX1FVUTZ0TE9jdTdTcjVINHV1cTN1N2piWERFVnlZUkRKT2JDUkdPNTNES0pDV212UHpycld4dE5YX3lZN1NYRUVzRkZ5MEpOTWdmMEpLU0laM2NqNDBUbWFWa01uYll0aGV3eA?oc=5",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-c2ca8cad73",
-      "nombre": "Curan migrantes sus pies...y reinician caminata en Chiapas - Reforma",
-      "categoria": "Social",
-      "peso": 6.0,
+      "id": "auto-7b6c471c2f",
+      "nombre": "Rosa Icela Rodríguez encabezará las mañaneras mientras Sheinbaum está en China, ",
+      "categoria": "Gobernabilidad",
+      "peso": 21.0,
+      "impacto": "alto",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQSjJZVnE3WTI0UUw2UTIwZXRoaGdYdnN0UElueTFqbkZWUmNQeEF4NmJza013Qm45cVU0Wmtpb1NEdUYwQ1NOUFdweFpaTlItWHJOdnp4Nzg3UGJQYzFrY1J4MWxISTV3WFhhTUFzMmxGTUNVajBWQjRhVGpPYko5TDlVd2x4Y2dBOTB5b1VFWFNTTklvUVhNbl9DZmlFSHliWXZMcHZOTFU0OE1BN0pWSnc2Z3RUc3UwMVJpdWpwakdiRjNYUTdUTzBucDBjRjlkeG12MTZQNkt1cVoxSkpMUHZYc3ZTY1ZTbUNvdzFSZ3N4YVhIT0FVS25KWk1XejI5Zm9LdWxtS09sMkFX0gGMAkFVX3lxTFBKMllWcTdZMjRRTDZRMjBldGhoZ1h2c3RQSW55MWpuRlZSY1B4QXg2YnNrTXdCbjlxVTRaa2lvU0R1RjBDU05QV3B4WlpOUi1Yck52eng3ODdQYlBjMWtjUngxbEhJNXdYWGFNQXMybEZNQ1VqMFZCNGFUak9iSjlMOVV3bHhjZ0E5MHlvVUVYU1NOSW9RWE1uX0NmaUVIeWJZdkxwdk5MVTQ4TUE3SlZKdzZndFRzdTAxUml1anBqR2JGM1hRN1RPMG5wMGNGOWR4bXYxNlA2S3VxWjFKSkxQdlhzdlNjVlNtQ293MVJnc3hhWEhPQVVLbkpaTVd6Mjlmb0t1bG1LT2wyQVc?oc=5"
+    },
+    {
+      "id": "auto-c509eada0a",
+      "nombre": "El actor Damián Alcázar elogia a Claudia Sheinbaum y divide opiniones: “La quier",
+      "categoria": "Gobernabilidad",
+      "peso": 11.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQTVBvR3NzQ0hwRTBDclNVSHNVMjgyZE92LTRQNU1ucjR0bkRlalc4bEU3eV9NN3pOV0NhYzl5YWNBdW5mbjhMcUV1bEdvcWRqbzRhWHliS1p5cFVuNzl5VWpTV1RSTDhLZVlzblhIRDZyclNtQTFjMHEtRlZ3dXQzY0RnaU1RQl9GV0VJREpFbEMyMVZQ?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOUlBaN09oNlZ5M2J4SzFqaV9sNVRlLUN1QnNpdGl1TWlhRTVXdnMtaVg5Q0dLMTFIMlpJUnpvWTJ2N0pzbzZ2RWdMQ1cwQTdDLUQ3Y0NkTXMtRFN4M0M0cmFMX2ZOYmF5b1I1Y0RnenBBTWNHVnkxTEZYUkVSOXgzeFRPUGxsT2JBZk9mLTRISlJBM2Zn?oc=5"
     },
     {
       "id": "auto-82de2bced7",
@@ -910,14 +976,6 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/006n2pol?partner=rss"
-    },
-    {
-      "id": "auto-32e69cf092",
-      "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPMllTMEV4U215amdkYTFvUjBUeG1vUnpDaXpqS0dFQ3FGWm16amM1aUQtU0ZfTC14ZENJallLQ3NucVhnaGVsQXRON2paSGpXN0ZIcmdDQVhYYlNpNXFUS2JKSHExZGRTdUN1ME02NmlPTHVaMm1TbUhyNGFJUjFWcTc4RHE2V0lzczlUWlRQMEJSSzZVeGNSQVM1OHhteXhPTEhyQktGd2VwTkJr?oc=5"
     }
   ],
   "temas_retomados": [
@@ -933,17 +991,6 @@
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/07/politica/015a1pol?partner=rss"
     },
     {
-      "id": "auto-124dc94969",
-      "nombre": "Ciudadanos reclaman a autoridades de Balancán durante entrega de obra con el gob",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 43,
-      "motivo": "🔔 ALERTA — 5 migrantes se entregan a autoridades en Chiapas por lesiones - Milenio",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPYXdmeVE5eTZHRVJHa0FPWTJ4X3JXMDRXZXBBeVdwaWEzQ0ZhejI3dkNUdTg2X1ZSNGFpU0d5YnZReE9ZSnZVd0h5bHFHWDlDeUN6RzVYai1XRWpVQXc1NVBMdnRtTm55THB0aWgxUzltZ29uSHNCczAxenNOeXhqMUVfQ2ROSEtiS0ZBX1htYzhxclNWY25lS2hLNy03UdIBngFBVV95cUxOODZkZ2NzNXpja2VQTUNEU2llZ1hLclpmRldaM1ZLY2ZoQnh5X2c0RWUyZGNlTGJMOFVPYlgwZ1VXQlN0RUh0WDJNdEx3ZWVLb0ZtaDRHMzQ4U2FJT1NyMVJRTFowRlFfNW1iZVJqYzh5OTN6U2hMQ0k4QXVnTnMwZll5VDN1U3Z6QzNjcGh4WGJoSGxZcXh6Z3daR3N4QQ?oc=5",
-      "fecha_anterior": "2026-10-03",
-      "fuente_url_anterior": ""
-    },
-    {
       "id": "auto-5576be7f59",
       "nombre": "«México por el Clima: naturaleza y migración: UAT» - TAMPICO",
       "categoria": "Social",
@@ -955,26 +1002,26 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNNlJraUUtT3hmSXZYY3IwOWI5SE5EVVh5SHlBY01BTWZBa3ZoUkVWWG5zeHhsVDZhN1IxV1RHcGE4SnpseWVZejR5WXZfbHktWi16Z3dHam1tei1NQ3VzTzVjSng2QTF0V0xZSldibi0yckpzbG1WWkR6Snh0NjNVbktR?oc=5"
     },
     {
-      "id": "auto-9409afa73d",
-      "nombre": "Marcelo Ebrard destaca que México paga menos aranceles que otros países a EEUU y",
-      "categoria": "Relación Bilateral",
-      "dias_silencio": 32,
-      "motivo": "Marcelo Ebrard viaja a China para participar en la APEC y destaca reducción de pobreza en México - Infobae",
+      "id": "auto-1e7583bda1",
+      "nombre": "México redujo pobreza de 51.9 a 38.5 millones, destaca Morena - Milenio",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 31,
+      "motivo": "\"Millones y millones\" salieron de la pobreza desde 2018, reporta Segob",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxObHMtMzlScTI1ZVBfSXNGX3dXdGRLWkN0SDRlZWJONkd3NUNuZ1h2NnlHR0NjVzRiQWpZVGxTVHF3VG5mWjJVUkdpMzZ1ellRNDctQ2JJd1NCVnB1clprNDI4SUUyMmtkekdkSDE4elN1NmVac0pLT0p2aEtZTEM2ODVyR0ZwaEdrVTZ2dURGN250aGZYbDdPdzBSeFNINl80NGlCLWVqUGxCZmVwUmdqbW80aXhSQVpEUWpGQU42REc3dE0xYWxTVkNkSm5DZi03d3ZaZG530gHwAUFVX3lxTE5NaTk5dXRVOXdZZnRGVzJmbjExMnk1NTlFZUJRUWp1dUMxVkhOb0tuVDBuMDVfZVdwdl9OZlRxVmZBZXZKVmltWFpaR2hRQ2MxX2p3VjYyZllUaGpSRWMyQW5Jd3NPa3NBWUxjN0NiUVBkV3h2dkx1ZmpkYjlMVXVuVzExbDFQcHN3SVYwMTRPN2dsbmx3TlBkd1EyVTBMMFZ5SHNIamRSWTFOWGozenphSENfcDFVcTM0d3h4ZXFRaW5Vc1lPaFE0NmVxajlaLWs3ZUo5QU00YzZHc3cwcW5fMGlWemdYY0NmUjFhVDFzLQ?oc=5",
-      "fecha_anterior": "2026-10-14",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQRWl3RnFwYktKdEROeTZWM3VGYy1vdFp0endhV053MWdjZ05RR2xhUE1TOGkxY3RyVXlmck5yUVJFV2lwVk1NMFJ6aEJtYlpaR19QejJqZUV4eEEwbzhDLTdkWjZBdjB2QkZSYVB0NEF4dDlnOTZOYVNNYTRHb0FMeGtoU1ZvS0MyakNxQW4tc3VUckw5U3QyMm5Ga043X3ptOWY1Q1Z6SVBKUDZGMEE?oc=5"
+      "fuente_url": "https://www.informador.mx/mexico/millones-y-millones-de-mexicanos-salieron-de-la-pobreza-desde-2018-reporta-segob-20261116-0074.html",
+      "fecha_anterior": "2026-10-15",
+      "fuente_url_anterior": ""
     },
     {
-      "id": "auto-b31fd4e979",
-      "nombre": "La presidenta Claudia Sheinbaum destacó durante la mañanera de este 8 de octubre",
+      "id": "auto-09c4053e4a",
+      "nombre": "Caída de “El Tanque” destapa nexos políticos y del narco: Riva Palacio",
       "categoria": "Seguridad Nacional",
-      "dias_silencio": 11,
-      "motivo": "Rosa Icela Rodríguez encabeza las Mañaneras durante viaje de Sheinbaum a China",
+      "dias_silencio": 16,
+      "motivo": "‘Sin inmunidad’: DEA tendría lista de 35 políticos de Morena vinculados con el narco, revela Riva Palacio",
       "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/rosa-icela-rodriguez-encabeza-las-mananeras-durante-viaje-de-sheinbaum-a-china-20261116-0047.html",
-      "fecha_anterior": "2026-11-04",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/16/sin-inmunidad-dea-tendria-lista-de-35-politicos-de-morena-vinculados-con-el-narco-revela-riva-palacio/",
+      "fecha_anterior": "2026-10-30",
+      "fuente_url_anterior": "https://www.informador.mx/mexico/riva-palacio-la-captura-de-el-tanque-expone-redes-entre-el-crimen-organizado-y-el-entorno-politico-20261030-0057.html"
     }
   ],
   "actores_destacados": [
@@ -982,20 +1029,42 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Ceremonia oficial: China recibe a la presidenta Claudia Sheinbaum - Milenio",
-      "nota": "Ceremonia oficial: China recibe a la presidenta Claudia Sheinbaum - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNZUR3cEhwdFljQmVDSXdpeG0wWklORE8wQ25oVHh5V0xuTmgzcG0zN0l1NURDYThPUnoyNmhkTkNBX1hGTWxlbldTNjNIWm9UdE8xVGJqYlluUVJJQXdKQUhFLUFWX1puS0owWG9zd21mSHU1STFnTFp5Rmp1di05SzVGVFN0ZFdyQnk2eTB4LWRSMlZP0gGUAUFVX3lxTE1DakdYTnl3cVpKY1pIQ3FBb1lmS21lZkpablZhTVVtSl9Ra21uMERJZFgyQ19LdTJNZnp6eHIzczdkLXFPVU9mMHF6MW9vTHA1R1N4RlctbXk4N0w0QTFkX0l0QmJfeVBtUnFId1BCdEFTZmdUVllrOGxROElTM0JFQ1JMV29oWWdWZ1NMLWM2cGxnd24?oc=5",
+      "tema": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó q",
+      "nota": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 12 de junio de 2026 - Gob MX",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQSHZQd2hzMkZkbDZiMVFnZ1FsSUNPOElCdVR0MWNxUTZlbHhYVzRCZGlfSkJOMFlyV3hndUtmZ2tIajAtZlVjWUtmUWlhaEpySkRDa0ZJMk9RQmpOMWhKZWlYc1A2Y0dUeXlaV1lJUHF5bHlDemFqRzlESWd6ZXZyN0E0Nl9DSy0yVDMtMlp6a1JaejVQbm9lbVllVHVkTmNBcFYxUWlpWkRLdXpndzNZcE02RENVeS1qU0ViV2UxX0x2RzZkSEpNeDNsUkdmY0RtSHZyMWlyNmlzSV9tMEtKRnE4ODlJcVhxc0tHRXRNVk9EaVE?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "alta"
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "rol": "Investigado",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "Pensión dorada de Rocha Moya, protegida por Sheinbaum y Poder Judicial, señala PAN - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOaGFWRmJ1QmxISkRCcXI2bVpGWHBBNU5qM0wxVlpVdkFGZEZCUWtSb3lVanJ0Tm5yZ2xhU0JFRWdLMjFKSzF2U29qekVteHItNm90Y2xFNS1jU0EzSmVPNWNfNXVCNnJjaTBnVzVTX1IySUxTQlAyQm9aTGYxZ1ZqMndHVmZieDRhX1ZsVW9DU3RuVWM0amE3OEdkU09Fbm5lOFpZcV9oc19kcEp4RTFJY1VJZURvWGpMV0t4bE1WZGpqMlowNHVMaDBSNzljSjRYaG5vY241Wmtxci1iRWdzVkxfRk7SAfgBQVVfeXFMTVp5WVZGRzNEdHdlSnlxMEgzQkJLS1ExSlpkLVlZektuZGc5U2l3S2c2ZXpwUEl5NTJNYV9GamttTHFOb1NYMUJObVJZazZEbGxzRk1nOGJVWHJ0TW1mODBXSFBaSGQ1czF5Y0ZhbVVwZG94S2Rqd2F4ZU1YSUluQUdRdWxvU2pOOG80WTZmcEkzQng4VHl0Mkpqc0hKQ0NRSzVROTZvRUlVQjhsd3dYZWtJYzFleDRfa3FuWmRzYXR5M2NMbE1MN1RqR3g4TjBKaFNtZUFFN1lEMXVQTWhxRzdHb2cyNmRFelRSOVl4Z0RZaVRQaW1SMG4?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
     {
-      "id": "ebrard",
-      "nombre": "Marcelo Ebrard",
+      "id": "ramirez_cuellar",
+      "nombre": "Alfonso Ramírez Cuéllar",
+      "rol": "Mencionado",
+      "tema": "Ramírez Cuéllar entrega al Senado paquete de reformas anticorrupción",
+      "nota": "Anuncia Ramírez Cuéllar una reforma para reforzar combate a corrupción y huachicol",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/007n2pol?partner=rss",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "higinio_martinez",
+      "nombre": "Higinio Martínez Miranda",
       "rol": "Responsable institucional",
-      "tema": "México expondrá el Plan México y avances económicos en Foro Asia-Pacífico: Marce",
-      "nota": "México expondrá el Plan México y avances económicos en Foro Asia-Pacífico: Marcelo Ebrard - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQdTZDMFJvSXJITmVKX0FUVW52VTF1V25KT0N6LUhhZDBQU3VVazl6NzN3V191Q2k1d0tGb3NvanJTUlRfUlJzQURVaXFXSjBNZjhtTl9ZTkxHNi0xckxkVDVKZGFSQTNBNnh3YlpoejJmZmM0el82bmRjaGRzVWJpU1cyRVNRSG1xQmNyNWtxcmZzN09KUEVBS2dtVWZQQlHSAZ8BQVVfeXFMTmtzX3o1SUMweDd0dGZTeTdIa2Z6ZXBEb1M5aVczbWpDTkotNm5aUGJLRlZxa00ybXJHYTY3SmhlemxMY1ZOd3Q3NjZvSHFhY1dwanJERXhnMFdPaFlXMXVJVlVQamdKMXNiNm9Mazl1MVE5S3gyY01jSUNwZkY5aE4xTFJEemVFY2hFeU8wT1pEbjhXLWlCUzZQaE03bGcw?oc=5",
+      "tema": "Pide Pedro Gutiérrez que se investigue a May por sus \"mapacherías\" en al elecció",
+      "nota": "Respalda Higinio Martínez investigar injerencia de Fox  en las elecciones de 2006",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/007n3pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1007,28 +1076,6 @@
       "tema": "Tribunal Electoral debatirá negativa del INE a investigar presuntas campañas ade",
       "nota": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
       "fuente_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "higinio_martinez",
-      "nombre": "Higinio Martínez Miranda",
-      "rol": "Investigado",
-      "tema": "Pide Pedro Gutiérrez que se investigue a May por sus \"mapacherías\" en al elecció",
-      "nota": "Respalda Higinio Martínez investigar injerencia de Fox  en las elecciones de 2006",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/16/politica/007n3pol?partner=rss",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "morena_partido",
-      "nombre": "Morena (partido político)",
-      "rol": "Investigado",
-      "tema": "Gobernadora No Cumplió con Campesinos: Tribunal Agrario Sigue Fuera de Campeche;",
-      "nota": "'Fuera Morena', le gritan a Gobernadora en Colima - Reforma",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNblc2QVhrZ0cxcE9qWG8zVFZ3WFFUZWQxQzQzRk9GQ2xFUFp5QS1XNWgzZnhUVFJnZ0Q0bDd6X3RkazNVX214bjRTa2gtTnpLRk9udWZzX2hqOGpjYlRsOEU3RFpQQ2sxWmJ0dzkycnN0SzNwVDRrbGZQQjdKZ0VBdWpSTE5JQmY3TUtvag?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1182,9 +1229,9 @@
     {
       "fecha": "2026-11-05",
       "tension": 24,
-      "n_notas": 69,
+      "n_notas": 70,
       "n_alto_impacto": 23,
-      "n_medio_impacto": 46,
+      "n_medio_impacto": 47,
       "n_bajo_impacto": 0
     },
     {
@@ -1237,10 +1284,10 @@
     },
     {
       "fecha": "2026-11-12",
-      "tension": 25,
-      "n_notas": 50,
+      "tension": 24,
+      "n_notas": 51,
       "n_alto_impacto": 17,
-      "n_medio_impacto": 33,
+      "n_medio_impacto": 34,
       "n_bajo_impacto": 0
     },
     {
@@ -1261,29 +1308,57 @@
     },
     {
       "fecha": "2026-11-15",
-      "tension": 31,
-      "n_notas": 21,
-      "n_alto_impacto": 10,
+      "tension": 32,
+      "n_notas": 22,
+      "n_alto_impacto": 11,
       "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-16",
-      "tension": 38,
-      "n_notas": 6,
-      "n_alto_impacto": 3,
-      "n_medio_impacto": 3,
+      "tension": 35,
+      "n_notas": 15,
+      "n_alto_impacto": 7,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 100,
+      "y_hoy": 83,
+      "delta_pts": 7.5,
+      "alcance": 3,
+      "n_alto": 2,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSmNHRmhOR3UyMExoQ2Q2TFpzXzg1VUpSWVUwNWZnX0stNlpCVVVacmVWUzFLTUVHSmtjRjRzWUYya1B1V3RLNmY1cktHZFlBSkl0a2k4cXdqU1Z4eEJLUjdIb2JidFhhcU1JdV9HVHd4c0ZPcHNCZUxQQy1haXBiYmtUX0k2NVE3TTlwQVUtSEVieDlDTWFXNGxYX1dGRWdaNmVsaVhQSFlsM2x3TTFFaXZtRXpVXzg2R0xrUlcyYWpkWHhfWmdKUlp2VVFJa1ozWHZ2OUtWRDJHcko0eVBBT0huNE5mR1E?oc=5",
+      "nota_texto": "PAN acusa trato privilegiado a Rubén Rocha Moya y advierte posible financiamiento político rumbo a 2027 - Central Municipal",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 100,
+          "y": 83
+        }
+      ]
+    },
     {
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 100,
+      "x_hoy": 67,
       "y_hoy": 100,
       "delta_pts": 6,
       "alcance": 2,
@@ -1300,7 +1375,7 @@
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 100,
+          "x": 67,
           "y": 100
         }
       ]
@@ -1311,7 +1386,7 @@
       "iniciales": "CS",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 50,
+      "x_hoy": 33,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 1,
@@ -1328,8 +1403,120 @@
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 50,
+          "x": 33,
           "y": 100
+        }
+      ]
+    },
+    {
+      "id": "higinio_martinez",
+      "nombre": "Higinio Martínez Miranda",
+      "iniciales": "HM",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 33,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 1,
+      "n_alto": 1,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://www.jornada.com.mx/2026/11/16/politica/007n3pol?partner=rss",
+      "nota_texto": "Respalda Higinio Martínez investigar injerencia de Fox  en las elecciones de 2006",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 33,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "id": "clara_luz_flores",
+      "nombre": "Clara Luz Flores",
+      "iniciales": "CL",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 33,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPNWRvbFctQmhNcDFvdld0QmZ0U1BxT2VHVXVteS1iZjFZejZNaVpwRXRYbFVSLTNMOFdUckttZ3dHNGZMVjdveTh5M0NfY2xrRVFpWDQwVXNYcWQ5bGkyX1loNVhrV215QnNIS0FhelJDTjRna01RSHlhQW1tbmhVbC1xdjJNZXR3bVl1SmhZOXJNSWhEYWIxbktxQl9aWHk0UGdvTmN1MW9raldRNW1CQU0tSEttOHJxelEwNkNXaU5nODNnNE1KUTJWX29hMXc?oc=5",
+      "nota_texto": "Morena descarta segunda encuesta para elegir candidato en NL; respaldan a Clara Luz - abcnoticias.mx",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 33,
+          "y": 50
+        }
+      ]
+    },
+    {
+      "id": "lorenia_valles_sampedro",
+      "nombre": "Lorenia Valles Sampedro",
+      "iniciales": "LV",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 33,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/16/participacion-de-sheinbaum-en-apec-fortalecera-el-plan-mexico-destaca-lorenia-valles-2919932.html",
+      "nota_texto": "Participación de Sheinbaum en APEC fortalecerá el Plan México, destaca Lorenia Valles",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 33,
+          "y": 50
+        }
+      ]
+    },
+    {
+      "id": "ana_lilia_rivera",
+      "nombre": "Ana Lilia Rivera",
+      "iniciales": "AL",
+      "x_lunes": 0,
+      "y_lunes": 0,
+      "x_hoy": 33,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 1,
+      "n_alto": 0,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOOFJsWUx3SW5HdFV1M0FubWU3bFk3dS1RMkFKbkZjZzRUaWpMY2tOYm5lbnhhWG9EaEVBcDhTS0RpRmRGRHROdnROUlVuaTRFZzJTb0ZSYmFXTk9vdjdYQW5GRmEzU2QxYW43dDR6V215TXNSNmkybkFkTThhdkF2Tm9xTHA3emtrai00Qm1qQnZzQzRkRWFNeFdQMWpSUzBQV2lwRk8zeElQa3FydFU1OEEwc0dnRU1LSzFnZUIwME1XWmtvYU85eG5vSU9EVFE5MEdyZHFMWExqc0JzRkRfdGFpcm1iWHc1TTB1eXNWaHFjLUt5VXQtSWp3?oc=5",
+      "nota_texto": "Fortalecer la organización territorial y la unidad en Morena, primordial para lograr la transformación: Ana Lilia Rivera - La Jornada de Oriente – Puebla",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 1,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 33,
+          "y": 50
         }
       ]
     }
@@ -1395,12 +1582,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-11-16T06:02:42.011184-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo",
-      "Nueva declaración relevante (otro actor): Rosa Icela Rodríguez"
-    ]
-  },
-  "hora_corte_publicada": "2026-11-16 12:23"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-11-16 16:09"
 }
