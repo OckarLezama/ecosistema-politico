@@ -1,29 +1,75 @@
 {
-  "generado_en": "2026-11-17T13:46:36.466180-06:00",
+  "generado_en": "2026-11-17T15:12:03.088309-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 13,
+  "n_notas_ventana": 17,
   "baja_confianza": false,
   "tension_nacional": 35,
   "tension_anomalia": {
-    "z": 2.45,
+    "z": 2.34,
     "nivel": "alta",
-    "media_periodo": 22.0,
+    "media_periodo": 22.1,
     "dias_base": 27
   },
   "categorias_dia": [
     {
-      "categoria": "Economía",
-      "peso_pct": 48,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 1,
+      "categoria": "Gobernabilidad",
+      "peso_pct": 32,
+      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
+      "tema_principal_id": "rocha-moya-acusacion",
+      "n_temas": 4,
       "n_notas": 6,
       "notas": [
         {
-          "texto": "Moody’s califica a México, EE.UU. y Canadá en riesgo político frente a revisión del T-MEC",
-          "fuente_url": "https://www.yucatan.com.mx/mexico/2026/11/16/moodys-califica-a-mexico-ee-uu-y-canada-en-riesgo-politico-frente-a-revision-del-t-mec.html",
-          "intensidad": 8.0,
-          "medio": "yucatan.com.mx"
+          "texto": "En APEC China 2026, presidenta Claudia Sheinbaum se reúne con primer ministro de Canadá - Edomex Al Día",
+          "fuente_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQaHNmbm5PX1JpUTE5cHVfSkJYVS1yeVBvT0pES2NtQ1BvZVRMUmpTS29Jbm9HVHlnXzdFQ2tEZ0pXbmRVa1MzU3RIbkE1V21LVWhGZ2YyR0JJU1AxRU9KbGcwRkJVYy1nVUVwMG1aT2h1dDdzRDZYMk1jV2lMXzR5VEgxdzg3UVFUQWhjWkpVajRGb3hsb2NZbW1MMFE5MVVlM0l4M05LTjdzSjR5WFVoWg?oc=5",
+          "intensidad": 7.0,
+          "medio": "Edomex Al Día"
+        },
+        {
+          "texto": "Discurso de Sheinbaum en foro APEC reivindica proyecto humanista: Morena - Quadratín Tabasco",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPQXVTNTQwcFhYOEtST21mSHpDOEpKREtQTXl3TzVlTVdCZGFHOHFkSlBPZEp3Um4xUzVJS0ZpUjFjcXFrbGtSVjIwUDhsa0xTQmV1UGhxRHN6djFjSUNWYXY1TkJxaWZBZ0hnZllxanJQTXF0NmVwZEJLVlM0SXZfRXZyYkkzbndMTEV4QTBuNlR2a21ja0ZxbGRYbGdUVDh4bHptYXhyVUlod3ltN19MeG5CMXg?oc=5",
+          "intensidad": 7.0,
+          "medio": "Quadratín Tabasco"
+        },
+        {
+          "texto": "A Lorenzo Córdova, persecución; a Rocha Moya, liberación de cuentas - MILENIO",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQR3VYM0F1OHV1UGEtaWFJeVRxaksybno5MWFZUDdXLVVRX0pQV3BXNkt3RVdmdUZIQWlvYlJxeUNtNmduZmVXeFN1QzZhZFpEanlsaDZVNTAydDJkZVRtdjVqbW40aTBEamg5elBlZEVKMXV0b0ZkOUJiS25YcV90djc1YUw2V2lEU0hmbm50M05vYjg4b3ZrYkN4eEpXNVRvb3lZS3hHV2ZtNmVaQnBJUF9uSHd1T1dtRHfSAboBQVVfeXFMTzVnR2RnbGZZUU44aWVnUmd2RnRsWmxSMXh1TFpxbnZ1UlFSS3RRRWYzSWNrNkdhQWhpMmxGM1BuRFViamozX3FPbmJDMFdVZ0R4cHBKUkJrUGFCSkQ0SGpjWDdIdWZqb3pSdTJXUnd4QTFLRzBhcTNfbXVjLXpBYWUxYmhsLWxMaVdHWTZvVmxMbEVPa2VHNlZCSVItVDB5Uy11Vldkb1dqaTBMSlBrS3hRMlFERmVDVzF3?oc=5",
+          "intensidad": 6.0,
+          "medio": "MILENIO"
+        },
+        {
+          "texto": "Morena retoma frase de AMLO para arremeter contra Calderón y Fox: “Están moralmente derrotados” - Infobae",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNQWl1Q1RkMnlidDJtUE1ZR1JDUDdpTHZKbWVabVJ2MWpzOFJMU29MdlFpeEdYYkhZRy1CUjZuY293Y29FSERJdGdfMzdZMmdNMnowZ2d1LVd2Z0NQUDVVa21yQjE2SWVRbHpHVWJnUnRiOFZSLUJzZzB1T18wQW1Fbm12endORFRuS2s5ZV9uazRfQWREaHJJN2hncWpnbUlQRk94NmR5REE3M3FYSUtiQ09kaTdyTE5zdnZmOE5QVVNSVzNjMDNvYWZLZVFLNWh20gHrAUFVX3lxTE12dUVKNFZ4RmMzX045dnRjR01RQ0ZxTnh5bTNnMDVUNE1LVDFOZy0tQVUyRTB2TmE1N3ZESHRzT0RDOTZTTnkwa2ZyMG5MOVZuZXp6T2ZpM1dDNFZuU0RBWVJSaUNTV1hwZldhdkkyVHZBRnpySDR0WU9oMmJNWXNSX0RPZjVjTUZFNzJPV2VGS3R3SUtnclhxQnFyOHBtUHdyS09DYWl6QTU5ZEFRT0xDVzNrOUZDUnNnLURWR2FiVnZ6QXVNaW5qR2FsTTExdDkyWVRYMFEzMlpGdXU0ZExHcG9jMUc1RmdtbFE?oc=5",
+          "intensidad": 5.0,
+          "medio": "Infobae"
+        },
+        {
+          "texto": "Ana Lilia Rivera llama a fortalecer la organización territorial de Morena en Tlaxcala - Milenio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQMjlxam9BcHI4aU1jUU8yRXI0dXlDMXpwUklvV2c0WlNBVXVQNXFXckNKTHJUQXZzZkM0dFRPeFF4NG9zMU5lbk1HSVlfRTBxejh1V3k4Mzh6Szh1R0hyTk15VzZEbUhPTmpIWDU5dnRERXRmQUtEbHJGaHRwaFJGcWxpZUdOdURNc2ZQeXdmTWowYWt1QlHSAZYBQVVfeXFMTWlNTnZNdVpfWHBjMC0tSk14U19MdzlFbUswaUU4aXVNLW5uRndYVmFNU2tNWWc5UmY4dW5tZmF3Y3JZYnozcTBsX1RPM1FKUlNEVUowRDRTLUozeERTWWFmQkdJOVpVSW9IN1UtdTBpdVlEdzFNM2JncmVka1BTbHRJSUpKaDlrdHZRdFRudFdXdWFXcUp3?oc=5",
+          "intensidad": 5.0,
+          "medio": "Milenio"
+        },
+        {
+          "texto": "Morena le da en la 'yugular' a Calderón y Fox con frase de AMLO: “Están moralmente derrotados” - Debate",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQdkc3OTBZeHdmR2ZJRmdlSFhjSU9KcUNqUTlQSmpHdXViWkxTaFlQTEtPRzdDczJlUTlGSng4QVhTQXFOR2JKc2ZaR0hGYUw4TzBNNlFXeGd1ZDRpQWtnbUNvOXp2Z1lrNjhBaVpOYWQ1dnFFQU0xSG54czVwSXJFSXVzNzdUU21NcnJzS1paR2hMYmh0YXRHSDc5UDZCSk9wYTZjZmhBaHlXOElfTWFNUjhvUXBDWV9GbXlsSWlXOU5qNVFteFVJSGhtZlRNM2U2QXR4b0VtMWd2YUE?oc=5",
+          "intensidad": 5.0,
+          "medio": "Debate"
+        }
+      ]
+    },
+    {
+      "categoria": "Economía",
+      "peso_pct": 32,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
+      "n_temas": 1,
+      "n_notas": 5,
+      "notas": [
+        {
+          "texto": "Avala Cabildo de Playa del Carmen aumentar derecho de saneamiento ambiental - Noticaribe",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOc0E5UHViNlhGSmo0WjEteDNnQndSUVBMYWp2ajBBNmRKcHJUNjNvZFpCNnFrSFNaOXFjeF9mc3Zjb3d4MUVuckY3N1gtMEctMXFCdTY3SGF6RHZHXzNsMDZOemI1eXlJYVNyb2tIWUdyRG0xY0diUGt6WkZDWWNJeFRDV2RwWmJScUNiaHM5aE91MFhGNmFJdl9zQUJDVHlId3hJUWYzWTkzQzZmbXBlZVR1MA?oc=5",
+          "intensidad": 9.0,
+          "medio": "Noticaribe"
         },
         {
           "texto": "Seade: del T-MEC con AMLO al movimiento de Sheinbaum - Excélsior",
@@ -36,12 +82,6 @@
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/se-reune-sheinbaum-con-primer-ministro-de-canada-y-abordan-tmec-2920169.html",
           "intensidad": 7.0,
           "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "Rafa Márquez asegura que México será más ofensivo vs Jamaica - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPdE1kVmM1UzgwRFROSGRsRnJBU2l5WEZabEhmRlRvRjR1ZG1wMTYyajVuNXFMX3RjS1Q1OFc1bGJzSGZpWGRmZFg2VEpKeV9oUy1WN1hYNFNDX1FoNmlqb3B6R1RXVUlQRGNNSU9TcFVSd0ZCcE91c1J2NWptcWpUcGlBRXRXYkpoTnJJRFhKSHhBOTI1TkZlZ2NSYmpqcHJlcUJFZzNBYnRxLUt6a1ZHczctVGo0aS1wSzFsSGxWVGNTRXpwVm5J0gHbAUFVX3lxTE52SmNSQUFDQkJRbVZEZnYxeEt1dnVtY01aYU9kcmM5N05WVml3VGwtNk5QVnNxb2tPMGttZzJGcnNVc2V1RDNTMEczTUJaUXQ3S1R4MG9ZMW1KRmpPWTZsUVFIZ2d0OWRsRU5uNTg1NVlSbDFfdmxHRlA1N2o0TkEwd1JjY2x5b3k2cXplZXUtT2NpaUxrbDFHajhwcWp6MkI1YUl4YXNHVmlyU3pTWmZObGJjakV0QlItOHIyM25UYmpsT1FjLW5CTHpDYkMzaS03WThYd3BsZmJiWQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
         },
         {
           "texto": "Jesús Seade, el economista que la 4T trajo para renegociar el T-MEC - 24-horas",
@@ -59,11 +99,11 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 23,
+      "peso_pct": 24,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 2,
-      "n_notas": 3,
+      "n_notas": 4,
       "notas": [
         {
           "texto": "Sheinbaum y Carney reafirman su compromiso con el T-MEC entre las tensiones con Trump - López-Dóriga Digital",
@@ -78,6 +118,12 @@
           "medio": "informador.mx"
         },
         {
+          "texto": "México y Canadá cierran filas por el T-MEC ante presiones arancelarias de Trump - Intolerancia Diario",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPVWVQNEo2N184R3VJU3NJeUNHTFM0eXRIeDF6dVNZanVCS2p2a3AxZUptbWVmdWZhaVo4T3hmR3dxbEFYZ3VhZkJEejFrSF8ydXNKS3o1bnBpQTZYOFhHS0N0ck1YcWdyMWVKcF9vZXhRd21RalBhSzdCdHdnZU9sckpLUEZNbWdEODNJM3Y0NDVoSGc2TklMN2R6UThPREQyRDJTdzc3dFBLSnhVVWY4dWZEM2pZcjlBT1Rkd3EwRG1FQlJiSWdsN2ZBb0NuU2xRUmZHZUlidU8wU1Q3NmFqYnl4b0toeFUtQjlLcFBn?oc=5",
+          "intensidad": 7.0,
+          "medio": "Intolerancia Diario"
+        },
+        {
           "texto": "Donald Trump pactó con Tailandia eliminar todos los aranceles a los bienes de Estados Unidos - Infobae",
           "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxObGVYMzZxSU1nbVBNS1VjT3dTeDVnNVFhMGFhWTV5LU5NRkhKVlFJVzEtOU1sZE44NlZTT2hPLWtwMWlJMS1wU081OTdYdmtTZU5URVB0Rzc2TFBkNmt6dDVCSmlQSXExeXFFU2Z1Zkt6dXVaS1RtdGhEQmVsV2ZLY3lwaXlmZFpLTl80bm5jZlhaazNuTGFuY0ZhdEZfYzB6azVIem5keDVaTkF1WGUtTXg5NGVENHNybk5qdzZkWnlsbFpBeGVwUVNzaEVqRWZYUlRmTFVlX3ZhZEHSAfYBQVVfeXFMUEVPTk9oci15V09pTzJxSWtSU2hoME11cXFYQk84S09nT1Y3a3RWZ3NOMk5DU0QxTzQ4Z1VyQ2VzR1BSTEFOUmNnc3h2UUJyMDI1blJkVXpsanhtaWJ2VFN6SWZObW5HRmlnd2lYNXBmS0poT3RPeUF3bE5DOTJyZVR3ZUNkSGNmZlJidXhaeEJadjU1MUJxYTZnMkJHeHRrOG5Xb3pEcFFOQy0tb0N1c0dpeU5wR09tNkxBRlVOelRkQ1M0cUJ4aTJycHBpVnlFZ1dDSnZCSFFMVjc5TFlPOFc1cDBrTDdIdnBfVlRnQjBaT25PSzNR?oc=5",
           "intensidad": 5.0,
@@ -86,30 +132,8 @@
       ]
     },
     {
-      "categoria": "Gobernabilidad",
-      "peso_pct": 13,
-      "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
-      "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 2,
-      "n_notas": 2,
-      "notas": [
-        {
-          "texto": "A Lorenzo Córdova, persecución; a Rocha Moya, liberación de cuentas - MILENIO",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQR3VYM0F1OHV1UGEtaWFJeVRxaksybno5MWFZUDdXLVVRX0pQV3BXNkt3RVdmdUZIQWlvYlJxeUNtNmduZmVXeFN1QzZhZFpEanlsaDZVNTAydDJkZVRtdjVqbW40aTBEamg5elBlZEVKMXV0b0ZkOUJiS25YcV90djc1YUw2V2lEU0hmbm50M05vYjg4b3ZrYkN4eEpXNVRvb3lZS3hHV2ZtNmVaQnBJUF9uSHd1T1dtRHfSAboBQVVfeXFMTzVnR2RnbGZZUU44aWVnUmd2RnRsWmxSMXh1TFpxbnZ1UlFSS3RRRWYzSWNrNkdhQWhpMmxGM1BuRFViamozX3FPbmJDMFdVZ0R4cHBKUkJrUGFCSkQ0SGpjWDdIdWZqb3pSdTJXUnd4QTFLRzBhcTNfbXVjLXpBYWUxYmhsLWxMaVdHWTZvVmxMbEVPa2VHNlZCSVItVDB5Uy11Vldkb1dqaTBMSlBrS3hRMlFERmVDVzF3?oc=5",
-          "intensidad": 6.0,
-          "medio": "MILENIO"
-        },
-        {
-          "texto": "Morena retoma frase de AMLO para arremeter contra Calderón y Fox: “Están moralmente derrotados” - Infobae",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNQWl1Q1RkMnlidDJtUE1ZR1JDUDdpTHZKbWVabVJ2MWpzOFJMU29MdlFpeEdYYkhZRy1CUjZuY293Y29FSERJdGdfMzdZMmdNMnowZ2d1LVd2Z0NQUDVVa21yQjE2SWVRbHpHVWJnUnRiOFZSLUJzZzB1T18wQW1Fbm12endORFRuS2s5ZV9uazRfQWREaHJJN2hncWpnbUlQRk94NmR5REE3M3FYSUtiQ09kaTdyTE5zdnZmOE5QVVNSVzNjMDNvYWZLZVFLNWh20gHrAUFVX3lxTE12dUVKNFZ4RmMzX045dnRjR01RQ0ZxTnh5bTNnMDVUNE1LVDFOZy0tQVUyRTB2TmE1N3ZESHRzT0RDOTZTTnkwa2ZyMG5MOVZuZXp6T2ZpM1dDNFZuU0RBWVJSaUNTV1hwZldhdkkyVHZBRnpySDR0WU9oMmJNWXNSX0RPZjVjTUZFNzJPV2VGS3R3SUtnclhxQnFyOHBtUHdyS09DYWl6QTU5ZEFRT0xDVzNrOUZDUnNnLURWR2FiVnZ6QXVNaW5qR2FsTTExdDkyWVRYMFEzMlpGdXU0ZExHcG9jMUc1RmdtbFE?oc=5",
-          "intensidad": 5.0,
-          "medio": "Infobae"
-        }
-      ]
-    },
-    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 8,
+      "peso_pct": 6,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
       "n_temas": 1,
@@ -125,7 +149,7 @@
     },
     {
       "categoria": "Social",
-      "peso_pct": 7,
+      "peso_pct": 6,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -721,11 +745,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
@@ -787,7 +811,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 12
+          "peso_pct": 11
         }
       ]
     },
@@ -797,6 +821,31 @@
         {
           "categoria": "Seguridad Nacional",
           "peso_pct": 12
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 57
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 11
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-17",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -812,55 +861,12 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 12
-        }
-      ]
-    },
-    {
-      "fecha": "2026-11-17",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 12
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 55
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 14
+          "peso_pct": 13
         }
       ]
     }
   ],
   "top5_temas": [
-    {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Seade: del T-MEC con AMLO al movimiento de Sheinbaum - Excélsior",
-      "peso": 13.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 2,
-      "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOZzEzaTEyUFg5WkRLMTFyZVBkVk5NWkpMYVZRZ01YU3A2bVE1eTdEOEtpS3dsSEZMaGxVcmEwMU1SRF9SbUN6Yy1fOXRydmlFc1oyOTU2anYwV3FObDBoT3ZDSXZ4MGlUU09lZTFPdzVTcVpBN09tMERsUmZjeTc0MTdEb1gtTEhXVlZCV3pn0gGTAUFVX3lxTE1xdVRVdmJjTldPS1JpeHVGalBJRk5xN1RndU81Sk1YU21qNDRfcURFX2ZIOTRrUXJJTkNEeXNpLVo1UDRSVWxlLUM1dmJ1MlFPTHdUZ2kzM0NCWVJZdU1Wd25XbmJYUDBtQzI4N25ZQUJ2TUJuTUEycU93RkwzZVdOaE9VT1Y3Qm1XeUotd1JVNk1vcw?oc=5",
-      "actor_vinculado": {
-        "id": "rocha_moya",
-        "nombre": "Rubén Rocha Moya"
-      }
-    },
     {
       "id": "rocha-moya-acusacion",
       "nombre": "Acusación de Narcotráfico contra Rocha Moya",
@@ -880,6 +886,24 @@
       }
     },
     {
+      "id": "auto-a7761b0ff1",
+      "nombre": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó q",
+      "categoria": "Gobernabilidad",
+      "resumen": "MILENIO. . 🔴 En conferencia de prensa, la presidenta Claudia Sheinbaum informó que el director del IMSS, Zoé Robledo, ya atiende e investiga el caso de los bebés que fallecieron en el HGZ de Durango. #MILENIO16h con Ady Cabriales - facebook.com",
+      "motivo": "Versión estenográfica. Conferencia de prensa de la presidenta Claudia Sheinbaum Pardo del 21 de septiembre de 2026 - Gob MX",
+      "peso": 12.0,
+      "n_temas_agrupados": 3,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPZWhoWTRxNktpS3lOOVp1d28wc2IwMG4tWFczQ0trdHlYeXlUSjdPZ3J2VGZfVFhEMWhGUkNNWm5yd0VvQ08wM3o5cHFsT0EwcXgyTnhkX3VRTHVWU2djdUxUTVRPWFh6b2VleUdxOTNpSFV5TTdGaEpvWDBLYzIxVV9WNHJBZmZ1WFpOdFhyUXlXSU54cEh1cFp0V25KZFlKOVVrRWxHa2VVRHcyclJfeEZiNkFDZm5ydXFrSDloX0wyYXF3YVRJUExJN2NHZXBPS2E0a1R4WktaZFh1XzZXb3Q5V3ctWlVpMzN4Tkpsd2N3OEVISUU4cjBoN3BpQQ?oc=5",
+      "actor_vinculado": {
+        "id": "sheinbaum",
+        "nombre": "Claudia Sheinbaum Pardo"
+      }
+    },
+    {
       "id": "trump-agenda",
       "nombre": "Trump y México: declaraciones y presión",
       "categoria": "Relación Bilateral",
@@ -893,6 +917,24 @@
       "confianza": "media",
       "fuente_url": "https://www.informador.mx/mexico/que-se-sabe-de-la-reunion-entre-sheinbaum-y-trump-en-china-20261117-0063.html",
       "actor_vinculado": null
+    },
+    {
+      "id": "tmec-revision",
+      "nombre": "Revisión del T-MEC",
+      "categoria": "Economía",
+      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
+      "motivo": "Seade: del T-MEC con AMLO al movimiento de Sheinbaum - Excélsior",
+      "peso": 7.0,
+      "n_temas_agrupados": 1,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOZzEzaTEyUFg5WkRLMTFyZVBkVk5NWkpMYVZRZ01YU3A2bVE1eTdEOEtpS3dsSEZMaGxVcmEwMU1SRF9SbUN6Yy1fOXRydmlFc1oyOTU2anYwV3FObDBoT3ZDSXZ4MGlUU09lZTFPdzVTcVpBN09tMERsUmZjeTc0MTdEb1gtTEhXVlZCV3pn0gGTAUFVX3lxTE1xdVRVdmJjTldPS1JpeHVGalBJRk5xN1RndU81Sk1YU21qNDRfcURFX2ZIOTRrUXJJTkNEeXNpLVo1UDRSVWxlLUM1dmJ1MlFPTHdUZ2kzM0NCWVJZdU1Wd25XbmJYUDBtQzI4N25ZQUJ2TUJuTUEycU93RkwzZVdOaE9VT1Y3Qm1XeUotd1JVNk1vcw?oc=5",
+      "actor_vinculado": {
+        "id": "rocha_moya",
+        "nombre": "Rubén Rocha Moya"
+      }
     },
     {
       "id": "amlo-agenda",
@@ -965,6 +1007,17 @@
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/08/politica/014a1pol?partner=rss"
     },
     {
+      "id": "auto-b44ad52512",
+      "nombre": "Exhorta Gobernadora a vacunarse contra el sarampión - Imagen del Golfo",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 44,
+      "motivo": "🔔 ALERTA — Salud prioriza vacunación de migrantes contra sarampión - Milenio",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQUm1QamFaczQxcFVIYTZjOHlnOEtnb3VoN00wQzhudXc5bXpvc0dMRUp0YnY0Tl9aeUFOeUVSNXM4d3cyX0V3bC1ieE1fbEx5UE9LN3JXamVXMTF5MnpFemNLUjY2YV8tYXFYLTk2WTZHOHJRTl9OMnV2VmprMTVhUjlFSG9zV19mMlByckV6dmtYVHc3eDcyZ2pCX0xiNmR0ajA40gGjAUFVX3lxTE9NSFFySTFmd0VnenNyX0I0c2M0YnV2YUpjUGYwRHdlYmhZMzhCVUxJdlZVWnQwcjJvZEdNckZMOXNnazlvQUg4bmY5VjIzS3FTOTRqODJNS2E3d3pEbE5BanlQcTlxU2xCYk14UUpfSWw5V3ZDTlFqNWo0a1BzWE9fMUszQWQ5V2dyYjRFQ0YxNVdLWV9YMGp1a01NZmtWSzhseFk?oc=5",
+      "fecha_anterior": "2026-10-03",
+      "fuente_url_anterior": ""
+    },
+    {
       "id": "auto-676e368870",
       "nombre": "Exponen presunto plan de Cerimedo para golpear a la izquierda en México",
       "categoria": "Gobernabilidad",
@@ -987,15 +1040,15 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPZ3NITGtINGNHeUphYjJMZUV3RkdRVXkxQmdHTVlqd3RIMGFDZmV5MG5VbVQtbGNzUVF2UFNvZG9KSDFXVjBhQ2R5bmM2ZzhuSy1rT0hmRDlWV1hmbTZzN0JlMjQyUjdzaHV0Tk9XWGZRMUg4VWFNLWVvb285VU03RXhFOFk2Y1U0eVdFSHVEZENOUmhOZ1E?oc=5"
     },
     {
-      "id": "auto-fd9db05124",
-      "nombre": "Que doña Claudia ya está harta del veleidoso Donald Trump: The Wall Street Journ",
+      "id": "auto-5683d9dc22",
+      "nombre": "Trump estalla contra Ucrania: Marco Rubio revela su enojo por acusaciones de blo",
       "categoria": "Relación Bilateral",
-      "dias_silencio": 11,
-      "motivo": "⚡ Posible presión de Donald Trump — Donald Trump amenaza de nuevo por caravana - Excélsior",
+      "dias_silencio": 27,
+      "motivo": "Trump bromea con despedir al secretario de Estado de EU,  Marco Rubio, si no contesta rápido su llamada",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5DSDJaeTVfUmZsS3pxOWk5UHo2REtNVmloTWpuMi1LOUVKTjRicUc5VURYa0ZEclV2b0VWeld5NVU1UDR3bGF6cmFEQlcxZ1J3Nnptem80Ml9Hb0RXRVRCTk1hYl9JREM0ei1OOHdDNHg5XzlIN3NjeTNCQdIBgAFBVV95cUxPdmtUTkc0aHZqVWRpOHp6a2pPbWwtVzREX195cEdzb1g3X1c1LTFnMkZ2QTJtZVVnQTF4WnhWN2RiVlRBQy13ZDNNaE1xMHFldzdpQXVGX1ZoNlk3Sm5ZUV9mSDkya0N1RXc0dE9lbFFiQVdkWFZxbkpsQjNObWdUSw?oc=5",
-      "fecha_anterior": "2026-11-05",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNQUtobEpfMVY2UGVORUZ3TTVfLW5UQTVWcHM2T1pBcS1UajZLc0MxMmRISGgyVTRUOFFQenFDLXNnS3puNHNmZklKaHRNQm1CZnJNWm5vWGtvcllyWDEzcTdhTHRtVFBOaVFXeFplZlFRZzZJTXhFNXc3RmFsazVTUkRHZkpiU29UcGFGSWZ4eVdhN0RHVzczSWRn?oc=5"
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/17/trump-bromea-con-despedir-al-secretario-de-estado-de-eu-marco-rubio-si-no-contesta-rapido-su-llamada/",
+      "fecha_anterior": "2026-10-20",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQME10RkEzZTQtOGFtNU9WVnNGWnBPWmw4WmxBMGxQUGNxRUtEVEphbERfOHpqSF9Oam14ZmhKY1BCcjI5QkdqZ0tFM011YVNIN1MzZE5VSkxhWEdDeFpMdk9SbkVrSmFuUE1pRmI5QXgwbjlyRnh4N2o0enl3Ul93Y2ItUWdFVWxfX0Jkc2JDSkxPWUtZVk1reVdMa0JFZVJGaEFXeGpwRWc1V09Da3pDT1lwWkNWY095dm52UUktTENnUQ?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1028,6 +1081,17 @@
       "tema": "Que doña Claudia ya está harta del veleidoso Donald Trump: The Wall Street Journ",
       "nota": "⚡ Posible presión de Donald Trump — Donald Trump amenaza de nuevo por caravana - Excélsior",
       "fuente_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5DSDJaeTVfUmZsS3pxOWk5UHo2REtNVmloTWpuMi1LOUVKTjRicUc5VURYa0ZEclV2b0VWeld5NVU1UDR3bGF6cmFEQlcxZ1J3Nnptem80Ml9Hb0RXRVRCTk1hYl9JREM0ei1OOHdDNHg5XzlIN3NjeTNCQdIBgAFBVV95cUxPdmtUTkc0aHZqVWRpOHp6a2pPbWwtVzREX195cEdzb1g3X1c1LTFnMkZ2QTJtZVVnQTF4WnhWN2RiVlRBQy13ZDNNaE1xMHFldzdpQXVGX1ZoNlk3Sm5ZUV9mSDkya0N1RXc0dE9lbFFiQVdkWFZxbkpsQjNObWdUSw?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Mencionado",
+      "tema": "Morena aceptó otro sondeo en NL, dice PT, y lo desmienten",
+      "nota": "Morena aceptó otro sondeo en NL, dice PT, y lo desmienten",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/17/politica/007n2pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1210,9 +1274,9 @@
     {
       "fecha": "2026-11-10",
       "tension": 19,
-      "n_notas": 45,
+      "n_notas": 46,
       "n_alto_impacto": 15,
-      "n_medio_impacto": 30,
+      "n_medio_impacto": 31,
       "n_bajo_impacto": 0
     },
     {
@@ -1226,16 +1290,16 @@
     {
       "fecha": "2026-11-12",
       "tension": 24,
-      "n_notas": 54,
-      "n_alto_impacto": 18,
+      "n_notas": 55,
+      "n_alto_impacto": 19,
       "n_medio_impacto": 36,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-13",
-      "tension": 28,
-      "n_notas": 34,
-      "n_alto_impacto": 13,
+      "tension": 29,
+      "n_notas": 35,
+      "n_alto_impacto": 14,
       "n_medio_impacto": 21,
       "n_bajo_impacto": 0
     },
@@ -1249,26 +1313,26 @@
     },
     {
       "fecha": "2026-11-15",
-      "tension": 32,
-      "n_notas": 22,
-      "n_alto_impacto": 11,
+      "tension": 33,
+      "n_notas": 23,
+      "n_alto_impacto": 12,
       "n_medio_impacto": 11,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-16",
-      "tension": 33,
-      "n_notas": 27,
-      "n_alto_impacto": 12,
+      "tension": 34,
+      "n_notas": 28,
+      "n_alto_impacto": 13,
       "n_medio_impacto": 15,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-17",
-      "tension": 32,
-      "n_notas": 10,
-      "n_alto_impacto": 5,
-      "n_medio_impacto": 5,
+      "tension": 36,
+      "n_notas": 16,
+      "n_alto_impacto": 9,
+      "n_medio_impacto": 7,
       "n_bajo_impacto": 0
     }
   ],
@@ -1307,6 +1371,40 @@
       ]
     },
     {
+      "id": "sheinbaum",
+      "nombre": "Claudia Sheinbaum Pardo",
+      "iniciales": "CS",
+      "x_lunes": 33,
+      "y_lunes": 100,
+      "x_hoy": 50,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 3,
+      "n_alto": 3,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNX2ZVdWlnLUpwc29tSWdZUVFkSENKVjJMTThjS1YxZ0w0ZXFNMVBqa2FhdG5EdkNTQXdlckpscWRNNGcyTDBzWTNPVE04UGh1OUdCb2ZHV3VHTlJkQzB1Z3UtVVJaakhLUEJ6SDZEX3llb0thaTdaS0NkV1JZNm9OSTRFQXdJNmc4dXlGNDdoMklMVDBKeGVpQ1l4dEJDdk4tR2tPNUsxaG0?oc=5",
+      "nota_texto": "Claudia Sheinbaum en el Foro de Cooperación Económica Asia-Pacífico (APEC) - NDL Noticias",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 33,
+          "y": 100
+        },
+        {
+          "fecha": "2026-11-17",
+          "x": 50,
+          "y": 100
+        }
+      ],
+      "fecha_reactivado": "2026-11-17"
+    },
+    {
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
@@ -1321,8 +1419,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
-      "nota_texto": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
+      "nota_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQVThZaXk1QmpmNEdTeXAzWG83ajMxSGU5a054UkM4cFdraWN3UVRNUGlHOXBLYjV3U3lQRDY1WjhfV0ZXN3BsT3VoeDRvVmZsWmNyN0Fwa09DbTFWMmwyaGtYeEdvbklSOFlQck5paURiV1NNNzIwUThBTThqc2ZnSHM5QWxTS1M4am5iQUpLaEZkTGlDNGhocS1mTzVmNmZ6ckZCQnk4LUtwUGVTdGpScDlOM0ExNjFmYVBnYVZiOHN5bFZKQ0gydzBKUkw?oc=5",
+      "nota_texto": "La mañanera de Claudia Sheinbaum, 16 de noviembre de 2026: hoy encabeza Rosa Icela Rodríguez Velázquez - UnoTV",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1337,37 +1435,7 @@
           "x": 50,
           "y": 83
         }
-      ],
-      "fecha_reactivado": "2026-11-17"
-    },
-    {
-      "id": "sheinbaum",
-      "nombre": "Claudia Sheinbaum Pardo",
-      "iniciales": "CS",
-      "x_lunes": 0,
-      "y_lunes": 0,
-      "x_hoy": 17,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 1,
-      "n_alto": 1,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQVThZaXk1QmpmNEdTeXAzWG83ajMxSGU5a054UkM4cFdraWN3UVRNUGlHOXBLYjV3U3lQRDY1WjhfV0ZXN3BsT3VoeDRvVmZsWmNyN0Fwa09DbTFWMmwyaGtYeEdvbklSOFlQck5paURiV1NNNzIwUThBTThqc2ZnSHM5QWxTS1M4am5iQUpLaEZkTGlDNGhocS1mTzVmNmZ6ckZCQnk4LUtwUGVTdGpScDlOM0ExNjFmYVBnYVZiOHN5bFZKQ0gydzBKUkw?oc=5",
-      "nota_texto": "La mañanera de Claudia Sheinbaum, 16 de noviembre de 2026: hoy encabeza Rosa Icela Rodríguez Velázquez - UnoTV",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 1,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-16",
-          "x": 17,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-11-17"
+      ]
     },
     {
       "id": "andy",
@@ -1428,33 +1496,66 @@
       "fecha_apagado": "2026-11-17"
     },
     {
-      "id": "ana_lilia_rivera",
-      "nombre": "Ana Lilia Rivera",
-      "iniciales": "AL",
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "iniciales": "MO",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 33,
-      "y_hoy": 50,
-      "delta_pts": 3.0,
+      "x_hoy": 17,
+      "y_hoy": 100,
+      "delta_pts": 3,
       "alcance": 1,
-      "n_alto": 0,
-      "n_medio": 2,
+      "n_alto": 1,
+      "n_medio": 0,
       "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOOFJsWUx3SW5HdFV1M0FubWU3bFk3dS1RMkFKbkZjZzRUaWpMY2tOYm5lbnhhWG9EaEVBcDhTS0RpRmRGRHROdnROUlVuaTRFZzJTb0ZSYmFXTk9vdjdYQW5GRmEzU2QxYW43dDR6V215TXNSNmkybkFkTThhdkF2Tm9xTHA3emtrai00Qm1qQnZzQzRkRWFNeFdQMWpSUzBQV2lwRk8zeElQa3FydFU1OEEwc0dnRU1LSzFnZUIwME1XWmtvYU85eG5vSU9EVFE5MEdyZHFMWExqc0JzRkRfdGFpcm1iWHc1TTB1eXNWaHFjLUt5VXQtSWp3?oc=5",
-      "nota_texto": "Fortalecer la organización territorial y la unidad en Morena, primordial para lograr la transformación: Ana Lilia Rivera - La Jornada de Oriente – Puebla",
+      "impacto_nivel": "alto",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPQXVTNTQwcFhYOEtST21mSHpDOEpKREtQTXl3TzVlTVdCZGFHOHFkSlBPZEp3Um4xUzVJS0ZpUjFjcXFrbGtSVjIwUDhsa0xTQmV1UGhxRHN6djFjSUNWYXY1TkJxaWZBZ0hnZllxanJQTXF0NmVwZEJLVlM0SXZfRXZyYkkzbndMTEV4QTBuNlR2a21ja0ZxbGRYbGdUVDh4bHptYXhyVUlod3ltN19MeG5CMXg?oc=5",
+      "nota_texto": "Discurso de Sheinbaum en foro APEC reivindica proyecto humanista: Morena - Quadratín Tabasco",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
       "trayectoria": [
         {
+          "fecha": "2026-11-17",
+          "x": 17,
+          "y": 100
+        }
+      ]
+    },
+    {
+      "id": "ana_lilia_rivera",
+      "nombre": "Ana Lilia Rivera",
+      "iniciales": "AL",
+      "x_lunes": 33,
+      "y_lunes": 50,
+      "x_hoy": 50,
+      "y_hoy": 50,
+      "delta_pts": 1.5,
+      "alcance": 2,
+      "n_alto": 0,
+      "n_medio": 3,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOOFJsWUx3SW5HdFV1M0FubWU3bFk3dS1RMkFKbkZjZzRUaWpMY2tOYm5lbnhhWG9EaEVBcDhTS0RpRmRGRHROdnROUlVuaTRFZzJTb0ZSYmFXTk9vdjdYQW5GRmEzU2QxYW43dDR6V215TXNSNmkybkFkTThhdkF2Tm9xTHA3emtrai00Qm1qQnZzQzRkRWFNeFdQMWpSUzBQV2lwRk8zeElQa3FydFU1OEEwc0dnRU1LSzFnZUIwME1XWmtvYU85eG5vSU9EVFE5MEdyZHFMWExqc0JzRkRfdGFpcm1iWHc1TTB1eXNWaHFjLUt5VXQtSWp3?oc=5",
+      "nota_texto": "Fortalecer la organización territorial y la unidad en Morena, primordial para lograr la transformación: Ana Lilia Rivera - La Jornada de Oriente – Puebla",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
           "fecha": "2026-11-16",
           "x": 33,
           "y": 50
+        },
+        {
+          "fecha": "2026-11-17",
+          "x": 50,
+          "y": 50
         }
       ],
-      "fecha_apagado": "2026-11-17"
+      "fecha_reactivado": "2026-11-17"
     },
     {
       "id": "clara_luz_flores",
@@ -1577,5 +1678,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-17 13:46"
+  "hora_corte_publicada": "2026-11-17 15:12"
 }
