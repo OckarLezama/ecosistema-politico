@@ -1,23 +1,23 @@
 {
-  "generado_en": "2026-11-17T15:12:03.088309-06:00",
+  "generado_en": "2026-11-17T18:02:59.267935-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 17,
+  "n_notas_ventana": 20,
   "baja_confianza": false,
-  "tension_nacional": 35,
+  "tension_nacional": 32,
   "tension_anomalia": {
-    "z": 2.34,
-    "nivel": "alta",
+    "z": 1.8,
+    "nivel": "normal",
     "media_periodo": 22.1,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 32,
+      "peso_pct": 40,
       "tema_principal": "Acusación de Narcotráfico contra Rocha Moya",
       "tema_principal_id": "rocha-moya-acusacion",
-      "n_temas": 4,
-      "n_notas": 6,
+      "n_temas": 6,
+      "n_notas": 9,
       "notas": [
         {
           "texto": "En APEC China 2026, presidenta Claudia Sheinbaum se reúne con primer ministro de Canadá - Edomex Al Día",
@@ -32,10 +32,22 @@
           "medio": "Quadratín Tabasco"
         },
         {
+          "texto": "Morena descarta nueva encuesta en Nuevo León; mantiene definición de Clara Luz Flores rumbo a 2027",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/morena-descarta-nueva-encuesta-en-nuevo-leon-mantiene-definicion-de-clara-luz-flores-rumbo-a-2027-2920370.html",
+          "intensidad": 7.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
           "texto": "A Lorenzo Córdova, persecución; a Rocha Moya, liberación de cuentas - MILENIO",
           "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQR3VYM0F1OHV1UGEtaWFJeVRxaksybno5MWFZUDdXLVVRX0pQV3BXNkt3RVdmdUZIQWlvYlJxeUNtNmduZmVXeFN1QzZhZFpEanlsaDZVNTAydDJkZVRtdjVqbW40aTBEamg5elBlZEVKMXV0b0ZkOUJiS25YcV90djc1YUw2V2lEU0hmbm50M05vYjg4b3ZrYkN4eEpXNVRvb3lZS3hHV2ZtNmVaQnBJUF9uSHd1T1dtRHfSAboBQVVfeXFMTzVnR2RnbGZZUU44aWVnUmd2RnRsWmxSMXh1TFpxbnZ1UlFSS3RRRWYzSWNrNkdhQWhpMmxGM1BuRFViamozX3FPbmJDMFdVZ0R4cHBKUkJrUGFCSkQ0SGpjWDdIdWZqb3pSdTJXUnd4QTFLRzBhcTNfbXVjLXpBYWUxYmhsLWxMaVdHWTZvVmxMbEVPa2VHNlZCSVItVDB5Uy11Vldkb1dqaTBMSlBrS3hRMlFERmVDVzF3?oc=5",
           "intensidad": 6.0,
           "medio": "MILENIO"
+        },
+        {
+          "texto": "Claudia Sheinbaum y Mark Carney buscan nuevas rutas comerciales entre México y Canadá; reportan 32 acuerdos cumplidos - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQbVdjdlg5WVRiSVltdGtFZFVfUDBfTHVWaV9ISTNPSTJIalBzd3lxeldERHoyWXZaeUplVkJTZEY1WjFaSG5TUHVZSFZkV0xldGdrWGpOQVJ2Z1g2dEh1ajhYSHZBZG5WS0dxdlRkZGs5bk94bG1ENm1VQ0RuMWRBYXBqTm1tUG9fYmhzUEc1Z0drQ1lfS2FYM3dfM1pySUVYcDlMNWxYQ0xaMVhLeWhpdlNJbkh6VVo2UmJIX0pSaERxMFYyWWRUWHdjbXVmcWE1cU9pVkQwRnlQTGvSAeABQVVfeXFMTW1MYW00bS01dXprS05hNmw5YXVzb2lfNDFBMHktZm1ZOE1mSHJobnlNZXlyX2lrOWxFT2VYaTN1d2ViZ3RhSlVSdWhjRlMzZWxROFZzLTAtb1pfSkVfZ2s5MDhhZ0IzTFRRVnpJbFFVaHpITUJ4dUE3TUpmbDV2aUc5emFoenVzRHEzTlVuZWlFQVVKNzJ1UkxGQmZtZnJJTGtZSzNtdUxPbDlzbG5HMGMtLVlLYlJ2UnVRTEtrVlhQQnZ0OGE5TXRkTWpaODRnQ3pxdzM2TVl4NUs0UGs0Z00?oc=5",
+          "intensidad": 5.0,
+          "medio": "news.google.com"
         },
         {
           "texto": "Morena retoma frase de AMLO para arremeter contra Calderón y Fox: “Están moralmente derrotados” - Infobae",
@@ -54,12 +66,18 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQdkc3OTBZeHdmR2ZJRmdlSFhjSU9KcUNqUTlQSmpHdXViWkxTaFlQTEtPRzdDczJlUTlGSng4QVhTQXFOR2JKc2ZaR0hGYUw4TzBNNlFXeGd1ZDRpQWtnbUNvOXp2Z1lrNjhBaVpOYWQ1dnFFQU0xSG54czVwSXJFSXVzNzdUU21NcnJzS1paR2hMYmh0YXRHSDc5UDZCSk9wYTZjZmhBaHlXOElfTWFNUjhvUXBDWV9GbXlsSWlXOU5qNVFteFVJSGhtZlRNM2U2QXR4b0VtMWd2YUE?oc=5",
           "intensidad": 5.0,
           "medio": "Debate"
+        },
+        {
+          "texto": "Alfonso Ramírez Cuéllar plantea reforma contra la corrupción y el huachicol fiscal - Central Municipal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOMHNyc1hrdzNVZUVKS3RLSXhXYWN6WmxhZUNFcnNNUDRpRXVZM1FjWkNqVTgwVUNYQ3pXR29jZDRsR1VHOG1GV3ZpWmw2d0VhQlcxZFR3ejBndUg5UER4cndabHRNM0ZLcHB4cWdFYklSemdaaG1fSklxMVVqb2VFaXUtb3Q0N2c3VGpsN2ZxWmZiODRxMHFETmo2ajFaX3BRQWEtblpXZUZYWXAxVUpDczB0OGlhUEVram5PVHU1dXJwTE13Tm13MFl5cw?oc=5",
+          "intensidad": 4.0,
+          "medio": "Central Municipal"
         }
       ]
     },
     {
       "categoria": "Economía",
-      "peso_pct": 32,
+      "peso_pct": 29,
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
@@ -84,10 +102,10 @@
           "medio": "heraldodemexico.com.mx"
         },
         {
-          "texto": "Jesús Seade, el economista que la 4T trajo para renegociar el T-MEC - 24-horas",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQTXVoUno1djRlU054WE1HS2UyMThGRnV2cFBtdW9uQjdORGtSdnZZeVExNEl2RjctUXlMclJnUS15VXRaZnI0dnROVXpKSjJ1UzZGTHpHSW1xV2VweEF2TDl6X0FxN3NLOFJIaVFvbUFWMk5JdW1WMXNua3lxU2ZzakhNQWs3OWlLUFVzYWxSZjNYSVhObWFlVU16NUM?oc=5",
-          "intensidad": 6.0,
-          "medio": "news.google.com"
+          "texto": "Sheinbaum y Carney acuerdan fortalecer relación comercial entre México y Canadá ante revisión del T-MEC - Radio Sonora",
+          "fuente_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOay1NWXNrdl9ISWtfVm52SGpIVDRSSExtX19hX1pINjRuUjNfaTA5bDNrU0RZTkNiRTBiejZLbzRoakdQNFM1UklWT2xCclJ5cldqaWZhVVhyUzE3VWtnNXRjZXpjZWpYbnBlNDlJck5hZ0ZFVjBmcEwtd0NwN1NaenJKQW8zaEd2Mk9YOHpEdw?oc=5",
+          "intensidad": 7.0,
+          "medio": "Radio Sonora"
         },
         {
           "texto": "Muere adulto mayor en choque de motocicletas - NVI Noticias",
@@ -99,7 +117,7 @@
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 24,
+      "peso_pct": 21,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
       "n_temas": 2,
@@ -149,7 +167,7 @@
     },
     {
       "categoria": "Social",
-      "peso_pct": 6,
+      "peso_pct": 5,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -728,7 +746,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 11
+          "peso_pct": 10
         },
         {
           "categoria": "Economía",
@@ -874,7 +892,7 @@
       "resumen": "Fiscales federales del Distrito Sur de Nueva York acusaron el 29 de abril de 2026 al gobernador de Sinaloa, Rubén Rocha Moya, y a otros nueve funcionarios de ayudar al Cártel de Sinaloa a traficar drogas a cambio de sobornos y apoyo político, incluyendo una presunta reunión con hijos de 'El Chapo' antes de las elecciones de 2021. Rocha se separó del cargo, compareció como testigo ante la FGR y se reincorporó como gobernador el 21 de agosto de 2026 tras 112 días sin que la Fiscalía mexicana hallara pruebas en su contra. Es el funcionario de más alto rango de Morena acusado formalmente por la justicia estadounidense.",
       "motivo": "EE.UU. amplía investigaciones contra Rocha Moya y sus presuntos vínculos con 'Los Chapitos': Arteaga - Aristegui Noticias",
       "peso": 13.0,
-      "n_temas_agrupados": 1,
+      "n_temas_agrupados": 2,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
@@ -970,12 +988,12 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQelRqRk9uZVRPMUhGVGg2WnJRdzlSemNnVjRKWklfNW55ZUI4M0ZRcXNHOGxvSXdiTTd0YWdqVDNxR0tFSDhJMVVuaFBWdXBEOFhyVFhwQk4wMmNjQTVUb1VCSVNMUDgxenNWSFJkZjZ2YWpfTEVlbW9pc2s1cDB1OExfR2pjd0R4SU43ZlRJclZzT2VMb0VINTBOSEs1emZCNEdqX3lwZFlLUjFDVFJZRVZ6OHJwNm5ncHhIQjNMMUNvR3BDNEFpakxubjF3NXFXelAxM1l4OXVpVFg3Q3ZLVXhHZ3gzMUJ0TXfSAf4BQVVfeXFMTXhhYkRCeUp2U003Z25XUW5kbmxUdTVVemN1UWJ1NDl6REZRc1VhclljQnAwNW9yVTRfR08ycGpRZjNZT2hfLTItdTZmQWpNRi1hd3pyOWpCeWhVYlhqMXFwazJLSERpemNGZTRjQjFpclZzcUpfeDZoTGJMVFhOc0xRdWVXUmQ5TjNjZVZOa1d0clViUXFYSF9fWGJOTnhvVUtvREhsOWNvOVUxUXJtenF4LUJ1UnRpeFh0MHowbkRHYVRMMjU3ZmxGV1Q0ZVBxTnRMWi1lVjdQcGE5SVo4NmVYWERFaVYyWFhIbUdud0pGai0xcFNhaXd1WGV0N2c?oc=5"
     },
     {
-      "id": "auto-598c3a7fc2",
-      "nombre": "Mark Carney manda recado a Trump: Canadá tiene ‘otras opciones’ para la industri",
-      "categoria": "Relación Bilateral",
-      "peso": 5.0,
+      "id": "auto-2713ffde96",
+      "nombre": "Hallan a 14 personas migrantes en pared falsa de tráiler que viajaba hacia Texas",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/16/mark-carney-manda-recado-a-trump-canada-tiene-otras-opciones-para-la-industria-automotriz/"
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/17/hallan-a-14-personas-migrantes-en-pared-falsa-de-trailer-que-viajaba-hacia-texas/"
     },
     {
       "id": "auto-19d05a79b8",
@@ -999,7 +1017,7 @@
       "id": "auto-e4eb518c34",
       "nombre": "Magdiel Sánchez Quiroz*: Un seudónimo colectivo",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 69,
+      "dias_silencio": 70,
       "motivo": "Magdiel Sánchez Quiroz*: Gabriel Rivas y la lucha por  la justicia",
       "impacto": "medio",
       "fuente_url": "https://www.jornada.com.mx/2026/11/17/politica/014a1pol?partner=rss",
@@ -1010,7 +1028,7 @@
       "id": "auto-b44ad52512",
       "nombre": "Exhorta Gobernadora a vacunarse contra el sarampión - Imagen del Golfo",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 44,
+      "dias_silencio": 45,
       "motivo": "🔔 ALERTA — Salud prioriza vacunación de migrantes contra sarampión - Milenio",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQUm1QamFaczQxcFVIYTZjOHlnOEtnb3VoN00wQzhudXc5bXpvc0dMRUp0YnY0Tl9aeUFOeUVSNXM4d3cyX0V3bC1ieE1fbEx5UE9LN3JXamVXMTF5MnpFemNLUjY2YV8tYXFYLTk2WTZHOHJRTl9OMnV2VmprMTVhUjlFSG9zV19mMlByckV6dmtYVHc3eDcyZ2pCX0xiNmR0ajA40gGjAUFVX3lxTE9NSFFySTFmd0VnenNyX0I0c2M0YnV2YUpjUGYwRHdlYmhZMzhCVUxJdlZVWnQwcjJvZEdNckZMOXNnazlvQUg4bmY5VjIzS3FTOTRqODJNS2E3d3pEbE5BanlQcTlxU2xCYk14UUpfSWw5V3ZDTlFqNWo0a1BzWE9fMUszQWQ5V2dyYjRFQ0YxNVdLWV9YMGp1a01NZmtWSzhseFk?oc=5",
@@ -1021,7 +1039,7 @@
       "id": "auto-676e368870",
       "nombre": "Exponen presunto plan de Cerimedo para golpear a la izquierda en México",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 35,
+      "dias_silencio": 36,
       "motivo": "Claudia Sheinbaum expone el Plan México en APEC CEO Summit 2026",
       "impacto": "medio",
       "fuente_url": "https://www.informador.mx/mexico/claudia-sheinbaum-expone-el-plan-mexico-en-apec-ceo-summit-2026-20261117-0001.html",
@@ -1032,7 +1050,7 @@
       "id": "auto-73befce30f",
       "nombre": "Busca Morena frenar favoritismos en Campeche - El Universal",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 27,
+      "dias_silencio": 28,
       "motivo": "Busca Morena frenar 'choques' de interés - Reforma",
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5feUVRdVZvUkI0RVBRQnloajdBSFo0dVRrWFB6NVhEVmo3MTZnVUNHaUktRmx2YkFva0FoOWljcTBfVmlPZWdCVDIyd0JROHEwT0VFaElBbC1TWHg1YkdLYTVCNjdTckkwSHREOEJKTXYxZlpsMGUxR1pjR28?oc=5",
@@ -1043,7 +1061,7 @@
       "id": "auto-5683d9dc22",
       "nombre": "Trump estalla contra Ucrania: Marco Rubio revela su enojo por acusaciones de blo",
       "categoria": "Relación Bilateral",
-      "dias_silencio": 27,
+      "dias_silencio": 28,
       "motivo": "Trump bromea con despedir al secretario de Estado de EU,  Marco Rubio, si no contesta rápido su llamada",
       "impacto": "medio",
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/17/trump-bromea-con-despedir-al-secretario-de-estado-de-eu-marco-rubio-si-no-contesta-rapido-su-llamada/",
@@ -1052,17 +1070,6 @@
     }
   ],
   "actores_destacados": [
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "rol": "Investigado",
-      "tema": "Acusación de Narcotráfico contra Rocha Moya",
-      "nota": "EE.UU. amplía investigaciones contra Rocha Moya y sus presuntos vínculos con 'Los Chapitos': Arteaga - Aristegui Noticias",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxObXZyV09NZXROS21tX0tLV01ZV29tcGptZjJsbTVqR0QtNVR6cUVmWHR6TFd4R3YyVDhicHVSV2o3M0FPazNyMjZuZFBScDJ0Y19tUXJuOUV0UzU0ZFRYdTdYMFVvWnAxOU9UaVVsUWVGeURvaVI0d25Wb3JfakZURW9XZE9lNlpoVmg4MFNCSlJuSGRJRllpbWgyYk5vTUV3ZHJqS20wWXdCSHVDRW41Q3p5dEhCWk1PTE1reFk2UlZ2LTBETWw0bDgwaV9KME93NVZQVVNR?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
@@ -1073,6 +1080,17 @@
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "alta"
+    },
+    {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "rol": "Investigado",
+      "tema": "Acusación de Narcotráfico contra Rocha Moya",
+      "nota": "EE.UU. amplía investigaciones contra Rocha Moya y sus presuntos vínculos con 'Los Chapitos': Arteaga - Aristegui Noticias",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxObXZyV09NZXROS21tX0tLV01ZV29tcGptZjJsbTVqR0QtNVR6cUVmWHR6TFd4R3YyVDhicHVSV2o3M0FPazNyMjZuZFBScDJ0Y19tUXJuOUV0UzU0ZFRYdTdYMFVvWnAxOU9UaVVsUWVGeURvaVI0d25Wb3JfakZURW9XZE9lNlpoVmg4MFNCSlJuSGRJRllpbWgyYk5vTUV3ZHJqS20wWXdCSHVDRW41Q3p5dEhCWk1PTE1reFk2UlZ2LTBETWw0bDgwaV9KME93NVZQVVNR?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
     },
     {
       "id": "trump",
@@ -1097,12 +1115,12 @@
       "confianza": "media"
     },
     {
-      "id": "rosa_icela",
-      "nombre": "Rosa Icela Rodríguez",
-      "rol": "Reacción social/mediática",
-      "tema": "Rosa Icela Rodríguez encabezará las mañaneras mientras Sheinbaum está en China, ",
-      "nota": "Rosa Icela Rodríguez llama a productores del Bajío a privilegiar diálogo; \"no hay necesidad de bloqueos\" - La Jornada",
-      "fuente_url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNNk9mMnhSMGpsMC1MWG1MOTczWGpGR0Q2cjhhVV9FV3pnSEpfMkpxbkExZ1BtVWZjcXlHV2ctWS04REI3ZDRhcXNscjZfVXFLaXh2RFNSblAwdktjREJMaVVpYkVHTFhHWS1HUXotWVh2RUdWQjUyanI5YThHY21Pazl2N1BWU2tRdzlTZWgzd05oN1haR0pOZ01QUU5KY2RvSUlvZ1A4QU9GMk5vQVJuNmRRanVESU1CcTNoVUFwN2pibGtIbDFiOUEwYWUtSURnYVRTWDBFM1ViSFFJMkUzcGhjQmxVVTZrTXVyOFRlNkhGelVFclNDTzk5dEVHN21ITVI5U0JkbmNTN29f?oc=5",
+      "id": "pt_partido",
+      "nombre": "Partido del Trabajo (PT)",
+      "rol": "Reacción de oposición",
+      "tema": "Morena aceptó otro sondeo en NL, dice PT, y lo desmienten",
+      "nota": "Morena aceptó otro sondeo en NL, dice PT, y lo desmienten",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/17/politica/007n2pol?partner=rss",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1266,9 +1284,9 @@
     {
       "fecha": "2026-11-09",
       "tension": 15,
-      "n_notas": 52,
+      "n_notas": 53,
       "n_alto_impacto": 13,
-      "n_medio_impacto": 39,
+      "n_medio_impacto": 40,
       "n_bajo_impacto": 0
     },
     {
@@ -1329,10 +1347,10 @@
     },
     {
       "fecha": "2026-11-17",
-      "tension": 36,
-      "n_notas": 16,
-      "n_alto_impacto": 9,
-      "n_medio_impacto": 7,
+      "tension": 32,
+      "n_notas": 20,
+      "n_alto_impacto": 11,
+      "n_medio_impacto": 9,
       "n_bajo_impacto": 0
     }
   ],
@@ -1376,14 +1394,14 @@
       "iniciales": "CS",
       "x_lunes": 33,
       "y_lunes": 100,
-      "x_hoy": 50,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 3,
+      "x_hoy": 67,
+      "y_hoy": 88,
+      "delta_pts": 4.5,
+      "alcance": 4,
       "n_alto": 3,
-      "n_medio": 0,
+      "n_medio": 1,
       "n_bajo": 0,
-      "impacto_nivel": "alto",
+      "impacto_nivel": "medio",
       "apagado": false,
       "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNX2ZVdWlnLUpwc29tSWdZUVFkSENKVjJMTThjS1YxZ0w0ZXFNMVBqa2FhdG5EdkNTQXdlckpscWRNNGcyTDBzWTNPVE04UGh1OUdCb2ZHV3VHTlJkQzB1Z3UtVVJaakhLUEJ6SDZEX3llb0thaTdaS0NkV1JZNm9OSTRFQXdJNmc4dXlGNDdoMklMVDBKeGVpQ1l4dEJDdk4tR2tPNUsxaG0?oc=5",
       "nota_texto": "Claudia Sheinbaum en el Foro de Cooperación Económica Asia-Pacífico (APEC) - NDL Noticias",
@@ -1398,11 +1416,10 @@
         },
         {
           "fecha": "2026-11-17",
-          "x": 50,
-          "y": 100
+          "x": 67,
+          "y": 88
         }
-      ],
-      "fecha_reactivado": "2026-11-17"
+      ]
     },
     {
       "id": "rosa_icela",
@@ -1524,6 +1541,40 @@
       ]
     },
     {
+      "id": "clara_luz_flores",
+      "nombre": "Clara Luz Flores",
+      "iniciales": "CL",
+      "x_lunes": 17,
+      "y_lunes": 50,
+      "x_hoy": 33,
+      "y_hoy": 75,
+      "delta_pts": 3.0,
+      "alcance": 2,
+      "n_alto": 1,
+      "n_medio": 1,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": false,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/morena-descarta-nueva-encuesta-en-nuevo-leon-mantiene-definicion-de-clara-luz-flores-rumbo-a-2027-2920370.html",
+      "nota_texto": "Morena descarta nueva encuesta en Nuevo León; mantiene definición de Clara Luz Flores rumbo a 2027",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 17,
+          "y": 50
+        },
+        {
+          "fecha": "2026-11-17",
+          "x": 33,
+          "y": 75
+        }
+      ],
+      "fecha_reactivado": "2026-11-17"
+    },
+    {
       "id": "ana_lilia_rivera",
       "nombre": "Ana Lilia Rivera",
       "iniciales": "AL",
@@ -1554,13 +1605,12 @@
           "x": 50,
           "y": 50
         }
-      ],
-      "fecha_reactivado": "2026-11-17"
+      ]
     },
     {
-      "id": "clara_luz_flores",
-      "nombre": "Clara Luz Flores",
-      "iniciales": "CL",
+      "id": "ramirez_cuellar",
+      "nombre": "Alfonso Ramírez Cuéllar",
+      "iniciales": "",
       "x_lunes": 0,
       "y_lunes": 0,
       "x_hoy": 17,
@@ -1571,20 +1621,19 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPNWRvbFctQmhNcDFvdld0QmZ0U1BxT2VHVXVteS1iZjFZejZNaVpwRXRYbFVSLTNMOFdUckttZ3dHNGZMVjdveTh5M0NfY2xrRVFpWDQwVXNYcWQ5bGkyX1loNVhrV215QnNIS0FhelJDTjRna01RSHlhQW1tbmhVbC1xdjJNZXR3bVl1SmhZOXJNSWhEYWIxbktxQl9aWHk0UGdvTmN1MW9raldRNW1CQU0tSEttOHJxelEwNkNXaU5nODNnNE1KUTJWX29hMXc?oc=5",
-      "nota_texto": "Morena descarta segunda encuesta para elegir candidato en NL; respaldan a Clara Luz - abcnoticias.mx",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOMHNyc1hrdzNVZUVKS3RLSXhXYWN6WmxhZUNFcnNNUDRpRXVZM1FjWkNqVTgwVUNYQ3pXR29jZDRsR1VHOG1GV3ZpWmw2d0VhQlcxZFR3ejBndUg5UER4cndabHRNM0ZLcHB4cWdFYklSemdaaG1fSklxMVVqb2VFaXUtb3Q0N2c3VGpsN2ZxWmZiODRxMHFETmo2ajFaX3BRQWEtblpXZUZYWXAxVUpDczB0OGlhUEVram5PVHU1dXJwTE13Tm13MFl5cw?oc=5",
+      "nota_texto": "Alfonso Ramírez Cuéllar plantea reforma contra la corrupción y el huachicol fiscal - Central Municipal",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
       "trayectoria": [
         {
-          "fecha": "2026-11-16",
+          "fecha": "2026-11-17",
           "x": 17,
           "y": 50
         }
-      ],
-      "fecha_apagado": "2026-11-17"
+      ]
     },
     {
       "id": "lorenia_valles_sampedro",
@@ -1619,11 +1668,20 @@
   "tablero_semana_inicio": "2026-11-16",
   "resumen_mananera": [],
   "mananera_estado": "fuente_retrasada",
-  "a_vigilar": [],
+  "a_vigilar": [
+    {
+      "id": "auto-c9706e6661",
+      "nombre": "Sheinbaum Pardo destacó que “Sembrando Vida” es un programa que brinda bienestar",
+      "categoria": "Gobernabilidad",
+      "resumen": "Sheinbaum Pardo destacó que “Sembrando Vida” es un programa que brinda bienestar y que permite la restauración y conservación ecológica – Talla Politica - Talla Politica",
+      "fuente_url": "",
+      "actor_vinculado": null
+    }
+  ],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1678,5 +1736,5 @@
     }
   ],
   "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-17 15:12"
+  "hora_corte_publicada": "2026-11-17 18:03"
 }
