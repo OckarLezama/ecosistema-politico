@@ -1,13 +1,13 @@
 {
-  "generado_en": "2026-11-17T23:47:39.205106-06:00",
+  "generado_en": "2026-11-18T00:02:46.804306-06:00",
   "ventana_horas": 18,
   "n_notas_ventana": 39,
   "baja_confianza": false,
   "tension_nacional": 20,
   "tension_anomalia": {
-    "z": -0.42,
+    "z": -0.4,
     "nivel": "normal",
-    "media_periodo": 22.3,
+    "media_periodo": 22.1,
     "dias_base": 27
   },
   "categorias_dia": [
@@ -225,31 +225,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-21",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 11
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 66
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 6
-        }
-      ]
-    },
     {
       "fecha": "2026-10-22",
       "categorias": [
@@ -924,6 +899,31 @@
           "peso_pct": 12
         }
       ]
+    },
+    {
+      "fecha": "2026-11-18",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 9
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 59
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 11
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 11
+        }
+      ]
     }
   ],
   "top5_temas": [
@@ -940,10 +940,7 @@
       "medios_corroborantes": 4,
       "confianza": "alta",
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/17/ricardo-monreal-propone-quitar-los-superpoderes-de-la-presidencia-del-ine-que-morena-aprobo-en-2024-para-taddei/",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "actor_vinculado": null
     },
     {
       "id": "trump-agenda",
@@ -988,10 +985,7 @@
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxObXZyV09NZXROS21tX0tLV01ZV29tcGptZjJsbTVqR0QtNVR6cUVmWHR6TFd4R3YyVDhicHVSV2o3M0FPazNyMjZuZFBScDJ0Y19tUXJuOUV0UzU0ZFRYdTdYMFVvWnAxOU9UaVVsUWVGeURvaVI0d25Wb3JfakZURW9XZE9lNlpoVmg4MFNCSlJuSGRJRllpbWgyYk5vTUV3ZHJqS20wWXdCSHVDRW41Q3p5dEhCWk1PTE1reFk2UlZ2LTBETWw0bDgwaV9KME93NVZQVVNR?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -1167,14 +1161,6 @@
     "nivel_fuente": "ALTA"
   },
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-10-21",
-      "tension": 25,
-      "n_notas": 73,
-      "n_alto_impacto": 31,
-      "n_medio_impacto": 42,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-10-22",
       "tension": 25,
@@ -1390,6 +1376,14 @@
       "n_alto_impacto": 16,
       "n_medio_impacto": 26,
       "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-11-18",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
+      "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
@@ -1407,7 +1401,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSmNHRmhOR3UyMExoQ2Q2TFpzXzg1VUpSWVUwNWZnX0stNlpCVVVacmVWUzFLTUVHSmtjRjRzWUYya1B1V3RLNmY1cktHZFlBSkl0a2k4cXdqU1Z4eEJLUjdIb2JidFhhcU1JdV9HVHd4c0ZPcHNCZUxQQy1haXBiYmtUX0k2NVE3TTlwQVUtSEVieDlDTWFXNGxYX1dGRWdaNmVsaVhQSFlsM2x3TTFFaXZtRXpVXzg2R0xrUlcyYWpkWHhfWmdKUlp2VVFJa1ozWHZ2OUtWRDJHcko0eVBBT0huNE5mR1E?oc=5",
       "nota_texto": "PAN acusa trato privilegiado a Rubén Rocha Moya y advierte posible financiamiento político rumbo a 2027 - Central Municipal",
       "es_nuevo": false,
@@ -1424,7 +1418,8 @@
           "x": 100,
           "y": 83
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "sheinbaum",
@@ -1440,9 +1435,9 @@
       "n_medio": 3,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNX2ZVdWlnLUpwc29tSWdZUVFkSENKVjJMTThjS1YxZ0w0ZXFNMVBqa2FhdG5EdkNTQXdlckpscWRNNGcyTDBzWTNPVE04UGh1OUdCb2ZHV3VHTlJkQzB1Z3UtVVJaakhLUEJ6SDZEX3llb0thaTdaS0NkV1JZNm9OSTRFQXdJNmc4dXlGNDdoMklMVDBKeGVpQ1l4dEJDdk4tR2tPNUsxaG0?oc=5",
-      "nota_texto": "Claudia Sheinbaum en el Foro de Cooperación Económica Asia-Pacífico (APEC) - NDL Noticias",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQVThZaXk1QmpmNEdTeXAzWG83ajMxSGU5a054UkM4cFdraWN3UVRNUGlHOXBLYjV3U3lQRDY1WjhfV0ZXN3BsT3VoeDRvVmZsWmNyN0Fwa09DbTFWMmwyaGtYeEdvbklSOFlQck5paURiV1NNNzIwUThBTThqc2ZnSHM5QWxTS1M4am5iQUpLaEZkTGlDNGhocS1mTzVmNmZ6ckZCQnk4LUtwUGVTdGpScDlOM0ExNjFmYVBnYVZiOHN5bFZKQ0gydzBKUkw?oc=5",
+      "nota_texto": "La mañanera de Claudia Sheinbaum, 16 de noviembre de 2026: hoy encabeza Rosa Icela Rodríguez Velázquez - UnoTV",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1457,7 +1452,8 @@
           "x": 100,
           "y": 75
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "morena_partido",
@@ -1473,9 +1469,9 @@
       "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://www.elfinanciero.com.mx/nacional/2026/11/17/ricardo-monreal-propone-quitar-los-superpoderes-de-la-presidencia-del-ine-que-morena-aprobo-en-2024-para-taddei/",
-      "nota_texto": "Ricardo Monreal propone quitar los ‘superpoderes’ de la presidencia del INE que Morena aprobó en 2024 para Taddei",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPQXVTNTQwcFhYOEtST21mSHpDOEpKREtQTXl3TzVlTVdCZGFHOHFkSlBPZEp3Um4xUzVJS0ZpUjFjcXFrbGtSVjIwUDhsa0xTQmV1UGhxRHN6djFjSUNWYXY1TkJxaWZBZ0hnZllxanJQTXF0NmVwZEJLVlM0SXZfRXZyYkkzbndMTEV4QTBuNlR2a21ja0ZxbGRYbGdUVDh4bHptYXhyVUlod3ltN19MeG5CMXg?oc=5",
+      "nota_texto": "Discurso de Sheinbaum en foro APEC reivindica proyecto humanista: Morena - Quadratín Tabasco",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 1,
@@ -1485,7 +1481,8 @@
           "x": 100,
           "y": 67
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "andy",
@@ -1501,7 +1498,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNa0RseXFEUjZzc1VleVlqWmFxSkotbnBTRE8yckM2aWhkdU1KVF9CUHYyU0o5bTdCcno0dFE4VDFfclhPSTdQdWw5eU93ckJ2Tnd0dkJKSHZIQUtESWFJNXF0U0FkbjRlS0o1Ry1Bc1pGcS1Ra000R3V1eHptSXVtLXBLcTVlRklCM0x5ZVZ4Q3ZXdmJSYTdRd2cyZkVvTFN2VzYzSEQ5a25vVndTX3JCZVJJR1VKVElDaHUxaWhrUUlQM1hQYjVTTUk2MXFVaVZtcERyWnBQUERXLVpTcjdaSWlOMNIB6AFBVV95cUxQTnd2bHBIbXhLbkRKMTdlLXgzclFzaDU5dUtaOWIydnFvM3k1RWJ5c09zQ2xGQnQ4WGxrWm9QblJraU8zWVNIbTlSdEN4ZHk2Z1p0anRvSkczdUxiU050TTdiZFY0UkZIbW9DNDFqSnlrYkdrSDVPdkhKai12TGQ2U0JaM0R0SFlUdFM5d1lqZ0JRbjFQUDlycW0wTmszNnk2b0ZSZXJIOFI2elE0OHpOVWYxNUxsRzBuaE9DS01WazZsMWMycHhraVRCSURUUDVnOHhQMy01ZnROUDRzZW1zUUtWLWtiVHhC?oc=5",
       "nota_texto": "Felipe Calderón advierte “deterioro grave” de la democracia en México y acusa corrupción en entorno de Andy López Beltrán - Por Esto!",
       "es_nuevo": false,
@@ -1519,7 +1516,7 @@
           "y": 83
         }
       ],
-      "fecha_reactivado": "2026-11-17"
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "rosa_icela",
@@ -1535,9 +1532,9 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
-      "nota_texto": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQVThZaXk1QmpmNEdTeXAzWG83ajMxSGU5a054UkM4cFdraWN3UVRNUGlHOXBLYjV3U3lQRDY1WjhfV0ZXN3BsT3VoeDRvVmZsWmNyN0Fwa09DbTFWMmwyaGtYeEdvbklSOFlQck5paURiV1NNNzIwUThBTThqc2ZnSHM5QWxTS1M4am5iQUpLaEZkTGlDNGhocS1mTzVmNmZ6ckZCQnk4LUtwUGVTdGpScDlOM0ExNjFmYVBnYVZiOHN5bFZKQ0gydzBKUkw?oc=5",
+      "nota_texto": "La mañanera de Claudia Sheinbaum, 16 de noviembre de 2026: hoy encabeza Rosa Icela Rodríguez Velázquez - UnoTV",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1552,7 +1549,8 @@
           "x": 50,
           "y": 83
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "monreal",
@@ -1568,7 +1566,7 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/monreal-pide-mantener-el-dialogo-para-renovar-presidencia-del-ine-2920394.html",
       "nota_texto": "Ricardo Monreal pide consenso para elegir a la nueva titular del INE",
       "es_nuevo": false,
@@ -1580,7 +1578,8 @@
           "x": 33,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "clara_luz_flores",
@@ -1596,7 +1595,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/morena-descarta-nueva-encuesta-en-nuevo-leon-mantiene-definicion-de-clara-luz-flores-rumbo-a-2027-2920370.html",
       "nota_texto": "Morena descarta nueva encuesta en Nuevo León; mantiene definición de Clara Luz Flores rumbo a 2027",
       "es_nuevo": false,
@@ -1613,7 +1612,8 @@
           "x": 50,
           "y": 67
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "higinio_martinez",
@@ -1629,7 +1629,7 @@
       "n_medio": 1,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.jornada.com.mx/2026/11/16/politica/007n3pol?partner=rss",
       "nota_texto": "Respalda Higinio Martínez investigar injerencia de Fox  en las elecciones de 2006",
       "es_nuevo": false,
@@ -1647,7 +1647,7 @@
           "y": 75
         }
       ],
-      "fecha_reactivado": "2026-11-17"
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "lorenia_valles_sampedro",
@@ -1663,7 +1663,7 @@
       "n_medio": 3,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/16/participacion-de-sheinbaum-en-apec-fortalecera-el-plan-mexico-destaca-lorenia-valles-2919932.html",
       "nota_texto": "Participación de Sheinbaum en APEC fortalecerá el Plan México, destaca Lorenia Valles",
       "es_nuevo": false,
@@ -1681,7 +1681,7 @@
           "y": 50
         }
       ],
-      "fecha_reactivado": "2026-11-17"
+      "fecha_apagado": "2026-11-18"
     },
     {
       "id": "ana_lilia_rivera",
@@ -1749,7 +1749,7 @@
   ],
   "tablero_semana_inicio": "2026-11-16",
   "resumen_mananera": [],
-  "mananera_estado": "fuente_retrasada",
+  "mananera_estado": "pendiente",
   "a_vigilar": [
     {
       "id": "auto-c9706e6661",
@@ -1817,12 +1817,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-11-17T18:02:59.267935-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo",
-      "Nueva declaración relevante (otro actor): Ricardo Monreal"
-    ]
-  },
-  "hora_corte_publicada": "2026-11-17 23:47"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-11-18 00:02"
 }
