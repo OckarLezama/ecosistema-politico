@@ -1,30 +1,24 @@
 {
-  "generado_en": "2026-11-18T18:03:26.235020-06:00",
+  "generado_en": "2026-11-19T00:03:29.176194-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 35,
+  "n_notas_ventana": 36,
   "baja_confianza": false,
-  "tension_nacional": 21,
+  "tension_nacional": 19,
   "tension_anomalia": {
-    "z": -0.25,
+    "z": -0.59,
     "nivel": "normal",
-    "media_periodo": 22.4,
+    "media_periodo": 22.1,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 74,
+      "peso_pct": 81,
       "tema_principal": "Coordinaciones distritales federales de Morena 2027",
       "tema_principal_id": "morena-coordinadores-distritales",
-      "n_temas": 9,
-      "n_notas": 27,
+      "n_temas": 10,
+      "n_notas": 30,
       "notas": [
-        {
-          "texto": "Partido Verde descarta respaldar a Andrés Manuel López Beltrán en Tabasco - La Razón de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNbG83QktUVFBxS3pxS3NDTE1McUR2OURWSUJ2S2l5QVBzcUlUQ2hNRk9yR2RTazlRemVOVVJiV1NGc1BYeC1idmxCZVhKX01wazVNaGIzVzdFOTJpd29feUxoZjYzUUtjRDRhb2NqUnNHQy10OEJCdU5MVGhYTnlyNEQzMl9oNnAxV0tpbk5ja0pmemZOVE5NQjFoSHotaW1ZUk5aN2RBV0NiWk9DLTFPVjhzNmxXa3VPSlHSAdQBQVVfeXFMUC1Gb1FpQkxoVEZudk5MRUdGczJ4blQ0c1V1UEMxczExaDM2R0U4Q195SjJiYmpGR2JOUllBb1hOa1RCZ21zcm00ZTJjVHBXMy1HZFhieVh4OTZtT1VWRG1VUnpnbkh6c1hiVFpha2V6SWI1cE9SX3IyaTVLVGlBM3pHcElna1k2WGkzemhyc2xrMTNCR3Zyck96dzJLZ1JsdDNBVElmSDBXUDZnSWhMUmhaN3FodmlmZFJZRkh2al94MnBlVWxIWVJWZlhNVWhTTExtZ08?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Razón de México"
-        },
         {
           "texto": "Morena abre registro para elegir coordinaciones distritales locales en 31 entidades - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPS3Jqb0pKTGd4NldVTmpvVFZvNDQ0SGl3UTc1ZmZVVmEwWmVKMDBXNXBfQ3ZUdzU4c0VVNHBkZTJMNUpTanhTWUNqZTVwc0lSY0NpTFFCMkY3MC1RUldZdXhENUpVNlN2SWlLSlNGa2F0OUFzWkphcGZxbjN5NnJEOGgzTVFHQWtkOFJ3QUk2QlNORExKSGxLMUkwekVDR3BqajVn0gGjAUFVX3lxTE1fRld1TGNuWFpKaE5ERWNaRHpmY0UxakRaMFBNM282QVFuTXdfZUV0aWNpZG5acUYwazhvemhOeUFESTZtWXVfbGJMTEhnbnBUTWtQdDg3eldLVF9rSDhmMTZCaDBsMlk4MlNHRGp3bzJwZHRpdFhKYnN0Ri1mZ3pVTnFtOTMtbVBZSDFxc1pnRjh0VzVpVld5UTdjT05zNUNLTm8?oc=5",
@@ -62,6 +56,18 @@
           "medio": "SonoraPresente"
         },
         {
+          "texto": "Morena Puebla estrena sede en Bellavista y asegura que hay unidad - Sucesos Puebla",
+          "fuente_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVDVuT1RlUEdkck1tU3pucW1Za1M1U1dSRHF6WUxQeUZjaS16ZHhyT1VXM0ZrZEpGak1ZUThra1Rka3dGS1VLMl9iRllWXzl4dlROUEI5S1NRWUlDT3cyZTE2X1pMdXVPX3ZFaFJBSjE4bnlHZmlnME12ZmwtWmV1YjlrTnNNNU5Wa0pDNFdjWl9wLS1OR1hV?oc=5",
+          "intensidad": 7.0,
+          "medio": "Sucesos Puebla"
+        },
+        {
+          "texto": "Llama Delia González a mantener la unidad de Morena ante selección de coordinadores distritales - Al Calor Político",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdFBpSXhkRl9uVG4tR2ItVEVldkJnVmJsV2pxeGYwMTlVY1ZaUUV5YXRLTzkyci0zdmZHRm5janctaUFzTFAza21hZ29laGVrd3YwVVBOYUgyWkVRVS01RUtibThnWFIxSS1fOEpkR01BUDlLZ2JMLW5MLXQtV0V1c0hvS3BSdnFZWjhuTlZHYWRmOW4zaG9lMnpjME1GemFvRkt0Z0NhMHZrSHNCRVpqRWF1MEd6S20zUjZNUUhSSlZ3UXk5QUQ3Yk5ocVlvSGNvQUFoNG5kVDhyaEZISFNlbEI5LVRtQQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "Al Calor Político"
+        },
+        {
           "texto": "Cuentas planchadas, impunidad intacta a Rocha Moya - El Sol de México",
           "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPTG1mM1VodEpmcVdTbnJvTXdsNXJTTEZROXRpZFA0T0FvY1lQSDdReFZUQW8zeUphSldxNDg0b2pFSEtySmxUWTdoTFdqMFBsdGRoTzR5NmNvOVFpVkd6VS03WGZvMUFlczNCZVdyUTdvalVTR0w1dkpucXJsSk05bXpXdUdhdEoxLXlCd0gtSHJBajNCVWdhNjZBM3I3a3RNcGhn?oc=5",
           "intensidad": 6.0,
@@ -72,18 +78,6 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOUXRGdFpyR0hCZnlXdUtLZzJEelIwV3NSbTU4VVNvTVY0NWFTTUtJV3h6VUZmdVgyMkgwSGFmYWxTWm1wTUJwdmM2a3RYUVh5LXZ3eVJCVFd3OGNtZVFWcmhOVGlQQ3ZrbFRGZTh6Snhla216MzhWTFlDVFFFV3dqXzhDLWw0MmxhXzE4bElxR2t6YmRfMURHRDFoaTFvbDJKRTV6dmJfQWF4WEQzOGVNekpR?oc=5",
           "intensidad": 6.0,
           "medio": "Hoja de Ruta Digital"
-        },
-        {
-          "texto": "“Funciona el INE mejor ahora con 10 consejeros que antes con Taddei”",
-          "fuente_url": "https://www.jornada.com.mx/2026/11/18/politica/004n1pol?partner=rss",
-          "intensidad": 5.0,
-          "medio": "jornada.com.mx"
-        },
-        {
-          "texto": "“Somos representa la mafia en el INE”: Ariadna Montiel",
-          "fuente_url": "https://www.jornada.com.mx/2026/11/18/politica/008n2pol?partner=rss",
-          "intensidad": 5.0,
-          "medio": "jornada.com.mx"
         },
         {
           "texto": "Morena abre convocatoria para Coordinaciones Distritales Locales en 31 estados",
@@ -108,29 +102,23 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQanAyVG5IT0piQmZRam9VcHdWNnEtbXNTcXFDY19pNHp0b0xXTl9LcXNlTmJXeVNSXy1UMW9GdFZvVGhDVE1OX05ka3puRmFLMDJjOGhRRlJGa3NrQjM5Zkc5QUlJMFpyWW5PMkNPRDdzTFVORVo0aHBsNjVMZnRKU2dR?oc=5",
           "intensidad": 5.0,
           "medio": "Quadratin Quintana Roo"
+        },
+        {
+          "texto": "Emite Morena convocatoria para coordinaciones distritales en 31 entidades - Quadratín Tabasco",
+          "fuente_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOU2lDMFFWeEV0cTZSWl92YUFzY2YtblhINEhwU1hRR1Q5X0pJVE5sU2M2a1A2ejVLUG04R0JqQnU4ZW1QQVpVX2x3ZDYwcTBQSkhCM2QtbFJyb3dLdnZiZmt5Ulk2TExlZU9WZmExb2pEcTJGUTJKQ0RsOFR6Tm1VbnBUelVFY1QyM3A2M0JVTDJFRGhJaWRXbHVQaWR1MXhVWFFTRGJiY3RDLTVFOEdCWDBKWXc1OVE?oc=5",
+          "intensidad": 5.0,
+          "medio": "Quadratín Tabasco"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 16,
+      "peso_pct": 12,
       "tema_principal": "Trump y México: declaraciones y presión",
       "tema_principal_id": "trump-agenda",
-      "n_temas": 4,
-      "n_notas": 5,
+      "n_temas": 3,
+      "n_notas": 4,
       "notas": [
-        {
-          "texto": "Sheinbaum abordará el T-MEC con Trump en China",
-          "fuente_url": "https://www.tabascohoy.com/sheinbaum-abordara-el-t-mec-con-trump-en-china/",
-          "intensidad": 7.0,
-          "medio": "tabascohoy.com"
-        },
-        {
-          "texto": "Claudia Sheinbaum se Reúne con Donald Trump en China - N+",
-          "fuente_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOLVdGTWZ5ZnZzc2d2LTU3YmZOalUzbVl1Wk5fRG42T3VmbWhNMXN6RDNtRGVmZ1F3aXFqUUlnMG5zQ0FvcXV4Ny1PRWJoRU4wSHQtQ19xNmZadGktLV9hS2RPLVVQSXNQSWN5NlljcHNIeU5OR0haQTYzZktWcU5iODc4ZUFuTzBjbVEwZGVvTWlKTmFQLVFOcVg2SDBBSG5HNE0xVA?oc=5",
-          "intensidad": 7.0,
-          "medio": "news.google.com"
-        },
         {
           "texto": "Sheinbaum: fue \"una muy buena reunión con el presidente Donald Trump\" - La Jornada",
           "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNVUVjanQyM3FEZWNIdXlXdUdxUXhScVU1d2RnbjYwaXF4ZHZmcF91QjRXWlV1bndKTDl2OGZPbGgwNFpZeHpJQkRmbEZobm50NmtzWGVpdWw2X09MX0xndlZDcVFXdFNtZmRaOFp0VWRBRDRJR1dnUEJBSVZudk1BaDNWUF82YjZrekJoN1BRQ2k2WGJmMWRlc092QThka1ZkTXA3d3hGQUd1YUVuUzNtU3BOSEdfS1VRb2NqazNR?oc=5",
@@ -142,6 +130,12 @@
           "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/18/sheinbaum-en-china-oposicion-cuestiona-resultados-de-su-viaje-y-morena-presume-inversiones-por-432-mil-mdd-2920795.html",
           "intensidad": 7.0,
           "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "Sheinbaum anuncia avances sobre el T-MEC tras reunirse con Trump; volverán a verse en diciembre - Periódico Digital Centroamericano y del Caribe",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNdXVGdTZOTmxDMEYybi1SaGQwWVlIcjE2RHVDaVVEZXpld2dHSUUyVTlnZnkwTU1La2JwWk9BalBkb09kc19nWlhIc3dYNFhJTkRRLUhRZU1PbUpLVklyZHdsazczYUlVdGNjc3RrQTZXYS0tdF8yc1FKaXV4aVRybEJyYXd5S2V3dnVuZjh2UVhYYks1U01Bb1JCcWRBZ0lnam53SUlKZDlRX0hlV1QyY1Z5VlktRkw1dTFleVIybVl2alFtWV9hMkZyQUlCNkdWSUhmZ09n?oc=5",
+          "intensidad": 7.0,
+          "medio": "news.google.com"
         },
         {
           "texto": "Así fue la reunión de Sheinbaum y Trump en la APEC: Duró 20 minutos y ‘estaba de muy buen ánimo’",
@@ -174,23 +168,16 @@
       ]
     },
     {
-      "categoria": "Social",
-      "peso_pct": 3,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
-      "n_temas": 1,
-      "n_notas": 1,
-      "notas": [
-        {
-          "texto": "🔔 ALERTA — Descarta Gobierno de Trump deportar migrantes por mar - Reforma",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOLWdpQjVaRlotbjZ1c2NSaVNvM0ZmQlFLUDVWZG04WEJpZE11VUwxZ0FmcjNjdXBKb1BXNXRySzNaTW9NNmNCN1ZFUi1OQ1c2TV9JZWg3YzF3ZDRWeWpJSUNVYml6N1U1RmRuYkJiMFE4WFV0a09qaDVjajBLaldkLWFBc1BVYUswUWRkME45ak0?oc=5",
-          "intensidad": 6.0,
-          "medio": "Reforma"
-        }
-      ]
+      "categoria": "Seguridad Nacional",
+      "peso_pct": 0,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 0,
+      "n_notas": 0,
+      "notas": []
     },
     {
-      "categoria": "Seguridad Nacional",
+      "categoria": "Social",
       "peso_pct": 0,
       "tema_principal": null,
       "tema_principal_id": null,
@@ -200,31 +187,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-22",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 64
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 11
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 6
-        }
-      ]
-    },
     {
       "fecha": "2026-10-23",
       "categorias": [
@@ -246,7 +208,7 @@
         },
         {
           "categoria": "Social",
-          "peso_pct": 6
+          "peso_pct": 5
         }
       ]
     },
@@ -255,7 +217,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 12
+          "peso_pct": 11
         },
         {
           "categoria": "Gobernabilidad",
@@ -284,7 +246,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 65
         },
         {
           "categoria": "Relación Bilateral",
@@ -384,7 +346,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 65
+          "peso_pct": 66
         },
         {
           "categoria": "Relación Bilateral",
@@ -613,7 +575,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 17
+          "peso_pct": 16
         },
         {
           "categoria": "Economía",
@@ -705,7 +667,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 8
+          "peso_pct": 7
         },
         {
           "categoria": "Gobernabilidad",
@@ -730,7 +692,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 9
+          "peso_pct": 8
         },
         {
           "categoria": "Gobernabilidad",
@@ -763,7 +725,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -784,7 +746,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 61
+          "peso_pct": 62
         },
         {
           "categoria": "Relación Bilateral",
@@ -838,7 +800,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -859,7 +821,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 59
+          "peso_pct": 60
         },
         {
           "categoria": "Relación Bilateral",
@@ -884,7 +846,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 62
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -899,6 +861,31 @@
           "peso_pct": 10
         }
       ]
+    },
+    {
+      "fecha": "2026-11-19",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 7
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 64
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 10
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 11
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 7
+        }
+      ]
     }
   ],
   "top5_temas": [
@@ -908,17 +895,14 @@
       "categoria": "Gobernabilidad",
       "resumen": "Convocatoria y registro de aspirantes a coordinadores distritales federales de Morena rumbo a las elecciones de 2027.",
       "motivo": "Morena abre registro para elegir coordinaciones distritales locales en 31 entidades - Milenio",
-      "peso": 37.0,
-      "n_temas_agrupados": 7,
+      "peso": 42.0,
+      "n_temas_agrupados": 8,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 4,
       "confianza": "alta",
       "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPS3Jqb0pKTGd4NldVTmpvVFZvNDQ0SGl3UTc1ZmZVVmEwWmVKMDBXNXBfQ3ZUdzU4c0VVNHBkZTJMNUpTanhTWUNqZTVwc0lSY0NpTFFCMkY3MC1RUldZdXhENUpVNlN2SWlLSlNGa2F0OUFzWkphcGZxbjN5NnJEOGgzTVFHQWtkOFJ3QUk2QlNORExKSGxLMUkwekVDR3BqajVn0gGjAUFVX3lxTE1fRld1TGNuWFpKaE5ERWNaRHpmY0UxakRaMFBNM282QVFuTXdfZUV0aWNpZG5acUYwazhvemhOeUFESTZtWXVfbGJMTEhnbnBUTWtQdDg3eldLVF9rSDhmMTZCaDBsMlk4MlNHRGp3bzJwZHRpdFhKYnN0Ri1mZ3pVTnFtOTMtbVBZSDFxc1pnRjh0VzVpVld5UTdjT05zNUNLTm8?oc=5",
-      "actor_vinculado": {
-        "id": "morena_partido",
-        "nombre": "Morena (partido político)"
-      }
+      "actor_vinculado": null
     },
     {
       "id": "trump-agenda",
@@ -926,12 +910,12 @@
       "categoria": "Relación Bilateral",
       "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
       "motivo": "Sheinbaum: fue \"una muy buena reunión con el presidente Donald Trump\" - La Jornada",
-      "peso": 18.0,
+      "peso": 12.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
+      "medios_corroborantes": 2,
+      "confianza": "media",
       "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNVUVjanQyM3FEZWNIdXlXdUdxUXhScVU1d2RnbjYwaXF4ZHZmcF91QjRXWlV1bndKTDl2OGZPbGgwNFpZeHpJQkRmbEZobm50NmtzWGVpdWw2X09MX0xndlZDcVFXdFNtZmRaOFp0VWRBRDRJR1dnUEJBSVZudk1BaDNWUF82YjZrekJoN1BRQ2k2WGJmMWRlc092QThka1ZkTXA3d3hGQUd1YUVuUzNtU3BOSEdfS1VRb2NqazNR?oc=5",
       "actor_vinculado": null
     },
@@ -948,21 +932,10 @@
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPQWJGYmdVVUVhUHhnNDhmVkpsc2xzTVN4U21zbEhqWGJFQ3BfdVZMRVlpUEczM0pKYVdiMzc2LVA4TU5lT3RSai1qd3NYQmE4VDNrSTdsVzVMOG5UWUJhd3FhYTdKX28zUkYtWXVzUGgwUzJjeXA0bl95ZlF4NlZZcFdKUUxmRngwR1dIMlMzOC1na0lTc3Y1ZlNMWkJOZ2tYekhvQ0ZrZnQ0a0xnb1FPYVNQaDJhYUpBR2c2bTFEUFUzRkhkUUplZmF1cFF0VG45Ym1obWppM2ZnazhLSkI4eTlrNUd5YTZzVm1EcmdGNklpeDRpU2ZWTTl2ejfSAYICQVVfeXFMUHltcWRlT1U0QkFqV0Z2Ml9jR1l1eVVYd21pMTFXVTI3RkExV3A1ZjhnS1MydnZyaWhMZE5qcjc2ZHVzbGItTU44V2s3cnctamhhQmxvU2VYcURBTjB0SG9remRIZVVsSGF6ZkQ0SThIQnpxTGJ2STUteVZsNU8xdC1oWXZBcWR0VWpUWjVUSU12MXFkLWIydGc0aC05WkYwckp1TjY5SjYtMEctY2hVQ1FDX19ENlJSTldjUDVhNVYyNFQtT2hPQ00zTUp5ejBPU3ktZDBLcGZFY3d5N0pfdFJnSUFEM3VrdmFaYXFwb3FId2J3b1A5MkdkYURVT1ZkWEVR?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-863a09cbde",
-      "nombre": "Revisan Icela Rodríguez y Johnson estrategia contra arribo de migrantes a EU",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/18/politica/009n1pol?partner=rss"
-    },
     {
       "id": "auto-5a96adf4f6",
       "nombre": "Perez Hilton vuelve a casa tras crisis de salud mental; busca refugio en sus hij",
@@ -994,30 +967,49 @@
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQMTNnZXZlNWZVMHlkYTl1eExNMGYwR3pvRzhaUkdlTFQwWXZOelVYYzdzV0Q3Y3Qxa09pNk8zd2p6VzQ3dGh6QVpyNmxvNmNadDlXazVyY2Z0QXVLQ2dPdjEyclZQQUJRQzZEdzVSRTlmYkVfQkZCZFhYeWo3T01CWkh2OGlhU001VzdPTzlCcVRZSlBTVVM3cnFEdVRoejJmazZSbDJNWS14X0VZOVZVdkpJMWo1VTFoVUZNUnBDd1IyRmNjX3I0N1NmMTBHNXBXOHQzYy1kY2p6eGR1?oc=5"
+    },
+    {
+      "id": "auto-9a1e6a256d",
+      "nombre": "Claudia Sheinbaum se vuelve viral en la red social China Weibo tras volar a la A",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNc3ZtS1hiaXNLdTgzckxtaWR5dTJ4ckc5M2ZLSURETG16OUtGcVJyX3RGdEtXQ0gyaGRsTWpDc2lZNTlrd21oYjhUQllDYVY5T05HdS1GQnNLV0s5NV9Lc0FETk1LWm9BLVVrQVZOb2w3dkxsZldybjk4NThsdVdqSVlFTFBKSjllWnhBMk1JUVlUYmljQ3JMWVZMcC1hX2F0cTg4QkRiM1RTMGhUUElIWEpiVE9pM29samJROFlYOXhyWGNKS2UxNnl4SjZyclNjeXhxeTRJSzh6WEZmREwycmJnemx0b2ZNTWfSAe8BQVVfeXFMTUV0M3dZdm9HSGxWeWdLbzdFTlNZNWxLVlV0TDVRUjBuV1ZDX3lOdGFTWi04VWNFMkhoaGZpOFZYckJHRXFYekFCQ0JIc2dNQmhGbmV5ZTBKS1dKNmxMLVlmMTVYUjlsbWF5TXVMcW90N21zWHJGd3VpZ0pVbEt5NDRiTjBreElMMnk5MjQzbmpkeGlrWkFucHlIMlhfSjJsUFhxZXgxWGFIcl8yTDlnMlpQRFdlSE9xcTlxRldodU5qczAtX3VNMHpHR1h5OE9CcU9fN0V6UFBHSEN1U0FIT2REcGE5aGN5OEdWQ2hOSkk?oc=5"
     }
   ],
   "temas_retomados": [
     {
-      "id": "auto-767ab0d23b",
-      "nombre": "Senado discute recuperación del ascenso y descenso en el fútbol mexicano",
+      "id": "auto-4b52154eb3",
+      "nombre": "Caso Farath Coronel: Detienen a escolta, es sospechoso del asesinato del colabor",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 57,
-      "motivo": "Aprueba el Senado ascenso de 234 militares y 108 marinos",
+      "dias_silencio": 74,
+      "motivo": "Detienen a sospechoso del asesinato del periodista Eduardo Flores en Acapulco",
       "impacto": "medio",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/18/politica/010n2pol?partner=rss",
-      "fecha_anterior": "2026-09-22",
-      "fuente_url_anterior": "https://www.angulo7.com.mx/2026/deportes/senado-discute-recuperacion-del-ascenso-y-descenso-en-el-futbol-mexicano/724238/"
+      "fuente_url": "https://www.informador.mx/mexico/detienen-a-sospechoso-del-asesinato-del-periodista-eduardo-flores-en-acapulco-20261118-0208.html",
+      "fecha_anterior": "2026-09-05",
+      "fuente_url_anterior": "https://www.elfinanciero.com.mx/espectaculos/2026/09/05/detienen-a-escolta-del-vidente-farath-coronel-es-sospechoso-del-asesinato-del-colaborador-de-hoy/"
     },
     {
-      "id": "auto-32aecbf31b",
-      "nombre": "Tribunal en Texas acusa a 2 mexicanos de traficar con menores migrantes y darles",
-      "categoria": "Social",
+      "id": "reforma-doble-nacionalidad",
+      "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas",
+      "categoria": "Gobernabilidad",
       "dias_silencio": 50,
-      "motivo": "🔔 ALERTA — Menores migrantes, una realidad - Milenio",
+      "motivo": "Morena busca impedir doble nacionalidad a quien compita por gubernatura de Tamaulipas - Milenio",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQZS1pR19tVGZkWjRpQjN4blJQcDVlODlRN2duR2VSWGZKaDdBX0xuOUZZSVZJY2hoVmhvTkJnVER4RldfZnIwS3RVbHZrdmswS0VyMW9fbFdjamN4VEU4UjUzMXpQVVRpNHVHTTg4Rm1EXzNBWjFoenhRNTlfSGpBeE5rVUUwZU1uU04wS1ZzWE9IRURHNkxBNW5GNNIBmwFBVV95cUxPcVpFbVdoNnl1UUd1VkdGWTlRc2Z5VUVwQUs2MGVfOFJiRktHc2NwSEtINnZoU0FVS1ZvdWh0M2V1eWhqcmdHeVdPaTlwOTByekRQZmxlVXNQMWQ2eHlMSGRkRXZpMGxIcWp6eWd3VFhnQ2dxazhTZnVES3FwQmJVVDBzeW5MYTcyRWZheEwyNEp3SGVaMjJRQUF4OA?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQVkdCZHRobEl6ZjdBbm9vMEVDNmdYVmI4Q014cm9GS2JXUXFtSGZ1QkVGTS1SZEZEMC05dUxmM0Z5YjhQbnFrWmFOTm5lSmliR2VncFdIcmNPZGNWNmlRRHAxQTFuWXAzQkc3aTVkazNpcUZ5ZVR0VktHUllyamZDamxpRGJ2UXgwUC1YNDFpYTRiX1lyWnM5X1BSYWxMX2M50gGgAUFVX3lxTFBUVlBsZ1NFYTlrUTBPX1NwbHpXdlJ2eFhSZlY5LVdxcGgtRWZiRF9KRnJiVS1hSzNUVjJUZVZvaWRocXNWSFRWSnhwOXBmSXktVTBqV3VhTGZhdjdJTmZ6NlF4NzhGNjZ1V0FHTHI0a2ZTd0hUSllGOVNuOFpTbmtPM1NTUTBDOHpIazVzQXVMSUg0QTViRXd1MzJjM3RERW0?oc=5",
       "fecha_anterior": "2026-09-29",
-      "fuente_url_anterior": "https://www.elfinanciero.com.mx/mundo/2026/09/29/tribunal-en-texas-acusa-a-2-mexicanos-de-traficar-con-menores-migrantes-y-darles-gomitas-con-thc/"
+      "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/29/politica/009n2pol?partner=rss"
+    },
+    {
+      "id": "auto-8de996db6e",
+      "nombre": "Netflix estrena Animales sobre migrantes sin protección legal | M2 - Milenio",
+      "categoria": "Social",
+      "dias_silencio": 42,
+      "motivo": "🔔 ALERTA — Refuerza México protección a migrantes ante ICE - Reforma",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQNkU3MzZfNldFTVZIS1RidGxNWGt4QXVOVmV0ZW9RY19ndFZNa3hHRFo4V0RFMzN6OTZlRVd1SExhWVRIaXpNUngwMlliM1hTaVM2akFkZVJ4ajVJWjdyMU9UazB3VzJRY2M1bEVOeTJ2UXp1bGRTWVR6eno5SXBVVkdEZGotclgx?oc=5",
+      "fecha_anterior": "2026-10-07",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOaWlYRlUxMzlSbVl0RXE4T2Rzcl80cnlpYWNTY3hQbGtyQjdrWUthejlJZDFrRmRNX0ptWnFyb3pWMmtYS3JFaEk0dkxtWTI5SnFWa2RkN0M1anh5b3hsdzFHMWFmWmJmdlp6VnpVczZHUWpaVlVGWkVDRTdzZEhad2VVT1B6bDhMcEY3aGhZSUptNURyMW1SMUJzdEZCdkttcUxkcks1U3ZMYUEweWRpYUtvNWtFUTRRTGhQOGFtN25manM5SmlRZDdlVjlTUGfSAc8BQVVfeXFMTmlpWEZVMTM5Um1ZdEVxOE9kc3JfNHJ5aWFjU2N4UGxrckI3a1lLYXo5SWQxa0ZkTV9KbVpxcm96VjJrWEtyRWhJNHZMbVkyOUpxVmtkZDdDNWp4eW94bHcxRzFhZlpiZnZaelZ6VXM2R1FqWlZVRlpFQ0U3c2RIWndlVU9Qemw4THBGN2hoWUlKbTVEcjFtUjFCc3RGQnZLbXFMZHJLNVN2TGFBMHlkaWFLbzVrRVE0UUxoUDhhbTduZmpzOUppUWQ3ZVY5U1Bn?oc=5"
     },
     {
       "id": "auto-e0fea45fdb",
@@ -1031,26 +1023,15 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNWjVIRTRvYllWb0tHcmo0ekxWTF9rZWJ5dlJaRVQ4Y3RYUzEzajFFdEYxZmVtVmdJdDFiSkdrTGp1aWUwX1RVdF9YRUJLdHJBVVdVT2RRUnlEWlpuY3NmTFFxcGdpSFFlcDFwN1VETFh5dktfaGI3N1lDejlPWjBNcUFhU1gwb3c1WHBBS0xB?oc=5"
     },
     {
-      "id": "auto-e862f91ebd",
-      "nombre": "Presupuesto, Ucrania, migración: cinco claves de la cumbre de líderes de la UE -",
-      "categoria": "Social",
-      "dias_silencio": 33,
-      "motivo": "🔔 ALERTA — Impulsan cumbre sobre migración - Reforma",
+      "id": "auto-1533b63a85",
+      "nombre": "Claudia Sheinbaum firma decreto para proteger a niños y jóvenes en redes sociale",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 34,
+      "motivo": "Presidenta Claudia Sheinbaum firma decreto de entornos digitales seguros para niñas, niños y adolescentes - Gob MX",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE4tMWFiRThWa2pOdFVWV1YwLWlQdGRJZWdiYWFZaGMybUZqNTU4WXVENGp1TnRFcjVMVkdmc21qVFZSMTU2clZ3dnFLa3FvNWJuZ190Y3dtcm90d2U4am50aFZQTjZxdTRuNUhRdUJCV0pRckE?oc=5",
-      "fecha_anterior": "2026-10-16",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNLUVwLWlBdTd2VlFtbWdycjFIaC1SNDZYNHVSU1Q2UTdTN2RnZXdaQXE3R2lPRV9PSS1pZ0NKOU13WjVDS2RUZGk3d3RIdFpWcTdkNmtiMkx3aE9FNHJmcEZUVUFORU1yUk1sSmhQRGdUM2VwV29NUjFabWVGRG9xUERGVHdXTW5qREJXM0RuMWc4eUpqdUlJOXp5WVhLVmZwSU1HVEYwNURMQk1XSUhB?oc=5"
-    },
-    {
-      "id": "auto-edc2d9eb94",
-      "nombre": "Guerra de declaraciones entre opositores y guindas por migrantes",
-      "categoria": "Social",
-      "dias_silencio": 18,
-      "motivo": "🔔 ALERTA — Senado declara el 18 de diciembre como Día Nacional de Personas Migrantes - El Universal",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxORzVNNE1HU1c3TUN2d3BxWGNNYTlTZmxfZEwyUmVneWlKRndBbm5Vd3l3U18tU1pPNENJZ3Mwc3puWkZhalUtM1VqeS1NRmVSOGYzMmpVUXJTZjlNbE4wR3ZkQjNqYXNvbHdRMmR6YzFOWE9GZnpYVTMxWndXZUUxSGwxM2VSUi1qQ1o1cnlzVFNzOEFaMzRXaUxtbkNlVlRWdG1hc1JueTlRVDN1T1BMU2s2X2lJQnNidUJCLTlLVHVRWmJSekNDWmZxbVo0Z2dEQ1pWcmtNSndrd2EwMUNnbGl2TkoyVW1aWllGaktBX1g?oc=5",
-      "fecha_anterior": "2026-10-31",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPNlg3RU5UallNVkVYaGF0WWc5QTBvRHJpSXQ0UDczbGZRWVVhNTNRT2lZa2NFODN3U0tMMUZ5Yk9nLWRIVk1rZGpjZHpDSWsxeUVGN0JWRS1RRGlsUDJVNkt2eGVlNGg3V1BMdDZScmF2Z0RrWlhtdXlCVU8yMnhLLUVnOVk1R0cza21waHh6UFZYV0VLNFBXWE9DY2dHNGNkUVQ0VlNSR2o?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNdXd6SUlJQUxVT1RXRGZEZ2ZmUC1QX25xV0FmLWtNMG5EUDBpbnd5R3hTUXM0eVVpZjVSeldEN2l1OEwzTjdicDVYaFYzN2REX19LZHpRMkFtYURRdzZ6cUlvbVRURjRxSWYzLS1KMHhhdTd3eVQwTXlWZlV5U19yNk9OdGVUaXNvVFhnRHhjVW9SYWctOHhhc0tBOEdOM3hYc2JhckRWc29vODhMNlFERTBtMDJ6LUg1bC1NcHpSeF9EdDJJOEFYVjN5bVpvdTdXSjM0U04xVVdKTHpRbXFvNHUzZjQyQQ?oc=5",
+      "fecha_anterior": "2026-10-15",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNTUdBUlRYUmZnaVRha0pRZ1ExeTVZVUs5cGtOYXR0UkxLa1lXQThubHRkejJyWGhIUFRDNG1oMzR3eTBfd1ZWZTRJQ1BVS1YwUThGMWRxRUVva3dyZ1gybkdlMjk5dUdVTV9xelBCa09YTGF6RUJTQjJCOWc4NXh6cV90ZEhPY3drbUw5Zk9vUWpZaGFuNkpkWXRVN2VSRkdoTGU4T3hMaThRcVh6ZjA1TmwybkI0MG52VDI3d2NVX3E5Y0lnc01EZGw2aF9sNWMxVzJtcjh0UERHTFZhdFpnOG1nVUVwQQ?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1069,12 +1050,12 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum Viaja a China para Cumbre APEC 2026; Prevé Reunión con Xi Jinp",
-      "nota": "Reunión de la presidenta Claudia Sheinbaum con el presidente de Vietnam, Tô Lâm. Shenzhen, China - Gob MX",
-      "fuente_url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQT0haNTRCcmFvOU9rSFVKdXBTWURnbXRTU1JwWkFFREFqRTgtb3Q3V0dmd1lKX2l4ajRoSzVfc0dvSzZ4WVhSMjRQMzhkbjBEVEhOenMtT1VrTmlrbjFXQjNHZGU1Y3VqSDd3aFdDb21wdEo5LWpIUmx3aS1rb1VSVGh6MzV3MUdkMzc5dmFIZzVKOTBMOEZiOG10dHhNeUFWVUQ2LXg3OS01UWVDYkhEMGRzOHBjcGNHOUp0aDhMNlZxREdIUHVTSHdndE5OQQ?oc=5",
+      "tema": "Rosa Icela Rodríguez encabezará las mañaneras mientras Sheinbaum está en China, ",
+      "nota": "Rosa Icela Rodríguez recomienda no denunciar en La Mañanera para ‘no alertar’: explican cómo presentar peticiones a Claudia Sheinbaum - Infobae",
+      "fuente_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNOHYtWDBRUEVycHZOYmhyUlIxSTBSNm9GdFlFS052QkxQaUZGbjBteDQ4Vlc4NHJXMEhQbWJlQWthRlhkbXF3cWMyQXBVTXRnNlF3NjFiWEpEMHB1Q2J0RGk0R1lJdVdneDMtSG5fOWlGVmw5SjdIanQwVUNSMDE0NURhRVVIZ1U3aThuODlWbGF0bXI1TmJwaHViUzZKQ1pNS2dzVFNxOXBRdER0ZXRJT2FiejBwMDNtSlpEMVdXenp1X0dRbXc0QmlFSUxySzhvVkdfalU0ZDFSWkE0Tm5zM3lLbkhDNHlLRTc4RW1pRm84cXU1YzdzRk9UQXg1c3hOYVVF0gGeAkFVX3lxTFBBWWlTZThTVWF1Rk5zd01iSzhpNzlsZ0w3anJ0cms3TFFVcEpQT2Z1ZDVYQzdTYVRBMFZsSzdCOWdFZDZ4OTRRYU9wSVc4aUZtN2Q2bC1BbXBsNThTT0dIdGxFOFFuNjlmb0ZMUzNYZXRjTnVvSGtnRmNSWENtLTQ1SVNzWlNsbm1FUmVJR05MNFVKSGlHNlBNNUF0VUNCXzJEcWJTQUstM2dVbUNlb2d1VnZUdFMzSWFZYTBRZUhlZ19PTlBRT3VRMXcwcmRZd25VSmppUEhuNjFmNjdIUkNad2hfOE4zdmRVdTNwU0JuT0NCb0Y4bEhVRUFzZVJUeGxfcmswX1BEVm5JWjhKOHVRZU1FOXpMZGhtX05GNUE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
-      "confianza": "alta"
+      "confianza": "media"
     },
     {
       "id": "trump",
@@ -1099,24 +1080,24 @@
       "confianza": "media"
     },
     {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "rol": "Mencionado",
-      "tema": "PRI analiza no ponerle contrincante a Morena en Tabasco: \"Que juegue solo 'Andy'",
-      "nota": "Morena irá solo en Tabasco para 2027; Cantón Zetina da por descontado el triunfo de \"Andy\" López Beltrán - Proceso",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxObTdBTlZmX0RTNU5BOTZhNE1HdU9ELU5nSENqdFluYW9iZmZaSURMLXhUZnctSTNHR1FFSWVTNDlKN2FyUzBfQndMeks3eFVhaEZjQWNZTUpVbU9qU1l0aV96SjY4STFWLWZ6T0FkTzRKbmQ3T1dpb2MtcXI2UlBsU2tPYUdJbVNmWDN0RmlYVkhGREhlZ201dHZkLTdVMmI3dGJxWGRyWERlXzJoRUpQR2xvMzFQdy1BM1Nwc0RzOGFiUlRqeWNBekZObU9qWnRmYXlqMHpRRmpoS3ZhMVBYanZfS0t5WHdQTHF4cmtZUXlRZw?oc=5",
-      "reaparece": true,
+      "id": "montiel",
+      "nombre": "Ariadna Montiel",
+      "rol": "Reacción social/mediática",
+      "tema": "EL UNIVERSAL se deslinda de supuestas fotografías de Ariadna Montiel - El Univer",
+      "nota": "Carta de Ariadna Montiel a la columna Serpientes y Escaleras - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNdXBrcENDM2tmQVpKVzZQNjNGbF9tbnYxLXJqUURuZkNWYkFxUEdyR2NYTHJLNjMzdEpjeWRacm5ZOThjb2JFSVFEY0k0RUtNeko2dHhBN082SE9MUHJja3dnLW1uZUZYYW9tNnNIckJmNEtGWURfdDNCZDlnaXZsMVA1dl9BWGFqaTNqZWZQejNZd0hHX2x4bTB1YWg5UG9W0gG0AUFVX3lxTE9JVlJ2NTJHTUVmdGJFSC14aTNBaVJPeUh6Q1h5ZkV5dUctS19DQ2JkMlRfQXVxVFFCS0JHMGJ2UW5GRGl4cTZYUDNQNHMtaHZnS05FamZ3cDJaWlN2dFFfUllWYzlJdTR5dmtvakhScU9GOF84enZzTXFlbjRNNjByblNDbkxkUHFDTFhvbnZvV1d4dzBsZWZ0eXVfSzBBSnZiVzIxWXBBUDhjRjVvM2FMaWV5bw?oc=5",
+      "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     }
   ],
   "declaracion_presidenta": {
     "actor": "Claudia Sheinbaum Pardo",
-    "texto": "No hay censura; el derecho de las audiencias es un principio constitucional: presidenta Claudia Sheinbaum - Gob MX",
-    "fuente_url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQaDRoaDAxUDhodFpsaTFIcWl3VzZzZEtyeVRuaTdhOF8yaFRLRFRhdTN5em5CZmNGUmttYUMxczhLck1fSjNLUmhPVjFKTjE5QmtFNlNCdmFORlhYZXNnVVA4b0RQeGRSSEFoNmkzSmw3SFBZMjNEa2hLdXpFVnFwcWxVaDZxYTNWODlsTkEydXhHLU1oaTNyR1lhWk5QdF83Z2xqaHpCdHFPMGM5N19RUVdmR2ZIb3dWWWhqSWlVUzJObEo5ZF9sMERRc1pveTlQMGNqb01XTFgtSXJZSTJSOEdYbXc?oc=5",
+    "texto": "Sheinbaum: fue \"una muy buena reunión con el presidente Donald Trump\" - La Jornada",
+    "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNVUVjanQyM3FEZWNIdXlXdUdxUXhScVU1d2RnbjYwaXF4ZHZmcF91QjRXWlV1bndKTDl2OGZPbGgwNFpZeHpJQkRmbEZobm50NmtzWGVpdWw2X09MX0xndlZDcVFXdFNtZmRaOFp0VWRBRDRJR1dnUEJBSVZudk1BaDNWUF82YjZrekJoN1BRQ2k2WGJmMWRlc092QThka1ZkTXA3d3hGQUd1YUVuUzNtU3BOSEdfS1VRb2NqazNR?oc=5",
     "intensidad": 7.0,
     "fecha": "2026-11-18",
-    "nivel_fuente": "OFICIAL"
+    "nivel_fuente": "ALTA"
   },
   "declaracion_otro": {
     "actor": "Morena (partido político)",
@@ -1128,19 +1109,11 @@
   },
   "patron_historico_4sem": [
     {
-      "fecha": "2026-10-22",
-      "tension": 25,
-      "n_notas": 82,
-      "n_alto_impacto": 35,
-      "n_medio_impacto": 47,
-      "n_bajo_impacto": 0
-    },
-    {
       "fecha": "2026-10-23",
       "tension": 20,
-      "n_notas": 80,
+      "n_notas": 82,
       "n_alto_impacto": 31,
-      "n_medio_impacto": 49,
+      "n_medio_impacto": 51,
       "n_bajo_impacto": 0
     },
     {
@@ -1161,10 +1134,10 @@
     },
     {
       "fecha": "2026-10-26",
-      "tension": 21,
-      "n_notas": 66,
+      "tension": 20,
+      "n_notas": 67,
       "n_alto_impacto": 22,
-      "n_medio_impacto": 44,
+      "n_medio_impacto": 45,
       "n_bajo_impacto": 0
     },
     {
@@ -1241,18 +1214,18 @@
     },
     {
       "fecha": "2026-11-05",
-      "tension": 26,
-      "n_notas": 76,
+      "tension": 25,
+      "n_notas": 77,
       "n_alto_impacto": 28,
-      "n_medio_impacto": 48,
+      "n_medio_impacto": 49,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-06",
       "tension": 24,
-      "n_notas": 47,
+      "n_notas": 48,
       "n_alto_impacto": 25,
-      "n_medio_impacto": 22,
+      "n_medio_impacto": 23,
       "n_bajo_impacto": 0
     },
     {
@@ -1274,17 +1247,17 @@
     {
       "fecha": "2026-11-09",
       "tension": 17,
-      "n_notas": 57,
-      "n_alto_impacto": 15,
+      "n_notas": 58,
+      "n_alto_impacto": 16,
       "n_medio_impacto": 42,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-10",
       "tension": 19,
-      "n_notas": 52,
+      "n_notas": 54,
       "n_alto_impacto": 17,
-      "n_medio_impacto": 35,
+      "n_medio_impacto": 37,
       "n_bajo_impacto": 0
     },
     {
@@ -1330,25 +1303,33 @@
     {
       "fecha": "2026-11-16",
       "tension": 34,
-      "n_notas": 29,
-      "n_alto_impacto": 14,
-      "n_medio_impacto": 15,
+      "n_notas": 31,
+      "n_alto_impacto": 15,
+      "n_medio_impacto": 16,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-17",
       "tension": 22,
-      "n_notas": 46,
+      "n_notas": 47,
       "n_alto_impacto": 18,
-      "n_medio_impacto": 28,
+      "n_medio_impacto": 29,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-18",
       "tension": 21,
-      "n_notas": 35,
-      "n_alto_impacto": 13,
-      "n_medio_impacto": 22,
+      "n_notas": 42,
+      "n_alto_impacto": 16,
+      "n_medio_impacto": 26,
+      "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-11-19",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
       "n_bajo_impacto": 0
     }
   ],
@@ -1357,148 +1338,74 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 25,
+      "x_lunes": 22,
       "y_lunes": 67,
       "x_hoy": 100,
-      "y_hoy": 67,
-      "delta_pts": 36.0,
-      "alcance": 19,
-      "n_alto": 8,
-      "n_medio": 16,
+      "y_hoy": 69,
+      "delta_pts": 43.5,
+      "alcance": 22,
+      "n_alto": 10,
+      "n_medio": 17,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPS3Jqb0pKTGd4NldVTmpvVFZvNDQ0SGl3UTc1ZmZVVmEwWmVKMDBXNXBfQ3ZUdzU4c0VVNHBkZTJMNUpTanhTWUNqZTVwc0lSY0NpTFFCMkY3MC1RUldZdXhENUpVNlN2SWlLSlNGa2F0OUFzWkphcGZxbjN5NnJEOGgzTVFHQWtkOFJ3QUk2QlNORExKSGxLMUkwekVDR3BqajVn0gGjAUFVX3lxTE1fRld1TGNuWFpKaE5ERWNaRHpmY0UxakRaMFBNM282QVFuTXdfZUV0aWNpZG5acUYwazhvemhOeUFESTZtWXVfbGJMTEhnbnBUTWtQdDg3eldLVF9rSDhmMTZCaDBsMlk4MlNHRGp3bzJwZHRpdFhKYnN0Ri1mZ3pVTnFtOTMtbVBZSDFxc1pnRjh0VzVpVld5UTdjT05zNUNLTm8?oc=5",
-      "nota_texto": "Morena abre registro para elegir coordinaciones distritales locales en 31 entidades - Milenio",
+      "apagado": true,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/18/sheinbaum-en-china-oposicion-cuestiona-resultados-de-su-viaje-y-morena-presume-inversiones-por-432-mil-mdd-2920795.html",
+      "nota_texto": "Sheinbaum en China: Oposición cuestiona resultados de su viaje y Morena presume inversiones por 432 mil mdd",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-11-17",
-          "x": 25,
+          "x": 22,
           "y": 67
         },
         {
           "fecha": "2026-11-18",
           "x": 100,
-          "y": 67
+          "y": 69
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-19"
     },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 42,
-      "y_lunes": 80,
-      "x_hoy": 46,
-      "y_hoy": 82,
-      "delta_pts": 3.0,
-      "alcance": 9,
-      "n_alto": 7,
-      "n_medio": 4,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOLVdGTWZ5ZnZzc2d2LTU3YmZOalUzbVl1Wk5fRG42T3VmbWhNMXN6RDNtRGVmZ1F3aXFqUUlnMG5zQ0FvcXV4Ny1PRWJoRU4wSHQtQ19xNmZadGktLV9hS2RPLVVQSXNQSWN5NlljcHNIeU5OR0haQTYzZktWcU5iODc4ZUFuTzBjbVEwZGVvTWlKTmFQLVFOcVg2SDBBSG5HNE0xVA?oc=5",
-      "nota_texto": "Claudia Sheinbaum se Reúne con Donald Trump en China - N+",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-16",
-          "x": 12,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-17",
-          "x": 42,
-          "y": 80
-        },
-        {
-          "fecha": "2026-11-18",
-          "x": 46,
-          "y": 82
-        }
-      ]
-    },
-    {
-      "id": "rocha_moya",
-      "nombre": "Rubén Rocha Moya",
-      "iniciales": "RR",
-      "x_lunes": 25,
-      "y_lunes": 83,
-      "x_hoy": 33,
-      "y_hoy": 75,
-      "delta_pts": 3.0,
-      "alcance": 8,
-      "n_alto": 4,
-      "n_medio": 4,
-      "n_bajo": 0,
-      "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSmNHRmhOR3UyMExoQ2Q2TFpzXzg1VUpSWVUwNWZnX0stNlpCVVVacmVWUzFLTUVHSmtjRjRzWUYya1B1V3RLNmY1cktHZFlBSkl0a2k4cXdqU1Z4eEJLUjdIb2JidFhhcU1JdV9HVHd4c0ZPcHNCZUxQQy1haXBiYmtUX0k2NVE3TTlwQVUtSEVieDlDTWFXNGxYX1dGRWdaNmVsaVhQSFlsM2x3TTFFaXZtRXpVXzg2R0xrUlcyYWpkWHhfWmdKUlp2VVFJa1ozWHZ2OUtWRDJHcko0eVBBT0huNE5mR1E?oc=5",
-      "nota_texto": "PAN acusa trato privilegiado a Rubén Rocha Moya y advierte posible financiamiento político rumbo a 2027 - Central Municipal",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 3,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-16",
-          "x": 17,
-          "y": 88
-        },
-        {
-          "fecha": "2026-11-17",
-          "x": 25,
-          "y": 83
-        },
-        {
-          "fecha": "2026-11-18",
-          "x": 33,
-          "y": 75
-        }
-      ]
-    },
-    {
-      "id": "andy",
-      "nombre": "Andrés Manuel López Beltrán ('Andy')",
-      "iniciales": "AL",
-      "x_lunes": 12,
-      "y_lunes": 83,
-      "x_hoy": 25,
+      "x_lunes": 41,
+      "y_lunes": 82,
+      "x_hoy": 44,
       "y_hoy": 83,
-      "delta_pts": 7.5,
-      "alcance": 6,
-      "n_alto": 4,
-      "n_medio": 2,
+      "delta_pts": 3.0,
+      "alcance": 10,
+      "n_alto": 8,
+      "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNa0RseXFEUjZzc1VleVlqWmFxSkotbnBTRE8yckM2aWhkdU1KVF9CUHYyU0o5bTdCcno0dFE4VDFfclhPSTdQdWw5eU93ckJ2Tnd0dkJKSHZIQUtESWFJNXF0U0FkbjRlS0o1Ry1Bc1pGcS1Ra000R3V1eHptSXVtLXBLcTVlRklCM0x5ZVZ4Q3ZXdmJSYTdRd2cyZkVvTFN2VzYzSEQ5a25vVndTX3JCZVJJR1VKVElDaHUxaWhrUUlQM1hQYjVTTUk2MXFVaVZtcERyWnBQUERXLVpTcjdaSWlOMNIB6AFBVV95cUxQTnd2bHBIbXhLbkRKMTdlLXgzclFzaDU5dUtaOWIydnFvM3k1RWJ5c09zQ2xGQnQ4WGxrWm9QblJraU8zWVNIbTlSdEN4ZHk2Z1p0anRvSkczdUxiU050TTdiZFY0UkZIbW9DNDFqSnlrYkdrSDVPdkhKai12TGQ2U0JaM0R0SFlUdFM5d1lqZ0JRbjFQUDlycW0wTmszNnk2b0ZSZXJIOFI2elE0OHpOVWYxNUxsRzBuaE9DS01WazZsMWMycHhraVRCSURUUDVnOHhQMy01ZnROUDRzZW1zUUtWLWtiVHhC?oc=5",
-      "nota_texto": "Felipe Calderón advierte “deterioro grave” de la democracia en México y acusa corrupción en entorno de Andy López Beltrán - Por Esto!",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQaUEwbml3aElDMk5ZUVBTV2RjdmNOZU5vVjloOUNxOWZ4MWczZW41eWV0WjlKaWFocm5Db1hRNlRxaWpQVmpyV0d5aEdVWHVrci1Wa21fTjhmaEoxQTVjbjVIUWpDSWUtb2QzMEtvWno2RDZuRmpxcTg5OVhfRG5VVUZlUzhhNjJrejctU0dMS085cHlXemFNU0FiWWFkeU12aEpFVEFqX2dTNzlDdk1rNUFGTnc1dDZvai1rQzZ0MF9LczJYb0Vzd0lXUEJGY0NxdVRvdmdGWHREOEh6Rzh6LW9tbmV6bjVmcy12VjhiNkVTNDVqNzlEQ0l4NA?oc=5",
+      "nota_texto": "Los Programas para el Bienestar son Humanismo: presidenta Claudia Sheinbaum; hay un millón 734 mil beneficiarios en Oaxaca - Gob MX",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 3,
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 4,
+          "x": 15,
           "y": 100
         },
         {
           "fecha": "2026-11-17",
-          "x": 12,
-          "y": 83
+          "x": 41,
+          "y": 82
         },
         {
           "fecha": "2026-11-18",
-          "x": 25,
+          "x": 44,
           "y": 83
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-19"
     },
     {
       "id": "monreal",
@@ -1506,7 +1413,7 @@
       "iniciales": "RM",
       "x_lunes": 0,
       "y_lunes": 0,
-      "x_hoy": 8,
+      "x_hoy": 7,
       "y_hoy": 100,
       "delta_pts": 6,
       "alcance": 2,
@@ -1523,19 +1430,97 @@
       "trayectoria": [
         {
           "fecha": "2026-11-17",
-          "x": 8,
+          "x": 7,
           "y": 100
         }
       ],
       "fecha_apagado": "2026-11-18"
     },
     {
+      "id": "rocha_moya",
+      "nombre": "Rubén Rocha Moya",
+      "iniciales": "RR",
+      "x_lunes": 22,
+      "y_lunes": 83,
+      "x_hoy": 30,
+      "y_hoy": 75,
+      "delta_pts": 3.0,
+      "alcance": 8,
+      "n_alto": 4,
+      "n_medio": 4,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOSmNHRmhOR3UyMExoQ2Q2TFpzXzg1VUpSWVUwNWZnX0stNlpCVVVacmVWUzFLTUVHSmtjRjRzWUYya1B1V3RLNmY1cktHZFlBSkl0a2k4cXdqU1Z4eEJLUjdIb2JidFhhcU1JdV9HVHd4c0ZPcHNCZUxQQy1haXBiYmtUX0k2NVE3TTlwQVUtSEVieDlDTWFXNGxYX1dGRWdaNmVsaVhQSFlsM2x3TTFFaXZtRXpVXzg2R0xrUlcyYWpkWHhfWmdKUlp2VVFJa1ozWHZ2OUtWRDJHcko0eVBBT0huNE5mR1E?oc=5",
+      "nota_texto": "PAN acusa trato privilegiado a Rubén Rocha Moya y advierte posible financiamiento político rumbo a 2027 - Central Municipal",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 15,
+          "y": 88
+        },
+        {
+          "fecha": "2026-11-17",
+          "x": 22,
+          "y": 83
+        },
+        {
+          "fecha": "2026-11-18",
+          "x": 30,
+          "y": 75
+        }
+      ],
+      "fecha_apagado": "2026-11-19"
+    },
+    {
+      "id": "andy",
+      "nombre": "Andrés Manuel López Beltrán ('Andy')",
+      "iniciales": "AL",
+      "x_lunes": 11,
+      "y_lunes": 83,
+      "x_hoy": 22,
+      "y_hoy": 83,
+      "delta_pts": 7.5,
+      "alcance": 6,
+      "n_alto": 4,
+      "n_medio": 2,
+      "n_bajo": 0,
+      "impacto_nivel": "medio",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNa0RseXFEUjZzc1VleVlqWmFxSkotbnBTRE8yckM2aWhkdU1KVF9CUHYyU0o5bTdCcno0dFE4VDFfclhPSTdQdWw5eU93ckJ2Tnd0dkJKSHZIQUtESWFJNXF0U0FkbjRlS0o1Ry1Bc1pGcS1Ra000R3V1eHptSXVtLXBLcTVlRklCM0x5ZVZ4Q3ZXdmJSYTdRd2cyZkVvTFN2VzYzSEQ5a25vVndTX3JCZVJJR1VKVElDaHUxaWhrUUlQM1hQYjVTTUk2MXFVaVZtcERyWnBQUERXLVpTcjdaSWlOMNIB6AFBVV95cUxQTnd2bHBIbXhLbkRKMTdlLXgzclFzaDU5dUtaOWIydnFvM3k1RWJ5c09zQ2xGQnQ4WGxrWm9QblJraU8zWVNIbTlSdEN4ZHk2Z1p0anRvSkczdUxiU050TTdiZFY0UkZIbW9DNDFqSnlrYkdrSDVPdkhKai12TGQ2U0JaM0R0SFlUdFM5d1lqZ0JRbjFQUDlycW0wTmszNnk2b0ZSZXJIOFI2elE0OHpOVWYxNUxsRzBuaE9DS01WazZsMWMycHhraVRCSURUUDVnOHhQMy01ZnROUDRzZW1zUUtWLWtiVHhC?oc=5",
+      "nota_texto": "Felipe Calderón advierte “deterioro grave” de la democracia en México y acusa corrupción en entorno de Andy López Beltrán - Por Esto!",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 3,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-16",
+          "x": 4,
+          "y": 100
+        },
+        {
+          "fecha": "2026-11-17",
+          "x": 11,
+          "y": 83
+        },
+        {
+          "fecha": "2026-11-18",
+          "x": 22,
+          "y": 83
+        }
+      ],
+      "fecha_apagado": "2026-11-19"
+    },
+    {
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
-      "x_lunes": 8,
+      "x_lunes": 7,
       "y_lunes": 100,
-      "x_hoy": 12,
+      "x_hoy": 11,
       "y_hoy": 83,
       "delta_pts": 1.5,
       "alcance": 3,
@@ -1544,20 +1529,20 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOcmZfY3pJMFpzSFoyWkxVX2R6aGszLXZjajBNSGo5eUpHRUpQTWxYTERvTXJZd2RpbkUxaXFvekxuYm1BY3Q2TDl0NGJ0UjJNRTk2MkNkSFVqYjZDb04wa09wTmp6VmgxMlJ4U0xCUHRjMVZnZHYya3I2U0tmUllSdzF6ZldxUHZjTXYySXQ5NGxuYjNKZXRRT2VjWTdEVkthOFRldDJFeFFjTXlhRGFqNy13UnRQS0NhNUUtamM0Z0llUEx2N2VfNTAxX25XbHlXV3BkZ2NFUU50NFNfMmpSVEhyeEZCQjVTVzJVdjlSQ0hWT3BHREtyNzU1elNfd2Y0R0tHczFrLS11WXM?oc=5",
-      "nota_texto": "Rosa Icela Rodríguez respalda la creación de una comisión para la verdad sobre el fraude electoral de 2006 - La Jornada",
+      "nota_url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQVThZaXk1QmpmNEdTeXAzWG83ajMxSGU5a054UkM4cFdraWN3UVRNUGlHOXBLYjV3U3lQRDY1WjhfV0ZXN3BsT3VoeDRvVmZsWmNyN0Fwa09DbTFWMmwyaGtYeEdvbklSOFlQck5paURiV1NNNzIwUThBTThqc2ZnSHM5QWxTS1M4am5iQUpLaEZkTGlDNGhocS1mTzVmNmZ6ckZCQnk4LUtwUGVTdGpScDlOM0ExNjFmYVBnYVZiOHN5bFZKQ0gydzBKUkw?oc=5",
+      "nota_texto": "La mañanera de Claudia Sheinbaum, 16 de noviembre de 2026: hoy encabeza Rosa Icela Rodríguez Velázquez - UnoTV",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 8,
+          "x": 7,
           "y": 100
         },
         {
           "fecha": "2026-11-17",
-          "x": 12,
+          "x": 11,
           "y": 83
         }
       ],
@@ -1567,9 +1552,9 @@
       "id": "higinio_martinez",
       "nombre": "Higinio Martínez Miranda",
       "iniciales": "HM",
-      "x_lunes": 8,
+      "x_lunes": 7,
       "y_lunes": 75,
-      "x_hoy": 12,
+      "x_hoy": 11,
       "y_hoy": 67,
       "delta_pts": 1.5,
       "alcance": 2,
@@ -1577,7 +1562,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.jornada.com.mx/2026/11/16/politica/007n3pol?partner=rss",
       "nota_texto": "Respalda Higinio Martínez investigar injerencia de Fox  en las elecciones de 2006",
       "es_nuevo": false,
@@ -1591,16 +1576,16 @@
         },
         {
           "fecha": "2026-11-17",
-          "x": 8,
+          "x": 7,
           "y": 75
         },
         {
           "fecha": "2026-11-18",
-          "x": 12,
+          "x": 11,
           "y": 67
         }
       ],
-      "fecha_reactivado": "2026-11-18"
+      "fecha_apagado": "2026-11-19"
     },
     {
       "id": "clara_luz_flores",
@@ -1608,7 +1593,7 @@
       "iniciales": "CL",
       "x_lunes": 4,
       "y_lunes": 50,
-      "x_hoy": 12,
+      "x_hoy": 11,
       "y_hoy": 67,
       "delta_pts": 4.5,
       "alcance": 3,
@@ -1630,7 +1615,7 @@
         },
         {
           "fecha": "2026-11-17",
-          "x": 12,
+          "x": 11,
           "y": 67
         }
       ],
@@ -1640,34 +1625,35 @@
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 8,
+      "x_lunes": 7,
       "y_lunes": 50,
-      "x_hoy": 12,
+      "x_hoy": 15,
       "y_hoy": 50,
-      "delta_pts": 1.5,
-      "alcance": 3,
+      "delta_pts": 3.0,
+      "alcance": 4,
       "n_alto": 0,
-      "n_medio": 3,
+      "n_medio": 4,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/los-programas-de-bienestar-transformaron-la-vida-de-millones-de-mexicanos-y-reducen-la-pobreza-ariadna-montiel-2920368.html",
-      "nota_texto": "Los programas de bienestar transformaron la vida de millones de mexicanos y reducen la pobreza: Ariadna Montiel",
+      "apagado": true,
+      "nota_url": "https://www.jornada.com.mx/2026/11/18/politica/008n2pol?partner=rss",
+      "nota_texto": "“Somos representa la mafia en el INE”: Ariadna Montiel",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-11-17",
-          "x": 8,
+          "x": 7,
           "y": 50
         },
         {
           "fecha": "2026-11-18",
-          "x": 12,
+          "x": 15,
           "y": 50
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-19"
     },
     {
       "id": "lorenia_valles_sampedro",
@@ -1769,14 +1755,22 @@
   ],
   "tablero_semana_inicio": "2026-11-16",
   "resumen_mananera": [],
-  "mananera_estado": "fuente_retrasada",
+  "mananera_estado": "pendiente",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 2
+    "pendientes": 0
   },
   "declaracion_presidenta_historial": [
+    {
+      "actor": "Claudia Sheinbaum Pardo",
+      "texto": "Sheinbaum: fue \"una muy buena reunión con el presidente Donald Trump\" - La Jornada",
+      "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNVUVjanQyM3FEZWNIdXlXdUdxUXhScVU1d2RnbjYwaXF4ZHZmcF91QjRXWlV1bndKTDl2OGZPbGgwNFpZeHpJQkRmbEZobm50NmtzWGVpdWw2X09MX0xndlZDcVFXdFNtZmRaOFp0VWRBRDRJR1dnUEJBSVZudk1BaDNWUF82YjZrekJoN1BRQ2k2WGJmMWRlc092QThka1ZkTXA3d3hGQUd1YUVuUzNtU3BOSEdfS1VRb2NqazNR?oc=5",
+      "intensidad": 7.0,
+      "fecha": "2026-11-18",
+      "nivel_fuente": "ALTA"
+    },
     {
       "actor": "Claudia Sheinbaum Pardo",
       "texto": "No hay censura; el derecho de las audiencias es un principio constitucional: presidenta Claudia Sheinbaum - Gob MX",
@@ -1792,14 +1786,6 @@
       "intensidad": 7.0,
       "fecha": "2026-11-17",
       "nivel_fuente": "OFICIAL"
-    },
-    {
-      "actor": "Claudia Sheinbaum Pardo",
-      "texto": "Sheinbaum ya está en China por cumbre de la APEC: Sigue las últimas noticias de la ‘mañanera’ HOY",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/16/claudia-sheinbaum-mananera-temas-hoy-16-de-noviembre-de-2026-en-vivo/",
-      "intensidad": 7.0,
-      "fecha": "2026-11-16",
-      "nivel_fuente": "ALTA"
     }
   ],
   "declaracion_otro_historial": [
@@ -1829,11 +1815,10 @@
     }
   ],
   "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-11-18T13:21:59.525697-06:00",
+    "generado_anterior": "2026-11-18T18:03:26.235020-06:00",
     "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo",
-      "Nueva declaración relevante (otro actor): Morena (partido político)"
+      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
     ]
   },
-  "hora_corte_publicada": "2026-11-18 18:03"
+  "hora_corte_publicada": "2026-11-19 00:03"
 }
