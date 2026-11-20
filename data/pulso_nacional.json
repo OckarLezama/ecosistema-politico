@@ -1,11 +1,11 @@
 {
-  "generado_en": "2026-11-20T06:02:58.444001-06:00",
+  "generado_en": "2026-11-20T12:03:51.125572-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 21,
+  "n_notas_ventana": 13,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 29,
   "tension_anomalia": {
-    "z": 0.66,
+    "z": 1.22,
     "nivel": "normal",
     "media_periodo": 22.4,
     "dias_base": 27
@@ -13,111 +13,69 @@
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 51,
+      "peso_pct": 36,
       "tema_principal": null,
       "tema_principal_id": null,
-      "n_temas": 7,
-      "n_notas": 11,
+      "n_temas": 2,
+      "n_notas": 5,
       "notas": [
         {
-          "texto": "Morena abre registro para elegir coordinadores en Veracruz rumbo a diputaciones de 2027: AA - Crónica del Poder",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOWjlObHVTeExsejhnMVh5LThHUzhnc3dPNlFENEJiTUNLc2JORUVfR01UeU1Ba21BWFhtVGh1dWtWN0ctcmR2T3h4ZHZLVkNGSlNaOGtoUTVyZk13aE1Oc0t4dmVoVkg0dzNVWXBIUm9TNmstYmJWZG5xQm9Db2xzQTVWZVhyelJzem1iVWVER2NiZ2RjWTJNN1hFUk9xTlFrUV8yUmJjRm4tSzI2VXJha08tbnZhdHRZaEZ0QkJXdzRKakVxVjNHazh3?oc=5",
-          "intensidad": 7.0,
-          "medio": "Crónica del Poder"
-        },
-        {
-          "texto": "⚡ Posible presión de Morena (partido político) — MORENA QUIERE UN INE “MOCHO” PARA 2027, ADVIERTE RICARDO ANAYA - Tribuna Campeche",
-          "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPbHBmakNGU3A2cHJMMDBLV2FHdDJTYXg5bldQNlNXX1Y0enZHUXVwZk54am5XMEZjTFktRndlM1Q2OHJlczlYOGVXaDNPeVJ0Zk4xM0l1bndIOUhnczdaeFBWMVdhREFEWlNZdTdXU3Vtb1hiRFBheFpqeUI4YWlUYkE0Tk5WSmRTWEo3SUFCVDNYSUhLbVdoQVJKdkY5UU0?oc=5",
-          "intensidad": 7.0,
-          "medio": "Tribuna Campeche"
-        },
-        {
-          "texto": "MORENA abre registro para coordinaciones distritales locales rumbo a elecciones de 2027 en Q. Roo - El Heraldo de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOZnJkVDdSQ2tPWmhDa3Z6djVMU3hiOGppOGRoT3YxQ1RqSm1EVmdydjBRamJOQ1VRZkFkbzNzbGpIX3dYUTExanA1aGkyRnpaNlAyWi1Lc1BUWnNNNGZvZFdoVXctTGFfZXVVbmNPY0NyZHB3c2NKaHo1ekFERnYwWmFWRnFPN25USnlxU1BWMnI4QTZjUGgxMU5Hck9OV1F0a2ItQ09OWmh4NjhtcmRjSExlV3J4TDNScVBrM1duV0dVMHVzUjFPMHk0c1ptMlNkNjl5VXdUWlRLRnlsc055amhZUFkzcFZzeUxtdmtzWVFHQkJiN3lQTE5SWQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Heraldo de México"
-        },
-        {
-          "texto": "Claudia Sheinbaum sorprende tocando la guitarra en Cumbre de China | VIDEO",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/19/claudia-sheinbaum-sorprende-tocando-la-guitarra-en-cumbre-de-china-2921339.html",
-          "intensidad": 7.0,
-          "medio": "VIDEO"
-        },
-        {
-          "texto": "Morena respalda a Sheinbaum tras su participación en la cumbre de la APEC",
-          "fuente_url": "https://www.tabascohoy.com/morena-respalda-a-sheinbaum-tras-su-participacion-en-la-cumbre-de-la-apec/",
+          "texto": "Gerardo Dagdug busca coordinación distrital de Morena en Huimanguillo",
+          "fuente_url": "https://www.tabascohoy.com/gerardo-dagdug-busca-coordinacion-distrital-de-morena-en-huimanguillo/",
           "intensidad": 7.0,
           "medio": "tabascohoy.com"
         },
         {
-          "texto": "Detienen en Sinaloa a presunto líder de célula vinculada a Los Mayos",
-          "fuente_url": "https://www.tabascohoy.com/detienen-en-sinaloa-a-presunto-lider-de-celula-vinculada-a-los-mayos/",
+          "texto": "Ex funcionarios, diputados y regidores buscan coordinaciones distritales locales de Morena - Diario Cambio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNRHA3RGFGS296T0h2WGpNYjN2VlpOVUZnWGJhX0JNVkpxUTZBQktKaF9HNEpGT0lEc3ZKc1BJRkVDSW1PZlNFX3h1ZDhJb0tiWUp1LTNZa3lMWjMyU2pvcUxuMWd4MDYweThXMFFJMXQyNm84V3lQZ2YwMml2WHNNMjNMc2ZrRXVNX2pleUZqS1dfaUtCQmE2MU9BeG14TVdXTWl4SGprQUtpa1VBajAzWTBJLTY5dDJaYTR2NWNBMVY1bjFBVlMyb2NIeGJSRUlLRFNudDZCVzZ3eDQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "Diario Cambio"
+        },
+        {
+          "texto": "DE ADVERSARIA DE MORENA A SU ACERCAMIENTO CON LA 4T: Los movimientos políticos de Lili Campos tras perder Playa del Carmen... o cuando una foto no garantiza protección - Noticaribe",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNb0lzVWdwb0UwcDNfVkgtQVBIZVQ4RERCREtZdHVtek5paExMRmZ0MlpLNFhzRk9NcEJiUW9qcmJsX3NVZlZwMlVJUktXd0NyN0JXSWYta3lvOHFGdU16bzkxZUtIMmh4LXF5bFdadkJDaXJud3pZQ19SVDdoRnYxeW9xaEpkS3Joank0MmFZQ3RVTTFyYUplZFM1aTlUUDdCNW43WHd1RGhTTVJGYl94eVF3bC1yS1FLam1ua0tiNFlNdHlBSnRSNTVZU1UzWTNzX2ROUm00MVM1X21TcUlJSmlDcHhoX3VPZ0w3dWJKRjAtZ21PSl8xdWZZZnI3cERMNmpqSlEtdkNROWZlNTV1SWJmcFhoZkxjcWo3b28zTi1pZWFGVTRyeg?oc=5",
           "intensidad": 5.0,
-          "medio": "tabascohoy.com"
+          "medio": "Noticaribe"
         },
         {
-          "texto": "Morena ya levantó encuesta para elegir coordinador en la ciudad de Puebla: Villegas - La Jornada de Oriente – Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNZm93ZnJuTFlCajA2REt5Qmp2VklDMXNTNEVMZ09aTVpHSU0tVjZpZl9ndVluVVJRZXlDZzdYRnF6M2tNMzV0Y2huZm5kbnNWZmVLbzFoZDRaX2dDRFdYREpmTzRIdGRTeDFtZF9ZN29BYVlZY2d0YVdUVkNfY0w0OWEtWjJYUjljcjJORDJTSmFacXpaYW11S1JrbE42cnQ4SUhiQkwxdmM3TWI5aXlQeE15NFNZdGdrOWdvTEVLa3g4dVhMb0pR?oc=5",
+          "texto": "Reportan la presunta detención de la exalcaldesa de Playa del Carmen, Lili Campos, en la Ciudad de México - Por Esto!",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUUQxZHVNdHlpbGlsQmNYdTNyQUFYLXp3RzdCbmtoOG9HaU5PYWxVVzhPbDVLWmRYdU5TeHAzT1ZMNkJ0OHQxZFh0aE1sczFSQ3dBVGNISGFMUm1SbV91RWpwenVWYkZ6enFZdHloZ1lkWUZ3RkJxNWZYWmNEQmQ3V3BrU05PMnRGVTFyMGthQXQ3eFBJSGJpUTJ3MTFQMVkyaTdUbjEwbVlQNkREM0ZDSllCcnRZaXd0UFpkcmtpbk91eWdTQ1Q0UWVwbWN3dnhmTkEyeEtR0gHbAUFVX3lxTE53ck1JUUJwSUNkVHlnTmUtODJzb3JhZFpnSW04aGRva191VWNCWG1OZ3RKOU5HbjVyQTJfYUNnamtaalJMRUFoVXozNE5tWGpRcU9udXpGY2VhVmdFbkZhYkJVbjEtRENyWWlqQWlkSjFSUVJLU2VQbWRydmJMR2ZRVi1PNE51NGR4UTQzWF9wZklBSE41VDZ1X2d4N0hsUzEwMVlEc0VGbWpTcUhEYzBEY3pNb3N5ZHp3VXVibnRoTEhQYTVVRGZaXzNnQlBIQ0ZvSm9TLW9hek9NVQ?oc=5",
           "intensidad": 5.0,
           "medio": "news.google.com"
         },
         {
-          "texto": "Resultados de la encuesta de Morena para la alcaldía de Puebla saldrá próxima semana - Almanaque Puebla",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQamMtaWVQbS1RYzRGRkhNeUJ5cDhZMnBvb3NrMUdBTHlPMlY3d3A1U1VOcHQ4ai1JOElpdnUwUmMwMjJLNW80Rmt4Y3lOeFkwUnl0eVExT2VCR0pUS3hoTjZZMGxOcWlSU1otcW4xbVM3dmc1eWRteEcyUEQzOFlaaW5sWDR0Vzdl?oc=5",
+          "texto": "Trasciende detención en CDMX de Lili Campos, exalcaldesa de Playa del Carmen",
+          "fuente_url": "https://www.tabascohoy.com/trasciende-detencion-en-cdmx-de-lili-campos-exalcaldesa-de-playa-del-carmen/",
           "intensidad": 5.0,
-          "medio": "Almanaque Puebla"
-        },
-        {
-          "texto": "Respalda Ana Lilia Rivera Rivera la política exterior implementada por Claudia Sheinbaum en gira por China - El Sol de México",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQaEx1ZVVQMTMxcGxsM0NIR3JZQTZsZU1QM1VPVTlTeTRYN3RmMmFudnRzZHhJZS1oT2g5eWktT2NFX1ZDNXFaOWJBclF4M1c4XzYtdDRCVHd4YlBTVHlCODlzWENNZDBCSFhXQnRNX0dzWnQtUW90N1lRTE83UzUtVkYwdzZLVTBXMVNwZjE0SzB5X01oOG9aR21JQjluVHNISlJkV1ZnakV4SUprbjhiY0p6V0tsbzJTbXd6Q1Bmcl9jZVFib3ZHRHFfRHV4WW5PTU0yTGFBSkdfVEZBdUZnTDQwbE5RSWpLQ2RqVQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "El Sol de México"
-        },
-        {
-          "texto": "Haré lo que esté en mis manos para lograr convocatoria por consenso en designación del INE: Raúl Bolaños-Cacho - Rosy Ramales",
-          "fuente_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPMXJvVGlVbkRXU29mckFvTC12SUZPMW91MTNqYkxIZ2VqX2NXaGdlLW1ZN3NEcXVpMkJoV25mT01rYTNVNjdGUHpKNFFuQzRBWmpkMVE1MjUtaHAzVHdTTDUzUS1Dek1PTTRNN2xSN01QTHNhT0duV25NTXYwV0F2czYzSElmSGNnU3RSdUtrMUtkazdSRE4zd3VKUi0wNEZ5NDY4bG1QWEpVbDgzSjVkMDhmRDhKYUcwQWs1dHVBMmxrdTFjMlUxWDE3QXdBUWM?oc=5",
-          "intensidad": 5.0,
-          "medio": "Rosy Ramales"
-        },
-        {
-          "texto": "Desmiente Morena Tabasco supuesta designación de coordinador en Paraíso rumbo a 2027 - XEVT",
-          "fuente_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNOWpTRHBkNDhaQ0QyaVZ2NWYtckI1azZ5NEkwMW01LW4zRVlYZlpFSTV5WVFPMWlwS3AxbjNUMWJLVnRqUFlzREdFMkNlRzZNZFoyNC1UdTFoTFR0aDk2MnpRd3lZUkZnLWV0enJEZ3pLOXNRUGZHQldQMmJxUmE0dUZHYXE4dnE4N19XaVFPcmtQVnZKU3BUY24zeVRoUXFiV0c0RXlxclhUWTdONzdpMWpPcnVJLXVxZHJqMjVn?oc=5",
-          "intensidad": 5.0,
-          "medio": "XEVT"
+          "medio": "tabascohoy.com"
         }
       ]
     },
     {
-      "categoria": "Social",
-      "peso_pct": 19,
-      "tema_principal": "Sheinbaum afirma que ninguna caravana migrante ha llegado a EU desde que Trump a",
-      "tema_principal_id": "auto-ef47fc4577",
-      "n_temas": 3,
-      "n_notas": 4,
+      "categoria": "Relación Bilateral",
+      "peso_pct": 26,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
+      "n_temas": 2,
+      "n_notas": 3,
       "notas": [
         {
-          "texto": "🔔 ALERTA — Líderes de caravanas migrantes son dueños de líneas de autobuses: Segob",
-          "fuente_url": "https://www.informador.mx/mexico/rosa-icela-rodriguez-asegura-que-lideres-de-caravanas-migrantes-son-duenos-de-lineas-de-autobuses-20261119-0085.html",
-          "intensidad": 6.0,
-          "medio": "informador.mx"
+          "texto": "Sheinbaum, Trump y su impacto en la agenda del T-MEC - sdpnoticias",
+          "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPZDFqY2x1SThzQWVRMG9uSllkX0dUU1lLd2JBUmxpbXVycTltcUJxaG1qS3RSMlk3UEJQZUF3Ym9jeW9OZ00xT2F4NHdjZThKd09VX3hrYVA0bXppZmZsSnVoNE55REM5NUF0RDVoVl84SnNoYUZoeVRVLTUtdkJSeVdUWTRmRWdxV1BtUmRkN2pBQQ?oc=5",
+          "intensidad": 7.0,
+          "medio": "sdpnoticias"
         },
         {
-          "texto": "🔔 ALERTA — ¿El narco está detrás de las caravanas migrantes? Esto dijo Rosa Icela Rodríguez",
-          "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/19/claudia-sheinbaum-mananera-temas-hoy-19-de-noviembre-de-2026-en-vivo/",
-          "intensidad": 6.0,
-          "medio": "elfinanciero.com.mx"
+          "texto": "Así fue la estrategia de Sheinbaum para acercarse a China en APEC 2026, sin poner en riesgo el T-MEC: Beata Wojna",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/20/asi-fue-la-estrategia-de-sheinbaum-para-acercarse-a-china-en-apec-2026-sin-poner-en-riesgo-el-t-mec-2921754.html",
+          "intensidad": 7.0,
+          "medio": "heraldodemexico.com.mx"
         },
         {
-          "texto": "🔔 ALERTA — Icela Rodríguez, sin datos de que el crimen financie caravanas de migrantes",
-          "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/007n1pol?partner=rss",
-          "intensidad": 6.0,
-          "medio": "jornada.com.mx"
-        },
-        {
-          "texto": "🔔 ALERTA — ⚡ Posible presión de Donald Trump — Ana María Aragonés: Los demócratas ante los migrantes",
-          "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/014a1pol?partner=rss",
-          "intensidad": 6.0,
-          "medio": "jornada.com.mx"
+          "texto": "Exitosa cumbre APEC 2026 // Donald Trump, atragantado // A la vista, nuevos liderazgos - México SA - La Jornada",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOYV82QlIyUDRDUGxZS0FnRmgyZTNMMmZ1bVkyaW5FMXJOZ2FJMllzaWVvd0Y4X21nY2lyb0F4aFdpRFhLdTlNYzN3UEI5TFRQckZ0clRXSlpmSGk5bFE5SUpmcThBek0zd0ZjRl8tMzFWRWxQeXFIN3ZwMXpPXzRtdzl6ampPQU9oYjFicWRxclpFbUZKdmVDNl9LUUNRTEFhd0xzMkNNQS1qaE9TWmxiNkZNTW5ZRVdIdlgwXzMzUTdxVmZUT2wzZFhoMEZSYXdGb2FfMDZIMnFlWE0?oc=5",
+          "intensidad": 7.0,
+          "medio": "La Jornada"
         }
       ]
     },
@@ -127,14 +85,8 @@
       "tema_principal": "Revisión del T-MEC",
       "tema_principal_id": "tmec-revision",
       "n_temas": 1,
-      "n_notas": 3,
+      "n_notas": 2,
       "notas": [
-        {
-          "texto": "Claudia Sheinbaum fue “muy cautelosa” para no poner en riesgo la revisión del T-MEC: IMEF - 88.9 Noticias | Noticias en Vivo | Información Que Sirve",
-          "fuente_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPTUlrLU01bkNNT1lRbjFZM1J4MHFiVUhZQ3owMkViMV9UUXFFU0toa1k1Z3dVMFNFbzhMZjdJUWtrdVdjaHF6dGNBUXFDWS1HVS0wY0ladVpORDc2bHEtODNMNENmTjItSjVaZklOcXMxTGNiVEdGRE8zaDE3Ui1YMElMU3cwWlpXOEttcmdHOHNtVGp4UFk0M21Bb0hMa2NtMlc5Ti1KUFFFTkwybWNqbmZKanAyQTlGdVBpMU5ON0hjVFhrZnVr?oc=5",
-          "intensidad": 7.0,
-          "medio": "Noticias en Vivo | Información Que Sirve"
-        },
         {
           "texto": "Dialogan sobre el T-MEC - El Vigía",
           "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxORGlCMkozMVEtUGJ3amE2SFBxM3dGLUVTOE93cjlLQWIzMllMRVJITGh1RkpDOEJ2bTlHYXBXZUw3YVBjWUF3Z3BHM05meFJkSUpoamt4U1JGMTFMN01vQWFSRktLeV9LUHBmZ2owVXV4QmR5alVSUm1Lc2Y1ZFNUWTdXZUR4dw?oc=5",
@@ -150,40 +102,40 @@
       ]
     },
     {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 11,
-      "tema_principal": null,
-      "tema_principal_id": null,
+      "categoria": "Social",
+      "peso_pct": 15,
+      "tema_principal": "Sheinbaum afirma que ninguna caravana migrante ha llegado a EU desde que Trump a",
+      "tema_principal_id": "auto-ef47fc4577",
       "n_temas": 2,
       "n_notas": 2,
       "notas": [
         {
-          "texto": "Se reúne con Trump",
-          "fuente_url": "http://campechehoy.mx/2026/11/19/se-reune-con-trump/",
-          "intensidad": 7.0,
-          "medio": "campechehoy.mx"
+          "texto": "🔔 ALERTA — Icela Rodríguez, sin datos de que el crimen financie caravanas de migrantes",
+          "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/007n1pol?partner=rss",
+          "intensidad": 6.0,
+          "medio": "jornada.com.mx"
         },
         {
-          "texto": "Sheinbaum, Trump y su impacto en la agenda del T-MEC - sdpnoticias",
-          "fuente_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPZDFqY2x1SThzQWVRMG9uSllkX0dUU1lLd2JBUmxpbXVycTltcUJxaG1qS3RSMlk3UEJQZUF3Ym9jeW9OZ00xT2F4NHdjZThKd09VX3hrYVA0bXppZmZsSnVoNE55REM5NUF0RDVoVl84SnNoYUZoeVRVLTUtdkJSeVdUWTRmRWdxV1BtUmRkN2pBQQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "sdpnoticias"
+          "texto": "🔔 ALERTA — ⚡ Posible presión de Donald Trump — Ana María Aragonés: Los demócratas ante los migrantes",
+          "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/014a1pol?partner=rss",
+          "intensidad": 6.0,
+          "medio": "jornada.com.mx"
         }
       ]
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 4,
+      "peso_pct": 8,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 1,
       "n_notas": 1,
       "notas": [
         {
-          "texto": "Ejército desmantela campamento de Los Chapitos en El Rosario; hay tres detenidos, entre ellos un colombiano - Milenio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNZmlVUk9EN21mRnNWc3RyUXZmRFRIaFVvSEhfU2x3MzNKcWhHWlNlVHZ1M29Oek8tZVJlOFZTTWlyel8xRURza2E4bDdMMzNZa0VLZ25hU3lBOUVpbUFZWnFSNTlYX05CM3lnR3EyVEV6bFJnRlhrNnlYem9jaGNYNmppYWJRc3RmanhZ0gGLAUFVX3lxTE9zTjJodE1uMXZGU0UzclN1TWFPTjFLQ0lOcnFFdTBVRVNDVE1PYUZ0QUtUSzh3bVltNVlBRjB3MWF0ZW1VUFA2Q0tTN21pSjFUODdEb3BhWU9rMXJyeUEtR1V2NDg4dE5IYldfUnlmMTFaTC1relhWUW5laXlMWlBCeWduaU1fYUtDcVU?oc=5",
-          "intensidad": 5.0,
-          "medio": "Milenio"
+          "texto": "Violencia en Sinaloa: matan a tres personas en distintos puntos de Culiacán - El Universal",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPeEJTaVVUSUprTDlEMnlzWEFMRG9TZF96c3BmUGlSTGJ5SGdPd0xyRWZTdi03TnBIM3hwNE5lcWFDMVY3b0ZJdFI0SVFwVTlINld4VHlWWUtXMHJYbDg0WXFfVGgxN29zRkw1OW1DOHBFQjdpSG1nRzNTZldWazV5dGNTR2lQYWFtRE5ycnQ4NWxiQnVibzY5TkthZV9Dbjl2MmtrRFJldEJDWTdpUG40RG9pODdndjlMdGpYLWdpYzNCbWI0Q01mdHY5RDdEc1lpRkN1VGxadURwYm1DVGg1Ti11OVdVSTJXQWZkbVc4RzU2Q2ZXWEtBMFVB0gGOAkFVX3lxTFB0MU9KUmRyUnRzODI1c1hvSTNTUi1YQVNqbUw3UWd1Y1FxYnR5QnZJdV9LbmpqWXFoUi00NzdtNGVjSDJYaS13cmNDaWFvYWh0WkFrYVAySHRES0xROV82bGk2SzFCbEhCU0FJRnBSaE1ucWtRcnB6SEJIM2VQQnFSWjg2V0ZEbmVkT3lEb1VBOUdyYlljRnRVTEtSX1M2Wm9QWFNlaXhNeTdLeTd5bjZBUElvMXRwYkJDbllxQTJSbG01NUtzTDQ2NFhGaDV1dExSMnBwdzhBekF4bFdzTUU0QkFWSlZRWVk0RWwwMXJiVFJ3UWlPSl94MWpuekk1ZkQyNGYxaVdLd0FWTGwtUQ?oc=5",
+          "intensidad": 6.0,
+          "medio": "El Universal"
         }
       ]
     }
@@ -194,11 +146,11 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 11
+          "peso_pct": 12
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 64
+          "peso_pct": 63
         },
         {
           "categoria": "Relación Bilateral",
@@ -777,7 +729,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 10
+          "peso_pct": 9
         },
         {
           "categoria": "Economía",
@@ -848,7 +800,7 @@
         },
         {
           "categoria": "Gobernabilidad",
-          "peso_pct": 60
+          "peso_pct": 61
         },
         {
           "categoria": "Relación Bilateral",
@@ -869,7 +821,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 4
+          "peso_pct": 5
         },
         {
           "categoria": "Gobernabilidad",
@@ -892,22 +844,19 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-ef47fc4577",
-      "nombre": "Sheinbaum afirma que ninguna caravana migrante ha llegado a EU desde que Trump a",
-      "categoria": "Social",
-      "resumen": "Sheinbaum afirma que ninguna caravana migrante ha llegado a EU desde que Trump asumió el cargo - MILENIO",
-      "motivo": "🔔 ALERTA — Líderes de caravanas migrantes son dueños de líneas de autobuses: Segob",
-      "peso": 18.0,
-      "n_temas_agrupados": 2,
-      "escalando": false,
+      "id": "trump-agenda",
+      "nombre": "Trump y México: declaraciones y presión",
+      "categoria": "Relación Bilateral",
+      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
+      "motivo": "Exitosa cumbre APEC 2026 // Donald Trump, atragantado // A la vista, nuevos liderazgos - México SA - La Jornada",
+      "peso": 13.0,
+      "n_temas_agrupados": 1,
+      "escalando": true,
       "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
-      "fuente_url": "https://www.informador.mx/mexico/rosa-icela-rodriguez-asegura-que-lideres-de-caravanas-migrantes-son-duenos-de-lineas-de-autobuses-20261119-0085.html",
-      "actor_vinculado": {
-        "id": "rosa_icela",
-        "nombre": "Rosa Icela Rodríguez"
-      }
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOYV82QlIyUDRDUGxZS0FnRmgyZTNMMmZ1bVkyaW5FMXJOZ2FJMllzaWVvd0Y4X21nY2lyb0F4aFdpRFhLdTlNYzN3UEI5TFRQckZ0clRXSlpmSGk5bFE5SUpmcThBek0zd0ZjRl8tMzFWRWxQeXFIN3ZwMXpPXzRtdzl6ampPQU9oYjFicWRxclpFbUZKdmVDNl9LUUNRTEFhd0xzMkNNQS1qaE9TWmxiNkZNTW5ZRVdIdlgwXzMzUTdxVmZUT2wzZFhoMEZSYXdGb2FfMDZIMnFlWE0?oc=5",
+      "actor_vinculado": null
     },
     {
       "id": "tmec-revision",
@@ -925,45 +874,40 @@
       "actor_vinculado": null
     },
     {
-      "id": "trump-agenda",
-      "nombre": "Trump y México: declaraciones y presión",
-      "categoria": "Relación Bilateral",
-      "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "🔔 ALERTA — ⚡ Posible presión de Donald Trump — Ana María Aragonés: Los demócratas ante los migrantes",
+      "id": "auto-ef47fc4577",
+      "nombre": "Sheinbaum afirma que ninguna caravana migrante ha llegado a EU desde que Trump a",
+      "categoria": "Social",
+      "resumen": "Sheinbaum afirma que ninguna caravana migrante ha llegado a EU desde que Trump asumió el cargo - MILENIO",
+      "motivo": "🔔 ALERTA — Icela Rodríguez, sin datos de que el crimen financie caravanas de migrantes",
       "peso": 6.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/014a1pol?partner=rss",
-      "actor_vinculado": null
+      "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/007n1pol?partner=rss",
+      "actor_vinculado": {
+        "id": "rosa_icela",
+        "nombre": "Rosa Icela Rodríguez"
+      }
     },
     {
       "id": "sinaloa-crisis",
       "nombre": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "categoria": "Seguridad Nacional",
       "resumen": "Desde el 9 de septiembre de 2024, cuando Los Chapitos entregaron a Ismael 'El Mayo' Zambada a autoridades de EE.UU., Sinaloa vive la guerra interna más sangrienta del cártel en su historia. 2025 cerró con 1,654 homicidios dolosos (el año más violento desde 2011); para julio de 2026 se contabilizaban cerca de 3,000 muertos y más de 3,600 desaparecidos según Infobae, con al menos 80 policías asesinados. El gobierno de Rocha Moya, ya bajo cuestionamiento por la acusación de EE.UU. en su contra, enfrenta una de las mayores crisis de seguridad del sexenio de Sheinbaum.",
-      "motivo": "Ejército desmantela campamento de Los Chapitos en El Rosario; hay tres detenidos, entre ellos un colombiano - Milenio",
-      "peso": 5.0,
+      "motivo": "Violencia en Sinaloa: matan a tres personas en distintos puntos de Culiacán - El Universal",
+      "peso": 6.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNZmlVUk9EN21mRnNWc3RyUXZmRFRIaFVvSEhfU2x3MzNKcWhHWlNlVHZ1M29Oek8tZVJlOFZTTWlyel8xRURza2E4bDdMMzNZa0VLZ25hU3lBOUVpbUFZWnFSNTlYX05CM3lnR3EyVEV6bFJnRlhrNnlYem9jaGNYNmppYWJRc3RmanhZ0gGLAUFVX3lxTE9zTjJodE1uMXZGU0UzclN1TWFPTjFLQ0lOcnFFdTBVRVNDVE1PYUZ0QUtUSzh3bVltNVlBRjB3MWF0ZW1VUFA2Q0tTN21pSjFUODdEb3BhWU9rMXJyeUEtR1V2NDg4dE5IYldfUnlmMTFaTC1relhWUW5laXlMWlBCeWduaU1fYUtDcVU?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPeEJTaVVUSUprTDlEMnlzWEFMRG9TZF96c3BmUGlSTGJ5SGdPd0xyRWZTdi03TnBIM3hwNE5lcWFDMVY3b0ZJdFI0SVFwVTlINld4VHlWWUtXMHJYbDg0WXFfVGgxN29zRkw1OW1DOHBFQjdpSG1nRzNTZldWazV5dGNTR2lQYWFtRE5ycnQ4NWxiQnVibzY5TkthZV9Dbjl2MmtrRFJldEJDWTdpUG40RG9pODdndjlMdGpYLWdpYzNCbWI0Q01mdHY5RDdEc1lpRkN1VGxadURwYm1DVGg1Ti11OVdVSTJXQWZkbVc4RzU2Q2ZXWEtBMFVB0gGOAkFVX3lxTFB0MU9KUmRyUnRzODI1c1hvSTNTUi1YQVNqbUw3UWd1Y1FxYnR5QnZJdV9LbmpqWXFoUi00NzdtNGVjSDJYaS13cmNDaWFvYWh0WkFrYVAySHRES0xROV82bGk2SzFCbEhCU0FJRnBSaE1ucWtRcnB6SEJIM2VQQnFSWjg2V0ZEbmVkT3lEb1VBOUdyYlljRnRVTEtSX1M2Wm9QWFNlaXhNeTdLeTd5bjZBUElvMXRwYkJDbllxQTJSbG01NUtzTDQ2NFhGaDV1dExSMnBwdzhBekF4bFdzTUU0QkFWSlZRWVk0RWwwMXJiVFJ3UWlPSl94MWpuekk1ZkQyNGYxaVdLd0FWTGwtUQ?oc=5",
       "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
-    {
-      "id": "auto-5cc5a25141",
-      "nombre": "Países europeos planean enviar a migrantes rechazados a Ruanda; esto sabemos de ",
-      "categoria": "Social",
-      "peso": 6.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQZEpFb0YySkZzQWFCUzRFV2pheUZlZUpmZ1lIU3FOdzBRZ28zYWpkM1g1c0paVUoxcGY1VlZTNVR1dG5Mc19jc0duQ0I2bEVMMm5Dd0s5azgwN19wWE94R1YycHI5NzFYOU5QcHdWMDJwaDBrNUwzWlVvbHlTTjA0dVlEZTJUTDMyX0c4bzVqcWhWNGhSWEw2Rk9KRVRsSzZH0gGgAUFVX3lxTE1jSjBYRG05X213amduVzdRdjNCVU14b3dRWGRJeTExRnoxdHlneVotUkpJdVkzdnptY3R0NF9PamVJb1ByeU9uQml5WmZBMk5XSnVQdVFjaXZFR3R1TExEemxrQXBzZ3pCbDh2UVE2a1VOTUVyd1BBMTRlR0lULXFkZUhvWnhKR2lETXNWSFRkQU5uZEFzWEpTOG9BZVpFQXQ?oc=5"
-    },
     {
       "id": "auto-60dbd66264",
       "nombre": "México se consolida como destino de indocumentados, señala la OIM",
@@ -973,20 +917,12 @@
       "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/007n2pol?partner=rss"
     },
     {
-      "id": "auto-c3caacf9fc",
-      "nombre": "Se inauguró el distribuidor vial Santa Ana Chautempan en Tlaxcala, una obra de i",
-      "categoria": "Economía",
-      "peso": 5.0,
+      "id": "auto-ce99d8d65e",
+      "nombre": "Ingresa a México séptima caravana migrante; muchos buscan quedarse en el país - ",
+      "categoria": "Social",
+      "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPQnhZQ3hmNTZmSGpYMFRJcnBtcUg5LUxqbzFDRFdKVy1jbWxNdmdSMWNQRVlDWE9mUXYyVGNYSF9od0ZMQ3BNOGZyVXVpR0dfa24wZVhLOXdYeVRHcnE4ZkdMT05oNzczUGZrcG5abjI1YWI1WS1YajlfWVJTZ1E4QUNZTzFVWk9aRi1COU9CeDhIT3JGLWVmS2xMeFR6RGF5YXR6YVZGVUZMdExhZ2kwcy1acm1FQm5PeGstZDRwZDN4Rm5nblB6THJvM0E4NnA0UkFLR2V0TC01WW13R1RtUUNoNXZiY2Z3S3dKMkY4cU8wZzdyejBOUlJSOVB6N1ZERmJv?oc=5"
-    },
-    {
-      "id": "auto-b4d058b6e4",
-      "nombre": "Cámara de Diputados aprovechará mayoría de Morena para crear comisión que invest",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQSW1mS29kWUhSUXR1SWd2ZWpjWTloOTZONjJZdlk1TDZMbmEybmZMTDNySlpHa0l3YU1OYjl4bUp1STZVbl9tbWdPNVNIY0d2MFVrbVNYSWR0a09ZOFNvSGlGekZ4cGxqREg3LW5CZW1BZ1VVcHcyWDNkNmtuMEZBaDYzZV9lZV93d2gtZ1dCazlfcm9CMzdSZFplalNkU1Y3OUhNbmM5VEtNLTBtVkpwQk02VFV1T3hSdTc3ZTJwa0ZVQU1mNU50bnlsa2piQzdPWTIzZG1qWVYwTlN1UjB1SDZaMmpjWmJKMzlUcXlXZTNWNWNSbEHSAZACQVVfeXFMUFV4Ny1aVlhvT2t4MDVIYTVVY181dk1tY2JhWnZvakhRYW82Q1RrUkJqN0VIbm9MdFlZMXphRENHQU0yU1p4dWdtQzRMa25aSGhSQjZTTG0zUjVaYmE2QUJ3b0s1bW16WVpTbUluemxYMjJpdVdaMjBxWWJBR3FiVkhJTTNxQjB3cVJCeHlwSmYwdEVDWjNQWVdvenMyTFdxYjRESE1rWmZhUW9MREptaThWMnNqQklUR3J5N24tbG1rVkpWWHFRRHBDdXR5TF9STmZXakpwYVBiZXo0cWNRcS1hQ3c0aWRsUzhJVkhvV1pkaW01LWhJSlFqVS1Na2FtVDUya29vS0UtUDEyMkJqQWE?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFByY3RYbVZUX01xblNZUXB2RHZTQkk2dmRCTmNQdVMtajVQR2dTc0g2RFg2UmptN3MxUE9LWjVwTldpR2IwckEtSUp3TUZqQ0RUSjNPN3NfNkd2QmQ5ZEpYMDQ5QmlrOGxWbWFpZkl6TXdKb3Y2azZSemJiSErSAXxBVV95cUxOb2VpdVpmOWpJaW55QjR6QWdGVzl1ak5ycWwtMHBDaXdpZXRyQkNlN284dlNMejM5aFh1dmdoUTVQMDF2X2picm5CeVpLcmFhVkt0d3hZWk9pYVhWbzdQMW11ZmJyRlhJQ3dMdVJrVC1qT1hqWTY5RXM1RU13?oc=5"
     },
     {
       "id": "auto-0cbbbcbc4d",
@@ -1010,15 +946,15 @@
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/11/politica/014a2pol?partner=rss"
     },
     {
-      "id": "auto-fb03723e76",
-      "nombre": "Enrique Rivera busca diputación federal con Morena pese a denuncia de la ASE por",
+      "id": "auto-984da22e84",
+      "nombre": "Playa del Carmen: alcaldesa alaba a la Semar por limpieza de sargazo - reportur.",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 44,
-      "motivo": "🔔 ALERTA — Nueva caravana migrante busca ingresar a México pese a Trump - Milenio",
+      "dias_silencio": 63,
+      "motivo": "¿Quién es Lili Campos, ex alcaldesa de Playa del Carmen que HOY fue DETENIDA en CdMx? Perfil y lo que se sabe de ella - Milenio",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOLWQtcThWcFk5ZXRqVEthVTR5SHlLMUxyTGNiTDZtTmhNWDhjZHdzazZOaG9ucFppMEkySzVkXzNXNWtRRmJaenAxcVZDaHhHOTBlaUVFcFd2R3dORnFrOHdNejJ4QVU1cElETURNZjJHcVhkaVd2Q2EyMGJUdmxuRVR3SElpemVtT3pRaW0wUUdzWFl6UE1YbWtB0gGaAUFVX3lxTE45aXJuUHNoc3pXdnNmLTB1ekZkUklnUExYQTgzbHg5c1I3MjJhRVRReTcwc0g1RmtKNVM0WS1RemU4czhkSWg2LTNOMHZyT21Fb1dCU0I0MjhFcm4xaHVhSmxEUFU1TFEwTUlKeTdlMmJneXcyMXFfNkUyNDVxYm1FSWpXSGNNMlZvcTVRZDlsV2VZX0dMTkM2YlE?oc=5",
-      "fecha_anterior": "2026-10-06",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQeGQ5TFRaZ25vM0dVX1BPX3EzOHd1cWN1c0syR0QtV3I3dnhvajdac2twT19DX3c2WXlCc0ZVSFVhR042NWx6WVBNYW9vaXlFSVR3WGJGNFZRcWEycDJOWF9BUmQ0TkFObFhOUEVCRXYyaTFpVFdqbzZoVkJWdzNoTkFvUWZXZ1gyTUtZVC1zVzFLMGtENFhNRDg3ZG52WnVSeldEVFV4RUNLLVQ3M2UtNWs0M09aZ3ZZZVZubjZHNVlucUJGR0VGQTF2dm90QmxGTEt3VWdVOTFyZkNTcFc0Zg?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQTERkSG1CQWpGOUhIb2pHSXp4dE5ZUlJUdTVZbWlFekk2VHhLT2xaNkxWRkM2aVZXU1ZKa0g0bDZKUTV6eU1DbkNzSXlWM2hYNEh0eDBwUU44UTdtbWJ5aEJvVldOc1Awbzd5UThxQnIwM2VPXzdIblhHLXE5a0hTU0ZzbTMxclhSMkVBS1F2c1ZWM3JIM0V5czdMNU9mWm5yMURz0gGjAUFVX3lxTE0xSlI4VC00SjRnbUdfSGM2NkM3UG5xcmJ3bDA5UzduWUdTQWFxVXdKTUFRdzZoY1Y0aG9lVExTODlWTDl0RWN5d1Y2T1JzcnAxUGhKaHZSUEtScHAtNnBMd3BYQmprZWg1Um5yWUVaVEVwMkVmUHJwMUl0SmYxWWhFaFV1RFVUN3hpOThDNHdScFB2NWgtU3NQVzNBRTRlQm5wcGM?oc=5",
+      "fecha_anterior": "2026-09-17",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNaWNQS2VfeFd3QVRyeVhWZFh4aV9XVHE4Q0FvR2ZERUFJdkFfU09xZURPb2dDSW9tYVpfQWE3T0VkSEthb3BacjhIOWZIN3JUSDNYQW1VMVRGVExUYkFBa1FFVEVJR2gtckpNQjMydVBVanFUVlpmODI4SFQwUEY1V2kyXzlldHJwa0dya3pNaW9SMjFvMHNTcVJpeE9HUmw5dC1BeVNnM1haVXpFemhFRlBBWQ?oc=5"
     },
     {
       "id": "auto-4c8b7b36d9",
@@ -1032,26 +968,15 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOX0l3Wjd3WWxIN1VKRjZ1U1pkX2pjdDRQbWxBSS1nZTl0YkF3a0FLVFFRT25RSzNVMk5faTJ1aXJlOXlRSVVHb1FjUUxGa2llM2FCbDV1NkNLdjhFNS1xMUkySHRieFpkYnNKeV9OUm1GTDZ3bWF1aG9Rd1dfUS1oS0lXRGpLSW1hd1HSAYoBQVVfeXFMTl9Jd1o3d1lsSDdVSkY2dVNaZF9qY3Q0UG1sQUktZ2U5dGJBd2tBS1RRUU9uUUszVTJOX2kydWlyZTl5UUlVR29RY1FMRmtpZTNhQmw1dTZDS3Y4RTUtcTFJMkh0YnhaZGJzSnlfTlJtRkw2d21hdWhvUXdXX1EtaEtJV0RqS0ltYXdR?oc=5"
     },
     {
-      "id": "auto-7b08ee0bb9",
-      "nombre": "California desea mantenerse en el ala democrática con un perfil inmigrante y de ",
+      "id": "auto-98eff76174",
+      "nombre": "Cambia el rostro de la migración; ICE persigue ahora a quienes ya viven en EU - ",
       "categoria": "Social",
-      "dias_silencio": 16,
-      "motivo": "El PAN acusa a Morena de querer mantener a un perfil leal al frente del INE",
+      "dias_silencio": 13,
+      "motivo": "🔔 ALERTA — El rostro de la migración - La Jornada",
       "impacto": "medio",
-      "fuente_url": "https://www.informador.mx/mexico/el-pan-acusa-a-morena-de-querer-mantener-a-un-perfil-leal-al-frente-del-ine-rumbo-a-los-comicios-de-2027-y-2030-20261119-0112.html",
-      "fecha_anterior": "2026-11-03",
-      "fuente_url_anterior": ""
-    },
-    {
-      "id": "auto-31b937e8cb",
-      "nombre": "Sí hay probabilidades de que la Corte eche atrás reforma que permite pluris en l",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 14,
-      "motivo": "Valida Corte albazo de Morena sobre pluris en Zacatecas - Reforma",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNWVJDOWo0S1ZSVG1kME9mMnpxSFRHYzAtMHJZV2lvUFhPeFY2WnpacUVzOWRQU0lLVXUycE50RzZLYjczOXJVUkxoMm9vbnRac3V6ZDZvc3VNTE5kR1RkeEh2ZkdqcXZzUmV6MDlZdm5VbVhDajBSQjhxMFRyY05XeDdHQXlwVXFWYzBienZrUUhmZ00?oc=5",
-      "fecha_anterior": "2026-11-05",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMioAFBVV95cUxORkFOZDlENmVjT21GRWUwWnRPLVkwOVlxVVlRUUJvakFvREFyTUNJNUlXZ0ZFSTdaak9sbXNJTnRxanFfRHJzWUhQNU9UR2h0NkNCaDF0QjRrbmFaWTVHWlNINVBxN09DNHJXV2hiYWJYQVNSSlUybmt1M1Y0NEV1WjlpSDJxOVc1Zl9QUE5SZmMzMmJSdDFJN01CeG84M0pt?oc=5"
+      "fuente_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPZjczQUtCSzc5WkJwUTU5WE9kekNiWHQ0LVRDSjI4MWRuTG92RjRPQ3dyd28zWWdydldIWXh6UW5pMHJfOW85OXJiNGJXVDlMZ191c0poLXN2TVdMVXBFSzA4Y2J5UF93dzMxN3NwOTM2VnR3X3RHVUxRUFJxUUMtcUhJS3FpQQ?oc=5",
+      "fecha_anterior": "2026-11-06",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQWHVGU0V1RGtDN2lPcUNmNl96TjdKdUxDRTZ6LUtlQ0lZMDloLUNGY3JNZXRUN1RKcjI0c0hJbUc5T242a09qblpNZmVOUlRjamN5NTFURExJY2YtYkNFN1BNU2drSjNZY2JWN3dyUkNoN3JPMXQ0ZDI3b2p3am1pTmstQ3JCeXdVa3ZsOF9ZZEE2Q0dEQVM5TVdQS3hhYVcxUnVJZE1LQVp4QkJxTTdvTFJKVC0?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1059,31 +984,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Keiko Fujimori prevé reunirse por primera vez con Claudia Sheinbaum tras la cris",
-      "nota": "Claudia Sheinbaum llama “vecina” a Keiko Fujimori: juntas por primera vez, ríen y departen al lado de José Antonio Kast - Infobae",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPNWRkVzQtMDA0NWc2eVVSNV9mbnp0THZuQ3VBREROeFY0aXBFZVctWF94UUE4X2ROUHJrazRwZDItYUNEN3RSSlFuWmxBMU9zd3U2cTc4dE91b0NTZHFRU3htRVd0V0ZDMlF5eFhQcXh2Y1RKVUYtUWplNkFMREhtSzZzTG1vSm5JNElRSlMxdDRIeVRrTm9zUXBiTG5ZWEdUY091UlI4NW9VWV9WX3Rkak40RGl2bUZrVE1lc0MzbmM2Rl93OTdmVGVMZGRQaVh0RjBTVG81SEVpSGZKRUZUc2tlSndmSDhUNjhuYdIBhwJBVV95cUxNVHRGQzhkVzEwMVlLV1NXd2xfQ3ZWZF9KdDhwZC1IMzlydWc5U2U1SnBURS1CclhrazhZZFVMTWtzVVFaQXRGOGE0cEFEcV9XeGNEZHpXeFBvZ09xcDN1WlZobV9CLTRpLVo4aGpPNDBJOUJIM1JmLUs0UUdqMWFERVVZWDMzRFl5RjQtV3ltcVRZVlY5WC1fczBWb1p1YkYzYmlZeE5nUGV1bEMzVWJmZGdxWXZVNktvS2VoQUY1UG5sSFE4dzI2dkVOekRTNXRaOWZ5alkwSWhrZnZ6ZWxTalVDRFBmODBfZmZLUWtDdXZtRkNqcXVBaHh3WlNXa0RMX2Q0R1h4Yw?oc=5",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "pri_partido",
-      "nombre": "Partido Revolucionario Institucional (PRI)",
-      "rol": "Reacción de oposición",
-      "tema": "Sheinbaum rechaza que Consejo General del INE esté colonizado por Morena - El Un",
-      "nota": "⚡ Posible presión de Morena (partido político) — La ‘utopía guajira’ del PRI: Propone regreso de José Woldenberg al Consejo General del INE",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/19/pri-propone-que-exconsejero-jose-woldenberg-regrese-al-ine/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
-      "id": "pt_partido",
-      "nombre": "Partido del Trabajo (PT)",
-      "rol": "Reacción de oposición",
-      "tema": "Si se rompe coalición en NL, no será culpa del PT: Jesús Elizondo",
-      "nota": "⚡ Posible presión de Morena (partido político) — Si se rompe coalición en NL, no será culpa del PT: Jesús Elizondo",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/008n1pol?partner=rss",
+      "tema": "🇲🇽🇨🇳 La presidenta Claudia Sheinbaum compartió en sus redes sociales un video de",
+      "nota": "Claudia Sheinbaum se viraliza en redes sociales de China; captan a taxista escuchando su discurso - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQVExrTlZLT3JpbjBXRm1CWG0wTndNaldwTUk1cjExLWhSWm1oMXhtY0RTaWR6eS1VQW1tbktSdDJVa2o1QW9acjJGN0pkY0NfVTEwdUxnY0pBY3pTVEpPTXJibFItRVR5Nl9CT0dmbGxubFVSVlJNc05BNUhhSk56YlpfdlMwR1dlaDhMSmdsWURpUmc3eWJtQmRqNFBCcXRCRzZaeVdVSm0zVUFjZmtNb05pbmg5S3M2LXRXOWZRc2tnVUdBSUJsQzU1enhQWnR4?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1093,8 +996,19 @@
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
       "tema": "Trump y México: declaraciones y presión",
-      "nota": "🔔 ALERTA — ⚡ Posible presión de Donald Trump — Ana María Aragonés: Los demócratas ante los migrantes",
-      "fuente_url": "https://www.jornada.com.mx/2026/11/20/politica/014a1pol?partner=rss",
+      "nota": "Exitosa cumbre APEC 2026 // Donald Trump, atragantado // A la vista, nuevos liderazgos - México SA - La Jornada",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOYV82QlIyUDRDUGxZS0FnRmgyZTNMMmZ1bVkyaW5FMXJOZ2FJMllzaWVvd0Y4X21nY2lyb0F4aFdpRFhLdTlNYzN3UEI5TFRQckZ0clRXSlpmSGk5bFE5SUpmcThBek0zd0ZjRl8tMzFWRWxQeXFIN3ZwMXpPXzRtdzl6ampPQU9oYjFicWRxclpFbUZKdmVDNl9LUUNRTEFhd0xzMkNNQS1qaE9TWmxiNkZNTW5ZRVdIdlgwXzMzUTdxVmZUT2wzZFhoMEZSYXdGb2FfMDZIMnFlWE0?oc=5",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Mencionado",
+      "tema": "Sheinbaum rechaza que Consejo General del INE esté colonizado por Morena - El Un",
+      "nota": "⚡ Posible presión de Morena (partido político) — La ‘utopía guajira’ del PRI: Propone regreso de José Woldenberg al Consejo General del INE",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/19/pri-propone-que-exconsejero-jose-woldenberg-regrese-al-ine/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1111,14 +1025,7 @@
       "confianza": "media"
     }
   ],
-  "declaracion_presidenta": {
-    "actor": "Claudia Sheinbaum Pardo",
-    "texto": "Claudia Sheinbaum llama “vecina” a Keiko Fujimori: juntas por primera vez, ríen y departen al lado de José Antonio Kast - Infobae",
-    "fuente_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPNWRkVzQtMDA0NWc2eVVSNV9mbnp0THZuQ3VBREROeFY0aXBFZVctWF94UUE4X2ROUHJrazRwZDItYUNEN3RSSlFuWmxBMU9zd3U2cTc4dE91b0NTZHFRU3htRVd0V0ZDMlF5eFhQcXh2Y1RKVUYtUWplNkFMREhtSzZzTG1vSm5JNElRSlMxdDRIeVRrTm9zUXBiTG5ZWEdUY091UlI4NW9VWV9WX3Rkak40RGl2bUZrVE1lc0MzbmM2Rl93OTdmVGVMZGRQaVh0RjBTVG81SEVpSGZKRUZUc2tlSndmSDhUNjhuYdIBhwJBVV95cUxNVHRGQzhkVzEwMVlLV1NXd2xfQ3ZWZF9KdDhwZC1IMzlydWc5U2U1SnBURS1CclhrazhZZFVMTWtzVVFaQXRGOGE0cEFEcV9XeGNEZHpXeFBvZ09xcDN1WlZobV9CLTRpLVo4aGpPNDBJOUJIM1JmLUs0UUdqMWFERVVZWDMzRFl5RjQtV3ltcVRZVlY5WC1fczBWb1p1YkYzYmlZeE5nUGV1bEMzVWJmZGdxWXZVNktvS2VoQUY1UG5sSFE4dzI2dkVOekRTNXRaOWZ5alkwSWhrZnZ6ZWxTalVDRFBmODBfZmZLUWtDdXZtRkNqcXVBaHh3WlNXa0RMX2Q0R1h4Yw?oc=5",
-    "intensidad": 7.0,
-    "fecha": "2026-11-19",
-    "nivel_fuente": "ALTA"
-  },
+  "declaracion_presidenta": null,
   "declaracion_otro": null,
   "patron_historico_4sem": [
     {
@@ -1284,9 +1191,9 @@
     {
       "fecha": "2026-11-13",
       "tension": 27,
-      "n_notas": 40,
+      "n_notas": 41,
       "n_alto_impacto": 15,
-      "n_medio_impacto": 25,
+      "n_medio_impacto": 26,
       "n_bajo_impacto": 0
     },
     {
@@ -1339,10 +1246,10 @@
     },
     {
       "fecha": "2026-11-20",
-      "tension": 30,
-      "n_notas": 5,
-      "n_alto_impacto": 1,
-      "n_medio_impacto": 4,
+      "tension": 29,
+      "n_notas": 13,
+      "n_alto_impacto": 5,
+      "n_medio_impacto": 8,
       "n_bajo_impacto": 0
     }
   ],
@@ -1352,47 +1259,52 @@
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
       "x_lunes": 91,
-      "y_lunes": 67,
+      "y_lunes": 70,
       "x_hoy": 100,
-      "y_hoy": 70,
-      "delta_pts": 9.0,
-      "alcance": 25,
-      "n_alto": 13,
-      "n_medio": 19,
+      "y_hoy": 71,
+      "delta_pts": 7.5,
+      "alcance": 26,
+      "n_alto": 15,
+      "n_medio": 20,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVDVuT1RlUEdkck1tU3pucW1Za1M1U1dSRHF6WUxQeUZjaS16ZHhyT1VXM0ZrZEpGak1ZUThra1Rka3dGS1VLMl9iRllWXzl4dlROUEI5S1NRWUlDT3cyZTE2X1pMdXVPX3ZFaFJBSjE4bnlHZmlnME12ZmwtWmV1YjlrTnNNNU5Wa0pDNFdjWl9wLS1OR1hV?oc=5",
-      "nota_texto": "Morena Puebla estrena sede en Bellavista y asegura que hay unidad - Sucesos Puebla",
+      "apagado": false,
+      "nota_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPS3Jqb0pKTGd4NldVTmpvVFZvNDQ0SGl3UTc1ZmZVVmEwWmVKMDBXNXBfQ3ZUdzU4c0VVNHBkZTJMNUpTanhTWUNqZTVwc0lSY0NpTFFCMkY3MC1RUldZdXhENUpVNlN2SWlLSlNGa2F0OUFzWkphcGZxbjN5NnJEOGgzTVFHQWtkOFJ3QUk2QlNORExKSGxLMUkwekVDR3BqajVn0gGjAUFVX3lxTE1fRld1TGNuWFpKaE5ERWNaRHpmY0UxakRaMFBNM282QVFuTXdfZUV0aWNpZG5acUYwazhvemhOeUFESTZtWXVfbGJMTEhnbnBUTWtQdDg3eldLVF9rSDhmMTZCaDBsMlk4MlNHRGp3bzJwZHRpdFhKYnN0Ri1mZ3pVTnFtOTMtbVBZSDFxc1pnRjh0VzVpVld5UTdjT05zNUNLTm8?oc=5",
+      "nota_texto": "Morena abre registro para elegir coordinaciones distritales locales en 31 entidades - Milenio",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
-      "dias_activo": 3,
+      "dias_activo": 4,
       "trayectoria": [
         {
           "fecha": "2026-11-17",
-          "x": 25,
+          "x": 23,
           "y": 62
         },
         {
           "fecha": "2026-11-18",
-          "x": 91,
+          "x": 83,
           "y": 67
         },
         {
           "fecha": "2026-11-19",
-          "x": 100,
+          "x": 91,
           "y": 70
+        },
+        {
+          "fecha": "2026-11-20",
+          "x": 100,
+          "y": 71
         }
       ],
-      "fecha_apagado": "2026-11-20"
+      "fecha_reactivado": "2026-11-20"
     },
     {
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 69,
+      "x_lunes": 63,
       "y_lunes": 89,
-      "x_hoy": 81,
+      "x_hoy": 74,
       "y_hoy": 87,
       "delta_pts": 9.0,
       "alcance": 22,
@@ -1409,22 +1321,22 @@
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 22,
+          "x": 20,
           "y": 93
         },
         {
           "fecha": "2026-11-17",
-          "x": 50,
+          "x": 46,
           "y": 84
         },
         {
           "fecha": "2026-11-18",
-          "x": 69,
+          "x": 63,
           "y": 89
         },
         {
           "fecha": "2026-11-19",
-          "x": 81,
+          "x": 74,
           "y": 87
         }
       ],
@@ -1434,9 +1346,9 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "iniciales": "DT",
-      "x_lunes": 19,
+      "x_lunes": 17,
       "y_lunes": 100,
-      "x_hoy": 22,
+      "x_hoy": 20,
       "y_hoy": 100,
       "delta_pts": 3,
       "alcance": 7,
@@ -1445,8 +1357,8 @@
       "n_bajo": 0,
       "impacto_nivel": "alto",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPY3ExMmNVS0o0Y0E5UmZ5cTlkLTFzaG1kbFNDb3FuVHFhQjR6TVVqZ1MzVTRhTGdxcTNzY3FPOWlER2NIMmN1RWdqZjZQZjBGX0Z2WENHWXdGRmh2YjFFSjJuckp5aEppU2o1c1dsOGJJeVF5V202REdRZGg3OXY1cXZKcFlaMXJMZVhseWEtS3pIMldpNTdUMEhZRzVZU1k0ZDQ1VTlnVlBuMDloLVNwVERzb3o2d1daMHRxYTF4Ui1Ydw?oc=5",
-      "nota_texto": "Sheinbaum confirma reunión con Donald Trump en China previo a la cumbre de la APEC - Proyecto Puente",
+      "nota_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPT3A2U1l6MlA3eHBVMTV6UjJ2eVU1UnJTTWJGcklHN2hzNFNGUFVyWEg0YlVtaEYxUFc2X0JrSEYxSW9ZZUZDVWU4a1RWaXFLWUNjcUZMdFRHLWtpVFRGTko2VVMwUnR3dVBOZEtTZUdrQWplQ2wzVHB1R1FIQUtyUEtVV3hadm53SVRLc19Gc25fWHc?oc=5",
+      "nota_texto": "Claudia Sheinbaum se reúne con Donald Trump en China, acuerdan nuevo encuentro en EU - La Jornada Estado de México",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 4,
@@ -1463,12 +1375,12 @@
         },
         {
           "fecha": "2026-11-18",
-          "x": 19,
+          "x": 17,
           "y": 100
         },
         {
           "fecha": "2026-11-19",
-          "x": 22,
+          "x": 20,
           "y": 100
         }
       ],
@@ -1478,9 +1390,9 @@
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 19,
+      "x_lunes": 17,
       "y_lunes": 83,
-      "x_hoy": 22,
+      "x_hoy": 20,
       "y_hoy": 86,
       "delta_pts": 3.0,
       "alcance": 7,
@@ -1507,12 +1419,12 @@
         },
         {
           "fecha": "2026-11-18",
-          "x": 19,
+          "x": 17,
           "y": 83
         },
         {
           "fecha": "2026-11-19",
-          "x": 22,
+          "x": 20,
           "y": 86
         }
       ],
@@ -1551,9 +1463,9 @@
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 19,
+      "x_lunes": 17,
       "y_lunes": 83,
-      "x_hoy": 25,
+      "x_hoy": 23,
       "y_hoy": 75,
       "delta_pts": 3.0,
       "alcance": 8,
@@ -1570,17 +1482,17 @@
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 12,
+          "x": 11,
           "y": 88
         },
         {
           "fecha": "2026-11-17",
-          "x": 19,
+          "x": 17,
           "y": 83
         },
         {
           "fecha": "2026-11-18",
-          "x": 25,
+          "x": 23,
           "y": 75
         }
       ],
@@ -1590,9 +1502,9 @@
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
-      "x_lunes": 12,
+      "x_lunes": 11,
       "y_lunes": 75,
-      "x_hoy": 16,
+      "x_hoy": 14,
       "y_hoy": 70,
       "delta_pts": 1.5,
       "alcance": 5,
@@ -1619,16 +1531,15 @@
         },
         {
           "fecha": "2026-11-19",
-          "x": 12,
+          "x": 11,
           "y": 75
         },
         {
           "fecha": "2026-11-20",
-          "x": 16,
+          "x": 14,
           "y": 70
         }
-      ],
-      "fecha_reactivado": "2026-11-20"
+      ]
     },
     {
       "id": "higinio_martinez",
@@ -1675,7 +1586,7 @@
       "iniciales": "AM",
       "x_lunes": 6,
       "y_lunes": 50,
-      "x_hoy": 12,
+      "x_hoy": 11,
       "y_hoy": 50,
       "delta_pts": 3.0,
       "alcance": 4,
@@ -1684,8 +1595,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNdVRjeVY2ZG1nR2JwdDlacWdfZmhKU3RBYVg4cTMzX3hFMXJ6em5fSkNNU2xFT2dNcWh3dUJkbnBaRzM1NVFVVkhPWWdicEtiaFVxczJoSEpRbEtpQnJKbG9kdVA0M0dsOXpBZGNib2dmOUNsaGZENmJaYmtuUUVSWnhDRVNobjByMDFiQUpfbVg0dzNXdVhuelpMOFdoVFoxTnlrOEcwZHNpVGs5aGZ5cDZUV0RNalc0QUM2VXVsUG5KdTA5MVpHVTR3?oc=5",
-      "nota_texto": "Ariadna Montiel descarta segunda encuesta en NL; respalda a Clara Luz Flores - ABC Noticias",
+      "nota_url": "https://www.jornada.com.mx/2026/11/18/politica/008n2pol?partner=rss",
+      "nota_texto": "“Somos representa la mafia en el INE”: Ariadna Montiel",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1697,7 +1608,7 @@
         },
         {
           "fecha": "2026-11-18",
-          "x": 12,
+          "x": 11,
           "y": 50
         }
       ],
@@ -1808,12 +1719,12 @@
   ],
   "tablero_semana_inicio": "2026-11-16",
   "resumen_mananera": [],
-  "mananera_estado": "pendiente",
+  "mananera_estado": "fuente_retrasada",
   "a_vigilar": [],
   "precision_alertas": {
     "suficiente": false,
     "evaluadas": 0,
-    "pendientes": 0
+    "pendientes": 1
   },
   "declaracion_presidenta_historial": [
     {
@@ -1867,11 +1778,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-11-20T00:03:32.631236-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
-    ]
-  },
-  "hora_corte_publicada": "2026-11-20 06:02"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-11-20 12:03"
 }
