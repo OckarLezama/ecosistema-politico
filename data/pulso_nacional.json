@@ -1,19 +1,19 @@
 {
-  "generado_en": "2026-11-19T18:04:25.179562-06:00",
+  "generado_en": "2026-11-20T00:03:32.631236-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 20,
+  "n_notas_ventana": 18,
   "baja_confianza": false,
-  "tension_nacional": 29,
+  "tension_nacional": 26,
   "tension_anomalia": {
-    "z": 1.23,
+    "z": 0.61,
     "nivel": "normal",
-    "media_periodo": 22.3,
+    "media_periodo": 22.6,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 68,
+      "peso_pct": 77,
       "tema_principal": "Claudia Sheinbaum propondrá que el Estado produzca material electoral - El Valle",
       "tema_principal_id": "auto-14f6908102",
       "n_temas": 9,
@@ -106,36 +106,8 @@
       ]
     },
     {
-      "categoria": "Relación Bilateral",
-      "peso_pct": 17,
-      "tema_principal": "Revisión del T-MEC",
-      "tema_principal_id": "tmec-revision",
-      "n_temas": 3,
-      "n_notas": 3,
-      "notas": [
-        {
-          "texto": "Sheinbaum y Trump acuerdan avanzar en revisión del T-MEC tras elecciones en EU; se reunirán en diciembre - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPdi1uZDVMQWxXbjVuT05qMEJHXzFodGI4bW9LejBrWFhodlMzMGE3Y19oeUgxTVdMb1dSb0FDc0VDOVhNdkhiREZ5R0UyX1U2bUFSM0dCa2RoZzV1VGhhdjV1LVozWlR2WmU4NzF5S2NoZUNxYzJfcllBTjM0dWEwbDVnNzlOMTljY1FHbk5NSVJMZDRRZTNpWE5LT1U0MXNjbWpEYUwtVGFCSzhGcm5abGtNdUpXaEVKZ3F6cVNGMmtkTFB4TUtFRzJaTjZpb3FyM3ZibGZpMndEd9IB7gFBVV95cUxNdDhRWFhFQld2MUNncHVIc29iUWJKeGlvSmVvNGdLVkRuX0RMdVBXbkJOMW5zbDhFd1JBUGdrTGtHOU9GLVZzWGZqMVBON3ZnOWRUQWFOWWJrY2NDWnFMQzlnX2lWTllYOEQ2NGdjcXUtakNHWnUySXpnMThqRGF4RTg4NnN1ZG04Rzh5d2NCbWpXRk5CQVh5clRGNGV6RFY3TUlWaURMNld4NlZUR19XemxOYUVRREMtTHowaEd4NlFNaDYwNjFaRldXNWV1NEtnMERBYVVXRXdDenR5cVlheGEwYURjT2k2RGlYenVn?oc=5",
-          "intensidad": 7.0,
-          "medio": "El Universal"
-        },
-        {
-          "texto": "Donald Trump se reúne con ‘su amigo’ Vladimir Putin previo a reunión trilateral con Xi Jinping",
-          "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/19/donald-trump-se-reune-con-su-amigo-vladimir-putin-y-xi-jinping-previo-a-reunion-trilateral-en-china/",
-          "intensidad": 7.0,
-          "medio": "elfinanciero.com.mx"
-        },
-        {
-          "texto": "Se reúne con Trump",
-          "fuente_url": "http://campechehoy.mx/2026/11/19/se-reune-con-trump/",
-          "intensidad": 7.0,
-          "medio": "campechehoy.mx"
-        }
-      ]
-    },
-    {
       "categoria": "Economía",
-      "peso_pct": 11,
+      "peso_pct": 12,
       "tema_principal": null,
       "tema_principal_id": null,
       "n_temas": 1,
@@ -156,8 +128,24 @@
       ]
     },
     {
+      "categoria": "Relación Bilateral",
+      "peso_pct": 6,
+      "tema_principal": null,
+      "tema_principal_id": null,
+      "n_temas": 1,
+      "n_notas": 1,
+      "notas": [
+        {
+          "texto": "Se reúne con Trump",
+          "fuente_url": "http://campechehoy.mx/2026/11/19/se-reune-con-trump/",
+          "intensidad": 7.0,
+          "medio": "campechehoy.mx"
+        }
+      ]
+    },
+    {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 4,
+      "peso_pct": 5,
       "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
       "tema_principal_id": "sinaloa-crisis",
       "n_temas": 1,
@@ -182,31 +170,6 @@
     }
   ],
   "categorias_tendencia_4sem": [
-    {
-      "fecha": "2026-10-23",
-      "categorias": [
-        {
-          "categoria": "Seguridad Nacional",
-          "peso_pct": 10
-        },
-        {
-          "categoria": "Gobernabilidad",
-          "peso_pct": 64
-        },
-        {
-          "categoria": "Relación Bilateral",
-          "peso_pct": 12
-        },
-        {
-          "categoria": "Economía",
-          "peso_pct": 8
-        },
-        {
-          "categoria": "Social",
-          "peso_pct": 5
-        }
-      ]
-    },
     {
       "fecha": "2026-10-24",
       "categorias": [
@@ -881,6 +844,31 @@
           "peso_pct": 6
         }
       ]
+    },
+    {
+      "fecha": "2026-11-20",
+      "categorias": [
+        {
+          "categoria": "Seguridad Nacional",
+          "peso_pct": 5
+        },
+        {
+          "categoria": "Gobernabilidad",
+          "peso_pct": 66
+        },
+        {
+          "categoria": "Relación Bilateral",
+          "peso_pct": 14
+        },
+        {
+          "categoria": "Economía",
+          "peso_pct": 11
+        },
+        {
+          "categoria": "Social",
+          "peso_pct": 4
+        }
+      ]
     }
   ],
   "top5_temas": [
@@ -892,51 +880,12 @@
       "motivo": "Talleres Gráficos de México será el principal productor de materiales electorales",
       "peso": 12.0,
       "n_temas_agrupados": 6,
-      "escalando": true,
+      "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://www.jornada.com.mx/2026/11/19/politica/005n1pol?partner=rss",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
-    {
-      "id": "tmec-revision",
-      "nombre": "Revisión del T-MEC",
-      "categoria": "Economía",
-      "resumen": "México negocia la revisión del T-MEC en un proceso crítico para la relación comercial con Estados Unidos y Canadá; la Secretaría de Economía, encabezada por Marcelo Ebrard, coordina la negociación con apoyo de asesores especializados en temas agroalimentarios.",
-      "motivo": "Sheinbaum y Trump acuerdan avanzar en revisión del T-MEC tras elecciones en EU; se reunirán en diciembre - El Universal",
-      "peso": 7.0,
-      "n_temas_agrupados": 1,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPdi1uZDVMQWxXbjVuT05qMEJHXzFodGI4bW9LejBrWFhodlMzMGE3Y19oeUgxTVdMb1dSb0FDc0VDOVhNdkhiREZ5R0UyX1U2bUFSM0dCa2RoZzV1VGhhdjV1LVozWlR2WmU4NzF5S2NoZUNxYzJfcllBTjM0dWEwbDVnNzlOMTljY1FHbk5NSVJMZDRRZTNpWE5LT1U0MXNjbWpEYUwtVGFCSzhGcm5abGtNdUpXaEVKZ3F6cVNGMmtkTFB4TUtFRzJaTjZpb3FyM3ZibGZpMndEd9IB7gFBVV95cUxNdDhRWFhFQld2MUNncHVIc29iUWJKeGlvSmVvNGdLVkRuX0RMdVBXbkJOMW5zbDhFd1JBUGdrTGtHOU9GLVZzWGZqMVBON3ZnOWRUQWFOWWJrY2NDWnFMQzlnX2lWTllYOEQ2NGdjcXUtakNHWnUySXpnMThqRGF4RTg4NnN1ZG04Rzh5d2NCbWpXRk5CQVh5clRGNGV6RFY3TUlWaURMNld4NlZUR19XemxOYUVRREMtTHowaEd4NlFNaDYwNjFaRldXNWV1NEtnMERBYVVXRXdDenR5cVlheGEwYURjT2k2RGlYenVn?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
-    },
-    {
-      "id": "auto-ee3bbb3e47",
-      "nombre": "Donald Trump, Xi Jinping y Vladímir Putin tendrán una reunión inédita: los dos t",
-      "categoria": "Relación Bilateral",
-      "resumen": "Donald Trump, Xi Jinping y Vladímir Putin tendrán una reunión inédita: los dos temas que podrían cambiar el rumbo mundial - Revista Semana",
-      "motivo": "Donald Trump se reúne con ‘su amigo’ Vladimir Putin previo a reunión trilateral con Xi Jinping",
-      "peso": 7.0,
-      "n_temas_agrupados": 4,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 1,
-      "confianza": "baja",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/19/donald-trump-se-reune-con-su-amigo-vladimir-putin-y-xi-jinping-previo-a-reunion-trilateral-en-china/",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
     },
     {
       "id": "sinaloa-crisis",
@@ -951,10 +900,7 @@
       "medios_corroborantes": 1,
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNZmlVUk9EN21mRnNWc3RyUXZmRFRIaFVvSEhfU2x3MzNKcWhHWlNlVHZ1M29Oek8tZVJlOFZTTWlyel8xRURza2E4bDdMMzNZa0VLZ25hU3lBOUVpbUFZWnFSNTlYX05CM3lnR3EyVEV6bFJnRlhrNnlYem9jaGNYNmppYWJRc3RmanhZ0gGLAUFVX3lxTE9zTjJodE1uMXZGU0UzclN1TWFPTjFLQ0lOcnFFdTBVRVNDVE1PYUZ0QUtUSzh3bVltNVlBRjB3MWF0ZW1VUFA2Q0tTN21pSjFUODdEb3BhWU9rMXJyeUEtR1V2NDg4dE5IYldfUnlmMTFaTC1relhWUW5laXlMWlBCeWduaU1fYUtDcVU?oc=5",
-      "actor_vinculado": {
-        "id": "sheinbaum",
-        "nombre": "Claudia Sheinbaum Pardo"
-      }
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
@@ -967,22 +913,6 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQZEpFb0YySkZzQWFCUzRFV2pheUZlZUpmZ1lIU3FOdzBRZ28zYWpkM1g1c0paVUoxcGY1VlZTNVR1dG5Mc19jc0duQ0I2bEVMMm5Dd0s5azgwN19wWE94R1YycHI5NzFYOU5QcHdWMDJwaDBrNUwzWlVvbHlTTjA0dVlEZTJUTDMyX0c4bzVqcWhWNGhSWEw2Rk9KRVRsSzZH0gGgAUFVX3lxTE1jSjBYRG05X213amduVzdRdjNCVU14b3dRWGRJeTExRnoxdHlneVotUkpJdVkzdnptY3R0NF9PamVJb1ByeU9uQml5WmZBMk5XSnVQdVFjaXZFR3R1TExEemxrQXBzZ3pCbDh2UVE2a1VOTUVyd1BBMTRlR0lULXFkZUhvWnhKR2lETXNWSFRkQU5uZEFzWEpTOG9BZVpFQXQ?oc=5"
     },
     {
-      "id": "auto-365259dc97",
-      "nombre": "Paxman, biógrafo de López Obrador: “Es una persona muy contradictoria en muchos ",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQdFBpZEpVUmM3TnBpZ0t6SjYtR0RUTXI3bDloQ01qT2huWnNPLWxJYVVTbVZHTXZ2S0tkUXE0M2xON3gyMzRNYWJKMnBsUU1uZV9ZZ29fa2gtQWNSdVNwQTBSaVhOWEdnOUU5clpaazRUTU50VFRxUUJDeHB1bERWODM1V2Q5cGFrblpPdGlxdVNUZ3BaSGhZYlQ4dk1QbzhpbVpQaTYyNFEwS2NueEZ6T0VoTGlIa2JqNGpMR1BWd2FNR3JYLWfSAdoBQVVfeXFMTnJ5SkU1N0VmOERSc3NiS3Z5TFNqYk1aeUgtRW5RVi1XMFIweWI3Um9iQXR5RVc0bklucEdDUllBSG5uUjJZeDh5eDBjdl9rcVRVQVVUc3czNUNmNmxCdmJZcWZtX3ZXbEc3MjF3NzVKNXZzZ0NyeWRjRXAwb0pRM0ZkcnlIU3JyZ18xeFBxOFNqMTdlQkJRTXhrdW9ITEZoREFmMklWWXM0S0N2cnJhV3plSGdieEVQekNZT1Q2dS04LXJCSzg1QXk0eWEtdWF2WWU2dVNiVGNZR2c?oc=5"
-    },
-    {
-      "id": "auto-d5f0f2a3c5",
-      "nombre": "Vamos mejor y tenemos rumbo, porque ese rumbo lo marca el pueblo: presidenta Cla",
-      "categoria": "Gobernabilidad",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPSUs3X2pqX29PbWRua19LalhTMjA2MzlXYTB3dTJlVklqSGpTaFdXQVNuOHcyNi1XZTRITEpJVWVlbm5RdWNqd2w0WlFNTWhfUDhRWXI2bXJ0RzRESTlaRHl6NmdfQkY4SDdoUHZQbWFqX1k0cUtESmNJcVZ2eGUyT2Y4am5BS1AwZGJEMjB4aFQ2Y1AzXzVqN05NblRncjY2SC0xMDBaNEVSVjVlTVdiZW1xc0plY0xWbHMxMVVlWGQ0eEFZbzdNMy1RLUxONmk0bHM5cGRDZVQzaEM2OHdjZlpMYmdFYzZHcEltOGFfRTNNeVgySnNuTGNjQ21RV2JKSzdV?oc=5"
-    },
-    {
       "id": "auto-41b0cb95ef",
       "nombre": "Aumentó el personal de inteligencia este sexenio, reporta García Harfuch",
       "categoria": "Gobernabilidad",
@@ -991,26 +921,31 @@
       "fuente_url": "https://www.jornada.com.mx/2026/11/19/politica/005n2pol?partner=rss"
     },
     {
+      "id": "auto-b3854c08c2",
+      "nombre": "Presidenta Claudia Sheinbaum y el primer ministro de Australia, Anthony Albanese",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQbUU5djh1NS0xMXFiSG84SHNMN1ZnejFpelVPZ0JZb1VDY0J0Z0Y1MXJPb014QzdMdUpwMlU4QzdfLVlLVmNHMHd1MXgwdFp0N20xWjdlbzVwWFpKQ2pUUnBVX2NxYjNwdFV4eUFoSjZacnAtV196UFpQZHRtTWR2ckhZc04zOE9rYm1MWVo3SHd6bFUyYjVuYXdkTGVQZDBMT3RreUpXUmRta051cU5GbmtibEc0b0VSSy1FQmpxeDZ0SGs5WUF5QjBaWEdTZXlDYXJPemdVRVYyQWYtMFpZ?oc=5"
+    },
+    {
       "id": "auto-3081f45c41",
       "nombre": "Conferencia de la presidenta Claudia Sheinbaum - El Financiero",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPVEZrdHViOWpPM3BsT0pkbVVOT01qQ0Y0X3hjYzB4bEJJTXEyWDRTYmtlYllDQ0NUeDMzUGhLM2cxbHNqb3dxblRnNVVyX2xMUFEtTzcxanUzU0t4TEU4cFhMS2tmejc2Zkx3UzFEenl6dk1JS0cxaHV0QmVmTGZWUWpPR0Z0TjRUY1pKRW9tdjR6M0lWSGlLTWdvNGxYLVRxWkxMaXktYzRNckt2?oc=5"
+    },
+    {
+      "id": "auto-b550eb1b6f",
+      "nombre": "Morena intenta revertir en el INE el esquema que antes impulsó: Loret",
+      "categoria": "Gobernabilidad",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.informador.mx/mexico/loret-de-mola-senala-que-morena-intenta-revertir-en-el-ine-el-esquema-de-contratos-privados-que-antes-impulso-20261119-0044.html"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-ae50f7ba17",
-      "nombre": "Amplía Sheinbaum facilidades fiscales y créditos para micro y pequeñas empresas ",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 70,
-      "motivo": "Facilidades, beneficios y simplificación de trámites para micro y pequeñas empresas fortalecen el bienestar: presidenta Claudia Sheinbaum - Gob MX",
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOYl85S0JpdHFPSnQ2bDJLQkd3TzA1ckJhMDg4cW12dmtHMGxxb0FsMnBQSGpZRUxLeTNaSHJfMW90ekhDenB0aXdTMWV5S0FHWTlGTXhSVkt1dTBTZ2xvdkVFN1IySi1jVTRZcWJaLVdBQlNMOC1TenkzdHRLTHRlXzE4UXBDT3FSNW9PbXNXLTZMLUxpdUpab3U5U1ZhOHc4SFdMd2JVYm5xZlg2VFhqYWRISkFqenJBNzV2S0RHX1BsM21xMi14UUpzRjJwMW1XeW9fRG0wUzV5NjVoODZIZ0FYVGRjbmFfTmRIemtCMXZNSFFVTjZObE9USUM1ZEVpT2VF?oc=5",
-      "fecha_anterior": "2026-09-10",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQNTNwS2FTLWUweGVsQk9wbmprckRVUnUtTUlXcG9aWUxYTXVVY0dWdUROdUl5QTQtajIway1kZGxtQjlvX3pXVGY1NDB1TS1tNm4wSGZ6UnZvbW5VYzNubEZ4ZmtCdGtEeXVhZWlyNzFQSjlfM01SMy1nMTlEcWpfN3pOaFFWMW5NU3N0WEtRM0hqaW82a2NSc0hrakRxYUo1cjNZTC1rcXhUZXpLX0t3?oc=5"
-    },
     {
       "id": "auto-8ca0b2f1c3",
       "nombre": "Rosa Miriam Elizalde: “Matonismo” en la ONU",
@@ -1023,15 +958,15 @@
       "fuente_url_anterior": "https://www.jornada.com.mx/2026/09/24/politica/014a2pol?partner=rss"
     },
     {
-      "id": "auto-76be06c8c2",
-      "nombre": "Claudia Sheinbaum Pardo. . Electricidad para el desarrollo de la nación. - Faceb",
+      "id": "auto-4c8b7b36d9",
+      "nombre": "La Presidenta Sheinbaum y la Gobernadora mexiquense Delfina Gómez evalúan unidad",
       "categoria": "Gobernabilidad",
-      "dias_silencio": 43,
-      "motivo": "Invertir en el desarrollo de otras naciones no es una pérdida: Claudia Sheinbaum en cumbre APEC - La Jornada",
+      "dias_silencio": 37,
+      "motivo": "Envía gobernadora Delfina Gómez Paquete Económico 2027 por 433 mil millones de pesos",
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPV0JZOE00bnBPTEFFUmoyMzFiWlRraUJ5NlhfbkJueFNWWnU3NnV2b2tfY09KYmU3Ny15V3NUcXA2dFRkMmowaEhDdTJSakZMSkpzdTh6NnFXRUp3eWNrT2RDX3RjLTBYT0U5Rk9zX3dZRXhSWWVabGNqc05YVDNSWng1VWtqRGZMRGFfT0V4RFFIMXoyaFZvUXNvY0ZBVXBHazZWNFpUQnl4UjlPdTNNSTFnMDFyeG9tdnJ4VFNHNlRmaXVKUHNNR2JtSDhNX2JlcXZZS0g2V2FvRVRDd2RwNzlYYw?oc=5",
-      "fecha_anterior": "2026-10-07",
-      "fuente_url_anterior": ""
+      "fuente_url": "https://www.elfinanciero.com.mx/edomex/2026/11/19/envia-gobernadora-delfina-gomez-paquete-economico-2027-por-433-mil-millones-de-pesos/",
+      "fecha_anterior": "2026-10-13",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOX0l3Wjd3WWxIN1VKRjZ1U1pkX2pjdDRQbWxBSS1nZTl0YkF3a0FLVFFRT25RSzNVMk5faTJ1aXJlOXlRSVVHb1FjUUxGa2llM2FCbDV1NkNLdjhFNS1xMUkySHRieFpkYnNKeV9OUm1GTDZ3bWF1aG9Rd1dfUS1oS0lXRGpLSW1hd1HSAYoBQVVfeXFMTl9Jd1o3d1lsSDdVSkY2dVNaZF9qY3Q0UG1sQUktZ2U5dGJBd2tBS1RRUU9uUUszVTJOX2kydWlyZTl5UUlVR29RY1FMRmtpZTNhQmw1dTZDS3Y4RTUtcTFJMkh0YnhaZGJzSnlfTlJtRkw2d21hdWhvUXdXX1EtaEtJV0RqS0ltYXdR?oc=5"
     },
     {
       "id": "auto-83c1ca3baa",
@@ -1045,15 +980,26 @@
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPSUg1ZE54XzVEcml1dGlCYmFQdTJxV2hKVXRyV3pyWFdjUUVyamhpMExvN2tTWXlfcjVsakRlWkk2N0pZMHJoZEFTcE1pVWg1VVk0QzZlZ1llVlJ4dWlMa1FFdDRJSDZnUDhQSFRvZ1Q1b2N2MXVfSXlCNHlUTUc2N1FDdDRhVlhhMzQxUmVmNW40Yi1WaUx5blozc0JqcjZoY25uQWJXakpRd1h3SmY4b3pvQTlFQlFFRVozMmQxeWdYazdMODZvRi1uNjNVTWdfU2ZjOFgzcjBva1VCZEhRUU53SlpYTzc4d3NrZXY3Vmd3SFpUSWk5bGtzd3ZCZmthYnk0MWFCa9IBjAJBVV95cUxQN0k2a3ZRQmNHNW9nYTJXSzJRVTNDM0dZRWsxQkZqZW15bkxWamZwT1EzR3dTUm5ZX0s3ZmNXVFBTZ2R6ZlVDZmdXMjI1SzduTlhGOW9tTzRJTXVoRVcxNmxDWS1MNXJvNDlzeTRGRE5NaGpwSTg1akJWaDIxdTFTd01aSmJjRk9JMGVrR3gtN0RRTkdOemRyOVg5aGl5dzJ5Ui0tTlBYRHdBSTBrbm9SVzdDWG02bDE1ZXZ5bzhrVmVYWUozNGVDYU1CWWJFZVh0cU5yTEFoSnlvNUZtLUw3WVE3OG9McEYzaWtHTktKbHUyUnRRNi1MWHI2U2R4UmluUFpqTklSYVRuak0t?oc=5"
     },
     {
-      "id": "auto-e2b2810afc",
-      "nombre": "Ex alcalde de Coatzintla deja presunto daño patrimonial por 60 millones 📹 - Camb",
-      "categoria": "Gobernabilidad",
-      "dias_silencio": 32,
-      "motivo": "⚡ Posible presión de Morena (partido político) — Morena expulsa a Nancy Nápoles por fingir su secuestro; exigen destituirla como alcaldesa de Tenancingo",
+      "id": "auto-7b08ee0bb9",
+      "nombre": "California desea mantenerse en el ala democrática con un perfil inmigrante y de ",
+      "categoria": "Social",
+      "dias_silencio": 16,
+      "motivo": "El PAN acusa a Morena de querer mantener a un perfil leal al frente del INE",
       "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/19/morena-expulsa-a-nancy-napoles-por-fingir-su-secuestro-exigen-destituirla-como-alcaldesa-de-tenancingo/",
-      "fecha_anterior": "2026-10-18",
+      "fuente_url": "https://www.informador.mx/mexico/el-pan-acusa-a-morena-de-querer-mantener-a-un-perfil-leal-al-frente-del-ine-rumbo-a-los-comicios-de-2027-y-2030-20261119-0112.html",
+      "fecha_anterior": "2026-11-03",
       "fuente_url_anterior": ""
+    },
+    {
+      "id": "auto-31b937e8cb",
+      "nombre": "Sí hay probabilidades de que la Corte eche atrás reforma que permite pluris en l",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 14,
+      "motivo": "Valida Corte albazo de Morena sobre pluris en Zacatecas - Reforma",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNWVJDOWo0S1ZSVG1kME9mMnpxSFRHYzAtMHJZV2lvUFhPeFY2WnpacUVzOWRQU0lLVXUycE50RzZLYjczOXJVUkxoMm9vbnRac3V6ZDZvc3VNTE5kR1RkeEh2ZkdqcXZzUmV6MDlZdm5VbVhDajBSQjhxMFRyY05XeDdHQXlwVXFWYzBienZrUUhmZ00?oc=5",
+      "fecha_anterior": "2026-11-05",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMioAFBVV95cUxORkFOZDlENmVjT21GRWUwWnRPLVkwOVlxVVlRUUJvakFvREFyTUNJNUlXZ0ZFSTdaak9sbXNJTnRxanFfRHJzWUhQNU9UR2h0NkNCaDF0QjRrbmFaWTVHWlNINVBxN09DNHJXV2hiYWJYQVNSSlUybmt1M1Y0NEV1WjlpSDJxOVc1Zl9QUE5SZmMzMmJSdDFJN01CeG84M0pt?oc=5"
     }
   ],
   "actores_destacados": [
@@ -1061,9 +1007,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "rol": "Responsable institucional",
-      "tema": "Claudia Sheinbaum Viaja a China para Cumbre APEC 2026; Prevé Reunión con Xi Jinp",
-      "nota": "Mensaje de la presidenta de México, Claudia Sheinbaum Pardo durante la Reunión de Líderes Económicos APEC 2026. Shenzhen, China - Gob MX",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPb29yS0RjME04Nk4ybGF1N1VmTW9XS0RPVTBHSzBjSFJhclJrQVYyUlNSTEFvcEJEdlBIQ0Nmd2xsY1lIWDctT0hJVjBUOEl6cy1BdnZRRVdMUUd0aVFWRW5RQkl3bm9sbzczNVlLRXFMTzRqOXZ0UnhJbWJwc2ZMMUxWWGVGYktmaS1kZHFNNnBkeG81clNxcDdCTFhDbjlyQ3lLQWlveDNLc3IwbzVWLWZKVTc2cFNCay1wbTNYSTZUcFpHYWZDTXQzLWxWNm5JOFlfZklFZl9SWFVuYTg5aGx6VFZTQkYzQUxEYUpOSTNlR2QtbnlKVERtS2w?oc=5",
+      "tema": "“Relación con gobierno pasó al diálogo en 6 años”: José Medina, Presidente del C",
+      "nota": "Se restablecen las relaciones diplomáticas entre México y Perú: presidenta Claudia Sheinbaum - Gob MX",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPRE5zR0hBamVxdUliM2F0Snh4cUI0SE1abmtZNk1mdnVfT2IwSmcxU192ZWdLLTREVkFiYURPcVgwczRrQWFhdGlvSnNtSWNoM3lBTnFoVk54blBOd3pvdklzUDRVNGd3LWMwRDRzbVQ5M0ZxQXVDT3ZwdzRlZC1JdmdMOHZnV25WM1RiODNqUDYwYkFlWEFkZ1FjQkdDMGhzUzZsVW9fUWowNm9mQVNlMGs2UW5keE1QSWdyOVE4S3NJVHF3bnF5NA?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "alta"
@@ -1072,9 +1018,9 @@
       "id": "pri_partido",
       "nombre": "Partido Revolucionario Institucional (PRI)",
       "rol": "Reacción de oposición",
-      "tema": "PAZ irá solo en 2027 y marca distancia de Morena, afirma su dirigente - Imagen d",
-      "nota": "⚡ Posible presión de Morena (partido político) — Carolina Viggiano pide alianza PRI-PAN en 2027; advierte que Morena \"solo no gana\" - Milenio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNRUJ5bjhXLXBUTWNGYmM3RWQ0VDR4TTJOSGJWN1dDQnJ4a2RNbDRlUkdYNElvTzRLdWQwdWJRYnJhSlBBYl8tUFBHRi0wVVZQekZiUU1zSkIzR2RpZjBSekRnSS14dXVoNVpaNXYxbWtXa296OHhfcnlESUtpcE9aY0J2RTkxd3dvUlZWU1ZwYTRCc0VXaTQyOU5fOXU1WTDSAZ8BQVVfeXFMT2RBUHdxOUVZQzdGRF8yMTVPRXo1bUhIb01FWEZhVlRPand1TlNGN2l3MG9xSTJaRjRFVW8xcnpoRlpxUV9yWXZoclg4R3BGVmc5bkh5eE9ERlRtZUlLN0x0d2tzSFBtRnVGZ2hqSnBxMjM3eTFZSWl0WEgxbFIwelUteDI3am55SzlzaGVTbkZNR25LWWc3QVBZUmpmMVVr?oc=5",
+      "tema": "Sheinbaum rechaza que Consejo General del INE esté colonizado por Morena - El Un",
+      "nota": "⚡ Posible presión de Morena (partido político) — La ‘utopía guajira’ del PRI: Propone regreso de José Woldenberg al Consejo General del INE",
+      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/19/pri-propone-que-exconsejero-jose-woldenberg-regrese-al-ine/",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1091,23 +1037,23 @@
       "confianza": "media"
     },
     {
-      "id": "trump",
-      "nombre": "Donald Trump",
-      "rol": "Responsable institucional",
-      "tema": "Donald Trump, Xi Jinping y Vladímir Putin tendrán una reunión inédita: los dos t",
-      "nota": "Donald Trump se reúne con ‘su amigo’ Vladimir Putin previo a reunión trilateral con Xi Jinping",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/19/donald-trump-se-reune-con-su-amigo-vladimir-putin-y-xi-jinping-previo-a-reunion-trilateral-en-china/",
-      "reaparece": false,
-      "tema_nuevo": false,
-      "confianza": "media"
-    },
-    {
       "id": "rubio",
       "nombre": "Marco Rubio",
       "rol": "Mencionado",
       "tema": "Rosa Miriam Elizalde: “Matonismo” en la ONU",
       "nota": "⚡ Posible presión de Marco Rubio — Rosa Miriam Elizalde: Una telenovela de la Guerra Fría",
       "fuente_url": "https://www.jornada.com.mx/2026/11/19/politica/012a1pol?partner=rss",
+      "reaparece": false,
+      "tema_nuevo": false,
+      "confianza": "media"
+    },
+    {
+      "id": "morena_partido",
+      "nombre": "Morena (partido político)",
+      "rol": "Responsable institucional",
+      "tema": "El porrista “espontáneo” del avión, escribe Carlos Loret de Mola - El Universal",
+      "nota": "Morena lo hizo... Morena lo quiere deshacer, escribe Carlos Loret de Mola - El Universal",
+      "fuente_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPWGl6a0lDSmdGU1hwSWhqenBkZmF0c2s0VGk4d3ZpLUpGTFZFc0hFYmtiN25SN1VGcGhMOExuX2xnNXU0V1RJRWhSME9iU255RWFGdmVWc3hJcS1TMG44bGUwaVcyTlpQcjYxaXliSUNpZ2N3bl9FclJrU0ZuN19jMUV6Y1l1NnlSSkZLcGdfSGxMaXhvVkNybjZCWi1SUEVWZXNV?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1121,23 +1067,8 @@
     "fecha": "2026-11-19",
     "nivel_fuente": "OFICIAL"
   },
-  "declaracion_otro": {
-    "actor": "Donald Trump",
-    "texto": "Donald Trump se reúne con ‘su amigo’ Vladimir Putin previo a reunión trilateral con Xi Jinping",
-    "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/19/donald-trump-se-reune-con-su-amigo-vladimir-putin-y-xi-jinping-previo-a-reunion-trilateral-en-china/",
-    "intensidad": 7.0,
-    "fecha": "2026-11-19",
-    "nivel_fuente": "ALTA"
-  },
+  "declaracion_otro": null,
   "patron_historico_4sem": [
-    {
-      "fecha": "2026-10-23",
-      "tension": 20,
-      "n_notas": 82,
-      "n_alto_impacto": 31,
-      "n_medio_impacto": 51,
-      "n_bajo_impacto": 0
-    },
     {
       "fecha": "2026-10-24",
       "tension": 22,
@@ -1353,6 +1284,14 @@
       "n_alto_impacto": 11,
       "n_medio_impacto": 9,
       "n_bajo_impacto": 0
+    },
+    {
+      "fecha": "2026-11-20",
+      "tension": null,
+      "n_notas": 0,
+      "n_alto_impacto": 0,
+      "n_medio_impacto": 0,
+      "n_bajo_impacto": 0
     }
   ],
   "tablero_actores": [
@@ -1370,9 +1309,9 @@
       "n_medio": 6,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOZFhabl83eGNtU3Rha21kZHBOY3Y2VEF1ZWhqYklOZDZKMUNpNjBXMHFpWERWbFlWYlhTTDNEUGVKMGRWTWNrUWQxcG9kdTJRWVQ5UkFDb3c2M0dtNGdybkpYRnVwZUI5dG5acHhFV3ZxbFFRQUlzZ3JpMnNMYW1rLTNMQlhnd3RoRGFwRTF3dVkxMFhVSkNmOTh3cHhOLVNBSGY3NTNZMWlkYjd4cEx6cHpwS3FrZGVTd0tmTlQtNF9LclF4a3p3VmhIWGpBNG1taVJ4Y294R1B5ZVV6a1E?oc=5",
-      "nota_texto": "Claudia Sheinbaum posa junto a Xi Jinping, Trump y Putin en foto oficial de la APEC 2026 - Reporte Indigo",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPelpsamw5Slh2UGdIYkpZNmtpSWJyN3dxaXh5Rk1CbTVTVS1xalFSd3RuNmVPZWlhZHo3SlMwYTV6VmcwWC03QXBGNWd5cTdlMGJjMTREZC1VTU5SU0hlNVQtb0dHazA1VHpJY05mZ1R4QTZwMkZqTXRkODhRUXE1NWZkbjQxWVA5R1VLV1dEMV9mYzVna0t2LWRUbmJ6ZmpJZDVSNU5lR0l6VE9OYWNwbGhOeElQX3Y4UTFvVWZydTRXM2swSmEtZE9NZzhOOFN4bVVQSHpWZ21pSzFYM1dacGtONA?oc=5",
+      "nota_texto": "MILENIO. . 🔴 La presidenta Claudia Sheinbaum inició su octava gira internacional en Shenzhen, China, donde será la oradora principal ante el Consejo Asesor de Negocios de APEC, el cual está compuesto ",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
@@ -1398,7 +1337,7 @@
           "y": 88
         }
       ],
-      "fecha_reactivado": "2026-11-19"
+      "fecha_apagado": "2026-11-20"
     },
     {
       "id": "morena_partido",
@@ -1414,7 +1353,7 @@
       "n_medio": 18,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://www.elfinanciero.com.mx/nacional/2026/11/17/ricardo-monreal-propone-quitar-los-superpoderes-de-la-presidencia-del-ine-que-morena-aprobo-en-2024-para-taddei/",
       "nota_texto": "Ricardo Monreal propone quitar los ‘superpoderes’ de la presidencia del INE que Morena aprobó en 2024 para Taddei",
       "es_nuevo": false,
@@ -1437,7 +1376,7 @@
           "y": 70
         }
       ],
-      "fecha_reactivado": "2026-11-19"
+      "fecha_apagado": "2026-11-20"
     },
     {
       "id": "trump",
@@ -1453,9 +1392,9 @@
       "n_medio": 0,
       "n_bajo": 0,
       "impacto_nivel": "alto",
-      "apagado": false,
-      "nota_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPT3A2U1l6MlA3eHBVMTV6UjJ2eVU1UnJTTWJGcklHN2hzNFNGUFVyWEg0YlVtaEYxUFc2X0JrSEYxSW9ZZUZDVWU4a1RWaXFLWUNjcUZMdFRHLWtpVFRGTko2VVMwUnR3dVBOZEtTZUdrQWplQ2wzVHB1R1FIQUtyUEtVV3hadm53SVRLc19Gc25fWHc?oc=5",
-      "nota_texto": "Claudia Sheinbaum se reúne con Donald Trump en China, acuerdan nuevo encuentro en EU - La Jornada Estado de México",
+      "apagado": true,
+      "nota_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOLVdGTWZ5ZnZzc2d2LTU3YmZOalUzbVl1Wk5fRG42T3VmbWhNMXN6RDNtRGVmZ1F3aXFqUUlnMG5zQ0FvcXV4Ny1PRWJoRU4wSHQtQ19xNmZadGktLV9hS2RPLVVQSXNQSWN5NlljcHNIeU5OR0haQTYzZktWcU5iODc4ZUFuTzBjbVEwZGVvTWlKTmFQLVFOcVg2SDBBSG5HNE0xVA?oc=5",
+      "nota_texto": "Claudia Sheinbaum se Reúne con Donald Trump en China - N+",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 4,
@@ -1480,7 +1419,8 @@
           "x": 23,
           "y": 100
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-20"
     },
     {
       "id": "andy",
@@ -1496,7 +1436,7 @@
       "n_medio": 2,
       "n_bajo": 0,
       "impacto_nivel": "medio",
-      "apagado": false,
+      "apagado": true,
       "nota_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNa0RseXFEUjZzc1VleVlqWmFxSkotbnBTRE8yckM2aWhkdU1KVF9CUHYyU0o5bTdCcno0dFE4VDFfclhPSTdQdWw5eU93ckJ2Tnd0dkJKSHZIQUtESWFJNXF0U0FkbjRlS0o1Ry1Bc1pGcS1Ra000R3V1eHptSXVtLXBLcTVlRklCM0x5ZVZ4Q3ZXdmJSYTdRd2cyZkVvTFN2VzYzSEQ5a25vVndTX3JCZVJJR1VKVElDaHUxaWhrUUlQM1hQYjVTTUk2MXFVaVZtcERyWnBQUERXLVpTcjdaSWlOMNIB6AFBVV95cUxQTnd2bHBIbXhLbkRKMTdlLXgzclFzaDU5dUtaOWIydnFvM3k1RWJ5c09zQ2xGQnQ4WGxrWm9QblJraU8zWVNIbTlSdEN4ZHk2Z1p0anRvSkczdUxiU050TTdiZFY0UkZIbW9DNDFqSnlrYkdrSDVPdkhKai12TGQ2U0JaM0R0SFlUdFM5d1lqZ0JRbjFQUDlycW0wTmszNnk2b0ZSZXJIOFI2elE0OHpOVWYxNUxsRzBuaE9DS01WazZsMWMycHhraVRCSURUUDVnOHhQMy01ZnROUDRzZW1zUUtWLWtiVHhC?oc=5",
       "nota_texto": "Felipe Calderón advierte “deterioro grave” de la democracia en México y acusa corrupción en entorno de Andy López Beltrán - Por Esto!",
       "es_nuevo": false,
@@ -1523,7 +1463,8 @@
           "x": 23,
           "y": 86
         }
-      ]
+      ],
+      "fecha_apagado": "2026-11-20"
     },
     {
       "id": "monreal",
@@ -1681,8 +1622,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/los-programas-de-bienestar-transformaron-la-vida-de-millones-de-mexicanos-y-reducen-la-pobreza-ariadna-montiel-2920368.html",
-      "nota_texto": "Los programas de bienestar transformaron la vida de millones de mexicanos y reducen la pobreza: Ariadna Montiel",
+      "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNdVRjeVY2ZG1nR2JwdDlacWdfZmhKU3RBYVg4cTMzX3hFMXJ6em5fSkNNU2xFT2dNcWh3dUJkbnBaRzM1NVFVVkhPWWdicEtiaFVxczJoSEpRbEtpQnJKbG9kdVA0M0dsOXpBZGNib2dmOUNsaGZENmJaYmtuUUVSWnhDRVNobjByMDFiQUpfbVg0dzNXdVhuelpMOFdoVFoxTnlrOEcwZHNpVGs5aGZ5cDZUV0RNalc0QUM2VXVsUG5KdTA5MVpHVTR3?oc=5",
+      "nota_texto": "Ariadna Montiel descarta segunda encuesta en NL; respalda a Clara Luz Flores - ABC Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
@@ -1805,7 +1746,7 @@
   ],
   "tablero_semana_inicio": "2026-11-16",
   "resumen_mananera": [],
-  "mananera_estado": "fuente_retrasada",
+  "mananera_estado": "pendiente",
   "a_vigilar": [
     {
       "id": "auto-26ef3da226",
@@ -1889,11 +1830,6 @@
       "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": {
-    "generado_anterior": "2026-11-19T12:37:44.855203-06:00",
-    "cambios": [
-      "Nueva declaración relevante (Presidenta): Claudia Sheinbaum Pardo"
-    ]
-  },
-  "hora_corte_publicada": "2026-11-19 18:04"
+  "diff_desde_corte_anterior": null,
+  "hora_corte_publicada": "2026-11-20 00:03"
 }
