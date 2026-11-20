@@ -1,9 +1,9 @@
 {
- "actualizado": "2026-11-19 16:19",
+ "actualizado": "2026-11-20 15:53",
  "fuentes": [
   {
    "nombre": "Google Noticias DOF",
-   "entradas": 62,
+   "entradas": 75,
    "error": ""
   },
   {
@@ -13,7 +13,7 @@
   },
   {
    "nombre": "Google Noticias Senado",
-   "entradas": 32,
+   "entradas": 9,
    "error": ""
   },
   {
@@ -23,17 +23,17 @@
   },
   {
    "nombre": "Búsqueda dirigida: ley-egresos-2027",
-   "entradas": 31,
+   "entradas": 30,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-doble-nacionalidad",
-   "entradas": 7,
+   "entradas": 8,
    "error": ""
   },
   {
    "nombre": "Búsqueda dirigida: reforma-ley-aduanera-2026",
-   "entradas": 10,
+   "entradas": 9,
    "error": ""
   },
   {
@@ -43,7 +43,7 @@
   },
   {
    "nombre": "Búsqueda dirigida: reforma-propiedad-industrial-antimemes-2026",
-   "entradas": 16,
+   "entradas": 21,
    "error": ""
   },
   {
@@ -57,17 +57,17 @@
    "id": "ley-egresos-2027",
    "nombre": "Ley de Egresos de la Federación 2027",
    "etapa": "Pleno",
-   "notas_recientes": 6,
-   "ultima_nota": "2026-11-17",
-   "dias_sin_actualizar": 13
+   "notas_recientes": 0,
+   "ultima_nota": "",
+   "dias_sin_actualizar": 14
   },
   {
    "id": "reforma-doble-nacionalidad",
    "nombre": "Reforma constitucional contra la doble nacionalidad en candidaturas a Presidencia y gubernaturas",
    "etapa": "Aprobada",
-   "notas_recientes": 4,
+   "notas_recientes": 3,
    "ultima_nota": "2026-11-19",
-   "dias_sin_actualizar": 44
+   "dias_sin_actualizar": 45
   },
   {
    "id": "reforma-ley-aduanera-2026",
@@ -75,7 +75,7 @@
    "etapa": "Presentada",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 72
+   "dias_sin_actualizar": 73
   },
   {
    "id": "ley-catastral-2026",
@@ -83,7 +83,7 @@
    "etapa": "Pleno",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 55
+   "dias_sin_actualizar": 56
   },
   {
    "id": "reforma-propiedad-industrial-antimemes-2026",
@@ -91,22 +91,22 @@
    "etapa": "Pleno",
    "notas_recientes": 0,
    "ultima_nota": "",
-   "dias_sin_actualizar": 50
+   "dias_sin_actualizar": 51
   },
   {
    "id": "reforma-ley-educacion-celulares-escuelas-2025",
    "nombre": "Reforma al Artículo 84 de la Ley General de Educación (prohibición de celulares en horario escolar)",
    "etapa": "Presentada",
-   "notas_recientes": 1,
-   "ultima_nota": "2026-11-15",
-   "dias_sin_actualizar": 59
+   "notas_recientes": 0,
+   "ultima_nota": "",
+   "dias_sin_actualizar": 60
   }
  ],
  "actualizaciones_etapa": 0,
  "votos_actualizados": 0,
- "candidatos_nuevos": 42,
- "candidatos_podados": 61,
+ "candidatos_nuevos": 35,
+ "candidatos_podados": 35,
  "altas_automaticas": [],
- "ruido_descartado": 99,
+ "ruido_descartado": 87,
  "alertas": []
 }
