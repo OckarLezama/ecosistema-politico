@@ -1,36 +1,24 @@
 {
-  "generado_en": "2026-11-21T00:56:16.483063-06:00",
+  "generado_en": "2026-11-21T06:02:21.054514-06:00",
   "ventana_horas": 18,
-  "n_notas_ventana": 28,
+  "n_notas_ventana": 24,
   "baja_confianza": false,
-  "tension_nacional": 26,
+  "tension_nacional": 23,
   "tension_anomalia": {
-    "z": 0.64,
+    "z": 0.1,
     "nivel": "normal",
-    "media_periodo": 22.7,
+    "media_periodo": 22.5,
     "dias_base": 27
   },
   "categorias_dia": [
     {
       "categoria": "Gobernabilidad",
-      "peso_pct": 69,
+      "peso_pct": 72,
       "tema_principal": "Visa de Andy",
       "tema_principal_id": "visa-de-andy",
-      "n_temas": 9,
-      "n_notas": 20,
+      "n_temas": 10,
+      "n_notas": 18,
       "notas": [
-        {
-          "texto": "Gerardo Dagdug busca coordinación distrital de Morena en Huimanguillo",
-          "fuente_url": "https://www.tabascohoy.com/gerardo-dagdug-busca-coordinacion-distrital-de-morena-en-huimanguillo/",
-          "intensidad": 7.0,
-          "medio": "tabascohoy.com"
-        },
-        {
-          "texto": "Ex funcionarios, diputados y regidores buscan coordinaciones distritales locales de Morena - Diario Cambio",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNRHA3RGFGS296T0h2WGpNYjN2VlpOVUZnWGJhX0JNVkpxUTZBQktKaF9HNEpGT0lEc3ZKc1BJRkVDSW1PZlNFX3h1ZDhJb0tiWUp1LTNZa3lMWjMyU2pvcUxuMWd4MDYweThXMFFJMXQyNm84V3lQZ2YwMml2WHNNMjNMc2ZrRXVNX2pleUZqS1dfaUtCQmE2MU9BeG14TVdXTWl4SGprQUtpa1VBajAzWTBJLTY5dDJaYTR2NWNBMVY1bjFBVlMyb2NIeGJSRUlLRFNudDZCVzZ3eDQ?oc=5",
-          "intensidad": 7.0,
-          "medio": "Diario Cambio"
-        },
         {
           "texto": "Morena llama a participar en selección de coordinaciones distritales en Yucatán - El Momento Yucatán",
           "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOX2VXTklkQi05Rms0TVhVMlBkUXk3SWgtU09TRmZtQjJ5Vi0zazdobjhyMS1DRlZNYW4tenFuaUhocnM4NEFKbU9aR2xnRW01T2psX1I0TFdLSWltOEdYNldfR09CSFhDRHFfU2sweUcwLWVnenJBdkNxcU5MMUVwcUszRkVOMS1ZaHpSVHR3T0ZrTnREUEhld3VEdWQ5SWFra0NEYWlsOG1leEt3?oc=5",
@@ -74,24 +62,6 @@
           "medio": "Infobae"
         },
         {
-          "texto": "DE ADVERSARIA DE MORENA A SU ACERCAMIENTO CON LA 4T: Los movimientos políticos de Lili Campos tras perder Playa del Carmen... o cuando una foto no garantiza protección - Noticaribe",
-          "fuente_url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNb0lzVWdwb0UwcDNfVkgtQVBIZVQ4RERCREtZdHVtek5paExMRmZ0MlpLNFhzRk9NcEJiUW9qcmJsX3NVZlZwMlVJUktXd0NyN0JXSWYta3lvOHFGdU16bzkxZUtIMmh4LXF5bFdadkJDaXJud3pZQ19SVDdoRnYxeW9xaEpkS3Joank0MmFZQ3RVTTFyYUplZFM1aTlUUDdCNW43WHd1RGhTTVJGYl94eVF3bC1yS1FLam1ua0tiNFlNdHlBSnRSNTVZU1UzWTNzX2ROUm00MVM1X21TcUlJSmlDcHhoX3VPZ0w3dWJKRjAtZ21PSl8xdWZZZnI3cERMNmpqSlEtdkNROWZlNTV1SWJmcFhoZkxjcWo3b28zTi1pZWFGVTRyeg?oc=5",
-          "intensidad": 5.0,
-          "medio": "Noticaribe"
-        },
-        {
-          "texto": "Reportan la presunta detención de la exalcaldesa de Playa del Carmen, Lili Campos, en la Ciudad de México - Por Esto!",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUUQxZHVNdHlpbGlsQmNYdTNyQUFYLXp3RzdCbmtoOG9HaU5PYWxVVzhPbDVLWmRYdU5TeHAzT1ZMNkJ0OHQxZFh0aE1sczFSQ3dBVGNISGFMUm1SbV91RWpwenVWYkZ6enFZdHloZ1lkWUZ3RkJxNWZYWmNEQmQ3V3BrU05PMnRGVTFyMGthQXQ3eFBJSGJpUTJ3MTFQMVkyaTdUbjEwbVlQNkREM0ZDSllCcnRZaXd0UFpkcmtpbk91eWdTQ1Q0UWVwbWN3dnhmTkEyeEtR0gHbAUFVX3lxTE53ck1JUUJwSUNkVHlnTmUtODJzb3JhZFpnSW04aGRva191VWNCWG1OZ3RKOU5HbjVyQTJfYUNnamtaalJMRUFoVXozNE5tWGpRcU9udXpGY2VhVmdFbkZhYkJVbjEtRENyWWlqQWlkSjFSUVJLU2VQbWRydmJMR2ZRVi1PNE51NGR4UTQzWF9wZklBSE41VDZ1X2d4N0hsUzEwMVlEc0VGbWpTcUhEYzBEY3pNb3N5ZHp3VXVibnRoTEhQYTVVRGZaXzNnQlBIQ0ZvSm9TLW9hek9NVQ?oc=5",
-          "intensidad": 5.0,
-          "medio": "news.google.com"
-        },
-        {
-          "texto": "Trasciende detención en CDMX de Lili Campos, exalcaldesa de Playa del Carmen",
-          "fuente_url": "https://www.tabascohoy.com/trasciende-detencion-en-cdmx-de-lili-campos-exalcaldesa-de-playa-del-carmen/",
-          "intensidad": 5.0,
-          "medio": "tabascohoy.com"
-        },
-        {
           "texto": "DETENCIÓN DE LILI CAMPOS, POR DAÑO AL ERARIO: Revela FGE que captura de exalcaldesa de Solidaridad es por presuntas irregularidades en contratos de lavado de vehículos por 62 mdp - Noticaribe",
           "fuente_url": "https://news.google.com/rss/articles/CBMiugJBVV95cUxOcE1MeTY2ekxwWmE4LW5jemdRV1g1LUl5Y2FpOWt4UnN3bzg2LWIyakJUOE1XUnR6c1dXRV9XNzQ3MzFyZ1FoV0pqUjR1UGdQX25LMHFibjl2Njl0cm1nUjA1UnpKWm9MR2VRUVI5VWNabVBNVnY3OUJoVDQtOWxTS0YyTTlDREVtTHpOcDFVbVh4N3hxS2FwbERGelh0dmdrUEU4WXpyaDg4NWVCTlFaeUtWWmtlTUg4SDJNdWhoODM3ZXhKUWdmQk1hRERmV2wwRXV0c0ZSRnhaT2IxRVRPVlE3aDl0WDhhNnViUFVCRW1OTHhIczVtRDlyNTdXMkI0Y25FaUgxcWlzd3V2OFlmNl8wMnlNek9IQWZaZ015ZFVBOGI2UGJxRVppd3R5b1MtRTRyc3h4ZDRmdw?oc=5",
           "intensidad": 5.0,
@@ -108,29 +78,47 @@
           "fuente_url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPeDQtNl9fTnlURVktLVZIM3AwY1JwaldSMVZESWRGWlg5QzdqU3FqLURuTVQxWms4ZkdhTVBnUktlNG1qLWJFUzJHUDliSzY0OFJvbjJRTlNkWFFwbFFJdGp1SjByZk9SeHQ5SXZGSmJEczU3SmNDWS0wS1Z6TmdjaTFBUWtCTWVidkxHMzl3TkhOVXNoRS1PRzhSQUh3eEtlaGhXM2o3bTdJblhjYm1hd09nLVd1REp2S19jMVM4eXUtZHZvckF3aExHcW1BTVhmemYwNmdMbGFvYlVxSnAxSG9MVlVwUlVCTGhXdmJQcXUxdFVlaFBfVWlMa3dIRXBlQUdySG53Vlp2aUM2SF9fLTc4aE1fMUphSlE?oc=5",
           "intensidad": 5.0,
           "medio": "Noticaribe"
+        },
+        {
+          "texto": "Mara Lezama Niega Injerencia en el Caso Lili Campos y Estefanía Mercado Confirma Expedientes en el Ayuntamiento de Playa del Carmen - Diario CAMBIO22",
+          "fuente_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOV1hnQ1BkNktJS3hacVljUjJZc283bXk2RndMNXJLNzdfSmxzVDJycWZhQ2FHR0p0WjZzSDgySUVwNFg3SFhBOVhoZjNlSU1GTjFpNWk1b29OWVFVUVI1S0kyVkdJSmdDWEYtMzJzcUxCYThfU3RWRXdqTTA4dHU4Y1VTeTFqS3ZZandWUHRoUlNiOVhFUlNJRFBCMm1zajAtWG5FckI1bDR5UFdQYzNlVWpjdGUxMHVFWWZDazZlNG04M1BfVzl6R1BXMm8xYUlpbDU3YnU1enBybjZTVGlqSzh3OUhPZGxSc0pwT1Zuaw?oc=5",
+          "intensidad": 5.0,
+          "medio": "Diario CAMBIO22"
+        },
+        {
+          "texto": "Mauricio Vila acusa a Morena de frenar el nombramiento de una presidenta del INE",
+          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/20/mauricio-vila-acusa-a-morena-de-frenar-el-nombramiento-de-una-presidenta-del-ine-2921837.html",
+          "intensidad": 5.0,
+          "medio": "heraldodemexico.com.mx"
+        },
+        {
+          "texto": "Gaby “La Bonita” continuará recorridos por Puebla mientras espera resultados de encuesta de Morena - Diario Cambio",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOaHZ5dmw0ZW5QWmc1bmZIWUN3dmMwdEMtRW53NjRLSHM0S09lRXlFMVdYdmlvdUZCTG5jb3dkdVRuWnJseU1ibmdXUHpWMmQ3aE5hSUtrSC1mMC13amRWdEhyNzluQnFGZ2g3a1NzWXNGMFNOM2VLQUNnWEFZRmZ1TG15eDJBUzh1Y2t5WVloWG54emNDUVA0LUJic2RGYzV3TjhTVGVVN3Q?oc=5",
+          "intensidad": 5.0,
+          "medio": "Diario Cambio"
+        },
+        {
+          "texto": "Circula ficha del RND con presunta detención de la exalcaldesa de Playa del Carmen - La Revista Peninsular",
+          "fuente_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNDh3UlRNcG9GNHpMSzIwc3hmNENwOFlUOVJqQWFnZWVUa3J5cG4tUUpxN2QzUHVlb0tOR2R3b09kODhBdk4zWmJ1N2NQekR2TTV5ZmxDT1B1VUZLVjRxX2U3Qjd5LXBEZ3MzeWlYV1BsV0RNTEU5T0JkSlBxa2hyZEZkOEJhSnNfTzIxR3puUmFWZ3phVHE0Um1laUJyLUcwS05Rckt3M0ZCUUFKd0RkZUZxb2szLWFDZEZfY25tdno0Zw?oc=5",
+          "intensidad": 5.0,
+          "medio": "La Revista Peninsular"
+        },
+        {
+          "texto": "Morena expulsa a Nancy Nápoles por presunto secuestro simulado",
+          "fuente_url": "https://www.tabascohoy.com/morena-expulsa-a-nancy-napoles-por-presunto-secuestro-simulado/",
+          "intensidad": 5.0,
+          "medio": "tabascohoy.com"
         }
       ]
     },
     {
       "categoria": "Relación Bilateral",
-      "peso_pct": 24,
-      "tema_principal": "Trump y México: declaraciones y presión",
-      "tema_principal_id": "trump-agenda",
+      "peso_pct": 18,
+      "tema_principal": "Revisión del T-MEC",
+      "tema_principal_id": "tmec-revision",
       "n_temas": 3,
-      "n_notas": 6,
+      "n_notas": 4,
       "notas": [
-        {
-          "texto": "Así fue la estrategia de Sheinbaum para acercarse a China en APEC 2026, sin poner en riesgo el T-MEC: Beata Wojna",
-          "fuente_url": "https://heraldodemexico.com.mx/nacional/2026/11/20/asi-fue-la-estrategia-de-sheinbaum-para-acercarse-a-china-en-apec-2026-sin-poner-en-riesgo-el-t-mec-2921754.html",
-          "intensidad": 7.0,
-          "medio": "heraldodemexico.com.mx"
-        },
-        {
-          "texto": "Exitosa cumbre APEC 2026 // Donald Trump, atragantado // A la vista, nuevos liderazgos - México SA - La Jornada",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOYV82QlIyUDRDUGxZS0FnRmgyZTNMMmZ1bVkyaW5FMXJOZ2FJMllzaWVvd0Y4X21nY2lyb0F4aFdpRFhLdTlNYzN3UEI5TFRQckZ0clRXSlpmSGk5bFE5SUpmcThBek0zd0ZjRl8tMzFWRWxQeXFIN3ZwMXpPXzRtdzl6ampPQU9oYjFicWRxclpFbUZKdmVDNl9LUUNRTEFhd0xzMkNNQS1qaE9TWmxiNkZNTW5ZRVdIdlgwXzMzUTdxVmZUT2wzZFhoMEZSYXdGb2FfMDZIMnFlWE0?oc=5",
-          "intensidad": 7.0,
-          "medio": "La Jornada"
-        },
         {
           "texto": "Trump anuncia avances en negociaciones del T-MEC con México - Milenio",
           "fuente_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRHpzcC14QmZFd1pORFhlRXVQWmFqOTNiWG5EQ2RDVWVtbWZibFphejdka0s4enM0eTU3S0xBbHVCZzBxczRIRlFxOVUyZ3NEa1paSUItekRUTlFRV3NiTWt1NjZCZGZhZjV2dVdwbVlsazFYVHhIZjJISzF1cHNUQnFQand4OVZ40gGIAUFVX3lxTE5zaFpDNngyRlJzSVlRZWVYblMya2I0NlNNY3BuaHB1bnd6TTR5TTR1ZGpzRGlZQXBKVGVlQ1YyNUpEcGo1ajBLbzNvZGxvUVYxcjJMdzMyc2JSd05lTFVXNGFlUlEtREdhQzF5eGo0YXJDbjdvU0xPMlFVVUdBUngzY2FFOWM3ajc?oc=5",
@@ -159,9 +147,9 @@
     },
     {
       "categoria": "Seguridad Nacional",
-      "peso_pct": 8,
-      "tema_principal": "Crisis de Violencia en Sinaloa (Chapitos vs. Mayos)",
-      "tema_principal_id": "sinaloa-crisis",
+      "peso_pct": 10,
+      "tema_principal": "Trump y México: declaraciones y presión",
+      "tema_principal_id": "trump-agenda",
       "n_temas": 2,
       "n_notas": 2,
       "notas": [
@@ -172,10 +160,10 @@
           "medio": "Sinaloahoy"
         },
         {
-          "texto": "Violencia en Sinaloa: matan a tres personas en distintos puntos de Culiacán - El Universal",
-          "fuente_url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPeEJTaVVUSUprTDlEMnlzWEFMRG9TZF96c3BmUGlSTGJ5SGdPd0xyRWZTdi03TnBIM3hwNE5lcWFDMVY3b0ZJdFI0SVFwVTlINld4VHlWWUtXMHJYbDg0WXFfVGgxN29zRkw1OW1DOHBFQjdpSG1nRzNTZldWazV5dGNTR2lQYWFtRE5ycnQ4NWxiQnVibzY5TkthZV9Dbjl2MmtrRFJldEJDWTdpUG40RG9pODdndjlMdGpYLWdpYzNCbWI0Q01mdHY5RDdEc1lpRkN1VGxadURwYm1DVGg1Ti11OVdVSTJXQWZkbVc4RzU2Q2ZXWEtBMFVB0gGOAkFVX3lxTFB0MU9KUmRyUnRzODI1c1hvSTNTUi1YQVNqbUw3UWd1Y1FxYnR5QnZJdV9LbmpqWXFoUi00NzdtNGVjSDJYaS13cmNDaWFvYWh0WkFrYVAySHRES0xROV82bGk2SzFCbEhCU0FJRnBSaE1ucWtRcnB6SEJIM2VQQnFSWjg2V0ZEbmVkT3lEb1VBOUdyYlljRnRVTEtSX1M2Wm9QWFNlaXhNeTdLeTd5bjZBUElvMXRwYkJDbllxQTJSbG01NUtzTDQ2NFhGaDV1dExSMnBwdzhBekF4bFdzTUU0QkFWSlZRWVk0RWwwMXJiVFJ3UWlPSl94MWpuekk1ZkQyNGYxaVdLd0FWTGwtUQ?oc=5",
-          "intensidad": 6.0,
-          "medio": "El Universal"
+          "texto": "Dije a Sheinbaum que México está controlado por los cárteles: Trump",
+          "fuente_url": "https://www.jornada.com.mx/2026/11/21/politica/009n1pol?partner=rss",
+          "intensidad": 7.0,
+          "medio": "jornada.com.mx"
         }
       ]
     },
@@ -829,7 +817,7 @@
       "categorias": [
         {
           "categoria": "Seguridad Nacional",
-          "peso_pct": 6
+          "peso_pct": 5
         },
         {
           "categoria": "Gobernabilidad",
@@ -887,7 +875,7 @@
         },
         {
           "categoria": "Relación Bilateral",
-          "peso_pct": 17
+          "peso_pct": 16
         },
         {
           "categoria": "Economía",
@@ -902,33 +890,18 @@
   ],
   "top5_temas": [
     {
-      "id": "auto-2207170945",
-      "nombre": "Así se vivió el desfile cívico-militar del 16 de septiembre en Mérida | FOTOS",
-      "categoria": "Seguridad Nacional",
-      "resumen": "Así se vivió el desfile cívico-militar del 16 de septiembre en Mérida | FOTOS",
-      "motivo": "Claudia Sheinbaum autoriza desfile cívico militar en el zócalo - Milenio",
-      "peso": 19.0,
-      "n_temas_agrupados": 3,
-      "escalando": false,
-      "ultima_hora": false,
-      "medios_corroborantes": 3,
-      "confianza": "alta",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVUo3QjEtdDJXckhiQVhQSjk2OGpVOG5jVVZieFBLaVJyTk1aV1dGTlIwSDdrSE9BelpyUmlEcFpCdHctVmVJYWVibEM0LXgzanEzRjNaZzBJYm5oSC1vTnhNeFZpVkVWRmpfdlRCRDNVOU95bzJEZFJobS1Ja1NWekxLRGZYSXpuTk5CVUw3OFVQRnRLYm5fZjMwMV9GOThGVEZWbEdwVFVGYjhE0gGsAUFVX3lxTE85SWF4dXlzQTZYU0hkbFVjUUpseGVqQ21oUVFVN1cza05iN3hQek1vaGduVkh1dEZBQ3pITzhjUVBJUDBZd3dsN0ZIMkQ4MW9RLWxUQUJ0cnUtMXVoNVN1Tzl2QkZydERVd0RUWXNTNl9zVHpUZ1BsR0JOdzUtbURObE1sbmZlVTlGUVZWNkk3V2o4QS1TdmFjVE5xdjJFUkpsTDZscEU5SjBqUWg?oc=5",
-      "actor_vinculado": null
-    },
-    {
       "id": "trump-agenda",
       "nombre": "Trump y México: declaraciones y presión",
       "categoria": "Relación Bilateral",
       "resumen": "Declaraciones, amenazas y decisiones de Donald Trump que involucran a México (aranceles, seguridad, migración, T-MEC) y la respuesta del gobierno mexicano.",
-      "motivo": "Exitosa cumbre APEC 2026 // Donald Trump, atragantado // A la vista, nuevos liderazgos - México SA - La Jornada",
+      "motivo": "Donald Trump afirma que está cerca de cerrar un acuerdo comercial con México - Excélsior",
       "peso": 14.0,
       "n_temas_agrupados": 1,
       "escalando": false,
       "ultima_hora": false,
       "medios_corroborantes": 2,
       "confianza": "media",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOYV82QlIyUDRDUGxZS0FnRmgyZTNMMmZ1bVkyaW5FMXJOZ2FJMllzaWVvd0Y4X21nY2lyb0F4aFdpRFhLdTlNYzN3UEI5TFRQckZ0clRXSlpmSGk5bFE5SUpmcThBek0zd0ZjRl8tMzFWRWxQeXFIN3ZwMXpPXzRtdzl6ampPQU9oYjFicWRxclpFbUZKdmVDNl9LUUNRTEFhd0xzMkNNQS1qaE9TWmxiNkZNTW5ZRVdIdlgwXzMzUTdxVmZUT2wzZFhoMEZSYXdGb2FfMDZIMnFlWE0?oc=5",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQOVFfcXFMZlRTWGZteGlxMElRMDhVVlBzRW91MWRMYnFXVlI2akM0R2ZEYi1wNnFCX2hza3FEY3BMN0R0MDlXam9BTDdnMVNEalFwU0tfNWNyT3FkNU9qcllIOWpmcklRcUJMdnVfRl9rcWpyRWRncG96ODl1b2lmOVhkMmJZc014T2FCc1luZjNobkNGMFZSSndIMEZpYWJDZG9JZFJmdUdUTVhG0gGyAUFVX3lxTE5qNzEwTDV5Q0Y4cWVEUEhrbHUyMkpTNlVESGE2UGVMa3lzT1BDTWxDTGVUMDlZUmVXbHFGUHVlYXQwM1JXSXIyS0thSWxvdUttNlJoUHdSNjU4WXpjVGZ6R2s2dEo5ZFdKcXNjdEpkYnRsOG9RejVDbVEzZlhDZ2ZWU3FzUndYT0sxTGVJUjdNVlhiNG9XcUZxNHpkY2dKRVhReDhmZjJOMGlPTDNBVF9yVlE?oc=5",
       "actor_vinculado": null
     },
     {
@@ -947,6 +920,21 @@
       "actor_vinculado": null
     },
     {
+      "id": "auto-2207170945",
+      "nombre": "Así se vivió el desfile cívico-militar del 16 de septiembre en Mérida | FOTOS",
+      "categoria": "Seguridad Nacional",
+      "resumen": "Así se vivió el desfile cívico-militar del 16 de septiembre en Mérida | FOTOS",
+      "motivo": "Claudia Sheinbaum autoriza desfile cívico militar en el zócalo - Milenio",
+      "peso": 13.0,
+      "n_temas_agrupados": 2,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 2,
+      "confianza": "media",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVUo3QjEtdDJXckhiQVhQSjk2OGpVOG5jVVZieFBLaVJyTk1aV1dGTlIwSDdrSE9BelpyUmlEcFpCdHctVmVJYWVibEM0LXgzanEzRjNaZzBJYm5oSC1vTnhNeFZpVkVWRmpfdlRCRDNVOU95bzJEZFJobS1Ja1NWekxLRGZYSXpuTk5CVUw3OFVQRnRLYm5fZjMwMV9GOThGVEZWbEdwVFVGYjhE0gGsAUFVX3lxTE85SWF4dXlzQTZYU0hkbFVjUUpseGVqQ21oUVFVN1cza05iN3hQek1vaGduVkh1dEZBQ3pITzhjUVBJUDBZd3dsN0ZIMkQ4MW9RLWxUQUJ0cnUtMXVoNVN1Tzl2QkZydERVd0RUWXNTNl9zVHpUZ1BsR0JOdzUtbURObE1sbmZlVTlGUVZWNkk3V2o4QS1TdmFjVE5xdjJFUkpsTDZscEU5SjBqUWg?oc=5",
+      "actor_vinculado": null
+    },
+    {
       "id": "visa-de-andy",
       "nombre": "Visa de Andy",
       "categoria": "Relación Bilateral",
@@ -960,24 +948,39 @@
       "confianza": "baja",
       "fuente_url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNdm1XOEJ0Y1JySF8tX0NoN1AtUnlmMjFzbmJsTmNQZVpBSU1DZjdXU0ZSRC1rS3M3Yi01Qm9OUG5BQVlBd3YwYkdybi1UbTZERDNzU3VUdUJ5VlE3UllnZ0xWUjZNa19LaHhHUVozM2h6aUhGTDNJTl9oS2NtYmJPS0J4VjNFNjQ5WUlWN2FLb3RqZlh1VjNzOTh1SUEyWHN3dWNwU2ZUX3BWZHFIb2RERWhBcVBBLU16VDVvUURVT0wza2JjMHlmNmVWN0lKRzNpaGhNdnBISzFEWHZFTEhCUEZqbGFUZw?oc=5",
       "actor_vinculado": null
+    },
+    {
+      "id": "auto-e2b2810afc",
+      "nombre": "Ex alcalde de Coatzintla deja presunto daño patrimonial por 60 millones 📹 - Camb",
+      "categoria": "Gobernabilidad",
+      "resumen": "Ex alcalde de Coatzintla deja presunto daño patrimonial por 60 millones 📹 - Cambio Digital Noticias",
+      "motivo": "Confirma el partido guinda expulsión de la alcaldesa de Tenancingo",
+      "peso": 5.0,
+      "n_temas_agrupados": 7,
+      "escalando": false,
+      "ultima_hora": false,
+      "medios_corroborantes": 1,
+      "confianza": "baja",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/21/politica/007n4pol?partner=rss",
+      "actor_vinculado": null
     }
   ],
   "temas_nuevos": [
     {
-      "id": "auto-ce99d8d65e",
-      "nombre": "Ingresa a México séptima caravana migrante; muchos buscan quedarse en el país - ",
+      "id": "auto-6e198afdbb",
+      "nombre": "Morena y PT pactan “tregua declarativa” tras diferencias por encuestas - Milenio",
+      "categoria": "Gobernabilidad",
+      "peso": 12.0,
+      "impacto": "alto",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/21/politica/007n3pol?partner=rss"
+    },
+    {
+      "id": "auto-5f8e536239",
+      "nombre": "Ante incremento de 36.2% en repatriaciones, Hades Aguilar exige fortalecer la at",
       "categoria": "Social",
       "peso": 6.0,
       "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFByY3RYbVZUX01xblNZUXB2RHZTQkk2dmRCTmNQdVMtajVQR2dTc0g2RFg2UmptN3MxUE9LWjVwTldpR2IwckEtSUp3TUZqQ0RUSjNPN3NfNkd2QmQ5ZEpYMDQ5QmlrOGxWbWFpZkl6TXdKb3Y2azZSemJiSErSAXxBVV95cUxOb2VpdVpmOWpJaW55QjR6QWdGVzl1ak5ycWwtMHBDaXdpZXRyQkNlN284dlNMejM5aFh1dmdoUTVQMDF2X2picm5CeVpLcmFhVkt0d3hZWk9pYVhWbzdQMW11ZmJyRlhJQ3dMdVJrVC1qT1hqWTY5RXM1RU13?oc=5"
-    },
-    {
-      "id": "auto-6b9c6f02e4",
-      "nombre": "Irán acusa a Trump de crear narrativa de armas químicas para justificar nuevos a",
-      "categoria": "Relación Bilateral",
-      "peso": 5.0,
-      "impacto": "medio",
-      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/20/iran-acusa-a-trump-de-crear-narrativa-de-armas-quimicas-para-justificar-nuevos-ataques-es-un-guion/"
+      "fuente_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQbjVhcldnMWFPWktFZFhSYlMyQkttNWtSNWNzYzRvbXBER25Gd3dvZTlCemM5ZUFKRjk5UURWZ3ZBeGhFRmdQXzlpME9sNWZhUkpqVVJuQ0FiTXpxSDNXQV9xSlpEU3VGOGoxakdvalh5Ylg1YTgyLVNselZMUmRMWjd2QWszWFR4VEs5el9qd3hOeXJFTWh2RGxyS3piSW9MTzBjdzRR0gGmAUFVX3lxTE80VnZFcG4wTzdwcWk0akcwUmdHM3E0Vkg5V0hKN0MwWmw0bVNjdVN2eUpEdUxPTWVKbUZXVERFdU9hOTk4bllHcEg0cHI2aFVQRWx5REVjcGNNLUtSb1c1cU5lcmZad2loMVpOdUktemxXaTVoTmJleHJvaVViUG9tQU8zSXM4bFRZc0hlQldzVjJWZ1FCd21icnJTUkFFZTN5M1VBTVE?oc=5"
     },
     {
       "id": "auto-b23db9196b",
@@ -988,34 +991,23 @@
       "fuente_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxObDlHT1ZhSmlfYTI2cEdpZjk4cHZ6a3JMOWFWM2piVTFWU01TQVFodnZZdm1ZSWRmSEtIc3F3alh6aTVvSnllMjJoZHdjZFk2SERCM1F1REVSeG1CSjVQZDB0V3ZtZDZRNEVOUmdkUV82Ui1BS0k0VHdaNzdYM0I5OHBfTXp4Y3NOWkROWXdzZF9WMTFYTzB0SjFZbDRNeWRXby1PSVBHQkxrbjdDUEVHcGhKUTlyMUtWUF93ZXh3akpRcTYzcFoyNTg5ZFlON21JeVJMeNIB7wFBVV95cUxOWFJITmJUd1Bual9EbHRkVE1tQkxaQ1lxSE90YkZlT1cwWndrUHA3XzRhUmdPZ0VuQkpMUG84VFNmaVBfVWdRa0I0RHlBNWttM1ZjRFdyX3JUdWxQNVVYdDA0a0hzc3l0ZVlQSGdwSFlhZVI0MkViazhHQ0k5Z3JPUXhrZjVrMDd2NzJIRXBEVnZoOVB6TUUwZ2tVZk1sejhIbF9LYlExd0g4aVBxbGh5dUlZZjdWbmd2dGxmQ2VUMjlZeVFrcURnczBsQnZIcjZ4cjlCb3llMXlTdXhJand1YU01TW9QeFE3ZktiODNiTQ?oc=5"
     },
     {
+      "id": "auto-77cad22037",
+      "nombre": "Trump descarta ciberataque coordinado en EU tras fallas informáticas: ‘Son suces",
+      "categoria": "Relación Bilateral",
+      "peso": 5.0,
+      "impacto": "medio",
+      "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/20/trump-descarta-ciberataque-coordinado-en-eu-tras-fallas-informaticas-son-sucesos-independientes/"
+    },
+    {
       "id": "auto-d1165f5a9f",
       "nombre": "Definirá Morena el miércoles sobre convocatoria para INE - Reforma",
       "categoria": "Gobernabilidad",
       "peso": 5.0,
       "impacto": "medio",
       "fuente_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNMTJIWFdzZElUTjRuR3hsd05sSzE5RHNlNzg4aENlOERzQ18yNmdNZWIxN3JyeUpYdFVSTkF5cEJMSHdndVdhcHQ3WWxhYTdsb2trcHY2YWRMZ1lHdk5yOEV4Q2NVQWhJeU5yTEZ4aDFyVmpTT0VTUWh6ampCdVBWSmUyWXQ2Tm5DWHg1RDlMVW9RaDhF?oc=5"
-    },
-    {
-      "id": "auto-1c248b22af",
-      "nombre": "Inaugura Mara Lezama exposición “Por mi espíritu hablarán mis trajes” de la arti",
-      "categoria": "Gobernabilidad",
-      "peso": 4.0,
-      "impacto": "medio",
-      "fuente_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQMXBheG5BNnhxOWVQWWJKckNQQTlmN1B0WGx4Z1cyeExTR2Q2aUk0U2F3UTVjTm1WdkNKd09iUld0NFFEZ01nQks3UjVFNEUtaF9GMUtqSUdOaURrS0NDZXVXVGtFYjFaNkRUWWtjT2NxZlZSRDBxTDhQMGZva01YZWNjM1puYXBDYVpJdExkNVUwbFFFdzZLV1Q5RzBXd055Q3Vxa085V3hNSUE2X05JY2VTdmVxd2hLcUlRLXpTdXlscjJzclVSQVlsOA?oc=5"
     }
   ],
   "temas_retomados": [
-    {
-      "id": "auto-2207170945",
-      "nombre": "Así se vivió el desfile cívico-militar del 16 de septiembre en Mérida | FOTOS",
-      "categoria": "Seguridad Nacional",
-      "dias_silencio": 64,
-      "motivo": "Claudia Sheinbaum autoriza desfile cívico militar en el zócalo - Milenio",
-      "impacto": "alto",
-      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVUo3QjEtdDJXckhiQVhQSjk2OGpVOG5jVVZieFBLaVJyTk1aV1dGTlIwSDdrSE9BelpyUmlEcFpCdHctVmVJYWVibEM0LXgzanEzRjNaZzBJYm5oSC1vTnhNeFZpVkVWRmpfdlRCRDNVOU95bzJEZFJobS1Ja1NWekxLRGZYSXpuTk5CVUw3OFVQRnRLYm5fZjMwMV9GOThGVEZWbEdwVFVGYjhE0gGsAUFVX3lxTE85SWF4dXlzQTZYU0hkbFVjUUpseGVqQ21oUVFVN1cza05iN3hQek1vaGduVkh1dEZBQ3pITzhjUVBJUDBZd3dsN0ZIMkQ4MW9RLWxUQUJ0cnUtMXVoNVN1Tzl2QkZydERVd0RUWXNTNl9zVHpUZ1BsR0JOdzUtbURObE1sbmZlVTlGUVZWNkk3V2o4QS1TdmFjVE5xdjJFUkpsTDZscEU5SjBqUWg?oc=5",
-      "fecha_anterior": "2026-09-17",
-      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOY05xU0doZzJMXzZJUUppSWkta1lPanVGbzVlQi1zR3RwZEJtcGw0RGFweG5DX0luQXp5d2M1MUdVd1pDTHZoSks4NjNYZVNIUl81LVc1YmJsOTZoMXV0UGV3YmtURjBQUzhJRnllQzVMaXNubW1UOTlpQzl1TWpzT0h6Wi1taEc1QXBER1dlVXJ5V1FpSEVZT2JoalJjZkpNeG1vUC00T20tUkNDdEY2cDNGeTcyOG9pd2Q2cHBRZ0t5MHNRR3VfN3VXeERNQjlzbS13S1ZLaHZwanRDQTR0SndXSHRvaUE?oc=5"
-    },
     {
       "id": "auto-37a53abfdf",
       "nombre": "Se pausa Jóvenes Construyendo el Futuro, vuelve hasta enero de 2027: Claudia She",
@@ -1026,6 +1018,28 @@
       "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/20/jesus-zambrano-vuelve-al-ruedo-busca-a-lideres-del-pan-y-pri-para-construir-frente-contra-morena-en-2027/",
       "fecha_anterior": "2026-10-06",
       "fuente_url_anterior": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOUjZTMm1NZHJUeEY5Q21oNFZmdWR0WHVVME91YlN0ZWRRNzd2aF81N2duZG9Fb2JyWHlDS2dLalZWaHJTcjRISFZRNURwQkgwMktsZE5LaF9CTVZqM0QtOWJ4R3Z1WUpUYkR5TTVZeXF6cFcwQ2d3RXd5U3NzdDdZVVdWRHdMX3pWUGgwcUdBaXlvN185cU5CSC1US29EQ242VGtXSEZzSUY4QnJCM0stQ19R?oc=5"
+    },
+    {
+      "id": "auto-cc236c8bd5",
+      "nombre": "Morena no dará pase automático a alcaldes de CdMx para relegirse - Milenio",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 40,
+      "motivo": "Alcaldesa Rojo de la Vega acusa a Morena de agresiones en CdMx - Milenio",
+      "impacto": "medio",
+      "fuente_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQM3NUQnZZNjE4cHdBcEZtNmRMUkc0TC1seEF4ZDBTa09fck5uNC1pTW81WGIwZEVlOUw1Z0x0WS0yWkh2S1pmTUtkTEQ1WnpySkZPcWQ1Z2hPZ3BianI3VlRsN3NxbWgxZVR2NlBtQnFKOHcyUEpfbjdxWXh0LU5yUVJkVnFPZXJkb0VfcDBRbGQtdGVHRkJyMUlIcTcwX1dC0gGgAUFVX3lxTE5DcUwxUGp3UE4zQ0JYSlBMTDJjT3VNWmpDOFNEaFJKeTZiZVRkX1psRHJNVTlMWFFqQ3ZrUkk0azMtV1Y1RXY2b3N3RFJvY3VoZlNMTzRqbGRmdmVERmk3WkVaV29GOTBySHVRWjBuZDVQWnlsT2R1czFTYjhOeHhvRkRGTVo3N25Vd0hoRHlKUHVvTXA1TmNIWGVLd0h0U0s?oc=5",
+      "fecha_anterior": "2026-10-11",
+      "fuente_url_anterior": "https://news.google.com/rss/articles/CBMingFBVV95cUxQR3lJM3NIWUFlQm01eG8xS1ZsOWpzNjREd01SMU50cnJaVEN5V3ZYNUFaekdWbWZDRWlMUDIyOFZhZG91Y0dKdDdrYkl4UTBOVDh2Y1o1aUZ4ZGNOeThsTEFIUWN3aG5VdjRpYzVzLVhuRmszb2FPN3hRZmJOSlhEa2pUUzJPS3BVSjM5eE1mNW0xaHlCZXFsd0t2MjBxUQ?oc=5"
+    },
+    {
+      "id": "auto-995ac3ef00",
+      "nombre": "El PAN Puebla por fin está intentando recuperar el tono de oposición | La Vecind",
+      "categoria": "Gobernabilidad",
+      "dias_silencio": 9,
+      "motivo": "⚡ Posible presión de Claudia Sheinbaum Pardo — Sheinbaum: fracasará todo intento de la oposición de deslegitimar los comicios",
+      "impacto": "alto",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/21/politica/004n1pol?partner=rss",
+      "fecha_anterior": "2026-11-11",
+      "fuente_url_anterior": ""
     },
     {
       "id": "auto-15914cd38c",
@@ -1058,7 +1072,7 @@
       "tema": "Así se vivió el desfile cívico-militar del 16 de septiembre en Mérida | FOTOS",
       "nota": "Claudia Sheinbaum autoriza desfile cívico militar en el zócalo - Milenio",
       "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVUo3QjEtdDJXckhiQVhQSjk2OGpVOG5jVVZieFBLaVJyTk1aV1dGTlIwSDdrSE9BelpyUmlEcFpCdHctVmVJYWVibEM0LXgzanEzRjNaZzBJYm5oSC1vTnhNeFZpVkVWRmpfdlRCRDNVOU95bzJEZFJobS1Ja1NWekxLRGZYSXpuTk5CVUw3OFVQRnRLYm5fZjMwMV9GOThGVEZWbEdwVFVGYjhE0gGsAUFVX3lxTE85SWF4dXlzQTZYU0hkbFVjUUpseGVqQ21oUVFVN1cza05iN3hQek1vaGduVkh1dEZBQ3pITzhjUVBJUDBZd3dsN0ZIMkQ4MW9RLWxUQUJ0cnUtMXVoNVN1Tzl2QkZydERVd0RUWXNTNl9zVHpUZ1BsR0JOdzUtbURObE1sbmZlVTlGUVZWNkk3V2o4QS1TdmFjVE5xdjJFUkpsTDZscEU5SjBqUWg?oc=5",
-      "reaparece": true,
+      "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
     },
@@ -1089,8 +1103,8 @@
       "nombre": "Donald Trump",
       "rol": "Responsable institucional",
       "tema": "Trump y México: declaraciones y presión",
-      "nota": "Exitosa cumbre APEC 2026 // Donald Trump, atragantado // A la vista, nuevos liderazgos - México SA - La Jornada",
-      "fuente_url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOYV82QlIyUDRDUGxZS0FnRmgyZTNMMmZ1bVkyaW5FMXJOZ2FJMllzaWVvd0Y4X21nY2lyb0F4aFdpRFhLdTlNYzN3UEI5TFRQckZ0clRXSlpmSGk5bFE5SUpmcThBek0zd0ZjRl8tMzFWRWxQeXFIN3ZwMXpPXzRtdzl6ampPQU9oYjFicWRxclpFbUZKdmVDNl9LUUNRTEFhd0xzMkNNQS1qaE9TWmxiNkZNTW5ZRVdIdlgwXzMzUTdxVmZUT2wzZFhoMEZSYXdGb2FfMDZIMnFlWE0?oc=5",
+      "nota": "Donald Trump afirma que está cerca de cerrar un acuerdo comercial con México - Excélsior",
+      "fuente_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQOVFfcXFMZlRTWGZteGlxMElRMDhVVlBzRW91MWRMYnFXVlI2akM0R2ZEYi1wNnFCX2hza3FEY3BMN0R0MDlXam9BTDdnMVNEalFwU0tfNWNyT3FkNU9qcllIOWpmcklRcUJMdnVfRl9rcWpyRWRncG96ODl1b2lmOVhkMmJZc014T2FCc1luZjNobkNGMFZSSndIMEZpYWJDZG9JZFJmdUdUTVhG0gGyAUFVX3lxTE5qNzEwTDV5Q0Y4cWVEUEhrbHUyMkpTNlVESGE2UGVMa3lzT1BDTWxDTGVUMDlZUmVXbHFGUHVlYXQwM1JXSXIyS0thSWxvdUttNlJoUHdSNjU4WXpjVGZ6R2s2dEo5ZFdKcXNjdEpkYnRsOG9RejVDbVEzZlhDZ2ZWU3FzUndYT0sxTGVJUjdNVlhiNG9XcUZxNHpkY2dKRVhReDhmZjJOMGlPTDNBVF9yVlE?oc=5",
       "reaparece": false,
       "tema_nuevo": false,
       "confianza": "media"
@@ -1108,7 +1122,14 @@
     }
   ],
   "declaracion_presidenta": null,
-  "declaracion_otro": null,
+  "declaracion_otro": {
+    "actor": "Morena (partido político)",
+    "texto": "Acuerdan PT y Morena “tregua declarativa” sobre aspirantes de la 4T",
+    "fuente_url": "https://www.jornada.com.mx/2026/11/21/politica/007n3pol?partner=rss",
+    "intensidad": 7.0,
+    "fecha": "2026-11-21",
+    "nivel_fuente": "ALTA"
+  },
   "patron_historico_4sem": [
     {
       "fecha": "2026-10-25",
@@ -1312,26 +1333,26 @@
     },
     {
       "fecha": "2026-11-19",
-      "tension": 29,
-      "n_notas": 25,
+      "tension": 26,
+      "n_notas": 28,
       "n_alto_impacto": 13,
-      "n_medio_impacto": 12,
+      "n_medio_impacto": 15,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-20",
-      "tension": 27,
-      "n_notas": 33,
+      "tension": 24,
+      "n_notas": 36,
       "n_alto_impacto": 15,
-      "n_medio_impacto": 18,
+      "n_medio_impacto": 21,
       "n_bajo_impacto": 0
     },
     {
       "fecha": "2026-11-21",
-      "tension": null,
-      "n_notas": 0,
-      "n_alto_impacto": 0,
-      "n_medio_impacto": 0,
+      "tension": 25,
+      "n_notas": 2,
+      "n_alto_impacto": 1,
+      "n_medio_impacto": 1,
       "n_bajo_impacto": 0
     }
   ],
@@ -1340,42 +1361,42 @@
       "id": "morena_partido",
       "nombre": "Morena (partido político)",
       "iniciales": "MO",
-      "x_lunes": 80,
-      "y_lunes": 70,
+      "x_lunes": 76,
+      "y_lunes": 69,
       "x_hoy": 100,
-      "y_hoy": 74,
-      "delta_pts": 21.0,
-      "alcance": 27,
+      "y_hoy": 71,
+      "delta_pts": 25.5,
+      "alcance": 31,
       "n_alto": 19,
-      "n_medio": 21,
+      "n_medio": 27,
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPS3Jqb0pKTGd4NldVTmpvVFZvNDQ0SGl3UTc1ZmZVVmEwWmVKMDBXNXBfQ3ZUdzU4c0VVNHBkZTJMNUpTanhTWUNqZTVwc0lSY0NpTFFCMkY3MC1RUldZdXhENUpVNlN2SWlLSlNGa2F0OUFzWkphcGZxbjN5NnJEOGgzTVFHQWtkOFJ3QUk2QlNORExKSGxLMUkwekVDR3BqajVn0gGjAUFVX3lxTE1fRld1TGNuWFpKaE5ERWNaRHpmY0UxakRaMFBNM282QVFuTXdfZUV0aWNpZG5acUYwazhvemhOeUFESTZtWXVfbGJMTEhnbnBUTWtQdDg3eldLVF9rSDhmMTZCaDBsMlk4MlNHRGp3bzJwZHRpdFhKYnN0Ri1mZ3pVTnFtOTMtbVBZSDFxc1pnRjh0VzVpVld5UTdjT05zNUNLTm8?oc=5",
-      "nota_texto": "Morena abre registro para elegir coordinaciones distritales locales en 31 entidades - Milenio",
+      "nota_url": "https://www.elfinanciero.com.mx/nacional/2026/11/17/ricardo-monreal-propone-quitar-los-superpoderes-de-la-presidencia-del-ine-que-morena-aprobo-en-2024-para-taddei/",
+      "nota_texto": "Ricardo Monreal propone quitar los ‘superpoderes’ de la presidencia del INE que Morena aprobó en 2024 para Taddei",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 4,
       "trayectoria": [
         {
           "fecha": "2026-11-17",
-          "x": 20,
+          "x": 17,
           "y": 62
         },
         {
           "fecha": "2026-11-18",
-          "x": 72,
+          "x": 63,
           "y": 67
         },
         {
           "fecha": "2026-11-19",
-          "x": 80,
-          "y": 70
+          "x": 76,
+          "y": 69
         },
         {
           "fecha": "2026-11-20",
           "x": 100,
-          "y": 74
+          "y": 71
         }
       ],
       "fecha_apagado": "2026-11-21"
@@ -1384,9 +1405,9 @@
       "id": "sheinbaum",
       "nombre": "Claudia Sheinbaum Pardo",
       "iniciales": "CS",
-      "x_lunes": 65,
+      "x_lunes": 57,
       "y_lunes": 87,
-      "x_hoy": 70,
+      "x_hoy": 61,
       "y_hoy": 86,
       "delta_pts": 4.5,
       "alcance": 24,
@@ -1395,35 +1416,35 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOZFhabl83eGNtU3Rha21kZHBOY3Y2VEF1ZWhqYklOZDZKMUNpNjBXMHFpWERWbFlWYlhTTDNEUGVKMGRWTWNrUWQxcG9kdTJRWVQ5UkFDb3c2M0dtNGdybkpYRnVwZUI5dG5acHhFV3ZxbFFRQUlzZ3JpMnNMYW1rLTNMQlhnd3RoRGFwRTF3dVkxMFhVSkNmOTh3cHhOLVNBSGY3NTNZMWlkYjd4cEx6cHpwS3FrZGVTd0tmTlQtNF9LclF4a3p3VmhIWGpBNG1taVJ4Y294R1B5ZVV6a1E?oc=5",
-      "nota_texto": "Claudia Sheinbaum posa junto a Xi Jinping, Trump y Putin en foto oficial de la APEC 2026 - Reporte Indigo",
+      "nota_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPelpsamw5Slh2UGdIYkpZNmtpSWJyN3dxaXh5Rk1CbTVTVS1xalFSd3RuNmVPZWlhZHo3SlMwYTV6VmcwWC03QXBGNWd5cTdlMGJjMTREZC1VTU5SU0hlNVQtb0dHazA1VHpJY05mZ1R4QTZwMkZqTXRkODhRUXE1NWZkbjQxWVA5R1VLV1dEMV9mYzVna0t2LWRUbmJ6ZmpJZDVSNU5lR0l6VE9OYWNwbGhOeElQX3Y4UTFvVWZydTRXM2swSmEtZE9NZzhOOFN4bVVQSHpWZ21pSzFYM1dacGtONA?oc=5",
+      "nota_texto": "MILENIO. . 🔴 La presidenta Claudia Sheinbaum inició su octava gira internacional en Shenzhen, China, donde será la oradora principal ante el Consejo Asesor de Negocios de APEC, el cual está compuesto ",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 5,
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 18,
+          "x": 15,
           "y": 93
         },
         {
           "fecha": "2026-11-17",
-          "x": 40,
+          "x": 35,
           "y": 84
         },
         {
           "fecha": "2026-11-18",
-          "x": 55,
+          "x": 48,
           "y": 89
         },
         {
           "fecha": "2026-11-19",
-          "x": 65,
+          "x": 57,
           "y": 87
         },
         {
           "fecha": "2026-11-20",
-          "x": 70,
+          "x": 61,
           "y": 86
         }
       ],
@@ -1433,9 +1454,9 @@
       "id": "trump",
       "nombre": "Donald Trump",
       "iniciales": "DT",
-      "x_lunes": 28,
+      "x_lunes": 24,
       "y_lunes": 91,
-      "x_hoy": 30,
+      "x_hoy": 26,
       "y_hoy": 92,
       "delta_pts": 3.0,
       "alcance": 12,
@@ -1444,8 +1465,8 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOLVdGTWZ5ZnZzc2d2LTU3YmZOalUzbVl1Wk5fRG42T3VmbWhNMXN6RDNtRGVmZ1F3aXFqUUlnMG5zQ0FvcXV4Ny1PRWJoRU4wSHQtQ19xNmZadGktLV9hS2RPLVVQSXNQSWN5NlljcHNIeU5OR0haQTYzZktWcU5iODc4ZUFuTzBjbVEwZGVvTWlKTmFQLVFOcVg2SDBBSG5HNE0xVA?oc=5",
-      "nota_texto": "Claudia Sheinbaum se Reúne con Donald Trump en China - N+",
+      "nota_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPZXJGUzU2Y3I0SlRwaVVMVG0xSWFndEVrTzdYVHZGR0Z1YUlwOE9LVEtKamVjZWY4UXFZN0d1dl85RnQ5RnA2TDJfSVhaQUN2S3VhRHdWNDBkS0tHTjk3MElxUENQSUlpanVzTHZPak05RHZjQXEtZjZjdDhZUWo4ejJfX3I0UmN6YzlwT2ExRnVvRFhiVWJHeTMtaHVEcWpqN2JNSWRqWWc5SXNPTldZV00tME5kZm9lWXhqbXdSX0oydERnSThJLTVjZ1I1bTJ1cWFrQTA3eXdaaWNFNVhQWURDckhIVkJabEEzcXZmWQ?oc=5",
+      "nota_texto": "Xi Jinping, Donald Trump y Vladímir Putin tendrán histórica reunión en China: ¿qué temas abordarán? - Reporte Indigo",
       "es_nuevo": false,
       "categoria": "Relación Bilateral",
       "dias_activo": 5,
@@ -1457,34 +1478,68 @@
         },
         {
           "fecha": "2026-11-17",
-          "x": 10,
+          "x": 9,
           "y": 75
         },
         {
           "fecha": "2026-11-18",
-          "x": 22,
+          "x": 20,
           "y": 89
         },
         {
           "fecha": "2026-11-19",
-          "x": 28,
+          "x": 24,
           "y": 91
         },
         {
           "fecha": "2026-11-20",
-          "x": 30,
+          "x": 26,
           "y": 92
         }
       ],
       "fecha_apagado": "2026-11-21"
     },
     {
+      "id": "monreal",
+      "nombre": "Ricardo Monreal",
+      "iniciales": "RM",
+      "x_lunes": 4,
+      "y_lunes": 100,
+      "x_hoy": 7,
+      "y_hoy": 100,
+      "delta_pts": 3,
+      "alcance": 3,
+      "n_alto": 3,
+      "n_medio": 0,
+      "n_bajo": 0,
+      "impacto_nivel": "alto",
+      "apagado": true,
+      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/monreal-pide-mantener-el-dialogo-para-renovar-presidencia-del-ine-2920394.html",
+      "nota_texto": "Ricardo Monreal pide consenso para elegir a la nueva titular del INE",
+      "es_nuevo": false,
+      "categoria": "Gobernabilidad",
+      "dias_activo": 2,
+      "trayectoria": [
+        {
+          "fecha": "2026-11-17",
+          "x": 4,
+          "y": 100
+        },
+        {
+          "fecha": "2026-11-20",
+          "x": 7,
+          "y": 100
+        }
+      ],
+      "fecha_apagado": "2026-11-18"
+    },
+    {
       "id": "andy",
       "nombre": "Andrés Manuel López Beltrán ('Andy')",
       "iniciales": "AL",
-      "x_lunes": 18,
+      "x_lunes": 15,
       "y_lunes": 86,
-      "x_hoy": 20,
+      "x_hoy": 17,
       "y_hoy": 88,
       "delta_pts": 3.0,
       "alcance": 7,
@@ -1506,68 +1561,34 @@
         },
         {
           "fecha": "2026-11-17",
-          "x": 8,
+          "x": 7,
           "y": 83
         },
         {
           "fecha": "2026-11-18",
-          "x": 15,
+          "x": 13,
           "y": 83
         },
         {
           "fecha": "2026-11-19",
-          "x": 18,
+          "x": 15,
           "y": 86
         },
         {
           "fecha": "2026-11-20",
-          "x": 20,
+          "x": 17,
           "y": 88
         }
       ],
       "fecha_apagado": "2026-11-21"
     },
     {
-      "id": "monreal",
-      "nombre": "Ricardo Monreal",
-      "iniciales": "RM",
-      "x_lunes": 5,
-      "y_lunes": 100,
-      "x_hoy": 8,
-      "y_hoy": 100,
-      "delta_pts": 3,
-      "alcance": 3,
-      "n_alto": 3,
-      "n_medio": 0,
-      "n_bajo": 0,
-      "impacto_nivel": "alto",
-      "apagado": true,
-      "nota_url": "https://heraldodemexico.com.mx/nacional/2026/11/17/monreal-pide-mantener-el-dialogo-para-renovar-presidencia-del-ine-2920394.html",
-      "nota_texto": "Ricardo Monreal pide consenso para elegir a la nueva titular del INE",
-      "es_nuevo": false,
-      "categoria": "Gobernabilidad",
-      "dias_activo": 2,
-      "trayectoria": [
-        {
-          "fecha": "2026-11-17",
-          "x": 5,
-          "y": 100
-        },
-        {
-          "fecha": "2026-11-20",
-          "x": 8,
-          "y": 100
-        }
-      ],
-      "fecha_apagado": "2026-11-18"
-    },
-    {
       "id": "rocha_moya",
       "nombre": "Rubén Rocha Moya",
       "iniciales": "RR",
-      "x_lunes": 20,
+      "x_lunes": 17,
       "y_lunes": 75,
-      "x_hoy": 22,
+      "x_hoy": 20,
       "y_hoy": 72,
       "delta_pts": 1.5,
       "alcance": 9,
@@ -1584,22 +1605,22 @@
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 10,
+          "x": 9,
           "y": 88
         },
         {
           "fecha": "2026-11-17",
-          "x": 15,
+          "x": 13,
           "y": 83
         },
         {
           "fecha": "2026-11-18",
-          "x": 20,
+          "x": 17,
           "y": 75
         },
         {
           "fecha": "2026-11-20",
-          "x": 22,
+          "x": 20,
           "y": 72
         }
       ],
@@ -1609,9 +1630,9 @@
       "id": "rosa_icela",
       "nombre": "Rosa Icela Rodríguez",
       "iniciales": "RI",
-      "x_lunes": 10,
+      "x_lunes": 9,
       "y_lunes": 75,
-      "x_hoy": 12,
+      "x_hoy": 11,
       "y_hoy": 70,
       "delta_pts": 1.5,
       "alcance": 5,
@@ -1628,22 +1649,22 @@
       "trayectoria": [
         {
           "fecha": "2026-11-16",
-          "x": 5,
+          "x": 4,
           "y": 100
         },
         {
           "fecha": "2026-11-17",
-          "x": 8,
+          "x": 7,
           "y": 83
         },
         {
           "fecha": "2026-11-19",
-          "x": 10,
+          "x": 9,
           "y": 75
         },
         {
           "fecha": "2026-11-20",
-          "x": 12,
+          "x": 11,
           "y": 70
         }
       ],
@@ -1653,9 +1674,9 @@
       "id": "higinio_martinez",
       "nombre": "Higinio Martínez Miranda",
       "iniciales": "HM",
-      "x_lunes": 5,
+      "x_lunes": 4,
       "y_lunes": 75,
-      "x_hoy": 8,
+      "x_hoy": 7,
       "y_hoy": 67,
       "delta_pts": 1.5,
       "alcance": 2,
@@ -1677,12 +1698,12 @@
         },
         {
           "fecha": "2026-11-17",
-          "x": 5,
+          "x": 4,
           "y": 75
         },
         {
           "fecha": "2026-11-18",
-          "x": 8,
+          "x": 7,
           "y": 67
         }
       ],
@@ -1692,9 +1713,9 @@
       "id": "montiel",
       "nombre": "Ariadna Montiel",
       "iniciales": "AM",
-      "x_lunes": 5,
+      "x_lunes": 4,
       "y_lunes": 50,
-      "x_hoy": 10,
+      "x_hoy": 9,
       "y_hoy": 50,
       "delta_pts": 3.0,
       "alcance": 4,
@@ -1703,20 +1724,20 @@
       "n_bajo": 0,
       "impacto_nivel": "medio",
       "apagado": true,
-      "nota_url": "https://www.jornada.com.mx/2026/11/18/politica/008n2pol?partner=rss",
-      "nota_texto": "“Somos representa la mafia en el INE”: Ariadna Montiel",
+      "nota_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNdVRjeVY2ZG1nR2JwdDlacWdfZmhKU3RBYVg4cTMzX3hFMXJ6em5fSkNNU2xFT2dNcWh3dUJkbnBaRzM1NVFVVkhPWWdicEtiaFVxczJoSEpRbEtpQnJKbG9kdVA0M0dsOXpBZGNib2dmOUNsaGZENmJaYmtuUUVSWnhDRVNobjByMDFiQUpfbVg0dzNXdVhuelpMOFdoVFoxTnlrOEcwZHNpVGs5aGZ5cDZUV0RNalc0QUM2VXVsUG5KdTA5MVpHVTR3?oc=5",
+      "nota_texto": "Ariadna Montiel descarta segunda encuesta en NL; respalda a Clara Luz Flores - ABC Noticias",
       "es_nuevo": false,
       "categoria": "Gobernabilidad",
       "dias_activo": 2,
       "trayectoria": [
         {
           "fecha": "2026-11-17",
-          "x": 5,
+          "x": 4,
           "y": 50
         },
         {
           "fecha": "2026-11-18",
-          "x": 10,
+          "x": 9,
           "y": 50
         }
       ],
@@ -1862,6 +1883,14 @@
   ],
   "declaracion_otro_historial": [
     {
+      "actor": "Morena (partido político)",
+      "texto": "Acuerdan PT y Morena “tregua declarativa” sobre aspirantes de la 4T",
+      "fuente_url": "https://www.jornada.com.mx/2026/11/21/politica/007n3pol?partner=rss",
+      "intensidad": 7.0,
+      "fecha": "2026-11-21",
+      "nivel_fuente": "ALTA"
+    },
+    {
       "actor": "Donald Trump",
       "texto": "Donald Trump se reúne con ‘su amigo’ Vladimir Putin previo a reunión trilateral con Xi Jinping",
       "fuente_url": "https://www.elfinanciero.com.mx/mundo/2026/11/19/donald-trump-se-reune-con-su-amigo-vladimir-putin-y-xi-jinping-previo-a-reunion-trilateral-en-china/",
@@ -1876,16 +1905,13 @@
       "intensidad": 7.0,
       "fecha": "2026-11-18",
       "nivel_fuente": "ALTA"
-    },
-    {
-      "actor": "Ricardo Monreal",
-      "texto": "Ricardo Monreal propone quitar los ‘superpoderes’ de la presidencia del INE que Morena aprobó en 2024 para Taddei",
-      "fuente_url": "https://www.elfinanciero.com.mx/nacional/2026/11/17/ricardo-monreal-propone-quitar-los-superpoderes-de-la-presidencia-del-ine-que-morena-aprobo-en-2024-para-taddei/",
-      "intensidad": 7.0,
-      "fecha": "2026-11-17",
-      "nivel_fuente": "ALTA"
     }
   ],
-  "diff_desde_corte_anterior": null,
-  "hora_corte_publicada": "2026-11-21 00:56"
+  "diff_desde_corte_anterior": {
+    "generado_anterior": "2026-11-21T00:56:16.483063-06:00",
+    "cambios": [
+      "Nueva declaración relevante (otro actor): Morena (partido político)"
+    ]
+  },
+  "hora_corte_publicada": "2026-11-21 06:02"
 }
